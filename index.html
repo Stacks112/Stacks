@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v7 :: wikipedia topic thumbnails -->
+<!-- STACKS BUILD v8 :: mobile app mode (hero hidden on phones) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -756,6 +756,30 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .card-thumb.has-photo .thumb-label{color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.45);}
 .hot-cover.has-photo .cover-label{color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.45);}
 .hot-cover.has-photo .cover-title{text-shadow:0 1px 10px rgba(0,0,0,.55);}
+/* ---------- mobile app mode ----------
+   On phones the intro hero disappears and the feed starts
+   immediately, like an installed app. A slim dismissible bar
+   keeps the install path available in the browser. */
+.mini-install{
+  display:none;align-items:center;gap:10px;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;
+  padding:10px 14px;margin:14px 0 2px;
+}
+.mini-install .mi-text{font-size:12.5px;color:var(--muted);flex:1;line-height:1.45;}
+.mini-install .mi-btn{
+  font-size:12.5px;font-weight:700;color:#fff;background:var(--black);
+  border:0;border-radius:999px;padding:8px 14px;cursor:pointer;font-family:inherit;
+  white-space:nowrap;flex:0 0 auto;
+}
+.mini-install .mi-close{
+  font-size:18px;line-height:1;color:var(--muted);background:none;border:0;
+  cursor:pointer;padding:2px 4px;flex:0 0 auto;font-family:inherit;
+}
+@media (max-width:700px){
+  .hero{display:none;}
+  .mini-install:not([hidden]){display:flex;}
+  .wrap{padding-top:14px;}
+}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -811,6 +835,12 @@ footer a{color:var(--muted);}
     </div>
     <p class="install-hint" id="installHint" hidden></p>
   </section>
+
+  <div class="mini-install" id="miniInstall" hidden>
+    <span class="mi-text" id="miniInstallText"></span>
+    <button class="mi-btn" id="miniInstallBtn" hidden></button>
+    <button class="mi-close" id="miniInstallClose" aria-label="close">&times;</button>
+  </div>
 
   <section>
     <h2 class="section-title" id="hotTitle"></h2>
@@ -1222,6 +1252,7 @@ const isIOS = () => {
 };
 
 function refreshInstallUI(){
+  refreshMiniInstall();
   try {
     if (!installBtn || !installHint) return;
     const S = STRINGS[LANG];
@@ -1244,6 +1275,44 @@ function refreshInstallUI(){
     }
   } catch (e) {}
 }
+
+/* mobile install bar: same state machine, slimmer surface */
+const miniInstall = document.getElementById("miniInstall");
+const miniInstallText = document.getElementById("miniInstallText");
+const miniInstallBtn = document.getElementById("miniInstallBtn");
+
+function refreshMiniInstall(){
+  try {
+    if (!miniInstall) return;
+    const S = STRINGS[LANG];
+    const dismissed = store.get("stk_hide_install", false);
+    if (isStandalone() || dismissed){ miniInstall.hidden = true; return; }
+    if (deferredPrompt){
+      miniInstallText.textContent = "Stacks";
+      miniInstallBtn.textContent = S.install;
+      miniInstallBtn.hidden = false;
+      miniInstall.hidden = false;
+    } else if (isIOS()){
+      miniInstallText.textContent = S.installIOS;
+      miniInstallBtn.hidden = true;
+      miniInstall.hidden = false;
+    } else {
+      miniInstall.hidden = true;
+    }
+  } catch (e) {}
+}
+if (miniInstallBtn) miniInstallBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  refreshMiniInstall();
+});
+const miniClose = document.getElementById("miniInstallClose");
+if (miniClose) miniClose.addEventListener("click", () => {
+  store.set("stk_hide_install", true);
+  miniInstall.hidden = true;
+});
 
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
