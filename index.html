@@ -8,6 +8,14 @@
 <meta name="description" content="Sharp investment writing from around the world, summarized in your language, with a take. Curated by The Infrastructure Thesis.">
 <meta property="og:title" content="Stacks: The world's best investing reads, in your language">
 <meta property="og:description" content="Sharp investment writing from around the world, summarized in your language, with a take.">
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Stacks">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -283,6 +291,8 @@ const STRINGS = {
     heroTitle: "Reading Made Easy",
     heroSub: "Pick a voice. Read it in your language. That's it.",
     heroCta: "Explore Signals",
+    install: "Add to Home Screen",
+    installIOS: "To install: tap Share, then Add to Home Screen.",
     hot: "Hot this week",
     original: "Original",
     gist: "The gist",
@@ -300,6 +310,8 @@ const STRINGS = {
     heroTitle: "읽는 투자, 쉽게",
     heroSub: "목소리를 고르세요. 당신의 언어로 읽으세요. 끝.",
     heroCta: "시그널 보기",
+    install: "홈 화면에 추가",
+    installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
     hot: "이번 주 핫한 읽을거리",
     original: "원문",
     gist: "핵심",
@@ -385,6 +397,17 @@ nav{
   transition:transform .15s ease,box-shadow .15s ease;
 }
 .cta:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.18);}
+.hero-actions{position:relative;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-ghost{
+  background:#fff;color:var(--black);
+  border:1px solid #D9DBE1;cursor:pointer;font-family:inherit;
+}
+.cta-ghost:hover{box-shadow:0 8px 20px rgba(0,0,0,.10);}
+.install-hint{
+  position:relative;margin:14px auto 0;max-width:34ch;
+  font-size:12.5px;color:var(--muted);
+}
+html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;}
 
 /* ---------- hot rail ---------- */
 .section-title{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin:8px 0 16px;}
@@ -548,7 +571,11 @@ footer a{color:var(--muted);}
     <div class="app-name" id="appName"></div>
     <h1 id="heroTitle"></h1>
     <p class="sub" id="heroSub"></p>
-    <a class="cta" href="#feed" id="heroCta"></a>
+    <div class="hero-actions">
+      <a class="cta" href="#feed" id="heroCta"></a>
+      <button class="cta cta-ghost" id="installBtn" hidden></button>
+    </div>
+    <p class="install-hint" id="installHint" hidden></p>
   </section>
 
   <section>
@@ -671,6 +698,7 @@ function render(){
   document.getElementById("heroTitle").textContent = S.heroTitle;
   document.getElementById("heroSub").textContent = S.heroSub;
   document.getElementById("heroCta").innerHTML = S.heroCta + " &rarr;";
+  if (typeof refreshInstallUI === "function") refreshInstallUI();
   document.getElementById("hotTitle").textContent = S.hot;
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
@@ -767,6 +795,63 @@ function render(){
   hydrateImages();
 }
 render();
+
+/* ---------------- app install ---------------- */
+let deferredPrompt = null;
+const installBtn = document.getElementById("installBtn");
+const installHint = document.getElementById("installHint");
+
+const isStandalone = () =>
+  window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+const isIOS = () =>
+  /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+function refreshInstallUI(){
+  const S = STRINGS[LANG];
+  if (isStandalone()){
+    installBtn.hidden = true;
+    installHint.hidden = true;
+    return;
+  }
+  if (deferredPrompt){
+    installBtn.textContent = S.install;
+    installBtn.hidden = false;
+    installHint.hidden = true;
+  } else if (isIOS()){
+    installHint.textContent = S.installIOS;
+    installHint.hidden = false;
+    installBtn.hidden = true;
+  }
+}
+
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  refreshInstallUI();
+});
+
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.hidden = true;
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredPrompt = null;
+  installBtn.hidden = true;
+  installHint.hidden = true;
+});
+
+refreshInstallUI();
+
+if ("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
 </script>
 </body>
 </html>
