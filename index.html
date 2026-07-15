@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v13 :: fix onesignal worker path for /Stacks/ subpath -->
+<!-- STACKS BUILD v21 :: search, comment counts, event tracking -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -24,8 +24,9 @@
 <script>
 /* ============================================================
    STACKS: DATA
-   To add a new item: copy one { ... } block, paste it at the
-   TOP of ITEMS, edit the fields, commit. Newest first.
+   To add a new item: copy one { ... } block, paste it anywhere
+   in ITEMS, edit the fields, commit. The feed sorts itself by
+   date, newest first, so position in this array does not matter.
 
    sourceLang: "KO" or "EN"  (language of the ORIGINAL post)
    category:   "investor" | "ceo" | "politician"
@@ -40,10 +41,10 @@
    LOGO (optional):
      logo: "nebius.com"       -> company logo pulled automatically from the domain
    ============================================================ */
-/* Comments are powered by Cusdis (cusdis.com), free and moderated.
-   Setup: sign up at cusdis.com, add a website, copy the App ID below.
+/* Comments live on June's own Cloudflare Worker (see worker.js in this repo).
+   Paste the worker URL below, e.g. "https://stacks-comments.xxxx.workers.dev".
    Leave empty to hide all comment buttons. */
-const CUSDIS_APP_ID = "385367ee-8ea1-4e83-afa1-dcef686baf14";
+const COMMENTS_API = "https://stacks-comments.wnrakrhdn128.workers.dev";
 
 /* Analytics: GoatCounter (goatcounter.com), free, no cookies.
    Sign up, pick a code (e.g. "stacks"), put it here. Empty = off. */
@@ -55,6 +56,139 @@ const GOATCOUNTER_SITE = "stacks";
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
 const ITEMS = [
+{
+  date: "2026-07-16",
+  id: "meru-adr-conv",
+  thumbWiki: "New York Stock Exchange",
+  related: ["hynix"],
+  source: "Meru (\uba54\ub974)",
+  sourceUrl: "https://blog.naver.com/ranto28/224348032230",
+  sourceLang: "KO",
+  category: "investor",
+  hot: true,
+  cover: { from: "#0BA5EC", to: "#12B76A", label: "ADR" },
+  logo: "skhynix.com",
+  avatarImg: "meru.png",
+  tags: ["SK HYNIX", "ADR", "ARBITRAGE"],
+  title: {
+    en: "July 29: the SK Hynix ADR premium finally gets a closing mechanism",
+    ko: "7월 29일: SK하이닉스 ADR 프리미엄에 드디어 '좁혀질 통로'가 생긴다"
+  },
+  gist: {
+    en: "Follow-up to the 49% New York premium. On July 15, Korea's securities depository confirmed to press it is pushing to allow conversion between the Seoul shares and the US ADR after July 29. Meru's framework is the TSMC vs ASML comparison: ASML allows free two-way conversion, so arbitrage keeps the gap near 1%; TSMC allows only one direction freely, so a 16-17% premium persists. SK Hynix listed TSMC-style but with conversion blocked entirely, hence 49%. Open the channel and the trade writes itself: buy cheap in Seoul, convert, sell dear in New York, pushing Seoul up and the ADR down toward a TSMC-like gap. The brakes: the ADR program caps at 25% of shares and only 2.5% is issued; new issuance is effectively off the table because SK Square just hit its 20% holding-company floor, so the rest must come from old shares, slowly, under regulatory and FX supervision. TSMC took 28 years to reach 20.5%. His one-liner: good news for Seoul holders, just not today.",
+    ko: "뉴욕 프리미엄 49% 글의 후속. 7월 15일 한국예탁결제원이 언론에 '7월 29일 이후 상호전환 추진'을 확인해줬다. 메르의 분석 틀은 TSMC 대 ASML 비교다. ASML은 양방향 전환이 자유로워 차익거래가 즉시 작동하고 괴리율이 1% 안팎에 붙는다. TSMC는 한 방향만 자유로워 16~17% 프리미엄이 유지된다. SK하이닉스는 TSMC 방식으로 상장했는데 전환 자체가 막혀 있어 49%까지 벌어졌다. 통로가 열리면 거래는 자명하다. 싼 서울 본주를 사서 ADR로 전환해 비싼 뉴욕에 파는 것. 이 과정에서 본주는 오르고 ADR은 내려 TSMC 수준 갭으로 수렴한다. 브레이크도 있다. ADR 한도는 발행주식의 25%인데 현재 2.5%뿐이고, SK스퀘어 지분이 지주회사 요건 20% 하한에 딱 걸려 신주 추가발행은 사실상 불가라 나머지는 구주로, 당국과 환율을 보며 천천히 간다. TSMC는 20.5%까지 28년 걸렸다. 메르의 한 줄: 국장 보유자에게 나쁜 소식이 아니다. 다만 오늘은 아니다."
+  },
+  why: {
+    en: "The 49% premium was a gauge of blocked demand. From July 29 it becomes a trade with a mechanism, and the convergence flow buys Seoul.",
+    ko: "49% 프리미엄은 막힌 수요의 계기판이었다. 7월 29일부터는 메커니즘이 달린 트레이드가 되고, 그 수렴 흐름은 서울을 사는 방향이다."
+  }
+},
+{
+  date: "2026-07-16",
+  id: "meru-redsea",
+  thumbWiki: "Bab-el-Mandeb",
+  related: ["hormuz-meru", "potus-hormuz"],
+  source: "Meru (\uba54\ub974)",
+  sourceUrl: "https://blog.naver.com/ranto28/224347566409",
+  sourceLang: "KO",
+  category: "investor",
+  hot: true,
+  cover: { from: "#B91C1C", to: "#7F1D1D", label: "RED SEA" },
+  avatarImg: "meru.png",
+  tags: ["GEOPOLITICS", "OIL", "RED SEA"],
+  title: {
+    en: "After Hormuz, the Red Sea: how one runway strike may close the detour route",
+    ko: "호르무즈 다음은 홍해: 활주로 폭격 하나가 우회로를 닫으려 한다"
+  },
+  gist: {
+    en: "The chain of events: Khamenei was killed in an Israeli strike in February, and under the US ceasefire MOU his funeral finally ran July 4-9. A Houthi delegation attended, and as their Mahan Air flight approached Sana'a airport for the return, missiles hit the runway and taxiways. The plane diverted safely, but attribution is the fuse: Houthis blame Saudi Arabia, while Yemen's government, which has no air force of its own and whose Saudi-backed leadership council operates out of Riyadh, claims the strike. The Houthis declared the four-year truce with Riyadh over and hit Saudi Arabia's Abha airport with missiles and drones. Why it matters for oil: with Hormuz blocked, Saudi rerouted up to 5M bbl/d (70% of normal exports) through the Red Sea port of Yanbu, UAE another 1.8M, and Korean tankers have been loading at Yanbu and sailing out through Bab-el-Mandeb, a 29km-wide strait the Houthis sit on that carries about 10% of seaborne crude. Meanwhile Trump notified Congress that hostilities against Iran resumed July 7, restarting the War Powers clock after both chambers passed withdrawal resolutions. Meru's read: Saudi hit the runway, not the plane, as a warning to Houthi leadership. The problem is that Zaydi warrior culture treats a threat to its delegation as Saudi breaking the truce first. Both chokepoints could close at once.",
+    ko: "사건의 사슬. 2월 이스라엘 공습으로 사망한 하메네이의 장례가 미국과의 휴전MOU로 126일 만에 치러졌고(7/4~9), 후티 대표단이 조문했다. 귀국길 마한항공기가 사나 공항에 접근하던 중 미사일이 활주로와 유도로를 때렸다. 기체는 무사히 회항했지만 배후가 뇌관이다. 후티는 사우디를 지목하고, 자체 항공전력이 없으며 지도부가 리야드에서 활동하는 사우디 후원 예멘 정부가 자기 소행이라 주장한다. 후티는 4년 휴전 종료를 선언하고 사우디 아브하 공항을 미사일과 드론으로 타격했다. 유가에 중요한 이유: 호르무즈 봉쇄 후 사우디는 홍해 얀부항으로 최대 하루 500만 배럴(평시 수출의 70%)을 우회시켰고 UAE도 180만 배럴을 돌렸다. 한국 유조선들도 얀부에서 싣고 폭 29km의 바브엘만데브 해협으로 나온다. 후티가 깔고 앉은 이 해협은 해상 원유 물동량의 약 10%가 지나는 길이다. 한편 트럼프는 7월 7일자 대이란 적대행위 재개를 의회에 통보해, 상하원의 철군 결의안 통과에도 전쟁권한법 60일 시계를 새로 돌렸다. 메르의 해석: 사우디는 비행기가 아니라 활주로를 때려 후티 지도부에 경고했다. 문제는 무장봉기를 종교적 의무로 보는 자이드파 전투 문화가 대표단 위협을 '사우디가 먼저 깼다'로 읽는다는 것. 두 초크포인트가 동시에 닫힐 수 있다."
+  },
+  why: {
+    en: "Hormuz risk was priced. A Red Sea closure on top of it is not: it kills the detour that has been keeping supply, and Korea's crude imports, moving.",
+    ko: "호르무즈 리스크는 가격에 반영됐다. 그 위의 홍해 봉쇄는 아니다. 지금까지 공급과 한국의 원유 수입을 굴려온 우회로 자체가 죽는 얘기다."
+  }
+},
+{
+  date: "2026-07-14",
+  id: "hassabis-framework",
+  thumbWiki: "Google DeepMind",
+  related: ["nadella", "zuck"],
+  source: "Demis Hassabis (@demishassabis)",
+  sourceUrl: "https://x.com/demishassabis/status/2076957440109625718",
+  sourceLang: "EN",
+  category: "ceo",
+  hot: true,
+  cover: { from: "#1A73E8", to: "#7B61FF", label: "AGI" },
+  logo: "deepmind.google",
+  wiki: "Demis_Hassabis",
+  tags: ["AGI", "REGULATION", "DEEPMIND"],
+  title: {
+    en: "Hassabis says AGI is years away, and asks for a body that can slow everyone down",
+    ko: "하사비스, AGI가 몇 년 안에 온다며 '모두를 늦출 수 있는 기구'를 요구하다"
+  },
+  gist: {
+    en: "DeepMind's CEO, in an 11.5M-view essay, states that AGI is probably only a few short years away and that we are standing in the foothills of the singularity, with an impact he sizes at perhaps 10x the Industrial Revolution at 10x the speed. His diagnosis: the field is locked in an intense commercial and geopolitical race, and frontier advances are outpacing our understanding. His proposal is concrete: a US Frontier AI Standards Body modeled on FINRA, a federally overseen public-private partnership funded mostly by industry, that defines 'Frontier-class' models via benchmarks, reviews models up to 30 days before release (voluntary at first, then required for US deployment), watermarks AI images, tests for deception and guardrail evasion, and, the striking part, could coordinate a slowdown in development among frontier labs if deemed necessary. It would apply to frontier models regardless of country of origin or open/closed status, with startups and academia exempt.",
+    ko: "딥마인드 CEO가 조회수 1,150만의 에세이에서 AGI가 아마 몇 년밖에 안 남았고 우리는 특이점의 초입에 서 있다고 선언했다. 임팩트는 산업혁명의 10배를 10배 속도로. 진단은 이렇다. 업계가 극도로 치열한 상업적, 지정학적 경쟁에 갇혀 있고, 프런티어의 진보가 우리의 이해를 앞지르고 있다는 것. 제안은 구체적이다. 미국 금융산업규제국(FINRA)을 본뜬 '프런티어 AI 표준기구'. 연방 감독 하의 민관 파트너십으로 재원은 대부분 업계가 대고, 벤치마크로 '프런티어급' 모델을 정의하며, 출시 최대 30일 전 모델을 심사하고(처음엔 자율, 이후 미국 시장 배포의 필수 요건으로), AI 이미지 워터마킹과 기만·가드레일 우회 테스트를 수행한다. 그리고 가장 눈에 띄는 대목: 필요하다고 판단되면 프런티어 랩들의 개발 속도를 조율해 늦출 수 있는 권한까지 거론했다. 국가나 오픈소스 여부와 무관하게 프런티어급 모델 전체에 적용하되, 스타트업과 학계는 면제다."
+  },
+  why: {
+    en: "Every compute demand model assumes the race never slows. The man building AGI just proposed the first institutional brake, and industry would fund it.",
+    ko: "모든 컴퓨트 수요 모델은 경쟁이 멈추지 않는다는 가정 위에 서 있다. AGI를 만드는 당사자가 첫 제도적 브레이크를 제안했고, 그 비용은 업계가 댄다."
+  }
+},
+{
+  date: "2026-07-07",
+  id: "doomberg-kilby",
+  thumbWiki: "Permian Basin (North America)",
+  paywall: true,
+  related: ["ess", "doomberg-bloom"],
+  source: "Doomberg",
+  sourceUrl: "https://newsletter.doomberg.com/p/blue-chips",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#1D4E89", to: "#3E7CB1", label: "KILBY" },
+  tags: ["POWER", "DATACENTER", "PERMIAN"],
+  title: {
+    en: "Gas in one side, data out the other: the off-grid project that finally pencils",
+    ko: "가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트"
+  },
+  gist: {
+    en: "Two years ago Doomberg sketched the endgame of AI power: enormous buildings with natural gas going in one side and data coming out the other, built off the public grid because nothing else could move fast enough. The nuclear renaissance, they argued, could not match the timing of AI's electricity demand, while gas was the one hydrocarbon clean enough to run baseload. The prediction has aged well in every part except the building. Texas and federal regulators tightened rules on large behind-the-meter projects over environmental objections, not one marquee off-grid project has reached a final investment decision, and Permian spot gas has spent much of 2026 below zero. Against that, one project stands out on size, on the caliber of the companies behind it, and on odds of actually getting built: Project Kilby, slated at twice the scale of Stargate in Abilene and only months from FID. Doomberg goes to the middle of the basin to size what it does to Permian flows.",
+    ko: "2년 전 Doomberg는 AI 전력의 종착점을 이렇게 그렸다. 한쪽으로 천연가스가 들어가고 반대쪽으로 데이터가 나오는 거대한 건물, 그리고 그 어떤 방법도 속도를 못 맞추니 공용 전력망 밖에 짓는 것. 원전 르네상스는 AI 전력 수요의 시계에 맞출 수 없고, 가스는 기저부하를 돌릴 만큼 깨끗한 유일한 탄화수소라는 논리였다. 예측은 '짓는 것' 빼고 다 맞았다. 텍사스와 연방 규제당국은 환경 문제를 들어 대형 비하인드미터 프로젝트 규제를 조였고, 간판급 오프그리드 프로젝트 중 최종투자결정(FID)에 도달한 건 하나도 없으며, 퍼미안 현물 가스는 2026년 상당 기간을 마이너스 가격으로 보냈다. 그 와중에 규모, 참여 기업의 급, 실제로 지어질 확률에서 한 건이 튄다. 애빌린의 스타게이트보다 두 배 크고 FID까지 몇 달 남은 Project Kilby다. Doomberg는 분지 한복판으로 들어가 이게 퍼미안 물류를 어떻게 흔드는지 계산한다."
+  },
+  why: {
+    en: "The bottleneck was never the gas or the turbines. It is the permit and the FID. Kilby is the first real test of whether off-grid compute is a thesis or a building.",
+    ko: "병목은 가스도 터빈도 아니었다. 인허가와 FID다. Kilby는 오프그리드 컴퓨트가 논리인지 건물인지를 가리는 첫 시험대다."
+  }
+},
+{
+  date: "2026-07-10",
+  id: "netinterest-nse",
+  thumbWiki: "National Stock Exchange of India",
+  paywall: true,
+  related: ["netinterest-stretch"],
+  source: "Marc Rubinstein (Net Interest)",
+  sourceUrl: "https://www.netinterest.co/p/options-for-everyone",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#C2410C", to: "#F59E0B", label: "NSE" },
+  logo: "nseindia.com",
+  tags: ["INDIA", "NSE", "IPO"],
+  title: {
+    en: "The world's most profitable exchange sells a product its regulator wants less of",
+    ko: "세계에서 가장 돈 잘 버는 거래소가 파는 것: 규제당국이 줄이고 싶어하는 상품"
+  },
+  gist: {
+    en: "Rubinstein opens with a trading guru who signed up over 400,000 students in a decade and collected $63M in course fees. India's regulator SEBI dug into those students' brokerage accounts and found two thirds lost money in the six months after graduating. The guru lost about $450,000 of his own over 20 months. That is the small version of the big number: SEBI's wider review puts 91% of equity derivatives participants in the red, with 9.6 million individuals losing $11B in the year to March 2025 and $30B over four years. Retail keeps coming anyway. NSE accounts went from 39.9 million to 129.1 million in five years, options volume has compounded at 47.5% a year for a decade, and SEBI is now fighting back with contract-size floors, fewer weekly expiries, upfront premiums, a higher transaction tax, and an AI tool named Sudarshan that hunts down finfluencer posts. Sitting on top of all of it is NSE: 72% of index options, essentially all single-stock options, 51% of global equity derivatives contracts, and roughly 60% of its revenue from options. It starts marketing a $3B IPO next week.",
+    ko: "루빈스타인은 10년간 40만 명 넘는 수강생을 모아 수강료 6,300만 달러를 걷은 인도 트레이딩 구루 이야기로 시작한다. 인도 규제당국 SEBI가 그 수강생들의 증권계좌를 열어보니, 수료 후 6개월간 3분의 2가 돈을 잃었다. 정작 구루 본인은 20개월간 개인 계좌에서 약 45만 달러를 날렸다. 이건 큰 숫자의 축소판이다. SEBI의 광범위 조사는 주식 파생상품 참가자의 91%가 손실이라고 결론냈고, 2025년 3월 결산 기준 960만 명이 110억 달러를, 4년 누적으로 300억 달러를 잃었다. 그런데도 개인은 계속 들어온다. NSE 계좌는 5년 만에 3,990만 개에서 1억 2,910만 개로 늘었고, 옵션 거래는 10년간 연 47.5%로 복리 성장했다. SEBI는 계약 최소단위 상향, 주간 만기 축소, 프리미엄 선납, 거래세 인상, 그리고 핀플루언서 게시물을 잡아내는 AI 도구 'Sudarshan'까지 동원해 반격 중이다. 이 판 위에 NSE가 앉아 있다. 지수옵션 72%, 개별주식옵션 사실상 100%, 전 세계 주식 파생 계약 수의 51%, 그리고 매출의 약 60%가 옵션에서 나온다. 다음 주 30억 달러 규모 IPO 마케팅을 시작한다."
+  },
+  why: {
+    en: "Capital does not only flow toward AI infrastructure, it burns somewhere too. Half the world's equity derivatives now change hands in India, 91% of the people doing it lose, and the house is going public.",
+    ko: "자본은 AI 인프라로 흘러가기만 하는 게 아니라 어딘가에서 타 없어지기도 한다. 세계 주식 파생 거래의 절반이 인도에서 일어나고, 그걸 하는 사람의 91%가 잃고, 그 판을 깐 집이 상장한다."
+  }
+},
 {
   date: "2026-07-14",
   id: "doomberg-bloom",
@@ -405,8 +539,20 @@ const STRINGS = {
     langNoteEN: "Original in English",
     newSince: "{n} new since your last visit",
     unreadOnly: "Unread only",
+    searchPh: "Search: ticker, source, keyword",
+    searchNone: "No matches. Try a ticker, a source name, or a keyword.",
+    freeOnly: "Free only",
     paywallTip: "Free preview. The full article requires a paid subscription.",
     comments: "Comments",
+    cNickname: "Name",
+    cContent: "Write a comment",
+    cSubmit: "Post",
+    cSending: "Posting...",
+    cSent: "Posted.",
+    cError: "Failed to post. Please try again.",
+    cEmpty: "No comments yet. Be the first.",
+    cLoading: "Loading comments...",
+    cRate: "Too fast. Try again in a minute.",
     share: "Share",
     copied: "Link copied \u2713",
     notify: "Get alerts",
@@ -435,8 +581,20 @@ const STRINGS = {
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     newSince: "지난 방문 이후 새 글 {n}개",
     unreadOnly: "안 읽은 것만",
+    searchPh: "검색: 티커, 출처, 키워드",
+    searchNone: "결과가 없어요. 티커나 출처, 키워드로 검색해보세요.",
+    freeOnly: "무료만",
     paywallTip: "앞부분은 무료로 읽을 수 있고, 전체 글은 유료 구독이 필요합니다.",
     comments: "댓글",
+    cNickname: "이름",
+    cContent: "댓글을 남겨보세요",
+    cSubmit: "등록",
+    cSending: "등록 중...",
+    cSent: "게시됐습니다.",
+    cError: "등록에 실패했습니다. 다시 시도해주세요.",
+    cEmpty: "아직 댓글이 없어요. 첫 댓글을 남겨보세요.",
+    cLoading: "댓글 불러오는 중...",
+    cRate: "너무 빨라요. 잠시 후 다시 시도해주세요.",
     share: "공유",
     copied: "링크 복사됨 \u2713",
     notify: "알림 받기",
@@ -691,7 +849,24 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .gist-fold summary:hover .fold-label,.gist-fold summary:hover .fold-arrow{color:var(--text);}
 
 /* ---------- unread filter ---------- */
-.filter-row{display:flex;align-items:center;justify-content:flex-end;margin:0 0 12px;}
+.filter-row{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:0 0 12px;flex-wrap:wrap;}
+.search-box{
+  flex:1;min-width:150px;display:flex;align-items:center;gap:7px;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:7px 13px;
+}
+.search-box svg{width:13px;height:13px;flex:0 0 auto;color:var(--muted);}
+.search-box input{
+  flex:1;min-width:0;border:0;background:transparent;outline:none;
+  font-family:inherit;font-size:16px;color:var(--text);
+}
+html[data-lang="ko"] .search-box input{font-family:"Pretendard Variable",sans-serif;}
+.search-box input::placeholder{color:var(--muted);font-size:12.5px;}
+.search-box .search-clear{
+  border:0;background:none;color:var(--muted);cursor:pointer;
+  font-size:15px;line-height:1;padding:0 2px;font-family:inherit;flex:0 0 auto;
+}
+.search-box.active{border-color:var(--text);}
 .unread-filter{
   display:inline-flex;align-items:center;gap:7px;
   font-size:12.5px;font-weight:600;color:var(--muted);
@@ -710,7 +885,9 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;
   color:var(--muted);cursor:help;user-select:none;flex:0 0 auto;
 }
-.paywall-badge:hover{border-color:var(--text);color:var(--text);}
+@media (hover:hover){
+  .paywall-badge:hover{border-color:var(--text);color:var(--text);}
+}
 .paywall-tip{
   position:absolute;bottom:calc(100% + 8px);left:-6px;
   width:max-content;max-width:min(230px, 74vw);
@@ -725,8 +902,12 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   content:"";position:absolute;top:100%;left:12px;
   border:5px solid transparent;border-top-color:var(--black);
 }
-.paywall-badge:hover .paywall-tip,
-.paywall-badge:focus .paywall-tip,
+@media (hover:hover){
+  .paywall-badge:hover .paywall-tip,
+  .paywall-badge:focus .paywall-tip{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+}
 .paywall-badge.show .paywall-tip{
   opacity:1;visibility:visible;transform:translateY(0);
 }
@@ -739,7 +920,34 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .comment-toggle:hover,.comment-toggle.open{color:var(--text);border-color:var(--text);}
 .comment-box{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
-.comment-box iframe{width:100%;border:0;min-height:380px;}
+.c-list{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;}
+.c-item{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 13px;}
+.c-item .c-head{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;}
+.c-item .c-name{font-size:12.5px;font-weight:700;}
+.c-item .c-date{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);}
+.c-item .c-text{font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
+html[data-lang="ko"] .c-item .c-text{font-family:"Pretendard Variable",sans-serif;}
+.c-status{font-size:12.5px;color:var(--muted);padding:4px 0;}
+html[data-lang="ko"] .c-status{font-family:"Pretendard Variable",sans-serif;}
+.c-status.ok{color:#12B76A;font-weight:600;}
+.c-status.err{color:#F04438;font-weight:600;}
+.c-form{display:flex;flex-direction:column;gap:8px;}
+.c-form input,.c-form textarea{
+  font-family:inherit;font-size:16px;color:var(--text);
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:10px 13px;outline:none;width:100%;
+}
+html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-family:"Pretendard Variable",sans-serif;}
+.c-form input:focus,.c-form textarea:focus{border-color:var(--text);}
+.c-form textarea{min-height:76px;resize:vertical;}
+.c-form .c-row{display:flex;align-items:center;gap:10px;}
+.c-form .c-row input{flex:1;}
+.c-form button{
+  font-family:inherit;font-size:13px;font-weight:700;color:#fff;
+  background:var(--black);border:0;border-radius:999px;padding:10px 20px;
+  cursor:pointer;flex:0 0 auto;
+}
+.c-form button:disabled{opacity:.5;cursor:default;}
 /* ---------- feed card thumbnail ----------
    Generated from the item's own cover colours, so every entry
    has an image without hosting anyone else's artwork. */
@@ -810,6 +1018,13 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   transition:color .15s ease,border-color .15s ease;
 }
 .notif-btn:hover{color:var(--text);border-color:var(--text);}
+.cover-paid{
+  position:absolute;top:46px;right:12px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.92);color:#111214;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -882,6 +1097,12 @@ footer a{color:var(--muted);}
     <button class="new-banner" id="newBanner" onclick="goToFirstNew()"><span id="newBannerText"></span><span class="arrow">&darr;</span></button>
     <div class="tabs" id="tabs"></div>
     <div class="filter-row">
+      <div class="search-box" id="searchBox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" autocomplete="off" oninput="onSearch(this.value)">
+        <button class="search-clear" id="searchClear" onclick="clearSearch()" hidden>&times;</button>
+      </div>
+      <button class="unread-filter" id="freeFilter" onclick="toggleFreeOnly()"></button>
       <button class="unread-filter" id="unreadFilter" onclick="toggleUnreadOnly()"></button>
     </div>
     <div id="feedList"></div>
@@ -890,6 +1111,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v21</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -897,6 +1119,11 @@ footer a{color:var(--muted);}
 </footer>
 
 <script>
+/* Newest first, always. Sorted here so the ITEMS array above can be
+   edited in any order: paste a new entry anywhere and it lands in the
+   right place by its date. Same-day entries keep their array order. */
+ITEMS.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+
 function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 
@@ -938,9 +1165,7 @@ async function wikiPhoto(title){
     const res = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(title));
     if (!res.ok) throw new Error("not ok");
     const data = await res.json();
-    let src = (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
-    /* the summary API returns ~320px; ask Wikipedia's thumbnailer for 640px */
-    if (src) src = src.replace(/\/(\d+)px-/, "/640px-");
+    const src = (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
     wikiCache[title] = src;
     return src;
   } catch (e) {
@@ -953,7 +1178,8 @@ const logoUrl = domain => "https://www.google.com/s2/favicons?domain=" + encodeU
 function swapInPhoto(el, src, alt, fallbackSrc){
   const img = new Image();
   img.alt = alt;
-  img.loading = "lazy";
+  /* no loading="lazy" here: a detached lazy image never fires onload,
+     so the avatar would stay stuck on the initial forever */
   img.onload = () => {
     el.classList.remove("ko", "en");
     el.classList.add("photo");
@@ -970,15 +1196,25 @@ function hydrateThumb(item){
   if (!els.length) return;
   wikiPhoto(item.thumbWiki).then(src => {
     if (!src) return; /* gradient stays as the fallback */
-    const img = new Image();
-    img.onload = () => {
+    const apply = chosen => {
       els.forEach(el => {
         el.classList.add("has-photo");
         el.style.background =
-          "linear-gradient(135deg, rgba(10,11,13,.62), rgba(10,11,13,.28)), url('" + src + "') center/cover no-repeat";
+          "linear-gradient(135deg, rgba(10,11,13,.62), rgba(10,11,13,.28)), url('" + chosen + "') center/cover no-repeat";
       });
     };
-    img.src = src;
+    /* try a sharper 640px render first; if the thumbnailer refuses
+       (image smaller than 640, etc.) fall back to the API's own size */
+    const big = src.replace(/\/(\d+)px-/, "/640px-");
+    const img = new Image();
+    img.onload = () => apply(big);
+    img.onerror = () => {
+      if (big === src) return;
+      const img2 = new Image();
+      img2.onload = () => apply(src);
+      img2.src = src;
+    };
+    img.src = big;
   });
 }
 
@@ -1045,6 +1281,11 @@ function toggleRead(id){
   if (UNREAD_ONLY) render(); else refreshCardRead(id);
 }
 function refreshFilterBtn(){
+  const fb = document.getElementById("freeFilter");
+  if (fb){
+    fb.classList.toggle("on", FREE_ONLY);
+    fb.textContent = STRINGS[LANG].freeOnly;
+  }
   const btn = document.getElementById("unreadFilter");
   if (!btn) return;
   const S = STRINGS[LANG];
@@ -1071,37 +1312,164 @@ function refreshCardRead(id){
     btn.textContent = done ? S.readDone : S.markRead;
   }
 }
+/* ---------------- search ----------------
+   Matches title, gist, why, tags, source, and the cover label,
+   in both languages at once, so "hynix" finds Korean items too. */
+let QUERY = "";
+function onSearch(v){
+  QUERY = (v || "").trim().toLowerCase();
+  const clear = document.getElementById("searchClear");
+  if (clear) clear.hidden = !QUERY;
+  const box = document.getElementById("searchBox");
+  if (box) box.classList.toggle("active", !!QUERY);
+  renderFeedOnly();
+}
+function renderFeedOnly(){ render(); }
+function clearSearch(){
+  const inp = document.getElementById("searchInput");
+  if (inp) inp.value = "";
+  onSearch("");
+}
+function matchesQuery(item){
+  if (!QUERY) return true;
+  const hay = [
+    item.title.en, item.title.ko,
+    item.gist.en, item.gist.ko,
+    item.why.en, item.why.ko,
+    item.source, item.cover && item.cover.label,
+    (item.tags || []).join(" ")
+  ].join(" ").toLowerCase();
+  return QUERY.split(/\s+/).every(w => hay.includes(w));
+}
+
 let UNREAD_ONLY = false;
 function toggleUnreadOnly(){
   UNREAD_ONLY = !UNREAD_ONLY;
   render();
 }
+let FREE_ONLY = false;
+function toggleFreeOnly(){
+  FREE_ONLY = !FREE_ONLY;
+  render();
+}
 
-/* ---------------- comments (Cusdis) ----------------
-   The SDK loads only after the first click, and only one
-   thread is open at a time to keep the page light. */
-let cusdisReady = null;
+/* ---------------- comments (own Cloudflare Worker) ----------------
+   No iframe, no third party. Comments post to June's worker and
+   show instantly, Twitter-style. Spam gets deleted after the fact. */
+/* Comment counts: one request for all items, shown on the buttons
+   so activity is visible before anyone opens a thread. */
+let COMMENT_COUNTS = {};
+async function loadCommentCounts(){
+  if (!COMMENTS_API) return;
+  try {
+    const res = await fetch(COMMENTS_API + "/counts");
+    if (!res.ok) return;
+    const json = await res.json();
+    if (json && json.data) COMMENT_COUNTS = json.data;
+    applyCommentCounts();
+  } catch (e) {}
+}
+function commentLabel(id){
+  const n = COMMENT_COUNTS[id];
+  return STRINGS[LANG].comments + (n ? " " + n : "");
+}
+function applyCommentCounts(){
+  document.querySelectorAll(".comment-toggle").forEach(btn => {
+    const id = btn.id.replace("cbtn-", "");
+    if (id !== openCommentId) btn.textContent = commentLabel(id);
+  });
+}
+function bumpCommentCount(id){
+  COMMENT_COUNTS[id] = (COMMENT_COUNTS[id] || 0) + 1;
+}
 let openCommentId = null;
 
-function loadCusdis(){
-  if (cusdisReady) return cusdisReady;
-  cusdisReady = new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = "https://cusdis.com/js/cusdis.es.js";
-    s.async = true;
-    s.onload = () => resolve();
-    s.onerror = () => { cusdisReady = null; reject(); };
-    document.body.appendChild(s);
-  });
-  return cusdisReady;
+function esc(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function cDate(iso){
+  try { const d = new Date(iso); if (isNaN(d)) return "";
+    return d.getFullYear() + "." + String(d.getMonth()+1).padStart(2,"0") + "." + String(d.getDate()).padStart(2,"0");
+  } catch (e) { return ""; }
 }
 
 function closeComments(id){
   const box = document.getElementById("cbox-" + id);
   const btn = document.getElementById("cbtn-" + id);
   if (box){ box.hidden = true; box.innerHTML = ""; }
-  if (btn){ btn.classList.remove("open"); btn.textContent = STRINGS[LANG].comments; }
+  if (btn){ btn.classList.remove("open"); btn.textContent = commentLabel(id); }
   if (openCommentId === id) openCommentId = null;
+}
+
+async function loadComments(id){
+  const S = STRINGS[LANG];
+  const listEl = document.getElementById("clist-" + id);
+  if (!listEl) return;
+  listEl.innerHTML = '<div class="c-status">' + S.cLoading + '</div>';
+  try {
+    const res = await fetch(COMMENTS_API + "/comments?pageId=" + encodeURIComponent(id));
+    if (!res.ok) throw new Error("bad status");
+    const json = await res.json();
+    const rows = (json && Array.isArray(json.data)) ? json.data : [];
+    if (!rows.length){
+      listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
+      return;
+    }
+    listEl.innerHTML = rows.map(c =>
+      '<div class="c-item">'
+        + '<div class="c-head"><span class="c-name">' + esc(c.nickname) + '</span>'
+        + '<span class="c-date">' + cDate(c.createdAt) + '</span></div>'
+        + '<div class="c-text">' + esc(c.content) + '</div>'
+      + '</div>').join("");
+  } catch (e) {
+    listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
+  }
+}
+
+async function submitComment(ev, id){
+  if (ev && ev.preventDefault) ev.preventDefault();
+  const S = STRINGS[LANG];
+  const nick = document.getElementById("cnick-" + id);
+  const text = document.getElementById("ctext-" + id);
+  const btn  = document.getElementById("csend-" + id);
+  const stat = document.getElementById("cstat-" + id);
+  if (!nick || !text) return false;
+  const nickname = nick.value.trim();
+  const content = text.value.trim();
+  if (!nickname){ nick.focus(); return false; }
+  if (!content){ text.focus(); return false; }
+  lsSet("stk_nick", nickname);
+  if (btn){ btn.disabled = true; btn.textContent = S.cSending; }
+  if (stat){ stat.className = "c-status"; stat.textContent = ""; }
+  try {
+    const hp = document.getElementById("chp-" + id);
+    const res = await fetch(COMMENTS_API + "/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        pageId: id,
+        content: content,
+        nickname: nickname,
+        website: hp ? hp.value : ""
+      })
+    });
+    if (!res.ok) throw new Error(res.status === 429 ? "rate" : "bad status");
+    text.value = "";
+    if (stat){ stat.className = "c-status ok"; stat.textContent = S.cSent; }
+    track("comment/" + id);
+    loadComments(id); /* instant: the new comment appears right away */
+    bumpCommentCount(id);
+  } catch (e) {
+    if (stat){
+      stat.className = "c-status err";
+      stat.textContent = (e && e.message === "rate") ? S.cRate : S.cError;
+    }
+  } finally {
+    if (btn){ btn.disabled = false; btn.textContent = S.cSubmit; }
+  }
+  return false;
 }
 
 function toggleComments(id){
@@ -1112,27 +1480,29 @@ function toggleComments(id){
   if (!box) return;
   openCommentId = id;
   if (btn){ btn.classList.add("open"); btn.textContent = STRINGS[LANG].commentsClose; }
-  const item = ITEMS.find(i => i.id === id);
-  const thread = document.createElement("div");
-  thread.id = "cusdis_thread";
-  thread.setAttribute("data-host", "https://cusdis.com");
-  thread.setAttribute("data-app-id", CUSDIS_APP_ID);
-  thread.setAttribute("data-page-id", id);
-  thread.setAttribute("data-page-url", location.origin + location.pathname + "#sig-" + id);
-  thread.setAttribute("data-page-title", item ? item.title.en : id);
-  box.innerHTML = "";
-  box.appendChild(thread);
+  const S = STRINGS[LANG];
+  const saved = lsGet("stk_nick") || "";
+  box.innerHTML =
+    '<div class="c-list" id="clist-' + id + '"></div>'
+    + '<div class="c-form">'
+    + '<textarea id="ctext-' + id + '" placeholder="' + esc(S.cContent) + '"></textarea>'
+    + '<div class="c-row">'
+    + '<input id="cnick-' + id + '" type="text" autocomplete="nickname" placeholder="' + esc(S.cNickname) + '" value="' + esc(saved) + '">'
+    + '<button id="csend-' + id + '" onclick="submitComment(event, \'' + id + '\')">' + S.cSubmit + '</button>'
+    + '</div>'
+    + '<input id="chp-' + id + '" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">'
+    + '<div id="cstat-' + id + '" class="c-status"></div>'
+    + '</div>';
   box.hidden = false;
   setRead(id);
-  loadCusdis().then(() => {
-    if (window.CUSDIS && window.CUSDIS.renderTo) window.CUSDIS.renderTo(thread);
-  }).catch(() => {});
+  loadComments(id);
 }
 
 /* ---------------- share ---------------- */
 async function shareItem(id){
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
+  track("share/" + id);
   const url = location.origin + location.pathname + "#sig-" + id;
   const title = item.title[LANG];
   if (navigator.share){
@@ -1152,10 +1522,26 @@ async function shareItem(id){
 
 /* shared links land on the exact card */
 function handleDeepLink(){
+  const c = new URLSearchParams(location.search).get("c");
+  if (c){
+    setTimeout(() => { goToItem(c); toggleComments(c); }, 300);
+    return;
+  }
   if (location.hash && location.hash.startsWith("#sig-")){
     const id = location.hash.slice(5);
     setTimeout(() => goToItem(id), 300);
   }
+}
+
+/* Track a named event in GoatCounter (no-op if analytics is off).
+   Shows up in the dashboard as read/{id}, share/{id}, comment/{id},
+   so weekly review can see which items actually drive action. */
+function track(path){
+  try {
+    if (window.goatcounter && window.goatcounter.count){
+      window.goatcounter.count({ path: path, event: true });
+    }
+  } catch (e) {}
 }
 
 /* ---------------- analytics (GoatCounter) ---------------- */
@@ -1203,6 +1589,7 @@ function goToFirstNew(){
 }
 
 function render(){
+  openCommentId = null; /* cards are rebuilt; no thread is open anymore */
   const S = STRINGS[LANG];
   document.documentElement.setAttribute("data-lang", LANG);
   document.documentElement.lang = LANG;
@@ -1214,6 +1601,8 @@ function render(){
   document.getElementById("heroCta").innerHTML = S.heroCta + " &rarr;";
   if (typeof refreshInstallUI === "function") refreshInstallUI();
   document.getElementById("hotTitle").textContent = S.hot;
+  const sIn = document.getElementById("searchInput");
+  if (sIn) sIn.placeholder = S.searchPh;
   const nb = document.getElementById("notifBtn");
   if (nb) nb.textContent = S.notify;
   document.getElementById("foot1").textContent = S.foot1;
@@ -1237,6 +1626,7 @@ function render(){
     a.target = "_blank"; a.rel = "noopener";
     const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
            ${item.logo ? `<span class="cover-logo" data-logo="${item.id}"></span>` : ""}
+           ${item.paywall ? `<span class="cover-paid">$</span>` : ""}
            <span class="cover-label">${item.cover.label}</span>
            <span class="cover-title">${item.title[LANG]}</span>
          </div>`;
@@ -1267,11 +1657,13 @@ function render(){
   const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
   refreshFilterBtn();
 
-  const items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
+  let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
+  if (FREE_ONLY) items = items.filter(i => !i.paywall);
+  if (QUERY) items = items.filter(matchesQuery);
   if (items.length === 0){
     const e = document.createElement("div");
     e.className = "empty";
-    e.textContent = UNREAD_ONLY ? S.allRead : S.empty;
+    e.textContent = QUERY ? S.searchNone : (UNREAD_ONLY ? S.allRead : S.empty);
     list.appendChild(e);
     hydrateImages();
     return;
@@ -1318,9 +1710,9 @@ function render(){
         <p class="gist">${item.gist[LANG]}</p>
       </details>
       <div class="cta-row">
-        <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}')">${S.read} ↗</a>
+        <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
-        ${CUSDIS_APP_ID ? `<button class="comment-toggle" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')">${S.comments}</button>` : ""}
+        ${COMMENTS_API ? `<button class="comment-toggle" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')">${S.comments}${COMMENT_COUNTS[item.id] ? " " + COMMENT_COUNTS[item.id] : ""}</button>` : ""}
         <button class="read-toggle${READ.has(item.id) ? " done" : ""}" onclick="toggleRead('${item.id}')">${READ.has(item.id) ? S.readDone : S.markRead}</button>
         <button class="share-btn" id="share-${item.id}" onclick="shareItem('${item.id}')">${S.share}</button>
         <span class="lang-note">${langNote}</span>
@@ -1461,8 +1853,15 @@ function warmCache(){
   unique.forEach(f => { fetch(f, { cache: "no-cache" }).catch(() => {}); });
 }
 
+document.addEventListener("click", e => {
+  document.querySelectorAll(".paywall-badge.show").forEach(b => {
+    if (!b.contains(e.target)) b.classList.remove("show");
+  });
+});
+
 render();
 handleDeepLink();
+loadCommentCounts();
 </script>
 </body>
 </html>

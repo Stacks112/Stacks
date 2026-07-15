@@ -1,11 +1,11 @@
-/* Stacks service worker (v2)
+/* Stacks service worker (v3)
    Strategy:
      - the page itself : network first, fall back to cache, so new signals appear
                          immediately but the app still opens with no connection
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v2";
+const CACHE = "stacks-v3";
 
 const SHELL = [
   "./",
