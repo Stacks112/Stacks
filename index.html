@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v12 :: push on (onesignal) -->
+<!-- STACKS BUILD v13 :: fix onesignal worker path for /Stacks/ subpath -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1171,10 +1171,15 @@ if (GOATCOUNTER_SITE){
 if (ONESIGNAL_APP_ID){
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   window.OneSignalDeferred.push(async (OneSignal) => {
+    /* The worker sits next to index.html. On GitHub Pages that is
+       /Stacks/, not the domain root, and OneSignal resolves
+       serviceWorkerPath from the root, so derive the base instead
+       of hardcoding it. */
+    const base = location.pathname.replace(/[^/]*$/, "");
     await OneSignal.init({
       appId: ONESIGNAL_APP_ID,
-      serviceWorkerPath: "OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/Stacks/onesignal/" }
+      serviceWorkerPath: (base + "OneSignalSDKWorker.js").replace(/^\//, ""),
+      serviceWorkerParam: { scope: base + "onesignal/" }
     });
   });
   const os = document.createElement("script");
