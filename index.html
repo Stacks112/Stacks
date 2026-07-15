@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v8 :: mobile app mode (hero hidden on phones) -->
+<!-- STACKS BUILD v9 :: share + analytics + push hooks -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -44,6 +44,15 @@
    Setup: sign up at cusdis.com, add a website, copy the App ID below.
    Leave empty to hide all comment buttons. */
 const CUSDIS_APP_ID = "385367ee-8ea1-4e83-afa1-dcef686baf14";
+
+/* Analytics: GoatCounter (goatcounter.com), free, no cookies.
+   Sign up, pick a code (e.g. "stacks"), put it here. Empty = off. */
+const GOATCOUNTER_SITE = "";
+
+/* Push notifications: OneSignal (onesignal.com) free tier.
+   Create a Web app, copy the App ID here. Empty = off.
+   Also upload OneSignalSDKWorker.js to the repo root. */
+const ONESIGNAL_APP_ID = "";
 
 const ITEMS = [
 {
@@ -398,6 +407,9 @@ const STRINGS = {
     unreadOnly: "Unread only",
     paywallTip: "Free preview. The full article requires a paid subscription.",
     comments: "Comments",
+    share: "Share",
+    copied: "Link copied \u2713",
+    notify: "Get alerts",
     commentsClose: "Hide comments",
     allRead: "You're all caught up. Nothing unread.",
     markRead: "Mark as read",
@@ -425,6 +437,9 @@ const STRINGS = {
     unreadOnly: "안 읽은 것만",
     paywallTip: "앞부분은 무료로 읽을 수 있고, 전체 글은 유료 구독이 필요합니다.",
     comments: "댓글",
+    share: "공유",
+    copied: "링크 복사됨 \u2713",
+    notify: "알림 받기",
     commentsClose: "댓글 접기",
     allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
     markRead: "읽음 표시",
@@ -780,6 +795,21 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   .mini-install:not([hidden]){display:flex;}
   .wrap{padding-top:14px;}
 }
+/* ---------- share ---------- */
+.share-btn{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:8px 14px;cursor:pointer;font-family:inherit;
+  transition:color .15s ease,border-color .15s ease;
+}
+.share-btn:hover{color:var(--text);border-color:var(--text);}
+.notif-btn{
+  font-size:12px;font-weight:600;color:var(--muted);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:6px 13px;cursor:pointer;font-family:inherit;margin-right:8px;
+  transition:color .15s ease,border-color .15s ease;
+}
+.notif-btn:hover{color:var(--text);border-color:var(--text);}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -816,6 +846,7 @@ footer a{color:var(--muted);}
 <nav>
   <div class="nav-inner">
     <a class="brand" href="#"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></span><span id="brandName">Stacks</span></a>
+    <button class="notif-btn" id="notifBtn" hidden></button>
     <div class="lang-toggle">
       <button id="btnEn" onclick="setLang('en')">EN</button>
       <button id="btnKo" onclick="setLang('ko')">KO</button>
@@ -886,7 +917,7 @@ function goToItem(id){
   requestAnimationFrame(() => {
     const el = document.getElementById("sig-" + id);
     if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
     el.classList.remove("flash");
     void el.offsetWidth;
     el.classList.add("flash");
@@ -1098,11 +1129,72 @@ function toggleComments(id){
   }).catch(() => {});
 }
 
+/* ---------------- share ---------------- */
+async function shareItem(id){
+  const item = ITEMS.find(i => i.id === id);
+  if (!item) return;
+  const url = location.origin + location.pathname + "#sig-" + id;
+  const title = item.title[LANG];
+  if (navigator.share){
+    try { await navigator.share({ title: title, url: url }); } catch (e) {}
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    const btn = document.getElementById("share-" + id);
+    if (btn){
+      const orig = STRINGS[LANG].share;
+      btn.textContent = STRINGS[LANG].copied;
+      setTimeout(() => { btn.textContent = orig; }, 1600);
+    }
+  } catch (e) {}
+}
+
+/* shared links land on the exact card */
+function handleDeepLink(){
+  if (location.hash && location.hash.startsWith("#sig-")){
+    const id = location.hash.slice(5);
+    setTimeout(() => goToItem(id), 300);
+  }
+}
+
+/* ---------------- analytics (GoatCounter) ---------------- */
+if (GOATCOUNTER_SITE){
+  const gc = document.createElement("script");
+  gc.async = true;
+  gc.src = "https://gc.zgo.at/count.js";
+  gc.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_SITE + ".goatcounter.com/count");
+  document.head.appendChild(gc);
+}
+
+/* ---------------- push notifications (OneSignal) ---------------- */
+if (ONESIGNAL_APP_ID){
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async (OneSignal) => {
+    await OneSignal.init({
+      appId: ONESIGNAL_APP_ID,
+      serviceWorkerPath: "OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/Stacks/onesignal/" }
+    });
+  });
+  const os = document.createElement("script");
+  os.defer = true;
+  os.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+  document.head.appendChild(os);
+  const nb = document.getElementById("notifBtn");
+  if (nb){
+    nb.hidden = false;
+    nb.onclick = () => {
+      window.OneSignalDeferred.push(os2 => { os2.Slidedown.promptPush({ force: true }); });
+    };
+  }
+}
+
 function goToFirstNew(){
   const first = ITEMS.find(i => NEW_IDS.has(i.id));
   if (!first) return;
   const el = document.getElementById("sig-" + first.id);
-  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (el){ try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {} }
 }
 
 function render(){
@@ -1117,6 +1209,8 @@ function render(){
   document.getElementById("heroCta").innerHTML = S.heroCta + " &rarr;";
   if (typeof refreshInstallUI === "function") refreshInstallUI();
   document.getElementById("hotTitle").textContent = S.hot;
+  const nb = document.getElementById("notifBtn");
+  if (nb) nb.textContent = S.notify;
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
 
@@ -1223,6 +1317,7 @@ function render(){
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
         ${CUSDIS_APP_ID ? `<button class="comment-toggle" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')">${S.comments}</button>` : ""}
         <button class="read-toggle${READ.has(item.id) ? " done" : ""}" onclick="toggleRead('${item.id}')">${READ.has(item.id) ? S.readDone : S.markRead}</button>
+        <button class="share-btn" id="share-${item.id}" onclick="shareItem('${item.id}')">${S.share}</button>
         <span class="lang-note">${langNote}</span>
       </div>
       <div class="comment-box" id="cbox-${item.id}" hidden></div>
@@ -1362,6 +1457,7 @@ function warmCache(){
 }
 
 render();
+handleDeepLink();
 </script>
 </body>
 </html>
