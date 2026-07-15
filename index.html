@@ -337,6 +337,7 @@ const STRINGS = {
   --radius:20px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
+[hidden]{display:none !important;}
 html{scroll-behavior:smooth;}
 body{
   background:var(--bg);
@@ -794,35 +795,47 @@ function render(){
   });
   hydrateImages();
 }
-render();
 
 /* ---------------- app install ---------------- */
 let deferredPrompt = null;
 const installBtn = document.getElementById("installBtn");
 const installHint = document.getElementById("installHint");
 
-const isStandalone = () =>
-  window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-const isIOS = () =>
-  /iphone|ipad|ipod/i.test(navigator.userAgent) ||
-  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isStandalone = () => {
+  try {
+    if (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) return true;
+  } catch (e) {}
+  return window.navigator.standalone === true;
+};
+const isIOS = () => {
+  try {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  } catch (e) { return false; }
+};
 
 function refreshInstallUI(){
-  const S = STRINGS[LANG];
-  if (isStandalone()){
-    installBtn.hidden = true;
-    installHint.hidden = true;
-    return;
-  }
-  if (deferredPrompt){
-    installBtn.textContent = S.install;
-    installBtn.hidden = false;
-    installHint.hidden = true;
-  } else if (isIOS()){
-    installHint.textContent = S.installIOS;
-    installHint.hidden = false;
-    installBtn.hidden = true;
-  }
+  try {
+    if (!installBtn || !installHint) return;
+    const S = STRINGS[LANG];
+    if (isStandalone()){
+      installBtn.hidden = true;
+      installHint.hidden = true;
+      return;
+    }
+    if (deferredPrompt){
+      installBtn.textContent = S.install;
+      installBtn.hidden = false;
+      installHint.hidden = true;
+    } else if (isIOS()){
+      installHint.textContent = S.installIOS;
+      installHint.hidden = false;
+      installBtn.hidden = true;
+    } else {
+      installBtn.hidden = true;
+      installHint.hidden = true;
+    }
+  } catch (e) {}
 }
 
 window.addEventListener("beforeinstallprompt", e => {
@@ -831,27 +844,48 @@ window.addEventListener("beforeinstallprompt", e => {
   refreshInstallUI();
 });
 
-installBtn.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  installBtn.hidden = true;
-});
+if (installBtn){
+  installBtn.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.hidden = true;
+  });
+}
 
 window.addEventListener("appinstalled", () => {
   deferredPrompt = null;
-  installBtn.hidden = true;
-  installHint.hidden = true;
+  if (installBtn) installBtn.hidden = true;
+  if (installHint) installHint.hidden = true;
 });
 
 refreshInstallUI();
 
 if ("serviceWorker" in navigator){
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
+    navigator.serviceWorker.register("sw.js").then(reg => {
+      reg.addEventListener("updatefound", () => {
+        const sw = reg.installing;
+        if (!sw) return;
+        sw.addEventListener("statechange", () => {
+          // a new version took over; next open will use it
+          if (sw.state === "activated") warmCache();
+        });
+      });
+      if (navigator.serviceWorker.controller) warmCache();
+    }).catch(() => {});
   });
 }
+
+/* Ask the worker to store the local avatar files so offline shows faces, not letters. */
+function warmCache(){
+  const files = ITEMS.map(i => i.avatarImg).filter(Boolean);
+  const unique = files.filter((f, i) => files.indexOf(f) === i);
+  unique.forEach(f => { fetch(f, { cache: "no-cache" }).catch(() => {}); });
+}
+
+render();
 </script>
 </body>
 </html>
