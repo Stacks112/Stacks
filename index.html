@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v15 :: native comments via cusdis open api, iframe removed -->
+<!-- STACKS BUILD v16 :: fix wiki avatars (detached lazy img), native comments -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -954,7 +954,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v15</p>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v16</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1016,7 +1016,8 @@ const logoUrl = domain => "https://www.google.com/s2/favicons?domain=" + encodeU
 function swapInPhoto(el, src, alt, fallbackSrc){
   const img = new Image();
   img.alt = alt;
-  img.loading = "lazy";
+  /* no loading="lazy" here: a detached lazy image never fires onload,
+     so the avatar would stay stuck on the initial forever */
   img.onload = () => {
     el.classList.remove("ko", "en");
     el.classList.add("photo");
@@ -1365,6 +1366,7 @@ function goToFirstNew(){
 }
 
 function render(){
+  openCommentId = null; /* cards are rebuilt; no thread is open anymore */
   const S = STRINGS[LANG];
   document.documentElement.setAttribute("data-lang", LANG);
   document.documentElement.lang = LANG;
