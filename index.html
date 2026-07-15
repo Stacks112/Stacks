@@ -39,7 +39,87 @@
    LOGO (optional):
      logo: "nebius.com"       -> company logo pulled automatically from the domain
    ============================================================ */
+/* Comments are powered by Cusdis (cusdis.com), free and moderated.
+   Setup: sign up at cusdis.com, add a website, copy the App ID below.
+   Leave empty to hide all comment buttons. */
+const CUSDIS_APP_ID = "";
+
 const ITEMS = [
+{
+  date: "2026-07-14",
+  id: "doomberg-bloom",
+  paywall: true,
+  related: [],
+  source: "Doomberg",
+  sourceUrl: "https://newsletter.doomberg.com/p/artificial-bloom",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#0F5132", to: "#1A7F4B", label: "BE" },
+  tags: ["POWER", "RARE EARTH", "BE"],
+  title: {
+    en: "The scandium problem: a short seller calls Bloom Energy's China bluff",
+    ko: "스칸듐이라는 급소: 공매도 리포트가 블룸에너지의 '탈중국'을 겨눴다"
+  },
+  gist: {
+    en: "Gas turbines are backlogged for years, so AI datacenters went hunting for another way to turn US natural gas into electricity. Bloom Energy's solid oxide fuel cells stepped into that gap. Doomberg had covered the company positively but flagged one oddity: Bloom claimed essentially no China exposure despite depending on rare earths. Short seller Hunterbrook built a report around exactly that, and the stock fell as much as 12%. The claim is that Bloom relies on Chinese scandium, traced through four China-linked supply routes, and that meeting its growth plan would require multiples of global scandium supply, leaving nothing for defense. Doomberg weighs which side has the better case.",
+    ko: "가스터빈 대기 물량이 몇 년치라, AI 데이터센터는 미국 천연가스를 전기로 바꿀 다른 방법을 찾아 나섰다. 그 빈틈에 들어온 게 블룸에너지의 고체산화물 연료전지다. Doomberg는 이 회사를 대체로 긍정적으로 다뤘지만 하나가 이상했다. 희토류에 의존하면서도 중국 공급망 리스크가 사실상 없다고 주장한 점이다. 공매도 리포트를 낸 Hunterbrook이 정확히 그 지점을 파고들었고, 주가는 장중 최대 12% 빠졌다. 요지는 블룸이 중국산 스칸듐에 의존하며 중국 연결 경로 네 개가 추적됐고, 성장 계획을 채우려면 전 세계 스칸듐 공급량의 몇 배가 필요해 방위산업 몫이 남지 않는다는 것. Doomberg는 어느 쪽 논리가 더 단단한지를 따진다."
+  },
+  why: {
+    en: "The AI power bottleneck just moved upstream. It is no longer turbines, it is the metals inside the thing that replaces turbines.",
+    ko: "AI 전력 병목이 한 단계 위로 올라갔다. 이제 터빈이 아니라, 터빈을 대체하는 물건 안에 들어가는 금속이 병목이다."
+  }
+},
+{
+  date: "2026-07-03",
+  id: "netinterest-stretch",
+  paywall: true,
+  related: [],
+  source: "Marc Rubinstein (Net Interest)",
+  sourceUrl: "https://www.netinterest.co/p/stretch-marks",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#B7791F", to: "#D69E2E", label: "STRC" },
+  tags: ["BITCOIN", "MSTR", "FINANCIAL ENGINEERING"],
+  title: {
+    en: "Where the money went: Saylor blames AI for bitcoin's slide",
+    ko: "돈은 어디로 갔나: 세일러가 비트코인 하락의 범인으로 AI를 지목하다"
+  },
+  gist: {
+    en: "Bitcoin is down roughly 30% this year while markets rise, and has lost about half its value since peaking near $126,000 last October. Michael Saylor's own explanation is notable: he points to the lingering Gulf War, tighter monetary policy, and hundreds of billions of dollars pulled into the AI trade by deals like Google's and SpaceX's. Crypto stopped being the hot thing because AI became it. Rubinstein then turns to the funding structure behind Strategy's bitcoin buying, in particular Stretch (STRC), a security issued last July that sits above common equity and pays a variable dividend managed to hold a $100 par. Strategy has issued $10.5B of it alongside $5.0B of other preferred. His question is whether the credit strategy underneath is sustainable.",
+    ko: "시장은 오르는데 비트코인은 올해 약 30% 하락했고, 작년 10월 12만 6천 달러 고점 대비 절반 가까이 빠졌다. 주목할 건 마이클 세일러 본인의 설명이다. 그는 계속되는 걸프전, 긴축으로 돌아선 통화정책, 그리고 구글과 스페이스X 딜 같은 것들이 AI 트레이드로 빨아들인 수천억 달러를 이유로 든다. 크립토가 뜨겁지 않게 된 게 아니라, AI가 뜨거운 것이 됐다는 얘기다. 이어 루빈스타인은 스트래티지의 비트코인 매수를 떠받치는 자금 구조, 특히 작년 7월 발행된 Stretch(STRC)를 파고든다. 보통주보다 선순위이고, 주가 100달러를 유지하도록 배당률을 조정하는 변동배당 증권이다. 스트래티지는 이걸 105억 달러어치, 다른 우선주 50억 달러어치와 함께 발행했다. 질문은 그 아래 깔린 신용 전략이 지속 가능하냐는 것."
+  },
+  why: {
+    en: "The AI buildout is not just absorbing capital, it is draining it from somewhere. Saylor is naming where.",
+    ko: "AI 건설은 자본을 흡수하는 데 그치지 않고 어딘가에서 빼오고 있다. 세일러가 그 어딘가를 직접 지목했다."
+  }
+},
+{
+  date: "2026-04-09",
+  id: "marks-privatecredit",
+  related: ["doomberg-bloom"],
+  source: "Howard Marks (Oaktree)",
+  sourceUrl: "https://www.oaktreecapital.com/insights/memo/whats-going-on-in-private-credit",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#1A1A1A", to: "#4A4A4A", label: "MEMO" },
+  wiki: "Howard_Marks_(investor)",
+  tags: ["PRIVATE CREDIT", "AI", "CYCLE"],
+  title: {
+    en: "When AI ate software, it came for the debt: Marks on the private credit shakeout",
+    ko: "AI가 소프트웨어를 먹자 부채가 흔들렸다: 마크스가 본 사모대출 균열"
+  },
+  gist: {
+    en: "Private equity concluded years ago that market-leading software companies, with recurring subscription cash flows and durable moats, were safe to lend against. Direct lenders agreed, and software grew to roughly 20-30% of direct lending versus 4-5% of high yield bonds, often at ~20x EBITDA and high leverage. Then AI made writing code far cheaper. Marks pins the tipping point at early February 2026: investors suddenly noticed, redemptions hit semi-liquid vehicles, limits on withdrawals raised questions about NAVs, and BDCs traded to wider discounts. His firm's internal read is that the software borrowers are mostly performing fine and the disruption is sentiment- and flow-driven rather than actual credit deterioration. But the equity cushion beneath the lenders has thinned. Marks maps the whole thing onto the standard bubble pattern he has written about for decades: something new, a grain of truth, early winners, envy, then latecomers with low standards.",
+    ko: "사모펀드는 오래전에 결론을 내렸다. 구독 기반 반복 현금흐름과 견고한 해자를 가진 선도 소프트웨어 기업은 돈을 빌려줘도 안전하다고. 다이렉트 렌더들도 동의했고, 그 결과 소프트웨어는 하이일드 채권에서 4~5%인 반면 다이렉트 렌딩에서는 20~30%까지 커졌다. 대개 EBITDA 20배, 높은 레버리지로. 그러다 AI가 코드 작성 비용을 급격히 낮췄다. 마크스는 전환점을 2026년 2월 초로 본다. 투자자들이 갑자기 알아차렸고, 반유동성 상품에 환매가 몰렸고, 환매 제한이 걸리자 NAV의 정확성에 의문이 붙었고, BDC는 더 큰 할인에 거래됐다. 오크트리 내부 판단은 소프트웨어 차주 대부분이 실제로는 멀쩡하며, 이번 혼란은 신용 악화가 아니라 심리와 자금 흐름 때문이라는 것. 다만 대주 아래 깔린 자기자본 쿠션은 얇아졌다. 마크스는 이 전개를 자신이 수십 년간 써온 버블 패턴에 그대로 대입한다. 새로운 것, 한 줌의 진실, 초기 승자, 질투, 그리고 기준이 낮아진 뒷북 투자자들."
+  },
+  why: {
+    en: "This is the first big memo treating AI not as a stock story but as a credit event. If AI can rewrite what a company is worth, it rewrites what its debt is worth.",
+    ko: "AI를 주식 이야기가 아니라 신용 사건으로 다룬 첫 대형 메모다. AI가 기업 가치를 다시 쓴다면, 그 기업의 부채 가치도 다시 쓴다."
+  }
+},
 {
   date: "2026-07-15",
   id: "nbis",
@@ -301,6 +381,14 @@ const STRINGS = {
     related: "Related",
     langNoteKO: "Original in Korean · auto-translate works well",
     langNoteEN: "Original in English",
+    newSince: "{n} new since your last visit",
+    unreadOnly: "Unread only",
+    paywallTip: "Free preview. The full article requires a paid subscription.",
+    comments: "Comments",
+    commentsClose: "Hide comments",
+    allRead: "You're all caught up. Nothing unread.",
+    markRead: "Mark as read",
+    readDone: "Read \u2713",
     empty: "Nothing here yet. New voices are being added.",
     foot1: "Summaries and commentary are original work by The Infrastructure Thesis. All rights to the original posts belong to their authors; each entry links to and credits the source.",
     foot2: "Not investment advice."
@@ -320,6 +408,14 @@ const STRINGS = {
     related: "함께 읽기",
     langNoteKO: "원문: 한국어",
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
+    newSince: "지난 방문 이후 새 글 {n}개",
+    unreadOnly: "안 읽은 것만",
+    paywallTip: "앞부분은 무료로 읽을 수 있고, 전체 글은 유료 구독이 필요합니다.",
+    comments: "댓글",
+    commentsClose: "댓글 접기",
+    allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
+    markRead: "읽음 표시",
+    readDone: "읽음 \u2713",
     empty: "아직 글이 없어요. 새로운 목소리를 추가하는 중입니다.",
     foot1: "요약과 해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 본 페이지는 요약·해설과 출처 표기 및 링크만을 제공합니다.",
     foot2: "투자 자문이 아닙니다."
@@ -523,6 +619,99 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .original-link:hover{transform:translateY(-1px);}
 .lang-note{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);}
+/* ---------- read state & new badge ---------- */
+.new-banner{
+  display:none;margin:0 0 14px;padding:12px 16px;
+  background:var(--black);color:#fff;border-radius:14px;
+  font-size:13.5px;font-weight:600;cursor:pointer;border:0;width:100%;
+  font-family:inherit;text-align:left;
+  align-items:center;justify-content:space-between;gap:10px;
+}
+.new-banner.show{display:flex;}
+.new-banner .arrow{opacity:.7;}
+.unread-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#0A84FF;margin-right:8px;vertical-align:2px;}
+.new-pill{
+  font-family:"IBM Plex Mono",monospace;font-size:9px;font-weight:700;
+  color:#0A84FF;border:1px solid #0A84FF;border-radius:999px;
+  padding:1px 6px;margin-left:6px;letter-spacing:.5px;
+}
+.card.is-read h3,.card.is-read .gist,.card.is-read .title-orig{opacity:.55;}
+.read-toggle{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:8px 14px;cursor:pointer;font-family:inherit;
+  transition:color .15s ease,border-color .15s ease;
+}
+.read-toggle.done{color:var(--text);border-color:var(--text);}
+/* ---------- collapsed gist ---------- */
+.gist-fold{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;}
+.gist-fold summary{
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;list-style:none;gap:10px;
+}
+.gist-fold summary::-webkit-details-marker{display:none;}
+.gist-fold .fold-label{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+.gist-fold .fold-arrow{
+  font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--muted);
+  line-height:1;transition:transform .15s ease;
+}
+.gist-fold[open] .fold-arrow{transform:rotate(45deg);}
+.gist-fold .gist{margin-top:10px;}
+.gist-fold summary:hover .fold-label,.gist-fold summary:hover .fold-arrow{color:var(--text);}
+
+/* ---------- unread filter ---------- */
+.filter-row{display:flex;align-items:center;justify-content:flex-end;margin:0 0 12px;}
+.unread-filter{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:7px 13px;cursor:pointer;font-family:inherit;
+  transition:color .15s ease,border-color .15s ease,background .15s ease;
+}
+.unread-filter.on{background:var(--black);border-color:var(--black);color:#fff;}
+.unread-filter .fcount{font-family:"IBM Plex Mono",monospace;font-size:10px;opacity:.7;}
+
+/* ---------- paywall badge ---------- */
+.paywall-badge{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  border:1px solid var(--line);background:var(--bg-soft);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;
+  color:var(--muted);cursor:help;user-select:none;flex:0 0 auto;
+}
+.paywall-badge:hover{border-color:var(--text);color:var(--text);}
+.paywall-tip{
+  position:absolute;bottom:calc(100% + 8px);right:-6px;
+  width:max-content;max-width:230px;
+  background:var(--black);color:#fff;
+  font-family:inherit;font-size:11.5px;font-weight:500;line-height:1.5;
+  padding:8px 11px;border-radius:10px;text-align:left;
+  opacity:0;visibility:hidden;transform:translateY(3px);
+  transition:opacity .15s ease,transform .15s ease;
+  pointer-events:none;z-index:5;
+}
+.paywall-tip::after{
+  content:"";position:absolute;top:100%;right:12px;
+  border:5px solid transparent;border-top-color:var(--black);
+}
+.paywall-badge:hover .paywall-tip,
+.paywall-badge:focus .paywall-tip,
+.paywall-badge.show .paywall-tip{
+  opacity:1;visibility:visible;transform:translateY(0);
+}
+/* ---------- comments ---------- */
+.comment-toggle{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:8px 14px;cursor:pointer;font-family:inherit;
+  transition:color .15s ease,border-color .15s ease;
+}
+.comment-toggle:hover,.comment-toggle.open{color:var(--text);border-color:var(--text);}
+.comment-box{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+.comment-box iframe{width:100%;border:0;}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -585,7 +774,11 @@ footer a{color:var(--muted);}
   </section>
 
   <section id="feed">
+    <button class="new-banner" id="newBanner" onclick="goToFirstNew()"><span id="newBannerText"></span><span class="arrow">&darr;</span></button>
     <div class="tabs" id="tabs"></div>
+    <div class="filter-row">
+      <button class="unread-filter" id="unreadFilter" onclick="toggleUnreadOnly()"></button>
+    </div>
     <div id="feedList"></div>
   </section>
 </div>
@@ -689,6 +882,134 @@ function avatarHtml(item, extraClass){
   return `<div class="${cls} ${item.sourceLang.toLowerCase()}" data-avatar="${item.id}">${initial(item.source)}</div>`;
 }
 
+/* ---------------- read & new-item state ----------------
+   stk_seen : every item id this browser has ever loaded.
+     ids not in it are "new since your last visit".
+   stk_read : ids the reader marked (or opened) as read. */
+const store = {
+  get(key, fallback){
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+    catch (e) { return fallback; }
+  },
+  set(key, val){
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+  }
+};
+const READ = new Set(store.get("stk_read", []));
+const NEW_IDS = new Set();
+(function initSeen(){
+  const prev = store.get("stk_seen", null);
+  if (prev){
+    const seen = new Set(prev);
+    ITEMS.forEach(i => { if (!seen.has(i.id)) NEW_IDS.add(i.id); });
+  }
+  /* first visit: nothing is "new", everything is simply the site */
+  store.set("stk_seen", ITEMS.map(i => i.id));
+})();
+
+function setRead(id){
+  if (READ.has(id)) return;
+  READ.add(id);
+  store.set("stk_read", [...READ]);
+  refreshCardRead(id);
+}
+function toggleRead(id){
+  if (READ.has(id)) READ.delete(id); else READ.add(id);
+  store.set("stk_read", [...READ]);
+  if (UNREAD_ONLY) render(); else refreshCardRead(id);
+}
+function refreshFilterBtn(){
+  const btn = document.getElementById("unreadFilter");
+  if (!btn) return;
+  const S = STRINGS[LANG];
+  const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  const unread = inTab.filter(i => !READ.has(i.id)).length;
+  btn.classList.toggle("on", UNREAD_ONLY);
+  btn.innerHTML = `${S.unreadOnly}<span class="fcount">${unread}</span>`;
+  /* nothing read yet means the filter would change nothing */
+  btn.hidden = unread === inTab.length && !UNREAD_ONLY;
+}
+
+function refreshCardRead(id){
+  refreshFilterBtn();
+  const el = document.getElementById("sig-" + id);
+  if (!el) return;
+  const S = STRINGS[LANG];
+  const done = READ.has(id);
+  el.classList.toggle("is-read", done);
+  const dot = el.querySelector(".unread-dot");
+  if (dot) dot.style.display = done ? "none" : "";
+  const btn = el.querySelector(".read-toggle");
+  if (btn){
+    btn.classList.toggle("done", done);
+    btn.textContent = done ? S.readDone : S.markRead;
+  }
+}
+let UNREAD_ONLY = false;
+function toggleUnreadOnly(){
+  UNREAD_ONLY = !UNREAD_ONLY;
+  render();
+}
+
+/* ---------------- comments (Cusdis) ----------------
+   The SDK loads only after the first click, and only one
+   thread is open at a time to keep the page light. */
+let cusdisReady = null;
+let openCommentId = null;
+
+function loadCusdis(){
+  if (cusdisReady) return cusdisReady;
+  cusdisReady = new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = "https://cusdis.com/js/cusdis.es.js";
+    s.async = true;
+    s.onload = () => resolve();
+    s.onerror = () => { cusdisReady = null; reject(); };
+    document.body.appendChild(s);
+  });
+  return cusdisReady;
+}
+
+function closeComments(id){
+  const box = document.getElementById("cbox-" + id);
+  const btn = document.getElementById("cbtn-" + id);
+  if (box){ box.hidden = true; box.innerHTML = ""; }
+  if (btn){ btn.classList.remove("open"); btn.textContent = STRINGS[LANG].comments; }
+  if (openCommentId === id) openCommentId = null;
+}
+
+function toggleComments(id){
+  if (openCommentId === id){ closeComments(id); return; }
+  if (openCommentId) closeComments(openCommentId);
+  const box = document.getElementById("cbox-" + id);
+  const btn = document.getElementById("cbtn-" + id);
+  if (!box) return;
+  openCommentId = id;
+  if (btn){ btn.classList.add("open"); btn.textContent = STRINGS[LANG].commentsClose; }
+  const item = ITEMS.find(i => i.id === id);
+  const thread = document.createElement("div");
+  thread.id = "cusdis_thread";
+  thread.setAttribute("data-host", "https://cusdis.com");
+  thread.setAttribute("data-app-id", CUSDIS_APP_ID);
+  thread.setAttribute("data-page-id", id);
+  thread.setAttribute("data-page-url", location.origin + location.pathname + "#sig-" + id);
+  thread.setAttribute("data-page-title", item ? item.title.en : id);
+  box.innerHTML = "";
+  box.appendChild(thread);
+  box.hidden = false;
+  setRead(id);
+  loadCusdis().then(() => {
+    if (window.CUSDIS && window.CUSDIS.renderTo) window.CUSDIS.renderTo(thread);
+  }).catch(() => {});
+}
+
+function goToFirstNew(){
+  const first = ITEMS.find(i => NEW_IDS.has(i.id));
+  if (!first) return;
+  const el = document.getElementById("sig-" + first.id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function render(){
   const S = STRINGS[LANG];
   document.documentElement.setAttribute("data-lang", LANG);
@@ -703,6 +1024,14 @@ function render(){
   document.getElementById("hotTitle").textContent = S.hot;
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
+
+  /* new-since-last-visit banner */
+  const banner = document.getElementById("newBanner");
+  if (banner){
+    banner.classList.toggle("show", NEW_IDS.size > 0);
+    document.getElementById("newBannerText").textContent =
+      S.newSince.replace("{n}", NEW_IDS.size);
+  }
 
   /* hot rail */
   const rail = document.getElementById("hotRail");
@@ -741,11 +1070,14 @@ function render(){
   /* feed */
   const list = document.getElementById("feedList");
   list.innerHTML = "";
-  const items = ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  refreshFilterBtn();
+
+  const items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
   if (items.length === 0){
     const e = document.createElement("div");
     e.className = "empty";
-    e.textContent = S.empty;
+    e.textContent = UNREAD_ONLY ? S.allRead : S.empty;
     list.appendChild(e);
     hydrateImages();
     return;
@@ -765,7 +1097,7 @@ function render(){
         </div>
       </div>` : "";
     const el = document.createElement("article");
-    el.className = "card";
+    el.className = "card" + (READ.has(item.id) ? " is-read" : "");
     el.id = "sig-" + item.id;
     el.style.animationDelay = (idx * 0.04) + "s";
     el.innerHTML = `
@@ -773,22 +1105,28 @@ function render(){
         ${avatarHtml(item)}
         <div class="src-block">
           <span class="src-name">${item.source}</span>
-          <span class="src-date">${fmt(item.date)} · ${item.sourceLang}</span>
+          <span class="src-date">${fmt(item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${item.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
       </div>
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
-      <h3>${item.title[LANG]}</h3>
-      <div class="label">${S.gist}</div>
-      <p class="gist">${item.gist[LANG]}</p>
+      <h3><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span>${item.title[LANG]}</h3>
       <div class="why">
         <div class="label">${S.why}</div>
         <p>${item.why[LANG]}</p>
       </div>
+      <details class="gist-fold">
+        <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
+        <p class="gist">${item.gist[LANG]}</p>
+      </details>
       <div class="cta-row">
-        <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener">${S.read} ↗</a>
+        <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}')">${S.read} ↗</a>
+        ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
+        ${CUSDIS_APP_ID ? `<button class="comment-toggle" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')">${S.comments}</button>` : ""}
+        <button class="read-toggle${READ.has(item.id) ? " done" : ""}" onclick="toggleRead('${item.id}')">${READ.has(item.id) ? S.readDone : S.markRead}</button>
         <span class="lang-note">${langNote}</span>
       </div>
+      <div class="comment-box" id="cbox-${item.id}" hidden></div>
       ${relHtml}
     `;
     list.appendChild(el);
