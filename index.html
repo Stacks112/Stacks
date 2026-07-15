@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v9 :: share + analytics + push hooks -->
+<!-- STACKS BUILD v10 :: mobile fixes (tooltip clamp, comment iframe height) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -712,8 +712,8 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .paywall-badge:hover{border-color:var(--text);color:var(--text);}
 .paywall-tip{
-  position:absolute;bottom:calc(100% + 8px);right:-6px;
-  width:max-content;max-width:230px;
+  position:absolute;bottom:calc(100% + 8px);left:-6px;
+  width:max-content;max-width:min(230px, 74vw);
   background:var(--black);color:#fff;
   font-family:inherit;font-size:11.5px;font-weight:500;line-height:1.5;
   padding:8px 11px;border-radius:10px;text-align:left;
@@ -722,7 +722,7 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   pointer-events:none;z-index:5;
 }
 .paywall-tip::after{
-  content:"";position:absolute;top:100%;right:12px;
+  content:"";position:absolute;top:100%;left:12px;
   border:5px solid transparent;border-top-color:var(--black);
 }
 .paywall-badge:hover .paywall-tip,
@@ -739,7 +739,7 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .comment-toggle:hover,.comment-toggle.open{color:var(--text);border-color:var(--text);}
 .comment-box{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
-.comment-box iframe{width:100%;border:0;}
+.comment-box iframe{width:100%;border:0;min-height:380px;}
 /* ---------- feed card thumbnail ----------
    Generated from the item's own cover colours, so every entry
    has an image without hosting anyone else's artwork. */
