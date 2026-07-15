@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v12 :: push on (onesignal) -->
+<!-- STACKS BUILD v14 :: ios fixes, free filter, thumb fallback, comment escape -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -405,12 +405,14 @@ const STRINGS = {
     langNoteEN: "Original in English",
     newSince: "{n} new since your last visit",
     unreadOnly: "Unread only",
+    freeOnly: "Free only",
     paywallTip: "Free preview. The full article requires a paid subscription.",
     comments: "Comments",
     share: "Share",
     copied: "Link copied \u2713",
     notify: "Get alerts",
     commentsClose: "Hide comments",
+    commentsNewTab: "Trouble typing? Open in browser",
     allRead: "You're all caught up. Nothing unread.",
     markRead: "Mark as read",
     readDone: "Read \u2713",
@@ -435,12 +437,14 @@ const STRINGS = {
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     newSince: "지난 방문 이후 새 글 {n}개",
     unreadOnly: "안 읽은 것만",
+    freeOnly: "무료만",
     paywallTip: "앞부분은 무료로 읽을 수 있고, 전체 글은 유료 구독이 필요합니다.",
     comments: "댓글",
     share: "공유",
     copied: "링크 복사됨 \u2713",
     notify: "알림 받기",
     commentsClose: "댓글 접기",
+    commentsNewTab: "입력이 안 되면 브라우저에서 열기",
     allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
     markRead: "읽음 표시",
     readDone: "읽음 \u2713",
@@ -691,7 +695,7 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .gist-fold summary:hover .fold-label,.gist-fold summary:hover .fold-arrow{color:var(--text);}
 
 /* ---------- unread filter ---------- */
-.filter-row{display:flex;align-items:center;justify-content:flex-end;margin:0 0 12px;}
+.filter-row{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:0 0 12px;}
 .unread-filter{
   display:inline-flex;align-items:center;gap:7px;
   font-size:12.5px;font-weight:600;color:var(--muted);
@@ -710,7 +714,9 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;
   color:var(--muted);cursor:help;user-select:none;flex:0 0 auto;
 }
-.paywall-badge:hover{border-color:var(--text);color:var(--text);}
+@media (hover:hover){
+  .paywall-badge:hover{border-color:var(--text);color:var(--text);}
+}
 .paywall-tip{
   position:absolute;bottom:calc(100% + 8px);left:-6px;
   width:max-content;max-width:min(230px, 74vw);
@@ -725,8 +731,12 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   content:"";position:absolute;top:100%;left:12px;
   border:5px solid transparent;border-top-color:var(--black);
 }
-.paywall-badge:hover .paywall-tip,
-.paywall-badge:focus .paywall-tip,
+@media (hover:hover){
+  .paywall-badge:hover .paywall-tip,
+  .paywall-badge:focus .paywall-tip{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+}
 .paywall-badge.show .paywall-tip{
   opacity:1;visibility:visible;transform:translateY(0);
 }
@@ -810,6 +820,19 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   transition:color .15s ease,border-color .15s ease;
 }
 .notif-btn:hover{color:var(--text);border-color:var(--text);}
+.cover-paid{
+  position:absolute;top:46px;right:12px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.92);color:#111214;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.comment-escape{
+  display:inline-block;margin-top:10px;
+  font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none;
+  border-bottom:1px dotted var(--muted);
+}
+.comment-escape:hover{color:var(--text);border-color:var(--text);}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -882,6 +905,7 @@ footer a{color:var(--muted);}
     <button class="new-banner" id="newBanner" onclick="goToFirstNew()"><span id="newBannerText"></span><span class="arrow">&darr;</span></button>
     <div class="tabs" id="tabs"></div>
     <div class="filter-row">
+      <button class="unread-filter" id="freeFilter" onclick="toggleFreeOnly()"></button>
       <button class="unread-filter" id="unreadFilter" onclick="toggleUnreadOnly()"></button>
     </div>
     <div id="feedList"></div>
@@ -890,6 +914,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v14</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -938,9 +963,7 @@ async function wikiPhoto(title){
     const res = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(title));
     if (!res.ok) throw new Error("not ok");
     const data = await res.json();
-    let src = (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
-    /* the summary API returns ~320px; ask Wikipedia's thumbnailer for 640px */
-    if (src) src = src.replace(/\/(\d+)px-/, "/640px-");
+    const src = (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
     wikiCache[title] = src;
     return src;
   } catch (e) {
@@ -970,15 +993,25 @@ function hydrateThumb(item){
   if (!els.length) return;
   wikiPhoto(item.thumbWiki).then(src => {
     if (!src) return; /* gradient stays as the fallback */
-    const img = new Image();
-    img.onload = () => {
+    const apply = chosen => {
       els.forEach(el => {
         el.classList.add("has-photo");
         el.style.background =
-          "linear-gradient(135deg, rgba(10,11,13,.62), rgba(10,11,13,.28)), url('" + src + "') center/cover no-repeat";
+          "linear-gradient(135deg, rgba(10,11,13,.62), rgba(10,11,13,.28)), url('" + chosen + "') center/cover no-repeat";
       });
     };
-    img.src = src;
+    /* try a sharper 640px render first; if the thumbnailer refuses
+       (image smaller than 640, etc.) fall back to the API's own size */
+    const big = src.replace(/\/(\d+)px-/, "/640px-");
+    const img = new Image();
+    img.onload = () => apply(big);
+    img.onerror = () => {
+      if (big === src) return;
+      const img2 = new Image();
+      img2.onload = () => apply(src);
+      img2.src = src;
+    };
+    img.src = big;
   });
 }
 
@@ -1045,6 +1078,11 @@ function toggleRead(id){
   if (UNREAD_ONLY) render(); else refreshCardRead(id);
 }
 function refreshFilterBtn(){
+  const fb = document.getElementById("freeFilter");
+  if (fb){
+    fb.classList.toggle("on", FREE_ONLY);
+    fb.textContent = STRINGS[LANG].freeOnly;
+  }
   const btn = document.getElementById("unreadFilter");
   if (!btn) return;
   const S = STRINGS[LANG];
@@ -1074,6 +1112,11 @@ function refreshCardRead(id){
 let UNREAD_ONLY = false;
 function toggleUnreadOnly(){
   UNREAD_ONLY = !UNREAD_ONLY;
+  render();
+}
+let FREE_ONLY = false;
+function toggleFreeOnly(){
+  FREE_ONLY = !FREE_ONLY;
   render();
 }
 
@@ -1122,6 +1165,15 @@ function toggleComments(id){
   thread.setAttribute("data-page-title", item ? item.title.en : id);
   box.innerHTML = "";
   box.appendChild(thread);
+  /* iOS home-screen apps often break typing inside cross-origin
+     iframes; give people a way out into the real browser */
+  const esc = document.createElement("a");
+  esc.className = "comment-escape";
+  esc.href = location.origin + location.pathname + "?c=" + id;
+  esc.target = "_blank";
+  esc.rel = "noopener";
+  esc.textContent = STRINGS[LANG].commentsNewTab + " \u2197";
+  box.appendChild(esc);
   box.hidden = false;
   setRead(id);
   loadCusdis().then(() => {
@@ -1152,6 +1204,11 @@ async function shareItem(id){
 
 /* shared links land on the exact card */
 function handleDeepLink(){
+  const c = new URLSearchParams(location.search).get("c");
+  if (c){
+    setTimeout(() => { goToItem(c); toggleComments(c); }, 300);
+    return;
+  }
   if (location.hash && location.hash.startsWith("#sig-")){
     const id = location.hash.slice(5);
     setTimeout(() => goToItem(id), 300);
@@ -1171,10 +1228,15 @@ if (GOATCOUNTER_SITE){
 if (ONESIGNAL_APP_ID){
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   window.OneSignalDeferred.push(async (OneSignal) => {
+    /* The worker sits next to index.html. On GitHub Pages that is
+       /Stacks/, not the domain root, and OneSignal resolves
+       serviceWorkerPath from the root, so derive the base instead
+       of hardcoding it. */
+    const base = location.pathname.replace(/[^/]*$/, "");
     await OneSignal.init({
       appId: ONESIGNAL_APP_ID,
-      serviceWorkerPath: "OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/Stacks/onesignal/" }
+      serviceWorkerPath: (base + "OneSignalSDKWorker.js").replace(/^\//, ""),
+      serviceWorkerParam: { scope: base + "onesignal/" }
     });
   });
   const os = document.createElement("script");
@@ -1232,6 +1294,7 @@ function render(){
     a.target = "_blank"; a.rel = "noopener";
     const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
            ${item.logo ? `<span class="cover-logo" data-logo="${item.id}"></span>` : ""}
+           ${item.paywall ? `<span class="cover-paid">$</span>` : ""}
            <span class="cover-label">${item.cover.label}</span>
            <span class="cover-title">${item.title[LANG]}</span>
          </div>`;
@@ -1262,7 +1325,8 @@ function render(){
   const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
   refreshFilterBtn();
 
-  const items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
+  let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
+  if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (items.length === 0){
     const e = document.createElement("div");
     e.className = "empty";
@@ -1455,6 +1519,12 @@ function warmCache(){
   const unique = files.filter((f, i) => files.indexOf(f) === i);
   unique.forEach(f => { fetch(f, { cache: "no-cache" }).catch(() => {}); });
 }
+
+document.addEventListener("click", e => {
+  document.querySelectorAll(".paywall-badge.show").forEach(b => {
+    if (!b.contains(e.target)) b.classList.remove("show");
+  });
+});
 
 render();
 handleDeepLink();
