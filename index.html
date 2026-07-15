@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v17 :: comments on own cloudflare worker, instant display -->
+<!-- STACKS BUILD v19 :: feed always sorted newest first -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -24,8 +24,9 @@
 <script>
 /* ============================================================
    STACKS: DATA
-   To add a new item: copy one { ... } block, paste it at the
-   TOP of ITEMS, edit the fields, commit. Newest first.
+   To add a new item: copy one { ... } block, paste it anywhere
+   in ITEMS, edit the fields, commit. The feed sorts itself by
+   date, newest first, so position in this array does not matter.
 
    sourceLang: "KO" or "EN"  (language of the ORIGINAL post)
    category:   "investor" | "ceo" | "politician"
@@ -55,6 +56,59 @@ const GOATCOUNTER_SITE = "stacks";
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
 const ITEMS = [
+{
+  date: "2026-07-07",
+  id: "doomberg-kilby",
+  thumbWiki: "Permian Basin (North America)",
+  paywall: true,
+  related: ["ess", "doomberg-bloom"],
+  source: "Doomberg",
+  sourceUrl: "https://newsletter.doomberg.com/p/blue-chips",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#1D4E89", to: "#3E7CB1", label: "KILBY" },
+  tags: ["POWER", "DATACENTER", "PERMIAN"],
+  title: {
+    en: "Gas in one side, data out the other: the off-grid project that finally pencils",
+    ko: "가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트"
+  },
+  gist: {
+    en: "Two years ago Doomberg sketched the endgame of AI power: enormous buildings with natural gas going in one side and data coming out the other, built off the public grid because nothing else could move fast enough. The nuclear renaissance, they argued, could not match the timing of AI's electricity demand, while gas was the one hydrocarbon clean enough to run baseload. The prediction has aged well in every part except the building. Texas and federal regulators tightened rules on large behind-the-meter projects over environmental objections, not one marquee off-grid project has reached a final investment decision, and Permian spot gas has spent much of 2026 below zero. Against that, one project stands out on size, on the caliber of the companies behind it, and on odds of actually getting built: Project Kilby, slated at twice the scale of Stargate in Abilene and only months from FID. Doomberg goes to the middle of the basin to size what it does to Permian flows.",
+    ko: "2년 전 Doomberg는 AI 전력의 종착점을 이렇게 그렸다. 한쪽으로 천연가스가 들어가고 반대쪽으로 데이터가 나오는 거대한 건물, 그리고 그 어떤 방법도 속도를 못 맞추니 공용 전력망 밖에 짓는 것. 원전 르네상스는 AI 전력 수요의 시계에 맞출 수 없고, 가스는 기저부하를 돌릴 만큼 깨끗한 유일한 탄화수소라는 논리였다. 예측은 '짓는 것' 빼고 다 맞았다. 텍사스와 연방 규제당국은 환경 문제를 들어 대형 비하인드미터 프로젝트 규제를 조였고, 간판급 오프그리드 프로젝트 중 최종투자결정(FID)에 도달한 건 하나도 없으며, 퍼미안 현물 가스는 2026년 상당 기간을 마이너스 가격으로 보냈다. 그 와중에 규모, 참여 기업의 급, 실제로 지어질 확률에서 한 건이 튄다. 애빌린의 스타게이트보다 두 배 크고 FID까지 몇 달 남은 Project Kilby다. Doomberg는 분지 한복판으로 들어가 이게 퍼미안 물류를 어떻게 흔드는지 계산한다."
+  },
+  why: {
+    en: "The bottleneck was never the gas or the turbines. It is the permit and the FID. Kilby is the first real test of whether off-grid compute is a thesis or a building.",
+    ko: "병목은 가스도 터빈도 아니었다. 인허가와 FID다. Kilby는 오프그리드 컴퓨트가 논리인지 건물인지를 가리는 첫 시험대다."
+  }
+},
+{
+  date: "2026-07-10",
+  id: "netinterest-nse",
+  thumbWiki: "National Stock Exchange of India",
+  paywall: true,
+  related: ["netinterest-stretch"],
+  source: "Marc Rubinstein (Net Interest)",
+  sourceUrl: "https://www.netinterest.co/p/options-for-everyone",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#C2410C", to: "#F59E0B", label: "NSE" },
+  logo: "nseindia.com",
+  tags: ["INDIA", "NSE", "IPO"],
+  title: {
+    en: "The world's most profitable exchange sells a product its regulator wants less of",
+    ko: "세계에서 가장 돈 잘 버는 거래소가 파는 것: 규제당국이 줄이고 싶어하는 상품"
+  },
+  gist: {
+    en: "Rubinstein opens with a trading guru who signed up over 400,000 students in a decade and collected $63M in course fees. India's regulator SEBI dug into those students' brokerage accounts and found two thirds lost money in the six months after graduating. The guru lost about $450,000 of his own over 20 months. That is the small version of the big number: SEBI's wider review puts 91% of equity derivatives participants in the red, with 9.6 million individuals losing $11B in the year to March 2025 and $30B over four years. Retail keeps coming anyway. NSE accounts went from 39.9 million to 129.1 million in five years, options volume has compounded at 47.5% a year for a decade, and SEBI is now fighting back with contract-size floors, fewer weekly expiries, upfront premiums, a higher transaction tax, and an AI tool named Sudarshan that hunts down finfluencer posts. Sitting on top of all of it is NSE: 72% of index options, essentially all single-stock options, 51% of global equity derivatives contracts, and roughly 60% of its revenue from options. It starts marketing a $3B IPO next week.",
+    ko: "루빈스타인은 10년간 40만 명 넘는 수강생을 모아 수강료 6,300만 달러를 걷은 인도 트레이딩 구루 이야기로 시작한다. 인도 규제당국 SEBI가 그 수강생들의 증권계좌를 열어보니, 수료 후 6개월간 3분의 2가 돈을 잃었다. 정작 구루 본인은 20개월간 개인 계좌에서 약 45만 달러를 날렸다. 이건 큰 숫자의 축소판이다. SEBI의 광범위 조사는 주식 파생상품 참가자의 91%가 손실이라고 결론냈고, 2025년 3월 결산 기준 960만 명이 110억 달러를, 4년 누적으로 300억 달러를 잃었다. 그런데도 개인은 계속 들어온다. NSE 계좌는 5년 만에 3,990만 개에서 1억 2,910만 개로 늘었고, 옵션 거래는 10년간 연 47.5%로 복리 성장했다. SEBI는 계약 최소단위 상향, 주간 만기 축소, 프리미엄 선납, 거래세 인상, 그리고 핀플루언서 게시물을 잡아내는 AI 도구 'Sudarshan'까지 동원해 반격 중이다. 이 판 위에 NSE가 앉아 있다. 지수옵션 72%, 개별주식옵션 사실상 100%, 전 세계 주식 파생 계약 수의 51%, 그리고 매출의 약 60%가 옵션에서 나온다. 다음 주 30억 달러 규모 IPO 마케팅을 시작한다."
+  },
+  why: {
+    en: "Capital does not only flow toward AI infrastructure, it burns somewhere too. Half the world's equity derivatives now change hands in India, 91% of the people doing it lose, and the house is going public.",
+    ko: "자본은 AI 인프라로 흘러가기만 하는 게 아니라 어딘가에서 타 없어지기도 한다. 세계 주식 파생 거래의 절반이 인도에서 일어나고, 그걸 하는 사람의 91%가 잃고, 그 판을 깐 집이 상장한다."
+  }
+},
 {
   date: "2026-07-14",
   id: "doomberg-bloom",
@@ -951,7 +1005,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v17</p>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v19</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -959,6 +1013,11 @@ footer a{color:var(--muted);}
 </footer>
 
 <script>
+/* Newest first, always. Sorted here so the ITEMS array above can be
+   edited in any order: paste a new entry anywhere and it lands in the
+   right place by its date. Same-day entries keep their array order. */
+ITEMS.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+
 function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 
