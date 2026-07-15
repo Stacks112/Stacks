@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- STACKS BUILD v7 :: wikipedia topic thumbnails -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -42,12 +43,13 @@
 /* Comments are powered by Cusdis (cusdis.com), free and moderated.
    Setup: sign up at cusdis.com, add a website, copy the App ID below.
    Leave empty to hide all comment buttons. */
-const CUSDIS_APP_ID = "";
+const CUSDIS_APP_ID = "385367ee-8ea1-4e83-afa1-dcef686baf14";
 
 const ITEMS = [
 {
   date: "2026-07-14",
   id: "doomberg-bloom",
+  thumbWiki: "Scandium",
   paywall: true,
   related: [],
   source: "Doomberg",
@@ -73,6 +75,7 @@ const ITEMS = [
 {
   date: "2026-07-03",
   id: "netinterest-stretch",
+  thumbWiki: "Bitcoin",
   paywall: true,
   related: [],
   source: "Marc Rubinstein (Net Interest)",
@@ -98,6 +101,7 @@ const ITEMS = [
 {
   date: "2026-04-09",
   id: "marks-privatecredit",
+  thumbWiki: "Wall Street",
   related: ["doomberg-bloom"],
   source: "Howard Marks (Oaktree)",
   sourceUrl: "https://www.oaktreecapital.com/insights/memo/whats-going-on-in-private-credit",
@@ -123,6 +127,7 @@ const ITEMS = [
 {
   date: "2026-07-15",
   id: "nbis",
+  thumbWiki: "Data center",
   related: [],
   source: "Serenity (@aleabitoreddit)",
   sourceUrl: "https://x.com/aleabitoreddit/status/2077044786402660829",
@@ -149,6 +154,7 @@ const ITEMS = [
 {
   date: "2026-07-15",
   id: "optics",
+  thumbWiki: "Optical fiber",
   related: [],
   source: "Serenity (@aleabitoreddit)",
   sourceUrl: "https://x.com/aleabitoreddit/status/2077039373711970804",
@@ -175,6 +181,7 @@ const ITEMS = [
 {
   date: "2026-07-15",
   id: "hynix",
+  thumbWiki: "SK Hynix",
   related: ["hormuz-meru"],
   source: "Meru (메르)",
   sourceUrl: "https://blog.naver.com/ranto28/224347004537",
@@ -201,6 +208,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "ess",
+  thumbWiki: "Grid energy storage",
   related: [],
   source: "Meru (메르)",
   sourceUrl: "https://blog.naver.com/ranto28/224345852124",
@@ -226,6 +234,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "hormuz-meru",
+  thumbWiki: "Strait of Hormuz",
   related: ["potus-hormuz", "hynix"],
   source: "Meru (메르)",
   sourceUrl: "https://blog.naver.com/ranto28/224345322649",
@@ -251,6 +260,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "potus-hormuz",
+  thumbWiki: "Oil tanker",
   related: ["hormuz-meru"],
   source: "Donald J. Trump (@realDonaldTrump)",
   sourceUrl: "https://truthsocial.com/@realDonaldTrump/posts/116918941071241802",
@@ -277,6 +287,7 @@ const ITEMS = [
 {
   date: "2026-07-13",
   id: "nadella",
+  thumbWiki: "Microsoft",
   related: ["zuck"],
   source: "Satya Nadella (@satyanadella)",
   sourceUrl: "https://x.com/satyanadella/status/2076323181154230284",
@@ -304,6 +315,7 @@ const ITEMS = [
 {
   date: "2026-07-09",
   id: "zuck",
+  thumbWiki: "Meta Platforms",
   related: ["nadella", "cook-broadcom"],
   source: "Mark Zuckerberg (@finkd)",
   sourceUrl: "https://x.com/finkd/status/2075218444056707458",
@@ -330,6 +342,7 @@ const ITEMS = [
 },
 {
   id: "cook-broadcom",
+  thumbWiki: "Apple Park",
   related: ["zuck"],
   date: "2026-07-08",
   source: "Tim Cook (@tim_cook)",
@@ -712,6 +725,37 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .comment-toggle:hover,.comment-toggle.open{color:var(--text);border-color:var(--text);}
 .comment-box{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
 .comment-box iframe{width:100%;border:0;}
+/* ---------- feed card thumbnail ----------
+   Generated from the item's own cover colours, so every entry
+   has an image without hosting anyone else's artwork. */
+.card-thumb{
+  position:relative;height:96px;margin:14px -22px 16px;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.card-thumb .thumb-label{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:30px;font-weight:500;letter-spacing:.06em;
+  color:rgba(255,255,255,.55);
+  padding-left:22px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.card-thumb .thumb-logo{
+  position:absolute;top:50%;right:22px;transform:translateY(-50%);
+  width:34px;height:34px;border-radius:9px;
+  background:rgba(255,255,255,.92);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.card-thumb .thumb-logo img{width:22px;height:22px;object-fit:contain;display:block;}
+.card.is-read .card-thumb{opacity:.5;}
+@media (max-width:560px){
+  .card-thumb{height:84px;}
+  .card-thumb .thumb-label{font-size:25px;}
+  .card-thumb .thumb-logo{width:30px;height:30px;}
+}
+.card-thumb.has-photo .thumb-label{color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(0,0,0,.45);}
+.hot-cover.has-photo .cover-label{color:rgba(255,255,255,.85);text-shadow:0 1px 8px rgba(0,0,0,.45);}
+.hot-cover.has-photo .cover-title{text-shadow:0 1px 10px rgba(0,0,0,.55);}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -787,7 +831,7 @@ footer a{color:var(--muted);}
   <div class="wrap">
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
-    <p style="margin-top:8px">Portraits of public figures via Wikimedia Commons. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
+    <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
   </div>
 </footer>
 
@@ -833,7 +877,9 @@ async function wikiPhoto(title){
     const res = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + encodeURIComponent(title));
     if (!res.ok) throw new Error("not ok");
     const data = await res.json();
-    const src = (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
+    let src = (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
+    /* the summary API returns ~320px; ask Wikipedia's thumbnailer for 640px */
+    if (src) src = src.replace(/\/(\d+)px-/, "/640px-");
     wikiCache[title] = src;
     return src;
   } catch (e) {
@@ -857,8 +903,27 @@ function swapInPhoto(el, src, alt, fallbackSrc){
   img.src = src;
 }
 
+function hydrateThumb(item){
+  if (!item.thumbWiki) return;
+  const els = document.querySelectorAll('[data-thumb="' + item.id + '"]');
+  if (!els.length) return;
+  wikiPhoto(item.thumbWiki).then(src => {
+    if (!src) return; /* gradient stays as the fallback */
+    const img = new Image();
+    img.onload = () => {
+      els.forEach(el => {
+        el.classList.add("has-photo");
+        el.style.background =
+          "linear-gradient(135deg, rgba(10,11,13,.62), rgba(10,11,13,.28)), url('" + src + "') center/cover no-repeat";
+      });
+    };
+    img.src = src;
+  });
+}
+
 function hydrateImages(){
   ITEMS.forEach(item => {
+    hydrateThumb(item);
     if (item.logo){
       document.querySelectorAll('[data-logo="' + item.id + '"]').forEach(el => {
         el.innerHTML = '<img src="' + logoUrl(item.logo) + '" alt="">';
@@ -1041,7 +1106,7 @@ function render(){
     a.className = "hot-card";
     a.href = item.sourceUrl;
     a.target = "_blank"; a.rel = "noopener";
-    const coverHtml = `<div class="hot-cover" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
+    const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
            ${item.logo ? `<span class="cover-logo" data-logo="${item.id}"></span>` : ""}
            <span class="cover-label">${item.cover.label}</span>
            <span class="cover-title">${item.title[LANG]}</span>
@@ -1110,12 +1175,16 @@ function render(){
         <div class="chips">${item.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
       </div>
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
+      <div class="card-thumb" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
+        <span class="thumb-label">${item.cover.label}</span>
+        ${item.logo ? `<span class="thumb-logo" data-logo="${item.id}"></span>` : ""}
+      </div>
       <h3><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span>${item.title[LANG]}</h3>
       <div class="why">
         <div class="label">${S.why}</div>
         <p>${item.why[LANG]}</p>
       </div>
-      <details class="gist-fold">
+      <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
         <p class="gist">${item.gist[LANG]}</p>
       </details>
