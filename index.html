@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v16 :: fix wiki avatars (detached lazy img), native comments -->
+<!-- STACKS BUILD v17 :: comments on own cloudflare worker, instant display -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,10 +40,10 @@
    LOGO (optional):
      logo: "nebius.com"       -> company logo pulled automatically from the domain
    ============================================================ */
-/* Comments are powered by Cusdis (cusdis.com), free and moderated.
-   Setup: sign up at cusdis.com, add a website, copy the App ID below.
+/* Comments live on June's own Cloudflare Worker (see worker.js in this repo).
+   Paste the worker URL below, e.g. "https://stacks-comments.xxxx.workers.dev".
    Leave empty to hide all comment buttons. */
-const CUSDIS_APP_ID = "385367ee-8ea1-4e83-afa1-dcef686baf14";
+const COMMENTS_API = "https://stacks-comments.wnrakrhdn128.workers.dev";
 
 /* Analytics: GoatCounter (goatcounter.com), free, no cookies.
    Sign up, pick a code (e.g. "stacks"), put it here. Empty = off. */
@@ -412,11 +412,11 @@ const STRINGS = {
     cContent: "Write a comment",
     cSubmit: "Post",
     cSending: "Posting...",
-    cSent: "Sent. It will appear once approved.",
+    cSent: "Posted.",
     cError: "Failed to post. Please try again.",
     cEmpty: "No comments yet. Be the first.",
     cLoading: "Loading comments...",
-    cModNote: "Comments appear after approval.",
+    cRate: "Too fast. Try again in a minute.",
     share: "Share",
     copied: "Link copied \u2713",
     notify: "Get alerts",
@@ -452,11 +452,11 @@ const STRINGS = {
     cContent: "댓글을 남겨보세요",
     cSubmit: "등록",
     cSending: "등록 중...",
-    cSent: "등록됐습니다. 승인 후 표시됩니다.",
+    cSent: "게시됐습니다.",
     cError: "등록에 실패했습니다. 다시 시도해주세요.",
     cEmpty: "아직 댓글이 없어요. 첫 댓글을 남겨보세요.",
     cLoading: "댓글 불러오는 중...",
-    cModNote: "댓글은 승인 후 표시됩니다.",
+    cRate: "너무 빨라요. 잠시 후 다시 시도해주세요.",
     share: "공유",
     copied: "링크 복사됨 \u2713",
     notify: "알림 받기",
@@ -772,7 +772,6 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .c-item .c-date{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);}
 .c-item .c-text{font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
 html[data-lang="ko"] .c-item .c-text{font-family:"Pretendard Variable",sans-serif;}
-.c-reply{margin-top:8px;margin-left:12px;padding:8px 11px;background:#fff;border:1px solid var(--line);border-radius:10px;}
 .c-status{font-size:12.5px;color:var(--muted);padding:4px 0;}
 html[data-lang="ko"] .c-status{font-family:"Pretendard Variable",sans-serif;}
 .c-status.ok{color:#12B76A;font-weight:600;}
@@ -794,8 +793,6 @@ html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-fa
   cursor:pointer;flex:0 0 auto;
 }
 .c-form button:disabled{opacity:.5;cursor:default;}
-.c-modnote{font-size:11px;color:var(--muted);}
-html[data-lang="ko"] .c-modnote{font-family:"Pretendard Variable",sans-serif;}
 /* ---------- feed card thumbnail ----------
    Generated from the item's own cover colours, so every entry
    has an image without hosting anyone else's artwork. */
@@ -954,7 +951,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v16</p>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v17</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1161,11 +1158,9 @@ function toggleFreeOnly(){
   render();
 }
 
-/* ---------------- comments (Cusdis open API) ----------------
-   No iframe. We talk to Cusdis directly, so typing works in the
-   iOS home-screen app too. Comments still go through June's
-   approval queue in the Cusdis dashboard. */
-const CUSDIS_HOST = "https://cusdis.com";
+/* ---------------- comments (own Cloudflare Worker) ----------------
+   No iframe, no third party. Comments post to June's worker and
+   show instantly, Twitter-style. Spam gets deleted after the fact. */
 let openCommentId = null;
 
 function esc(s){
@@ -1193,29 +1188,20 @@ async function loadComments(id){
   if (!listEl) return;
   listEl.innerHTML = '<div class="c-status">' + S.cLoading + '</div>';
   try {
-    const url = CUSDIS_HOST + "/api/open/comments?appId=" + encodeURIComponent(CUSDIS_APP_ID)
-      + "&pageId=" + encodeURIComponent(id) + "&page=1";
-    const res = await fetch(url);
+    const res = await fetch(COMMENTS_API + "/comments?pageId=" + encodeURIComponent(id));
     if (!res.ok) throw new Error("bad status");
     const json = await res.json();
-    const rows = (json && json.data && json.data.data) ? json.data.data
-               : (json && Array.isArray(json.data)) ? json.data : [];
+    const rows = (json && Array.isArray(json.data)) ? json.data : [];
     if (!rows.length){
       listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
       return;
     }
-    listEl.innerHTML = rows.map(c => {
-      const replies = (c.replies && c.replies.data) ? c.replies.data : [];
-      return '<div class="c-item">'
-        + '<div class="c-head"><span class="c-name">' + esc(c.by_nickname) + '</span>'
+    listEl.innerHTML = rows.map(c =>
+      '<div class="c-item">'
+        + '<div class="c-head"><span class="c-name">' + esc(c.nickname) + '</span>'
         + '<span class="c-date">' + cDate(c.createdAt) + '</span></div>'
         + '<div class="c-text">' + esc(c.content) + '</div>'
-        + replies.map(r => '<div class="c-reply">'
-            + '<div class="c-head"><span class="c-name">' + esc(r.by_nickname) + '</span>'
-            + '<span class="c-date">' + cDate(r.createdAt) + '</span></div>'
-            + '<div class="c-text">' + esc(r.content) + '</div></div>').join("")
-        + '</div>';
-    }).join("");
+      + '</div>').join("");
   } catch (e) {
     listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
   }
@@ -1234,27 +1220,29 @@ async function submitComment(ev, id){
   if (!nickname){ nick.focus(); return false; }
   if (!content){ text.focus(); return false; }
   lsSet("stk_nick", nickname);
-  const item = ITEMS.find(i => i.id === id);
   if (btn){ btn.disabled = true; btn.textContent = S.cSending; }
   if (stat){ stat.className = "c-status"; stat.textContent = ""; }
   try {
-    const res = await fetch(CUSDIS_HOST + "/api/open/comments", {
+    const hp = document.getElementById("chp-" + id);
+    const res = await fetch(COMMENTS_API + "/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        appId: CUSDIS_APP_ID,
         pageId: id,
         content: content,
         nickname: nickname,
-        pageUrl: location.origin + location.pathname + "#sig-" + id,
-        pageTitle: item ? item.title.en : id
+        website: hp ? hp.value : ""
       })
     });
-    if (!res.ok) throw new Error("bad status");
+    if (!res.ok) throw new Error(res.status === 429 ? "rate" : "bad status");
     text.value = "";
     if (stat){ stat.className = "c-status ok"; stat.textContent = S.cSent; }
+    loadComments(id); /* instant: the new comment appears right away */
   } catch (e) {
-    if (stat){ stat.className = "c-status err"; stat.textContent = S.cError; }
+    if (stat){
+      stat.className = "c-status err";
+      stat.textContent = (e && e.message === "rate") ? S.cRate : S.cError;
+    }
   } finally {
     if (btn){ btn.disabled = false; btn.textContent = S.cSubmit; }
   }
@@ -1279,8 +1267,8 @@ function toggleComments(id){
     + '<input id="cnick-' + id + '" type="text" autocomplete="nickname" placeholder="' + esc(S.cNickname) + '" value="' + esc(saved) + '">'
     + '<button id="csend-' + id + '" onclick="submitComment(event, \'' + id + '\')">' + S.cSubmit + '</button>'
     + '</div>'
+    + '<input id="chp-' + id + '" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">'
     + '<div id="cstat-' + id + '" class="c-status"></div>'
-    + '<div class="c-modnote">' + S.cModNote + '</div>'
     + '</div>';
   box.hidden = false;
   setRead(id);
@@ -1486,7 +1474,7 @@ function render(){
       <div class="cta-row">
         <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
-        ${CUSDIS_APP_ID ? `<button class="comment-toggle" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')">${S.comments}</button>` : ""}
+        ${COMMENTS_API ? `<button class="comment-toggle" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')">${S.comments}</button>` : ""}
         <button class="read-toggle${READ.has(item.id) ? " done" : ""}" onclick="toggleRead('${item.id}')">${READ.has(item.id) ? S.readDone : S.markRead}</button>
         <button class="share-btn" id="share-${item.id}" onclick="shareItem('${item.id}')">${S.share}</button>
         <span class="lang-note">${langNote}</span>
