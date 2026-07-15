@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<title>Stacks: The world's best investing reads, in your language</title>
+<meta name="description" content="Sharp investment writing from around the world, summarized in your language, with a take. Curated by The Infrastructure Thesis.">
+<meta property="og:title" content="Stacks: The world's best investing reads, in your language">
+<meta property="og:description" content="Sharp investment writing from around the world, summarized in your language, with a take.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script>
+/* ============================================================
+   STACKS: DATA
+   To add a new item: copy one { ... } block, paste it at the
+   TOP of ITEMS, edit the fields, commit. Newest first.
+
+   sourceLang: "KO" or "EN"  (language of the ORIGINAL post)
+   category:   "investor" | "ceo" | "politician"
+   hot:        true → shows in the "Hot this week" rail
+   cover:      { from, to, label }  gradient cover for hot cards
+   ============================================================ */
+const ITEMS = [
+{
+  date: "2026-07-15",
+  id: "nbis",
+  related: [],
+  source: "Serenity (@aleabitoreddit)",
+  sourceUrl: "https://x.com/aleabitoreddit/status/2077044786402660829",
+  sourceLang: "EN",
+  category: "investor",
+  hot: true,
+  cover: { from: "#2E5BFF", to: "#8A5BFF", label: "NBIS" },
+  tags: ["NEOCLOUD", "NBIS", "COMPUTE LTA"],
+  title: {
+    en: "A $1B deal that dropped the stock: Nebius and the counterparty question",
+    ko: "10억 달러 계약에 주가는 -5%: 네비우스와 '상대방 리스크'"
+  },
+  gist: {
+    en: "Nebius signed a $1B+ compute agreement giving Reflection AI access to GB300 chips through 2029, and the stock fell about 5% on the news. Serenity's read on why: the buyer. Reflection, which earlier signed a separate multi-billion agreement with SPCX, is an Nvidia-backed lab that may not yet have the funds to actually execute these long-term agreements, unlike a META or MSFT. Still, the long-term view stays positive: customer diversification has always been one of the core strengths of the Nebius story.",
+    ko: "네비우스가 Reflection AI에 2029년까지 GB300 접근을 제공하는 10억 달러 이상 컴퓨트 계약을 맺었는데, 주가는 발표에 약 -5%. Serenity의 해석은 '계약 상대' 문제다. Reflection은 앞서 SPCX와도 수십억 달러 계약을 맺은 엔비디아 계열 투자를 받은 신생 랩인데, META나 MSFT와 달리 이 장기계약(LTA)을 실제 이행할 자금이 아직 없을 수 있다는 것. 다만 고객 다변화는 네비우스 논리의 핵심 강점이라, 장기적으로는 긍정적이라는 평가."
+  },
+  why: {
+    en: "The market is starting to price neocloud LTAs by the buyer's balance sheet, not the headline number.",
+    ko: "시장이 네오클라우드 장기계약을 '발표 금액'이 아니라 '상대의 지불능력'으로 평가하기 시작했다."
+  }
+},
+{
+  date: "2026-07-15",
+  id: "optics",
+  related: [],
+  source: "Serenity (@aleabitoreddit)",
+  sourceUrl: "https://x.com/aleabitoreddit/status/2077039373711970804",
+  sourceLang: "EN",
+  category: "investor",
+  hot: false,
+  cover: { from: "#7A4DFF", to: "#B44DFF", label: "OPTICS" },
+  tags: ["OPTICS", "TSEM", "AAOI"],
+  title: {
+    en: "Japan and Texas are now funding the optics layer",
+    ko: "일본과 텍사스가 광통신 캐파에 돈을 대기 시작했다"
+  },
+  gist: {
+    en: "Two capacity expansions in one day, both government-backed. Tower Semi, with support from the Japanese government, is expanding 300mm Silicon Photonics (SiPho), SiGe, and advanced packaging, targeting $3.6B revenue and $1.2B net profit in 2028, roughly a 23x 2028 forward P/E at a ~$28B market cap. AAOI broke ground on ~400,000 sq ft of manufacturing in Texas for 800G/1.6T optics, backed by the city plus $20.85M in earlier state subsidies. One caveat Serenity flags: the AAOI news is the commencement of previously announced plans, not a new plan.",
+    ko: "하루에 광통신 캐파 확장 발표가 둘, 둘 다 정부가 뒤에 있다. 타워세미(TSEM)는 일본 정부 지원으로 300mm 실리콘 포토닉스(SiPho)·SiGe·첨단 패키징을 확장, 2028년 매출 36억 달러, 순이익 12억 달러 목표(시총 약 280억 달러 기준 2028 선행 P/E 약 23배). AAOI는 텍사스에서 약 40만 평방피트 규모의 800G/1.6T 광모듈 생산시설 착공, 시 정부 지원에 앞서 받은 주 보조금 2,085만 달러까지. 단, AAOI 건은 기존 발표 계획의 '착공'이라 완전히 새로운 재료는 아니라는 단서."
+  },
+  why: {
+    en: "Optics is the interconnect layer of the AI buildout, and governments from Japan to Texas are now subsidizing it.",
+    ko: "광통신은 AI 인프라의 연결 계층이다. 이제 일본부터 텍사스까지 정부가 보조금을 대기 시작했다."
+  }
+},
+{
+  date: "2026-07-15",
+  id: "hynix",
+  related: ["hormuz-meru"],
+  source: "Meru (메르)",
+  sourceUrl: "https://blog.naver.com/ranto28/224347004537",
+  sourceLang: "KO",
+  category: "investor",
+  hot: true,
+  cover: { from: "#0BA5EC", to: "#2E5BFF", label: "HYNIX" },
+  tags: ["MACRO", "SK HYNIX", "KOREA DISCOUNT"],
+  title: {
+    en: "One stock, two prices: SK Hynix's 49% New York premium",
+    ko: "같은 주식, 두 가격: SK하이닉스의 뉴욕 프리미엄 49%"
+  },
+  gist: {
+    en: "June CPI fell 0.4% month-over-month, the steepest drop in six years, driven by a 9.7% gasoline decline after the June 17 US-Iran ceasefire. But Meru flags the catch: the survey window closed before strikes resumed and the coastal blockade returned, and Brent has since jumped over 20% in two weeks. Meanwhile SK Hynix's freshly listed ADR surged 27% in a day on a Barclays $330 target, leaving the same share priced 49% higher in New York than in Seoul. Textbook arbitrage, except conversion is still restricted post-listing, there is almost no ADR float to short, and the FX and time-zone mismatch adds risk. His call: the gap won't be arbitraged away; Seoul will simply chase New York the next morning.",
+    ko: "6월 CPI가 전월 대비 -0.4%로 6년 만의 최대 하락. 6월 17일 휴전에 따른 휘발유 -9.7% 등 에너지 급락 영향이다. 단, 메르가 짚는 함정: 조사기간 이후 미국의 타격 재개와 해안 봉쇄로 브렌트유는 2주 만에 20% 이상 반등한 상태다. 한편 SK하이닉스 ADR은 바클레이스 목표가 330달러에 하루 27% 급등, 서울 본주 대비 49% 프리미엄이 형성됐다. 교과서적 차익거래 기회지만 상장 직후 전환 제한, 공매도할 유통물량 부족, 환·시차 위험으로 실행이 어렵다는 진단. 결론: 프리미엄은 차익거래로 좁혀지지 않고, 서울이 다음 날 뉴욕을 따라가는 구조가 계속된다."
+  },
+  why: {
+    en: "The premium is a live gauge of how much global capital wants Korean memory exposure, and can't get it through Seoul.",
+    ko: "이 프리미엄은 글로벌 자금이 한국 메모리를 원하는데 서울을 통해서는 살 수 없다는 사실의 실시간 계기판이다."
+  }
+},
+{
+  date: "2026-07-14",
+  id: "ess",
+  related: [],
+  source: "Meru (메르)",
+  sourceUrl: "https://blog.naver.com/ranto28/224345852124",
+  sourceLang: "KO",
+  category: "investor",
+  hot: true,
+  cover: { from: "#12B76A", to: "#0BA5EC", label: "ESS" },
+  tags: ["ESS", "BATTERIES", "DATACENTER POWER"],
+  title: {
+    en: "The three-piece China squeeze handing US energy storage to Korea",
+    ko: "미국의 중국규제 3종세트, ESS를 한국에 넘기다"
+  },
+  gist: {
+    en: "Datacenter power demand (IEA: 415→945 TWh by 2030) is colliding with an aging US grid (70%+ of large transformers are over 25 years old, with ~3-year lead times), pushing hyperscalers toward on-site gas, renewables, and massive ESS. That ESS market ran on 90%+ Chinese cells. Meru walks through the three-piece policy set changing that: OBBBA's MACR rules tie clean-energy tax credits to shrinking Chinese content year by year; Section 301 tariffs lift Chinese ESS cell costs from ~$73 to ~$87/kWh; and AMPC production credits pull US-made Korean LFP down to ~$50-55/kWh. SNE Research now sees Korean share of US ESS batteries at 61% in 2026 and 85% in 2027. His caveats: Korea's cell makers are still overbuilt (2026 capacity adds ~109GWh vs. <50GWh shipment growth), and the upstream (graphite 98%, precursors 94% Chinese) is a dependence the rules themselves quietly concede.",
+    ko: "데이터센터 전력수요(IEA: 2030년까지 415→945TWh)가 노후 전력망과 충돌하면서(대형 변압기 70% 이상이 25년 초과, 납기 약 3년) 빅테크는 현장 가스발전·신재생·대형 ESS로 움직이고 있다. 그런데 미국 ESS 배터리는 중국산이 90% 이상이었다. 메르가 정리한 판을 바꾸는 3종세트: MACR(세액공제에 비중국산 비중 요건을 매년 상향), 301조 관세(중국산 셀 원가 $73→$87/kWh), AMPC(미국 생산 세액공제로 한국산 LFP가 $50~55/kWh까지 하락). SNE리서치는 미국 ESS 내 한국산 점유율을 2026년 61%, 2027년 85%로 전망. 단서: 한국 3사는 여전히 공급과잉(2026년 증설 109GWh vs 출하 증가 50GWh 미만)이고, 흑연 98%·전구체 94%의 중국 의존은 규정 스스로 유예로 인정할 만큼 벗어나기 어렵다."
+  },
+  why: {
+    en: "AI datacenters created the storage demand; US industrial policy just decided who supplies it. This is the power-infrastructure trade behind the compute trade.",
+    ko: "AI 데이터센터가 저장장치 수요를 만들었고, 미국 산업정책이 공급자를 정했다. 컴퓨트 트레이드 뒤에 있는 전력 인프라 트레이드다."
+  }
+},
+{
+  date: "2026-07-14",
+  id: "hormuz-meru",
+  related: ["potus-hormuz", "hynix"],
+  source: "Meru (메르)",
+  sourceUrl: "https://blog.naver.com/ranto28/224345322649",
+  sourceLang: "KO",
+  category: "investor",
+  hot: false,
+  cover: { from: "#F04438", to: "#F79009", label: "OIL" },
+  tags: ["GEOPOLITICS", "OIL", "HORMUZ"],
+  title: {
+    en: "Blockade first, toll later: reading Trump's Hormuz play",
+    ko: "봉쇄 먼저, 통행료는 나중에: 트럼프의 호르무즈 플레이 읽기"
+  },
+  gist: {
+    en: "CENTCOM announced a blockade of Iran's entire coastline effective July 14 (under international law, effectively an act of war) while Trump declared the US the \"Guardian of the Hormuz Strait\" and floated a 20% fee on all cargo transiting it. Meru's arithmetic shows why the toll was never serious: on a loaded VLCC carrying $160M of crude, the US fee would be $32M against Iran's ~$2M at $1 per barrel, sixteen times more expensive than paying the adversary. It was withdrawn within a day, traded for a Gulf investment deal. His read: Trump frames each strike as a 'skirmish,' escalating in controlled bursts to force Iran back to the table, with oil possibly the side bet.",
+    ko: "미 중부사령부가 7월 14일부로 이란 해안선 전체 봉쇄를 발표했다. 국제법상 사실상 전쟁행위다. 트럼프는 '호르무즈 수호자'를 자처하며 통과 화물에 20% 수수료를 언급했다가 하루 만에 걸프 투자 딜로 대체하며 철회했다. 메르의 계산이 핵심: 1억 6천만 달러어치 원유를 실은 VLCC 기준 미국 수수료는 3,200만 달러 vs 이란 통행료(배럴당 1달러) 약 200만 달러로, 적에게 내는 것보다 16배 비싼 애초 성립 불가한 숫자였다. 해석: 타격을 '소규모 충돌'로 규정하고 제한적 공습을 반복하며 협상 국면 복귀를 노리는 압박 전술이며, 유가 상승이 사이드 베팅일 수 있다."
+  },
+  why: {
+    en: "Energy is the input cost of the AI buildout. Hormuz risk is now a line item in every datacenter power model.",
+    ko: "에너지는 AI 인프라 증설의 원가다. 호르무즈 리스크는 이제 모든 데이터센터 전력 모델의 한 항목이 됐다."
+  }
+},
+{
+  date: "2026-07-14",
+  id: "potus-hormuz",
+  related: ["hormuz-meru"],
+  source: "Donald J. Trump (@realDonaldTrump)",
+  sourceUrl: "https://truthsocial.com/@realDonaldTrump/posts/116918941071241802",
+  sourceLang: "EN",
+  category: "politician",
+  hot: true,
+  cover: { from: "#B91C1C", to: "#F04438", label: "POTUS" },
+  avatarImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg/250px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg",
+  tags: ["GEOPOLITICS", "OIL", "CAPITAL FLOWS"],
+  title: {
+    en: "Trump kills the Hormuz toll and swaps it for Gulf capital",
+    ko: "트럼프, 호르무즈 통행료를 걸프 자본과 맞바꾸다"
+  },
+  gist: {
+    en: "The primary source behind this week's oil headlines. Trump declares the Strait of Hormuz open to all traffic except Iran, keeps a full blockade on ships tied to Iranian ports or cargo, and, the market-relevant part, replaces the floated 20% 'US reimbursement fee' on transiting cargo with trade and investment deals from Gulf states into the US. He frames the swap as factories, plants, and equipment flowing into America at historic levels on top of what he calls the largest dollar investment into the US of any country in history, and closes with the ceiling on escalation: Iran will never have a nuclear weapon.",
+    ko: "이번 주 유가 헤드라인의 1차 사료. 트럼프는 호르무즈 해협이 이란을 제외한 모든 선박에 열려 있다고 선언하고, 이란 항구·화물 관련 선박에만 전면 봉쇄를 유지한다. 시장에 중요한 대목: 통과 화물에 물리려던 '20% 미국 보전 수수료'를 걸프 국가들의 대미 무역·투자 딜로 대체했다. 공장·플랜트·설비가 역사적 수준으로 미국에 들어올 것이라는 프레임이고, 마무리는 확전의 한계선이다. 이란은 절대 핵무기를 갖지 못한다."
+  },
+  why: {
+    en: "The toll is gone but the blockade stays, so the oil risk premium stays. And 'Gulf investment instead of fees' adds one more stream of foreign capital pointed at the US industrial buildout.",
+    ko: "수수료는 사라졌지만 봉쇄는 남았다. 유가 리스크 프리미엄도 남는다는 뜻이다. 그리고 '수수료 대신 걸프 투자'는 미국 산업 증설로 향하는 외국 자본 물줄기가 하나 더 생겼다는 뜻이다."
+  }
+},
+{
+  date: "2026-07-13",
+  id: "nadella",
+  related: ["zuck"],
+  source: "Satya Nadella (@satyanadella)",
+  sourceUrl: "https://x.com/satyanadella/status/2076323181154230284",
+  sourceLang: "EN",
+  category: "ceo",
+  hot: true,
+  cover: { from: "#0078D4", to: "#5B8CFF", label: "MSFT" },
+  tags: ["AI", "MSFT", "ENTERPRISE"],
+  title: {
+    en: "Nadella's 'Reverse Information Paradox': you pay for AI twice",
+    ko: "나델라의 '역정보 역설': 우리는 AI에 두 번 지불한다"
+  },
+  gist: {
+    en: "Microsoft's CEO inverts Kenneth Arrow's classic information paradox. Arrow's seller risked giving knowledge away in order to sell it; in the AI age, Nadella argues, the buyer gives knowledge away just to use what they bought, paying for intelligence twice: once in money and again in the proprietary know-how fed to the model, as every prompt, correction, and eval leaks institutional knowledge back to the provider. His fix: a hard 'trust boundary' inside which a firm's data, traces, evals, and adapted weights compound together, plus five requirements: control your evals and memory, build learning environments inside your own tenant, keep orchestration decoupled from any single model, use that decoupling to manage cost, and compound it all into your own learning loop. He also calls out the irony of model providers claiming fair use over public data while restricting distillation and reserving rights over customer usage data.",
+    ko: "MS CEO가 케네스 애로우의 고전 '정보 역설'을 뒤집는다. 애로우의 역설에서는 파는 쪽이 팔기 위해 지식을 노출해야 했다면, AI 시대에는 사는 쪽이 산 것을 쓰기 위해 지식을 내줘야 한다는 것이다. 돈으로 한 번, 모델에 먹이는 사내 노하우로 또 한 번, 지능에 두 번 지불하는 구조다. 프롬프트·교정·평가(eval) 하나하나가 기관의 노하우가 되어 공급자 쪽으로 새어 나간다. 해법은 기업의 데이터·트레이스·평가·조정된 가중치가 함께 쌓이는 '신뢰 경계(trust boundary)'와 5C다. 평가와 메모리의 통제(Control), 자체 테넌트 안의 학습 환경(Capability), 특정 모델에 묶이지 않는 오케스트레이션(Choice), 그로 인한 비용 최적화(Cost), 이를 합친 자체 학습 루프(Compound). 모델사들이 공개 데이터엔 공정이용을 주장하면서 증류는 막고 고객 사용 데이터 학습 권리는 챙기는 이중성도 직격했다."
+  },
+  why: {
+    en: "When Microsoft's CEO says customers must own their learning loop, he's drawing the next battle line of the AI stack, and it runs through every model provider's terms of service.",
+    ko: "MS CEO가 '고객이 자기 학습 루프를 소유해야 한다'고 말하는 순간 AI 스택의 다음 전선이 그어졌다. 그 선은 모든 모델사의 약관을 지나간다."
+  }
+},
+{
+  date: "2026-07-09",
+  id: "zuck",
+  related: ["nadella"],
+  source: "Mark Zuckerberg (@finkd)",
+  sourceUrl: "https://x.com/finkd/status/2075218444056707458",
+  sourceLang: "EN",
+  category: "ceo",
+  hot: true,
+  cover: { from: "#0064E0", to: "#00C6FF", label: "META" },
+  tags: ["AI MODELS", "META", "COMPUTE"],
+  title: {
+    en: "Zuckerberg opens Meta's model API: agentic performance at a discount",
+    ko: "저커버그, 메타 모델 API 개방: 에이전트 성능을 '싸게' 판다"
+  },
+  gist: {
+    en: "Meta released Muse Spark 1.1 and, for the first time, opened its models to developers through the new Meta Model API. Zuckerberg's pitch is strong agentic and multimodal capability at a very low price. The model claims the top of the agent benchmarks: MCP Atlas 88.1, JobBench 54.7 (well ahead of Anthropic's Opus 4.8 at 48.4), and Humanity's Last Exam 62.1 with tools, built on a 1M-token context window, parallel sub-agent delegation, and training for computer use across desktop, mobile, and browser. Meta's own table is candid about the gaps: Opus 4.8 still leads diverse software engineering (SWE-Bench Pro 69.2 vs 61.5) and computer use, while GPT 5.5 leads long-horizon coding and visual reasoning.",
+    ko: "메타가 Muse Spark 1.1을 내놓으며 처음으로 개발자에게 모델을 개방했다. 새 Meta Model API다. 저커버그의 메시지는 '강한 에이전트·멀티모달 성능을 아주 싼 가격에'다. 에이전트 벤치마크에서 선두를 주장한다: MCP Atlas 88.1, JobBench 54.7(앤트로픽 Opus 4.8의 48.4를 크게 앞섬), 도구 사용 HLE 62.1. 1M 토큰 컨텍스트, 병렬 서브에이전트 위임, 데스크톱·모바일·브라우저 컴퓨터 사용 훈련이 기반이다. 다만 메타가 공개한 표 자체가 약점도 보여준다: 다양한 소프트웨어 엔지니어링(SWE-Bench Pro 69.2 vs 61.5)과 컴퓨터 사용은 여전히 Opus 4.8이, 장기 코딩과 시각 추론은 GPT 5.5가 앞선다."
+  },
+  why: {
+    en: "Meta selling inference 'at a very low price' is a price-war declaration, and model price wars are won by whoever owns the cheapest compute. Bullish for the buildout, brutal for margins.",
+    ko: "메타가 추론을 '아주 싸게' 팔겠다는 건 가격전쟁 선언이다. 모델 가격전쟁의 승자는 가장 싼 컴퓨트를 가진 쪽이다. 인프라 증설엔 호재, 마진엔 잔혹하다."
+  }
+}
+];
+
+/* ---------------- categories & UI strings ---------------- */
+const CATEGORIES = [
+  { id: "all",        en: "All",         ko: "전체" },
+  { id: "investor",   en: "Investors",   ko: "투자 고수" },
+  { id: "ceo",        en: "CEOs",        ko: "기업 CEO" },
+  { id: "politician", en: "Politicians", ko: "정치인" }
+];
+
+const STRINGS = {
+  en: {
+    appName: "Stacks",
+    heroTitle: "Reading Made Easy",
+    heroSub: "Pick a voice. Read it in your language. That's it.",
+    heroCta: "Explore Signals",
+    hot: "Hot this week",
+    original: "Original",
+    gist: "The gist",
+    why: "Why it matters",
+    read: "Read the original",
+    related: "Related",
+    langNoteKO: "Original in Korean · auto-translate works well",
+    langNoteEN: "Original in English",
+    empty: "Nothing here yet. New voices are being added.",
+    foot1: "Summaries and commentary are original work by The Infrastructure Thesis. All rights to the original posts belong to their authors; each entry links to and credits the source.",
+    foot2: "Not investment advice."
+  },
+  ko: {
+    appName: "스택스",
+    heroTitle: "읽는 투자, 쉽게",
+    heroSub: "목소리를 고르세요. 당신의 언어로 읽으세요. 끝.",
+    heroCta: "시그널 보기",
+    hot: "이번 주 핫한 읽을거리",
+    original: "원문",
+    gist: "핵심",
+    why: "왜 중요한가",
+    read: "원문 보기",
+    related: "함께 읽기",
+    langNoteKO: "원문: 한국어",
+    langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
+    empty: "아직 글이 없어요. 새로운 목소리를 추가하는 중입니다.",
+    foot1: "요약과 해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 본 페이지는 요약·해설과 출처 표기 및 링크만을 제공합니다.",
+    foot2: "투자 자문이 아닙니다."
+  }
+};
+</script>
+<style>
+:root{
+  --bg:#FFFFFF;
+  --bg-soft:#F6F7F9;
+  --text:#17181C;
+  --muted:#8E93A0;
+  --line:#ECEDF1;
+  --black:#111214;
+  --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Inter","Pretendard Variable",-apple-system,sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--text);}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:960px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;text-decoration:none;}
+.brand .logo{
+  width:28px;height:28px;border-radius:8px;background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:13px;font-weight:800;
+}
+.lang-toggle{display:flex;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:3px;}
+.lang-toggle button{
+  background:transparent;border:0;color:var(--muted);cursor:pointer;
+  font-family:inherit;font-size:12px;font-weight:600;padding:5px 13px;border-radius:999px;
+  transition:all .15s ease;
+}
+.lang-toggle button.active{background:var(--black);color:#fff;}
+
+/* ---------- hero ---------- */
+.hero{text-align:center;padding:64px 0 56px;}
+.app-icon{
+  width:76px;height:76px;border-radius:20px;background:var(--black);
+  margin:0 auto 12px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.16);
+}
+.app-icon span{color:#fff;font-size:32px;font-weight:800;}
+.app-icon svg{width:42px;height:42px;}
+.brand .logo svg{width:17px;height:17px;}
+.app-name{font-size:15px;font-weight:700;margin-bottom:28px;}
+.hero h1{
+  font-size:clamp(38px,8vw,64px);
+  font-weight:800;letter-spacing:-0.035em;line-height:1.06;
+}
+.hero .sub{margin:16px auto 28px;font-size:16px;color:var(--muted);max-width:46ch;}
+.cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--black);color:#fff;text-decoration:none;
+  font-size:15px;font-weight:700;
+  border-radius:999px;padding:14px 28px;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.cta:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.18);}
+
+/* ---------- hot rail ---------- */
+.section-title{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin:8px 0 16px;}
+.hot-rail{
+  display:flex;gap:16px;overflow-x:auto;
+  padding:4px 4px 18px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+.hot-rail::-webkit-scrollbar{display:none;}
+.hot-card{
+  flex:0 0 240px;scroll-snap-align:start;
+  border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--line);
+  background:#fff;text-decoration:none;
+  box-shadow:0 6px 18px rgba(17,18,20,.06);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.hot-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(17,18,20,.12);}
+.hot-cover{
+  height:150px;position:relative;
+  display:flex;align-items:flex-end;padding:14px;
+}
+.hot-cover .cover-label{
+  position:absolute;top:12px;left:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:500;
+  color:rgba(255,255,255,.5);letter-spacing:0.06em;
+}
+.hot-cover .cover-title{
+  color:#fff;font-weight:800;font-size:15px;line-height:1.3;letter-spacing:-0.01em;
+  text-shadow:0 1px 8px rgba(0,0,0,.25);
+}
+.hot-meta{display:flex;align-items:center;gap:8px;padding:12px 14px;}
+.hot-meta .mini-avatar{
+  width:22px;height:22px;border-radius:50%;flex:0 0 22px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:10px;font-weight:800;
+}
+.hot-meta span{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* ---------- tabs ---------- */
+.tabs{
+  display:flex;gap:8px;overflow-x:auto;
+  margin:26px 0 18px;padding-bottom:2px;
+}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{
+  background:var(--bg-soft);border:1px solid var(--line);color:var(--muted);
+  font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;
+  border-radius:999px;padding:8px 18px;white-space:nowrap;
+  transition:all .15s ease;
+}
+.tab.active{background:var(--black);border-color:var(--black);color:#fff;}
+
+/* ---------- feed cards ---------- */
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;margin-bottom:16px;
+  box-shadow:0 4px 14px rgba(17,18,20,.04);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(17,18,20,.09);}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.avatar{
+  width:36px;height:36px;border-radius:50%;flex:0 0 36px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:14px;color:#fff;
+}
+.avatar.ko{background:linear-gradient(135deg,#FF6B6B,#C0392B);}
+.avatar.en{background:linear-gradient(135deg,#2E5BFF,#8A5BFF);}
+.avatar.photo{background:var(--bg-soft);overflow:hidden;}
+.avatar.photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;}
+.src-block{display:flex;flex-direction:column;min-width:0;}
+.src-name{font-size:13.5px;font-weight:700;line-height:1.3;}
+.src-date{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;}
+.chip{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.05em;
+  color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);
+  border-radius:999px;padding:3px 9px;white-space:nowrap;
+}
+.title-orig{font-size:12.5px;color:var(--muted);margin-bottom:6px;font-family:"Pretendard Variable","Inter",sans-serif;}
+.title-orig .badge{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.1em;
+  color:var(--muted);border:1px solid var(--line);border-radius:6px;
+  padding:1px 6px;margin-right:7px;vertical-align:1px;
+}
+.card h3{font-size:clamp(18px,4vw,22px);font-weight:800;letter-spacing:-0.025em;line-height:1.28;margin-bottom:12px;}
+.label{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+}
+.gist{font-size:14.5px;color:#3E414B;}
+html[data-lang="ko"] .gist{font-family:"Pretendard Variable",sans-serif;line-height:1.75;}
+.why{margin-top:16px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px;}
+.why .label{color:var(--text);}
+.why p{font-size:14.5px;font-weight:700;}
+html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
+.cta-row{margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.original-link{
+  font-size:13px;font-weight:700;text-decoration:none;
+  background:var(--black);color:#fff;border-radius:999px;padding:9px 18px;
+  transition:transform .15s ease;
+}
+.original-link:hover{transform:translateY(-1px);}
+.lang-note{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);}
+.related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+.related .label{margin-bottom:8px;}
+.related-links{display:flex;flex-direction:column;gap:6px;}
+.related-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--text);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;
+  padding:9px 13px;cursor:pointer;text-align:left;
+  font-family:inherit;transition:border-color .15s ease,transform .15s ease;
+}
+html[data-lang="ko"] .related-link{font-family:"Pretendard Variable",sans-serif;}
+.related-link:hover{border-color:#C6C9D2;transform:translateY(-1px);}
+.related-link .rel-arrow{color:var(--muted);flex:0 0 auto;}
+.card.flash{animation:flash 1.2s ease;}
+@keyframes flash{0%{box-shadow:0 0 0 3px rgba(17,18,20,.35);}100%{box-shadow:0 4px 14px rgba(17,18,20,.04);}}
+.empty{
+  text-align:center;color:var(--muted);font-size:14px;
+  background:var(--bg-soft);border:1px dashed var(--line);border-radius:var(--radius);
+  padding:44px 20px;margin-bottom:16px;
+}
+html[data-lang="ko"] .empty{font-family:"Pretendard Variable",sans-serif;}
+
+/* ---------- footer ---------- */
+footer{padding:26px 0 48px;font-size:11.5px;line-height:1.7;color:var(--muted);border-top:1px solid var(--line);margin-top:28px;}
+html[data-lang="ko"] footer{font-family:"Pretendard Variable",sans-serif;}
+footer a{color:var(--muted);}
+@media (prefers-reduced-motion: no-preference){
+  .card,.hot-card{animation:rise .4s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></span><span id="brandName">Stacks</span></a>
+    <div class="lang-toggle">
+      <button id="btnEn" onclick="setLang('en')">EN</button>
+      <button id="btnKo" onclick="setLang('ko')">KO</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
+    <div class="app-name" id="appName"></div>
+    <h1 id="heroTitle"></h1>
+    <p class="sub" id="heroSub"></p>
+    <a class="cta" href="#feed" id="heroCta"></a>
+  </section>
+
+  <section>
+    <h2 class="section-title" id="hotTitle"></h2>
+    <div class="hot-rail" id="hotRail"></div>
+  </section>
+
+  <section id="feed">
+    <div class="tabs" id="tabs"></div>
+    <div id="feedList"></div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p id="foot1"></p>
+    <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
+    <p style="margin-top:8px">Portrait images are public domain works of the US federal government, via Wikimedia Commons.</p>
+  </div>
+</footer>
+
+<script>
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+let LANG = lsGet("stk_lang") ||
+  ((navigator.language || "").toLowerCase().startsWith("ko") ? "ko" : "en");
+let TAB = "all";
+
+function setLang(l){ LANG = l; lsSet("stk_lang", l); render(); }
+function setTab(t){ TAB = t; render(); }
+
+function goToItem(id){
+  const target = ITEMS.find(x => x.id === id);
+  if (!target) return;
+  if (TAB !== "all" && target.category !== TAB){
+    TAB = "all";
+    render();
+  }
+  requestAnimationFrame(() => {
+    const el = document.getElementById("sig-" + id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.classList.remove("flash");
+    void el.offsetWidth;
+    el.classList.add("flash");
+  });
+}
+
+const fmt = d => { const [y,m,day] = d.split("-"); return `${y}.${m}.${day}`; };
+const initial = s => s.trim().charAt(0).toUpperCase();
+function avatarHtml(item, extraClass){
+  const cls = extraClass ? extraClass + " avatar" : "avatar";
+  if (item.avatarImg){
+    return `<div class="${cls} photo"><img src="${item.avatarImg}" alt="${item.source}" referrerpolicy="no-referrer" loading="lazy"></div>`;
+  }
+  return `<div class="${cls} ${item.sourceLang.toLowerCase()}">${initial(item.source)}</div>`;
+}
+
+function render(){
+  const S = STRINGS[LANG];
+  document.documentElement.setAttribute("data-lang", LANG);
+  document.documentElement.lang = LANG;
+  document.getElementById("btnEn").className = LANG === "en" ? "active" : "";
+  document.getElementById("btnKo").className = LANG === "ko" ? "active" : "";
+  document.getElementById("appName").textContent = S.appName;
+  document.getElementById("heroTitle").textContent = S.heroTitle;
+  document.getElementById("heroSub").textContent = S.heroSub;
+  document.getElementById("heroCta").innerHTML = S.heroCta + " &rarr;";
+  document.getElementById("hotTitle").textContent = S.hot;
+  document.getElementById("foot1").textContent = S.foot1;
+  document.getElementById("foot2").textContent = S.foot2;
+
+  /* hot rail */
+  const rail = document.getElementById("hotRail");
+  rail.innerHTML = "";
+  ITEMS.filter(i => i.hot).forEach(item => {
+    const a = document.createElement("a");
+    a.className = "hot-card";
+    a.href = item.sourceUrl;
+    a.target = "_blank"; a.rel = "noopener";
+    const coverHtml = `<div class="hot-cover" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
+           <span class="cover-label">${item.cover.label}</span>
+           <span class="cover-title">${item.title[LANG]}</span>
+         </div>`;
+    a.innerHTML = `
+      ${coverHtml}
+      <div class="hot-meta">
+        ${avatarHtml(item, "mini-avatar")}
+        <span>${item.source}</span>
+      </div>
+    `;
+    rail.appendChild(a);
+  });
+
+  /* tabs */
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = "";
+  CATEGORIES.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "tab" + (TAB === c.id ? " active" : "");
+    b.textContent = c[LANG];
+    b.onclick = () => setTab(c.id);
+    tabs.appendChild(b);
+  });
+
+  /* feed */
+  const list = document.getElementById("feedList");
+  list.innerHTML = "";
+  const items = ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  if (items.length === 0){
+    const e = document.createElement("div");
+    e.className = "empty";
+    e.textContent = S.empty;
+    list.appendChild(e);
+    return;
+  }
+  items.forEach((item, idx) => {
+    const showOrig = item.sourceLang.toLowerCase() !== LANG;
+    const origTitle = item.sourceLang === "KO" ? item.title.ko : item.title.en;
+    const langNote = item.sourceLang === "KO" ? S.langNoteKO : S.langNoteEN;
+    const rel = (item.related || [])
+      .map(rid => ITEMS.find(x => x.id === rid))
+      .filter(Boolean);
+    const relHtml = rel.length ? `
+      <div class="related">
+        <div class="label">${S.related}</div>
+        <div class="related-links">
+          ${rel.map(r => `<button class="related-link" onclick="goToItem('${r.id}')"><span class="rel-arrow">↳</span><span>${r.title[LANG]}</span></button>`).join("")}
+        </div>
+      </div>` : "";
+    const el = document.createElement("article");
+    el.className = "card";
+    el.id = "sig-" + item.id;
+    el.style.animationDelay = (idx * 0.04) + "s";
+    el.innerHTML = `
+      <div class="card-top">
+        ${avatarHtml(item)}
+        <div class="src-block">
+          <span class="src-name">${item.source}</span>
+          <span class="src-date">${fmt(item.date)} · ${item.sourceLang}</span>
+        </div>
+        <div class="chips">${item.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
+      </div>
+      ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
+      <h3>${item.title[LANG]}</h3>
+      <div class="label">${S.gist}</div>
+      <p class="gist">${item.gist[LANG]}</p>
+      <div class="why">
+        <div class="label">${S.why}</div>
+        <p>${item.why[LANG]}</p>
+      </div>
+      <div class="cta-row">
+        <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener">${S.read} ↗</a>
+        <span class="lang-note">${langNote}</span>
+      </div>
+      ${relHtml}
+    `;
+    list.appendChild(el);
+  });
+}
+render();
+</script>
+</body>
+</html>
