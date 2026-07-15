@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v14 :: ios fixes, free filter, thumb fallback, comment escape -->
+<!-- STACKS BUILD v15 :: native comments via cusdis open api, iframe removed -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -408,11 +408,19 @@ const STRINGS = {
     freeOnly: "Free only",
     paywallTip: "Free preview. The full article requires a paid subscription.",
     comments: "Comments",
+    cNickname: "Name",
+    cContent: "Write a comment",
+    cSubmit: "Post",
+    cSending: "Posting...",
+    cSent: "Sent. It will appear once approved.",
+    cError: "Failed to post. Please try again.",
+    cEmpty: "No comments yet. Be the first.",
+    cLoading: "Loading comments...",
+    cModNote: "Comments appear after approval.",
     share: "Share",
     copied: "Link copied \u2713",
     notify: "Get alerts",
     commentsClose: "Hide comments",
-    commentsNewTab: "Trouble typing? Open in browser",
     allRead: "You're all caught up. Nothing unread.",
     markRead: "Mark as read",
     readDone: "Read \u2713",
@@ -440,11 +448,19 @@ const STRINGS = {
     freeOnly: "무료만",
     paywallTip: "앞부분은 무료로 읽을 수 있고, 전체 글은 유료 구독이 필요합니다.",
     comments: "댓글",
+    cNickname: "이름",
+    cContent: "댓글을 남겨보세요",
+    cSubmit: "등록",
+    cSending: "등록 중...",
+    cSent: "등록됐습니다. 승인 후 표시됩니다.",
+    cError: "등록에 실패했습니다. 다시 시도해주세요.",
+    cEmpty: "아직 댓글이 없어요. 첫 댓글을 남겨보세요.",
+    cLoading: "댓글 불러오는 중...",
+    cModNote: "댓글은 승인 후 표시됩니다.",
     share: "공유",
     copied: "링크 복사됨 \u2713",
     notify: "알림 받기",
     commentsClose: "댓글 접기",
-    commentsNewTab: "입력이 안 되면 브라우저에서 열기",
     allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
     markRead: "읽음 표시",
     readDone: "읽음 \u2713",
@@ -749,7 +765,37 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .comment-toggle:hover,.comment-toggle.open{color:var(--text);border-color:var(--text);}
 .comment-box{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
-.comment-box iframe{width:100%;border:0;min-height:380px;}
+.c-list{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;}
+.c-item{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 13px;}
+.c-item .c-head{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;}
+.c-item .c-name{font-size:12.5px;font-weight:700;}
+.c-item .c-date{font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);}
+.c-item .c-text{font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
+html[data-lang="ko"] .c-item .c-text{font-family:"Pretendard Variable",sans-serif;}
+.c-reply{margin-top:8px;margin-left:12px;padding:8px 11px;background:#fff;border:1px solid var(--line);border-radius:10px;}
+.c-status{font-size:12.5px;color:var(--muted);padding:4px 0;}
+html[data-lang="ko"] .c-status{font-family:"Pretendard Variable",sans-serif;}
+.c-status.ok{color:#12B76A;font-weight:600;}
+.c-status.err{color:#F04438;font-weight:600;}
+.c-form{display:flex;flex-direction:column;gap:8px;}
+.c-form input,.c-form textarea{
+  font-family:inherit;font-size:16px;color:var(--text);
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:10px 13px;outline:none;width:100%;
+}
+html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-family:"Pretendard Variable",sans-serif;}
+.c-form input:focus,.c-form textarea:focus{border-color:var(--text);}
+.c-form textarea{min-height:76px;resize:vertical;}
+.c-form .c-row{display:flex;align-items:center;gap:10px;}
+.c-form .c-row input{flex:1;}
+.c-form button{
+  font-family:inherit;font-size:13px;font-weight:700;color:#fff;
+  background:var(--black);border:0;border-radius:999px;padding:10px 20px;
+  cursor:pointer;flex:0 0 auto;
+}
+.c-form button:disabled{opacity:.5;cursor:default;}
+.c-modnote{font-size:11px;color:var(--muted);}
+html[data-lang="ko"] .c-modnote{font-family:"Pretendard Variable",sans-serif;}
 /* ---------- feed card thumbnail ----------
    Generated from the item's own cover colours, so every entry
    has an image without hosting anyone else's artwork. */
@@ -827,12 +873,6 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;
   display:flex;align-items:center;justify-content:center;
 }
-.comment-escape{
-  display:inline-block;margin-top:10px;
-  font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none;
-  border-bottom:1px dotted var(--muted);
-}
-.comment-escape:hover{color:var(--text);border-color:var(--text);}
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -914,7 +954,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v14</p>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v15</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1120,23 +1160,22 @@ function toggleFreeOnly(){
   render();
 }
 
-/* ---------------- comments (Cusdis) ----------------
-   The SDK loads only after the first click, and only one
-   thread is open at a time to keep the page light. */
-let cusdisReady = null;
+/* ---------------- comments (Cusdis open API) ----------------
+   No iframe. We talk to Cusdis directly, so typing works in the
+   iOS home-screen app too. Comments still go through June's
+   approval queue in the Cusdis dashboard. */
+const CUSDIS_HOST = "https://cusdis.com";
 let openCommentId = null;
 
-function loadCusdis(){
-  if (cusdisReady) return cusdisReady;
-  cusdisReady = new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = "https://cusdis.com/js/cusdis.es.js";
-    s.async = true;
-    s.onload = () => resolve();
-    s.onerror = () => { cusdisReady = null; reject(); };
-    document.body.appendChild(s);
-  });
-  return cusdisReady;
+function esc(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function cDate(iso){
+  try { const d = new Date(iso); if (isNaN(d)) return "";
+    return d.getFullYear() + "." + String(d.getMonth()+1).padStart(2,"0") + "." + String(d.getDate()).padStart(2,"0");
+  } catch (e) { return ""; }
 }
 
 function closeComments(id){
@@ -1147,6 +1186,80 @@ function closeComments(id){
   if (openCommentId === id) openCommentId = null;
 }
 
+async function loadComments(id){
+  const S = STRINGS[LANG];
+  const listEl = document.getElementById("clist-" + id);
+  if (!listEl) return;
+  listEl.innerHTML = '<div class="c-status">' + S.cLoading + '</div>';
+  try {
+    const url = CUSDIS_HOST + "/api/open/comments?appId=" + encodeURIComponent(CUSDIS_APP_ID)
+      + "&pageId=" + encodeURIComponent(id) + "&page=1";
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("bad status");
+    const json = await res.json();
+    const rows = (json && json.data && json.data.data) ? json.data.data
+               : (json && Array.isArray(json.data)) ? json.data : [];
+    if (!rows.length){
+      listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
+      return;
+    }
+    listEl.innerHTML = rows.map(c => {
+      const replies = (c.replies && c.replies.data) ? c.replies.data : [];
+      return '<div class="c-item">'
+        + '<div class="c-head"><span class="c-name">' + esc(c.by_nickname) + '</span>'
+        + '<span class="c-date">' + cDate(c.createdAt) + '</span></div>'
+        + '<div class="c-text">' + esc(c.content) + '</div>'
+        + replies.map(r => '<div class="c-reply">'
+            + '<div class="c-head"><span class="c-name">' + esc(r.by_nickname) + '</span>'
+            + '<span class="c-date">' + cDate(r.createdAt) + '</span></div>'
+            + '<div class="c-text">' + esc(r.content) + '</div></div>').join("")
+        + '</div>';
+    }).join("");
+  } catch (e) {
+    listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
+  }
+}
+
+async function submitComment(ev, id){
+  if (ev && ev.preventDefault) ev.preventDefault();
+  const S = STRINGS[LANG];
+  const nick = document.getElementById("cnick-" + id);
+  const text = document.getElementById("ctext-" + id);
+  const btn  = document.getElementById("csend-" + id);
+  const stat = document.getElementById("cstat-" + id);
+  if (!nick || !text) return false;
+  const nickname = nick.value.trim();
+  const content = text.value.trim();
+  if (!nickname){ nick.focus(); return false; }
+  if (!content){ text.focus(); return false; }
+  lsSet("stk_nick", nickname);
+  const item = ITEMS.find(i => i.id === id);
+  if (btn){ btn.disabled = true; btn.textContent = S.cSending; }
+  if (stat){ stat.className = "c-status"; stat.textContent = ""; }
+  try {
+    const res = await fetch(CUSDIS_HOST + "/api/open/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        appId: CUSDIS_APP_ID,
+        pageId: id,
+        content: content,
+        nickname: nickname,
+        pageUrl: location.origin + location.pathname + "#sig-" + id,
+        pageTitle: item ? item.title.en : id
+      })
+    });
+    if (!res.ok) throw new Error("bad status");
+    text.value = "";
+    if (stat){ stat.className = "c-status ok"; stat.textContent = S.cSent; }
+  } catch (e) {
+    if (stat){ stat.className = "c-status err"; stat.textContent = S.cError; }
+  } finally {
+    if (btn){ btn.disabled = false; btn.textContent = S.cSubmit; }
+  }
+  return false;
+}
+
 function toggleComments(id){
   if (openCommentId === id){ closeComments(id); return; }
   if (openCommentId) closeComments(openCommentId);
@@ -1155,30 +1268,22 @@ function toggleComments(id){
   if (!box) return;
   openCommentId = id;
   if (btn){ btn.classList.add("open"); btn.textContent = STRINGS[LANG].commentsClose; }
-  const item = ITEMS.find(i => i.id === id);
-  const thread = document.createElement("div");
-  thread.id = "cusdis_thread";
-  thread.setAttribute("data-host", "https://cusdis.com");
-  thread.setAttribute("data-app-id", CUSDIS_APP_ID);
-  thread.setAttribute("data-page-id", id);
-  thread.setAttribute("data-page-url", location.origin + location.pathname + "#sig-" + id);
-  thread.setAttribute("data-page-title", item ? item.title.en : id);
-  box.innerHTML = "";
-  box.appendChild(thread);
-  /* iOS home-screen apps often break typing inside cross-origin
-     iframes; give people a way out into the real browser */
-  const esc = document.createElement("a");
-  esc.className = "comment-escape";
-  esc.href = location.origin + location.pathname + "?c=" + id;
-  esc.target = "_blank";
-  esc.rel = "noopener";
-  esc.textContent = STRINGS[LANG].commentsNewTab + " \u2197";
-  box.appendChild(esc);
+  const S = STRINGS[LANG];
+  const saved = lsGet("stk_nick") || "";
+  box.innerHTML =
+    '<div class="c-list" id="clist-' + id + '"></div>'
+    + '<div class="c-form">'
+    + '<textarea id="ctext-' + id + '" placeholder="' + esc(S.cContent) + '"></textarea>'
+    + '<div class="c-row">'
+    + '<input id="cnick-' + id + '" type="text" autocomplete="nickname" placeholder="' + esc(S.cNickname) + '" value="' + esc(saved) + '">'
+    + '<button id="csend-' + id + '" onclick="submitComment(event, \'' + id + '\')">' + S.cSubmit + '</button>'
+    + '</div>'
+    + '<div id="cstat-' + id + '" class="c-status"></div>'
+    + '<div class="c-modnote">' + S.cModNote + '</div>'
+    + '</div>';
   box.hidden = false;
   setRead(id);
-  loadCusdis().then(() => {
-    if (window.CUSDIS && window.CUSDIS.renderTo) window.CUSDIS.renderTo(thread);
-  }).catch(() => {});
+  loadComments(id);
 }
 
 /* ---------------- share ---------------- */
