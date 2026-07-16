@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v32 :: onboarding dark-text hard fix + service-worker auto-update -->
+<!-- STACKS BUILD v33 :: newsletter -> Stibee for KO (Substack stays for EN/JA) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -55,8 +55,15 @@ const GOATCOUNTER_SITE = "stacks";
    Also upload OneSignalSDKWorker.js to the repo root. */
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
-/* Newsletter (Substack embed). Empty = section hidden. */
-const NEWSLETTER_URL = "https://infrathesis.substack.com";
+/* Newsletter signup, per language.
+   ko -> Stibee subscription page (KRW-friendly, June's list)
+   en/ja -> Substack embed (global free list)
+   Empty string = hidden for that language. */
+const NEWSLETTER_EMBEDS = {
+  ko: "https://page.stibee.com/subscriptions/505211",
+  en: "https://infrathesis.substack.com/embed",
+  ja: "https://infrathesis.substack.com/embed"
+};
 
 /* Support/donate button (Buy Me a Coffee, Toss, etc). Empty = hidden. */
 const SUPPORT_URL = "";
@@ -1180,7 +1187,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v32</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v33</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2675,16 +2682,20 @@ function renderNewsletter(){
   const sec = document.getElementById("nlSec");
   if (!sec) return;
   const S = STRINGS[LANG];
-  if (!NEWSLETTER_URL && !SUPPORT_URL){ sec.hidden = true; return; }
+  const src = NEWSLETTER_EMBEDS[LANG] || "";
+  if (!src && !SUPPORT_URL){ sec.hidden = true; return; }
   sec.hidden = false;
   document.getElementById("nlTitle").textContent = S.nlTitle;
   document.getElementById("nlSub").textContent = S.nlSub;
   const f = document.getElementById("nlFrame");
-  if (NEWSLETTER_URL){
-    const src = NEWSLETTER_URL.replace(/\/$/, "") + "/embed";
-    if (f.getAttribute("src") !== src) f.setAttribute("src", src); /* set once: no reload on re-render */
-    f.hidden = false;
-  } else if (f) f.hidden = true;
+  if (f){
+    if (src){
+      /* only touch src when it actually changes, so re-renders don't reload the form */
+      if (f.getAttribute("src") !== src) f.setAttribute("src", src);
+      f.height = src.indexOf("stibee") !== -1 ? 520 : 150; /* Stibee page is taller (consent + captcha) */
+      f.hidden = false;
+    } else f.hidden = true;
+  }
   const sb = document.getElementById("supportBtn");
   if (sb){
     if (SUPPORT_URL){ sb.hidden = false; sb.href = SUPPORT_URL; sb.textContent = "\u2615 " + S.support; }
