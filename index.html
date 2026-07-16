@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v33 :: newsletter -> Stibee for KO (Substack stays for EN/JA) -->
+<!-- STACKS BUILD v34 :: native in-app newsletter form (app-styled) posting to Stibee -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -55,12 +55,15 @@ const GOATCOUNTER_SITE = "stacks";
    Also upload OneSignalSDKWorker.js to the repo root. */
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
-/* Newsletter signup, per language.
-   ko -> Stibee subscription page (KRW-friendly, June's list)
-   en/ja -> Substack embed (global free list)
-   Empty string = hidden for that language. */
+/* Newsletter signup.
+   Korean visitors get a native form styled like the app; it submits
+   straight to June's Stibee list (STIBEE_FORM_ACTION is the action URL
+   from Stibee's [구독 화면 > 코드로 설치하기] embed code). If it's ever
+   empty, the ugly-but-working Stibee page iframe is used as fallback.
+   EN/JA visitors get the Substack embed (global free list). */
+const STIBEE_FORM_ACTION = "https://stibee.com/api/v1.0/lists/mK4zRfYXD3P_8shW-ErZAF-hNA_XYQ==/public/subscribers";
+const STIBEE_PAGE = "https://page.stibee.com/subscriptions/505211";
 const NEWSLETTER_EMBEDS = {
-  ko: "https://page.stibee.com/subscriptions/505211",
   en: "https://infrathesis.substack.com/embed",
   ja: "https://infrathesis.substack.com/embed"
 };
@@ -191,6 +194,12 @@ const STRINGS = {
     sortHot: "Popular",
     nlTitle: "Get the weekly best by email",
     nlSub: "Once a week, the best of Stacks lands in your inbox.",
+    nlPh: "Your email address",
+    nlAgree: "I agree to the collection and use of my email address (required)",
+    nlBtn: "Subscribe",
+    nlSent: "Almost done! Check your inbox and click the confirmation link.",
+    nlNeedAgree: "Please tick the consent box first.",
+    nlPolicyLink: "details",
     support: "Support Stacks",
     empty: "Nothing here yet. New voices are being added.",
     foot1: "Summaries and commentary are original work by The Infrastructure Thesis. All rights to the original posts belong to their authors; each entry links to and credits the source.",
@@ -265,6 +274,12 @@ const STRINGS = {
     sortHot: "인기순",
     nlTitle: "이번 주 베스트를 메일로",
     nlSub: "일주일에 한 번, 스택스 베스트를 이메일로 보내드려요.",
+    nlPh: "이메일 주소",
+    nlAgree: "(필수) 개인정보 수집 및 이용에 동의합니다",
+    nlBtn: "구독하기",
+    nlSent: "거의 다 됐어요! 메일함에서 확인 메일의 링크를 눌러주세요.",
+    nlNeedAgree: "개인정보 동의에 체크해주세요.",
+    nlPolicyLink: "내용 보기",
     support: "스택스 후원하기",
     empty: "아직 글이 없어요. 새로운 목소리를 추가하는 중입니다.",
     foot1: "요약과 해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 본 페이지는 요약·해설과 출처 표기 및 링크만을 제공합니다.",
@@ -339,6 +354,12 @@ const STRINGS = {
     sortHot: "人気順",
     nlTitle: "今週のベストをメールで",
     nlSub: "週に一度、Stacksのベストをメールでお届けします。",
+    nlPh: "メールアドレス",
+    nlAgree: "(必須) 個人情報の収集・利用に同意します",
+    nlBtn: "購読する",
+    nlSent: "あと少し!メールの確認リンクを押してください。",
+    nlNeedAgree: "同意にチェックしてください。",
+    nlPolicyLink: "詳細を見る",
     support: "Stacksを応援する",
     empty: "まだ記事がありません。新しい声を追加中です。",
     foot1: "要約と解説はThe Infrastructure Thesisのオリジナルです。原文の著作権は各著者に帰属し、本ページは要約・解説と出典表記およびリンクのみを提供します。",
@@ -1035,6 +1056,32 @@ html[data-lang="ko"] .ob-card .ob-label{font-family:"Pretendard Variable",sans-s
 .nl-sub{margin:5px 0 14px;font-size:13px;color:var(--muted);}
 html[data-lang="ko"] .nl-sub{font-family:"Pretendard Variable",sans-serif;}
 .nl-box iframe{width:100%;border:0;border-radius:12px;background:#fff;}
+.nl-form{display:flex;flex-direction:column;gap:10px;}
+.nl-row{display:flex;gap:8px;}
+.nl-row input[type="email"]{
+  flex:1;min-width:0;font-family:inherit;font-size:16px;color:var(--text);
+  background:var(--bg);border:1px solid var(--line);border-radius:999px;
+  padding:12px 18px;outline:none;
+}
+.nl-row input[type="email"]:focus{border-color:var(--text);}
+.nl-btn{
+  font-family:inherit;font-size:14px;font-weight:700;color:#fff;
+  background:var(--black);border:0;border-radius:999px;padding:12px 22px;
+  cursor:pointer;flex:0 0 auto;transition:transform .15s ease;
+}
+.nl-btn:hover{transform:translateY(-1px);}
+.nl-consent{
+  display:flex;align-items:flex-start;gap:7px;
+  font-size:12px;color:var(--muted);cursor:pointer;line-height:1.5;
+}
+html[data-lang="ko"] .nl-consent{font-family:"Pretendard Variable",sans-serif;}
+.nl-consent input{margin-top:2px;accent-color:var(--text);}
+.nl-consent a{color:var(--muted);}
+.nl-msg{font-size:13px;font-weight:600;color:#12B76A;}
+html[data-lang="ko"] .nl-msg{font-family:"Pretendard Variable",sans-serif;}
+.nl-msg.err{color:#F04438;}
+html[data-theme="dark"] .nl-row input[type="email"]{background:#141519;}
+html[data-theme="dark"] .nl-btn{background:#1E1F26;box-shadow:inset 0 0 0 1px #2E3037;}
 .support-btn{
   display:inline-block;margin-top:10px;
   font-size:13px;font-weight:700;text-decoration:none;color:var(--text);
@@ -1167,7 +1214,15 @@ footer a{color:var(--muted);}
     <div class="nl-box">
       <div class="nl-title" id="nlTitle"></div>
       <p class="nl-sub" id="nlSub"></p>
-      <iframe id="nlFrame" title="newsletter" loading="lazy" height="150"></iframe>
+      <form class="nl-form" id="nlForm" method="POST" target="_blank" hidden onsubmit="return nlSubmit(event)">
+        <div class="nl-row">
+          <input type="email" id="nlEmail" name="email" autocomplete="email" required>
+          <button type="submit" class="nl-btn" id="nlBtn"></button>
+        </div>
+        <label class="nl-consent"><input type="checkbox" id="nlAgree"> <span id="nlAgreeText"></span></label>
+        <div class="nl-msg" id="nlMsg" hidden></div>
+      </form>
+      <iframe id="nlFrame" title="newsletter" loading="lazy" height="150" hidden></iframe>
       <a class="support-btn" id="supportBtn" target="_blank" rel="noopener" hidden></a>
     </div>
   </section>
@@ -1187,7 +1242,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v33</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v34</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2682,12 +2737,27 @@ function renderNewsletter(){
   const sec = document.getElementById("nlSec");
   if (!sec) return;
   const S = STRINGS[LANG];
-  const src = NEWSLETTER_EMBEDS[LANG] || "";
-  if (!src && !SUPPORT_URL){ sec.hidden = true; return; }
+  const form = document.getElementById("nlForm");
+  const f = document.getElementById("nlFrame");
+  /* Korean: native styled form -> Stibee. Others: Substack embed. */
+  const useForm = LANG === "ko" && !!STIBEE_FORM_ACTION;
+  const src = LANG === "ko"
+    ? (useForm ? "" : STIBEE_PAGE)          /* fallback iframe if no action URL */
+    : (NEWSLETTER_EMBEDS[LANG] || "");
+  if (!useForm && !src && !SUPPORT_URL){ sec.hidden = true; return; }
   sec.hidden = false;
   document.getElementById("nlTitle").textContent = S.nlTitle;
   document.getElementById("nlSub").textContent = S.nlSub;
-  const f = document.getElementById("nlFrame");
+  if (form){
+    form.hidden = !useForm;
+    if (useForm){
+      form.setAttribute("action", STIBEE_FORM_ACTION);
+      document.getElementById("nlEmail").placeholder = S.nlPh;
+      document.getElementById("nlBtn").textContent = S.nlBtn;
+      document.getElementById("nlAgreeText").innerHTML =
+        esc(S.nlAgree) + ' · <a href="' + STIBEE_PAGE + '" target="_blank" rel="noopener">' + esc(S.nlPolicyLink) + "</a>";
+    }
+  }
   if (f){
     if (src){
       /* only touch src when it actually changes, so re-renders don't reload the form */
@@ -2701,6 +2771,21 @@ function renderNewsletter(){
     if (SUPPORT_URL){ sb.hidden = false; sb.href = SUPPORT_URL; sb.textContent = "\u2615 " + S.support; }
     else sb.hidden = true;
   }
+}
+/* native form submit: require consent, then let the browser POST to
+   Stibee in a new tab (their confirmation page takes over there). */
+function nlSubmit(ev){
+  const S = STRINGS[LANG];
+  const agree = document.getElementById("nlAgree");
+  const msg = document.getElementById("nlMsg");
+  if (!agree || !agree.checked){
+    if (ev && ev.preventDefault) ev.preventDefault();
+    if (msg){ msg.hidden = false; msg.className = "nl-msg err"; msg.textContent = S.nlNeedAgree; }
+    return false;
+  }
+  if (msg){ msg.hidden = false; msg.className = "nl-msg"; msg.textContent = S.nlSent; }
+  track("newsletter/subscribe");
+  return true; /* real POST proceeds in a new tab */
 }
 
 /* ---------------- onboarding ---------------- */
