@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v21 :: search, comment counts, event tracking -->
+<!-- STACKS BUILD v22 :: flicker fix, og share previews, wrapup extractor -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1055,6 +1055,7 @@ footer a{color:var(--muted);}
   .card,.hot-card{animation:rise .4s ease both;}
   @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 }
+.no-anim .card{animation:none !important;}
 </style>
 </head>
 <body>
@@ -1111,7 +1112,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;">STACKS BUILD v21</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v22</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1324,7 +1325,7 @@ function onSearch(v){
   if (box) box.classList.toggle("active", !!QUERY);
   renderFeedOnly();
 }
-function renderFeedOnly(){ render(); }
+function renderFeedOnly(){ renderFeed(false); }
 function clearSearch(){
   const inp = document.getElementById("searchInput");
   if (inp) inp.value = "";
@@ -1499,11 +1500,73 @@ function toggleComments(id){
 }
 
 /* ---------------- share ---------------- */
+/* ---------------- weekly wrap-up extractor ----------------
+   Hidden tool for June: tap the BUILD line in the footer 5 times
+   and this week's hot items are copied to the clipboard, formatted
+   for pasting straight into Substack (and mirroring to Naver). */
+let wrapTaps = 0, wrapTimer = null;
+function wrapupTap(){
+  wrapTaps++;
+  clearTimeout(wrapTimer);
+  wrapTimer = setTimeout(() => { wrapTaps = 0; }, 1500);
+  if (wrapTaps >= 5){ wrapTaps = 0; copyWrapup(); }
+}
+async function copyWrapup(){
+  /* "this week" = hot items from the last 7 days */
+  const cutoff = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
+  const hot = ITEMS.filter(i => i.hot && i.date >= cutoff);
+  if (!hot.length){
+    alert(LANG === "ko" ? "최근 7일 안에 hot 글이 없어요." : "No hot items in the last 7 days.");
+    return;
+  }
+  const ko = LANG === "ko";
+  const dates = hot.map(i => i.date).sort();
+  const range = dates[0].slice(5).replace("-", ".") + " ~ " + dates[dates.length - 1].slice(5).replace("-", ".");
+  const head = ko
+    ? "이번 주 Stacks 베스트 (" + range + ")"
+    : "This week on Stacks (" + range + ")";
+  const parts = [head, ""];
+  hot.forEach((item, i) => {
+    parts.push((i + 1) + ". " + item.title[LANG]);
+    parts.push("");
+    parts.push((ko ? "왜 중요한가: " : "Why it matters: ") + item.why[LANG]);
+    parts.push("");
+    parts.push(item.gist[LANG]);
+    parts.push("");
+    parts.push((ko ? "원문" : "Original") + " (" + item.source + "): " + item.sourceUrl);
+    parts.push("Stacks: " + shareUrl(item));
+    parts.push("");
+    parts.push("---");
+    parts.push("");
+  });
+  parts.push(ko
+    ? "매일 업데이트는 Stacks에서: " + location.origin + location.pathname
+    : "Daily updates on Stacks: " + location.origin + location.pathname);
+  const text = parts.join("\n");
+  try {
+    await navigator.clipboard.writeText(text);
+    alert(ko
+      ? "이번 주 랩업 " + hot.length + "개 항목이 복사됐어요. Substack에 붙여넣으세요."
+      : "Wrap-up copied: " + hot.length + " items. Paste into Substack.");
+  } catch (e) {
+    alert(ko ? "복사에 실패했어요. 다시 시도해주세요." : "Copy failed. Please try again.");
+  }
+}
+
+function shareUrl(item){
+  /* The worker route /s/{id} serves per-item OG tags to crawlers
+     (X, KakaoTalk) and instantly redirects people to the card. */
+  if (!COMMENTS_API) return location.origin + location.pathname + "#sig-" + item.id;
+  return COMMENTS_API + "/s/" + item.id
+    + "?t=" + encodeURIComponent(item.title[LANG])
+    + "&d=" + encodeURIComponent(item.why[LANG]);
+}
+
 async function shareItem(id){
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
   track("share/" + id);
-  const url = location.origin + location.pathname + "#sig-" + id;
+  const url = shareUrl(item);
   const title = item.title[LANG];
   if (navigator.share){
     try { await navigator.share({ title: title, url: url }); } catch (e) {}
@@ -1651,8 +1714,16 @@ function render(){
     tabs.appendChild(b);
   });
 
-  /* feed */
+  renderFeed(true);
+}
+
+/* Feed only. Search calls this on every keystroke with animate=false,
+   so typing never repaints the hero, hot rail, or tabs, and cards
+   don't replay their entrance animation (the white flicker). */
+function renderFeed(animate){
+  const S = STRINGS[LANG];
   const list = document.getElementById("feedList");
+  list.classList.toggle("no-anim", !animate);
   list.innerHTML = "";
   const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
   refreshFilterBtn();
