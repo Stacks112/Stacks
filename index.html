@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v24 :: company names, entity tooltips, casual gists, gist-first layout -->
+<!-- STACKS BUILD v25 :: price charts in tooltips, profile links, company filter, +trump datacenters -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -56,6 +56,36 @@ const GOATCOUNTER_SITE = "stacks";
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
 const ITEMS = [
+{
+  date: "2026-07-16",
+  id: "potus-datacenters",
+  thumbWiki: "New York (state)",
+  related: ["doomberg-kilby", "hormuz-meru"],
+  source: "Donald J. Trump (@realDonaldTrump)",
+  sourceUrl: "https://truthsocial.com/@realDonaldTrump/116924979201330474",
+  sourceLang: "EN",
+  category: "politician",
+  hot: true,
+  cover: { from: "#B91C1C", to: "#F04438", label: "POTUS" },
+  wiki: "Donald_Trump",
+  avatarImg: "trump.webp",
+  tags: ["DATACENTER", "POLICY", "NEW YORK"],
+  title: {
+    en: "Trump calls datacenters 'liquid gold' and puts New York on blast for banning them",
+    ja: "トランプ、データセンターを「液体の金」と呼び、禁止したニューヨークを名指しで非難",
+    ko: "트럼프, 데이터센터를 '액체 금'이라 부르며 이를 막은 뉴욕주를 정조준"
+  },
+  gist: {
+    en: "Trump's post starts from a state-level decision: according to him, New York Governor Kathy Hochul has terminated all datacenters built or planned in the state, for political reasons. His reaction frames datacenters as pure fiscal prizes: 'money machines' whose taxes and jobs amount to 'LIQUID GOLD.' The companies shut out of New York, he says, are now being courted by Alabama, Florida, Texas, Arizona and others, mostly red states offering lower taxes. He also sketches the deal structure he considers fair: datacenters pay for their own water and power, and whatever is left flows back to the state and local community. The post ends with the usual escalation, demanding New York reverse the policy 'IMMEDIATELY' and warning that the radical left must not hand datacenters, AI and the whole new technology wave to China.",
+    ja: "トランプの投稿は州レベルの決定から始まる。彼によれば、ニューヨーク州のホークル知事が政治的理由で州内のデータセンターを建設中・計画中を問わずすべて打ち切ったという。彼の反応はデータセンターを純粋な財政的な獲物として描く。税収と雇用が「液体の金(LIQUID GOLD)」に相当する「マネーマシン」だと。ニューヨークから締め出された企業はいま、アラバマ、フロリダ、テキサス、アリゾナなど、主に税金の安い共和党州から誘致されているという。彼が公正とみなす取引の構造も描かれる。データセンターは自分の水と電力の費用を自分で払い、残りは州と地域社会に還元される。投稿はいつもの調子で締めくくられる。ニューヨークは政策を「直ちに」覆せ、急進左派にデータセンターとAI、この新技術の波を中国に渡させてはならない、と。",
+    ko: "트럼프의 게시물은 주 단위 결정에서 출발한다. 그에 따르면 뉴욕 주지사 캐시 호컬이 정치적 이유로 주 내 데이터센터를 짓던 것이든 지을 것이든 전부 중단시켰다는 것. 트럼프의 반응은 데이터센터를 철저히 재정적 전리품으로 그린다. 세금과 일자리가 '액체 금(LIQUID GOLD)'에 해당하는 '머니 머신'이라는 표현이다. 뉴욕에서 쫓겨난 기업들은 지금 앨라배마, 플로리다, 텍사스, 애리조나 등 세금이 낮은 공화당 주들의 구애를 받고 있다고 한다. 그가 공정하다고 보는 거래 구조도 담겼다. 데이터센터는 자기가 쓸 물과 전기 비용을 스스로 내고, 남는 건 주와 지역사회로 돌아간다는 것. 글은 늘 하던 방식으로 끝난다. 뉴욕은 정책을 '즉시' 뒤집어라, 그리고 급진 좌파가 데이터센터와 AI, 이 신기술 전부를 중국에 넘기게 둬선 안 된다."
+  },
+  why: {
+    en: "Datacenter siting just became electoral politics. Which state a hyperscaler builds in is now a policy variable, and the capex is flowing toward the states that want it.",
+    ja: "データセンターの立地が選挙政治になった。ハイパースケーラーがどの州に建てるかは政策変数となり、設備投資はそれを欲しがる州へ流れている。",
+    ko: "데이터센터 입지가 선거 정치가 됐다. 빅테크가 어느 주에 짓느냐가 정책 변수가 됐고, 설비투자는 원하는 주 쪽으로 흐르고 있다."
+  }
+},
 {
   date: "2026-07-16",
   id: "meru-adr-conv",
@@ -579,28 +609,28 @@ const CATEGORIES = [
    Clicking a chip searches for it, so "show me everything on this
    company" already works through the search box. */
 const ENTITIES = {
-  "SK HYNIX":      { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Korean memory chip giant. Makes the HBM chips that feed Nvidia's AI accelerators.", ko: "한국 메모리 반도체 대표 기업. 엔비디아 AI 칩에 들어가는 HBM을 만든다.", ja: "韓国のメモリー半導体大手。エヌビディアのAIチップに入るHBMを作る。" } },
-  "NEBIUS":        { sector: { en: "AI Cloud", ko: "AI 클라우드", ja: "AIクラウド" }, desc: { en: "Amsterdam-based 'neocloud': rents out Nvidia GPU computing power to AI companies.", ko: "암스테르담 기반 '네오클라우드'. 엔비디아 GPU 컴퓨팅 파워를 AI 기업들에 빌려준다.", ja: "アムステルダム拠点の「ネオクラウド」。エヌビディアGPUの計算力をAI企業に貸す。" } },
-  "MICROSOFT":     { sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "World's largest software company and OpenAI's biggest backer. Runs the Azure cloud.", ko: "세계 최대 소프트웨어 기업이자 오픈AI의 최대 후원자. 애저 클라우드를 운영한다.", ja: "世界最大のソフトウェア企業でOpenAIの最大の後ろ盾。Azureクラウドを運営。" } },
-  "META":          { sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "Facebook and Instagram's parent. Spends tens of billions a year on AI datacenters.", ko: "페이스북, 인스타그램의 모회사. 매년 수백억 달러를 AI 데이터센터에 쏟는다.", ja: "フェイスブックとインスタグラムの親会社。毎年数百億ドルをAIデータセンターに投じる。" } },
-  "APPLE":         { sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "iPhone maker. The world's most valuable hardware franchise, now reshoring chips to the US.", ko: "아이폰 제조사. 세계에서 가장 가치 있는 하드웨어 기업이며, 칩 생산을 미국으로 옮기는 중.", ja: "iPhoneメーカー。世界で最も価値あるハードウェア企業で、チップ生産を米国へ移している。" } },
-  "BROADCOM":      { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Chip designer behind custom AI silicon for Google, Meta and now Apple's US production.", ko: "구글, 메타의 맞춤형 AI 칩을 설계하는 회사. 이제 애플의 미국 생산까지 맡는다.", ja: "グーグルやメタのカスタムAIチップを設計。今度はアップルの米国生産も担う。" } },
-  "BLOOM ENERGY":  { sector: { en: "Power", ko: "전력/에너지", ja: "電力" }, desc: { en: "Makes fuel cells that turn natural gas into electricity on-site: a shortcut for power-hungry AI datacenters.", ko: "천연가스를 그 자리에서 전기로 바꾸는 연료전지 회사. 전력에 목마른 AI 데이터센터의 지름길.", ja: "天然ガスをその場で電気に変える燃料電池メーカー。電力に飢えたAIデータセンターの近道。" } },
-  "STRATEGY":      { sector: { en: "Finance", ko: "금융", ja: "金融" }, desc: { en: "Michael Saylor's company (ex-MicroStrategy): a software firm turned leveraged bitcoin holding vehicle.", ko: "마이클 세일러의 회사(구 마이크로스트래티지). 소프트웨어 회사에서 레버리지 비트코인 보유 기구로 변신했다.", ja: "マイケル・セイラーの会社(旧マイクロストラテジー)。ソフト会社からレバレッジ型ビットコイン保有機構に変貌。" } },
-  "TOWER SEMI":    { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Israeli chip foundry specializing in the photonics chips that move data by light.", ko: "이스라엘 파운드리. 빛으로 데이터를 옮기는 포토닉스 칩이 주특기다.", ja: "イスラエルの半導体ファウンドリ。光でデータを運ぶフォトニクスチップが得意。" } },
-  "APPLIED OPTO":  { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "US maker of the optical transceivers that wire AI datacenters together.", ko: "AI 데이터센터를 서로 연결하는 광모듈을 만드는 미국 회사.", ja: "AIデータセンター同士をつなぐ光トランシーバーを作る米企業。" } },
-  "NSE":           { sector: { en: "Finance", ko: "금융", ja: "金融" }, desc: { en: "National Stock Exchange of India: the world's busiest derivatives exchange, about to IPO.", ko: "인도국립증권거래소. 세계에서 파생상품이 가장 많이 거래되는 곳이며 곧 상장한다.", ja: "インド国立証券取引所。世界で最もデリバティブが取引される場で、まもなく上場。" } },
-  "DEEPMIND":      { sector: { en: "AI Lab", ko: "AI 랩", ja: "AIラボ" }, desc: { en: "Google's AI research arm. Built AlphaGo and the Gemini models.", ko: "구글의 AI 연구 조직. 알파고와 제미나이 모델을 만들었다.", ja: "グーグルのAI研究部門。アルファ碁とGeminiモデルを生んだ。" } },
-  "Meru (메르)":    { sector: { en: "Blogger", ko: "블로거", ja: "ブロガー" }, desc: { en: "Korea's most-read finance blogger. Untangles macro, supply chains and geopolitics on Naver.", ko: "한국에서 가장 많이 읽히는 경제 블로거. 네이버에서 매크로, 공급망, 지정학을 풀어낸다.", ja: "韓国で最も読まれる経済ブロガー。Naverでマクロ、サプライチェーン、地政学を解きほぐす。" } },
-  "Serenity (@aleabitoreddit)": { sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "X account tracking AI infrastructure stocks: neoclouds, optics, power.", ko: "AI 인프라 주식을 추적하는 X 계정. 네오클라우드, 광통신, 전력이 주 분야.", ja: "AIインフラ株を追うXアカウント。ネオクラウド、光通信、電力が守備範囲。" } },
-  "Doomberg":      { sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "The green chicken: Substack's #3 finance publication, on energy and geopolitics.", ko: "초록 닭 아이콘으로 유명한 서브스택 금융 3위 뉴스레터. 에너지와 지정학 전문.", ja: "緑のニワトリで有名なSubstack金融3位のニュースレター。エネルギーと地政学専門。" } },
-  "Marc Rubinstein (Net Interest)": { sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "Ex-hedge fund manager writing the weekly Net Interest letter on how finance actually works.", ko: "전직 헤지펀드 매니저. 금융이 실제로 어떻게 돌아가는지를 주간 뉴스레터로 쓴다.", ja: "元ヘッジファンドマネージャー。金融が実際どう回るかを週刊で書く。" } },
-  "Howard Marks (Oaktree)": { sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "Co-founder of Oaktree Capital. His memos are read by virtually everyone on Wall Street, Buffett included.", ko: "오크트리 캐피털 공동창업자. 버핏을 포함해 월가 전체가 그의 메모를 읽는다.", ja: "オークツリー・キャピタル共同創業者。バフェットを含めウォール街全体が彼のメモを読む。" } },
-  "Donald J. Trump (@realDonaldTrump)": { sector: { en: "Politician", ko: "정치인", ja: "政治家" }, desc: { en: "President of the United States. His posts move oil, tariffs and markets in real time.", ko: "미국 대통령. 그의 게시물 하나가 유가, 관세, 시장을 실시간으로 움직인다.", ja: "米国大統領。投稿ひとつで原油、関税、市場がリアルタイムに動く。" } },
-  "Satya Nadella (@satyanadella)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Microsoft's CEO since 2014. Turned it into the world's biggest AI infrastructure buyer.", ko: "2014년부터 마이크로소프트 CEO. 회사를 세계 최대 AI 인프라 구매자로 바꿔놨다.", ja: "2014年からマイクロソフトCEO。同社を世界最大のAIインフラ購入者に変えた。" } },
-  "Mark Zuckerberg (@finkd)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Meta's founder and CEO. Betting the company on open AI models and massive compute.", ko: "메타 창업자 겸 CEO. 회사의 미래를 AI 모델과 초대형 컴퓨트에 걸었다.", ja: "メタ創業者兼CEO。会社の未来をAIモデルと超大型コンピュートに賭ける。" } },
-  "Tim Cook (@tim_cook)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Apple's CEO and the architect of its supply chain, now rebuilding it inside the US.", ko: "애플 CEO이자 공급망 설계자. 이제 그 공급망을 미국 안에 다시 짓고 있다.", ja: "アップルCEOでサプライチェーンの設計者。今それを米国内に作り直している。" } },
-  "Demis Hassabis (@demishassabis)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "DeepMind's founder, Nobel laureate, and the closest thing AI has to a chief scientist.", ko: "딥마인드 창업자이자 노벨상 수상자. AI 업계의 수석 과학자에 가장 가까운 인물.", ja: "ディープマインド創業者でノーベル賞受賞者。AI業界の主任科学者に最も近い人物。" } }
+  "SK HYNIX":      { kind: "company", ticker: "000660.ks",  sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Korean memory chip giant. Makes the HBM chips that feed Nvidia's AI accelerators.", ko: "한국 메모리 반도체 대표 기업. 엔비디아 AI 칩에 들어가는 HBM을 만든다.", ja: "韓国のメモリー半導体大手。エヌビディアのAIチップに入るHBMを作る。" } },
+  "NEBIUS":        { kind: "company", ticker: "nbis.us",  sector: { en: "AI Cloud", ko: "AI 클라우드", ja: "AIクラウド" }, desc: { en: "Amsterdam-based 'neocloud': rents out Nvidia GPU computing power to AI companies.", ko: "암스테르담 기반 '네오클라우드'. 엔비디아 GPU 컴퓨팅 파워를 AI 기업들에 빌려준다.", ja: "アムステルダム拠点の「ネオクラウド」。エヌビディアGPUの計算力をAI企業に貸す。" } },
+  "MICROSOFT":     { kind: "company", ticker: "msft.us",  sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "World's largest software company and OpenAI's biggest backer. Runs the Azure cloud.", ko: "세계 최대 소프트웨어 기업이자 오픈AI의 최대 후원자. 애저 클라우드를 운영한다.", ja: "世界最大のソフトウェア企業でOpenAIの最大の後ろ盾。Azureクラウドを運営。" } },
+  "META":          { kind: "company", ticker: "meta.us",  sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "Facebook and Instagram's parent. Spends tens of billions a year on AI datacenters.", ko: "페이스북, 인스타그램의 모회사. 매년 수백억 달러를 AI 데이터센터에 쏟는다.", ja: "フェイスブックとインスタグラムの親会社。毎年数百億ドルをAIデータセンターに投じる。" } },
+  "APPLE":         { kind: "company", ticker: "aapl.us",  sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "iPhone maker. The world's most valuable hardware franchise, now reshoring chips to the US.", ko: "아이폰 제조사. 세계에서 가장 가치 있는 하드웨어 기업이며, 칩 생산을 미국으로 옮기는 중.", ja: "iPhoneメーカー。世界で最も価値あるハードウェア企業で、チップ生産を米国へ移している。" } },
+  "BROADCOM":      { kind: "company", ticker: "avgo.us",  sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Chip designer behind custom AI silicon for Google, Meta and now Apple's US production.", ko: "구글, 메타의 맞춤형 AI 칩을 설계하는 회사. 이제 애플의 미국 생산까지 맡는다.", ja: "グーグルやメタのカスタムAIチップを設計。今度はアップルの米国生産も担う。" } },
+  "BLOOM ENERGY":  { kind: "company", ticker: "be.us",  sector: { en: "Power", ko: "전력/에너지", ja: "電力" }, desc: { en: "Makes fuel cells that turn natural gas into electricity on-site: a shortcut for power-hungry AI datacenters.", ko: "천연가스를 그 자리에서 전기로 바꾸는 연료전지 회사. 전력에 목마른 AI 데이터센터의 지름길.", ja: "天然ガスをその場で電気に変える燃料電池メーカー。電力に飢えたAIデータセンターの近道。" } },
+  "STRATEGY":      { kind: "company", ticker: "mstr.us",  sector: { en: "Finance", ko: "금융", ja: "金融" }, desc: { en: "Michael Saylor's company (ex-MicroStrategy): a software firm turned leveraged bitcoin holding vehicle.", ko: "마이클 세일러의 회사(구 마이크로스트래티지). 소프트웨어 회사에서 레버리지 비트코인 보유 기구로 변신했다.", ja: "マイケル・セイラーの会社(旧マイクロストラテジー)。ソフト会社からレバレッジ型ビットコイン保有機構に変貌。" } },
+  "TOWER SEMI":    { kind: "company", ticker: "tsem.us",  sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Israeli chip foundry specializing in the photonics chips that move data by light.", ko: "이스라엘 파운드리. 빛으로 데이터를 옮기는 포토닉스 칩이 주특기다.", ja: "イスラエルの半導体ファウンドリ。光でデータを運ぶフォトニクスチップが得意。" } },
+  "APPLIED OPTO":  { kind: "company", ticker: "aaoi.us",  sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "US maker of the optical transceivers that wire AI datacenters together.", ko: "AI 데이터센터를 서로 연결하는 광모듈을 만드는 미국 회사.", ja: "AIデータセンター同士をつなぐ光トランシーバーを作る米企業。" } },
+  "NSE":           { kind: "company",  sector: { en: "Finance", ko: "금융", ja: "金融" }, desc: { en: "National Stock Exchange of India: the world's busiest derivatives exchange, about to IPO.", ko: "인도국립증권거래소. 세계에서 파생상품이 가장 많이 거래되는 곳이며 곧 상장한다.", ja: "インド国立証券取引所。世界で最もデリバティブが取引される場で、まもなく上場。" } },
+  "DEEPMIND":      { kind: "company", ticker: "googl.us",  sector: { en: "AI Lab", ko: "AI 랩", ja: "AIラボ" }, desc: { en: "Google's AI research arm. Built AlphaGo and the Gemini models.", ko: "구글의 AI 연구 조직. 알파고와 제미나이 모델을 만들었다.", ja: "グーグルのAI研究部門。アルファ碁とGeminiモデルを生んだ。" } },
+  "Meru (메르)":    { kind: "person", url: "https://blog.naver.com/ranto28",  sector: { en: "Blogger", ko: "블로거", ja: "ブロガー" }, desc: { en: "Korea's most-read finance blogger. Untangles macro, supply chains and geopolitics on Naver.", ko: "한국에서 가장 많이 읽히는 경제 블로거. 네이버에서 매크로, 공급망, 지정학을 풀어낸다.", ja: "韓国で最も読まれる経済ブロガー。Naverでマクロ、サプライチェーン、地政学を解きほぐす。" } },
+  "Serenity (@aleabitoreddit)": { kind: "person", url: "https://x.com/aleabitoreddit",  sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "X account tracking AI infrastructure stocks: neoclouds, optics, power.", ko: "AI 인프라 주식을 추적하는 X 계정. 네오클라우드, 광통신, 전력이 주 분야.", ja: "AIインフラ株を追うXアカウント。ネオクラウド、光通信、電力が守備範囲。" } },
+  "Doomberg":      { kind: "person", url: "https://newsletter.doomberg.com",  sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "The green chicken: Substack's #3 finance publication, on energy and geopolitics.", ko: "초록 닭 아이콘으로 유명한 서브스택 금융 3위 뉴스레터. 에너지와 지정학 전문.", ja: "緑のニワトリで有名なSubstack金融3位のニュースレター。エネルギーと地政学専門。" } },
+  "Marc Rubinstein (Net Interest)": { kind: "person", url: "https://www.netinterest.co",  sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "Ex-hedge fund manager writing the weekly Net Interest letter on how finance actually works.", ko: "전직 헤지펀드 매니저. 금융이 실제로 어떻게 돌아가는지를 주간 뉴스레터로 쓴다.", ja: "元ヘッジファンドマネージャー。金融が実際どう回るかを週刊で書く。" } },
+  "Howard Marks (Oaktree)": { kind: "person", url: "https://www.oaktreecapital.com/insights",  sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "Co-founder of Oaktree Capital. His memos are read by virtually everyone on Wall Street, Buffett included.", ko: "오크트리 캐피털 공동창업자. 버핏을 포함해 월가 전체가 그의 메모를 읽는다.", ja: "オークツリー・キャピタル共同創業者。バフェットを含めウォール街全体が彼のメモを読む。" } },
+  "Donald J. Trump (@realDonaldTrump)": { kind: "person", url: "https://truthsocial.com/@realDonaldTrump",  sector: { en: "Politician", ko: "정치인", ja: "政治家" }, desc: { en: "President of the United States. His posts move oil, tariffs and markets in real time.", ko: "미국 대통령. 그의 게시물 하나가 유가, 관세, 시장을 실시간으로 움직인다.", ja: "米国大統領。投稿ひとつで原油、関税、市場がリアルタイムに動く。" } },
+  "Satya Nadella (@satyanadella)": { kind: "person", url: "https://x.com/satyanadella",  sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Microsoft's CEO since 2014. Turned it into the world's biggest AI infrastructure buyer.", ko: "2014년부터 마이크로소프트 CEO. 회사를 세계 최대 AI 인프라 구매자로 바꿔놨다.", ja: "2014年からマイクロソフトCEO。同社を世界最大のAIインフラ購入者に変えた。" } },
+  "Mark Zuckerberg (@finkd)": { kind: "person", url: "https://x.com/finkd",  sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Meta's founder and CEO. Betting the company on open AI models and massive compute.", ko: "메타 창업자 겸 CEO. 회사의 미래를 AI 모델과 초대형 컴퓨트에 걸었다.", ja: "メタ創業者兼CEO。会社の未来をAIモデルと超大型コンピュートに賭ける。" } },
+  "Tim Cook (@tim_cook)": { kind: "person", url: "https://x.com/tim_cook",  sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Apple's CEO and the architect of its supply chain, now rebuilding it inside the US.", ko: "애플 CEO이자 공급망 설계자. 이제 그 공급망을 미국 안에 다시 짓고 있다.", ja: "アップルCEOでサプライチェーンの設計者。今それを米国内に作り直している。" } },
+  "Demis Hassabis (@demishassabis)": { kind: "person", url: "https://x.com/demishassabis",  sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "DeepMind's founder, Nobel laureate, and the closest thing AI has to a chief scientist.", ko: "딥마인드 창업자이자 노벨상 수상자. AI 업계의 수석 과학자에 가장 가까운 인물.", ja: "ディープマインド創業者でノーベル賞受賞者。AI業界の主任科学者に最も近い人物。" } }
 };
 
 const STRINGS = {
@@ -622,6 +652,7 @@ const STRINGS = {
     newSince: "{n} new since your last visit",
     unreadOnly: "Unread only",
     bmOnly: "Bookmarks",
+    byCompany: "Companies",
     bmAdd: "Bookmark",
     bmDone: "Bookmarked \u2713",
     bmEmpty: "No bookmarks yet. Tap Bookmark on any item to save it here.",
@@ -668,6 +699,7 @@ const STRINGS = {
     newSince: "지난 방문 이후 새 글 {n}개",
     unreadOnly: "안 읽은 것만",
     bmOnly: "북마크",
+    byCompany: "회사별",
     bmAdd: "북마크",
     bmDone: "북마크 \u2713",
     bmEmpty: "아직 북마크가 없어요. 글의 북마크 버튼을 누르면 여기 모입니다.",
@@ -714,6 +746,7 @@ const STRINGS = {
     newSince: "前回の訪問から新着{n}件",
     unreadOnly: "未読のみ",
     bmOnly: "ブックマーク",
+    byCompany: "企業別",
     bmAdd: "ブックマーク",
     bmDone: "ブックマーク \u2713",
     bmEmpty: "まだブックマークがありません。記事のブックマークボタンで保存できます。",
@@ -939,6 +972,19 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .has-tip:hover .entity-tip,.has-tip.show .entity-tip{
   opacity:1;visibility:visible;transform:translateY(0);
 }
+.tip-quote{display:block;margin-top:8px;min-height:0;}
+.tip-quote svg{display:block;}
+.tip-price{
+  display:block;margin-top:3px;font-family:"IBM Plex Mono",monospace;font-size:10px;color:#E5E7EB;
+}
+.tip-price b{font-weight:700;}
+.tip-price i{font-style:normal;opacity:.5;margin-left:4px;}
+.tip-hint{display:block;margin-top:7px;font-size:10px;opacity:.55;}
+@media (hover: hover){ .tip-hint{display:none;} }
+.tip-below .entity-tip{bottom:auto;top:calc(100% + 8px);transform:translateY(-3px);}
+.tip-below .entity-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--black);}
+.tip-below:hover .entity-tip,.tip-below.show .entity-tip{transform:translateY(0);}
+.thumb-label.has-tip,.cover-label.has-tip{pointer-events:auto;}
 .src-name.has-tip{border:0;}
 .src-name.has-tip .entity-tip{right:auto;left:-6px;}
 .src-name.has-tip .entity-tip::after{right:auto;left:12px;}
@@ -1030,6 +1076,13 @@ html[data-lang="ko"] .search-box input{font-family:"Pretendard Variable",sans-se
   font-size:15px;line-height:1;padding:0 2px;font-family:inherit;flex:0 0 auto;
 }
 .search-box.active{border-color:var(--text);}
+.company-filter{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:7px 13px;cursor:pointer;font-family:inherit;
+  -webkit-appearance:none;appearance:none;max-width:130px;
+}
+.company-filter:focus{outline:none;border-color:var(--text);color:var(--text);}
 .unread-filter{
   display:inline-flex;align-items:center;gap:7px;
   font-size:12.5px;font-weight:600;color:var(--muted);
@@ -1267,6 +1320,7 @@ footer a{color:var(--muted);}
         <input id="searchInput" type="search" autocomplete="off" oninput="onSearch(this.value)">
         <button class="search-clear" id="searchClear" onclick="clearSearch()" hidden>&times;</button>
       </div>
+      <select class="company-filter" id="companyFilter" onchange="pickCompany(this.value)"></select>
       <button class="unread-filter" id="bmFilter" onclick="toggleBmOnly()"></button>
       <button class="unread-filter" id="freeFilter" onclick="toggleFreeOnly()"></button>
       <button class="unread-filter" id="unreadFilter" onclick="toggleUnreadOnly()"></button>
@@ -1277,7 +1331,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v24</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v25</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1310,16 +1364,73 @@ function setTab(t){ TAB = t; render(); }
 function entityTip(key){
   const e = ENTITIES[key];
   if (!e) return "";
-  return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + '</span>';
+  const quote = e.ticker
+    ? '<span class="tip-quote" data-q="' + e.ticker + '"></span>'
+    : "";
+  const hint = e.kind === "person" && e.url
+    ? '<span class="tip-hint">' + ({ en: "Tap again to open profile", ko: "한 번 더 탭하면 프로필로", ja: "もう一度タップでプロフィールへ" }[LANG]) + "</span>"
+    : "";
+  return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + quote + hint + '</span>';
+}
+
+/* ---------------- mini price charts ----------------
+   First hover fetches ~30 daily closes through the worker's /quote
+   proxy, draws a small sparkline, and caches it for the session. */
+const QUOTES = {};
+async function loadQuote(key){
+  const e = ENTITIES[key];
+  if (!e || !e.ticker || !COMMENTS_API) return;
+  const t = e.ticker;
+  if (QUOTES[t] === undefined){
+    QUOTES[t] = null; /* in flight */
+    try {
+      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t));
+      if (res.ok){
+        const j = await res.json();
+        if (j && j.closes && j.closes.length > 1) QUOTES[t] = j;
+      }
+    } catch (err) {}
+    if (!QUOTES[t]) QUOTES[t] = { error: true };
+  }
+  paintQuote(t);
+}
+function paintQuote(t){
+  const q = QUOTES[t];
+  if (!q || q.error || !q.closes) return;
+  document.querySelectorAll('.tip-quote[data-q="' + t + '"]').forEach(el => {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    el.innerHTML = sparkline(q);
+  });
+}
+function sparkline(q){
+  const c = q.closes;
+  const w = 118, h = 30;
+  const min = Math.min.apply(null, c), max = Math.max.apply(null, c);
+  const span = (max - min) || 1;
+  const pts = c.map((v, i) =>
+    (i * (w / (c.length - 1))).toFixed(1) + "," + (h - 2 - ((v - min) / span) * (h - 4)).toFixed(1)
+  ).join(" ");
+  const last = c[c.length - 1], first = c[0];
+  const chg = ((last - first) / first) * 100;
+  const up = chg >= 0;
+  const color = up ? "#34D399" : "#F87171";
+  const price = last >= 1000 ? Math.round(last).toLocaleString() : last.toFixed(2);
+  return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" aria-hidden="true">'
+    + '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="1.6" stroke-linejoin="round"/></svg>'
+    + '<span class="tip-price">' + price + ' <b style="color:' + color + '">' + (up ? "+" : "") + chg.toFixed(1) + "%</b>"
+    + ' <i>1M</i></span>';
 }
 function chipHtml(tag){
   const tip = entityTip(tag);
   if (!tip) return '<span class="chip">' + tag + '</span>';
-  return '<span class="chip has-tip" onclick="chipTap(this, \'' + tag.replace(/'/g, "\\'") + '\')">' + tag + tip + '</span>';
+  const safe = tag.replace(/'/g, "\\'");
+  return '<span class="chip has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="chipTap(this, \'' + safe + '\')">' + tag + tip + '</span>';
 }
 /* mobile: first tap shows the tooltip, second tap searches the name.
    desktop: hover shows the tooltip, so a click searches immediately. */
 function chipTap(el, tag){
+  loadQuote(tag);
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
@@ -1332,9 +1443,15 @@ function chipTap(el, tag){
   onSearch(tag);
   document.getElementById("feed").scrollIntoView({ behavior: "smooth", block: "start" });
 }
-function srcTap(el){
+function srcTap(el, url){
   document.querySelectorAll(".has-tip.show").forEach(x => { if (x !== el) x.classList.remove("show"); });
-  el.classList.toggle("show");
+  const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  if (!hoverable && !el.classList.contains("show")){
+    el.classList.add("show"); /* first tap: who is this */
+    return;
+  }
+  el.classList.remove("show");
+  if (url) window.open(url, "_blank", "noopener"); /* second tap or desktop click: profile */
 }
 
 function goToItem(id){
@@ -1426,7 +1543,9 @@ function hydrateImages(){
     hydrateThumb(item);
     if (item.logo){
       document.querySelectorAll('[data-logo="' + item.id + '"]').forEach(el => {
+        const tip = el.querySelector(".entity-tip");
         el.innerHTML = '<img src="' + logoUrl(item.logo) + '" alt="">';
+        if (tip) el.appendChild(tip);
       });
     }
     const els = document.querySelectorAll('[data-avatar="' + item.id + '"]');
@@ -1476,6 +1595,19 @@ function toggleBookmark(id){
   refreshBmBtn();
 }
 function toggleBmOnly(){ BM_ONLY = !BM_ONLY; renderFeed(false); }
+function refreshCompanyFilter(){
+  const sel = document.getElementById("companyFilter");
+  if (!sel) return;
+  const companies = Object.keys(ENTITIES).filter(k => ENTITIES[k].kind === "company");
+  const cur = companies.find(c => c.toLowerCase() === QUERY) || "";
+  sel.innerHTML = '<option value="">' + STRINGS[LANG].byCompany + '</option>'
+    + companies.map(c => '<option value="' + c + '"' + (c === cur ? " selected" : "") + '>' + c + '</option>').join("");
+}
+function pickCompany(name){
+  const inp = document.getElementById("searchInput");
+  if (inp) inp.value = name;
+  onSearch(name);
+}
 function refreshBmBtn(){
   const b = document.getElementById("bmFilter");
   if (!b) return;
@@ -1917,7 +2049,9 @@ function render(){
     const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
            ${item.logo ? `<span class="cover-logo" data-logo="${item.id}"></span>` : ""}
            ${item.paywall ? `<span class="cover-paid">$</span>` : ""}
-           <span class="cover-label">${item.cover.label}</span>
+           ${ENTITIES[item.cover.label]
+             ? `<span class="cover-label has-tip tip-below" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="event.preventDefault(); event.stopPropagation(); chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${item.cover.label}${entityTip(item.cover.label)}</span>`
+             : `<span class="cover-label">${item.cover.label}</span>`}
            <span class="cover-title">${item.title[LANG]}</span>
          </div>`;
     a.innerHTML = `
@@ -1956,6 +2090,7 @@ function renderFeed(animate){
   refreshFilterBtn();
 
   refreshBmBtn();
+  refreshCompanyFilter();
   let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
   if (BM_ONLY) items = items.filter(i => BM.has(i.id));
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
@@ -1990,15 +2125,19 @@ function renderFeed(animate){
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
-          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ' onclick="srcTap(this)"' : ""}>${item.source}${entityTip(item.source)}</span>
+          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="srcTap(this, '${(ENTITIES[item.source].url||"").replace(/'/g,"")}')"` : ""}>${item.source}${entityTip(item.source)}</span>
           <span class="src-date">${fmt(item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
       <div class="card-thumb" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
-        <span class="thumb-label">${item.cover.label}</span>
-        ${item.logo ? `<span class="thumb-logo" data-logo="${item.id}"></span>` : ""}
+        ${ENTITIES[item.cover.label]
+          ? `<span class="thumb-label has-tip tip-below" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${item.cover.label}${entityTip(item.cover.label)}</span>`
+          : `<span class="thumb-label">${item.cover.label}</span>`}
+        ${item.logo ? (ENTITIES[item.cover.label]
+          ? `<span class="thumb-logo has-tip tip-below" data-logo="${item.id}" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${entityTip(item.cover.label)}</span>`
+          : `<span class="thumb-logo" data-logo="${item.id}"></span>`) : ""}
       </div>
       <h3><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span>${item.title[LANG]}</h3>
       <details class="gist-fold" open>
