@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v26 :: hot rail in-app, gist paragraphs, clickable tags, +3 japan voices -->
+<!-- STACKS BUILD v27 :: series (storylines, follow, new-episode notices) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -117,6 +117,7 @@ const ITEMS = [
 {
   date: "2026-06-05",
   id: "emin-korea",
+  series: "hynix-premium",
   thumbWiki: "Seoul",
   paywall: true,
   related: ["hynix", "meru-adr-conv", "karakama-nikkei"],
@@ -146,6 +147,7 @@ const ITEMS = [
 {
   date: "2026-07-16",
   id: "potus-datacenters",
+  series: "ai-power",
   thumbWiki: "New York (state)",
   related: ["doomberg-kilby", "hormuz-meru"],
   source: "Donald J. Trump (@realDonaldTrump)",
@@ -176,6 +178,7 @@ const ITEMS = [
 {
   date: "2026-07-16",
   id: "meru-adr-conv",
+  series: "hynix-premium",
   thumbWiki: "New York Stock Exchange",
   related: ["hynix"],
   source: "Meru (\uba54\ub974)",
@@ -206,6 +209,7 @@ const ITEMS = [
 {
   date: "2026-07-16",
   id: "meru-redsea",
+  series: "oil-geopolitics",
   thumbWiki: "Bab-el-Mandeb",
   related: ["hormuz-meru", "potus-hormuz"],
   source: "Meru (\uba54\ub974)",
@@ -265,6 +269,7 @@ const ITEMS = [
 {
   date: "2026-07-07",
   id: "doomberg-kilby",
+  series: "ai-power",
   thumbWiki: "Permian Basin (North America)",
   paywall: true,
   related: ["ess", "doomberg-bloom"],
@@ -324,6 +329,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "doomberg-bloom",
+  series: "ai-power",
   thumbWiki: "Scandium",
   paywall: true,
   related: [],
@@ -471,6 +477,7 @@ const ITEMS = [
 {
   date: "2026-07-15",
   id: "hynix",
+  series: "hynix-premium",
   thumbWiki: "SK Hynix",
   related: ["hormuz-meru"],
   source: "Meru (메르)",
@@ -501,6 +508,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "ess",
+  series: "ai-power",
   thumbWiki: "Grid energy storage",
   related: [],
   source: "Meru (메르)",
@@ -530,6 +538,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "hormuz-meru",
+  series: "oil-geopolitics",
   thumbWiki: "Strait of Hormuz",
   related: ["potus-hormuz", "hynix"],
   source: "Meru (메르)",
@@ -559,6 +568,7 @@ const ITEMS = [
 {
   date: "2026-07-14",
   id: "potus-hormuz",
+  series: "oil-geopolitics",
   thumbWiki: "Oil tanker",
   related: ["hormuz-meru"],
   source: "Donald J. Trump (@realDonaldTrump)",
@@ -695,6 +705,33 @@ const CATEGORIES = [
    sector doubles as a grouping for future filtering.
    Clicking a chip searches for it, so "show me everything on this
    company" already works through the search box. */
+
+/* ---------------- series ----------------
+   Items that belong to one ongoing story. Assign an item with
+   series: "id" and it appears as an episode automatically
+   (episode numbers follow the dates). Follow state lives on the
+   device, like bookmarks. */
+const SERIES = {
+  "hynix-premium": {
+    name: { en: "The SK Hynix Premium", ko: "SK하이닉스 프리미엄", ja: "SKハイニックス・プレミアム" },
+    desc: { en: "One stock, two prices: how a 49% New York premium formed, and what happens when the wall between them opens.",
+            ko: "같은 주식, 두 가격. 뉴욕 프리미엄 49%는 어떻게 생겼고, 둘 사이의 벽이 열리면 무슨 일이 벌어지나.",
+            ja: "同じ株、二つの価格。ニューヨーク・プレミアム49%はどう生まれ、壁が開くと何が起きるのか。" }
+  },
+  "oil-geopolitics": {
+    name: { en: "Oil & Chokepoints", ko: "유가와 지정학", ja: "原油とチョークポイント" },
+    desc: { en: "From Hormuz to the Red Sea: the story of oil's front door and back door closing, one strike at a time.",
+            ko: "호르무즈에서 홍해까지. 원유의 정문과 뒷문이 하나씩 닫혀가는 이야기.",
+            ja: "ホルムズから紅海まで。原油の正面玄関と裏口が一つずつ閉まっていく物語。" }
+  },
+  "ai-power": {
+    name: { en: "Powering the AI Buildout", ko: "AI 전력 전쟁", ja: "AI電力戦争" },
+    desc: { en: "Datacenters need more electricity than the grid can give. Batteries, fuel cells, off-grid gas, and now politics.",
+            ko: "데이터센터는 전력망이 줄 수 있는 것보다 많은 전기를 원한다. 배터리, 연료전지, 오프그리드 가스, 그리고 이제 정치까지.",
+            ja: "データセンターは送電網が供給できる以上の電力を求める。バッテリー、燃料電池、オフグリッドのガス、そして今や政治まで。" }
+  }
+};
+
 const ENTITIES = {
   "SK HYNIX":      { kind: "company", ticker: "000660.ks",  sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Korean memory chip giant. Makes the HBM chips that feed Nvidia's AI accelerators.", ko: "한국 메모리 반도체 대표 기업. 엔비디아 AI 칩에 들어가는 HBM을 만든다.", ja: "韓国のメモリー半導体大手。エヌビディアのAIチップに入るHBMを作る。" } },
   "NEBIUS":        { kind: "company", ticker: "nbis.us",  sector: { en: "AI Cloud", ko: "AI 클라우드", ja: "AIクラウド" }, desc: { en: "Amsterdam-based 'neocloud': rents out Nvidia GPU computing power to AI companies.", ko: "암스테르담 기반 '네오클라우드'. 엔비디아 GPU 컴퓨팅 파워를 AI 기업들에 빌려준다.", ja: "アムステルダム拠点の「ネオクラウド」。エヌビディアGPUの計算力をAI企業に貸す。" } },
@@ -743,6 +780,13 @@ const STRINGS = {
     newSince: "{n} new since your last visit",
     unreadOnly: "Unread only",
     bmOnly: "Bookmarks",
+    seriesLabel: "Series",
+    ep: "Ep. {n}",
+    epOf: "{n} episodes",
+    follow: "Follow",
+    following: "Following \u2713",
+    seriesNew: "New in a story you follow",
+    seriesClose: "Back to feed",
     byCompany: "Companies",
     bmAdd: "Bookmark",
     bmDone: "Bookmarked \u2713",
@@ -791,6 +835,13 @@ const STRINGS = {
     newSince: "지난 방문 이후 새 글 {n}개",
     unreadOnly: "안 읽은 것만",
     bmOnly: "북마크",
+    seriesLabel: "시리즈",
+    ep: "제{n}화",
+    epOf: "전 {n}화",
+    follow: "팔로우",
+    following: "팔로우 중 \u2713",
+    seriesNew: "팔로우 중인 이야기에 새 글",
+    seriesClose: "피드로 돌아가기",
     byCompany: "회사별",
     bmAdd: "북마크",
     bmDone: "북마크 \u2713",
@@ -839,6 +890,13 @@ const STRINGS = {
     newSince: "前回の訪問から新着{n}件",
     unreadOnly: "未読のみ",
     bmOnly: "ブックマーク",
+    seriesLabel: "シリーズ",
+    ep: "第{n}話",
+    epOf: "全{n}話",
+    follow: "フォロー",
+    following: "フォロー中 \u2713",
+    seriesNew: "フォロー中の物語に新しい記事",
+    seriesClose: "フィードに戻る",
     byCompany: "企業別",
     bmAdd: "ブックマーク",
     bmDone: "ブックマーク \u2713",
@@ -1047,6 +1105,46 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
   color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);
   border-radius:999px;padding:3px 9px;white-space:nowrap;
 }
+.series-tag{
+  display:inline-block;margin:0 0 8px;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;
+  color:var(--accent);background:none;border:1px solid var(--accent);
+  border-radius:999px;padding:3px 10px;cursor:pointer;
+}
+.series-tag:hover{background:var(--accent);color:#fff;}
+.series-header{
+  background:var(--black);color:#fff;border-radius:18px;
+  padding:22px 22px 18px;margin-bottom:6px;
+}
+.series-close{
+  background:none;border:0;color:#fff;opacity:.6;cursor:pointer;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;padding:0;margin-bottom:12px;
+}
+.series-close:hover{opacity:1;}
+.series-head-name{font-weight:800;font-size:22px;letter-spacing:-0.02em;}
+.series-head-desc{margin-top:7px;font-size:13.5px;line-height:1.55;opacity:.72;}
+.series-head-row{display:flex;align-items:center;gap:12px;margin-top:15px;}
+.series-count{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;opacity:.55;}
+.series-follow{
+  font-size:12.5px;font-weight:700;color:#fff;background:none;
+  border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  padding:6px 15px;cursor:pointer;font-family:inherit;
+}
+.series-follow:hover{border-color:#fff;}
+.series-follow.on{background:#fff;color:var(--black);border-color:#fff;}
+.series-notice{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  background:var(--bg-soft);border:1px dashed var(--accent);
+  border-radius:14px;padding:11px 14px;margin-bottom:4px;
+}
+.sn-label{font-size:12px;font-weight:700;color:var(--accent);}
+.series-notice button{
+  font-size:12px;font-weight:600;color:var(--text);background:#fff;
+  border:1px solid var(--line);border-radius:999px;padding:5px 12px;
+  cursor:pointer;font-family:inherit;
+}
+.series-notice button b{color:var(--accent);}
+.series-notice button:hover{border-color:var(--text);}
 .chip-click{cursor:pointer;}
 .chip-click:hover{border-color:var(--text);color:var(--text);}
 .has-tip{position:relative;cursor:pointer;}
@@ -1431,7 +1529,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v26</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v27</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1458,7 +1556,7 @@ let LANG = lsGet("stk_lang") ||
 let TAB = "all";
 
 function setLang(l){ LANG = l; lsSet("stk_lang", l); render(); }
-function setTab(t){ TAB = t; render(); }
+function setTab(t){ SERIES_VIEW = null; TAB = t; render(); }
 
 
 
@@ -1583,6 +1681,7 @@ function srcTap(el, url){
 }
 
 function goToItem(id){
+  SERIES_VIEW = null;
   const target = ITEMS.find(x => x.id === id);
   if (!target) return;
   if (TAB !== "all" && target.category !== TAB){
@@ -1709,6 +1808,53 @@ const store = {
 };
 const READ = new Set(store.get("stk_read", []));
 const BM = new Set(store.get("stk_bm", []));
+const FOLLOWED = new Set(store.get("stk_series", []));
+const SERIES_SEEN = store.get("stk_series_seen", {});
+let SERIES_VIEW = null;
+
+function seriesItems(sid){
+  return ITEMS.filter(i => i.series === sid)
+    .sort((a, b) => (a.date > b.date ? 1 : a.date < b.date ? -1 : 0)); /* story order */
+}
+function epNum(item){
+  if (!item.series) return 0;
+  return seriesItems(item.series).findIndex(i => i.id === item.id) + 1;
+}
+function openSeries(sid){
+  if (!SERIES[sid]) return;
+  SERIES_VIEW = sid;
+  SERIES_SEEN[sid] = seriesItems(sid).length; /* caught up */
+  store.set("stk_series_seen", SERIES_SEEN);
+  track("series/" + sid);
+  renderFeed(true);
+  const f = document.getElementById("feed");
+  if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function closeSeries(){
+  SERIES_VIEW = null;
+  renderFeed(false);
+}
+function toggleFollow(sid){
+  if (FOLLOWED.has(sid)) FOLLOWED.delete(sid);
+  else {
+    FOLLOWED.add(sid);
+    SERIES_SEEN[sid] = seriesItems(sid).length;
+    store.set("stk_series_seen", SERIES_SEEN);
+    track("follow/" + sid);
+  }
+  store.set("stk_series", [...FOLLOWED]);
+  renderFeed(false);
+}
+/* Followed series with episodes the reader hasn't seen yet. */
+function seriesUpdates(){
+  const out = [];
+  FOLLOWED.forEach(sid => {
+    if (!SERIES[sid]) return;
+    const total = seriesItems(sid).length;
+    if (total > (SERIES_SEEN[sid] || 0)) out.push({ sid, fresh: total - (SERIES_SEEN[sid] || 0) });
+  });
+  return out;
+}
 let BM_ONLY = false;
 function toggleBookmark(id){
   if (BM.has(id)) BM.delete(id); else { BM.add(id); track("bookmark/" + id); }
@@ -1722,7 +1868,7 @@ function toggleBookmark(id){
   }
   refreshBmBtn();
 }
-function toggleBmOnly(){ BM_ONLY = !BM_ONLY; renderFeed(false); }
+function toggleBmOnly(){ SERIES_VIEW = null; BM_ONLY = !BM_ONLY; renderFeed(false); }
 function refreshCompanyFilter(){
   const sel = document.getElementById("companyFilter");
   if (!sel) return;
@@ -1807,6 +1953,7 @@ function refreshCardRead(id){
    in both languages at once, so "hynix" finds Korean items too. */
 let QUERY = "";
 function onSearch(v){
+  if (v) SERIES_VIEW = null;
   QUERY = (v || "").trim().toLowerCase();
   const clear = document.getElementById("searchClear");
   if (clear) clear.hidden = !QUERY;
@@ -2224,6 +2371,40 @@ function renderFeed(animate){
 
   refreshBmBtn();
   refreshCompanyFilter();
+
+  /* series view: the whole story in order, with its own header */
+  if (SERIES_VIEW && SERIES[SERIES_VIEW]){
+    const sv = SERIES[SERIES_VIEW];
+    const eps = seriesItems(SERIES_VIEW);
+    const head = document.createElement("div");
+    head.className = "series-header";
+    head.innerHTML =
+      '<button class="series-close" onclick="closeSeries()">\u2190 ' + S.seriesClose + "</button>"
+      + '<div class="series-head-name">' + sv.name[LANG] + "</div>"
+      + '<p class="series-head-desc">' + sv.desc[LANG] + "</p>"
+      + '<div class="series-head-row"><span class="series-count">' + S.epOf.replace("{n}", eps.length) + "</span>"
+      + '<button class="series-follow' + (FOLLOWED.has(SERIES_VIEW) ? " on" : "") + '" onclick="toggleFollow(\'' + SERIES_VIEW + '\')">'
+      + (FOLLOWED.has(SERIES_VIEW) ? S.following : S.follow) + "</button></div>";
+    list.appendChild(head);
+    eps.forEach((item, i) => list.appendChild(cardEl(item, S, i)));
+    if (window.hydrateImages) hydrateImages();
+    applyCommentCounts();
+    return;
+  }
+
+  /* notice bar: followed stories that moved since last look */
+  const updates = seriesUpdates();
+  if (updates.length){
+    const note = document.createElement("div");
+    note.className = "series-notice";
+    note.innerHTML = '<span class="sn-label">' + S.seriesNew + "</span>"
+      + updates.map(u =>
+          '<button onclick="openSeries(\'' + u.sid + '\')">'
+          + SERIES[u.sid].name[LANG] + ' <b>+' + u.fresh + "</b></button>"
+        ).join("");
+    list.appendChild(note);
+  }
+
   let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
   if (BM_ONLY) items = items.filter(i => BM.has(i.id));
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
@@ -2236,7 +2417,13 @@ function renderFeed(animate){
     hydrateImages();
     return;
   }
-  items.forEach((item, idx) => {
+  items.forEach((item, idx) => list.appendChild(cardEl(item, S, idx)));
+  hydrateImages();
+}
+
+function cardEl(item, S, idx){
+  {
+    idx = idx || 0;
     const showOrig = item.sourceLang.toLowerCase() !== LANG;
     const origTitle = item.sourceLang === "KO" ? item.title.ko
                     : item.sourceLang === "JA" ? item.title.ja
@@ -2276,6 +2463,7 @@ function renderFeed(animate){
           ? `<span class="thumb-logo has-tip tip-below" data-logo="${item.id}" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${entityTip(item.cover.label)}</span>`
           : `<span class="thumb-logo" data-logo="${item.id}"></span>`) : ""}
       </div>
+      ${item.series && SERIES[item.series] ? `<button class="series-tag" onclick="openSeries('${item.series}')">${SERIES[item.series].name[LANG]} \u00b7 ${S.ep.replace("{n}", epNum(item))}</button>` : ""}
       <h3><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span>${item.title[LANG]}</h3>
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
@@ -2297,9 +2485,8 @@ function renderFeed(animate){
       <div class="comment-box" id="cbox-${item.id}" hidden></div>
       ${relHtml}
     `;
-    list.appendChild(el);
-  });
-  hydrateImages();
+    return el;
+  }
 }
 
 /* ---------------- app install ---------------- */
