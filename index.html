@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v23 :: japanese, bookmarks -->
+<!-- STACKS BUILD v24 :: company names, entity tooltips, casual gists, gist-first layout -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -76,9 +76,9 @@ const ITEMS = [
     ko: "7월 29일: SK하이닉스 ADR 프리미엄에 드디어 '좁혀질 통로'가 생긴다"
   },
   gist: {
-    en: "Follow-up to the 49% New York premium. On July 15, Korea's securities depository confirmed to press it is pushing to allow conversion between the Seoul shares and the US ADR after July 29. Meru's framework is the TSMC vs ASML comparison: ASML allows free two-way conversion, so arbitrage keeps the gap near 1%; TSMC allows only one direction freely, so a 16-17% premium persists. SK Hynix listed TSMC-style but with conversion blocked entirely, hence 49%. Open the channel and the trade writes itself: buy cheap in Seoul, convert, sell dear in New York, pushing Seoul up and the ADR down toward a TSMC-like gap. The brakes: the ADR program caps at 25% of shares and only 2.5% is issued; new issuance is effectively off the table because SK Square just hit its 20% holding-company floor, so the rest must come from old shares, slowly, under regulatory and FX supervision. TSMC took 28 years to reach 20.5%. His one-liner: good news for Seoul holders, just not today.",
-    ja: "ニューヨーク・プレミアム49%の続報。7月15日、韓国預託決済院が「7月29日以降の相互転換を推進中」と報道機関に認めた。メルの分析枠組みはTSMC対ASMLの比較だ。ASMLは双方向の転換が自由なため裁定が即座に働き、乖離は1%前後に張り付く。TSMCは一方向のみ自由で、16〜17%のプレミアムが残る。SKハイニックスはTSMC方式で上場したが転換自体が塞がれ、49%まで開いた。通路が開けば取引は自明だ。安いソウルの原株を買い、ADRに転換し、高いニューヨークで売る。この過程で原株は上がり、ADRは下がり、TSMC水準のギャップへ収斂する。ブレーキもある。ADRの上限は発行株式の25%だが現在は2.5%のみで、SKスクエアの持株比率が持株会社要件の下限20%に張り付いているため新株の追加発行は事実上不可能。残りは旧株で、当局と為替を見ながらゆっくり進む。TSMCは20.5%まで28年かかった。メルの一言: ソウル保有者に悪い話ではない。ただし今日ではない。",
-    ko: "뉴욕 프리미엄 49% 글의 후속. 7월 15일 한국예탁결제원이 언론에 '7월 29일 이후 상호전환 추진'을 확인해줬다. 메르의 분석 틀은 TSMC 대 ASML 비교다. ASML은 양방향 전환이 자유로워 차익거래가 즉시 작동하고 괴리율이 1% 안팎에 붙는다. TSMC는 한 방향만 자유로워 16~17% 프리미엄이 유지된다. SK하이닉스는 TSMC 방식으로 상장했는데 전환 자체가 막혀 있어 49%까지 벌어졌다. 통로가 열리면 거래는 자명하다. 싼 서울 본주를 사서 ADR로 전환해 비싼 뉴욕에 파는 것. 이 과정에서 본주는 오르고 ADR은 내려 TSMC 수준 갭으로 수렴한다. 브레이크도 있다. ADR 한도는 발행주식의 25%인데 현재 2.5%뿐이고, SK스퀘어 지분이 지주회사 요건 20% 하한에 딱 걸려 신주 추가발행은 사실상 불가라 나머지는 구주로, 당국과 환율을 보며 천천히 간다. TSMC는 20.5%까지 28년 걸렸다. 메르의 한 줄: 국장 보유자에게 나쁜 소식이 아니다. 다만 오늘은 아니다."
+    en: "The same SK Hynix share costs 49% more in New York than in Seoul. The reason is simple: the channel for converting Seoul shares into US shares (ADRs) has been shut, so nobody could sell the expensive one and buy the cheap one. On July 15, Korea's securities depository confirmed it will open that channel after July 29. What happens next is predictable: buy cheap in Seoul, convert, sell dear in New York. That flow pushes Seoul up and New York down until the gap shrinks. TSMC, which has a similar setup, trades at a steady 16-17% gap, so that's roughly the landing zone. There are brakes, though: only a small slice of shares can convert for now, and regulators will loosen it slowly while watching the currency. Meru's one-liner: good news if you hold in Seoul. Just not today.",
+    ja: "同じSKハイニックスの株なのに、ニューヨークで買うとソウルより49%高い。理由は単純で、ソウル株と米国株(ADR)を交換する通路が塞がれていたからだ。高い方を売って安い方を買うことができず、価格差がそのまま固まった。ところが7月15日、韓国預託決済院が「7月29日から相互転換を推進する」と認めた。通路が開けば起きることは目に見えている。安いソウル株を買い、米国株に換えて高く売る人が殺到し、その過程でソウルは上がり、ニューヨークは下がって差が縮む。似た仕組みのTSMCはこの差が16〜17%で安定しているので、だいたいその水準が着地点とみられる。ただしブレーキもある。転換に使える株数がまだ少なく、当局が為替を見ながらゆっくり緩める予定なので、一晩で起きる話ではない。メルの結論を一行で: ソウルで持っている人に悪い話ではない。ただし今日ではない。",
+    ko: "같은 SK하이닉스 주식인데 뉴욕에서 사면 서울보다 49% 비싸다. 왜 이런 일이 생겼냐면, 서울 주식과 뉴욕 주식(ADR)을 서로 바꾸는 통로가 막혀 있었기 때문이다. 비싸다고 팔고 싼 걸 살 수가 없으니 가격 차이가 그대로 굳었다. 그런데 7월 15일, 한국예탁결제원이 '7월 29일부터 상호전환을 추진한다'고 확인했다. 통로가 열리면 벌어지는 일은 뻔하다. 싼 서울 주식을 사서 뉴욕 주식으로 바꿔 비싸게 파는 사람들이 몰리고, 그 과정에서 서울은 오르고 뉴욕은 내려 간격이 좁혀진다. 비슷한 구조인 TSMC의 경우 이 간격이 16~17%에서 유지되니, 대략 그 수준까지 좁혀진다고 보는 것. 다만 속도 조절 장치가 있다. 전환에 쓸 물량이 아직 적고, 당국이 환율을 봐가며 천천히 풀 예정이라 하루아침에 벌어질 일은 아니다. 메르의 결론 한 줄: 서울에서 들고 있는 사람에게 나쁜 소식이 아니다. 다만 오늘은 아니다."
   },
   why: {
     en: "The 49% premium was a gauge of blocked demand. From July 29 it becomes a trade with a mechanism, and the convergence flow buys Seoul.",
@@ -105,9 +105,9 @@ const ITEMS = [
     ko: "호르무즈 다음은 홍해: 활주로 폭격 하나가 우회로를 닫으려 한다"
   },
   gist: {
-    en: "The chain of events: Khamenei was killed in an Israeli strike in February, and under the US ceasefire MOU his funeral finally ran July 4-9. A Houthi delegation attended, and as their Mahan Air flight approached Sana'a airport for the return, missiles hit the runway and taxiways. The plane diverted safely, but attribution is the fuse: Houthis blame Saudi Arabia, while Yemen's government, which has no air force of its own and whose Saudi-backed leadership council operates out of Riyadh, claims the strike. The Houthis declared the four-year truce with Riyadh over and hit Saudi Arabia's Abha airport with missiles and drones. Why it matters for oil: with Hormuz blocked, Saudi rerouted up to 5M bbl/d (70% of normal exports) through the Red Sea port of Yanbu, UAE another 1.8M, and Korean tankers have been loading at Yanbu and sailing out through Bab-el-Mandeb, a 29km-wide strait the Houthis sit on that carries about 10% of seaborne crude. Meanwhile Trump notified Congress that hostilities against Iran resumed July 7, restarting the War Powers clock after both chambers passed withdrawal resolutions. Meru's read: Saudi hit the runway, not the plane, as a warning to Houthi leadership. The problem is that Zaydi warrior culture treats a threat to its delegation as Saudi breaking the truce first. Both chokepoints could close at once.",
-    ja: "出来事の連鎖。2月にイスラエルの空爆で死亡したハメネイの葬儀が、米国との停戦MOUを経て126日ぶりに執り行われ(7/4〜9)、フーシ派の代表団が弔問した。帰路のマハン航空機がサヌア空港に接近する中、ミサイルが滑走路と誘導路を直撃。機体は無事に迂回したが、帰属が導火線だ。フーシ派はサウジを名指しし、自前の航空戦力を持たず指導部がリヤドで活動するサウジ後援のイエメン政府が自らの作戦だと主張する。フーシ派は4年の停戦終了を宣言し、サウジのアブハー空港をミサイルとドローンで攻撃した。原油に重要な理由: ホルムズ封鎖後、サウジは紅海のヤンブー港へ日量最大500万バレル(平時輸出の70%)を迂回させ、UAEも180万バレルを回した。韓国のタンカーもヤンブーで積み、幅29kmのバブ・エル・マンデブ海峡を抜けて出る。フーシ派が押さえるこの海峡は、海上原油輸送の約10%が通る道だ。一方トランプは7月7日付の対イラン敵対行為再開を議会に通告し、上下両院の撤退決議可決にもかかわらず戦争権限法の60日時計を回し直した。メルの読み: サウジは機体ではなく滑走路を叩き、フーシ指導部に警告した。問題は、武装蜂起を宗教的義務とみなすザイド派の戦闘文化が、代表団への脅威を「サウジが先に破った」と読むことだ。二つのチョークポイントが同時に閉まりうる。",
-    ko: "사건의 사슬. 2월 이스라엘 공습으로 사망한 하메네이의 장례가 미국과의 휴전MOU로 126일 만에 치러졌고(7/4~9), 후티 대표단이 조문했다. 귀국길 마한항공기가 사나 공항에 접근하던 중 미사일이 활주로와 유도로를 때렸다. 기체는 무사히 회항했지만 배후가 뇌관이다. 후티는 사우디를 지목하고, 자체 항공전력이 없으며 지도부가 리야드에서 활동하는 사우디 후원 예멘 정부가 자기 소행이라 주장한다. 후티는 4년 휴전 종료를 선언하고 사우디 아브하 공항을 미사일과 드론으로 타격했다. 유가에 중요한 이유: 호르무즈 봉쇄 후 사우디는 홍해 얀부항으로 최대 하루 500만 배럴(평시 수출의 70%)을 우회시켰고 UAE도 180만 배럴을 돌렸다. 한국 유조선들도 얀부에서 싣고 폭 29km의 바브엘만데브 해협으로 나온다. 후티가 깔고 앉은 이 해협은 해상 원유 물동량의 약 10%가 지나는 길이다. 한편 트럼프는 7월 7일자 대이란 적대행위 재개를 의회에 통보해, 상하원의 철군 결의안 통과에도 전쟁권한법 60일 시계를 새로 돌렸다. 메르의 해석: 사우디는 비행기가 아니라 활주로를 때려 후티 지도부에 경고했다. 문제는 무장봉기를 종교적 의무로 보는 자이드파 전투 문화가 대표단 위협을 '사우디가 먼저 깼다'로 읽는다는 것. 두 초크포인트가 동시에 닫힐 수 있다."
+    en: "It starts with a funeral. Iran's supreme leader Khamenei, killed in February, was finally buried thanks to the ceasefire, and Yemen's Houthi rebels sent a delegation. The trouble came on the way home: as their plane approached Sana'a airport, missiles hit the runway. The plane was fine, but the Houthis blamed Saudi Arabia, declared their four-year truce over, and fired missiles at a Saudi airport. Why does this matter for oil? Because the world's detour route is at stake. Since Hormuz closed, Saudi Arabia has rerouted 70% of its exports through Red Sea ports, and Korean tankers load there too. And the Red Sea's front door, the 29km-wide Bab-el-Mandeb strait carrying 10% of seaborne crude, is exactly what the Houthis sit on. Meru's read: Saudi hit the runway, not the plane, as a warning. But the Houthis, famous for fighting to the death, don't do warnings. After Hormuz, the back door for oil could close too.",
+    ja: "話は葬儀から始まる。2月に死亡したイランの最高指導者ハメネイの葬儀が停戦のおかげで126日ぶりに行われ、イエメンのフーシ派が弔問団を送った。問題は帰り道だ。代表団を乗せた飛行機がサヌア空港に着陸しようとした瞬間、ミサイルが滑走路に落ちた。機体は無事だったが、フーシ派はこれをサウジの仕業とみなし、4年間の停戦終了を宣言してサウジの空港にミサイルを撃った。なぜこれが原油の問題かというと、いま世界の原油の迂回路がかかっているからだ。ホルムズ海峡が塞がれた後、サウジは輸出の70%を紅海側の港に回し、韓国のタンカーもそこで積んでいる。そしてその紅海の出入口、幅29kmのバブ・エル・マンデブ海峡を押さえているのがまさにフーシ派だ。世界の海上原油の10%が通る要衝である。メルの読み: サウジは機体ではなく滑走路を叩いて「警告」を送ったが、死ぬまで戦うことで有名なフーシ派が警告を警告として受け取るはずがない。ホルムズに続いて紅海まで、原油の正面玄関と裏口が同時に閉まりかねない状況だ。",
+    ko: "이야기의 시작은 장례식이다. 2월에 사망한 이란 최고지도자 하메네이의 장례가 휴전 덕에 126일 만에 치러졌고, 예멘의 후티 반군 대표단이 조문을 왔다. 문제는 귀국길. 대표단을 태운 비행기가 예멘 사나 공항에 내리려는 순간 미사일이 활주로에 떨어졌다. 비행기는 무사했지만, 후티는 이걸 사우디의 소행으로 보고 4년간의 휴전 종료를 선언한 뒤 사우디 공항에 미사일을 쐈다. 이게 왜 유가 문제냐면, 지금 세계 원유의 우회로가 걸려 있어서다. 호르무즈 해협이 막힌 뒤 사우디는 홍해 쪽 항구로 수출 물량의 70%를 돌렸고, 한국 유조선들도 거기서 기름을 싣는다. 그런데 그 홍해의 출입구, 폭 29km짜리 바브엘만데브 해협을 깔고 앉은 게 바로 후티다. 세계 해상 원유의 10%가 지나는 길목이다. 메르의 해석: 사우디는 비행기가 아니라 활주로를 때려서 '경고'를 보낸 건데, 죽을 때까지 싸우는 걸로 유명한 후티가 이걸 경고로 받아들일 리 없다는 것. 호르무즈에 이어 홍해까지, 원유의 정문과 뒷문이 동시에 닫힐 수 있는 상황이다."
   },
   why: {
     en: "Hormuz risk was priced. A Red Sea closure on top of it is not: it kills the detour that has been keeping supply, and Korea's crude imports, moving.",
@@ -135,9 +135,9 @@ const ITEMS = [
     ko: "하사비스, AGI가 몇 년 안에 온다며 '모두를 늦출 수 있는 기구'를 요구하다"
   },
   gist: {
-    en: "DeepMind's CEO, in an 11.5M-view essay, states that AGI is probably only a few short years away and that we are standing in the foothills of the singularity, with an impact he sizes at perhaps 10x the Industrial Revolution at 10x the speed. His diagnosis: the field is locked in an intense commercial and geopolitical race, and frontier advances are outpacing our understanding. His proposal is concrete: a US Frontier AI Standards Body modeled on FINRA, a federally overseen public-private partnership funded mostly by industry, that defines 'Frontier-class' models via benchmarks, reviews models up to 30 days before release (voluntary at first, then required for US deployment), watermarks AI images, tests for deception and guardrail evasion, and, the striking part, could coordinate a slowdown in development among frontier labs if deemed necessary. It would apply to frontier models regardless of country of origin or open/closed status, with startups and academia exempt.",
-    ja: "ディープマインドのCEOが閲覧1,150万回のエッセイで、AGIはおそらくあと数年しか離れておらず、我々はシンギュラリティの麓に立っていると宣言した。インパクトは産業革命の10倍を10倍の速度で。診断はこうだ。業界は極めて激しい商業的・地政学的競争に閉じ込められ、フロンティアの進歩が我々の理解を追い越している。提案は具体的だ。米国の金融取引業規制機構(FINRA)を模した「フロンティアAI標準機関」。連邦監督下の官民パートナーシップで、資金は主に業界が拠出し、ベンチマークで「フロンティア級」モデルを定義し、リリース最大30日前にモデルを審査する(当初は任意、その後は米国市場展開の必須要件に)。AI画像のウォーターマークや欺瞞・ガードレール回避のテストも行う。そして最も目を引く部分: 必要と判断されればフロンティアラボ間の開発減速を調整する権限にまで言及した。国やオープンソースかを問わずフロンティア級モデル全体に適用し、スタートアップと学術界は免除される。",
-    ko: "딥마인드 CEO가 조회수 1,150만의 에세이에서 AGI가 아마 몇 년밖에 안 남았고 우리는 특이점의 초입에 서 있다고 선언했다. 임팩트는 산업혁명의 10배를 10배 속도로. 진단은 이렇다. 업계가 극도로 치열한 상업적, 지정학적 경쟁에 갇혀 있고, 프런티어의 진보가 우리의 이해를 앞지르고 있다는 것. 제안은 구체적이다. 미국 금융산업규제국(FINRA)을 본뜬 '프런티어 AI 표준기구'. 연방 감독 하의 민관 파트너십으로 재원은 대부분 업계가 대고, 벤치마크로 '프런티어급' 모델을 정의하며, 출시 최대 30일 전 모델을 심사하고(처음엔 자율, 이후 미국 시장 배포의 필수 요건으로), AI 이미지 워터마킹과 기만·가드레일 우회 테스트를 수행한다. 그리고 가장 눈에 띄는 대목: 필요하다고 판단되면 프런티어 랩들의 개발 속도를 조율해 늦출 수 있는 권한까지 거론했다. 국가나 오픈소스 여부와 무관하게 프런티어급 모델 전체에 적용하되, 스타트업과 학계는 면제다."
+    en: "Demis Hassabis, the DeepMind CEO who built AlphaGo, posted an essay that has racked up 11.5M views. Two claims. First: human-level AI (AGI) is only a few years away, with an impact he sizes at 10x the Industrial Revolution at 10x the speed. Second: the industry is in a race with no brakes, technology is outrunning our understanding, so let's build a referee. His referee is quite specific: just as US securities firms fund their own regulator, AI companies would fund a standards body. It would define what counts as a 'frontier' model through tests, review new models before release, and block anything that fails from the US market. The striking part: if things get serious, this body could coordinate a slowdown across the entire industry. The man building AGI is volunteering to install a speed limiter, and the debate is whether he means it or is building cover.",
+    ja: "アルファ碁を作ったディープマインドのCEOハサビスが、閲覧1,150万回のエッセイを投稿した。要旨は二つ。第一に、人間レベルのAI(AGI)は「数年」以内に来る。産業革命の10倍の衝撃が10倍の速度で来る、というのが彼の表現だ。第二に、いま業界はブレーキなしのレース中で技術が理解を追い越しているから、審判を作ろう。彼の提案する審判はかなり具体的だ。米国の証券業界が自前の規制機構を持つように、AI業界も資金を出し合って標準機関を作る。この機関がテストで「最上位級AI」を定義し、新モデルは発売前に審査を受け、通らなければ米国では売れない。そして最も目を引く部分: 状況が深刻だと判断すれば、この機関が業界全体の開発速度を落とすよう調整できるという点だ。AGIを作る当事者が自ら速度制限装置を付けようと言い出した形で、本気なのか大義名分づくりなのかで論争になっている。",
+    ko: "알파고를 만든 딥마인드의 CEO 하사비스가 조회수 1,150만짜리 글을 올렸다. 요지는 두 개다. 첫째, 인간 수준의 AI(AGI)가 '몇 년' 안에 온다. 산업혁명의 10배 충격이 10배 속도로 온다는 게 그의 표현이다. 둘째, 그런데 지금 업계는 브레이크 없는 경주 중이라 기술이 이해를 앞지르고 있으니, 심판을 만들자. 그가 제안한 심판은 꽤 구체적이다. 미국 증권업계가 자체 규제기구를 두듯, AI 업계도 돈을 모아 표준기구를 만들자는 것. 이 기구가 시험을 만들어 '최상위급 AI'를 정의하고, 새 모델은 출시 전에 심사를 받고, 통과 못 하면 미국에서 못 판다. 그리고 제일 눈에 띄는 대목: 상황이 심각하다 싶으면 이 기구가 업계 전체의 개발 속도를 늦추도록 조율할 수 있다는 것. AGI를 만드는 당사자가 스스로 속도 제한 장치를 달자고 나선 셈이라, 진심인지 명분 쌓기인지를 두고 논쟁이 붙었다."
   },
   why: {
     en: "Every compute demand model assumes the race never slows. The man building AGI just proposed the first institutional brake, and industry would fund it.",
@@ -164,9 +164,9 @@ const ITEMS = [
     ko: "가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트"
   },
   gist: {
-    en: "Two years ago Doomberg sketched the endgame of AI power: enormous buildings with natural gas going in one side and data coming out the other, built off the public grid because nothing else could move fast enough. The nuclear renaissance, they argued, could not match the timing of AI's electricity demand, while gas was the one hydrocarbon clean enough to run baseload. The prediction has aged well in every part except the building. Texas and federal regulators tightened rules on large behind-the-meter projects over environmental objections, not one marquee off-grid project has reached a final investment decision, and Permian spot gas has spent much of 2026 below zero. Against that, one project stands out on size, on the caliber of the companies behind it, and on odds of actually getting built: Project Kilby, slated at twice the scale of Stargate in Abilene and only months from FID. Doomberg goes to the middle of the basin to size what it does to Permian flows.",
-    ja: "2年前、DoombergはAI電力の終着点をこう描いた。片側から天然ガスが入り、反対側からデータが出る巨大な建物。そしてどんな方法も速度が間に合わないため、公共送電網の外に建てる。原発ルネサンスはAI電力需要の時計に合わせられず、ガスはベースロードを回せる唯一の十分にクリーンな炭化水素という論理だった。予測は「建てること」以外すべて当たった。テキサスと連邦の規制当局は環境問題を理由に大型ビハインド・ザ・メーター案件の規制を締め、看板級オフグリッド案件で最終投資決定(FID)に達したものは一つもなく、パーミアンのスポットガスは2026年の相当期間をマイナス価格で過ごした。その中で、規模、参加企業の格、実際に建つ確率で一件が際立つ。アビリーンのスターゲイトの2倍の規模で、FIDまで数ヶ月のProject Kilbyだ。Doombergは盆地の中心に入り、これがパーミアンの物流をどう揺らすかを計算する。",
-    ko: "2년 전 Doomberg는 AI 전력의 종착점을 이렇게 그렸다. 한쪽으로 천연가스가 들어가고 반대쪽으로 데이터가 나오는 거대한 건물, 그리고 그 어떤 방법도 속도를 못 맞추니 공용 전력망 밖에 짓는 것. 원전 르네상스는 AI 전력 수요의 시계에 맞출 수 없고, 가스는 기저부하를 돌릴 만큼 깨끗한 유일한 탄화수소라는 논리였다. 예측은 '짓는 것' 빼고 다 맞았다. 텍사스와 연방 규제당국은 환경 문제를 들어 대형 비하인드미터 프로젝트 규제를 조였고, 간판급 오프그리드 프로젝트 중 최종투자결정(FID)에 도달한 건 하나도 없으며, 퍼미안 현물 가스는 2026년 상당 기간을 마이너스 가격으로 보냈다. 그 와중에 규모, 참여 기업의 급, 실제로 지어질 확률에서 한 건이 튄다. 애빌린의 스타게이트보다 두 배 크고 FID까지 몇 달 남은 Project Kilby다. Doomberg는 분지 한복판으로 들어가 이게 퍼미안 물류를 어떻게 흔드는지 계산한다."
+    en: "Doomberg's long-standing answer to the AI datacenter power problem: don't wait for power plants, build the datacenter next to the gas field. Natural gas in one door, data out the other. No grid connection means no multi-year transmission permits. They drew this picture two years ago, and the logic has held up on every point except one: nothing has actually been built. Environmental rules tightened, and not a single marquee project has reached final investment decision (FID), the moment real money commits. Now a serious contender has appeared: Project Kilby, twice the size of the famous Stargate, backed by heavyweight companies, and just months from FID. Doomberg runs the numbers on what actually building it would do to oil and gas flows in the Permian Basin, America's biggest oilfield.",
+    ja: "AIデータセンターの電力問題に対するDoombergの以前からの答えはこうだ。「発電所を待つな。ガス田の隣にデータセンターを建てろ」。片方のドアから天然ガスが入り、反対側からデータが出る建物。送電網につながないので、何年もかかる送電線の許認可も要らない。2年前にこの絵を描き、論理はすべて当たったのに、一つだけ実現していない。実際に建った物件がないのだ。環境問題で規制が締まり、大型案件のうち「本当に金を入れる」最終投資決定(FID)まで行ったところがまだ一つもない。そんな中、有力候補が現れた。Project Kilby。あの有名なスターゲイトの2倍の規模で、参加企業の格が違い、FIDまで数ヶ月。Doombergは、これが本当に建てば米国最大の産油地パーミアン盆地の石油とガスの流れがどう変わるかを計算していく。",
+    ko: "AI 데이터센터의 전기 문제에 대한 Doomberg의 오래된 답은 이렇다. '발전소를 기다리지 말고, 가스전 옆에 데이터센터를 지어라.' 한쪽 문으로 천연가스가 들어가고 반대쪽 문으로 데이터가 나오는 건물. 전력망에 연결도 안 하니 몇 년씩 걸리는 송전선 인허가도 필요 없다. 2년 전 이 그림을 그렸고, 논리는 다 맞아떨어졌는데 딱 하나가 안 됐다. 실제로 지어진 게 없다. 환경 문제로 규제가 조여지면서 대형 프로젝트 중 '진짜 돈을 넣겠다'는 최종투자결정(FID)까지 간 곳이 아직 하나도 없는 것. 그 와중에 유력 후보가 나타났다. Project Kilby. 그 유명한 스타게이트의 두 배 크기에, 참여 기업들의 급이 다르고, FID까지 몇 달 남았다. Doomberg는 이게 진짜 지어지면 미국 최대 산유지인 퍼미안 분지의 기름과 가스 흐름이 어떻게 바뀌는지 계산해 들어간다."
   },
   why: {
     en: "The bottleneck was never the gas or the turbines. It is the permit and the FID. Kilby is the first real test of whether off-grid compute is a thesis or a building.",
@@ -194,9 +194,9 @@ const ITEMS = [
     ko: "세계에서 가장 돈 잘 버는 거래소가 파는 것: 규제당국이 줄이고 싶어하는 상품"
   },
   gist: {
-    en: "Rubinstein opens with a trading guru who signed up over 400,000 students in a decade and collected $63M in course fees. India's regulator SEBI dug into those students' brokerage accounts and found two thirds lost money in the six months after graduating. The guru lost about $450,000 of his own over 20 months. That is the small version of the big number: SEBI's wider review puts 91% of equity derivatives participants in the red, with 9.6 million individuals losing $11B in the year to March 2025 and $30B over four years. Retail keeps coming anyway. NSE accounts went from 39.9 million to 129.1 million in five years, options volume has compounded at 47.5% a year for a decade, and SEBI is now fighting back with contract-size floors, fewer weekly expiries, upfront premiums, a higher transaction tax, and an AI tool named Sudarshan that hunts down finfluencer posts. Sitting on top of all of it is NSE: 72% of index options, essentially all single-stock options, 51% of global equity derivatives contracts, and roughly 60% of its revenue from options. It starts marketing a $3B IPO next week.",
-    ja: "ルビンスタインは、10年で40万人超の受講生を集め受講料6,300万ドルを稼いだインドのトレーディング・グルの話から始める。規制当局SEBIが受講生の証券口座を調べると、修了後6ヶ月で3分の2が損をしていた。当のグル本人は20ヶ月で個人口座から約45万ドルを失った。これは大きな数字の縮図だ。SEBIの広範な調査は株式デリバティブ参加者の91%が損失と結論づけ、2025年3月期に960万人が110億ドル、4年累計で300億ドルを失った。それでも個人は入り続ける。NSEの口座は5年で3,990万から1億2,910万に増え、オプション取引は10年間年率47.5%で複利成長した。SEBIは契約最低単位の引き上げ、週次限月の削減、プレミアムの前払い、取引税の引き上げ、そしてフィンフルエンサーの投稿を狩るAIツール「Sudarshan」まで動員して反撃中だ。この盤面の上にNSEが座っている。指数オプションの72%、個別株オプションの事実上100%、世界の株式デリバティブ契約数の51%、そして収益の約60%がオプションから来る。来週、30億ドル規模のIPOのマーケティングを開始する。",
-    ko: "루빈스타인은 10년간 40만 명 넘는 수강생을 모아 수강료 6,300만 달러를 걷은 인도 트레이딩 구루 이야기로 시작한다. 인도 규제당국 SEBI가 그 수강생들의 증권계좌를 열어보니, 수료 후 6개월간 3분의 2가 돈을 잃었다. 정작 구루 본인은 20개월간 개인 계좌에서 약 45만 달러를 날렸다. 이건 큰 숫자의 축소판이다. SEBI의 광범위 조사는 주식 파생상품 참가자의 91%가 손실이라고 결론냈고, 2025년 3월 결산 기준 960만 명이 110억 달러를, 4년 누적으로 300억 달러를 잃었다. 그런데도 개인은 계속 들어온다. NSE 계좌는 5년 만에 3,990만 개에서 1억 2,910만 개로 늘었고, 옵션 거래는 10년간 연 47.5%로 복리 성장했다. SEBI는 계약 최소단위 상향, 주간 만기 축소, 프리미엄 선납, 거래세 인상, 그리고 핀플루언서 게시물을 잡아내는 AI 도구 'Sudarshan'까지 동원해 반격 중이다. 이 판 위에 NSE가 앉아 있다. 지수옵션 72%, 개별주식옵션 사실상 100%, 전 세계 주식 파생 계약 수의 51%, 그리고 매출의 약 60%가 옵션에서 나온다. 다음 주 30억 달러 규모 IPO 마케팅을 시작한다."
+    en: "India had a trading guru who sold courses to 400,000 students and collected $63M in fees. When the regulator opened the students' actual brokerage accounts, two-thirds had lost money after graduating, and the guru himself was down $450,000 in his own account. Funny anecdote, but it's the whole Indian market in miniature: the regulator's own study found 91% of retail derivatives traders lose money, with $11B evaporating in a single year. They keep coming anyway. Brokerage accounts went from 40 million to 130 million in five years. The house running this casino is the National Stock Exchange of India: half of all equity derivatives contracts traded on Earth go through this one venue, and 60% of its revenue comes from it. The regulator is throwing everything at shrinking the game, and that exact house starts marketing a $3B IPO next week. The question: would you buy the world's most profitable exchange, built on a product its regulator wants less of?",
+    ja: "インドに、40万人に株式講座を売って6,300万ドルを稼いだトレーディングの導師がいた。規制当局が受講生の実際の口座を開けてみると、3分の2が修了後に損をしており、当の導師本人も自分の口座で45万ドルを溶かしていた。笑い話のようだが、これはインド市場全体の縮図だ。当局の調査では、オプションなどデリバティブをやる個人の91%が損失で、1年に110億ドルが蒸発する。それでも人は入り続ける。証券口座数は5年で4千万から1億3千万に増えた。この賭場の胴元がインド国立証券取引所(NSE)だ。世界で取引される株式デリバティブ契約の半分がこの一箇所を通り、会社の収益の60%がここから出る。当局は場を縮めようと規制を注ぎ込んでいる最中で、まさにその胴元が来週30億ドル規模の上場に乗り出す。規制当局が減らしたい商品の上に建つ、世界で最も儲かる取引所を買うか、という問いだ。",
+    ko: "인도에 40만 명한테 주식 강의를 팔아 6,300만 달러를 번 트레이딩 구루가 있었다. 규제당국이 수강생들의 실제 계좌를 열어봤더니 3분의 2가 수료 후에 돈을 잃었고, 정작 구루 본인도 자기 계좌에서 45만 달러를 날린 상태였다. 웃긴 일화 같지만 이게 인도 시장 전체의 축소판이다. 당국 조사로는 인도에서 옵션 같은 파생상품을 하는 개인의 91%가 손실이고, 1년에 110억 달러가 증발한다. 그런데도 사람들은 계속 들어온다. 증권 계좌 수가 5년 만에 4천만에서 1억 3천만으로 늘었다. 이 도박판의 하우스가 인도국립증권거래소(NSE)다. 세계에서 거래되는 주식 파생상품 계약의 절반이 이 한 곳에서 돌고, 회사 매출의 60%가 여기서 나온다. 당국은 판을 줄이려고 규제를 쏟아붓는 중인데, 바로 그 하우스가 다음 주 30억 달러 규모 상장에 나선다. 규제당국이 줄이고 싶어하는 상품 위에 세워진, 세계에서 가장 수익성 좋은 거래소를 사겠냐는 질문이다."
   },
   why: {
     en: "Capital does not only flow toward AI infrastructure, it burns somewhere too. Half the world's equity derivatives now change hands in India, 91% of the people doing it lose, and the house is going public.",
@@ -215,17 +215,17 @@ const ITEMS = [
   sourceLang: "EN",
   category: "investor",
   hot: true,
-  cover: { from: "#0F5132", to: "#1A7F4B", label: "BE" },
-  tags: ["POWER", "RARE EARTH", "BE"],
+  cover: { from: "#0F5132", to: "#1A7F4B", label: "BLOOM ENERGY" },
+  tags: ["POWER", "RARE EARTH", "BLOOM ENERGY"],
   title: {
     en: "The scandium problem: a short seller calls Bloom Energy's China bluff",
     ja: "スカンジウムという急所: 空売りレポートがブルームエナジーの「脱中国」を撃った",
     ko: "스칸듐이라는 급소: 공매도 리포트가 블룸에너지의 '탈중국'을 겨눴다"
   },
   gist: {
-    en: "Gas turbines are backlogged for years, so AI datacenters went hunting for another way to turn US natural gas into electricity. Bloom Energy's solid oxide fuel cells stepped into that gap. Doomberg had covered the company positively but flagged one oddity: Bloom claimed essentially no China exposure despite depending on rare earths. Short seller Hunterbrook built a report around exactly that, and the stock fell as much as 12%. The claim is that Bloom relies on Chinese scandium, traced through four China-linked supply routes, and that meeting its growth plan would require multiples of global scandium supply, leaving nothing for defense. Doomberg weighs which side has the better case.",
-    ja: "ガスタービンの受注残が数年分に及ぶ中、AIデータセンターは米国の天然ガスを電気に変える別の方法を探しに出た。その隙間に入ったのがブルームエナジーの固体酸化物燃料電池だ。Doombergはこの会社を概ね好意的に扱ってきたが、一つだけ奇妙だった。レアアースに依存しながら、中国サプライチェーンのリスクは事実上ないと主張していた点だ。空売りレポートを出したHunterbrookがまさにそこを突き、株価は場中最大12%下げた。要旨は、ブルームが中国産スカンジウムに依存し、中国につながる4つの供給経路が追跡され、成長計画を満たすには世界のスカンジウム供給量の数倍が必要で、防衛産業の取り分が残らないというもの。Doombergはどちらの論理がより固いかを検討する。",
-    ko: "가스터빈 대기 물량이 몇 년치라, AI 데이터센터는 미국 천연가스를 전기로 바꿀 다른 방법을 찾아 나섰다. 그 빈틈에 들어온 게 블룸에너지의 고체산화물 연료전지다. Doomberg는 이 회사를 대체로 긍정적으로 다뤘지만 하나가 이상했다. 희토류에 의존하면서도 중국 공급망 리스크가 사실상 없다고 주장한 점이다. 공매도 리포트를 낸 Hunterbrook이 정확히 그 지점을 파고들었고, 주가는 장중 최대 12% 빠졌다. 요지는 블룸이 중국산 스칸듐에 의존하며 중국 연결 경로 네 개가 추적됐고, 성장 계획을 채우려면 전 세계 스칸듐 공급량의 몇 배가 필요해 방위산업 몫이 남지 않는다는 것. Doomberg는 어느 쪽 논리가 더 단단한지를 따진다."
+    en: "Want to build an AI datacenter? Gas turbines have a multi-year waiting list. Bloom Energy slipped into that gap: it makes fuel cells that turn natural gas into electricity with no turbine at all, and the stock soared. Doomberg has covered the company favorably, but one thing kept nagging: the fuel cells need rare earth metals, yet the company insisted it had essentially no China exposure. Short seller Hunterbrook hit exactly that spot. Its report claims the key ingredient, scandium, is effectively a Chinese product, traces four supply routes leading back to China, and calculates that Bloom's growth plan would require several times the world's entire scandium output. The stock fell 12% intraday. Doomberg goes through both sides' arguments to see whose logic actually holds.",
+    ja: "AIデータセンターを建てたくても、ガスタービンは注文して数年待ちだ。その隙間に入り込んだのがブルームエナジー。タービンなしで天然ガスを電気に変える燃料電池を作っており、おかげで株価は飛んだ。Doombergもこの会社を好意的に見てきたが、一つだけ引っかかっていた。この燃料電池にはレアアースが入るのに、会社は「中国リスクなし」と主張してきたことだ。空売り機関Hunterbrookがまさにそこを撃った。核心材料のスカンジウムが事実上の中国産で、中国につながる供給経路を4つ追跡し、会社の成長計画どおりなら世界のスカンジウム生産量の数倍が必要になるという。レポートが出ると株価は場中12%下げた。Doombergは会社側と空売り側、どちらの論理がより固いかを一つずつ検証する。",
+    ko: "AI 데이터센터를 짓고 싶어도 가스터빈은 주문하면 몇 년을 기다려야 한다. 그 빈틈을 파고든 게 블룸에너지다. 터빈 없이 천연가스를 전기로 바꾸는 연료전지를 만드는데, 덕분에 주가가 날았다. Doomberg도 이 회사를 좋게 봐왔는데 한 가지가 계속 걸렸다. 이 연료전지에는 희토류가 들어가는데, 회사는 '중국 리스크 없음'이라고 주장해온 것. 공매도 기관 Hunterbrook이 정확히 그 지점을 때렸다. 핵심 재료인 스칸듐이 사실상 중국산이고, 중국으로 이어지는 공급 경로 네 개를 추적했으며, 회사의 성장 계획대로라면 전 세계 스칸듐 생산량의 몇 배가 필요하다는 것. 보고서가 나오자 주가는 장중 12% 빠졌다. Doomberg는 회사 말과 공매도 쪽 말 중 어느 쪽 논리가 더 단단한지 하나씩 뜯어본다."
   },
   why: {
     en: "The AI power bottleneck just moved upstream. It is no longer turbines, it is the metals inside the thing that replaces turbines.",
@@ -244,17 +244,17 @@ const ITEMS = [
   sourceLang: "EN",
   category: "investor",
   hot: true,
-  cover: { from: "#B7791F", to: "#D69E2E", label: "STRC" },
-  tags: ["BITCOIN", "MSTR", "FINANCIAL ENGINEERING"],
+  cover: { from: "#B7791F", to: "#D69E2E", label: "STRATEGY" },
+  tags: ["BITCOIN", "STRATEGY", "FINANCIAL ENGINEERING"],
   title: {
     en: "Where the money went: Saylor blames AI for bitcoin's slide",
     ja: "カネはどこへ行ったのか: セイラーがビットコイン下落の犯人にAIを名指し",
     ko: "돈은 어디로 갔나: 세일러가 비트코인 하락의 범인으로 AI를 지목하다"
   },
   gist: {
-    en: "Bitcoin is down roughly 30% this year while markets rise, and has lost about half its value since peaking near $126,000 last October. Michael Saylor's own explanation is notable: he points to the lingering Gulf War, tighter monetary policy, and hundreds of billions of dollars pulled into the AI trade by deals like Google's and SpaceX's. Crypto stopped being the hot thing because AI became it. Rubinstein then turns to the funding structure behind Strategy's bitcoin buying, in particular Stretch (STRC), a security issued last July that sits above common equity and pays a variable dividend managed to hold a $100 par. Strategy has issued $10.5B of it alongside $5.0B of other preferred. His question is whether the credit strategy underneath is sustainable.",
-    ja: "市場は上がるのにビットコインは今年約30%下落し、昨年10月の12万6千ドルの高値から半値近くまで落ちた。注目すべきはマイケル・セイラー本人の説明だ。彼は長引く湾岸戦争、引き締めに転じた金融政策、そしてグーグルやスペースXの案件のようなものがAIトレードへ吸い込んだ数千億ドルを理由に挙げる。クリプトが熱くなくなったのではなく、AIが熱いものになったという話だ。続いてルビンスタインは、ストラテジーのビットコイン買いを支える資金構造、特に昨年7月に発行されたStretch(STRC)を掘る。普通株より優先で、株価100ドルを維持するよう配当率を調整する変動配当証券だ。ストラテジーはこれを105億ドル分、他の優先株50億ドル分とともに発行した。問いは、その下に敷かれた信用戦略が持続可能かどうかだ。",
-    ko: "시장은 오르는데 비트코인은 올해 약 30% 하락했고, 작년 10월 12만 6천 달러 고점 대비 절반 가까이 빠졌다. 주목할 건 마이클 세일러 본인의 설명이다. 그는 계속되는 걸프전, 긴축으로 돌아선 통화정책, 그리고 구글과 스페이스X 딜 같은 것들이 AI 트레이드로 빨아들인 수천억 달러를 이유로 든다. 크립토가 뜨겁지 않게 된 게 아니라, AI가 뜨거운 것이 됐다는 얘기다. 이어 루빈스타인은 스트래티지의 비트코인 매수를 떠받치는 자금 구조, 특히 작년 7월 발행된 Stretch(STRC)를 파고든다. 보통주보다 선순위이고, 주가 100달러를 유지하도록 배당률을 조정하는 변동배당 증권이다. 스트래티지는 이걸 105억 달러어치, 다른 우선주 50억 달러어치와 함께 발행했다. 질문은 그 아래 깔린 신용 전략이 지속 가능하냐는 것."
+    en: "Something odd is happening: stocks keep climbing while bitcoin is down 30% this year and roughly half off its peak. More interesting is the explanation from Michael Saylor, the man who bet his entire company on bitcoin. His culprit: AI. Mega-deals like Google's and SpaceX's have vacuumed up hundreds of billions of dollars, money that would once have flowed into crypto. Crypto didn't cool off; something hotter showed up. Rubinstein then goes a level deeper. Saylor's company, Strategy, buys bitcoin with borrowed money and specially designed securities, the flagship being Stretch: a security whose dividend is continuously adjusted to keep its price pinned at $100. It has raised $10.5B this way. With bitcoin still sliding, the question of this piece is whether that elaborate funding tower can stay standing.",
+    ja: "奇妙なことが起きている。株式市場は上がるのにビットコインだけ今年30%下げ、高値からはほぼ半値だ。さらに面白いのは、ビットコインに会社ごと賭けたマイケル・セイラー本人の釈明である。彼は犯人としてAIを名指しした。グーグルやスペースXのような超大型案件が数千億ドルを吸い込み、本来クリプトに来たはずの金がAIへ行ったというのだ。クリプトが冷めたのではなく、もっと熱いものが現れたという話だ。ルビンスタインはここから一歩踏み込む。セイラーの会社ストラテジーは借金と特殊な証券を発行してビットコインを買い集める構造で、その中核商品が「株価100ドルを維持するよう配当を調整し続ける」Stretchという証券だ。これだけで105億ドルを調達した。ビットコインが下がり続ける中、この精巧な資金調達の塔が持ちこたえられる構造なのかが本稿の問いだ。",
+    ko: "이상한 일이 벌어지고 있다. 주식시장은 오르는데 비트코인만 올해 30% 빠졌고, 고점 대비로는 반토막이다. 더 재밌는 건 비트코인에 회사 전체를 베팅한 마이클 세일러 본인의 해명이다. 그는 범인으로 AI를 지목했다. 구글, 스페이스X 같은 초대형 딜들이 수천억 달러를 빨아들이면서, 원래 크립토로 왔을 돈이 AI로 갔다는 것. 크립토가 식은 게 아니라 더 뜨거운 게 나타났다는 얘기다. 루빈스타인은 여기서 한 발 더 들어간다. 세일러의 회사 스트래티지는 빚과 특수 증권을 찍어 비트코인을 사 모으는 구조인데, 그 핵심 상품이 '주가 100달러를 유지하도록 배당을 계속 조절해주는' Stretch라는 증권이다. 이걸로만 105억 달러를 조달했다. 비트코인이 계속 빠지는 상황에서 이 정교한 자금 조달 탑이 버틸 수 있는 구조인지가 이 글의 질문이다."
   },
   why: {
     en: "The AI buildout is not just absorbing capital, it is draining it from somewhere. Saylor is naming where.",
@@ -281,9 +281,9 @@ const ITEMS = [
     ko: "AI가 소프트웨어를 먹자 부채가 흔들렸다: 마크스가 본 사모대출 균열"
   },
   gist: {
-    en: "Private equity concluded years ago that market-leading software companies, with recurring subscription cash flows and durable moats, were safe to lend against. Direct lenders agreed, and software grew to roughly 20-30% of direct lending versus 4-5% of high yield bonds, often at ~20x EBITDA and high leverage. Then AI made writing code far cheaper. Marks pins the tipping point at early February 2026: investors suddenly noticed, redemptions hit semi-liquid vehicles, limits on withdrawals raised questions about NAVs, and BDCs traded to wider discounts. His firm's internal read is that the software borrowers are mostly performing fine and the disruption is sentiment- and flow-driven rather than actual credit deterioration. But the equity cushion beneath the lenders has thinned. Marks maps the whole thing onto the standard bubble pattern he has written about for decades: something new, a grain of truth, early winners, envy, then latecomers with low standards.",
-    ja: "プライベートエクイティはずっと前に結論を出していた。サブスクの反復キャッシュフローと堅固な堀を持つ大手ソフトウェア企業には、金を貸しても安全だと。ダイレクトレンダーも同意し、その結果ソフトウェアはハイイールド債では4〜5%なのに対し、ダイレクトレンディングでは20〜30%まで膨らんだ。多くはEBITDA20倍、高レバレッジで。そこへAIがコード作成のコストを急激に下げた。マークスは転換点を2026年2月初旬とみる。投資家が突然気づき、半流動性商品に解約が殺到し、解約制限がかかるとNAVの正確性に疑問が付き、BDCはより大きなディスカウントで取引された。オークツリー内部の判断は、ソフトウェアの借り手の大半は実際には健全で、今回の混乱は信用悪化ではなく心理と資金フローによるものだというもの。ただし貸し手の下のエクイティ・クッションは薄くなった。マークスはこの展開を、自身が数十年書いてきたバブルのパターンにそのまま当てはめる。新しいもの、一粒の真実、初期の勝者、嫉妬、そして基準の下がった後追い投資家たち。",
-    ko: "사모펀드는 오래전에 결론을 내렸다. 구독 기반 반복 현금흐름과 견고한 해자를 가진 선도 소프트웨어 기업은 돈을 빌려줘도 안전하다고. 다이렉트 렌더들도 동의했고, 그 결과 소프트웨어는 하이일드 채권에서 4~5%인 반면 다이렉트 렌딩에서는 20~30%까지 커졌다. 대개 EBITDA 20배, 높은 레버리지로. 그러다 AI가 코드 작성 비용을 급격히 낮췄다. 마크스는 전환점을 2026년 2월 초로 본다. 투자자들이 갑자기 알아차렸고, 반유동성 상품에 환매가 몰렸고, 환매 제한이 걸리자 NAV의 정확성에 의문이 붙었고, BDC는 더 큰 할인에 거래됐다. 오크트리 내부 판단은 소프트웨어 차주 대부분이 실제로는 멀쩡하며, 이번 혼란은 신용 악화가 아니라 심리와 자금 흐름 때문이라는 것. 다만 대주 아래 깔린 자기자본 쿠션은 얇아졌다. 마크스는 이 전개를 자신이 수십 년간 써온 버블 패턴에 그대로 대입한다. 새로운 것, 한 줌의 진실, 초기 승자, 질투, 그리고 기준이 낮아진 뒷북 투자자들."
+    en: "A Howard Marks memo, the kind all of Wall Street reads. This one's subject: the first credit accident caused by AI. The backstory: for a decade, private equity treated lending to software companies as the safest trade around. Subscription revenue arrives like clockwork, so how could they fail? Software grew to 20-30% of the private lending market on that logic. Then AI made writing code dramatically cheaper, and suddenly a question appeared: do these companies still have a moat? In February, investors all asked it at once. Withdrawal requests piled up, funds gated redemptions, and the gating made everyone more nervous. Marks's diagnosis is calmer than the panic: most of the borrowers are actually fine, and this is a sentiment problem, not a solvency one. But he notes the whole sequence matches, beat for beat, the bubble pattern he's been writing about for decades: something new, a grain of truth, early winners, envy, then latecomers with low standards.",
+    ja: "ウォール街全体が読むハワード・マークスのメモ。今回のテーマは「AIが起こした最初の信用事故」だ。背景はこうだ。この10年、プライベートエクイティはソフトウェア企業への融資を最も安全な商売とみなしてきた。サブスク収入が着実に入る会社が潰れるはずがないという論理で、銀行外融資(プライベートクレジット)市場でソフトの比率は20〜30%まで膨らんだ。ところがAIがコードを書くコストを急落させると、突然問いが生まれた。「この会社たちの堀、まだあるのか?」今年2月、投資家が一斉にこの問いを思い出し、資金を引き出す要請が殺到すると、ファンドは解約を制限し、制限するほど不安が増す悪循環が回った。マークスの診断は意外に冷静だ。借り手の大半はまだ健全で、今回の騒動は実際の不良化ではなく心理の問題だという。ただし彼は、この展開が自分が数十年書いてきたバブルの公式と正確に同じ形だと指摘する。新しいもの、一粒の真実、初期の勝者、嫉妬、そして基準の低い後追い投資家たち。",
+    ko: "월가 전체가 읽는 하워드 막스의 메모. 이번 주제는 'AI가 일으킨 첫 신용 사고'다. 배경은 이렇다. 지난 10년간 사모펀드들은 소프트웨어 회사에 돈을 빌려주는 걸 가장 안전한 장사로 여겼다. 구독료가 따박따박 들어오는 회사가 망할 리 없다는 논리로, 은행 밖 대출(사모대출) 시장에서 소프트웨어 비중이 20~30%까지 커졌다. 그런데 AI가 코드 짜는 비용을 뚝 떨어뜨리자 갑자기 질문이 생겼다. '이 회사들의 해자, 아직 있긴 한가?' 올해 2월 투자자들이 일제히 이 질문을 떠올렸고, 돈을 빼겠다는 요청이 몰리자 펀드들이 환매를 막았고, 막으니까 더 불안해지는 악순환이 돌았다. 막스의 진단은 의외로 차분하다. 빌려간 회사들 대부분은 아직 멀쩡하고, 이번 소동은 실제 부실이 아니라 심리의 문제라는 것. 다만 그는 이 전개가 자신이 수십 년간 써온 버블의 공식과 정확히 같은 모양이라고 짚는다. 새로운 것, 한 줌의 진실, 초기 승자, 질투, 그리고 기준 낮은 뒷북 투자자들."
   },
   why: {
     en: "This is the first big memo treating AI not as a stock story but as a credit event. If AI can rewrite what a company is worth, it rewrites what its debt is worth.",
@@ -301,19 +301,19 @@ const ITEMS = [
   sourceLang: "EN",
   category: "investor",
   hot: true,
-  cover: { from: "#2E5BFF", to: "#8A5BFF", label: "NBIS" },
+  cover: { from: "#2E5BFF", to: "#8A5BFF", label: "NEBIUS" },
   logo: "nebius.com",
   avatarImg: "serenity.jpg",
-  tags: ["NEOCLOUD", "NBIS", "COMPUTE LTA"],
+  tags: ["NEOCLOUD", "NEBIUS", "COMPUTE LTA"],
   title: {
     en: "A $1B deal that dropped the stock: Nebius and the counterparty question",
     ja: "10億ドル契約で株価は-5%: ネビウスと「相手方リスク」",
     ko: "10억 달러 계약에 주가는 -5%: 네비우스와 '상대방 리스크'"
   },
   gist: {
-    en: "Nebius signed a $1B+ compute agreement giving Reflection AI access to GB300 chips through 2029, and the stock fell about 5% on the news. Serenity's read on why: the buyer. Reflection, which earlier signed a separate multi-billion agreement with SPCX, is an Nvidia-backed lab that may not yet have the funds to actually execute these long-term agreements, unlike a META or MSFT. Still, the long-term view stays positive: customer diversification has always been one of the core strengths of the Nebius story.",
-    ja: "ネビウスがReflection AIに2029年までGB300へのアクセスを提供する10億ドル超のコンピュート契約を結んだが、株価は発表に約-5%。Serenityの解釈は「契約相手」の問題だ。ReflectionはすでにSPCXとも数十億ドルの契約を結んだエヌビディア系の出資を受ける新興ラボだが、METAやMSFTと違い、この長期契約(LTA)を実際に履行する資金がまだない可能性がある。ただし顧客の多様化はネビウス・ストーリーの中核的な強みであり、長期的にはポジティブという評価。",
-    ko: "네비우스가 Reflection AI에 2029년까지 GB300 접근을 제공하는 10억 달러 이상 컴퓨트 계약을 맺었는데, 주가는 발표에 약 -5%. Serenity의 해석은 '계약 상대' 문제다. Reflection은 앞서 SPCX와도 수십억 달러 계약을 맺은 엔비디아 계열 투자를 받은 신생 랩인데, META나 MSFT와 달리 이 장기계약(LTA)을 실제 이행할 자금이 아직 없을 수 있다는 것. 다만 고객 다변화는 네비우스 논리의 핵심 강점이라, 장기적으로는 긍정적이라는 평가."
+    en: "GPU cloud company Nebius announced a $1B+ deal giving a startup called Reflection AI access to Nvidia's newest chips through 2029. A headline win like that usually lifts the stock; instead it fell 5%. Why? Serenity's answer: look at who's paying. Reflection is promising but young, and may not actually have that kind of money yet. When Microsoft or Meta is the customer, the contract value is basically revenue. When a startup is the customer, it's closer to 'money we'll get if things go well.' The market has started pricing that difference. Serenity stays positive long-term, though: not depending on any single giant customer is precisely Nebius's strength.",
+    ja: "GPUクラウド企業ネビウスが、Reflection AIというスタートアップに2029年まで最新エヌビディアチップを使わせる10億ドル超の契約を発表した。普通この手の大型受注は好材料だが、株価は5%下げた。なぜか。Serenityの答えは「金を払う側を見ろ」だ。Reflectionは有望だが、まだそれだけの資金がない可能性のある若いラボだ。マイクロソフトやメタが顧客なら契約額はほぼ売上だが、スタートアップが顧客なら契約額は「うまくいけば入る金」に近い。市場がその差を価格に織り込み始めたのだ。ただしSerenityは長期的にはポジティブ評価を維持する。特定の大口顧客に依存しない顧客の分散こそがネビウスの強みだからだ。",
+    ko: "GPU 클라우드 회사 네비우스가 Reflection AI라는 스타트업에 2029년까지 최신 엔비디아 칩을 쓰게 해주는 10억 달러짜리 계약을 발표했다. 보통 이런 대형 수주는 호재인데 주가는 5% 빠졌다. 왜? Serenity의 답은 '돈 주는 쪽을 봐라'다. Reflection은 유망하긴 하지만 아직 그만한 돈이 없을 수 있는 신생 랩이다. 마이크로소프트나 메타가 고객이면 계약 금액이 곧 매출이지만, 스타트업이 고객이면 계약 금액은 '잘 되면 받을 돈'에 가깝다. 시장이 이 차이를 가격에 반영하기 시작한 것. 다만 Serenity는 장기적으론 긍정 평가를 유지한다. 특정 대형 고객에 목매지 않는 고객 다변화 자체가 네비우스의 강점이라서다."
   },
   why: {
     en: "The market is starting to price neocloud LTAs by the buyer's balance sheet, not the headline number.",
@@ -334,16 +334,16 @@ const ITEMS = [
   cover: { from: "#7A4DFF", to: "#B44DFF", label: "OPTICS" },
   logo: "ao-inc.com",
   avatarImg: "serenity.jpg",
-  tags: ["OPTICS", "TSEM", "AAOI"],
+  tags: ["OPTICS", "TOWER SEMI", "APPLIED OPTO"],
   title: {
     en: "Japan and Texas are now funding the optics layer",
     ja: "日本とテキサスが光通信レイヤーに資金を入れ始めた",
     ko: "일본과 텍사스가 광통신 캐파에 돈을 대기 시작했다"
   },
   gist: {
-    en: "Two capacity expansions in one day, both government-backed. Tower Semi, with support from the Japanese government, is expanding 300mm Silicon Photonics (SiPho), SiGe, and advanced packaging, targeting $3.6B revenue and $1.2B net profit in 2028, roughly a 23x 2028 forward P/E at a ~$28B market cap. AAOI broke ground on ~400,000 sq ft of manufacturing in Texas for 800G/1.6T optics, backed by the city plus $20.85M in earlier state subsidies. One caveat Serenity flags: the AAOI news is the commencement of previously announced plans, not a new plan.",
-    ja: "一日に光通信の能力拡張発表が二つ、どちらも政府が後ろにいる。タワーセミ(TSEM)は日本政府の支援で300mmシリコンフォトニクス(SiPho)、SiGe、先端パッケージングを拡張し、2028年に売上36億ドル、純利益12億ドルを目標(時価総額約280億ドル基準で2028年予想PER約23倍)。AAOIはテキサスで約40万平方フィートの800G/1.6T光モジュール生産施設を着工、市の支援に加え先に受けた州補助金2,085万ドルも。ただしAAOIの件は既発表計画の「着工」であり、完全に新しい材料ではないという但し書き。",
-    ko: "하루에 광통신 캐파 확장 발표가 둘, 둘 다 정부가 뒤에 있다. 타워세미(TSEM)는 일본 정부 지원으로 300mm 실리콘 포토닉스(SiPho)·SiGe·첨단 패키징을 확장, 2028년 매출 36억 달러, 순이익 12억 달러 목표(시총 약 280억 달러 기준 2028 선행 P/E 약 23배). AAOI는 텍사스에서 약 40만 평방피트 규모의 800G/1.6T 광모듈 생산시설 착공, 시 정부 지원에 앞서 받은 주 보조금 2,085만 달러까지. 단, AAOI 건은 기존 발표 계획의 '착공'이라 완전히 새로운 재료는 아니라는 단서."
+    en: "Two expansion announcements in one day for the optical gear that lets chips inside AI datacenters talk to each other, and both have governments writing checks. Israeli foundry Tower Semi, backed by the Japanese government, is expanding production of photonics chips that move data with light, with 2028 profit targets that look attractive against today's market cap. America's Applied Opto broke ground on a Texas factory the size of five football fields for optical modules, funded by the city plus state subsidies. One caveat: the Applied Opto news is the groundbreaking of a previously announced plan, not a new one. Serenity's point is the pattern, not the individual names: after chips, governments are now reaching down to the component level of AI infrastructure with subsidies.",
+    ja: "AIデータセンターの中でチップ同士がデータをやり取りする配線、つまり光通信設備の増設発表が一日に2件出た。共通点は政府が金を出すことだ。イスラエルのファウンドリ、タワーセミは日本政府の支援を受けて光でデータを運ぶフォトニクスチップの生産を拡大し、2028年までに現在の時価総額に対してかなり魅力的な利益目標を掲げた。米国のアプライド・オプトはテキサスでサッカー場5個分の光モジュール工場を着工し、市の支援に州の補助金まで乗った。但し書きを一つ: アプライド・オプトの件は以前発表した計画の「起工」であり、完全に新しいニュースではない。Serenityが見るポイントは個別企業よりパターンだ。半導体に続いて光通信まで、各国政府がAIインフラの部品レベルまで降りてきて補助金を出し始めたということ。",
+    ko: "AI 데이터센터 안에서 칩들끼리 데이터를 주고받는 배선, 즉 광통신 설비의 증설 발표가 하루에 두 건 나왔다. 공통점은 정부가 돈을 댄다는 것. 이스라엘 파운드리 타워세미는 일본 정부 지원을 받아 빛으로 데이터를 옮기는 포토닉스 칩 생산을 늘리고, 2028년까지 지금 시가총액 대비 꽤 매력적인 이익 목표를 걸었다. 미국의 어플라이드 옵토는 텍사스에서 축구장 5개 크기의 광모듈 공장을 착공했는데, 시 정부 지원에 주 보조금까지 얹었다. 단서 하나: 어플라이드 옵토 건은 예전에 발표한 계획의 '첫 삽'이라 완전히 새로운 뉴스는 아니다. Serenity가 보는 포인트는 개별 회사보다 패턴이다. 반도체에 이어 광통신까지, 각국 정부가 AI 인프라의 부품 단위까지 내려와 보조금을 대기 시작했다는 것."
   },
   why: {
     en: "Optics is the interconnect layer of the AI buildout, and governments from Japan to Texas are now subsidizing it.",
@@ -361,7 +361,7 @@ const ITEMS = [
   sourceLang: "KO",
   category: "investor",
   hot: true,
-  cover: { from: "#0BA5EC", to: "#2E5BFF", label: "HYNIX" },
+  cover: { from: "#0BA5EC", to: "#2E5BFF", label: "SK HYNIX" },
   logo: "skhynix.com",
   avatarImg: "meru.png",
   tags: ["MACRO", "SK HYNIX", "KOREA DISCOUNT"],
@@ -371,9 +371,9 @@ const ITEMS = [
     ko: "같은 주식, 두 가격: SK하이닉스의 뉴욕 프리미엄 49%"
   },
   gist: {
-    en: "June CPI fell 0.4% month-over-month, the steepest drop in six years, driven by a 9.7% gasoline decline after the June 17 US-Iran ceasefire. But Meru flags the catch: the survey window closed before strikes resumed and the coastal blockade returned, and Brent has since jumped over 20% in two weeks. Meanwhile SK Hynix's freshly listed ADR surged 27% in a day on a Barclays $330 target, leaving the same share priced 49% higher in New York than in Seoul. Textbook arbitrage, except conversion is still restricted post-listing, there is almost no ADR float to short, and the FX and time-zone mismatch adds risk. His call: the gap won't be arbitraged away; Seoul will simply chase New York the next morning.",
-    ja: "6月CPIが前月比-0.4%と6年ぶりの大幅下落。6月17日の停戦によるガソリン-9.7%などエネルギー急落の影響だ。ただしメルが指摘する罠: 調査期間の後に米国の攻撃再開と沿岸封鎖でブレント原油は2週間で20%以上反発している。一方SKハイニックスのADRはバークレイズの目標株価330ドルで一日27%急騰し、ソウルの原株に対し49%のプレミアムが形成された。教科書的な裁定機会だが、上場直後の転換制限、空売りする流通量の不足、為替と時差のリスクで実行は難しいという診断。結論: プレミアムは裁定では縮まらず、ソウルが翌朝ニューヨークを追いかける構造が続く。",
-    ko: "6월 CPI가 전월 대비 -0.4%로 6년 만의 최대 하락. 6월 17일 휴전에 따른 휘발유 -9.7% 등 에너지 급락 영향이다. 단, 메르가 짚는 함정: 조사기간 이후 미국의 타격 재개와 해안 봉쇄로 브렌트유는 2주 만에 20% 이상 반등한 상태다. 한편 SK하이닉스 ADR은 바클레이스 목표가 330달러에 하루 27% 급등, 서울 본주 대비 49% 프리미엄이 형성됐다. 교과서적 차익거래 기회지만 상장 직후 전환 제한, 공매도할 유통물량 부족, 환·시차 위험으로 실행이 어렵다는 진단. 결론: 프리미엄은 차익거래로 좁혀지지 않고, 서울이 다음 날 뉴욕을 따라가는 구조가 계속된다."
+    en: "US inflation just posted its biggest drop in six years, but Meru flags a trap: right after the survey window closed, the Middle East flared up again and oil rebounded more than 20% in two weeks. The pretty inflation number may already be stale. Then the main event: SK Hynix's freshly listed ADR jumped 27% in a single day on one analyst price target, creating a bizarre situation where the same share costs 49% more in New York than in Seoul. By the textbook, arbitrage should close that gap fast: sell the expensive one, buy the cheap one. But conversion is blocked right after listing and there's nothing to short, so the textbook doesn't apply. Meru's conclusion: the gap won't close. Instead, Seoul chases New York every next morning.",
+    ja: "米国の物価が6年ぶりの大幅下落というニュースが出たが、メルはここに罠があると指摘する。物価調査期間が終わった直後に中東情勢が再び悪化し、原油が2週間で20%以上反発したのだ。つまり、きれいに見える物価の数字はすでに過去の話かもしれない。そして本題。ニューヨークに上場したばかりのSKハイニックスADRが目標株価の引き上げ一つで一日27%急騰し、同じ株がソウルよりニューヨークで49%高いという奇妙な現象が起きた。教科書どおりなら、高い方を売って安い方を買う裁定取引ですぐ縮まるはずだが、上場直後で転換が塞がれ、空売りする株もないため、それができない。メルの結論: この差は縮まるのではなく、ソウルが翌朝ニューヨークを追いかけて上がる形で維持される。",
+    ko: "미국 물가가 6년 만에 가장 큰 폭으로 떨어졌다는 뉴스가 나왔는데, 메르는 여기에 함정이 있다고 짚는다. 물가 조사 기간이 끝난 직후에 중동 상황이 다시 악화되면서 유가가 2주 만에 20% 넘게 반등했다는 것. 즉 좋아 보이는 물가 숫자는 이미 지나간 얘기일 수 있다. 그리고 본론. 뉴욕에 갓 상장된 SK하이닉스 ADR이 목표주가 상향 하나에 하루 27% 폭등하면서, 같은 주식이 서울보다 뉴욕에서 49% 비싸지는 기현상이 벌어졌다. 교과서대로면 비싼 쪽을 팔고 싼 쪽을 사는 차익거래로 금방 좁혀져야 하는데, 상장 직후라 전환이 막혀 있고 공매도할 물량도 없어서 그게 안 된다. 메르의 결론: 이 간격은 좁혀지는 게 아니라, 서울이 다음 날 아침 뉴욕을 따라 올라가는 식으로 유지된다."
   },
   why: {
     en: "The premium is a live gauge of how much global capital wants Korean memory exposure, and can't get it through Seoul.",
@@ -400,9 +400,9 @@ const ITEMS = [
     ko: "미국의 중국규제 3종세트, ESS를 한국에 넘기다"
   },
   gist: {
-    en: "Datacenter power demand (IEA: 415→945 TWh by 2030) is colliding with an aging US grid (70%+ of large transformers are over 25 years old, with ~3-year lead times), pushing hyperscalers toward on-site gas, renewables, and massive ESS. That ESS market ran on 90%+ Chinese cells. Meru walks through the three-piece policy set changing that: OBBBA's MACR rules tie clean-energy tax credits to shrinking Chinese content year by year; Section 301 tariffs lift Chinese ESS cell costs from ~$73 to ~$87/kWh; and AMPC production credits pull US-made Korean LFP down to ~$50-55/kWh. SNE Research now sees Korean share of US ESS batteries at 61% in 2026 and 85% in 2027. His caveats: Korea's cell makers are still overbuilt (2026 capacity adds ~109GWh vs. <50GWh shipment growth), and the upstream (graphite 98%, precursors 94% Chinese) is a dependence the rules themselves quietly concede.",
-    ja: "データセンターの電力需要(IEA: 2030年までに415→945TWh)が老朽化した米送電網と衝突し(大型変圧器の70%以上が25年超、納期約3年)、ビッグテックは現地ガス発電、再エネ、大型ESSへ動いている。ところが米国のESS電池は中国製が90%以上だった。メルが整理した盤面を変える3点セット: MACR(税額控除に非中国産比率の要件を毎年引き上げ)、301条関税(中国製セルの原価$73→$87/kWh)、AMPC(米国生産の税額控除で韓国製LFPが$50〜55/kWhまで低下)。SNEリサーチは米国ESSにおける韓国製シェアを2026年61%、2027年85%と予測。但し書き: 韓国3社は依然として供給過剰(2026年の増設109GWh対出荷増50GWh未満)で、黒鉛98%・前駆体94%の中国依存は規制自体が猶予で認めるほど抜け出しにくい。",
-    ko: "데이터센터 전력수요(IEA: 2030년까지 415→945TWh)가 노후 전력망과 충돌하면서(대형 변압기 70% 이상이 25년 초과, 납기 약 3년) 빅테크는 현장 가스발전·신재생·대형 ESS로 움직이고 있다. 그런데 미국 ESS 배터리는 중국산이 90% 이상이었다. 메르가 정리한 판을 바꾸는 3종세트: MACR(세액공제에 비중국산 비중 요건을 매년 상향), 301조 관세(중국산 셀 원가 $73→$87/kWh), AMPC(미국 생산 세액공제로 한국산 LFP가 $50~55/kWh까지 하락). SNE리서치는 미국 ESS 내 한국산 점유율을 2026년 61%, 2027년 85%로 전망. 단서: 한국 3사는 여전히 공급과잉(2026년 증설 109GWh vs 출하 증가 50GWh 미만)이고, 흑연 98%·전구체 94%의 중국 의존은 규정 스스로 유예로 인정할 만큼 벗어나기 어렵다."
+    en: "AI datacenters devour electricity, and the US grid is old: 70% of large transformers are past 25 years, and a new one takes three years to arrive. So Big Tech is skipping the grid, putting generators and giant batteries (ESS) on-site instead. The problem: over 90% of those batteries were Chinese. Meru walks through the three-part policy set the US rolled out to flip that board. One, tax credits now require the Chinese share of components to shrink every year. Two, tariffs raised the cost of Chinese cells. Three, subsidies for US-made batteries pushed Korean-made prices below Chinese ones. The projected result is dramatic: Korean share of US ESS batteries hits 61% next year and 85% the year after. Meru adds the caveats, though: Korea's big three battery makers still overbuilt their factories, and over 90% of the raw materials still come from China.",
+    ja: "AIデータセンターは電気を莫大に食うが、米国の送電網は古い。大型変圧器の70%が25年を超え、新規注文は3年待ちだ。そこでビッグテックは送電網を待つ代わりに、現場に発電機と大型バッテリー(ESS)を置く方向に動いている。問題は、そのバッテリーの90%以上が中国製だったこと。メルが整理したのは、米国がこの盤面をひっくり返すために出した3点セットだ。第一に、税制優遇を受けるには中国製部品の比率を毎年減らすよう規定をかけた。第二に、中国製電池に関税を乗せて原価を上げた。第三に、米国で作れば補助金を出し、韓国製の価格を中国製より安くした。予想される結果は劇的だ。米国ESS電池における韓国製シェアが来年61%、再来年85%まで行くという。ただしメルは但し書きも付ける。韓国の電池3社は依然として工場を作りすぎており、原料の90%以上はいまも中国から来る。",
+    ko: "AI 데이터센터는 전기를 어마어마하게 먹는데, 미국 전력망은 낡았다. 대형 변압기의 70%가 25년을 넘겼고 새로 주문하면 3년을 기다린다. 그래서 빅테크들은 전력망을 기다리는 대신 현장에 발전기와 대형 배터리(ESS)를 놓는 쪽으로 움직이는 중이다. 문제는 그 배터리의 90% 이상이 중국산이었다는 것. 메르가 정리한 건 미국이 이 판을 뒤집으려고 꺼낸 3종 세트다. 첫째, 세금 혜택을 받으려면 중국산 비중을 매년 줄이도록 규정을 걸었다. 둘째, 중국산 배터리에 관세를 얹어 원가를 올렸다. 셋째, 미국에서 만들면 보조금을 줘서 한국산 가격을 중국산보다 싸게 만들었다. 결과 전망이 극적이다. 미국 ESS 배터리에서 한국산 점유율이 내년 61%, 내후년 85%까지 간다는 것. 다만 메르는 단서도 단다. 한국 배터리 3사는 여전히 공장을 너무 많이 지어놨고, 배터리 원료의 90% 이상은 여전히 중국에서 온다."
   },
   why: {
     en: "AI datacenters created the storage demand; US industrial policy just decided who supplies it. This is the power-infrastructure trade behind the compute trade.",
@@ -429,9 +429,9 @@ const ITEMS = [
     ko: "봉쇄 먼저, 통행료는 나중에: 트럼프의 호르무즈 플레이 읽기"
   },
   gist: {
-    en: "CENTCOM announced a blockade of Iran's entire coastline effective July 14 (under international law, effectively an act of war) while Trump declared the US the \"Guardian of the Hormuz Strait\" and floated a 20% fee on all cargo transiting it. Meru's arithmetic shows why the toll was never serious: on a loaded VLCC carrying $160M of crude, the US fee would be $32M against Iran's ~$2M at $1 per barrel, sixteen times more expensive than paying the adversary. It was withdrawn within a day, traded for a Gulf investment deal. His read: Trump frames each strike as a 'skirmish,' escalating in controlled bursts to force Iran back to the table, with oil possibly the side bet.",
-    ja: "米中央軍が7月14日付でイラン沿岸線全体の封鎖を発表した。国際法上、事実上の戦争行為だ。トランプは「ホルムズ海峡の守護者」を自任し、通過貨物への20%手数料に言及したが、一日でガルフ諸国の対米投資ディールに置き換えて撤回した。メルの計算が核心: 1億6千万ドル分の原油を積んだVLCC基準で米国の手数料は3,200万ドル対イランの通行料(バレル当たり1ドル)約200万ドルと、敵に払うより16倍高い、そもそも成立しない数字だった。解釈: 攻撃を「小規模衝突」と規定し、限定的な空爆を繰り返しながら交渉局面への復帰を狙う圧迫戦術であり、原油高がサイドベットの可能性がある。",
-    ko: "미 중부사령부가 7월 14일부로 이란 해안선 전체 봉쇄를 발표했다. 국제법상 사실상 전쟁행위다. 트럼프는 '호르무즈 수호자'를 자처하며 통과 화물에 20% 수수료를 언급했다가 하루 만에 걸프 투자 딜로 대체하며 철회했다. 메르의 계산이 핵심: 1억 6천만 달러어치 원유를 실은 VLCC 기준 미국 수수료는 3,200만 달러 vs 이란 통행료(배럴당 1달러) 약 200만 달러로, 적에게 내는 것보다 16배 비싼 애초 성립 불가한 숫자였다. 해석: 타격을 '소규모 충돌'로 규정하고 제한적 공습을 반복하며 협상 국면 복귀를 노리는 압박 전술이며, 유가 상승이 사이드 베팅일 수 있다."
+    en: "The US military blockaded Iran's entire coastline, effectively an act of war under international law. Right after, Trump declared himself 'Guardian of the Hormuz Strait' and floated a 20% fee on all cargo passing through, then dropped it within a day. Meru shows with simple math why the fee was never real: a supertanker carries $160M of crude, so the US fee would be $32M, versus roughly $2M in tolls to Iran. Nobody pays a toll sixteen times more expensive than what they'd pay the enemy. So why float it? Meru's read: it's a negotiating card. Trump labels each strike a 'skirmish' rather than war, hits in controlled bursts, and throws out absurd demands only to withdraw them, all to push Iran back to the table. And the oil price rising along the way isn't a bad side bet for the world's largest oil producer.",
+    ja: "米軍がイランの海岸線全体を封鎖した。国際法上、事実上の戦争行為だ。その直後、トランプは「ホルムズ海峡の守護者」を自任し、海峡を通るすべての貨物に20%の手数料を課すと言い出したが、一日で引っ込めた。メルはこの手数料がそもそも成立しない数字だったことを計算で示す。超大型タンカー1隻が積む原油は1億6千万ドル分で、米国の手数料は3,200万ドル。一方イランに払う通行料は200万ドル程度だ。敵国に払う金より16倍高い通行料を払う者はいない。ではなぜ持ち出したのか。メルの解釈は交渉カードだ。トランプは空爆を「戦争」ではなく「小競り合い」と規定して限定的に叩き、無茶な要求を投げては引っ込める形でイランを交渉のテーブルに押し戻している。そしてその過程で上がる原油価格は、産油国アメリカにとって悪くないサイドベットかもしれない。",
+    ko: "미군이 이란 해안 전체를 봉쇄했다. 국제법상 사실상 전쟁 행위다. 그 직후 트럼프가 '호르무즈 해협의 수호자'를 자처하며 해협을 지나는 모든 화물에 20% 수수료를 물리겠다고 했다가 하루 만에 접었다. 메르는 이 수수료가 애초에 성립 불가능한 숫자였음을 계산으로 보여준다. 초대형 유조선 한 척이 싣는 원유가 1억 6천만 달러어치인데, 미국 수수료는 3,200만 달러. 반면 이란이 받는 통행료는 200만 달러 수준이다. 적국에 내는 돈보다 16배 비싼 통행료를 낼 사람은 없다. 그럼 왜 꺼냈나. 메르의 해석은 협상 카드다. 트럼프는 공습을 '전쟁'이 아닌 '소규모 충돌'로 규정하면서 제한적으로 때리고, 말이 안 되는 요구를 던졌다 거두는 식으로 이란을 협상 테이블로 밀고 있다는 것. 그리고 그 과정에서 오르는 유가는 산유국 미국 입장에서 나쁘지 않은 사이드 베팅일 수 있다."
   },
   why: {
     en: "Energy is the input cost of the AI buildout. Hormuz risk is now a line item in every datacenter power model.",
@@ -459,9 +459,9 @@ const ITEMS = [
     ko: "트럼프, 호르무즈 통행료를 걸프 자본과 맞바꾸다"
   },
   gist: {
-    en: "The primary source behind this week's oil headlines. Trump declares the Strait of Hormuz open to all traffic except Iran, keeps a full blockade on ships tied to Iranian ports or cargo, and, the market-relevant part, replaces the floated 20% 'US reimbursement fee' on transiting cargo with trade and investment deals from Gulf states into the US. He frames the swap as factories, plants, and equipment flowing into America at historic levels on top of what he calls the largest dollar investment into the US of any country in history, and closes with the ceiling on escalation: Iran will never have a nuclear weapon.",
-    ja: "今週の原油ヘッドラインの一次資料。トランプはホルムズ海峡がイランを除くすべての船舶に開かれていると宣言し、イランの港湾・貨物に関わる船舶にのみ全面封鎖を維持する。市場に重要な部分: 通過貨物に課そうとした「20%の米国補填手数料」を、ガルフ諸国の対米貿易・投資ディールに置き換えた。工場・プラント・設備が歴史的水準で米国に入ってくるというフレームであり、締めくくりはエスカレーションの上限線だ。イランは決して核兵器を持たない。",
-    ko: "이번 주 유가 헤드라인의 1차 사료. 트럼프는 호르무즈 해협이 이란을 제외한 모든 선박에 열려 있다고 선언하고, 이란 항구·화물 관련 선박에만 전면 봉쇄를 유지한다. 시장에 중요한 대목: 통과 화물에 물리려던 '20% 미국 보전 수수료'를 걸프 국가들의 대미 무역·투자 딜로 대체했다. 공장·플랜트·설비가 역사적 수준으로 미국에 들어올 것이라는 프레임이고, 마무리는 확전의 한계선이다. 이란은 절대 핵무기를 갖지 못한다."
+    en: "The primary source behind this week's oil headlines: Trump's own post. It breaks into three parts. One: the Strait of Hormuz is open to everyone except Iran, meaning the blockade on Iran-linked ships continues. Two: the floated '20% US fee' on transiting cargo is scrapped, replaced by Gulf states committing to build factories and facilities in America, with a boast about the largest foreign investment in US history attached. Three: the final sentence sets the ceiling on escalation: 'Iran will never have a nuclear weapon.' In short: take the money as investment, keep the blockade, and draw the war's limit at nukes.",
+    ja: "今週の原油ニュースの原本。トランプ本人の投稿だ。中身は三つの塊に分かれる。第一、ホルムズ海峡はイランを除く全員に開かれている。つまりイラン関連船舶への封鎖は続く。第二、通過貨物に課すと言っていた「20%の米国手数料」は取り下げ、代わりにガルフ諸国が米国に工場や設備を建てる投資ディールに置き換えた。史上最大の対米投資が入るという自慢付きだ。第三、最後の一文がエスカレーションの上限線だ。「イランは決して核兵器を持たない」。要約すれば、金は投資で受け取り、封鎖は維持し、戦争の限界線は核だという宣言である。",
+    ko: "이번 주 유가 뉴스의 원본. 트럼프가 직접 올린 글이다. 내용을 뜯어보면 세 덩어리다. 첫째, 호르무즈 해협은 이란만 빼고 모두에게 열려 있다. 즉 이란 관련 선박에 대한 봉쇄는 계속된다. 둘째, 통과 화물에 물리겠다던 '20% 미국 수수료'는 걷어치우고, 대신 걸프 국가들이 미국에 공장과 설비를 짓는 투자 딜로 바꿨다. 역사상 최대 규모의 대미 투자가 들어온다는 자랑이 붙어 있다. 셋째, 마지막 문장이 확전의 상한선이다. '이란은 절대 핵무기를 갖지 못한다.' 요약하면 돈은 투자로 받고, 봉쇄는 유지하고, 전쟁의 한계선은 핵이라는 선언이다."
   },
   why: {
     en: "The toll is gone but the blockade stays, so the oil risk premium stays. And 'Gulf investment instead of fees' adds one more stream of foreign capital pointed at the US industrial buildout.",
@@ -479,20 +479,20 @@ const ITEMS = [
   sourceLang: "EN",
   category: "ceo",
   hot: true,
-  cover: { from: "#0078D4", to: "#5B8CFF", label: "MSFT" },
+  cover: { from: "#0078D4", to: "#5B8CFF", label: "MICROSOFT" },
   logo: "microsoft.com",
   wiki: "Satya_Nadella",
   avatarImg: "nadella.jpg",
-  tags: ["AI", "MSFT", "ENTERPRISE"],
+  tags: ["AI", "MICROSOFT", "ENTERPRISE"],
   title: {
     en: "Nadella's 'Reverse Information Paradox': you pay for AI twice",
     ja: "ナデラの「逆情報パラドックス」: 我々はAIに二度支払う",
     ko: "나델라의 '역정보 역설': 우리는 AI에 두 번 지불한다"
   },
   gist: {
-    en: "Microsoft's CEO inverts Kenneth Arrow's classic information paradox. Arrow's seller risked giving knowledge away in order to sell it; in the AI age, Nadella argues, the buyer gives knowledge away just to use what they bought, paying for intelligence twice: once in money and again in the proprietary know-how fed to the model, as every prompt, correction, and eval leaks institutional knowledge back to the provider. His fix: a hard 'trust boundary' inside which a firm's data, traces, evals, and adapted weights compound together, plus five requirements: control your evals and memory, build learning environments inside your own tenant, keep orchestration decoupled from any single model, use that decoupling to manage cost, and compound it all into your own learning loop. He also calls out the irony of model providers claiming fair use over public data while restricting distillation and reserving rights over customer usage data.",
-    ja: "マイクロソフトのCEOがケネス・アローの古典「情報のパラドックス」を反転させる。アローのパラドックスでは売る側が売るために知識を晒す必要があったが、AI時代には買う側が買ったものを使うために知識を差し出すことになるという。カネで一度、モデルに食わせる社内ノウハウでもう一度、知能に二度支払う構造だ。プロンプト、修正、評価(eval)の一つ一つが組織の知見となってプロバイダー側に漏れていく。解決策は、企業のデータ・トレース・評価・調整済み重みが一緒に蓄積される「信頼境界(trust boundary)」と5つの要件だ。評価とメモリの統制、自社テナント内の学習環境、特定モデルに縛られないオーケストレーション、それによるコスト最適化、これらを合わせた自前の学習ループ。モデル各社が公開データにはフェアユースを主張しながら蒸留は塞ぎ、顧客利用データの学習権は確保する二重性も直撃した。",
-    ko: "MS CEO가 케네스 애로우의 고전 '정보 역설'을 뒤집는다. 애로우의 역설에서는 파는 쪽이 팔기 위해 지식을 노출해야 했다면, AI 시대에는 사는 쪽이 산 것을 쓰기 위해 지식을 내줘야 한다는 것이다. 돈으로 한 번, 모델에 먹이는 사내 노하우로 또 한 번, 지능에 두 번 지불하는 구조다. 프롬프트·교정·평가(eval) 하나하나가 기관의 노하우가 되어 공급자 쪽으로 새어 나간다. 해법은 기업의 데이터·트레이스·평가·조정된 가중치가 함께 쌓이는 '신뢰 경계(trust boundary)'와 5C다. 평가와 메모리의 통제(Control), 자체 테넌트 안의 학습 환경(Capability), 특정 모델에 묶이지 않는 오케스트레이션(Choice), 그로 인한 비용 최적화(Cost), 이를 합친 자체 학습 루프(Compound). 모델사들이 공개 데이터엔 공정이용을 주장하면서 증류는 막고 고객 사용 데이터 학습 권리는 챙기는 이중성도 직격했다."
+    en: "Microsoft CEO Nadella's argument in one sentence: companies pay for AI twice. Once in money, and again in know-how. To use AI at work, you have to keep feeding it your data, your processes, your judgment, and in that process, knowledge that amounts to trade secrets flows toward the AI provider. Every prompt and every correction is a leak. His prescription: draw a 'trust boundary.' Set things up so your data and everything the AI learns from it accumulate inside your company rather than leaking out, and design for switching, never letting yourself get locked into a single model. He ends with a pointed jab: AI companies claim 'fair use' when training on everyone else's public data, yet ban others from copying their models and reserve the right to learn from what customers do.",
+    ja: "マイクロソフトCEOナデラの問題提起を一文にするとこうだ。「企業はAIに二度支払う」。一度は利用料で、もう一度は会社のノウハウで。AIを業務で使うには自社のデータ、仕事のやり方、判断基準を食わせ続ける必要があり、その過程で営業秘密に当たる知識がAI企業側へ流れていくというのだ。プロンプト一つ、修正一つがすべて流出経路になる。だからナデラの提案は「信頼境界」を引くこと。会社のデータとAIの学習成果が外に漏れず社内にだけ蓄積されるようにし、特定のAIモデル一つに縛られず、いつでも乗り換えられるよう設計せよという助言だ。そして棘のある一撃を放つ。AI企業は他人の公開データを学習するときは「フェアユース」と主張しながら、自分のモデルを他人が真似るのは禁止し、顧客が使いながら生んだデータの学習権はちゃっかり確保しているという。",
+    ko: "마이크로소프트 CEO 나델라가 던진 화두를 한 문장으로 줄이면 이렇다. '기업은 AI에 두 번 돈을 낸다.' 한 번은 사용료로, 또 한 번은 회사의 노하우로. AI를 업무에 쓰려면 우리 회사의 데이터, 일하는 방식, 판단 기준을 계속 먹여야 하는데, 그 과정에서 회사의 영업 비밀에 해당하는 지식이 AI 회사 쪽으로 흘러 들어간다는 것이다. 프롬프트 하나, 교정 하나가 전부 유출 경로다. 그래서 나델라의 제안은 '신뢰 경계'를 치라는 것. 회사의 데이터와 AI 학습 결과물이 바깥으로 새지 않고 회사 안에서만 쌓이게 만들고, 특정 AI 모델 하나에 종속되지 말고 언제든 갈아탈 수 있게 설계하라는 조언이다. 그러면서 뼈 있는 한 방을 날린다. AI 회사들은 남의 공개 데이터를 학습할 땐 '공정 이용'이라 주장하면서, 정작 자기 모델을 남이 베끼는 건 금지하고 고객이 쓰면서 만든 데이터의 학습 권리는 챙긴다는 것."
   },
   why: {
     en: "When Microsoft's CEO says customers must own their learning loop, he's drawing the next battle line of the AI stack, and it runs through every model provider's terms of service.",
@@ -521,9 +521,9 @@ const ITEMS = [
     ko: "저커버그, 메타 모델 API 개방: 에이전트 성능을 '싸게' 판다"
   },
   gist: {
-    en: "Meta released Muse Spark 1.1 and, for the first time, opened its models to developers through the new Meta Model API. Zuckerberg's pitch is strong agentic and multimodal capability at a very low price. The model claims the top of the agent benchmarks: MCP Atlas 88.1, JobBench 54.7 (well ahead of Anthropic's Opus 4.8 at 48.4), and Humanity's Last Exam 62.1 with tools, built on a 1M-token context window, parallel sub-agent delegation, and training for computer use across desktop, mobile, and browser. Meta's own table is candid about the gaps: Opus 4.8 still leads diverse software engineering (SWE-Bench Pro 69.2 vs 61.5) and computer use, while GPT 5.5 leads long-horizon coding and visual reasoning.",
-    ja: "メタがMuse Spark 1.1を出し、初めて開発者にモデルを開放した。新しいMeta Model APIだ。ザッカーバーグのメッセージは「強いエージェント・マルチモーダル性能を非常に安い価格で」。エージェント・ベンチマークで首位を主張する: MCP Atlas 88.1、JobBench 54.7(アンソロピックのOpus 4.8の48.4を大きく上回る)、ツール使用HLE 62.1。100万トークンのコンテキスト、並列サブエージェント委任、デスクトップ・モバイル・ブラウザのコンピュータ使用訓練が基盤だ。ただしメタが公開した表自体が弱点も示す: 多様なソフトウェアエンジニアリング(SWE-Bench Pro 69.2対61.5)とコンピュータ使用は依然Opus 4.8が、長期コーディングと視覚推論はGPT 5.5が先行する。",
-    ko: "메타가 Muse Spark 1.1을 내놓으며 처음으로 개발자에게 모델을 개방했다. 새 Meta Model API다. 저커버그의 메시지는 '강한 에이전트·멀티모달 성능을 아주 싼 가격에'다. 에이전트 벤치마크에서 선두를 주장한다: MCP Atlas 88.1, JobBench 54.7(앤트로픽 Opus 4.8의 48.4를 크게 앞섬), 도구 사용 HLE 62.1. 1M 토큰 컨텍스트, 병렬 서브에이전트 위임, 데스크톱·모바일·브라우저 컴퓨터 사용 훈련이 기반이다. 다만 메타가 공개한 표 자체가 약점도 보여준다: 다양한 소프트웨어 엔지니어링(SWE-Bench Pro 69.2 vs 61.5)과 컴퓨터 사용은 여전히 Opus 4.8이, 장기 코딩과 시각 추론은 GPT 5.5가 앞선다."
+    en: "Meta has started selling its AI models to outside developers for the first time. Zuckerberg's sales pitch is blunt: strong performance, very cheap. The capability he's pushing hardest is agents, meaning AI that finishes a task by actually operating a computer when you ask it to. Reading Meta's own scorecard in plain terms: in the 'getting AI to do work' events, Meta claims first place, well ahead of Anthropic. But the same scorecard honestly lists the weaknesses too: Anthropic still leads in coding skill, and OpenAI leads in long projects and visual reasoning. So Meta's strategy isn't 'the best', it's 'good enough, at the lowest price.' The calculation: with datacenters already paid for by Facebook and Instagram money, Meta can win by squeezing on price.",
+    ja: "メタが初めて自社のAIモデルを外部の開発者に有料で売り始めた。ザッカーバーグのセールスポイントは露骨だ。「性能は良くて、とても安い」。特に推しているのはエージェント能力、つまり人が頼めばAIがコンピュータを直接操作して仕事を終わらせる能力だ。メタが公開した成績表を平たく読むとこうなる。「AIに仕事をさせる」種目では自分たちが1位で、アンソロピックをかなり上回るという主張。ただしその成績表には弱点も正直に書かれていて、コーディングの腕は依然アンソロピックが、長期プロジェクトと視覚推論はOpenAIが先行する。つまりメタの戦略は「最高」ではなく「十分良いものを最安で」だ。フェイスブックとインスタグラムで稼いだ金で自前のデータセンターを敷いてあるから、価格で押し潰せるという計算である。",
+    ko: "메타가 처음으로 자기네 AI 모델을 외부 개발자에게 돈 받고 팔기 시작했다. 저커버그의 세일즈 포인트는 노골적이다. '성능 좋은데 아주 싸다.' 특히 밀고 있는 건 에이전트 능력, 그러니까 사람이 시키면 AI가 컴퓨터를 직접 조작해가며 일을 끝내는 능력이다. 메타가 공개한 성적표를 쉽게 읽으면 이렇다. 'AI에게 일 시키기' 종목에서는 자기들이 1등이고 앤트로픽을 꽤 앞선다는 주장. 대신 그 성적표에는 약점도 정직하게 적혀 있는데, 코딩 실력은 여전히 앤트로픽이, 장기 프로젝트와 시각 추론은 오픈AI가 앞선다. 그러니까 메타의 전략은 '최고'가 아니라 '충분히 좋은 걸 제일 싸게'다. 페이스북과 인스타그램으로 번 돈으로 자체 데이터센터를 깔아뒀으니 가격으로 눌러버릴 수 있다는 계산이다."
   },
   why: {
     en: "Meta selling inference 'at a very low price' is a price-war declaration, and model price wars are won by whoever owns the cheapest compute. Bullish for the buildout, brutal for margins.",
@@ -541,20 +541,20 @@ const ITEMS = [
   sourceLang: "EN",
   category: "ceo",
   hot: false,
-  cover: { from: "#5E5E62", to: "#A3A3A8", label: "AAPL" },
+  cover: { from: "#5E5E62", to: "#A3A3A8", label: "APPLE" },
   logo: "apple.com",
   wiki: "Tim_Cook",
   avatarImg: "timcook.jpg",
-  tags: ["SEMIS", "AAPL", "AVGO"],
+  tags: ["SEMIS", "APPLE", "BROADCOM"],
   title: {
     en: "Apple's biggest US manufacturing bet yet, and it runs through Broadcom",
     ja: "アップル史上最大の米国製造への賭け、その通路はブロードコムだ",
     ko: "애플의 역대 최대 미국 제조 베팅, 그 통로는 브로드컴이다"
   },
   gist: {
-    en: "Cook announced an expanded agreement with Broadcom to produce billions more chips in the US. He frames it as the largest commitment ever made under Apple's American Manufacturing Program, and positions it as a step toward an end-to-end silicon supply chain built domestically. No dollar figure or timeline in the post itself; the scale is stated in chip volume and in the claim that this is the program's biggest commitment to date.",
-    ja: "クックがブロードコムとの契約を拡大し、数十億個規模のチップを米国で追加生産すると発表した。アップルのAmerican Manufacturing Program史上最大のコミットメントというフレームで、米国内で完結するシリコン・サプライチェーンを築く過程の一段階と位置づける。投稿自体には金額もスケジュールもない。規模はチップの数量と「プログラム史上最大」という表現でのみ示された。",
-    ko: "쿡이 브로드컴과의 계약을 확대해 수십억 개 규모의 칩을 미국에서 추가 생산한다고 발표했다. 애플의 American Manufacturing Program 사상 최대 규모 약정이라는 프레임이며, 미국 내에서 완결되는 실리콘 공급망을 짓는 과정의 한 단계로 자리매김한다. 게시물 자체에는 금액이나 일정이 없다. 규모는 칩 수량과 '프로그램 사상 최대'라는 표현으로만 제시됐다."
+    en: "What Tim Cook announced is simple on its face: an expanded deal with chipmaker Broadcom to produce billions more chips in the US, which he pinned as the largest commitment in the history of Apple's American manufacturing program. What's notable is what the announcement doesn't contain: no dollar figure, no timeline. The only measures of scale are 'billions of chips' and 'largest ever.' The direction is clear enough, though. Apple is drawing up a chip supply chain that runs start to finish inside the US, and this deal is one piece of that puzzle. For investors, the important part is which company collects that piece: Broadcom.",
+    ja: "ティム・クックの発表自体はシンプルだ。半導体企業ブロードコムとの契約を拡大し、チップ数十億個を米国で追加生産するというもの。アップルが米国製造に約束した中で史上最大規模だと明言した。注目すべきは発表に「ないもの」だ。金額もスケジュールもない。規模を語るのは「チップ数十億個」と「史上最大」という表現だけ。それでも方向ははっきりしている。アップルは設計から生産まで米国内で完結する半導体サプライチェーンを描いており、今回の契約はそのパズルの一片だ。そしてその一片を受け取る会社がブロードコムだという点が、投資家にとって重要な部分である。",
+    ko: "팀 쿡이 발표한 내용 자체는 간단하다. 반도체 회사 브로드컴과의 계약을 확대해서, 칩 수십억 개를 미국에서 추가 생산한다는 것. 애플이 미국 제조에 건 약속 중 역대 최대 규모라고 못 박았다. 눈여겨볼 건 발표에 없는 것들이다. 금액도, 일정도 없다. 규모를 말해주는 건 '칩 수십억 개'와 '역대 최대'라는 표현뿐. 그래도 방향은 분명하다. 애플은 설계부터 생산까지 미국 안에서 다 되는 반도체 공급망을 짓겠다는 그림을 그리고 있고, 이번 계약은 그 퍼즐의 한 조각이다. 그리고 그 조각을 받아가는 회사가 브로드컴이라는 게 투자자에게 중요한 부분이다."
   },
   why: {
     en: "Onshoring is moving from politics to purchase orders. Apple's volume is what makes a domestic silicon supply chain financially real, and Broadcom is the one collecting.",
@@ -571,6 +571,37 @@ const CATEGORIES = [
   { id: "ceo",        en: "CEOs",        ko: "기업 CEO",  ja: "CEO" },
   { id: "politician", en: "Politicians", ko: "정치인",    ja: "政治家" }
 ];
+
+
+/* ---------------- entities ----------------
+   Hover (or tap) a company chip or an author name to see who they are.
+   sector doubles as a grouping for future filtering.
+   Clicking a chip searches for it, so "show me everything on this
+   company" already works through the search box. */
+const ENTITIES = {
+  "SK HYNIX":      { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Korean memory chip giant. Makes the HBM chips that feed Nvidia's AI accelerators.", ko: "한국 메모리 반도체 대표 기업. 엔비디아 AI 칩에 들어가는 HBM을 만든다.", ja: "韓国のメモリー半導体大手。エヌビディアのAIチップに入るHBMを作る。" } },
+  "NEBIUS":        { sector: { en: "AI Cloud", ko: "AI 클라우드", ja: "AIクラウド" }, desc: { en: "Amsterdam-based 'neocloud': rents out Nvidia GPU computing power to AI companies.", ko: "암스테르담 기반 '네오클라우드'. 엔비디아 GPU 컴퓨팅 파워를 AI 기업들에 빌려준다.", ja: "アムステルダム拠点の「ネオクラウド」。エヌビディアGPUの計算力をAI企業に貸す。" } },
+  "MICROSOFT":     { sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "World's largest software company and OpenAI's biggest backer. Runs the Azure cloud.", ko: "세계 최대 소프트웨어 기업이자 오픈AI의 최대 후원자. 애저 클라우드를 운영한다.", ja: "世界最大のソフトウェア企業でOpenAIの最大の後ろ盾。Azureクラウドを運営。" } },
+  "META":          { sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "Facebook and Instagram's parent. Spends tens of billions a year on AI datacenters.", ko: "페이스북, 인스타그램의 모회사. 매년 수백억 달러를 AI 데이터센터에 쏟는다.", ja: "フェイスブックとインスタグラムの親会社。毎年数百億ドルをAIデータセンターに投じる。" } },
+  "APPLE":         { sector: { en: "Big Tech", ko: "빅테크", ja: "ビッグテック" }, desc: { en: "iPhone maker. The world's most valuable hardware franchise, now reshoring chips to the US.", ko: "아이폰 제조사. 세계에서 가장 가치 있는 하드웨어 기업이며, 칩 생산을 미국으로 옮기는 중.", ja: "iPhoneメーカー。世界で最も価値あるハードウェア企業で、チップ生産を米国へ移している。" } },
+  "BROADCOM":      { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Chip designer behind custom AI silicon for Google, Meta and now Apple's US production.", ko: "구글, 메타의 맞춤형 AI 칩을 설계하는 회사. 이제 애플의 미국 생산까지 맡는다.", ja: "グーグルやメタのカスタムAIチップを設計。今度はアップルの米国生産も担う。" } },
+  "BLOOM ENERGY":  { sector: { en: "Power", ko: "전력/에너지", ja: "電力" }, desc: { en: "Makes fuel cells that turn natural gas into electricity on-site: a shortcut for power-hungry AI datacenters.", ko: "천연가스를 그 자리에서 전기로 바꾸는 연료전지 회사. 전력에 목마른 AI 데이터센터의 지름길.", ja: "天然ガスをその場で電気に変える燃料電池メーカー。電力に飢えたAIデータセンターの近道。" } },
+  "STRATEGY":      { sector: { en: "Finance", ko: "금융", ja: "金融" }, desc: { en: "Michael Saylor's company (ex-MicroStrategy): a software firm turned leveraged bitcoin holding vehicle.", ko: "마이클 세일러의 회사(구 마이크로스트래티지). 소프트웨어 회사에서 레버리지 비트코인 보유 기구로 변신했다.", ja: "マイケル・セイラーの会社(旧マイクロストラテジー)。ソフト会社からレバレッジ型ビットコイン保有機構に変貌。" } },
+  "TOWER SEMI":    { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "Israeli chip foundry specializing in the photonics chips that move data by light.", ko: "이스라엘 파운드리. 빛으로 데이터를 옮기는 포토닉스 칩이 주특기다.", ja: "イスラエルの半導体ファウンドリ。光でデータを運ぶフォトニクスチップが得意。" } },
+  "APPLIED OPTO":  { sector: { en: "Semiconductors", ko: "반도체", ja: "半導体" }, desc: { en: "US maker of the optical transceivers that wire AI datacenters together.", ko: "AI 데이터센터를 서로 연결하는 광모듈을 만드는 미국 회사.", ja: "AIデータセンター同士をつなぐ光トランシーバーを作る米企業。" } },
+  "NSE":           { sector: { en: "Finance", ko: "금융", ja: "金融" }, desc: { en: "National Stock Exchange of India: the world's busiest derivatives exchange, about to IPO.", ko: "인도국립증권거래소. 세계에서 파생상품이 가장 많이 거래되는 곳이며 곧 상장한다.", ja: "インド国立証券取引所。世界で最もデリバティブが取引される場で、まもなく上場。" } },
+  "DEEPMIND":      { sector: { en: "AI Lab", ko: "AI 랩", ja: "AIラボ" }, desc: { en: "Google's AI research arm. Built AlphaGo and the Gemini models.", ko: "구글의 AI 연구 조직. 알파고와 제미나이 모델을 만들었다.", ja: "グーグルのAI研究部門。アルファ碁とGeminiモデルを生んだ。" } },
+  "Meru (메르)":    { sector: { en: "Blogger", ko: "블로거", ja: "ブロガー" }, desc: { en: "Korea's most-read finance blogger. Untangles macro, supply chains and geopolitics on Naver.", ko: "한국에서 가장 많이 읽히는 경제 블로거. 네이버에서 매크로, 공급망, 지정학을 풀어낸다.", ja: "韓国で最も読まれる経済ブロガー。Naverでマクロ、サプライチェーン、地政学を解きほぐす。" } },
+  "Serenity (@aleabitoreddit)": { sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "X account tracking AI infrastructure stocks: neoclouds, optics, power.", ko: "AI 인프라 주식을 추적하는 X 계정. 네오클라우드, 광통신, 전력이 주 분야.", ja: "AIインフラ株を追うXアカウント。ネオクラウド、光通信、電力が守備範囲。" } },
+  "Doomberg":      { sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "The green chicken: Substack's #3 finance publication, on energy and geopolitics.", ko: "초록 닭 아이콘으로 유명한 서브스택 금융 3위 뉴스레터. 에너지와 지정학 전문.", ja: "緑のニワトリで有名なSubstack金融3位のニュースレター。エネルギーと地政学専門。" } },
+  "Marc Rubinstein (Net Interest)": { sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "Ex-hedge fund manager writing the weekly Net Interest letter on how finance actually works.", ko: "전직 헤지펀드 매니저. 금융이 실제로 어떻게 돌아가는지를 주간 뉴스레터로 쓴다.", ja: "元ヘッジファンドマネージャー。金融が実際どう回るかを週刊で書く。" } },
+  "Howard Marks (Oaktree)": { sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "Co-founder of Oaktree Capital. His memos are read by virtually everyone on Wall Street, Buffett included.", ko: "오크트리 캐피털 공동창업자. 버핏을 포함해 월가 전체가 그의 메모를 읽는다.", ja: "オークツリー・キャピタル共同創業者。バフェットを含めウォール街全体が彼のメモを読む。" } },
+  "Donald J. Trump (@realDonaldTrump)": { sector: { en: "Politician", ko: "정치인", ja: "政治家" }, desc: { en: "President of the United States. His posts move oil, tariffs and markets in real time.", ko: "미국 대통령. 그의 게시물 하나가 유가, 관세, 시장을 실시간으로 움직인다.", ja: "米国大統領。投稿ひとつで原油、関税、市場がリアルタイムに動く。" } },
+  "Satya Nadella (@satyanadella)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Microsoft's CEO since 2014. Turned it into the world's biggest AI infrastructure buyer.", ko: "2014년부터 마이크로소프트 CEO. 회사를 세계 최대 AI 인프라 구매자로 바꿔놨다.", ja: "2014年からマイクロソフトCEO。同社を世界最大のAIインフラ購入者に変えた。" } },
+  "Mark Zuckerberg (@finkd)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Meta's founder and CEO. Betting the company on open AI models and massive compute.", ko: "메타 창업자 겸 CEO. 회사의 미래를 AI 모델과 초대형 컴퓨트에 걸었다.", ja: "メタ創業者兼CEO。会社の未来をAIモデルと超大型コンピュートに賭ける。" } },
+  "Tim Cook (@tim_cook)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "Apple's CEO and the architect of its supply chain, now rebuilding it inside the US.", ko: "애플 CEO이자 공급망 설계자. 이제 그 공급망을 미국 안에 다시 짓고 있다.", ja: "アップルCEOでサプライチェーンの設計者。今それを米国内に作り直している。" } },
+  "Demis Hassabis (@demishassabis)": { sector: { en: "CEO", ko: "CEO", ja: "CEO" }, desc: { en: "DeepMind's founder, Nobel laureate, and the closest thing AI has to a chief scientist.", ko: "딥마인드 창업자이자 노벨상 수상자. AI 업계의 수석 과학자에 가장 가까운 인물.", ja: "ディープマインド創業者でノーベル賞受賞者。AI業界の主任科学者に最も近い人物。" } }
+};
 
 const STRINGS = {
   en: {
@@ -885,6 +916,32 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
   color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);
   border-radius:999px;padding:3px 9px;white-space:nowrap;
 }
+.has-tip{position:relative;cursor:pointer;}
+.has-tip:hover{border-color:var(--text);color:var(--text);}
+.entity-tip{
+  position:absolute;bottom:calc(100% + 8px);right:-6px;
+  width:max-content;max-width:250px;
+  background:var(--black);color:#fff;
+  font-family:"Inter","Pretendard Variable",sans-serif;font-size:11.5px;font-weight:500;line-height:1.5;
+  padding:9px 12px;border-radius:10px;text-align:left;
+  opacity:0;visibility:hidden;transform:translateY(3px);
+  transition:opacity .15s ease,transform .15s ease;
+  pointer-events:none;z-index:6;white-space:normal;letter-spacing:0;
+}
+.entity-tip .tip-sector{
+  display:block;font-family:"IBM Plex Mono",monospace;font-size:9px;
+  letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-bottom:3px;
+}
+.entity-tip::after{
+  content:"";position:absolute;top:100%;right:12px;
+  border:5px solid transparent;border-top-color:var(--black);
+}
+.has-tip:hover .entity-tip,.has-tip.show .entity-tip{
+  opacity:1;visibility:visible;transform:translateY(0);
+}
+.src-name.has-tip{border:0;}
+.src-name.has-tip .entity-tip{right:auto;left:-6px;}
+.src-name.has-tip .entity-tip::after{right:auto;left:12px;}
 .title-orig{font-size:12.5px;color:var(--muted);margin-bottom:6px;font-family:"Pretendard Variable","Inter",sans-serif;}
 .title-orig .badge{
   font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.1em;
@@ -936,7 +993,7 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .read-toggle.done{color:var(--text);border-color:var(--text);}
 /* ---------- collapsed gist ---------- */
-.gist-fold{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;}
+.gist-fold{margin-top:14px;}
 .gist-fold summary{
   display:flex;align-items:center;justify-content:space-between;
   cursor:pointer;list-style:none;gap:10px;
@@ -1220,7 +1277,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v23</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v24</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1248,6 +1305,37 @@ let TAB = "all";
 
 function setLang(l){ LANG = l; lsSet("stk_lang", l); render(); }
 function setTab(t){ TAB = t; render(); }
+
+
+function entityTip(key){
+  const e = ENTITIES[key];
+  if (!e) return "";
+  return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + '</span>';
+}
+function chipHtml(tag){
+  const tip = entityTip(tag);
+  if (!tip) return '<span class="chip">' + tag + '</span>';
+  return '<span class="chip has-tip" onclick="chipTap(this, \'' + tag.replace(/'/g, "\\'") + '\')">' + tag + tip + '</span>';
+}
+/* mobile: first tap shows the tooltip, second tap searches the name.
+   desktop: hover shows the tooltip, so a click searches immediately. */
+function chipTap(el, tag){
+  const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  if (!hoverable && !el.classList.contains("show")){
+    document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
+    el.classList.add("show");
+    return;
+  }
+  el.classList.remove("show");
+  const inp = document.getElementById("searchInput");
+  if (inp) inp.value = tag;
+  onSearch(tag);
+  document.getElementById("feed").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function srcTap(el){
+  document.querySelectorAll(".has-tip.show").forEach(x => { if (x !== el) x.classList.remove("show"); });
+  el.classList.toggle("show");
+}
 
 function goToItem(id){
   const target = ITEMS.find(x => x.id === id);
@@ -1902,10 +1990,10 @@ function renderFeed(animate){
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
-          <span class="src-name">${item.source}</span>
+          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ' onclick="srcTap(this)"' : ""}>${item.source}${entityTip(item.source)}</span>
           <span class="src-date">${fmt(item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
-        <div class="chips">${item.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
+        <div class="chips">${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
       <div class="card-thumb" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
@@ -1913,14 +2001,14 @@ function renderFeed(animate){
         ${item.logo ? `<span class="thumb-logo" data-logo="${item.id}"></span>` : ""}
       </div>
       <h3><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span>${item.title[LANG]}</h3>
-      <div class="why">
-        <div class="label">${S.why}</div>
-        <p>${item.why[LANG]}</p>
-      </div>
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
         <p class="gist">${item.gist[LANG]}</p>
       </details>
+      <div class="why">
+        <div class="label">${S.why}</div>
+        <p>${item.why[LANG]}</p>
+      </div>
       <div class="cta-row">
         <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
@@ -2068,6 +2156,9 @@ function warmCache(){
 
 document.addEventListener("click", e => {
   document.querySelectorAll(".paywall-badge.show").forEach(b => {
+    if (!b.contains(e.target)) b.classList.remove("show");
+  });
+  document.querySelectorAll(".has-tip.show").forEach(b => {
     if (!b.contains(e.target)) b.classList.remove("show");
   });
 });
