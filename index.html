@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v28 :: engagement bar (icon marks + comments/likes/views counts) -->
+<!-- STACKS BUILD v29 :: retention (follow->push tags, event countdown, watchlist, comment threads) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -181,7 +181,7 @@ const ITEMS = [
   series: "hynix-premium",
   thumbWiki: "New York Stock Exchange",
   related: ["hynix"],
-  source: "Meru (메르)",
+  source: "메르",
   sourceUrl: "https://blog.naver.com/ranto28/224348032230",
   sourceLang: "KO",
   category: "investor",
@@ -212,7 +212,7 @@ const ITEMS = [
   series: "oil-geopolitics",
   thumbWiki: "Bab-el-Mandeb",
   related: ["hormuz-meru", "potus-hormuz"],
-  source: "Meru (메르)",
+  source: "메르",
   sourceUrl: "https://blog.naver.com/ranto28/224347566409",
   sourceLang: "KO",
   category: "investor",
@@ -480,7 +480,7 @@ const ITEMS = [
   series: "hynix-premium",
   thumbWiki: "SK Hynix",
   related: ["hormuz-meru"],
-  source: "Meru (메르)",
+  source: "메르",
   sourceUrl: "https://blog.naver.com/ranto28/224347004537",
   sourceLang: "KO",
   category: "investor",
@@ -511,7 +511,7 @@ const ITEMS = [
   series: "ai-power",
   thumbWiki: "Grid energy storage",
   related: [],
-  source: "Meru (메르)",
+  source: "메르",
   sourceUrl: "https://blog.naver.com/ranto28/224345852124",
   sourceLang: "KO",
   category: "investor",
@@ -541,7 +541,7 @@ const ITEMS = [
   series: "oil-geopolitics",
   thumbWiki: "Strait of Hormuz",
   related: ["potus-hormuz", "hynix"],
-  source: "Meru (메르)",
+  source: "메르",
   sourceUrl: "https://blog.naver.com/ranto28/224345322649",
   sourceLang: "KO",
   category: "investor",
@@ -691,6 +691,22 @@ const ITEMS = [
 }
 ];
 
+/* ---------------- upcoming events (countdown bar) ----------------
+   Date-driven stories get a D-day chip at the top of the page.
+   Add one entry per event; past events disappear automatically.
+   itemId links the chip to its card in the feed. */
+const EVENTS = [
+  {
+    date: "2026-07-29",
+    itemId: "meru-adr-conv",
+    label: {
+      en: "SK Hynix ADR conversion opens",
+      ko: "SK하이닉스 ADR 상호전환 개시",
+      ja: "SKハイニックスADR相互転換の開始"
+    }
+  }
+];
+
 /* ---------------- categories & UI strings ---------------- */
 const CATEGORIES = [
   { id: "all",        en: "All",         ko: "전체",     ja: "すべて" },
@@ -748,7 +764,7 @@ const ENTITIES = {
   "唐鎌大輔 (Mizuho)": { kind: "person", url: "https://toyokeizai.net/list/author/224", sector: { en: "Economist", ko: "이코노미스트", ja: "エコノミスト" }, desc: { en: "Mizuho Bank's chief market economist and Japan's leading analyst of the weak yen.", ko: "미즈호은행 수석 시장 이코노미스트. 일본 엔저 분석의 일인자.", ja: "みずほ銀行チーフマーケット・エコノミスト。円安分析の第一人者。" } },
   "テスタ (@tesuta001)": { kind: "person", url: "https://x.com/tesuta001", sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "Japan's most famous retail trader: compounded day-trading gains past 10 billion yen.", ko: "일본에서 가장 유명한 개인투자자. 단타로 시작해 자산 100억 엔을 넘겼다.", ja: "日本一有名な個人投資家。デイトレードから資産100億円超へ。" } },
   "エミン・ユルマズ (Emin Yurumazu)": { kind: "person", url: "https://note.com/eminyurumazu", sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "Turkish-born, ex-Nomura market strategist; one of Japan's most-followed macro commentators.", ko: "터키 출신, 노무라 출신 시장 전략가. 일본에서 가장 많이 팔로우되는 매크로 논객 중 한 명.", ja: "トルコ出身、野村證券OBの市場ストラテジスト。日本で最もフォローされるマクロ論客の一人。" } },
-  "Meru (메르)":    { kind: "person", url: "https://blog.naver.com/ranto28",  sector: { en: "Blogger", ko: "블로거", ja: "ブロガー" }, desc: { en: "Korea's most-read finance blogger. Untangles macro, supply chains and geopolitics on Naver.", ko: "한국에서 가장 많이 읽히는 경제 블로거. 네이버에서 매크로, 공급망, 지정학을 풀어낸다.", ja: "韓国で最も読まれる経済ブロガー。Naverでマクロ、サプライチェーン、地政学を解きほぐす。" } },
+  "메르":    { kind: "person", url: "https://blog.naver.com/ranto28",  sector: { en: "Blogger", ko: "블로거", ja: "ブロガー" }, desc: { en: "Korea's most-read finance blogger. Untangles macro, supply chains and geopolitics on Naver.", ko: "한국에서 가장 많이 읽히는 경제 블로거. 네이버에서 매크로, 공급망, 지정학을 풀어낸다.", ja: "韓国で最も読まれる経済ブロガー。Naverでマクロ、サプライチェーン、地政学を解きほぐす。" } },
   "Serenity (@aleabitoreddit)": { kind: "person", url: "https://x.com/aleabitoreddit",  sector: { en: "Investor", ko: "투자자", ja: "投資家" }, desc: { en: "X account tracking AI infrastructure stocks: neoclouds, optics, power.", ko: "AI 인프라 주식을 추적하는 X 계정. 네오클라우드, 광통신, 전력이 주 분야.", ja: "AIインフラ株を追うXアカウント。ネオクラウド、光通信、電力が守備範囲。" } },
   "Doomberg":      { kind: "person", url: "https://newsletter.doomberg.com",  sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "The green chicken: Substack's #3 finance publication, on energy and geopolitics.", ko: "초록 닭 아이콘으로 유명한 서브스택 금융 3위 뉴스레터. 에너지와 지정학 전문.", ja: "緑のニワトリで有名なSubstack金融3位のニュースレター。エネルギーと地政学専門。" } },
   "Marc Rubinstein (Net Interest)": { kind: "person", url: "https://www.netinterest.co",  sector: { en: "Newsletter", ko: "뉴스레터", ja: "ニュースレター" }, desc: { en: "Ex-hedge fund manager writing the weekly Net Interest letter on how finance actually works.", ko: "전직 헤지펀드 매니저. 금융이 실제로 어떻게 돌아가는지를 주간 뉴스레터로 쓴다.", ja: "元ヘッジファンドマネージャー。金融が実際どう回るかを週刊で書く。" } },
@@ -814,6 +830,15 @@ const STRINGS = {
     readDone: "Read ✓",
     like: "Like",
     views: "Views",
+    eventsTitle: "Coming up",
+    dToday: "Today",
+    watchTitle: "My companies",
+    watchFollow: "Follow",
+    watchOn: "Following ✓",
+    watchUnread: "{n} unread",
+    reply: "Reply",
+    replyingTo: "Replying to {name}",
+    cancel: "Cancel",
     empty: "Nothing here yet. New voices are being added.",
     foot1: "Summaries and commentary are original work by The Infrastructure Thesis. All rights to the original posts belong to their authors; each entry links to and credits the source.",
     foot2: "Not investment advice."
@@ -871,6 +896,15 @@ const STRINGS = {
     readDone: "읽음 ✓",
     like: "좋아요",
     views: "조회수",
+    eventsTitle: "다가오는 이벤트",
+    dToday: "오늘",
+    watchTitle: "내 관심 기업",
+    watchFollow: "팔로우",
+    watchOn: "팔로우 중 ✓",
+    watchUnread: "안 읽은 글 {n}",
+    reply: "답글",
+    replyingTo: "{name}님에게 답글",
+    cancel: "취소",
     empty: "아직 글이 없어요. 새로운 목소리를 추가하는 중입니다.",
     foot1: "요약과 해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 본 페이지는 요약·해설과 출처 표기 및 링크만을 제공합니다.",
     foot2: "투자 자문이 아닙니다."
@@ -928,6 +962,15 @@ const STRINGS = {
     readDone: "既読 ✓",
     like: "いいね",
     views: "閲覧数",
+    eventsTitle: "近日中",
+    dToday: "本日",
+    watchTitle: "マイ企業",
+    watchFollow: "フォロー",
+    watchOn: "フォロー中 ✓",
+    watchUnread: "未読{n}件",
+    reply: "返信",
+    replyingTo: "{name}さんに返信",
+    cancel: "キャンセル",
     empty: "まだ記事がありません。新しい声を追加中です。",
     foot1: "要約と解説はThe Infrastructure Thesisのオリジナルです。原文の著作権は各著者に帰属し、本ページは要約・解説と出典表記およびリンクのみを提供します。",
     foot2: "投資助言ではありません。"
@@ -1499,6 +1542,80 @@ html[data-lang="ko"] .related-link{font-family:"Pretendard Variable",sans-serif;
 }
 html[data-lang="ko"] .empty{font-family:"Pretendard Variable",sans-serif;}
 
+/* ---------- event countdown bar ---------- */
+.event-bar{
+  display:flex;align-items:center;gap:10px;overflow-x:auto;
+  margin:16px 0 2px;padding-bottom:4px;
+}
+.event-bar::-webkit-scrollbar{display:none;}
+.ev-title{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);flex:0 0 auto;
+}
+.event-chip{
+  display:inline-flex;align-items:center;gap:9px;flex:0 0 auto;
+  background:var(--black);color:#fff;border:0;border-radius:999px;
+  padding:9px 16px;cursor:pointer;font-family:inherit;white-space:nowrap;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.event-chip:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.18);}
+.ev-d{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;color:#FFD166;}
+.ev-label{font-size:12.5px;font-weight:600;}
+html[data-lang="ko"] .ev-label{font-family:"Pretendard Variable",sans-serif;}
+.ev-date{font-family:"IBM Plex Mono",monospace;font-size:10px;opacity:.55;}
+
+/* ---------- watchlist (followed companies) ---------- */
+.watch-rail{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 14px;}
+.watch-rail::-webkit-scrollbar{display:none;}
+.watch-card{
+  position:relative;flex:0 0 150px;
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:12px 14px;cursor:pointer;
+  box-shadow:0 4px 12px rgba(17,18,20,.05);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.watch-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(17,18,20,.1);}
+.w-name{font-size:12.5px;font-weight:800;letter-spacing:.02em;padding-right:14px;}
+.w-sector{font-family:"IBM Plex Mono",monospace;font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:1px;}
+.w-spark{margin-top:8px;min-height:34px;}
+.w-spark svg{display:block;}
+.w-price{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;margin-top:3px;color:var(--text);}
+.w-unread{margin-top:6px;font-size:10.5px;font-weight:700;color:#0A84FF;}
+html[data-lang="ko"] .w-unread{font-family:"Pretendard Variable",sans-serif;}
+.w-unread.w-zero{color:#D6D9E0;}
+.w-x{
+  position:absolute;top:7px;right:9px;border:0;background:none;
+  color:var(--muted);font-size:14px;line-height:1;cursor:pointer;padding:3px;font-family:inherit;
+}
+.w-x:hover{color:var(--text);}
+
+/* follow button inside entity tooltips */
+.tip-follow{
+  pointer-events:auto;display:inline-block;margin-top:8px;
+  font-family:inherit;font-size:11px;font-weight:700;color:#fff;
+  background:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;
+  padding:4px 12px;cursor:pointer;
+}
+.tip-follow:hover{border-color:#fff;}
+.tip-follow.on{background:#fff;color:var(--black);border-color:#fff;}
+
+/* ---------- comment threads (replies + likes) ---------- */
+.c-actions{display:flex;gap:10px;margin-top:6px;}
+.c-act{
+  border:0;background:none;color:var(--muted);
+  font-family:inherit;font-size:11.5px;font-weight:600;
+  cursor:pointer;padding:2px 5px;border-radius:6px;
+}
+.c-act:hover{color:var(--text);background:#fff;}
+.c-like.on{color:#F04438;}
+.c-reply{margin-left:20px;border-left:2px solid var(--line);}
+.c-replying{
+  font-size:12px;color:var(--muted);
+  background:var(--bg-soft);border:1px dashed var(--line);border-radius:10px;
+  padding:7px 11px;
+}
+html[data-lang="ko"] .c-replying{font-family:"Pretendard Variable",sans-serif;}
+
 /* ---------- footer ---------- */
 footer{padding:26px 0 48px;font-size:11.5px;line-height:1.7;color:var(--muted);border-top:1px solid var(--line);margin-top:28px;}
 html[data-lang="ko"] footer{font-family:"Pretendard Variable",sans-serif;}
@@ -1542,9 +1659,16 @@ footer a{color:var(--muted);}
     <button class="mi-close" id="miniInstallClose" aria-label="close">&times;</button>
   </div>
 
+  <div class="event-bar" id="eventBar" hidden></div>
+
   <section>
     <h2 class="section-title" id="hotTitle"></h2>
     <div class="hot-rail" id="hotRail"></div>
+  </section>
+
+  <section id="watchSec" hidden>
+    <h2 class="section-title" id="watchTitle"></h2>
+    <div class="watch-rail" id="watchRail"></div>
   </section>
 
   <section id="feed">
@@ -1567,7 +1691,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v28</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v29</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1630,7 +1754,12 @@ function entityTip(key){
   const hint = e.kind === "person" && e.url
     ? '<span class="tip-hint">' + ({ en: "Tap again to open profile", ko: "한 번 더 탭하면 프로필로", ja: "もう一度タップでプロフィールへ" }[LANG]) + "</span>"
     : "";
-  return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + quote + hint + '</span>';
+  const safeKey = key.replace(/'/g, "\\'");
+  const follow = e.kind === "company"
+    ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safeKey + '\', event)">'
+      + (WATCH.has(key) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>"
+    : "";
+  return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + quote + follow + hint + '</span>';
 }
 
 /* ---------------- mini price charts ----------------
@@ -1848,7 +1977,127 @@ const READ = new Set(store.get("stk_read", []));
 const BM = new Set(store.get("stk_bm", []));
 const FOLLOWED = new Set(store.get("stk_series", []));
 const SERIES_SEEN = store.get("stk_series_seen", {});
+const WATCH = new Set(store.get("stk_watch", []));
 let SERIES_VIEW = null;
+
+/* ---------------- push tags (OneSignal) ----------------
+   Following a series or company tags this device on OneSignal
+   (s_{seriesId} / c_{company-slug}), so June can send targeted
+   pushes ("new episode in a story you follow") from the worker's
+   /notify route or the OneSignal dashboard (Audience > by tag). */
+function slugTag(k){ return String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g, "_").replace(/^_+|_+$/g, ""); }
+function osTag(key, on){
+  if (!ONESIGNAL_APP_ID) return;
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async (OS) => {
+    try { if (on) OS.User.addTag(key, "1"); else OS.User.removeTag(key); } catch (e) {}
+  });
+}
+/* first follow = the natural moment to ask for push permission */
+function promptPushOnce(){
+  if (!ONESIGNAL_APP_ID) return;
+  if (store.get("stk_push_asked", false)) return;
+  store.set("stk_push_asked", true);
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async (OS) => {
+    try { if (!OS.Notifications.permission) OS.Slidedown.promptPush(); } catch (e) {}
+  });
+}
+
+/* ---------------- watchlist (followed companies) ---------------- */
+function toggleWatch(key, ev){
+  if (ev){ ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
+  const on = !WATCH.has(key);
+  if (on){ WATCH.add(key); track("watch/" + slugTag(key)); } else WATCH.delete(key);
+  store.set("stk_watch", [...WATCH]);
+  osTag("c_" + slugTag(key), on);
+  if (on) promptPushOnce();
+  document.querySelectorAll(".tip-follow[data-k]").forEach(b => {
+    if (b.getAttribute("data-k") === key){
+      b.classList.toggle("on", on);
+      b.textContent = on ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow;
+    }
+  });
+  renderWatch();
+}
+function watchItems(key){
+  return ITEMS.filter(i => (i.tags || []).includes(key) || (i.cover && i.cover.label === key));
+}
+function watchUnreadCount(key){
+  return watchItems(key).filter(i => !READ.has(i.id)).length;
+}
+function renderWatch(){
+  const sec = document.getElementById("watchSec");
+  const rail = document.getElementById("watchRail");
+  if (!sec || !rail) return;
+  const S = STRINGS[LANG];
+  const tEl = document.getElementById("watchTitle");
+  if (tEl) tEl.textContent = S.watchTitle;
+  const keys = [...WATCH].filter(k => ENTITIES[k]);
+  if (!keys.length){ sec.hidden = true; return; }
+  sec.hidden = false;
+  rail.innerHTML = keys.map(k => {
+    const safe = k.replace(/'/g, "\\'");
+    const unread = watchUnreadCount(k);
+    return '<div class="watch-card" onclick="tagTap(\'' + safe + '\')">'
+      + '<button class="w-x" onclick="toggleWatch(\'' + safe + '\', event)" aria-label="unfollow">&times;</button>'
+      + '<div class="w-name">' + esc(k) + "</div>"
+      + '<div class="w-sector">' + ENTITIES[k].sector[LANG] + "</div>"
+      + '<div class="w-spark" data-w="' + esc(k) + '"></div>'
+      + (unread
+          ? '<div class="w-unread">' + S.watchUnread.replace("{n}", unread) + "</div>"
+          : '<div class="w-unread w-zero">·</div>')
+      + "</div>";
+  }).join("");
+  keys.forEach(k => { loadQuote(k).then(() => paintWatchQuote(k)); });
+}
+function paintWatchQuote(key){
+  const e = ENTITIES[key];
+  if (!e || !e.ticker) return;
+  const q = QUOTES[e.ticker];
+  if (!q || q.error || !q.closes) return;
+  document.querySelectorAll('.w-spark[data-w="' + key + '"]').forEach(el => {
+    el.innerHTML = watchSpark(q);
+  });
+}
+/* like sparkline() but colored for a white card, not a dark tooltip */
+function watchSpark(q){
+  const c = q.closes, w = 120, h = 30;
+  const min = Math.min.apply(null, c), max = Math.max.apply(null, c);
+  const span = (max - min) || 1;
+  const pts = c.map((v, i) =>
+    (i * (w / (c.length - 1))).toFixed(1) + "," + (h - 2 - ((v - min) / span) * (h - 4)).toFixed(1)
+  ).join(" ");
+  const last = c[c.length - 1], first = c[0];
+  const chg = ((last - first) / first) * 100;
+  const up = chg >= 0;
+  const color = up ? "#12B76A" : "#F04438";
+  const price = last >= 1000 ? Math.round(last).toLocaleString() : last.toFixed(2);
+  return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" aria-hidden="true">'
+    + '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="1.6" stroke-linejoin="round"/></svg>'
+    + '<span class="w-price">' + price + ' <b style="color:' + color + '">' + (up ? "+" : "") + chg.toFixed(1) + "%</b></span>";
+}
+
+/* ---------------- upcoming events (countdown) ---------------- */
+function renderEvents(){
+  const bar = document.getElementById("eventBar");
+  if (!bar) return;
+  const S = STRINGS[LANG];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const evs = EVENTS
+    .map(e => ({ ev: e, days: Math.round((new Date(e.date + "T00:00:00") - today) / 86400000) }))
+    .filter(x => x.days >= 0)
+    .sort((a, b) => a.days - b.days);
+  if (!evs.length){ bar.hidden = true; return; }
+  bar.hidden = false;
+  bar.innerHTML = '<span class="ev-title">' + S.eventsTitle + "</span>"
+    + evs.map(x =>
+        '<button class="event-chip" onclick="goToItem(\'' + x.ev.itemId + '\')">'
+        + '<span class="ev-d">' + (x.days === 0 ? S.dToday : "D-" + x.days) + "</span>"
+        + '<span class="ev-label">' + x.ev.label[LANG] + "</span>"
+        + '<span class="ev-date">' + x.ev.date.slice(5).replace("-", ".") + "</span>"
+        + "</button>").join("");
+}
 
 function seriesItems(sid){
   return ITEMS.filter(i => i.series === sid)
@@ -1873,14 +2122,19 @@ function closeSeries(){
   renderFeed(false);
 }
 function toggleFollow(sid){
-  if (FOLLOWED.has(sid)) FOLLOWED.delete(sid);
-  else {
+  const on = !FOLLOWED.has(sid);
+  if (on){
     FOLLOWED.add(sid);
     SERIES_SEEN[sid] = seriesItems(sid).length;
     store.set("stk_series_seen", SERIES_SEEN);
     track("follow/" + sid);
+  } else {
+    FOLLOWED.delete(sid);
   }
   store.set("stk_series", [...FOLLOWED]);
+  /* tag this device on OneSignal so "new episode" pushes can target followers */
+  osTag("s_" + sid, on);
+  if (on) promptPushOnce();
   renderFeed(false);
 }
 /* Followed series with episodes the reader hasn't seen yet. */
@@ -1978,6 +2232,7 @@ function refreshCardRead(id){
   if (dot) dot.style.display = done ? "none" : "";
   const btn = el.querySelector(".eg-read");
   if (btn) btn.classList.toggle("on", done);
+  renderWatch(); /* unread badges on watchlist cards */
 }
 /* ---------------- search ----------------
    Matches title, gist, why, tags, source, and the cover label,
@@ -2175,7 +2430,33 @@ function closeComments(id){
   const btn = document.getElementById("cbtn-" + id);
   if (box){ box.hidden = true; box.innerHTML = ""; }
   if (btn) btn.classList.remove("open");
-  if (openCommentId === id) openCommentId = null;
+  if (openCommentId === id){ openCommentId = null; REPLY_TO = null; }
+}
+
+/* ---- comment threads: one level of replies + likes ----
+   Works with the upgraded worker (rows carry id, parentId, likes).
+   With the old worker (no id field) the action row simply doesn't
+   render and comments stay a flat list: nothing breaks. */
+const CLIKED = new Set(store.get("stk_cliked", []));
+let REPLY_TO = null;
+
+function cItemHtml(c, S, isReply){
+  const cid = (c.id === undefined || c.id === null) ? null : String(c.id);
+  const likes = Number(c.likes) || 0;
+  const liked = cid && CLIKED.has(cid);
+  const actions = cid
+    ? '<div class="c-actions">'
+      + '<button class="c-act c-like' + (liked ? " on" : "") + '" onclick="likeComment(\'' + cid.replace(/'/g, "") + '\', this)">'
+      + (liked ? "♥" : "♡") + ' <span>' + (likes || "") + "</span></button>"
+      + (isReply ? "" : '<button class="c-act" onclick="setReplyTo(\'' + cid.replace(/'/g, "") + '\', \'' + esc(c.nickname).replace(/'/g, "") + '\')">' + S.reply + "</button>")
+      + "</div>"
+    : "";
+  return '<div class="c-item' + (isReply ? " c-reply" : "") + '">'
+    + '<div class="c-head"><span class="c-name">' + esc(c.nickname) + '</span>'
+    + '<span class="c-date">' + cDate(c.createdAt) + '</span></div>'
+    + '<div class="c-text">' + esc(c.content) + '</div>'
+    + actions
+    + '</div>';
 }
 
 async function loadComments(id){
@@ -2192,15 +2473,63 @@ async function loadComments(id){
       listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
       return;
     }
-    listEl.innerHTML = rows.map(c =>
-      '<div class="c-item">'
-        + '<div class="c-head"><span class="c-name">' + esc(c.nickname) + '</span>'
-        + '<span class="c-date">' + cDate(c.createdAt) + '</span></div>'
-        + '<div class="c-text">' + esc(c.content) + '</div>'
-      + '</div>').join("");
+    const roots = rows.filter(c => !c.parentId);
+    const kids = {};
+    rows.forEach(c => { if (c.parentId){ (kids[c.parentId] = kids[c.parentId] || []).push(c); } });
+    const tree = roots.length ? roots : rows; /* old worker: everything is a root */
+    listEl.innerHTML = tree.map(c =>
+      cItemHtml(c, S, false)
+      + ((c.id != null && kids[c.id]) ? kids[c.id].map(k => cItemHtml(k, S, true)).join("") : "")
+    ).join("");
   } catch (e) {
     listEl.innerHTML = '<div class="c-status">' + S.cEmpty + '</div>';
   }
+}
+
+async function likeComment(cid, btn){
+  cid = String(cid);
+  const on = !CLIKED.has(cid);
+  if (on) CLIKED.add(cid); else CLIKED.delete(cid);
+  store.set("stk_cliked", [...CLIKED]);
+  if (btn){
+    const n = btn.querySelector("span");
+    let v = (parseInt(n && n.textContent, 10) || 0) + (on ? 1 : -1);
+    v = Math.max(0, v);
+    btn.classList.toggle("on", on);
+    btn.innerHTML = (on ? "♥" : "♡") + " <span>" + (v || "") + "</span>";
+  }
+  if (on) track("clike/" + cid);
+  if (!COMMENTS_API) return;
+  try {
+    const res = await fetch(COMMENTS_API + "/clike", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ commentId: cid, action: on ? "like" : "unlike" })
+    });
+    if (res.ok && btn){
+      const j = await res.json();
+      if (j && typeof j.likes === "number"){
+        btn.innerHTML = (on ? "♥" : "♡") + " <span>" + (j.likes || "") + "</span>";
+      }
+    }
+  } catch (e) {}
+}
+
+function setReplyTo(cid, name){
+  REPLY_TO = { id: String(cid), name: name };
+  const ind = document.getElementById("crep-" + openCommentId);
+  if (ind){
+    ind.hidden = false;
+    ind.innerHTML = "↳ " + STRINGS[LANG].replyingTo.replace("{name}", esc(name))
+      + ' &nbsp;<button class="c-act" onclick="clearReplyTo()">' + STRINGS[LANG].cancel + "</button>";
+  }
+  const t = document.getElementById("ctext-" + openCommentId);
+  if (t) t.focus();
+}
+function clearReplyTo(){
+  REPLY_TO = null;
+  const ind = openCommentId ? document.getElementById("crep-" + openCommentId) : null;
+  if (ind){ ind.hidden = true; ind.innerHTML = ""; }
 }
 
 async function submitComment(ev, id){
@@ -2227,11 +2556,13 @@ async function submitComment(ev, id){
         pageId: id,
         content: content,
         nickname: nickname,
+        parentId: REPLY_TO ? REPLY_TO.id : undefined,
         website: hp ? hp.value : ""
       })
     });
     if (!res.ok) throw new Error(res.status === 429 ? "rate" : "bad status");
     text.value = "";
+    clearReplyTo();
     if (stat){ stat.className = "c-status ok"; stat.textContent = S.cSent; }
     track("comment/" + id);
     loadComments(id); /* instant: the new comment appears right away */
@@ -2257,9 +2588,11 @@ function toggleComments(id){
   if (btn) btn.classList.add("open");
   const S = STRINGS[LANG];
   const saved = lsGet("stk_nick") || "";
+  REPLY_TO = null;
   box.innerHTML =
     '<div class="c-list" id="clist-' + id + '"></div>'
     + '<div class="c-form">'
+    + '<div class="c-replying" id="crep-' + id + '" hidden></div>'
     + '<textarea id="ctext-' + id + '" placeholder="' + esc(S.cContent) + '"></textarea>'
     + '<div class="c-row">'
     + '<input id="cnick-' + id + '" type="text" autocomplete="nickname" placeholder="' + esc(S.cNickname) + '" value="' + esc(saved) + '">'
@@ -2481,6 +2814,10 @@ function render(){
     `;
     rail.appendChild(a);
   });
+
+  /* countdown + watchlist */
+  renderEvents();
+  renderWatch();
 
   /* tabs */
   const tabs = document.getElementById("tabs");
