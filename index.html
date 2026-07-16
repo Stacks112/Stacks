@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v30 :: onboarding, external items.json, dark mode, popular sort, newsletter -->
+<!-- STACKS BUILD v32 :: onboarding dark-text hard fix + service-worker auto-update -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -347,6 +347,7 @@ const STRINGS = {
   --muted:#8E93A0;
   --line:#ECEDF1;
   --black:#111214;
+  --accent:#2E5BFF;
   --radius:20px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -997,6 +998,7 @@ html[data-lang="ko"] .ob-box .ob-sub{font-family:"Pretendard Variable",sans-seri
   display:flex;flex-direction:column;align-items:flex-start;gap:8px;
   background:var(--bg-soft);border:1.5px solid var(--line);border-radius:16px;
   padding:14px;cursor:pointer;font-family:inherit;text-align:left;
+  color:var(--text);
   transition:border-color .15s ease,transform .15s ease;
 }
 .ob-card:hover{transform:translateY(-1px);}
@@ -1037,9 +1039,10 @@ html[data-lang="ko"] .nl-sub{font-family:"Pretendard Variable",sans-serif;}
 html[data-theme="dark"]{
   --bg:#0E0F12;
   --bg-soft:#17181C;
-  --text:#ECEDF1;
-  --muted:#8B90A0;
+  --text:#F2F3F7;
+  --muted:#9BA1B0;
   --line:#26272E;
+  --accent:#7C93FF;
 }
 html[data-theme="dark"] nav{background:rgba(14,15,18,.86);}
 html[data-theme="dark"] .card,
@@ -1049,7 +1052,20 @@ html[data-theme="dark"] .cta-ghost,
 html[data-theme="dark"] .series-notice button{background:#141519;color:var(--text);border-color:#2E3037;}
 html[data-theme="dark"] .c-form input,
 html[data-theme="dark"] .c-form textarea{background:#141519;}
-html[data-theme="dark"] .gist{color:#B9BEC9;}
+html[data-theme="dark"] .gist{color:#E7E9EF;}
+html[data-theme="dark"] .why{background:#1A1B21;}
+html[data-theme="dark"] .why p,
+html[data-theme="dark"] .why .label,
+html[data-theme="dark"] .card h3,
+html[data-theme="dark"] .c-item .c-text,
+html[data-theme="dark"] .ob-label,
+html[data-theme="dark"] .ob-box h2{color:#F2F3F7;}
+/* nuclear guarantee: every scrap of text in the onboarding cards stays
+   light in dark mode, no matter what specificity fights it */
+html[data-theme="dark"] .ob-card,
+html[data-theme="dark"] .ob-card *{color:#F2F3F7 !important;}
+html[data-theme="dark"] .ob-box .ob-sub{color:#9BA1B0 !important;}
+html[data-theme="dark"] .title-orig{color:#9BA1B0;}
 html[data-theme="dark"] .original-link,
 html[data-theme="dark"] .cta,
 html[data-theme="dark"] .event-chip,
@@ -1164,7 +1180,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v30</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v32</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2550,14 +2566,29 @@ window.addEventListener("appinstalled", () => {
 refreshInstallUI();
 
 if ("serviceWorker" in navigator){
+  /* When a freshly installed service worker takes control, reload once so
+     the newest HTML/CSS is shown immediately instead of on the next visit.
+     This is what makes design fixes (like dark mode) actually reach people
+     without them having to clear the cache by hand. */
+  let swReloaded = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (swReloaded) return;
+    swReloaded = true;
+    location.reload();
+  });
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").then(reg => {
+      reg.update(); /* check for a new version on every load */
       reg.addEventListener("updatefound", () => {
         const sw = reg.installing;
         if (!sw) return;
         sw.addEventListener("statechange", () => {
-          // a new version took over; next open will use it
           if (sw.state === "activated") warmCache();
+          /* a new worker is waiting: ask it to take over now (needs sw.js
+             to call skipWaiting; harmless if it doesn't) */
+          if (sw.state === "installed" && navigator.serviceWorker.controller){
+            try { sw.postMessage({ type: "SKIP_WAITING" }); } catch (e) {}
+          }
         });
       });
       if (navigator.serviceWorker.controller) warmCache();
