@@ -459,6 +459,68 @@ STAGE4_EDITS = [
 ]
 
 
+STAGE5_EDITS = [
+    # a) body-text company/person/term links: desktop click -> right panel
+    ("function entityTap(el, key){",
+     '''function entityTap(el, key){
+  /* stage5 */
+  if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches
+      && typeof showEntityRail === "function" && ENTITIES[key]){
+    document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
+    showEntityRail(key);
+    return;
+  }
+  entityTapOrig(el, key);
+}
+function entityTapOrig(el, key){'''),
+    # b) show the group chief for the Korean giants (like Jensen Huang / Tim Cook)
+    ("  buildEntityMatcher();",
+     '''  /* top-figure override: the group chief, not the operating CEO */
+  try {
+    if (ENTITIES["SK HYNIX"]) ENTITIES["SK HYNIX"].ceo = "최태원 (Chey Tae-won)";
+    if (ENTITIES["SAMSUNG ELECTRONICS"]) ENTITIES["SAMSUNG ELECTRONICS"].ceo = "이재용 (Jay Y. Lee)";
+  } catch (e) {}
+  buildEntityMatcher();'''),
+    # c) profiles for the two chiefs
+    ("const CEO_INFO = {",
+     '''const CEO_INFO = {
+  "최태원": { d: { ko: "SK그룹 회장이자 SK하이닉스 이사회 의장. 그룹 전체의 최고 결정권자.", en: "Chairman of SK Group and of SK hynix's board — the group's top decision-maker.", ja: "SKグループ会長、SKハイニックス取締役会議長。グループ最高の意思決定者。" }, l: { ko: "1998년부터 SK그룹을 이끄는 총수. 2012년 하이닉스 인수를 결단해 오늘의 AI 메모리 1위 기반을 만들었다. 일상 경영은 곽노정 CEO가 맡고, 최 회장은 그룹 차원의 대규모 투자를 결정한다.", en: "SK Group's chief since 1998. His 2012 decision to acquire Hynix laid the foundation for today's AI-memory leadership; day-to-day operations are run by CEO Kwak Noh-jung while the chairman calls the group-level investments.", ja: "1998年からSKグループを率いる総帥。2012年のハイニックス買収を決断し、今日のAIメモリ首位の基盤を作った。日常経営は郭魯正CEOが担い、崔会長はグループ次元の大型投資を決める。" } },
+  "이재용": { d: { ko: "삼성전자 회장. 삼성그룹의 총수.", en: "Executive Chairman of Samsung Electronics; head of the Samsung group.", ja: "サムスン電子会長。サムスングループの総帥。" }, l: { ko: "이건희 회장의 아들로 2022년 회장에 취임했다. 반도체·바이오·AI를 삼성의 3대 성장축으로 이끌며, HBM 반격과 파운드리 재건이 당면 과제다.", en: "Son of Lee Kun-hee, he took the chairmanship in 2022. Leads Samsung's push in chips, bio and AI — with the HBM comeback and foundry rebuild as the immediate tests.", ja: "李健熙会長の息子で2022年会長就任。半導体・バイオ・AIを3大成長軸に率い、HBM巻き返しとファウンドリ再建が当面の課題。" } },'''),
+    # d) newsletter consent "내용 보기" -> real privacy policy
+    ('\' · <a href="\' + STIBEE_PAGE + \'" target="_blank" rel="noopener">\'',
+     '\' · <a href="privacy.html" target="_blank" rel="noopener">\''),
+]
+
+STAGE5_OPTIONAL = [
+    # footer link to the privacy policy
+    ('<a href="feed.xml">RSS</a>',
+     '<a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a>'),
+]
+
+
+def stage5(html):
+    problems = []
+    for i, (needle, _) in enumerate(STAGE5_EDITS, 1):
+        n = html.count(needle)
+        if n != 1:
+            problems.append("stage5 edit %d: needle found %d times: %r" % (i, n, needle[:70]))
+    if problems:
+        for p in problems:
+            print("[ABORT] " + p)
+        return 1
+    for needle, repl in STAGE5_EDITS:
+        html = html.replace(needle, repl, 1)
+    for needle, repl in STAGE5_OPTIONAL:
+        if html.count(needle) == 1:
+            html = html.replace(needle, repl, 1)
+        else:
+            print("[warn] optional stage5 edit skipped: %r" % needle[:50])
+    with io.open(PATH, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("stage-5 applied: rail-first body links, group-chief names, privacy links")
+    return 0
+
+
 def stage4(html):
     problems = []
     for i, (needle, _) in enumerate(STAGE4_EDITS, 1):
@@ -506,8 +568,10 @@ def main():
         if "/* debate-bar placement fix */" in html:
             if "function goHome(" in html:
                 if "/* stage4 */" in html:
-                    print("stage 4 already applied; nothing to do")
-                    return 0
+                    if "/* stage5 */" in html:
+                        print("stage 5 already applied; nothing to do")
+                        return 0
+                    return stage5(html)
                 return stage4(html)
             return stage3(html)
         n1 = html.count("  list.appendChild(bar);")
