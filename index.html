@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v46 :: bell icon for alerts, flag language dropdown -->
+<!-- STACKS BUILD v47 :: PC nav — icon+text buttons, brand aligned to left rail -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -189,6 +189,8 @@ const STRINGS = {
     share: "Share",
     copied: "Link copied ✓",
     notify: "Get alerts",
+    themeDark: "Dark mode",
+    themeLight: "Light mode",
     commentsClose: "Hide comments",
     allRead: "You're all caught up. Nothing unread.",
     markRead: "Mark as read",
@@ -273,6 +275,8 @@ const STRINGS = {
     share: "공유",
     copied: "링크 복사됨 ✓",
     notify: "알림 받기",
+    themeDark: "다크 모드",
+    themeLight: "라이트 모드",
     commentsClose: "댓글 접기",
     allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
     markRead: "읽음 표시",
@@ -357,6 +361,8 @@ const STRINGS = {
     share: "共有",
     copied: "コピーしました",
     notify: "通知を受け取る",
+    themeDark: "ダークモード",
+    themeLight: "ライトモード",
     commentsClose: "コメントを閉じる",
     allRead: "すべて読みました。未読はありません。",
     markRead: "既読にする",
@@ -1020,6 +1026,15 @@ html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-fa
 }
 #notifBtn{width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;}
 #notifBtn svg{width:16px;height:16px;}
+.nav-btn-label{display:none;}
+@media (min-width:1024px){
+  /* PC: label text next to the bell / theme icons */
+  .nav-btn-label{display:inline;}
+  #notifBtn{width:auto;height:auto;padding:6px 13px;gap:7px;}
+  #themeBtn{display:inline-flex;align-items:center;gap:7px;}
+  /* PC: stretch the nav so the brand sits above the left rail */
+  .nav-inner{max-width:1300px;padding:12px 26px;}
+}
 .notif-btn:hover{color:var(--text);border-color:var(--text);}
 .cover-paid{
   position:absolute;top:46px;right:12px;
@@ -2690,10 +2705,12 @@ function render(){
   if (sIn) sIn.placeholder = S.searchPh;
   const nb = document.getElementById("notifBtn");
   if (nb){
-    nb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>';
+    nb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>'
+      + '<span class="nav-btn-label">' + S.notify + "</span>";
     nb.setAttribute("aria-label", S.notify);
     nb.title = S.notify;
   }
+  applyThemeBtn();
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
 
@@ -3161,7 +3178,14 @@ async function bootData(){
 /* ---------------- dark mode toggle ---------------- */
 function applyThemeBtn(){
   const b = document.getElementById("themeBtn");
-  if (b) b.textContent = THEME === "dark" ? "\u2600\uFE0F" : "\uD83C\uDF19";
+  if (b){
+    const S = STRINGS[LANG] || STRINGS.en;
+    const ico = THEME === "dark" ? "\u2600\uFE0F" : "\uD83C\uDF19";
+    const label = THEME === "dark" ? S.themeLight : S.themeDark;
+    b.innerHTML = '<span>' + ico + '</span><span class="nav-btn-label">' + label + "</span>";
+    b.setAttribute("aria-label", label);
+    b.title = label;
+  }
   const m = document.querySelector('meta[name="theme-color"]');
   if (m) m.setAttribute("content", THEME === "dark" ? "#0E0F12" : "#FFFFFF");
 }
