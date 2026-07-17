@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Apply the v50 debate-board patch to index.html.
+"""Apply the debate-board patch (v56) to index.html.
 
 Run by .github/workflows/apply-v50.yml (workflow_dispatch).
 Every needle must appear EXACTLY once in index.html; otherwise the
 script aborts and nothing is written, so a drifted file can't be
-half-patched. Safe to re-run: if the file is already v50 it exits 0.
+half-patched. Safe to re-run: if the board is already in, exits 0.
+
+The build-comment edit and the entity-view insertion are anchored
+structurally (regex / position) so they survive unrelated version
+bumps like the v55 AdSense change.
 """
 
 import io
+import re
 import sys
 
 PATH = "index.html"
@@ -158,9 +163,6 @@ CHIPTAP_NEW = '''  el.classList.remove("show");
 }'''
 
 EDITS = [
-    # 1. build comment
-    ("<!-- STACKS BUILD v49 :: intro shows once; company profile page (logo, facts, long desc) + ranged Google-style chart -->",
-     "<!-- STACKS BUILD v50 :: bull/bear debate board on entity pages (stance grouping + scoreboard); company chips/filter open the debate page -->"),
     # 2. STANCE map
     ("let ITEMS = [];\nlet SERIES = {};\nlet EVENTS = [];\nlet ENTITIES = {};",
      STANCE_BLOCK),
@@ -178,18 +180,6 @@ EDITS = [
     # 6. stance pill on cards
     ('        <div class="chips">${item.tags.map(t=>chipHtml(t)).join("")}</div>',
      '        <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>'),
-    # 7. entity view renders the debate board and stops
-    ('''    list.appendChild(h);
-    if (isCo && e.ticker) ehqLoad(ENTITY_VIEW, "1mo");
-  }''',
-     '''    list.appendChild(h);
-    if (isCo && e.ticker) ehqLoad(ENTITY_VIEW, "1mo");
-    renderEntityDebate(list, items, S);
-    hydrateImages();
-    applyEngageCounts();
-    setupViewObserver();
-    return;
-  }'''),
     # 8a. company filter opens the debate page
     ('''function pickCompany(name){
   const inp = document.getElementById("searchInput");
@@ -206,8 +196,38 @@ EDITS = [
 }''', CHIPTAP_NEW),
 ]
 
+DEBATE_CALL = '''    renderEntityDebate(list, items, S);
+    hydrateImages();
+    applyEngageCounts();
+    setupViewObserver();
+    return;
+'''
+
+BUILD_COMMENT = "<!-- STACKS BUILD v56 :: bull/bear debate board on entity pages (stance grouping + scoreboard); company chips/filter open the debate page -->"
+
+
+def structural_edits(html):
+    """Build-comment bump + entity-view insertion, anchored structurally."""
+    # a) top-of-file build comment: replace whatever version is there
+    html, n = re.subn(r"<!-- STACKS BUILD v\d+ :: [^\n]*-->", BUILD_COMMENT, html, count=1)
+    if n != 1:
+        raise SystemExit("[ABORT] build comment not found")
+    # b) entity view: insert the debate render just before the closing
+    #    brace of the ENTITY_VIEW block (anchored on entityHeadEl call)
+    anchor = "list.appendChild(entityHeadEl(ENTITY_VIEW"
+    i = html.find(anchor)
+    if i < 0:
+        raise SystemExit("[ABORT] entityHeadEl anchor not found")
+    if html.find(anchor, i + 1) >= 0:
+        raise SystemExit("[ABORT] entityHeadEl anchor is not unique")
+    close = html.find("\n  }\n", i)
+    if close < 0 or close - i > 800:
+        raise SystemExit("[ABORT] ENTITY_VIEW closing brace not found near anchor")
+    html = html[:close + 1] + DEBATE_CALL + html[close + 1:]
+    return html
+
+
 OPTIONAL_EDITS = [
-    ("STACKS BUILD v36</p>", "STACKS BUILD v50</p>"),
 ]
 
 
@@ -215,8 +235,8 @@ def main():
     with io.open(PATH, encoding="utf-8") as f:
         html = f.read()
 
-    if "STACKS BUILD v50" in html and "const STANCE" in html:
-        print("already v50; nothing to do")
+    if "const STANCE" in html and "renderEntityDebate" in html:
+        print("debate board already applied; nothing to do")
         return 0
 
     # dry-run: verify every needle occurs exactly once BEFORE touching anything
@@ -232,15 +252,11 @@ def main():
 
     for needle, repl in EDITS:
         html = html.replace(needle, repl, 1)
-    for needle, repl in OPTIONAL_EDITS:
-        if html.count(needle) == 1:
-            html = html.replace(needle, repl, 1)
-        else:
-            print("[warn] optional edit skipped: %r" % needle[:60])
+    html = structural_edits(html)
 
     with io.open(PATH, "w", encoding="utf-8") as f:
         f.write(html)
-    print("v50 patch applied: %d edits" % len(EDITS))
+    print("debate-board patch applied: %d text edits + 2 structural" % len(EDITS))
     return 0
 
 
