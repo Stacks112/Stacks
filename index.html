@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v34 :: native in-app newsletter form (app-styled) posting to Stibee -->
+<!-- STACKS BUILD v35 :: auto day/night theme by visitor local time (manual toggle still wins) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -90,10 +90,21 @@ const OB_INTERESTS = [
   { id: "bigtech", emoji: "\uD83C\uDFE2", label: { en: "Big Tech", ko: "\ube45\ud14c\ud06c", ja: "\u30d3\u30c3\u30b0\u30c6\u30c3\u30af" }, series: [], companies: ["MICROSOFT", "META", "APPLE"] }
 ];
 
-/* dark mode: applied immediately so there is no white flash */
-let THEME = null;
-try { THEME = localStorage.getItem("stk_theme"); } catch(e){}
-if (!THEME) THEME = (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+/* ---------------- theme: follows the visitor's local clock ----------------
+   Light from 07:00 to 18:59, dark from 19:00 to 06:59 - in each visitor's
+   OWN timezone (the browser clock is already local, so Seoul, Tokyo and
+   New York each flip at their own evening). A manual tap on the moon/sun
+   button overrides the clock; tapping back to what the clock would pick
+   anyway returns to automatic. Applied here in <head> so there is no
+   wrong-color flash on load. */
+const THEME_DAY_START = 7, THEME_NIGHT_START = 19;
+function themeByClock(){
+  const h = new Date().getHours();
+  return (h >= THEME_DAY_START && h < THEME_NIGHT_START) ? "light" : "dark";
+}
+let THEME_SAVED = null;
+try { THEME_SAVED = localStorage.getItem("stk_theme"); } catch(e){}
+let THEME = THEME_SAVED || themeByClock();
 document.documentElement.setAttribute("data-theme", THEME);
 
 
@@ -1242,7 +1253,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v34</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v35</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2719,10 +2730,28 @@ function applyThemeBtn(){
 }
 function toggleTheme(){
   THEME = THEME === "dark" ? "light" : "dark";
-  lsSet("stk_theme", THEME);
+  if (THEME === themeByClock()){
+    /* user picked what the clock would pick anyway -> resume auto mode */
+    try { localStorage.removeItem("stk_theme"); } catch (e) {}
+    THEME_SAVED = null;
+  } else {
+    lsSet("stk_theme", THEME);
+    THEME_SAVED = THEME;
+  }
   document.documentElement.setAttribute("data-theme", THEME);
   applyThemeBtn();
 }
+
+/* auto mode: if the app stays open past 19:00 (or 07:00), switch live */
+setInterval(() => {
+  if (THEME_SAVED) return; /* manual choice wins */
+  const t = themeByClock();
+  if (t !== THEME){
+    THEME = t;
+    document.documentElement.setAttribute("data-theme", THEME);
+    applyThemeBtn();
+  }
+}, 60000);
 
 /* ---------------- popular sort ---------------- */
 let SORT_HOT = false;
