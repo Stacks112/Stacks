@@ -19,7 +19,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-UA = {"User-Agent": "StacksFeedSync/1.0 (+https://stacks112.github.io/Stacks/)"}
+UA = {"User-Agent": "StacksFeedSync/1.0 (+https://stacksdaily.com/)"}
 KEEP_DAYS = 7          # only keep items from the last week
 MAX_ITEMS = 15         # per feed
 MAX_CONTENT = 20000    # chars of body text per item

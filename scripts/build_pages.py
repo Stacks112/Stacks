@@ -19,7 +19,7 @@ import json
 import re
 from datetime import datetime, timezone
 
-BASE = "https://stacks112.github.io/Stacks/"
+BASE = "https://stacksdaily.com/"
 SITE = "Stacks"
 TAGLINE = {
     "ko": "전 세계 투자 고수들의 글을, 당신의 언어로",
