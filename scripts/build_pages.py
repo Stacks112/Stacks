@@ -89,7 +89,111 @@ def rfc822(date_str):
     return d.strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 
-def page_html(item, ent_links=None):
+# ---- social share images (1200x630 PNG per article) ----
+OG_W, OG_H = 1200, 630
+
+
+def _hex(c, fb=(17, 18, 20)):
+    c = (c or "").lstrip("#")
+    try:
+        if len(c) == 3:
+            c = "".join(ch * 2 for ch in c)
+        return (int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16))
+    except Exception:
+        return fb
+
+
+def _og_setup():
+    """Return drawing helpers if Pillow + a CJK font are available, else None."""
+    try:
+        from PIL import Image, ImageDraw, ImageFont  # noqa
+    except Exception:
+        try:
+            import subprocess, sys
+            subprocess.run([sys.executable, "-m", "pip", "install", "--quiet",
+                            "--break-system-packages", "pillow"], check=True)
+            from PIL import Image, ImageDraw, ImageFont  # noqa
+        except Exception:
+            return None
+    import glob, os
+    def pick(*globs):
+        for g in globs:
+            for p in sorted(glob.glob(g, recursive=True)):
+                if os.path.exists(p):
+                    return p
+        return None
+    bold = pick("/usr/share/fonts/**/NotoSansCJK*Bold*.ttc",
+                "/usr/share/fonts/**/NotoSansCJK*.ttc",
+                "/usr/share/fonts/**/*CJK*.ttc")
+    reg = pick("/usr/share/fonts/**/NotoSansCJK*Regular*.ttc") or bold
+    if not bold:
+        return None
+    return (Image, ImageDraw, ImageFont, bold, reg)
+
+
+def _wrap(draw, text, font, max_w, max_lines):
+    words = list(text.strip())  # char-level wrap works for KO/JA/EN alike
+    lines, cur = [], ""
+    for ch in words:
+        t = cur + ch
+        if draw.textlength(t, font=font) <= max_w or not cur:
+            cur = t
+        else:
+            lines.append(cur); cur = ch
+            if len(lines) == max_lines:
+                break
+    if cur and len(lines) < max_lines:
+        lines.append(cur)
+    if len(lines) == max_lines and draw.textlength(lines[-1] + "…", font=font) > max_w:
+        while lines[-1] and draw.textlength(lines[-1] + "…", font=font) > max_w:
+            lines[-1] = lines[-1][:-1]
+        lines[-1] += "…"
+    return lines
+
+
+def make_og(item, og):
+    Image, ImageDraw, ImageFont, boldp, regp = og
+    W, H, M = OG_W, OG_H, 70
+    frm = _hex((item.get("cover") or {}).get("from"))
+    to = _hex((item.get("cover") or {}).get("to"))
+    # diagonal gradient (small then upscaled = smooth + fast)
+    sm = (64, 34)
+    mask = Image.new("L", sm)
+    mask.putdata([int(255 * ((x / (sm[0] - 1)) + (y / (sm[1] - 1))) / 2)
+                  for y in range(sm[1]) for x in range(sm[0])])
+    base = Image.new("RGB", (W, H), frm)
+    top = Image.new("RGB", (W, H), to)
+    img = Image.composite(top, base, mask.resize((W, H)))
+    # darken bottom for legible text
+    ov = Image.new("L", (1, H))
+    ov.putdata([int(210 * max(0, (y - H * 0.34) / (H * 0.66))) for y in range(H)])
+    img = Image.composite(Image.new("RGB", (W, H), (12, 13, 16)), img, ov.resize((W, H)))
+    d = ImageDraw.Draw(img)
+    fTitle = ImageFont.truetype(boldp, 60)
+    fMeta = ImageFont.truetype(regp, 30)
+    fBrand = ImageFont.truetype(boldp, 30)
+    fLabel = ImageFont.truetype(boldp, 44)
+    # brand + cover label (top)
+    d.text((M, M - 8), "◆ STACKS", font=fBrand, fill=(255, 255, 255))
+    label = (item.get("cover") or {}).get("label", "")
+    if label:
+        d.text((M, M + 44), label, font=fLabel, fill=(232, 232, 238))
+    # title (bottom, up to 3 lines)
+    title = item["title"].get("ko") or item["title"]["en"]
+    lines = _wrap(d, title, fTitle, W - 2 * M, 3)
+    lh = 74
+    ty = H - M - 46 - lh * len(lines)
+    for i, ln in enumerate(lines):
+        d.text((M, ty + i * lh), ln, font=fTitle, fill=(255, 255, 255))
+    # source · date
+    meta = f"{item.get('source','')}  ·  {item.get('date','')}"
+    d.text((M, H - M - 4), meta, font=fMeta, fill=(226, 232, 240))
+    import os
+    os.makedirs("og", exist_ok=True)
+    img.save(f"og/{item['id']}.png", optimize=True)
+
+
+def page_html(item, ent_links=None, og_img=None):
     iid = item["id"]
     url = BASE + "p/" + iid + ".html"
     app_url = BASE + "#sig-" + iid
@@ -147,6 +251,15 @@ def page_html(item, ent_links=None):
         )
         ent_html = f'<nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips">{chips}</div></nav>'
 
+    img_url = BASE + "og/" + iid + ".png" if og_img else ""
+    og_img_tags = (
+        f'<meta property="og:image" content="{E(img_url)}">'
+        f'<meta property="og:image:width" content="1200">'
+        f'<meta property="og:image:height" content="630">'
+        f'<meta name="twitter:image" content="{E(img_url)}">'
+    ) if og_img else ""
+    tw_card = "summary_large_image" if og_img else "summary"
+
     paywall = '<span class="paid">$ 원문은 유료 구독</span>' if item.get("paywall") else ""
 
     return f"""<!DOCTYPE html>
@@ -164,7 +277,8 @@ def page_html(item, ent_links=None):
 <meta property="og:description" content="{E(desc)}">
 <meta property="og:url" content="{E(url)}">
 <meta property="article:published_time" content="{item.get('date','')}">
-<meta name="twitter:card" content="summary">
+{og_img_tags}
+<meta name="twitter:card" content="{tw_card}">
 <meta name="twitter:title" content="{E(title_ko)}">
 <meta name="twitter:description" content="{E(desc)}">
 <link rel="icon" href="../favicon-32.png">
@@ -417,14 +531,34 @@ def main():
         for key in item_ents[i["id"]]:
             ent_items.setdefault(key, []).append(i)
 
-    os.makedirs("p", exist_ok=True)
     ids = {i["id"] for i in items}
-    # write per-article pages (with links to their entity pages)
+    # social share images (best-effort: skipped if Pillow/fonts unavailable)
+    og = _og_setup()
+    og_ok = set()
+    if og:
+        os.makedirs("og", exist_ok=True)
+        for i in items:
+            path = f"og/{i['id']}.png"
+            if not os.path.exists(path):
+                try:
+                    make_og(i, og)
+                except Exception as e:
+                    print(f"[og-skip] {i['id']}: {e}")
+            if os.path.exists(path):
+                og_ok.add(i["id"])
+        for fn in os.listdir("og"):
+            if fn.endswith(".png") and fn[:-4] not in ids:
+                os.remove(f"og/{fn}")
+    else:
+        print("[og] Pillow/CJK font unavailable — skipping share images")
+
+    os.makedirs("p", exist_ok=True)
+    # write per-article pages (with entity links + share image)
     for i in items:
         links = [(k, slugify(k)) for k in item_ents[i["id"]] if k in ent_items]
         links.sort(key=lambda x: x[0])
         with open(f"p/{i['id']}.html", "w", encoding="utf-8") as f:
-            f.write(page_html(i, links))
+            f.write(page_html(i, links, og_img=(i["id"] in og_ok)))
     for fn in os.listdir("p"):
         if fn.endswith(".html") and fn[:-5] not in ids:
             os.remove(f"p/{fn}")
