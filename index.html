@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v51 :: glossary terms, 8 new companies, full-name matching fix, tooltip viewport fit -->
+<!-- STACKS BUILD v52 :: mobile tooltip = fixed bottom card (no overflow) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -687,6 +687,17 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .tip-price i{font-style:normal;opacity:.5;margin-left:4px;}
 .tip-hint{display:block;margin-top:7px;font-size:10px;opacity:.55;}
 @media (hover: hover){ .tip-hint{display:none;} }
+/* mobile: a tapped tooltip becomes a fixed bottom card — it can never
+   overflow the viewport no matter where the tapped word sits */
+@media (max-width:1023px){
+  .has-tip.show .entity-tip{
+    position:fixed;left:12px;right:12px;top:auto;bottom:16px;
+    width:auto;max-width:none;transform:none;z-index:70;
+    padding:13px 16px;font-size:12.5px;
+    box-shadow:0 -6px 30px rgba(0,0,0,.28);
+  }
+  .has-tip.show .entity-tip::after{display:none;}
+}
 .tip-below .entity-tip{bottom:auto;top:calc(100% + 8px);transform:translateY(-3px);}
 .tip-below .entity-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--black);}
 .tip-below:hover .entity-tip,.tip-below.show .entity-tip{transform:translateY(0);}
