@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v45 :: goToItem loads paginated target (related links now navigate) -->
+<!-- STACKS BUILD v46 :: bell icon for alerts, flag language dropdown -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -437,6 +437,27 @@ nav{
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-size:13px;font-weight:800;
 }
+.lang-menu{position:relative;}
+.lang-cur{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;color:var(--text);font-family:inherit;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+  padding:6px 13px;cursor:pointer;transition:border-color .15s ease;
+}
+.lang-cur:hover{border-color:var(--text);}
+.lang-cur .lc-arrow{font-size:9px;color:var(--muted);transition:transform .15s ease;}
+.lang-menu.open .lc-arrow{transform:rotate(180deg);}
+.lang-opts{
+  position:absolute;top:calc(100% + 6px);right:0;z-index:30;
+  background:var(--bg);border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 12px 30px rgba(17,18,20,.14);padding:5px;min-width:100%;
+}
+.lang-opts button{
+  display:flex;align-items:center;gap:7px;width:100%;
+  font-size:12px;font-weight:700;color:var(--text);font-family:inherit;
+  background:none;border:0;border-radius:10px;padding:8px 12px;cursor:pointer;white-space:nowrap;
+}
+.lang-opts button:hover{background:var(--bg-soft);}
 .lang-toggle{display:flex;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:3px;}
 .lang-toggle button{
   background:transparent;border:0;color:var(--muted);cursor:pointer;
@@ -997,6 +1018,8 @@ html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-fa
   padding:6px 13px;cursor:pointer;font-family:inherit;margin-right:8px;
   transition:color .15s ease,border-color .15s ease;
 }
+#notifBtn{width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;}
+#notifBtn svg{width:16px;height:16px;}
 .notif-btn:hover{color:var(--text);border-color:var(--text);}
 .cover-paid{
   position:absolute;top:46px;right:12px;
@@ -1226,6 +1249,7 @@ html[data-theme="dark"] .event-chip,
 html[data-theme="dark"] .new-banner,
 html[data-theme="dark"] .series-header,
 html[data-theme="dark"] .ob-start{background:#1E1F26;box-shadow:inset 0 0 0 1px #2E3037;}
+html[data-theme="dark"] .lang-opts{background:#141519;border-color:#2E3037;box-shadow:0 12px 30px rgba(0,0,0,.5);}
 html[data-theme="dark"] .lang-toggle button.active,
 html[data-theme="dark"] .tab.active,
 html[data-theme="dark"] .unread-filter.on{background:#ECEDF1;border-color:#ECEDF1;color:#111214;}
@@ -1253,10 +1277,9 @@ footer a{color:var(--muted);}
     <a class="brand" href="#"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></span><span id="brandName">Stacks</span></a>
     <button class="notif-btn" id="themeBtn" onclick="toggleTheme()" aria-label="theme">🌙</button>
     <button class="notif-btn" id="notifBtn" hidden></button>
-    <div class="lang-toggle">
-      <button id="btnEn" onclick="setLang('en')">EN</button>
-      <button id="btnKo" onclick="setLang('ko')">KO</button>
-      <button id="btnJa" onclick="setLang('ja')">JA</button>
+    <div class="lang-menu" id="langMenu">
+      <button class="lang-cur" id="langCur" onclick="toggleLangMenu(event)" aria-haspopup="true"></button>
+      <div class="lang-opts" id="langOpts" hidden></div>
     </div>
   </div>
 </nav>
@@ -1357,7 +1380,41 @@ let LANG = lsGet("stk_lang") ||
   ((l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : "en")((navigator.language || "").toLowerCase()));
 let TAB = "all";
 
-function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsSet("stk_lang", l); render(); }
+function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsSet("stk_lang", l); closeLangMenu(); render(); }
+
+/* ---------------- language dropdown ----------------
+   Shows only the current language (with its flag); tapping it drops
+   down the other two so you can swap. */
+const LANG_META = { en: ["🇺🇸", "EN"], ko: ["🇰🇷", "KO"], ja: ["🇯🇵", "JA"] };
+function renderLangMenu(){
+  const cur = document.getElementById("langCur");
+  const opts = document.getElementById("langOpts");
+  if (!cur || !opts) return;
+  const m = LANG_META[LANG] || LANG_META.en;
+  cur.innerHTML = '<span>' + m[0] + '</span><span>' + m[1] + '</span><span class="lc-arrow">▼</span>';
+  opts.innerHTML = Object.keys(LANG_META).filter(l => l !== LANG).map(l =>
+    '<button onclick="setLang(\'' + l + '\')"><span>' + LANG_META[l][0] + '</span><span>' + LANG_META[l][1] + '</span></button>'
+  ).join("");
+}
+function toggleLangMenu(ev){
+  if (ev) ev.stopPropagation();
+  const menu = document.getElementById("langMenu");
+  const opts = document.getElementById("langOpts");
+  if (!menu || !opts) return;
+  const open = opts.hidden;
+  opts.hidden = !open;
+  menu.classList.toggle("open", open);
+}
+function closeLangMenu(){
+  const menu = document.getElementById("langMenu");
+  const opts = document.getElementById("langOpts");
+  if (opts) opts.hidden = true;
+  if (menu) menu.classList.remove("open");
+}
+document.addEventListener("click", (ev) => {
+  const menu = document.getElementById("langMenu");
+  if (menu && !menu.contains(ev.target)) closeLangMenu();
+});
 function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; TAB = t; render(); }
 
 
@@ -2622,9 +2679,7 @@ function render(){
   const S = STRINGS[LANG];
   document.documentElement.setAttribute("data-lang", LANG);
   document.documentElement.lang = LANG;
-  document.getElementById("btnEn").className = LANG === "en" ? "active" : "";
-  document.getElementById("btnKo").className = LANG === "ko" ? "active" : "";
-  document.getElementById("btnJa").className = LANG === "ja" ? "active" : "";
+  renderLangMenu();
   document.getElementById("appName").textContent = S.appName;
   document.getElementById("heroTitle").textContent = S.heroTitle;
   document.getElementById("heroSub").textContent = S.heroSub;
@@ -2634,7 +2689,11 @@ function render(){
   const sIn = document.getElementById("searchInput");
   if (sIn) sIn.placeholder = S.searchPh;
   const nb = document.getElementById("notifBtn");
-  if (nb) nb.textContent = S.notify;
+  if (nb){
+    nb.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>';
+    nb.setAttribute("aria-label", S.notify);
+    nb.title = S.notify;
+  }
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
 
