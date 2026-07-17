@@ -28,6 +28,7 @@ FEEDS = [
     {"id": "meru", "url": "https://rss.blog.naver.com/ranto28.xml", "naver": True},
     {"id": "doomberg", "url": "https://newsletter.doomberg.com/feed", "naver": False},
     {"id": "netinterest", "url": "https://www.netinterest.co/feed", "naver": False},
+    {"id": "emin", "url": "https://note.com/eminyurumazu/rss", "naver": False},
 ]
 
 
