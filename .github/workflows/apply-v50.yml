@@ -1,0 +1,36 @@
+name: Apply v50 (debate board)
+
+# One-shot patcher: run manually from the Actions tab. Applies the
+# bull/bear debate-board patch to index.html via scripts/apply_v50.py.
+# The script aborts (and commits nothing) unless every anchor string
+# matches exactly once, so it cannot half-apply.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Patch index.html to v50
+        run: python scripts/apply_v50.py
+
+      - name: Commit
+        run: |
+          if [ -n "$(git status --porcelain index.html)" ]; then
+            git config user.name  "stacks-bot"
+            git config user.email "stacks-bot@users.noreply.github.com"
+            git add index.html
+            git commit -m "feat: v50 bull/bear debate board on entity pages"
+            git push
+          else
+            echo "no changes (already v50?)"
+          fi

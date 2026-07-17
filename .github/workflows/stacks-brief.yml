@@ -1,0 +1,45 @@
+name: Stacks Daily Brief
+
+# Once a day: push the day's featured read + any event D-1 reminder.
+# 23:00 UTC = 08:00 KST. Also runnable by hand from the Actions tab.
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # to commit the small state file
+
+concurrency:
+  group: stacks-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Send daily brief + D-1 reminders
+        env:
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
+          STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
+          SITE_URL: https://stacksdaily.com
+          # ITEMS_PATH: items.json   # uncomment/point if items.json is elsewhere
+        run: python scripts/brief.py
+
+      - name: Persist push state
+        run: |
+          if [ -n "$(git status --porcelain scripts/.brief_state.json)" ]; then
+            git config user.name  "stacks-bot"
+            git config user.email "stacks-bot@users.noreply.github.com"
+            git add scripts/.brief_state.json
+            git commit -m "chore: brief push state [skip ci]"
+            git push
+          else
+            echo "no state change"
+          fi

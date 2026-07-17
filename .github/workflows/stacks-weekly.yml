@@ -1,0 +1,44 @@
+name: Stacks Weekly Best
+
+# Every Sunday 08:00 KST (= Saturday 23:00 UTC): build the weekly digest in
+# ko/en/ja under weekly/, commit it, and push an announcement to readers.
+on:
+  schedule:
+    - cron: "0 23 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stacks-weekly
+  cancel-in-progress: false
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build weekly digest + announce
+        env:
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
+          STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
+          SITE_URL: https://stacksdaily.com
+        run: python scripts/weekly.py
+
+      - name: Commit the digest
+        run: |
+          if [ -n "$(git status --porcelain weekly/)" ]; then
+            git config user.name  "stacks-bot"
+            git config user.email "stacks-bot@users.noreply.github.com"
+            git add weekly/
+            git commit -m "content: weekly best digest [skip ci]"
+            git push
+          else
+            echo "nothing to commit"
+          fi
