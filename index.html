@@ -1600,7 +1600,7 @@ footer a{color:var(--muted);}
   <div class="wrap">
     <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v55</p>
     <p id="foot1"></p>
-    <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a></p>
+    <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
   </div>
 </footer>
@@ -2028,6 +2028,8 @@ function railDebateEnhance(key){
 /* ---- CEO mini-profiles: hover = one-liner, click/tap = detail ---- */
 const CEO_HINT = { en: "Tap again for details", ko: "한 번 더 탭하면 상세 설명", ja: "もう一度タップで詳細" };
 const CEO_INFO = {
+  "최태원": { d: { ko: "SK그룹 회장이자 SK하이닉스 이사회 의장. 그룹 전체의 최고 결정권자.", en: "Chairman of SK Group and of SK hynix's board — the group's top decision-maker.", ja: "SKグループ会長、SKハイニックス取締役会議長。グループ最高の意思決定者。" }, l: { ko: "1998년부터 SK그룹을 이끄는 총수. 2012년 하이닉스 인수를 결단해 오늘의 AI 메모리 1위 기반을 만들었다. 일상 경영은 곽노정 CEO가 맡고, 최 회장은 그룹 차원의 대규모 투자를 결정한다.", en: "SK Group's chief since 1998. His 2012 decision to acquire Hynix laid the foundation for today's AI-memory leadership; day-to-day operations are run by CEO Kwak Noh-jung while the chairman calls the group-level investments.", ja: "1998年からSKグループを率いる総帥。2012年のハイニックス買収を決断し、今日のAIメモリ首位の基盤を作った。日常経営は郭魯正CEOが担い、崔会長はグループ次元の大型投資を決める。" } },
+  "이재용": { d: { ko: "삼성전자 회장. 삼성그룹의 총수.", en: "Executive Chairman of Samsung Electronics; head of the Samsung group.", ja: "サムスン電子会長。サムスングループの総帥。" }, l: { ko: "이건희 회장의 아들로 2022년 회장에 취임했다. 반도체·바이오·AI를 삼성의 3대 성장축으로 이끌며, HBM 반격과 파운드리 재건이 당면 과제다.", en: "Son of Lee Kun-hee, he took the chairmanship in 2022. Leads Samsung's push in chips, bio and AI — with the HBM comeback and foundry rebuild as the immediate tests.", ja: "李健熙会長の息子で2022年会長就任。半導体・バイオ・AIを3大成長軸に率い、HBM巻き返しとファウンドリ再建が当面の課題。" } },
   "곽노정": { d: { ko: "SK하이닉스 CEO. 엔지니어 출신으로 HBM을 AI 메모리 1위로 키웠다.", en: "SK hynix CEO; the engineer who drove its HBM lead in AI memory.", ja: "SKハイニックスCEO。HBMをAIメモリ首位に導いた技術者出身。" }, l: { ko: "1994년 입사 후 제조·기술 총괄을 거쳐 2022년 대표이사에 올랐다. 엔비디아향 HBM 공급을 주도해 AI 슈퍼사이클의 중심에 회사를 올려놨다.", en: "Joined in 1994, rose through manufacturing and technology, and became CEO in 2022. Led the Nvidia HBM supply push that put the company at the center of the AI supercycle.", ja: "1994年入社、製造・技術統括を経て2022年CEO就任。NVIDIA向けHBM供給を主導しAIスーパーサイクルの中心に会社を押し上げた。" } },
   "전영현": { d: { ko: "삼성전자 DS(반도체)부문장 겸 부회장. 메모리의 구원투수로 복귀했다.", en: "Samsung vice chairman leading the semiconductor (DS) division.", ja: "サムスン電子DS(半導体)部門トップの副会長。" }, l: { ko: "삼성 메모리 전성기를 이끌었던 베테랑으로, HBM 경쟁력 회복이라는 특명을 받고 2024년 반도체 부문 수장으로 돌아왔다.", en: "A veteran of Samsung's memory heyday, brought back in 2024 to lead the chip division and rebuild its HBM competitiveness.", ja: "サムスンメモリ全盛期を率いたベテラン。HBM競争力回復の特命を受け2024年に半導体部門トップへ復帰。" } },
   "한종희": { d: { ko: "삼성전자 DX(디바이스경험)부문장 겸 부회장. TV·가전·모바일 총괄.", en: "Samsung vice chairman running the device (DX) division.", ja: "サムスン電子DX部門トップの副会長。" }, l: { ko: "TV 개발 엔지니어 출신으로 삼성 TV의 15년 연속 세계 1위를 이끌었고, 지금은 세트 사업 전체를 총괄한다.", en: "A TV engineer who led Samsung's 15-year run as the world's top TV maker; now oversees all consumer devices.", ja: "テレビ開発技術者出身でサムスンTVの15年連続世界首位を牽引。セット事業全体を統括する。" } },
@@ -2362,6 +2364,16 @@ function fitTip(el){
   });
 }
 function entityTap(el, key){
+  /* stage5 */
+  if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches
+      && typeof showEntityRail === "function" && ENTITIES[key]){
+    document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
+    showEntityRail(key);
+    return;
+  }
+  entityTapOrig(el, key);
+}
+function entityTapOrig(el, key){
   loadQuote(key);
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
@@ -3943,6 +3955,11 @@ async function bootData(){
   ITEMS.forEach(i => ["title", "gist", "why"].forEach(k => {
     ["ko", "ja"].forEach(l => { if (!i[k][l]) i[k][l] = i[k].en; });
   }));
+  /* top-figure override: the group chief, not the operating CEO */
+  try {
+    if (ENTITIES["SK HYNIX"]) ENTITIES["SK HYNIX"].ceo = "최태원 (Chey Tae-won)";
+    if (ENTITIES["SAMSUNG ELECTRONICS"]) ENTITIES["SAMSUNG ELECTRONICS"].ceo = "이재용 (Jay Y. Lee)";
+  } catch (e) {}
   buildEntityMatcher();
   initSeen();
   render();
@@ -4024,7 +4041,7 @@ function renderNewsletter(){
       document.getElementById("nlEmail").placeholder = S.nlPh;
       document.getElementById("nlBtn").textContent = S.nlBtn;
       document.getElementById("nlAgreeText").innerHTML =
-        esc(S.nlAgree) + ' · <a href="' + STIBEE_PAGE + '" target="_blank" rel="noopener">' + esc(S.nlPolicyLink) + "</a>";
+        esc(S.nlAgree) + ' · <a href="privacy.html" target="_blank" rel="noopener">' + esc(S.nlPolicyLink) + "</a>";
     }
   }
   if (f){
