@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v38 :: feed pagination (10/page, infinite scroll) + naver verify -->
+<!-- STACKS BUILD v39 :: sort/display by addedAt (publish time) so new posts stay on top -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1437,7 +1437,7 @@ function goToItem(id){
   });
 }
 
-const fmt = d => { const [y,m,day] = d.split("-"); return `${y}.${m}.${day}`; };
+const fmt = d => { const [y,m,day] = String(d||"").slice(0,10).split("-"); return `${y}.${m}.${day}`; };
 const initial = s => s.trim().charAt(0).toUpperCase();
 
 /* ---- automatic images ----
@@ -2567,7 +2567,7 @@ function renderFeed(animate){
   if (QUERY) items = items.filter(matchesQuery);
   if (SORT_HOT) items = items.slice().sort((a, b) =>
     ((VIEW_COUNTS[b.id] || 0) + (LIKE_COUNTS[b.id] || 0) * 3) - ((VIEW_COUNTS[a.id] || 0) + (LIKE_COUNTS[a.id] || 0) * 3)
-    || (a.date < b.date ? 1 : -1));
+    || ((a.addedAt || a.date) < (b.addedAt || b.date) ? 1 : -1));
   if (items.length === 0){
     const e = document.createElement("div");
     e.className = "empty";
@@ -2610,7 +2610,7 @@ function cardEl(item, S, idx){
         ${avatarHtml(item)}
         <div class="src-block">
           <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="srcTap(this, '${(ENTITIES[item.source].url||"").replace(/'/g,"")}')"` : ""}>${item.source}${entityTip(item.source)}</span>
-          <span class="src-date">${fmt(item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
+          <span class="src-date">${fmt(item.addedAt || item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
@@ -2829,7 +2829,7 @@ async function bootData(){
     } catch (e2) {}
   }
   /* newest first; same-day entries keep file order */
-  ITEMS.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  ITEMS.sort((a, b) => { const da = a.addedAt || a.date, db = b.addedAt || b.date; return da < db ? 1 : da > db ? -1 : 0; });
   /* missing translations fall back to English */
   ITEMS.forEach(i => ["title", "gist", "why"].forEach(k => {
     ["ko", "ja"].forEach(l => { if (!i[k][l]) i[k][l] = i[k].en; });
