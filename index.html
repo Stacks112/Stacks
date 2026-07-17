@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v53 :: hot=top5 by engagement, tip bottom-sheet + guide hint, feed position restore, newsletter in left rail -->
+<!-- STACKS BUILD v54 :: prediction scorecard pills + discussion prompts -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -200,6 +200,10 @@ const STRINGS = {
     listen: "Listen",
     loadMore: "Load more",
     dashBrowse: "Browse",
+    askCta: "Share your take",
+    ocHit: "Call: hit ✓",
+    ocMiss: "Call: missed ✕",
+    ocPending: "Tracking this call",
     views: "Views",
     eventsTitle: "Coming up",
     dToday: "Today",
@@ -290,6 +294,10 @@ const STRINGS = {
     listen: "듣기",
     loadMore: "더 보기",
     dashBrowse: "둘러보기",
+    askCta: "의견 남기기",
+    ocHit: "예측 적중 ✓",
+    ocMiss: "예측 빗나감 ✕",
+    ocPending: "예측 추적 중",
     views: "조회수",
     eventsTitle: "다가오는 이벤트",
     dToday: "오늘",
@@ -380,6 +388,10 @@ const STRINGS = {
     listen: "聴く",
     loadMore: "もっと見る",
     dashBrowse: "見る",
+    askCta: "意見を書く",
+    ocHit: "的中 ✓",
+    ocMiss: "外れ ✕",
+    ocPending: "予測を追跡中",
     views: "閲覧数",
     eventsTitle: "近日中",
     dToday: "本日",
@@ -865,6 +877,27 @@ html[data-lang="ja"] .gist{line-height:1.85;}
 .why p{font-size:14.5px;font-weight:700;}
 html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .cta-row{margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+/* prediction scorecard pill */
+.oc{
+  margin-top:12px;font-size:12px;font-weight:600;line-height:1.5;
+  padding:8px 12px;border-radius:10px;border:1px solid var(--line);
+}
+.oc-pending{background:var(--bg-soft);color:var(--muted);}
+.oc-hit{background:rgba(18,183,106,.09);border-color:rgba(18,183,106,.35);color:#0E9F5E;}
+.oc-miss{background:rgba(240,68,56,.08);border-color:rgba(240,68,56,.3);color:#E04438;}
+.oc-note{font-weight:500;}
+/* discussion prompt */
+.ask-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  margin-top:12px;padding:11px 13px;text-align:left;
+  background:var(--bg-soft);border:1px dashed var(--line);border-radius:12px;
+  font-family:inherit;font-size:13px;color:var(--text);cursor:pointer;
+  transition:border-color .15s ease;
+}
+.ask-row:hover{border-color:var(--accent);}
+.ask-row .ask-q{font-weight:600;}
+.ask-row .ask-cta{flex:0 0 auto;font-size:12px;font-weight:700;color:var(--accent);white-space:nowrap;}
+html[data-lang="ko"] .ask-row{font-family:"Pretendard Variable","Inter",sans-serif;}
 .original-link{
   font-size:13px;font-weight:700;text-decoration:none;
   background:var(--black);color:#fff;border-radius:999px;padding:9px 18px;
@@ -3402,6 +3435,8 @@ function cardEl(item, S, idx){
         <div class="label">${S.why}</div>
         <p>${item.why[LANG]}</p>
       </div>
+      ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? ` · <span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
+      ${item.ask && COMMENTS_API ? `<button class="ask-row" onclick="toggleComments('${item.id}')"><span class="ask-q">💬 ${esc(item.ask[LANG])}</span><span class="ask-cta">${S.askCta} →</span></button>` : ""}
       <div class="cta-row">
         <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}

@@ -39,6 +39,19 @@
     "ko": "부족은 깊어지는데 PER은 3배대 — 증권가가 보는 메모리 슈퍼사이클은 아직 초입이라는 뜻이다.",
     "en": "Shortage deepening while P/Es sit near 3x — the street is saying the memory supercycle has barely begun.",
     "ja": "不足は深まるのにPERは3倍台 — メモリ・スーパーサイクルはまだ序盤という意味だ。"
+   },
+   "ask": {
+    "ko": "PER 3배대 메모리, 지금이 기회일까 함정일까?",
+    "en": "Memory at a 3x P/E — opportunity or trap?",
+    "ja": "PER3倍台のメモリ株、今は好機か罠か?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026 하반기 D램 공급 충족률 75~80% 전망을 추적합니다",
+     "en": "Tracking the call that H2 2026 DRAM supply covers only 75–80% of demand",
+     "ja": "2026年下期DRAM充足率75~80%予測を追跡します"
+    }
    }
   },
   {
@@ -121,6 +134,11 @@
     "en": "Trump gets cursed by the very firms he's helping. The broad China-containment push has handed Korea's battery trio a gift called price competitiveness; the open question is how much of their oversupply they can push through that window before it narrows.",
     "ja": "トランプを罵りながら、その恩恵を受ける。対中包囲という大きな流れが、韓国の電池3社に価格競争力という贈り物を渡した。問題は、この窓が狭まる前に供給過剰をどれだけ捌けるかだ。",
     "ko": "트럼프를 욕하면서도 그 덕을 본다. 대중국 견제라는 큰 흐름이 한국 배터리 3사에 가격경쟁력이라는 선물을 안겼다. 관건은 이 창이 좁아지기 전에 공급과잉을 얼마나 소화하느냐다."
+   },
+   "ask": {
+    "ko": "배터리 3총사 중 하나만 산다면 어디?",
+    "en": "If you could buy just one of the battery trio, which?",
+    "ja": "バッテリー3社から1社だけ買うならどれ?"
    }
   },
   {
@@ -202,6 +220,11 @@
     "en": "The usage crown and the revenue crown have split apart. Chinese models win volume on price while US models keep nearly all the money, a warning for anyone pricing the AI-model business off market share.",
     "ja": "使用量の王座と売上の王座が割れた。中国モデルは価格で数量を取り、米国モデルがほぼ全ての売上を握る。AIモデル事業を市場シェアで値付けする者への警告だ。",
     "ko": "사용량 1위와 매출 1위가 갈라졌다. 중국 모델은 가격으로 물량을 가져가고, 미국 모델이 돈을 거의 다 쥔다. AI 모델 사업을 점유율로 값 매기는 사람에게 보내는 경고다."
+   },
+   "ask": {
+    "ko": "당신이라면 성능이 비슷할 때 1/36 가격의 중국 AI를 쓸 건가?",
+    "en": "Would you use Chinese AI at 1/36th the price if quality matched?",
+    "ja": "性能が同等なら1/36価格の中国AIを使いますか?"
    }
   },
   {
@@ -243,6 +266,11 @@
     "en": "Emin Yurumazu's bear case named Korea's leveraged retail crowd as the detonator. This is the regulator reaching for that fuse: fewer forced buyers on the way up, and fewer forced sellers if it turns.",
     "ja": "エミン・ユルマズの弱気論は、韓国のレバレッジ個人投資家を起爆装置と名指しした。これはその導火線に規制当局が手を伸ばした動きだ。上げ局面で買い上がる個人が減り、崩れる局面で投げ売りする個人も減る。",
     "ko": "에민 유루마즈의 약세론은 한국의 레버리지 개미를 뇌관으로 지목했다. 이건 그 도화선에 당국이 손을 뻗은 것이다. 오를 때 따라 사는 개미도, 무너질 때 던지는 개미도 줄어든다."
+   },
+   "ask": {
+    "ko": "레버리지 규제, 개미 보호일까 기회 박탈일까?",
+    "en": "Leverage curbs: protecting retail, or taking away their shot?",
+    "ja": "レバレッジ規制は個人保護か、機会の剥奪か?"
    }
   },
   {
@@ -406,6 +434,11 @@
     "en": "Datacenter siting just became electoral politics. Which state a hyperscaler builds in is now a policy variable, and the capex is flowing toward the states that want it.",
     "ja": "データセンターの立地が選挙政治になった。ハイパースケーラーがどの州に建てるかは政策変数となり、設備投資はそれを欲しがる州へ流れている。",
     "ko": "데이터센터 입지가 선거 정치가 됐다. 빅테크가 어느 주에 짓느냐가 정책 변수가 됐고, 설비투자는 원하는 주 쪽으로 흐르고 있다."
+   },
+   "ask": {
+    "ko": "데이터센터를 '액체 금'이라 부른 트럼프 — 진짜 골드러시일까?",
+    "en": "Trump calls datacenters 'liquid gold' — is this a real gold rush?",
+    "ja": "データセンターは本当に「液体の金」なのか?"
    }
   },
   {
@@ -447,6 +480,19 @@
     "en": "The 49% premium was a gauge of blocked demand. From July 29 it becomes a trade with a mechanism, and the convergence flow buys Seoul.",
     "ja": "49%のプレミアムは塞がれた需要の計器盤だった。7月29日からはメカニズム付きのトレードになり、その収斂フローはソウルを買う方向だ。",
     "ko": "49% 프리미엄은 막힌 수요의 계기판이었다. 7월 29일부터는 메커니즘이 달린 트레이드가 되고, 그 수렴 흐름은 서울을 사는 방향이다."
+   },
+   "ask": {
+    "ko": "7월 29일 이후 하이닉스 ADR 프리미엄, 얼마나 좁혀질까?",
+    "en": "After July 29, how far does the SK Hynix ADR premium compress?",
+    "ja": "7月29日以降、ADRプレミアムはどこまで縮小する?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "7월 29일 ADR 전환 개시 후 프리미엄 축소 여부를 채점합니다",
+     "en": "Scoring after the July 29 ADR conversion window opens: does the premium compress?",
+     "ja": "7月29日のADR転換開始後、プレミアム縮小を採点します"
+    }
    }
   },
   {
@@ -488,6 +534,11 @@
     "en": "Hormuz risk was priced. A Red Sea closure on top of it is not: it kills the detour that has been keeping supply, and Korea's crude imports, moving.",
     "ja": "ホルムズのリスクは織り込まれた。その上の紅海封鎖は違う。これまで供給と韓国の原油輸入を回してきた迂回路そのものが死ぬ話だ。",
     "ko": "호르무즈 리스크는 가격에 반영됐다. 그 위의 홍해 봉쇄는 아니다. 지금까지 공급과 한국의 원유 수입을 굴려온 우회로 자체가 죽는 얘기다."
+   },
+   "ask": {
+    "ko": "홍해까지 막히면 유가는 어디까지 갈까?",
+    "en": "If the Red Sea closes too, where does oil go?",
+    "ja": "紅海まで塞がれたら原油はどこまで上がる?"
    }
   },
   {
@@ -762,6 +813,11 @@
     "en": "The market is starting to price neocloud LTAs by the buyer's balance sheet, not the headline number.",
     "ja": "市場がネオクラウドの長期契約を「発表額」ではなく「相手の支払い能力」で値付けし始めた。",
     "ko": "시장이 네오클라우드 장기계약을 '발표 금액'이 아니라 '상대의 지불능력'으로 평가하기 시작했다."
+   },
+   "ask": {
+    "ko": "네비우스 같은 네오클라우드, GPU 세대교체 리스크를 이길 수 있을까?",
+    "en": "Can neoclouds like Nebius outrun GPU generation risk?",
+    "ja": "ネビウスのようなネオクラウドはGPU世代交代リスクに勝てる?"
    }
   },
   {
@@ -800,6 +856,11 @@
     "en": "Optics is the interconnect layer of the AI buildout, and governments from Japan to Texas are now subsidizing it.",
     "ja": "光通信はAIインフラの接続レイヤーだ。いまや日本からテキサスまで、政府が補助金を出し始めた。",
     "ko": "광통신은 AI 인프라의 연결 계층이다. 이제 일본부터 텍사스까지 정부가 보조금을 대기 시작했다."
+   },
+   "ask": {
+    "ko": "광통신주 랠리, 아직 초입일까 과열일까?",
+    "en": "The optics rally: early innings or overheated?",
+    "ja": "光通信株の上昇はまだ序盤か、過熱か?"
    }
   },
   {
@@ -841,6 +902,11 @@
     "en": "The premium is a live gauge of how much global capital wants Korean memory exposure, and can't get it through Seoul.",
     "ja": "このプレミアムは、グローバル資金が韓国のメモリーを欲しがっているのにソウル経由では買えないという事実のリアルタイム計器盤だ。",
     "ko": "이 프리미엄은 글로벌 자금이 한국 메모리를 원하는데 서울을 통해서는 살 수 없다는 사실의 실시간 계기판이다."
+   },
+   "ask": {
+    "ko": "같은 주식에 두 가격 — 당신이라면 어느 쪽을 살까?",
+    "en": "One stock, two prices — which would you buy?",
+    "ja": "同じ株に2つの価格 — あなたならどちらを買う?"
    }
   },
   {
