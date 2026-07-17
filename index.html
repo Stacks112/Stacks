@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v49 :: intro shows once; company profile page (logo, facts, long desc) + ranged Google-style chart -->
+<!-- STACKS BUILD v50 :: entity profile in right rail (PC), real flag images, pull-to-refresh -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -208,6 +208,7 @@ const STRINGS = {
     watchOn: "Following ✓",
     profile: "Profile ↗",
     r1d: "1D", r1w: "1W", r1mo: "1M", r1y: "1Y",
+    entArticles: "View {n} related articles →",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
     watchUnread: "{n} unread",
     reply: "Reply",
@@ -297,6 +298,7 @@ const STRINGS = {
     watchOn: "팔로우 중 ✓",
     profile: "프로필 ↗",
     r1d: "1일", r1w: "1주", r1mo: "1달", r1y: "1년",
+    entArticles: "관련 글 {n}개 보기 →",
     fCeo: "대표", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
     watchUnread: "안 읽은 글 {n}",
     reply: "답글",
@@ -386,6 +388,7 @@ const STRINGS = {
     watchOn: "フォロー中 ✓",
     profile: "プロフィール ↗",
     r1d: "1日", r1w: "1週", r1mo: "1ヶ月", r1y: "1年",
+    entArticles: "関連記事{n}件を見る →",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
     watchUnread: "未読{n}件",
     reply: "返信",
@@ -757,6 +760,34 @@ html[data-lang="ko"] .intro-box{font-family:"Pretendard Variable","Inter",sans-s
 }
 .eh-facts .f a{color:var(--accent);text-decoration:none;}
 .eh-facts .f a:hover{text-decoration:underline;}
+/* entity profile shown inside the right rail (desktop) */
+.entity-head.in-rail{position:relative;margin:0 0 24px;}
+.entity-head.in-rail .eh-name{font-size:17px;}
+.entity-head.in-rail .ehq-head b{font-size:20px;}
+.entity-head.in-rail .eh-desc{font-size:12.5px;}
+.entity-head.in-rail .eh-facts{grid-template-columns:1fr 1fr;}
+.eh-x{
+  position:absolute;top:10px;right:12px;width:26px;height:26px;
+  border:0;border-radius:50%;background:var(--bg);color:var(--muted);
+  font-size:17px;line-height:1;cursor:pointer;
+}
+.eh-x:hover{color:var(--text);}
+.eh-viewarts{background:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;padding:7px 4px;}
+/* flag images in the language menu (emoji flags don't render on Windows) */
+.lang-flag{width:19px;height:14px;border-radius:2.5px;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08);}
+/* pull-to-refresh (touch) */
+html{overscroll-behavior-y:contain;}
+#ptr{
+  position:fixed;top:-46px;left:50%;transform:translateX(-50%);
+  width:38px;height:38px;border-radius:50%;z-index:90;
+  background:var(--bg);border:1px solid var(--line);color:var(--muted);
+  box-shadow:0 6px 18px rgba(17,18,20,.16);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .18s ease;
+}
+#ptr.ready{color:var(--accent);border-color:var(--accent);}
+#ptr.spin svg{animation:ptrspin .7s linear infinite;}
+@keyframes ptrspin{to{transform:rotate(360deg);}}
 .entity-head .eh-actions{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;}
 .entity-head .tip-follow{position:static;font-size:12px;padding:7px 14px;border-radius:8px;}
 .entity-head .eh-link{font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;padding:7px 4px;}
@@ -1462,15 +1493,17 @@ function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsS
 /* ---------------- language dropdown ----------------
    Shows only the current language (with its flag); tapping it drops
    down the other two so you can swap. */
-const LANG_META = { en: ["🇺🇸", "EN"], ko: ["🇰🇷", "KO"], ja: ["🇯🇵", "JA"] };
+/* real flag images — emoji flags render as plain letters on Windows */
+const LANG_META = { en: ["us", "EN"], ko: ["kr", "KO"], ja: ["jp", "JA"] };
+const flagImg = c => '<img class="lang-flag" src="https://flagcdn.com/24x18/' + c + '.png" srcset="https://flagcdn.com/48x36/' + c + '.png 2x" alt="">';
 function renderLangMenu(){
   const cur = document.getElementById("langCur");
   const opts = document.getElementById("langOpts");
   if (!cur || !opts) return;
   const m = LANG_META[LANG] || LANG_META.en;
-  cur.innerHTML = '<span>' + m[0] + '</span><span>' + m[1] + '</span><span class="lc-arrow">▼</span>';
+  cur.innerHTML = flagImg(m[0]) + '<span>' + m[1] + '</span><span class="lc-arrow">▼</span>';
   opts.innerHTML = Object.keys(LANG_META).filter(l => l !== LANG).map(l =>
-    '<button onclick="setLang(\'' + l + '\')"><span>' + LANG_META[l][0] + '</span><span>' + LANG_META[l][1] + '</span></button>'
+    '<button onclick="setLang(\'' + l + '\')">' + flagImg(LANG_META[l][0]) + '<span>' + LANG_META[l][1] + '</span></button>'
   ).join("");
 }
 function toggleLangMenu(ev){
@@ -1492,6 +1525,45 @@ document.addEventListener("click", (ev) => {
   const menu = document.getElementById("langMenu");
   if (menu && !menu.contains(ev.target)) closeLangMenu();
 });
+
+/* ---------------- pull-to-refresh (touch) ----------------
+   At the very top of the page, pulling down again refreshes —
+   the natural "any new articles?" gesture. Works in the installed
+   PWA too, where the browser's native gesture doesn't exist. */
+(function(){
+  if (!("ontouchstart" in window)) return;
+  const ptr = document.createElement("div");
+  ptr.id = "ptr";
+  ptr.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>';
+  document.body.appendChild(ptr);
+  let sy = null, d = 0, active = false;
+  document.addEventListener("touchstart", e => {
+    const blocked = document.body.style.overflow === "hidden"; /* intro/onboard open */
+    sy = (window.scrollY <= 0 && !blocked) ? e.touches[0].clientY : null;
+    d = 0; active = false;
+  }, { passive: true });
+  document.addEventListener("touchmove", e => {
+    if (sy == null) return;
+    d = e.touches[0].clientY - sy;
+    if (d > 8 && window.scrollY <= 0){
+      active = true;
+      const t = Math.min(d / 2.2, 78);
+      ptr.style.transform = "translateX(-50%) translateY(" + (t + 46) + "px) rotate(" + (t * 3.4) + "deg)";
+      ptr.classList.toggle("ready", d > 110);
+    }
+  }, { passive: true });
+  document.addEventListener("touchend", () => {
+    if (active && d > 110){
+      ptr.classList.add("spin");
+      ptr.style.transform = "translateX(-50%) translateY(60px)";
+      setTimeout(() => location.reload(), 200);
+    } else {
+      ptr.style.transform = "translateX(-50%)";
+      ptr.classList.remove("ready");
+    }
+    sy = null; d = 0; active = false;
+  }, { passive: true });
+})();
 function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; TAB = t; render(); }
 
 
@@ -1854,6 +1926,61 @@ function linkifyEntities(card){
     });
   });
 }
+/* shared builder for the entity profile card.
+   mode "feed": back button + shown above the filtered article list.
+   mode "rail": ✕ button + "view N articles" link, shown in the right
+   rail on desktop so reading position is never disturbed. */
+function entityHeadEl(key, S, count, mode){
+  const e = ENTITIES[key];
+  const isCo = e.kind === "company";
+  const safe = key.replace(/'/g, "\\'");
+  const h = document.createElement("div");
+  h.className = "entity-head" + (isCo ? " is-co" : "") + (mode === "rail" ? " in-rail" : "");
+  const tk = (e.ticker || "").split(".")[0].toUpperCase();
+  const subBits = [];
+  if (tk) subBits.push(tk);
+  if (e.exchange) subBits.push(esc(e.exchange));
+  subBits.push(e.sector[LANG]);
+  if (mode === "feed") subBits.push(count + (LANG === "ko" ? "개 글" : LANG === "ja" ? "件" : " articles"));
+  const logo = e.logo ? '<span class="eh-logo"><img src="' + logoUrl(e.logo) + '" alt="" onerror="this.parentNode.style.display=\'none\'"></span>' : "";
+  const facts = [];
+  if (e.ceo) facts.push([S.fCeo, esc(e.ceo)]);
+  if (e.founded) facts.push([S.fFounded, esc(e.founded)]);
+  if (e.listed) facts.push([S.fListed, esc(e.listed)]);
+  if (e.hq) facts.push([S.fHq, esc(e.hq)]);
+  if (e.website) facts.push([S.fWeb, '<a href="' + esc(e.website) + '" target="_blank" rel="noopener">' + esc(e.website.replace(/^https?:\/\/(www\.)?/, "")) + "</a>"]);
+  const factsHtml = facts.length
+    ? '<div class="eh-facts">' + facts.map(f => '<div class="f"><b>' + f[0] + "</b>" + f[1] + "</div>").join("") + "</div>" : "";
+  const chart = (isCo && e.ticker)
+    ? '<div class="eh-quote">'
+      + '<div class="ehq-head"><b id="ehqPrice">—</b><span id="ehqChg"></span></div>'
+      + '<div class="ehq-tabs">'
+        + [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["1y", S.r1y]].map(x =>
+            '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
+            + ' onclick="ehqLoad(\'' + safe + '\',\'' + x[0] + '\')">' + x[1] + "</button>").join("")
+      + "</div>"
+      + '<div class="ehq-chartwrap" id="ehqChart"><div class="ehq-loading">···</div></div>'
+      + "</div>" : "";
+  const topBtn = mode === "rail"
+    ? '<button class="eh-x" onclick="closeEntityRail()" aria-label="close">&times;</button>'
+    : '<button class="series-close" onclick="closeEntity()">← ' + S.seriesClose + "</button>";
+  const railLink = mode === "rail"
+    ? '<button class="eh-link eh-viewarts" onclick="entityFeedView(\'' + safe + '\')">' + (S.entArticles || "View {n} articles →").replace("{n}", count) + "</button>" : "";
+  h.innerHTML = topBtn
+    + '<div class="eh-top">' + logo
+      + '<div><div class="eh-name">' + esc(key) + "</div>"
+      + '<div class="eh-sub">' + subBits.join(" · ") + "</div></div></div>"
+    + ((e.longDesc || e.desc) ? '<p class="eh-desc">' + (e.longDesc ? e.longDesc[LANG] : e.desc[LANG]) + "</p>" : "")
+    + chart
+    + factsHtml
+    + '<div class="eh-actions">'
+      + (isCo ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safe + '\', event)">'
+          + (WATCH.has(key) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>" : "")
+      + (e.url && !isCo ? '<a class="eh-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + (S.profile || "Profile ↗") + "</a>" : "")
+      + railLink
+    + "</div>";
+  return h;
+}
 function entityTap(el, key){
   loadQuote(key);
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
@@ -1862,11 +1989,38 @@ function entityTap(el, key){
     el.classList.add("show"); return; /* first tap on mobile: reveal tooltip */
   }
   el.classList.remove("show");
+  /* desktop: show the profile in the right rail — never yank the reader's scroll */
+  if (window.matchMedia("(min-width:1024px)").matches && document.getElementById("sideRight")){
+    if (showEntityRail(key)) return;
+  }
+  entityFeedView(key);
+}
+function entityFeedView(key){
+  closeEntityRail();
   SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   ENTITY_VIEW = key;
   renderFeed(true);
   const f = document.getElementById("feed"); if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function showEntityRail(key){
+  const rail = document.getElementById("sideRight");
+  if (!rail || !ENTITIES[key]) return false;
+  if (ENTITY_VIEW) closeEntity(); /* avoid two profile cards (duplicate chart ids) */
+  closeEntityRail();
+  const count = ITEMS.filter(i => itemEntities(i).has(key)).length;
+  const p = document.createElement("div");
+  p.id = "entityRailPanel";
+  p.appendChild(entityHeadEl(key, STRINGS[LANG], count, "rail"));
+  rail.insertBefore(p, rail.firstChild);
+  const e = ENTITIES[key];
+  if (e.kind === "company" && e.ticker) ehqLoad(key, "1mo");
+  rail.scrollTop = 0;
+  return true;
+}
+function closeEntityRail(){
+  const p = document.getElementById("entityRailPanel");
+  if (p) p.remove();
 }
 function closeEntity(){ ENTITY_VIEW = null; renderFeed(false); }
 
@@ -3065,50 +3219,9 @@ function renderFeed(animate){
   /* entity view: a rich header — who/what they are, live chart + price
      for companies, profile link for people, then their articles below */
   if (ENTITY_VIEW && ENTITIES[ENTITY_VIEW]){
-    const e = ENTITIES[ENTITY_VIEW];
-    const isCo = e.kind === "company";
-    const safe = ENTITY_VIEW.replace(/'/g, "\\'");
-    const h = document.createElement("div");
-    h.className = "entity-head" + (isCo ? " is-co" : "");
-    const tk = (e.ticker || "").split(".")[0].toUpperCase();
-    const subBits = [];
-    if (tk) subBits.push(tk);
-    if (e.exchange) subBits.push(esc(e.exchange));
-    subBits.push(e.sector[LANG]);
-    subBits.push(items.length + (LANG === "ko" ? "개 글" : LANG === "ja" ? "件" : " articles"));
-    const logo = e.logo ? '<span class="eh-logo"><img src="' + logoUrl(e.logo) + '" alt="" onerror="this.parentNode.style.display=\'none\'"></span>' : "";
-    const facts = [];
-    if (e.ceo) facts.push([S.fCeo, esc(e.ceo)]);
-    if (e.founded) facts.push([S.fFounded, esc(e.founded)]);
-    if (e.listed) facts.push([S.fListed, esc(e.listed)]);
-    if (e.hq) facts.push([S.fHq, esc(e.hq)]);
-    if (e.website) facts.push([S.fWeb, '<a href="' + esc(e.website) + '" target="_blank" rel="noopener">' + esc(e.website.replace(/^https?:\/\/(www\.)?/, "")) + "</a>"]);
-    const factsHtml = facts.length
-      ? '<div class="eh-facts">' + facts.map(f => '<div class="f"><b>' + f[0] + "</b>" + f[1] + "</div>").join("") + "</div>" : "";
-    const chart = (isCo && e.ticker)
-      ? '<div class="eh-quote">'
-        + '<div class="ehq-head"><b id="ehqPrice">—</b><span id="ehqChg"></span></div>'
-        + '<div class="ehq-tabs">'
-          + [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["1y", S.r1y]].map(x =>
-              '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
-              + ' onclick="ehqLoad(\'' + safe + '\',\'' + x[0] + '\')">' + x[1] + "</button>").join("")
-        + "</div>"
-        + '<div class="ehq-chartwrap" id="ehqChart"><div class="ehq-loading">···</div></div>'
-        + "</div>" : "";
-    h.innerHTML = '<button class="series-close" onclick="closeEntity()">← ' + S.seriesClose + "</button>"
-      + '<div class="eh-top">' + logo
-        + '<div><div class="eh-name">' + esc(ENTITY_VIEW) + "</div>"
-        + '<div class="eh-sub">' + subBits.join(" · ") + "</div></div></div>"
-      + ((e.longDesc || e.desc) ? '<p class="eh-desc">' + (e.longDesc ? e.longDesc[LANG] : e.desc[LANG]) + "</p>" : "")
-      + chart
-      + factsHtml
-      + '<div class="eh-actions">'
-        + (isCo ? '<button class="tip-follow' + (WATCH.has(ENTITY_VIEW) ? " on" : "") + '" data-k="' + esc(ENTITY_VIEW) + '" onclick="toggleWatch(\'' + safe + '\', event)">'
-            + (WATCH.has(ENTITY_VIEW) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>" : "")
-        + (e.url && !isCo ? '<a class="eh-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + (S.profile || "Profile ↗") + "</a>" : "")
-      + "</div>";
-    list.appendChild(h);
-    if (isCo && e.ticker) ehqLoad(ENTITY_VIEW, "1mo");
+    list.appendChild(entityHeadEl(ENTITY_VIEW, S, items.length, "feed"));
+    const e0 = ENTITIES[ENTITY_VIEW];
+    if (e0.kind === "company" && e0.ticker) ehqLoad(ENTITY_VIEW, "1mo");
   }
   if (SORT_HOT) items = items.slice().sort((a, b) =>
     ((VIEW_COUNTS[b.id] || 0) + (LIKE_COUNTS[b.id] || 0) * 3) - ((VIEW_COUNTS[a.id] || 0) + (LIKE_COUNTS[a.id] || 0) * 3)
