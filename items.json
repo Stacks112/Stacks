@@ -1,6 +1,87 @@
 {
   "items": [
     {
+      "date": "2026-07-17",
+      "id": "meru-china-ai",
+      "thumbWiki": "DeepSeek",
+      "related": [
+        "zuck",
+        "nadella"
+      ],
+      "source": "메르",
+      "sourceUrl": "https://blog.naver.com/ranto28/224348536686",
+      "sourceLang": "KO",
+      "category": "investor",
+      "hot": true,
+      "cover": {
+        "from": "#7A0C2E",
+        "to": "#E31B54",
+        "label": "OPENROUTER"
+      },
+      "avatarImg": "meru.png",
+      "tags": [
+        "AI MODELS",
+        "DEEPSEEK",
+        "CHINA"
+      ],
+      "title": {
+        "en": "Half of America is quietly using Chinese AI: what OpenRouter's real usage data shows",
+        "ja": "米国人の半分が中国AIを使う: オープンルーターが暴いた実使用量",
+        "ko": "미국인 절반이 중국 AI를 쓴다: 오픈라우터가 드러낸 진짜 사용량"
+      },
+      "gist": {
+        "en": "There's a marketplace called OpenRouter that pools 400-plus AI models and lets developers pick one per job. Its value is that it shows actual paid token usage from over ten million developers, not benchmark scores but where real money goes, which makes it the closest thing to an honest usage ranking. The June 2026 chart has a surprise at the top: China's DeepSeek is number one at 16.3%, ahead of Anthropic, Alibaba, Google, OpenAI and Tencent. When people objected that Chinese users were padding the numbers, OpenRouter broke out US users only, and it's more striking, not less. The share of tokens US users spend on Chinese models climbed from 4.5% in early 2025 to 30% in 2026, peaking near 46%. Roughly half of America's usage is now Chinese AI. The reason is price: DeepSeek's cheap model costs one thirty-sixth of GPT-5.5. Behind that sit cheaper power, labor and construction, plus an MoE design that fires only part of the brain per question, compression tricks for long documents, and 'distillation', training on the answers of top US models. But here's the twist: heavy usage, little revenue. Chinese models collect under 5% of the fees. The US Congress has already opened an investigation.",
+        "ja": "オープンルーターという場所がある。世界400以上のAIモデルを集めて選んで使わせる中立市場で、開発者1千万人が実際に金を払って使った「トークン使用量」を見せるのが肝だ。ベンチマーク点数ではなく本当に金が動いた使用量なので、マーケティングの混じった順位とは違う。2026年6月の順位で1位は、なんと中国のディープシーク(16.3%)。アンソロピック、アリババ、グーグル、オープンAI、テンセントが続いた。「中国人が多く使っているだけでは」という疑いが出ると、オープンルーターは米国ユーザーだけを切り出して発表した。結果はもっと衝撃的だ。米国人が中国モデルに使うトークンの比率は、2025年前半の4.5%から2026年には30%、最高46%まで上がった。米国人の半分が中国AIを使っているという話だ。理由はコスパ。ディープシークの安価モデルはGPT-5.5の36分の1の価格だ。背景には安い電気・人件費・建設費に加え、質問一つで頭脳全体を動かさないMoE方式、長文を圧縮して読む技術、そして米国の最高級モデルの答えを教材に真似る「蒸留」がある。ただし反転がある。トークンは多く使われるのに金は稼げない。中国モデルが受け取る使用料は全体の5%にも満たない。米議会はすでに調査に着手した。",
+        "ko": "오픈라우터라는 곳이 있다. 전 세계 400개가 넘는 AI 모델을 모아두고 골라 쓰게 해주는 중립 시장인데, 개발자 천만 명이 실제로 돈을 내고 쓴 '토큰 사용량'을 보여준다는 점이 핵심이다. 벤치마크 점수가 아니라 진짜 돈이 오간 사용량이라, 마케팅이 낀 순위와 다르다. 2026년 6월 순위에서 1위는 놀랍게도 중국 딥시크(16.3%)였고, 앤트로픽·알리바바·구글·오픈AI·텐센트가 뒤를 이었다. '중국인이 많이 써서 그런 거 아니냐'는 의심이 나오자, 오픈라우터는 미국 사용자만 따로 떼어 발표했다. 결과는 더 놀랍다. 미국인이 중국 모델에 쓰는 토큰 비중이 2025년 상반기 4.5%에서 2026년엔 30%, 최고 46%까지 올랐다. 미국인 절반이 중국 AI를 쓴다는 얘기다. 이유는 가성비다. 딥시크 저가 모델은 GPT-5.5의 36분의 1 가격이다. 비결은 싼 전기·인건비·건설비에 더해, 질문 하나에 두뇌 전체를 켜지 않는 MoE 방식, 긴 문서를 압축해 읽는 기술, 그리고 미국 최고급 모델의 답을 교재로 베끼는 '증류'다. 다만 반전이 있다. 토큰은 많이 쓰는데 돈은 못 번다. 중국 모델이 받아가는 사용료는 전체의 5%도 안 된다. 미국 의회는 이미 조사에 착수했다."
+      },
+      "why": {
+        "en": "The usage crown and the revenue crown have split apart. Chinese models win volume on price while US models keep nearly all the money, a warning for anyone pricing the AI-model business off market share.",
+        "ja": "使用量の王座と売上の王座が割れた。中国モデルは価格で数量を取り、米国モデルがほぼ全ての売上を握る。AIモデル事業を市場シェアで値付けする者への警告だ。",
+        "ko": "사용량 1위와 매출 1위가 갈라졌다. 중국 모델은 가격으로 물량을 가져가고, 미국 모델이 돈을 거의 다 쥔다. AI 모델 사업을 점유율로 값 매기는 사람에게 보내는 경고다."
+      }
+    },
+    {
+      "date": "2026-07-16",
+      "id": "meru-leverage",
+      "thumbWiki": "Korea Exchange",
+      "related": [
+        "emin-korea",
+        "hynix",
+        "meru-adr-conv"
+      ],
+      "source": "메르",
+      "sourceUrl": "https://blog.naver.com/ranto28/224348649599",
+      "sourceLang": "KO",
+      "category": "investor",
+      "hot": true,
+      "cover": {
+        "from": "#B42318",
+        "to": "#F97066",
+        "label": "2X LEVERAGE"
+      },
+      "avatarImg": "meru.png",
+      "tags": [
+        "SK HYNIX",
+        "LEVERAGE",
+        "REGULATION"
+      ],
+      "title": {
+        "en": "A brake on 2x leverage: Korea's cash rule aims at the Samsung/Hynix retail crowd",
+        "ja": "2倍レバレッジにブレーキ: サムスン・ハイニックスの個人需要を締める3千万ウォン規制",
+        "ko": "2배 레버리지에 브레이크: 삼성·하이닉스 개미 수요를 조이는 3천만원 규제"
+      },
+      "gist": {
+        "en": "From August, Korea is putting a brake on the 2x leveraged products that let retail investors double their bet on Samsung and SK Hynix. Meru walks through the rules, and the theme is one thing: raise the cash bar high enough to filter the small guy out. From August 5, the base deposit jumps from 10 million won to 30 million, and the minimum trade unit goes from 1 share to 20. Brokers are also barred from the marketing trick of waiving or cutting that deposit for higher-tier clients. The real teeth come on August 19. Until now you could fill up to 70% of the deposit with stocks and bonds you already held, needing only a little actual cash; from that date, you need 30 million won in pure cash sitting in the account. Holding 300 million won of bank shares won't count: if your cash is under 30 million, you can't buy more. In plain terms, it gets much harder to average down when the price falls. And this applies not just to Korean names but to overseas leverage like 2x Tesla too, a signal not to just flee to the US or Hong Kong market. Meru's one-liner: with the deposit hike plus the no-collateral rule, the real hurdle feels north of 50 million won. It will cut retail demand somewhat, but whether that's enough remains to be seen.",
+        "ja": "サムスン電子とSKハイニックスに2倍で賭けるレバレッジ商品に、8月からブレーキがかかる。メルが規制内容を読み解くと、狙いは一つ、「現金のハードルを一気に上げて個人をふるい落とす」ことだ。8月5日から基本の預託金が1千万ウォンから3千万ウォンに上がり、一度に売買する単位も1株から20株に増える。証券会社が上位顧客の預託金を減免してきたマーケティングも禁止される。本当に効くのは8月19日からだ。これまでは預託金3千万ウォンのうち70%を保有株や債券などの代用証券で埋め、現金は少しあればよかったが、この日から純粋な現金3千万ウォンが口座になければならない。ウリ銀行株を3億ウォン分持っていても、現金が3千万ウォンに満たなければ追加購入はできない。つまり、株価が下がったときにナンピンで平均取得単価を下げるのが難しくなる。この規制は韓国株だけでなく、テスラ2倍のような海外レバレッジにも同じく適用される。米国株や香港へ逃げるな、という合図だ。メルの結論を一行で: 預託金の引き上げに代用証券の不認定まで重なれば、体感のハードルは5千万ウォンを超えそうだ。個人の需要を減らす効果は確かにあるが、これで十分かは見守る必要がある。",
+        "ko": "삼성전자와 SK하이닉스에 2배로 베팅하는 레버리지 상품에 8월부터 브레이크가 걸린다. 메르가 규제 내용을 뜯어보면 핵심은 '현금 문턱을 확 올려 개미를 걸러낸다'는 것이다. 8월 5일부터 기본 예탁금이 1천만원에서 3천만원으로 오르고, 한 번에 사고파는 단위도 1주에서 20주로 커진다. 증권사가 등급 높은 고객에게 예탁금을 깎아주거나 면제해주던 마케팅도 금지된다. 진짜 센 건 8월 19일부터다. 그동안은 예탁금 3천만원을 주식·채권 같은 대용증권으로 70%까지 채우고 현금은 조금만 있어도 됐는데, 이날부터는 순수 현금 3천만원이 계좌에 있어야 한다. 우리은행 주식을 3억원어치 들고 있어도 현금이 3천만원이 안 되면 추가 매수가 막힌다는 뜻이다. 한마디로 주가가 빠질 때 물타기로 평단가를 낮추기가 어려워진다. 이 규제는 국장뿐 아니라 테슬라 2배 같은 해외 레버리지에도 똑같이 적용된다. 미장이나 홍콩으로 도망가지 말라는 신호다. 메르의 결론 한 줄: 예탁금 인상에 대용증권 불인정까지 겹치면 체감 문턱은 5천만원을 넘을 것 같다. 개미 수요를 줄이는 효과는 분명 있겠지만, 이걸로 충분할지는 지켜봐야 한다."
+      },
+      "why": {
+        "en": "Emin Yurumazu's bear case named Korea's leveraged retail crowd as the detonator. This is the regulator reaching for that fuse: fewer forced buyers on the way up, and fewer forced sellers if it turns.",
+        "ja": "エミン・ユルマズの弱気論は、韓国のレバレッジ個人投資家を起爆装置と名指しした。これはその導火線に規制当局が手を伸ばした動きだ。上げ局面で買い上がる個人が減り、崩れる局面で投げ売りする個人も減る。",
+        "ko": "에민 유루마즈의 약세론은 한국의 레버리지 개미를 뇌관으로 지목했다. 이건 그 도화선에 당국이 손을 뻗은 것이다. 오를 때 따라 사는 개미도, 무너질 때 던지는 개미도 줄어든다."
+      }
+    },
+    {
       "date": "2026-07-09",
       "id": "karakama-nikkei",
       "thumbWiki": "Japanese yen",
@@ -882,6 +963,24 @@
     }
   },
   "events": [
+    {
+      "date": "2026-08-05",
+      "itemId": "meru-leverage",
+      "label": {
+        "en": "Korea 2x leverage rules phase 1 (30M won deposit)",
+        "ko": "삼성·하이닉스 2배 레버리지 규제 1단계 (예탁금 3천만원)",
+        "ja": "サムスン・ハイニックス2倍レバレッジ規制1段階(預託金3千万ウォン)"
+      }
+    },
+    {
+      "date": "2026-08-19",
+      "itemId": "meru-leverage",
+      "label": {
+        "en": "Phase 2: substitute collateral removed, cash-only deposit",
+        "ko": "2배 레버리지 규제 2단계 (대용증권 불인정, 현금만)",
+        "ja": "2段階: 代用証券の不認定(現金のみ)"
+      }
+    },
     {
       "date": "2026-07-29",
       "itemId": "meru-adr-conv",
