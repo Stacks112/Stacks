@@ -1,0 +1,31 @@
+name: Sync source feeds
+
+on:
+  schedule:
+    - cron: "30 */2 * * *"   # every 2 hours
+  workflow_dispatch: {}       # adds a manual "Run workflow" button
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch feeds
+        run: |
+          pip install requests --quiet
+          python scripts/fetch_feeds.py
+
+      - name: Commit changes (if any)
+        run: |
+          git config user.name "stacks-feed-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feeds/
+          git diff --cached --quiet || (git commit -m "chore: sync source feeds" && git push)
