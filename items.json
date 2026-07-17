@@ -1,6 +1,47 @@
 {
  "items": [
   {
+   "id": "serenity-meritz-memory",
+   "date": "2026-07-17",
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2077955479742173422",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#059669",
+    "to": "#064E3B",
+    "label": "SK HYNIX"
+   },
+   "tags": [
+    "SK HYNIX",
+    "DRAM",
+    "MERITZ"
+   ],
+   "avatarImg": "serenity.jpg",
+   "related": [
+    "hynix",
+    "meru-adr-conv",
+    "meru-leverage"
+   ],
+   "title": {
+    "ko": "메리츠 \"삼성전자·SK하이닉스, 지금은 팔 때가 아니다\": 2027년 D램은 60%만 채워진다",
+    "en": "Meritz: \"this is not the time to sell Samsung and SK Hynix\" — 2027 DRAM supply covers only ~60% of demand",
+    "ja": "メリッツ「サムスン・SKハイニックスは今売る時ではない」: 2027年のDRAM充足率は6割"
+   },
+   "gist": {
+    "ko": "세레니티가 소개한 메리츠증권 김선우 연구원의 리포트 요지는 간단하다. 시장이 반도체를 과도하게 오해하고 있고, D램 부족은 오히려 올해 하반기부터 더 심해진다는 것이다.\n\n숫자가 인상적이다. 2026년 하반기에는 공급사들이 D램 수요의 75~80%밖에 못 채우고, 2027년에는 충족률이 60%대까지 떨어질 것으로 본다. 리포트에 첨부된 시장 전망 기준으로 SK하이닉스의 2027년 예상 PER은 3.5배, 삼성전자는 3.9배다. 부족이 심해지는데 밸류에이션은 역사적 저점 수준이라는 얘기다.\n\n세레니티는 여기에 두 가지 근거를 보탠다. 인텔 CEO가 \"적어도 2028년까지는 메모리 공급도 가격도 풀리지 않는다\"고 말했고, 마이크론은 대형 고객들과 16건의 장기공급계약(LTA)을 맺었는데 상당수가 안 가져가도 돈을 내는 take-or-pay 조건이다. 메모리 수요가 일시적 붐이 아니라 구조적이라는 신호들이다.",
+    "en": "Serenity highlights a Meritz Securities report by analyst Kim Sunwoo with a simple thesis: the market is badly misreading semis, and the DRAM shortage gets worse from here, not better.\n\nThe numbers are striking. In H2 2026, suppliers can fulfill only 75–80% of DRAM demand; by 2027, fulfillment falls into the 60% range. The market forecasts attached to the report put SK Hynix at a 3.5x 2027 P/E and Samsung at 3.9x — a deepening shortage priced at near-historic-low valuations.\n\nSerenity adds two corroborating signals: Intel's CEO said there will be \"no relief in memory supply or pricing until at least 2028,\" and Micron has signed 16 long-term agreements (LTAs) with major customers, many on take-or-pay terms — customers pay whether they take the chips or not. Signs that memory demand is structural, not a passing boom.",
+    "ja": "セレニティが紹介したメリッツ証券キム・ソヌ氏のリポートの主張はシンプルだ。市場は半導体をひどく誤解しており、DRAM不足はむしろ今年後半から深刻化する。\n\n数字が印象的だ。2026年下期、サプライヤーはDRAM需要の75~80%しか満たせず、2027年には充足率が60%台まで低下する見通し。リポート添付の市場予想では、SKハイニックスの2027年予想PERは3.5倍、サムスンは3.9倍。不足が深まるのに、バリュエーションは歴史的低水準という話だ。\n\nセレニティは2つの根拠を加える。インテルCEOは「少なくとも2028年までメモリの供給も価格も緩和しない」と発言し、マイクロンは大口顧客と16件のLTA(長期供給契約)を締結、多くが引き取らなくても支払うtake-or-pay条件だ。メモリ需要が一過性ではなく構造的である証左だ。"
+   },
+   "why": {
+    "ko": "부족은 깊어지는데 PER은 3배대 — 증권가가 보는 메모리 슈퍼사이클은 아직 초입이라는 뜻이다.",
+    "en": "Shortage deepening while P/Es sit near 3x — the street is saying the memory supercycle has barely begun.",
+    "ja": "不足は深まるのにPERは3倍台 — メモリ・スーパーサイクルはまだ序盤という意味だ。"
+   }
+  },
+  {
    "date": "2026-07-10",
    "id": "doomberg-sources",
    "thumbWiki": "Moscow Kremlin",
@@ -2174,6 +2215,90 @@
     "Mixture of Experts",
     "전문가 혼합"
    ]
+  },
+  "INTEL": {
+   "kind": "company",
+   "ticker": "intc.us",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "ko": "x86 CPU의 원조. 파운드리 재건에 사활을 건 미국 반도체의 상징.",
+    "en": "The x86 pioneer, betting its future on rebuilding a US foundry business.",
+    "ja": "x86の元祖。ファウンドリ再建に社運を賭ける米半導体の象徴。"
+   },
+   "aliases": [
+    "Intel",
+    "인텔",
+    "インテル"
+   ],
+   "logo": "intel.com",
+   "exchange": "NASDAQ",
+   "ceo": "립부 탄 (Lip-Bu Tan)",
+   "founded": "1968",
+   "hq": "미국 샌타클래라",
+   "website": "https://www.intel.com",
+   "longDesc": {
+    "ko": "1968년 설립된 x86 CPU의 원조이자 미국 반도체 산업의 상징. 최근 수년간 공정 경쟁에서 TSMC에 밀렸지만, 미국 정부 지원 아래 파운드리 사업 재건과 18A 공정 반전에 사활을 걸고 있다. 실리콘 포토닉스 등 AI 인프라 부품에서도 존재감이 있다.",
+    "en": "Founded in 1968, the x86 pioneer and symbol of American chipmaking. After losing the process race to TSMC, it is betting everything — with US government backing — on rebuilding its foundry business and the 18A node comeback, while staying relevant in AI-infrastructure parts like silicon photonics.",
+    "ja": "1968年設立、x86の元祖にして米半導体の象徴。プロセス競争でTSMCに敗れた後、米政府支援の下でファウンドリ再建と18Aプロセスでの巻き返しに社運を賭ける。シリコンフォトニクスなどAIインフラ部品でも存在感。"
+   }
+  },
+  "MICRON": {
+   "kind": "company",
+   "ticker": "mu.us",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "ko": "미국 유일의 메모리 반도체 대기업. 삼성·하이닉스와 D램 3강.",
+    "en": "America's only major memory maker — the third leg of the DRAM oligopoly.",
+    "ja": "米国唯一の大手メモリメーカー。DRAM3強の一角。"
+   },
+   "aliases": [
+    "Micron",
+    "마이크론",
+    "マイクロン"
+   ],
+   "logo": "micron.com",
+   "exchange": "NASDAQ",
+   "ceo": "산제이 메흐로트라 (Sanjay Mehrotra)",
+   "founded": "1978",
+   "hq": "미국 보이시",
+   "website": "https://www.micron.com",
+   "longDesc": {
+    "ko": "1978년 설립된 미국 유일의 메모리 반도체 대기업. 삼성전자·SK하이닉스와 함께 D램 3강 과점을 이루고, HBM 시장에도 진입해 있다. AI 메모리 슈퍼사이클의 미국 측 수혜주로, 대형 고객들과의 장기공급계약(LTA)이 실적 가시성을 높이고 있다.",
+    "en": "Founded in 1978, America's only major memory maker — one third of the DRAM oligopoly with Samsung and SK hynix, and an HBM player too. The US-listed way to play the AI memory supercycle, with long-term supply agreements (LTAs) locking in demand visibility.",
+    "ja": "1978年設立、米国唯一の大手メモリメーカー。サムスン・SKハイニックスとDRAM3強を形成し、HBMにも参入。AIメモリ・スーパーサイクルの米国側受益銘柄で、大口顧客とのLTA(長期供給契約)が業績の可視性を高める。"
+   }
+  },
+  "LTA": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "몇 년치 물량·가격을 미리 약속하는 장기공급계약.",
+    "en": "A long-term agreement locking in supply volumes and prices years ahead.",
+    "ja": "数年分の数量・価格を事前に約束する長期供給契約。"
+   },
+   "aliases": [
+    "LTA",
+    "장기공급계약",
+    "take-or-pay",
+    "長期供給契約"
+   ],
+   "longDesc": {
+    "ko": "Long-Term Agreement. 공급사와 고객이 몇 년치 물량과 가격을 미리 묶는 계약이다. 특히 'take-or-pay' 조건이 붙으면 고객은 물량을 안 가져가도 돈을 내야 해서, 공급사 입장에선 미래 매출이 사실상 보장된다. 메모리 반도체처럼 사이클이 심한 산업에서 LTA가 늘어난다는 건 수요가 구조적으로 바뀌고 있다는 신호로 읽힌다.",
+    "en": "A Long-Term Agreement locks in volumes and prices for years. With 'take-or-pay' terms, the customer pays even if it doesn't take delivery — effectively guaranteeing the supplier's future revenue. In a cyclical industry like memory, a wave of LTAs signals demand turning structural.",
+    "ja": "数年分の数量・価格を固定する長期契約。「take-or-pay」条項付きなら顧客は引き取らなくても支払い義務があり、サプライヤーの将来売上が実質保証される。メモリのようなシクリカル産業でLTAが増えるのは、需要が構造的に変わったシグナルとされる。"
+   }
   }
  }
 }
