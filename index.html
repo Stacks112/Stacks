@@ -327,7 +327,7 @@ const STRINGS = {
     profile: "프로필 ↗",
     r1d: "1일", r1w: "1주", r1mo: "1달", r1y: "1년",
     entArticles: "관련 글 {n}개 보기 →",
-    fCeo: "대표", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
+    fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
     watchUnread: "안 읽은 글 {n}",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
@@ -2127,7 +2127,12 @@ function chipTap(el, tag){
   hideTipSheet();
   el.classList.remove("show");
   if (ENTITIES[tag]){
-    /* known company/person/term -> open its debate/entity page */
+    /* stage4 */
+    /* known company/person/term: desktop -> right panel, mobile -> entity feed */
+    if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches && typeof showEntityRail === "function"){
+      showEntityRail(tag);
+      return;
+    }
     SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
     const inp1 = document.getElementById("searchInput"); if (inp1) inp1.value = "";
     ENTITY_VIEW = tag;
@@ -2781,6 +2786,11 @@ function tagTap(tag){
 function pickCompany(name){
   /* a known company opens its debate page; anything else is a text search */
   if (name && ENTITIES[name] && ENTITIES[name].kind === "company"){
+    if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches && typeof showEntityRail === "function"){
+      const sel = document.getElementById("companyFilter"); if (sel) sel.value = "";
+      showEntityRail(name);
+      return;
+    }
     SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
     const inp0 = document.getElementById("searchInput"); if (inp0) inp0.value = "";
     ENTITY_VIEW = name;
