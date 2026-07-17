@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v47 :: PC nav — icon+text buttons, brand aligned to left rail -->
+<!-- STACKS BUILD v48 :: intro landing page (explore button -> feed) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -147,6 +147,7 @@ const STRINGS = {
     heroTitle: "Reading Made Easy",
     heroSub: "The world's best investing minds, in your language.",
     heroCta: "Explore Signals",
+    introCta: "Take a look around",
     install: "Add to Home Screen",
     installIOS: "To install: tap Share, then Add to Home Screen.",
     hot: "Hot this week",
@@ -233,6 +234,7 @@ const STRINGS = {
     heroTitle: "읽는 투자, 쉽게",
     heroSub: "전 세계 투자 고수들의 글을, 당신의 언어로",
     heroCta: "시그널 보기",
+    introCta: "더 둘러보기",
     install: "홈 화면에 추가",
     installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
     hot: "이번 주 핫한 읽을거리",
@@ -319,6 +321,7 @@ const STRINGS = {
     heroTitle: "読む投資を、かんたんに",
     heroSub: "世界の投資の達人たちの記事を、あなたの言語で。",
     heroCta: "シグナルを見る",
+    introCta: "もっと見る",
     install: "ホーム画面に追加",
     installIOS: "インストールするには共有ボタンから「ホーム画面に追加」を選択してください。",
     hot: "今週の注目",
@@ -700,6 +703,17 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .entity-head .series-close{margin-bottom:8px;}
 .entity-head .eh-name{font-size:20px;font-weight:800;letter-spacing:-.015em;}
 .entity-head .eh-sub{font-size:11px;color:var(--muted);margin-top:2px;font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;}
+/* ---------- intro (landing) page ---------- */
+.intro{
+  position:fixed;inset:0;z-index:80;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:24px;opacity:1;transition:opacity .4s ease;
+}
+.intro.out{opacity:0;pointer-events:none;}
+.intro-box h1{font-size:clamp(30px,5vw,44px);letter-spacing:-.03em;margin:0 0 14px;}
+.intro-sub{font-size:16px;color:var(--muted);max-width:46ch;margin:0 auto 30px;}
+.intro-cta{border:0;cursor:pointer;font-family:inherit;font-size:15px;}
+html[data-lang="ko"] .intro-box{font-family:"Pretendard Variable","Inter",sans-serif;}
 .entity-head .eh-desc{font-size:13.5px;line-height:1.55;color:var(--text);margin:10px 0 0;}
 .entity-head .eh-chart{margin-top:12px;background:var(--black);border-radius:10px;padding:12px 14px;}
 .entity-head .eh-spark{display:block;}
@@ -1364,6 +1378,16 @@ footer a{color:var(--muted);}
       <a class="support-btn" id="supportBtn" target="_blank" rel="noopener" hidden></a>
     </div>
   </section>
+</div>
+
+<div class="intro" id="intro" hidden>
+  <div class="intro-box">
+    <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
+    <div class="app-name" id="introName"></div>
+    <h1 id="introTitle"></h1>
+    <p class="intro-sub" id="introSub"></p>
+    <button class="cta intro-cta" id="introCta" onclick="closeIntro()"></button>
+  </div>
 </div>
 
 <div class="onboard" id="onboard" hidden>
@@ -3172,7 +3196,7 @@ async function bootData(){
   loadCommentCounts();
   loadLikeCounts();
   loadViewCounts();
-  maybeOnboard();
+  if (!showIntro()) maybeOnboard();
 }
 
 /* ---------------- dark mode toggle ---------------- */
@@ -3280,6 +3304,33 @@ function nlSubmit(ev){
 
 /* ---------------- onboarding ---------------- */
 const OB_SEL = new Set();
+/* ---------------- intro (landing) page ----------------
+   First thing a visitor sees: the app icon + tagline + a "look around"
+   button that drops them into the feed. Skipped for deep links so
+   shared cards still land directly on their article. */
+function showIntro(){
+  if (location.hash && (location.hash.startsWith("#sig-") || location.hash.startsWith("#comments-"))) return false;
+  const el = document.getElementById("intro");
+  if (!el) return false;
+  const S = STRINGS[LANG];
+  document.getElementById("introName").textContent = S.appName;
+  document.getElementById("introTitle").textContent = S.heroTitle;
+  document.getElementById("introSub").textContent = S.heroSub;
+  document.getElementById("introCta").innerHTML = S.introCta + " &rarr;";
+  el.hidden = false;
+  document.body.style.overflow = "hidden";
+  return true;
+}
+function closeIntro(){
+  const el = document.getElementById("intro");
+  if (!el) return;
+  el.classList.add("out");
+  document.body.style.overflow = "";
+  setTimeout(() => { el.hidden = true; el.classList.remove("out"); }, 420);
+  track("intro/enter");
+  maybeOnboard();
+}
+
 function maybeOnboard(){
   if (store.get("stk_onboarded", false)) return;
   if (!ITEMS.length) return;
