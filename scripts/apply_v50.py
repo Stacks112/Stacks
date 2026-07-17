@@ -421,6 +421,62 @@ html[data-lang="ko"] .ceo-detail{font-family:"Pretendard Variable",sans-serif;}"
 ]
 
 
+STAGE4_EDITS = [
+    # a) chip / cover-label tap: desktop -> right panel (as before), mobile -> entity feed
+    ('''  el.classList.remove("show");
+  if (ENTITIES[tag]){
+    /* known company/person/term -> open its debate/entity page */
+    SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+    const inp1 = document.getElementById("searchInput"); if (inp1) inp1.value = "";
+    ENTITY_VIEW = tag;
+    renderFeed(true);
+  } else {''',
+     '''  el.classList.remove("show");
+  if (ENTITIES[tag]){
+    /* stage4 */
+    /* known company/person/term: desktop -> right panel, mobile -> entity feed */
+    if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches && typeof showEntityRail === "function"){
+      showEntityRail(tag);
+      return;
+    }
+    SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+    const inp1 = document.getElementById("searchInput"); if (inp1) inp1.value = "";
+    ENTITY_VIEW = tag;
+    renderFeed(true);
+  } else {'''),
+    # b) company dropdown: same desktop/mobile split
+    ('''  if (name && ENTITIES[name] && ENTITIES[name].kind === "company"){
+    SERIES_VIEW = null; BM_ONLY = false; QUERY = "";''',
+     '''  if (name && ENTITIES[name] && ENTITIES[name].kind === "company"){
+    if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches && typeof showEntityRail === "function"){
+      const sel = document.getElementById("companyFilter"); if (sel) sel.value = "";
+      showEntityRail(name);
+      return;
+    }
+    SERIES_VIEW = null; BM_ONLY = false; QUERY = "";'''),
+    # c) Korean fact label: 대표 -> CEO
+    ('fCeo: "대표"', 'fCeo: "CEO"'),
+]
+
+
+def stage4(html):
+    problems = []
+    for i, (needle, _) in enumerate(STAGE4_EDITS, 1):
+        n = html.count(needle)
+        if n != 1:
+            problems.append("stage4 edit %d: needle found %d times: %r" % (i, n, needle[:70]))
+    if problems:
+        for p in problems:
+            print("[ABORT] " + p)
+        return 1
+    for needle, repl in STAGE4_EDITS:
+        html = html.replace(needle, repl, 1)
+    with io.open(PATH, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("stage-4 applied: rail-first entity taps + CEO label")
+    return 0
+
+
 def stage3(html):
     problems = []
     for i, (needle, _) in enumerate(STAGE3_EDITS, 1):
@@ -449,8 +505,10 @@ def main():
         # visible without scrolling, especially on phones.
         if "/* debate-bar placement fix */" in html:
             if "function goHome(" in html:
-                print("stage 3 already applied; nothing to do")
-                return 0
+                if "/* stage4 */" in html:
+                    print("stage 4 already applied; nothing to do")
+                    return 0
+                return stage4(html)
             return stage3(html)
         n1 = html.count("  list.appendChild(bar);")
         n2 = html.count(".ds-watch{background:linear-gradient(135deg,#9BA1B0,#6B7280);}")
