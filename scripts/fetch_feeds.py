@@ -30,6 +30,7 @@ FEEDS = [
     {"id": "netinterest", "url": "https://www.netinterest.co/feed", "naver": False},
     {"id": "emin", "url": "https://note.com/eminyurumazu/rss", "naver": False},
     {"id": "trump", "url": "https://trumpstruth.org/feed", "naver": False},
+    {"id": "serenity", "url": "https://aleabitoreddit.substack.com/feed", "naver": False},
 ]
 
 
