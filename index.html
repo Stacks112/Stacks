@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v37 :: custom domain stacksdaily.com (served at root), canonical + og:url -->
+<!-- STACKS BUILD v38 :: feed pagination (10/page, infinite scroll) + naver verify -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -195,6 +195,7 @@ const STRINGS = {
     readDone: "Read ✓",
     like: "Like",
     listen: "Listen",
+    loadMore: "Load more",
     views: "Views",
     eventsTitle: "Coming up",
     dToday: "Today",
@@ -276,6 +277,7 @@ const STRINGS = {
     readDone: "읽음 ✓",
     like: "좋아요",
     listen: "듣기",
+    loadMore: "더 보기",
     views: "조회수",
     eventsTitle: "다가오는 이벤트",
     dToday: "오늘",
@@ -357,6 +359,7 @@ const STRINGS = {
     readDone: "既読 ✓",
     like: "いいね",
     listen: "聴く",
+    loadMore: "もっと見る",
     views: "閲覧数",
     eventsTitle: "近日中",
     dToday: "本日",
@@ -955,6 +958,12 @@ html[data-lang="ko"] .related-link{font-family:"Pretendard Variable",sans-serif;
   padding:44px 20px;margin-bottom:16px;
 }
 html[data-lang="ko"] .empty{font-family:"Pretendard Variable",sans-serif;}
+.load-more{
+  display:block;width:100%;margin:4px 0 20px;padding:14px;
+  background:var(--bg-soft);color:var(--text);font-weight:600;font-size:14px;
+  border:1px solid var(--line);border-radius:var(--radius);cursor:pointer;
+}
+.load-more:hover{border-color:var(--text);}
 
 /* ---------- event countdown bar ---------- */
 .event-bar{
@@ -2457,12 +2466,61 @@ function render(){
 /* Feed only. Search calls this on every keystroke with animate=false,
    so typing never repaints the hero, hot rail, or tabs, and cards
    don't replay their entrance animation (the white flicker). */
+/* feed pagination: show a page of cards, load more as the reader scrolls */
+const FEED_PAGE_SIZE = 10;
+let CUR_ITEMS = [];
+let SHOWN = 0;
+let feedIO = null;
+
+function appendFeedPage(S){
+  S = S || STRINGS[LANG];
+  const list = document.getElementById("feedList");
+  const old = document.getElementById("feedSentinel");
+  if (old) old.remove();
+  const start = SHOWN;
+  const end = Math.min(start + FEED_PAGE_SIZE, CUR_ITEMS.length);
+  for (let idx = start; idx < end; idx++){
+    list.appendChild(cardEl(CUR_ITEMS[idx], S, idx - start));
+  }
+  SHOWN = end;
+  hydrateImages();
+  applyEngageCounts();
+  setupViewObserver();
+  if (SHOWN < CUR_ITEMS.length){
+    const sent = document.createElement("div");
+    sent.id = "feedSentinel";
+    sent.style.height = "1px";
+    list.appendChild(sent);
+    if ("IntersectionObserver" in window){
+      if (feedIO) feedIO.disconnect();
+      feedIO = new IntersectionObserver(entries => {
+        if (entries.some(e => e.isIntersecting)){
+          feedIO.disconnect();
+          appendFeedPage(S);
+        }
+      }, { rootMargin: "800px" });
+      feedIO.observe(sent);
+    } else {
+      /* no observer support: a simple "load more" button */
+      const btn = document.createElement("button");
+      btn.className = "load-more";
+      btn.textContent = (STRINGS[LANG].loadMore || "Load more");
+      btn.onclick = () => { btn.remove(); appendFeedPage(S); };
+      sent.replaceWith(btn);
+    }
+  } else if (feedIO){
+    feedIO.disconnect();
+    feedIO = null;
+  }
+}
+
 function renderFeed(animate){
   if (typeof ttsStop === "function") ttsStop();
   const S = STRINGS[LANG];
   const list = document.getElementById("feedList");
   list.classList.toggle("no-anim", !animate);
   list.innerHTML = "";
+  if (feedIO){ feedIO.disconnect(); feedIO = null; }
   const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
   refreshFilterBtn();
 
@@ -2518,10 +2576,9 @@ function renderFeed(animate){
     hydrateImages();
     return;
   }
-  items.forEach((item, idx) => list.appendChild(cardEl(item, S, idx)));
-  hydrateImages();
-  applyEngageCounts();
-  setupViewObserver();
+  CUR_ITEMS = items;
+  SHOWN = 0;
+  appendFeedPage(S);
 }
 
 function cardEl(item, S, idx){
