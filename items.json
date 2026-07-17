@@ -1133,7 +1133,19 @@
     "SK하이닉스",
     "하이닉스",
     "SKハイニックス"
-   ]
+   ],
+   "logo": "skhynix.com",
+   "exchange": "KOSPI",
+   "ceo": "곽노정",
+   "founded": "1949",
+   "listed": "1996.12",
+   "hq": "경기 이천",
+   "website": "https://www.skhynix.com",
+   "longDesc": {
+    "ko": "1949년 설립돼 2012년 SK그룹 편입과 함께 SK하이닉스로 상호를 바꾼 글로벌 메모리 반도체 기업. DRAM과 NAND 플래시가 주력이며, 엔비디아 AI 가속기에 들어가는 HBM(고대역폭 메모리) 시장을 선도하면서 AI 슈퍼사이클의 최대 수혜주로 꼽힌다. 경기도 이천에 본사를 두고 이천·청주·중국 우시 등에서 생산라인을 운영한다.",
+    "en": "Global memory-chip maker, renamed SK hynix in 2012 after joining SK Group. Its DRAM and NAND business leads the HBM (high-bandwidth memory) market that feeds Nvidia's AI accelerators, making it a prime beneficiary of the AI supercycle. Headquartered in Icheon, Korea, with fabs in Icheon, Cheongju and Wuxi, China.",
+    "ja": "1949年創業、2012年にSKグループ入りしSKハイニックスに社名変更したグローバルメモリ半導体企業。DRAMとNANDが主力で、NVIDIAのAIアクセラレータに搭載されるHBM(広帯域メモリ)市場をリードし、AIスーパーサイクル最大の受益企業とされる。本社は韓国・利川。"
+   }
   },
   "NEBIUS": {
    "kind": "company",
@@ -1152,7 +1164,19 @@
     "Nebius",
     "네비우스",
     "ネビウス"
-   ]
+   ],
+   "logo": "nebius.com",
+   "exchange": "NASDAQ",
+   "ceo": "아르카디 볼로즈 (Arkady Volozh)",
+   "founded": "2024",
+   "listed": "2024.10",
+   "hq": "암스테르담",
+   "website": "https://nebius.com",
+   "longDesc": {
+    "ko": "옛 얀덱스(Yandex N.V.)의 해외 사업이 2024년 재편되며 탄생한 AI 인프라 기업. 엔비디아 GPU 클러스터를 구축해 AI 기업들에 컴퓨팅 파워를 빌려주는 '네오클라우드'가 핵심 사업이다. 마이크로소프트와의 대형 GPU 공급 계약으로 주목받았고, 엔비디아가 직접 지분 투자한 회사이기도 하다.",
+    "en": "AI-infrastructure company born in 2024 from the restructuring of Yandex N.V.'s international assets. Its core 'neocloud' business builds Nvidia GPU clusters and rents computing power to AI companies. A multi-billion-dollar GPU deal with Microsoft put it on the map, and Nvidia itself holds a stake.",
+    "ja": "旧Yandex N.V.の海外事業再編で2024年に誕生したAIインフラ企業。NVIDIA GPUクラスターを構築しAI企業に計算力を貸し出す「ネオクラウド」が中核事業。マイクロソフトとの大型GPU契約で注目され、NVIDIA自身も出資している。"
+   }
   },
   "MICROSOFT": {
    "kind": "company",
@@ -1171,7 +1195,19 @@
     "Microsoft",
     "마이크로소프트",
     "マイクロソフト"
-   ]
+   ],
+   "logo": "microsoft.com",
+   "exchange": "NASDAQ",
+   "ceo": "사티아 나델라 (Satya Nadella)",
+   "founded": "1975",
+   "listed": "1986.3",
+   "hq": "미국 레드먼드",
+   "website": "https://www.microsoft.com",
+   "longDesc": {
+    "ko": "1975년 빌 게이츠와 폴 앨런이 세운 세계 최대 소프트웨어 기업. 윈도우·오피스에서 출발해 지금은 애저(Azure) 클라우드와 AI가 성장 축이며, OpenAI의 최대 후원자로서 AI 인프라에 연간 수백억 달러를 투자한다. 2014년 취임한 사티아 나델라가 클라우드 중심으로 회사를 재편했다.",
+    "en": "The world's largest software company, founded in 1975 by Bill Gates and Paul Allen. From Windows and Office it has shifted its growth engine to Azure cloud and AI, backing OpenAI as its biggest investor and pouring tens of billions a year into AI infrastructure. CEO Satya Nadella has led the cloud-first transformation since 2014.",
+    "ja": "1975年にビル・ゲイツとポール・アレンが創業した世界最大のソフトウェア企業。WindowsとOfficeからAzureクラウドとAIへ成長軸を移し、OpenAI最大の出資者としてAIインフラに年間数百億ドルを投じる。2014年就任のサティア・ナデラCEOがクラウド中心へ転換を主導した。"
+   }
   },
   "META": {
    "kind": "company",
@@ -1190,7 +1226,19 @@
     "Meta",
     "메타",
     "メタ"
-   ]
+   ],
+   "logo": "meta.com",
+   "exchange": "NASDAQ",
+   "ceo": "마크 저커버그 (Mark Zuckerberg)",
+   "founded": "2004",
+   "listed": "2012.5",
+   "hq": "미국 멘로파크",
+   "website": "https://www.meta.com",
+   "longDesc": {
+    "ko": "페이스북·인스타그램·왓츠앱을 거느린 세계 최대 소셜미디어 기업. 2004년 마크 저커버그가 창업했고 2021년 메타로 사명을 바꿨다. 광고가 수익의 대부분이지만, 오픈소스 AI 모델(라마)과 초대형 AI 데이터센터에 회사의 미래를 걸고 연간 수백억 달러를 투자하고 있다.",
+    "en": "The world's largest social-media company, parent of Facebook, Instagram and WhatsApp. Founded by Mark Zuckerberg in 2004 and renamed Meta in 2021. Advertising still pays the bills, but the company is betting its future on open-source AI models (Llama) and massive AI datacenters, spending tens of billions a year.",
+    "ja": "Facebook・Instagram・WhatsAppを擁する世界最大のSNS企業。2004年にザッカーバーグが創業し、2021年にMetaへ社名変更。収益の柱は広告だが、オープンソースAIモデル(Llama)と超大型AIデータセンターに会社の未来を賭け、年間数百億ドルを投資する。"
+   }
   },
   "APPLE": {
    "kind": "company",
@@ -1209,7 +1257,19 @@
     "Apple",
     "애플",
     "アップル"
-   ]
+   ],
+   "logo": "apple.com",
+   "exchange": "NASDAQ",
+   "ceo": "팀 쿡 (Tim Cook)",
+   "founded": "1976",
+   "listed": "1980.12",
+   "hq": "미국 쿠퍼티노",
+   "website": "https://www.apple.com",
+   "longDesc": {
+    "ko": "아이폰·맥·에어팟을 만드는 세계에서 가장 가치 있는 하드웨어 기업. 1976년 스티브 잡스 등이 창업했고, 팀 쿡 체제에서 서비스 매출과 자체 반도체(M시리즈)로 영역을 넓혔다. 최근에는 공급망을 미국 내로 되돌리는 리쇼어링과 온디바이스 AI가 핵심 과제다.",
+    "en": "Maker of the iPhone, Mac and AirPods — the world's most valuable hardware franchise. Founded in 1976 by Steve Jobs and partners; under Tim Cook it expanded into services and its own silicon (M-series). Its current priorities: reshoring the supply chain to the US and on-device AI.",
+    "ja": "iPhone・Mac・AirPodsを生む世界で最も価値あるハードウェア企業。1976年にジョブズらが創業し、クック体制でサービスと自社半導体(Mシリーズ)へ拡大。現在は米国内へのサプライチェーン回帰とオンデバイスAIが最重要課題。"
+   }
   },
   "BROADCOM": {
    "kind": "company",
@@ -1228,7 +1288,18 @@
     "Broadcom",
     "브로드컴",
     "ブロードコム"
-   ]
+   ],
+   "logo": "broadcom.com",
+   "exchange": "NASDAQ",
+   "ceo": "혹 탄 (Hock Tan)",
+   "listed": "2009.8",
+   "hq": "미국 팰로앨토",
+   "website": "https://www.broadcom.com",
+   "longDesc": {
+    "ko": "네트워크·통신 반도체의 강자이자, 구글·메타 등 빅테크의 주문형 AI 칩(커스텀 ASIC)을 설계해 주는 회사. 공격적인 인수합병으로 성장했고 2023년엔 VMware까지 인수해 소프트웨어로 영역을 넓혔다. 엔비디아의 대항마로 꼽히는 AI 반도체 2위 주자다.",
+    "en": "A powerhouse in networking and communications chips, and the designer of custom AI silicon (ASICs) for Google, Meta and other hyperscalers. Built through aggressive M&A — including the 2023 VMware acquisition — it is widely seen as the #2 AI-chip player behind Nvidia.",
+    "ja": "ネットワーク・通信半導体の強者で、GoogleやMetaなどビッグテックのカスタムAIチップ(ASIC)を設計する企業。積極的なM&Aで成長し、2023年にはVMwareも買収。NVIDIAに次ぐAI半導体2番手とされる。"
+   }
   },
   "BLOOM ENERGY": {
    "kind": "company",
@@ -1248,7 +1319,19 @@
     "블룸에너지",
     "블룸 에너지",
     "ブルームエナジー"
-   ]
+   ],
+   "logo": "bloomenergy.com",
+   "exchange": "NYSE",
+   "ceo": "KR 스리다 (KR Sridhar)",
+   "founded": "2001",
+   "listed": "2018.7",
+   "hq": "미국 새너제이",
+   "website": "https://www.bloomenergy.com",
+   "longDesc": {
+    "ko": "천연가스나 수소를 전기로 바꾸는 고체산화물 연료전지(SOFC)를 만드는 회사. 발전소 건설을 기다릴 수 없는 AI 데이터센터에 '현장에서 바로 꽂는 전력'을 공급하는 지름길로 주목받는다. 2001년 NASA 화성 프로젝트 출신 KR 스리다가 창업했다.",
+    "en": "Maker of solid-oxide fuel cells that turn natural gas or hydrogen into electricity on-site. It's drawing attention as a shortcut for power-hungry AI datacenters that can't wait for new power plants. Founded in 2001 by KR Sridhar, a veteran of NASA's Mars program.",
+    "ja": "天然ガスや水素をその場で電気に変える固体酸化物形燃料電池(SOFC)メーカー。発電所建設を待てないAIデータセンターへの「即時電源」として注目される。2001年、NASA火星計画出身のKRスリダーが創業。"
+   }
   },
   "STRATEGY": {
    "kind": "company",
@@ -1267,7 +1350,19 @@
     "MicroStrategy",
     "마이크로스트래티지",
     "マイクロストラテジー"
-   ]
+   ],
+   "logo": "strategy.com",
+   "exchange": "NASDAQ",
+   "ceo": "퐁 레 (Phong Le) · 마이클 세일러 의장",
+   "founded": "1989",
+   "listed": "1998.6",
+   "hq": "미국 타이슨스",
+   "website": "https://www.strategy.com",
+   "longDesc": {
+    "ko": "마이클 세일러가 세운 소프트웨어 회사에서 출발해, 2020년부터 회사 자금으로 비트코인을 대량 매입하며 '레버리지 비트코인 보유 회사'로 변신했다. 2025년 사명을 마이크로스트래티지에서 스트래티지로 바꿨다. 주가가 비트코인 가격에 크게 연동되는 것이 특징이다.",
+    "en": "Michael Saylor's software firm turned leveraged bitcoin holder: since 2020 it has piled corporate cash (and debt) into BTC, and in 2025 renamed itself from MicroStrategy to Strategy. Its stock trades largely as a proxy for the bitcoin price.",
+    "ja": "マイケル・セイラーのソフトウェア会社が2020年から社債まで使いビットコインを大量購入、「レバレッジ付きBTC保有会社」へ変貌。2025年にマイクロストラテジーからストラテジーへ社名変更。株価はBTC価格に強く連動する。"
+   }
   },
   "TOWER SEMI": {
    "kind": "company",
@@ -1287,7 +1382,18 @@
     "Tower Semi",
     "타워 세미",
     "타워세미"
-   ]
+   ],
+   "logo": "towersemi.com",
+   "exchange": "NASDAQ",
+   "ceo": "러셀 엘완거 (Russell Ellwanger)",
+   "founded": "1993",
+   "hq": "이스라엘 미그달하에메크",
+   "website": "https://towersemi.com",
+   "longDesc": {
+    "ko": "이스라엘의 아날로그 반도체 파운드리(위탁생산) 전문 기업. 통신용 광학 칩, 전력 반도체, 이미지 센서 등 틈새 공정에 강하다. 2022년 인텔이 인수를 시도했다가 무산됐고, AI 데이터센터용 실리콘 포토닉스 수요 증가의 수혜주로 꼽힌다.",
+    "en": "Israeli specialty analog foundry, strong in niche processes like optical chips for communications, power semiconductors and image sensors. Intel's 2022 takeover attempt fell through; the company now benefits from surging silicon-photonics demand for AI datacenters.",
+    "ja": "イスラエルのアナログ半導体ファウンドリ。通信用光チップ、パワー半導体、イメージセンサーなどニッチ工程に強い。2022年のインテルによる買収は頓挫。AIデータセンター向けシリコンフォトニクス需要の受益企業。"
+   }
   },
   "APPLIED OPTO": {
    "kind": "company",
@@ -1306,7 +1412,19 @@
     "Applied Optoelectronics",
     "Applied Opto",
     "어플라이드 옵토"
-   ]
+   ],
+   "logo": "ao-inc.com",
+   "exchange": "NASDAQ",
+   "ceo": "톰슨 린 (Thompson Lin)",
+   "founded": "1997",
+   "listed": "2013.9",
+   "hq": "미국 슈거랜드",
+   "website": "https://ao-inc.com",
+   "longDesc": {
+    "ko": "데이터센터용 광트랜시버(광통신 부품)를 만드는 미국 기업. AI 클러스터에서 GPU끼리 데이터를 주고받으려면 고속 광통신이 필수라, 800G 등 차세대 제품 수요가 급증하고 있다. 마이크로소프트·아마존 등 하이퍼스케일러가 주요 고객이다.",
+    "en": "US maker of optical transceivers for datacenters. AI clusters need high-speed optical links between GPUs, driving surging demand for its 800G-class products. Hyperscalers like Microsoft and Amazon are key customers.",
+    "ja": "データセンター向け光トランシーバーの米国メーカー。AIクラスターではGPU間の高速光通信が必須で、800G級製品の需要が急増。マイクロソフトやアマゾンなどハイパースケーラーが主要顧客。"
+   }
   },
   "NSE": {
    "kind": "company",
@@ -1323,7 +1441,18 @@
    "aliases": [
     "National Stock Exchange",
     "NSE"
-   ]
+   ],
+   "logo": "nseindia.com",
+   "exchange": "비상장",
+   "ceo": "아시시쿠마르 차우한 (Ashishkumar Chauhan)",
+   "founded": "1992",
+   "hq": "인도 뭄바이",
+   "website": "https://www.nseindia.com",
+   "longDesc": {
+    "ko": "1992년 설립된 인도 최대 증권거래소. 파생상품 거래량 기준 세계 1위 거래소로, 인도 개인투자자 급증의 최대 수혜자다. 아직 비상장이지만 IPO가 인도 자본시장 최대 이벤트 중 하나로 꼽힌다.",
+    "en": "India's largest stock exchange, founded in 1992 and the world's #1 derivatives venue by volume — the prime beneficiary of India's retail-investing boom. Still unlisted, its own IPO is one of the most anticipated events in Indian capital markets.",
+    "ja": "1992年設立のインド最大の証券取引所。デリバティブ取引量で世界一を誇り、インド個人投資家急増の最大受益者。未上場だが、自らのIPOはインド資本市場最大級のイベントとされる。"
+   }
   },
   "DEEPMIND": {
    "kind": "company",
@@ -1342,7 +1471,18 @@
     "DeepMind",
     "딥마인드",
     "ディープマインド"
-   ]
+   ],
+   "logo": "deepmind.google",
+   "exchange": "NASDAQ (알파벳)",
+   "ceo": "데미스 하사비스 (Demis Hassabis)",
+   "founded": "2010",
+   "hq": "영국 런던",
+   "website": "https://deepmind.google",
+   "longDesc": {
+    "ko": "2010년 런던에서 창업해 2014년 구글이 인수한 AI 연구소. 알파고로 세상을 놀라게 했고, 단백질 구조를 푼 알파폴드로 창업자 하사비스가 노벨 화학상을 받았다. 현재 구글의 제미나이(Gemini) 모델 개발을 이끄는 알파벳 산하 핵심 조직이다. 상장사 기준으로는 모회사 알파벳(GOOGL) 주가를 따른다.",
+    "en": "The AI lab founded in London in 2010 and acquired by Google in 2014. It stunned the world with AlphaGo, and founder Demis Hassabis won a Nobel Prize for AlphaFold's protein-structure breakthrough. Now the core Alphabet unit behind the Gemini models; as an investment it trades through parent Alphabet (GOOGL).",
+    "ja": "2010年ロンドン創業、2014年にGoogleが買収したAI研究所。AlphaGoで世界を驚かせ、タンパク質構造を解いたAlphaFoldで創業者ハサビスはノーベル化学賞を受賞。現在はGeminiモデル開発を率いるAlphabet中核組織。投資対象としては親会社Alphabet(GOOGL)株価に連動。"
+   }
   },
   "唐鎌大輔 (Mizuho)": {
    "kind": "person",

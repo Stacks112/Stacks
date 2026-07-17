@@ -351,8 +351,18 @@ def entity_page(key, e, ent_items):
     url = BASE + "e/" + slug + ".html"
     kind = e.get("kind")
     sector = (e.get("sector", {}) or {}).get("ko") or (e.get("sector", {}) or {}).get("en", "")
-    desc = (e.get("desc", {}) or {}).get("ko") or (e.get("desc", {}) or {}).get("en", "")
+    desc = ((e.get("longDesc") or {}).get("ko")
+            or (e.get("desc", {}) or {}).get("ko")
+            or (e.get("desc", {}) or {}).get("en", ""))
     ticker = (e.get("ticker") or "").upper()
+    facts = []
+    for label, k in (("대표", "ceo"), ("설립", "founded"), ("상장", "listed"), ("본사", "hq"), ("거래소", "exchange")):
+        if e.get(k):
+            facts.append(f"<span><b>{label}</b> {E(str(e[k]))}</span>")
+    if e.get("website"):
+        w = e["website"]
+        facts.append(f'<span><b>웹사이트</b> <a href="{E(w)}" target="_blank" rel="noopener nofollow">{E(w.replace("https://","").replace("www.",""))}</a></span>')
+    facts_html = f'<p class="facts">{" · ".join(facts)}</p>' if facts else ""
     metadesc = clip(desc or f"{key} 관련 투자 읽을거리 모음", 160)
     rows = "".join(
         f'<li><a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
@@ -406,6 +416,10 @@ h1{{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}}
 .desc{{color:#3E414B;font-size:15px;margin:8px 0 4px}}
 @media(prefers-color-scheme:dark){{.desc{{color:#C9CDD6}}}}
 .prof{{display:inline-block;margin:8px 0 2px;font-size:13px;font-weight:600;color:#2E5BFF;text-decoration:none}}
+.facts{{font-size:12.5px;color:#8E93A0;line-height:1.9}}
+.facts b{{color:#3E414B;font-weight:600;margin-right:2px}}
+@media(prefers-color-scheme:dark){{.facts b{{color:#C9CDD6}}}}
+.facts a{{color:#2E5BFF;text-decoration:none}}
 h2{{font-size:16px;margin:26px 0 8px}}
 ul{{list-style:none;padding:0}}
 li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
@@ -421,6 +435,7 @@ footer a{{color:#8E93A0}}
 <div class="sector">{E(sector)}</div>
 <h1>{E(key)}{tk}</h1>
 <p class="desc">{E(desc)}</p>
+{facts_html}
 {prof}
 <h2>관련 글 {len(ent_items)}건</h2>
 <ul>{rows}</ul>
