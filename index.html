@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v42 :: desktop 3-column dashboard (left nav + feed + right rail) -->
+<!-- STACKS BUILD v43 :: rich entity view (bio + live chart + price + follow) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -203,6 +203,7 @@ const STRINGS = {
     watchTitle: "My companies",
     watchFollow: "Follow",
     watchOn: "Following ✓",
+    profile: "Profile ↗",
     watchUnread: "{n} unread",
     reply: "Reply",
     replyingTo: "Replying to {name}",
@@ -286,6 +287,7 @@ const STRINGS = {
     watchTitle: "내 관심 기업",
     watchFollow: "팔로우",
     watchOn: "팔로우 중 ✓",
+    profile: "프로필 ↗",
     watchUnread: "안 읽은 글 {n}",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
@@ -369,6 +371,7 @@ const STRINGS = {
     watchTitle: "マイ企業",
     watchFollow: "フォロー",
     watchOn: "フォロー中 ✓",
+    profile: "プロフィール ↗",
     watchUnread: "未読{n}件",
     reply: "返信",
     replyingTo: "{name}さんに返信",
@@ -668,8 +671,17 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
   padding:12px 14px;margin-bottom:14px;
 }
 .entity-head .series-close{margin-bottom:8px;}
-.entity-head .eh-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
-.entity-head .eh-sub{font-size:12px;color:var(--muted);margin-top:2px;font-family:"IBM Plex Mono",monospace;}
+.entity-head .eh-name{font-size:20px;font-weight:800;letter-spacing:-.015em;}
+.entity-head .eh-sub{font-size:11px;color:var(--muted);margin-top:2px;font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;}
+.entity-head .eh-desc{font-size:13.5px;line-height:1.55;color:var(--text);margin:10px 0 0;}
+.entity-head .eh-chart{margin-top:12px;background:var(--black);border-radius:10px;padding:12px 14px;}
+.entity-head .eh-spark{display:block;}
+.entity-head .eh-spark svg{width:100%;height:56px;}
+.entity-head .tip-price{display:block;margin-top:5px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:#E5E7EB;}
+.entity-head .eh-actions{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;}
+.entity-head .tip-follow{position:static;font-size:12px;padding:7px 14px;border-radius:8px;}
+.entity-head .eh-link{font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;padding:7px 4px;}
+.entity-head .eh-link:hover{text-decoration:underline;}
 /* ---------- desktop 3-column dashboard (>=1024px) ---------- */
 @media (min-width:1024px){
   .wrap{
@@ -2773,15 +2785,26 @@ function renderFeed(animate){
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (QUERY) items = items.filter(matchesQuery);
   if (ENTITY_VIEW) items = items.filter(i => itemEntities(i).has(ENTITY_VIEW));
-  /* entity view: a header naming the company/person you tapped */
+  /* entity view: a rich header — who/what they are, live chart + price
+     for companies, profile link for people, then their articles below */
   if (ENTITY_VIEW && ENTITIES[ENTITY_VIEW]){
     const e = ENTITIES[ENTITY_VIEW];
+    const isCo = e.kind === "company";
+    const safe = ENTITY_VIEW.replace(/'/g, "\\'");
     const h = document.createElement("div");
-    h.className = "entity-head";
+    h.className = "entity-head" + (isCo ? " is-co" : "");
     h.innerHTML = '<button class="series-close" onclick="closeEntity()">← ' + S.seriesClose + "</button>"
       + '<div class="eh-name">' + esc(ENTITY_VIEW) + "</div>"
-      + '<div class="eh-sub">' + e.sector[LANG] + " · " + items.length + "</div>";
+      + '<div class="eh-sub">' + e.sector[LANG] + " · " + items.length + "</div>"
+      + (e.desc ? '<p class="eh-desc">' + e.desc[LANG] + "</p>" : "")
+      + (isCo && e.ticker ? '<div class="eh-chart"><span class="tip-quote eh-spark" data-q="' + esc(e.ticker) + '"></span></div>' : "")
+      + '<div class="eh-actions">'
+        + (isCo ? '<button class="tip-follow' + (WATCH.has(ENTITY_VIEW) ? " on" : "") + '" data-k="' + esc(ENTITY_VIEW) + '" onclick="toggleWatch(\'' + safe + '\', event)">'
+            + (WATCH.has(ENTITY_VIEW) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>" : "")
+        + (e.url ? '<a class="eh-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + (S.profile || "Profile ↗") + "</a>" : "")
+      + "</div>";
     list.appendChild(h);
+    if (isCo && e.ticker) loadQuote(ENTITY_VIEW);
   }
   if (SORT_HOT) items = items.slice().sort((a, b) =>
     ((VIEW_COUNTS[b.id] || 0) + (LIKE_COUNTS[b.id] || 0) * 3) - ((VIEW_COUNTS[a.id] || 0) + (LIKE_COUNTS[a.id] || 0) * 3)
