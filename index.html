@@ -1615,7 +1615,10 @@ function mountDash(){
   if (d.mounted || !d.wrap) return;
   const left = document.createElement("aside"); left.id = "sideLeft"; left.className = "dash-side";
   const right = document.createElement("aside"); right.id = "sideRight"; right.className = "dash-side";
-  d.wrap.appendChild(left); d.wrap.appendChild(right);
+  const feed = document.getElementById("feed");
+  /* left rail before the feed, right rail after it, so all three share one grid row */
+  if (feed){ d.wrap.insertBefore(left, feed); if (feed.nextSibling) d.wrap.insertBefore(right, feed.nextSibling); else d.wrap.appendChild(right); }
+  else { d.wrap.appendChild(left); d.wrap.appendChild(right); }
   const lbl = document.createElement("div"); lbl.className = "dash-side-label";
   lbl.textContent = (STRINGS[LANG].dashBrowse || "Browse"); left.appendChild(lbl);
   if (d.tabs) left.appendChild(d.tabs);
