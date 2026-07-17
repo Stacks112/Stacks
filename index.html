@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v52 :: mobile tooltip = fixed bottom card (no overflow) -->
+<!-- STACKS BUILD v53 :: hot=top5 by engagement, tip bottom-sheet + guide hint, feed position restore, newsletter in left rail -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -687,17 +687,23 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .tip-price i{font-style:normal;opacity:.5;margin-left:4px;}
 .tip-hint{display:block;margin-top:7px;font-size:10px;opacity:.55;}
 @media (hover: hover){ .tip-hint{display:none;} }
-/* mobile: a tapped tooltip becomes a fixed bottom card — it can never
-   overflow the viewport no matter where the tapped word sits */
-@media (max-width:1023px){
-  .has-tip.show .entity-tip{
-    position:fixed;left:12px;right:12px;top:auto;bottom:16px;
-    width:auto;max-width:none;transform:none;z-index:70;
-    padding:13px 16px;font-size:12.5px;
-    box-shadow:0 -6px 30px rgba(0,0,0,.28);
-  }
-  .has-tip.show .entity-tip::after{display:none;}
+/* touch devices: never show the inline tooltip (iOS fires :hover on tap,
+   which is what let it overflow). A body-level bottom sheet replaces it. */
+@media (hover: none){
+  .has-tip:hover .entity-tip,
+  .has-tip.show .entity-tip{opacity:0 !important;visibility:hidden !important;}
 }
+#tipSheet{position:fixed;left:12px;right:12px;bottom:14px;z-index:75;display:none;}
+#tipSheet.open{display:block;animation:sheetUp .2s ease;}
+@keyframes sheetUp{from{transform:translateY(14px);opacity:0}}
+#tipSheet .entity-tip{
+  position:static !important;opacity:1 !important;visibility:visible !important;
+  transform:none !important;pointer-events:auto !important;
+  display:block;width:auto;max-width:none;
+  padding:14px 16px;font-size:12.5px;line-height:1.6;border-radius:14px;
+  box-shadow:0 14px 40px rgba(0,0,0,.4);
+}
+#tipSheet .entity-tip::after{display:none;}
 .tip-below .entity-tip{bottom:auto;top:calc(100% + 8px);transform:translateY(-3px);}
 .tip-below .entity-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--black);}
 .tip-below:hover .entity-tip,.tip-below.show .entity-tip{transform:translateY(0);}
@@ -832,6 +838,8 @@ html{overscroll-behavior-y:contain;}
   #feed .filter-row{justify-content:flex-start;flex-wrap:nowrap;margin-top:0;}
   #feed .filter-row .search-box{flex:1;}
   #sideRight > section,#sideRight > .nl,#sideRight > #eventBar{margin:0 0 24px;}
+  #sideLeft > .nl{margin:26px 0 0;}
+  #sideLeft .nl-box{padding:16px 14px;}
   #sideRight .section-title{font-size:15px;margin:0 0 12px;}
   #sideRight .hot-rail{flex-direction:column;overflow:visible;padding:0;gap:12px;margin:0;}
   #sideRight .hot-card{flex:0 0 auto;width:auto;}
@@ -1608,9 +1616,10 @@ function entityTip(key){
   const quote = e.ticker
     ? '<span class="tip-quote" data-q="' + e.ticker + '"></span>'
     : "";
-  const hint = e.kind === "person" && e.url
-    ? '<span class="tip-hint">' + ({ en: "Tap again to open profile", ko: "한 번 더 탭하면 프로필로", ja: "もう一度タップでプロフィールへ" }[LANG]) + "</span>"
-    : "";
+  const hintText = (e.kind === "person" && e.url)
+    ? { en: "Tap again to open profile", ko: "한 번 더 누르면 프로필로 이동합니다", ja: "もう一度タップでプロフィールへ" }[LANG]
+    : { en: "Tap again for the full details", ko: "한 번 더 누르면 상세 설명으로 이동합니다", ja: "もう一度タップで詳細説明へ" }[LANG];
+  const hint = '<span class="tip-hint">' + hintText + "</span>";
   const safeKey = key.replace(/'/g, "\\'");
   const follow = e.kind === "company"
     ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safeKey + '\', event)">'
@@ -1811,9 +1820,10 @@ function chipTap(el, tag){
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
     el.classList.add("show");
-    if (typeof fitTip === "function") fitTip(el);
+    showTipSheet(el);
     return;
   }
+  hideTipSheet();
   el.classList.remove("show");
   const inp = document.getElementById("searchInput");
   if (inp) inp.value = tag;
@@ -1825,10 +1835,11 @@ function srcTap(el, url){
   document.querySelectorAll(".has-tip.show").forEach(x => { if (x !== el) x.classList.remove("show"); });
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
-    el.classList.add("show"); /* first tap: who is this */
+    el.classList.add("show"); showTipSheet(el); /* first tap: who is this */
     return;
   }
   el.classList.remove("show");
+  hideTipSheet();
   if (url) window.open(url, "_blank", "noopener"); /* second tap or desktop click: profile */
 }
 
@@ -2000,6 +2011,24 @@ function entityHeadEl(key, S, count, mode){
     + "</div>";
   return h;
 }
+/* mobile bottom sheet: the tapped tooltip's content is copied into a
+   fixed card attached to <body>, so no ancestor styling can ever push
+   it off-screen. Buttons keep working (inline onclick attributes). */
+let TIPSHEET = null;
+function showTipSheet(el){
+  if (window.matchMedia && window.matchMedia("(hover: hover)").matches) return;
+  const tip = el.querySelector(".entity-tip");
+  if (!tip) return;
+  if (!TIPSHEET){
+    TIPSHEET = document.createElement("div");
+    TIPSHEET.id = "tipSheet";
+    document.body.appendChild(TIPSHEET);
+  }
+  TIPSHEET.innerHTML = '<span class="entity-tip">' + tip.innerHTML + "</span>";
+  TIPSHEET.classList.add("open");
+}
+function hideTipSheet(){ if (TIPSHEET) TIPSHEET.classList.remove("open"); }
+
 /* keep a just-opened tooltip inside the viewport (inline mentions can sit
    at either edge of a text line, especially on phones) */
 function fitTip(el){
@@ -2023,17 +2052,20 @@ function entityTap(el, key){
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
-    el.classList.add("show"); fitTip(el); return; /* first tap on mobile: reveal tooltip */
+    el.classList.add("show"); showTipSheet(el); return; /* first tap on mobile: bottom-sheet tooltip */
   }
   el.classList.remove("show");
+  hideTipSheet();
   /* desktop: show the profile in the right rail — never yank the reader's scroll */
   if (window.matchMedia("(min-width:1024px)").matches && document.getElementById("sideRight")){
     if (showEntityRail(key)) return;
   }
   entityFeedView(key);
 }
+let FEED_RETURN = null; /* where the reader was before opening a detail view */
 function entityFeedView(key){
   closeEntityRail();
+  FEED_RETURN = { y: window.scrollY, shown: (typeof SHOWN === "number" ? SHOWN : 0) };
   SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   ENTITY_VIEW = key;
@@ -2059,7 +2091,18 @@ function closeEntityRail(){
   const p = document.getElementById("entityRailPanel");
   if (p) p.remove();
 }
-function closeEntity(){ ENTITY_VIEW = null; renderFeed(false); }
+function closeEntity(){
+  ENTITY_VIEW = null;
+  renderFeed(false);
+  /* back to exactly where the reader was: reload the same number of
+     pages, then restore the scroll position */
+  if (FEED_RETURN){
+    const r = FEED_RETURN; FEED_RETURN = null;
+    let guard = 0;
+    while (typeof SHOWN === "number" && SHOWN < r.shown && SHOWN < CUR_ITEMS.length && guard++ < 500) appendFeedPage();
+    requestAnimationFrame(() => window.scrollTo(0, r.y));
+  }
+}
 
 /* ---------------- desktop 3-column dashboard ----------------
    On wide screens the category tabs + filters move into a left rail,
@@ -2098,7 +2141,8 @@ function mountDash(){
   if (d.tabs) left.appendChild(d.tabs);
   const fb = document.createElement("div"); fb.className = "filter-btns";
   d.fctrls.forEach(c => fb.appendChild(c)); left.appendChild(fb);
-  [d.eventBar, d.hotSec, d.watchSec, d.nlSec].forEach(s => { if (s) right.appendChild(s); });
+  [d.eventBar, d.hotSec, d.watchSec].forEach(s => { if (s) right.appendChild(s); });
+  if (d.nlSec) left.appendChild(d.nlSec); /* newsletter signup: bottom of the LEFT rail */
   d.left = left; d.right = right; d.mounted = true;
 }
 function unmountDash(){
@@ -3103,9 +3147,39 @@ function render(){
   }
 
   /* hot rail */
+  renderHotRail();
+
+  /* countdown + watchlist + newsletter */
+  renderEvents();
+  renderWatch();
+  renderNewsletter();
+  if (document.getElementById("onboard") && !document.getElementById("onboard").hidden) renderOnboard();
+
+  /* tabs */
+  renderAfterHot(S);
+}
+
+/* "Hot this week": articles from the last 7 days, ranked by real reader
+   engagement (views + likes×3 + comments×2), top 5 only. Until stats
+   arrive, newest hot-flagged items fill the gap. Re-rendered once the
+   engagement counts load. */
+function renderHotRail(){
   const rail = document.getElementById("hotRail");
+  if (!rail) return;
+  const cutoff = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
+  const pool = ITEMS.filter(i => i.date >= cutoff);
+  const score = i => (VIEW_COUNTS[i.id] || 0) + (LIKE_COUNTS[i.id] || 0) * 3 + (COMMENT_COUNTS[i.id] || 0) * 2;
+  let hotList = pool.filter(i => score(i) > 0)
+    .sort((a, b) => score(b) - score(a) || (a.date < b.date ? 1 : -1))
+    .slice(0, 5);
+  if (hotList.length < 5){
+    const seen = new Set(hotList.map(i => i.id));
+    pool.filter(i => i.hot && !seen.has(i.id))
+      .sort((a, b) => (a.date < b.date ? 1 : -1))
+      .forEach(i => { if (hotList.length < 5){ hotList.push(i); seen.add(i.id); } });
+  }
   rail.innerHTML = "";
-  ITEMS.filter(i => i.hot).forEach(item => {
+  hotList.forEach(item => {
     const a = document.createElement("a");
     a.className = "hot-card";
     a.href = "#sig-" + item.id;
@@ -3127,13 +3201,13 @@ function render(){
     `;
     rail.appendChild(a);
   });
+  hydrateImages();
+  applyEngageCounts();
+}
 
-  /* countdown + watchlist + newsletter */
-  renderEvents();
-  renderWatch();
-  renderNewsletter();
-  if (document.getElementById("onboard") && !document.getElementById("onboard").hidden) renderOnboard();
-
+/* the rest of render(): tabs, feed, footer — split out so the hot rail
+   can be re-ranked on its own once engagement counts arrive */
+function renderAfterHot(S){
   /* tabs */
   const tabs = document.getElementById("tabs");
   tabs.innerHTML = "";
@@ -3500,6 +3574,8 @@ document.addEventListener("click", e => {
   document.querySelectorAll(".has-tip.show").forEach(b => {
     if (!b.contains(e.target)) b.classList.remove("show");
   });
+  if (!document.querySelector(".has-tip.show")
+      && !(TIPSHEET && TIPSHEET.contains(e.target))) hideTipSheet();
 });
 
 /* ---------------- boot ----------------
@@ -3535,9 +3611,8 @@ async function bootData(){
   applyDash();
   window.matchMedia("(min-width:1024px)").addEventListener("change", applyDash);
   handleDeepLink();
-  loadCommentCounts();
-  loadLikeCounts();
-  loadViewCounts();
+  Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts()])
+    .then(() => renderHotRail()); /* re-rank "Hot this week" with real stats */
   if (!showIntro()) maybeOnboard();
 }
 
