@@ -282,6 +282,7 @@ def page_html(item, ent_links=None, og_img=None):
 <meta name="twitter:card" content="{tw_card}">
 <meta name="twitter:title" content="{E(title_ko)}">
 <meta name="twitter:description" content="{E(desc)}">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
@@ -403,6 +404,7 @@ def entity_page(key, e, ent_items):
 <meta property="og:title" content="{E(key)} · {SITE}">
 <meta property="og:description" content="{E(metadesc)}">
 <meta property="og:url" content="{E(url)}">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
@@ -463,6 +465,7 @@ def articles_index(items):
 <title>전체 글 · {SITE}</title>
 <meta name="description" content="{E(TAGLINE['ko'])} — 전체 글 목록.">
 <link rel="canonical" href="{BASE}articles.html">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="feed.xml">
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
