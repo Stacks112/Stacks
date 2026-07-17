@@ -498,6 +498,75 @@ STAGE5_OPTIONAL = [
 ]
 
 
+CEO_WIKI_BLOCK = '''/* stage6 */
+const CEO_WIKI = {
+  "최태원":"Chey Tae-won","이재용":"Lee Jae-yong","곽노정":"Kwak Noh-jung",
+  "전영현":"Jun Young-hyun","한종희":"Han Jong-hee","젠슨 황":"Jensen Huang",
+  "웨이저자":"C. C. Wei","사티아 나델라":"Satya Nadella","마크 저커버그":"Mark Zuckerberg",
+  "팀 쿡":"Tim Cook","데미스 하사비스":"Demis Hassabis","샘 올트먼":"Sam Altman",
+  "순다르 피차이":"Sundar Pichai","일론 머스크":"Elon Musk","혹 탄":"Hock Tan",
+  "립부 탄":"Lip-Bu Tan","산제이 메흐로트라":"Sanjay Mehrotra","아르카디 볼로즈":"Arkady Volozh",
+  "KR 스리다":"K. R. Sridhar","마이클 세일러":"Michael Saylor","마이클 세일러 의장":"Michael Saylor",
+  "아시시쿠마르 차우한":"Ashishkumar Chauhan","우융밍":"Eddie Wu","량원펑":"Liang Wenfeng"
+};
+function ceoTipHtml(name){'''
+
+CEO_DETAIL_NEW = '''  box.innerHTML = '<div class="ceo-detail-row">'
+    + '<span class="ceo-photo" aria-hidden="true"></span>'
+    + '<span class="ceo-detail-txt"><b>' + name + '</b>' + (info.l[LANG] || info.l.ko) + '</span>'
+    + '</div>';
+  if (typeof CEO_WIKI !== "undefined" && CEO_WIKI[name] && typeof wikiPhoto === "function"){
+    wikiPhoto(CEO_WIKI[name]).then(function(src){
+      if (!src) return;
+      const ph = box.querySelector(".ceo-photo");
+      if (ph){ ph.style.backgroundImage = "url('" + src + "')"; ph.classList.add("on"); }
+    });
+  }'''
+
+STAGE6_CSS = '''html[data-lang="ko"] .ceo-detail{font-family:"Pretendard Variable",sans-serif;}
+/* stage6: CEO tooltip opens BELOW + left-aligned so the right-rail overflow never clips it */
+.ceo-link .entity-tip{
+  left:0;right:auto;bottom:auto;top:calc(100% + 8px);
+  transform:translateY(-3px);max-width:min(230px,80vw);
+}
+.ceo-link .entity-tip::after{
+  left:14px;right:auto;top:auto;bottom:100%;
+  border-top-color:transparent;border-bottom-color:var(--black);
+}
+.ceo-link:hover .entity-tip,.ceo-link.show .entity-tip{transform:translateY(0);}
+/* CEO detail: photo beside the text */
+.ceo-detail-row{display:flex;gap:12px;align-items:flex-start;}
+.ceo-photo{
+  flex:0 0 0;width:0;height:0;border-radius:10px;overflow:hidden;
+  background-size:cover;background-position:center 18%;background-color:var(--bg-soft);
+}
+.ceo-photo.on{flex:0 0 58px;width:58px;height:58px;box-shadow:0 1px 5px rgba(0,0,0,.18);}
+.ceo-detail-txt{flex:1;min-width:0;}'''
+
+
+def stage6(html):
+    edits = [
+        ("function ceoTipHtml(name){", CEO_WIKI_BLOCK),
+        ("  box.innerHTML = '<b>' + name + '</b>' + (info.l[LANG] || info.l.ko);", CEO_DETAIL_NEW),
+        ('html[data-lang="ko"] .ceo-detail{font-family:"Pretendard Variable",sans-serif;}', STAGE6_CSS),
+    ]
+    problems = []
+    for i, (needle, _) in enumerate(edits, 1):
+        n = html.count(needle)
+        if n != 1:
+            problems.append("stage6 edit %d: needle found %d times: %r" % (i, n, needle[:70]))
+    if problems:
+        for p in problems:
+            print("[ABORT] " + p)
+        return 1
+    for needle, repl in edits:
+        html = html.replace(needle, repl, 1)
+    with io.open(PATH, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("stage-6 applied: CEO tooltip anti-clip + CEO photos")
+    return 0
+
+
 def stage5(html):
     problems = []
     for i, (needle, _) in enumerate(STAGE5_EDITS, 1):
@@ -569,8 +638,10 @@ def main():
             if "function goHome(" in html:
                 if "/* stage4 */" in html:
                     if "/* stage5 */" in html:
-                        print("stage 5 already applied; nothing to do")
-                        return 0
+                        if "/* stage6 */" in html:
+                            print("stage 6 already applied; nothing to do")
+                            return 0
+                        return stage6(html)
                     return stage5(html)
                 return stage4(html)
             return stage3(html)
