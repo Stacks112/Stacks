@@ -236,7 +236,35 @@ def main():
         html = f.read()
 
     if "const STANCE" in html and "renderEntityDebate" in html:
-        print("debate board already applied; nothing to do")
+        # stage 2: move the scoreboard to the top of the entity header
+        # (right under the company description, above the chart) so it is
+        # visible without scrolling, especially on phones.
+        if "/* debate-bar placement fix */" in html:
+            print("debate board + placement fix already applied; nothing to do")
+            return 0
+        n1 = html.count("  list.appendChild(bar);")
+        n2 = html.count(".ds-watch{background:linear-gradient(135deg,#9BA1B0,#6B7280);}")
+        if n1 != 1 or n2 != 1:
+            print("[ABORT] stage-2 anchors not unique (bar=%d, css=%d)" % (n1, n2))
+            return 1
+        html = html.replace(
+            "  list.appendChild(bar);",
+            """  /* debate-bar placement fix */
+  const ehd = list.querySelector(".entity-head");
+  if (ehd){
+    const slot = ehd.querySelector(".eh-desc") || ehd.querySelector(".eh-top");
+    if (slot && slot.nextSibling) ehd.insertBefore(bar, slot.nextSibling);
+    else ehd.appendChild(bar);
+  } else {
+    list.appendChild(bar);
+  }""", 1)
+        html = html.replace(
+            ".ds-watch{background:linear-gradient(135deg,#9BA1B0,#6B7280);}",
+            ".ds-watch{background:linear-gradient(135deg,#9BA1B0,#6B7280);}\n"
+            ".entity-head .debate-bar{background:var(--bg);margin:14px 0 2px;}", 1)
+        with io.open(PATH, "w", encoding="utf-8") as f:
+            f.write(html)
+        print("stage-2 placement fix applied")
         return 0
 
     # dry-run: verify every needle occurs exactly once BEFORE touching anything
