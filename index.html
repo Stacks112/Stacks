@@ -1414,6 +1414,7 @@ html[data-lang="ko"] .debate-title,html[data-lang="ja"] .debate-title{
 .ds-bull{background:linear-gradient(135deg,#12B76A,#087443);}
 .ds-bear{background:linear-gradient(135deg,#F04438,#B42318);}
 .ds-watch{background:linear-gradient(135deg,#9BA1B0,#6B7280);}
+.entity-head .debate-bar{background:var(--bg);margin:14px 0 2px;}
 .debate-group-head{display:flex;align-items:center;gap:8px;margin:20px 0 12px;font-size:15px;font-weight:800;letter-spacing:-.01em;}
 .debate-group-head .dg-dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px;}
 .debate-group-head .dg-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;color:var(--muted);}
@@ -1934,7 +1935,15 @@ function renderEntityDebate(list, items, S){
         ? '<div class="debate-seg ds-' + k + '" style="flex:' + counts[k] + '"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
         : "").join("")
     + '</div>';
-  list.appendChild(bar);
+  /* debate-bar placement fix */
+  const ehd = list.querySelector(".entity-head");
+  if (ehd){
+    const slot = ehd.querySelector(".eh-desc") || ehd.querySelector(".eh-top");
+    if (slot && slot.nextSibling) ehd.insertBefore(bar, slot.nextSibling);
+    else ehd.appendChild(bar);
+  } else {
+    list.appendChild(bar);
+  }
   ["bull", "bear", "watch"].forEach(k => {
     if (!groups[k].length) return;
     const gh = document.createElement("div");
