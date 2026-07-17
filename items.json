@@ -1127,7 +1127,13 @@
     "en": "Korean memory chip giant. Makes the HBM chips that feed Nvidia's AI accelerators.",
     "ko": "한국 메모리 반도체 대표 기업. 엔비디아 AI 칩에 들어가는 HBM을 만든다.",
     "ja": "韓国のメモリー半導体大手。エヌビディアのAIチップに入るHBMを作る。"
-   }
+   },
+   "aliases": [
+    "SK Hynix",
+    "SK하이닉스",
+    "하이닉스",
+    "SKハイニックス"
+   ]
   },
   "NEBIUS": {
    "kind": "company",
@@ -1141,7 +1147,12 @@
     "en": "Amsterdam-based 'neocloud': rents out Nvidia GPU computing power to AI companies.",
     "ko": "암스테르담 기반 '네오클라우드'. 엔비디아 GPU 컴퓨팅 파워를 AI 기업들에 빌려준다.",
     "ja": "アムステルダム拠点の「ネオクラウド」。エヌビディアGPUの計算力をAI企業に貸す。"
-   }
+   },
+   "aliases": [
+    "Nebius",
+    "네비우스",
+    "ネビウス"
+   ]
   },
   "MICROSOFT": {
    "kind": "company",
@@ -1155,7 +1166,12 @@
     "en": "World's largest software company and OpenAI's biggest backer. Runs the Azure cloud.",
     "ko": "세계 최대 소프트웨어 기업이자 오픈AI의 최대 후원자. 애저 클라우드를 운영한다.",
     "ja": "世界最大のソフトウェア企業でOpenAIの最大の後ろ盾。Azureクラウドを運営。"
-   }
+   },
+   "aliases": [
+    "Microsoft",
+    "마이크로소프트",
+    "マイクロソフト"
+   ]
   },
   "META": {
    "kind": "company",
@@ -1169,7 +1185,12 @@
     "en": "Facebook and Instagram's parent. Spends tens of billions a year on AI datacenters.",
     "ko": "페이스북, 인스타그램의 모회사. 매년 수백억 달러를 AI 데이터센터에 쏟는다.",
     "ja": "フェイスブックとインスタグラムの親会社。毎年数百億ドルをAIデータセンターに投じる。"
-   }
+   },
+   "aliases": [
+    "Meta",
+    "메타",
+    "メタ"
+   ]
   },
   "APPLE": {
    "kind": "company",
@@ -1183,7 +1204,12 @@
     "en": "iPhone maker. The world's most valuable hardware franchise, now reshoring chips to the US.",
     "ko": "아이폰 제조사. 세계에서 가장 가치 있는 하드웨어 기업이며, 칩 생산을 미국으로 옮기는 중.",
     "ja": "iPhoneメーカー。世界で最も価値あるハードウェア企業で、チップ生産を米国へ移している。"
-   }
+   },
+   "aliases": [
+    "Apple",
+    "애플",
+    "アップル"
+   ]
   },
   "BROADCOM": {
    "kind": "company",
@@ -1197,7 +1223,12 @@
     "en": "Chip designer behind custom AI silicon for Google, Meta and now Apple's US production.",
     "ko": "구글, 메타의 맞춤형 AI 칩을 설계하는 회사. 이제 애플의 미국 생산까지 맡는다.",
     "ja": "グーグルやメタのカスタムAIチップを設計。今度はアップルの米国生産も担う。"
-   }
+   },
+   "aliases": [
+    "Broadcom",
+    "브로드컴",
+    "ブロードコム"
+   ]
   },
   "BLOOM ENERGY": {
    "kind": "company",
@@ -1211,7 +1242,13 @@
     "en": "Makes fuel cells that turn natural gas into electricity on-site: a shortcut for power-hungry AI datacenters.",
     "ko": "천연가스를 그 자리에서 전기로 바꾸는 연료전지 회사. 전력에 목마른 AI 데이터센터의 지름길.",
     "ja": "天然ガスをその場で電気に変える燃料電池メーカー。電力に飢えたAIデータセンターの近道。"
-   }
+   },
+   "aliases": [
+    "Bloom Energy",
+    "블룸에너지",
+    "블룸 에너지",
+    "ブルームエナジー"
+   ]
   },
   "STRATEGY": {
    "kind": "company",
@@ -1225,7 +1262,12 @@
     "en": "Michael Saylor's company (ex-MicroStrategy): a software firm turned leveraged bitcoin holding vehicle.",
     "ko": "마이클 세일러의 회사(구 마이크로스트래티지). 소프트웨어 회사에서 레버리지 비트코인 보유 기구로 변신했다.",
     "ja": "マイケル・セイラーの会社(旧マイクロストラテジー)。ソフト会社からレバレッジ型ビットコイン保有機構に変貌。"
-   }
+   },
+   "aliases": [
+    "MicroStrategy",
+    "마이크로스트래티지",
+    "マイクロストラテジー"
+   ]
   },
   "TOWER SEMI": {
    "kind": "company",
@@ -1239,7 +1281,13 @@
     "en": "Israeli chip foundry specializing in the photonics chips that move data by light.",
     "ko": "이스라엘 파운드리. 빛으로 데이터를 옮기는 포토닉스 칩이 주특기다.",
     "ja": "イスラエルの半導体ファウンドリ。光でデータを運ぶフォトニクスチップが得意。"
-   }
+   },
+   "aliases": [
+    "Tower Semiconductor",
+    "Tower Semi",
+    "타워 세미",
+    "타워세미"
+   ]
   },
   "APPLIED OPTO": {
    "kind": "company",
@@ -1253,7 +1301,12 @@
     "en": "US maker of the optical transceivers that wire AI datacenters together.",
     "ko": "AI 데이터센터를 서로 연결하는 광모듈을 만드는 미국 회사.",
     "ja": "AIデータセンター同士をつなぐ光トランシーバーを作る米企業。"
-   }
+   },
+   "aliases": [
+    "Applied Optoelectronics",
+    "Applied Opto",
+    "어플라이드 옵토"
+   ]
   },
   "NSE": {
    "kind": "company",
@@ -1266,7 +1319,11 @@
     "en": "National Stock Exchange of India: the world's busiest derivatives exchange, about to IPO.",
     "ko": "인도국립증권거래소. 세계에서 파생상품이 가장 많이 거래되는 곳이며 곧 상장한다.",
     "ja": "インド国立証券取引所。世界で最もデリバティブが取引される場で、まもなく上場。"
-   }
+   },
+   "aliases": [
+    "National Stock Exchange",
+    "NSE"
+   ]
   },
   "DEEPMIND": {
    "kind": "company",
@@ -1280,7 +1337,12 @@
     "en": "Google's AI research arm. Built AlphaGo and the Gemini models.",
     "ko": "구글의 AI 연구 조직. 알파고와 제미나이 모델을 만들었다.",
     "ja": "グーグルのAI研究部門。アルファ碁とGeminiモデルを生んだ。"
-   }
+   },
+   "aliases": [
+    "DeepMind",
+    "딥마인드",
+    "ディープマインド"
+   ]
   },
   "唐鎌大輔 (Mizuho)": {
    "kind": "person",
@@ -1294,7 +1356,13 @@
     "en": "Mizuho Bank's chief market economist and Japan's leading analyst of the weak yen.",
     "ko": "미즈호은행 수석 시장 이코노미스트. 일본 엔저 분석의 일인자.",
     "ja": "みずほ銀行チーフマーケット・エコノミスト。円安分析の第一人者。"
-   }
+   },
+   "aliases": [
+    "唐鎌大輔",
+    "唐鎌",
+    "카라카마",
+    "카라카마 다이스케"
+   ]
   },
   "テスタ (@tesuta001)": {
    "kind": "person",
@@ -1308,7 +1376,11 @@
     "en": "Japan's most famous retail trader: compounded day-trading gains past 10 billion yen.",
     "ko": "일본에서 가장 유명한 개인투자자. 단타로 시작해 자산 100억 엔을 넘겼다.",
     "ja": "日本一有名な個人投資家。デイトレードから資産100億円超へ。"
-   }
+   },
+   "aliases": [
+    "テスタ",
+    "테스타"
+   ]
   },
   "エミン・ユルマズ (Emin Yurumazu)": {
    "kind": "person",
@@ -1322,7 +1394,14 @@
     "en": "Turkish-born, ex-Nomura market strategist; one of Japan's most-followed macro commentators.",
     "ko": "터키 출신, 노무라 출신 시장 전략가. 일본에서 가장 많이 팔로우되는 매크로 논객 중 한 명.",
     "ja": "トルコ出身、野村證券OBの市場ストラテジスト。日本で最もフォローされるマクロ論客の一人。"
-   }
+   },
+   "aliases": [
+    "エミン・ユルマズ",
+    "エミン",
+    "에민 율마즈",
+    "에민",
+    "Emin Yurumazu"
+   ]
   },
   "메르": {
    "kind": "person",
@@ -1336,7 +1415,10 @@
     "en": "Korea's most-read finance blogger. Untangles macro, supply chains and geopolitics on Naver.",
     "ko": "한국에서 가장 많이 읽히는 경제 블로거. 네이버에서 매크로, 공급망, 지정학을 풀어낸다.",
     "ja": "韓国で最も読まれる経済ブロガー。Naverでマクロ、サプライチェーン、地政学を解きほぐす。"
-   }
+   },
+   "aliases": [
+    "메르"
+   ]
   },
   "Serenity (@aleabitoreddit)": {
    "kind": "person",
@@ -1350,7 +1432,11 @@
     "en": "X account tracking AI infrastructure stocks: neoclouds, optics, power.",
     "ko": "AI 인프라 주식을 추적하는 X 계정. 네오클라우드, 광통신, 전력이 주 분야.",
     "ja": "AIインフラ株を追うXアカウント。ネオクラウド、光通信、電力が守備範囲。"
-   }
+   },
+   "aliases": [
+    "Serenity",
+    "세레니티"
+   ]
   },
   "Doomberg": {
    "kind": "person",
@@ -1364,7 +1450,12 @@
     "en": "The green chicken: Substack's #3 finance publication, on energy and geopolitics.",
     "ko": "초록 닭 아이콘으로 유명한 서브스택 금융 3위 뉴스레터. 에너지와 지정학 전문.",
     "ja": "緑のニワトリで有名なSubstack金融3位のニュースレター。エネルギーと地政学専門。"
-   }
+   },
+   "aliases": [
+    "Doomberg",
+    "둠버그",
+    "ドゥームバーグ"
+   ]
   },
   "Marc Rubinstein (Net Interest)": {
    "kind": "person",
@@ -1378,7 +1469,14 @@
     "en": "Ex-hedge fund manager writing the weekly Net Interest letter on how finance actually works.",
     "ko": "전직 헤지펀드 매니저. 금융이 실제로 어떻게 돌아가는지를 주간 뉴스레터로 쓴다.",
     "ja": "元ヘッジファンドマネージャー。金融が実際どう回るかを週刊で書く。"
-   }
+   },
+   "aliases": [
+    "Marc Rubinstein",
+    "Rubinstein",
+    "Net Interest",
+    "넷 인터레스트",
+    "넷인터레스트"
+   ]
   },
   "Howard Marks (Oaktree)": {
    "kind": "person",
@@ -1392,7 +1490,14 @@
     "en": "Co-founder of Oaktree Capital. His memos are read by virtually everyone on Wall Street, Buffett included.",
     "ko": "오크트리 캐피털 공동창업자. 버핏을 포함해 월가 전체가 그의 메모를 읽는다.",
     "ja": "オークツリー・キャピタル共同創業者。バフェットを含めウォール街全体が彼のメモを読む。"
-   }
+   },
+   "aliases": [
+    "Howard Marks",
+    "하워드 막스",
+    "하워드 마크스",
+    "Oaktree",
+    "오크트리"
+   ]
   },
   "Donald J. Trump (@realDonaldTrump)": {
    "kind": "person",
@@ -1406,7 +1511,13 @@
     "en": "President of the United States. His posts move oil, tariffs and markets in real time.",
     "ko": "미국 대통령. 그의 게시물 하나가 유가, 관세, 시장을 실시간으로 움직인다.",
     "ja": "米国大統領。投稿ひとつで原油、関税、市場がリアルタイムに動く。"
-   }
+   },
+   "aliases": [
+    "Donald Trump",
+    "Trump",
+    "트럼프",
+    "トランプ"
+   ]
   },
   "Satya Nadella (@satyanadella)": {
    "kind": "person",
@@ -1420,7 +1531,13 @@
     "en": "Microsoft's CEO since 2014. Turned it into the world's biggest AI infrastructure buyer.",
     "ko": "2014년부터 마이크로소프트 CEO. 회사를 세계 최대 AI 인프라 구매자로 바꿔놨다.",
     "ja": "2014年からマイクロソフトCEO。同社を世界最大のAIインフラ購入者に変えた。"
-   }
+   },
+   "aliases": [
+    "Satya Nadella",
+    "Nadella",
+    "나델라",
+    "ナデラ"
+   ]
   },
   "Mark Zuckerberg (@finkd)": {
    "kind": "person",
@@ -1434,7 +1551,13 @@
     "en": "Meta's founder and CEO. Betting the company on open AI models and massive compute.",
     "ko": "메타 창업자 겸 CEO. 회사의 미래를 AI 모델과 초대형 컴퓨트에 걸었다.",
     "ja": "メタ創業者兼CEO。会社の未来をAIモデルと超大型コンピュートに賭ける。"
-   }
+   },
+   "aliases": [
+    "Mark Zuckerberg",
+    "Zuckerberg",
+    "저커버그",
+    "ザッカーバーグ"
+   ]
   },
   "Tim Cook (@tim_cook)": {
    "kind": "person",
@@ -1448,7 +1571,13 @@
     "en": "Apple's CEO and the architect of its supply chain, now rebuilding it inside the US.",
     "ko": "애플 CEO이자 공급망 설계자. 이제 그 공급망을 미국 안에 다시 짓고 있다.",
     "ja": "アップルCEOでサプライチェーンの設計者。今それを米国内に作り直している。"
-   }
+   },
+   "aliases": [
+    "Tim Cook",
+    "팀 쿡",
+    "팀쿡",
+    "ティム・クック"
+   ]
   },
   "Demis Hassabis (@demishassabis)": {
    "kind": "person",
@@ -1462,7 +1591,13 @@
     "en": "DeepMind's founder, Nobel laureate, and the closest thing AI has to a chief scientist.",
     "ko": "딥마인드 창업자이자 노벨상 수상자. AI 업계의 수석 과학자에 가장 가까운 인물.",
     "ja": "ディープマインド創業者でノーベル賞受賞者。AI業界の主任科学者に最も近い人物。"
-   }
+   },
+   "aliases": [
+    "Demis Hassabis",
+    "Hassabis",
+    "하사비스",
+    "デミス・ハサビス"
+   ]
   }
  }
 }

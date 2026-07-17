@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v40 :: feed sorts & shows original source date; robust date fmt -->
+<!-- STACKS BUILD v41 :: inline entity mentions (hover tooltip + chart, tap to filter) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -650,6 +650,23 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .src-name.has-tip .entity-tip{right:auto;left:-6px;}
 .src-name.has-tip .entity-tip::after{right:auto;left:12px;}
 .title-orig{font-size:12.5px;color:var(--muted);margin-bottom:6px;font-family:"Pretendard Variable","Inter",sans-serif;}
+/* inline company/person mentions inside the text */
+.ent-link{
+  position:relative;cursor:pointer;font-weight:600;color:inherit;
+  text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;
+  text-decoration-color:var(--muted);white-space:normal;
+}
+.ent-link:hover{text-decoration-color:var(--accent);color:var(--accent);}
+.ent-link .entity-tip{right:auto;left:-6px;font-weight:500;}
+.ent-link .entity-tip::after{right:auto;left:12px;}
+/* entity-view header (tap a name -> only that entity's articles) */
+.entity-head{
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+  padding:12px 14px;margin-bottom:14px;
+}
+.entity-head .series-close{margin-bottom:8px;}
+.entity-head .eh-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+.entity-head .eh-sub{font-size:12px;color:var(--muted);margin-top:2px;font-family:"IBM Plex Mono",monospace;}
 .title-orig .badge{
   font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.1em;
   color:var(--muted);border:1px solid var(--line);border-radius:6px;
@@ -1290,7 +1307,7 @@ let LANG = lsGet("stk_lang") ||
 let TAB = "all";
 
 function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsSet("stk_lang", l); render(); }
-function setTab(t){ SERIES_VIEW = null; TAB = t; render(); }
+function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; TAB = t; render(); }
 
 
 
@@ -1420,7 +1437,7 @@ function srcTap(el, url){
 }
 
 function goToItem(id){
-  SERIES_VIEW = null;
+  SERIES_VIEW = null; ENTITY_VIEW = null;
   const target = ITEMS.find(x => x.id === id);
   if (!target) return;
   if (TAB !== "all" && target.category !== TAB){
@@ -1436,6 +1453,100 @@ function goToItem(id){
     el.classList.add("flash");
   });
 }
+
+/* ---------------- inline entity mentions ----------------
+   Detect company/person names inside titles & summaries and make them
+   interactive: hover shows the same tooltip as the chips (person = who
+   they are; company = sector, blurb, 1-month chart + price); tap filters
+   the feed to that entity's articles. Match strings live in items.json
+   (entities[key].aliases). */
+let ENTITY_VIEW = null;
+let ENT_RE = null;
+const ALIAS2KEY = {};
+function reEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function buildEntityMatcher(){
+  ENT_RE = null;
+  for (const k in ALIAS2KEY) delete ALIAS2KEY[k];
+  const raw = [];
+  Object.keys(ENTITIES).forEach(key => (ENTITIES[key].aliases || []).forEach(a => {
+    if (!a) return;
+    const low = a.toLowerCase();
+    if (!(low in ALIAS2KEY)){ ALIAS2KEY[low] = key; raw.push(a); }
+  }));
+  raw.sort((a, b) => b.length - a.length); /* longest alias wins */
+  const pats = raw.map(a => /^[\x00-\x7F]/.test(a) ? ("\\b" + reEsc(a) + "\\b") : reEsc(a));
+  if (pats.length) ENT_RE = new RegExp("(" + pats.join("|") + ")", "gi");
+}
+function itemEntities(item){
+  if (item._entset) return item._entset;
+  const set = new Set();
+  if (item.cover && ENTITIES[item.cover.label]) set.add(item.cover.label);
+  (item.tags || []).forEach(t => { if (ENTITIES[t]) set.add(t); });
+  if (ENTITIES[item.source]) set.add(item.source);
+  if (ENT_RE){
+    const text = [item.title.en, item.title.ko, item.title.ja,
+      item.gist.en, item.gist.ko, item.gist.ja,
+      item.why.en, item.why.ko, item.why.ja].join("  ");
+    ENT_RE.lastIndex = 0; let m;
+    while ((m = ENT_RE.exec(text))){ const key = ALIAS2KEY[m[0].toLowerCase()]; if (key) set.add(key); }
+  }
+  item._entset = set;
+  return set;
+}
+function makeEntSpan(text, key){
+  const safe = key.replace(/'/g, "\\'");
+  const span = document.createElement("span");
+  span.className = "ent-link has-tip";
+  span.setAttribute("onmouseenter", "loadQuote('" + safe + "')");
+  span.setAttribute("onclick", "entityTap(this,'" + safe + "')");
+  span.innerHTML = esc(text) + entityTip(key);
+  return span;
+}
+function linkifyEntities(card){
+  if (!ENT_RE) return;
+  const used = new Set(); /* link each entity at most once per card */
+  card.querySelectorAll("h3, .gist, .why p").forEach(container => {
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        for (let p = n.parentNode; p && p !== container; p = p.parentNode){
+          if (p.classList && (p.classList.contains("has-tip") || p.classList.contains("entity-tip")))
+            return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = []; let t; while ((t = walker.nextNode())) nodes.push(t);
+    nodes.forEach(node => {
+      const s = node.nodeValue; ENT_RE.lastIndex = 0;
+      let m, last = 0, frag = null;
+      while ((m = ENT_RE.exec(s))){
+        const key = ALIAS2KEY[m[0].toLowerCase()];
+        if (!key || used.has(key)) continue;
+        used.add(key);
+        if (!frag) frag = document.createDocumentFragment();
+        frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        frag.appendChild(makeEntSpan(m[0], key));
+        last = m.index + m[0].length;
+      }
+      if (frag){ frag.appendChild(document.createTextNode(s.slice(last))); node.parentNode.replaceChild(frag, node); }
+    });
+  });
+}
+function entityTap(el, key){
+  loadQuote(key);
+  const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  if (!hoverable && !el.classList.contains("show")){
+    document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
+    el.classList.add("show"); return; /* first tap on mobile: reveal tooltip */
+  }
+  el.classList.remove("show");
+  SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+  const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
+  ENTITY_VIEW = key;
+  renderFeed(true);
+  const f = document.getElementById("feed"); if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function closeEntity(){ ENTITY_VIEW = null; renderFeed(false); }
 
 const fmt = d => { const [y,m,day] = String(d||"").slice(0,10).split("-"); return `${y}.${m}.${day}`; };
 const initial = s => s.trim().charAt(0).toUpperCase();
@@ -1728,7 +1839,7 @@ function toggleBookmark(id){
   if (btn) btn.classList.toggle("on", BM.has(id));
   refreshBmBtn();
 }
-function toggleBmOnly(){ SERIES_VIEW = null; BM_ONLY = !BM_ONLY; renderFeed(false); }
+function toggleBmOnly(){ SERIES_VIEW = null; ENTITY_VIEW = null; BM_ONLY = !BM_ONLY; renderFeed(false); }
 function refreshCompanyFilter(){
   const sel = document.getElementById("companyFilter");
   if (!sel) return;
@@ -1816,7 +1927,7 @@ function refreshCardRead(id){
    in both languages at once, so "hynix" finds Korean items too. */
 let QUERY = "";
 function onSearch(v){
-  if (v) SERIES_VIEW = null;
+  if (v){ SERIES_VIEW = null; ENTITY_VIEW = null; }
   QUERY = (v || "").trim().toLowerCase();
   const clear = document.getElementById("searchClear");
   if (clear) clear.hidden = !QUERY;
@@ -2480,7 +2591,9 @@ function appendFeedPage(S){
   const start = SHOWN;
   const end = Math.min(start + FEED_PAGE_SIZE, CUR_ITEMS.length);
   for (let idx = start; idx < end; idx++){
-    list.appendChild(cardEl(CUR_ITEMS[idx], S, idx - start));
+    const el = cardEl(CUR_ITEMS[idx], S, idx - start);
+    list.appendChild(el);
+    linkifyEntities(el);
   }
   SHOWN = end;
   hydrateImages();
@@ -2565,6 +2678,17 @@ function renderFeed(animate){
   if (BM_ONLY) items = items.filter(i => BM.has(i.id));
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (QUERY) items = items.filter(matchesQuery);
+  if (ENTITY_VIEW) items = items.filter(i => itemEntities(i).has(ENTITY_VIEW));
+  /* entity view: a header naming the company/person you tapped */
+  if (ENTITY_VIEW && ENTITIES[ENTITY_VIEW]){
+    const e = ENTITIES[ENTITY_VIEW];
+    const h = document.createElement("div");
+    h.className = "entity-head";
+    h.innerHTML = '<button class="series-close" onclick="closeEntity()">← ' + S.seriesClose + "</button>"
+      + '<div class="eh-name">' + esc(ENTITY_VIEW) + "</div>"
+      + '<div class="eh-sub">' + e.sector[LANG] + " · " + items.length + "</div>";
+    list.appendChild(h);
+  }
   if (SORT_HOT) items = items.slice().sort((a, b) =>
     ((VIEW_COUNTS[b.id] || 0) + (LIKE_COUNTS[b.id] || 0) * 3) - ((VIEW_COUNTS[a.id] || 0) + (LIKE_COUNTS[a.id] || 0) * 3)
     || (a.date < b.date ? 1 : -1));
@@ -2834,6 +2958,7 @@ async function bootData(){
   ITEMS.forEach(i => ["title", "gist", "why"].forEach(k => {
     ["ko", "ja"].forEach(l => { if (!i[k][l]) i[k][l] = i[k].en; });
   }));
+  buildEntityMatcher();
   initSeen();
   render();
   handleDeepLink();
