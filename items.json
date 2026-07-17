@@ -1,6 +1,89 @@
 {
   "items": [
     {
+      "date": "2026-07-15",
+      "id": "meru-battery-triple",
+      "thumbWiki": "Grid energy storage",
+      "related": [
+        "ess",
+        "doomberg-bloom",
+        "potus-datacenters"
+      ],
+      "source": "메르",
+      "sourceUrl": "https://blog.naver.com/ranto28/224346093395",
+      "sourceLang": "KO",
+      "category": "investor",
+      "hot": true,
+      "cover": {
+        "from": "#05603A",
+        "to": "#12B76A",
+        "label": "K-BATTERY"
+      },
+      "avatarImg": "meru.png",
+      "tags": [
+        "K-BATTERY",
+        "ESS",
+        "MACR"
+      ],
+      "series": "ai-power",
+      "title": {
+        "en": "America's China curbs crack open an ESS window for Korea's battery trio",
+        "ja": "米国の対中規制が韓国電池3社にESSの窓を開く: MACR・関税・AMPCの三点セット",
+        "ko": "미국 대중 규제 3종 세트가 한국 배터리 3사에 열어준 ESS의 창"
+      },
+      "gist": {
+        "en": "Datacenters are eating electricity at a frightening pace. The IEA sees global datacenter power demand more than doubling, from 415 TWh in 2024 to 945 TWh by 2030. But America's grid is old: over 70% of its large transformers are more than 25 years old, and a new one takes about three years to arrive. So Big Tech builds gas plants next door, or bolts giant batteries (ESS) onto solar. ESS demand is climbing, and until now more than 90% of those batteries were Chinese. Washington has now moved on three fronts. First, MACR: to earn the clean-energy tax credit you must cut the Chinese share (for ESS, below 45% in 2026, below 25% by 2030). Second, tariffs: the rate on Chinese ESS batteries rose from 40.9% to 58.4% starting in 2026. Third, AMPC: make the cell in America and you get $35 per kWh back. Stack the three, and the gap between tariff-inflated Chinese cells (about $87/kWh) and Korean cells built in the US ($85-90) vanishes; add the subsidy and the Korean cell drops to $50-55. SNE Research expects the Korean share of US ESS batteries to jump to 61% in 2026 and 85% in 2027. The catch: Korea's three makers are still in oversupply, so they must convert this window fast.",
+        "ja": "データセンターが電気を凄まじい勢いで食う。国際エネルギー機関は、世界のデータセンターの電力消費が2024年の415TWhから2030年に945TWhへと倍増すると見る。だが米国の送電網は老朽化している。大型変圧器の7割は25年超の老朽設備で、新規発注しても納品まで約3年かかる。そこでビッグテックはデータセンターの隣にガス発電所を建てたり、太陽光に巨大な蓄電池(ESS)を組み合わせたりする。ESS需要は伸びるのに、その電池は9割以上が中国製だった。ここに米国が刃を入れた。第一にMACR、税額控除を受けるには中国製比率を下げよ(ESSは2026年45%未満、2030年25%未満)。第二に関税、中国製ESS電池の税率が2026年から40.9%から58.4%へ上がった。第三にAMPC、米国でセルを作れば1kWhあたり35ドルを上乗せする。この三点セットが重なると、関税で高くなった中国製(約1kWh87ドル)と米国製の韓国産(85~90ドル)の差が消え、補助金まで乗せれば韓国産は50~55ドルまで下がる。SNEリサーチは米国のESS電池に占める韓国産比率が2026年61%、2027年85%まで跳ねると見る。ただし韓国3社はまだ供給過剰で、この好機を素早く生かす必要がある。",
+        "ko": "데이터센터가 전기를 미친 듯이 먹는다. 국제에너지기구는 전 세계 데이터센터 전력 소비가 2024년 415TWh에서 2030년 945TWh로 두 배 넘게 뛴다고 본다. 그런데 미국 전력망은 낡았다. 대형 변압기의 70%가 25년 넘은 고물이고, 새로 주문하면 납품까지 3년을 기다려야 한다. 그래서 빅테크는 데이터센터 옆에 가스발전소를 짓거나 태양광에 거대한 배터리(ESS)를 붙인다. ESS 수요는 느는데, 그 배터리는 90% 이상이 중국산이었다. 여기에 미국이 칼을 댔다. 첫째 MACR, 세액공제를 받으려면 중국산 비중을 낮춰라(ESS는 2026년 45% 미만, 2030년 25% 미만). 둘째 관세, 중국산 ESS 배터리 세율이 2026년부터 40.9%에서 58.4%로 올랐다. 셋째 AMPC, 미국에서 셀을 만들면 kWh당 35달러를 얹어준다. 이 3종 세트가 겹치면 관세로 비싸진 중국산(kWh당 약 87달러)과 미국서 만든 한국산(85~90달러)의 격차가 사라지고, 보조금까지 받으면 한국산이 50~55달러로 내려간다. SNE리서치는 미국 ESS 배터리의 한국산 점유율이 2026년 61%, 2027년 85%까지 뛴다고 본다. 다만 아직 한국 3사는 공급과잉이라 이 창을 빠르게 살려야 한다."
+      },
+      "why": {
+        "en": "Trump gets cursed by the very firms he's helping. The broad China-containment push has handed Korea's battery trio a gift called price competitiveness; the open question is how much of their oversupply they can push through that window before it narrows.",
+        "ja": "トランプを罵りながら、その恩恵を受ける。対中包囲という大きな流れが、韓国の電池3社に価格競争力という贈り物を渡した。問題は、この窓が狭まる前に供給過剰をどれだけ捌けるかだ。",
+        "ko": "트럼프를 욕하면서도 그 덕을 본다. 대중국 견제라는 큰 흐름이 한국 배터리 3사에 가격경쟁력이라는 선물을 안겼다. 관건은 이 창이 좁아지기 전에 공급과잉을 얼마나 소화하느냐다."
+      }
+    },
+    {
+      "date": "2026-07-14",
+      "id": "meru-anthropic-alibaba",
+      "thumbWiki": "Qwen",
+      "related": [
+        "meru-china-ai",
+        "hassabis-framework",
+        "zuck"
+      ],
+      "source": "메르",
+      "sourceUrl": "https://blog.naver.com/ranto28/224344737434",
+      "sourceLang": "KO",
+      "category": "investor",
+      "hot": false,
+      "cover": {
+        "from": "#3E1C96",
+        "to": "#7A5AF8",
+        "label": "DISTILLATION"
+      },
+      "avatarImg": "meru.png",
+      "tags": [
+        "QWEN",
+        "ANTHROPIC",
+        "OPEN WEIGHT"
+      ],
+      "title": {
+        "en": "Anthropic vs Alibaba: was Qwen's open-weight crown earned or distilled?",
+        "ja": "アンソロピック対アリババ: Qwenの首位は実力か、蒸留か",
+        "ko": "앤트로픽 대 알리바바: Qwen의 오픈 웨이트 1위는 실력인가, 증류인가"
+      },
+      "gist": {
+        "en": "There are two kinds of AI model. Claude and ChatGPT are restaurants: you order, they cook, but you never enter the kitchen — the recipe, the brain, stays hidden. These are 'closed' models. Meta's Llama and Alibaba's Qwen are chefs who publish the recipe: they release the model's brain (the weights) as a file anyone can download and run on their own server. That's an 'open-weight' model, and download counts are its popularity score. Meta's Llama was the king, until Alibaba's Qwen flooded the market with free models from laptop-size to server-grade, taking the top spot in 2025 and cementing it with a billion downloads by April 2026. The fight is over how. In June 2026 Anthropic filed a complaint with the US Senate alleging that operators tied to Qwen ran a massive 'distillation' attack on Claude — bombarding a strong model with questions and harvesting the answers to copy its skill. Anthropic claims 25,000 fake accounts pulled more than 28.8 million exchanges between April 22 and June 5, subscribing to Claude Code Max on stolen cards to capture even the reasoning traces. Alibaba hit back, banning internal Claude use from July 10 over an alleged tracking 'backdoor.' With the copyright status of model outputs still murky, Anthropic chose politics over a lawsuit.",
+        "ja": "AIモデルには二種類ある。クロードやChatGPTはレストランだ。注文すれば料理は出るが、厨房(レシピ=頭脳)には入れない。これを閉鎖型モデルと呼ぶ。逆にメタのラマやアリババのQwenは、レシピごと公開する料理人だ。モデルの頭脳(ウェイト)をファイルで公開し、誰でもダウンロードして自分のサーバーで動かせる。これがオープンウェイトモデルで、ダウンロード数がそのまま人気になる。かつての王者はメタのラマだったが、アリババのQwenが小型から大型まで無料で放出し、2025年に首位、2026年4月には10億ダウンロードで圧倒的1位を固めた。争点は「やり方」だ。アンソロピックは2026年6月、Qwenに連なる勢力がクロードに大規模な『蒸留(ディスティレーション)攻撃』を仕掛けたとして、米上院に告発文書を提出した。蒸留とは強いモデルに質問を浴びせ、その答えを集めて能力を真似る手法だ。アンソロピックは2.5万個の偽アカウントが4月22日~6月5日に2,880万件超を吸い上げ、盗んだカードでクロード・コード・マックスを契約し推論過程まで奪ったと主張する。アリババも反撃し、『中国ユーザーを密かに追跡する裏口』を理由に7月10日から社内でのクロード利用を禁止した。出力物の著作権が曖昧なため、アンソロピックは訴訟ではなく政治戦を選んだ。",
+        "ko": "AI 모델에는 두 종류가 있다. 클로드나 ChatGPT는 식당이다. 주문하면 요리를 내주지만 주방(레시피=두뇌)엔 못 들어간다. 이걸 폐쇄형 모델이라 한다. 반대로 메타의 라마나 알리바바의 Qwen은 레시피를 통째로 공개하는 요리사다. 모델의 두뇌(웨이트) 파일을 누구나 내려받아 자기 서버에서 돌린다. 이게 오픈 웨이트 모델이고, 다운로드 횟수가 곧 인기다. 원래 지존은 메타 라마였는데, 알리바바 Qwen이 초소형부터 대형까지 무료로 쏟아내며 2025년 1위, 2026년 4월 10억 다운로드로 압도적 1위를 굳혔다. 문제는 방법이다. 앤트로픽은 2026년 6월 Qwen 연계 세력이 클로드에 대규모 '디스틸레이션(증류) 공격'을 했다며 미 상원에 고발문서를 냈다. 디스틸레이션은 강한 모델에 질문을 퍼붓고 그 답을 모아 능력을 베끼는 기법이다. 앤트로픽은 2.5만 개 가짜 계정이 4월 22일~6월 5일 2,880만 건 넘게 긁어갔고, 훔친 카드로 클로드 코드 맥스를 구독해 추론 과정까지 가로챘다고 주장한다. 알리바바도 반격해 '중국 사용자를 몰래 추적하는 백도어'를 이유로 7월 10일부터 사내 클로드 사용을 금지했다. 출력물의 저작권이 모호한 영역이라 앤트로픽은 소송 대신 정치전을 택했다."
+      },
+      "why": {
+        "en": "The question is whether the open-weight crown was won by talent or by a cheap shortcut. Because the target is US-listed Alibaba, the verdict lands not just on Qwen's legitimacy but on sentiment around Alibaba's stock.",
+        "ja": "オープンウェイト首位が実力か、安上がりな近道かが争点だ。標的が米上場のアリババだけに、判定はQwenの正当性だけでなく、アリババ株のセンチメントにも跳ね返る。",
+        "ko": "오픈 웨이트 1위가 진짜 실력인지, 값싼 지름길인지가 쟁점이다. 겨냥한 대상이 미국 상장사 알리바바라, 판정 결과는 Qwen의 정당성뿐 아니라 알리바바 주가 심리에도 튄다."
+      }
+    },
+    {
       "date": "2026-07-17",
       "id": "meru-china-ai",
       "thumbWiki": "DeepSeek",
