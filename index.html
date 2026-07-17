@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v44 :: daily-brief broadcast tag -->
+<!-- STACKS BUILD v45 :: goToItem loads paginated target (related links now navigate) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1488,15 +1488,25 @@ function srcTap(el, url){
 }
 
 function goToItem(id){
-  SERIES_VIEW = null; ENTITY_VIEW = null;
   const target = ITEMS.find(x => x.id === id);
   if (!target) return;
-  if (TAB !== "all" && target.category !== TAB){
-    TAB = "all";
-    render();
+  /* leave any view/filter that could hide the target, so it's in the feed */
+  SERIES_VIEW = null; ENTITY_VIEW = null;
+  let changed = false;
+  if (TAB !== "all" && target.category !== TAB){ TAB = "all"; changed = true; }
+  if (QUERY || BM_ONLY || UNREAD_ONLY || FREE_ONLY){
+    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
+    const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
+    changed = true;
   }
+  if (changed) render(); else renderFeed(false);
   requestAnimationFrame(() => {
-    const el = document.getElementById("sig-" + id);
+    /* the target may be beyond the first paginated page — load pages until it's in the DOM */
+    let el = document.getElementById("sig-" + id), guard = 0;
+    while (!el && typeof SHOWN !== "undefined" && SHOWN < CUR_ITEMS.length && guard++ < 500){
+      appendFeedPage();
+      el = document.getElementById("sig-" + id);
+    }
     if (!el) return;
     try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
     el.classList.remove("flash");
