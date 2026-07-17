@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v43 :: rich entity view (bio + live chart + price + follow) -->
+<!-- STACKS BUILD v44 :: daily-brief broadcast tag -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -2584,6 +2584,8 @@ if (ONESIGNAL_APP_ID){
       serviceWorkerPath: (base + "OneSignalSDKWorker.js").replace(/^\//, ""),
       serviceWorkerParam: { scope: base + "onesignal/" }
     });
+    /* tag every subscriber so the daily brief can broadcast to all */
+    try { OneSignal.User.addTag("daily", "1"); } catch (e) {}
   });
   const os = document.createElement("script");
   os.defer = true;
