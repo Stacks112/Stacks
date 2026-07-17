@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v50 :: entity profile in right rail (PC), real flag images, pull-to-refresh -->
+<!-- STACKS BUILD v51 :: glossary terms, 8 new companies, full-name matching fix, tooltip viewport fit -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -659,7 +659,7 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .has-tip:hover{border-color:var(--text);color:var(--text);}
 .entity-tip{
   position:absolute;bottom:calc(100% + 8px);right:-6px;
-  width:max-content;max-width:250px;
+  width:max-content;max-width:min(250px, calc(100vw - 36px));
   background:var(--black);color:#fff;
   font-family:"Inter","Pretendard Variable",sans-serif;font-size:11.5px;font-weight:500;line-height:1.5;
   padding:9px 12px;border-radius:10px;text-align:left;
@@ -1800,6 +1800,7 @@ function chipTap(el, tag){
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
     el.classList.add("show");
+    if (typeof fitTip === "function") fitTip(el);
     return;
   }
   el.classList.remove("show");
@@ -1868,7 +1869,14 @@ function buildEntityMatcher(){
     if (!(low in ALIAS2KEY)){ ALIAS2KEY[low] = key; raw.push(a); }
   }));
   raw.sort((a, b) => b.length - a.length); /* longest alias wins */
-  const pats = raw.map(a => /^[\x00-\x7F]/.test(a) ? ("\\b" + reEsc(a) + "\\b") : reEsc(a));
+  /* word boundaries only where they can actually match: \b works between
+     \w and non-\w, so "SK하이닉스" must NOT get a trailing \b (하이닉스 is
+     not \w) or the full name never matches and only "하이닉스" lights up */
+  const pats = raw.map(a => {
+    const head = /^[A-Za-z0-9]/.test(a) ? "\\b" : "";
+    const tail = /[A-Za-z0-9]$/.test(a) ? "\\b" : "";
+    return head + reEsc(a) + tail;
+  });
   if (pats.length) ENT_RE = new RegExp("(" + pats.join("|") + ")", "gi");
 }
 function itemEntities(item){
@@ -1981,12 +1989,30 @@ function entityHeadEl(key, S, count, mode){
     + "</div>";
   return h;
 }
+/* keep a just-opened tooltip inside the viewport (inline mentions can sit
+   at either edge of a text line, especially on phones) */
+function fitTip(el){
+  const tip = el.querySelector(".entity-tip");
+  if (!tip) return;
+  tip.style.left = ""; tip.style.right = "";
+  requestAnimationFrame(() => {
+    const r = tip.getBoundingClientRect();
+    const pad = 10;
+    if (r.left < pad){
+      tip.style.right = "auto";
+      tip.style.left = (parseFloat(getComputedStyle(tip).left) || 0) + (pad - r.left) + "px";
+    } else if (r.right > window.innerWidth - pad){
+      tip.style.left = "auto";
+      tip.style.right = (parseFloat(getComputedStyle(tip).right) || 0) + (r.right - (window.innerWidth - pad)) + "px";
+    }
+  });
+}
 function entityTap(el, key){
   loadQuote(key);
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
-    el.classList.add("show"); return; /* first tap on mobile: reveal tooltip */
+    el.classList.add("show"); fitTip(el); return; /* first tap on mobile: reveal tooltip */
   }
   el.classList.remove("show");
   /* desktop: show the profile in the right rail — never yank the reader's scroll */

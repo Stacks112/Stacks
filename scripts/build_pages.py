@@ -47,16 +47,17 @@ def slugify(key):
 
 
 def build_matcher(entities):
-    """[(compiled_regex, key)] over every alias; ASCII aliases are word-bounded."""
+    """[(compiled_regex, key)] over every alias. Word boundaries only where
+    the adjacent character is ASCII \\w — otherwise \\b can never match
+    (e.g. trailing \\b after 하이닉스 in "SK하이닉스")."""
     pats = []
     for key, e in entities.items():
         for a in e.get("aliases", []) or []:
             if not a:
                 continue
-            if re.match(r"[\x00-\x7f]", a):
-                pats.append((re.compile(r"\b" + re.escape(a) + r"\b", re.I), key))
-            else:
-                pats.append((re.compile(re.escape(a)), key))
+            head = r"\b" if re.match(r"[A-Za-z0-9]", a) else ""
+            tail = r"\b" if re.search(r"[A-Za-z0-9]$", a) else ""
+            pats.append((re.compile(head + re.escape(a) + tail, re.I), key))
     return pats
 
 
@@ -369,7 +370,7 @@ def entity_page(key, e, ent_items):
         f' <span class="d">{E(i.get("source",""))} · {E(i.get("date",""))}</span></li>'
         for i in ent_items
     )
-    about = {"@type": "Organization" if kind == "company" else "Person", "name": key}
+    about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": key}
     if kind == "company" and ticker:
         about["tickerSymbol"] = ticker.split(".")[0]
     if e.get("url"):

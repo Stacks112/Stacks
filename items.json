@@ -1738,6 +1738,442 @@
     "하사비스",
     "デミス・ハサビス"
    ]
+  },
+  "NVIDIA": {
+   "kind": "company",
+   "ticker": "nvda.us",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "ko": "AI 가속기(GPU) 시장을 사실상 독점한 세계 1위 반도체 기업.",
+    "en": "The world's #1 chipmaker, with a near-monopoly on AI accelerators (GPUs).",
+    "ja": "AIアクセラレータ(GPU)市場をほぼ独占する世界一の半導体企業。"
+   },
+   "aliases": [
+    "NVIDIA",
+    "Nvidia",
+    "엔비디아",
+    "エヌビディア"
+   ],
+   "logo": "nvidia.com",
+   "exchange": "NASDAQ",
+   "ceo": "젠슨 황 (Jensen Huang)",
+   "hq": "미국 샌타클래라",
+   "website": "https://www.nvidia.com",
+   "longDesc": {
+    "ko": "1993년 젠슨 황이 창업한 GPU 회사에서 출발해, AI 학습·추론 칩 시장을 사실상 독점하며 세계 최고 가치의 반도체 기업이 됐다. 데이터센터 GPU(H100·블랙웰 등)가 매출의 대부분을 차지하고, SK하이닉스의 HBM이 이 칩에 들어간다.",
+    "en": "Founded in 1993 by Jensen Huang as a GPU maker, it now near-monopolizes AI training and inference chips and became the world's most valuable semiconductor company. Datacenter GPUs (H100, Blackwell) drive most revenue — fed by SK hynix's HBM.",
+    "ja": "1993年ジェンスン・フアンが創業したGPU企業。AI学習・推論チップ市場をほぼ独占し、世界で最も価値ある半導体企業に。データセンターGPU(H100・Blackwell)が売上の大半で、SKハイニックスのHBMが搭載される。"
+   },
+   "founded": "1993",
+   "listed": "1999.1"
+  },
+  "SAMSUNG ELECTRONICS": {
+   "kind": "company",
+   "ticker": "005930.ks",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "ko": "메모리·스마트폰·가전을 아우르는 한국 최대 기업. SK하이닉스와 메모리 양강.",
+    "en": "Korea's largest company, spanning memory chips, smartphones and appliances.",
+    "ja": "メモリ・スマホ・家電を手掛ける韓国最大の企業。"
+   },
+   "aliases": [
+    "삼성전자",
+    "Samsung Electronics",
+    "Samsung",
+    "サムスン電子",
+    "サムスン"
+   ],
+   "logo": "samsung.com",
+   "exchange": "KOSPI",
+   "ceo": "전영현 · 한종희 (각자대표)",
+   "hq": "경기 수원",
+   "website": "https://www.samsung.com",
+   "longDesc": {
+    "ko": "1969년 설립된 한국 최대 기업이자 세계 최대 메모리 반도체 회사. DRAM·NAND에서 SK하이닉스와 양강 구도를 이루고, 파운드리에서는 TSMC를 추격 중이다. 스마트폰(갤럭시)·디스플레이·가전까지 아우르는 종합 전자기업으로, HBM 경쟁에서의 반격이 최근 최대 관전 포인트다.",
+    "en": "Founded in 1969, Korea's largest company and the world's biggest memory-chip maker. It splits the DRAM/NAND duopoly with SK hynix and chases TSMC in foundry. A conglomerate spanning Galaxy phones, displays and appliances — its comeback attempt in HBM is the storyline to watch.",
+    "ja": "1969年設立の韓国最大企業で、世界最大のメモリ半導体メーカー。DRAM・NANDでSKハイニックスと双璧をなし、ファウンドリではTSMCを追う。ギャラクシー・ディスプレイ・家電まで手掛け、HBMでの巻き返しが最大の注目点。"
+   },
+   "founded": "1969",
+   "listed": "1975.6"
+  },
+  "TSMC": {
+   "kind": "company",
+   "ticker": "tsm.us",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "ko": "애플·엔비디아 칩을 만드는 세계 1위 파운드리(반도체 위탁생산).",
+    "en": "The world's #1 foundry — it manufactures Apple's and Nvidia's chips.",
+    "ja": "アップルやNVIDIAのチップを製造する世界一のファウンドリ。"
+   },
+   "aliases": [
+    "TSMC",
+    "티에스엠씨",
+    "台積電",
+    "TSMC(타이완)"
+   ],
+   "logo": "tsmc.com",
+   "exchange": "NYSE (ADR)",
+   "ceo": "웨이저자 (C.C. Wei)",
+   "hq": "대만 신주",
+   "website": "https://www.tsmc.com",
+   "longDesc": {
+    "ko": "1987년 모리스 창이 세운 세계 최초·최대의 반도체 위탁생산(파운드리) 기업. 애플·엔비디아·AMD의 최첨단 칩을 사실상 독점 생산하며, 첨단 공정 점유율은 90%에 달한다. 대만에 생산이 집중돼 지정학 리스크의 중심에 있고, 미국·일본에 공장을 늘리는 중이다.",
+    "en": "Founded in 1987 by Morris Chang, the world's first and largest chip foundry. It effectively monopolizes leading-edge production for Apple, Nvidia and AMD, with ~90% share at advanced nodes. Its Taiwan concentration puts it at the center of geopolitical risk — hence new fabs in the US and Japan.",
+    "ja": "1987年モリス・チャン創業、世界初・最大の半導体ファウンドリ。アップル・NVIDIA・AMDの最先端チップをほぼ独占生産し、先端プロセスシェアは約9割。台湾集中が地政学リスクの中心で、米日に工場を拡大中。"
+   },
+   "founded": "1987"
+  },
+  "OPENAI": {
+   "kind": "company",
+   "sector": {
+    "en": "AI",
+    "ko": "AI",
+    "ja": "AI"
+   },
+   "desc": {
+    "ko": "챗GPT를 만든 AI 연구·제품 기업. 마이크로소프트가 최대 후원자.",
+    "en": "Maker of ChatGPT; Microsoft is its biggest backer.",
+    "ja": "ChatGPTを生んだAI企業。マイクロソフトが最大の後援者。"
+   },
+   "aliases": [
+    "OpenAI",
+    "오픈AI",
+    "오픈에이아이",
+    "オープンAI"
+   ],
+   "logo": "openai.com",
+   "exchange": "비상장",
+   "ceo": "샘 올트먼 (Sam Altman)",
+   "hq": "미국 샌프란시스코",
+   "website": "https://openai.com",
+   "longDesc": {
+    "ko": "2015년 비영리로 출발해 챗GPT로 생성형 AI 붐을 연 회사. 마이크로소프트가 최대 투자자이며, 세계에서 가장 높은 몸값의 비상장 기업 중 하나다. 모델 학습에 천문학적 컴퓨팅이 필요해 데이터센터·전력·반도체 수요의 진원지 역할을 한다.",
+    "en": "Started as a nonprofit in 2015 and ignited the generative-AI boom with ChatGPT. Microsoft is its biggest investor, and it ranks among the most valuable private companies on earth. Its enormous training compute makes it the epicenter of datacenter, power and chip demand.",
+    "ja": "2015年に非営利で出発し、ChatGPTで生成AIブームを起こした企業。マイクロソフトが最大の投資家で、世界で最も企業価値の高い未上場企業の一つ。膨大な学習計算がデータセンター・電力・半導体需要の震源地となっている。"
+   },
+   "founded": "2015"
+  },
+  "ALIBABA": {
+   "kind": "company",
+   "ticker": "baba.us",
+   "sector": {
+    "en": "E-commerce / Cloud",
+    "ko": "이커머스/클라우드",
+    "ja": "EC・クラウド"
+   },
+   "desc": {
+    "ko": "중국 최대 이커머스·클라우드 기업. 오픈소스 AI 모델 Qwen 개발사.",
+    "en": "China's e-commerce and cloud giant; maker of the open-source Qwen AI models.",
+    "ja": "中国最大のEC・クラウド企業。オープンソースAIモデルQwenの開発元。"
+   },
+   "aliases": [
+    "Alibaba",
+    "알리바바",
+    "アリババ",
+    "阿里巴巴"
+   ],
+   "logo": "alibaba.com",
+   "exchange": "NYSE",
+   "ceo": "우융밍 (Eddie Wu)",
+   "hq": "중국 항저우",
+   "website": "https://www.alibaba.com",
+   "longDesc": {
+    "ko": "1999년 마윈이 창업한 중국 최대 이커머스·클라우드 기업. 타오바오·티몰과 알리클라우드를 운영하며, 오픈소스 AI 모델 'Qwen(통이첸원)' 시리즈로 글로벌 AI 사용량 순위 상위에 올라 있다. 중국 AI 굴기의 대표 주자로 미·중 기술 경쟁의 한복판에 있다.",
+    "en": "Founded by Jack Ma in 1999, China's e-commerce and cloud leader (Taobao, Tmall, AliCloud). Its open-source Qwen models rank among the world's most-used AI models, making it a flagship of China's AI push — squarely in the middle of the US-China tech contest.",
+    "ja": "1999年ジャック・マー創業の中国最大EC・クラウド企業(タオバオ・Tmall・アリクラウド)。オープンソースAI「Qwen」は世界利用量上位で、中国AI躍進の旗手として米中技術競争の渦中にある。"
+   },
+   "founded": "1999",
+   "listed": "2014.9"
+  },
+  "DEEPSEEK": {
+   "kind": "company",
+   "sector": {
+    "en": "AI",
+    "ko": "AI",
+    "ja": "AI"
+   },
+   "desc": {
+    "ko": "초저가 고성능 모델로 세계를 놀라게 한 중국 AI 스타트업.",
+    "en": "The Chinese AI startup that shocked the world with ultra-cheap, high-performing models.",
+    "ja": "超低価格・高性能モデルで世界を驚かせた中国のAIスタートアップ。"
+   },
+   "aliases": [
+    "DeepSeek",
+    "딥시크",
+    "ディープシーク"
+   ],
+   "logo": "deepseek.com",
+   "exchange": "비상장",
+   "ceo": "량원펑 (Liang Wenfeng)",
+   "hq": "중국 항저우",
+   "website": "https://www.deepseek.com",
+   "longDesc": {
+    "ko": "헤지펀드 하이플라이어에서 분사해 2023년 설립된 중국 AI 연구소. 2025년 초 GPT급 성능을 수십분의 1 비용으로 내는 모델을 공개해 'AI 스푸트니크 모멘트'를 일으켰다. MoE 구조와 증류 기법으로 낮은 추론 비용을 무기 삼아, 오픈소스로 전 세계 사용량을 빠르게 늘리고 있다.",
+    "en": "A Chinese AI lab spun out of hedge fund High-Flyer in 2023. In early 2025 it triggered an 'AI Sputnik moment' by matching GPT-class performance at a fraction of the cost. With MoE architecture and distillation driving rock-bottom inference prices, its open-source models are gaining global share fast.",
+    "ja": "ヘッジファンドHigh-Flyerから分離し2023年設立の中国AI研究所。2025年初頭、GPT級性能を数十分の一のコストで実現し「AIスプートニク・モーメント」を起こした。MoEと蒸留による低推論コストを武器に、オープンソースで世界シェアを急拡大中。"
+   },
+   "founded": "2023"
+  },
+  "GOOGLE": {
+   "kind": "company",
+   "ticker": "googl.us",
+   "sector": {
+    "en": "Big Tech",
+    "ko": "빅테크",
+    "ja": "ビッグテック"
+   },
+   "desc": {
+    "ko": "검색·유튜브·안드로이드의 제국. 제미나이로 AI 경쟁 중.",
+    "en": "The search, YouTube and Android empire, now racing in AI with Gemini.",
+    "ja": "検索・YouTube・Androidの帝国。GeminiでAI競争中。"
+   },
+   "aliases": [
+    "Google",
+    "구글",
+    "グーグル",
+    "Alphabet",
+    "알파벳"
+   ],
+   "logo": "google.com",
+   "exchange": "NASDAQ",
+   "ceo": "순다르 피차이 (Sundar Pichai)",
+   "hq": "미국 마운틴뷰",
+   "website": "https://www.google.com",
+   "longDesc": {
+    "ko": "1998년 창업한 세계 최대 검색·광고 기업(모회사 알파벳). 유튜브·안드로이드·클라우드를 거느리고, 딥마인드의 제미나이 모델과 자체 AI 칩(TPU)으로 AI 풀스택을 갖춘 유일한 빅테크로 꼽힌다.",
+    "en": "Founded in 1998, the world's largest search and advertising company (parent: Alphabet). With YouTube, Android and Cloud — plus DeepMind's Gemini models and its own TPU chips — it's often called the only big-tech with the full AI stack.",
+    "ja": "1998年創業、世界最大の検索・広告企業(親会社Alphabet)。YouTube・Android・クラウドに加え、DeepMindのGeminiと自社TPUチップを持つ「AIフルスタック」企業とされる。"
+   },
+   "founded": "1998",
+   "listed": "2004.8"
+  },
+  "TESLA": {
+   "kind": "company",
+   "ticker": "tsla.us",
+   "sector": {
+    "en": "EV / Auto",
+    "ko": "전기차",
+    "ja": "EV・自動車"
+   },
+   "desc": {
+    "ko": "전기차 1위에서 로봇·자율주행 회사로 변신 중인 일론 머스크의 회사.",
+    "en": "Elon Musk's EV leader, morphing into a robotics and self-driving company.",
+    "ja": "EV首位からロボット・自動運転企業へ変身中のイーロン・マスクの会社。"
+   },
+   "aliases": [
+    "Tesla",
+    "테슬라",
+    "テスラ"
+   ],
+   "logo": "tesla.com",
+   "exchange": "NASDAQ",
+   "ceo": "일론 머스크 (Elon Musk)",
+   "hq": "미국 오스틴",
+   "website": "https://www.tesla.com",
+   "longDesc": {
+    "ko": "2003년 설립된 전기차 선두 기업. 일론 머스크가 이끌며, 최근에는 자율주행(FSD)·로보택시·휴머노이드 로봇(옵티머스)으로 정체성을 넓히는 중이다. 주가가 실적보다 미래 서사에 크게 반응하는 대표적인 성장주다.",
+    "en": "The EV pioneer founded in 2003 and led by Elon Musk, now stretching its identity into self-driving (FSD), robotaxis and the Optimus humanoid. A textbook narrative stock — its price moves on the future story more than current earnings.",
+    "ja": "2003年設立のEVパイオニア。マスク率いる同社は自動運転(FSD)・ロボタクシー・ヒューマノイド(Optimus)へ拡大中。業績より未来のシナリオで動く代表的グロース株。"
+   },
+   "founded": "2003",
+   "listed": "2010.6"
+  },
+  "대용증권": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "현금 대신 증거금으로 쓸 수 있는 주식·채권.",
+    "en": "Securities that can be pledged as margin collateral instead of cash.",
+    "ja": "現金の代わりに証拠金として使える株式・債券。"
+   },
+   "longDesc": {
+    "ko": "신용거래나 선물·옵션 거래를 할 때 현금 대신 담보(증거금)로 맡길 수 있는 주식·채권을 말한다. 보통 주식 평가액의 일정 비율(대용가)만 인정되며, 규정이 바뀌면 실질 레버리지 한도가 달라져 수급에 영향을 준다.",
+    "en": "Stocks or bonds you can pledge as collateral (margin) instead of cash for leveraged or derivatives trading. Only a set fraction of their value counts, so rule changes effectively change leverage limits — and market flows.",
+    "ja": "信用取引やデリバティブで現金の代わりに担保(証拠金)にできる株式・債券。評価額の一定割合しか認められず、規定変更は実質レバレッジ限度を変え、需給に影響する。"
+   },
+   "aliases": [
+    "대용증권",
+    "代用証券",
+    "substitute securities"
+   ]
+  },
+  "ADR": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "해외 기업 주식을 미국 시장에서 달러로 사고팔 수 있게 만든 증서.",
+    "en": "A certificate letting US investors trade a foreign company's shares in dollars.",
+    "ja": "海外企業の株を米国市場でドル建て売買できるようにした証券。"
+   },
+   "longDesc": {
+    "ko": "American Depositary Receipt. 해외 기업의 주식을 미국 거래소에서 달러로 거래할 수 있도록 은행이 발행하는 증서다. 본국 주식과 가치가 같아야 하지만, 매매 접근성 차이로 프리미엄(가격 차이)이 벌어지기도 한다 — SK하이닉스 ADR 프리미엄이 대표 사례.",
+    "en": "American Depositary Receipt: a bank-issued certificate that lets a foreign company's shares trade in dollars on US exchanges. In theory it tracks the home listing, but access differences can open a premium — SK hynix's ADR premium being a prime example.",
+    "ja": "米国預託証券。海外企業の株を米国取引所でドル建て取引できるよう銀行が発行する証券。本国株と等価のはずだが、アクセス差でプレミアムが生じることがある — SKハイニックスADRが代表例。"
+   },
+   "aliases": [
+    "ADR",
+    "미국주식예탁증서",
+    "米国預託証券"
+   ]
+  },
+  "레버리지": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "빌린 돈이나 파생상품으로 투자 규모를 원금보다 키우는 것.",
+    "en": "Amplifying investment exposure beyond your capital, via debt or derivatives.",
+    "ja": "借入やデリバティブで投資規模を元手以上に膨らませること."
+   },
+   "longDesc": {
+    "ko": "빌린 돈·신용거래·파생상품 등으로 원금보다 큰 규모를 투자하는 것. 수익도 손실도 배로 커진다. '2배 레버리지 ETF'는 지수 하루 수익률의 2배를 추종하는 상품으로, 변동성이 큰 장에서는 장기 보유 시 손실이 누적되는 특성이 있다.",
+    "en": "Investing with borrowed money, margin or derivatives so your exposure exceeds your capital — gains and losses both multiply. A '2x leveraged ETF' tracks twice the index's daily move, which erodes value over long holds in choppy markets.",
+    "ja": "借入・信用取引・デリバティブで元手以上の規模を投資すること。損益とも倍増する。「2倍レバレッジETF」は指数の日次リターンの2倍に連動し、荒れ相場の長期保有では減価しやすい。"
+   },
+   "aliases": [
+    "레버리지",
+    "leverage",
+    "レバレッジ"
+   ]
+  },
+  "HBM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "AI 가속기에 붙는 초고속 적층 메모리. SK하이닉스가 선두.",
+    "en": "Stacked ultra-fast memory bonded to AI accelerators; SK hynix leads.",
+    "ja": "AIアクセラレータに接続する超高速積層メモリ。SKハイニックスが首位。"
+   },
+   "longDesc": {
+    "ko": "High Bandwidth Memory. D램을 수직으로 쌓아 GPU 바로 옆에 붙인 초고속 메모리로, AI 학습·추론 칩의 필수 부품이다. 일반 D램보다 훨씬 비싸고 마진이 높아 메모리 업계의 슈퍼사이클을 이끌고 있으며, SK하이닉스가 엔비디아 공급을 주도한다.",
+    "en": "High Bandwidth Memory: DRAM dies stacked vertically and bonded next to the GPU — essential for AI chips. Far pricier and higher-margin than commodity DRAM, it drives the memory supercycle, with SK hynix leading supply to Nvidia.",
+    "ja": "DRAMを垂直積層しGPU直近に接合した超高速メモリで、AIチップの必須部品。通常DRAMより高価・高マージンでメモリ・スーパーサイクルを牽引。SKハイニックスがNVIDIA向け供給を主導。"
+   },
+   "aliases": [
+    "HBM",
+    "고대역폭 메모리",
+    "広帯域メモリ"
+   ]
+  },
+  "파운드리": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "설계는 안 하고 남의 반도체를 위탁 생산해 주는 사업. TSMC가 1위.",
+    "en": "Contract manufacturing of chips designed by others; TSMC is #1.",
+    "ja": "他社設計の半導体を受託生産する事業。TSMCが首位。"
+   },
+   "longDesc": {
+    "ko": "반도체를 직접 설계하지 않고, 팹리스(설계 전문 회사)가 만든 설계도대로 위탁 생산해 주는 사업. 엔비디아·애플 같은 회사가 고객이다. 최첨단 공정은 TSMC가 압도적 1위이고 삼성전자가 추격하는 구도다.",
+    "en": "The business of manufacturing chips to order for fabless designers like Nvidia and Apple, without designing them yourself. TSMC dominates leading-edge production, with Samsung chasing.",
+    "ja": "半導体を自社設計せず、ファブレス企業の設計通りに受託生産する事業。顧客はNVIDIAやアップルなど。先端プロセスはTSMCが圧倒的首位で、サムスンが追う構図。"
+   },
+   "aliases": [
+    "파운드리",
+    "foundry",
+    "ファウンドリ",
+    "ファウンドリー"
+   ]
+  },
+  "네오클라우드": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "GPU를 대량 확보해 AI 기업에 빌려주는 신흥 클라우드 사업자.",
+    "en": "New-breed clouds that stockpile GPUs and rent them to AI companies.",
+    "ja": "GPUを大量確保しAI企業に貸す新興クラウド事業者。"
+   },
+   "longDesc": {
+    "ko": "AWS 같은 종합 클라우드와 달리, 엔비디아 GPU 확보와 임대에만 집중하는 신흥 클라우드 사업자를 부르는 말. 코어위브·네비우스가 대표 주자다. AI 수요 폭증의 직접 수혜자지만, GPU 세대교체와 대규모 차입이 리스크로 꼽힌다.",
+    "en": "Unlike full-service clouds (AWS), these upstarts focus purely on acquiring and renting out Nvidia GPUs — CoreWeave and Nebius are the flagships. Direct beneficiaries of AI demand, but GPU generation-turnover and heavy debt are the risks.",
+    "ja": "AWSのような総合クラウドと違い、NVIDIA GPUの確保と貸出に特化した新興勢。CoreWeaveやNebiusが代表。AI需要急増の直接受益者だが、GPU世代交代と大型借入がリスク。"
+   },
+   "aliases": [
+    "네오클라우드",
+    "neocloud",
+    "ネオクラウド"
+   ]
+  },
+  "연료전지": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "연료를 태우지 않고 화학반응으로 전기를 만드는 장치.",
+    "en": "A device that makes electricity from fuel via chemical reaction, not combustion.",
+    "ja": "燃料を燃やさず化学反応で発電する装置。"
+   },
+   "longDesc": {
+    "ko": "수소나 천연가스를 연소가 아닌 전기화학 반응으로 전기로 바꾸는 발전 장치. 발전소보다 빨리 설치할 수 있고 현장에서 바로 전력을 공급할 수 있어, 전력망 연결을 기다리는 AI 데이터센터의 대안 전원으로 주목받는다. 블룸에너지가 대표 기업이다.",
+    "en": "Converts hydrogen or natural gas into electricity through an electrochemical reaction rather than combustion. Quick to deploy on-site, it's drawing attention as a stopgap power source for AI datacenters stuck waiting for grid connections — Bloom Energy is the flagship maker.",
+    "ja": "水素や天然ガスを燃焼ではなく電気化学反応で電気に変える装置。設置が速く現場で即給電でき、送電網接続を待つAIデータセンターの代替電源として注目。ブルームエナジーが代表企業。"
+   },
+   "aliases": [
+    "연료전지",
+    "fuel cell",
+    "燃料電池"
+   ]
+  },
+  "MoE": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "질문마다 뇌의 일부만 켜서 비용을 줄이는 AI 모델 구조.",
+    "en": "An AI architecture that activates only part of the model per query, cutting cost.",
+    "ja": "質問ごとにモデルの一部だけ動かしコストを抑えるAI構造。"
+   },
+   "longDesc": {
+    "ko": "Mixture of Experts. AI 모델을 여러 '전문가' 블록으로 쪼개고, 질문마다 필요한 일부만 작동시키는 구조다. 전체 모델을 매번 돌리는 것보다 추론 비용이 크게 줄어, 딥시크 같은 중국 모델들이 초저가를 실현한 핵심 기술로 꼽힌다.",
+    "en": "Mixture of Experts: the model is split into 'expert' blocks and only a few activate per query. Inference gets far cheaper than running the whole network every time — the key trick behind ultra-cheap Chinese models like DeepSeek.",
+    "ja": "モデルを複数の「専門家」ブロックに分け、質問ごとに一部だけ動かす構造。毎回全体を回すより推論コストが大幅減。DeepSeekなど中国モデル超低価格の核心技術。"
+   },
+   "aliases": [
+    "MoE",
+    "Mixture of Experts",
+    "전문가 혼합"
+   ]
   }
  }
 }
