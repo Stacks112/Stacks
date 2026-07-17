@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v41 :: inline entity mentions (hover tooltip + chart, tap to filter) -->
+<!-- STACKS BUILD v42 :: desktop 3-column dashboard (left nav + feed + right rail) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -196,6 +196,7 @@ const STRINGS = {
     like: "Like",
     listen: "Listen",
     loadMore: "Load more",
+    dashBrowse: "Browse",
     views: "Views",
     eventsTitle: "Coming up",
     dToday: "Today",
@@ -278,6 +279,7 @@ const STRINGS = {
     like: "좋아요",
     listen: "듣기",
     loadMore: "더 보기",
+    dashBrowse: "둘러보기",
     views: "조회수",
     eventsTitle: "다가오는 이벤트",
     dToday: "오늘",
@@ -360,6 +362,7 @@ const STRINGS = {
     like: "いいね",
     listen: "聴く",
     loadMore: "もっと見る",
+    dashBrowse: "見る",
     views: "閲覧数",
     eventsTitle: "近日中",
     dToday: "本日",
@@ -667,6 +670,42 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 .entity-head .series-close{margin-bottom:8px;}
 .entity-head .eh-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
 .entity-head .eh-sub{font-size:12px;color:var(--muted);margin-top:2px;font-family:"IBM Plex Mono",monospace;}
+/* ---------- desktop 3-column dashboard (>=1024px) ---------- */
+@media (min-width:1024px){
+  .wrap{
+    max-width:1300px;display:grid;
+    grid-template-columns:212px minmax(0,1fr) 328px;
+    gap:30px;align-items:start;padding:10px 26px 0;
+  }
+  .hero{display:none;}
+  .mini-install{grid-column:1 / -1;}
+  #feed{grid-column:2;min-width:0;margin:0;}
+  #sideLeft{grid-column:1;}
+  #sideRight{grid-column:3;}
+  .dash-side{
+    position:sticky;top:74px;align-self:start;
+    max-height:calc(100vh - 92px);overflow-y:auto;overflow-x:hidden;padding-bottom:24px;
+  }
+  .dash-side::-webkit-scrollbar{width:0;}
+  .dash-side-label{
+    font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:2px 0 10px 4px;
+  }
+  #sideLeft .tabs{flex-direction:column;overflow:visible;margin:0 0 18px;gap:5px;}
+  #sideLeft .tabs button{width:100%;justify-content:flex-start;text-align:left;}
+  #sideLeft .filter-btns{display:flex;flex-direction:column;gap:6px;align-items:stretch;}
+  #sideLeft .filter-btns .company-filter{width:100%;max-width:none;}
+  #sideLeft .filter-btns .unread-filter{width:100%;justify-content:flex-start;}
+  #feed .filter-row{justify-content:flex-start;flex-wrap:nowrap;margin-top:0;}
+  #feed .filter-row .search-box{flex:1;}
+  #sideRight > section,#sideRight > .nl,#sideRight > #eventBar{margin:0 0 24px;}
+  #sideRight .section-title{font-size:15px;margin:0 0 12px;}
+  #sideRight .hot-rail{flex-direction:column;overflow:visible;padding:0;gap:12px;margin:0;}
+  #sideRight .hot-card{flex:0 0 auto;width:auto;}
+  #sideRight .hot-cover{height:118px;}
+  #sideRight .watch-rail{flex-direction:column;overflow:visible;padding:0;gap:10px;}
+  #sideRight .watch-card{width:auto;}
+}
 .title-orig .badge{
   font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:0.1em;
   color:var(--muted);border:1px solid var(--line);border-radius:6px;
@@ -1547,6 +1586,58 @@ function entityTap(el, key){
   const f = document.getElementById("feed"); if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function closeEntity(){ ENTITY_VIEW = null; renderFeed(false); }
+
+/* ---------------- desktop 3-column dashboard ----------------
+   On wide screens the category tabs + filters move into a left rail,
+   and "Hot this week", events, watchlist and newsletter move into a
+   right rail — both sticky. Mobile keeps the single-column layout;
+   the nodes are relocated (not duplicated) so every existing function
+   and rendered piece keeps working, and restored on the way back down. */
+let DASH = null;
+function initDash(){
+  if (DASH) return DASH;
+  const wrap = document.querySelector(".wrap");
+  const tabs = document.getElementById("tabs");
+  const fctrls = ["companyFilter", "sortBtn", "bmFilter", "freeFilter", "unreadFilter"]
+    .map(id => document.getElementById(id)).filter(Boolean);
+  const eventBar = document.getElementById("eventBar");
+  const hotRail = document.getElementById("hotRail");
+  const hotSec = hotRail ? hotRail.closest("section") : null;
+  const watchSec = document.getElementById("watchSec");
+  const nlSec = document.getElementById("nlSec");
+  const nodes = [tabs, ...fctrls, eventBar, hotSec, watchSec, nlSec].filter(Boolean);
+  const homes = nodes.map(el => ({ el, parent: el.parentNode, next: el.nextSibling }));
+  DASH = { wrap, tabs, fctrls, eventBar, hotSec, watchSec, nlSec, homes, mounted: false, left: null, right: null };
+  return DASH;
+}
+function mountDash(){
+  const d = initDash();
+  if (d.mounted || !d.wrap) return;
+  const left = document.createElement("aside"); left.id = "sideLeft"; left.className = "dash-side";
+  const right = document.createElement("aside"); right.id = "sideRight"; right.className = "dash-side";
+  d.wrap.appendChild(left); d.wrap.appendChild(right);
+  const lbl = document.createElement("div"); lbl.className = "dash-side-label";
+  lbl.textContent = (STRINGS[LANG].dashBrowse || "Browse"); left.appendChild(lbl);
+  if (d.tabs) left.appendChild(d.tabs);
+  const fb = document.createElement("div"); fb.className = "filter-btns";
+  d.fctrls.forEach(c => fb.appendChild(c)); left.appendChild(fb);
+  [d.eventBar, d.hotSec, d.watchSec, d.nlSec].forEach(s => { if (s) right.appendChild(s); });
+  d.left = left; d.right = right; d.mounted = true;
+}
+function unmountDash(){
+  const d = DASH; if (!d || !d.mounted) return;
+  for (let i = d.homes.length - 1; i >= 0; i--){
+    const h = d.homes[i];
+    if (h.next && h.next.parentNode === h.parent) h.parent.insertBefore(h.el, h.next);
+    else h.parent.appendChild(h.el);
+  }
+  if (d.left) d.left.remove();
+  if (d.right) d.right.remove();
+  d.left = d.right = null; d.mounted = false;
+}
+function applyDash(){
+  if (window.matchMedia("(min-width:1024px)").matches) mountDash(); else unmountDash();
+}
 
 const fmt = d => { const [y,m,day] = String(d||"").slice(0,10).split("-"); return `${y}.${m}.${day}`; };
 const initial = s => s.trim().charAt(0).toUpperCase();
@@ -2961,6 +3052,8 @@ async function bootData(){
   buildEntityMatcher();
   initSeen();
   render();
+  applyDash();
+  window.matchMedia("(min-width:1024px)").addEventListener("change", applyDash);
   handleDeepLink();
   loadCommentCounts();
   loadLikeCounts();
