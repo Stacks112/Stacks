@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>저커버그, 메타 모델 API 개방: 에이전트 성능을 &#x27;싸게&#x27; 판다 · Stacks</title>
+<meta name="description" content="메타가 처음으로 자기네 AI 모델을 외부 개발자에게 돈 받고 팔기 시작했다. 저커버그의 세일즈 포인트는 노골적이다. &#x27;성능 좋은데 아주 싸다.&#x27; 특히 밀고 있는 건 에이전트 능력, 그러니까 사람이 시키면 AI가 컴퓨터를 직접 조작해가며 일을 끝내는 능력이다. 메타가 공개한 성적표를 쉽…">
+<meta name="keywords" content="AI MODELS, META, COMPUTE, Mark Zuckerberg (@finkd)">
+<link rel="canonical" href="https://stacks112.github.io/Stacks/p/zuck.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Stacks">
+<meta property="og:title" content="저커버그, 메타 모델 API 개방: 에이전트 성능을 &#x27;싸게&#x27; 판다">
+<meta property="og:description" content="메타가 처음으로 자기네 AI 모델을 외부 개발자에게 돈 받고 팔기 시작했다. 저커버그의 세일즈 포인트는 노골적이다. &#x27;성능 좋은데 아주 싸다.&#x27; 특히 밀고 있는 건 에이전트 능력, 그러니까 사람이 시키면 AI가 컴퓨터를 직접 조작해가며 일을 끝내는 능력이다. 메타가 공개한 성적표를 쉽…">
+<meta property="og:url" content="https://stacks112.github.io/Stacks/p/zuck.html">
+<meta property="article:published_time" content="2026-07-09">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="저커버그, 메타 모델 API 개방: 에이전트 성능을 &#x27;싸게&#x27; 판다">
+<meta name="twitter:description" content="메타가 처음으로 자기네 AI 모델을 외부 개발자에게 돈 받고 팔기 시작했다. 저커버그의 세일즈 포인트는 노골적이다. &#x27;성능 좋은데 아주 싸다.&#x27; 특히 밀고 있는 건 에이전트 능력, 그러니까 사람이 시키면 AI가 컴퓨터를 직접 조작해가며 일을 끝내는 능력이다. 메타가 공개한 성적표를 쉽…">
+<link rel="icon" href="../favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "저커버그, 메타 모델 API 개방: 에이전트 성능을 '싸게' 판다", "description": "메타가 처음으로 자기네 AI 모델을 외부 개발자에게 돈 받고 팔기 시작했다. 저커버그의 세일즈 포인트는 노골적이다. '성능 좋은데 아주 싸다.' 특히 밀고 있는 건 에이전트 능력, 그러니까 사람이 시키면 AI가 컴퓨터를 직접 조작해가며 일을 끝내는 능력이다. 메타가 공개한 성적표를 쉽…", "datePublished": "2026-07-09T00:00:00Z", "dateModified": "2026-07-09T00:00:00Z", "inLanguage": ["ko", "en", "ja"], "author": {"@type": "Person", "name": "Mark Zuckerberg (@finkd)"}, "publisher": {"@type": "Organization", "name": "The Infrastructure Thesis"}, "mainEntityOfPage": "https://stacks112.github.io/Stacks/p/zuck.html", "isBasedOn": "https://x.com/finkd/status/2075218444056707458", "url": "https://stacks112.github.io/Stacks/p/zuck.html"}</script>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.card{background:#141519!important}.gist{color:#C9CDD6!important}}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
+.topbar{padding:16px 0;font-weight:800}
+.topbar a{color:inherit;text-decoration:none}
+.cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#0064E0,#00C6FF);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
+.cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
+.meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
+h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
+.lang{border-top:1px solid #ECEDF1;padding-top:18px;margin-top:22px}
+@media(prefers-color-scheme:dark){.lang{border-color:#26272E}}
+.lang-tag{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8E93A0}
+.lang h2{font-size:18px;margin:.3em 0 .5em}
+.gist{color:#3E414B;white-space:pre-line}
+.why{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
+@media(prefers-color-scheme:dark){.why{background:#1A1B21}}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.btn{display:inline-block;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px}
+.btn.app{background:#111214;color:#fff}
+.btn.src{background:#F6F7F9;color:#17181C;border:1px solid #ECEDF1}
+@media(prefers-color-scheme:dark){.btn.app{background:#1E1F26;color:#fff}.btn.src{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.paid{font-size:12px;color:#8E93A0;align-self:center}
+.related{margin-top:30px;font-size:14px}
+.related ul{padding-left:18px}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){footer{border-color:#26272E}}
+footer a{color:#8E93A0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><a href="../">◆ Stacks</a></div>
+  <div class="cover"><span class="label">META</span></div>
+  <div class="meta">Mark Zuckerberg (@finkd) · 2026-07-09 · 원문: EN</div>
+  <h1>저커버그, 메타 모델 API 개방: 에이전트 성능을 &#x27;싸게&#x27; 판다</h1>
+  <div class="actions">
+    <a class="btn app" href="https://stacks112.github.io/Stacks/#sig-zuck">Stacks 앱에서 보기 →</a>
+    <a class="btn src" href="https://x.com/finkd/status/2075218444056707458" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
+    
+  </div>
+  <section class="lang" lang="ko"><div class="lang-tag">한국어</div><h2>저커버그, 메타 모델 API 개방: 에이전트 성능을 &#x27;싸게&#x27; 판다</h2><p class="gist">메타가 처음으로 자기네 AI 모델을 외부 개발자에게 돈 받고 팔기 시작했다. 저커버그의 세일즈 포인트는 노골적이다. &#x27;성능 좋은데 아주 싸다.&#x27; 특히 밀고 있는 건 에이전트 능력, 그러니까 사람이 시키면 AI가 컴퓨터를 직접 조작해가며 일을 끝내는 능력이다. 메타가 공개한 성적표를 쉽게 읽으면 이렇다. &#x27;AI에게 일 시키기&#x27; 종목에서는 자기들이 1등이고 앤트로픽을 꽤 앞선다는 주장. 대신 그 성적표에는 약점도 정직하게 적혀 있는데, 코딩 실력은 여전히 앤트로픽이, 장기 프로젝트와 시각 추론은 오픈AI가 앞선다. 그러니까 메타의 전략은 &#x27;최고&#x27;가 아니라 &#x27;충분히 좋은 걸 제일 싸게&#x27;다. 페이스북과 인스타그램으로 번 돈으로 자체 데이터센터를 깔아뒀으니 가격으로 눌러버릴 수 있다는 계산이다.</p><p class="why"><b>Why it matters</b> · 메타가 추론을 &#x27;아주 싸게&#x27; 팔겠다는 건 가격전쟁 선언이다. 모델 가격전쟁의 승자는 가장 싼 컴퓨트를 가진 쪽이다. 인프라 증설엔 호재, 마진엔 잔혹하다.</p></section><section class="lang" lang="en"><div class="lang-tag">English</div><h2>Zuckerberg opens Meta&#x27;s model API: agentic performance at a discount</h2><p class="gist">Meta has started selling its AI models to outside developers for the first time. Zuckerberg&#x27;s sales pitch is blunt: strong performance, very cheap. The capability he&#x27;s pushing hardest is agents, meaning AI that finishes a task by actually operating a computer when you ask it to. Reading Meta&#x27;s own scorecard in plain terms: in the &#x27;getting AI to do work&#x27; events, Meta claims first place, well ahead of Anthropic. But the same scorecard honestly lists the weaknesses too: Anthropic still leads in coding skill, and OpenAI leads in long projects and visual reasoning. So Meta&#x27;s strategy isn&#x27;t &#x27;the best&#x27;, it&#x27;s &#x27;good enough, at the lowest price.&#x27; The calculation: with datacenters already paid for by Facebook and Instagram money, Meta can win by squeezing on price.</p><p class="why"><b>Why it matters</b> · Meta selling inference &#x27;at a very low price&#x27; is a price-war declaration, and model price wars are won by whoever owns the cheapest compute. Bullish for the buildout, brutal for margins.</p></section><section class="lang" lang="ja"><div class="lang-tag">日本語</div><h2>ザッカーバーグ、メタのモデルAPIを開放: エージェント性能を「安く」売る</h2><p class="gist">メタが初めて自社のAIモデルを外部の開発者に有料で売り始めた。ザッカーバーグのセールスポイントは露骨だ。「性能は良くて、とても安い」。特に推しているのはエージェント能力、つまり人が頼めばAIがコンピュータを直接操作して仕事を終わらせる能力だ。メタが公開した成績表を平たく読むとこうなる。「AIに仕事をさせる」種目では自分たちが1位で、アンソロピックをかなり上回るという主張。ただしその成績表には弱点も正直に書かれていて、コーディングの腕は依然アンソロピックが、長期プロジェクトと視覚推論はOpenAIが先行する。つまりメタの戦略は「最高」ではなく「十分良いものを最安で」だ。フェイスブックとインスタグラムで稼いだ金で自前のデータセンターを敷いてあるから、価格で押し潰せるという計算である。</p><p class="why"><b>Why it matters</b> · メタが推論を「非常に安く」売るというのは価格戦争の宣言だ。モデル価格戦争の勝者は最も安いコンピュートを持つ側。インフラ増設には好材料、マージンには残酷だ。</p></section>
+  <nav class="related"><h3>Related</h3><ul><li><a href="nadella.html">nadella</a></li><li><a href="cook-broadcom.html">cook-broadcom</a></li></ul></nav>
+  <footer>
+    요약·해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아닙니다.<br>
+    <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트 · Stacks</title>
+<meta name="description" content="AI 데이터센터의 전기 문제에 대한 Doomberg의 오래된 답은 이렇다. &#x27;발전소를 기다리지 말고, 가스전 옆에 데이터센터를 지어라.&#x27; 한쪽 문으로 천연가스가 들어가고 반대쪽 문으로 데이터가 나오는 건물. 전력망에 연결도 안 하니 몇 년씩 걸리는 송전선 인허가도 필요 없다. 2년 전…">
+<meta name="keywords" content="POWER, DATACENTER, PERMIAN, Doomberg">
+<link rel="canonical" href="https://stacks112.github.io/Stacks/p/doomberg-kilby.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Stacks">
+<meta property="og:title" content="가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트">
+<meta property="og:description" content="AI 데이터센터의 전기 문제에 대한 Doomberg의 오래된 답은 이렇다. &#x27;발전소를 기다리지 말고, 가스전 옆에 데이터센터를 지어라.&#x27; 한쪽 문으로 천연가스가 들어가고 반대쪽 문으로 데이터가 나오는 건물. 전력망에 연결도 안 하니 몇 년씩 걸리는 송전선 인허가도 필요 없다. 2년 전…">
+<meta property="og:url" content="https://stacks112.github.io/Stacks/p/doomberg-kilby.html">
+<meta property="article:published_time" content="2026-07-07">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트">
+<meta name="twitter:description" content="AI 데이터센터의 전기 문제에 대한 Doomberg의 오래된 답은 이렇다. &#x27;발전소를 기다리지 말고, 가스전 옆에 데이터센터를 지어라.&#x27; 한쪽 문으로 천연가스가 들어가고 반대쪽 문으로 데이터가 나오는 건물. 전력망에 연결도 안 하니 몇 년씩 걸리는 송전선 인허가도 필요 없다. 2년 전…">
+<link rel="icon" href="../favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트", "description": "AI 데이터센터의 전기 문제에 대한 Doomberg의 오래된 답은 이렇다. '발전소를 기다리지 말고, 가스전 옆에 데이터센터를 지어라.' 한쪽 문으로 천연가스가 들어가고 반대쪽 문으로 데이터가 나오는 건물. 전력망에 연결도 안 하니 몇 년씩 걸리는 송전선 인허가도 필요 없다. 2년 전…", "datePublished": "2026-07-07T00:00:00Z", "dateModified": "2026-07-07T00:00:00Z", "inLanguage": ["ko", "en", "ja"], "author": {"@type": "Person", "name": "Doomberg"}, "publisher": {"@type": "Organization", "name": "The Infrastructure Thesis"}, "mainEntityOfPage": "https://stacks112.github.io/Stacks/p/doomberg-kilby.html", "isBasedOn": "https://newsletter.doomberg.com/p/blue-chips", "url": "https://stacks112.github.io/Stacks/p/doomberg-kilby.html"}</script>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.card{background:#141519!important}.gist{color:#C9CDD6!important}}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
+.topbar{padding:16px 0;font-weight:800}
+.topbar a{color:inherit;text-decoration:none}
+.cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#1D4E89,#3E7CB1);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
+.cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
+.meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
+h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
+.lang{border-top:1px solid #ECEDF1;padding-top:18px;margin-top:22px}
+@media(prefers-color-scheme:dark){.lang{border-color:#26272E}}
+.lang-tag{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8E93A0}
+.lang h2{font-size:18px;margin:.3em 0 .5em}
+.gist{color:#3E414B;white-space:pre-line}
+.why{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
+@media(prefers-color-scheme:dark){.why{background:#1A1B21}}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.btn{display:inline-block;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px}
+.btn.app{background:#111214;color:#fff}
+.btn.src{background:#F6F7F9;color:#17181C;border:1px solid #ECEDF1}
+@media(prefers-color-scheme:dark){.btn.app{background:#1E1F26;color:#fff}.btn.src{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.paid{font-size:12px;color:#8E93A0;align-self:center}
+.related{margin-top:30px;font-size:14px}
+.related ul{padding-left:18px}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){footer{border-color:#26272E}}
+footer a{color:#8E93A0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><a href="../">◆ Stacks</a></div>
+  <div class="cover"><span class="label">KILBY</span></div>
+  <div class="meta">Doomberg · 2026-07-07 · 원문: EN</div>
+  <h1>가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트</h1>
+  <div class="actions">
+    <a class="btn app" href="https://stacks112.github.io/Stacks/#sig-doomberg-kilby">Stacks 앱에서 보기 →</a>
+    <a class="btn src" href="https://newsletter.doomberg.com/p/blue-chips" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
+    <span class="paid">$ 원문은 유료 구독</span>
+  </div>
+  <section class="lang" lang="ko"><div class="lang-tag">한국어</div><h2>가스가 들어가고 데이터가 나온다: 드디어 성립하는 오프그리드 프로젝트</h2><p class="gist">AI 데이터센터의 전기 문제에 대한 Doomberg의 오래된 답은 이렇다. &#x27;발전소를 기다리지 말고, 가스전 옆에 데이터센터를 지어라.&#x27; 한쪽 문으로 천연가스가 들어가고 반대쪽 문으로 데이터가 나오는 건물. 전력망에 연결도 안 하니 몇 년씩 걸리는 송전선 인허가도 필요 없다. 2년 전 이 그림을 그렸고, 논리는 다 맞아떨어졌는데 딱 하나가 안 됐다. 실제로 지어진 게 없다. 환경 문제로 규제가 조여지면서 대형 프로젝트 중 &#x27;진짜 돈을 넣겠다&#x27;는 최종투자결정(FID)까지 간 곳이 아직 하나도 없는 것. 그 와중에 유력 후보가 나타났다. Project Kilby. 그 유명한 스타게이트의 두 배 크기에, 참여 기업들의 급이 다르고, FID까지 몇 달 남았다. Doomberg는 이게 진짜 지어지면 미국 최대 산유지인 퍼미안 분지의 기름과 가스 흐름이 어떻게 바뀌는지 계산해 들어간다.</p><p class="why"><b>Why it matters</b> · 병목은 가스도 터빈도 아니었다. 인허가와 FID다. Kilby는 오프그리드 컴퓨트가 논리인지 건물인지를 가리는 첫 시험대다.</p></section><section class="lang" lang="en"><div class="lang-tag">English</div><h2>Gas in one side, data out the other: the off-grid project that finally pencils</h2><p class="gist">Doomberg&#x27;s long-standing answer to the AI datacenter power problem: don&#x27;t wait for power plants, build the datacenter next to the gas field. Natural gas in one door, data out the other. No grid connection means no multi-year transmission permits. They drew this picture two years ago, and the logic has held up on every point except one: nothing has actually been built. Environmental rules tightened, and not a single marquee project has reached final investment decision (FID), the moment real money commits. Now a serious contender has appeared: Project Kilby, twice the size of the famous Stargate, backed by heavyweight companies, and just months from FID. Doomberg runs the numbers on what actually building it would do to oil and gas flows in the Permian Basin, America&#x27;s biggest oilfield.</p><p class="why"><b>Why it matters</b> · The bottleneck was never the gas or the turbines. It is the permit and the FID. Kilby is the first real test of whether off-grid compute is a thesis or a building.</p></section><section class="lang" lang="ja"><div class="lang-tag">日本語</div><h2>ガスが入り、データが出る: ついに成立するオフグリッド・プロジェクト</h2><p class="gist">AIデータセンターの電力問題に対するDoombergの以前からの答えはこうだ。「発電所を待つな。ガス田の隣にデータセンターを建てろ」。片方のドアから天然ガスが入り、反対側からデータが出る建物。送電網につながないので、何年もかかる送電線の許認可も要らない。2年前にこの絵を描き、論理はすべて当たったのに、一つだけ実現していない。実際に建った物件がないのだ。環境問題で規制が締まり、大型案件のうち「本当に金を入れる」最終投資決定(FID)まで行ったところがまだ一つもない。そんな中、有力候補が現れた。Project Kilby。あの有名なスターゲイトの2倍の規模で、参加企業の格が違い、FIDまで数ヶ月。Doombergは、これが本当に建てば米国最大の産油地パーミアン盆地の石油とガスの流れがどう変わるかを計算していく。</p><p class="why"><b>Why it matters</b> · ボトルネックはガスでもタービンでもなかった。許認可とFIDだ。Kilbyは、オフグリッド・コンピュートが論理なのか建物なのかを分ける最初の試金石だ。</p></section>
+  <nav class="related"><h3>Related</h3><ul><li><a href="ess.html">ess</a></li><li><a href="doomberg-bloom.html">doomberg-bloom</a></li></ul></nav>
+  <footer>
+    요약·해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아닙니다.<br>
+    <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
+  </footer>
+</div>
+</body>
+</html>
