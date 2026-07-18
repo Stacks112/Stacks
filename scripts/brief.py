@@ -14,7 +14,7 @@ Env:
   ITEMS_PATH            optional, default "items.json"
   SITE_URL              optional, default "https://stacksdaily.com"
   STATE_PATH            optional, default "scripts/.brief_state.json"
-No API key needed — this only reads JSON and calls the worker.
+No API key needed, this only reads JSON and calls the worker.
 """
 
 import json
@@ -97,7 +97,7 @@ def main():
         msg = t.get("ko") or t.get("en") or ""
         detail = w.get("ko") or w.get("en") or ""
         if detail:
-            msg = msg + " — " + detail
+            msg = msg + ": " + detail
         url = SITE + "/#sig-" + newest.get("id", "")
         if notify("daily", title, msg, url):
             state["last_item"] = newest.get("id")
