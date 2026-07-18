@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v72 :: since-badge share = copy link on PC, OG cards redesigned as thumbnail-left layout with subject photo/logo (fetched via GH Action) -->
+<!-- STACKS BUILD v73 :: read=fold cards to title, company filter A-Z + person filter, author accuracy leaderboard, 5 audit bug fixes -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -188,6 +188,7 @@ const STRINGS = {
     seriesNew: "New in a story you follow",
     seriesClose: "Back to feed",
     byCompany: "Companies",
+    byPerson: "People",
     bmAdd: "Bookmark",
     bmDone: "Bookmarked ✓",
     bmEmpty: "No bookmarks yet. Tap Bookmark on any item to save it here.",
@@ -245,6 +246,9 @@ const STRINGS = {
     sbCalls: "Calls",
     sbAlign: "Direction match",
     sbRecord: "Verified calls",
+    sbAcc: "Accuracy",
+    sbRank: "#",
+    sbLeader: "Author leaderboard",
     sbAllCalls: "All calls",
     sbEmpty: "Not enough calls to score yet.",
     briefTitle: "My briefing",
@@ -324,6 +328,7 @@ const STRINGS = {
     seriesNew: "팔로우 중인 이야기에 새 글",
     seriesClose: "피드로 돌아가기",
     byCompany: "회사별",
+    byPerson: "인물별",
     bmAdd: "북마크",
     bmDone: "북마크 ✓",
     bmEmpty: "아직 북마크가 없어요. 글의 북마크 버튼을 누르면 여기 모입니다.",
@@ -381,6 +386,9 @@ const STRINGS = {
     sbCalls: "콜",
     sbAlign: "방향 일치",
     sbRecord: "검증된 예측",
+    sbAcc: "적중률",
+    sbRank: "#",
+    sbLeader: "필진 적중률 랭킹",
     sbAllCalls: "전체 콜",
     sbEmpty: "아직 집계할 콜이 부족해요.",
     briefTitle: "내 브리핑",
@@ -460,6 +468,7 @@ const STRINGS = {
     seriesNew: "フォロー中の物語に新しい記事",
     seriesClose: "フィードに戻る",
     byCompany: "企業別",
+    byPerson: "人物別",
     bmAdd: "ブックマーク",
     bmDone: "ブックマーク ✓",
     bmEmpty: "まだブックマークがありません。記事のブックマークボタンで保存できます。",
@@ -517,6 +526,9 @@ const STRINGS = {
     sbCalls: "コール",
     sbAlign: "方向一致",
     sbRecord: "検証済みの予測",
+    sbAcc: "的中率",
+    sbRank: "#",
+    sbLeader: "執筆者ランキング",
     sbAllCalls: "すべてのコール",
     sbEmpty: "まだ集計できるコールが足りません。",
     briefTitle: "マイ・ブリーフィング",
@@ -1126,6 +1138,7 @@ html[data-lang="ko"] #toast{font-family:"Pretendard Variable",sans-serif;}
   color:var(--muted);padding:2px;line-height:0;border-radius:6px;display:inline-flex;align-items:center;
 }
 .since-share:hover{color:var(--accent);}
+.since-share.copied{color:#12B76A;}
 /* track-record scoreboard */
 .tab-sb{border-style:dashed;}
 .sb-table{
@@ -1133,7 +1146,7 @@ html[data-lang="ko"] #toast{font-family:"Pretendard Variable",sans-serif;}
   background:var(--bg-soft);overflow:hidden;
 }
 .sb-row{
-  display:grid;grid-template-columns:minmax(0,1.6fr) .8fr .7fr 1fr;gap:8px;
+  display:grid;grid-template-columns:34px minmax(0,1.5fr) .7fr .95fr .85fr;gap:8px;
   align-items:center;padding:10px 14px;border-top:1px solid var(--line);
   font-size:12.5px;
 }
@@ -1147,6 +1160,9 @@ html[data-lang="ko"] #toast{font-family:"Pretendard Variable",sans-serif;}
 .sb-src-link:hover{text-decoration:underline;}
 .sb-c i,.sb-r i{font-style:normal;font-weight:700;margin-right:6px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;}
 .sb-a{font-family:"IBM Plex Mono",monospace;font-weight:700;}
+.sb-rk{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:13px;text-align:center;}
+.sb-acc-v{font-weight:800;}
+.sb-acc-n{display:block;font-size:9.5px;color:var(--muted);font-weight:600;margin-top:1px;}
 .ws-bull{color:#0E9F5E;}
 .ws-bear{color:#E04438;}
 .ws-ctx{color:var(--muted);}
@@ -1163,7 +1179,7 @@ html[data-lang="ko"] #toast{font-family:"Pretendard Variable",sans-serif;}
 .sb-since{font-family:"IBM Plex Mono",monospace;font-size:11.5px;flex:0 0 auto;}
 .sb-oc{margin-top:0;padding:3px 8px;font-size:10.5px;flex:0 0 auto;white-space:nowrap;}
 @media (max-width:640px){
-  .sb-row{grid-template-columns:minmax(0,1.3fr) .7fr .6fr .9fr;padding:9px 10px;font-size:11.5px;}
+  .sb-row{grid-template-columns:26px minmax(0,1.3fr) .6fr .85fr .8fr;padding:9px 8px;font-size:11.5px;gap:6px;}
   .sb-item{flex-wrap:wrap;row-gap:4px;}
   .sb-title{flex-basis:100%;white-space:normal;}
 }
@@ -1380,6 +1396,17 @@ html[data-lang="ko"] .ask-row{font-family:"Pretendard Variable","Inter",sans-ser
   padding:1px 6px;margin-left:6px;letter-spacing:.5px;
 }
 .card.is-read h3,.card.is-read .gist,.card.is-read .title-orig{opacity:.55;}
+/* read = folded: collapse the body to just the title */
+.card-title{cursor:pointer;display:flex;align-items:flex-start;gap:8px;}
+.card-title .ct-text{flex:1 1 auto;min-width:0;}
+.card-title .unread-dot{margin-top:9px;}
+.collapse-caret{flex:0 0 auto;color:var(--muted);font-weight:800;font-size:20px;line-height:1;margin-top:3px;transition:transform .3s ease;transform:rotate(90deg);}
+.card.collapsed .collapse-caret{transform:rotate(0deg);}
+.card-body{overflow:hidden;max-height:4000px;opacity:1;transition:max-height .42s cubic-bezier(.4,0,.2,1),opacity .28s ease;}
+.card.collapsed .card-body{max-height:0;opacity:0;}
+.card.collapsed{padding-bottom:18px;}
+.card.collapsed.is-read h3{opacity:.72;}
+.card.collapsed .card-title{margin-bottom:0;}
 .read-toggle{
   font-size:12.5px;font-weight:600;color:var(--muted);
   background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
@@ -1978,6 +2005,7 @@ footer a{color:var(--muted);}
         <button class="search-clear" id="searchClear" onclick="clearSearch()" hidden>&times;</button>
       </div>
       <select class="company-filter" id="companyFilter" onchange="pickCompany(this.value)"></select>
+      <select class="company-filter" id="personFilter" onchange="pickCompany(this.value)"></select>
       <button class="unread-filter" id="sortBtn" onclick="toggleSort()"></button>
       <button class="unread-filter" id="bmFilter" onclick="toggleBmOnly()"></button>
       <button class="unread-filter" id="freeFilter" onclick="toggleFreeOnly()"></button>
@@ -2028,7 +2056,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v72</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v73</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2677,7 +2705,7 @@ function debateTitleHtml(key){
   const span = '<span class="debate-ent has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); entityFeedView(\'' + safe + '\')">' + esc(nm) + entityTip(key) + "</span>";
   const tmpl = (e.kind === "person") ? S.debatePerson : S.debateCo;
   const p = (LANG === "ko" && e.kind !== "person") ? koEulReul(nm) : "";
-  return tmpl.replace("{name}", span).replace("{p}", p);
+  return tmpl.replace("{name}", () => span).replace("{p}", p);
 }
 function renderEntityDebate(list, items, S){
   if (STANCE_FILTER && STANCE_FILTER_KEY !== ENTITY_VIEW) STANCE_FILTER = null;
@@ -2740,11 +2768,9 @@ function openScoreboard(){
   if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function closeScoreboard(){ SB_VIEW = false; renderFeed(false); }
-function renderScoreboard(list, S){
-  const calls = ITEMS.filter(i => {
-    const s = itemStance(i);
-    return s === "bull" || s === "bear";
-  }).sort((a, b) => (a.date < b.date ? 1 : -1));
+async function renderScoreboard(list, S){
+  const calls = ITEMS.filter(i => { const s = itemStance(i); return s === "bull" || s === "bear"; })
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
   const head = document.createElement("div");
   head.className = "series-header sb-header";
   head.innerHTML =
@@ -2754,40 +2780,71 @@ function renderScoreboard(list, S){
   list.appendChild(head);
   if (!calls.length){
     const em = document.createElement("div");
-    em.className = "empty";
-    em.textContent = S.sbEmpty;
-    list.appendChild(em);
-    return;
+    em.className = "empty"; em.textContent = S.sbEmpty;
+    list.appendChild(em); return;
   }
-  /* per-source aggregates */
+  const loading = document.createElement("div");
+  loading.className = "ehq-loading"; loading.textContent = "···";
+  list.appendChild(loading);
+
+  /* resolve every call's "since post" move up front so we can rank authors
+     by real direction accuracy (auto-scored, no manual step). */
+  const sinceMap = {};
+  (await Promise.all(calls.map(i => sinceItem(i).then(res => ({ id: i.id, res })))))
+    .forEach(o => { sinceMap[o.id] = o.res; });
+  if (SB_VIEW !== true) { loading.remove(); return; } /* user left the view */
+
   const bySrc = {};
   calls.forEach(i => {
-    const b = bySrc[i.source] || (bySrc[i.source] = { src: i.source, items: [], bull: 0, bear: 0, hit: 0, miss: 0, pending: 0 });
+    const b = bySrc[i.source] || (bySrc[i.source] = { src: i.source, items: [], bull: 0, bear: 0, hit: 0, miss: 0, pending: 0, match: 0, scored: 0 });
     b.items.push(i);
     b[itemStance(i)]++;
     if (i.outcome) b[i.outcome.status] = (b[i.outcome.status] || 0) + 1;
+    const res = sinceMap[i.id];
+    if (res){ b.scored++; const st = itemStance(i); if ((st === "bull" && res.pct >= 0) || (st === "bear" && res.pct < 0)) b.match++; }
   });
-  const rows = Object.values(bySrc).sort((a, b) => b.items.length - a.items.length);
+  const rows = Object.values(bySrc).map(r => Object.assign(r, { acc: r.scored ? r.match / r.scored : null }));
+  rows.sort((a, b) => {
+    if (a.acc == null && b.acc == null) return b.items.length - a.items.length;
+    if (a.acc == null) return 1;
+    if (b.acc == null) return -1;
+    return b.acc - a.acc || b.scored - a.scored || b.items.length - a.items.length;
+  });
+  loading.remove();
+
+  const medal = ri => ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1);
+  const accHtml = r => {
+    if (r.acc == null) return '<span class="sb-acc-v" style="color:var(--muted)">–</span>';
+    const pct = Math.round(r.acc * 100);
+    const col = pct >= 60 ? "#0E9F5E" : pct >= 40 ? "var(--muted)" : "#E04438";
+    return '<span class="sb-acc-v" style="color:' + col + '">' + pct + '%</span><span class="sb-acc-n">' + r.match + "/" + r.scored + "</span>";
+  };
+  const lh0 = document.createElement("h2");
+  lh0.className = "section-title sb-list-title"; lh0.style.marginTop = "18px";
+  lh0.textContent = S.sbLeader;
+  list.appendChild(lh0);
   const tbl = document.createElement("div");
   tbl.className = "sb-table";
   tbl.innerHTML =
     '<div class="sb-row sb-head-row">'
+      + '<span class="sb-rk">' + S.sbRank + "</span>"
       + '<span class="sb-src"></span>'
       + '<span class="sb-c">' + S.sbCalls + "</span>"
-      + '<span class="sb-a">' + S.sbAlign + "</span>"
+      + '<span class="sb-a">' + S.sbAcc + "</span>"
       + '<span class="sb-r">' + S.sbRecord + "</span>"
     + "</div>"
     + rows.map((r, ri) =>
       '<div class="sb-row">'
+        + '<span class="sb-rk">' + medal(ri) + "</span>"
         + (ENTITIES[r.src]
             ? '<button class="sb-src sb-src-link" onclick="entityFeedView(\'' + r.src.replace(/'/g, "\\'") + '\')">' + esc(dispName(r.src)) + " ↗</button>"
             : '<span class="sb-src">' + esc(dispName(r.src)) + "</span>")
         + '<span class="sb-c">' + (r.bull ? '<i class="ws-bull">▲' + r.bull + "</i>" : "") + (r.bear ? '<i class="ws-bear">▼' + r.bear + "</i>" : "") + "</span>"
-        + '<span class="sb-a" data-sba="' + ri + '">···</span>'
+        + '<span class="sb-a">' + accHtml(r) + "</span>"
         + '<span class="sb-r">' + (r.hit ? '<i class="ws-bull">✓' + r.hit + "</i>" : "") + (r.miss ? '<i class="ws-bear">✕' + r.miss + "</i>" : "") + (r.pending ? "<i>⏳" + r.pending + "</i>" : "") + ((r.hit || r.miss || r.pending) ? "" : "–") + "</span>"
       + "</div>").join("");
   list.appendChild(tbl);
-  /* all calls, newest first */
+
   const lh = document.createElement("h2");
   lh.className = "section-title sb-list-title";
   lh.textContent = S.sbAllCalls;
@@ -2796,38 +2853,20 @@ function renderScoreboard(list, S){
   ul.className = "sb-list";
   ul.innerHTML = calls.map(i => {
     const st = itemStance(i), m = stanceMeta(st);
+    const res = sinceMap[i.id];
+    const since = res
+      ? '<span class="sb-since"><b style="color:' + (res.pct >= 0 ? "#12B76A" : "#F04438") + '">' + (res.pct >= 0 ? "+" : "") + res.pct.toFixed(1) + "%</b></span>"
+      : '<span class="sb-since">–</span>';
     const oc = i.outcome
       ? '<span class="oc oc-' + i.outcome.status + ' sb-oc">' + ({ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[i.outcome.status] || "") + "</span>" : "";
     return '<button class="sb-item" onclick="goToItem(\'' + i.id + '\')">'
       + '<span class="sb-date">' + fmt(i.date) + "</span>"
       + '<span class="stance-pill sp-' + m.key + '">' + m.label + "</span>"
       + '<span class="sb-title">' + esc(i.title[LANG]) + "</span>"
-      + '<span class="sb-since" data-sbs="' + i.id + '">···</span>'
-      + oc
+      + since + oc
     + "</button>";
   }).join("");
   list.appendChild(ul);
-  /* async: fill "since post" moves + per-source direction match */
-  rows.forEach((r, ri) => {
-    Promise.all(r.items.map(i => sinceItem(i).then(res => ({ i, res })))).then(out => {
-      let match = 0, scored = 0;
-      out.forEach(({ i, res }) => {
-        const el = ul.querySelector('.sb-since[data-sbs="' + i.id + '"]');
-        if (!res){ if (el) el.textContent = "–"; return; }
-        scored++;
-        const st = itemStance(i);
-        const ok = (st === "bull" && res.pct >= 0) || (st === "bear" && res.pct < 0);
-        if (ok) match++;
-        if (el){
-          const up = res.pct >= 0;
-          el.innerHTML = '<b style="color:' + (up ? "#12B76A" : "#F04438") + '">' + (up ? "+" : "") + res.pct.toFixed(1) + "%</b>";
-          el.title = S.sinceTip;
-        }
-      });
-      const ael = tbl.querySelector('.sb-a[data-sba="' + ri + '"]');
-      if (ael) ael.textContent = scored ? match + "/" + scored : "–";
-    });
-  });
 }
 function stanceFilterTap(k){
   STANCE_FILTER = (STANCE_FILTER === k) ? null : k;
@@ -3079,6 +3118,7 @@ function goToItem(id){
       el = document.getElementById("sig-" + id);
     }
     if (!el) return;
+    el.classList.remove("collapsed");
     try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
     el.classList.remove("flash");
     void el.offsetWidth;
@@ -3351,6 +3391,7 @@ function showEntityRail(key){
   const ok = showEntityRailOrig(key);
   if (ok !== false) pushView();
   railDebateEnhance(key);
+  return ok;
 }
 function showEntityRailOrig(key){
   const rail = document.getElementById("sideRight");
@@ -3395,7 +3436,7 @@ function initDash(){
   if (DASH) return DASH;
   const wrap = document.querySelector(".wrap");
   const tabs = document.getElementById("tabs");
-  const fctrls = ["companyFilter", "sortBtn", "bmFilter", "freeFilter", "unreadFilter"]
+  const fctrls = ["companyFilter", "personFilter", "sortBtn", "bmFilter", "freeFilter", "unreadFilter"]
     .map(id => document.getElementById(id)).filter(Boolean);
   const eventBar = document.getElementById("eventBar");
   const hotRail = document.getElementById("hotRail");
@@ -3670,7 +3711,7 @@ function toggleInterest(id){
   (o.series || []).forEach(sid => {
     if (!SERIES[sid]) return;
     if (on && !FOLLOWED.has(sid)){ FOLLOWED.add(sid); SERIES_SEEN[sid] = seriesItems(sid).length; osTag("s_" + sid, true); }
-    else if (!on && FOLLOWED.has(sid)) FOLLOWED.delete(sid);
+    else if (!on && FOLLOWED.has(sid)){ FOLLOWED.delete(sid); osTag("s_" + sid, false); }
   });
   store.set("stk_watch", [...WATCH]);
   store.set("stk_series", [...FOLLOWED]);
@@ -3934,11 +3975,21 @@ function toggleBookmark(id){
 function toggleBmOnly(){ SERIES_VIEW = null; ENTITY_VIEW = null; BM_ONLY = !BM_ONLY; renderFeed(false); }
 function refreshCompanyFilter(){
   const sel = document.getElementById("companyFilter");
-  if (!sel) return;
-  const companies = Object.keys(ENTITIES).filter(k => ENTITIES[k].kind === "company");
-  const cur = companies.find(c => c.toLowerCase() === QUERY) || "";
-  sel.innerHTML = '<option value="">' + STRINGS[LANG].byCompany + '</option>'
-    + companies.map(c => '<option value="' + c + '"' + (c === cur ? " selected" : "") + '>' + c + '</option>').join("");
+  if (sel){
+    const companies = Object.keys(ENTITIES).filter(k => ENTITIES[k].kind === "company")
+      .sort((a, b) => a.localeCompare(b));
+    const cur = companies.find(c => c === ENTITY_VIEW) || "";
+    sel.innerHTML = '<option value="">' + STRINGS[LANG].byCompany + '</option>'
+      + companies.map(c => '<option value="' + esc(c) + '"' + (c === cur ? " selected" : "") + '>' + esc(c) + '</option>').join("");
+  }
+  const psel = document.getElementById("personFilter");
+  if (psel){
+    const people = Object.keys(ENTITIES).filter(k => ENTITIES[k].kind === "person")
+      .sort((a, b) => entName(a).localeCompare(entName(b)));
+    const cur = people.find(c => c === ENTITY_VIEW) || "";
+    psel.innerHTML = '<option value="">' + STRINGS[LANG].byPerson + '</option>'
+      + people.map(c => '<option value="' + esc(c) + '"' + (c === cur ? " selected" : "") + '>' + esc(entName(c)) + '</option>').join("");
+  }
 }
 function tagTap(tag){
   pickCompany(tag);
@@ -3946,17 +3997,15 @@ function tagTap(tag){
   if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function pickCompany(name){
-  /* a known company opens its debate page; anything else is a text search */
-  if (name && ENTITIES[name] && ENTITIES[name].kind === "company"){
+  /* a known company OR person opens its profile; anything else is a search */
+  if (name && ENTITIES[name] && (ENTITIES[name].kind === "company" || ENTITIES[name].kind === "person")){
     if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches && typeof showEntityRail === "function"){
-      const sel = document.getElementById("companyFilter"); if (sel) sel.value = "";
+      const c = document.getElementById("companyFilter"); if (c) c.value = "";
+      const p = document.getElementById("personFilter"); if (p) p.value = "";
       showEntityRail(name);
       return;
     }
-    SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
-    const inp0 = document.getElementById("searchInput"); if (inp0) inp0.value = "";
-    ENTITY_VIEW = name;
-    renderFeed(true);
+    entityFeedView(name);
     return;
   }
   const inp = document.getElementById("searchInput");
@@ -3986,16 +4035,27 @@ const READ_LOG = store.get("stk_read_log", {});
 function logRead(id){
   if (!READ_LOG[id]){ READ_LOG[id] = todayStr(); store.set("stk_read_log", READ_LOG); }
 }
+/* read = folded: a read card collapses to just its title; tapping the
+   title expands it again. */
+function toggleCollapse(id){
+  const el = document.getElementById("sig-" + id);
+  if (el) el.classList.toggle("collapsed");
+}
 function setRead(id){
   logRead(id);
   if (READ.has(id)) return;
   READ.add(id);
   store.set("stk_read", [...READ]);
+  const el = document.getElementById("sig-" + id);
+  if (el) el.classList.add("collapsed");
   refreshCardRead(id);
 }
 function toggleRead(id){
-  if (READ.has(id)) READ.delete(id); else { READ.add(id); logRead(id); }
+  const nowRead = !READ.has(id);
+  if (nowRead){ READ.add(id); logRead(id); } else READ.delete(id);
   store.set("stk_read", [...READ]);
+  const el = document.getElementById("sig-" + id);
+  if (el) el.classList.toggle("collapsed", nowRead);
   if (UNREAD_ONLY) render(); else refreshCardRead(id);
 }
 function refreshFilterBtn(){
@@ -4663,7 +4723,7 @@ async function shareSince(id){
     try {
       await navigator.clipboard.writeText(url);
       const el = document.querySelector('.since[data-since="' + id + '"] .since-share');
-      if (el){ const o = el.textContent; el.textContent = "✓"; setTimeout(() => { el.textContent = o; }, 1600); }
+      if (el){ el.classList.add("copied"); setTimeout(() => el.classList.remove("copied"), 1600); }
     } catch (e) {}
   }, "image/png");
 }
@@ -5130,7 +5190,7 @@ function cardEl(item, S, idx){
         </div>
       </div>` : "";
     const el = document.createElement("article");
-    el.className = "card" + (READ.has(item.id) ? " is-read" : "");
+    el.className = "card" + (READ.has(item.id) ? " is-read collapsed" : "");
     el.id = "sig-" + item.id;
     el.style.animationDelay = (idx * 0.04) + "s";
     const mineWhy = FEED_MINE ? mineReasons(item) : [];
@@ -5146,6 +5206,8 @@ function cardEl(item, S, idx){
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
+      <h3 class="card-title" onclick="toggleCollapse('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${item.title[LANG]}</span><span class="collapse-caret" aria-hidden="true">›</span></h3>
+      <div class="card-body">
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
       <div class="card-thumb" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
         ${ENTITIES[item.cover.label]
@@ -5156,7 +5218,6 @@ function cardEl(item, S, idx){
           : `<span class="thumb-logo" data-logo="${item.id}"></span>`) : ""}
       </div>
       ${item.series && SERIES[item.series] ? `<button class="series-tag" onclick="openSeries('${item.series}')">${SERIES[item.series].name[LANG]} · ${S.ep.replace("{n}", epNum(item))}</button>` : ""}
-      <h3><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span>${item.title[LANG]}</h3>
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
         <p class="gist">${paraGist(item.gist[LANG])}</p>
@@ -5185,6 +5246,7 @@ function cardEl(item, S, idx){
       </div>
       <div class="comment-box" id="cbox-${item.id}" hidden></div>
       ${relHtml}
+      </div>
     `;
     queueSince(item);
     return el;
@@ -5486,8 +5548,8 @@ async function bootData(){
   }));
   /* top-figure override: the group chief, not the operating CEO */
   try {
-    if (ENTITIES["SK HYNIX"]) ENTITIES["SK HYNIX"].ceo = "최태원 (Chey Tae-won)";
-    if (ENTITIES["SAMSUNG ELECTRONICS"]) ENTITIES["SAMSUNG ELECTRONICS"].ceo = "이재용 (Jay Y. Lee)";
+    if (ENTITIES["SK HYNIX"]) ENTITIES["SK HYNIX"].ceo = { ko: "최태원", en: "Chey Tae-won", ja: "崔泰源" };
+    if (ENTITIES["SAMSUNG ELECTRONICS"]) ENTITIES["SAMSUNG ELECTRONICS"].ceo = { ko: "이재용", en: "Jay Y. Lee", ja: "李在鎔" };
   } catch (e) {}
   buildEntityMatcher();
   initSeen();
