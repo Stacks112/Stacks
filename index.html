@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v63 :: fullscreen chart - TradingView for US, native worker chart for KRX/TSE -->
+<!-- STACKS BUILD v64 :: personalization - For-you feed, follow suggestions, streak + My activity, editable interests -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -249,6 +249,23 @@ const STRINGS = {
     sbEmpty: "Not enough calls to score yet.",
     briefTitle: "My briefing",
     briefLine: "{c} companies you follow · {n} new this week",
+    myFeed: "For you",
+    myFeedEmpty: "You're not following anything yet. Follow companies and stories and they'll gather here.",
+    myFeedReason: "Following",
+    myFeedReasonS: "Story",
+    suggTitle: "You might also follow",
+    meTitle: "My activity",
+    meStreak: "day streak",
+    meRead: "Read",
+    meWeek: "This week",
+    meLikes: "Liked",
+    meBm: "Saved",
+    meFollow: "Following",
+    meTopTopic: "Most-read topic",
+    meInterests: "Your interests",
+    meInterestsSub: "Toggle a topic to follow or unfollow its companies and stories.",
+    meNav: "Me",
+    meNone: "—",
     reply: "Reply",
     replyingTo: "Replying to {name}",
     cancel: "Cancel",
@@ -361,6 +378,23 @@ const STRINGS = {
     sbEmpty: "아직 집계할 콜이 부족해요.",
     briefTitle: "내 브리핑",
     briefLine: "팔로우한 기업 {c}곳 · 이번 주 새 글 {n}건",
+    myFeed: "내 피드",
+    myFeedEmpty: "아직 팔로우한 게 없어요. 관심 회사와 시리즈를 팔로우하면 여기 모아 보여드려요.",
+    myFeedReason: "팔로우",
+    myFeedReasonS: "시리즈",
+    suggTitle: "이런 종목도 팔로우해보세요",
+    meTitle: "내 기록",
+    meStreak: "일 연속 방문",
+    meRead: "읽은 글",
+    meWeek: "이번 주",
+    meLikes: "좋아요",
+    meBm: "북마크",
+    meFollow: "팔로우",
+    meTopTopic: "가장 많이 본 주제",
+    meInterests: "내 관심사",
+    meInterestsSub: "주제를 켜고 끄면 해당 회사·시리즈를 팔로우하거나 해제합니다.",
+    meNav: "내 기록",
+    meNone: "—",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
     cancel: "취소",
@@ -473,6 +507,23 @@ const STRINGS = {
     sbEmpty: "まだ集計できるコールが足りません。",
     briefTitle: "マイ・ブリーフィング",
     briefLine: "フォロー中の企業{c}社 · 今週の新着{n}件",
+    myFeed: "マイフィード",
+    myFeedEmpty: "まだ何もフォローしていません。企業やストーリーをフォローするとここにまとまります。",
+    myFeedReason: "フォロー",
+    myFeedReasonS: "ストーリー",
+    suggTitle: "こんな銘柄もフォローしませんか",
+    meTitle: "マイ記録",
+    meStreak: "日連続アクセス",
+    meRead: "既読",
+    meWeek: "今週",
+    meLikes: "いいね",
+    meBm: "保存",
+    meFollow: "フォロー",
+    meTopTopic: "最も読んだテーマ",
+    meInterests: "興味・関心",
+    meInterestsSub: "テーマをオン/オフすると関連企業・ストーリーをフォロー/解除します。",
+    meNav: "マイ記録",
+    meNone: "—",
     reply: "返信",
     replyingTo: "{name}さんに返信",
     cancel: "キャンセル",
@@ -1074,6 +1125,87 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 html[data-lang="ko"] .brief-line{font-family:"Pretendard Variable",sans-serif;}
 .w-stance{margin-top:5px;display:flex;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:700;}
 .w-stance .ws{letter-spacing:.02em;}
+/* For-you tab + reason chips */
+.tab-mine{border-color:var(--accent);color:var(--accent);font-weight:800;}
+.tab-mine.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.mine-banner{
+  font-size:12.5px;font-weight:600;color:var(--muted);
+  padding:2px 2px 12px;margin-bottom:4px;
+}
+html[data-lang="ko"] .mine-banner{font-family:"Pretendard Variable",sans-serif;}
+.mine-why{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.mine-why .mw{
+  font-size:10.5px;font-weight:700;letter-spacing:.02em;
+  padding:3px 9px;border-radius:999px;cursor:pointer;
+  background:rgba(10,132,255,.1);color:#0A84FF;border:1px solid rgba(10,132,255,.25);
+}
+.mine-why .mw-s{background:var(--bg-soft);color:var(--muted);border-color:var(--line);cursor:default;}
+.mine-empty{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.sugg-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.sugg-chip{
+  font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;
+  padding:7px 14px;border-radius:999px;border:1px dashed var(--accent);
+  background:none;color:var(--accent);
+}
+.sugg-chip:hover{background:var(--accent);color:#fff;border-style:solid;}
+/* follow suggestions under the watchlist */
+.watch-sugg{margin-top:14px;}
+.watch-sugg[hidden]{display:none;}
+.ws-title{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+html[data-lang="ko"] .ws-title{font-family:"Pretendard Variable",sans-serif;letter-spacing:0;font-size:11px;font-weight:700;}
+.watch-sugg .sugg-row{justify-content:flex-start;}
+.watch-sugg .sugg-chip{font-size:11px;padding:5px 11px;}
+/* streak badge in nav */
+.streak-fire{font-weight:800;font-size:13px;letter-spacing:-.02em;}
+/* My activity sheet */
+#meSheet{position:fixed;inset:0;z-index:13000;}
+#meSheet[hidden]{display:none;}
+.me-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.5);}
+.me-card{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(440px,92vw);max-height:88vh;overflow-y:auto;
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:20px 22px 24px;box-shadow:0 24px 70px rgba(0,0,0,.35);
+}
+.me-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.me-head b{font-size:18px;font-weight:800;}
+.me-streak{
+  display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:12px 16px;
+}
+.me-streak b{font-size:22px;}
+.me-fire{font-size:20px;}
+.me-best{font-size:11px;color:var(--muted);font-weight:600;font-family:"IBM Plex Mono",monospace;}
+.me-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
+.me-stat{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 4px;
+}
+.me-stat b{font-size:18px;font-weight:800;}
+.me-stat span{font-size:9.5px;color:var(--muted);text-align:center;line-height:1.2;}
+.me-topic{
+  display:flex;align-items:center;justify-content:space-between;margin-top:14px;
+  padding:11px 14px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;
+}
+.me-topic span{font-size:12px;color:var(--muted);font-weight:600;}
+.me-topic b{font-size:13px;font-weight:800;font-family:"IBM Plex Mono",monospace;}
+.me-int-title{margin-top:22px;font-size:14px;font-weight:800;}
+.me-int-sub{font-size:11.5px;color:var(--muted);margin:4px 0 12px;line-height:1.4;}
+html[data-lang="ko"] .me-int-sub{font-family:"Pretendard Variable",sans-serif;}
+.me-int-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.me-int{
+  display:flex;align-items:center;gap:8px;cursor:pointer;text-align:left;
+  padding:11px 12px;border-radius:12px;border:1px solid var(--line);
+  background:var(--bg-soft);color:var(--text);font:inherit;
+}
+.me-int.on{border-color:var(--accent);background:rgba(10,132,255,.08);}
+.me-int-emoji{font-size:16px;flex:0 0 auto;}
+.me-int-label{flex:1 1 auto;font-size:12px;font-weight:700;line-height:1.2;}
+.me-int-check{flex:0 0 auto;font-weight:800;color:var(--muted);}
+.me-int.on .me-int-check{color:var(--accent);}
+@media (max-width:420px){
+  .me-stats{grid-template-columns:repeat(3,1fr);}
+}
 /* discussion prompt */
 .ask-row{
   display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
@@ -1683,6 +1815,7 @@ footer a{color:var(--muted);}
   <div class="nav-inner">
     <a class="brand" href="#" onclick="return goHome(event)"><span class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></span><span id="brandName">Stacks</span></a>
     <button class="notif-btn" id="themeBtn" onclick="toggleTheme()" aria-label="theme">🌙</button>
+    <button class="notif-btn" id="meBtn" onclick="openMe()" aria-label="me">👤</button>
     <button class="notif-btn" id="notifBtn" hidden></button>
     <div class="lang-menu" id="langMenu">
       <button class="lang-cur" id="langCur" onclick="toggleLangMenu(event)" aria-haspopup="true"></button>
@@ -1782,7 +1915,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v63</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v64</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2184,7 +2317,7 @@ function closeChartFS(){
   FSQ.key = null;
   document.body.style.overflow = "";
 }
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeChartFS(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeChartFS(); closeMe(); } });
 
 async function ehqLoad(key, r){
   const e = ENTITIES[key];
@@ -2799,6 +2932,7 @@ function goToItem(id){
    the feed to that entity's articles. Match strings live in items.json
    (entities[key].aliases). */
 let ENTITY_VIEW = null;
+let FEED_MINE = false;
 let ENT_RE = null;
 const ALIAS2KEY = {};
 function reEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
@@ -3277,6 +3411,160 @@ function promptPushOnce(){
   });
 }
 
+/* ================= personalization ================= */
+function todayStr(){ return new Date().toISOString().slice(0, 10); }
+
+/* ---- visit streak (consecutive days with a visit) ---- */
+let STREAK = 1, STREAK_DONE = false;
+function computeStreak(){
+  const last = store.get("stk_streak_day", null);
+  let n = store.get("stk_streak_n", 0) || 0;
+  const today = todayStr();
+  if (last === today){ STREAK = n || 1; return; }
+  const y = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  n = (last === y) ? n + 1 : 1;
+  STREAK = n;
+  store.set("stk_streak_day", today);
+  store.set("stk_streak_n", n);
+  store.set("stk_streak_best", Math.max(n, store.get("stk_streak_best", 0) || 0));
+}
+
+/* ---- "For you": items touching a followed company or story ---- */
+function mineReasons(item){
+  const out = [];
+  const ents = itemEntities(item);
+  ents.forEach(k => { if (WATCH.has(k)) out.push({ kind: "co", key: k }); });
+  if (item.series && FOLLOWED.has(item.series)) out.push({ kind: "series", key: item.series });
+  return out;
+}
+function isMine(item){ return mineReasons(item).length > 0; }
+function mineCount(){ return ITEMS.filter(isMine).length; }
+
+/* ---- follow suggestions: companies that co-occur with your follows ---- */
+function followSuggestions(limit){
+  limit = limit || 4;
+  const score = {};
+  const followed = new Set([...WATCH].filter(k => ENTITIES[k]));
+  if (followed.size){
+    ITEMS.forEach(i => {
+      const ents = [...itemEntities(i)].filter(k => ENTITIES[k] && ENTITIES[k].kind === "company");
+      const hit = ents.some(k => followed.has(k));
+      if (!hit) return;
+      ents.forEach(k => { if (!followed.has(k)) score[k] = (score[k] || 0) + 1; });
+    });
+  }
+  let ranked = Object.keys(score).sort((a, b) => score[b] - score[a]);
+  if (ranked.length < limit){
+    /* cold start / thin overlap: fill with the most-covered companies */
+    const cnt = {};
+    ITEMS.forEach(i => [...itemEntities(i)].forEach(k => {
+      if (ENTITIES[k] && ENTITIES[k].kind === "company" && !followed.has(k)) cnt[k] = (cnt[k] || 0) + 1;
+    }));
+    Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a]).forEach(k => {
+      if (!ranked.includes(k)) ranked.push(k);
+    });
+  }
+  return ranked.slice(0, limit);
+}
+
+/* ---- My activity panel (stats + streak + interest editor) ---- */
+function readThisWeek(){
+  const cut = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+  return Object.values(READ_LOG).filter(d => d >= cut).length;
+}
+function topTopic(){
+  const cnt = {};
+  READ.forEach(id => {
+    const it = ITEMS.find(x => x.id === id);
+    if (!it) return;
+    (it.tags || []).forEach(t => { cnt[t] = (cnt[t] || 0) + 1; });
+  });
+  const keys = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a]);
+  return keys.length ? keys[0] : null;
+}
+/* an interest is "on" when its companies/series are all followed */
+function interestOn(o){
+  const cos = (o.companies || []).filter(k => ENTITIES[k]);
+  const ser = (o.series || []).filter(sid => SERIES[sid]);
+  if (!cos.length && !ser.length) return false;
+  return cos.every(k => WATCH.has(k)) && ser.every(sid => FOLLOWED.has(sid));
+}
+function toggleInterest(id){
+  const o = OB_INTERESTS.find(x => x.id === id);
+  if (!o) return;
+  const on = !interestOn(o);
+  (o.companies || []).forEach(k => {
+    if (!ENTITIES[k]) return;
+    if (on && !WATCH.has(k)){ WATCH.add(k); osTag("c_" + slugTag(k), true); }
+    else if (!on && WATCH.has(k)){ WATCH.delete(k); osTag("c_" + slugTag(k), false); }
+  });
+  (o.series || []).forEach(sid => {
+    if (!SERIES[sid]) return;
+    if (on && !FOLLOWED.has(sid)){ FOLLOWED.add(sid); SERIES_SEEN[sid] = seriesItems(sid).length; osTag("s_" + sid, true); }
+    else if (!on && FOLLOWED.has(sid)) FOLLOWED.delete(sid);
+  });
+  store.set("stk_watch", [...WATCH]);
+  store.set("stk_series", [...FOLLOWED]);
+  store.set("stk_series_seen", SERIES_SEEN);
+  if (on) promptPushOnce();
+  renderMe();
+  renderWatch();
+}
+function openMe(){
+  const S = STRINGS[LANG];
+  const m = document.getElementById("meSheet");
+  if (!m) return;
+  renderMe();
+  m.hidden = false;
+  document.body.style.overflow = "hidden";
+  track("me/open");
+}
+function closeMe(){
+  const m = document.getElementById("meSheet");
+  if (!m || m.hidden) return;
+  m.hidden = true;
+  document.body.style.overflow = "";
+  render(); /* interests may have changed follows */
+}
+function renderMe(){
+  const S = STRINGS[LANG];
+  const body = document.getElementById("meBody");
+  if (!body) return;
+  const best = store.get("stk_streak_best", STREAK) || STREAK;
+  const tt = topTopic();
+  const followCount = [...WATCH].filter(k => ENTITIES[k]).length + FOLLOWED.size;
+  const stat = (n, lbl) => '<div class="me-stat"><b>' + n + "</b><span>" + lbl + "</span></div>";
+  document.getElementById("meHeadTitle").textContent = S.meTitle;
+  body.innerHTML =
+    '<div class="me-streak"><span class="me-fire">🔥</span><b>' + STREAK + "</b> " + S.meStreak
+      + (best > STREAK ? ' <span class="me-best">· best ' + best + "</span>" : "") + "</div>"
+    + '<div class="me-stats">'
+      + stat(READ.size, S.meRead)
+      + stat(readThisWeek(), S.meWeek)
+      + stat(LIKES.size, S.meLikes)
+      + stat(BM.size, S.meBm)
+      + stat(followCount, S.meFollow)
+    + "</div>"
+    + '<div class="me-topic"><span>' + S.meTopTopic + '</span><b>' + (tt ? esc(tt) : S.meNone) + "</b></div>"
+    + '<div class="me-int-title">' + S.meInterests + '</div>'
+    + '<p class="me-int-sub">' + S.meInterestsSub + "</p>"
+    + '<div class="me-int-grid">'
+      + OB_INTERESTS.map(o => '<button class="me-int' + (interestOn(o) ? " on" : "") + '" onclick="toggleInterest(\'' + o.id + '\')">'
+          + '<span class="me-int-emoji">' + o.emoji + "</span>"
+          + '<span class="me-int-label">' + o.label[LANG] + "</span>"
+          + '<span class="me-int-check">' + (interestOn(o) ? "✓" : "+") + "</span></button>").join("")
+    + "</div>";
+}
+function refreshStreakBadge(){
+  const b = document.getElementById("meBtn");
+  if (!b) return;
+  const S = STRINGS[LANG];
+  b.innerHTML = (STREAK >= 2 ? '<span class="streak-fire">🔥' + STREAK + "</span>" : "👤")
+    + '<span class="nav-btn-label">' + S.meNav + "</span>";
+  b.setAttribute("aria-label", S.meTitle);
+  b.title = S.meTitle;
+}
+
 /* ---------------- watchlist (followed companies) ---------------- */
 function toggleWatch(key, ev){
   if (ev){ ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
@@ -3349,6 +3637,23 @@ function renderWatch(){
       + "</div>";
   }).join("");
   keys.forEach(k => { loadQuote(k).then(() => paintWatchQuote(k)); });
+  /* follow suggestions: companies that co-occur with what you follow */
+  let sg = document.getElementById("watchSugg");
+  if (!sg){
+    sg = document.createElement("div");
+    sg.id = "watchSugg";
+    sg.className = "watch-sugg";
+    rail.parentNode.appendChild(sg);
+  }
+  const sug = followSuggestions(4);
+  if (sug.length){
+    sg.hidden = false;
+    sg.innerHTML = '<div class="ws-title">' + S.suggTitle + "</div>"
+      + '<div class="sugg-row">' + sug.map(k => {
+        const safe = k.replace(/'/g, "\\'");
+        return '<button class="sugg-chip" onclick="toggleWatch(\'' + safe + '\', event)">+ ' + esc(k) + "</button>";
+      }).join("") + "</div>";
+  } else { sg.hidden = true; sg.innerHTML = ""; }
 }
 function paintWatchQuote(key){
   const e = ENTITIES[key];
@@ -3505,14 +3810,20 @@ function initSeen(){
   store.set("stk_seen", ITEMS.map(i => i.id));
 }
 
+/* per-id read timestamps, for the "this week" stat in My activity */
+const READ_LOG = store.get("stk_read_log", {});
+function logRead(id){
+  if (!READ_LOG[id]){ READ_LOG[id] = todayStr(); store.set("stk_read_log", READ_LOG); }
+}
 function setRead(id){
+  logRead(id);
   if (READ.has(id)) return;
   READ.add(id);
   store.set("stk_read", [...READ]);
   refreshCardRead(id);
 }
 function toggleRead(id){
-  if (READ.has(id)) READ.delete(id); else READ.add(id);
+  if (READ.has(id)) READ.delete(id); else { READ.add(id); logRead(id); }
   store.set("stk_read", [...READ]);
   if (UNREAD_ONLY) render(); else refreshCardRead(id);
 }
@@ -4152,6 +4463,9 @@ function render(){
     nb.title = S.notify;
   }
   applyThemeBtn();
+  if (!STREAK_DONE){ computeStreak(); STREAK_DONE = true; }
+  refreshStreakBadge();
+  if (document.getElementById("meSheet") && !document.getElementById("meSheet").hidden) renderMe();
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
 
@@ -4228,6 +4542,14 @@ function renderAfterHot(S){
   /* tabs */
   const tabs = document.getElementById("tabs");
   tabs.innerHTML = "";
+  /* personalized "For you" tab, first, only once the reader follows something */
+  if (mineCount() > 0 || TAB === "mine"){
+    const mb = document.createElement("button");
+    mb.className = "tab tab-mine" + (TAB === "mine" ? " active" : "");
+    mb.textContent = "★ " + S.myFeed;
+    mb.onclick = () => setTab("mine");
+    tabs.appendChild(mb);
+  }
   CATEGORIES.forEach(c => {
     const b = document.createElement("button");
     b.className = "tab" + (TAB === c.id ? " active" : "");
@@ -4305,7 +4627,10 @@ function renderFeed(animate){
   list.classList.toggle("no-anim", !animate);
   list.innerHTML = "";
   if (feedIO){ feedIO.disconnect(); feedIO = null; }
-  const inTab = ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  const inTab = TAB === "mine"
+    ? ITEMS.filter(isMine)
+    : ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  FEED_MINE = TAB === "mine";
   refreshFilterBtn();
 
   refreshBmBtn();
@@ -4316,6 +4641,30 @@ function renderFeed(animate){
     renderScoreboard(list, S);
     hydrateImages();
     return;
+  }
+
+  /* "For you": summary banner + empty state that invites following */
+  if (TAB === "mine"){
+    const co = [...WATCH].filter(k => ENTITIES[k]).length;
+    const banner = document.createElement("div");
+    banner.className = "mine-banner";
+    banner.textContent = S.briefLine.replace("{c}", co).replace("{n}", inTab.filter(i => i.date >= new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10)).length);
+    list.appendChild(banner);
+    if (!inTab.length){
+      const e = document.createElement("div");
+      e.className = "empty mine-empty";
+      e.innerHTML = '<p>' + S.myFeedEmpty + "</p>";
+      const sug = followSuggestions(4);
+      if (sug.length){
+        e.innerHTML += '<div class="sugg-row">' + sug.map(k => {
+          const safe = k.replace(/'/g, "\\'");
+          return '<button class="sugg-chip" onclick="toggleWatch(\'' + safe + '\', event); render()">+ ' + esc(k) + "</button>";
+        }).join("") + "</div>";
+      }
+      list.appendChild(e);
+      hydrateImages();
+      return;
+    }
   }
 
   /* series view: the whole story in order, with its own header */
@@ -4409,7 +4758,11 @@ function cardEl(item, S, idx){
     el.className = "card" + (READ.has(item.id) ? " is-read" : "");
     el.id = "sig-" + item.id;
     el.style.animationDelay = (idx * 0.04) + "s";
+    const mineWhy = FEED_MINE ? mineReasons(item) : [];
     el.innerHTML = `
+      ${mineWhy.length ? `<div class="mine-why">${mineWhy.map(r => r.kind === "series"
+        ? `<span class="mw mw-s">${S.myFeedReasonS} · ${SERIES[r.key] ? esc(SERIES[r.key].name[LANG]) : esc(r.key)}</span>`
+        : `<span class="mw" onclick="event.stopPropagation(); chipTap(this, '${r.key.replace(/'/g,"\\'")}')">★ ${esc(r.key)}</span>`).join("")}</div>` : ""}
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
@@ -4936,6 +5289,16 @@ function obFinish(apply){
 applyThemeBtn();
 bootData();
 </script>
+<div id="meSheet" hidden>
+  <div class="me-backdrop" onclick="closeMe()"></div>
+  <div class="me-card">
+    <div class="me-head">
+      <b id="meHeadTitle"></b>
+      <button class="cfs-close" onclick="closeMe()" aria-label="close">✕</button>
+    </div>
+    <div id="meBody"></div>
+  </div>
+</div>
 <div id="chartFS" hidden>
   <div class="cfs-top">
     <div class="cfs-name" id="cfsName"></div>
