@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v62 :: fullscreen TradingView pro chart on company pages -->
+<!-- STACKS BUILD v63 :: fullscreen chart - TradingView for US, native worker chart for KRX/TSE -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -235,6 +235,8 @@ const STRINGS = {
     watchUnread: "{n} unread",
     fsChart: "Pro chart",
     fsHint: "Open the full-screen pro chart",
+    r6mo: "6M",
+    fsqNote: "Delayed price data. For pro tools (candles, indicators) open on TradingView.",
     sincePost: "Since this post",
     sinceTip: "Price change from the article date's close to now. Reference only, not proof of causation.",
     sbNav: "Track record",
@@ -345,6 +347,8 @@ const STRINGS = {
     watchUnread: "안 읽은 글 {n}",
     fsChart: "전문 차트",
     fsHint: "전체 화면 전문 차트 열기",
+    r6mo: "6달",
+    fsqNote: "지연 시세 데이터입니다. 캔들·지표 등 전문 도구는 TradingView에서 여세요.",
     sincePost: "이 글 이후",
     sinceTip: "글 게재일 종가 대비 현재 주가 변화입니다. 참고용이며, 인과관계의 증명이 아닙니다.",
     sbNav: "적중 기록",
@@ -455,6 +459,8 @@ const STRINGS = {
     watchUnread: "未読{n}件",
     fsChart: "プロチャート",
     fsHint: "フルスクリーンのプロチャートを開く",
+    r6mo: "6ヶ月",
+    fsqNote: "遅延株価データです。ローソク足・指標などのプロ機能はTradingViewで開いてください。",
     sincePost: "投稿後",
     sinceTip: "記事掲載日の終値から現在までの株価変化です。参考情報であり、因果関係の証明ではありません。",
     sbNav: "的中記録",
@@ -872,6 +878,22 @@ html[data-lang="ko"] .intro-box{font-family:"Pretendard Variable","Inter",sans-s
 .cfs-close:hover{border-color:var(--accent);}
 #cfsBody{flex:1 1 auto;width:100%;background:var(--bg);min-height:0;}
 #cfsBody iframe{width:100%;height:100%;}
+/* native fullscreen chart */
+#cfsBody.fsq{display:flex;flex-direction:column;padding:16px 20px 12px;box-sizing:border-box;}
+.fsq-head{display:flex;align-items:baseline;gap:12px;flex:0 0 auto;}
+.fsq-head b{font-size:30px;font-weight:800;letter-spacing:-.02em;}
+.fsq-head span{font-size:15px;font-weight:700;font-family:"IBM Plex Mono",monospace;}
+.fsq-tabs{display:flex;gap:8px;margin:12px 0 4px;flex:0 0 auto;flex-wrap:wrap;}
+.fsq-tabs button{
+  font-size:12.5px;font-weight:700;font-family:inherit;color:var(--muted);
+  background:none;border:1px solid var(--line);border-radius:999px;padding:6px 16px;cursor:pointer;
+}
+.fsq-tabs button.on{background:var(--black);border-color:var(--black);color:#fff;}
+html[data-theme="dark"] .fsq-tabs button.on{background:#fff;color:#111;border-color:#fff;}
+.fsq-chart{position:relative;flex:1 1 auto;min-height:0;margin-top:6px;}
+.fsq-chart svg{display:block;width:100%;height:100%;}
+.fsq-note{flex:0 0 auto;font-size:11px;color:var(--muted);margin-top:6px;font-family:"IBM Plex Mono",monospace;}
+html[data-lang="ko"] .fsq-note{font-family:"Pretendard Variable",sans-serif;}
 .cfs-actions{display:flex;align-items:center;gap:10px;}
 .cfs-tv{
   font-size:11.5px;font-weight:700;font-family:"IBM Plex Mono",monospace;
@@ -1760,7 +1782,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v62</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v63</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1973,6 +1995,15 @@ function tvSymbol(e){
   if (ex === "KOSPI" || ex === "KOSDAQ" || ex === "KRX") return "KRX:" + base;
   return base;
 }
+/* TradingView's free embed only carries data for exchanges it may
+   redistribute (mostly US). KRX/TSE symbols hit a "symbol only on
+   TradingView" wall, so for Korean/Japanese tickers we draw our own
+   full-screen chart from the worker's (Yahoo-backed) quote data. */
+function isNativeChart(e){
+  const t = String(e.ticker || "").toLowerCase();
+  if (/\.(ks|kq|jp|t)$/.test(t)) return true;
+  return /KOSPI|KOSDAQ|KRX|TSE|TOKYO|JAPAN/i.test(String(e.exchange || ""));
+}
 function openChartFS(key){
   const e = key && ENTITIES[key];
   if (!e || !e.ticker) return;
@@ -1980,15 +2011,21 @@ function openChartFS(key){
   if (!sym) return;
   const m = document.getElementById("chartFS");
   if (!m) return;
-  const loc = LANG === "ko" ? "kr" : LANG === "ja" ? "ja" : "en";
-  const th = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-  const tz = LANG === "ja" ? "Asia/Tokyo" : LANG === "en" ? "America/New_York" : "Asia/Seoul";
   document.getElementById("cfsName").textContent = key + " · " + sym;
   const link = document.getElementById("cfsLink");
   if (link) link.href = "https://www.tradingview.com/chart/?symbol=" + encodeURIComponent(sym);
-  /* official TradingView advanced-chart embed: the loader script reads
-     its JSON config from its own text content */
   const holder = document.getElementById("cfsBody");
+  if (isNativeChart(e)) openNativeChart(key, holder);
+  else openTVChart(sym, holder);
+  m.hidden = false;
+  document.body.style.overflow = "hidden";
+  track("chartfs/" + slugTag(key));
+}
+function openTVChart(sym, holder){
+  const loc = LANG === "ko" ? "kr" : LANG === "ja" ? "ja" : "en";
+  const th = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const tz = LANG === "ja" ? "Asia/Tokyo" : LANG === "en" ? "America/New_York" : "Asia/Seoul";
+  holder.className = "";
   holder.innerHTML = '<div class="tradingview-widget-container" style="height:100%;width:100%">'
     + '<div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div></div>';
   const s = document.createElement("script");
@@ -2000,16 +2037,151 @@ function openChartFS(key){
     support_host: "https://www.tradingview.com"
   });
   holder.firstChild.appendChild(s);
-  m.hidden = false;
-  document.body.style.overflow = "hidden";
-  track("chartfs/" + slugTag(key));
 }
+/* ---- native full-screen chart (worker/Yahoo data, covers KRX/TSE) ---- */
+const FSQ = { key: null, range: "1mo" };
+function openNativeChart(key, holder){
+  const S = STRINGS[LANG];
+  FSQ.key = key; FSQ.range = "1mo";
+  const tabs = [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["6mo", S.r6mo], ["1y", S.r1y]];
+  holder.className = "fsq";
+  holder.innerHTML =
+    '<div class="fsq-head"><b id="fsqPrice">-</b><span id="fsqChg"></span></div>'
+    + '<div class="fsq-tabs">'
+    + tabs.map(x => '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
+        + ' onclick="fsqLoad(FSQ.key,\'' + x[0] + '\')">' + x[1] + "</button>").join("")
+    + "</div>"
+    + '<div class="fsq-chart" id="fsqChart"><div class="ehq-loading">···</div></div>'
+    + '<div class="fsq-note">' + S.fsqNote + "</div>";
+  fsqLoad(key, "1mo");
+}
+async function fsqLoad(key, r){
+  const e = ENTITIES[key];
+  if (!e || !e.ticker || !COMMENTS_API) return;
+  FSQ.key = key; FSQ.range = r;
+  document.querySelectorAll("#cfsBody .fsq-tabs button").forEach(b => b.classList.toggle("on", b.getAttribute("data-r") === r));
+  const t = e.ticker, ck = t + "|" + r;
+  const box = document.getElementById("fsqChart");
+  if (!QR[ck]){
+    if (box) box.innerHTML = '<div class="ehq-loading">···</div>';
+    try {
+      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=" + r);
+      if (res.ok){ const j = await res.json(); if (j && j.closes && j.closes.length > 1) QR[ck] = j; }
+    } catch (err) {}
+    if (!QR[ck]) QR[ck] = { error: true };
+  }
+  if (FSQ.range !== r || FSQ.key !== key) return;
+  fsqPaint(QR[ck], r);
+}
+function fsqPaint(q, r){
+  const box = document.getElementById("fsqChart");
+  const pEl = document.getElementById("fsqPrice");
+  const cEl = document.getElementById("fsqChg");
+  if (!box) return;
+  if (!q || q.error || !q.closes){ box.innerHTML = '<div class="ehq-loading">-</div>'; return; }
+  const closes = q.closes;
+  const last = q.price != null ? q.price : closes[closes.length - 1];
+  const base = (r === "1d" && q.prevClose) ? q.prevClose : closes[0];
+  const chg = last - base, pct = base ? (chg / base) * 100 : 0, up = chg >= 0;
+  const col = up ? "#12B76A" : "#F04438";
+  if (pEl) pEl.textContent = fmtP(last, q.currency);
+  if (cEl){
+    cEl.textContent = (up ? "▲ " : "▼ ") + fmtP(Math.abs(chg), q.currency) + " (" + (up ? "+" : "") + pct.toFixed(2) + "%)";
+    cEl.style.color = col;
+  }
+  /* size to the container so labels stay crisp */
+  const W = Math.max(320, Math.round(box.clientWidth || 900));
+  const H = Math.max(220, Math.round(box.clientHeight || 460));
+  const pL = 10, pR = 74, pT = 16, pB = 30;
+  const pw = W - pL - pR, ph = H - pT - pB;
+  let mn = Math.min.apply(null, closes), mx = Math.max.apply(null, closes);
+  if (r === "1d" && q.prevClose){ mn = Math.min(mn, q.prevClose); mx = Math.max(mx, q.prevClose); }
+  const span = (mx - mn) || 1; mn -= span * 0.06; mx += span * 0.06;
+  const X = i => pL + (i / (closes.length - 1)) * pw;
+  const Y = v => pT + (1 - (v - mn) / (mx - mn)) * ph;
+  const ts = q.t || [];
+  const fmtX = i => {
+    if (!ts[i]) return "";
+    const d = new Date(ts[i] * 1000);
+    if (r === "1d") return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    if (r === "1y") return String(d.getFullYear()).slice(2) + "." + (d.getMonth() + 1);
+    return (d.getMonth() + 1) + "." + d.getDate();
+  };
+  let grid = "", ylab = "";
+  for (let g = 0; g <= 4; g++){
+    const v = mn + ((mx - mn) * g) / 4, y = Y(v);
+    grid += '<line x1="' + pL + '" y1="' + y.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + y.toFixed(1) + '" class="ehq-grid"/>';
+    ylab += '<text x="' + (pL + pw + 8) + '" y="' + (y + 4).toFixed(1) + '" class="ehq-ylab">' + fmtP(v, q.currency) + "</text>";
+  }
+  let xlab = "";
+  const nx = Math.min(6, Math.max(3, Math.round(W / 160)));
+  for (let g = 0; g <= nx; g++){
+    const i = Math.round(((closes.length - 1) * g) / nx);
+    const anchor = g === 0 ? "start" : g === nx ? "end" : "middle";
+    xlab += '<text x="' + X(i).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="' + anchor + '" class="ehq-xlab">' + fmtX(i) + "</text>";
+  }
+  const pts = closes.map((v, i) => X(i).toFixed(1) + "," + Y(v).toFixed(1)).join(" ");
+  const area = pL + "," + (pT + ph) + " " + pts + " " + (pL + pw) + "," + (pT + ph);
+  const baseLine = (r === "1d" && q.prevClose)
+    ? '<line x1="' + pL + '" y1="' + Y(q.prevClose).toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + Y(q.prevClose).toFixed(1) + '" class="ehq-base"/>' : "";
+  box.innerHTML =
+    '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">'
+    + '<defs><linearGradient id="fsqG" x1="0" y1="0" x2="0" y2="1">'
+    + '<stop offset="0%" stop-color="' + col + '" stop-opacity=".22"/>'
+    + '<stop offset="100%" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>'
+    + grid + baseLine
+    + '<polygon points="' + area + '" fill="url(#fsqG)"/>'
+    + '<polyline points="' + pts + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linejoin="round"/>'
+    + '<line id="fsqVl" y1="' + pT + '" y2="' + (pT + ph) + '" class="ehq-vl" visibility="hidden"/>'
+    + '<circle id="fsqDot" r="4" fill="' + col + '" stroke="#fff" stroke-width="1.5" visibility="hidden"/>'
+    + ylab + xlab + "</svg>"
+    + '<div class="ehq-tip" id="fsqTip" hidden></div>';
+  const svg = box.querySelector("svg");
+  const tip = document.getElementById("fsqTip");
+  const move = ev => {
+    const rect = svg.getBoundingClientRect();
+    const cx = (ev.touches ? ev.touches[0].clientX : ev.clientX) - rect.left;
+    const frac = Math.max(0, Math.min(1, (cx / rect.width * W - pL) / pw));
+    const i = Math.round(frac * (closes.length - 1));
+    const vl = document.getElementById("fsqVl"), dot = document.getElementById("fsqDot");
+    if (!vl || !dot) return;
+    vl.setAttribute("x1", X(i)); vl.setAttribute("x2", X(i)); vl.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", X(i)); dot.setAttribute("cy", Y(closes[i])); dot.setAttribute("visibility", "visible");
+    if (tip){
+      tip.hidden = false;
+      tip.textContent = fmtP(closes[i], q.currency) + (ts[i] ? " · " + fmtX(i) : "");
+      tip.style.left = (X(i) / W * 100) + "%";
+      tip.style.top = (Y(closes[i]) / H * 100) + "%";
+    }
+  };
+  const leave = () => {
+    ["fsqVl", "fsqDot"].forEach(id => { const el = document.getElementById(id); if (el) el.setAttribute("visibility", "hidden"); });
+    if (tip) tip.hidden = true;
+  };
+  svg.addEventListener("mousemove", move);
+  svg.addEventListener("touchmove", move, { passive: true });
+  svg.addEventListener("mouseleave", leave);
+  svg.addEventListener("touchend", leave);
+}
+let fsqResizeTimer = null;
+window.addEventListener("resize", () => {
+  const m = document.getElementById("chartFS");
+  if (!m || m.hidden || !FSQ.key) return;
+  const holder = document.getElementById("cfsBody");
+  if (!holder || !holder.classList.contains("fsq")) return;
+  clearTimeout(fsqResizeTimer);
+  fsqResizeTimer = setTimeout(() => {
+    const e = ENTITIES[FSQ.key];
+    if (e && e.ticker){ const q = QR[e.ticker + "|" + FSQ.range]; if (q) fsqPaint(q, FSQ.range); }
+  }, 180);
+});
 function closeChartFS(){
   const m = document.getElementById("chartFS");
   if (!m || m.hidden) return;
   m.hidden = true;
   const holder = document.getElementById("cfsBody");
-  if (holder) holder.innerHTML = "";
+  if (holder){ holder.innerHTML = ""; holder.className = ""; }
+  FSQ.key = null;
   document.body.style.overflow = "";
 }
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeChartFS(); });
