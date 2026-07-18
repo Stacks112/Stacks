@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v59 :: desktop tooltip floats just above the cursor (position:fixed, top layer), never clipped or off-screen -->
+<!-- STACKS BUILD v60 :: desktop tooltip rendered in a body-level layer pinned above the cursor (escapes card transform + overflow clipping) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -729,6 +729,17 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
 @media (hover: none){
   .has-tip:hover .entity-tip,
   .has-tip.show .entity-tip{opacity:0 !important;visibility:hidden !important;}
+}
+@media (hover: hover){
+  .has-tip:hover .entity-tip{opacity:0 !important;visibility:hidden !important;}
+}
+#tipFloat{position:fixed;z-index:9999;display:none;pointer-events:none;}
+#tipFloat.on{display:block;}
+#tipFloat .entity-tip{
+  position:relative;top:auto;left:auto;right:auto;bottom:auto;
+  opacity:1 !important;visibility:visible !important;transform:none !important;
+  display:block;width:max-content;max-width:min(280px, calc(100vw - 16px));
+  box-shadow:0 12px 34px rgba(0,0,0,.32);
 }
 #tipSheet{position:fixed;left:12px;right:12px;bottom:14px;z-index:75;display:none;touch-action:none;transition:transform .18s ease,opacity .18s ease;}
 #tipSheet.open{display:block;animation:sheetUp .2s ease;}
@@ -4078,52 +4089,49 @@ function stacksBack(){
   }, { passive: true });
 })();
 
-/* desktop: float the entity tooltip just above the cursor, fixed to the
-   viewport so no ancestor overflow can clip it, and never off-screen. */
+/* desktop: render the entity tooltip in a body-level layer pinned just above
+   the cursor. A body portal avoids two traps at once: an ancestor with overflow
+   clipping the tip, and a card :hover transform turning position:fixed into
+   card-relative coordinates (which pushed the tip away from the cursor). */
 if (window.matchMedia && window.matchMedia("(hover: hover)").matches){
-  let curTip = null, curHost = null;
-  const place = (tip, cx, cy) => {
-    tip.style.position = "fixed";
-    tip.style.right = "auto"; tip.style.bottom = "auto";
-    tip.style.transform = "none"; tip.style.zIndex = "9999";
-    tip.style.maxWidth = "min(280px, calc(100vw - 16px))";
-    const w = tip.offsetWidth, h = tip.offsetHeight, m = 8;
+  let floatEl = null, curHost = null;
+  const ensure = () => { if (!floatEl){ floatEl = document.createElement("div"); floatEl.id = "tipFloat"; document.body.appendChild(floatEl); } return floatEl; };
+  const position = (cx, cy) => {
+    const f = floatEl, inner = f.firstElementChild;
+    const w = f.offsetWidth, h = f.offsetHeight, m = 8;
     const vw = document.documentElement.clientWidth, vh = window.innerHeight;
     let left = Math.max(m, Math.min(cx - w / 2, vw - m - w));
     let top = cy - h - 14, below = false;
     if (top < m){ top = cy + 18; below = true; }
     top = Math.max(m, Math.min(top, vh - m - h));
-    tip.style.left = Math.round(left) + "px";
-    tip.style.top = Math.round(top) + "px";
-    let ax = Math.max(12, Math.min(cx - left, w - 12));
-    tip.style.setProperty("--ax", Math.round(ax) + "px");
-    tip.style.setProperty("--ar", "auto");
-    tip.classList.toggle("tip-cursor-below", below);
-  };
-  const clear = tip => {
-    tip.style.position = ""; tip.style.left = ""; tip.style.top = "";
-    tip.style.right = ""; tip.style.bottom = ""; tip.style.transform = "";
-    tip.style.zIndex = ""; tip.style.maxWidth = "";
-    tip.style.removeProperty("--ax"); tip.style.removeProperty("--ar");
-    tip.classList.remove("tip-cursor-below");
+    f.style.left = Math.round(left) + "px";
+    f.style.top = Math.round(top) + "px";
+    if (inner){
+      let ax = Math.max(12, Math.min(cx - left, w - 12));
+      inner.style.setProperty("--ax", Math.round(ax) + "px");
+      inner.style.setProperty("--ar", "auto");
+      inner.classList.toggle("tip-cursor-below", below);
+    }
   };
   document.addEventListener("mouseover", e => {
     const host = e.target.closest && e.target.closest(".has-tip");
     if (!host) return;
     const tip = host.querySelector(":scope > .entity-tip");
     if (!tip) return;
-    curTip = tip; curHost = host;
-    place(tip, e.clientX, e.clientY);
+    const f = ensure();
+    f.innerHTML = '<span class="entity-tip">' + tip.innerHTML + "</span>";
+    f.classList.add("on");
+    curHost = host;
+    position(e.clientX, e.clientY);
   });
   document.addEventListener("mousemove", e => {
-    if (curTip && curHost && curHost.contains(e.target)) place(curTip, e.clientX, e.clientY);
+    if (floatEl && floatEl.classList.contains("on") && curHost && curHost.contains(e.target)) position(e.clientX, e.clientY);
   });
   document.addEventListener("mouseout", e => {
     const host = e.target.closest && e.target.closest(".has-tip");
     if (!host || host.contains(e.relatedTarget)) return;
-    const tip = host.querySelector(":scope > .entity-tip");
-    if (tip) clear(tip);
-    if (curHost === host){ curTip = null; curHost = null; }
+    if (floatEl) floatEl.classList.remove("on");
+    curHost = null;
   });
 }
 
