@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v56 :: bull/bear debate board on entity pages (stance grouping + scoreboard); company chips/filter open the debate page -->
+<!-- STACKS BUILD v57 :: mobile tip sheet is tappable (opens detail) + swipe-down to dismiss + drag grip; left-edge swipe = back in installed app -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -729,15 +729,20 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
   .has-tip:hover .entity-tip,
   .has-tip.show .entity-tip{opacity:0 !important;visibility:hidden !important;}
 }
-#tipSheet{position:fixed;left:12px;right:12px;bottom:14px;z-index:75;display:none;}
+#tipSheet{position:fixed;left:12px;right:12px;bottom:14px;z-index:75;display:none;touch-action:none;transition:transform .18s ease,opacity .18s ease;}
 #tipSheet.open{display:block;animation:sheetUp .2s ease;}
+#tipSheet.actionable .entity-tip{cursor:pointer;}
 @keyframes sheetUp{from{transform:translateY(14px);opacity:0}}
 #tipSheet .entity-tip{
   position:static !important;opacity:1 !important;visibility:visible !important;
   transform:none !important;pointer-events:auto !important;
   display:block;width:auto;max-width:none;
-  padding:14px 16px;font-size:12.5px;line-height:1.6;border-radius:14px;
+  padding:16px 16px 14px;font-size:12.5px;line-height:1.6;border-radius:14px;
   box-shadow:0 14px 40px rgba(0,0,0,.4);
+}
+#tipSheet .tip-grip{
+  display:block;width:38px;height:4px;border-radius:99px;
+  background:rgba(255,255,255,.32);margin:0 auto 11px;
 }
 #tipSheet .entity-tip::after{display:none;}
 .tip-below .entity-tip{bottom:auto;top:calc(100% + 8px);transform:translateY(-3px);}
@@ -1684,7 +1689,8 @@ document.addEventListener("click", (ev) => {
   let sy = null, d = 0, active = false;
   document.addEventListener("touchstart", e => {
     const blocked = document.body.style.overflow === "hidden"; /* intro/onboard open */
-    sy = (window.scrollY <= 0 && !blocked) ? e.touches[0].clientY : null;
+    const onSheet = TIPSHEET && TIPSHEET.contains(e.target); /* dragging the tip sheet, not the page */
+    sy = (window.scrollY <= 0 && !blocked && !onSheet) ? e.touches[0].clientY : null;
     d = 0; active = false;
   }, { passive: true });
   document.addEventListener("touchmove", e => {
@@ -2187,7 +2193,7 @@ function chipTap(el, tag){
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
     el.classList.add("show");
-    showTipSheet(el);
+    showTipSheet(el, () => chipTap(el, tag));
     return;
   }
   hideTipSheet();
@@ -2215,7 +2221,7 @@ function srcTap(el, url){
   document.querySelectorAll(".has-tip.show").forEach(x => { if (x !== el) x.classList.remove("show"); });
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
-    el.classList.add("show"); showTipSheet(el); /* first tap: who is this */
+    el.classList.add("show"); showTipSheet(el, () => srcTap(el, url)); /* first tap: who is this */
     return;
   }
   el.classList.remove("show");
@@ -2394,8 +2400,8 @@ function entityHeadEl(key, S, count, mode){
 /* mobile bottom sheet: the tapped tooltip's content is copied into a
    fixed card attached to <body>, so no ancestor styling can ever push
    it off-screen. Buttons keep working (inline onclick attributes). */
-let TIPSHEET = null;
-function showTipSheet(el){
+let TIPSHEET = null, SHEET_GO = null;
+function showTipSheet(el, go){
   if (window.matchMedia && window.matchMedia("(hover: hover)").matches) return;
   const tip = el.querySelector(".entity-tip");
   if (!tip) return;
@@ -2403,11 +2409,53 @@ function showTipSheet(el){
     TIPSHEET = document.createElement("div");
     TIPSHEET.id = "tipSheet";
     document.body.appendChild(TIPSHEET);
+    wireTipSheet(TIPSHEET);
   }
-  TIPSHEET.innerHTML = '<span class="entity-tip">' + tip.innerHTML + "</span>";
+  SHEET_GO = (typeof go === "function") ? go : null;
+  TIPSHEET.classList.toggle("actionable", !!SHEET_GO);
+  TIPSHEET.innerHTML = '<span class="entity-tip"><span class="tip-grip"></span>' + tip.innerHTML + "</span>";
   TIPSHEET.classList.add("open");
 }
-function hideTipSheet(){ if (TIPSHEET) TIPSHEET.classList.remove("open"); }
+function hideTipSheet(){
+  if (TIPSHEET){ TIPSHEET.classList.remove("open"); TIPSHEET.style.transform = ""; TIPSHEET.style.opacity = ""; }
+  SHEET_GO = null;
+}
+/* the sheet is a live control: a plain tap runs the "second tap" action
+   (open the detail); a downward drag flings it away and closes it. */
+function wireTipSheet(sheet){
+  let sy = 0, dy = 0, dragging = false, moved = false;
+  sheet.addEventListener("touchstart", e => {
+    sy = e.touches[0].clientY; dy = 0; dragging = true; moved = false;
+    sheet.style.transition = "none";
+  }, { passive: true });
+  sheet.addEventListener("touchmove", e => {
+    if (!dragging) return;
+    dy = e.touches[0].clientY - sy;
+    if (dy > 0){
+      if (dy > 6) moved = true;
+      sheet.style.transform = "translateY(" + dy + "px)";
+      sheet.style.opacity = String(Math.max(0, 1 - dy / 170));
+    }
+  }, { passive: true });
+  sheet.addEventListener("touchend", e => {
+    if (!dragging) return;
+    dragging = false;
+    sheet.style.transition = "";
+    if (dy > 52){
+      sheet.style.transform = "translateY(120%)";
+      sheet.style.opacity = "0";
+      setTimeout(hideTipSheet, 180);
+      if (e.cancelable) e.preventDefault(); /* swallow the trailing click */
+    } else {
+      sheet.style.transform = ""; sheet.style.opacity = "";
+      if (moved && e.cancelable) e.preventDefault(); /* a small drag is not a tap */
+    }
+  }, { passive: false });
+  sheet.addEventListener("click", e => {
+    if (e.target.closest && e.target.closest(".tip-follow")) return; /* let the follow button work */
+    const g = SHEET_GO; hideTipSheet(); if (g) g();
+  });
+}
 
 /* keep a just-opened tooltip inside the viewport (inline mentions can sit
    at either edge of a text line, especially on phones) */
@@ -2442,7 +2490,7 @@ function entityTapOrig(el, key){
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
-    el.classList.add("show"); showTipSheet(el); return; /* first tap on mobile: bottom-sheet tooltip */
+    el.classList.add("show"); showTipSheet(el, () => entityTapOrig(el, key)); return; /* first tap on mobile: bottom-sheet tooltip */
   }
   el.classList.remove("show");
   hideTipSheet();
@@ -3991,6 +4039,43 @@ document.addEventListener("click", e => {
   if (!document.querySelector(".has-tip.show")
       && !(TIPSHEET && TIPSHEET.contains(e.target))) hideTipSheet();
 });
+
+/* ---------------- in-app back + left-edge swipe ----------------
+   One step back through the view stack, most specific first. The edge swipe
+   only runs in the installed app, where Safari's own back gesture is gone;
+   in a normal browser tab the browser already handles it. */
+function stacksBack(){
+  if (TIPSHEET && TIPSHEET.classList.contains("open")){
+    hideTipSheet();
+    document.querySelectorAll(".has-tip.show").forEach(x => x.classList.remove("show"));
+    return true;
+  }
+  if (document.getElementById("entityRailPanel")){ closeEntityRail(); return true; }
+  if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return true; }
+  if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return true; }
+  if (QUERY){ clearSearch(); return true; }
+  if (BM_ONLY || UNREAD_ONLY || FREE_ONLY){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; render(); return true; }
+  if (TAB !== "all"){ setTab("all"); return true; }
+  return false;
+}
+(function(){
+  if (!("ontouchstart" in window) || !isStandalone()) return;
+  const EDGE = 30, DIST = 72;
+  let track = false, sx = 0, sy = 0, t0 = 0;
+  document.addEventListener("touchstart", e => {
+    if (e.touches.length !== 1){ track = false; return; }
+    const x = e.touches[0].clientX;
+    if (x <= EDGE){ track = true; sx = x; sy = e.touches[0].clientY; t0 = Date.now(); }
+    else track = false;
+  }, { passive: true });
+  document.addEventListener("touchend", e => {
+    if (!track) return;
+    track = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (dx > DIST && Math.abs(dy) < 56 && (Date.now() - t0) < 650) stacksBack();
+  }, { passive: true });
+})();
 
 /* ---------------- boot ----------------
    Content lives in items.json next to this file. Fetch it, then start.
