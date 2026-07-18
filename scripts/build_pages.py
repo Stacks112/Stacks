@@ -155,63 +155,104 @@ def _wrap(draw, text, font, max_w, max_lines):
     return lines
 
 
+def _og_tile(Image, ImageDraw, src_path, is_logo, size):
+    """A rounded-square thumbnail: photos are cover-filled; logos sit on a
+    white tile, contained with padding."""
+    im = Image.open(src_path).convert("RGBA")
+    if is_logo:
+        tile = Image.new("RGBA", (size, size), (255, 255, 255, 255))
+        pad = int(size * 0.17)
+        maxd = size - 2 * pad
+        w0, h0 = im.size
+        sc = min(maxd / w0, maxd / h0)
+        nw, nh = max(1, int(w0 * sc)), max(1, int(h0 * sc))
+        im2 = im.resize((nw, nh), Image.LANCZOS)
+        tile.paste(im2, ((size - nw) // 2, (size - nh) // 2), im2)
+    else:
+        w0, h0 = im.size
+        s = min(w0, h0)
+        tile = im.crop(((w0 - s) // 2, (h0 - s) // 2, (w0 - s) // 2 + s, (h0 - s) // 2 + s)).resize((size, size), Image.LANCZOS).convert("RGBA")
+    rad = int(size * 0.13)
+    mask = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, size - 1, size - 1), radius=rad, fill=255)
+    tile.putalpha(mask)
+    return tile
+
+
+def _og_source(item):
+    """Return (path, is_logo) for the card thumbnail, or (None, False)."""
+    import os
+    av = item.get("avatarImg")
+    if av and os.path.exists(av):
+        return av, False
+    ph = f"ogsrc/{item['id']}.photo.png"
+    lg = f"ogsrc/{item['id']}.logo.png"
+    if os.path.exists(ph):
+        return ph, False
+    if os.path.exists(lg):
+        return lg, True
+    return None, False
+
+
 def make_og(item, og):
     Image, ImageDraw, ImageFont, boldp, regp = og
-    W, H, M = OG_W, OG_H, 70
+    import os
+    W, H, M = OG_W, OG_H, 64
     frm = _hex((item.get("cover") or {}).get("from"))
     to = _hex((item.get("cover") or {}).get("to"))
     # diagonal gradient (small then upscaled = smooth + fast)
     sm = (64, 34)
-    mask = Image.new("L", sm)
-    mask.putdata([int(255 * ((x / (sm[0] - 1)) + (y / (sm[1] - 1))) / 2)
-                  for y in range(sm[1]) for x in range(sm[0])])
+    gmask = Image.new("L", sm)
+    gmask.putdata([int(255 * ((x / (sm[0] - 1)) + (y / (sm[1] - 1))) / 2)
+                   for y in range(sm[1]) for x in range(sm[0])])
     base = Image.new("RGB", (W, H), frm)
     top = Image.new("RGB", (W, H), to)
-    img = Image.composite(top, base, mask.resize((W, H)))
+    img = Image.composite(top, base, gmask.resize((W, H)))
     # darken bottom for legible text
     ov = Image.new("L", (1, H))
-    ov.putdata([int(210 * max(0, (y - H * 0.34) / (H * 0.66))) for y in range(H)])
+    ov.putdata([int(205 * max(0, (y - H * 0.30) / (H * 0.70))) for y in range(H)])
     img = Image.composite(Image.new("RGB", (W, H), (12, 13, 16)), img, ov.resize((W, H)))
+
+    # subject thumbnail on the LEFT (photo of the person/company the story is about)
+    src, is_logo = _og_source(item)
+    TH = 384
+    ty0 = (H - TH) // 2
+    tx0 = M
+    have_img = False
+    if src:
+        try:
+            tile = _og_tile(Image, ImageDraw, src, is_logo, TH)
+            # soft shadow
+            sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            ImageDraw.Draw(sh).rounded_rectangle((tx0, ty0 + 8, tx0 + TH, ty0 + TH + 8), radius=int(TH * 0.13), fill=(0, 0, 0, 90))
+            img.paste(Image.alpha_composite(img.convert("RGBA"), sh).convert("RGB"), (0, 0))
+            img.paste(tile, (tx0, ty0), tile)
+            have_img = True
+        except Exception:
+            have_img = False
+
     d = ImageDraw.Draw(img)
-    fTitle = ImageFont.truetype(boldp, 60)
-    fMeta = ImageFont.truetype(regp, 30)
+    textX = (tx0 + TH + 52) if have_img else M
+    textW = W - textX - M
+    fTitle = ImageFont.truetype(boldp, 54 if have_img else 60)
+    fMeta = ImageFont.truetype(regp, 28)
     fBrand = ImageFont.truetype(boldp, 30)
-    fLabel = ImageFont.truetype(boldp, 44)
-    # brand + cover label (top)
-    d.text((M, M - 8), "◆ STACKS", font=fBrand, fill=(255, 255, 255))
+    fLabel = ImageFont.truetype(boldp, 40 if have_img else 44)
+    # brand + cover label (top of the text column)
+    d.text((textX, M - 6), "◆ STACKS", font=fBrand, fill=(255, 255, 255))
     label = (item.get("cover") or {}).get("label", "")
     if label:
-        d.text((M, M + 44), label, font=fLabel, fill=(232, 232, 238))
-    # title (bottom, up to 3 lines)
+        d.text((textX, M + 42), _wrap(d, label, fLabel, textW, 1)[0], font=fLabel, fill=(232, 232, 238))
+    # title, bottom-aligned above the source line
     title = item["title"].get("ko") or item["title"]["en"]
-    lines = _wrap(d, title, fTitle, W - 2 * M, 3)
-    lh = 74
-    ty = H - M - 46 - lh * len(lines)
+    lh = 68 if have_img else 74
+    lines = _wrap(d, title, fTitle, textW, 3)
+    ty = H - M - 42 - lh * len(lines)
     for i, ln in enumerate(lines):
-        d.text((M, ty + i * lh), ln, font=fTitle, fill=(255, 255, 255))
-    # subject image: a circular photo of the person the story is about
-    # (Trump, an author, a CEO) so the card isn't just a coloured gradient.
-    import os
-    av = item.get("avatarImg")
-    if av and os.path.exists(av):
-        try:
-            ph = Image.open(av).convert("RGBA")
-            D = 250
-            w0, h0 = ph.size
-            sq = min(w0, h0)
-            ph = ph.crop(((w0 - sq) // 2, (h0 - sq) // 2, (w0 - sq) // 2 + sq, (h0 - sq) // 2 + sq)).resize((D, D), Image.LANCZOS)
-            mask = Image.new("L", (D, D), 0)
-            ImageDraw.Draw(mask).ellipse((0, 0, D - 1, D - 1), fill=255)
-            px, py = W - D - 64, 58
-            ring = Image.new("L", (D + 12, D + 12), 0)
-            ImageDraw.Draw(ring).ellipse((0, 0, D + 11, D + 11), fill=255)
-            img.paste((255, 255, 255), (px - 6, py - 6), ring)
-            img.paste(ph, (px, py), mask)
-        except Exception:
-            pass
+        d.text((textX, ty + i * lh), ln, font=fTitle, fill=(255, 255, 255))
     # source · date
     meta = f"{dispname(item.get('source',''))}  ·  {item.get('date','')}"
-    d.text((M, H - M - 4), meta, font=fMeta, fill=(226, 232, 240))
+    d.text((textX, H - M - 2), meta, font=fMeta, fill=(226, 232, 240))
     os.makedirs("og", exist_ok=True)
     img.save(f"og/{item['id']}.png", optimize=True)
 
