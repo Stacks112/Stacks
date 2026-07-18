@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v67 :: EN/JA fixes - unified newsletter form, dash label i18n, 메르 (ranto28), My Page, localized company facts + clickable Track Record names -->
+<!-- STACKS BUILD v68 :: localized glossary term names (Foundry/Open-weight...), browser Back unwinds in-app views instead of leaving -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1991,7 +1991,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v67</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v68</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2083,7 +2083,7 @@ document.addEventListener("click", (ev) => {
     sy = null; d = 0; active = false;
   }, { passive: true });
 })();
-function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false; TAB = t; render(); }
+function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false; if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
 
 
 
@@ -2119,6 +2119,13 @@ function dispName(s){ return NAME_ALIAS[s] || s; }
 function locVal(v){
   if (v && typeof v === "object") return v[LANG] || v.en || v.ko || "";
   return v;
+}
+/* display name for an entity: localized name if it has one (terms), the
+   friendly alias for sources (메르), else the key itself. */
+function entName(key){
+  const e = ENTITIES[key];
+  if (e && e.name) return locVal(e.name);
+  return dispName(key);
 }
 function entityTip(key){
   const e = ENTITIES[key];
@@ -2238,6 +2245,7 @@ function openChartFS(key){
   else openTVChart(sym, holder);
   m.hidden = false;
   document.body.style.overflow = "hidden";
+  pushView();
   track("chartfs/" + slugTag(key));
 }
 function openTVChart(sym, holder){
@@ -2665,6 +2673,7 @@ let STANCE_FILTER = null, STANCE_FILTER_KEY = null, SB_VIEW = false;
    verified predictions (hit / miss / pending). Wins AND losses. */
 function openScoreboard(){
   SB_VIEW = true; SERIES_VIEW = null; ENTITY_VIEW = null; STANCE_FILTER = null;
+  pushView();
   track("scoreboard");
   renderFeed(false);
   const f = document.getElementById("feed");
@@ -3151,7 +3160,7 @@ function entityHeadEl(key, S, count, mode){
     ? '<button class="eh-link eh-viewarts" onclick="entityFeedView(\'' + safe + '\')">' + (S.entArticles || "View {n} articles →").replace("{n}", count) + "</button>" : "";
   h.innerHTML = topBtn
     + '<div class="eh-top">' + logo
-      + '<div><div class="eh-name">' + esc(dispName(key)) + "</div>"
+      + '<div><div class="eh-name">' + esc(entName(key)) + "</div>"
       + '<div class="eh-sub">' + subBits.join(" · ") + "</div></div></div>"
     + ((e.longDesc || e.desc) ? '<p class="eh-desc">' + (e.longDesc ? e.longDesc[LANG] : e.desc[LANG]) + "</p>" : "")
     + chart
@@ -3274,11 +3283,13 @@ function entityFeedView(key){
   SERIES_VIEW = null; BM_ONLY = false; QUERY = ""; SB_VIEW = false;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   ENTITY_VIEW = key;
+  pushView();
   renderFeed(true);
   const f = document.getElementById("feed"); if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function showEntityRail(key){
-  showEntityRailOrig(key);
+  const ok = showEntityRailOrig(key);
+  if (ok !== false) pushView();
   railDebateEnhance(key);
 }
 function showEntityRailOrig(key){
@@ -3615,6 +3626,7 @@ function openMe(){
   renderMe();
   m.hidden = false;
   document.body.style.overflow = "hidden";
+  pushView();
   track("me/open");
 }
 function closeMe(){
@@ -3812,6 +3824,7 @@ function epNum(item){
 function openSeries(sid){
   if (!SERIES[sid]) return;
   SERIES_VIEW = sid; SB_VIEW = false;
+  pushView();
   SERIES_SEEN[sid] = seriesItems(sid).length; /* caught up */
   store.set("stk_series_seen", SERIES_SEEN);
   track("series/" + sid);
@@ -4578,6 +4591,27 @@ async function shareSince(id){
     } catch (e) {}
   }, "image/png");
 }
+
+/* ---------------- in-app back-button history ----------------
+   Opening a deeper view (a company/author profile, a story, the
+   scoreboard, My Page, a full-screen chart, the desktop profile rail)
+   pushes a history entry, so the browser Back button unwinds that view
+   instead of leaving the site. Only when nothing is open does Back
+   actually leave. */
+let VIEW_PUSHED = 0;
+function pushView(){ try { history.pushState({ stk: ++VIEW_PUSHED }, ""); } catch (e) {} }
+window.addEventListener("popstate", function(){
+  const cfs = document.getElementById("chartFS");
+  if (cfs && !cfs.hidden){ closeChartFS(); return; }
+  const me = document.getElementById("meSheet");
+  if (me && !me.hidden){ closeMe(); return; }
+  if (document.getElementById("entityRailPanel")){ closeEntityRail(); return; }
+  if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
+  if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return; }
+  if (typeof SB_VIEW !== "undefined" && SB_VIEW){ closeScoreboard(); return; }
+  if (typeof TAB !== "undefined" && TAB === "mine"){ setTab("all"); return; }
+  /* nothing open — let the browser navigate away normally */
+});
 
 /* shared links land on the exact card */
 function handleDeepLink(){

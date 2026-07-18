@@ -2484,7 +2484,12 @@
     "대용증권",
     "代用証券",
     "substitute securities"
-   ]
+   ],
+   "name": {
+    "ko": "대용증권",
+    "en": "Substitute securities",
+    "ja": "代用証券"
+   }
   },
   "ADR": {
    "kind": "term",
@@ -2507,7 +2512,12 @@
     "ADR",
     "미국주식예탁증서",
     "米国預託証券"
-   ]
+   ],
+   "name": {
+    "ko": "ADR",
+    "en": "ADR",
+    "ja": "ADR"
+   }
   },
   "레버리지": {
    "kind": "term",
@@ -2530,7 +2540,12 @@
     "레버리지",
     "leverage",
     "レバレッジ"
-   ]
+   ],
+   "name": {
+    "ko": "레버리지",
+    "en": "Leverage",
+    "ja": "レバレッジ"
+   }
   },
   "HBM": {
    "kind": "term",
@@ -2553,7 +2568,12 @@
     "HBM",
     "고대역폭 메모리",
     "広帯域メモリ"
-   ]
+   ],
+   "name": {
+    "ko": "HBM",
+    "en": "HBM",
+    "ja": "HBM"
+   }
   },
   "파운드리": {
    "kind": "term",
@@ -2577,7 +2597,12 @@
     "foundry",
     "ファウンドリ",
     "ファウンドリー"
-   ]
+   ],
+   "name": {
+    "ko": "파운드리",
+    "en": "Foundry",
+    "ja": "ファウンドリ"
+   }
   },
   "네오클라우드": {
    "kind": "term",
@@ -2600,7 +2625,12 @@
     "네오클라우드",
     "neocloud",
     "ネオクラウド"
-   ]
+   ],
+   "name": {
+    "ko": "네오클라우드",
+    "en": "Neocloud",
+    "ja": "ネオクラウド"
+   }
   },
   "연료전지": {
    "kind": "term",
@@ -2623,7 +2653,12 @@
     "연료전지",
     "fuel cell",
     "燃料電池"
-   ]
+   ],
+   "name": {
+    "ko": "연료전지",
+    "en": "Fuel cell",
+    "ja": "燃料電池"
+   }
   },
   "MoE": {
    "kind": "term",
@@ -2646,7 +2681,12 @@
     "MoE",
     "Mixture of Experts",
     "전문가 혼합"
-   ]
+   ],
+   "name": {
+    "ko": "MoE",
+    "en": "Mixture of Experts (MoE)",
+    "ja": "MoE（専門家混合）"
+   }
   },
   "INTEL": {
    "kind": "company",
@@ -2746,6 +2786,11 @@
     "ko": "Long-Term Agreement. 공급사와 고객이 몇 년치 물량과 가격을 미리 묶는 계약이다. 특히 'take-or-pay' 조건이 붙으면 고객은 물량을 안 가져가도 돈을 내야 해서, 공급사 입장에선 미래 매출이 사실상 보장된다. 메모리 반도체처럼 사이클이 심한 산업에서 LTA가 늘어난다는 건 수요가 구조적으로 바뀌고 있다는 신호로 읽힌다.",
     "en": "A Long-Term Agreement locks in volumes and prices for years. With 'take-or-pay' terms, the customer pays even if it doesn't take delivery, effectively guaranteeing the supplier's future revenue. In a cyclical industry like memory, a wave of LTAs signals demand turning structural.",
     "ja": "数年分の数量・価格を固定する長期契約。「take-or-pay」条項付きなら顧客は引き取らなくても支払い義務があり、サプライヤーの将来売上が実質保証される。メモリのようなシクリカル産業でLTAが増えるのは、需要が構造的に変わったシグナルとされる。"
+   },
+   "name": {
+    "ko": "LTA",
+    "en": "Long-term agreement (LTA)",
+    "ja": "長期供給契約 (LTA)"
    }
   },
   "CPI": {
@@ -2769,7 +2814,12 @@
     "CPI",
     "소비자물가지수",
     "消費者物価指数"
-   ]
+   ],
+   "name": {
+    "ko": "CPI",
+    "en": "CPI",
+    "ja": "CPI"
+   }
   },
   "MOONSHOT AI": {
    "kind": "company",
@@ -2834,7 +2884,12 @@
     "오픈웨이트",
     "오픈웨이트 모델",
     "オープンウェイト"
-   ]
+   ],
+   "name": {
+    "ko": "오픈웨이트",
+    "en": "Open-weight",
+    "ja": "オープンウェイト"
+   }
   }
  }
 }
