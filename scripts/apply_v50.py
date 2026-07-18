@@ -544,6 +544,61 @@ STAGE6_CSS = '''html[data-lang="ko"] .ceo-detail{font-family:"Pretendard Variabl
 .ceo-detail-txt{flex:1;min-width:0;}'''
 
 
+ENTITY_PHOTO_FN = '''/* stage7: photo for person entity panels (Trump, Nadella, authors, ...) */
+function entityPhotoEnhance(head, key){
+  try {
+    const e = ENTITIES[key];
+    if (!head || !e || e.kind !== "person") return;
+    const top = head.querySelector(".eh-top");
+    if (!top || top.querySelector(".eh-photo")) return;
+    const put = function(url){
+      if (!url || top.querySelector(".eh-photo")) return;
+      const ph = document.createElement("span");
+      ph.className = "eh-photo on";
+      ph.style.backgroundImage = "url('" + url + "')";
+      top.insertBefore(ph, top.firstChild);
+    };
+    const src = ITEMS.find(function(i){ return i.source === key; });
+    if (!src) return;
+    if (src.wiki && typeof wikiPhoto === "function"){
+      wikiPhoto(src.wiki).then(function(u){ put(u || src.avatarImg); });
+    } else if (src.avatarImg){ put(src.avatarImg); }
+  } catch (e) {}
+}
+function ceoEnhance(root){'''
+
+
+def stage7(html):
+    edits = [
+        ("function ceoEnhance(root){", ENTITY_PHOTO_FN),
+        ("    ceoEnhance(head);",
+         "    ceoEnhance(head);\n    entityPhotoEnhance(head, key);"),
+        ("  if (STANCE_FILTER && STANCE_FILTER_KEY !== ENTITY_VIEW) STANCE_FILTER = null;",
+         "  if (STANCE_FILTER && STANCE_FILTER_KEY !== ENTITY_VIEW) STANCE_FILTER = null;\n"
+         "  try { const _eh = list.querySelector(\".entity-head\"); if (_eh) entityPhotoEnhance(_eh, ENTITY_VIEW); } catch (e) {}"),
+        (".ceo-detail-txt{flex:1;min-width:0;}",
+         ".ceo-detail-txt{flex:1;min-width:0;}\n"
+         "/* stage7 */\n"
+         ".eh-photo.on{flex:0 0 46px;width:46px;height:46px;border-radius:50%;overflow:hidden;"
+         "background-size:cover;background-position:center 22%;box-shadow:0 1px 5px rgba(0,0,0,.18);}"),
+    ]
+    problems = []
+    for i, (needle, _) in enumerate(edits, 1):
+        n = html.count(needle)
+        if n != 1:
+            problems.append("stage7 edit %d: needle found %d times: %r" % (i, n, needle[:70]))
+    if problems:
+        for p in problems:
+            print("[ABORT] " + p)
+        return 1
+    for needle, repl in edits:
+        html = html.replace(needle, repl, 1)
+    with io.open(PATH, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("stage-7 applied: photos on person entity panels")
+    return 0
+
+
 def stage6(html):
     edits = [
         ("function ceoTipHtml(name){", CEO_WIKI_BLOCK),
@@ -639,8 +694,10 @@ def main():
                 if "/* stage4 */" in html:
                     if "/* stage5 */" in html:
                         if "/* stage6 */" in html:
-                            print("stage 6 already applied; nothing to do")
-                            return 0
+                            if "/* stage7 */" in html:
+                                print("stage 7 already applied; nothing to do")
+                                return 0
+                            return stage7(html)
                         return stage6(html)
                     return stage5(html)
                 return stage4(html)
