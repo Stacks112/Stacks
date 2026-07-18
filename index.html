@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v70 :: follow people too, follow button in detail panel, split JPMorgan/Jamie Dimon, clickable since-badge company, today-debate close, short on-brand share links with OG card -->
+<!-- STACKS BUILD v71 :: follow btn on own line + visible in panel, since-badge company hover popup, named debate title, PC share = copy+toast, shared links open app in sharer lang, OG cards with subject photo -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -206,7 +206,7 @@ const STRINGS = {
     cLoading: "Loading comments...",
     cRate: "Too fast. Try again in a minute.",
     share: "Share",
-    copied: "Link copied ✓",
+    copied: "Link copied to clipboard ✓",
     notify: "Get alerts",
     themeDark: "Dark mode",
     themeLight: "Light mode",
@@ -281,6 +281,8 @@ const STRINGS = {
     sortHot: "Popular",
     stanceBull: "Bull", stanceBear: "Bear", stanceWatch: "Context",
     debateTitle: "The debate",
+    debateCo: "The debate around {name}",
+    debatePerson: "{name}'s calls: bull vs bear",
     nlTitle: "Get the weekly best by email",
     nlSub: "Once a week, the best of Stacks lands in your inbox.",
     nlPh: "Your email address",
@@ -340,7 +342,7 @@ const STRINGS = {
     cLoading: "댓글 불러오는 중...",
     cRate: "너무 빨라요. 잠시 후 다시 시도해주세요.",
     share: "공유",
-    copied: "링크 복사됨 ✓",
+    copied: "링크가 복사되었습니다 ✓",
     notify: "알림 받기",
     themeDark: "다크 모드",
     themeLight: "라이트 모드",
@@ -415,6 +417,8 @@ const STRINGS = {
     sortHot: "인기순",
     stanceBull: "강세", stanceBear: "약세", stanceWatch: "관점",
     debateTitle: "이 종목을 둘러싼 논쟁",
+    debateCo: "{name}{p} 둘러싼 논쟁",
+    debatePerson: "{name}의 강세·약세 관점",
     nlTitle: "이번 주 베스트를 메일로",
     nlSub: "일주일에 한 번, 스택스 베스트를 이메일로 보내드려요.",
     nlPh: "이메일 주소",
@@ -474,7 +478,7 @@ const STRINGS = {
     cLoading: "コメントを読み込み中...",
     cRate: "早すぎます。少し待ってからお試しください。",
     share: "共有",
-    copied: "コピーしました",
+    copied: "リンクをコピーしました ✓",
     notify: "通知を受け取る",
     themeDark: "ダークモード",
     themeLight: "ライトモード",
@@ -549,6 +553,8 @@ const STRINGS = {
     sortHot: "人気順",
     stanceBull: "強気", stanceBear: "弱気", stanceWatch: "視点",
     debateTitle: "この銘柄をめぐる論争",
+    debateCo: "{name}をめぐる論争",
+    debatePerson: "{name}の強気・弱気の見解",
     nlTitle: "今週のベストをメールで",
     nlSub: "週に一度、Stacksのベストをメールでお届けします。",
     nlPh: "メールアドレス",
@@ -1019,7 +1025,11 @@ html{overscroll-behavior-y:contain;}
 #ptr.spin svg{animation:ptrspin .7s linear infinite;}
 @keyframes ptrspin{to{transform:rotate(360deg);}}
 .entity-head .eh-actions{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;}
-.entity-head .tip-follow{position:static;font-size:12px;padding:7px 14px;border-radius:8px;}
+/* the follow button lives in a light panel here, so give it panel colors
+   (its base white-on-dark tooltip styling was invisible on white) */
+.entity-head .tip-follow{position:static;font-size:12px;padding:7px 16px;border-radius:8px;color:var(--accent);border:1px solid var(--accent);background:none;}
+.entity-head .tip-follow:hover{background:rgba(124,147,255,.12);border-color:var(--accent);}
+.entity-head .tip-follow.on{background:var(--accent);color:#fff;border-color:var(--accent);}
 .entity-head .eh-link{font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;padding:7px 4px;}
 .entity-head .eh-link:hover{text-decoration:underline;}
 /* ---------- desktop 3-column dashboard (>=1024px) ---------- */
@@ -1098,6 +1108,18 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
 .since .since-k-link{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
 .since .since-k-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
+/* clickable/hoverable entity name inside the debate-board title */
+.debate-ent{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:currentColor;position:relative;}
+.debate-ent:hover{color:var(--accent);}
+/* toast */
+#toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(10px);
+  background:var(--black);color:#fff;font-size:13px;font-weight:600;
+  padding:11px 18px;border-radius:999px;z-index:14000;opacity:0;pointer-events:none;
+  box-shadow:0 10px 30px rgba(0,0,0,.32);transition:opacity .2s ease,transform .2s ease;white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+html[data-lang="ko"] #toast{font-family:"Pretendard Variable",sans-serif;}
 .since .since-p{font-weight:800;}
 .since-share{
   margin-left:4px;border:none;background:none;cursor:pointer;
@@ -1663,6 +1685,8 @@ html[data-lang="ko"] .w-unread{font-family:"Pretendard Variable",sans-serif;}
 }
 .tip-follow:hover{border-color:#fff;}
 .tip-follow.on{background:#fff;color:var(--black);border-color:#fff;}
+/* inside the hover tooltip, put Follow on its own line under the text */
+.entity-tip .tip-follow{display:block;width:max-content;margin-top:10px;}
 
 /* ---------- comment threads (replies + likes) ---------- */
 .c-actions{display:flex;gap:10px;margin-top:6px;}
@@ -2004,7 +2028,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v70</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v71</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2015,7 +2039,13 @@ footer a{color:var(--muted);}
 function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 
-let LANG = lsGet("stk_lang") ||
+/* a shared link may carry ?l=ko|en|ja (the sharer's language). Honour it for
+   this visit (session only — don't overwrite the visitor's saved preference). */
+function langParam(){
+  try { const l = new URLSearchParams(location.search).get("l"); if (l === "ko" || l === "en" || l === "ja") return l; } catch (e) {}
+  return null;
+}
+let LANG = langParam() || lsGet("stk_lang") ||
   ((l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : "en")((navigator.language || "").toLowerCase()));
 let TAB = "all";
 
@@ -2624,7 +2654,7 @@ function queueSince(item){
       el.hidden = false;
       el.title = S.sinceTip;
       el.innerHTML = '<span class="since-lb">' + S.sincePost + '</span>'
-        + '<b class="since-k since-k-link" onclick="event.stopPropagation(); chipTap(this, \'' + k.replace(/'/g, "\\'") + '\')">' + esc(k) + '</b>'
+        + '<b class="since-k since-k-link has-tip" onmouseenter="loadQuote(\'' + k.replace(/'/g, "\\'") + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + k.replace(/'/g, "\\'") + '\')">' + esc(k) + entityTip(k) + '</b>'
         + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
         + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>"
         + '<button class="since-share" onclick="event.stopPropagation(); shareSince(\'' + item.id + '\')" aria-label="' + esc(S.share) + '" title="' + esc(S.share) + '"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>';
@@ -2632,6 +2662,23 @@ function queueSince(item){
   });
 }
 /* Entity debate board: scoreboard + bull/bear/context groups */
+/* Korean 을/를 by final-consonant (batchim); default 를 for non-Korean. */
+function koEulReul(name){
+  const c = name.charCodeAt(name.length - 1);
+  if (c >= 0xAC00 && c <= 0xD7A3) return ((c - 0xAC00) % 28) !== 0 ? "을" : "를";
+  return "를";
+}
+/* debate board title that names the entity, with a clickable + hoverable
+   name (e.g. "JP모건을 둘러싼 논쟁") instead of the vague "이 종목". */
+function debateTitleHtml(key){
+  const S = STRINGS[LANG], e = key && ENTITIES[key];
+  if (!e) return S.debateTitle;
+  const nm = entName(key), safe = key.replace(/'/g, "\\'");
+  const span = '<span class="debate-ent has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); entityFeedView(\'' + safe + '\')">' + esc(nm) + entityTip(key) + "</span>";
+  const tmpl = (e.kind === "person") ? S.debatePerson : S.debateCo;
+  const p = (LANG === "ko" && e.kind !== "person") ? koEulReul(nm) : "";
+  return tmpl.replace("{name}", span).replace("{p}", p);
+}
 function renderEntityDebate(list, items, S){
   if (STANCE_FILTER && STANCE_FILTER_KEY !== ENTITY_VIEW) STANCE_FILTER = null;
   try { const _eh = list.querySelector(".entity-head"); if (_eh) entityPhotoEnhance(_eh, ENTITY_VIEW); } catch (e) {}
@@ -2647,7 +2694,7 @@ function renderEntityDebate(list, items, S){
   const counts = { bull: groups.bull.length, bear: groups.bear.length, watch: groups.watch.length };
   const bar = document.createElement("div");
   bar.className = "debate-bar";
-  bar.innerHTML = '<div class="debate-title">' + S.debateTitle + '</div>'
+  bar.innerHTML = '<div class="debate-title">' + debateTitleHtml(ENTITY_VIEW) + '</div>'
     + '<div class="debate-track">'
     + ["bull", "bear", "watch"].map(k => counts[k]
         ? '<div class="debate-seg ds-' + k + (STANCE_FILTER ? (STANCE_FILTER === k ? " on" : " dim") : "") + '" style="flex:' + counts[k] + '" onclick="stanceFilterTap(\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
@@ -2818,7 +2865,7 @@ function railDebateEnhance(key){
         const safe = key.replace(/'/g, "\\'");
         const bar = document.createElement("div");
         bar.className = "debate-bar rail-debate";
-        bar.innerHTML = '<div class="debate-title">' + STRINGS[LANG].debateTitle + '</div>'
+        bar.innerHTML = '<div class="debate-title">' + debateTitleHtml(key) + '</div>'
           + '<div class="debate-track">'
           + ["bull", "bear", "watch"].map(k => counts[k]
               ? '<div class="debate-seg ds-' + k + '" style="flex:' + counts[k] + '" onclick="railStanceTap(\'' + safe + '\',\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
@@ -4467,31 +4514,42 @@ async function copyWrapup(){
 }
 
 function shareUrl(item){
-  /* Short, on-brand link to the article's own static page. It carries
-     per-article OG tags + a 1200x630 preview image, so KakaoTalk / X / etc.
-     render a proper card, and the URL stays clean (stacksdaily.com/p/…). */
-  return "https://stacksdaily.com/p/" + item.id + ".html";
+  /* Short, on-brand link to the article's static page: it carries per-article
+     OG tags + a 1200x630 preview image so KakaoTalk / X render a real card.
+     The ?l= carries the sharer's language; a human who clicks is bounced into
+     the live app in that language, while crawlers still read the card. */
+  return "https://stacksdaily.com/p/" + item.id + ".html?l=" + LANG;
 }
 
+let TOAST_T = null;
+function showToast(msg){
+  let t = document.getElementById("toast");
+  if (!t){ t = document.createElement("div"); t.id = "toast"; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add("show");
+  if (TOAST_T) clearTimeout(TOAST_T);
+  TOAST_T = setTimeout(() => t.classList.remove("show"), 2200);
+}
+async function copyLink(url){
+  try { await navigator.clipboard.writeText(url); return true; }
+  catch (e){
+    try { const ta = document.createElement("textarea"); ta.value = url; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); return true; }
+    catch (e2){ return false; }
+  }
+}
 async function shareItem(id){
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
   track("share/" + id);
   const url = shareUrl(item);
   const title = item.title[LANG];
-  if (navigator.share){
+  /* desktop: just copy the link + toast. mobile: native share sheet. */
+  const desktop = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!desktop && navigator.share){
     try { await navigator.share({ title: title, url: url }); } catch (e) {}
     return;
   }
-  try {
-    await navigator.clipboard.writeText(url);
-    const btn = document.getElementById("share-" + id);
-    if (btn){
-      const orig = STRINGS[LANG].share;
-      btn.textContent = STRINGS[LANG].copied;
-      setTimeout(() => { btn.textContent = orig; }, 1600);
-    }
-  } catch (e) {}
+  if (await copyLink(url)) showToast(STRINGS[LANG].copied);
 }
 
 /* ---- shareable performance card ("this call is up X% since the post") ----

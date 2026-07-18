@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v13";
+const CACHE = "stacks-v14";
 
 const SHELL = [
   "./",

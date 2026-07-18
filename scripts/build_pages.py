@@ -189,10 +189,29 @@ def make_og(item, og):
     ty = H - M - 46 - lh * len(lines)
     for i, ln in enumerate(lines):
         d.text((M, ty + i * lh), ln, font=fTitle, fill=(255, 255, 255))
+    # subject image: a circular photo of the person the story is about
+    # (Trump, an author, a CEO) so the card isn't just a coloured gradient.
+    import os
+    av = item.get("avatarImg")
+    if av and os.path.exists(av):
+        try:
+            ph = Image.open(av).convert("RGBA")
+            D = 250
+            w0, h0 = ph.size
+            sq = min(w0, h0)
+            ph = ph.crop(((w0 - sq) // 2, (h0 - sq) // 2, (w0 - sq) // 2 + sq, (h0 - sq) // 2 + sq)).resize((D, D), Image.LANCZOS)
+            mask = Image.new("L", (D, D), 0)
+            ImageDraw.Draw(mask).ellipse((0, 0, D - 1, D - 1), fill=255)
+            px, py = W - D - 64, 58
+            ring = Image.new("L", (D + 12, D + 12), 0)
+            ImageDraw.Draw(ring).ellipse((0, 0, D + 11, D + 11), fill=255)
+            img.paste((255, 255, 255), (px - 6, py - 6), ring)
+            img.paste(ph, (px, py), mask)
+        except Exception:
+            pass
     # source · date
     meta = f"{dispname(item.get('source',''))}  ·  {item.get('date','')}"
     d.text((M, H - M - 4), meta, font=fMeta, fill=(226, 232, 240))
-    import os
     os.makedirs("og", exist_ok=True)
     img.save(f"og/{item['id']}.png", optimize=True)
 
@@ -271,6 +290,8 @@ def page_html(item, ent_links=None, og_img=None):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>/* shared link (?l=xx): bounce a human into the live app in the sharer's language. No ?l = organic/SEO visit, so this stays a normal crawlable page. */
+(function(){{try{{var l=new URLSearchParams(location.search).get('l');if(!l)return;location.replace('{BASE}?c={iid}&l='+encodeURIComponent(l));}}catch(e){{}}}})();</script>
 <title>{E(title_ko)} · {SITE}</title>
 <meta name="description" content="{E(desc)}">
 <meta name="keywords" content="{E(kw)}">
