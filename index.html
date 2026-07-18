@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v60 :: desktop tooltip rendered in a body-level layer pinned above the cursor (escapes card transform + overflow clipping) -->
+<!-- STACKS BUILD v61 :: since-post return badge, my briefing, track-record scoreboard (on top of v60 tooltip layer fix) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -233,6 +233,18 @@ const STRINGS = {
     entArticles: "View {n} related articles →",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
     watchUnread: "{n} unread",
+    sincePost: "Since this post",
+    sinceTip: "Price change from the article date's close to now. Reference only, not proof of causation.",
+    sbNav: "Track record",
+    sbTitle: "Track record",
+    sbSub: "Every directional call on Stacks, checked against what the market actually did afterwards. Hits and misses both.",
+    sbCalls: "Calls",
+    sbAlign: "Direction match",
+    sbRecord: "Verified calls",
+    sbAllCalls: "All calls",
+    sbEmpty: "Not enough calls to score yet.",
+    briefTitle: "My briefing",
+    briefLine: "{c} companies you follow · {n} new this week",
     reply: "Reply",
     replyingTo: "Replying to {name}",
     cancel: "Cancel",
@@ -329,6 +341,18 @@ const STRINGS = {
     entArticles: "관련 글 {n}개 보기 →",
     fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
     watchUnread: "안 읽은 글 {n}",
+    sincePost: "이 글 이후",
+    sinceTip: "글 게재일 종가 대비 현재 주가 변화입니다. 참고용이며, 인과관계의 증명이 아닙니다.",
+    sbNav: "적중 기록",
+    sbTitle: "적중 기록",
+    sbSub: "Stacks에 실린 방향성 있는 글이 그 후 시장에서 실제로 어떻게 됐는지 전부 공개합니다. 맞은 것도, 틀린 것도.",
+    sbCalls: "콜",
+    sbAlign: "방향 일치",
+    sbRecord: "검증된 예측",
+    sbAllCalls: "전체 콜",
+    sbEmpty: "아직 집계할 콜이 부족해요.",
+    briefTitle: "내 브리핑",
+    briefLine: "팔로우한 기업 {c}곳 · 이번 주 새 글 {n}건",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
     cancel: "취소",
@@ -425,6 +449,18 @@ const STRINGS = {
     entArticles: "関連記事{n}件を見る →",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
     watchUnread: "未読{n}件",
+    sincePost: "投稿後",
+    sinceTip: "記事掲載日の終値から現在までの株価変化です。参考情報であり、因果関係の証明ではありません。",
+    sbNav: "的中記録",
+    sbTitle: "的中記録",
+    sbSub: "Stacksに載った方向性のある記事がその後実際どうなったかをすべて公開。当たりも外れも。",
+    sbCalls: "コール",
+    sbAlign: "方向一致",
+    sbRecord: "検証済みの予測",
+    sbAllCalls: "すべてのコール",
+    sbEmpty: "まだ集計できるコールが足りません。",
+    briefTitle: "マイ・ブリーフィング",
+    briefLine: "フォロー中の企業{c}社 · 今週の新着{n}件",
     reply: "返信",
     replyingTo: "{name}さんに返信",
     cancel: "キャンセル",
@@ -927,6 +963,61 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 .oc-hit{background:rgba(18,183,106,.09);border-color:rgba(18,183,106,.35);color:#0E9F5E;}
 .oc-miss{background:rgba(240,68,56,.08);border-color:rgba(240,68,56,.3);color:#E04438;}
 .oc-note{font-weight:500;}
+/* "since this post" price receipt */
+.since{
+  margin-top:10px;display:inline-flex;align-items:center;gap:7px;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+  padding:5px 10px;border-radius:8px;border:1px dashed var(--line);
+  color:var(--muted);cursor:help;
+}
+.since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
+.since .since-p{font-weight:800;}
+/* track-record scoreboard */
+.tab-sb{border-style:dashed;}
+.sb-table{
+  margin:18px 0 6px;border:1px solid var(--line);border-radius:14px;
+  background:var(--bg-soft);overflow:hidden;
+}
+.sb-row{
+  display:grid;grid-template-columns:minmax(0,1.6fr) .8fr .7fr 1fr;gap:8px;
+  align-items:center;padding:10px 14px;border-top:1px solid var(--line);
+  font-size:12.5px;
+}
+.sb-row:first-child{border-top:0;}
+.sb-head-row{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);padding:8px 14px;
+}
+.sb-src{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sb-c i,.sb-r i{font-style:normal;font-weight:700;margin-right:6px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;}
+.sb-a{font-family:"IBM Plex Mono",monospace;font-weight:700;}
+.ws-bull{color:#0E9F5E;}
+.ws-bear{color:#E04438;}
+.ws-ctx{color:var(--muted);}
+.sb-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.sb-list-title{margin-top:26px;}
+.sb-item{
+  display:flex;align-items:center;gap:10px;text-align:left;width:100%;
+  padding:11px 14px;border:1px solid var(--line);border-radius:12px;
+  background:var(--card);cursor:pointer;font:inherit;color:var(--text);
+}
+.sb-item:hover{border-color:var(--accent);}
+.sb-date{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);flex:0 0 auto;}
+.sb-title{flex:1 1 auto;min-width:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sb-since{font-family:"IBM Plex Mono",monospace;font-size:11.5px;flex:0 0 auto;}
+.sb-oc{margin-top:0;padding:3px 8px;font-size:10.5px;flex:0 0 auto;white-space:nowrap;}
+@media (max-width:640px){
+  .sb-row{grid-template-columns:minmax(0,1.3fr) .7fr .6fr .9fr;padding:9px 10px;font-size:11.5px;}
+  .sb-item{flex-wrap:wrap;row-gap:4px;}
+  .sb-title{flex-basis:100%;white-space:normal;}
+}
+/* my briefing */
+.brief-line{
+  font-size:12.5px;font-weight:600;color:var(--muted);margin:2px 0 12px;
+}
+html[data-lang="ko"] .brief-line{font-family:"Pretendard Variable",sans-serif;}
+.w-stance{margin-top:5px;display:flex;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:700;}
+.w-stance .ws{letter-spacing:.02em;}
 /* discussion prompt */
 .ask-row{
   display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
@@ -1635,7 +1726,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v55</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v61</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1727,7 +1818,7 @@ document.addEventListener("click", (ev) => {
     sy = null; d = 0; active = false;
   }, { passive: true });
 })();
-function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; TAB = t; render(); }
+function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false; TAB = t; render(); }
 
 
 
@@ -1965,6 +2056,76 @@ function stancePillHtml(item){
   const m = stanceMeta(s);
   return '<span class="stance-pill sp-' + m.key + '">' + m.label + '</span>';
 }
+
+/* ---------------- "since this post" badge ----------------
+   The receipt on every article that has a main ticker: price change
+   from the article date's close to now, computed from the worker's
+   1-year quote. Reference info, clearly labeled as such - not a
+   verdict on the author. */
+function itemMainKey(item){
+  if (item._mk !== undefined) return item._mk;
+  const co = k => k && ENTITIES[k] && ENTITIES[k].kind === "company" && ENTITIES[k].ticker;
+  let k = null;
+  if (item.cover && co(item.cover.label)) k = item.cover.label;
+  if (!k) k = (item.tags || []).find(co) || null;
+  if (!k){ for (const e of itemEntities(item)){ if (co(e)){ k = e; break; } } }
+  item._mk = k;
+  return k;
+}
+const Q1Y = {}; /* ticker -> promise of the 1y quote (shared with QR) */
+function quote1y(t){
+  if (!Q1Y[t]){
+    Q1Y[t] = (async () => {
+      const ck = t + "|1y";
+      if (QR[ck] && !QR[ck].error) return QR[ck];
+      try {
+        const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=1y");
+        if (res.ok){
+          const j = await res.json();
+          if (j && j.closes && j.closes.length > 1){ QR[ck] = j; return j; }
+        }
+      } catch (e) {}
+      if (!QR[ck]) QR[ck] = { error: true };
+      return QR[ck];
+    })();
+  }
+  return Q1Y[t];
+}
+/* pct change from the first close on/after dateStr to the latest price */
+function sinceCalc(q, dateStr){
+  if (!q || q.error || !q.closes || !q.t || !q.t.length) return null;
+  const target = Date.parse(String(dateStr).slice(0, 10) + "T00:00:00Z") / 1000 - 43200;
+  if (!isFinite(target)) return null;
+  if (q.t[0] > target + 86400 * 10) return null; /* article predates the data window */
+  let idx = -1;
+  for (let i = 0; i < q.t.length; i++){ if (q.t[i] >= target){ idx = i; break; } }
+  if (idx < 0) return null;
+  const base = q.closes[idx];
+  const last = q.price != null ? q.price : q.closes[q.closes.length - 1];
+  if (!base || !isFinite(base) || !isFinite(last)) return null;
+  return { pct: ((last - base) / base) * 100, base, last, cur: q.currency };
+}
+function sinceItem(item){ /* -> promise of {pct,...}|null */
+  const k = itemMainKey(item);
+  if (!k || !COMMENTS_API) return Promise.resolve(null);
+  return quote1y(ENTITIES[k].ticker).then(q => sinceCalc(q, item.date));
+}
+function queueSince(item){
+  const k = itemMainKey(item);
+  if (!k || !COMMENTS_API) return;
+  sinceItem(item).then(r => {
+    if (!r) return;
+    const up = r.pct >= 0, S = STRINGS[LANG];
+    document.querySelectorAll('.since[data-since="' + item.id + '"]').forEach(el => {
+      el.hidden = false;
+      el.title = S.sinceTip;
+      el.innerHTML = '<span class="since-lb">' + S.sincePost + '</span>'
+        + '<b class="since-k">' + esc(k) + '</b>'
+        + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
+        + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>";
+    });
+  });
+}
 /* Entity debate board: scoreboard + bull/bear/context groups */
 function renderEntityDebate(list, items, S){
   if (STANCE_FILTER && STANCE_FILTER_KEY !== ENTITY_VIEW) STANCE_FILTER = null;
@@ -2013,7 +2174,106 @@ function renderEntityDebate(list, items, S){
   });
 }
 /* ---------------- stage3: stance filter + rail debate + CEO profiles + home ---------------- */
-let STANCE_FILTER = null, STANCE_FILTER_KEY = null;
+let STANCE_FILTER = null, STANCE_FILTER_KEY = null, SB_VIEW = false;
+/* ---------------- track-record scoreboard ----------------
+   One honest page: every directional call (bull/bear) per author,
+   what the market did afterwards ("since post" %), and the manually
+   verified predictions (hit / miss / pending). Wins AND losses. */
+function openScoreboard(){
+  SB_VIEW = true; SERIES_VIEW = null; ENTITY_VIEW = null; STANCE_FILTER = null;
+  track("scoreboard");
+  renderFeed(false);
+  const f = document.getElementById("feed");
+  if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function closeScoreboard(){ SB_VIEW = false; renderFeed(false); }
+function renderScoreboard(list, S){
+  const calls = ITEMS.filter(i => {
+    const s = itemStance(i);
+    return s === "bull" || s === "bear";
+  }).sort((a, b) => (a.date < b.date ? 1 : -1));
+  const head = document.createElement("div");
+  head.className = "series-header sb-header";
+  head.innerHTML =
+    '<button class="series-close" onclick="closeScoreboard()">← ' + S.seriesClose + "</button>"
+    + '<div class="series-head-name">⚖ ' + S.sbTitle + "</div>"
+    + '<p class="series-head-desc">' + S.sbSub + "</p>";
+  list.appendChild(head);
+  if (!calls.length){
+    const em = document.createElement("div");
+    em.className = "empty";
+    em.textContent = S.sbEmpty;
+    list.appendChild(em);
+    return;
+  }
+  /* per-source aggregates */
+  const bySrc = {};
+  calls.forEach(i => {
+    const b = bySrc[i.source] || (bySrc[i.source] = { src: i.source, items: [], bull: 0, bear: 0, hit: 0, miss: 0, pending: 0 });
+    b.items.push(i);
+    b[itemStance(i)]++;
+    if (i.outcome) b[i.outcome.status] = (b[i.outcome.status] || 0) + 1;
+  });
+  const rows = Object.values(bySrc).sort((a, b) => b.items.length - a.items.length);
+  const tbl = document.createElement("div");
+  tbl.className = "sb-table";
+  tbl.innerHTML =
+    '<div class="sb-row sb-head-row">'
+      + '<span class="sb-src"></span>'
+      + '<span class="sb-c">' + S.sbCalls + "</span>"
+      + '<span class="sb-a">' + S.sbAlign + "</span>"
+      + '<span class="sb-r">' + S.sbRecord + "</span>"
+    + "</div>"
+    + rows.map((r, ri) =>
+      '<div class="sb-row">'
+        + '<span class="sb-src">' + esc(r.src) + "</span>"
+        + '<span class="sb-c">' + (r.bull ? '<i class="ws-bull">▲' + r.bull + "</i>" : "") + (r.bear ? '<i class="ws-bear">▼' + r.bear + "</i>" : "") + "</span>"
+        + '<span class="sb-a" data-sba="' + ri + '">···</span>'
+        + '<span class="sb-r">' + (r.hit ? '<i class="ws-bull">✓' + r.hit + "</i>" : "") + (r.miss ? '<i class="ws-bear">✕' + r.miss + "</i>" : "") + (r.pending ? "<i>⏳" + r.pending + "</i>" : "") + ((r.hit || r.miss || r.pending) ? "" : "–") + "</span>"
+      + "</div>").join("");
+  list.appendChild(tbl);
+  /* all calls, newest first */
+  const lh = document.createElement("h2");
+  lh.className = "section-title sb-list-title";
+  lh.textContent = S.sbAllCalls;
+  list.appendChild(lh);
+  const ul = document.createElement("div");
+  ul.className = "sb-list";
+  ul.innerHTML = calls.map(i => {
+    const st = itemStance(i), m = stanceMeta(st);
+    const oc = i.outcome
+      ? '<span class="oc oc-' + i.outcome.status + ' sb-oc">' + ({ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[i.outcome.status] || "") + "</span>" : "";
+    return '<button class="sb-item" onclick="goToItem(\'' + i.id + '\')">'
+      + '<span class="sb-date">' + fmt(i.date) + "</span>"
+      + '<span class="stance-pill sp-' + m.key + '">' + m.label + "</span>"
+      + '<span class="sb-title">' + esc(i.title[LANG]) + "</span>"
+      + '<span class="sb-since" data-sbs="' + i.id + '">···</span>'
+      + oc
+    + "</button>";
+  }).join("");
+  list.appendChild(ul);
+  /* async: fill "since post" moves + per-source direction match */
+  rows.forEach((r, ri) => {
+    Promise.all(r.items.map(i => sinceItem(i).then(res => ({ i, res })))).then(out => {
+      let match = 0, scored = 0;
+      out.forEach(({ i, res }) => {
+        const el = ul.querySelector('.sb-since[data-sbs="' + i.id + '"]');
+        if (!res){ if (el) el.textContent = "–"; return; }
+        scored++;
+        const st = itemStance(i);
+        const ok = (st === "bull" && res.pct >= 0) || (st === "bear" && res.pct < 0);
+        if (ok) match++;
+        if (el){
+          const up = res.pct >= 0;
+          el.innerHTML = '<b style="color:' + (up ? "#12B76A" : "#F04438") + '">' + (up ? "+" : "") + res.pct.toFixed(1) + "%</b>";
+          el.title = S.sinceTip;
+        }
+      });
+      const ael = tbl.querySelector('.sb-a[data-sba="' + ri + '"]');
+      if (ael) ael.textContent = scored ? match + "/" + scored : "–";
+    });
+  });
+}
 function stanceFilterTap(k){
   STANCE_FILTER = (STANCE_FILTER === k) ? null : k;
   STANCE_FILTER_KEY = ENTITY_VIEW;
@@ -2029,7 +2289,7 @@ function goHome(ev){
   if (ev && ev.preventDefault) ev.preventDefault();
   SERIES_VIEW = null; ENTITY_VIEW = null; TAB = "all";
   QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
-  STANCE_FILTER = null;
+  STANCE_FILTER = null; SB_VIEW = false;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   render();
   try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); }
@@ -2246,6 +2506,7 @@ function goToItem(id){
   if (!target) return;
   /* leave any view/filter that could hide the target, so it's in the feed */
   SERIES_VIEW = null; ENTITY_VIEW = null;
+  if (typeof SB_VIEW !== "undefined" && SB_VIEW){ SB_VIEW = false; renderFeed(false); }
   let changed = false;
   if (TAB !== "all" && target.category !== TAB){ TAB = "all"; changed = true; }
   if (QUERY || BM_ONLY || UNREAD_ONLY || FREE_ONLY){
@@ -2516,7 +2777,7 @@ let FEED_RETURN = null; /* where the reader was before opening a detail view */
 function entityFeedView(key){
   closeEntityRail();
   FEED_RETURN = { y: window.scrollY, shown: (typeof SHOWN === "number" ? SHOWN : 0) };
-  SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+  SERIES_VIEW = null; BM_ONLY = false; QUERY = ""; SB_VIEW = false;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   ENTITY_VIEW = key;
   renderFeed(true);
@@ -2781,18 +3042,44 @@ function renderWatch(){
   if (!sec || !rail) return;
   const S = STRINGS[LANG];
   const tEl = document.getElementById("watchTitle");
-  if (tEl) tEl.textContent = S.watchTitle;
+  if (tEl) tEl.textContent = S.briefTitle;
   const keys = [...WATCH].filter(k => ENTITIES[k]);
   if (!keys.length){ sec.hidden = true; return; }
   sec.hidden = false;
+  /* briefing line: followed companies + fresh articles this week */
+  const wcut = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
+  let fresh = 0;
+  const seenIds = new Set();
+  keys.forEach(k => watchItems(k).forEach(i => {
+    if (i.date >= wcut && !seenIds.has(i.id)){ seenIds.add(i.id); fresh++; }
+  }));
+  let bl = document.getElementById("briefLine");
+  if (!bl){
+    bl = document.createElement("div");
+    bl.id = "briefLine";
+    bl.className = "brief-line";
+    rail.parentNode.insertBefore(bl, rail);
+  }
+  bl.textContent = S.briefLine.replace("{c}", keys.length).replace("{n}", fresh);
   rail.innerHTML = keys.map(k => {
     const safe = k.replace(/'/g, "\\'");
     const unread = watchUnreadCount(k);
+    const its = watchItems(k);
+    const sc = { bull: 0, bear: 0, watch: 0 };
+    its.forEach(i => { sc[itemStance(i) || "watch"]++; });
+    const stanceRow = (sc.bull + sc.bear + sc.watch)
+      ? '<div class="w-stance" title="' + esc(S.debateTitle) + '">'
+        + (sc.bull ? '<span class="ws ws-bull">▲' + sc.bull + "</span>" : "")
+        + (sc.bear ? '<span class="ws ws-bear">▼' + sc.bear + "</span>" : "")
+        + (sc.watch ? '<span class="ws ws-ctx">•' + sc.watch + "</span>" : "")
+        + "</div>"
+      : "";
     return '<div class="watch-card" onclick="tagTap(\'' + safe + '\')">'
       + '<button class="w-x" onclick="toggleWatch(\'' + safe + '\', event)" aria-label="unfollow">&times;</button>'
       + '<div class="w-name">' + esc(k) + "</div>"
       + '<div class="w-sector">' + ENTITIES[k].sector[LANG] + "</div>"
       + '<div class="w-spark" data-w="' + esc(k) + '"></div>'
+      + stanceRow
       + (unread
           ? '<div class="w-unread">' + S.watchUnread.replace("{n}", unread) + "</div>"
           : '<div class="w-unread w-zero">·</div>')
@@ -2858,7 +3145,7 @@ function epNum(item){
 }
 function openSeries(sid){
   if (!SERIES[sid]) return;
-  SERIES_VIEW = sid;
+  SERIES_VIEW = sid; SB_VIEW = false;
   SERIES_SEEN[sid] = seriesItems(sid).length; /* caught up */
   store.set("stk_series_seen", SERIES_SEEN);
   track("series/" + sid);
@@ -3685,6 +3972,12 @@ function renderAfterHot(S){
     b.onclick = () => setTab(c.id);
     tabs.appendChild(b);
   });
+  /* track-record scoreboard entry */
+  const sb = document.createElement("button");
+  sb.className = "tab tab-sb" + (SB_VIEW ? " active" : "");
+  sb.textContent = "⚖ " + S.sbNav;
+  sb.onclick = openScoreboard;
+  tabs.appendChild(sb);
 
   renderFeed(true);
 }
@@ -3754,6 +4047,13 @@ function renderFeed(animate){
 
   refreshBmBtn();
   refreshCompanyFilter();
+
+  /* track-record scoreboard view */
+  if (SB_VIEW){
+    renderScoreboard(list, S);
+    hydrateImages();
+    return;
+  }
 
   /* series view: the whole story in order, with its own header */
   if (SERIES_VIEW && SERIES[SERIES_VIEW]){
@@ -3875,6 +4175,7 @@ function cardEl(item, S, idx){
         <p>${item.why[LANG]}</p>
       </div>
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? ` · <span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
+      ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
       ${item.ask && COMMENTS_API ? `<button class="ask-row" onclick="toggleComments('${item.id}')"><span class="ask-q">💬 ${esc(item.ask[LANG])}</span><span class="ask-cta">${S.askCta} →</span></button>` : ""}
       <div class="cta-row">
         <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
@@ -3894,6 +4195,7 @@ function cardEl(item, S, idx){
       <div class="comment-box" id="cbox-${item.id}" hidden></div>
       ${relHtml}
     `;
+    queueSince(item);
     return el;
   }
 }
