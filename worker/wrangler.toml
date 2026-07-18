@@ -1,0 +1,22 @@
+# Cloudflare Worker deploy config for the Stacks comments worker.
+# Used by the GitHub Action (ops/deploy-worker.yml) to auto-deploy
+# worker/index.js whenever it changes on main.
+#
+# Fill the two IDs below ONCE (they are identifiers, not secrets):
+#   account_id  -> Cloudflare dashboard, right sidebar "Account ID"
+#   database_id -> Storage & Databases > D1 > stacks-comments > "Database ID"
+# The real secret (the API token) lives in GitHub Actions secrets, not here.
+
+name = "stacks-comments"
+main = "index.js"
+compatibility_date = "2024-11-01"
+
+account_id = "PASTE_YOUR_CLOUDFLARE_ACCOUNT_ID"
+
+# D1 binding — must match the binding the worker already uses (env.DB).
+# Secrets set in the dashboard (ONESIGNAL_REST_KEY, NOTIFY_SECRET, ADMIN_KEY)
+# persist across deploys; wrangler does not touch them.
+[[d1_databases]]
+binding = "DB"
+database_name = "stacks-comments"
+database_id = "PASTE_YOUR_D1_DATABASE_ID"
