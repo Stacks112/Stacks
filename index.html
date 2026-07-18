@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v69 :: since-badge directional arrow (down=drop), share icon fix, anchored hoverable entity popover (clickable Follow) -->
+<!-- STACKS BUILD v70 :: follow people too, follow button in detail panel, split JPMorgan/Jamie Dimon, clickable since-badge company, today-debate close, short on-brand share links with OG card -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1096,6 +1096,8 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   color:var(--muted);cursor:help;
 }
 .since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
+.since .since-k-link{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
+.since .since-k-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
 .since .since-p{font-weight:800;}
 .since-share{
   margin-left:4px;border:none;background:none;cursor:pointer;
@@ -1157,11 +1159,18 @@ html[data-lang="ko"] .brief-line{font-family:"Pretendard Variable",sans-serif;}
 #todaySec{margin-bottom:22px;}
 #todaySec[hidden]{display:none;}
 .today-box{
-  display:block;width:100%;text-align:left;cursor:pointer;font:inherit;color:var(--text);
-  border:1px solid var(--accent);border-radius:16px;padding:16px 18px;
+  position:relative;display:block;width:100%;text-align:left;color:var(--text);
+  border:1px solid var(--accent);border-radius:16px;
   background:linear-gradient(135deg,rgba(124,147,255,.1),rgba(124,147,255,.02));
 }
+.today-main{cursor:pointer;padding:16px 40px 16px 18px;}
 .today-box:hover{box-shadow:0 10px 26px rgba(124,147,255,.18);}
+.today-x{
+  position:absolute;top:10px;right:10px;width:26px;height:26px;line-height:1;
+  border:none;background:rgba(124,147,255,.12);color:var(--muted);border-radius:50%;
+  font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;
+}
+.today-x:hover{background:rgba(124,147,255,.24);color:var(--text);}
 .today-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
 .today-tag{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}
 html[data-lang="ko"] .today-tag{font-family:"Pretendard Variable",sans-serif;letter-spacing:0;text-transform:none;font-size:12px;}
@@ -1919,7 +1928,10 @@ footer a{color:var(--muted);}
   <div class="event-bar" id="eventBar" hidden></div>
 
   <section id="todaySec" hidden>
-    <button class="today-box" id="todayBox"></button>
+    <div class="today-box" id="todayBox">
+      <button class="today-x" id="todayClose" aria-label="close" onclick="dismissToday(event)">&times;</button>
+      <div class="today-main" id="todayMain"></div>
+    </div>
   </section>
 
   <section>
@@ -1992,7 +2004,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v69</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v70</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2139,7 +2151,7 @@ function entityTip(key){
     : { en: "Tap again for the full details", ko: "한 번 더 누르면 상세 설명으로 이동합니다", ja: "もう一度タップで詳細説明へ" }[LANG];
   const hint = '<span class="tip-hint">' + hintText + "</span>";
   const safeKey = key.replace(/'/g, "\\'");
-  const follow = e.kind === "company"
+  const follow = (e.kind === "company" || e.kind === "person")
     ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safeKey + '\', event)">'
       + (WATCH.has(key) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>"
     : "";
@@ -2612,7 +2624,7 @@ function queueSince(item){
       el.hidden = false;
       el.title = S.sinceTip;
       el.innerHTML = '<span class="since-lb">' + S.sincePost + '</span>'
-        + '<b class="since-k">' + esc(k) + '</b>'
+        + '<b class="since-k since-k-link" onclick="event.stopPropagation(); chipTap(this, \'' + k.replace(/'/g, "\\'") + '\')">' + esc(k) + '</b>'
         + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
         + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>"
         + '<button class="since-share" onclick="event.stopPropagation(); shareSince(\'' + item.id + '\')" aria-label="' + esc(S.share) + '" title="' + esc(S.share) + '"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>';
@@ -3167,7 +3179,7 @@ function entityHeadEl(key, S, count, mode){
     + chart
     + factsHtml
     + '<div class="eh-actions">'
-      + (isCo ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safe + '\', event)">'
+      + ((isCo || e.kind === "person") ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safe + '\', event)">'
           + (WATCH.has(key) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>" : "")
       + (e.url && !isCo ? '<a class="eh-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + (S.profile || "Profile ↗") + "</a>" : "")
       + railLink
@@ -3693,7 +3705,7 @@ function toggleWatch(key, ev){
   renderWatch();
 }
 function watchItems(key){
-  return ITEMS.filter(i => (i.tags || []).includes(key) || (i.cover && i.cover.label === key));
+  return ITEMS.filter(i => (i.tags || []).includes(key) || (i.cover && i.cover.label === key) || i.source === key || itemEntities(i).has(key));
 }
 function watchUnreadCount(key){
   return watchItems(key).filter(i => !READ.has(i.id)).length;
@@ -4455,12 +4467,10 @@ async function copyWrapup(){
 }
 
 function shareUrl(item){
-  /* The worker route /s/{id} serves per-item OG tags to crawlers
-     (X, KakaoTalk) and instantly redirects people to the card. */
-  if (!COMMENTS_API) return location.origin + location.pathname + "#sig-" + item.id;
-  return COMMENTS_API + "/s/" + item.id
-    + "?t=" + encodeURIComponent(item.title[LANG])
-    + "&d=" + encodeURIComponent(item.why[LANG]);
+  /* Short, on-brand link to the article's own static page. It carries
+     per-article OG tags + a 1200x630 preview image, so KakaoTalk / X / etc.
+     render a proper card, and the URL stays clean (stacksdaily.com/p/…). */
+  return "https://stacksdaily.com/p/" + item.id + ".html";
 }
 
 async function shareItem(id){
@@ -4746,25 +4756,33 @@ function render(){
    back to the newest item that has a discussion prompt. Only shows on the
    plain home view (not search / entity / series / scoreboard). */
 let TODAY_ID = null;
+function dismissToday(ev){
+  if (ev){ ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
+  store.set("stk_today_dismiss", todayStr());
+  const sec = document.getElementById("todaySec");
+  if (sec) sec.hidden = true;
+  track("today/dismiss");
+}
 function renderToday(){
   const sec = document.getElementById("todaySec");
-  const box = document.getElementById("todayBox");
-  if (!sec || !box) return;
+  const main = document.getElementById("todayMain");
+  if (!sec || !main) return;
   const homeView = !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  const dismissed = store.get("stk_today_dismiss", "") === todayStr();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
-  if (!homeView || !pool.length){ sec.hidden = true; return; }
+  if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
   pool.sort((a, b) => (COMMENT_COUNTS[b.id] || 0) - (COMMENT_COUNTS[a.id] || 0) || (a.date < b.date ? 1 : -1));
   const item = pool[0];
   TODAY_ID = item.id;
   const S = STRINGS[LANG];
   const n = COMMENT_COUNTS[item.id] || 0;
   sec.hidden = false;
-  box.onclick = () => { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); track("today/" + item.id); };
-  box.innerHTML =
+  main.onclick = () => { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); track("today/" + item.id); };
+  main.innerHTML =
     '<div class="today-top"><span class="today-tag">💬 ' + S.todayLabel + "</span>"
       + (n ? '<span class="today-n">' + S.todayComments.replace("{n}", n) + "</span>" : "") + "</div>"
     + '<div class="today-q">' + esc(item.ask[LANG]) + "</div>"
-    + '<div class="today-src">' + esc(item.source) + " · " + esc(item.title[LANG]) + "</div>"
+    + '<div class="today-src">' + esc(dispName(item.source)) + " · " + esc(item.title[LANG]) + "</div>"
     + '<div class="today-cta">' + S.todayJoin + " →</div>";
 }
 function renderHotRail(){

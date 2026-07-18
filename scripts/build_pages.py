@@ -28,6 +28,9 @@ TAGLINE = {
 }
 LANG_LABEL = {"ko": "한국어", "en": "English", "ja": "日本語"}
 E = html.escape
+NAME_ALIAS = {"메르": "메르 (ranto28)"}
+def dispname(x):
+    return NAME_ALIAS.get(x, x)
 
 
 def clip(text, n):
@@ -187,7 +190,7 @@ def make_og(item, og):
     for i, ln in enumerate(lines):
         d.text((M, ty + i * lh), ln, font=fTitle, fill=(255, 255, 255))
     # source · date
-    meta = f"{item.get('source','')}  ·  {item.get('date','')}"
+    meta = f"{dispname(item.get('source',''))}  ·  {item.get('date','')}"
     d.text((M, H - M - 4), meta, font=fMeta, fill=(226, 232, 240))
     import os
     os.makedirs("og", exist_ok=True)
@@ -328,7 +331,7 @@ footer a{{color:#8E93A0}}
 <div class="wrap">
   <div class="topbar"><a href="../">◆ {SITE}</a></div>
   <div class="cover"><span class="label">{E(cov.get('label',''))}</span></div>
-  <div class="meta">{E(item.get('source',''))} · {E(item.get('date',''))} · 원문: {E(item.get('sourceLang',''))}</div>
+  <div class="meta">{E(dispname(item.get('source','')))} · {E(item.get('date',''))} · 원문: {E(item.get('sourceLang',''))}</div>
   <h1>{E(title_ko)}</h1>
   <div class="actions">
     <a class="btn app" href="{E(app_url)}">Stacks 앱에서 보기 →</a>
@@ -370,7 +373,7 @@ def entity_page(key, e, ent_items):
     metadesc = clip(desc or f"{key} 관련 투자 읽을거리 모음", 160)
     rows = "".join(
         f'<li><a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
-        f' <span class="d">{E(i.get("source",""))} · {E(i.get("date",""))}</span></li>'
+        f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
         for i in ent_items
     )
     about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": key}
@@ -456,7 +459,7 @@ footer a{{color:#8E93A0}}
 def articles_index(items):
     rows = "".join(
         f'<li><a href="p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
-        f' <span class="d">{E(i.get("source",""))} · {E(i.get("date",""))}</span></li>'
+        f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
         for i in items
     )
     return f"""<!DOCTYPE html>
@@ -518,7 +521,7 @@ def week_page(items, entities, item_ents, canonical_slug):
 
     rows = "".join(
         f'<li><a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
-        f' <span class="d">{E(i.get("source",""))} · {E(i.get("date",""))}</span></li>'
+        f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
         for i in wk_items[:10]
     )
     hot_html = ""
