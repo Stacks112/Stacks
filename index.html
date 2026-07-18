@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v57 :: mobile tip sheet is tappable (opens detail) + swipe-down to dismiss + drag grip; left-edge swipe = back in installed app -->
+<!-- STACKS BUILD v58 :: desktop tooltip clamped inside viewport; author name opens in-app profile detail (Profile page button); em dashes purged -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -108,9 +108,9 @@ const STANCE = {
 /* ---------------- onboarding interests ----------------
    First visit: pick interests -> auto-follow series/companies. */
 const OB_INTERESTS = [
-  { id: "semis",   emoji: "\uD83D\uDD29", label: { en: "Semiconductors & memory", ko: "\ubc18\ub3c4\uccb4\u00b7\uba54\ubaa8\ub9ac", ja: "\u534a\u5c0e\u4f53\u30fb\u30e1\u30e2\u30ea\u30fc" }, series: ["hynix-premium"], companies: ["SK HYNIX"] },
-  { id: "oil",     emoji: "\uD83D\uDEE2\uFE0F", label: { en: "Oil & geopolitics", ko: "\uc720\uac00\u00b7\uc9c0\uc815\ud559", ja: "\u539f\u6cb9\u30fb\u5730\u653f\u5b66" }, series: ["oil-geopolitics"], companies: [] },
-  { id: "power",   emoji: "\u26A1", label: { en: "AI power & infrastructure", ko: "AI \uc804\ub825\u00b7\uc778\ud504\ub77c", ja: "AI\u96fb\u529b\u30fb\u30a4\u30f3\u30d5\u30e9" }, series: ["ai-power"], companies: ["BLOOM ENERGY"] },
+  { id: "semis", emoji: "\uD83D\uDD29", label: { en: "Semiconductors & memory", ko: "\ubc18\ub3c4\uccb4\u00b7\uba54\ubaa8\ub9ac", ja: "\u534a\u5c0e\u4f53\u30fb\u30e1\u30e2\u30ea\u30fc" }, series: ["hynix-premium"], companies: ["SK HYNIX"] },
+  { id: "oil", emoji: "\uD83D\uDEE2\uFE0F", label: { en: "Oil & geopolitics", ko: "\uc720\uac00\u00b7\uc9c0\uc815\ud559", ja: "\u539f\u6cb9\u30fb\u5730\u653f\u5b66" }, series: ["oil-geopolitics"], companies: [] },
+  { id: "power", emoji: "\u26A1", label: { en: "AI power & infrastructure", ko: "AI \uc804\ub825\u00b7\uc778\ud504\ub77c", ja: "AI\u96fb\u529b\u30fb\u30a4\u30f3\u30d5\u30e9" }, series: ["ai-power"], companies: ["BLOOM ENERGY"] },
   { id: "bigtech", emoji: "\uD83C\uDFE2", label: { en: "Big Tech", ko: "\ube45\ud14c\ud06c", ja: "\u30d3\u30c3\u30b0\u30c6\u30c3\u30af" }, series: [], companies: ["MICROSOFT", "META", "APPLE"] }
 ];
 
@@ -139,10 +139,10 @@ document.documentElement.setAttribute("data-theme", THEME);
 
 /* ---------------- categories & UI strings ---------------- */
 const CATEGORIES = [
-  { id: "all",        en: "All",         ko: "전체",     ja: "すべて" },
-  { id: "investor",   en: "Investors",   ko: "투자 고수", ja: "投資家" },
-  { id: "ceo",        en: "CEOs",        ko: "기업 CEO",  ja: "CEO" },
-  { id: "politician", en: "Politicians", ko: "정치인",    ja: "政治家" }
+  { id: "all", en: "All", ko: "전체", ja: "すべて" },
+  { id: "investor", en: "Investors", ko: "투자 고수", ja: "投資家" },
+  { id: "ceo", en: "CEOs", ko: "기업 CEO", ja: "CEO" },
+  { id: "politician", en: "Politicians", ko: "정치인", ja: "政治家" }
 ];
 
 
@@ -228,7 +228,7 @@ const STRINGS = {
     watchTitle: "My companies",
     watchFollow: "Follow",
     watchOn: "Following ✓",
-    profile: "Profile ↗",
+    profile: "Open profile page ↗",
     r1d: "1D", r1w: "1W", r1mo: "1M", r1y: "1Y",
     entArticles: "View {n} related articles →",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
@@ -324,7 +324,7 @@ const STRINGS = {
     watchTitle: "내 관심 기업",
     watchFollow: "팔로우",
     watchOn: "팔로우 중 ✓",
-    profile: "프로필 ↗",
+    profile: "프로필 페이지로 이동 ↗",
     r1d: "1일", r1w: "1주", r1mo: "1달", r1y: "1년",
     entArticles: "관련 글 {n}개 보기 →",
     fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
@@ -420,7 +420,7 @@ const STRINGS = {
     watchTitle: "マイ企業",
     watchFollow: "フォロー",
     watchOn: "フォロー中 ✓",
-    profile: "プロフィール ↗",
+    profile: "プロフィールページへ ↗",
     r1d: "1日", r1w: "1週", r1mo: "1ヶ月", r1y: "1年",
     entArticles: "関連記事{n}件を見る →",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
@@ -708,7 +708,7 @@ html[data-lang="ko"] .install-hint{font-family:"Pretendard Variable",sans-serif;
   letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-bottom:3px;
 }
 .entity-tip::after{
-  content:"";position:absolute;top:100%;right:12px;
+  content:"";position:absolute;top:100%;right:var(--ar,12px);left:var(--ax,auto);
   border:5px solid transparent;border-top-color:var(--black);
 }
 .has-tip:hover .entity-tip,.has-tip.show .entity-tip{
@@ -1643,7 +1643,7 @@ function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsS
 /* ---------------- language dropdown ----------------
    Shows only the current language (with its flag); tapping it drops
    down the other two so you can swap. */
-/* real flag images — emoji flags render as plain letters on Windows */
+/* real flag images, emoji flags render as plain letters on Windows */
 const LANG_META = { en: ["us", "EN"], ko: ["kr", "KO"], ja: ["jp", "JA"] };
 const flagImg = c => '<img class="lang-flag" src="https://flagcdn.com/24x18/' + c + '.png" srcset="https://flagcdn.com/48x36/' + c + '.png 2x" alt="">';
 function renderLangMenu(){
@@ -1677,7 +1677,7 @@ document.addEventListener("click", (ev) => {
 });
 
 /* ---------------- pull-to-refresh (touch) ----------------
-   At the very top of the page, pulling down again refreshes —
+   At the very top of the page, pulling down again refreshes, 
    the natural "any new articles?" gesture. Works in the installed
    PWA too, where the browser's native gesture doesn't exist. */
 (function(){
@@ -1815,7 +1815,7 @@ const QR = {};
 let EHQ_RANGE = "1mo";
 function curSym(cur){ return cur === "KRW" ? "₩" : cur === "JPY" ? "¥" : cur === "EUR" ? "€" : "$"; }
 function fmtP(v, cur){
-  if (v == null || !isFinite(v)) return "—";
+  if (v == null || !isFinite(v)) return "-";
   const abs = Math.abs(v);
   const s = abs >= 1000 ? Math.round(abs).toLocaleString()
     : abs.toLocaleString(undefined, { minimumFractionDigits: abs < 100 ? 2 : 0, maximumFractionDigits: 2 });
@@ -1847,7 +1847,7 @@ function ehqPaint(q, r){
   const pEl = document.getElementById("ehqPrice");
   const cEl = document.getElementById("ehqChg");
   if (!box) return;
-  if (q.error || !q.closes){ box.innerHTML = '<div class="ehq-loading">—</div>'; return; }
+  if (q.error || !q.closes){ box.innerHTML = '<div class="ehq-loading">-</div>'; return; }
   const closes = q.closes;
   const last = q.price != null ? q.price : closes[closes.length - 1];
   const base = (r === "1d" && q.prevClose) ? q.prevClose : closes[0];
@@ -2056,8 +2056,8 @@ function railDebateEnhance(key){
 /* ---- CEO mini-profiles: hover = one-liner, click/tap = detail ---- */
 const CEO_HINT = { en: "Tap again for details", ko: "한 번 더 탭하면 상세 설명", ja: "もう一度タップで詳細" };
 const CEO_INFO = {
-  "최태원": { d: { ko: "SK그룹 회장이자 SK하이닉스 이사회 의장. 그룹 전체의 최고 결정권자.", en: "Chairman of SK Group and of SK hynix's board — the group's top decision-maker.", ja: "SKグループ会長、SKハイニックス取締役会議長。グループ最高の意思決定者。" }, l: { ko: "1998년부터 SK그룹을 이끄는 총수. 2012년 하이닉스 인수를 결단해 오늘의 AI 메모리 1위 기반을 만들었다. 일상 경영은 곽노정 CEO가 맡고, 최 회장은 그룹 차원의 대규모 투자를 결정한다.", en: "SK Group's chief since 1998. His 2012 decision to acquire Hynix laid the foundation for today's AI-memory leadership; day-to-day operations are run by CEO Kwak Noh-jung while the chairman calls the group-level investments.", ja: "1998年からSKグループを率いる総帥。2012年のハイニックス買収を決断し、今日のAIメモリ首位の基盤を作った。日常経営は郭魯正CEOが担い、崔会長はグループ次元の大型投資を決める。" } },
-  "이재용": { d: { ko: "삼성전자 회장. 삼성그룹의 총수.", en: "Executive Chairman of Samsung Electronics; head of the Samsung group.", ja: "サムスン電子会長。サムスングループの総帥。" }, l: { ko: "이건희 회장의 아들로 2022년 회장에 취임했다. 반도체·바이오·AI를 삼성의 3대 성장축으로 이끌며, HBM 반격과 파운드리 재건이 당면 과제다.", en: "Son of Lee Kun-hee, he took the chairmanship in 2022. Leads Samsung's push in chips, bio and AI — with the HBM comeback and foundry rebuild as the immediate tests.", ja: "李健熙会長の息子で2022年会長就任。半導体・バイオ・AIを3大成長軸に率い、HBM巻き返しとファウンドリ再建が当面の課題。" } },
+  "최태원": { d: { ko: "SK그룹 회장이자 SK하이닉스 이사회 의장. 그룹 전체의 최고 결정권자.", en: "Chairman of SK Group and of SK hynix's board, the group's top decision-maker.", ja: "SKグループ会長、SKハイニックス取締役会議長。グループ最高の意思決定者。" }, l: { ko: "1998년부터 SK그룹을 이끄는 총수. 2012년 하이닉스 인수를 결단해 오늘의 AI 메모리 1위 기반을 만들었다. 일상 경영은 곽노정 CEO가 맡고, 최 회장은 그룹 차원의 대규모 투자를 결정한다.", en: "SK Group's chief since 1998. His 2012 decision to acquire Hynix laid the foundation for today's AI-memory leadership; day-to-day operations are run by CEO Kwak Noh-jung while the chairman calls the group-level investments.", ja: "1998年からSKグループを率いる総帥。2012年のハイニックス買収を決断し、今日のAIメモリ首位の基盤を作った。日常経営は郭魯正CEOが担い、崔会長はグループ次元の大型投資を決める。" } },
+  "이재용": { d: { ko: "삼성전자 회장. 삼성그룹의 총수.", en: "Executive Chairman of Samsung Electronics; head of the Samsung group.", ja: "サムスン電子会長。サムスングループの総帥。" }, l: { ko: "이건희 회장의 아들로 2022년 회장에 취임했다. 반도체·바이오·AI를 삼성의 3대 성장축으로 이끌며, HBM 반격과 파운드리 재건이 당면 과제다.", en: "Son of Lee Kun-hee, he took the chairmanship in 2022. Leads Samsung's push in chips, bio and AI, with the HBM comeback and foundry rebuild as the immediate tests.", ja: "李健熙会長の息子で2022年会長就任。半導体・バイオ・AIを3大成長軸に率い、HBM巻き返しとファウンドリ再建が当面の課題。" } },
   "곽노정": { d: { ko: "SK하이닉스 CEO. 엔지니어 출신으로 HBM을 AI 메모리 1위로 키웠다.", en: "SK hynix CEO; the engineer who drove its HBM lead in AI memory.", ja: "SKハイニックスCEO。HBMをAIメモリ首位に導いた技術者出身。" }, l: { ko: "1994년 입사 후 제조·기술 총괄을 거쳐 2022년 대표이사에 올랐다. 엔비디아향 HBM 공급을 주도해 AI 슈퍼사이클의 중심에 회사를 올려놨다.", en: "Joined in 1994, rose through manufacturing and technology, and became CEO in 2022. Led the Nvidia HBM supply push that put the company at the center of the AI supercycle.", ja: "1994年入社、製造・技術統括を経て2022年CEO就任。NVIDIA向けHBM供給を主導しAIスーパーサイクルの中心に会社を押し上げた。" } },
   "전영현": { d: { ko: "삼성전자 DS(반도체)부문장 겸 부회장. 메모리의 구원투수로 복귀했다.", en: "Samsung vice chairman leading the semiconductor (DS) division.", ja: "サムスン電子DS(半導体)部門トップの副会長。" }, l: { ko: "삼성 메모리 전성기를 이끌었던 베테랑으로, HBM 경쟁력 회복이라는 특명을 받고 2024년 반도체 부문 수장으로 돌아왔다.", en: "A veteran of Samsung's memory heyday, brought back in 2024 to lead the chip division and rebuild its HBM competitiveness.", ja: "サムスンメモリ全盛期を率いたベテラン。HBM競争力回復の特命を受け2024年に半導体部門トップへ復帰。" } },
   "한종희": { d: { ko: "삼성전자 DX(디바이스경험)부문장 겸 부회장. TV·가전·모바일 총괄.", en: "Samsung vice chairman running the device (DX) division.", ja: "サムスン電子DX部門トップの副会長。" }, l: { ko: "TV 개발 엔지니어 출신으로 삼성 TV의 15년 연속 세계 1위를 이끌었고, 지금은 세트 사업 전체를 총괄한다.", en: "A TV engineer who led Samsung's 15-year run as the world's top TV maker; now oversees all consumer devices.", ja: "テレビ開発技術者出身でサムスンTVの15年連続世界首位を牽引。セット事業全体を統括する。" } },
@@ -2074,7 +2074,7 @@ const CEO_INFO = {
   "립부 탄": { d: { ko: "인텔 CEO. 파운드리 재건이라는 구원 등판 임무를 맡았다.", en: "Intel CEO, brought in to rescue and rebuild the foundry business.", ja: "インテルCEO。ファウンドリ再建の救援登板。" }, l: { ko: "반도체 벤처캐피털의 전설이자 케이던스 CEO 출신으로, 2025년 인텔 지휘봉을 잡았다.", en: "A legendary chip VC and former Cadence CEO who took Intel's helm in 2025.", ja: "半導体VCの伝説でケイデンス元CEO。2025年にインテルの指揮を執る。" } },
   "산제이 메흐로트라": { d: { ko: "마이크론 CEO. 미국 유일 메모리 대기업의 수장.", en: "Micron CEO, leading America's only major memory maker.", ja: "マイクロンCEO。米国唯一の大手メモリ企業を率いる。" }, l: { ko: "샌디스크 공동창업자 출신으로 2017년부터 마이크론을 이끌며 HBM 시장 진입과 대형 장기공급계약(LTA)을 성사시켰다.", en: "Co-founded SanDisk before taking Micron's helm in 2017; drove its HBM entry and major long-term supply agreements.", ja: "サンディスク共同創業者出身。2017年からマイクロンを率い、HBM参入と大型LTAを実現。" } },
   "아르카디 볼로즈": { d: { ko: "네비우스 창업자 겸 CEO. 얀덱스를 만든 기술 기업가.", en: "Nebius founder-CEO; the entrepreneur who built Yandex.", ja: "ネビウス創業者兼CEO。ヤンデックスを作った起業家。" }, l: { ko: "'러시아의 구글' 얀덱스를 창업했고, 2024년 해외 자산을 재편해 AI 인프라 기업 네비우스로 재출발했다.", en: "Founded Yandex, 'Russia's Google,' then relaunched its international assets in 2024 as AI-infrastructure firm Nebius.", ja: "「ロシアのグーグル」ヤンデックスを創業し、2024年に海外資産をAIインフラ企業ネビウスとして再出発させた。" } },
-  "KR 스리다": { d: { ko: "블룸에너지 창업자 겸 CEO. NASA 화성 프로젝트 출신.", en: "Bloom Energy founder-CEO, a NASA Mars program veteran.", ja: "ブルームエナジー創業者兼CEO。NASA火星計画出身。" }, l: { ko: "화성에서 산소를 만드는 기술을 지구의 연료전지로 뒤집어 2001년 블룸에너지를 세웠다. AI 데이터센터 전력난의 수혜 기업으로 키웠다.", en: "Flipped his Mars oxygen-generation tech into terrestrial fuel cells, founding Bloom in 2001 — now a beneficiary of the AI datacenter power crunch.", ja: "火星で酸素を作る技術を地上の燃料電池に転換し2001年に創業。AIデータセンター電力難の受益企業に育てた。" } },
+  "KR 스리다": { d: { ko: "블룸에너지 창업자 겸 CEO. NASA 화성 프로젝트 출신.", en: "Bloom Energy founder-CEO, a NASA Mars program veteran.", ja: "ブルームエナジー創業者兼CEO。NASA火星計画出身。" }, l: { ko: "화성에서 산소를 만드는 기술을 지구의 연료전지로 뒤집어 2001년 블룸에너지를 세웠다. AI 데이터센터 전력난의 수혜 기업으로 키웠다.", en: "Flipped his Mars oxygen-generation tech into terrestrial fuel cells, founding Bloom in 2001, now a beneficiary of the AI datacenter power crunch.", ja: "火星で酸素を作る技術を地上の燃料電池に転換し2001年に創業。AIデータセンター電力難の受益企業に育てた。" } },
   "퐁 레": { d: { ko: "스트래티지(구 마이크로스트래티지) CEO. 비트코인 재무전략의 실무 총괄.", en: "CEO of Strategy (ex-MicroStrategy), running the bitcoin treasury playbook.", ja: "ストラテジーCEO。ビットコイン財務戦略の実務を統括。" }, l: { ko: "CFO 출신으로 2022년 CEO에 올라, 세일러 의장이 설계한 비트코인 매집 전략의 집행을 맡는다.", en: "A former CFO who became CEO in 2022, executing the bitcoin-accumulation strategy designed by chairman Saylor.", ja: "CFO出身で2022年CEO就任。セイラー会長設計のビットコイン買い集め戦略を執行する。" } },
   "마이클 세일러": { d: { ko: "스트래티지 창업자 겸 회장. 기업 비트코인 매집 전략의 원조.", en: "Strategy's founder-chairman; pioneer of the corporate bitcoin treasury.", ja: "ストラテジー創業者兼会長。企業ビットコイン買いの元祖。" }, l: { ko: "2020년부터 회사 자금과 차입으로 비트코인을 사 모으는 전략을 밀어붙여, 주가를 비트코인의 레버리지 프록시로 만들었다.", en: "Since 2020 has piled corporate cash and debt into bitcoin, turning the stock into a leveraged BTC proxy.", ja: "2020年から社債まで使いBTCを買い集め、株価をビットコインのレバレッジ・プロキシに変えた。" } },
   "러셀 엘완거": { d: { ko: "타워세미컨덕터 CEO. 니치 아날로그 파운드리의 장수 CEO.", en: "Tower Semiconductor's long-serving CEO in specialty analog foundry.", ja: "タワーセミコンダクターの長期CEO。" }, l: { ko: "2005년부터 회사를 이끌며 광통신·전력 반도체 등 틈새 공정 강자로 키웠다. AI 데이터센터용 실리콘 포토닉스가 새 성장축이다.", en: "CEO since 2005; built strength in niche processes like optics and power chips, with silicon photonics for AI datacenters as the new growth leg.", ja: "2005年からCEO。光通信・パワー半導体などニッチ工程の強者に育て、AI向けシリコンフォトニクスが新成長軸。" } },
@@ -2243,7 +2243,7 @@ function goToItem(id){
   }
   if (changed) render(); else renderFeed(false);
   requestAnimationFrame(() => {
-    /* the target may be beyond the first paginated page — load pages until it's in the DOM */
+    /* the target may be beyond the first paginated page, load pages until it's in the DOM */
     let el = document.getElementById("sig-" + id), guard = 0;
     while (!el && typeof SHOWN !== "undefined" && SHOWN < CUR_ITEMS.length && guard++ < 500){
       appendFeedPage();
@@ -2369,7 +2369,7 @@ function entityHeadEl(key, S, count, mode){
     ? '<div class="eh-facts">' + facts.map(f => '<div class="f"><b>' + f[0] + "</b>" + f[1] + "</div>").join("") + "</div>" : "";
   const chart = (isCo && e.ticker)
     ? '<div class="eh-quote">'
-      + '<div class="ehq-head"><b id="ehqPrice">—</b><span id="ehqChg"></span></div>'
+      + '<div class="ehq-head"><b id="ehqPrice">-</b><span id="ehqChg"></span></div>'
       + '<div class="ehq-tabs">'
         + [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["1y", S.r1y]].map(x =>
             '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
@@ -2494,7 +2494,7 @@ function entityTapOrig(el, key){
   }
   el.classList.remove("show");
   hideTipSheet();
-  /* desktop: show the profile in the right rail — never yank the reader's scroll */
+  /* desktop: show the profile in the right rail, never yank the reader's scroll */
   if (window.matchMedia("(min-width:1024px)").matches && document.getElementById("sideRight")){
     if (showEntityRail(key)) return;
   }
@@ -2549,7 +2549,7 @@ function closeEntity(){
 /* ---------------- desktop 3-column dashboard ----------------
    On wide screens the category tabs + filters move into a left rail,
    and "Hot this week", events, watchlist and newsletter move into a
-   right rail — both sticky. Mobile keeps the single-column layout;
+   right rail, both sticky. Mobile keeps the single-column layout;
    the nodes are relocated (not duplicated) so every existing function
    and rendered piece keeps working, and restored on the way back down. */
 let DASH = null;
@@ -3660,7 +3660,7 @@ function renderHotRail(){
   applyEngageCounts();
 }
 
-/* the rest of render(): tabs, feed, footer — split out so the hot rail
+/* the rest of render(): tabs, feed, footer, split out so the hot rail
    can be re-ranked on its own once engagement counts arrive */
 function renderAfterHot(S){
   /* tabs */
@@ -3782,7 +3782,7 @@ function renderFeed(animate){
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (QUERY) items = items.filter(matchesQuery);
   if (ENTITY_VIEW) items = items.filter(i => itemEntities(i).has(ENTITY_VIEW));
-  /* entity view: a rich header — who/what they are, live chart + price
+  /* entity view: a rich header, who/what they are, live chart + price
      for companies, profile link for people, then their articles below */
   if (ENTITY_VIEW && ENTITIES[ENTITY_VIEW]){
     list.appendChild(entityHeadEl(ENTITY_VIEW, S, items.length, "feed"));
@@ -3838,7 +3838,7 @@ function cardEl(item, S, idx){
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
-          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="srcTap(this, '${(ENTITIES[item.source].url||"").replace(/'/g,"")}')"` : ""}>${item.source}${entityTip(item.source)}</span>
+          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="entityTap(this, '${(item.source||"").replace(/'/g,"")}')"` : ""}>${item.source}${entityTip(item.source)}</span>
           <span class="src-date">${fmt(item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
@@ -4076,6 +4076,40 @@ function stacksBack(){
     if (dx > DIST && Math.abs(dy) < 56 && (Date.now() - t0) < 650) stacksBack();
   }, { passive: true });
 })();
+
+/* desktop: keep the inline entity tooltip inside the viewport so it never
+   spills off the right edge; also point its arrow at the hovered word. */
+if (window.matchMedia && window.matchMedia("(hover: hover)").matches){
+  const clampTip = host => {
+    const tip = host.querySelector(":scope > .entity-tip");
+    if (!tip) return;
+    tip.style.left = ""; tip.style.right = ""; tip.style.removeProperty("--ax"); tip.style.removeProperty("--ar");
+    const hostR = host.getBoundingClientRect();
+    const tipW = tip.offsetWidth;
+    const m = 8, vw = document.documentElement.clientWidth;
+    let leftVp = hostR.left + hostR.width / 2 - tipW / 2;
+    leftVp = Math.max(m, Math.min(leftVp, vw - m - tipW));
+    tip.style.right = "auto";
+    tip.style.left = Math.round(leftVp - hostR.left) + "px";
+    let ax = (hostR.left + hostR.width / 2) - leftVp;
+    ax = Math.max(12, Math.min(ax, tipW - 12));
+    tip.style.setProperty("--ax", Math.round(ax) + "px");
+    tip.style.setProperty("--ar", "auto");
+  };
+  document.addEventListener("mouseover", e => {
+    const host = e.target.closest && e.target.closest(".has-tip");
+    if (!host) return;
+    const tip = host.querySelector(":scope > .entity-tip");
+    if (!tip || tip.dataset.clamped) return;
+    tip.dataset.clamped = "1"; clampTip(host);
+  });
+  document.addEventListener("mouseout", e => {
+    const host = e.target.closest && e.target.closest(".has-tip");
+    if (!host || host.contains(e.relatedTarget)) return;
+    const tip = host.querySelector(":scope > .entity-tip");
+    if (tip){ delete tip.dataset.clamped; tip.style.left=""; tip.style.right=""; tip.style.removeProperty("--ax"); tip.style.removeProperty("--ar"); }
+  });
+}
 
 /* ---------------- boot ----------------
    Content lives in items.json next to this file. Fetch it, then start.
