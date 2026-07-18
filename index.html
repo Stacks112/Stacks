@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v61 :: since-post return badge, my briefing, track-record scoreboard (on top of v60 tooltip layer fix) -->
+<!-- STACKS BUILD v62 :: fullscreen TradingView pro chart on company pages -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -233,6 +233,8 @@ const STRINGS = {
     entArticles: "View {n} related articles →",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
     watchUnread: "{n} unread",
+    fsChart: "Pro chart",
+    fsHint: "Open the full-screen pro chart",
     sincePost: "Since this post",
     sinceTip: "Price change from the article date's close to now. Reference only, not proof of causation.",
     sbNav: "Track record",
@@ -341,6 +343,8 @@ const STRINGS = {
     entArticles: "관련 글 {n}개 보기 →",
     fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
     watchUnread: "안 읽은 글 {n}",
+    fsChart: "전문 차트",
+    fsHint: "전체 화면 전문 차트 열기",
     sincePost: "이 글 이후",
     sinceTip: "글 게재일 종가 대비 현재 주가 변화입니다. 참고용이며, 인과관계의 증명이 아닙니다.",
     sbNav: "적중 기록",
@@ -449,6 +453,8 @@ const STRINGS = {
     entArticles: "関連記事{n}件を見る →",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
     watchUnread: "未読{n}件",
+    fsChart: "プロチャート",
+    fsHint: "フルスクリーンのプロチャートを開く",
     sincePost: "投稿後",
     sinceTip: "記事掲載日の終値から現在までの株価変化です。参考情報であり、因果関係の証明ではありません。",
     sbNav: "的中記録",
@@ -845,6 +851,34 @@ html[data-lang="ko"] .intro-box{font-family:"Pretendard Variable","Inter",sans-s
   background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer;
 }
 .ehq-tabs button.on{background:var(--black);border-color:var(--black);color:#fff;}
+.ehq-expand{margin-left:auto;border-style:dashed !important;}
+.ehq-chartwrap{cursor:pointer;}
+/* fullscreen pro chart modal */
+#chartFS{
+  position:fixed;inset:0;z-index:12000;background:var(--bg);
+  display:flex;flex-direction:column;
+}
+#chartFS[hidden]{display:none;}
+.cfs-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border-bottom:1px solid var(--line);flex:0 0 auto;
+  padding-top:calc(10px + env(safe-area-inset-top,0px));
+}
+.cfs-name{font-weight:800;font-size:14px;letter-spacing:.02em;font-family:"IBM Plex Mono",monospace;}
+.cfs-close{
+  font-size:16px;font-weight:700;line-height:1;background:none;border:1px solid var(--line);
+  border-radius:999px;width:34px;height:34px;cursor:pointer;color:var(--text);
+}
+.cfs-close:hover{border-color:var(--accent);}
+#cfsBody{flex:1 1 auto;width:100%;background:var(--bg);min-height:0;}
+#cfsBody iframe{width:100%;height:100%;}
+.cfs-actions{display:flex;align-items:center;gap:10px;}
+.cfs-tv{
+  font-size:11.5px;font-weight:700;font-family:"IBM Plex Mono",monospace;
+  color:var(--muted);text-decoration:none;border:1px dashed var(--line);
+  border-radius:999px;padding:6px 12px;
+}
+.cfs-tv:hover{color:var(--text);border-color:var(--accent);}
 .ehq-chartwrap{position:relative;min-height:120px;}
 .ehq-chartwrap svg{width:100%;height:auto;display:block;touch-action:pan-y;}
 .ehq-loading{display:flex;align-items:center;justify-content:center;height:120px;color:var(--muted);font-family:"IBM Plex Mono",monospace;}
@@ -1726,7 +1760,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v61</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v62</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -1924,6 +1958,62 @@ function fmtP(v, cur){
     : abs.toLocaleString(undefined, { minimumFractionDigits: abs < 100 ? 2 : 0, maximumFractionDigits: 2 });
   return (v < 0 ? "-" : "") + curSym(cur) + s;
 }
+/* ---------------- fullscreen pro chart (TradingView widget) ----------------
+   Tapping the mini chart (or the ⛶ button) opens a full-screen
+   TradingView advanced chart for the same symbol - candles, ranges,
+   indicators, drawing tools. Free public widget, no account needed. */
+function tvSymbol(e){
+  const t = String(e.ticker || "").toLowerCase();
+  const base = t.replace(/\.(us|ks|jp|t)$/, "").toUpperCase();
+  if (!base) return "";
+  if (t.endsWith(".ks")) return "KRX:" + base;
+  if (t.endsWith(".jp") || t.endsWith(".t")) return "TSE:" + base;
+  const ex = String(e.exchange || "").split(/[\s(]/)[0].toUpperCase();
+  if (ex === "NASDAQ" || ex === "NYSE" || ex === "AMEX") return ex + ":" + base;
+  if (ex === "KOSPI" || ex === "KOSDAQ" || ex === "KRX") return "KRX:" + base;
+  return base;
+}
+function openChartFS(key){
+  const e = key && ENTITIES[key];
+  if (!e || !e.ticker) return;
+  const sym = tvSymbol(e);
+  if (!sym) return;
+  const m = document.getElementById("chartFS");
+  if (!m) return;
+  const loc = LANG === "ko" ? "kr" : LANG === "ja" ? "ja" : "en";
+  const th = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const tz = LANG === "ja" ? "Asia/Tokyo" : LANG === "en" ? "America/New_York" : "Asia/Seoul";
+  document.getElementById("cfsName").textContent = key + " · " + sym;
+  const link = document.getElementById("cfsLink");
+  if (link) link.href = "https://www.tradingview.com/chart/?symbol=" + encodeURIComponent(sym);
+  /* official TradingView advanced-chart embed: the loader script reads
+     its JSON config from its own text content */
+  const holder = document.getElementById("cfsBody");
+  holder.innerHTML = '<div class="tradingview-widget-container" style="height:100%;width:100%">'
+    + '<div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div></div>';
+  const s = document.createElement("script");
+  s.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+  s.async = true;
+  s.text = JSON.stringify({
+    autosize: true, symbol: sym, interval: "D", timezone: tz, theme: th,
+    style: "1", locale: loc, allow_symbol_change: true, withdateranges: true,
+    support_host: "https://www.tradingview.com"
+  });
+  holder.firstChild.appendChild(s);
+  m.hidden = false;
+  document.body.style.overflow = "hidden";
+  track("chartfs/" + slugTag(key));
+}
+function closeChartFS(){
+  const m = document.getElementById("chartFS");
+  if (!m || m.hidden) return;
+  m.hidden = true;
+  const holder = document.getElementById("cfsBody");
+  if (holder) holder.innerHTML = "";
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeChartFS(); });
+
 async function ehqLoad(key, r){
   const e = ENTITIES[key];
   if (!e || !e.ticker || !COMMENTS_API) return;
@@ -2647,8 +2737,9 @@ function entityHeadEl(key, S, count, mode){
         + [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["1y", S.r1y]].map(x =>
             '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
             + ' onclick="ehqLoad(\'' + safe + '\',\'' + x[0] + '\')">' + x[1] + "</button>").join("")
+        + '<button class="ehq-expand" onclick="openChartFS(\'' + safe + '\')" title="' + esc(S.fsHint) + '">⛶ ' + S.fsChart + "</button>"
       + "</div>"
-      + '<div class="ehq-chartwrap" id="ehqChart"><div class="ehq-loading">···</div></div>'
+      + '<div class="ehq-chartwrap" id="ehqChart" title="' + esc(S.fsHint) + '" onclick="openChartFS(\'' + safe + '\')"><div class="ehq-loading">···</div></div>'
       + "</div>" : "";
   const topBtn = mode === "rail"
     ? '<button class="eh-x" onclick="closeEntityRail()" aria-label="close">&times;</button>'
@@ -4673,5 +4764,15 @@ function obFinish(apply){
 applyThemeBtn();
 bootData();
 </script>
+<div id="chartFS" hidden>
+  <div class="cfs-top">
+    <div class="cfs-name" id="cfsName"></div>
+    <div class="cfs-actions">
+      <a id="cfsLink" class="cfs-tv" href="#" target="_blank" rel="noopener">TradingView ↗</a>
+      <button class="cfs-close" onclick="closeChartFS()" aria-label="close">✕</button>
+    </div>
+  </div>
+  <div id="cfsBody"></div>
+</div>
 </body>
 </html>
