@@ -358,9 +358,11 @@ def entity_page(key, e, ent_items):
             or (e.get("desc", {}) or {}).get("en", ""))
     ticker = (e.get("ticker") or "").upper()
     facts = []
+    def _loc(v):  # field may be a {en,ko,ja} object or a plain string
+        return (v.get("ko") or v.get("en") or "") if isinstance(v, dict) else str(v)
     for label, k in (("대표", "ceo"), ("설립", "founded"), ("상장", "listed"), ("본사", "hq"), ("거래소", "exchange")):
         if e.get(k):
-            facts.append(f"<span><b>{label}</b> {E(str(e[k]))}</span>")
+            facts.append(f"<span><b>{label}</b> {E(_loc(e[k]))}</span>")
     if e.get("website"):
         w = e["website"]
         facts.append(f'<span><b>웹사이트</b> <a href="{E(w)}" target="_blank" rel="noopener nofollow">{E(w.replace("https://","").replace("www.",""))}</a></span>')

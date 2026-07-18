@@ -1449,10 +1449,18 @@
    ],
    "logo": "skhynix.com",
    "exchange": "KOSPI",
-   "ceo": "곽노정",
+   "ceo": {
+    "ko": "곽노정",
+    "en": "Kwak Noh-jung",
+    "ja": "クァク・ノジョン"
+   },
    "founded": "1949",
    "listed": "1996.12",
-   "hq": "경기 이천",
+   "hq": {
+    "ko": "경기 이천",
+    "en": "Icheon, South Korea",
+    "ja": "韓国・利川"
+   },
    "website": "https://www.skhynix.com",
    "longDesc": {
     "ko": "1949년 설립돼 2012년 SK그룹 편입과 함께 SK하이닉스로 상호를 바꾼 글로벌 메모리 반도체 기업. DRAM과 NAND 플래시가 주력이며, 엔비디아 AI 가속기에 들어가는 HBM(고대역폭 메모리) 시장을 선도하면서 AI 슈퍼사이클의 최대 수혜주로 꼽힌다. 경기도 이천에 본사를 두고 이천·청주·중국 우시 등에서 생산라인을 운영한다.",
@@ -1480,10 +1488,18 @@
    ],
    "logo": "nebius.com",
    "exchange": "NASDAQ",
-   "ceo": "아르카디 볼로즈 (Arkady Volozh)",
+   "ceo": {
+    "ko": "아르카디 볼로즈",
+    "en": "Arkady Volozh",
+    "ja": "アルカディ・ヴォロシュ"
+   },
    "founded": "2024",
    "listed": "2024.10",
-   "hq": "암스테르담",
+   "hq": {
+    "ko": "네덜란드 암스테르담",
+    "en": "Amsterdam, Netherlands",
+    "ja": "オランダ・アムステルダム"
+   },
    "website": "https://nebius.com",
    "longDesc": {
     "ko": "옛 얀덱스(Yandex N.V.)의 해외 사업이 2024년 재편되며 탄생한 AI 인프라 기업. 엔비디아 GPU 클러스터를 구축해 AI 기업들에 컴퓨팅 파워를 빌려주는 '네오클라우드'가 핵심 사업이다. 마이크로소프트와의 대형 GPU 공급 계약으로 주목받았고, 엔비디아가 직접 지분 투자한 회사이기도 하다.",
@@ -1511,10 +1527,18 @@
    ],
    "logo": "microsoft.com",
    "exchange": "NASDAQ",
-   "ceo": "사티아 나델라 (Satya Nadella)",
+   "ceo": {
+    "ko": "사티아 나델라",
+    "en": "Satya Nadella",
+    "ja": "サティア・ナデラ"
+   },
    "founded": "1975",
    "listed": "1986.3",
-   "hq": "미국 레드먼드",
+   "hq": {
+    "ko": "미국 레드먼드",
+    "en": "Redmond, USA",
+    "ja": "米国・レドモンド"
+   },
    "website": "https://www.microsoft.com",
    "longDesc": {
     "ko": "1975년 빌 게이츠와 폴 앨런이 세운 세계 최대 소프트웨어 기업. 윈도우·오피스에서 출발해 지금은 애저(Azure) 클라우드와 AI가 성장 축이며, OpenAI의 최대 후원자로서 AI 인프라에 연간 수백억 달러를 투자한다. 2014년 취임한 사티아 나델라가 클라우드 중심으로 회사를 재편했다.",
@@ -1542,10 +1566,18 @@
    ],
    "logo": "meta.com",
    "exchange": "NASDAQ",
-   "ceo": "마크 저커버그 (Mark Zuckerberg)",
+   "ceo": {
+    "ko": "마크 저커버그",
+    "en": "Mark Zuckerberg",
+    "ja": "マーク・ザッカーバーグ"
+   },
    "founded": "2004",
    "listed": "2012.5",
-   "hq": "미국 멘로파크",
+   "hq": {
+    "ko": "미국 멘로파크",
+    "en": "Menlo Park, USA",
+    "ja": "米国・メンローパーク"
+   },
    "website": "https://www.meta.com",
    "longDesc": {
     "ko": "페이스북·인스타그램·왓츠앱을 거느린 세계 최대 소셜미디어 기업. 2004년 마크 저커버그가 창업했고 2021년 메타로 사명을 바꿨다. 광고가 수익의 대부분이지만, 오픈소스 AI 모델(라마)과 초대형 AI 데이터센터에 회사의 미래를 걸고 연간 수백억 달러를 투자하고 있다.",
@@ -1573,10 +1605,18 @@
    ],
    "logo": "apple.com",
    "exchange": "NASDAQ",
-   "ceo": "팀 쿡 (Tim Cook)",
+   "ceo": {
+    "ko": "팀 쿡",
+    "en": "Tim Cook",
+    "ja": "ティム・クック"
+   },
    "founded": "1976",
    "listed": "1980.12",
-   "hq": "미국 쿠퍼티노",
+   "hq": {
+    "ko": "미국 쿠퍼티노",
+    "en": "Cupertino, USA",
+    "ja": "米国・クパチーノ"
+   },
    "website": "https://www.apple.com",
    "longDesc": {
     "ko": "아이폰·맥·에어팟을 만드는 세계에서 가장 가치 있는 하드웨어 기업. 1976년 스티브 잡스 등이 창업했고, 팀 쿡 체제에서 서비스 매출과 자체 반도체(M시리즈)로 영역을 넓혔다. 최근에는 공급망을 미국 내로 되돌리는 리쇼어링과 온디바이스 AI가 핵심 과제다.",
@@ -1604,9 +1644,17 @@
    ],
    "logo": "broadcom.com",
    "exchange": "NASDAQ",
-   "ceo": "혹 탄 (Hock Tan)",
+   "ceo": {
+    "ko": "혹 탄",
+    "en": "Hock Tan",
+    "ja": "ホック・タン"
+   },
    "listed": "2009.8",
-   "hq": "미국 팰로앨토",
+   "hq": {
+    "ko": "미국 팰로앨토",
+    "en": "Palo Alto, USA",
+    "ja": "米国・パロアルト"
+   },
    "website": "https://www.broadcom.com",
    "longDesc": {
     "ko": "네트워크·통신 반도체의 강자이자, 구글·메타 등 빅테크의 주문형 AI 칩(커스텀 ASIC)을 설계해 주는 회사. 공격적인 인수합병으로 성장했고 2023년엔 VMware까지 인수해 소프트웨어로 영역을 넓혔다. 엔비디아의 대항마로 꼽히는 AI 반도체 2위 주자다.",
@@ -1635,10 +1683,18 @@
    ],
    "logo": "bloomenergy.com",
    "exchange": "NYSE",
-   "ceo": "KR 스리다 (KR Sridhar)",
+   "ceo": {
+    "ko": "KR 스리다",
+    "en": "KR Sridhar",
+    "ja": "KR・スリダー"
+   },
    "founded": "2001",
    "listed": "2018.7",
-   "hq": "미국 새너제이",
+   "hq": {
+    "ko": "미국 새너제이",
+    "en": "San Jose, USA",
+    "ja": "米国・サンノゼ"
+   },
    "website": "https://www.bloomenergy.com",
    "longDesc": {
     "ko": "천연가스나 수소를 전기로 바꾸는 고체산화물 연료전지(SOFC)를 만드는 회사. 발전소 건설을 기다릴 수 없는 AI 데이터센터에 '현장에서 바로 꽂는 전력'을 공급하는 지름길로 주목받는다. 2001년 NASA 화성 프로젝트 출신 KR 스리다가 창업했다.",
@@ -1666,10 +1722,18 @@
    ],
    "logo": "strategy.com",
    "exchange": "NASDAQ",
-   "ceo": "퐁 레 (Phong Le) · 마이클 세일러 의장",
+   "ceo": {
+    "ko": "퐁 레 · 마이클 세일러(의장)",
+    "en": "Phong Le · Michael Saylor (Chair)",
+    "ja": "フォン・レ · マイケル・セイラー(会長)"
+   },
    "founded": "1989",
    "listed": "1998.6",
-   "hq": "미국 타이슨스",
+   "hq": {
+    "ko": "미국 타이슨스",
+    "en": "Tysons, USA",
+    "ja": "米国・タイソンズ"
+   },
    "website": "https://www.strategy.com",
    "longDesc": {
     "ko": "마이클 세일러가 세운 소프트웨어 회사에서 출발해, 2020년부터 회사 자금으로 비트코인을 대량 매입하며 '레버리지 비트코인 보유 회사'로 변신했다. 2025년 사명을 마이크로스트래티지에서 스트래티지로 바꿨다. 주가가 비트코인 가격에 크게 연동되는 것이 특징이다.",
@@ -1698,9 +1762,17 @@
    ],
    "logo": "towersemi.com",
    "exchange": "NASDAQ",
-   "ceo": "러셀 엘완거 (Russell Ellwanger)",
+   "ceo": {
+    "ko": "러셀 엘완거",
+    "en": "Russell Ellwanger",
+    "ja": "ラッセル・エルワンガー"
+   },
    "founded": "1993",
-   "hq": "이스라엘 미그달하에메크",
+   "hq": {
+    "ko": "이스라엘 미그달하에메크",
+    "en": "Migdal Haemek, Israel",
+    "ja": "イスラエル・ミグダルハエメク"
+   },
    "website": "https://towersemi.com",
    "longDesc": {
     "ko": "이스라엘의 아날로그 반도체 파운드리(위탁생산) 전문 기업. 통신용 광학 칩, 전력 반도체, 이미지 센서 등 틈새 공정에 강하다. 2022년 인텔이 인수를 시도했다가 무산됐고, AI 데이터센터용 실리콘 포토닉스 수요 증가의 수혜주로 꼽힌다.",
@@ -1728,10 +1800,18 @@
    ],
    "logo": "ao-inc.com",
    "exchange": "NASDAQ",
-   "ceo": "톰슨 린 (Thompson Lin)",
+   "ceo": {
+    "ko": "톰슨 린",
+    "en": "Thompson Lin",
+    "ja": "トンプソン・リン"
+   },
    "founded": "1997",
    "listed": "2013.9",
-   "hq": "미국 슈거랜드",
+   "hq": {
+    "ko": "미국 슈거랜드",
+    "en": "Sugar Land, USA",
+    "ja": "米国・シュガーランド"
+   },
    "website": "https://ao-inc.com",
    "longDesc": {
     "ko": "데이터센터용 광트랜시버(광통신 부품)를 만드는 미국 기업. AI 클러스터에서 GPU끼리 데이터를 주고받으려면 고속 광통신이 필수라, 800G 등 차세대 제품 수요가 급증하고 있다. 마이크로소프트·아마존 등 하이퍼스케일러가 주요 고객이다.",
@@ -1757,9 +1837,17 @@
    ],
    "logo": "nseindia.com",
    "exchange": "비상장",
-   "ceo": "아시시쿠마르 차우한 (Ashishkumar Chauhan)",
+   "ceo": {
+    "ko": "아시시쿠마르 차우한",
+    "en": "Ashishkumar Chauhan",
+    "ja": "アシシュクマール・チョウハン"
+   },
    "founded": "1992",
-   "hq": "인도 뭄바이",
+   "hq": {
+    "ko": "인도 뭄바이",
+    "en": "Mumbai, India",
+    "ja": "インド・ムンバイ"
+   },
    "website": "https://www.nseindia.com",
    "longDesc": {
     "ko": "1992년 설립된 인도 최대 증권거래소. 파생상품 거래량 기준 세계 1위 거래소로, 인도 개인투자자 급증의 최대 수혜자다. 아직 비상장이지만 IPO가 인도 자본시장 최대 이벤트 중 하나로 꼽힌다.",
@@ -1787,9 +1875,17 @@
    ],
    "logo": "deepmind.google",
    "exchange": "NASDAQ (알파벳)",
-   "ceo": "데미스 하사비스 (Demis Hassabis)",
+   "ceo": {
+    "ko": "데미스 하사비스",
+    "en": "Demis Hassabis",
+    "ja": "デミス・ハサビス"
+   },
    "founded": "2010",
-   "hq": "영국 런던",
+   "hq": {
+    "ko": "영국 런던",
+    "en": "London, UK",
+    "ja": "英国・ロンドン"
+   },
    "website": "https://deepmind.google",
    "longDesc": {
     "ko": "2010년 런던에서 창업해 2014년 구글이 인수한 AI 연구소. 알파고로 세상을 놀라게 했고, 단백질 구조를 푼 알파폴드로 창업자 하사비스가 노벨 화학상을 받았다. 현재 구글의 제미나이(Gemini) 모델 개발을 이끄는 알파벳 산하 핵심 조직이다. 상장사 기준으로는 모회사 알파벳(GOOGL) 주가를 따른다.",
@@ -2073,8 +2169,16 @@
    ],
    "logo": "nvidia.com",
    "exchange": "NASDAQ",
-   "ceo": "젠슨 황 (Jensen Huang)",
-   "hq": "미국 샌타클래라",
+   "ceo": {
+    "ko": "젠슨 황",
+    "en": "Jensen Huang",
+    "ja": "ジェンスン・フアン"
+   },
+   "hq": {
+    "ko": "미국 샌타클래라",
+    "en": "Santa Clara, USA",
+    "ja": "米国・サンタクララ"
+   },
    "website": "https://www.nvidia.com",
    "longDesc": {
     "ko": "1993년 젠슨 황이 창업한 GPU 회사에서 출발해, AI 학습·추론 칩 시장을 사실상 독점하며 세계 최고 가치의 반도체 기업이 됐다. 데이터센터 GPU(H100·블랙웰 등)가 매출의 대부분을 차지하고, SK하이닉스의 HBM이 이 칩에 들어간다.",
@@ -2106,8 +2210,16 @@
    ],
    "logo": "samsung.com",
    "exchange": "KOSPI",
-   "ceo": "전영현 · 한종희 (각자대표)",
-   "hq": "경기 수원",
+   "ceo": {
+    "ko": "전영현 · 한종희 (각자대표)",
+    "en": "Jun Young-hyun · Han Jong-hee (Co-CEOs)",
+    "ja": "チョン・ヨンヒョン · ハン・ジョンヒ (共同代表)"
+   },
+   "hq": {
+    "ko": "경기 수원",
+    "en": "Suwon, South Korea",
+    "ja": "韓国・水原"
+   },
    "website": "https://www.samsung.com",
    "longDesc": {
     "ko": "1969년 설립된 한국 최대 기업이자 세계 최대 메모리 반도체 회사. DRAM·NAND에서 SK하이닉스와 양강 구도를 이루고, 파운드리에서는 TSMC를 추격 중이다. 스마트폰(갤럭시)·디스플레이·가전까지 아우르는 종합 전자기업으로, HBM 경쟁에서의 반격이 최근 최대 관전 포인트다.",
@@ -2138,8 +2250,16 @@
    ],
    "logo": "tsmc.com",
    "exchange": "NYSE (ADR)",
-   "ceo": "웨이저자 (C.C. Wei)",
-   "hq": "대만 신주",
+   "ceo": {
+    "ko": "웨이저자",
+    "en": "C.C. Wei",
+    "ja": "魏哲家 (C.C. Wei)"
+   },
+   "hq": {
+    "ko": "대만 신주",
+    "en": "Hsinchu, Taiwan",
+    "ja": "台湾・新竹"
+   },
    "website": "https://www.tsmc.com",
    "longDesc": {
     "ko": "1987년 모리스 창이 세운 세계 최초·최대의 반도체 위탁생산(파운드리) 기업. 애플·엔비디아·AMD의 최첨단 칩을 사실상 독점 생산하며, 첨단 공정 점유율은 90%에 달한다. 대만에 생산이 집중돼 지정학 리스크의 중심에 있고, 미국·일본에 공장을 늘리는 중이다.",
@@ -2168,8 +2288,16 @@
    ],
    "logo": "openai.com",
    "exchange": "비상장",
-   "ceo": "샘 올트먼 (Sam Altman)",
-   "hq": "미국 샌프란시스코",
+   "ceo": {
+    "ko": "샘 올트먼",
+    "en": "Sam Altman",
+    "ja": "サム・アルトマン"
+   },
+   "hq": {
+    "ko": "미국 샌프란시스코",
+    "en": "San Francisco, USA",
+    "ja": "米国・サンフランシスコ"
+   },
    "website": "https://openai.com",
    "longDesc": {
     "ko": "2015년 비영리로 출발해 챗GPT로 생성형 AI 붐을 연 회사. 마이크로소프트가 최대 투자자이며, 세계에서 가장 높은 몸값의 비상장 기업 중 하나다. 모델 학습에 천문학적 컴퓨팅이 필요해 데이터센터·전력·반도체 수요의 진원지 역할을 한다.",
@@ -2199,8 +2327,16 @@
    ],
    "logo": "alibaba.com",
    "exchange": "NYSE",
-   "ceo": "우융밍 (Eddie Wu)",
-   "hq": "중국 항저우",
+   "ceo": {
+    "ko": "우융밍",
+    "en": "Eddie Wu",
+    "ja": "呉泳銘 (Eddie Wu)"
+   },
+   "hq": {
+    "ko": "중국 항저우",
+    "en": "Hangzhou, China",
+    "ja": "中国・杭州"
+   },
    "website": "https://www.alibaba.com",
    "longDesc": {
     "ko": "1999년 마윈이 창업한 중국 최대 이커머스·클라우드 기업. 타오바오·티몰과 알리클라우드를 운영하며, 오픈소스 AI 모델 'Qwen(통이첸원)' 시리즈로 글로벌 AI 사용량 순위 상위에 올라 있다. 중국 AI 굴기의 대표 주자로 미·중 기술 경쟁의 한복판에 있다.",
@@ -2229,8 +2365,16 @@
    ],
    "logo": "deepseek.com",
    "exchange": "비상장",
-   "ceo": "량원펑 (Liang Wenfeng)",
-   "hq": "중국 항저우",
+   "ceo": {
+    "ko": "량원펑",
+    "en": "Liang Wenfeng",
+    "ja": "梁文鋒 (Liang Wenfeng)"
+   },
+   "hq": {
+    "ko": "중국 항저우",
+    "en": "Hangzhou, China",
+    "ja": "中国・杭州"
+   },
    "website": "https://www.deepseek.com",
    "longDesc": {
     "ko": "헤지펀드 하이플라이어에서 분사해 2023년 설립된 중국 AI 연구소. 2025년 초 GPT급 성능을 수십분의 1 비용으로 내는 모델을 공개해 'AI 스푸트니크 모멘트'를 일으켰다. MoE 구조와 증류 기법으로 낮은 추론 비용을 무기 삼아, 오픈소스로 전 세계 사용량을 빠르게 늘리고 있다.",
@@ -2261,8 +2405,16 @@
    ],
    "logo": "google.com",
    "exchange": "NASDAQ",
-   "ceo": "순다르 피차이 (Sundar Pichai)",
-   "hq": "미국 마운틴뷰",
+   "ceo": {
+    "ko": "순다르 피차이",
+    "en": "Sundar Pichai",
+    "ja": "スンダー・ピチャイ"
+   },
+   "hq": {
+    "ko": "미국 마운틴뷰",
+    "en": "Mountain View, USA",
+    "ja": "米国・マウンテンビュー"
+   },
    "website": "https://www.google.com",
    "longDesc": {
     "ko": "1998년 창업한 세계 최대 검색·광고 기업(모회사 알파벳). 유튜브·안드로이드·클라우드를 거느리고, 딥마인드의 제미나이 모델과 자체 AI 칩(TPU)으로 AI 풀스택을 갖춘 유일한 빅테크로 꼽힌다.",
@@ -2292,8 +2444,16 @@
    ],
    "logo": "tesla.com",
    "exchange": "NASDAQ",
-   "ceo": "일론 머스크 (Elon Musk)",
-   "hq": "미국 오스틴",
+   "ceo": {
+    "ko": "일론 머스크",
+    "en": "Elon Musk",
+    "ja": "イーロン・マスク"
+   },
+   "hq": {
+    "ko": "미국 오스틴",
+    "en": "Austin, USA",
+    "ja": "米国・オースティン"
+   },
    "website": "https://www.tesla.com",
    "longDesc": {
     "ko": "2003년 설립된 전기차 선두 기업. 일론 머스크가 이끌며, 최근에는 자율주행(FSD)·로보택시·휴머노이드 로봇(옵티머스)으로 정체성을 넓히는 중이다. 주가가 실적보다 미래 서사에 크게 반응하는 대표적인 성장주다.",
@@ -2508,9 +2668,17 @@
    ],
    "logo": "intel.com",
    "exchange": "NASDAQ",
-   "ceo": "립부 탄 (Lip-Bu Tan)",
+   "ceo": {
+    "ko": "립부 탄",
+    "en": "Lip-Bu Tan",
+    "ja": "リップブー・タン"
+   },
    "founded": "1968",
-   "hq": "미국 샌타클래라",
+   "hq": {
+    "ko": "미국 샌타클래라",
+    "en": "Santa Clara, USA",
+    "ja": "米国・サンタクララ"
+   },
    "website": "https://www.intel.com",
    "longDesc": {
     "ko": "1968년 설립된 x86 CPU의 원조이자 미국 반도체 산업의 상징. 최근 수년간 공정 경쟁에서 TSMC에 밀렸지만, 미국 정부 지원 아래 파운드리 사업 재건과 18A 공정 반전에 사활을 걸고 있다. 실리콘 포토닉스 등 AI 인프라 부품에서도 존재감이 있다.",
@@ -2538,9 +2706,17 @@
    ],
    "logo": "micron.com",
    "exchange": "NASDAQ",
-   "ceo": "산제이 메흐로트라 (Sanjay Mehrotra)",
+   "ceo": {
+    "ko": "산제이 메흐로트라",
+    "en": "Sanjay Mehrotra",
+    "ja": "サンジェイ・メロトラ"
+   },
    "founded": "1978",
-   "hq": "미국 보이시",
+   "hq": {
+    "ko": "미국 보이시",
+    "en": "Boise, USA",
+    "ja": "米国・ボイシ"
+   },
    "website": "https://www.micron.com",
    "longDesc": {
     "ko": "1978년 설립된 미국 유일의 메모리 반도체 대기업. 삼성전자·SK하이닉스와 함께 D램 3강 과점을 이루고, HBM 시장에도 진입해 있다. AI 메모리 슈퍼사이클의 미국 측 수혜주로, 대형 고객들과의 장기공급계약(LTA)이 실적 가시성을 높이고 있다.",
@@ -2618,8 +2794,16 @@
    ],
    "logo": "moonshot.cn",
    "exchange": "비상장",
-   "ceo": "양즈린 (Yang Zhilin)",
-   "hq": "중국 베이징",
+   "ceo": {
+    "ko": "양즈린",
+    "en": "Yang Zhilin",
+    "ja": "楊植麟 (Yang Zhilin)"
+   },
+   "hq": {
+    "ko": "중국 베이징",
+    "en": "Beijing, China",
+    "ja": "中国・北京"
+   },
    "founded": "2023",
    "website": "https://www.moonshot.cn",
    "longDesc": {

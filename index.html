@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v66 :: today's pinned debate, shareable performance cards, weekly recap page (this-week.html) -->
+<!-- STACKS BUILD v67 :: EN/JA fixes - unified newsletter form, dash label i18n, 메르 (ranto28), My Page, localized company facts + clickable Track Record names -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -259,7 +259,7 @@ const STRINGS = {
     todayJoin: "Join the discussion",
     todayComments: "{n} comments",
     suggTitle: "You might also follow",
-    meTitle: "My activity",
+    meTitle: "My Page",
     meStreak: "day streak",
     meRead: "Read",
     meWeek: "This week",
@@ -269,7 +269,7 @@ const STRINGS = {
     meTopTopic: "Most-read topic",
     meInterests: "Your interests",
     meInterestsSub: "Toggle a topic to follow or unfollow its companies and stories.",
-    meNav: "Me",
+    meNav: "My Page",
     meNone: "—",
     reply: "Reply",
     replyingTo: "Replying to {name}",
@@ -393,7 +393,7 @@ const STRINGS = {
     todayJoin: "의견 남기기",
     todayComments: "댓글 {n}개",
     suggTitle: "이런 종목도 팔로우해보세요",
-    meTitle: "내 기록",
+    meTitle: "마이페이지",
     meStreak: "일 연속 방문",
     meRead: "읽은 글",
     meWeek: "이번 주",
@@ -403,7 +403,7 @@ const STRINGS = {
     meTopTopic: "가장 많이 본 주제",
     meInterests: "내 관심사",
     meInterestsSub: "주제를 켜고 끄면 해당 회사·시리즈를 팔로우하거나 해제합니다.",
-    meNav: "내 기록",
+    meNav: "마이페이지",
     meNone: "—",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
@@ -527,7 +527,7 @@ const STRINGS = {
     todayJoin: "意見を書く",
     todayComments: "コメント{n}件",
     suggTitle: "こんな銘柄もフォローしませんか",
-    meTitle: "マイ記録",
+    meTitle: "マイページ",
     meStreak: "日連続アクセス",
     meRead: "既読",
     meWeek: "今週",
@@ -537,7 +537,7 @@ const STRINGS = {
     meTopTopic: "最も読んだテーマ",
     meInterests: "興味・関心",
     meInterestsSub: "テーマをオン/オフすると関連企業・ストーリーをフォロー/解除します。",
-    meNav: "マイ記録",
+    meNav: "マイページ",
     meNone: "—",
     reply: "返信",
     replyingTo: "{name}さんに返信",
@@ -1118,6 +1118,8 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
   text-transform:uppercase;color:var(--muted);padding:8px 14px;
 }
 .sb-src{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sb-src-link{background:none;border:none;font:inherit;font-weight:700;color:var(--accent);cursor:pointer;padding:0;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sb-src-link:hover{text-decoration:underline;}
 .sb-c i,.sb-r i{font-style:normal;font-weight:700;margin-right:6px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;}
 .sb-a{font-family:"IBM Plex Mono",monospace;font-weight:700;}
 .ws-bull{color:#0E9F5E;}
@@ -1989,7 +1991,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v66</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v67</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -2108,6 +2110,16 @@ function paraGist(text){
   return out.join("\n\n");
 }
 
+/* friendly display names — keeps the underlying key/source stable for
+   matching while showing a nicer label (e.g. the blog handle). */
+const NAME_ALIAS = { "메르": "메르 (ranto28)" };
+function dispName(s){ return NAME_ALIAS[s] || s; }
+/* a field may be a plain string (language-neutral, e.g. a year) or a
+   {en,ko,ja} object; return the right language. */
+function locVal(v){
+  if (v && typeof v === "object") return v[LANG] || v.en || v.ko || "";
+  return v;
+}
 function entityTip(key){
   const e = ENTITIES[key];
   if (!e) return "";
@@ -2698,7 +2710,9 @@ function renderScoreboard(list, S){
     + "</div>"
     + rows.map((r, ri) =>
       '<div class="sb-row">'
-        + '<span class="sb-src">' + esc(r.src) + "</span>"
+        + (ENTITIES[r.src]
+            ? '<button class="sb-src sb-src-link" onclick="entityFeedView(\'' + r.src.replace(/'/g, "\\'") + '\')">' + esc(dispName(r.src)) + " ↗</button>"
+            : '<span class="sb-src">' + esc(dispName(r.src)) + "</span>")
         + '<span class="sb-c">' + (r.bull ? '<i class="ws-bull">▲' + r.bull + "</i>" : "") + (r.bear ? '<i class="ws-bear">▼' + r.bear + "</i>" : "") + "</span>"
         + '<span class="sb-a" data-sba="' + ri + '">···</span>'
         + '<span class="sb-r">' + (r.hit ? '<i class="ws-bull">✓' + r.hit + "</i>" : "") + (r.miss ? '<i class="ws-bear">✕' + r.miss + "</i>" : "") + (r.pending ? "<i>⏳" + r.pending + "</i>" : "") + ((r.hit || r.miss || r.pending) ? "" : "–") + "</span>"
@@ -2906,9 +2920,10 @@ function ceoTap(el, name){
   const box = document.createElement("div");
   box.className = "ceo-detail";
   box.dataset.name = name;
+  const dispCeo = (LANG === "ko") ? name : ((typeof CEO_WIKI !== "undefined" && CEO_WIKI[name]) || name);
   box.innerHTML = '<div class="ceo-detail-row">'
     + '<span class="ceo-photo" aria-hidden="true"></span>'
-    + '<span class="ceo-detail-txt"><b>' + name + '</b>' + (info.l[LANG] || info.l.ko) + '</span>'
+    + '<span class="ceo-detail-txt"><b>' + dispCeo + '</b>' + (info.l[LANG] || info.l.ko) + '</span>'
     + '</div>';
   if (typeof CEO_WIKI !== "undefined" && CEO_WIKI[name] && typeof wikiPhoto === "function"){
     wikiPhoto(CEO_WIKI[name]).then(function(src){
@@ -3106,13 +3121,18 @@ function entityHeadEl(key, S, count, mode){
   if (mode === "feed") subBits.push(count + (LANG === "ko" ? "개 글" : LANG === "ja" ? "件" : " articles"));
   const logo = e.logo ? '<span class="eh-logo"><img src="' + logoUrl(e.logo) + '" alt="" onerror="this.parentNode.style.display=\'none\'"></span>' : "";
   const facts = [];
-  if (e.ceo) facts.push([S.fCeo, esc(e.ceo)]);
-  if (e.founded) facts.push([S.fFounded, esc(e.founded)]);
-  if (e.listed) facts.push([S.fListed, esc(e.listed)]);
-  if (e.hq) facts.push([S.fHq, esc(e.hq)]);
+  if (e.ceo){
+    const ceoKo = (e.ceo && typeof e.ceo === "object") ? e.ceo.ko : e.ceo;
+    const disp = esc(locVal(e.ceo));
+    if (CEO_INFO[ceoKo]) facts.push([S.fCeo, '<span class="ceo-link has-tip" onclick="ceoTap(this, \'' + ceoKo.replace(/'/g, "\\'") + '\')">' + disp + ceoTipHtml(ceoKo) + "</span>", true]);
+    else facts.push([S.fCeo, disp]);
+  }
+  if (e.founded) facts.push([S.fFounded, esc(locVal(e.founded))]);
+  if (e.listed) facts.push([S.fListed, esc(locVal(e.listed))]);
+  if (e.hq) facts.push([S.fHq, esc(locVal(e.hq))]);
   if (e.website) facts.push([S.fWeb, '<a href="' + esc(e.website) + '" target="_blank" rel="noopener">' + esc(e.website.replace(/^https?:\/\/(www\.)?/, "")) + "</a>"]);
   const factsHtml = facts.length
-    ? '<div class="eh-facts">' + facts.map(f => '<div class="f"><b>' + f[0] + "</b>" + f[1] + "</div>").join("") + "</div>" : "";
+    ? '<div class="eh-facts">' + facts.map(f => '<div class="f"' + (f[2] ? ' data-ceo-done="1"' : "") + '><b>' + f[0] + "</b>" + f[1] + "</div>").join("") + "</div>" : "";
   const chart = (isCo && e.ticker)
     ? '<div class="eh-quote">'
       + '<div class="ehq-head"><b id="ehqPrice">-</b><span id="ehqChg"></span></div>'
@@ -3131,7 +3151,7 @@ function entityHeadEl(key, S, count, mode){
     ? '<button class="eh-link eh-viewarts" onclick="entityFeedView(\'' + safe + '\')">' + (S.entArticles || "View {n} articles →").replace("{n}", count) + "</button>" : "";
   h.innerHTML = topBtn
     + '<div class="eh-top">' + logo
-      + '<div><div class="eh-name">' + esc(key) + "</div>"
+      + '<div><div class="eh-name">' + esc(dispName(key)) + "</div>"
       + '<div class="eh-sub">' + subBits.join(" · ") + "</div></div></div>"
     + ((e.longDesc || e.desc) ? '<p class="eh-desc">' + (e.longDesc ? e.longDesc[LANG] : e.desc[LANG]) + "</p>" : "")
     + chart
@@ -3326,6 +3346,7 @@ function mountDash(){
   if (feed){ d.wrap.insertBefore(left, feed); if (feed.nextSibling) d.wrap.insertBefore(right, feed.nextSibling); else d.wrap.appendChild(right); }
   else { d.wrap.appendChild(left); d.wrap.appendChild(right); }
   const lbl = document.createElement("div"); lbl.className = "dash-side-label";
+  lbl.id = "dashBrowseLabel";
   lbl.textContent = (STRINGS[LANG].dashBrowse || "Browse"); left.appendChild(lbl);
   if (d.tabs) left.appendChild(d.tabs);
   const fb = document.createElement("div"); fb.className = "filter-btns";
@@ -4649,6 +4670,8 @@ function render(){
     nb.title = S.notify;
   }
   applyThemeBtn();
+  const dbl = document.getElementById("dashBrowseLabel");
+  if (dbl) dbl.textContent = S.dashBrowse;
   if (!STREAK_DONE){ computeStreak(); STREAK_DONE = true; }
   refreshStreakBadge();
   if (document.getElementById("meSheet") && !document.getElementById("meSheet").hidden) renderMe();
@@ -4742,7 +4765,7 @@ function renderHotRail(){
       ${coverHtml}
       <div class="hot-meta">
         ${avatarHtml(item, "mini-avatar")}
-        <span>${item.source}</span>
+        <span>${esc(dispName(item.source))}</span>
       </div>
     `;
     rail.appendChild(a);
@@ -5000,7 +5023,7 @@ function cardEl(item, S, idx){
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
-          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="entityTap(this, '${(item.source||"").replace(/'/g,"")}')"` : ""}>${item.source}${entityTip(item.source)}</span>
+          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="entityTap(this, '${(item.source||"").replace(/'/g,"")}')"` : ""}>${esc(dispName(item.source))}${entityTip(item.source)}</span>
           <span class="src-date">${fmt(item.date)} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
@@ -5384,11 +5407,10 @@ function renderNewsletter(){
   const S = STRINGS[LANG];
   const form = document.getElementById("nlForm");
   const f = document.getElementById("nlFrame");
-  /* Korean: native styled form -> Stibee. Others: Substack embed. */
-  const useForm = LANG === "ko" && !!STIBEE_FORM_ACTION;
-  const src = LANG === "ko"
-    ? (useForm ? "" : STIBEE_PAGE)          /* fallback iframe if no action URL */
-    : (NEWSLETTER_EMBEDS[LANG] || "");
+  /* one native, on-brand form for every language -> Stibee list.
+     (No third-party Substack iframe; the box looks the same in EN/JA/KO.) */
+  const useForm = !!STIBEE_FORM_ACTION;
+  const src = useForm ? "" : STIBEE_PAGE;   /* fallback iframe only if no action URL */
   if (!useForm && !src && !SUPPORT_URL){ sec.hidden = true; return; }
   sec.hidden = false;
   document.getElementById("nlTitle").textContent = S.nlTitle;
