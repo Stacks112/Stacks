@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v73 :: read=fold cards to title, company filter A-Z + person filter, author accuracy leaderboard, 5 audit bug fixes -->
+<!-- STACKS BUILD v74 :: reader poll (opportunity vs trap) on each discussion question with live crowd split -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -219,7 +219,11 @@ const STRINGS = {
     listen: "Listen",
     loadMore: "Load more",
     dashBrowse: "Browse",
-    askCta: "Share your take",
+    askCta: "Comment",
+    voteOpp: "Opportunity",
+    voteTrap: "Trap",
+    votePrompt: "Your quick take:",
+    voteResult: "{u}% see opportunity",
     ocHit: "Call: hit ✓",
     ocMiss: "Call: missed ✕",
     ocPending: "Tracking this call",
@@ -359,7 +363,11 @@ const STRINGS = {
     listen: "듣기",
     loadMore: "더 보기",
     dashBrowse: "둘러보기",
-    askCta: "의견 남기기",
+    askCta: "댓글로 의견",
+    voteOpp: "기회",
+    voteTrap: "함정",
+    votePrompt: "당신의 생각은?",
+    voteResult: "{u}%가 기회로 봅니다",
     ocHit: "예측 적중 ✓",
     ocMiss: "예측 빗나감 ✕",
     ocPending: "예측 추적 중",
@@ -499,7 +507,11 @@ const STRINGS = {
     listen: "聴く",
     loadMore: "もっと見る",
     dashBrowse: "見る",
-    askCta: "意見を書く",
+    askCta: "コメント",
+    voteOpp: "チャンス",
+    voteTrap: "罠",
+    votePrompt: "あなたの見方は?",
+    voteResult: "{u}%がチャンスと回答",
     ocHit: "的中 ✓",
     ocMiss: "外れ ✕",
     ocPending: "予測を追跡中",
@@ -1336,6 +1348,31 @@ html[data-lang="ko"] .me-int-sub{font-family:"Pretendard Variable",sans-serif;}
 .ask-row:hover{border-color:var(--accent);}
 .ask-row .ask-q{font-weight:600;}
 .ask-row .ask-cta{flex:0 0 auto;font-size:12px;font-weight:700;color:var(--accent);white-space:nowrap;}
+/* discussion prompt + reader poll */
+.ask-block{margin-top:12px;padding:12px 13px;background:var(--bg-soft);border:1px dashed var(--line);border-radius:12px;}
+.ask-block .ask-q{font-size:13px;font-weight:700;line-height:1.45;}
+html[data-lang="ko"] .ask-block .ask-q{font-family:"Pretendard Variable",sans-serif;}
+.vote-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center;}
+.vote-btn{
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;font:inherit;
+  font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+}
+.vote-btn .vd{font-size:10px;}
+.vote-btn .vn{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);}
+.vote-up:hover,.vote-up.on{border-color:#12B76A;background:rgba(18,183,106,.1);}
+.vote-up.on .vn{color:#0E9F5E;}
+.vote-down:hover,.vote-down.on{border-color:#F04438;background:rgba(240,68,56,.1);}
+.vote-down.on .vn{color:#E04438;}
+.ask-comment{
+  display:inline-flex;align-items:center;gap:5px;margin-left:auto;cursor:pointer;font:inherit;
+  font-size:12px;font-weight:700;color:var(--accent);background:none;border:none;padding:6px 4px;
+}
+.ask-comment svg{width:15px;height:15px;}
+.vote-bar{position:relative;height:26px;margin-top:10px;border-radius:8px;overflow:hidden;background:rgba(240,68,56,.14);}
+.vote-fill{position:absolute;left:0;top:0;bottom:0;background:rgba(18,183,106,.28);transition:width .4s ease;}
+.vote-lbl{position:relative;z-index:1;display:flex;align-items:center;height:100%;padding:0 10px;font-size:11px;font-weight:700;color:var(--text);font-family:"IBM Plex Mono",monospace;}
+html[data-lang="ko"] .vote-lbl{font-family:"Pretendard Variable",sans-serif;}
 html[data-lang="ko"] .ask-row{font-family:"Pretendard Variable","Inter",sans-serif;}
 .original-link{
   font-size:13px;font-weight:700;text-decoration:none;
@@ -2056,7 +2093,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v73</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v74</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
@@ -4240,6 +4277,7 @@ function applyEngageCounts(){
     egSet("ln-" + i.id, LIKE_COUNTS[i.id]);
     egSet("vn-" + i.id, VIEW_COUNTS[i.id]);
   });
+  if (typeof applyVoteCounts === "function") applyVoteCounts();
 }
 /* kept as an alias so existing call sites still work */
 function applyCommentCounts(){ applyEngageCounts(); }
@@ -4257,6 +4295,63 @@ async function loadCounts(path, target){
 function loadCommentCounts(){ return loadCounts("/counts", COMMENT_COUNTS); }
 function loadLikeCounts(){ return loadCounts("/likes", LIKE_COUNTS); }
 function loadViewCounts(){ return loadCounts("/views", VIEW_COUNTS); }
+
+/* ---- reader poll on the discussion question (opportunity vs trap) ----
+   One tap, one vote per device; shows the crowd split as social proof. */
+let VOTE_COUNTS = {};                 /* id -> {up, down} */
+const VOTES = store.get("stk_votes", {}); /* id -> "up" | "down" */
+function loadVoteCounts(){ return loadCounts("/votes", VOTE_COUNTS); }
+function applyVoteCounts(id){
+  const ids = id ? [id] : Object.keys(VOTE_COUNTS);
+  document.querySelectorAll(".vote-row").forEach(row => {
+    const vid = row.getAttribute("data-vote");
+    if (id && vid !== id) return;
+    const c = VOTE_COUNTS[vid] || { up: 0, down: 0 };
+    const up = c.up || 0, down = c.down || 0, total = up + down;
+    const mine = VOTES[vid];
+    const uEl = row.querySelector(".vn-up"), dEl = row.querySelector(".vn-down");
+    if (uEl) uEl.textContent = up || "";
+    if (dEl) dEl.textContent = down || "";
+    row.querySelector(".vote-up").classList.toggle("on", mine === "up");
+    row.querySelector(".vote-down").classList.toggle("on", mine === "down");
+    const bar = document.querySelector('.vote-bar[data-vbar="' + vid + '"]');
+    if (bar){
+      if (total > 0 && (mine || total >= 3)){
+        const pct = Math.round((up / total) * 100);
+        bar.hidden = false;
+        bar.querySelector(".vote-fill").style.width = pct + "%";
+        bar.querySelector(".vote-lbl").textContent = STRINGS[LANG].voteResult.replace("{u}", pct) + " · " + total;
+      } else bar.hidden = true;
+    }
+  });
+}
+async function castVote(id, dir){
+  const prev = VOTES[id] || null;
+  const c = VOTE_COUNTS[id] || (VOTE_COUNTS[id] = { up: 0, down: 0 });
+  if (prev === dir){ /* tap again = un-vote */
+    c[dir] = Math.max(0, (c[dir] || 0) - 1);
+    delete VOTES[id];
+  } else {
+    if (prev) c[prev] = Math.max(0, (c[prev] || 0) - 1);
+    c[dir] = (c[dir] || 0) + 1;
+    VOTES[id] = dir;
+    track("vote/" + dir + "/" + id);
+  }
+  store.set("stk_votes", VOTES);
+  applyVoteCounts(id);
+  if (!COMMENTS_API) return;
+  try {
+    const res = await fetch(COMMENTS_API + "/vote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pageId: id, dir: VOTES[id] || null, prev: prev })
+    });
+    if (res.ok){
+      const j = await res.json();
+      if (j && j.data){ VOTE_COUNTS[id] = j.data; applyVoteCounts(id); }
+    }
+  } catch (e) {}
+}
 function bumpCommentCount(id){
   COMMENT_COUNTS[id] = (COMMENT_COUNTS[id] || 0) + 1;
   egSet("cn-" + id, COMMENT_COUNTS[id]);
@@ -5228,7 +5323,15 @@ function cardEl(item, S, idx){
       </div>
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? ` · <span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
-      ${item.ask && COMMENTS_API ? `<button class="ask-row" onclick="toggleComments('${item.id}')"><span class="ask-q">💬 ${esc(item.ask[LANG])}</span><span class="ask-cta">${S.askCta} →</span></button>` : ""}
+      ${item.ask && COMMENTS_API ? `<div class="ask-block">
+        <div class="ask-q">💬 ${esc(item.ask[LANG])}</div>
+        <div class="vote-row" data-vote="${item.id}">
+          <button class="vote-btn vote-up" onclick="castVote('${item.id}','up')"><span class="vd">🟢</span><span class="vl">${S.voteOpp}</span><b class="vn vn-up">0</b></button>
+          <button class="vote-btn vote-down" onclick="castVote('${item.id}','down')"><span class="vd">🔴</span><span class="vl">${S.voteTrap}</span><b class="vn vn-down">0</b></button>
+          <button class="ask-comment" onclick="toggleComments('${item.id}')">${svgIcon("comment")}<span>${S.askCta}</span></button>
+        </div>
+        <div class="vote-bar" data-vbar="${item.id}" hidden><div class="vote-fill"></div><span class="vote-lbl"></span></div>
+      </div>` : ""}
       <div class="cta-row">
         <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
@@ -5557,8 +5660,8 @@ async function bootData(){
   applyDash();
   window.matchMedia("(min-width:1024px)").addEventListener("change", applyDash);
   handleDeepLink();
-  Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts()])
-    .then(() => { renderHotRail(); renderToday(); }); /* re-rank with real stats */
+  Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts(), loadVoteCounts()])
+    .then(() => { renderHotRail(); renderToday(); applyVoteCounts(); }); /* re-rank with real stats */
   if (!showIntro()) maybeOnboard();
 }
 
