@@ -1,6 +1,9 @@
-/* Stacks comments worker (v8: adds the reader poll /vote + /votes;
-   everything else identical to v7 — ranged quotes via Yahoo Finance,
-   views/likes counters, comment replies & likes, /notify push).
+/* Stacks comments worker (v8.1)
+   = your existing v8 (per-timezone + multi-language push delivery,
+     ranged quotes, views/likes, comment replies & likes, /notify)
+   + the reader poll: GET /votes and POST /vote.
+   Nothing from your v8 was removed — the timezone/multi-language push
+   logic (langMap, deliver_at) is all preserved.
    Free Cloudflare Worker + D1. Comments show instantly, no approval.
 
    HOW TO DEPLOY (Cloudflare dashboard):
@@ -90,6 +93,31 @@ async function allCounts(db, kind) {
 }
 
 const PAGE_ID_RE = /^[a-z0-9_-]{1,64}$/i;
+
+/* build a OneSignal language map ({en, ko, ja, ...}) for a heading or body,
+   from an object {en,ko,ja}, flat title_en/title_ko/..., or a plain string.
+   OneSignal requires an "en" fallback, so we always fill it. */
+const OS_LANGS = ["en", "ko", "ja", "zh-Hans", "zh-Hant", "es", "fr", "de", "pt", "ru", "id", "vi", "th"];
+function langMap(p, base, limit) {
+  let m = {};
+  const v = p[base];
+  if (v && typeof v === "object" && !Array.isArray(v)) {
+    m = { ...v };
+  } else {
+    for (const L of OS_LANGS) {
+      const k = p[base + "_" + L];
+      if (k) m[L] = k;
+    }
+    if (Object.keys(m).length === 0 && typeof v === "string" && v) m.en = v;
+  }
+  if (!m.en) m.en = m.ko || m.ja || Object.values(m)[0] || "";
+  const out = {};
+  for (const k of Object.keys(m)) {
+    const s = String(m[k]).slice(0, limit);
+    if (s) out[k] = s;
+  }
+  return out;
+}
 
 export default {
   async fetch(request, env) {
@@ -203,7 +231,10 @@ export default {
       });
     }
 
-    /* ---------- notify: push to followers (June only) ---------- */
+    /* ---------- notify: push to followers (June only) ----------
+       v8: multi-language (title/msg may be string, {en,ko,ja}, or flat
+       title_en/…), and optional per-timezone delivery (deliver_at="7:30AM"
+       sends at each subscriber's local time; the "daily" tag defaults to it). */
     if (url.pathname === "/notify") {
       const p = request.method === "POST"
         ? await request.json().catch(() => ({}))
@@ -214,16 +245,28 @@ export default {
       if (!env.ONESIGNAL_REST_KEY) {
         return json({ error: "ONESIGNAL_REST_KEY secret not set" }, 500, origin);
       }
-      if (!p.tag || !p.title || !p.msg) {
+      if (!p.tag) {
+        return json({ error: "need tag, title, msg" }, 400, origin);
+      }
+      const headings = langMap(p, "title", 120);
+      const contents = langMap(p, "msg", 300);
+      if (!headings.en || !contents.en) {
         return json({ error: "need tag, title, msg" }, 400, origin);
       }
       const payload = {
         app_id: ONESIGNAL_APP_ID,
-        headings: { en: String(p.title).slice(0, 120) },
-        contents: { en: String(p.msg).slice(0, 300) },
+        headings,
+        contents,
         url: p.url ? String(p.url).slice(0, 500) : undefined,
         filters: [{ field: "tag", key: String(p.tag).slice(0, 80), relation: "=", value: "1" }]
       };
+      /* per-timezone delivery for the worldwide morning briefing */
+      let deliverAt = p.deliver_at;
+      if (!deliverAt && String(p.tag) === "daily") deliverAt = "7:30AM";
+      if (deliverAt) {
+        payload.delayed_option = "timezone";
+        payload.delivery_time_of_day = String(deliverAt).slice(0, 10);
+      }
       const res = await fetch("https://api.onesignal.com/notifications", {
         method: "POST",
         headers: {
