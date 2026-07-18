@@ -1484,40 +1484,174 @@
  },
  "events": [
   {
-   "date": "2026-08-05",
-   "itemId": "meru-leverage",
+   "id": "ev-tesla-q2-2026",
+   "date": "2026-07-22",
    "label": {
-    "en": "Korea 2x leverage rules phase 1 (30M won deposit)",
-    "ko": "삼성·하이닉스 2배 레버리지 규제 1단계 (예탁금 3천만원)",
-    "ja": "サムスン・ハイニックス2倍レバレッジ規制1段階(預託金3千万ウォン)"
-   }
+    "en": "Tesla Q2 2026 earnings (after US close)",
+    "ko": "테슬라 2026년 2분기 실적 발표 (미 장마감 후)",
+    "ja": "テスラ2026年第2四半期決算 (米市場引け後)"
+   },
+   "title": {
+    "en": "Tesla Q2 2026 earnings (after US close)",
+    "ko": "테슬라 2026년 2분기 실적 발표 (미 장마감 후)",
+    "ja": "テスラ2026年第2四半期決算 (米市場引け後)"
+   },
+   "kind": "earnings",
+   "entity": "TESLA",
+   "itemId": null
   },
   {
-   "date": "2026-08-19",
-   "itemId": "meru-leverage",
-   "label": {
-    "en": "Phase 2: substitute collateral removed, cash-only deposit",
-    "ko": "2배 레버리지 규제 2단계 (대용증권 불인정, 현금만)",
-    "ja": "2段階: 代用証券の不認定(現金のみ)"
-   }
-  },
-  {
-   "date": "2026-07-29",
-   "itemId": "meru-adr-conv",
-   "label": {
-    "en": "SK Hynix ADR conversion opens",
-    "ko": "SK하이닉스 ADR 상호전환 개시",
-    "ja": "SKハイニックスADR相互転換の開始"
-   }
-  },
-  {
+   "id": "ev-kimi-k3-weights",
    "date": "2026-07-27",
-   "itemId": "meru-kimi-moment",
    "label": {
     "en": "Kimi K3 full weights released for third-party verification",
     "ko": "Kimi K3 전체 가중치 공개·제3자 검증",
     "ja": "Kimi K3 全ウェイト公開・第三者検証"
-   }
+   },
+   "title": {
+    "en": "Kimi K3 full weights released for third-party verification",
+    "ko": "Kimi K3 전체 가중치 공개·제3자 검증",
+    "ja": "Kimi K3 全ウェイト公開・第三者検証"
+   },
+   "kind": "macro",
+   "entity": null,
+   "itemId": "meru-kimi-moment"
+  },
+  {
+   "id": "ev-skhynix-q2-2026",
+   "date": "2026-07-29",
+   "label": {
+    "en": "SK Hynix Q2 2026 earnings call (9am KST)",
+    "ko": "SK하이닉스 2026년 2분기 실적 발표 (오전 9시)",
+    "ja": "SKハイニックス2026年第2四半期決算 (韓国時間9時)"
+   },
+   "title": {
+    "en": "SK Hynix Q2 2026 earnings call (9am KST)",
+    "ko": "SK하이닉스 2026년 2분기 실적 발표 (오전 9시)",
+    "ja": "SKハイニックス2026年第2四半期決算 (韓国時間9時)"
+   },
+   "kind": "earnings",
+   "entity": "SK HYNIX",
+   "itemId": "hynix"
+  },
+  {
+   "id": "ev-fomc-2026-07",
+   "date": "2026-07-29",
+   "label": {
+    "en": "FOMC rate decision (Jul 28-29 meeting)",
+    "ko": "미 연준 FOMC 기준금리 결정 (7/28-29 회의)",
+    "ja": "米FOMC 政策金利決定 (7/28-29会合)"
+   },
+   "title": {
+    "en": "FOMC rate decision (Jul 28-29 meeting)",
+    "ko": "미 연준 FOMC 기준금리 결정 (7/28-29 회의)",
+    "ja": "米FOMC 政策金利決定 (7/28-29会合)"
+   },
+   "kind": "macro",
+   "entity": null,
+   "itemId": "potus-cpi-june"
+  },
+  {
+   "id": "ev-meta-q2-2026",
+   "date": "2026-07-29",
+   "label": {
+    "en": "Meta Q2 2026 earnings",
+    "ko": "메타 2026년 2분기 실적 발표",
+    "ja": "メタ2026年第2四半期決算"
+   },
+   "title": {
+    "en": "Meta Q2 2026 earnings",
+    "ko": "메타 2026년 2분기 실적 발표",
+    "ja": "メタ2026年第2四半期決算"
+   },
+   "kind": "earnings",
+   "entity": "META",
+   "itemId": "zuck"
+  },
+  {
+   "id": "ev-skhynix-adr-conv",
+   "date": "2026-07-29",
+   "label": {
+    "en": "SK Hynix ADR conversion opens",
+    "ko": "SK하이닉스 ADR 상호전환 개시",
+    "ja": "SKハイニックスADR相互転換の開始"
+   },
+   "title": {
+    "en": "SK Hynix ADR conversion opens",
+    "ko": "SK하이닉스 ADR 상호전환 개시",
+    "ja": "SKハイニックスADR相互転換の開始"
+   },
+   "kind": "macro",
+   "entity": "SK HYNIX",
+   "itemId": "meru-adr-conv"
+  },
+  {
+   "id": "ev-samsung-q2-2026",
+   "date": "2026-07-30",
+   "label": {
+    "en": "Samsung Electronics Q2 2026 earnings",
+    "ko": "삼성전자 2026년 2분기 실적 발표",
+    "ja": "サムスン電子2026年第2四半期決算"
+   },
+   "title": {
+    "en": "Samsung Electronics Q2 2026 earnings",
+    "ko": "삼성전자 2026년 2분기 실적 발표",
+    "ja": "サムスン電子2026年第2四半期決算"
+   },
+   "kind": "earnings",
+   "entity": "SAMSUNG ELECTRONICS",
+   "itemId": "serenity-meritz-memory"
+  },
+  {
+   "id": "ev-boj-2026-07",
+   "date": "2026-07-31",
+   "label": {
+    "en": "Bank of Japan policy decision (Jul 30-31)",
+    "ko": "일본은행(BOJ) 통화정책 결정 (7/30-31)",
+    "ja": "日銀金融政策決定会合 (7/30-31)"
+   },
+   "title": {
+    "en": "Bank of Japan policy decision (Jul 30-31)",
+    "ko": "일본은행(BOJ) 통화정책 결정 (7/30-31)",
+    "ja": "日銀金融政策決定会合 (7/30-31)"
+   },
+   "kind": "macro",
+   "entity": null,
+   "itemId": "karakama-nikkei"
+  },
+  {
+   "id": "ev-leverage-phase1",
+   "date": "2026-08-05",
+   "label": {
+    "en": "Korea 2x leverage rules phase 1 (30M won deposit)",
+    "ko": "삼성·하이닉스 2배 레버리지 규제 1단계 (예탁금 3천만원)",
+    "ja": "サムスン・ハイニックス2倍レバレッジ規制1段階(預託金3千万ウォン)"
+   },
+   "title": {
+    "en": "Korea 2x leverage rules phase 1 (30M won deposit)",
+    "ko": "삼성·하이닉스 2배 레버리지 규제 1단계 (예탁금 3천만원)",
+    "ja": "サムスン・ハイニックス2倍レバレッジ規制1段階(預託金3千万ウォン)"
+   },
+   "kind": "macro",
+   "entity": null,
+   "itemId": "meru-leverage"
+  },
+  {
+   "id": "ev-leverage-phase2",
+   "date": "2026-08-19",
+   "label": {
+    "en": "Phase 2: substitute collateral removed, cash-only deposit",
+    "ko": "2배 레버리지 규제 2단계 (대용증권 불인정, 현금만)",
+    "ja": "2段階: 代用証券の不認定(現金のみ)"
+   },
+   "title": {
+    "en": "Phase 2: substitute collateral removed, cash-only deposit",
+    "ko": "2배 레버리지 규제 2단계 (대용증권 불인정, 현금만)",
+    "ja": "2段階: 代用証券の不認定(現金のみ)"
+   },
+   "kind": "macro",
+   "entity": null,
+   "itemId": "meru-leverage"
   }
  ],
  "entities": {
