@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v65 :: opaque My activity panel (define --card), explicit For-you basis header with follow chips -->
+<!-- STACKS BUILD v66 :: today's pinned debate, shareable performance cards, weekly recap page (this-week.html) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -255,6 +255,9 @@ const STRINGS = {
     myFeedReasonS: "Story",
     myFeedBasis: "Built from what you follow — tap a chip to open it, × to remove:",
     myFeedManage: "Edit interests",
+    todayLabel: "Today's debate",
+    todayJoin: "Join the discussion",
+    todayComments: "{n} comments",
     suggTitle: "You might also follow",
     meTitle: "My activity",
     meStreak: "day streak",
@@ -386,6 +389,9 @@ const STRINGS = {
     myFeedReasonS: "시리즈",
     myFeedBasis: "내가 팔로우한 아래 항목 기준으로 자동 구성돼요 — 칩을 누르면 열리고, ×로 제외:",
     myFeedManage: "관심사 편집",
+    todayLabel: "오늘의 토론",
+    todayJoin: "의견 남기기",
+    todayComments: "댓글 {n}개",
     suggTitle: "이런 종목도 팔로우해보세요",
     meTitle: "내 기록",
     meStreak: "일 연속 방문",
@@ -517,6 +523,9 @@ const STRINGS = {
     myFeedReasonS: "ストーリー",
     myFeedBasis: "フォロー中の項目から自動構成 — チップで開く、×で除外:",
     myFeedManage: "興味を編集",
+    todayLabel: "今日の議論",
+    todayJoin: "意見を書く",
+    todayComments: "コメント{n}件",
     suggTitle: "こんな銘柄もフォローしませんか",
     meTitle: "マイ記録",
     meStreak: "日連続アクセス",
@@ -1021,6 +1030,7 @@ html{overscroll-behavior-y:contain;}
   }
   .hero{display:none;}
   .mini-install{grid-column:1 / -1;}
+  #todaySec{grid-column:1 / -1;margin:0 0 6px;}
   #feed{grid-column:2;min-width:0;margin:0;}
   #sideLeft{grid-column:1;}
   #sideRight{grid-column:3;}
@@ -1086,6 +1096,11 @@ html[data-lang="ko"] .why p{font-family:"Pretendard Variable",sans-serif;}
 }
 .since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
 .since .since-p{font-weight:800;}
+.since-share{
+  margin-left:2px;border:none;background:none;cursor:pointer;font-size:14px;
+  color:var(--muted);padding:0 2px;line-height:1;border-radius:6px;
+}
+.since-share:hover{color:var(--accent);}
 /* track-record scoreboard */
 .tab-sb{border-style:dashed;}
 .sb-table{
@@ -1135,6 +1150,23 @@ html[data-lang="ko"] .brief-line{font-family:"Pretendard Variable",sans-serif;}
 /* For-you tab + reason chips */
 .tab-mine{border-color:var(--accent);color:var(--accent);font-weight:800;}
 .tab-mine.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+/* today's pinned debate */
+#todaySec{margin-bottom:22px;}
+#todaySec[hidden]{display:none;}
+.today-box{
+  display:block;width:100%;text-align:left;cursor:pointer;font:inherit;color:var(--text);
+  border:1px solid var(--accent);border-radius:16px;padding:16px 18px;
+  background:linear-gradient(135deg,rgba(124,147,255,.1),rgba(124,147,255,.02));
+}
+.today-box:hover{box-shadow:0 10px 26px rgba(124,147,255,.18);}
+.today-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.today-tag{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}
+html[data-lang="ko"] .today-tag{font-family:"Pretendard Variable",sans-serif;letter-spacing:0;text-transform:none;font-size:12px;}
+.today-n{font-size:11px;font-weight:700;color:var(--muted);font-family:"IBM Plex Mono",monospace;}
+.today-q{font-size:17px;font-weight:800;line-height:1.4;letter-spacing:-.01em;}
+html[data-lang="ko"] .today-q{font-family:"Pretendard Variable",sans-serif;}
+.today-src{font-size:12px;color:var(--muted);margin-top:7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.today-cta{margin-top:10px;font-size:13px;font-weight:700;color:var(--accent);}
 .mine-banner{
   font-size:12.5px;font-weight:600;color:var(--muted);
   padding:2px 2px 12px;margin-bottom:4px;
@@ -1883,6 +1915,10 @@ footer a{color:var(--muted);}
 
   <div class="event-bar" id="eventBar" hidden></div>
 
+  <section id="todaySec" hidden>
+    <button class="today-box" id="todayBox"></button>
+  </section>
+
   <section>
     <h2 class="section-title" id="hotTitle"></h2>
     <div class="hot-rail" id="hotRail"></div>
@@ -1953,9 +1989,9 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v65</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v66</p>
     <p id="foot1"></p>
-    <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
+    <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
   </div>
 </footer>
@@ -2543,19 +2579,22 @@ function sinceItem(item){ /* -> promise of {pct,...}|null */
   if (!k || !COMMENTS_API) return Promise.resolve(null);
   return quote1y(ENTITIES[k].ticker).then(q => sinceCalc(q, item.date));
 }
+const SINCE_CACHE = {};
 function queueSince(item){
   const k = itemMainKey(item);
   if (!k || !COMMENTS_API) return;
   sinceItem(item).then(r => {
     if (!r) return;
     const up = r.pct >= 0, S = STRINGS[LANG];
+    SINCE_CACHE[item.id] = { pct: r.pct, k: k, up: up, cur: r.cur };
     document.querySelectorAll('.since[data-since="' + item.id + '"]').forEach(el => {
       el.hidden = false;
       el.title = S.sinceTip;
       el.innerHTML = '<span class="since-lb">' + S.sincePost + '</span>'
         + '<b class="since-k">' + esc(k) + '</b>'
         + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
-        + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>";
+        + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>"
+        + '<button class="since-share" onclick="event.stopPropagation(); shareSince(\'' + item.id + '\')" aria-label="' + esc(S.share) + '" title="' + esc(S.share) + '">⤴</button>';
     });
   });
 }
@@ -4410,6 +4449,115 @@ async function shareItem(id){
   } catch (e) {}
 }
 
+/* ---- shareable performance card ("this call is up X% since the post") ----
+   Draws a 1200x630 card on a canvas from the live "since post" number and
+   shares it (Web Share with the image file) or downloads it + copies the
+   link. Turns the app's strongest signal into something people post. */
+function wrapText(ctx, text, maxW){
+  const lines = [];
+  let line = "";
+  const push = () => { if (line){ lines.push(line); line = ""; } };
+  const addChars = tok => {
+    for (const ch of tok){
+      if (ctx.measureText(line + ch).width > maxW && line) push();
+      line += ch;
+    }
+  };
+  /* split into words but keep CJK runs breakable per character */
+  const tokens = String(text).split(/(\s+)/);
+  for (const tok of tokens){
+    if (!tok) continue;
+    if (/^\s+$/.test(tok)){ if (line) line += " "; continue; }
+    const hasSpaceLang = /[A-Za-z0-9]/.test(tok) && !/[　-鿿가-힣]/.test(tok);
+    if (hasSpaceLang){
+      if (ctx.measureText((line ? line + " " : "") + tok).width > maxW && line) push();
+      if (ctx.measureText(tok).width > maxW) addChars(tok);
+      else line += (line ? "" : "") + tok;
+    } else {
+      addChars(tok);
+    }
+  }
+  push();
+  return lines;
+}
+function drawShareCard(item, r){
+  const W = 1200, H = 630;
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  const from = (item.cover && item.cover.from) || "#1b1e2b";
+  const to = (item.cover && item.cover.to) || "#0E0F12";
+  const g = ctx.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, from); g.addColorStop(1, to);
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = "rgba(10,11,13,.5)"; ctx.fillRect(0, 0, W, H);
+  const pad = 72;
+  /* brand */
+  ctx.fillStyle = "#fff";
+  ctx.font = "800 34px -apple-system,'Segoe UI','Noto Sans KR',sans-serif";
+  ctx.fillText("◆ Stacks", pad, pad + 24);
+  /* source */
+  ctx.fillStyle = "rgba(255,255,255,.72)";
+  ctx.font = "600 26px -apple-system,'Segoe UI','Noto Sans KR',sans-serif";
+  ctx.fillText(clipStr(item.source, 40), pad, pad + 78);
+  /* headline */
+  ctx.fillStyle = "#fff";
+  ctx.font = "800 52px -apple-system,'Segoe UI','Noto Sans KR',sans-serif";
+  const lines = wrapText(ctx, item.title[LANG], W - pad * 2).slice(0, 3);
+  let y = pad + 150;
+  lines.forEach(ln => { ctx.fillText(ln, pad, y); y += 64; });
+  /* performance block */
+  const S = STRINGS[LANG];
+  const col = r.up ? "#22C55E" : "#F87171";
+  ctx.fillStyle = "rgba(255,255,255,.66)";
+  ctx.font = "600 30px -apple-system,'Segoe UI','Noto Sans KR',sans-serif";
+  ctx.fillText(S.sincePost + " · " + r.k, pad, H - 132);
+  ctx.fillStyle = col;
+  ctx.font = "900 96px -apple-system,'Segoe UI','Noto Sans KR',sans-serif";
+  ctx.fillText((r.up ? "+" : "") + r.pct.toFixed(1) + "%", pad, H - 54);
+  /* footer url */
+  ctx.fillStyle = "rgba(255,255,255,.6)";
+  ctx.font = "600 26px -apple-system,'Segoe UI','Noto Sans KR',sans-serif";
+  ctx.textAlign = "right";
+  ctx.fillText("stacksdaily.com", W - pad, H - 54);
+  ctx.textAlign = "left";
+  return c;
+}
+function clipStr(s, n){ s = String(s || ""); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+async function shareSince(id){
+  const item = ITEMS.find(i => i.id === id);
+  let r = SINCE_CACHE[id];
+  if (!item) return;
+  if (!r){ const res = await sinceItem(item); if (!res) return; r = { pct: res.pct, k: itemMainKey(item), up: res.pct >= 0 }; }
+  track("sharecard/" + id);
+  const canvas = drawShareCard(item, r);
+  const url = shareUrl(item);
+  const title = item.title[LANG];
+  canvas.toBlob(async blob => {
+    if (!blob) return;
+    const file = new File([blob], "stacks-" + id + ".png", { type: "image/png" });
+    try {
+      if (navigator.canShare && navigator.canShare({ files: [file] })){
+        await navigator.share({ files: [file], text: title, url: url });
+        return;
+      }
+    } catch (e) { if (e && e.name === "AbortError") return; }
+    /* fallback: download the image and copy the link */
+    try {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "stacks-" + id + ".png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    } catch (e) {}
+    try {
+      await navigator.clipboard.writeText(url);
+      const el = document.querySelector('.since[data-since="' + id + '"] .since-share');
+      if (el){ const o = el.textContent; el.textContent = "✓"; setTimeout(() => { el.textContent = o; }, 1600); }
+    } catch (e) {}
+  }, "image/png");
+}
+
 /* shared links land on the exact card */
 function handleDeepLink(){
   const c = new URLSearchParams(location.search).get("c");
@@ -4518,6 +4666,9 @@ function render(){
   /* hot rail */
   renderHotRail();
 
+  /* today's pinned debate */
+  renderToday();
+
   /* countdown + watchlist + newsletter */
   renderEvents();
   renderWatch();
@@ -4532,6 +4683,32 @@ function render(){
    engagement (views + likes×3 + comments×2), top 5 only. Until stats
    arrive, newest hot-flagged items fill the gap. Re-rendered once the
    engagement counts load. */
+/* "Today's debate": the single most-discussed open question, pinned at
+   the top of the home page. Picks the ask with the most comments; falls
+   back to the newest item that has a discussion prompt. Only shows on the
+   plain home view (not search / entity / series / scoreboard). */
+let TODAY_ID = null;
+function renderToday(){
+  const sec = document.getElementById("todaySec");
+  const box = document.getElementById("todayBox");
+  if (!sec || !box) return;
+  const homeView = !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
+  if (!homeView || !pool.length){ sec.hidden = true; return; }
+  pool.sort((a, b) => (COMMENT_COUNTS[b.id] || 0) - (COMMENT_COUNTS[a.id] || 0) || (a.date < b.date ? 1 : -1));
+  const item = pool[0];
+  TODAY_ID = item.id;
+  const S = STRINGS[LANG];
+  const n = COMMENT_COUNTS[item.id] || 0;
+  sec.hidden = false;
+  box.onclick = () => { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); track("today/" + item.id); };
+  box.innerHTML =
+    '<div class="today-top"><span class="today-tag">💬 ' + S.todayLabel + "</span>"
+      + (n ? '<span class="today-n">' + S.todayComments.replace("{n}", n) + "</span>" : "") + "</div>"
+    + '<div class="today-q">' + esc(item.ask[LANG]) + "</div>"
+    + '<div class="today-src">' + esc(item.source) + " · " + esc(item.title[LANG]) + "</div>"
+    + '<div class="today-cta">' + S.todayJoin + " →</div>";
+}
 function renderHotRail(){
   const rail = document.getElementById("hotRail");
   if (!rail) return;
@@ -4669,6 +4846,7 @@ function renderFeed(animate){
     ? ITEMS.filter(isMine)
     : ITEMS.filter(i => TAB === "all" || i.category === TAB);
   FEED_MINE = TAB === "mine";
+  if (typeof renderToday === "function") renderToday();
   refreshFilterBtn();
 
   refreshBmBtn();
@@ -5148,7 +5326,7 @@ async function bootData(){
   window.matchMedia("(min-width:1024px)").addEventListener("change", applyDash);
   handleDeepLink();
   Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts()])
-    .then(() => renderHotRail()); /* re-rank "Hot this week" with real stats */
+    .then(() => { renderHotRail(); renderToday(); }); /* re-rank with real stats */
   if (!showIntro()) maybeOnboard();
 }
 

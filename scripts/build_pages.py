@@ -487,13 +487,141 @@ li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
 """
 
 
-def sitemap(items, entity_slugs=None):
+def week_page(items, entities, item_ents, canonical_slug):
+    """Public 'This week on Stacks' recap: shareable + SEO. Regenerated
+    every build so this-week.html is always current; dated archives
+    accumulate under week/."""
+    import os
+    from datetime import date, timedelta
+    today = datetime.now(timezone.utc).date()
+    cutoff = (today - timedelta(days=7)).isoformat()
+    wk_items = [i for i in items if i.get("date", "") >= cutoff]
+    if len(wk_items) < 3:  # thin week: show the latest handful instead
+        wk_items = items[:6]
+    wk_items = sorted(wk_items, key=lambda x: x.get("date", ""), reverse=True)
+    iso = today.isocalendar()
+    wk_label = f"{iso[0]} W{iso[1]:02d}"
+    dated_url = BASE + "week/" + canonical_slug + ".html"
+
+    # hottest entity this week (most appearances among week items)
+    ent_count = {}
+    for i in wk_items:
+        for k in item_ents.get(i["id"], []):
+            if entities.get(k, {}).get("kind") == "company":
+                ent_count[k] = ent_count.get(k, 0) + 1
+    hot_ents = sorted(ent_count.items(), key=lambda x: -x[1])[:5]
+    # stance tally
+    bull = sum(1 for i in wk_items if i.get("stance") == "bull")
+    bear = sum(1 for i in wk_items if i.get("stance") == "bear")
+
+    rows = "".join(
+        f'<li><a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+        f' <span class="d">{E(i.get("source",""))} · {E(i.get("date",""))}</span></li>'
+        for i in wk_items[:10]
+    )
+    hot_html = ""
+    if hot_ents:
+        chips = "".join(
+            f'<a class="chip" href="../e/{slugify(k)}.html">{E(k)} <b>{n}</b></a>'
+            for k, n in hot_ents
+        )
+        hot_html = f'<h2>이번 주 가장 많이 다뤄진 종목</h2><div class="chips">{chips}</div>'
+    stance_html = ""
+    if bull or bear:
+        stance_html = (f'<p class="stance">이번 주 방향성 콜 — '
+                       f'<b class="bl">강세 {bull}</b> · <b class="be">약세 {bear}</b>. '
+                       f'각 콜의 실제 성과는 <a href="../#">앱의 적중 기록</a>에서 확인.</p>')
+    metadesc = clip(f"이번 주 Stacks에 올라온 투자 읽을거리 {len(wk_items)}편 요약 — "
+                    + ", ".join(i["title"].get("ko") or i["title"]["en"] for i in wk_items[:3]), 160)
+    ld = {
+        "@context": "https://schema.org", "@type": "CollectionPage",
+        "name": f"이번 주 Stacks · {wk_label}", "description": metadesc, "url": dated_url,
+        "mainEntity": {
+            "@type": "ItemList", "numberOfItems": len(wk_items[:10]),
+            "itemListElement": [
+                {"@type": "ListItem", "position": n + 1,
+                 "url": BASE + "p/" + i["id"] + ".html",
+                 "name": i["title"].get("ko") or i["title"]["en"]}
+                for n, i in enumerate(wk_items[:10])
+            ],
+        },
+    }
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이번 주 Stacks · {wk_label}</title>
+<meta name="description" content="{E(metadesc)}">
+<link rel="canonical" href="{E(dated_url)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{SITE}">
+<meta property="og:title" content="이번 주 Stacks · {wk_label}">
+<meta property="og:description" content="{E(metadesc)}">
+<meta property="og:url" content="{E(dated_url)}">
+<meta name="twitter:card" content="summary_large_image">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
+<link rel="icon" href="../favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<style>
+body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
+@media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
+a{{color:inherit}}
+.top{{font-weight:800;text-decoration:none}}
+.kicker{{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8E93A0;margin:18px 0 4px}}
+h1{{font-size:28px;letter-spacing:-.02em;margin:0 0 6px}}
+.lead{{color:#3E414B;font-size:15px;margin:8px 0 4px}}
+@media(prefers-color-scheme:dark){{.lead{{color:#C9CDD6}}}}
+h2{{font-size:16px;margin:28px 0 10px}}
+ul{{list-style:none;padding:0}}
+li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
+@media(prefers-color-scheme:dark){{li{{border-color:#26272E}}}}
+li a{{font-weight:600;text-decoration:none}}
+.d{{display:block;font-size:12px;color:#8E93A0;margin-top:3px}}
+.chips{{display:flex;flex-wrap:wrap;gap:8px}}
+.chip{{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid #ECEDF1;color:#17181C}}
+@media(prefers-color-scheme:dark){{.chip{{border-color:#26272E;color:#ECEDF1}}}}
+.chip b{{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#8E93A0}}
+.stance{{font-size:14px;color:#3E414B;margin-top:18px}}
+@media(prefers-color-scheme:dark){{.stance{{color:#C9CDD6}}}}
+.stance .bl{{color:#0E9F5E}}.stance .be{{color:#E04438}}
+.cta{{display:inline-block;margin-top:24px;font-weight:700;text-decoration:none;background:#111;color:#fff;padding:11px 20px;border-radius:999px}}
+@media(prefers-color-scheme:dark){{.cta{{background:#fff;color:#111}}}}
+footer{{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}}
+@media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
+footer a{{color:#8E93A0}}
+</style>
+</head>
+<body>
+<a class="top" href="../">◆ {SITE}</a>
+<div class="kicker">이번 주 · {wk_label}</div>
+<h1>이번 주 Stacks</h1>
+<p class="lead">한 주 동안 메르·에민·둠버그·Serenity·CEO들의 글에서 추린 투자 읽을거리 {len(wk_items)}편. 같은 종목의 상반된 견해를, 당신의 언어로.</p>
+<h2>이번 주 읽을거리</h2>
+<ul>{rows}</ul>
+{hot_html}
+{stance_html}
+<a class="cta" href="../">Stacks에서 더 읽기 →</a>
+<footer>
+  요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
+  <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
+</footer>
+</body>
+</html>
+"""
+
+
+def sitemap(items, entity_slugs=None, week_slugs=None):
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    urls = [(BASE, now, "1.0"), (BASE + "articles.html", now, "0.6")]
+    urls = [(BASE, now, "1.0"), (BASE + "this-week.html", now, "0.7"),
+            (BASE + "articles.html", now, "0.6")]
     for i in items:
         urls.append((BASE + "p/" + i["id"] + ".html", i.get("date", now), "0.8"))
     for slug in (entity_slugs or []):
         urls.append((BASE + "e/" + slug + ".html", now, "0.7"))
+    for slug in (week_slugs or []):
+        urls.append((BASE + "week/" + slug + ".html", now, "0.6"))
     body = "".join(
         f"<url><loc>{E(u)}</loc><lastmod>{E(m)}</lastmod><priority>{p}</priority></url>"
         for u, m, p in urls
@@ -595,7 +723,22 @@ def main():
             os.remove(f"e/{fn}")
 
     open("articles.html", "w", encoding="utf-8").write(articles_index(items))
-    open("sitemap.xml", "w", encoding="utf-8").write(sitemap(items, list(ent_slugs.keys())))
+
+    # weekly recap page (current week + dated archive)
+    os.makedirs("week", exist_ok=True)
+    iso = datetime.now(timezone.utc).date().isocalendar()
+    wk_slug = f"{iso[0]}-w{iso[1]:02d}"
+    wk_html = week_page(items, entities, item_ents, wk_slug)
+    open(f"week/{wk_slug}.html", "w", encoding="utf-8").write(wk_html)
+    open("this-week.html", "w", encoding="utf-8").write(
+        wk_html.replace('<a class="top" href="../">', '<a class="top" href="./">')
+               .replace('href="../p/', 'href="p/').replace('href="../e/', 'href="e/')
+               .replace('href="../"', 'href="./"').replace('href="../articles.html"', 'href="articles.html"')
+               .replace('href="../feed.xml"', 'href="feed.xml"').replace('href="../favicon-32.png"', 'href="favicon-32.png"')
+    )
+    week_slugs = sorted(fn[:-5] for fn in os.listdir("week") if fn.endswith(".html"))
+
+    open("sitemap.xml", "w", encoding="utf-8").write(sitemap(items, list(ent_slugs.keys()), week_slugs))
     open("feed.xml", "w", encoding="utf-8").write(feed(items))
     open("robots.txt", "w", encoding="utf-8").write(robots())
     print(f"[ok] {len(items)} article pages + {len(ent_slugs)} entity pages + sitemap + feed + robots")
