@@ -14,13 +14,18 @@
 
 ## ★ 발행 규칙 (가장 중요 — 꼬임 방지의 핵심)
 
-카드 발행자는 **오직 하나: scout 크론**(`.github/workflows/draft-cards.yml` →
-`scripts/scout.py`)이다.
+카드 발행자는 **오직 하나: 예약 루틴 "Stacks 자동 발행 파이프라인 v4.3"**
+(trigger id trig_01DdMGMm2z1kGJn1TQCYLiu7, 3시간마다 :40, Claude 세션 기반,
+API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커밋한다.
+`.github/workflows/draft-cards.yml`(scout)은 **스케줄 없는 수동 예비용**이다
+(workflow_dispatch 전용, ANTHROPIC_API_KEY 시크릿 필요). 절대 스케줄을 다시
+켜서 발행자를 둘로 만들지 말 것.
 
 - **세션(사람/Claude)이 손으로 items.json에 카드를 추가·발행하지 말 것.** 크론과
   세션이 둘 다 발행하면 이중 발행·중복·충돌이 생긴다 — 이게 과거에 꼬인 원인이다.
-- scout는 `feeds/*.json`을 읽어 `sourceUrl` 기준으로 이미 카드화된 건 걸러내고,
-  새 항목만 3개국어 카드로 만들어 build_pages로 페이지까지 생성해 **main에 직접 자동 발행**한다 (3시간마다, 검토 게이트 없음 — june 요청).
+- 발행 흐름: feeds/*.json → `sourceUrl` 기준 중복 제거 → 새 항목만 3개국어 카드
+  → build_pages → main 직접 자동 발행 (검토 게이트 없음 — june 요청). 특정 소스
+  편중 방지를 위해 한 번에 소스당 최대 2건.
 - 긴급하게 특정 글을 손으로 올려야 하면, 올린 뒤 그 sourceUrl이 items.json에 있으니
   scout가 자동으로 중복을 피한다. 그래도 상시 손발행은 금지.
 
@@ -31,9 +36,8 @@
 
 ## 워크플로 (.github/workflows/)
 - `feed-sync.yml` — "Sync source feeds". `fetch_feeds.py` 실행 → `feeds/*.json` 커밋.
-- `draft-cards.yml` — "Stacks Scout (auto-publish)". 3시간마다 `scout.py` 실행 → build_pages → main 직접 발행. 모델은 이
-  파일의 `MODEL:` 한 줄로 지정(현재 claude-sonnet-5; haiku/opus로 교체 가능).
-  ANTHROPIC_API_KEY 시크릿 필요.
+- `draft-cards.yml` — "Stacks Scout". **수동 예비용(workflow_dispatch 전용, 스케줄
+  없음).** ANTHROPIC_API_KEY 시크릿 필요. 라이브 발행자는 v4.3 루틴(발행 규칙 참조).
 - `apply-v50.yml` · `deploy-worker.yml` · `og-assets.yml` · `stacks-brief.yml` ·
   `stacks-weekly.yml`.
 
@@ -55,6 +59,11 @@
 - doomberg/netinterest(EN, Substack) — 2026-07-19 UA 수정으로 복구 예정.
 - serenity(rss.app 브리지) — 무료피드 만료로 실패 중. rss.app 저장/재발급 필요.
 - serenity_substack(EN).
+
+## 예약 루틴 (발행·알림 — 레포 밖, Claude 예약 작업)
+- **자동 발행 파이프라인 v4.3** — 3h @ :40. 유일한 발행자.
+- 데일리 브리핑(07:00 KST), 예측 채점(일), 주간 다이제스트/뉴스레터(일),
+  이벤트 캘린더(일), 급변동 알림(화-토), 헬스체크(목), 모닝 브리프.
 
 ## 배포 제약
 Claude 세션의 GitHub 토큰은 이 레포 API 접근이 세션마다 들쭉날쭉(403 날 때 있음).
