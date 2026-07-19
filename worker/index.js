@@ -1,5 +1,5 @@
 /* Stacks comments worker (v8.1)
-   = your existing v8 (per-timezone + multi-language push delivery,
+   (v8.1, auto-deploy test) = your existing v8 (per-timezone + multi-language push delivery,
      ranged quotes, views/likes, comment replies & likes, /notify)
    + the reader poll: GET /votes and POST /vote.
    Nothing from your v8 was removed — the timezone/multi-language push
