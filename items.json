@@ -2,6 +2,52 @@
  "items": [
   {
    "date": "2026-07-19",
+   "id": "meru-truth-api-tmtg",
+   "thumbWiki": "Truth Social",
+   "related": [
+    "potus-cpi-june",
+    "potus-datacenters"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224350725486",
+   "sourceLang": "KO",
+   "category": "investor",
+   "hot": true,
+   "cover": {
+    "from": "#151529",
+    "to": "#3D1E6D",
+    "label": "TRUTH API $100K/MO"
+   },
+   "avatarImg": "meru.png",
+   "tags": [
+    "TMTG",
+    "HFT",
+    "TRUMP"
+   ],
+   "title": {
+    "en": "Trump's Truth Social to sell a $100K/month 'Truth API' — his posts, a millisecond early, for the algos",
+    "ja": "トランプのトゥルース・ソーシャルが月10万ドルの『Truth API』を発売 — 投稿を1ミリ秒早く、アルゴ向けに",
+    "ko": "트럼프의 트루스소셜, 월 10만 달러 'Truth API' 출시 — 그의 글을 1/1000초 먼저, 알고에게"
+   },
+   "gist": {
+    "en": "Meru unpacks a strange new product from Trump Media & Technology Group (TMTG, ticker DJT), the company Trump founded and still owns 41% of. From August 1, 2026, its Truth Social platform will sell 'Truth API' — a $100,000-a-month subscription ($60,000 on a three-year deal) that delivers posts from the platform's ten most influential accounts a thousandth of a second before they reach the public feed, in machine-readable JSON that trading algorithms can act on instantly. Those ten accounts are dominated by Trump himself, his sons Don Jr. and Eric, and close allies. TMTG's own pitch deck sells the edge with ten 'market-moving' Trump posts: an April 2025 'THIS IS A GREAT TIME TO BUY' hours before a 90-day tariff pause added $4 trillion to the S&P 500's value; an 'Iran blockade' post that spiked oil more than 9% in a day, and a later 'productive talks' post that sent it back down. Is it legal? US insider-trading law targets non-public information, and this data becomes public anyway, so TMTG argues it's clean — and while executive-branch officials are barred from such conflicts of interest, the President and Vice President are explicitly exempt from that rule (18 U.S.C. §208). The buyers are high-frequency traders, who already place about 60% of US orders and live or die on being first.",
+    "ja": "メルが、トランプ・メディア&テクノロジー・グループ(TMTG、ティッカーDJT)の奇妙な新サービスを読み解く。トランプが創業し今も41%を保有する同社は、2026年8月1日からトゥルース・ソーシャルで『Truth API』を売り出す。月額10万ドル(3年契約なら月6万ドル)で、プラットフォームで最も影響力のある上位10アカウントの投稿を、一般フィードに出る1000分の1秒前に、機械が即座に読めるJSON形式で届けるという。その上位10はトランプ本人、息子のドン・ジュニアとエリック、側近たちで占められる。TMTGは投資家向け資料で、トランプの投稿10件を『相場を動かした事例』として売り込む。2025年4月の『今こそ買い時(THIS IS A GREAT TIME TO BUY)』は数時間後の関税90日猶予発表につながり、S&P500の時価総額を4兆ドル押し上げた。『イラン封鎖再開』の投稿は原油を1日で9%超急騰させ、その後の『生産的な対話』の投稿で急落させた。合法か?米国のインサイダー取引規制は未公開情報を問題にするが、この情報はいずれ公開されるためTMTGは適法と主張する。行政府高官はこうした利益相反を禁じられているが、大統領と副大統領は明文で除外(18 U.S.C. §208)される。買い手は米国の注文の約60%を占め、速さで勝負する高頻度取引(HFT)勢だ。",
+    "ko": "메르가 트럼프 미디어&테크놀로지 그룹(TMTG, 티커 DJT)의 낯선 새 서비스를 풀어준다. 트럼프가 세우고 지분 41%를 가진 이 회사는 2026년 8월 1일부터 트루스소셜에서 'Truth API'를 판다. 구독료는 월 10만 달러(3년 계약이면 월 6만 달러)이고, 트루스소셜에서 가장 영향력 있는 상위 10개 계정의 게시물을 일반 피드에 뜨기 1/1000초 전에, 기계가 곧바로 읽을 수 있는 JSON 형식으로 먼저 전달한다. 그 상위 10에는 트럼프 본인과 아들 도널드 주니어·에릭, 측근 계정이 압도적이다. TMTG는 투자 설명서에서 트럼프의 게시물 10개를 '시장을 움직인 사례'로 내세운다. 2025년 4월 '지금이 살 때다(THIS IS A GREAT TIME TO BUY)'는 몇 시간 뒤 관세 90일 유예 발표로 이어져 S&P500 시가총액을 4조 달러 늘렸고, '이란 봉쇄 재개' 글은 하루 만에 유가를 9% 넘게 밀어 올렸다가 이후 '생산적 대화' 글로 다시 끌어내렸다. 합법일까? 미국 내부자거래법이 문제 삼는 건 미공개 정보인데, 이 정보는 어차피 공개될 거라 TMTG는 합법이라 주장한다. 행정부 공직자는 이런 이해상충이 금지되지만, 대통령과 부통령은 그 조항(18 U.S.C. §208)에서 명시적으로 제외돼 처벌 규정이 없다. 구독자는 미국 주문의 약 60%를 차지하며 속도로 승부하는 초단타(HFT) 세력이다."
+   },
+   "why": {
+    "en": "It puts a price tag on proximity to the president's market-moving posts — and shows retail is now outgunned on speed, analysis and information all at once.",
+    "ja": "大統領の相場を動かす投稿への『近さ』に値札が付いた。個人投資家は速さ・分析・情報の三方向で同時に劣勢に立たされる。",
+    "ko": "대통령의 시장을 흔드는 게시물에 대한 '근접성'에 값이 매겨졌다. 개인은 이제 속도·분석·정보 세 방향에서 동시에 밀린다."
+   },
+   "ask": {
+    "en": "Selling a head start on Trump's posts to HFT firms: clever business, or the market's playing field tilting for good?",
+    "ja": "トランプの投稿の先取りをHFTに売る——巧みな商売か、それとも市場の公平性が崩れる転換点か?",
+    "ko": "트럼프 게시물 선점권을 HFT에 판다 — 영리한 장사일까, 시장 공정성이 무너지는 분기점일까?"
+   },
+   "stance": "watch"
+  },
+  {
+   "date": "2026-07-19",
    "id": "meru-hanwha-philly-mriv",
    "thumbWiki": "Philly Shipyard",
    "related": [
@@ -3256,6 +3302,77 @@
     "ko": "골든돔",
     "en": "Golden Dome",
     "ja": "ゴールデンドーム"
+   }
+  },
+  "TMTG": {
+   "kind": "company",
+   "ticker": "djt.us",
+   "sector": {
+    "en": "Media",
+    "ko": "미디어",
+    "ja": "メディア"
+   },
+   "desc": {
+    "en": "Trump Media & Technology Group: the Trump-controlled owner of Truth Social, listed as DJT.",
+    "ko": "트럼프 미디어&테크놀로지 그룹. 트루스소셜을 소유한 트럼프 지배 기업으로, 티커는 DJT.",
+    "ja": "トランプ・メディア&テクノロジー・グループ。トゥルース・ソーシャルを保有するトランプ支配企業で、ティッカーはDJT。"
+   },
+   "aliases": [
+    "Trump Media & Technology Group",
+    "Trump Media",
+    "트럼프 미디어",
+    "トランプ・メディア",
+    "DJT"
+   ],
+   "logo": "truthsocial.com",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "ko": "데빈 누네스",
+    "en": "Devin Nunes",
+    "ja": "デヴィン・ヌネス"
+   },
+   "founded": "2021",
+   "listed": "2024.3",
+   "hq": {
+    "ko": "미국 새러소타",
+    "en": "Sarasota, USA",
+    "ja": "米国・サラソタ"
+   },
+   "website": "https://www.tmtgcorp.com",
+   "longDesc": {
+    "ko": "트럼프가 세운 미디어 기업으로, 소셜미디어 트루스소셜을 운영한다. 2024년 3월 스팩(DWAC) 합병을 통해 나스닥에 티커 DJT로 상장했다. 트럼프가 최대 주주로 큰 지분을 보유하며, 주가는 실적보다 트럼프 관련 뉴스와 정치 이벤트에 크게 반응하는 것이 특징이다.",
+    "en": "Trump's media company, which runs the Truth Social platform. It went public on Nasdaq under the ticker DJT via a March 2024 SPAC (DWAC) merger. Trump remains the largest shareholder, and the stock tends to react more to Trump-related news and political events than to the company's own financials.",
+    "ja": "トランプが設立したメディア企業で、SNSのトゥルース・ソーシャルを運営する。2024年3月にSPAC(DWAC)合併を通じてナスダックにティッカーDJTで上場した。トランプが筆頭株主として大きな持分を保有し、株価は業績よりトランプ関連ニュースや政治イベントに大きく反応するのが特徴だ。"
+   }
+  },
+  "HFT": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "컴퓨터로 초고속 매매를 반복하는 초단타 거래 기법.",
+    "en": "High-frequency trading: ultra-fast, computer-driven trading in tiny fractions of a second.",
+    "ja": "コンピューターで超高速売買を繰り返す高頻度取引の手法。"
+   },
+   "longDesc": {
+    "ko": "High-Frequency Trading, 초단타매매. 컴퓨터가 시장 데이터를 실시간 분석해 1000분의 1초 단위로 수백만 건의 주문을 내는 거래 방식이다. 같은 가격이면 먼저 낸 주문이 체결되는 '시간 우선' 원칙 때문에 속도가 곧 수익이며, 2026년 현재 미국 주식 주문의 약 60%를 차지한다. 개인 투자자가 정보를 조금이라도 늦게 받으면 구조적으로 불리해지는 이유다.",
+    "en": "High-frequency trading uses computers to analyze market data in real time and fire millions of orders in thousandths of a second. Because exchanges fill same-price orders on a 'time priority' basis, speed is money — and HFT now accounts for roughly 60% of US stock orders. It is why receiving information even a fraction later leaves a retail investor structurally disadvantaged.",
+    "ja": "高頻度取引。コンピューターが市場データをリアルタイム分析し、1000分の1秒単位で数百万件の注文を出す手法。同じ価格なら先に出した注文が約定する『時間優先』の原則ゆえ、速さがそのまま収益になる。2026年時点で米国株の注文の約60%を占め、情報を少しでも遅く受け取る個人投資家が構造的に不利になる理由でもある。"
+   },
+   "aliases": [
+    "HFT",
+    "초단타매매",
+    "고빈도매매",
+    "高頻度取引",
+    "high-frequency trading"
+   ],
+   "name": {
+    "ko": "HFT",
+    "en": "HFT",
+    "ja": "HFT"
    }
   }
  }
