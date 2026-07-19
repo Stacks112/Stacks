@@ -32,7 +32,7 @@ FEEDS = [
     {"id": "trump", "url": "https://trumpstruth.org/feed", "naver": False},
     # Serenity's X posts via RSS.app (the real firehose — tweets with full
     # text; item links point at the original x.com posts)
-    {"id": "serenity", "url": "https://rss.app/feeds/Pt8WBnMSdRiX2r4a.xml", "naver": False},
+    {"id": "serenity", "url": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml", "naver": False},
     {"id": "serenity_substack", "url": "https://aleabitoreddit.substack.com/feed", "naver": False},
 ]
 
