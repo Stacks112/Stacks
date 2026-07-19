@@ -1,0 +1,67 @@
+# Stacks Scout — draft cards from fetched feeds with Claude, open a PR.
+# Runs AFTER feed-sync has populated feeds/. Never writes main directly:
+# it opens a pull request so a human reviews the trilingual cards first.
+name: Stacks Scout (draft cards)
+
+on:
+  schedule:
+    - cron: "40 */6 * * *"   # every 6h at :40 (offset from feed-sync's :17)
+  workflow_dispatch:
+    inputs:
+      max_new:
+        description: "Max new cards this run"
+        required: false
+        default: "3"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: stacks-scout
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Draft cards
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL: claude-sonnet-5
+          MAX_NEW_ITEMS: ${{ github.event.inputs.max_new || '3' }}
+          LOOKBACK_DAYS: "4"
+          PER_SOURCE_CAP: "2"
+        run: python scripts/scout.py
+
+      - name: Open pull request (if new cards)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- items.json; then
+            echo "No new cards this run."
+            exit 0
+          fi
+          BRANCH="scout/$(date -u +%Y%m%d-%H%M%S)"
+          git config user.name  "stacks-scout[bot]"
+          git config user.email "stacks-scout[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add items.json
+          git commit -m "draft: auto-carded feed items (review before publish)"
+          git push origin "$BRANCH"
+          gh label create stacks-scout --color 1D4E89 \
+            --description "Auto-drafted cards for review" 2>/dev/null || true
+          BODY=".scout_pr_body.md"
+          [ -f "$BODY" ] || echo "Auto-drafted cards. Review and merge to publish." > "$BODY"
+          gh pr create \
+            --title "Scout: new cards for review ($(date -u +%Y-%m-%d))" \
+            --body-file "$BODY" \
+            --label stacks-scout
