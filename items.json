@@ -1,6 +1,62 @@
 {
  "items": [
   {
+   "date": "2026-07-09",
+   "id": "semianalysis-meta-superintelligence",
+   "series": "ai-power",
+   "thumbWiki": "Meta Platforms",
+   "related": [
+    "doomberg-kilby",
+    "potus-datacenters",
+    "ess"
+   ],
+   "source": "Dylan Patel (SemiAnalysis)",
+   "sourceUrl": "https://newsletter.semianalysis.com/p/the-future-of-meta-superintelligence",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A5F",
+    "label": "META MSL"
+   },
+   "tags": [
+    "META",
+    "AI CAPEX",
+    "DATACENTER"
+   ],
+   "title": {
+    "en": "SemiAnalysis: inside Meta's five-front, multi-gigawatt bid to catch OpenAI and Anthropic",
+    "ko": "세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터 — OpenAI·앤스로픽 추격전의 실상",
+    "ja": "セミアナリシス：メタが五拠点で同時に建てるギガワット級データセンター — OpenAI・アンソロピック追撃の実像"
+   },
+   "gist": {
+    "en": "Dylan Patel's SemiAnalysis grades Meta's AI reset one year after the 'disastrous Llama 4' launch. Meta has spent to rebuild talent — $14.3B to bring in Scale AI's Alexandr Wang, $1B+ for Nat Friedman and Daniel Gross's fund, and a wave of ex-OpenAI researchers — and just stood up a 3,000-engineer org (70% new grads and seniors) working full-time on reinforcement-learning tasks and environments. The compute story is the headline: five 'titan' clusters of 1GW or more are under construction at once — Prometheus (Ohio), Hyperion (Louisiana), plus El Paso, Iowa and Indiana. Prometheus has ballooned from ~1GW to over 3GW in two years using a tent datacenter design; Hyperion is 1.5GW across six buildings. To stitch sites together Meta built 'AI-Backbone,' linking up to 27 datacenters across six campuses at 22 petabits/second, with titans reaching campuses up to 2,000km apart. SemiAnalysis projects Meta will have more AI compute than OpenAI and Anthropic by end of 2026. The caution: on models, Muse Spark 1.1 only tests roughly on par with Opus 4.6, and 'success is far from guaranteed.'",
+    "ko": "딜런 파텔의 세미애널리시스가 '라마4 참사' 1년 뒤 메타의 AI 리셋을 채점한다. 메타는 인재 재건에 돈을 쏟았다. 스케일AI의 알렉산더 왕을 데려오는 데 143억 달러, 냇 프리드먼·대니얼 그로스의 펀드에 10억 달러 이상, 그리고 전직 OpenAI 연구자들을 대거 영입했다. 최근에는 강화학습(RL) 과제·환경을 전담하는 3,000명 규모(70%가 신입·시니어) 조직을 새로 세웠다. 핵심은 컴퓨트다. 1GW 이상 '타이탄' 클러스터 다섯 곳을 동시에 짓고 있다 — 프로메테우스(오하이오), 하이페리온(루이지애나), 그리고 엘패소·아이오와·인디애나. 프로메테우스는 텐트형 데이터센터 설계로 2년 만에 약 1GW에서 3GW 이상으로 불었고, 하이페리온은 여섯 개 동에 걸쳐 1.5GW다. 부지를 잇기 위해 메타는 'AI-백본'을 구축해 6개 캠퍼스의 데이터센터 최대 27곳을 초당 22페타비트로 연결하고, 최대 2,000km 떨어진 캠퍼스까지 묶는다. 세미애널리시스는 2026년 말이면 메타의 AI 컴퓨트가 OpenAI·앤스로픽을 넘어설 것으로 본다. 다만 모델에서는 뮤즈 스파크 1.1이 오퍼스 4.6과 대략 비슷한 수준에 그쳤고, '성공은 결코 보장돼 있지 않다'고 경고한다.",
+    "ja": "ディラン・パテルのセミアナリシスが、『ラマ4の惨事』から1年後のメタのAIリセットを採点する。メタは人材再建に資金を投じた。スケールAIのアレクサンダー・ワン獲得に143億ドル、ナット・フリードマンとダニエル・グロスのファンドに10億ドル超、さらに元OpenAIの研究者を多数採用した。最近では強化学習(RL)のタスク・環境を専任で担う3,000人規模(70%が新卒とシニア)の組織を新設した。核心はコンピュートだ。1GW以上の『タイタン』クラスターを五拠点で同時に建設中 — プロメテウス(オハイオ)、ハイペリオン(ルイジアナ)、そしてエルパソ・アイオワ・インディアナ。プロメテウスはテント型データセンター設計で2年間に約1GWから3GW超へ膨張し、ハイペリオンは六棟で1.5GW。拠点を結ぶためメタは『AI-バックボーン』を構築し、6キャンパスのデータセンター最大27カ所を毎秒22ペタビットで接続、最大2,000km離れたキャンパスまで束ねる。セミアナリシスは2026年末にはメタのAIコンピュートがOpenAI・アンソロピックを上回るとみる。ただしモデルではミューズ・スパーク1.1がオーパス4.6と概ね同等にとどまり、『成功は決して保証されていない』と釘を刺す。"
+   },
+   "why": {
+    "en": "Five gigawatt-class clusters going up at once is a sustained capex signal for GPUs, optical networking and power — even as the article warns Meta's model race is far from won.",
+    "ko": "기가와트급 클러스터 다섯 곳을 동시에 올린다는 것은 GPU·광네트워크·전력에 대한 지속적 자본지출 신호다 — 정작 모델 경쟁의 승부는 아직 멀었다는 경고와 함께.",
+    "ja": "ギガワット級クラスターを五拠点で同時に建てることは、GPU・光ネットワーク・電力への継続的な設備投資シグナルだ — もっともモデル競争の決着はまだ遠いという警告付きで。"
+   },
+   "ask": {
+    "en": "Meta is buying the most compute of any hyperscaler — but can it turn watts into a frontier model?",
+    "ko": "메타는 하이퍼스케일러 중 가장 많은 컴퓨트를 사들이고 있다 — 그 전력을 프런티어 모델로 바꿔낼 수 있을까?",
+    "ja": "メタはハイパースケーラーで最も多くのコンピュートを買っている — その電力をフロンティアモデルに変えられるか?"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Score at end of 2026: does Meta actually have more AI compute than OpenAI and Anthropic, as SemiAnalysis projects?",
+     "ko": "2026년 말 채점: 세미애널리시스 전망대로 메타의 AI 컴퓨트가 실제로 OpenAI·앤스로픽을 넘어서는가?",
+     "ja": "2026年末に採点：セミアナリシスの予測どおり、メタのAIコンピュートが実際にOpenAI・アンソロピックを上回るか?"
+    }
+   }
+  },
+  {
    "date": "2026-07-19",
    "id": "potus-north-sea-oil",
    "series": "oil-geopolitics",
@@ -3886,6 +3942,28 @@
     "북해 원유",
     "北海油田",
     "北海"
+   ]
+  },
+  "Dylan Patel (SemiAnalysis)": {
+   "kind": "person",
+   "url": "https://newsletter.semianalysis.com",
+   "sector": {
+    "en": "Research",
+    "ko": "리서치",
+    "ja": "リサーチ"
+   },
+   "desc": {
+    "en": "Founder of SemiAnalysis, a leading independent research shop on semiconductors and AI datacenter buildouts.",
+    "ko": "반도체와 AI 데이터센터 구축을 다루는 대표적 독립 리서치 SemiAnalysis의 창업자.",
+    "ja": "半導体とAIデータセンター建設を扱う代表的な独立リサーチSemiAnalysisの創業者。"
+   },
+   "aliases": [
+    "Dylan Patel",
+    "SemiAnalysis",
+    "딜런 파텔",
+    "세미애널리시스",
+    "ディラン・パテル",
+    "セミアナリシス"
    ]
   }
  }
