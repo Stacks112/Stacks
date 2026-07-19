@@ -1,0 +1,45 @@
+# ---------------------------------------------------------------------------
+# Auto-deploy the Cloudflare Worker whenever worker/ changes on main.
+#
+# ONE-TIME SETUP (June):
+#  1. Cloudflare dashboard -> My Profile -> API Tokens -> Create Token
+#       Template "Edit Cloudflare Workers" (or a custom token with
+#       Account > Workers Scripts > Edit, and Account > D1 > Edit).
+#       Copy the token.
+#  2. GitHub repo -> Settings -> Secrets and variables -> Actions ->
+#       New repository secret:  name = CLOUDFLARE_API_TOKEN,  value = the token
+#  3. Fill account_id + database_id in worker/wrangler.toml (they are IDs,
+#       not secrets — you can paste them to Claude to commit, or edit the file
+#       on GitHub directly).
+#  4. Add THIS file to the repo at:  .github/workflows/deploy-worker.yml
+#       (Claude's token can't push workflow files, so create it via
+#        GitHub web: Add file -> Create new file -> that path -> paste -> commit.)
+#
+# After that: Claude edits worker/index.js, commits, and it deploys itself.
+# ---------------------------------------------------------------------------
+name: Deploy worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker
