@@ -20,7 +20,7 @@
 - **세션(사람/Claude)이 손으로 items.json에 카드를 추가·발행하지 말 것.** 크론과
   세션이 둘 다 발행하면 이중 발행·중복·충돌이 생긴다 — 이게 과거에 꼬인 원인이다.
 - scout는 `feeds/*.json`을 읽어 `sourceUrl` 기준으로 이미 카드화된 건 걸러내고,
-  새 항목만 3개국어 카드로 만들어 **PR로 연다.** 사람은 PR을 검토·병합만 한다.
+  새 항목만 3개국어 카드로 만들어 build_pages로 페이지까지 생성해 **main에 직접 자동 발행**한다 (3시간마다, 검토 게이트 없음 — june 요청).
 - 긴급하게 특정 글을 손으로 올려야 하면, 올린 뒤 그 sourceUrl이 items.json에 있으니
   scout가 자동으로 중복을 피한다. 그래도 상시 손발행은 금지.
 
@@ -31,7 +31,7 @@
 
 ## 워크플로 (.github/workflows/)
 - `feed-sync.yml` — "Sync source feeds". `fetch_feeds.py` 실행 → `feeds/*.json` 커밋.
-- `draft-cards.yml` — "Stacks Scout". 6시간마다 `scout.py` 실행 → 카드 PR. 모델은 이
+- `draft-cards.yml` — "Stacks Scout (auto-publish)". 3시간마다 `scout.py` 실행 → build_pages → main 직접 발행. 모델은 이
   파일의 `MODEL:` 한 줄로 지정(현재 claude-sonnet-5; haiku/opus로 교체 가능).
   ANTHROPIC_API_KEY 시크릿 필요.
 - `apply-v50.yml` · `deploy-worker.yml` · `og-assets.yml` · `stacks-brief.yml` ·
@@ -40,7 +40,7 @@
 ## 스크립트 (scripts/)
 - `fetch_feeds.py` — RSS 피드 → `feeds/<id>.json`. FEEDS 리스트가 소스 과목록.
   (UA는 브라우저 UA여야 Substack이 안 막음.)
-- `scout.py` — feeds/ → Claude → 3개국어 stance 카드 → items.json (PR로). 단독 발행자.
+- `scout.py` — feeds/ → Claude → 3개국어 stance 카드 → items.json (직접 발행). 단독 발행자.
   소스별 상한(PER_SOURCE_CAP)으로 특정 소스 편중 방지.
 - `build_pages.py` — items.json → 정적 페이지/카드. `fetch_og_assets.py` — 위키 이미지.
 - `apply_v50.py` · `brief.py` · `weekly.py`.
