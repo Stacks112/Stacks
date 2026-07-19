@@ -88,11 +88,13 @@ def parse_rss(xml_text: str):
 def parse_date(s: str):
     for fmt in ("%a, %d %b %Y %H:%M:%S %z", "%a, %d %b %Y %H:%M:%S %Z", "%Y-%m-%dT%H:%M:%S%z"):
         try:
-            return datetime.strptime(s.strip(), fmt)
+            dt = datetime.strptime(s.strip(), fmt)
+            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
         except Exception:
             pass
     try:
-        return datetime.fromisoformat(s.strip().replace("Z", "+00:00"))
+        dt = datetime.fromisoformat(s.strip().replace("Z", "+00:00"))
+        return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
     except Exception:
         return None
 
