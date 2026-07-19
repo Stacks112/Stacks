@@ -1,0 +1,46 @@
+name: Stacks Weekly Stats
+
+# Every Sunday 08:10 KST (= Saturday 23:10 UTC): build the performance
+# digest into stats/YYYY-MM-DD.md, commit it, and push June a summary.
+# Runs headless on GitHub's runner — no browser, no approval, no proxy.
+on:
+  schedule:
+    - cron: "10 23 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stacks-stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build performance digest + notify
+        env:
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
+          STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
+          STATS_NOTIFY_TAG: ${{ secrets.STATS_NOTIFY_TAG }}
+          SITE_URL: https://stacksdaily.com
+        run: python scripts/stats.py
+
+      - name: Commit the digest
+        run: |
+          if [ -n "$(git status --porcelain stats/)" ]; then
+            git config user.name  "stacks-bot"
+            git config user.email "stacks-bot@users.noreply.github.com"
+            git add stats/
+            git commit -m "stats: weekly performance digest [skip ci]"
+            git push
+          else
+            echo "nothing to commit"
+          fi
