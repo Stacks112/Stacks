@@ -1,11 +1,12 @@
-# Stacks Scout — draft cards from fetched feeds with Claude, open a PR.
-# Runs AFTER feed-sync has populated feeds/. Never writes main directly:
-# it opens a pull request so a human reviews the trilingual cards first.
-name: Stacks Scout (draft cards)
+# Stacks Scout — draft cards from feeds with Claude and AUTO-PUBLISH to the site.
+# Runs after feed-sync populates feeds/. Commits straight to main (no review gate):
+#   scout.py writes items.json, build_pages.py regenerates the static pages,
+#   everything is committed and pushed. Sole publisher of items.json.
+name: Stacks Scout (auto-publish)
 
 on:
   schedule:
-    - cron: "40 */6 * * *"   # every 6h at :40 (offset from feed-sync's :17)
+    - cron: "30 */3 * * *"   # every 3h at :30 (feed-sync runs hourly at :17)
   workflow_dispatch:
     inputs:
       max_new:
@@ -15,14 +16,13 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: stacks-scout
   cancel-in-progress: false
 
 jobs:
-  draft:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,35 +33,33 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Draft cards
+      - name: Draft cards, then rebuild pages if anything new
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MODEL: claude-sonnet-5
           MAX_NEW_ITEMS: ${{ github.event.inputs.max_new || '3' }}
           LOOKBACK_DAYS: "4"
           PER_SOURCE_CAP: "2"
-        run: python scripts/scout.py
+        run: |
+          python scripts/scout.py
+          if git diff --quiet -- items.json; then
+            echo "No new cards this run — skipping build."
+            exit 0
+          fi
+          python scripts/build_pages.py
 
-      - name: Open pull request (if new cards)
+      - name: Publish to main
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if git diff --quiet -- items.json; then
-            echo "No new cards this run."
+            echo "Nothing to publish."
             exit 0
           fi
-          BRANCH="scout/$(date -u +%Y%m%d-%H%M%S)"
+          rm -f .scout_pr_body.md
           git config user.name  "stacks-scout[bot]"
           git config user.email "stacks-scout[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
-          git add items.json
-          git commit -m "draft: auto-carded feed items (review before publish)"
-          git push origin "$BRANCH"
-          gh label create stacks-scout --color 1D4E89 \
-            --description "Auto-drafted cards for review" 2>/dev/null || true
-          BODY=".scout_pr_body.md"
-          [ -f "$BODY" ] || echo "Auto-drafted cards. Review and merge to publish." > "$BODY"
-          gh pr create \
-            --title "Scout: new cards for review ($(date -u +%Y-%m-%d))" \
-            --body-file "$BODY" \
-            --label stacks-scout
+          git add -A
+          git commit -m "content: auto-publish scout cards"
+          git pull --rebase origin main
+          git push origin main
