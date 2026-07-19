@@ -46,6 +46,9 @@ SOURCE_META = {
     "netinterest":       {"source": "Marc Rubinstein (Net Interest)", "lang": "EN", "category": "investor"},
     "serenity":          {"source": "Serenity (@aleabitoreddit)", "lang": "EN", "category": "investor", "avatarImg": "serenity.jpg"},
     "serenity_substack": {"source": "Serenity (@aleabitoreddit)", "lang": "EN", "category": "investor", "avatarImg": "serenity.jpg"},
+    "goto":              {"source": "後藤達也 (Tatsuya Goto)", "lang": "JA", "category": "investor"},
+    "semianalysis":      {"source": "Dylan Patel (SemiAnalysis)", "lang": "EN", "category": "investor"},
+    "tesuta":            {"source": "テスタ (@tesuta001)", "lang": "JA", "category": "investor"},
 }
 
 
