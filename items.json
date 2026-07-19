@@ -28,23 +28,23 @@
    ],
    "title": {
     "en": "SemiAnalysis: inside Meta's five-front, multi-gigawatt bid to catch OpenAI and Anthropic",
-    "ko": "세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터 — OpenAI·앤스로픽 추격전의 실상",
-    "ja": "セミアナリシス：メタが五拠点で同時に建てるギガワット級データセンター — OpenAI・アンソロピック追撃の実像"
+    "ko": "세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터, OpenAI·앤스로픽 추격전의 실상",
+    "ja": "セミアナリシス：メタが五拠点で同時に建てるギガワット級データセンター、OpenAI・アンソロピック追撃の実像"
    },
    "gist": {
-    "en": "Dylan Patel's SemiAnalysis grades Meta's AI reset one year after the 'disastrous Llama 4' launch. Meta has spent to rebuild talent — $14.3B to bring in Scale AI's Alexandr Wang, $1B+ for Nat Friedman and Daniel Gross's fund, and a wave of ex-OpenAI researchers — and just stood up a 3,000-engineer org (70% new grads and seniors) working full-time on reinforcement-learning tasks and environments. The compute story is the headline: five 'titan' clusters of 1GW or more are under construction at once — Prometheus (Ohio), Hyperion (Louisiana), plus El Paso, Iowa and Indiana. Prometheus has ballooned from ~1GW to over 3GW in two years using a tent datacenter design; Hyperion is 1.5GW across six buildings. To stitch sites together Meta built 'AI-Backbone,' linking up to 27 datacenters across six campuses at 22 petabits/second, with titans reaching campuses up to 2,000km apart. SemiAnalysis projects Meta will have more AI compute than OpenAI and Anthropic by end of 2026. The caution: on models, Muse Spark 1.1 only tests roughly on par with Opus 4.6, and 'success is far from guaranteed.'",
-    "ko": "딜런 파텔의 세미애널리시스가 '라마4 참사' 1년 뒤 메타의 AI 리셋을 채점한다. 메타는 인재 재건에 돈을 쏟았다. 스케일AI의 알렉산더 왕을 데려오는 데 143억 달러, 냇 프리드먼·대니얼 그로스의 펀드에 10억 달러 이상, 그리고 전직 OpenAI 연구자들을 대거 영입했다. 최근에는 강화학습(RL) 과제·환경을 전담하는 3,000명 규모(70%가 신입·시니어) 조직을 새로 세웠다. 핵심은 컴퓨트다. 1GW 이상 '타이탄' 클러스터 다섯 곳을 동시에 짓고 있다 — 프로메테우스(오하이오), 하이페리온(루이지애나), 그리고 엘패소·아이오와·인디애나. 프로메테우스는 텐트형 데이터센터 설계로 2년 만에 약 1GW에서 3GW 이상으로 불었고, 하이페리온은 여섯 개 동에 걸쳐 1.5GW다. 부지를 잇기 위해 메타는 'AI-백본'을 구축해 6개 캠퍼스의 데이터센터 최대 27곳을 초당 22페타비트로 연결하고, 최대 2,000km 떨어진 캠퍼스까지 묶는다. 세미애널리시스는 2026년 말이면 메타의 AI 컴퓨트가 OpenAI·앤스로픽을 넘어설 것으로 본다. 다만 모델에서는 뮤즈 스파크 1.1이 오퍼스 4.6과 대략 비슷한 수준에 그쳤고, '성공은 결코 보장돼 있지 않다'고 경고한다.",
-    "ja": "ディラン・パテルのセミアナリシスが、『ラマ4の惨事』から1年後のメタのAIリセットを採点する。メタは人材再建に資金を投じた。スケールAIのアレクサンダー・ワン獲得に143億ドル、ナット・フリードマンとダニエル・グロスのファンドに10億ドル超、さらに元OpenAIの研究者を多数採用した。最近では強化学習(RL)のタスク・環境を専任で担う3,000人規模(70%が新卒とシニア)の組織を新設した。核心はコンピュートだ。1GW以上の『タイタン』クラスターを五拠点で同時に建設中 — プロメテウス(オハイオ)、ハイペリオン(ルイジアナ)、そしてエルパソ・アイオワ・インディアナ。プロメテウスはテント型データセンター設計で2年間に約1GWから3GW超へ膨張し、ハイペリオンは六棟で1.5GW。拠点を結ぶためメタは『AI-バックボーン』を構築し、6キャンパスのデータセンター最大27カ所を毎秒22ペタビットで接続、最大2,000km離れたキャンパスまで束ねる。セミアナリシスは2026年末にはメタのAIコンピュートがOpenAI・アンソロピックを上回るとみる。ただしモデルではミューズ・スパーク1.1がオーパス4.6と概ね同等にとどまり、『成功は決して保証されていない』と釘を刺す。"
+    "en": "Dylan Patel's SemiAnalysis grades Meta's AI reset one year after the 'disastrous Llama 4' launch. Meta has spent to rebuild talent, $14.3B to bring in Scale AI's Alexandr Wang, $1B+ for Nat Friedman and Daniel Gross's fund, and a wave of ex-OpenAI researchers, and just stood up a 3,000-engineer org (70% new grads and seniors) working full-time on reinforcement-learning tasks and environments. The compute story is the headline: five 'titan' clusters of 1GW or more are under construction at once, Prometheus (Ohio), Hyperion (Louisiana), plus El Paso, Iowa and Indiana. Prometheus has ballooned from ~1GW to over 3GW in two years using a tent datacenter design; Hyperion is 1.5GW across six buildings. To stitch sites together Meta built 'AI-Backbone,' linking up to 27 datacenters across six campuses at 22 petabits/second, with titans reaching campuses up to 2,000km apart. SemiAnalysis projects Meta will have more AI compute than OpenAI and Anthropic by end of 2026. The caution: on models, Muse Spark 1.1 only tests roughly on par with Opus 4.6, and 'success is far from guaranteed.'",
+    "ko": "딜런 파텔의 세미애널리시스가 '라마4 참사' 1년 뒤 메타의 AI 리셋을 채점한다. 메타는 인재 재건에 돈을 쏟았다. 스케일AI의 알렉산더 왕을 데려오는 데 143억 달러, 냇 프리드먼·대니얼 그로스의 펀드에 10억 달러 이상, 그리고 전직 OpenAI 연구자들을 대거 영입했다. 최근에는 강화학습(RL) 과제·환경을 전담하는 3,000명 규모(70%가 신입·시니어) 조직을 새로 세웠다. 핵심은 컴퓨트다. 1GW 이상 '타이탄' 클러스터 다섯 곳을 동시에 짓고 있다, 프로메테우스(오하이오), 하이페리온(루이지애나), 그리고 엘패소·아이오와·인디애나. 프로메테우스는 텐트형 데이터센터 설계로 2년 만에 약 1GW에서 3GW 이상으로 불었고, 하이페리온은 여섯 개 동에 걸쳐 1.5GW다. 부지를 잇기 위해 메타는 'AI-백본'을 구축해 6개 캠퍼스의 데이터센터 최대 27곳을 초당 22페타비트로 연결하고, 최대 2,000km 떨어진 캠퍼스까지 묶는다. 세미애널리시스는 2026년 말이면 메타의 AI 컴퓨트가 OpenAI·앤스로픽을 넘어설 것으로 본다. 다만 모델에서는 뮤즈 스파크 1.1이 오퍼스 4.6과 대략 비슷한 수준에 그쳤고, '성공은 결코 보장돼 있지 않다'고 경고한다.",
+    "ja": "ディラン・パテルのセミアナリシスが、『ラマ4の惨事』から1年後のメタのAIリセットを採点する。メタは人材再建に資金を投じた。スケールAIのアレクサンダー・ワン獲得に143億ドル、ナット・フリードマンとダニエル・グロスのファンドに10億ドル超、さらに元OpenAIの研究者を多数採用した。最近では強化学習(RL)のタスク・環境を専任で担う3,000人規模(70%が新卒とシニア)の組織を新設した。核心はコンピュートだ。1GW以上の『タイタン』クラスターを五拠点で同時に建設中、プロメテウス(オハイオ)、ハイペリオン(ルイジアナ)、そしてエルパソ・アイオワ・インディアナ。プロメテウスはテント型データセンター設計で2年間に約1GWから3GW超へ膨張し、ハイペリオンは六棟で1.5GW。拠点を結ぶためメタは『AI-バックボーン』を構築し、6キャンパスのデータセンター最大27カ所を毎秒22ペタビットで接続、最大2,000km離れたキャンパスまで束ねる。セミアナリシスは2026年末にはメタのAIコンピュートがOpenAI・アンソロピックを上回るとみる。ただしモデルではミューズ・スパーク1.1がオーパス4.6と概ね同等にとどまり、『成功は決して保証されていない』と釘を刺す。"
    },
    "why": {
-    "en": "Five gigawatt-class clusters going up at once is a sustained capex signal for GPUs, optical networking and power — even as the article warns Meta's model race is far from won.",
-    "ko": "기가와트급 클러스터 다섯 곳을 동시에 올린다는 것은 GPU·광네트워크·전력에 대한 지속적 자본지출 신호다 — 정작 모델 경쟁의 승부는 아직 멀었다는 경고와 함께.",
-    "ja": "ギガワット級クラスターを五拠点で同時に建てることは、GPU・光ネットワーク・電力への継続的な設備投資シグナルだ — もっともモデル競争の決着はまだ遠いという警告付きで。"
+    "en": "Five gigawatt-class clusters going up at once is a sustained capex signal for GPUs, optical networking and power, even as the article warns Meta's model race is far from won.",
+    "ko": "기가와트급 클러스터 다섯 곳을 동시에 올린다는 것은 GPU·광네트워크·전력에 대한 지속적 자본지출 신호다, 정작 모델 경쟁의 승부는 아직 멀었다는 경고와 함께.",
+    "ja": "ギガワット級クラスターを五拠点で同時に建てることは、GPU・光ネットワーク・電力への継続的な設備投資シグナルだ、もっともモデル競争の決着はまだ遠いという警告付きで。"
    },
    "ask": {
-    "en": "Meta is buying the most compute of any hyperscaler — but can it turn watts into a frontier model?",
-    "ko": "메타는 하이퍼스케일러 중 가장 많은 컴퓨트를 사들이고 있다 — 그 전력을 프런티어 모델로 바꿔낼 수 있을까?",
-    "ja": "メタはハイパースケーラーで最も多くのコンピュートを買っている — その電力をフロンティアモデルに変えられるか?"
+    "en": "Meta is buying the most compute of any hyperscaler, but can it turn watts into a frontier model?",
+    "ko": "메타는 하이퍼스케일러 중 가장 많은 컴퓨트를 사들이고 있다, 그 전력을 프런티어 모델로 바꿔낼 수 있을까?",
+    "ja": "メタはハイパースケーラーで最も多くのコンピュートを買っている、その電力をフロンティアモデルに変えられるか?"
    },
    "stance": "bull",
    "outcome": {
@@ -85,9 +85,9 @@
     "NORTH SEA"
    ],
    "title": {
-    "en": "Trump cheers a new UK plan to 'open up' North Sea oil — and pull down the windmills",
-    "ko": "트럼프, 영국의 북해 유전 '전면 개방' 계획에 환호 — 풍력발전기는 철거?",
-    "ja": "トランプ、英国の北海油田「全面開放」計画を歓迎 — 風車は撤去へ？"
+    "en": "Trump cheers a new UK plan to 'open up' North Sea oil, and pull down the windmills",
+    "ko": "트럼프, 영국의 북해 유전 '전면 개방' 계획에 환호, 풍력발전기는 철거?",
+    "ja": "トランプ、英国の北海油田「全面開放」計画を歓迎、風車は撤去へ？"
    },
    "gist": {
     "en": "Trump reposted himself to celebrate that Aberdeen, Scotland is 'dancing in the streets' because the new UK Prime Minister, Andy Burnham, has pledged to open up North Sea oil 'all the way.' He calls the North Sea one of the greatest sources of quality oil on Earth, with hundreds of years of capacity and much of it 'not even found yet,' and argues it could turn the UK from a 'poverty-stricken disaster' into one of the richest countries in the world. He mocks Britain for paying Norway billions a year to buy oil from what he calls a less valuable part of the same sea, and adds that the UK is reportedly going to remove the offshore wind turbines that 'loom over' Aberdeen. Strip away the bravado and the market signal is a policy pivot: a major producer potentially loosening the windfall taxes and tight licensing that have throttled new North Sea fields for years. More barrels from a stable, non-OPEC basin is a supply story; retreating from offshore wind is an energy-mix story. Both cut against the recent direction of UK energy policy, and both would ripple through oil majors, offshore drillers, UK utilities, and the wind-turbine supply chain.",
@@ -95,14 +95,14 @@
     "ja": "トランプは自らの投稿を再掲し、スコットランドのアバディーン市民が『通りで踊っている』と伝えた。新しい英国首相アンディ・バーナムが北海油田を『全面的に』開放すると表明したからだという。彼は北海を『地球上で最も質の高い原油の産地の一つ』と呼び、数百年分の埋蔵量があり、その多くは『まだ発見すらされていない』と主張する。これが英国を『貧困にあえぐ惨状』から世界屈指の富裕国へ変えうる、というわけだ。彼は、英国が毎年ノルウェーに数十億ドルを払い、同じ北海でも『より価値の低い側』で採れた石油を買っていると揶揄し、さらにアバディーンに『覆いかぶさる』洋上風車を英国が撤去する計画だとも付け加えた。誇張を取り除けば、市場へのシグナルは政策転換だ。長年、新規油田開発を締めつけてきた超過利潤税と厳しい鉱区免許を緩める可能性である。安定した非OPEC海域から原油が増えるのは供給の話であり、洋上風力から後退するのはエネルギーミックスの話だ。いずれも最近の英国エネルギー政策の方向と逆であり、石油メジャー・海洋掘削会社・英国の電力会社・風車のサプライチェーン全体に波及しうる。"
    },
    "why": {
-    "en": "If a North Sea producer really reopens drilling and retreats from offshore wind, that's fresh non-OPEC supply plus a policy signal — read it through oil majors, offshore drillers, and the wind-turbine chain.",
-    "ko": "북해 산유국이 실제로 시추를 다시 열고 해상 풍력에서 물러선다면, 이는 새 비OPEC 공급에 정책 신호까지 겹치는 것 — 정유 메이저·해양 시추사·풍력 터빈 공급망으로 읽어라.",
-    "ja": "北海の産油国が本当に掘削を再開し洋上風力から退くなら、非OPECの新規供給に政策シグナルが重なる — 石油メジャー・海洋掘削会社・風車のサプライチェーンで読め。"
+    "en": "If a North Sea producer really reopens drilling and retreats from offshore wind, that's fresh non-OPEC supply plus a policy signal, read it through oil majors, offshore drillers, and the wind-turbine chain.",
+    "ko": "북해 산유국이 실제로 시추를 다시 열고 해상 풍력에서 물러선다면, 이는 새 비OPEC 공급에 정책 신호까지 겹치는 것, 정유 메이저·해양 시추사·풍력 터빈 공급망으로 읽어라.",
+    "ja": "北海の産油国が本当に掘削を再開し洋上風力から退くなら、非OPECの新規供給に政策シグナルが重なる、石油メジャー・海洋掘削会社・風車のサプライチェーンで読め。"
    },
    "ask": {
     "en": "More North Sea barrels and fewer wind turbines: energy realism, or a bet that ages badly?",
-    "ko": "북해 원유는 늘리고 풍력은 줄인다 — 에너지 현실론일까, 두고두고 후회할 베팅일까?",
-    "ja": "北海の原油を増やし風車を減らす — エネルギー現実論か、後で悔いる賭けか?"
+    "ko": "북해 원유는 늘리고 풍력은 줄인다, 에너지 현실론일까, 두고두고 후회할 베팅일까?",
+    "ja": "北海の原油を増やし風車を減らす、エネルギー現実論か、後で悔いる賭けか?"
    },
    "stance": "watch"
   },
@@ -133,13 +133,13 @@
    ],
    "title": {
     "en": "Goto on keeping your head as memory and semis whipsaw",
-    "ko": "격변장의 마음가짐 — 고토 다쓰야, 메모리·반도체 급등락에 흔들리지 않는 법",
-    "ja": "株価乱高下の心構え — 後藤達也が語る、激変相場との向き合い方"
+    "ko": "격변장의 마음가짐, 고토 다쓰야, 메모리·반도체 급등락에 흔들리지 않는 법",
+    "ja": "株価乱高下の心構え、後藤達也が語る、激変相場との向き合い方"
    },
    "gist": {
-    "en": "Tatsuya Goto, an ex-Nikkei reporter turned one of Japan's most-followed independent markets explainers, published a 'core column' with a plain title: how to steady your mindset when share prices swing wildly. The piece sits behind note.com's paywall, so only the framing is public — but the timing tells the story. July has been brutal for memory and semiconductor names: SK Hynix and Samsung have lurched, US chip stocks have sold off hard, and Japan's newly-listed memory maker Kioxia has whipsawed double digits as a Chinese rival heads for its own IPO and investors relitigate whether 'this time is different' for the memory cycle. Into that noise, Goto's message — readable straight from the title — is about temperament rather than a trade: build a mental framework for volatility in advance, so you react to your plan, not to the tape. There is no price target and no forecast here; it is the investor-psychology counterweight to a week of red screens. For readers whiplashed by the memory selloff, the useful question is not which way the next candle prints, but whether their own rules survive a 10%-down open.",
-    "ko": "닛케이 기자 출신으로 지금은 일본에서 가장 많이 읽히는 독립 시장 해설가 중 한 명인 고토 다쓰야가 제목부터 담백한 '코어 칼럼'을 냈다. 주가가 거칠게 요동칠 때 어떻게 마음을 다잡을 것인가. 글은 note.com 유료 구역에 있어 공개된 건 제목과 도입부 틀뿐이지만, 시점이 모든 걸 말해준다. 7월은 메모리·반도체주에 잔인했다. SK하이닉스와 삼성전자가 출렁였고, 미국 반도체주가 크게 밀렸으며, 지난해 상장한 일본 메모리 업체 키오시아는 중국 경쟁사의 IPO 소식과 '이번엔 다르다'는 메모리 사이클 논쟁 속에 두 자릿수로 급등락했다. 이 소음 한복판에서 고토가 던지는 메시지는 — 제목에서 곧장 읽히듯 — 매매 기술이 아니라 태도에 관한 것이다. 변동성에 대비한 마음의 틀을 미리 세워, 호가창이 아니라 자기 계획에 반응하라는 것. 목표주가도 전망치도 없다. 붉은 화면으로 가득했던 한 주에 대한 투자 심리학의 균형추다. 메모리 급락에 휘둘린 독자에게 정작 유용한 질문은 다음 캔들의 방향이 아니라, 10% 하락 출발에도 내 원칙이 살아남는가이다.",
-    "ja": "日経を離れて以降、日本で最も読まれる市場解説者の一人・後藤達也が、タイトルからして率直な「コアコラム」を出した。株価が激しく揺れるとき、どう心を落ち着けるか。記事はnote.comの有料エリアにあり、公開されているのは見出しと導入の枠組みだけだが、タイミングがすべてを物語る。7月はメモリ・半導体株に容赦なかった。SKハイニックスやサムスンが乱高下し、米半導体株は大きく売られ、昨年上場した日本のメモリメーカー・キオクシアは、中国勢のIPO観測と『今回は違う』というメモリサイクル論争の中で二桁の急変動を見せた。この騒がしさの真ん中で後藤が投げるメッセージは — 見出しから直ちに読めるように — 売買テクニックではなく姿勢についてだ。変動に備える心の枠組みをあらかじめ用意し、板ではなく自分の計画に反応せよ、と。目標株価も予想もない。赤い画面ばかりだった一週間に対する、投資心理のカウンターウェイトだ。メモリ急落に振り回された読者にとって本当に有用な問いは、次のローソク足の向きではなく、10%安寄りでも自分のルールが生き残るかどうかである。"
+    "en": "Tatsuya Goto, an ex-Nikkei reporter turned one of Japan's most-followed independent markets explainers, published a 'core column' with a plain title: how to steady your mindset when share prices swing wildly. The piece sits behind note.com's paywall, so only the framing is public, but the timing tells the story. July has been brutal for memory and semiconductor names: SK Hynix and Samsung have lurched, US chip stocks have sold off hard, and Japan's newly-listed memory maker Kioxia has whipsawed double digits as a Chinese rival heads for its own IPO and investors relitigate whether 'this time is different' for the memory cycle. Into that noise, Goto's message, readable straight from the title, is about temperament rather than a trade: build a mental framework for volatility in advance, so you react to your plan, not to the tape. There is no price target and no forecast here; it is the investor-psychology counterweight to a week of red screens. For readers whiplashed by the memory selloff, the useful question is not which way the next candle prints, but whether their own rules survive a 10%-down open.",
+    "ko": "닛케이 기자 출신으로 지금은 일본에서 가장 많이 읽히는 독립 시장 해설가 중 한 명인 고토 다쓰야가 제목부터 담백한 '코어 칼럼'을 냈다. 주가가 거칠게 요동칠 때 어떻게 마음을 다잡을 것인가. 글은 note.com 유료 구역에 있어 공개된 건 제목과 도입부 틀뿐이지만, 시점이 모든 걸 말해준다. 7월은 메모리·반도체주에 잔인했다. SK하이닉스와 삼성전자가 출렁였고, 미국 반도체주가 크게 밀렸으며, 지난해 상장한 일본 메모리 업체 키오시아는 중국 경쟁사의 IPO 소식과 '이번엔 다르다'는 메모리 사이클 논쟁 속에 두 자릿수로 급등락했다. 이 소음 한복판에서 고토가 던지는 메시지는, 제목에서 곧장 읽히듯, 매매 기술이 아니라 태도에 관한 것이다. 변동성에 대비한 마음의 틀을 미리 세워, 호가창이 아니라 자기 계획에 반응하라는 것. 목표주가도 전망치도 없다. 붉은 화면으로 가득했던 한 주에 대한 투자 심리학의 균형추다. 메모리 급락에 휘둘린 독자에게 정작 유용한 질문은 다음 캔들의 방향이 아니라, 10% 하락 출발에도 내 원칙이 살아남는가이다.",
+    "ja": "日経を離れて以降、日本で最も読まれる市場解説者の一人・後藤達也が、タイトルからして率直な「コアコラム」を出した。株価が激しく揺れるとき、どう心を落ち着けるか。記事はnote.comの有料エリアにあり、公開されているのは見出しと導入の枠組みだけだが、タイミングがすべてを物語る。7月はメモリ・半導体株に容赦なかった。SKハイニックスやサムスンが乱高下し、米半導体株は大きく売られ、昨年上場した日本のメモリメーカー・キオクシアは、中国勢のIPO観測と『今回は違う』というメモリサイクル論争の中で二桁の急変動を見せた。この騒がしさの真ん中で後藤が投げるメッセージは、見出しから直ちに読めるように、売買テクニックではなく姿勢についてだ。変動に備える心の枠組みをあらかじめ用意し、板ではなく自分の計画に反応せよ、と。目標株価も予想もない。赤い画面ばかりだった一週間に対する、投資心理のカウンターウェイトだ。メモリ急落に振り回された読者にとって本当に有用な問いは、次のローソク足の向きではなく、10%安寄りでも自分のルールが生き残るかどうかである。"
    },
    "why": {
     "en": "Volatility punishes reactive investors more than wrong ones; a pre-built mindset is the edge that survives a 10%-down open.",
@@ -147,9 +147,9 @@
     "ja": "変動相場は、間違った投資家より反射的に反応する投資家を罰する。あらかじめ用意した心構えこそ、10%安寄りを生き延びるエッジだ。"
    },
    "ask": {
-    "en": "When memory swings 10% before lunch — do you trust your plan, or your gut?",
-    "ko": "메모리주가 점심 전에 10% 출렁일 때 — 당신은 계획을 믿는가, 직감을 믿는가?",
-    "ja": "メモリ株が昼前に10%動くとき — あなたは計画を信じるか、直感を信じるか?"
+    "en": "When memory swings 10% before lunch, do you trust your plan, or your gut?",
+    "ko": "메모리주가 점심 전에 10% 출렁일 때, 당신은 계획을 믿는가, 직감을 믿는가?",
+    "ja": "メモリ株が昼前に10%動くとき、あなたは計画を信じるか、直感を信じるか?"
    },
    "stance": "watch"
   },
@@ -179,24 +179,24 @@
     "NEOCLOUD"
    ],
    "title": {
-    "en": "Serenity smells more AI capex coming — frontier models are out of capacity",
-    "ko": "세레니티, 'AI 설비투자가 더 온다' — 프런티어 모델이 수요에 밀려 용량 부족",
-    "ja": "セレニティ「AI設備投資はまだ増える」— フロンティアモデルが需要で容量不足に"
+    "en": "Serenity smells more AI capex coming, frontier models are out of capacity",
+    "ko": "세레니티, 'AI 설비투자가 더 온다', 프런티어 모델이 수요에 밀려 용량 부족",
+    "ja": "セレニティ「AI設備投資はまだ増える」- フロンティアモデルが需要で容量不足に"
    },
    "gist": {
-    "en": "On a quiet Sunday, Serenity drops a one-liner with a big read-through: there is nothing quite like the scent of more AI capex, and there are probably some ways to go if leading frontier models are out of capacity from too much demand. The frame is simple. If the best AI models are turning away demand because they have run out of compute, the bottleneck is not appetite — it is capacity. And the only cure for a capacity shortage is more spending on chips, data centers and power. The timing lines up with the news flow: hyperscalers are steering toward roughly $700B of AI capex in 2026, and reports this week say Meta is in talks to lease about $10B of compute to Anthropic — a rival literally renting a rival's infrastructure because nobody has enough. Serenity's implicit bet is that the capex cycle has further to run, which is bullish for the whole AI-infrastructure stack: GPUs, optical interconnects, memory, and the neoclouds that rent capacity out. The counter-case is that demand-driven spending eventually meets a digestion phase — but as long as frontier labs stay capacity-constrained, the buildout keeps feeding itself.",
-    "ko": "조용한 일요일, 세레니티가 한 줄로 큰 함의를 던진다. 더 많은 AI 설비투자의 냄새만큼 좋은 건 없다, 그리고 선두 프런티어 모델들이 수요가 너무 많아 용량이 바닥났다면 아직 갈 길이 남았다는 것. 논리는 단순하다. 최고 성능의 AI 모델이 연산 자원이 모자라 들어오는 수요를 되돌려 보내고 있다면, 병목은 수요가 아니라 용량이다. 그리고 용량 부족의 유일한 처방은 칩·데이터센터·전력에 대한 더 많은 지출이다. 시점도 뉴스 흐름과 맞아떨어진다. 하이퍼스케일러들은 2026년 약 7,000억 달러 규모의 AI 설비투자로 향하고 있고, 이번 주 보도에 따르면 메타는 앤스로픽에 약 100억 달러 규모의 연산 자원을 임대하는 협상을 벌이고 있다. 경쟁사가 경쟁사의 인프라를 빌리는 상황 — 아무도 충분한 용량을 갖고 있지 않기 때문이다. 세레니티의 암묵적 베팅은 설비투자 사이클이 아직 더 갈 여지가 있다는 것이고, 이는 GPU·광통신·메모리, 그리고 용량을 빌려주는 네오클라우드까지 AI 인프라 스택 전체에 강세 신호다. 반론은 수요 주도 지출도 결국 소화 국면을 만난다는 것 — 다만 프런티어 랩들이 용량 제약에 걸려 있는 한, 인프라 구축은 스스로를 계속 먹여 살린다.",
-    "ja": "静かな日曜日、セレニティが一行で大きな含意を投げる。さらなるAI設備投資の匂いほど良いものはない、そして先頭のフロンティアモデルが需要過多で容量切れなら、まだ先は長い、と。論理は単純だ。最高性能のAIモデルが計算資源不足で入ってくる需要を断っているなら、ボトルネックは需要ではなく容量だ。そして容量不足の唯一の処方箋は、チップ・データセンター・電力へのさらなる支出である。タイミングもニュースの流れと一致する。ハイパースケーラーは2026年に約7,000億ドル規模のAI設備投資へ向かっており、今週の報道ではMetaがAnthropicに約100億ドルの計算資源をリースする交渉中だという。ライバルがライバルのインフラを借りる — 誰も十分な容量を持っていないからだ。セレニティの暗黙の賭けは、設備投資サイクルにまだ余地があるということで、これはGPU・光通信・メモリ、そして容量を貸し出すネオクラウドまで、AIインフラ・スタック全体への強気シグナルだ。反論は、需要主導の支出もいずれ消化局面を迎えるというもの — ただしフロンティアのラボが容量制約に縛られている限り、構築は自らを養い続ける。"
+    "en": "On a quiet Sunday, Serenity drops a one-liner with a big read-through: there is nothing quite like the scent of more AI capex, and there are probably some ways to go if leading frontier models are out of capacity from too much demand. The frame is simple. If the best AI models are turning away demand because they have run out of compute, the bottleneck is not appetite, it is capacity. And the only cure for a capacity shortage is more spending on chips, data centers and power. The timing lines up with the news flow: hyperscalers are steering toward roughly $700B of AI capex in 2026, and reports this week say Meta is in talks to lease about $10B of compute to Anthropic, a rival literally renting a rival's infrastructure because nobody has enough. Serenity's implicit bet is that the capex cycle has further to run, which is bullish for the whole AI-infrastructure stack: GPUs, optical interconnects, memory, and the neoclouds that rent capacity out. The counter-case is that demand-driven spending eventually meets a digestion phase, but as long as frontier labs stay capacity-constrained, the buildout keeps feeding itself.",
+    "ko": "조용한 일요일, 세레니티가 한 줄로 큰 함의를 던진다. 더 많은 AI 설비투자의 냄새만큼 좋은 건 없다, 그리고 선두 프런티어 모델들이 수요가 너무 많아 용량이 바닥났다면 아직 갈 길이 남았다는 것. 논리는 단순하다. 최고 성능의 AI 모델이 연산 자원이 모자라 들어오는 수요를 되돌려 보내고 있다면, 병목은 수요가 아니라 용량이다. 그리고 용량 부족의 유일한 처방은 칩·데이터센터·전력에 대한 더 많은 지출이다. 시점도 뉴스 흐름과 맞아떨어진다. 하이퍼스케일러들은 2026년 약 7,000억 달러 규모의 AI 설비투자로 향하고 있고, 이번 주 보도에 따르면 메타는 앤스로픽에 약 100억 달러 규모의 연산 자원을 임대하는 협상을 벌이고 있다. 경쟁사가 경쟁사의 인프라를 빌리는 상황, 아무도 충분한 용량을 갖고 있지 않기 때문이다. 세레니티의 암묵적 베팅은 설비투자 사이클이 아직 더 갈 여지가 있다는 것이고, 이는 GPU·광통신·메모리, 그리고 용량을 빌려주는 네오클라우드까지 AI 인프라 스택 전체에 강세 신호다. 반론은 수요 주도 지출도 결국 소화 국면을 만난다는 것, 다만 프런티어 랩들이 용량 제약에 걸려 있는 한, 인프라 구축은 스스로를 계속 먹여 살린다.",
+    "ja": "静かな日曜日、セレニティが一行で大きな含意を投げる。さらなるAI設備投資の匂いほど良いものはない、そして先頭のフロンティアモデルが需要過多で容量切れなら、まだ先は長い、と。論理は単純だ。最高性能のAIモデルが計算資源不足で入ってくる需要を断っているなら、ボトルネックは需要ではなく容量だ。そして容量不足の唯一の処方箋は、チップ・データセンター・電力へのさらなる支出である。タイミングもニュースの流れと一致する。ハイパースケーラーは2026年に約7,000億ドル規模のAI設備投資へ向かっており、今週の報道ではMetaがAnthropicに約100億ドルの計算資源をリースする交渉中だという。ライバルがライバルのインフラを借りる、誰も十分な容量を持っていないからだ。セレニティの暗黙の賭けは、設備投資サイクルにまだ余地があるということで、これはGPU・光通信・メモリ、そして容量を貸し出すネオクラウドまで、AIインフラ・スタック全体への強気シグナルだ。反論は、需要主導の支出もいずれ消化局面を迎えるというもの、ただしフロンティアのラボが容量制約に縛られている限り、構築は自らを養い続ける。"
    },
    "why": {
-    "en": "When frontier models turn away demand for lack of compute, the bottleneck is capacity — and the only fix is more capex, which flows straight to the AI-infrastructure chain.",
-    "ko": "프런티어 모델이 연산 부족으로 수요를 되돌려 보낼 때 병목은 용량이고, 유일한 해법은 더 많은 설비투자다 — 그 돈은 곧장 AI 인프라 체인으로 흐른다.",
-    "ja": "フロンティアモデルが計算不足で需要を断るとき、ボトルネックは容量であり、唯一の解決策はさらなる設備投資 — その資金はAIインフラ・チェーンへ直行する。"
+    "en": "When frontier models turn away demand for lack of compute, the bottleneck is capacity, and the only fix is more capex, which flows straight to the AI-infrastructure chain.",
+    "ko": "프런티어 모델이 연산 부족으로 수요를 되돌려 보낼 때 병목은 용량이고, 유일한 해법은 더 많은 설비투자다, 그 돈은 곧장 AI 인프라 체인으로 흐른다.",
+    "ja": "フロンティアモデルが計算不足で需要を断るとき、ボトルネックは容量であり、唯一の解決策はさらなる設備投資、その資金はAIインフラ・チェーンへ直行する。"
    },
    "ask": {
-    "en": "Capacity-constrained AI demand — a durable capex supercycle, or a bubble waiting to digest?",
-    "ko": "용량에 막힌 AI 수요 — 지속되는 설비투자 슈퍼사이클일까, 소화를 기다리는 거품일까?",
-    "ja": "容量に縛られたAI需要 — 続く設備投資スーパーサイクルか、消化を待つバブルか?"
+    "en": "Capacity-constrained AI demand, a durable capex supercycle, or a bubble waiting to digest?",
+    "ko": "용량에 막힌 AI 수요, 지속되는 설비투자 슈퍼사이클일까, 소화를 기다리는 거품일까?",
+    "ja": "容量に縛られたAI需要、続く設備投資スーパーサイクルか、消化を待つバブルか?"
    },
    "stance": "bull"
   },
@@ -231,17 +231,17 @@
     "ja": "上場から数週間で急落したスペースXの社債: 債券市場がマスクに送る警告"
    },
    "gist": {
-    "en": "Elon Musk's SpaceX went public on the Nasdaq in June (ticker SPCX), raising $85.7 billion from the listing alone. Right after, it sold another $25 billion in corporate bonds — five tranches maturing from 2031 to 2056. Demand was fierce: $89 billion of orders chased the $25 billion on offer, letting SpaceX shave 25 basis points off the spread (the 2056 bond priced at 6.65% instead of a planned 6.90%) and pay less interest. A textbook success — until the bonds hit the secondary market. Within days, the yield on that 2056 bond jumped toward 7.3%, a 0.72-point rise driven partly by SpaceX's own risk (+0.56pt) and partly by higher US Treasury yields (+0.16pt). On a 30-year bond, a 0.72-point yield rise times a roughly 13-year duration works out to about a 9.3% price drop: a $100 bond became about $91 in a matter of days. To bond investors, a 9.3% loss in three weeks stings more than a stock hitting its daily limit-down. The culprit was hedge funds that parked short-term trading money betting the spread would tighten after the IPO hype, then dumped within days — fast money, not the pension-and-insurance kind that holds. Stocks run on dreams; bonds run on numbers. And the bond market is worried that heavy spending and xAI's mounting losses keep cash flow negative through 2029. Musk borrowed well, but bruised bondholders may hold a grudge.",
+    "en": "Elon Musk's SpaceX went public on the Nasdaq in June (ticker SPCX), raising $85.7 billion from the listing alone. Right after, it sold another $25 billion in corporate bonds, five tranches maturing from 2031 to 2056. Demand was fierce: $89 billion of orders chased the $25 billion on offer, letting SpaceX shave 25 basis points off the spread (the 2056 bond priced at 6.65% instead of a planned 6.90%) and pay less interest. A textbook success, until the bonds hit the secondary market. Within days, the yield on that 2056 bond jumped toward 7.3%, a 0.72-point rise driven partly by SpaceX's own risk (+0.56pt) and partly by higher US Treasury yields (+0.16pt). On a 30-year bond, a 0.72-point yield rise times a roughly 13-year duration works out to about a 9.3% price drop: a $100 bond became about $91 in a matter of days. To bond investors, a 9.3% loss in three weeks stings more than a stock hitting its daily limit-down. The culprit was hedge funds that parked short-term trading money betting the spread would tighten after the IPO hype, then dumped within days, fast money, not the pension-and-insurance kind that holds. Stocks run on dreams; bonds run on numbers. And the bond market is worried that heavy spending and xAI's mounting losses keep cash flow negative through 2029. Musk borrowed well, but bruised bondholders may hold a grudge.",
     "ko": "머스크의 스페이스X는 지난 6월 나스닥에 화려하게 상장했다(티커 SPCX). 상장으로만 857억 달러를 끌어모은 뒤, 곧바로 250억 달러 규모의 회사채까지 발행했는데 문제는 여기서 시작됐다. 2031년부터 2056년까지 만기가 다른 5종의 채권이었고, 발행 당시에는 250억 달러 물량에 890억 달러 주문이 몰릴 만큼 인기였다. 덕분에 스페이스X는 스프레드를 25bp 낮춰(2056년물 6.90%→6.65%) 이자를 아끼며 '성공적으로' 자금을 조달했다. 그런데 이 채권이 유통시장에 나오자 며칠 만에 금리가 튀었다. 6.65%로 발행된 2056년물 금리가 7.3%대까지 올랐는데, 스페이스X 자체 위험 상승(+0.56%p)에 미국 국채 금리 상승(+0.16%p)이 겹친 결과다. 만기가 긴 30년물은 금리가 0.72%p 오르면 듀레이션(약 13년)만큼 값이 깎여, 100달러였던 채권이 며칠 만에 91달러가 됐다. 3주 만에 9.3% 손실은 채권쟁이에게는 주식 하한가보다 더 아픈 충격이다. 범인은 상장 흥행에 스프레드가 좁혀질 거라 보고 들어온 헤지펀드의 단타 자금이었다. 연기금 같은 장기 자금이 아니라 며칠 만에 되파는 돈이었던 탓에 매도가 몰렸다. 주식은 꿈을 먹고 오르지만, 채권은 숫자와 현실을 본다. 채권시장은 막대한 지출과 xAI 누적 손실로 2029년까지 이어질 마이너스 현금흐름을 걱정하는 중이다. 머스크는 좋은 조건에 돈을 잘 빌렸지만, 손실을 본 채권 투자자들의 뒤끝은 남을 수 있다.",
     "ja": "イーロン・マスクのスペースXは6月、ナスダックに華々しく上場した(ティッカーSPCX)。上場だけで857億ドルを集めた直後、さらに250億ドルの社債を発行したが、問題はここから始まった。2031年から2056年まで満期の異なる5本の債券で、発行時は250億ドルの募集に890億ドルの注文が殺到する人気ぶりだった。おかげでスペースXはスプレッドを25bp縮め(2056年債は6.90%→6.65%)、利払いを抑えて『成功裏に』資金を調達した。ところが債券が流通市場に出ると、数日で利回りが跳ね上がった。6.65%で発行された2056年債の利回りは7.3%台へ。スペースX自体のリスク上昇(+0.56pt)に米国債利回りの上昇(+0.16pt)が重なった結果だ。満期の長い30年債は利回りが0.72pt上がると、デュレーション(約13年)の分だけ価格が削られ、100ドルの債券が数日で91ドルになった。3週間で9.3%の損失は、債券投資家にとって株のストップ安より痛い。犯人は、上場人気でスプレッドが縮むと見込んで入ってきたヘッジファンドの短期資金だ。年金のような長期資金ではなく数日で売り抜ける金だったため、売りが殺到した。株は夢で上がるが、債券は数字と現実を見る。債券市場は、巨額の支出とxAIの累積損失で2029年まで続くマイナスのキャッシュフローを懸念している。マスクは好条件で借りたが、損を出した債券投資家のしこりは残るかもしれない。"
    },
    "why": {
-    "en": "The bond market is pricing SpaceX's cash-flow reality while the stock prices its dream — and the gap between them is an early warning about how the next round of financing will go.",
+    "en": "The bond market is pricing SpaceX's cash-flow reality while the stock prices its dream, and the gap between them is an early warning about how the next round of financing will go.",
     "ko": "채권시장은 스페이스X의 현금흐름이라는 현실을, 주식은 그 꿈을 값 매긴다. 둘 사이의 간극이 다음 자금 조달이 어떻게 될지를 미리 경고한다.",
     "ja": "債券市場はスペースXのキャッシュフローという現実を、株はその夢を値付けする。その差が、次の資金調達がどうなるかを先に警告している。"
    },
    "ask": {
-    "en": "Bonds flash caution, the stock still dreams — which one is right about SpaceX over the next few years?",
+    "en": "Bonds flash caution, the stock still dreams, which one is right about SpaceX over the next few years?",
     "ko": "채권은 경고등을, 주식은 여전히 꿈을 켜고 있다. 앞으로 몇 년, 어느 쪽이 맞을까?",
     "ja": "債券は警告灯を、株はまだ夢を灯す。今後数年、どちらが正しいのか?"
    }
@@ -277,17 +277,17 @@
     "ja": "SKハイニックスADRプレミアム25%、ついに裁定取引と対面: 7月29日に転換開始"
    },
    "gist": {
-    "en": "Serenity, the X account tracking AI-infrastructure trades, flags the date for anyone watching the 25%-plus premium at which SK Hynix's US ADRs ($SKHY) trade over the same company's Korean shares: on July 29, the ADRs and the local shares become convertible into each other. That should open the door to a textbook arbitrage — buy the cheaper share, convert, sell the dearer one — and likely compress the premium, either by lifting the Korean shares, pressuring the US ones, or some of both. One number shows how much fuel the trade could carry: only about 2.5% of the stock currently exists in US ADR form, so an additional 22.5% of shares are eligible to be converted. The tweet also cites Korean reporting that the Korea Securities Depository will take applications for mutual conversion between the local shares and the ADRs from July 29, with Citibank as the depositary bank handling issuance limits and conversion. In short: the wall that kept one stock trading at two prices finally gets a door, and the door opens in under two weeks.",
+    "en": "Serenity, the X account tracking AI-infrastructure trades, flags the date for anyone watching the 25%-plus premium at which SK Hynix's US ADRs ($SKHY) trade over the same company's Korean shares: on July 29, the ADRs and the local shares become convertible into each other. That should open the door to a textbook arbitrage, buy the cheaper share, convert, sell the dearer one, and likely compress the premium, either by lifting the Korean shares, pressuring the US ones, or some of both. One number shows how much fuel the trade could carry: only about 2.5% of the stock currently exists in US ADR form, so an additional 22.5% of shares are eligible to be converted. The tweet also cites Korean reporting that the Korea Securities Depository will take applications for mutual conversion between the local shares and the ADRs from July 29, with Citibank as the depositary bank handling issuance limits and conversion. In short: the wall that kept one stock trading at two prices finally gets a door, and the door opens in under two weeks.",
     "ko": "AI 인프라 트레이드를 추적하는 X 계정 세레니티가, SK하이닉스 미국 ADR($SKHY)이 같은 회사 한국 주식보다 25% 이상 비싸게 거래되는 현상을 지켜보는 사람들에게 날짜 하나를 짚어준다. 7월 29일부터 ADR과 원주가 서로 전환 가능해진다는 것. 싼 쪽을 사서 전환해 비싼 쪽에 파는 교과서적 차익거래의 문이 열리는 셈이고, 그 과정에서 프리미엄은 좁혀질 가능성이 크다. 한국 주식이 오르거나, 미국 ADR이 눌리거나, 둘 다일 수도 있다. 이 트레이드의 연료가 얼마나 되는지 보여주는 숫자가 하나 있다. 현재 미국 ADR 형태로 존재하는 주식은 전체의 약 2.5%뿐이라, 추가로 22.5%가 전환될 수 있다는 것. 트윗은 또한 한국예탁결제원이 7월 29일부터 원주와 ADR의 상호전환 신청을 받고, 예탁기관인 씨티은행이 발행 한도와 전환을 처리한다는 한국 언론 보도도 인용한다. 요약하면, 하나의 주식이 두 가격에 거래되게 만들던 벽에 드디어 문이 생겼고, 그 문은 2주도 안 남았다.",
     "ja": "AIインフラのトレードを追うXアカウントのセレニティが、SKハイニックスの米国ADR($SKHY)が同じ会社の韓国株より25%以上高く取引される現象を見ている人々に、ひとつの日付を示す。7月29日からADRと現地株が相互に転換可能になるのだ。安い方を買って転換し、高い方を売るという教科書通りの裁定取引の扉が開くことになり、プレミアムは縮小する可能性が高い。韓国株が上がるか、米国ADRが押されるか、その両方か。このトレードの燃料を示す数字がある。現在ADRの形で存在する株式は全体の約2.5%にすぎず、追加で22.5%が転換可能だという。ツイートはまた、韓国預託決済院が7月29日から現地株とADRの相互転換申請を受け付け、預託銀行のシティバンクが発行限度と転換を処理するという韓国メディアの報道も引用している。要するに、ひとつの株を二つの価格で取引させてきた壁についに扉ができ、その扉は2週間以内に開く。"
    },
    "why": {
-    "en": "A 25% gap between two tickers of the same company is a live gauge of blocked demand. July 29 is the day the blockage clears — how fast the gap closes tells you how real the arbitrage is.",
+    "en": "A 25% gap between two tickers of the same company is a live gauge of blocked demand. July 29 is the day the blockage clears, how fast the gap closes tells you how real the arbitrage is.",
     "ko": "같은 회사의 두 티커 사이 25% 격차는 막힌 수요의 실시간 계기판이다. 7월 29일은 그 막힘이 뚫리는 날이고, 격차가 얼마나 빨리 닫히는지가 이 차익거래의 실체를 말해준다.",
     "ja": "同じ会社の二つのティッカー間の25%の差は、塞がれた需要のリアルタイム計器盤だ。7月29日はその詰まりが解消される日で、差がどれだけ速く閉じるかが裁定の実体を物語る。"
    },
    "ask": {
-    "en": "When conversion opens on July 29, does the premium snap shut fast — or prove sticky?",
+    "en": "When conversion opens on July 29, does the premium snap shut fast, or prove sticky?",
     "ko": "7월 29일 전환이 열리면 프리미엄은 빠르게 닫힐까, 의외로 끈질기게 버틸까?",
     "ja": "7月29日に転換が開いたら、プレミアムは一気に縮むか、それとも粘るか?"
    },
@@ -323,9 +323,9 @@
     "ja": "ゴールドマンのInnolight 163%アップサイド判断は光通信チェーン全体のシグナル"
    },
    "gist": {
-    "en": "Serenity relays a striking call: Goldman Sachs raised its price target on Innolight, China's leading optical-module maker, to 2,581 RMB — roughly 163.6% above the recent price near 979 RMB — and did it in the middle of a heavy correction in optical stocks. The bigger story sits under the target: Goldman lifted its 2026-2028 earnings estimates by a whopping 65%, 108% and 119%, citing much higher silicon-photonics module volumes, demand across scale-out, scale-up and scale-across networking, 1.6T/3.2T products lifting blended prices and margins, and rising AI capex. Serenity's frame: Innolight is to photonics what TSMC's capex is to semiconductors — a barometer for the whole sector. The read-throughs follow. More silicon-photonics penetration means more demand for CW lasers (Sivers) and SOI wafers; higher next-generation prices help the other optical names; and Innolight's own July 12 comment that 800G demand is growing more than expected bodes well for Applied Optoelectronics and Lumentum into next earnings. Serenity's TLDR: Goldman is publishing very high projections at the bottom of a massive correction — when earnings season arrives, the broader photonics ecosystem should be smiling.",
-    "ko": "세레니티가 눈에 띄는 콜 하나를 전한다. 골드만삭스가 중국 최대 광모듈 업체 이노라이트의 목표주가를 2,581위안으로 올렸다는 것. 최근 주가 979위안 부근보다 약 163.6% 높은 수준인데, 그것도 광통신주가 크게 조정받는 한복판에서 나왔다. 더 큰 이야기는 목표주가 밑에 깔려 있다. 골드만은 2026~2028년 실적 추정치를 무려 65%, 108%, 119%씩 올렸다. 근거는 실리콘 포토닉스 모듈 물량의 대폭 증가, 스케일아웃·스케일업·스케일어크로스 네트워킹 전반의 수요, 혼합 판가와 마진을 끌어올리는 1.6T/3.2T 제품, 그리고 늘어나는 AI 설비투자다. 세레니티의 프레임은 이렇다. 반도체에서 TSMC의 설비투자를 읽듯, 포토닉스에서는 이노라이트를 섹터 전체의 바로미터로 읽는다는 것. 그러면 파급 해석이 따라온다. 실리콘 포토닉스 침투율이 오르면 CW 레이저(시버스)와 SOI 웨이퍼 수요가 늘고, 차세대 제품의 판가 인상은 다른 광통신주에도 호재이며, 이노라이트가 7월 12일 실적 콜에서 800G 수요가 예상보다 크게 늘고 있다고 말한 것은 어플라이드 옵토와 루멘텀의 다음 실적에 좋은 신호다. 세레니티의 요약 한 줄: 골드만이 대규모 조정의 바닥에서 아주 높은 전망치를 내놨다 — 실적 시즌이 오면 포토닉스 생태계 전체가 웃고 있을 것이다.",
-    "ja": "セレニティが目を引くコールを伝える。ゴールドマン・サックスが中国最大の光モジュールメーカーInnolightの目標株価を2,581元に引き上げたのだ。直近の株価979元前後より約163.6%高い水準で、しかも光通信株が大きく調整している真っ只中に出た。より大きな話は目標株価の下にある。ゴールドマンは2026~2028年の業績予想を実に65%、108%、119%も引き上げた。根拠はシリコンフォトニクス・モジュールの大幅な数量増、スケールアウト・スケールアップ・スケールアクロスにわたるネットワーキング需要、混合単価とマージンを押し上げる1.6T/3.2T製品、そして増え続けるAI設備投資だ。セレニティの枠組みはこうだ。半導体でTSMCの設備投資を読むように、フォトニクスではInnolightをセクター全体のバロメーターとして読む。そこから波及解釈が続く。シリコンフォトニクスの浸透が進めばCWレーザー(Sivers)とSOIウェハーの需要が増え、次世代製品の単価引き上げは他の光通信銘柄にも追い風で、Innolight自身が7月12日の説明会で800G需要が想定以上に伸びていると語ったことは、Applied OptoやLumentumの次の決算に良い兆しだ。セレニティの要約一行: ゴールドマンは大調整の底で非常に高い予想を出した — 決算シーズンが来れば、フォトニクス生態系全体が笑っているはずだ。"
+    "en": "Serenity relays a striking call: Goldman Sachs raised its price target on Innolight, China's leading optical-module maker, to 2,581 RMB, roughly 163.6% above the recent price near 979 RMB, and did it in the middle of a heavy correction in optical stocks. The bigger story sits under the target: Goldman lifted its 2026-2028 earnings estimates by a whopping 65%, 108% and 119%, citing much higher silicon-photonics module volumes, demand across scale-out, scale-up and scale-across networking, 1.6T/3.2T products lifting blended prices and margins, and rising AI capex. Serenity's frame: Innolight is to photonics what TSMC's capex is to semiconductors, a barometer for the whole sector. The read-throughs follow. More silicon-photonics penetration means more demand for CW lasers (Sivers) and SOI wafers; higher next-generation prices help the other optical names; and Innolight's own July 12 comment that 800G demand is growing more than expected bodes well for Applied Optoelectronics and Lumentum into next earnings. Serenity's TLDR: Goldman is publishing very high projections at the bottom of a massive correction, when earnings season arrives, the broader photonics ecosystem should be smiling.",
+    "ko": "세레니티가 눈에 띄는 콜 하나를 전한다. 골드만삭스가 중국 최대 광모듈 업체 이노라이트의 목표주가를 2,581위안으로 올렸다는 것. 최근 주가 979위안 부근보다 약 163.6% 높은 수준인데, 그것도 광통신주가 크게 조정받는 한복판에서 나왔다. 더 큰 이야기는 목표주가 밑에 깔려 있다. 골드만은 2026~2028년 실적 추정치를 무려 65%, 108%, 119%씩 올렸다. 근거는 실리콘 포토닉스 모듈 물량의 대폭 증가, 스케일아웃·스케일업·스케일어크로스 네트워킹 전반의 수요, 혼합 판가와 마진을 끌어올리는 1.6T/3.2T 제품, 그리고 늘어나는 AI 설비투자다. 세레니티의 프레임은 이렇다. 반도체에서 TSMC의 설비투자를 읽듯, 포토닉스에서는 이노라이트를 섹터 전체의 바로미터로 읽는다는 것. 그러면 파급 해석이 따라온다. 실리콘 포토닉스 침투율이 오르면 CW 레이저(시버스)와 SOI 웨이퍼 수요가 늘고, 차세대 제품의 판가 인상은 다른 광통신주에도 호재이며, 이노라이트가 7월 12일 실적 콜에서 800G 수요가 예상보다 크게 늘고 있다고 말한 것은 어플라이드 옵토와 루멘텀의 다음 실적에 좋은 신호다. 세레니티의 요약 한 줄: 골드만이 대규모 조정의 바닥에서 아주 높은 전망치를 내놨다, 실적 시즌이 오면 포토닉스 생태계 전체가 웃고 있을 것이다.",
+    "ja": "セレニティが目を引くコールを伝える。ゴールドマン・サックスが中国最大の光モジュールメーカーInnolightの目標株価を2,581元に引き上げたのだ。直近の株価979元前後より約163.6%高い水準で、しかも光通信株が大きく調整している真っ只中に出た。より大きな話は目標株価の下にある。ゴールドマンは2026~2028年の業績予想を実に65%、108%、119%も引き上げた。根拠はシリコンフォトニクス・モジュールの大幅な数量増、スケールアウト・スケールアップ・スケールアクロスにわたるネットワーキング需要、混合単価とマージンを押し上げる1.6T/3.2T製品、そして増え続けるAI設備投資だ。セレニティの枠組みはこうだ。半導体でTSMCの設備投資を読むように、フォトニクスではInnolightをセクター全体のバロメーターとして読む。そこから波及解釈が続く。シリコンフォトニクスの浸透が進めばCWレーザー(Sivers)とSOIウェハーの需要が増え、次世代製品の単価引き上げは他の光通信銘柄にも追い風で、Innolight自身が7月12日の説明会で800G需要が想定以上に伸びていると語ったことは、Applied OptoやLumentumの次の決算に良い兆しだ。セレニティの要約一行: ゴールドマンは大調整の底で非常に高い予想を出した、決算シーズンが来れば、フォトニクス生態系全体が笑っているはずだ。"
    },
    "why": {
     "en": "Optics is the interconnect layer of the AI buildout. When the sector bellwether takes triple-digit earnings revisions during a correction, the whole chain gets repriced at the next earnings season.",
@@ -333,7 +333,7 @@
     "ja": "光通信はAIインフラの接続レイヤーだ。セクターのバロメーターが調整の最中に三桁の業績上方修正を受ければ、次の決算シーズンにチェーン全体が値付けし直される。"
    },
    "ask": {
-    "en": "A heavy optics correction versus soaring estimates — which side is wrong?",
+    "en": "A heavy optics correction versus soaring estimates, which side is wrong?",
     "ko": "광통신주 급조정과 치솟는 실적 추정치, 어느 쪽이 틀렸을까?",
     "ja": "光通信株の急調整と急騰する業績予想、間違っているのはどちらか?"
    },
@@ -365,24 +365,24 @@
     "CHINA"
    ],
    "title": {
-    "en": "Doomberg: The world still runs on hydrocarbons — and China's solar boom may have just peaked",
-    "ja": "ドゥームバーグ:世界はいまだ化石燃料で回る — そして中国の太陽光ブームはすでに天井かもしれない",
-    "ko": "둠버그: 세계는 여전히 화석연료로 돌아간다 — 그리고 중국의 태양광 붐은 이미 정점을 찍었을지 모른다"
+    "en": "Doomberg: The world still runs on hydrocarbons, and China's solar boom may have just peaked",
+    "ja": "ドゥームバーグ:世界はいまだ化石燃料で回る、そして中国の太陽光ブームはすでに天井かもしれない",
+    "ko": "둠버그: 세계는 여전히 화석연료로 돌아간다, 그리고 중국의 태양광 붐은 이미 정점을 찍었을지 모른다"
    },
    "gist": {
-    "en": "Doomberg picks apart the Energy Institute's newly released 2026 Statistical Review of World Energy and argues the popular 'renewables are winning' story rests on a sleight of hand. The trick, it says, is conflating electricity — where solar and wind do show up big — with total primary energy, the full amount an economy burns for power, heat, transport and industry. On that broader measure, hydrocarbons still supplied 86.24% of the world's primary energy in 2025, and oil, gas and coal each set fresh consumption records. A headline that 'renewables accounted for a third of global primary energy growth in 2025' sounds impressive until you notice total energy grew only about 1%, so a third of a sliver is still a sliver. China gets celebrated for building more solar than anyone, yet it also burns 56% of the world's coal and emits 31% of global CO2 (versus 5% of coal and 13% of emissions for the US). The provocative call: China's 2025 solar installations will 'almost certainly' mark a high-water mark that stands for many years — implying new additions have peaked rather than launched a permanent climb. For investors, it's a reminder to separate the electricity story from the far bigger energy story before betting on the pace of the transition.",
-    "ja": "ドゥームバーグは、エネルギー研究所(Energy Institute)が公表したばかりの『2026年版 世界エネルギー統計レビュー』を読み解き、「再エネが勝っている」という人気の物語がごまかしの上に成り立っていると主張する。トリックの核心は、太陽光や風力が目立つ「電力」と、経済が発電・暖房・輸送・産業のために燃やすエネルギー全体である「一次エネルギー」を混同させることだ。この広い尺度で見ると、化石燃料は2025年も世界の一次エネルギーの86.24%を供給し、石油・ガス・石炭はそれぞれ消費量の過去最高を更新した。「2025年の世界一次エネルギー増加分の3分の1を再エネが占めた」という見出しは立派に聞こえるが、全体の増加はわずか約1%にすぎず、その3分の1も薄い一切れのままだ。中国は誰よりも太陽光を敷いたと称賛される一方で、世界の石炭の56%を燃やし、世界のCO2の31%を排出する(米国は石炭5%・排出13%)。挑発的な予測はこうだ——中国の2025年の太陽光設置量は「ほぼ確実に」今後何年も破られない天井になる、つまり新規設置は永遠に上り始めたのではなく、すでに頂点を打ったという主張である。投資家への含意は、移行の速度に賭ける前に「電力の話」と、はるかに大きな「エネルギーの話」を分けて見よ、という警告だ。",
+    "en": "Doomberg picks apart the Energy Institute's newly released 2026 Statistical Review of World Energy and argues the popular 'renewables are winning' story rests on a sleight of hand. The trick, it says, is conflating electricity, where solar and wind do show up big, with total primary energy, the full amount an economy burns for power, heat, transport and industry. On that broader measure, hydrocarbons still supplied 86.24% of the world's primary energy in 2025, and oil, gas and coal each set fresh consumption records. A headline that 'renewables accounted for a third of global primary energy growth in 2025' sounds impressive until you notice total energy grew only about 1%, so a third of a sliver is still a sliver. China gets celebrated for building more solar than anyone, yet it also burns 56% of the world's coal and emits 31% of global CO2 (versus 5% of coal and 13% of emissions for the US). The provocative call: China's 2025 solar installations will 'almost certainly' mark a high-water mark that stands for many years, implying new additions have peaked rather than launched a permanent climb. For investors, it's a reminder to separate the electricity story from the far bigger energy story before betting on the pace of the transition.",
+    "ja": "ドゥームバーグは、エネルギー研究所(Energy Institute)が公表したばかりの『2026年版 世界エネルギー統計レビュー』を読み解き、「再エネが勝っている」という人気の物語がごまかしの上に成り立っていると主張する。トリックの核心は、太陽光や風力が目立つ「電力」と、経済が発電・暖房・輸送・産業のために燃やすエネルギー全体である「一次エネルギー」を混同させることだ。この広い尺度で見ると、化石燃料は2025年も世界の一次エネルギーの86.24%を供給し、石油・ガス・石炭はそれぞれ消費量の過去最高を更新した。「2025年の世界一次エネルギー増加分の3分の1を再エネが占めた」という見出しは立派に聞こえるが、全体の増加はわずか約1%にすぎず、その3分の1も薄い一切れのままだ。中国は誰よりも太陽光を敷いたと称賛される一方で、世界の石炭の56%を燃やし、世界のCO2の31%を排出する(米国は石炭5%・排出13%)。挑発的な予測はこうだ--中国の2025年の太陽光設置量は「ほぼ確実に」今後何年も破られない天井になる、つまり新規設置は永遠に上り始めたのではなく、すでに頂点を打ったという主張である。投資家への含意は、移行の速度に賭ける前に「電力の話」と、はるかに大きな「エネルギーの話」を分けて見よ、という警告だ。",
     "ko": "둠버그가 에너지연구소(Energy Institute)가 막 내놓은 '2026 세계 에너지 통계 리뷰'를 뜯어보며, '재생에너지가 이기고 있다'는 인기 서사가 눈속임 위에 서 있다고 주장한다. 속임수의 핵심은 '전기'와 '1차 에너지'를 뒤섞는 것이다. 태양광·풍력은 전기에서는 크게 보이지만, 경제가 발전·난방·수송·산업에 태우는 에너지 전체(1차 에너지)로 보면 화석연료가 2025년에도 세계 1차 에너지의 86.24%를 댔고, 석유·가스·석탄이 저마다 소비 사상 최대를 새로 찍었다. '2025년 세계 1차 에너지 증가분의 3분의 1이 재생에너지였다'는 헤드라인은 그럴싸하지만, 전체 에너지가 겨우 1%쯤 늘었으니 그 3분의 1도 여전히 얇은 조각일 뿐이다. 중국은 누구보다 태양광을 많이 깔았다고 칭송받지만, 동시에 세계 석탄의 56%를 태우고 세계 CO2의 31%를 내뿜는다(미국은 석탄 5%·배출 13%). 도발적인 예측은 이것이다. 중국의 2025년 태양광 설치량이 '거의 확실히' 앞으로 수년간 깨지지 않을 최고점이 될 것이라는, 즉 신규 설치가 영원히 오르기 시작한 게 아니라 이미 정점을 찍었다는 주장이다. 투자자에게 이 글은, 전환 속도에 베팅하기 전에 '전기 이야기'와 훨씬 더 큰 '에너지 이야기'를 갈라 보라는 경고다."
    },
    "why": {
-    "en": "Before betting on the energy transition's speed, separate the electricity story from the far bigger primary-energy story — where fossil fuels still set records.",
+    "en": "Before betting on the energy transition's speed, separate the electricity story from the far bigger primary-energy story, where fossil fuels still set records.",
     "ja": "エネルギー移行の速度に賭ける前に、化石燃料がなお記録を更新する遥かに大きな『一次エネルギー』の話と『電力』の話を分けて見よ、ということ。",
     "ko": "에너지 전환 속도에 베팅하기 전에, 화석연료가 여전히 기록을 세우는 훨씬 더 큰 '1차 에너지' 이야기와 '전기' 이야기를 갈라 보라는 것."
    },
    "ask": {
-    "en": "Has China's solar boom really peaked — or is Doomberg fighting the last war against an unstoppable transition?",
-    "ko": "중국의 태양광 붐은 정말 정점을 찍었을까 — 아니면 둠버그가 막을 수 없는 전환에 헛발질하는 걸까?",
-    "ja": "中国の太陽光ブームは本当に天井を打ったのか——それともドゥームバーグは止められない移行に無駄な戦いを挑んでいるのか?"
+    "en": "Has China's solar boom really peaked, or is Doomberg fighting the last war against an unstoppable transition?",
+    "ko": "중국의 태양광 붐은 정말 정점을 찍었을까, 아니면 둠버그가 막을 수 없는 전환에 헛발질하는 걸까?",
+    "ja": "中国の太陽光ブームは本当に天井を打ったのか--それともドゥームバーグは止められない移行に無駄な戦いを挑んでいるのか?"
    },
    "stance": "watch",
    "outcome": {
@@ -419,24 +419,24 @@
     "TRUMP"
    ],
    "title": {
-    "en": "Trump's Truth Social to sell a $100K/month 'Truth API' — his posts, a millisecond early, for the algos",
-    "ja": "トランプのトゥルース・ソーシャルが月10万ドルの『Truth API』を発売 — 投稿を1ミリ秒早く、アルゴ向けに",
-    "ko": "트럼프의 트루스소셜, 월 10만 달러 'Truth API' 출시 — 그의 글을 1/1000초 먼저, 알고에게"
+    "en": "Trump's Truth Social to sell a $100K/month 'Truth API', his posts, a millisecond early, for the algos",
+    "ja": "トランプのトゥルース・ソーシャルが月10万ドルの『Truth API』を発売、投稿を1ミリ秒早く、アルゴ向けに",
+    "ko": "트럼프의 트루스소셜, 월 10만 달러 'Truth API' 출시, 그의 글을 1/1000초 먼저, 알고에게"
    },
    "gist": {
-    "en": "Meru unpacks a strange new product from Trump Media & Technology Group (TMTG, ticker DJT), the company Trump founded and still owns 41% of. From August 1, 2026, its Truth Social platform will sell 'Truth API' — a $100,000-a-month subscription ($60,000 on a three-year deal) that delivers posts from the platform's ten most influential accounts a thousandth of a second before they reach the public feed, in machine-readable JSON that trading algorithms can act on instantly. Those ten accounts are dominated by Trump himself, his sons Don Jr. and Eric, and close allies. TMTG's own pitch deck sells the edge with ten 'market-moving' Trump posts: an April 2025 'THIS IS A GREAT TIME TO BUY' hours before a 90-day tariff pause added $4 trillion to the S&P 500's value; an 'Iran blockade' post that spiked oil more than 9% in a day, and a later 'productive talks' post that sent it back down. Is it legal? US insider-trading law targets non-public information, and this data becomes public anyway, so TMTG argues it's clean — and while executive-branch officials are barred from such conflicts of interest, the President and Vice President are explicitly exempt from that rule (18 U.S.C. §208). The buyers are high-frequency traders, who already place about 60% of US orders and live or die on being first.",
+    "en": "Meru unpacks a strange new product from Trump Media & Technology Group (TMTG, ticker DJT), the company Trump founded and still owns 41% of. From August 1, 2026, its Truth Social platform will sell 'Truth API', a $100,000-a-month subscription ($60,000 on a three-year deal) that delivers posts from the platform's ten most influential accounts a thousandth of a second before they reach the public feed, in machine-readable JSON that trading algorithms can act on instantly. Those ten accounts are dominated by Trump himself, his sons Don Jr. and Eric, and close allies. TMTG's own pitch deck sells the edge with ten 'market-moving' Trump posts: an April 2025 'THIS IS A GREAT TIME TO BUY' hours before a 90-day tariff pause added $4 trillion to the S&P 500's value; an 'Iran blockade' post that spiked oil more than 9% in a day, and a later 'productive talks' post that sent it back down. Is it legal? US insider-trading law targets non-public information, and this data becomes public anyway, so TMTG argues it's clean, and while executive-branch officials are barred from such conflicts of interest, the President and Vice President are explicitly exempt from that rule (18 U.S.C. §208). The buyers are high-frequency traders, who already place about 60% of US orders and live or die on being first.",
     "ja": "メルが、トランプ・メディア&テクノロジー・グループ(TMTG、ティッカーDJT)の奇妙な新サービスを読み解く。トランプが創業し今も41%を保有する同社は、2026年8月1日からトゥルース・ソーシャルで『Truth API』を売り出す。月額10万ドル(3年契約なら月6万ドル)で、プラットフォームで最も影響力のある上位10アカウントの投稿を、一般フィードに出る1000分の1秒前に、機械が即座に読めるJSON形式で届けるという。その上位10はトランプ本人、息子のドン・ジュニアとエリック、側近たちで占められる。TMTGは投資家向け資料で、トランプの投稿10件を『相場を動かした事例』として売り込む。2025年4月の『今こそ買い時(THIS IS A GREAT TIME TO BUY)』は数時間後の関税90日猶予発表につながり、S&P500の時価総額を4兆ドル押し上げた。『イラン封鎖再開』の投稿は原油を1日で9%超急騰させ、その後の『生産的な対話』の投稿で急落させた。合法か?米国のインサイダー取引規制は未公開情報を問題にするが、この情報はいずれ公開されるためTMTGは適法と主張する。行政府高官はこうした利益相反を禁じられているが、大統領と副大統領は明文で除外(18 U.S.C. §208)される。買い手は米国の注文の約60%を占め、速さで勝負する高頻度取引(HFT)勢だ。",
     "ko": "메르가 트럼프 미디어&테크놀로지 그룹(TMTG, 티커 DJT)의 낯선 새 서비스를 풀어준다. 트럼프가 세우고 지분 41%를 가진 이 회사는 2026년 8월 1일부터 트루스소셜에서 'Truth API'를 판다. 구독료는 월 10만 달러(3년 계약이면 월 6만 달러)이고, 트루스소셜에서 가장 영향력 있는 상위 10개 계정의 게시물을 일반 피드에 뜨기 1/1000초 전에, 기계가 곧바로 읽을 수 있는 JSON 형식으로 먼저 전달한다. 그 상위 10에는 트럼프 본인과 아들 도널드 주니어·에릭, 측근 계정이 압도적이다. TMTG는 투자 설명서에서 트럼프의 게시물 10개를 '시장을 움직인 사례'로 내세운다. 2025년 4월 '지금이 살 때다(THIS IS A GREAT TIME TO BUY)'는 몇 시간 뒤 관세 90일 유예 발표로 이어져 S&P500 시가총액을 4조 달러 늘렸고, '이란 봉쇄 재개' 글은 하루 만에 유가를 9% 넘게 밀어 올렸다가 이후 '생산적 대화' 글로 다시 끌어내렸다. 합법일까? 미국 내부자거래법이 문제 삼는 건 미공개 정보인데, 이 정보는 어차피 공개될 거라 TMTG는 합법이라 주장한다. 행정부 공직자는 이런 이해상충이 금지되지만, 대통령과 부통령은 그 조항(18 U.S.C. §208)에서 명시적으로 제외돼 처벌 규정이 없다. 구독자는 미국 주문의 약 60%를 차지하며 속도로 승부하는 초단타(HFT) 세력이다."
    },
    "why": {
-    "en": "It puts a price tag on proximity to the president's market-moving posts — and shows retail is now outgunned on speed, analysis and information all at once.",
+    "en": "It puts a price tag on proximity to the president's market-moving posts, and shows retail is now outgunned on speed, analysis and information all at once.",
     "ja": "大統領の相場を動かす投稿への『近さ』に値札が付いた。個人投資家は速さ・分析・情報の三方向で同時に劣勢に立たされる。",
     "ko": "대통령의 시장을 흔드는 게시물에 대한 '근접성'에 값이 매겨졌다. 개인은 이제 속도·분석·정보 세 방향에서 동시에 밀린다."
    },
    "ask": {
     "en": "Selling a head start on Trump's posts to HFT firms: clever business, or the market's playing field tilting for good?",
-    "ja": "トランプの投稿の先取りをHFTに売る——巧みな商売か、それとも市場の公平性が崩れる転換点か?",
-    "ko": "트럼프 게시물 선점권을 HFT에 판다 — 영리한 장사일까, 시장 공정성이 무너지는 분기점일까?"
+    "ja": "トランプの投稿の先取りをHFTに売る--巧みな商売か、それとも市場の公平性が崩れる転換点か?",
+    "ko": "트럼프 게시물 선점권을 HFT에 판다, 영리한 장사일까, 시장 공정성이 무너지는 분기점일까?"
    },
    "stance": "watch"
   },
@@ -470,9 +470,9 @@
     "ko": "한화 필리조선소, 첫 미국 방산 수주: '골든돔'용 미사일 추적함 2척"
    },
    "gist": {
-    "en": "Meru walks through why a shipyard Hanwha bought for about $100M just got interesting. On July 17, TOTE Services and Hanwha's Philly Shipyard were picked to build the US Missile Defense Agency's next Missile Range Instrumentation Vessels (MRIVs) — ships that track a missile's speed, altitude and trajectory and feed the data back. Today's fleet is two ancient boats (built 1965 and 1970); the two replacements, reportedly about $2B for the pair, will support Trump's 'Golden Dome' homeland missile shield, with first delivery targeted for 2030. The twist is the structure. TOTE Services — a family-owned outfit run by a 27-year Coast Guard veteran — is the prime contractor managing the program, while Hanwha's Philly yard actually builds the hulls. Why the middleman? A US warship must be built in a US yard under US control (the Byrnes-Tollefson amendment); Philly clears that since it sits on US soil, but Hanwha doesn't yet hold the facility clearance (FCL) to be prime on a Navy job. Meru notes Philly is now hiring a facility security officer, and Hanwha is weighing a $5B upgrade to turn the commercial yard into a real warship builder. The bigger idea: build hulls in Korea, arm them in the US — a split that could help clear the US Navy's shipbuilding backlog, though it needs new law. Meru's one-liner: start as a subcontractor, bank the experience, climb to prime — the $100M Philly bet is starting to earn its keep.",
-    "ja": "メルが、ハンファが約1億ドルで買った造船所がなぜ面白くなってきたのかを整理する。7月17日、TOTEサービスとハンファのフィリー造船所が、米ミサイル防衛局(MDA)の次期ミサイル追跡艦(MRIV)の建造事業者に選ばれた。MRIVはミサイルの速度・高度・軌道を追跡しデータを収集する船だ。現行は1965年と1970年建造の老朽2隻。代替となる2隻は2隻で約20億ドルと報じられ、トランプが進める本土防衛「ゴールデンドーム」を支える。初号艦の引き渡しは2030年目標だ。妙味は座組にある。海軍歴27年の元沿岸警備隊幹部が率いる同族企業TOTEサービスが事業を管理する元請けで、実際に船体を造るのはハンファのフィリー造船所だ。なぜ仲介が要るのか。米軍艦は米国の管理下で米国内の造船所が建造せねばならない(バーンズ・トレフソン修正法)。フィリーは米国内にあるので問題ないが、ハンファは海軍案件の元請けになる施設保安認可(FCL)をまだ持たない。フィリーは今、施設保安責任者(FSO)を採用中で、ハンファは商業造船所を本格的な軍艦建造施設に変えるべく50億ドルの投資を検討している。より大きな構想は、船体は韓国で造り、武装は米国で行う分業だ。米海軍の建造能力不足を補える可能性があるが、追加立法が要る。メルの一行: 下請けで始めて経験を積み、元請けへ上がる — 1億ドルのフィリー投資が値を始めた。",
-    "ko": "메르가 한화가 약 1억달러에 사들인 조선소가 왜 지금 흥미로워졌는지 짚는다. 7월 17일, 토트 서비스와 한화 필리조선소가 미 미사일방어청(MDA)의 차세대 미사일 시험 계측선(MRIV) 건조 사업자로 선정됐다. MRIV는 미사일의 속도·고도·궤적을 추적해 데이터를 수집하는 배다. 지금 운용 중인 건 1965년·1970년에 지은 노후 2척뿐이고, 이를 대체할 2척은 2척에 약 20억달러 규모로 보도됐다. 트럼프가 미 본토 방어용으로 추진하는 '골든돔'을 지원하며, 첫 배 인도는 2030년이 목표다. 묘미는 구조에 있다. 해안경비대 27년 경력자가 이끄는 가족기업 토트 서비스가 사업을 관리하는 원청이고, 실제 선체를 짓는 건 한화의 필리조선소다. 왜 중간에 원청을 두나? 미 군함은 미국 통제 아래 미국 내 조선소가 지어야 한다(번스-톨레프슨 수정법). 필리조선소는 미국 안에 있어 이 요건을 통과하지만, 한화는 해군 사업의 원청이 되는 시설보안인가(FCL)가 아직 없다. 필리조선소는 지금 보안책임자(FSO)를 채용 중이고, 한화는 상업조선소를 본격 군함 건조 시설로 바꾸기 위해 50억달러 투자를 검토하고 있다. 더 큰 그림은 배는 한국에서 만들고 무장은 미국에서 하는 분업이다. 미 해군의 건조 적체를 풀 수 있는 방식이지만 추가 입법이 필요하다. 메르의 한 줄: 하청으로 시작해 경험을 쌓고 원청으로 올라간다 — 1억달러짜리 필리 투자가 값을 하기 시작했다."
+    "en": "Meru walks through why a shipyard Hanwha bought for about $100M just got interesting. On July 17, TOTE Services and Hanwha's Philly Shipyard were picked to build the US Missile Defense Agency's next Missile Range Instrumentation Vessels (MRIVs), ships that track a missile's speed, altitude and trajectory and feed the data back. Today's fleet is two ancient boats (built 1965 and 1970); the two replacements, reportedly about $2B for the pair, will support Trump's 'Golden Dome' homeland missile shield, with first delivery targeted for 2030. The twist is the structure. TOTE Services, a family-owned outfit run by a 27-year Coast Guard veteran, is the prime contractor managing the program, while Hanwha's Philly yard actually builds the hulls. Why the middleman? A US warship must be built in a US yard under US control (the Byrnes-Tollefson amendment); Philly clears that since it sits on US soil, but Hanwha doesn't yet hold the facility clearance (FCL) to be prime on a Navy job. Meru notes Philly is now hiring a facility security officer, and Hanwha is weighing a $5B upgrade to turn the commercial yard into a real warship builder. The bigger idea: build hulls in Korea, arm them in the US, a split that could help clear the US Navy's shipbuilding backlog, though it needs new law. Meru's one-liner: start as a subcontractor, bank the experience, climb to prime, the $100M Philly bet is starting to earn its keep.",
+    "ja": "メルが、ハンファが約1億ドルで買った造船所がなぜ面白くなってきたのかを整理する。7月17日、TOTEサービスとハンファのフィリー造船所が、米ミサイル防衛局(MDA)の次期ミサイル追跡艦(MRIV)の建造事業者に選ばれた。MRIVはミサイルの速度・高度・軌道を追跡しデータを収集する船だ。現行は1965年と1970年建造の老朽2隻。代替となる2隻は2隻で約20億ドルと報じられ、トランプが進める本土防衛「ゴールデンドーム」を支える。初号艦の引き渡しは2030年目標だ。妙味は座組にある。海軍歴27年の元沿岸警備隊幹部が率いる同族企業TOTEサービスが事業を管理する元請けで、実際に船体を造るのはハンファのフィリー造船所だ。なぜ仲介が要るのか。米軍艦は米国の管理下で米国内の造船所が建造せねばならない(バーンズ・トレフソン修正法)。フィリーは米国内にあるので問題ないが、ハンファは海軍案件の元請けになる施設保安認可(FCL)をまだ持たない。フィリーは今、施設保安責任者(FSO)を採用中で、ハンファは商業造船所を本格的な軍艦建造施設に変えるべく50億ドルの投資を検討している。より大きな構想は、船体は韓国で造り、武装は米国で行う分業だ。米海軍の建造能力不足を補える可能性があるが、追加立法が要る。メルの一行: 下請けで始めて経験を積み、元請けへ上がる、1億ドルのフィリー投資が値を始めた。",
+    "ko": "메르가 한화가 약 1억달러에 사들인 조선소가 왜 지금 흥미로워졌는지 짚는다. 7월 17일, 토트 서비스와 한화 필리조선소가 미 미사일방어청(MDA)의 차세대 미사일 시험 계측선(MRIV) 건조 사업자로 선정됐다. MRIV는 미사일의 속도·고도·궤적을 추적해 데이터를 수집하는 배다. 지금 운용 중인 건 1965년·1970년에 지은 노후 2척뿐이고, 이를 대체할 2척은 2척에 약 20억달러 규모로 보도됐다. 트럼프가 미 본토 방어용으로 추진하는 '골든돔'을 지원하며, 첫 배 인도는 2030년이 목표다. 묘미는 구조에 있다. 해안경비대 27년 경력자가 이끄는 가족기업 토트 서비스가 사업을 관리하는 원청이고, 실제 선체를 짓는 건 한화의 필리조선소다. 왜 중간에 원청을 두나? 미 군함은 미국 통제 아래 미국 내 조선소가 지어야 한다(번스-톨레프슨 수정법). 필리조선소는 미국 안에 있어 이 요건을 통과하지만, 한화는 해군 사업의 원청이 되는 시설보안인가(FCL)가 아직 없다. 필리조선소는 지금 보안책임자(FSO)를 채용 중이고, 한화는 상업조선소를 본격 군함 건조 시설로 바꾸기 위해 50억달러 투자를 검토하고 있다. 더 큰 그림은 배는 한국에서 만들고 무장은 미국에서 하는 분업이다. 미 해군의 건조 적체를 풀 수 있는 방식이지만 추가 입법이 필요하다. 메르의 한 줄: 하청으로 시작해 경험을 쌓고 원청으로 올라간다, 1억달러짜리 필리 투자가 값을 하기 시작했다."
    },
    "why": {
     "en": "US defense shipbuilding is a supply chain you enter once and keep selling into. This is Korea's foot in the door and a fresh growth leg for Hanwha's defense story.",
@@ -762,7 +762,7 @@
    },
    "gist": {
     "ko": "세레니티가 소개한 메리츠증권 김선우 연구원의 리포트 요지는 간단하다. 시장이 반도체를 과도하게 오해하고 있고, D램 부족은 오히려 올해 하반기부터 더 심해진다는 것이다.\n\n숫자가 인상적이다. 2026년 하반기에는 공급사들이 D램 수요의 75~80%밖에 못 채우고, 2027년에는 충족률이 60%대까지 떨어질 것으로 본다. 리포트에 첨부된 시장 전망 기준으로 SK하이닉스의 2027년 예상 PER은 3.5배, 삼성전자는 3.9배다. 부족이 심해지는데 밸류에이션은 역사적 저점 수준이라는 얘기다.\n\n세레니티는 여기에 두 가지 근거를 보탠다. 인텔 CEO가 \"적어도 2028년까지는 메모리 공급도 가격도 풀리지 않는다\"고 말했고, 마이크론은 대형 고객들과 16건의 장기공급계약(LTA)을 맺었는데 상당수가 안 가져가도 돈을 내는 take-or-pay 조건이다. 메모리 수요가 일시적 붐이 아니라 구조적이라는 신호들이다.",
-    "en": "Serenity highlights a Meritz Securities report by analyst Kim Sunwoo with a simple thesis: the market is badly misreading semis, and the DRAM shortage gets worse from here, not better.\n\nThe numbers are striking. In H2 2026, suppliers can fulfill only 75–80% of DRAM demand; by 2027, fulfillment falls into the 60% range. The market forecasts attached to the report put SK Hynix at a 3.5x 2027 P/E and Samsung at 3.9x, a deepening shortage priced at near-historic-low valuations.\n\nSerenity adds two corroborating signals: Intel's CEO said there will be \"no relief in memory supply or pricing until at least 2028,\" and Micron has signed 16 long-term agreements (LTAs) with major customers, many on take-or-pay terms, customers pay whether they take the chips or not. Signs that memory demand is structural, not a passing boom.",
+    "en": "Serenity highlights a Meritz Securities report by analyst Kim Sunwoo with a simple thesis: the market is badly misreading semis, and the DRAM shortage gets worse from here, not better.\n\nThe numbers are striking. In H2 2026, suppliers can fulfill only 75-80% of DRAM demand; by 2027, fulfillment falls into the 60% range. The market forecasts attached to the report put SK Hynix at a 3.5x 2027 P/E and Samsung at 3.9x, a deepening shortage priced at near-historic-low valuations.\n\nSerenity adds two corroborating signals: Intel's CEO said there will be \"no relief in memory supply or pricing until at least 2028,\" and Micron has signed 16 long-term agreements (LTAs) with major customers, many on take-or-pay terms, customers pay whether they take the chips or not. Signs that memory demand is structural, not a passing boom.",
     "ja": "セレニティが紹介したメリッツ証券キム・ソヌ氏のリポートの主張はシンプルだ。市場は半導体をひどく誤解しており、DRAM不足はむしろ今年後半から深刻化する。\n\n数字が印象的だ。2026年下期、サプライヤーはDRAM需要の75~80%しか満たせず、2027年には充足率が60%台まで低下する見通し。リポート添付の市場予想では、SKハイニックスの2027年予想PERは3.5倍、サムスンは3.9倍。不足が深まるのに、バリュエーションは歴史的低水準という話だ。\n\nセレニティは2つの根拠を加える。インテルCEOは「少なくとも2028年までメモリの供給も価格も緩和しない」と発言し、マイクロンは大口顧客と16件のLTA(長期供給契約)を締結、多くが引き取らなくても支払うtake-or-pay条件だ。メモリ需要が一過性ではなく構造的である証左だ。"
    },
    "why": {
@@ -779,7 +779,7 @@
     "status": "pending",
     "note": {
      "ko": "2026 하반기 D램 공급 충족률 75~80% 전망을 추적합니다",
-     "en": "Tracking the call that H2 2026 DRAM supply covers only 75–80% of demand",
+     "en": "Tracking the call that H2 2026 DRAM supply covers only 75-80% of demand",
      "ja": "2026年下期DRAM充足率75~80%予測を追跡します"
     }
    }
@@ -3683,7 +3683,7 @@
    },
    "longDesc": {
     "ko": "이스라엘의 '아이언돔'을 본떠 트럼프 행정부가 추진하는 미국 본토 미사일 방어 구상이다. 우주 기반 센서와 요격체까지 아우르는 대규모 다층 방어망을 목표로 한다. 방위비 증액과 방산·우주·조선 업체들의 수주로 이어지기 때문에 투자 관점에서 주목받는다.",
-    "en": "A US homeland missile-defense initiative pushed by the Trump administration, modeled loosely on Israel's 'Iron Dome' but far larger — a multi-layer shield reaching to space-based sensors and interceptors. Investors watch it because it drives higher defense budgets and contracts for defense, space and shipbuilding firms.",
+    "en": "A US homeland missile-defense initiative pushed by the Trump administration, modeled loosely on Israel's 'Iron Dome' but far larger, a multi-layer shield reaching to space-based sensors and interceptors. Investors watch it because it drives higher defense budgets and contracts for defense, space and shipbuilding firms.",
     "ja": "トランプ政権が進める米本土向けミサイル防衛構想。イスラエルの「アイアンドーム」を参考にしつつ、宇宙配備のセンサーや迎撃体まで含む大規模な多層防衛網を目指す。防衛費の増加や防衛・宇宙・造船企業の受注につながるため、投資家が注目する。"
    },
    "aliases": [
@@ -3753,7 +3753,7 @@
    },
    "longDesc": {
     "ko": "High-Frequency Trading, 초단타매매. 컴퓨터가 시장 데이터를 실시간 분석해 1000분의 1초 단위로 수백만 건의 주문을 내는 거래 방식이다. 같은 가격이면 먼저 낸 주문이 체결되는 '시간 우선' 원칙 때문에 속도가 곧 수익이며, 2026년 현재 미국 주식 주문의 약 60%를 차지한다. 개인 투자자가 정보를 조금이라도 늦게 받으면 구조적으로 불리해지는 이유다.",
-    "en": "High-frequency trading uses computers to analyze market data in real time and fire millions of orders in thousandths of a second. Because exchanges fill same-price orders on a 'time priority' basis, speed is money — and HFT now accounts for roughly 60% of US stock orders. It is why receiving information even a fraction later leaves a retail investor structurally disadvantaged.",
+    "en": "High-frequency trading uses computers to analyze market data in real time and fire millions of orders in thousandths of a second. Because exchanges fill same-price orders on a 'time priority' basis, speed is money, and HFT now accounts for roughly 60% of US stock orders. It is why receiving information even a fraction later leaves a retail investor structurally disadvantaged.",
     "ja": "高頻度取引。コンピューターが市場データをリアルタイム分析し、1000分の1秒単位で数百万件の注文を出す手法。同じ価格なら先に出した注文が約定する『時間優先』の原則ゆえ、速さがそのまま収益になる。2026年時点で米国株の注文の約60%を占め、情報を少しでも遅く受け取る個人投資家が構造的に不利になる理由でもある。"
    },
    "aliases": [
@@ -3778,12 +3778,12 @@
    },
    "desc": {
     "ko": "발전·난방·수송·산업까지 경제가 태우는 에너지 전체를 재는 지표. 전기만 보는 것과 다르다.",
-    "en": "The total energy an economy consumes across power, heat, transport and industry — a broader gauge than electricity alone.",
+    "en": "The total energy an economy consumes across power, heat, transport and industry, a broader gauge than electricity alone.",
     "ja": "発電・暖房・輸送・産業まで、経済が消費するエネルギー全体を測る指標。電力だけを見るのとは異なる。"
    },
    "longDesc": {
     "ko": "1차 에너지는 석유·가스·석탄·원자력·수력·태양광·풍력 등 모든 에너지원을 합쳐 한 나라가 실제로 쓰는 에너지 총량을 잰다. 태양광·풍력은 '전기'에서는 비중이 크게 보이지만, 전기는 전체 에너지의 일부일 뿐이라 1차 에너지로 보면 아직 작다. 그래서 '전기 믹스'와 '1차 에너지 믹스'를 혼동하면 에너지 전환 속도를 크게 오해할 수 있다.",
-    "en": "Primary energy sums up every source — oil, gas, coal, nuclear, hydro, solar, wind — to measure the total energy a country actually uses. Solar and wind loom large in the 'electricity' mix, but electricity is only a slice of total energy, so on a primary-energy basis renewables are still small. Confusing the electricity mix with the primary-energy mix can badly overstate how fast the transition is moving.",
+    "en": "Primary energy sums up every source, oil, gas, coal, nuclear, hydro, solar, wind, to measure the total energy a country actually uses. Solar and wind loom large in the 'electricity' mix, but electricity is only a slice of total energy, so on a primary-energy basis renewables are still small. Confusing the electricity mix with the primary-energy mix can badly overstate how fast the transition is moving.",
     "ja": "一次エネルギーは石油・ガス・石炭・原子力・水力・太陽光・風力などすべての源を合計し、国が実際に使うエネルギーの総量を測る。太陽光や風力は『電力』では大きく見えるが、電力はエネルギー全体の一部にすぎず、一次エネルギーで見れば再エネはまだ小さい。電力ミックスと一次エネルギーミックスを混同すると、移行の速さを大きく誤解しかねない。"
    },
    "aliases": [
@@ -3833,7 +3833,7 @@
    "website": "https://www.spacex.com",
    "longDesc": {
     "ko": "2002년 일론 머스크가 세운 우주·항공 기업. 로켓과 위성을 만들고 스타링크 위성 인터넷망을 운영한다. 오랫동안 세계에서 가장 비싼 비상장 기업으로 꼽히다가 2026년 6월 나스닥에 사상 최대 규모로 상장했다. 스타십과 xAI 관련 대규모 투자처럼 자본이 많이 드는 미래 계획에 회사의 운명이 걸려 있어, 주식이든 채권이든 당장의 현금흐름보다 서사와 자금 조달 여건에 크게 흔들린다.",
-    "en": "Space Exploration Technologies (SpaceX), founded by Elon Musk in 2002, builds rockets and satellites and runs the Starlink broadband network. After years as the world's most valuable private company, it listed on the Nasdaq in June 2026 in a record-breaking IPO. Because its future rests on ambitious, capital-heavy bets like Starship and the xAI-linked buildout, it trades — in both stock and bonds — as much on narrative and financing conditions as on today's cash flow.",
+    "en": "Space Exploration Technologies (SpaceX), founded by Elon Musk in 2002, builds rockets and satellites and runs the Starlink broadband network. After years as the world's most valuable private company, it listed on the Nasdaq in June 2026 in a record-breaking IPO. Because its future rests on ambitious, capital-heavy bets like Starship and the xAI-linked buildout, it trades, in both stock and bonds, as much on narrative and financing conditions as on today's cash flow.",
     "ja": "2002年にイーロン・マスクが設立した宇宙・航空企業。ロケットと衛星を製造し、衛星インターネット網スターリンクを運営する。長年世界で最も価値の高い未上場企業とされてきたが、2026年6月にナスダックへ史上最大規模で上場した。スターシップやxAI関連の巨額投資など資本集約的な将来計画に命運がかかり、株も債券も足元のキャッシュフロー以上に物語と資金調達環境で動く。"
    },
    "founded": "2002",
@@ -3853,7 +3853,7 @@
    },
    "longDesc": {
     "ko": "듀레이션은 대략 채권의 평균 회수 기간이자, 금리 변화에 대한 가격 민감도를 뜻한다. 듀레이션이 길수록(만기가 멀수록) 금리가 조금만 올라도 가격이 크게 떨어진다. 예컨대 듀레이션 13년짜리 채권은 금리가 0.72%p 오르면 값이 약 9% 내리는데, 만기가 긴 채권일수록 금리 위험이 큰 이유가 여기에 있다.",
-    "en": "Duration is roughly a bond's average payback period and, crucially, its price sensitivity to interest rates: the longer the duration, the more the price falls when yields rise. A bond with a 13-year duration loses about 9% of its value if yields climb 0.72 points — which is why long-dated bonds carry far more interest-rate risk than short ones.",
+    "en": "Duration is roughly a bond's average payback period and, crucially, its price sensitivity to interest rates: the longer the duration, the more the price falls when yields rise. A bond with a 13-year duration loses about 9% of its value if yields climb 0.72 points, which is why long-dated bonds carry far more interest-rate risk than short ones.",
     "ja": "デュレーションはおおよそ債券の平均回収期間であり、金利変化に対する価格感応度を表す。デュレーションが長いほど(満期が遠いほど)、金利が少し上がるだけで価格は大きく下がる。デュレーション13年の債券は利回りが0.72pt上がると約9%値下がりし、長期債ほど金利リスクが大きいのはこのためだ。"
    },
    "aliases": [
@@ -3882,7 +3882,7 @@
    },
    "longDesc": {
     "ko": "크레딧 스프레드(신용 스프레드)는 회사채 금리에서 같은 만기 국채 금리를 뺀 값으로, 시장이 그 회사의 부도 위험에 매기는 가격이다. 스프레드가 좁아지면 회사는 이자를 덜 내고 돈을 빌릴 수 있고, 넓어지면 위험이 커졌다는 신호다. 발행 때 스프레드를 25bp 줄이면 회사는 이자를 아끼지만, 유통시장에서 스프레드가 다시 벌어지면 그 채권을 산 투자자는 손실을 본다.",
-    "en": "A credit spread is a corporate bond's yield minus the yield on a government bond of the same maturity — the market's price for the issuer's default risk. A narrower spread lets a company borrow more cheaply; a widening spread signals rising risk. Shaving 25 basis points off the spread at issuance saves the company interest, but if the spread widens again in the secondary market, the investors who bought the bond take the loss.",
+    "en": "A credit spread is a corporate bond's yield minus the yield on a government bond of the same maturity, the market's price for the issuer's default risk. A narrower spread lets a company borrow more cheaply; a widening spread signals rising risk. Shaving 25 basis points off the spread at issuance saves the company interest, but if the spread widens again in the secondary market, the investors who bought the bond take the loss.",
     "ja": "クレジットスプレッドは、社債の利回りから同じ満期の国債利回りを引いた値で、市場がその企業の債務不履行リスクに付ける価格だ。スプレッドが縮めば企業は低い金利で借りられ、広がればリスク上昇のサインとなる。発行時にスプレッドを25bp縮めれば企業は利払いを抑えられるが、流通市場で再び広がれば、その債券を買った投資家が損失を被る。"
    },
    "aliases": [
