@@ -1,6 +1,53 @@
 {
  "items": [
   {
+   "date": "2026-07-19",
+   "id": "serenity-ai-capex-runway",
+   "thumbWiki": "Data center",
+   "related": [
+    "serenity-innolight-gs",
+    "nbis",
+    "doomberg-bloom"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2078914447180263438",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "cover": {
+    "from": "#7A4DFF",
+    "to": "#B44DFF",
+    "label": "AI CAPEX"
+   },
+   "avatarImg": "serenity.jpg",
+   "tags": [
+    "AI CAPEX",
+    "COMPUTE",
+    "NEOCLOUD"
+   ],
+   "title": {
+    "en": "Serenity smells more AI capex coming — frontier models are out of capacity",
+    "ko": "세레니티, 'AI 설비투자가 더 온다' — 프런티어 모델이 수요에 밀려 용량 부족",
+    "ja": "セレニティ「AI設備投資はまだ増える」— フロンティアモデルが需要で容量不足に"
+   },
+   "gist": {
+    "en": "On a quiet Sunday, Serenity drops a one-liner with a big read-through: there is nothing quite like the scent of more AI capex, and there are probably some ways to go if leading frontier models are out of capacity from too much demand. The frame is simple. If the best AI models are turning away demand because they have run out of compute, the bottleneck is not appetite — it is capacity. And the only cure for a capacity shortage is more spending on chips, data centers and power. The timing lines up with the news flow: hyperscalers are steering toward roughly $700B of AI capex in 2026, and reports this week say Meta is in talks to lease about $10B of compute to Anthropic — a rival literally renting a rival's infrastructure because nobody has enough. Serenity's implicit bet is that the capex cycle has further to run, which is bullish for the whole AI-infrastructure stack: GPUs, optical interconnects, memory, and the neoclouds that rent capacity out. The counter-case is that demand-driven spending eventually meets a digestion phase — but as long as frontier labs stay capacity-constrained, the buildout keeps feeding itself.",
+    "ko": "조용한 일요일, 세레니티가 한 줄로 큰 함의를 던진다. 더 많은 AI 설비투자의 냄새만큼 좋은 건 없다, 그리고 선두 프런티어 모델들이 수요가 너무 많아 용량이 바닥났다면 아직 갈 길이 남았다는 것. 논리는 단순하다. 최고 성능의 AI 모델이 연산 자원이 모자라 들어오는 수요를 되돌려 보내고 있다면, 병목은 수요가 아니라 용량이다. 그리고 용량 부족의 유일한 처방은 칩·데이터센터·전력에 대한 더 많은 지출이다. 시점도 뉴스 흐름과 맞아떨어진다. 하이퍼스케일러들은 2026년 약 7,000억 달러 규모의 AI 설비투자로 향하고 있고, 이번 주 보도에 따르면 메타는 앤스로픽에 약 100억 달러 규모의 연산 자원을 임대하는 협상을 벌이고 있다. 경쟁사가 경쟁사의 인프라를 빌리는 상황 — 아무도 충분한 용량을 갖고 있지 않기 때문이다. 세레니티의 암묵적 베팅은 설비투자 사이클이 아직 더 갈 여지가 있다는 것이고, 이는 GPU·광통신·메모리, 그리고 용량을 빌려주는 네오클라우드까지 AI 인프라 스택 전체에 강세 신호다. 반론은 수요 주도 지출도 결국 소화 국면을 만난다는 것 — 다만 프런티어 랩들이 용량 제약에 걸려 있는 한, 인프라 구축은 스스로를 계속 먹여 살린다.",
+    "ja": "静かな日曜日、セレニティが一行で大きな含意を投げる。さらなるAI設備投資の匂いほど良いものはない、そして先頭のフロンティアモデルが需要過多で容量切れなら、まだ先は長い、と。論理は単純だ。最高性能のAIモデルが計算資源不足で入ってくる需要を断っているなら、ボトルネックは需要ではなく容量だ。そして容量不足の唯一の処方箋は、チップ・データセンター・電力へのさらなる支出である。タイミングもニュースの流れと一致する。ハイパースケーラーは2026年に約7,000億ドル規模のAI設備投資へ向かっており、今週の報道ではMetaがAnthropicに約100億ドルの計算資源をリースする交渉中だという。ライバルがライバルのインフラを借りる — 誰も十分な容量を持っていないからだ。セレニティの暗黙の賭けは、設備投資サイクルにまだ余地があるということで、これはGPU・光通信・メモリ、そして容量を貸し出すネオクラウドまで、AIインフラ・スタック全体への強気シグナルだ。反論は、需要主導の支出もいずれ消化局面を迎えるというもの — ただしフロンティアのラボが容量制約に縛られている限り、構築は自らを養い続ける。"
+   },
+   "why": {
+    "en": "When frontier models turn away demand for lack of compute, the bottleneck is capacity — and the only fix is more capex, which flows straight to the AI-infrastructure chain.",
+    "ko": "프런티어 모델이 연산 부족으로 수요를 되돌려 보낼 때 병목은 용량이고, 유일한 해법은 더 많은 설비투자다 — 그 돈은 곧장 AI 인프라 체인으로 흐른다.",
+    "ja": "フロンティアモデルが計算不足で需要を断るとき、ボトルネックは容量であり、唯一の解決策はさらなる設備投資 — その資金はAIインフラ・チェーンへ直行する。"
+   },
+   "ask": {
+    "en": "Capacity-constrained AI demand — a durable capex supercycle, or a bubble waiting to digest?",
+    "ko": "용량에 막힌 AI 수요 — 지속되는 설비투자 슈퍼사이클일까, 소화를 기다리는 거품일까?",
+    "ja": "容量に縛られたAI需要 — 続く設備投資スーパーサイクルか、消化を待つバブルか?"
+   },
+   "stance": "bull"
+  },
+  {
    "date": "2026-07-20",
    "id": "meru-spacex-bonds",
    "thumbWiki": "SpaceX",
