@@ -4,9 +4,10 @@
 #   everything is committed and pushed. Sole publisher of items.json.
 name: Stacks Scout (auto-publish)
 
+# NOTE: schedule removed — the live publisher is the session-based Routine
+# "Stacks 자동 발행 파이프라인 v4.3" (every 3h at :40). This workflow is a manual
+# fallback only (workflow_dispatch); it needs the ANTHROPIC_API_KEY secret.
 on:
-  schedule:
-    - cron: "30 */3 * * *"   # every 3h at :30 (feed-sync runs hourly at :17)
   workflow_dispatch:
     inputs:
       max_new:
