@@ -732,6 +732,53 @@ def robots():
 def main():
     import os
     d = json.load(open("items.json", encoding="utf-8"))
+    # --- Stacks house rule: em/en dashes are BANNED site-wide. Strip them at
+    # build time so the site self-heals no matter what the generator produced. ---
+    def _dedash(t, lang):
+        if not t:
+            return t
+        sep = "\u3001" if lang == "ja" else ", "
+        t = re.sub(r"\s+[\u2014\u2013\u2015]\s+", sep, t)
+        t = re.sub(r"[\u2014\u2013\u2015]", "-", t)
+        if lang == "ja":
+            t = t.replace("\u3001\u3001", "\u3001")
+        else:
+            t = re.sub(r",\s*,", ", ", t)
+            t = t.replace(" ,", ",")
+        return t.strip()
+    def _sanitize_dashes(doc):
+        changed = False
+        for it in doc.get("items", []):
+            fields = [it.get("title"), it.get("gist"), it.get("why"), it.get("ask")]
+            oc = it.get("outcome")
+            if isinstance(oc, dict):
+                fields.append(oc.get("note"))
+            for val in fields:
+                if isinstance(val, dict):
+                    for lg in list(val.keys()):
+                        nv = _dedash(val.get(lg) or "", lg)
+                        if nv != val.get(lg):
+                            val[lg] = nv; changed = True
+            cov = it.get("cover")
+            if isinstance(cov, dict) and isinstance(cov.get("label"), str):
+                nl = re.sub(r"[\u2014\u2013\u2015]", " ", cov["label"]).strip()
+                if nl != cov["label"]:
+                    cov["label"] = nl; changed = True
+        ents = doc.get("entities", {})
+        if isinstance(ents, dict):
+            for e in ents.values():
+                if isinstance(e, dict):
+                    for fld in ("desc", "longDesc", "sector", "ceo", "hq"):
+                        val = e.get(fld)
+                        if isinstance(val, dict):
+                            for lg in list(val.keys()):
+                                nv = _dedash(val.get(lg) or "", lg)
+                                if nv != val.get(lg):
+                                    val[lg] = nv; changed = True
+        return changed
+    if _sanitize_dashes(d):
+        json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("[dedash] em/en dashes stripped from items.json")
     items = d["items"]
     entities = d.get("entities", {}) or {}
     items = sorted(items, key=lambda x: x.get("date", ""), reverse=True)
