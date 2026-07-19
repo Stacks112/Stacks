@@ -1,0 +1,53 @@
+name: OG card images
+
+# Fetches subject images (Wikipedia photos / company logos) for the share
+# cards and regenerates og/. Runs on a GitHub runner, which — unlike the
+# publishing sandbox — has open network access.
+
+on:
+  schedule:
+    - cron: "20 */6 * * *"     # a few times a day
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "items.json"
+      - "scripts/build_pages.py"
+      - "scripts/fetch_og_assets.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: og-assets
+  cancel-in-progress: false
+
+jobs:
+  og:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch subject images + rebuild cards
+        run: |
+          pip install requests pillow --quiet
+          python scripts/fetch_og_assets.py
+          rm -f og/*.png
+          python scripts/build_pages.py
+
+      - name: Commit card images (if any)
+        run: |
+          git config user.name "stacks-og-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ogsrc/ og/ p/ e/ articles.html 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            git pull --rebase --autostash origin main || true
+            git commit -m "chore: refresh OG card images"
+            git push
+          fi
