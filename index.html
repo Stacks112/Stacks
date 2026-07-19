@@ -261,7 +261,7 @@ const STRINGS = {
     myFeedEmpty: "You're not following anything yet. Follow companies and stories and they'll gather here.",
     myFeedReason: "Following",
     myFeedReasonS: "Story",
-    myFeedBasis: "Built from what you follow — tap a chip to open it, × to remove:",
+    myFeedBasis: "Built from what you follow. Tap a chip to open it, × to remove:",
     myFeedManage: "Edit interests",
     todayLabel: "Today's debate",
     todayJoin: "Join the discussion",
@@ -278,7 +278,7 @@ const STRINGS = {
     meInterests: "Your interests",
     meInterestsSub: "Toggle a topic to follow or unfollow its companies and stories.",
     meNav: "My Page",
-    meNone: "—",
+    meNone: "-",
     reply: "Reply",
     replyingTo: "Replying to {name}",
     cancel: "Cancel",
@@ -405,7 +405,7 @@ const STRINGS = {
     myFeedEmpty: "아직 팔로우한 게 없어요. 관심 회사와 시리즈를 팔로우하면 여기 모아 보여드려요.",
     myFeedReason: "팔로우",
     myFeedReasonS: "시리즈",
-    myFeedBasis: "내가 팔로우한 아래 항목 기준으로 자동 구성돼요 — 칩을 누르면 열리고, ×로 제외:",
+    myFeedBasis: "내가 팔로우한 아래 항목 기준으로 자동 구성돼요. 칩을 누르면 열리고, ×로 제외:",
     myFeedManage: "관심사 편집",
     todayLabel: "오늘의 토론",
     todayJoin: "의견 남기기",
@@ -422,7 +422,7 @@ const STRINGS = {
     meInterests: "내 관심사",
     meInterestsSub: "주제를 켜고 끄면 해당 회사·시리즈를 팔로우하거나 해제합니다.",
     meNav: "마이페이지",
-    meNone: "—",
+    meNone: "-",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
     cancel: "취소",
@@ -549,7 +549,7 @@ const STRINGS = {
     myFeedEmpty: "まだ何もフォローしていません。企業やストーリーをフォローするとここにまとまります。",
     myFeedReason: "フォロー",
     myFeedReasonS: "ストーリー",
-    myFeedBasis: "フォロー中の項目から自動構成 — チップで開く、×で除外:",
+    myFeedBasis: "フォロー中の項目から自動構成。チップで開く、×で除外:",
     myFeedManage: "興味を編集",
     todayLabel: "今日の議論",
     todayJoin: "意見を書く",
@@ -566,7 +566,7 @@ const STRINGS = {
     meInterests: "興味・関心",
     meInterestsSub: "テーマをオン/オフすると関連企業・ストーリーをフォロー/解除します。",
     meNav: "マイページ",
-    meNone: "—",
+    meNone: "-",
     reply: "返信",
     replyingTo: "{name}さんに返信",
     cancel: "キャンセル",
@@ -2852,7 +2852,7 @@ async function renderScoreboard(list, S){
 
   const medal = ri => ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1);
   const accHtml = r => {
-    if (r.acc == null) return '<span class="sb-acc-v" style="color:var(--muted)">–</span>';
+    if (r.acc == null) return '<span class="sb-acc-v" style="color:var(--muted)">-</span>';
     const pct = Math.round(r.acc * 100);
     const col = pct >= 60 ? "#0E9F5E" : pct >= 40 ? "var(--muted)" : "#E04438";
     return '<span class="sb-acc-v" style="color:' + col + '">' + pct + '%</span><span class="sb-acc-n">' + r.match + "/" + r.scored + "</span>";
@@ -2894,7 +2894,7 @@ async function renderScoreboard(list, S){
     const res = sinceMap[i.id];
     const since = res
       ? '<span class="sb-since"><b style="color:' + (res.pct >= 0 ? "#12B76A" : "#F04438") + '">' + (res.pct >= 0 ? "+" : "") + res.pct.toFixed(1) + "%</b></span>"
-      : '<span class="sb-since">–</span>';
+      : '<span class="sb-since">-</span>';
     const oc = i.outcome
       ? '<span class="oc oc-' + i.outcome.status + ' sb-oc">' + ({ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[i.outcome.status] || "") + "</span>" : "";
     return '<button class="sb-item" onclick="goToItem(\'' + i.id + '\')">'
