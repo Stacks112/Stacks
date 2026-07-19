@@ -34,6 +34,9 @@ FEEDS = [
     # text; item links point at the original x.com posts)
     {"id": "serenity", "url": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml", "naver": False},
     {"id": "serenity_substack", "url": "https://aleabitoreddit.substack.com/feed", "naver": False},
+    {"id": "goto", "url": "https://note.com/goto_finance/rss", "naver": False},
+    {"id": "semianalysis", "url": "https://newsletter.semianalysis.com/feed", "naver": False},
+    {"id": "tesuta", "url": "https://rss.app/feeds/u6twTSFkvGHn7Tlw.xml", "naver": False},
 ]
 
 
