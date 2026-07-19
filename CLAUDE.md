@@ -60,10 +60,14 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 - `index.html` (루트) — 프론트엔드 SPA.
 
 ## 피드 소스 (fetch_feeds.py FEEDS)
-- meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 스냅샷 정상.
-- doomberg/netinterest(EN, Substack) — 2026-07-19 UA 수정으로 복구 예정.
-- serenity(rss.app 브리지) — 무료피드 만료로 실패 중. rss.app 저장/재발급 필요.
-- serenity_substack(EN).
+- meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
+- doomberg/netinterest(EN, Substack) — 브라우저 UA로 정상.
+- serenity(rss.app 브리지, X @aleabitoreddit) · serenity_substack(EN) — 정상(트라이얼, ~7/24 결제 전환 필요).
+- goto(JA, note.com/goto_finance) — 後藤達也. 유료라 미리보기(~60자)만 → 카드 짧음(scout 200자 예외 필요).
+- semianalysis(EN, Substack) — Dylan Patel. 전문 제공·고품질이나 발행 드묾(7일↑면 feeds 빔).
+- tesuta(JA, rss.app X @tesuta001) — テスタ. 대부분 잡담·리트윗 → 명백한 시장분석일 때만.
+- ★신규 3종(goto/semianalysis/tesuta)은 v4.3 루틴 프롬프트에도 영구 등록해야 자동
+  카드화됨. 방법: claude/new-sources-2026-07-19.md 참조.
 
 ## 예약 루틴 (발행·알림 — 레포 밖, Claude 예약 작업)
 - **자동 발행 파이프라인 v4.3** — 3h @ :40. 유일한 발행자.
