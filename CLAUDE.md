@@ -49,6 +49,22 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   desc·longDesc 3개국어). 루틴 프롬프트 [4] 용어 규칙도 기준을 낮춰 term을 더 많이
   추가하게 할 것. 자세한 후속 메모: 프로젝트 `claude/house-rules-and-followups-2026-07-19.md`.
 
+## 자동화: 레지스트리 (수동 프롬프트 편집 없애기 — june 요구)
+
+소스·용어·회사 메타데이터를 v4.3 루틴 프롬프트에 하드코딩하지 말 것. 레포의 데이터
+파일에 두고 코드가 읽게 한다. 그러면 추가·이름변경이 코드(파일) 편집만으로 끝나고
+루틴 프롬프트는 다시 안 고쳐도 된다.
+
+- **`sources.json`(루트)** — 저자/소스 레지스트리(단일 진실 출처). feed_id → source(표시명)
+  ·lang·category·avatarImg·wiki·notes. scout.py가 여기서 SOURCE_META를 읽는다. v4.3 루틴도
+  [4]에서 이 파일을 읽어 source 등을 채우도록 되어 있어야 한다(프롬프트 1회 전환 후 고정).
+  **소스 추가·이름변경 = sources.json만 수정.**
+- **`glossary.json`(루트)** — 용어 사전. build_pages가 items.json entities로 병합 → 앱 툴팁
+  + SEO 링크. **용어 추가 = glossary.json만 수정.** (프롬프트 불필요.)
+- **회사/인물 엔티티**도 필요하면 같은 패턴으로 seed 파일 + build_pages 병합 가능(무프롬프트).
+- 원칙: 늘어나는 데이터(소스·용어·회사)는 전부 레지스트리 파일로. 루틴 프롬프트는
+  토큰(비공개)과 '레지스트리를 읽어 처리하라'는 얇은 지시만 남긴다.
+
 ## 배포/도메인
 - 레포: `Stacks112/Stacks` · 도메인: `stacksdaily.com`
 - 워커: `stacks-comments.wnrakrhdn128.workers.dev` (댓글·투표·푸시)
