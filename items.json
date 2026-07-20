@@ -3981,7 +3981,7 @@
     "設備投資"
    ],
    "desc": {
-    "en": "Capital expenditure — money a company spends on long-lived assets like data centers, chips, and factories.",
+    "en": "Capital expenditure, money a company spends on long-lived assets like data centers, chips, and factories.",
     "ko": "자본지출. 데이터센터·반도체·공장처럼 오래 쓰는 자산에 기업이 투자하는 돈.",
     "ja": "設備投資。データセンターや半導体、工場など長期資産に企業が投じる資金。"
    },
@@ -4053,7 +4053,7 @@
     "倍率"
    ],
    "desc": {
-    "en": "A valuation ratio (like P/E) — how many times earnings or sales investors pay for a stock.",
+    "en": "A valuation ratio (like P/E), how many times earnings or sales investors pay for a stock.",
     "ko": "밸류에이션 배수(PER 등). 투자자가 이익·매출의 몇 배를 주고 주식을 사는지.",
     "ja": "バリュエーション倍率(PER等)。投資家が利益や売上の何倍を払って株を買うか。"
    },
@@ -4157,7 +4157,7 @@
     "ja": "空売り勢が慌てて買い戻し、ポジションを解消することで起きる急騰。"
    },
    "longDesc": {
-    "en": "As the price rises, shorts face mounting losses and must buy, which pushes the price higher still — a feedback loop. Squeezes are violent but often fade once forced buying is exhausted.",
+    "en": "As the price rises, shorts face mounting losses and must buy, which pushes the price higher still, a feedback loop. Squeezes are violent but often fade once forced buying is exhausted.",
     "ko": "주가가 오르면 공매도는 손실이 커져 매수해야 하고, 그 매수가 주가를 더 밀어올리는 되먹임이 생긴다. 스퀴즈는 격렬하지만 강제 매수가 소진되면 보통 사그라든다.",
     "ja": "株価が上がると空売りは損失が膨らみ買い戻しを迫られ、それがさらに株価を押し上げる連鎖が起きる。スクイズは激しいが、強制買いが尽きると通常収まる。"
    }
@@ -4199,7 +4199,7 @@
     "極端紫外線"
    ],
    "desc": {
-    "en": "Extreme ultraviolet lithography — the advanced light-based process for printing the smallest chip circuits.",
+    "en": "Extreme ultraviolet lithography, the advanced light-based process for printing the smallest chip circuits.",
     "ko": "극자외선 노광. 가장 미세한 칩 회로를 새기는 첨단 광공정.",
     "ja": "極端紫外線リソグラフィ。最も微細なチップ回路を焼き付ける先端の光工程。"
    },
@@ -4248,12 +4248,12 @@
     "推論"
    ],
    "desc": {
-    "en": "Running a trained AI model to produce answers — the everyday, at-scale use of AI.",
+    "en": "Running a trained AI model to produce answers, the everyday, at-scale use of AI.",
     "ko": "학습된 AI 모델을 돌려 답을 내는 것. AI를 실제로 대규모로 쓰는 단계.",
     "ja": "学習済みAIモデルを動かして答えを出すこと。AIを実運用で大規模に使う段階。"
    },
    "longDesc": {
-    "en": "Training builds the model once; inference happens every time a user makes a request, so its compute cost scales with usage. As AI products grow, inference — not training — becomes the dominant long-run demand for chips and power.",
+    "en": "Training builds the model once; inference happens every time a user makes a request, so its compute cost scales with usage. As AI products grow, inference, not training, becomes the dominant long-run demand for chips and power.",
     "ko": "학습은 모델을 한 번 만들지만, 인퍼런스는 사용자가 요청할 때마다 일어나 사용량에 비례해 비용이 든다. AI 제품이 커질수록 학습이 아니라 인퍼런스가 반도체·전력의 장기 수요를 지배한다.",
     "ja": "学習はモデルを一度作るだけだが、推論は利用者が要求するたびに発生し、利用量に比例してコストがかかる。AI製品が拡大すると、学習ではなく推論が半導体・電力の長期需要を支配する。"
    }
@@ -4301,7 +4301,7 @@
     "ja": "電力の単位(1,000メガワット)。AIデータセンターの規模を測るのに使われる。"
    },
    "longDesc": {
-    "en": "AI campuses are now planned in gigawatts because power, not just chips, is the binding constraint on scale. Roughly, one gigawatt can supply a large city — so multi-GW clusters are an industrial-scale bet on electricity.",
+    "en": "AI campuses are now planned in gigawatts because power, not just chips, is the binding constraint on scale. Roughly, one gigawatt can supply a large city, so multi-GW clusters are an industrial-scale bet on electricity.",
     "ko": "이제 AI 캠퍼스는 기가와트 단위로 계획된다. 칩뿐 아니라 전력이 규모의 진짜 제약이기 때문이다. 대략 1기가와트면 대도시 하나를 감당하니, 수 기가와트 클러스터는 전력에 대한 산업 규모의 베팅이다.",
     "ja": "いまやAIキャンパスはギガワット単位で計画される。チップだけでなく電力が規模の制約だからだ。1ギガワットは大都市一つを賄える規模で、数GWクラスターは電力への産業規模の賭けだ。"
    }
@@ -4367,7 +4367,7 @@
     "コンビクション"
    ],
    "desc": {
-    "en": "How strongly an investor believes in a call — high conviction means a bigger, more committed position.",
+    "en": "How strongly an investor believes in a call, high conviction means a bigger, more committed position.",
     "ko": "투자자가 자기 판단을 얼마나 강하게 믿는지. 컨빅션이 높으면 더 크게, 더 확신을 갖고 베팅한다.",
     "ja": "投資家が自らの判断をどれだけ強く信じるか。コンビクションが高いほど大きく、確信を持って賭ける。"
    },
