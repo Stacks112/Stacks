@@ -729,6 +729,23 @@ def robots():
     return f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n"
 
 
+def _ping_indexnow(items):
+    """Notify IndexNow (Bing, Naver, Yandex...) of recent URLs so new cards are
+    discovered fast. Google does NOT use IndexNow (submit via Search Console)."""
+    key = "stacks-f26ebf24-6bfbfb6a-bce6cc32-30287033"
+    urls = [BASE, BASE + "articles.html"] + [BASE + "p/" + i["id"] + ".html" for i in items[:12]]
+    import urllib.request
+    payload = json.dumps({"host": "stacksdaily.com", "key": key,
+                          "keyLocation": BASE + key + ".txt", "urlList": urls}).encode("utf-8")
+    try:
+        req = urllib.request.Request("https://api.indexnow.org/indexnow", data=payload,
+                                     headers={"Content-Type": "application/json; charset=utf-8"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            print("[indexnow] pinged " + str(len(urls)) + " urls, status " + str(r.status))
+    except Exception as e:
+        print("[indexnow] skip: " + str(e))
+
+
 def main():
     import os
     d = json.load(open("items.json", encoding="utf-8"))
@@ -871,6 +888,7 @@ def main():
     open("sitemap.xml", "w", encoding="utf-8").write(sitemap(items, list(ent_slugs.keys()), week_slugs))
     open("feed.xml", "w", encoding="utf-8").write(feed(items))
     open("robots.txt", "w", encoding="utf-8").write(robots())
+    _ping_indexnow(items)
     print(f"[ok] {len(items)} article pages + {len(ent_slugs)} entity pages + sitemap + feed + robots")
 
 
