@@ -14,11 +14,32 @@ Modes:
 """
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.request
 
 ENDPOINT = "https://stacks-comments.wnrakrhdn128.workers.dev/notify"
+
+# Theme follower pushes (tag t_<key>). Keys/keywords MUST stay in sync with
+# THEMES in index.html and scripts/build_pages.py.
+THEMES = {
+    "rates":   ("금리·인플레", re.I, r"기준금리|인플레|국채|연준|\bFed\b|FOMC|inflation|interest rates?|rate (?:cut|hike)|treasur|bond yield|\byields?\b|利上げ|利下げ|インフレ|国債|中央銀行"),
+    "dollar":  ("달러·환율", re.I, r"달러|환율|원화|엔화|\bdollar\b|\bDXY\b|debasement|exchange rate|\byen\b|為替|円安|円高|ドル|통화"),
+    "aicapex": ("AI 투자 사이클", 0, r"\bAI\b|인공지능|데이터센터|datacenter|data center|\bGPU\b|hyperscaler|capex|설비투자|人工知能|データセンター|設備投資"),
+    "semis":   ("반도체·메모리", re.I, r"반도체|메모리|파운드리|semiconductor|\bchips?\b|foundry|\bDRAM\b|\bNAND\b|\bHBM\b|\bCXL\b|lithograph|半導体|メモリ"),
+    "energy":  ("에너지", re.I, r"에너지|원유|천연가스|전력|원전|\boil\b|natural gas|\bLNG\b|uranium|nuclear|power grid|electricity|\benergy\b|原油|エネルギー|電力|原発"),
+    "crypto":  ("크립토·금", re.I, r"비트코인|크립토|암호화폐|금값|\bBitcoin\b|\bBTC\b|crypto|stablecoin|\bgold\b|bullion|ビットコイン|暗号資産|金価格"),
+    "trade":   ("관세·무역", re.I, r"관세|무역|수출\s?규제|수출통제|tariffs?|trade war|export controls?|sanctions?|보호무역|通商|関税|貿易|制裁"),
+    "japan":   ("일본 시장", 0, r"일본|닛케이|엔저|\bJapan(?:ese)?\b|\bNikkei\b|\bBOJ\b|日銀|日本株|東証|日経"),
+}
+
+
+def item_themes(it):
+    g = it.get("gist") or {}
+    hay = " ".join([(it.get("title") or {}).get(l, "") or "" for l in ("en", "ko", "ja")]
+                   + [g.get("en", "") or ""] + [" ".join(it.get("tags") or [])])
+    return [(k, v[0]) for k, v in THEMES.items() if re.search(v[2], hay, v[1])]
 
 
 def send(tag, title, msg, url, dry=False):
@@ -89,16 +110,29 @@ def main():
 
     for it in added:
         sid = it.get("series")
-        if not sid:
-            print(f"skip {it['id']}: not part of a series")
-            continue
-        name_ko = series_meta.get(sid, {}).get("name", {}).get("ko", sid)
-        send(
-            f"s_{sid}",
-            f"{name_ko} · 새 글",
-            it["title"]["ko"],
-            f"https://stacksdaily.com/#sig-{it['id']}",
-        )
+        if sid:
+            name_ko = series_meta.get(sid, {}).get("name", {}).get("ko", sid)
+            send(
+                f"s_{sid}",
+                f"{name_ko} · 새 글",
+                it["title"]["ko"],
+                f"https://stacksdaily.com/#sig-{it['id']}",
+            )
+        else:
+            print(f"skip series push {it['id']}: not part of a series")
+        # theme follower pushes (max 2 themes per item to avoid spam)
+        for key, label in item_themes(it)[:2]:
+            try:
+                send(
+                    f"t_{key}",
+                    f"{label} · 새 글",
+                    it["title"]["ko"],
+                    f"https://stacksdaily.com/#sig-{it['id']}",
+                )
+            except SystemExit:
+                raise
+            except Exception as e:
+                print(f"[theme-push-skip] {it['id']} t_{key}: {e}")
 
 
 if __name__ == "__main__":
