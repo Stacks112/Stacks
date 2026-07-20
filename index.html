@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v77 :: real profile avatars (full-URL avatarImg + onerror fallback) + daily-rotating Today debate + events calendar sheet (openCal) -->
+<!-- STACKS BUILD v78 :: fair-value gap badge (item.target) + themes trade/japan + theme follow & push tags (t_) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -244,7 +244,7 @@ const STRINGS = {
     fsqNote: "Delayed price data. For pro tools (candles, indicators) open on TradingView.",
     sincePost: "Since this post",
     sinceTip: "Price change from the article date's close to now. Reference only, not proof of causation.",
-    sbNav: "Track record", thNav: "Themes", thTitle: "Theme debates", thSub: "The big market questions - and which side each author is on.", thAll: "All themes", thEmpty: "No posts on this theme yet.", recShare: "Copy link", recShared: "Copied", recSub: "Every directional call by this author, scored against what the market did next.", sbBestW: "Best call - 30d", sbWorstW: "Worst call - 30d",
+    sbNav: "Track record", thNav: "Themes", thTitle: "Theme debates", thSub: "The big market questions - and which side each author is on.", thAll: "All themes", thEmpty: "No posts on this theme yet.", recShare: "Copy link", recShared: "Copied", recSub: "Every directional call by this author, scored against what the market did next.", sbBestW: "Best call - 30d", sbWorstW: "Worst call - 30d", tvLabel: "Fair value", tvTip: "Author\u0027s stated fair value vs current price", thFollow: "Follow this theme", thFollowing: "Following",
     sbTitle: "Track record",
     sbSub: "Every directional call on Stacks, checked against what the market actually did afterwards. Hits and misses both.",
     sbCalls: "Calls",
@@ -388,7 +388,7 @@ const STRINGS = {
     fsqNote: "지연 시세 데이터입니다. 캔들·지표 등 전문 도구는 TradingView에서 여세요.",
     sincePost: "이 글 이후",
     sinceTip: "글 게재일 종가 대비 현재 주가 변화입니다. 참고용이며, 인과관계의 증명이 아닙니다.",
-    sbNav: "적중 기록", thNav: "테마", thTitle: "테마 논쟁", thSub: "금리·달러·AI 같은 큰 질문에 필진들이 어느 편에 서 있는지 한 화면에.", thAll: "전체 테마", thEmpty: "이 테마의 글이 아직 없습니다.", recShare: "링크 복사", recShared: "복사됨", recSub: "이 필진의 방향성 콜 전체와 그 후 시장 결과입니다.", sbBestW: "베스트 콜 · 30일", sbWorstW: "워스트 콜 · 30일",
+    sbNav: "적중 기록", thNav: "테마", thTitle: "테마 논쟁", thSub: "금리·달러·AI 같은 큰 질문에 필진들이 어느 편에 서 있는지 한 화면에.", thAll: "전체 테마", thEmpty: "이 테마의 글이 아직 없습니다.", recShare: "링크 복사", recShared: "복사됨", recSub: "이 필진의 방향성 콜 전체와 그 후 시장 결과입니다.", sbBestW: "베스트 콜 · 30일", sbWorstW: "워스트 콜 · 30일", tvLabel: "적정가치", tvTip: "필진이 명시한 적정가치와 현재가의 갭", thFollow: "이 테마 팔로우", thFollowing: "팔로우 중",
     sbTitle: "적중 기록",
     sbSub: "Stacks에 실린 방향성 있는 글이 그 후 시장에서 실제로 어떻게 됐는지 전부 공개합니다. 맞은 것도, 틀린 것도.",
     sbCalls: "콜",
@@ -532,7 +532,7 @@ const STRINGS = {
     fsqNote: "遅延株価データです。ローソク足・指標などのプロ機能はTradingViewで開いてください。",
     sincePost: "投稿後",
     sinceTip: "記事掲載日の終値から現在までの株価変化です。参考情報であり、因果関係の証明ではありません。",
-    sbNav: "的中記録", thNav: "テーマ", thTitle: "テーマ論争", thSub: "金利・ドル・AIなど大きな問いに、各執筆者がどちら側かを一画面で。", thAll: "テーマ一覧", thEmpty: "このテーマの記事はまだありません。", recShare: "リンクをコピー", recShared: "コピーしました", recSub: "この執筆者の方向性コールとその後の市場結果です。", sbBestW: "ベストコール · 30日", sbWorstW: "ワーストコール · 30日",
+    sbNav: "的中記録", thNav: "テーマ", thTitle: "テーマ論争", thSub: "金利・ドル・AIなど大きな問いに、各執筆者がどちら側かを一画面で。", thAll: "テーマ一覧", thEmpty: "このテーマの記事はまだありません。", recShare: "リンクをコピー", recShared: "コピーしました", recSub: "この執筆者の方向性コールとその後の市場結果です。", sbBestW: "ベストコール · 30日", sbWorstW: "ワーストコール · 30日", tvLabel: "適正価値", tvTip: "執筆者が示した適正価値と現在値のギャップ", thFollow: "このテーマをフォロー", thFollowing: "フォロー中",
     sbTitle: "的中記録",
     sbSub: "Stacksに載った方向性のある記事がその後実際どうなったかをすべて公開。当たりも外れも。",
     sbCalls: "コール",
@@ -1965,6 +1965,12 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .cal-li-t{font-size:13px;color:var(--text);line-height:1.35;}
 .cal-none{color:var(--muted);font-size:13px;padding:12px 0;}
 
+/* ---------- fair-value pill + theme follow (v78) ---------- */
+.tv-pill{display:inline-flex;align-items:center;gap:4px;margin-left:8px;font-size:11px;font-weight:700;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap;}
+.tv-pill b{font-family:"IBM Plex Mono",monospace;font-weight:800;}
+.th-follow{margin-top:10px;font-size:12px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--bg-soft);color:var(--text);cursor:pointer;}
+.th-follow.on{background:#111214;color:#fff;border-color:#111214;}
+html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
   --bg:#0E0F12;
@@ -2138,7 +2144,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v77</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v78</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
@@ -2753,6 +2759,19 @@ function sinceItem(item){ /* -> promise of {pct,...}|null */
   if (!k || !COMMENTS_API) return Promise.resolve(null);
   return quote1y(ENTITIES[k].ticker).then(q => sinceCalc(q, item.date));
 }
+function tvFmt(v, cur){
+  var sym = cur === "KRW" ? "\u20A9" : cur === "JPY" ? "\u00A5" : cur === "EUR" ? "\u20AC" : "$";
+  try { return sym + Number(v).toLocaleString(undefined, { maximumFractionDigits: 0 }); } catch (e) { return sym + v; }
+}
+function tvPillHtml(item, r){
+  var t = item.target;
+  if (!t || !t.value || !r || !r.cur) return "";
+  var gap = ((t.value - r.cur) / r.cur) * 100;
+  var S = STRINGS[LANG];
+  var col = gap >= 0 ? "#0E9F5E" : "#E04438";
+  return '<span class="tv-pill" title="' + esc(S.tvTip) + '">' + S.tvLabel + " " + tvFmt(t.value, t.cur)
+    + ' <b style="color:' + col + '">' + (gap > 0 ? "+" : "") + gap.toFixed(1) + "%</b></span>";
+}
 const SINCE_CACHE = {};
 function queueSince(item){
   const k = itemMainKey(item);
@@ -2768,6 +2787,7 @@ function queueSince(item){
         + '<b class="since-k since-k-link has-tip" onmouseenter="loadQuote(\'' + k.replace(/'/g, "\\'") + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + k.replace(/'/g, "\\'") + '\')">' + esc(k) + entityTip(k) + '</b>'
         + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
         + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>"
+        + tvPillHtml(item, r)
         + '<button class="since-share" onclick="event.stopPropagation(); shareSince(\'' + item.id + '\')" aria-label="' + esc(S.share) + '" title="' + esc(S.share) + '"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>';
     });
   });
@@ -2883,6 +2903,17 @@ function renderCal(){
    single-author record view (shareable via #record-<name>). */
 var THEME_VIEW = null;
 var RECORD_SRC = null;
+var THEME_FOLLOW = null; /* lazy Set from localStorage */
+function themeFollowSet(){ if(!THEME_FOLLOW){ try{ THEME_FOLLOW=new Set(store.get("stk_themes",[])); }catch(e){ THEME_FOLLOW=new Set(); } } return THEME_FOLLOW; }
+function toggleThemeFollow(k){
+  var s=themeFollowSet(); var on=!s.has(k);
+  if(on) s.add(k); else s.delete(k);
+  store.set("stk_themes",[...s]);
+  if(typeof osTag==="function") osTag("t_"+k,on);
+  if(on && typeof promptPushOnce==="function") promptPushOnce();
+  track((on?"follow/theme/":"unfollow/theme/")+k);
+  if(THEME_VIEW) renderFeed(false);
+}
 const THEMES = {
   rates:   { icon:"\uD83C\uDFDB\uFE0F", label:{en:"Rates & inflation", ko:"\uAE08\uB9AC\u00B7\uC778\uD50C\uB808", ja:"\u91D1\u5229\u30FB\u30A4\u30F3\u30D5\u30EC"},
              kw:/\uAE30\uC900\uAE08\uB9AC|\uC778\uD50C\uB808|\uAD6D\uCC44|\uC5F0\uC900|\bFed\b|FOMC|inflation|interest rates?|rate (?:cut|hike)|treasur|bond yield|\byields?\b|\u5229\u4E0A\u3052|\u5229\u4E0B\u3052|\u30A4\u30F3\u30D5\u30EC|\u56FD\u50B5|\u4E2D\u592E\u9280\u884C/i },
@@ -2895,7 +2926,11 @@ const THEMES = {
   energy:  { icon:"\uD83D\uDEE2\uFE0F", label:{en:"Energy", ko:"\uC5D0\uB108\uC9C0", ja:"\u30A8\u30CD\u30EB\u30AE\u30FC"},
              kw:/\uC5D0\uB108\uC9C0|\uC6D0\uC720|\uCC9C\uC5F0\uAC00\uC2A4|\uC804\uB825|\uC6D0\uC804|\boil\b|natural gas|\bLNG\b|uranium|nuclear|power grid|electricity|\benergy\b|\u539F\u6CB9|\u30A8\u30CD\u30EB\u30AE\u30FC|\u96FB\u529B|\u539F\u767A/i },
   crypto:  { icon:"\uD83E\uDE99", label:{en:"Crypto & gold", ko:"\uD06C\uB9BD\uD1A0\u00B7\uAE08", ja:"\u6697\u53F7\u8CC7\u7523\u30FB\u91D1"},
-             kw:/\uBE44\uD2B8\uCF54\uC778|\uD06C\uB9BD\uD1A0|\uC554\uD638\uD654\uD3D0|\uAE08\uAC12|\bBitcoin\b|\bBTC\b|crypto|stablecoin|\bgold\b|bullion|\u30D3\u30C3\u30C8\u30B3\u30A4\u30F3|\u6697\u53F7\u8CC7\u7523|\u91D1\u4FA1\u683C/i }
+             kw:/\uBE44\uD2B8\uCF54\uC778|\uD06C\uB9BD\uD1A0|\uC554\uD638\uD654\uD3D0|\uAE08\uAC12|\bBitcoin\b|\bBTC\b|crypto|stablecoin|\bgold\b|bullion|\u30D3\u30C3\u30C8\u30B3\u30A4\u30F3|\u6697\u53F7\u8CC7\u7523|\u91D1\u4FA1\u683C/i },
+  trade:   { icon:"\uD83D\uDEA2", label:{en:"Tariffs & trade", ko:"\uAD00\uC138\u00B7\uBB34\uC5ED", ja:"\u95A2\u7A0E\u30FB\u8CBF\u6613"},
+             kw:/\uAD00\uC138|\uBB34\uC5ED|\uC218\uCD9C\s?\uADDC\uC81C|\uC218\uCD9C\uD1B5\uC81C|tariffs?|trade war|export controls?|sanctions?|\uBCF4\uD638\uBB34\uC5ED|\u901A\u5546|\u95A2\u7A0E|\u8CBF\u6613|\u5236\u88C1/i },
+  japan:   { icon:"\uD83D\uDDFE", label:{en:"Japan", ko:"\uC77C\uBCF8 \uC2DC\uC7A5", ja:"\u65E5\u672C\u5E02\u5834"},
+             kw:/\uC77C\uBCF8|\uB2DB\uCF00\uC774|\uC5D4\uC800|\bJapan(?:ese)?\b|\bNikkei\b|\bBOJ\b|\u65E5\u9280|\u65E5\u672C\u682A|\u6771\u8A3C|\u65E5\u7D4C/ }
 };
 function themeHay(i){
   var g=i.gist||{};
@@ -2963,6 +2998,8 @@ function renderThemes(list,S){
   var its=themeItems(THEME_VIEW).sort(function(a,b){ return a.date<b.date?1:-1; });
   head.innerHTML='<button class="series-close" onclick="openThemes()">\u2190 '+S.thAll+'</button>'
     +'<div class="series-head-name">'+th.icon+" "+th.label[LANG]+'</div>';
+  var _tf=themeFollowSet().has(THEME_VIEW);
+  head.innerHTML += '<button class="th-follow'+(_tf?" on":"")+'" onclick="toggleThemeFollow(\''+THEME_VIEW+'\')">'+(_tf?"\u2713 "+S.thFollowing:"\uD83D\uDD14 "+S.thFollow)+'</button>';
   list.appendChild(head);
   var n={bull:0,bear:0,watch:0}; its.forEach(function(i){ n[(itemStance(i)||"watch")]++; });
   var bar=document.createElement("div"); bar.className="debate-bar";
