@@ -267,7 +267,7 @@ const STRINGS = {
     todayJoin: "Join the discussion",
     todayComments: "{n} comments",
     suggTitle: "You might also follow",
-    meTitle: "My Page",
+    meTitle: "My activity",
     meStreak: "day streak",
     meRead: "Read",
     meWeek: "This week",
@@ -277,7 +277,7 @@ const STRINGS = {
     meTopTopic: "Most-read topic",
     meInterests: "Your interests",
     meInterestsSub: "Toggle a topic to follow or unfollow its companies and stories.",
-    meNav: "My Page",
+    meNav: "My activity",
     meNone: "-",
     reply: "Reply",
     replyingTo: "Replying to {name}",
@@ -411,7 +411,7 @@ const STRINGS = {
     todayJoin: "의견 남기기",
     todayComments: "댓글 {n}개",
     suggTitle: "이런 종목도 팔로우해보세요",
-    meTitle: "마이페이지",
+    meTitle: "내 활동",
     meStreak: "일 연속 방문",
     meRead: "읽은 글",
     meWeek: "이번 주",
@@ -421,7 +421,7 @@ const STRINGS = {
     meTopTopic: "가장 많이 본 주제",
     meInterests: "내 관심사",
     meInterestsSub: "주제를 켜고 끄면 해당 회사·시리즈를 팔로우하거나 해제합니다.",
-    meNav: "마이페이지",
+    meNav: "내 활동",
     meNone: "-",
     reply: "답글",
     replyingTo: "{name}님에게 답글",
@@ -555,7 +555,7 @@ const STRINGS = {
     todayJoin: "意見を書く",
     todayComments: "コメント{n}件",
     suggTitle: "こんな銘柄もフォローしませんか",
-    meTitle: "マイページ",
+    meTitle: "マイ活動",
     meStreak: "日連続アクセス",
     meRead: "既読",
     meWeek: "今週",
@@ -565,7 +565,7 @@ const STRINGS = {
     meTopTopic: "最も読んだテーマ",
     meInterests: "興味・関心",
     meInterestsSub: "テーマをオン/オフすると関連企業・ストーリーをフォロー/解除します。",
-    meNav: "マイページ",
+    meNav: "マイ活動",
     meNone: "-",
     reply: "返信",
     replyingTo: "{name}さんに返信",
@@ -2041,8 +2041,8 @@ footer a{color:var(--muted);}
         <input id="searchInput" type="search" autocomplete="off" oninput="onSearch(this.value)">
         <button class="search-clear" id="searchClear" onclick="clearSearch()" hidden>&times;</button>
       </div>
-      <select class="company-filter" id="companyFilter" onchange="pickCompany(this.value)"></select>
-      <select class="company-filter" id="personFilter" onchange="pickCompany(this.value)"></select>
+      <select class="company-filter" id="companyFilter" onchange="filterByEntity(this.value)"></select>
+      <select class="company-filter" id="personFilter" onchange="filterByEntity(this.value)"></select>
       <button class="unread-filter" id="sortBtn" onclick="toggleSort()"></button>
       <button class="unread-filter" id="bmFilter" onclick="toggleBmOnly()"></button>
       <button class="unread-filter" id="freeFilter" onclick="toggleFreeOnly()"></button>
@@ -3785,9 +3785,7 @@ function renderMe(){
   const stat = (n, lbl) => '<div class="me-stat"><b>' + n + "</b><span>" + lbl + "</span></div>";
   document.getElementById("meHeadTitle").textContent = S.meTitle;
   body.innerHTML =
-    '<div class="me-streak"><span class="me-fire">🔥</span><b>' + STREAK + "</b> " + S.meStreak
-      + (best > STREAK ? ' <span class="me-best">· best ' + best + "</span>" : "") + "</div>"
-    + '<div class="me-stats">'
+    '<div class="me-stats">'
       + stat(READ.size, S.meRead)
       + stat(readThisWeek(), S.meWeek)
       + stat(LIKES.size, S.meLikes)
@@ -3808,7 +3806,7 @@ function refreshStreakBadge(){
   const b = document.getElementById("meBtn");
   if (!b) return;
   const S = STRINGS[LANG];
-  b.innerHTML = (STREAK >= 2 ? '<span class="streak-fire">🔥' + STREAK + "</span>" : "👤")
+  b.innerHTML = "👤"
     + '<span class="nav-btn-label">' + S.meNav + "</span>";
   b.setAttribute("aria-label", S.meTitle);
   b.title = S.meTitle;
@@ -4033,6 +4031,15 @@ function tagTap(tag){
   pickCompany(tag);
   const f = document.getElementById("feed");
   if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function filterByEntity(key){
+  if (key && ENTITIES[key]){ entityFeedView(key); return; }
+  ENTITY_VIEW = null; SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+  var _i = document.getElementById("searchInput"); if (_i) _i.value = "";
+  if (typeof closeEntityRail === "function") closeEntityRail();
+  var _c = document.getElementById("companyFilter"); if (_c) _c.value = "";
+  var _p = document.getElementById("personFilter"); if (_p) _p.value = "";
+  renderFeed(false);
 }
 function pickCompany(name){
   /* a known company OR person opens its profile; anything else is a search */
