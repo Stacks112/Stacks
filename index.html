@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v75 :: proprietary LICENSE + copyright notice (all rights reserved) -->
+<!-- STACKS BUILD v76 :: theme debate boards (#theme-) + shareable per-author record pages (#record-) + best/worst call strip on scoreboard -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -244,7 +244,7 @@ const STRINGS = {
     fsqNote: "Delayed price data. For pro tools (candles, indicators) open on TradingView.",
     sincePost: "Since this post",
     sinceTip: "Price change from the article date's close to now. Reference only, not proof of causation.",
-    sbNav: "Track record",
+    sbNav: "Track record", thNav: "Themes", thTitle: "Theme debates", thSub: "The big market questions - and which side each author is on.", thAll: "All themes", thEmpty: "No posts on this theme yet.", recShare: "Copy link", recShared: "Copied", recSub: "Every directional call by this author, scored against what the market did next.", sbBestW: "Best call - 30d", sbWorstW: "Worst call - 30d",
     sbTitle: "Track record",
     sbSub: "Every directional call on Stacks, checked against what the market actually did afterwards. Hits and misses both.",
     sbCalls: "Calls",
@@ -388,7 +388,7 @@ const STRINGS = {
     fsqNote: "지연 시세 데이터입니다. 캔들·지표 등 전문 도구는 TradingView에서 여세요.",
     sincePost: "이 글 이후",
     sinceTip: "글 게재일 종가 대비 현재 주가 변화입니다. 참고용이며, 인과관계의 증명이 아닙니다.",
-    sbNav: "적중 기록",
+    sbNav: "적중 기록", thNav: "테마", thTitle: "테마 논쟁", thSub: "금리·달러·AI 같은 큰 질문에 필진들이 어느 편에 서 있는지 한 화면에.", thAll: "전체 테마", thEmpty: "이 테마의 글이 아직 없습니다.", recShare: "링크 복사", recShared: "복사됨", recSub: "이 필진의 방향성 콜 전체와 그 후 시장 결과입니다.", sbBestW: "베스트 콜 · 30일", sbWorstW: "워스트 콜 · 30일",
     sbTitle: "적중 기록",
     sbSub: "Stacks에 실린 방향성 있는 글이 그 후 시장에서 실제로 어떻게 됐는지 전부 공개합니다. 맞은 것도, 틀린 것도.",
     sbCalls: "콜",
@@ -532,7 +532,7 @@ const STRINGS = {
     fsqNote: "遅延株価データです。ローソク足・指標などのプロ機能はTradingViewで開いてください。",
     sincePost: "投稿後",
     sinceTip: "記事掲載日の終値から現在までの株価変化です。参考情報であり、因果関係の証明ではありません。",
-    sbNav: "的中記録",
+    sbNav: "的中記録", thNav: "テーマ", thTitle: "テーマ論争", thSub: "金利・ドル・AIなど大きな問いに、各執筆者がどちら側かを一画面で。", thAll: "テーマ一覧", thEmpty: "このテーマの記事はまだありません。", recShare: "リンクをコピー", recShared: "コピーしました", recSub: "この執筆者の方向性コールとその後の市場結果です。", sbBestW: "ベストコール · 30日", sbWorstW: "ワーストコール · 30日",
     sbTitle: "的中記録",
     sbSub: "Stacksに載った方向性のある記事がその後実際どうなったかをすべて公開。当たりも外れも。",
     sbCalls: "コール",
@@ -1920,6 +1920,27 @@ html[data-lang="ko"] .ceo-detail{font-family:"Pretendard Variable",sans-serif;}
 html[data-theme="dark"] .dg-bull{color:#34D399;} html[data-theme="dark"] .dg-bear{color:#FDA29B;}
 html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bear{color:#FDA29B;}
 
+
+/* ---------- theme boards + record pages + best/worst strip (v76) ---------- */
+.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:14px 0;}
+.theme-card{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;}
+.theme-card:hover{filter:brightness(1.03);}
+.tg-ic{font-size:20px;}
+.tg-name{font-weight:800;font-size:14.5px;color:var(--text);}
+.tg-n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);}
+.tg-bar{display:flex;width:100%;height:6px;border-radius:4px;overflow:hidden;gap:2px;}
+.tg-seg{display:block;height:100%;}
+.tg-seg.ds-bull{background:#12B76A;}.tg-seg.ds-watch{background:#9BA1B0;}.tg-seg.ds-bear{background:#F04438;}
+.tg-counts{font-size:11px;font-weight:700;color:var(--muted);}
+.bw-strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px;}
+.bw-cell{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;}
+.bw-lb{font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
+.bw-cell b{font-size:12.5px;color:var(--text);}
+.bw-t{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
+.bw-v{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:800;}
+.rec-share{margin-top:8px;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--bg-soft);color:var(--text);cursor:pointer;}
+@media (max-width:560px){.bw-strip{grid-template-columns:1fr;}}
+
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
   --bg:#0E0F12;
@@ -2093,7 +2114,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v75</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v76</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
@@ -2793,28 +2814,135 @@ function renderEntityDebate(list, items, S){
 }
 /* ---------------- stage3: stance filter + rail debate + CEO profiles + home ---------------- */
 let STANCE_FILTER = null, STANCE_FILTER_KEY = null, SB_VIEW = false;
+
+/* ---------------- theme debate boards + author record pages (v76) ----------------
+   THEMES: curated market questions matched by keyword over title/gist/tags.
+   THEME_VIEW: null | "index" | theme key.  RECORD_SRC: author name for the
+   single-author record view (shareable via #record-<name>). */
+var THEME_VIEW = null;
+var RECORD_SRC = null;
+const THEMES = {
+  rates:   { icon:"\uD83C\uDFDB\uFE0F", label:{en:"Rates & inflation", ko:"\uAE08\uB9AC\u00B7\uC778\uD50C\uB808", ja:"\u91D1\u5229\u30FB\u30A4\u30F3\u30D5\u30EC"},
+             kw:/\uAE30\uC900\uAE08\uB9AC|\uC778\uD50C\uB808|\uAD6D\uCC44|\uC5F0\uC900|\bFed\b|FOMC|inflation|interest rates?|rate (?:cut|hike)|treasur|bond yield|\byields?\b|\u5229\u4E0A\u3052|\u5229\u4E0B\u3052|\u30A4\u30F3\u30D5\u30EC|\u56FD\u50B5|\u4E2D\u592E\u9280\u884C/i },
+  dollar:  { icon:"\uD83D\uDCB5", label:{en:"Dollar & FX", ko:"\uB2EC\uB7EC\u00B7\uD658\uC728", ja:"\u30C9\u30EB\u30FB\u70BA\u66FF"},
+             kw:/\uB2EC\uB7EC|\uD658\uC728|\uC6D0\uD654|\uC5D4\uD654|\bdollar\b|\bDXY\b|debasement|exchange rate|\byen\b|\u70BA\u66FF|\u5186\u5B89|\u5186\u9AD8|\u30C9\u30EB/i },
+  aicapex: { icon:"\u26A1", label:{en:"AI capex", ko:"AI \uD22C\uC790 \uC0AC\uC774\uD074", ja:"AI\u8A2D\u5099\u6295\u8CC7"},
+             kw:/\bAI\b|\uC778\uACF5\uC9C0\uB2A5|\uB370\uC774\uD130\uC13C\uD130|datacenter|data center|\bGPU\b|hyperscaler|capex|\uC124\uBE44\uD22C\uC790|\u4EBA\u5DE5\u77E5\u80FD|\u30C7\u30FC\u30BF\u30BB\u30F3\u30BF\u30FC|\u8A2D\u5099\u6295\u8CC7/ },
+  semis:   { icon:"\uD83D\uDD2C", label:{en:"Semis & memory", ko:"\uBC18\uB3C4\uCCB4\u00B7\uBA54\uBAA8\uB9AC", ja:"\u534A\u5C0E\u4F53\u30FB\u30E1\u30E2\u30EA"},
+             kw:/\uBC18\uB3C4\uCCB4|\uBA54\uBAA8\uB9AC|\uD30C\uC6B4\uB4DC\uB9AC|semiconductor|\bchips?\b|foundry|\bDRAM\b|\bNAND\b|\bHBM\b|\bCXL\b|lithograph|\u534A\u5C0E\u4F53|\u30E1\u30E2\u30EA/i },
+  energy:  { icon:"\uD83D\uDEE2\uFE0F", label:{en:"Energy", ko:"\uC5D0\uB108\uC9C0", ja:"\u30A8\u30CD\u30EB\u30AE\u30FC"},
+             kw:/\uC5D0\uB108\uC9C0|\uC6D0\uC720|\uCC9C\uC5F0\uAC00\uC2A4|\uC804\uB825|\uC6D0\uC804|\boil\b|natural gas|\bLNG\b|uranium|nuclear|power grid|electricity|\benergy\b|\u539F\u6CB9|\u30A8\u30CD\u30EB\u30AE\u30FC|\u96FB\u529B|\u539F\u767A/i },
+  crypto:  { icon:"\uD83E\uDE99", label:{en:"Crypto & gold", ko:"\uD06C\uB9BD\uD1A0\u00B7\uAE08", ja:"\u6697\u53F7\u8CC7\u7523\u30FB\u91D1"},
+             kw:/\uBE44\uD2B8\uCF54\uC778|\uD06C\uB9BD\uD1A0|\uC554\uD638\uD654\uD3D0|\uAE08\uAC12|\bBitcoin\b|\bBTC\b|crypto|stablecoin|\bgold\b|bullion|\u30D3\u30C3\u30C8\u30B3\u30A4\u30F3|\u6697\u53F7\u8CC7\u7523|\u91D1\u4FA1\u683C/i }
+};
+function themeHay(i){
+  var g=i.gist||{};
+  return [i.title&&i.title.en||"", i.title&&i.title.ko||"", i.title&&i.title.ja||"", g.en||"", (i.tags||[]).join(" ")].join(" ");
+}
+function themeItems(k){ var th=THEMES[k]; if(!th) return []; return ITEMS.filter(function(i){ return th.kw.test(themeHay(i)); }); }
+function openThemes(){
+  THEME_VIEW="index"; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+  pushView(); try{ if(location.hash.indexOf("#theme-")===0||location.hash.indexOf("#record-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
+  track("themes"); renderFeed(false);
+  var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function openTheme(k){
+  THEME_VIEW=k; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+  pushView(); try{ history.replaceState(history.state,"","#theme-"+k); }catch(e){}
+  track("theme/"+k); renderFeed(false);
+  var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function closeThemes(){
+  THEME_VIEW=null;
+  try{ if(location.hash.indexOf("#theme-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
+  renderFeed(false);
+}
+function openRecord(src){
+  RECORD_SRC=src; SB_VIEW=true; THEME_VIEW=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+  pushView(); try{ history.replaceState(history.state,"","#record-"+encodeURIComponent(src)); }catch(e){}
+  track("record/"+src); renderFeed(false);
+  var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function recShare(){
+  var url=location.origin+location.pathname+"#record-"+encodeURIComponent(RECORD_SRC||"");
+  function done(){ var b=document.querySelector(".rec-share"); if(b) b.textContent="\u2713 "+STRINGS[LANG].recShared; }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(done).catch(function(){ fallbackCopyRec(url,done); }); }
+  else fallbackCopyRec(url,done);
+}
+function fallbackCopyRec(url,done){
+  try{ var ta=document.createElement("textarea"); ta.value=url; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); done(); }catch(e){}
+}
+function renderThemes(list,S){
+  var head=document.createElement("div"); head.className="series-header sb-header";
+  if(THEME_VIEW==="index"){
+    head.innerHTML='<button class="series-close" onclick="closeThemes()">\u2190 '+S.seriesClose+'</button>'
+      +'<div class="series-head-name">\u25E7 '+S.thTitle+'</div>'
+      +'<p class="series-head-desc">'+S.thSub+'</p>';
+    list.appendChild(head);
+    var grid=document.createElement("div"); grid.className="theme-grid";
+    grid.innerHTML=Object.keys(THEMES).map(function(k){
+      var th=THEMES[k]; var its=themeItems(k);
+      var n={bull:0,bear:0,watch:0}; its.forEach(function(i){ n[(itemStance(i)||"watch")]++; });
+      function seg(c,cls){ return c?'<i class="tg-seg '+cls+'" style="flex:'+c+'"></i>':""; }
+      return '<button class="theme-card" onclick="openTheme(\''+k+'\')">'
+        +'<span class="tg-ic">'+th.icon+'</span>'
+        +'<span class="tg-name">'+th.label[LANG]+'</span>'
+        +'<span class="tg-n">'+its.length+'</span>'
+        +'<span class="tg-bar">'+seg(n.bull,"ds-bull")+seg(n.watch,"ds-watch")+seg(n.bear,"ds-bear")+'</span>'
+        +'<span class="tg-counts">'+(n.bull?"\u25B2"+n.bull+" ":"")+(n.bear?"\u25BC"+n.bear:"")+'</span>'
+        +'</button>';
+    }).join("");
+    list.appendChild(grid);
+    return;
+  }
+  var th=THEMES[THEME_VIEW];
+  if(!th){ THEME_VIEW="index"; renderThemes(list,S); return; }
+  var its=themeItems(THEME_VIEW).sort(function(a,b){ return a.date<b.date?1:-1; });
+  head.innerHTML='<button class="series-close" onclick="openThemes()">\u2190 '+S.thAll+'</button>'
+    +'<div class="series-head-name">'+th.icon+" "+th.label[LANG]+'</div>';
+  list.appendChild(head);
+  var n={bull:0,bear:0,watch:0}; its.forEach(function(i){ n[(itemStance(i)||"watch")]++; });
+  var bar=document.createElement("div"); bar.className="debate-bar";
+  function seg2(c,cls,lb){ return c?'<div class="debate-seg '+cls+'" style="flex:'+c+'"><span>'+lb+'</span><b>'+c+'</b></div>':""; }
+  bar.innerHTML='<div class="debate-title">'+S.debateTitle+'</div><div class="debate-track">'
+    +seg2(n.bull,"ds-bull",S.stanceBull)+seg2(n.watch,"ds-watch",S.stanceWatch)+seg2(n.bear,"ds-bear",S.stanceBear)+'</div>';
+  list.appendChild(bar);
+  if(!its.length){ var em=document.createElement("div"); em.className="empty"; em.textContent=S.thEmpty; list.appendChild(em); return; }
+  var groups=[["bull",S.stanceBull,"dg-bull"],["bear",S.stanceBear,"dg-bear"],["watch",S.stanceWatch,"dg-watch"]];
+  groups.forEach(function(g){
+    var gi=its.filter(function(i){ return (itemStance(i)||"watch")===g[0]; });
+    if(!gi.length) return;
+    var h=document.createElement("div"); h.className="debate-group-head "+g[2];
+    h.innerHTML='<span class="dg-dot"></span>'+g[1]+' <span class="dg-n">'+gi.length+'</span>';
+    list.appendChild(h);
+    gi.forEach(function(i,ix){ list.appendChild(cardEl(i,S,ix)); });
+  });
+}
+
 /* ---------------- track-record scoreboard ----------------
    One honest page: every directional call (bull/bear) per author,
    what the market did afterwards ("since post" %), and the manually
    verified predictions (hit / miss / pending). Wins AND losses. */
-function openScoreboard(){
-  SB_VIEW = true; SERIES_VIEW = null; ENTITY_VIEW = null; STANCE_FILTER = null;
+function openScoreboard(){ SB_VIEW = true; THEME_VIEW = null; RECORD_SRC = null; SERIES_VIEW = null; ENTITY_VIEW = null; STANCE_FILTER = null;
   pushView();
   track("scoreboard");
   renderFeed(false);
   const f = document.getElementById("feed");
   if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-function closeScoreboard(){ SB_VIEW = false; renderFeed(false); }
+function closeScoreboard(){ SB_VIEW = false; RECORD_SRC = null; try{ if(location.hash.indexOf("#record-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){} renderFeed(false); }
 async function renderScoreboard(list, S){
-  const calls = ITEMS.filter(i => { const s = itemStance(i); return s === "bull" || s === "bear"; })
+  const _rvOnly=(typeof RECORD_SRC!=="undefined"&&RECORD_SRC)?RECORD_SRC:null;
+  const calls = ITEMS.filter(i => { const s = itemStance(i); return (s==="bull"||s==="bear")&&(!_rvOnly||i.source===_rvOnly); })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
   const head = document.createElement("div");
   head.className = "series-header sb-header";
   head.innerHTML =
     '<button class="series-close" onclick="closeScoreboard()">← ' + S.seriesClose + "</button>"
-    + '<div class="series-head-name">⚖ ' + S.sbTitle + "</div>"
-    + '<p class="series-head-desc">' + S.sbSub + "</p>";
+    + '<div class="series-head-name">⚖ ' + (_rvOnly?esc(_rvOnly):S.sbTitle) + "</div>"
+    + '<p class="series-head-desc">' + (_rvOnly?S.recSub:S.sbSub) + "</p>";
+  if(_rvOnly){ head.innerHTML += '<button class="rec-share" onclick="recShare()">\uD83D\uDD17 '+S.recShare+'</button>'; }
   list.appendChild(head);
   if (!calls.length){
     const em = document.createElement("div");
@@ -2832,6 +2960,24 @@ async function renderScoreboard(list, S){
     .forEach(o => { sinceMap[o.id] = o.res; });
   if (SB_VIEW !== true) { loading.remove(); return; } /* user left the view */
 
+  if(!_rvOnly){ try{
+    const _now=Date.now();
+    const _recent=calls.filter(function(i){ const r=sinceMap[i.id]; return r && (_now-new Date(i.date).getTime())<30*86400000; });
+    if(_recent.length){
+      const _sgn=function(i){ const r=sinceMap[i.id]; return (itemStance(i)==="bear"?-1:1)*r.pct; };
+      const _srt=_recent.slice().sort(function(a,b){ return _sgn(b)-_sgn(a); });
+      const _best=_srt[0], _worst=_srt[_srt.length-1];
+      const _cell=function(lb,it){ const r=sinceMap[it.id]; const col=_sgn(it)>=0?"#0E9F5E":"#E04438";
+        const b=document.createElement("button"); b.className="bw-cell";
+        b.addEventListener("click",function(){ goToItem(it.id); });
+        b.innerHTML='<span class="bw-lb">'+lb+'</span><b>'+esc(it.source)+'</b><span class="bw-t">'+esc((it.title[LANG]||it.title.en||""))+'</span><span class="bw-v" style="color:'+col+'">'+(r.pct>0?"+":"")+r.pct.toFixed(1)+"%</span>";
+        return b; };
+      const bw=document.createElement("div"); bw.className="bw-strip";
+      bw.appendChild(_cell(S.sbBestW,_best));
+      if(_worst&&_worst!==_best) bw.appendChild(_cell(S.sbWorstW,_worst));
+      list.appendChild(bw);
+    }
+  }catch(e){} }
   const bySrc = {};
   calls.forEach(i => {
     const b = bySrc[i.source] || (bySrc[i.source] = { src: i.source, items: [], bull: 0, bear: 0, hit: 0, miss: 0, pending: 0, match: 0, scored: 0 });
@@ -2882,6 +3028,7 @@ async function renderScoreboard(list, S){
         + '<span class="sb-r">' + (r.hit ? '<i class="ws-bull">✓' + r.hit + "</i>" : "") + (r.miss ? '<i class="ws-bear">✕' + r.miss + "</i>" : "") + (r.pending ? "<i>⏳" + r.pending + "</i>" : "") + ((r.hit || r.miss || r.pending) ? "" : "–") + "</span>"
       + "</div>").join("");
   list.appendChild(tbl);
+  try{ const _sbRows=tbl.querySelectorAll(".sb-row"); for(let _ri=1;_ri<_sbRows.length;_ri++){ (function(el,r){ if(!r) return; el.style.cursor="pointer"; el.addEventListener("click",function(ev){ if(ev.target&&ev.target.closest&&ev.target.closest("button")) return; openRecord(r.src); }); })(_sbRows[_ri], rows[_ri-1]); } }catch(e){}
 
   const lh = document.createElement("h2");
   lh.className = "section-title sb-list-title";
@@ -4848,7 +4995,8 @@ window.addEventListener("popstate", function(){
   if (document.getElementById("entityRailPanel")){ closeEntityRail(); return; }
   if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
   if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return; }
-  if (typeof SB_VIEW !== "undefined" && SB_VIEW){ closeScoreboard(); return; }
+  if (typeof THEME_VIEW !== "undefined" && THEME_VIEW){ closeThemes(); return; }
+    if (typeof SB_VIEW !== "undefined" && SB_VIEW){ closeScoreboard(); return; }
   if (typeof TAB !== "undefined" && TAB === "mine"){ setTab("all"); return; }
   /* nothing open — let the browser navigate away normally */
 });
@@ -4860,6 +5008,8 @@ function handleDeepLink(){
     setTimeout(() => { goToItem(c); toggleComments(c); }, 300);
     return;
   }
+  if (location.hash && location.hash.indexOf("#theme-")===0){ const k=location.hash.slice(7); if (typeof THEMES!=="undefined" && THEMES[k]) setTimeout(function(){ openTheme(k); },350); return; }
+  if (location.hash && location.hash.indexOf("#record-")===0){ const s=decodeURIComponent(location.hash.slice(8)); setTimeout(function(){ openRecord(s); },350); return; }
   if (location.hash && location.hash.startsWith("#sig-")){
     const id = location.hash.slice(5);
     setTimeout(() => goToItem(id), 300);
@@ -4996,7 +5146,7 @@ function renderToday(){
   const sec = document.getElementById("todaySec");
   const main = document.getElementById("todayMain");
   if (!sec || !main) return;
-  const homeView = !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  const homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
   const dismissed = store.get("stk_today_dismiss", "") === todayStr();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
   if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
@@ -5077,6 +5227,10 @@ function renderAfterHot(S){
     b.onclick = () => setTab(c.id);
     tabs.appendChild(b);
   });
+  /* theme debates entry (v76) */
+  const tht=document.createElement("button");
+  tht.className="tab tab-th"+((typeof THEME_VIEW!=="undefined"&&THEME_VIEW)?" active":"");
+  tht.textContent="\u25E7 "+S.thNav; tht.onclick=openThemes; tabs.appendChild(tht);
   /* track-record scoreboard entry */
   const sb = document.createElement("button");
   sb.className = "tab tab-sb" + (SB_VIEW ? " active" : "");
@@ -5157,7 +5311,9 @@ function renderFeed(animate){
   refreshBmBtn();
   refreshCompanyFilter();
 
-  /* track-record scoreboard view */
+  /* theme debate boards view (v76) */
+    if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW){ renderThemes(list,S); if(typeof hydrateImages==="function") hydrateImages(); return; }
+    /* track-record scoreboard view */
   if (SB_VIEW){
     renderScoreboard(list, S);
     hydrateImages();
