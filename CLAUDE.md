@@ -34,6 +34,21 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 - 긴급하게 특정 글을 손으로 올려야 하면, 올린 뒤 그 sourceUrl이 items.json에 있으니
   scout가 자동으로 중복을 피한다. 그래도 상시 손발행은 금지.
 
+## 콘텐츠 하우스 룰 (june 지시)
+
+- **★ em dash(—·–·―) 절대 금지.** 제목·gist(핵심)·why(왜)·ask 등 모든 카드/UI
+  텍스트에서 금지. 강제 규칙이 아니라 자동으로도 막힌다: `scripts/build_pages.py`가
+  매 빌드마다 items.json을 세척한다(일본어는 「、」, 그 외는 쉼표, 숫자 범위는 하이픈).
+  루틴이 대시를 만들어도 발행 직전 제거됨. 생성 단계에서도 안 만드는 게 최선이니
+  v4.3 루틴 프롬프트 [4]에도 "em dash 금지, 쉼표/문장분리 사용"을 넣을 것.
+
+- **용어 색인은 적극적으로.** 조금이라도 낯설거나 의미가 함축된 용어면 설명을 단다.
+  구조: 큐레이션 사전 `glossary.json`(3개국어 term) → build_pages가 items.json의
+  `entities`로 병합 → 앱(linkifyEntities 툴팁) + SEO 페이지가 자동 링크. 용어를 더
+  늘리려면 glossary.json에 항목 추가(형식은 기존 term 엔티티와 동일: aliases 한·영·일,
+  desc·longDesc 3개국어). 루틴 프롬프트 [4] 용어 규칙도 기준을 낮춰 term을 더 많이
+  추가하게 할 것. 자세한 후속 메모: 프로젝트 `claude/house-rules-and-followups-2026-07-19.md`.
+
 ## 배포/도메인
 - 레포: `Stacks112/Stacks` · 도메인: `stacksdaily.com`
 - 워커: `stacks-comments.wnrakrhdn128.workers.dev` (댓글·투표·푸시)
