@@ -2,6 +2,152 @@
  "items": [
   {
    "date": "2026-07-20",
+   "id": "meru-cxl-3-2-samsung-skhynix",
+   "related": [
+    "jukan-memory-cxl-controller-exit",
+    "jukan-ms-memory-shortage-2028",
+    "jukan-server-dram-spot-surge"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224351546006",
+   "sourceLang": "KO",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A5F",
+    "label": "CXL 3.2"
+   },
+   "tags": [
+    "CXL",
+    "MEMORY",
+    "SAMSUNG"
+   ],
+   "title": {
+    "en": "A plain-language guide to CXL, the 'memory warehouse' Samsung and SK Hynix are building",
+    "ko": "삼성과 SK하이닉스가 짓는 '메모리 창고', CXL 쉽게 정리하기",
+    "ja": "サムスンとSKハイニックスが築く「メモリ倉庫」、CXLをやさしく整理する"
+   },
+   "gist": {
+    "en": "Meru walks through CXL, the technology suddenly on everyone's lips, using a road-and-warehouse picture. A CPU has a fixed number of DRAM slots because only so many dedicated lanes run across the motherboard. CXL sidesteps that limit by hanging extra 'memory warehouses' off the general-purpose PCIe road that is already there, so you can add as much memory as you want. The trade-off is speed: reading local DRAM takes 80-100 nanoseconds, while a trip out to CXL memory takes 170-250. That sounds bad until you remember not all data is equal. Hot data you touch constantly stays in fast local DRAM; data you rarely open lives in the cheap CXL warehouse, and the system barely slows down. Samsung packages this as CMM-D and SK Hynix as CMM-DDR5, the same idea under two names. Each CXL version adds tricks: 1.1 (2019) just expanded capacity, 2.0 added 'pooling' so several servers share one memory pool through a switch, like delivery firms sharing a warehouse instead of each over-building for peak season, and 3.x removes the partitions for fully shared memory. The version now arriving, CXL 3.2, moves the job of sorting hot from cold data out of software and bakes it into the hardware itself. For the memory makers, CXL is a new way to sell more DRAM.",
+    "ko": "메르가 요즘 갑자기 많이 언급되는 CXL을 도로와 창고 비유로 풀어준다. CPU 하나에 꽂을 수 있는 D램 슬롯 수는 정해져 있다. 메인보드를 가로지르는 전용도로 개수가 고정돼 있기 때문이다. CXL은 이미 깔려 있는 일반도로(PCIe)에 '메모리 창고'를 연결하는 방식으로 이 한계를 우회한다. 원하는 만큼 메모리를 무제한으로 늘릴 수 있다. 대신 속도가 문제다. 로컬 D램을 읽으면 80~100나노초, CXL 메모리를 다녀오면 170~250나노초가 걸린다. 나빠 보이지만, 모든 데이터가 똑같지 않다는 점이 핵심이다. 수시로 쓰는 뜨거운 데이터는 빠른 로컬 D램에 두고, 거의 안 보는 데이터는 값싼 CXL 창고에 두면 시스템은 생각만큼 느려지지 않는다. 삼성은 이를 CMM-D, SK하이닉스는 CMM-DDR5라 부르는데 같은 개념의 다른 이름이다. 버전마다 기능이 는다. 1.1(2019)은 단순 용량 확장, 2.0은 여러 서버가 스위치로 메모리를 나눠 쓰는 '풀링'을 도입했다. 성수기 대비 창고를 각자 과잉 건설하는 대신 택배사들이 공유 창고를 빌려 쓰는 그림이다. 3.x는 칸막이를 없애 완전 공용으로 만든다. 곧 나오는 CXL 3.2는 뜨거운·차가운 데이터를 가르는 일을 소프트웨어가 아니라 하드웨어에 심는다. 메모리 회사에게 CXL은 D램을 더 파는 새로운 길이다.",
+    "ja": "メルが、最近急に話題のCXLを、道路と倉庫のたとえで解説する。CPU一つに挿せるDRAMスロット数は決まっている。マザーボードを横切る専用道路の数が固定されているからだ。CXLは、すでに敷かれた一般道(PCIe)に「メモリ倉庫」をつなぐ方式で、この制約を回避する。好きなだけメモリを無制限に増やせる。代わりに速度が問題だ。ローカルDRAMを読むと80〜100ナノ秒、CXLメモリまで往復すると170〜250ナノ秒かかる。悪く見えるが、すべてのデータが同じではない点が肝心だ。頻繁に使う熱いデータは速いローカルDRAMに、めったに見ないデータは安いCXL倉庫に置けば、システムは思ったほど遅くならない。サムスンはこれをCMM-D、SKハイニックスはCMM-DDR5と呼ぶが、同じ概念の別名だ。バージョンごとに機能が増える。1.1(2019)は単純な容量拡張、2.0は複数サーバーがスイッチでメモリを分け合う「プーリング」を導入した。繁忙期に備え各自が倉庫を過剰建設する代わりに、宅配業者が共有倉庫を借りる図だ。3.xは仕切りをなくし完全共用にする。まもなく登場するCXL 3.2は、熱い・冷たいデータの仕分けをソフトでなくハードに焼き込む。メモリ企業にとってCXLはDRAMをもっと売る新しい道だ。"
+   },
+   "why": {
+    "en": "CXL turns memory from a fixed slot count into an expandable warehouse, opening a fresh lane of DRAM demand for Samsung and SK Hynix.",
+    "ko": "CXL은 메모리를 고정된 슬롯 수에서 확장 가능한 창고로 바꿔, 삼성과 SK하이닉스에 새로운 D램 수요의 길을 연다.",
+    "ja": "CXLはメモリを固定スロット数から拡張可能な倉庫に変え、サムスンとSKハイニックスに新たなDRAM需要の道を開く。"
+   },
+   "ask": {
+    "en": "Is CXL a genuine new growth lane for the memory makers, or a niche that AI's appetite for fast local HBM will overshadow?",
+    "ko": "CXL은 메모리 회사에 진짜 새 성장 축일까, 아니면 AI가 빠른 로컬 HBM을 원하는 흐름에 가려질 틈새일까?",
+    "ja": "CXLはメモリ企業の本物の新成長軸か、それともAIが速いローカルHBMを求める流れに埋もれるニッチか？"
+   },
+   "stance": "watch"
+  },
+  {
+   "date": "2026-07-19",
+   "id": "jukan-foxconn-spacex-gb300",
+   "related": [
+    "meru-spacex-bonds",
+    "jukan-samsung-nvidia-nand-v10",
+    "semianalysis-meta-superintelligence"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2078977947457966417",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#2A1E5F",
+    "label": "$52B DEAL"
+   },
+   "tags": [
+    "FOXCONN",
+    "NVIDIA",
+    "SERVERS"
+   ],
+   "title": {
+    "en": "Foxconn cracks the Dell-Supermicro server duopoly with a $52B SpaceX AI order",
+    "ko": "폭스콘, 520억 달러 스페이스X AI 서버 수주로 델·슈퍼마이크로 양강 구도를 깨다",
+    "ja": "フォックスコン、520億ドルのスペースXAIサーバー受注でデル・スーパーマイクロの二強を崩す"
+   },
+   "gist": {
+    "en": "Analyst Jukan flags a milestone for Foxconn, the Taiwanese giant better known for assembling iPhones. Foxconn's parent, Hon Hai, has reportedly won its first contract to build SpaceX's next-generation AI servers, the ones powered by Nvidia's GB300 accelerators. Until now the high-end AI server business has been dominated by Dell and Supermicro, so this is Foxconn prying open a duopoly rather than joining an open field. The number attached is large: the project is said to be worth roughly $52 billion. Just as important for how the stock trades, that order reportedly was not baked into Hon Hai's existing revenue guidance, which hints its AI hardware momentum could be running well ahead of what management has publicly told investors to expect. Jukan pairs this with strong results from Foxconn's listed subsidiary FII, and concludes that expectations for the company's second-half performance have moved up meaningfully. The read-through for investors is that the winners of the AI buildout are not only the chip designers like Nvidia but the contract manufacturers who physically assemble the racks, and Foxconn is positioning to take a bigger slice of that work than the market had penciled in.",
+    "ko": "애널리스트 주칸이 아이폰 조립으로 잘 알려진 대만 대기업 폭스콘의 이정표를 짚는다. 폭스콘 모회사 훙하이가 스페이스X의 차세대 AI 서버, 엔비디아 GB300 가속기가 들어가는 그 서버를 만드는 첫 계약을 따냈다고 전해진다. 그동안 고급 AI 서버 시장은 델과 슈퍼마이크로가 사실상 양분해 왔다. 그러니 이번 건은 열린 시장에 합류한 게 아니라 폭스콘이 양강 구도를 비집고 들어간 사건이다. 붙은 숫자가 크다. 이 프로젝트 규모는 약 520억 달러로 알려졌다. 주가 흐름에 더 중요한 점은, 이 수주가 훙하이의 기존 매출 가이던스에 반영되지 않았다는 것이다. AI 하드웨어 모멘텀이 경영진이 공개적으로 제시한 기대치를 크게 앞서 달리고 있을 수 있다는 신호다. 주칸은 여기에 상장 자회사 FII의 호실적을 더해, 회사의 하반기 실적 기대가 의미 있게 올라갔다고 결론짓는다. 투자자에게 주는 함의는, AI 투자 붐의 승자가 엔비디아 같은 칩 설계사만이 아니라 랙을 실제로 조립하는 위탁생산사이기도 하다는 것이다. 폭스콘은 시장이 예상한 것보다 더 큰 몫을 가져갈 자리를 잡고 있다.",
+    "ja": "アナリストのジュカンが、iPhone組み立てで知られる台湾大手フォックスコンの節目を指摘する。フォックスコンの親会社ホンハイが、スペースXの次世代AIサーバー、エヌビディアのGB300アクセラレータを搭載するそのサーバーを作る初契約を獲得したと伝えられる。これまでハイエンドAIサーバー市場はデルとスーパーマイクロがほぼ二分してきた。だから今回は開かれた市場への参入ではなく、フォックスコンが二強の壁をこじ開けた出来事だ。付いた数字は大きい。このプロジェクト規模は約520億ドルとされる。株価の動きにより重要なのは、この受注がホンハイの既存の売上ガイダンスに織り込まれていなかった点だ。AIハードウェアの勢いが、経営陣が公に示した期待値を大きく上回っている可能性を示す。ジュカンはこれに上場子会社FIIの好業績を重ね、同社の下半期業績への期待が大きく上向いたと結論づける。投資家への含意は、AI投資ブームの勝者はエヌビディアのようなチップ設計会社だけでなく、ラックを実際に組み立てる受託製造社でもあるということだ。フォックスコンは市場の想定より大きな取り分をつかむ位置についている。"
+   },
+   "why": {
+    "en": "A $52B order outside guidance says the AI buildout pays not just chip designers but the manufacturers who bolt the racks together.",
+    "ko": "가이던스 밖의 520억 달러 수주는, AI 투자 붐이 칩 설계사뿐 아니라 랙을 조립하는 제조사에도 돈을 안긴다는 뜻이다.",
+    "ja": "ガイダンス外の520億ドル受注は、AI投資ブームがチップ設計社だけでなくラックを組み立てる製造社にも報いることを示す。"
+   },
+   "ask": {
+    "en": "Foxconn breaking into GB300 servers: a durable new profit engine, or a thin-margin assembly job that never moves the needle much?",
+    "ko": "폭스콘의 GB300 서버 진입, 지속적인 새 수익 엔진일까, 아니면 이익률 얇은 조립 일감으로 그칠까?",
+    "ja": "フォックスコンのGB300サーバー参入は、持続的な新収益エンジンか、それとも利幅の薄い組み立て仕事にとどまるか？"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Score when Hon Hai reports 2026 H2 results or updates guidance: did it raise its outlook citing AI-server orders like this SpaceX deal?",
+     "ko": "훙하이가 2026년 하반기 실적을 발표하거나 가이던스를 갱신할 때 채점: 이번 스페이스X 건 같은 AI 서버 수주를 근거로 전망을 상향했는가?",
+     "ja": "ホンハイが2026年下半期の業績を発表またはガイダンスを更新した時点で採点：今回のスペースX案件のようなAIサーバー受注を理由に見通しを上方修正したか。"
+    }
+   }
+  },
+  {
+   "date": "2026-07-19",
+   "id": "kobeissi-semi-etf-leverage-unwind",
+   "related": [
+    "kobeissi-hedge-funds-tech-exit",
+    "jukan-ms-memory-shortage-2028",
+    "serenity-supply-bottleneck-map"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2078900677431189748",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#5F2530",
+    "label": "UNWIND"
+   },
+   "tags": [
+    "SEMIS",
+    "LEVERAGE",
+    "ETF"
+   ],
+   "title": {
+    "en": "A $63B leverage unwind is sweeping through semiconductor ETFs",
+    "ko": "반도체 ETF에서 630억 달러 규모의 레버리지 청산이 진행 중",
+    "ja": "半導体ETFで630億ドル規模のレバレッジ解消が進行中"
+   },
+   "gist": {
+    "en": "The Kobeissi Letter points to a sharp reversal in how aggressively traders are betting on chip stocks. Assets in US leveraged semiconductor ETFs, funds that use borrowed money to amplify the daily move of chip indexes, have fallen by $63 billion from their June peak down to $100 billion, the lowest level since late April. That is a 39% drop and the largest such drawdown since April 2025, when these assets more than halved from a prior high. To put the scale in context, this single corner of the market accounts for 63% of the entire $100 billion decline in assets across all US leveraged ETFs over the same stretch, meaning the retreat from risk has been concentrated heavily in semiconductors. The move is striking because it follows a frenzy: assets in these funds nearly tripled between the last week of March and the June peak. Even after the unwind, they remain about 400% above their January 2023 level, so this is a cooling of an extreme rather than a full capitulation. The signal for investors is that the fast, leveraged money that piled into chips is now stepping back hard, which can drain the momentum that carried the sector even if the underlying businesses stay healthy.",
+    "ko": "코베이시 레터가 트레이더들이 반도체 주식에 얼마나 공격적으로 베팅하는지의 급반전을 짚는다. 미국 레버리지 반도체 ETF, 즉 빌린 돈으로 반도체 지수의 하루 등락을 증폭하는 펀드의 자산이 6월 고점에서 630억 달러 줄어 1000억 달러로 내려왔다. 4월 말 이후 가장 낮은 수준이다. 39% 감소로, 이들 자산이 직전 고점에서 반 넘게 줄었던 2025년 4월 이후 최대 낙폭이다. 규모를 가늠하자면, 같은 기간 미국 전체 레버리지 ETF에서 빠져나간 1000억 달러 중 63%가 바로 이 반도체 한 구석에서 나왔다. 위험 회피가 반도체에 크게 집중됐다는 뜻이다. 이 움직임이 눈에 띄는 이유는 광풍 뒤에 왔기 때문이다. 이들 펀드 자산은 3월 마지막 주부터 6월 고점까지 거의 세 배로 불었다. 청산 뒤에도 2023년 1월 대비 약 400% 높은 수준이라, 완전한 항복이 아니라 극단의 진정에 가깝다. 투자자에게 주는 신호는, 반도체에 몰려들었던 빠른 레버리지 자금이 지금 강하게 발을 빼고 있다는 것이다. 기업 실적이 멀쩡해도 섹터를 밀어올린 모멘텀은 빠질 수 있다.",
+    "ja": "コベイシ・レターが、トレーダーが半導体株にどれだけ強気に賭けているかの急反転を指摘する。米国のレバレッジ半導体ETF、つまり借入金で半導体指数の日々の変動を増幅するファンドの資産が、6月のピークから630億ドル減り1000億ドルまで下がった。4月下旬以来の低水準だ。39%の減少で、これら資産が直近高値から半分以上減った2025年4月以来の最大の下げ幅だ。規模を測ると、同じ期間に米国の全レバレッジETFから流出した1000億ドルのうち63%が、この半導体という一角から出た。リスク回避が半導体に大きく集中したことを意味する。この動きが目立つのは、熱狂の後に来たからだ。これらファンドの資産は3月最終週から6月ピークまでほぼ3倍に膨らんだ。解消後も2023年1月比で約400%高い水準にあり、完全な投げ売りではなく極端の沈静化に近い。投資家への信号は、半導体に殺到した速いレバレッジ資金が今、強く手を引いているということだ。企業業績が健全でも、セクターを押し上げた勢いは抜けうる。"
+   },
+   "why": {
+    "en": "When leveraged money that tripled into chips pulls back 39%, the sector can lose momentum even while the businesses stay strong.",
+    "ko": "반도체로 세 배 불어났던 레버리지 자금이 39% 빠지면, 기업은 튼튼해도 섹터 모멘텀은 꺾일 수 있다.",
+    "ja": "半導体に3倍に膨らんだレバレッジ資金が39%引くと、企業は堅調でもセクターの勢いは失われうる。"
+   },
+   "ask": {
+    "en": "Is this leverage flush a healthy reset that steadies chip stocks, or the first crack in the momentum that has carried them?",
+    "ko": "이번 레버리지 청산은 반도체주를 안정시키는 건강한 리셋일까, 아니면 그동안의 모멘텀에 생긴 첫 균열일까?",
+    "ja": "今回のレバレッジ解消は半導体株を安定させる健全なリセットか、それともこれまでの勢いに入った最初の亀裂か？"
+   },
+   "stance": "watch"
+  },
+  {
+   "date": "2026-07-20",
    "id": "kobeissi-alphabet-frozen-chip",
    "related": [
     "meru-alphabet-q2-capex-test",
@@ -5487,6 +5633,50 @@
     "weights-baked chip",
     "프로즌"
    ]
+  },
+  "FOXCONN": {
+   "kind": "company",
+   "ticker": "2317.tw",
+   "sector": {
+    "en": "Electronics Manufacturing",
+    "ko": "전자 위탁생산",
+    "ja": "電子機器受託製造"
+   },
+   "desc": {
+    "en": "World's largest electronics contract manufacturer, best known for assembling Apple's iPhones and now Nvidia-powered AI servers.",
+    "ko": "세계 최대 전자 위탁생산 기업. 애플 아이폰 조립으로 유명하며, 이제 엔비디아 기반 AI 서버도 만든다.",
+    "ja": "世界最大の電子機器受託製造企業。アップルのiPhone組み立てで有名で、今はエヌビディア搭載のAIサーバーも作る。"
+   },
+   "aliases": [
+    "Foxconn",
+    "Hon Hai",
+    "Hon Hai Precision",
+    "폭스콘",
+    "훙하이",
+    "鴻海",
+    "鴻海精密",
+    "フォックスコン",
+    "ホンハイ"
+   ],
+   "logo": "honhai.com",
+   "exchange": "TWSE",
+   "ceo": {
+    "en": "Young Liu",
+    "ko": "류양웨이",
+    "ja": "ヤング・リュウ"
+   },
+   "hq": {
+    "en": "New Taipei, Taiwan",
+    "ko": "대만 신베이",
+    "ja": "台湾・新北"
+   },
+   "founded": "1974",
+   "website": "https://www.honhai.com",
+   "longDesc": {
+    "en": "Founded in 1974 by Terry Gou, Hon Hai Precision Industry, which trades under the Foxconn brand, grew into the world's largest contract electronics manufacturer, assembling a large share of the world's iPhones and consumer devices. It is now a major builder of AI server racks, working with Nvidia and hyperscale and enterprise customers, and its listed unit Foxconn Industrial Internet (FII) houses much of that data-center business.",
+    "ko": "1974년 궈타이밍(테리 궈)이 창업한 훙하이정밀공업은 폭스콘 브랜드로 거래되며, 세계 최대 전자 위탁생산 기업으로 성장했다. 세계 아이폰과 소비자 기기의 상당 부분을 조립한다. 지금은 엔비디아와 대형 클라우드·기업 고객을 상대로 AI 서버 랙을 만드는 주요 업체이며, 상장 자회사 폭스콘산업인터넷(FII)이 이 데이터센터 사업의 상당 부분을 담당한다.",
+    "ja": "1974年に郭台銘(テリー・ゴウ)が創業したホンハイ精密工業は、フォックスコンのブランドで取引され、世界最大の電子機器受託製造企業に成長した。世界のiPhoneや消費者機器の多くを組み立てる。今はエヌビディアや大手クラウド・企業顧客向けにAIサーバーラックを作る主要企業で、上場子会社フォックスコン工業インターネット(FII)がこのデータセンター事業の多くを担う。"
+   }
   }
  }
 }
