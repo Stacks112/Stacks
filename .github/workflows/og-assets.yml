@@ -32,6 +32,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install CJK font for share cards
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
       - name: Fetch subject images + rebuild cards
         run: |
           pip install requests pillow --quiet
@@ -43,7 +46,7 @@ jobs:
         run: |
           git config user.name "stacks-og-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ogsrc/ og/ p/ e/ t/ r/ week/ articles.html this-week.html sitemap.xml feed.xml robots.txt items.json 2>/dev/null || true
+          git add -A
           if git diff --cached --quiet; then
             echo "no changes"
           else
