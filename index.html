@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v76 :: theme debate boards (#theme-) + shareable per-author record pages (#record-) + best/worst call strip on scoreboard -->
+<!-- STACKS BUILD v77 :: real profile avatars (full-URL avatarImg + onerror fallback) + daily-rotating Today debate + events calendar sheet (openCal) -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1941,6 +1941,30 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .rec-share{margin-top:8px;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:var(--bg-soft);color:var(--text);cursor:pointer;}
 @media (max-width:560px){.bw-strip{grid-template-columns:1fr;}}
 
+
+/* ---------- events calendar (v77) ---------- */
+.ev-cal-btn{font-family:inherit;font-size:11px;font-weight:800;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px;cursor:pointer;color:var(--text);white-space:nowrap;margin-right:8px;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.cal-nav b{font-size:15px;font-weight:800;}
+.cal-arrow{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);font-size:18px;cursor:pointer;line-height:1;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.cal-wd{text-align:center;font-size:10px;font-weight:700;color:var(--muted);padding:4px 0;}
+.cal-cell{min-height:46px;border-radius:9px;padding:5px 4px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;border:1px solid transparent;}
+.cal-cell.cal-has{background:var(--bg-soft);border-color:var(--line);}
+.cal-cell.cal-today{border-color:#2E6BFF;}
+.cal-empty{background:transparent;border:0;}
+.cal-dnum{font-size:11px;font-weight:700;color:var(--text);}
+.cal-cell.cal-today .cal-dnum{color:#2E6BFF;}
+.cal-dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;}
+.cal-dot{width:5px;height:5px;border-radius:50%;background:var(--muted);}
+.ck-earnings{background:#12B76A;} .ck-macro{background:#2E6BFF;} .ck-x{background:#9BA1B0;} .ck-event,.ck-x{background:#9BA1B0;}
+.cal-list-h{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px;}
+.cal-li{display:flex;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line);}
+.cal-li-link{cursor:pointer;} .cal-li-link:hover{background:var(--bg-soft);}
+.cal-li-d{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:700;white-space:nowrap;padding:3px 7px;border-radius:6px;color:#fff;}
+.cal-li-t{font-size:13px;color:var(--text);line-height:1.35;}
+.cal-none{color:var(--muted);font-size:13px;padding:12px 0;}
+
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
   --bg:#0E0F12;
@@ -2114,7 +2138,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v76</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v77</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
@@ -2814,6 +2838,44 @@ function renderEntityDebate(list, items, S){
 }
 /* ---------------- stage3: stance filter + rail debate + CEO profiles + home ---------------- */
 let STANCE_FILTER = null, STANCE_FILTER_KEY = null, SB_VIEW = false;
+
+
+/* ---------------- events calendar (v77) ---------------- */
+var CAL_Y=null, CAL_M=null;
+const CAL_STR={ en:{title:"Calendar",list:"Upcoming",none:"No events this month."}, ko:{title:"\uC774\uBCA4\uD2B8 \uCE98\uB9B0\uB354",list:"\uB2E4\uAC00\uC624\uB294 \uC77C\uC815",none:"\uC774\uBC88 \uB2EC \uC774\uBCA4\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."}, ja:{title:"\u30A4\u30D9\u30F3\u30C8\u30AB\u30EC\u30F3\u30C0\u30FC",list:"\u4ECA\u5F8C\u306E\u4E88\u5B9A",none:"\u4ECA\u6708\u306E\u30A4\u30D9\u30F3\u30C8\u306F\u3042\u308A\u307E\u305B\u3093\u3002"} };
+function calLocale(){ return LANG==="ko"?"ko-KR":LANG==="ja"?"ja-JP":"en-US"; }
+function openCal(){ const m=document.getElementById("calSheet"); if(!m) return; if(CAL_Y===null){ var d=new Date(); CAL_Y=d.getFullYear(); CAL_M=d.getMonth(); } renderCal(); m.hidden=false; document.body.style.overflow="hidden"; pushView(); if(typeof track==="function") track("calendar/open"); }
+function closeCal(){ const m=document.getElementById("calSheet"); if(!m||m.hidden) return; m.hidden=true; document.body.style.overflow=""; }
+function calShift(delta){ CAL_M+=delta; if(CAL_M<0){CAL_M=11;CAL_Y--;} else if(CAL_M>11){CAL_M=0;CAL_Y++;} renderCal(); }
+function renderCal(){
+  var body=document.getElementById("calBody"), head=document.getElementById("calHeadTitle"); if(!body) return;
+  var CS=CAL_STR[LANG]||CAL_STR.en, loc=calLocale(); head.textContent=CS.title;
+  var first=new Date(CAL_Y,CAL_M,1), startDow=first.getDay(), dim=new Date(CAL_Y,CAL_M+1,0).getDate();
+  var todayISO=new Date(); todayISO.setHours(0,0,0,0);
+  var byDay={}; (typeof EVENTS!=="undefined"?EVENTS:[]).forEach(function(e){ var d=new Date(e.date+"T00:00:00"); if(d.getFullYear()===CAL_Y&&d.getMonth()===CAL_M){ (byDay[d.getDate()]=byDay[d.getDate()]||[]).push(e); } });
+  var wd = LANG==="ko"?["\uC77C","\uC6D4","\uD654","\uC218","\uBAA9","\uAE08","\uD1A0"] : LANG==="ja"?["\u65E5","\u6708","\u706B","\u6C34","\u6728","\u91D1","\u571F"] : ["S","M","T","W","T","F","S"];
+  var monthLbl=new Date(CAL_Y,CAL_M,1).toLocaleDateString(loc,{year:"numeric",month:"long"});
+  var html='<div class="cal-nav"><button class="cal-arrow" onclick="calShift(-1)">\u2039</button><b>'+monthLbl+'</b><button class="cal-arrow" onclick="calShift(1)">\u203A</button></div>';
+  html+='<div class="cal-grid">'+wd.map(function(w){return '<span class="cal-wd">'+w+'</span>';}).join("");
+  for(var i=0;i<startDow;i++) html+='<span class="cal-cell cal-empty"></span>';
+  for(var dnum=1;dnum<=dim;dnum++){
+    var evs=byDay[dnum]||[]; var cellD=new Date(CAL_Y,CAL_M,dnum); var isToday=cellD.getTime()===todayISO.getTime();
+    var dots=evs.slice(0,3).map(function(e){return '<i class="cal-dot ck-'+(e.kind||"x")+'"></i>';}).join("");
+    html+='<span class="cal-cell'+(isToday?" cal-today":"")+(evs.length?" cal-has":"")+'"><span class="cal-dnum">'+dnum+'</span>'+(dots?'<span class="cal-dots">'+dots+'</span>':'')+'</span>';
+  }
+  html+='</div>';
+  var monthEvs=[]; Object.keys(byDay).forEach(function(k){ byDay[k].forEach(function(e){monthEvs.push(e);}); });
+  monthEvs.sort(function(a,b){return a.date<b.date?-1:1;});
+  html+='<div class="cal-list-h">'+CS.list+'</div>';
+  if(!monthEvs.length){ html+='<div class="cal-none">'+CS.none+'</div>'; }
+  else { html+=monthEvs.map(function(e){
+      var d=new Date(e.date+"T00:00:00"); var dd=d.toLocaleDateString(loc,{month:"short",day:"numeric",weekday:"short"});
+      var lbl=(e.label&&(e.label[LANG]||e.label.en))||(e.title&&(e.title[LANG]||e.title.en))||"";
+      var link=e.itemId?' cal-li-link" onclick="closeCal();goToItem(\''+e.itemId+'\')':'"';
+      return '<div class="cal-li'+link+'><span class="cal-li-d ck-'+(e.kind||"x")+'">'+dd+'</span><span class="cal-li-t">'+esc(lbl)+'</span></div>';
+    }).join(""); }
+  body.innerHTML=html;
+}
 
 /* ---------------- theme debate boards + author record pages (v76) ----------------
    THEMES: curated market questions matched by keyword over title/gist/tags.
@@ -3756,11 +3818,13 @@ function hydrateImages(){
 
 function avatarHtml(item, extraClass){
   const cls = extraClass ? extraClass + " avatar" : "avatar";
-  if (item.avatarImg && !item.wiki){
-    return `<div class="${cls} photo"><img src="${item.avatarImg}" alt="${item.source}" loading="lazy"></div>`;
+  const a = item.avatarImg, isUrl = a && /^https?:\/\//.test(a);
+  if (a && (isUrl || !item.wiki)){
+    return `<div class="${cls} photo" data-init="${esc(initial(item.source))}" data-lang="${item.sourceLang.toLowerCase()}"><img src="${esc(a)}" alt="${esc(item.source)}" loading="lazy" onerror="avatarFail(this)"></div>`;
   }
   return `<div class="${cls} ${item.sourceLang.toLowerCase()}" data-avatar="${item.id}">${initial(item.source)}</div>`;
 }
+function avatarFail(img){ try{ const p=img.parentNode; p.classList.remove('photo'); p.classList.add(p.getAttribute('data-lang')||'en'); p.textContent=p.getAttribute('data-init')||'?'; }catch(e){} }
 
 /* ---------------- read & new-item state ----------------
    stk_seen : every item id this browser has ever loaded.
@@ -4088,7 +4152,7 @@ function renderEvents(){
     .sort((a, b) => a.days - b.days);
   if (!evs.length){ bar.hidden = true; return; }
   bar.hidden = false;
-  bar.innerHTML = '<span class="ev-title">' + S.eventsTitle + "</span>"
+  bar.innerHTML = '<button class="ev-cal-btn" onclick="openCal()">📅</button><span class="ev-title" onclick="openCal()" style="cursor:pointer">' + S.eventsTitle + "</span>"
     + evs.map(x =>
         '<button class="event-chip" onclick="goToItem(\'' + x.ev.itemId + '\')">'
         + '<span class="ev-d">' + (x.days === 0 ? S.dToday : "D-" + x.days) + "</span>"
@@ -4990,7 +5054,8 @@ function pushView(){ try { history.pushState({ stk: ++VIEW_PUSHED }, ""); } catc
 window.addEventListener("popstate", function(){
   const cfs = document.getElementById("chartFS");
   if (cfs && !cfs.hidden){ closeChartFS(); return; }
-  const me = document.getElementById("meSheet");
+  const _cal=document.getElementById("calSheet"); if(_cal && !_cal.hidden){ closeCal(); return; }
+    const me = document.getElementById("meSheet");
   if (me && !me.hidden){ closeMe(); return; }
   if (document.getElementById("entityRailPanel")){ closeEntityRail(); return; }
   if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
@@ -5008,6 +5073,7 @@ function handleDeepLink(){
     setTimeout(() => { goToItem(c); toggleComments(c); }, 300);
     return;
   }
+  if (location.hash === "#calendar"){ setTimeout(openCal,350); return; }
   if (location.hash && location.hash.indexOf("#theme-")===0){ const k=location.hash.slice(7); if (typeof THEMES!=="undefined" && THEMES[k]) setTimeout(function(){ openTheme(k); },350); return; }
   if (location.hash && location.hash.indexOf("#record-")===0){ const s=decodeURIComponent(location.hash.slice(8)); setTimeout(function(){ openRecord(s); },350); return; }
   if (location.hash && location.hash.startsWith("#sig-")){
@@ -5150,8 +5216,7 @@ function renderToday(){
   const dismissed = store.get("stk_today_dismiss", "") === todayStr();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
   if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
-  pool.sort((a, b) => (COMMENT_COUNTS[b.id] || 0) - (COMMENT_COUNTS[a.id] || 0) || (a.date < b.date ? 1 : -1));
-  const item = pool[0];
+  pool.sort((a, b) => (a.date < b.date ? 1 : -1)); const _cRecent = pool.filter(i => (Date.now() - new Date(i.date).getTime()) < 45*86400000); const _cUse = _cRecent.length >= 3 ? _cRecent : pool.slice(0, 12); const item = _cUse[Math.floor(Date.now()/86400000) % _cUse.length];
   TODAY_ID = item.id;
   const S = STRINGS[LANG];
   const n = COMMENT_COUNTS[item.id] || 0;
@@ -6030,6 +6095,13 @@ bootData();
       <button class="cfs-close" onclick="closeMe()" aria-label="close">✕</button>
     </div>
     <div id="meBody"></div>
+  </div>
+</div>
+<div id="calSheet" hidden>
+  <div class="me-backdrop" onclick="closeCal()"></div>
+  <div class="me-card">
+    <div class="me-head"><b id="calHeadTitle"></b><button class="cfs-close" onclick="closeCal()" aria-label="close">\u2715</button></div>
+    <div id="calBody"></div>
   </div>
 </div>
 <div id="chartFS" hidden>
