@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v78 :: fair-value gap badge (item.target) + themes trade/japan + theme follow & push tags (t_) -->
+<!-- STACKS BUILD v79 :: consensus skew badge + "where the crowd leans" home module + per-ticker/theme receipts strip + richer e/ pages -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1862,6 +1862,16 @@ html[data-lang="ko"] .stance-pill{font-family:"Pretendard Variable",sans-serif;}
 .sp-bear{color:#B42318;background:rgba(240,68,56,.12);border:1px solid rgba(240,68,56,.32);}
 .sp-watch{color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);}
 .debate-bar{background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px;}
+.skew-badge{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid;}
+.skew-badge.sk-bull{color:#0E9F5E;border-color:rgba(14,159,94,.4);background:rgba(14,159,94,.07);}
+.skew-badge.sk-bear{color:#E04438;border-color:rgba(224,68,56,.4);background:rgba(224,68,56,.07);}
+.receipts-strip{margin-top:8px;font-size:12px;font-weight:600;color:var(--muted);}
+.skew-box{display:flex;flex-wrap:wrap;gap:8px;}
+.skew-chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:9px 14px;cursor:pointer;font-family:inherit;text-align:left;}
+.skew-chip .skc-name{font-size:13.5px;font-weight:700;color:var(--text);}
+.skew-chip .skc-tag{font-size:11.5px;font-weight:700;}
+.skew-chip.sk-bull .skc-tag{color:#0E9F5E;}
+.skew-chip.sk-bear .skc-tag{color:#E04438;}
 .debate-title{
   font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;
@@ -2073,6 +2083,11 @@ footer a{color:var(--muted);}
     </div>
   </section>
 
+  <section id="skewSec" hidden>
+    <h2 class="section-title" id="skewTitle"></h2>
+    <div class="skew-box" id="skewBox"></div>
+  </section>
+
   <section>
     <h2 class="section-title" id="hotTitle"></h2>
     <div class="hot-rail" id="hotRail"></div>
@@ -2144,7 +2159,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v78</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v79</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
@@ -2810,6 +2825,64 @@ function debateTitleHtml(key){
   const p = (LANG === "ko" && e.kind !== "person") ? koEulReul(nm) : "";
   return tmpl.replace("{name}", () => span).replace("{p}", p);
 }
+/* ---------------- consensus skew + receipts aggregate (v79) ---------------- */
+(function(){ var X={
+  en:{ skewLead:"One-sided", skewTip:"3+ directional calls and 80%+ agree on one side. Extreme agreement can be a contrarian flag.", skewSecTitle:"Where the crowd is leaning", rcPreds:"{n} tracked calls", rcGraded:"graded {g} (hit {h})", rcPending:"{p} pending" },
+  ko:{ skewLead:"한쪽 쏠림", skewTip:"방향성 콜 3건 이상, 한쪽이 80% 이상. 극단적 쏠림은 역발상 신호가 될 수 있습니다.", skewSecTitle:"지금 쏠린 곳", rcPreds:"예측 {n}건", rcGraded:"채점 {g} (적중 {h})", rcPending:"채점 대기 {p}" },
+  ja:{ skewLead:"一方向に偏り", skewTip:"方向性のあるコール3件以上、片側が80%以上。極端な偏りは逆張りのサインになり得ます。", skewSecTitle:"今、偏っている論点", rcPreds:"予測{n}件", rcGraded:"採点{g}(的中{h})", rcPending:"採点待ち{p}" }
+}; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
+
+function stanceTally(items){ var t={bull:0,bear:0,watch:0}; (items||[]).forEach(function(i){ var s=itemStance(i); if(s) t[s]++; }); return t; }
+function skewInfo(items){
+  var t=stanceTally(items), dir=t.bull+t.bear;
+  if(dir<3) return null;
+  var side=t.bull>=t.bear?"bull":"bear", maj=Math.max(t.bull,t.bear), pct=maj/dir;
+  if(pct<0.8) return null;
+  return {side:side,pct:pct,maj:maj,dir:dir};
+}
+function skewBadgeHtml(items){
+  var sk=skewInfo(items); if(!sk) return "";
+  var S=STRINGS[LANG], sideLb=sk.side==="bull"?S.stanceBull:S.stanceBear, pct=Math.round(sk.pct*100);
+  return '<div class="skew-badge sk-'+sk.side+'" title="'+esc(S.skewTip)+'">⚠️ '+esc(S.skewLead)+' · '+esc(sideLb)+' '+pct+'%</div>';
+}
+function outcomeTally(items){
+  var o={pending:0,hit:0,miss:0,total:0};
+  (items||[]).forEach(function(i){ var oc=i.outcome; if(oc&&oc.status){ o.total++; if(o[oc.status]!==undefined)o[oc.status]++; else o.pending++; } });
+  return o;
+}
+function receiptsStripHtml(items){
+  var o=outcomeTally(items); if(!o.total) return "";
+  var S=STRINGS[LANG], graded=o.hit+o.miss, parts=[S.rcPreds.replace("{n}",o.total)];
+  if(graded) parts.push(S.rcGraded.replace("{g}",graded).replace("{h}",o.hit));
+  if(o.pending) parts.push(S.rcPending.replace("{p}",o.pending));
+  return '<div class="receipts-strip">📋 '+esc(parts.join(" · "))+'</div>';
+}
+function renderSkew(){
+  var sec=document.getElementById("skewSec"), box=document.getElementById("skewBox"), ttl=document.getElementById("skewTitle");
+  if(!sec||!box) return;
+  var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  if(!homeView){ sec.hidden=true; return; }
+  var S=STRINGS[LANG], out=[];
+  try {
+    Object.keys(THEMES).forEach(function(k){ var sk=skewInfo(themeItems(k)); if(sk) out.push({kind:"theme",key:k,label:THEMES[k].label[LANG],icon:THEMES[k].icon,sk:sk}); });
+    var byEnt={};
+    ITEMS.forEach(function(it){ if(!itemStance(it)) return; itemEntities(it).forEach(function(e){ if(ENTITIES[e]&&ENTITIES[e].kind==="company"){ (byEnt[e]=byEnt[e]||[]).push(it); } }); });
+    Object.keys(byEnt).forEach(function(e){ var sk=skewInfo(byEnt[e]); if(sk) out.push({kind:"ent",key:e,label:entName(e),icon:"",sk:sk}); });
+  } catch(e){ sec.hidden=true; return; }
+  if(!out.length){ sec.hidden=true; return; }
+  out.sort(function(a,b){ return (b.sk.pct-a.sk.pct)||(b.sk.dir-a.sk.dir); });
+  out=out.slice(0,6);
+  box.innerHTML=out.map(function(o){
+    var sideLb=o.sk.side==="bull"?S.stanceBull:S.stanceBear, pct=Math.round(o.sk.pct*100);
+    var oc=o.kind==="theme"?"openTheme('"+String(o.key).replace(/'/g,"\\'")+"')":"entityFeedView('"+String(o.key).replace(/'/g,"\\'")+"')";
+    return '<button class="skew-chip sk-'+o.sk.side+'" onclick="'+oc+'">'
+      +'<span class="skc-name">'+(o.icon?o.icon+" ":"")+esc(o.label)+'</span>'
+      +'<span class="skc-tag">'+esc(sideLb)+' '+pct+'% · '+o.sk.dir+'</span></button>';
+  }).join("");
+  if(ttl) ttl.textContent=S.skewSecTitle;
+  sec.hidden=false;
+  if(typeof track==="function") track("skew/show");
+}
 function renderEntityDebate(list, items, S){
   if (STANCE_FILTER && STANCE_FILTER_KEY !== ENTITY_VIEW) STANCE_FILTER = null;
   try { const _eh = list.querySelector(".entity-head"); if (_eh) entityPhotoEnhance(_eh, ENTITY_VIEW); } catch (e) {}
@@ -2830,7 +2903,7 @@ function renderEntityDebate(list, items, S){
     + ["bull", "bear", "watch"].map(k => counts[k]
         ? '<div class="debate-seg ds-' + k + (STANCE_FILTER ? (STANCE_FILTER === k ? " on" : " dim") : "") + '" style="flex:' + counts[k] + '" onclick="stanceFilterTap(\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
         : "").join("")
-    + '</div>';
+    + '</div>' + skewBadgeHtml(items) + receiptsStripHtml(items);
   /* debate-bar placement fix */
   const ehd = list.querySelector(".entity-head");
   if (ehd){
@@ -3005,7 +3078,7 @@ function renderThemes(list,S){
   var bar=document.createElement("div"); bar.className="debate-bar";
   function seg2(c,cls,lb){ return c?'<div class="debate-seg '+cls+'" style="flex:'+c+'"><span>'+lb+'</span><b>'+c+'</b></div>':""; }
   bar.innerHTML='<div class="debate-title">'+S.debateTitle+'</div><div class="debate-track">'
-    +seg2(n.bull,"ds-bull",S.stanceBull)+seg2(n.watch,"ds-watch",S.stanceWatch)+seg2(n.bear,"ds-bear",S.stanceBear)+'</div>';
+    +seg2(n.bull,"ds-bull",S.stanceBull)+seg2(n.watch,"ds-watch",S.stanceWatch)+seg2(n.bear,"ds-bear",S.stanceBear)+'</div>'+skewBadgeHtml(its)+receiptsStripHtml(its);
   list.appendChild(bar);
   if(!its.length){ var em=document.createElement("div"); em.className="empty"; em.textContent=S.thEmpty; list.appendChild(em); return; }
   var groups=[["bull",S.stanceBull,"dg-bull"],["bear",S.stanceBear,"dg-bear"],["watch",S.stanceWatch,"dg-watch"]];
@@ -5218,6 +5291,9 @@ function render(){
 
   /* today's pinned debate */
   renderToday();
+
+  /* consensus skew: where the crowd is leaning */
+  renderSkew();
 
   /* countdown + watchlist + newsletter */
   renderEvents();
