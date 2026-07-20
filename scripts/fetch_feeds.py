@@ -39,6 +39,8 @@ FEEDS = [
     {"id": "tesuta", "url": "https://rss.app/feeds/u6twTSFkvGHn7Tlw.xml", "naver": False},
     {"id": "damodaran", "url": "https://aswathdamodaran.blogspot.com/feeds/posts/default?alt=rss", "naver": False},
     {"id": "thediff", "url": "https://rss.app/feeds/MqXEWKxMSRlmKIG5.xml", "naver": False},
+    {"id": "lynalden", "url": "https://www.lynalden.com/feed/", "naver": False},
+    {"id": "jukan", "url": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml", "naver": False},
 ]
 
 
