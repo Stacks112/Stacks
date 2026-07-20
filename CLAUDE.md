@@ -107,6 +107,10 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   + 홈 "지금 쏠린 곳" 모듈(skewSec, 테마·기업 스캔 top6) + receipts-strip(종목/테마별
   outcome 집계 "예측 N건·채점 대기") on 기업·테마 보드. e/ 엔티티 정적 페이지도 컨센서스
   tally + 예측·적중 기록 블록으로 강화(build_pages).
+  v80: 채점 대기 큐(적중 기록 뷰, outcome.due 기준 D-day/지연 배지) + 캘린더 일자 클릭
+  조회(과거 이벤트 포함, CAL_SEL) + 이벤트 클릭→관련 글 필터(evGo: entity→논쟁보드,
+  itemId→해당 글, 없으면 검색) + 모바일 calSheet ✕버튼 버그 수정(#calSheet fixed/z-index
+  13000 — 규칙: me-card 재사용 모달은 반드시 컨테이너에 fixed+z-index 지정).
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
@@ -128,7 +132,11 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 
 ## 예약 루틴 (발행·알림 — 레포 밖, Claude 예약 작업)
 - **자동 발행 파이프라인 v4.3** — 3h @ :40. 유일한 발행자.
-- 데일리 브리핑(07:00 KST), 예측 채점(일), 주간 다이제스트/뉴스레터(일),
+- 데일리 브리핑(07:00 KST), **예측 채점(매일 06:30 KST, outcome.due 기반)** — due가 오늘
+  이하인 pending만 WebSearch로 확정(hit/miss+gradedOn), 아니면 due 연기; due 없는 pending엔
+  due 추정 추가; items.json만 커밋(정적 페이지는 og-assets가 자동 재빌드). ※프롬프트 갱신
+  문안은 claude/status-2026-07-20-v80.md (프롬프트 수정은 june만 가능 — prompt_update_disabled).
+  주간 다이제스트/뉴스레터(일),
   이벤트 캘린더(일), 급변동 알림(화-토), 헬스체크(목), 모닝 브리프.
 
 ## 배포 제약 (2026-07-20 원인 규명·조치)
