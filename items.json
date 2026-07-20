@@ -2,6 +2,155 @@
  "items": [
   {
    "date": "2026-07-20",
+   "id": "jukan-samsung-nvidia-nand-v10",
+   "related": [
+    "jukan-memory-cxl-controller-exit",
+    "serenity-meritz-memory",
+    "hynix"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2079127696827879509",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A5F",
+    "label": "NAND ALLY"
+   },
+   "tags": [
+    "NAND",
+    "SAMSUNG",
+    "NVIDIA"
+   ],
+   "title": {
+    "en": "Samsung extends its Nvidia alliance into NAND as V10 shipments begin",
+    "ko": "삼성, 엔비디아 동맹을 낸드로 확장, V10 출하 시작",
+    "ja": "サムスン、エヌビディア同盟をNANDへ拡大、V10出荷開始"
+   },
+   "gist": {
+    "en": "Analyst Jukan relays Korean industry reporting that Samsung is widening its Nvidia partnership, already spanning DRAM, high-bandwidth memory and foundry, into NAND flash, the chips that store data. Using its scale, Samsung is boosting supply of its ninth-generation V-NAND (V9) to Nvidia while starting mass production of tenth-generation V10, and pushing a 500-layer-class V11. V9 now takes about 60% of its NAND capacity, up sharply from a year ago when older V8 dominated, and monthly output tops 100,000 wafers. Why the rush? Nvidia's next-gen storage system, Context Memory Storage (CMX), lands in the second half. AI inference generates a fast-growing pile of \"KV cache\", the running context a model keeps in memory. Holding all of it in expensive DRAM is costly, so Nvidia wants to offload much of it to high-speed NAND sitting a tier below. That turns NAND from a commodity into an inference-critical memory layer. The read-through: NAND may be catching the same AI demand wave that lifted HBM, and Samsung's raw capacity makes it the default supplier as the CMX era begins.",
+    "ko": "애널리스트 주칸이 한국 업계 보도를 전한다. 삼성전자가 이미 D램·고대역폭메모리(HBM)·파운드리로 이어진 엔비디아 협력을, 데이터를 저장하는 낸드플래시로까지 넓히고 있다는 것이다. 삼성은 압도적 생산능력을 앞세워 9세대 V낸드(V9) 공급을 엔비디아에 늘리는 동시에 10세대 V10 양산에 들어갔고, 500단급 11세대(V11) 개발도 서두른다. V9는 현재 낸드 생산능력의 약 60%를 차지하는데, 구형 V8이 주력이던 1년 전과 비교하면 급격한 이동이다. 월 생산량은 10만 장(웨이퍼)을 넘는다. 왜 이렇게 서두를까. 엔비디아의 차세대 저장 시스템 CMX(콘텍스트 메모리 스토리지)가 하반기 나온다. AI 추론은 모델이 메모리에 들고 있는 문맥, 즉 'KV 캐시'를 빠르게 늘리는데, 이걸 전부 비싼 D램에 담으면 비용이 크다. 그래서 엔비디아는 상당 부분을 한 단계 아래의 고속 낸드로 넘기려 한다. 낸드가 범용 부품에서 추론에 핵심적인 메모리 계층으로 올라서는 셈이다. 함의는 이렇다. 낸드가 HBM을 밀어올린 것과 같은 AI 수요 파도를 타기 시작했고, CMX 시대의 기본 공급자는 생산능력을 쥔 삼성이 될 수 있다.",
+    "ja": "アナリストのジュカンが韓国業界の報道を伝える。サムスン電子が、すでにDRAM・広帯域メモリ（HBM）・ファウンドリに及ぶエヌビディアとの協業を、データを保存するNANDフラッシュにまで広げているという。サムスンは圧倒的な生産能力を背景に、第9世代V-NAND（V9）のエヌビディア向け供給を増やしつつ、第10世代V10の量産を開始し、500層級の第11世代（V11）開発も急ぐ。V9は現在NAND生産能力の約60%を占め、旧型V8が主力だった1年前から急激にシフトした。月産は10万枚（ウエハー）を超える。なぜ急ぐのか。エヌビディアの次世代ストレージシステムCMX（コンテキスト・メモリ・ストレージ）が下半期に登場する。AI推論はモデルがメモリに保持する文脈、いわゆる「KVキャッシュ」を急速に増やすが、それを全て高価なDRAMに置くとコストがかさむ。そこでエヌビディアは、その多くを一段下の高速NANDへ移そうとしている。NANDが汎用部品から推論に不可欠なメモリ層へと格上げされる形だ。示唆はこうだ。NANDはHBMを押し上げたのと同じAI需要の波に乗り始め、CMX時代の既定の供給者は生産能力を握るサムスンになりうる。"
+   },
+   "why": {
+    "en": "If CMX turns NAND into an inference-tier memory, Samsung's sheer capacity makes it the supplier best placed to ride the next leg of the AI memory boom.",
+    "ko": "CMX가 낸드를 추론용 메모리 계층으로 바꾼다면, 압도적 생산능력을 쥔 삼성이 AI 메모리 붐의 다음 국면을 탈 가장 유리한 공급자다.",
+    "ja": "CMXがNANDを推論向けメモリ層に変えるなら、圧倒的な生産能力を持つサムスンがAIメモリ・ブームの次の局面に乗る最有力の供給者だ。"
+   },
+   "ask": {
+    "en": "Is NAND the next HBM, a structural AI winner, or is CMX-driven demand narrower than the excitement suggests?",
+    "ko": "낸드는 다음 HBM, 즉 구조적 AI 수혜처일까, 아니면 CMX발 수요가 기대만큼 넓지 않을까?",
+    "ja": "NANDは次のHBM＝構造的なAI勝者か、それともCMX起点の需要は期待ほど広くないのか？"
+   },
+   "stance": "bull",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false"
+  },
+  {
+   "date": "2026-07-20",
+   "id": "jukan-server-dram-spot-surge",
+   "related": [
+    "serenity-meritz-memory",
+    "jukan-memory-cxl-controller-exit",
+    "hynix"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2079068303226720265",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#3A2E1E",
+    "label": "DRAM +146%"
+   },
+   "tags": [
+    "DRAM",
+    "MEMORY",
+    "SPOT"
+   ],
+   "title": {
+    "en": "Server DRAM spot prices blow out to a 146% premium",
+    "ko": "서버 D램 현물가, 계약가 대비 146% 프리미엄으로 폭등",
+    "ja": "サーバーDRAMのスポット価格、契約価格比146%のプレミアムへ急騰"
+   },
+   "gist": {
+    "en": "Analyst Jukan passes along Meritz Securities' read on a sharp spike in server DRAM (64GB) spot prices since mid-July. A wrinkle: unlike ordinary DRAM, server-module spot prices aren't tracked by public platforms like DRAMeXchange, so the move is easy to miss. Meritz points to surging demand from sovereign AI projects, Saudi Arabia among them, plus testing orders from newly built AI data centers. Supply is so tight that vendors reportedly can't even secure enough units to hand customers as samples. The result: spot prices have vaulted above $3,100, a 146% premium to the end-June contract price of $1,380. Meritz sees an echo of early this year. In January, a sudden wave of server rush orders drove spot prices higher, yet memory stocks stayed range-bound while the market waited on hyperscalers' month-end earnings. Shares only rebounded from February, once contract prices themselves began rising. The playbook this time, Meritz argues, is the same: the real catalyst isn't the spot spike but the upward contract-price revisions that tend to follow big-tech earnings. So watch the contract, not just the headline spot number.",
+    "ko": "애널리스트 주칸이 메리츠증권의 분석을 전한다. 7월 중순 이후 서버용 D램(64GB) 현물가격이 가파르게 뛰었다는 것이다. 한 가지 함정은, 일반 D램과 달리 서버 모듈 현물가는 DRAMeXchange 같은 공개 플랫폼에 잡히지 않아 이 움직임을 놓치기 쉽다는 점이다. 메리츠는 사우디아라비아 등 국부(소버린) AI 프로젝트 수요 급증과, 새로 지은 AI 데이터센터의 테스트 주문을 원인으로 꼽는다. 공급이 어찌나 빡빡한지, 업체들이 고객에게 건넬 샘플용 물량조차 확보하지 못한다는 전언이다. 그 결과 현물가는 3,100달러를 넘어, 6월 말 계약가 1,380달러 대비 146% 프리미엄까지 치솟았다. 메리츠는 올해 초와 닮았다고 본다. 1월에도 서버발 긴급 주문이 현물가를 밀어올렸지만, 시장이 빅테크 월말 실적을 기다리는 동안 메모리주는 박스권에 갇혔다. 주가는 계약가가 실제로 오르기 시작한 2월부터야 반등했다. 이번에도 각본은 같다는 게 메리츠의 판단이다. 진짜 방아쇠는 현물가 급등 자체가 아니라, 빅테크 실적 뒤에 따라오는 계약가 상향이라는 것. 헤드라인 현물가만 볼 게 아니라 계약가를 보라는 얘기다.",
+    "ja": "アナリストのジュカンがメリッツ証券の分析を伝える。7月中旬以降、サーバー用DRAM（64GB）のスポット価格が急騰しているという。落とし穴が一つ。通常のDRAMと違い、サーバーモジュールのスポット価格はDRAMeXchangeのような公開プラットフォームに反映されず、この動きは見落とされやすい。メリッツは、サウジアラビアなどソブリンAIプロジェクトの需要急増と、新設AIデータセンターのテスト発注を要因に挙げる。供給は極めて逼迫し、業者は顧客に渡すサンプル用の数量すら確保できないと伝えられる。結果、スポット価格は3,100ドルを超え、6月末の契約価格1,380ドルに対し146%のプレミアムまで跳ね上がった。メリッツは年初と似ていると見る。1月もサーバー発の駆け込み発注がスポット価格を押し上げたが、市場が大手テックの月末決算を待つ間、メモリ株はレンジ内にとどまった。株価は契約価格が実際に上がり始めた2月から反発した。今回も筋書きは同じだという。真の引き金はスポット急騰そのものではなく、大手決算の後に続く契約価格の上方修正だ。ヘッドラインのスポット価格だけでなく、契約価格を見よ、というわけだ。"
+   },
+   "why": {
+    "en": "A 146% spot-to-contract gap is the market pre-pricing a memory upcycle; the payoff shows up when contract prices catch up after hyperscaler earnings.",
+    "ko": "146%의 현물-계약 격차는 시장이 메모리 업사이클을 미리 반영한 것, 보상은 빅테크 실적 뒤 계약가가 따라잡을 때 나온다.",
+    "ja": "146%のスポット-契約の乖離は市場がメモリ・アップサイクルを先取りした証。報酬は大手決算後に契約価格が追いつくときに現れる。"
+   },
+   "ask": {
+    "en": "Is the server DRAM spot blowout a genuine supercycle signal, or a sample-starved squeeze that fades once testing orders clear?",
+    "ko": "서버 D램 현물가 폭등은 진짜 슈퍼사이클 신호일까, 아니면 테스트 주문이 소화되면 사그라들 샘플 품귀발 스퀴즈일까?",
+    "ja": "サーバーDRAMのスポット急騰は本物のスーパーサイクルの兆しか、それともテスト発注が一巡すれば消えるサンプル枯渇の逼迫か？"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Grade after major hyperscalers report Q2/Q3 2026 earnings: did server DRAM contract prices post a clear upward revision, following the July spot surge?",
+     "ko": "주요 하이퍼스케일러의 2026년 2·3분기 실적 발표 후 채점: 7월 현물가 급등에 이어 서버 D램 계약가가 뚜렷하게 상향됐는가?",
+     "ja": "主要ハイパースケーラーの2026年第2·3四半期決算後に採点：7月のスポット急騰に続き、サーバーDRAMの契約価格は明確に上方修正されたか？"
+    }
+   },
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false"
+  },
+  {
+   "date": "2026-07-20",
+   "id": "serenity-supply-bottleneck-map",
+   "related": [
+    "serenity-ai-capex-runway",
+    "serenity-innolight-gs",
+    "optics"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2079089592385610023",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#1B2A1F",
+    "to": "#3A4D2E",
+    "label": "BOTTLENECKS"
+   },
+   "tags": [
+    "SUPPLY CHAIN",
+    "SUBSTRATE",
+    "PASSIVES"
+   ],
+   "title": {
+    "en": "Serenity maps the AI hardware bottlenecks, and who supplies them",
+    "ko": "세레니티, AI 하드웨어 병목 지도를 그리다, 그리고 그 공급사들",
+    "ja": "セレニティ、AIハードウェアのボトルネック地図を描く-その供給者は誰か"
+   },
+   "gist": {
+    "en": "Serenity turns Digitimes lead-time data into a supply-chain map, tagging the listed companies behind each choke point in the AI hardware stack. The longest wait is ABF substrates at roughly one year, the resin-film base layer that carries advanced chips, made by names like Ajinomoto (which supplies the film), Ibiden, Unimicron and Nan Ya PCB. HDI boards and multilayer boards run over six months (Zhen Ding, Victory Giant, Compeq, Meiko). CCL, the copper-clad laminate underneath, is over six months with \"severe\" material shortages, tightening suppliers from Elite Material and Shengyi to material makers like Resonac and Mitsui Kinzoku (copper foil) and Nittobo (glass cloth). Passive components, MLCCs, chip resistors, tantalum and aluminum capacitors, span 15-20 weeks to over a year, spreading demand across Murata, TDK, Taiyo Yuden, Yageo, Vishay and others. Serenity flags nuance: many of these parts mix commodity uses with AI-datacenter grades, so not every shortage is a pure AI play. Still, the mapping makes a point the chip headlines miss, the tightest constraints on building AI servers now sit in the unglamorous layers: substrates, boards and passives.",
+    "ko": "세레니티가 디지타임스의 리드타임(납기) 데이터를 공급망 지도로 바꿔, AI 하드웨어 각 병목마다 뒤에 있는 상장 기업들을 짚는다. 가장 긴 대기는 약 1년이 걸리는 ABF 기판, 고성능 칩을 떠받치는 수지 필름 기반 층이다. 필름을 대는 아지노모토, 그리고 이비덴·유니마이크론·난야PCB 등이 만든다. HDI 기판과 다층 기판은 6개월 넘게 걸린다(전딩, 빅토리 자이언트, 컴펙, 메이코). 그 아래 동박적층판(CCL)은 6개월 이상에 소재 부족이 '심각'한데, 엘리트 머티리얼·성이(生益)부터 소재사인 레조낙, 미쓰이금속(동박), 니토보(유리섬유)까지 공급이 빡빡하다. 수동부품, 즉 MLCC·칩 저항·탄탈·알루미늄 커패시터는 15~20주에서 1년 이상까지 걸리며 무라타·TDK·다이요유덴·야게오·비셰이 등으로 수요가 퍼진다. 세레니티는 단서를 단다. 이들 부품 상당수는 범용과 AI 데이터센터용이 뒤섞여 있어, 모든 부족이 순수 AI 플레이는 아니라는 것. 그래도 이 지도는 칩 헤드라인이 놓치는 지점을 드러낸다. 지금 AI 서버 증설을 가장 옥죄는 제약은 화려하지 않은 층, 즉 기판·보드·수동부품에 있다는 것이다.",
+    "ja": "セレニティがDigitimesのリードタイム（納期）データを供給網の地図に変え、AIハードウェアの各ボトルネックの背後にある上場企業を挙げる。最も長い待ちは約1年のABF基板-高性能チップを支える樹脂フィルムの基層で、フィルムを供給する味の素、そしてイビデン・ユニマイクロン・南亜PCBなどが手がける。HDI基板と多層基板は6カ月超（Zhen Ding、Victory Giant、Compeq、メイコー）。その下の銅張積層板（CCL）は6カ月以上で材料不足が「深刻」、Elite Materialや生益からレゾナック、三井金属（銅箔）、日東紡（ガラスクロス）まで供給が逼迫する。受動部品-MLCC、チップ抵抗、タンタル・アルミ電解コンデンサ-は15～20週から1年超に及び、村田製作所・TDK・太陽誘電・ヤゲオ・ビシェイなどに需要が広がる。セレニティは注意を促す。これら部品の多くは汎用用途とAIデータセンター向けが混在し、すべての不足が純粋なAIプレイではない、と。それでもこの地図は、チップの見出しが見落とす点を浮かび上がらせる。いまAIサーバー増設を最も締め付ける制約は、地味な層-基板・ボード・受動部品-にある。"
+   },
+   "why": {
+    "en": "The tightest AI-server constraints have moved downstream to substrates, boards and passives, the unglamorous, year-long-lead-time names may be the cleanest read on real buildout capacity.",
+    "ko": "AI 서버의 가장 큰 제약은 기판·보드·수동부품으로 내려왔다, 화려하진 않지만 납기 1년짜리 이름들이 실제 증설 능력을 가장 깨끗이 보여줄 수 있다.",
+    "ja": "AIサーバー最大の制約は基板・ボード・受動部品へ下りてきた-地味だが納期1年級の名前が、実際の増設能力を最も明確に映すかもしれない。"
+   },
+   "ask": {
+    "en": "Do substrate and passive-component makers offer a cleaner AI supply-chain bet than the crowded chip names, or is the space too fragmented and commodity-mixed to play?",
+    "ko": "기판·수동부품 업체가 붐비는 칩 종목보다 깨끗한 AI 공급망 베팅일까, 아니면 너무 파편적이고 범용이 섞여 투자하기 어려울까?",
+    "ja": "基板・受動部品メーカーは混み合うチップ銘柄より綺麗なAI供給網の賭けか、それとも断片的で汎用混在ゆえに投資しにくいか？"
+   },
+   "stance": "watch",
+   "avatarImg": "serenity.jpg"
+  },
+  {
+   "date": "2026-07-20",
    "id": "jukan-memory-cxl-controller-exit",
    "related": [
     "serenity-meritz-memory",
@@ -4984,6 +5133,136 @@
     "カントリーリスクプレミアム",
     "ERP",
     "Equity Risk Premium"
+   ]
+  },
+  "NAND": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Non-volatile memory that stores data even when powered off; the flash in SSDs.",
+    "ko": "전원이 꺼져도 데이터를 유지하는 비휘발성 메모리, SSD에 쓰이는 플래시다.",
+    "ja": "電源を切ってもデータを保持する不揮発性メモリ。SSDに使われるフラッシュ。"
+   },
+   "longDesc": {
+    "en": "NAND flash is the storage-tier memory that keeps data without power, layered in vertical stacks (V-NAND) to raise density each generation. It has historically been a lower-margin commodity than DRAM, but AI inference, which needs to park huge amounts of context data cheaply and quickly, is pulling high-speed NAND into the data-center memory hierarchy, potentially reshaping its demand and pricing.",
+    "ko": "난드 플래시는 전원 없이도 데이터를 보관하는 저장용 메모리로, 세대마다 수직으로 층을 쌓아(V난드) 집적도를 높인다. 전통적으로 D램보다 마진이 낮은 범용품이었지만, 방대한 문맥 데이터를 싼 값에 빠르게 담아야 하는 AI 추론이 고속 난드를 데이터센터 메모리 계층으로 끌어올리며 수요와 가격 구조를 바꿀 수 있다.",
+    "ja": "NANDフラッシュは電源なしでデータを保管するストレージ向けメモリで、世代ごとに垂直に層を積み（V-NAND）密度を高める。従来はDRAMより低マージンの汎用品だったが、膚大な文脈データを安く速く保持する必要のあるAI推論が高速NANDをデータセンターのメモリ階層へ引き上げ、需要と価格構造を変える可能性がある。"
+   },
+   "aliases": [
+    "NAND",
+    "난드",
+    "난드플래시",
+    "NAND Flash",
+    "V-NAND",
+    "낸드",
+    "NANDフラッシュ"
+   ]
+  },
+  "KV 캐시": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The running context an AI model holds in memory during inference to avoid recomputation.",
+    "ko": "AI 모델이 추론 중 재계산을 피하려고 메모리에 들고 있는 문맥 데이터.",
+    "ja": "AIモデルが推論中、再計算を避けるためメモリに保持する文脈データ。"
+   },
+   "longDesc": {
+    "en": "KV (key-value) cache is the intermediate data a large language model stores as it generates text, so it doesn't recompute earlier tokens for every new one. As context windows and user sessions grow, KV cache balloons, and holding it all in costly DRAM strains data-center budgets. That is pushing chipmakers toward offloading it to faster NAND, which is why the term matters for memory-stock demand.",
+    "ko": "KV(키-밸류) 캐시는 대형언어모델이 텍스트를 생성하면서 저장하는 중간 데이터로, 새 토큰마다 앞 토큰을 다시 계산하지 않게 해준다. 문맥 창과 사용자 세션이 커질수록 KV 캐시도 부풀고, 이걸 전부 비싼 D램에 담으면 데이터센터 비용이 늘어난다. 그래서 더 빠른 낝드로 넘기려는 움직임이 나오며, 이 용어가 메모리주 수요와 연결된다.",
+    "ja": "KV（キーバリュー）キャッシュは、大規模言語モデルがテキスト生成中に保存する中間データで、新しいトークンごとに前のトークンを再計算せずに済む。文脈窓やユーザーセッションが大きくなるほどKVキャッシュも膨張し、すべてを高価なDRAMに置くとコストがかさむ。そのため高速NANDへ退避する動きが出ており、メモリ株の需要に関わる。"
+   },
+   "aliases": [
+    "KV cache",
+    "KV캐시",
+    "KV 캐시",
+    "키-밸류 캐시",
+    "KVキャッシュ",
+    "key-value cache"
+   ]
+  },
+  "스팟가격": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The price for immediate, one-off delivery, versus the negotiated long-term contract price.",
+    "ko": "즉시·일회성 거래 가격, 협상된 장기 계약가격과 대비된다.",
+    "ja": "即時·スポット取引の価格。交渉された長期契約価格と対比される。"
+   },
+   "longDesc": {
+    "en": "In memory chips, most volume ships under contract prices set with big customers, while the spot price covers small, immediate purchases. Spot tends to move first and more violently, so a widening gap between a surging spot price and a lagging contract price is watched as an early signal that contract prices, which actually drive memory makers' revenue, may soon be revised upward.",
+    "ko": "메모리 반도체는 물량 대부분이 대형 고객과 정한 계약가격으로 나가고, 현물(스팟)가격은 소량·즉시 거래를 다룬다. 현물가가 먼저, 더 격하게 움직이는 경향이 있어, 급등하는 현물가와 뒤매어지는 계약가 사이의 격차 확대는, 메모리 업체 매출을 실질적으로 좌우하는 계약가가 곧 상향될 수 있다는 조기 신호로 주목받는다.",
+    "ja": "メモリ半導体では、数量の大半が大口顧客との契約価格で出荷され、スポット価格は少量·即時の取引を扱う。スポットは先に、より激しく動く傾向があり、急騰するスポット価格と遅れる契約価格の乖離拡大は、メモリ各社の売上を実質左右する契約価格がまもなく上方修正される早期シグナルとして注目される。"
+   },
+   "aliases": [
+    "스팟가격",
+    "현물가격",
+    "스팟 가격",
+    "spot price",
+    "スポット価格",
+    "現物価格"
+   ]
+  },
+  "ABF 기판": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The resin-film substrate that connects an advanced chip to its circuit board; a known AI bottleneck.",
+    "ko": "고성능 칩을 회로 기판과 이어주는 수지 필름 기판, 대표적 AI 병목이다.",
+    "ja": "高性能チップと回路基板をつなぐ樹脂フィルム基板。代表的なAIボトルネック。"
+   },
+   "longDesc": {
+    "en": "ABF (Ajinomoto Build-up Film) substrates are the fine-pitch packaging layer that routes the thousands of connections between a high-end processor and the main board. They are hard to make, capacity is concentrated in a few Asian suppliers, and lead times have stretched to around a year, making substrates one of the tightest physical constraints on shipping AI servers, regardless of how many chips are available.",
+    "ko": "ABF(아지노모토 빌드업 필름) 기판은 고급 프로세서와 메인보드 사이의 수천 개 연결을 배선하는 미세 패키징 층이다. 만들기 어렵고 생산능력이 소수 아시아 업체에 집중돼 있으며, 납기가 1년 가까이 늘어나 칩이 아무리 많아도 AI 서버 출하를 주이는 가장 빡빡한 물리적 제약 중 하나다.",
+    "ja": "ABF（味の素ビルドアップフィルム）基板は、高級プロセッサとメインボード間の数千の接続を配線する微細パッケージング層だ。製造が難しく、生産能力は一部のアジア企業に集中し、納期は1年近くに伸びている。チップがいくらあってもAIサーバー出荷を制約する最も邃迫した物理的制約の一つだ。"
+   },
+   "aliases": [
+    "ABF 기판",
+    "ABF기판",
+    "ABF substrate",
+    "ABFサブストレート",
+    "ABF基板",
+    "Ajinomoto Build-up Film"
+   ]
+  },
+  "MLCC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Tiny multilayer ceramic capacitors used by the thousands in every server and device.",
+    "ko": "모든 서버·기기에 수천 개씩 쓰이는 아주 작은 적층세라믹콘덴서다.",
+    "ja": "あらゆるサーバー·機器に数千個使われる極小の積層セラミックコンデンサ。"
+   },
+   "longDesc": {
+    "en": "MLCCs (multilayer ceramic capacitors) are passive components that stabilize power and filter noise in electronic circuits. A single AI server can use thousands, and higher-performance boards need more and better ones. Supply is dominated by a handful of Japanese, Korean and Taiwanese makers, so when AI demand surges, these humble parts can develop long lead times and become an overlooked constraint on hardware output.",
+    "ko": "MLCC(적층세라믹콘덴서)는 전자회로에서 전원을 안정시키고 노이즈를 걸러내는 수동부품이다. AI 서버 한 대에 수천 개가 들어가고, 고성능 보드일수록 더 많고 더 좋은 것이 필요하다. 공급은 일본·한국·대만의 소수 업체가 장악해, AI 수요가 급등하면 이 소박한 부품이 긴 납기를 불러오며 하드웨어 생산의 숨은 제약이 될 수 있다.",
+    "ja": "MLCC（積層セラミックコンデンサ）は、電子回路で電源を安定させノイズを除去する受動部品だ。AIサーバー1台で数千個を使い、高性能ボードほど多く、良いものが必要となる。供給は日本·韓国·台湾の一握りのメーカーが占め、AI需要が急騰するとこの地味な部品が長い納期を抱え、ハードウェア生産の見落とされがちな制約になりうる。"
+   },
+   "aliases": [
+    "MLCC",
+    "적층세라믹콘덴서",
+    "적층 세라믹 콘덴서",
+    "積層セラミックコンデンサ",
+    "multilayer ceramic capacitor"
    ]
   }
  }
