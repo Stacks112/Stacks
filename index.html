@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v80 :: grading queue (outcome.due) + calendar day-pick & past events + event->articles filter + calSheet z-index fix -->
+<!-- STACKS BUILD v81 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1066,6 +1066,7 @@ html{overscroll-behavior-y:contain;}
   .hero{display:none;}
   .mini-install{grid-column:1 / -1;}
   #todaySec{grid-column:1 / -1;margin:0 0 6px;}
+  #skewSec{grid-column:1 / -1;margin:0 0 6px;}
   #feed{grid-column:2;min-width:0;margin:0;}
   #sideLeft{grid-column:1;}
   #sideRight{grid-column:3;}
@@ -1634,6 +1635,9 @@ html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-fa
   .mini-install:not([hidden]){display:flex;}
   .wrap{padding-top:14px;}
 }
+/* hero is a wide-desktop landing only; below the 3-col dashboard breakpoint
+   (incl. browser zoom that shrinks the viewport) it must not take over. */
+@media (max-width:1023px){ .hero{display:none;} }
 /* ---------- share ---------- */
 .share-btn{
   font-size:12.5px;font-weight:600;color:var(--muted);
@@ -1877,8 +1881,9 @@ html[data-lang="ko"] .stance-pill{font-family:"Pretendard Variable",sans-serif;}
 .gq-main b{font-size:13.5px;color:var(--text);line-height:1.4;}
 .gq-note{font-size:12px;color:var(--muted);line-height:1.5;}
 .gq-src{font-size:11px;color:var(--muted);font-family:"IBM Plex Mono",monospace;}
-.skew-box{display:flex;flex-wrap:wrap;gap:8px;}
-.skew-chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:9px 14px;cursor:pointer;font-family:inherit;text-align:left;}
+.skew-box{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+.skew-box::-webkit-scrollbar{display:none;}
+.skew-chip{display:inline-flex;flex:0 0 auto;scroll-snap-align:start;flex-direction:column;align-items:flex-start;gap:2px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:9px 14px;cursor:pointer;font-family:inherit;text-align:left;}
 .skew-chip .skc-name{font-size:13.5px;font-weight:700;color:var(--text);}
 .skew-chip .skc-tag{font-size:11.5px;font-weight:700;}
 .skew-chip.sk-bull .skc-tag{color:#0E9F5E;}
@@ -2174,7 +2179,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v80</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v81</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
@@ -2387,7 +2392,7 @@ function sparkline(q){
    Ranged quotes via the worker (r = 1d | 5d | 1mo | 1y), drawn as an
    area chart with gridlines, axis labels and a hover crosshair. */
 const QR = {};
-let EHQ_RANGE = "1mo";
+let EHQ_RANGE = "1d";
 function curSym(cur){ return cur === "KRW" ? "₩" : cur === "JPY" ? "¥" : cur === "EUR" ? "€" : "$"; }
 function fmtP(v, cur){
   if (v == null || !isFinite(v)) return "-";
@@ -2456,21 +2461,21 @@ function openTVChart(sym, holder){
   holder.firstChild.appendChild(s);
 }
 /* ---- native full-screen chart (worker/Yahoo data, covers KRX/TSE) ---- */
-const FSQ = { key: null, range: "1mo" };
+const FSQ = { key: null, range: "1d" };
 function openNativeChart(key, holder){
   const S = STRINGS[LANG];
-  FSQ.key = key; FSQ.range = "1mo";
+  FSQ.key = key; FSQ.range = "1d";
   const tabs = [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["6mo", S.r6mo], ["1y", S.r1y]];
   holder.className = "fsq";
   holder.innerHTML =
     '<div class="fsq-head"><b id="fsqPrice">-</b><span id="fsqChg"></span></div>'
     + '<div class="fsq-tabs">'
-    + tabs.map(x => '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
+    + tabs.map(x => '<button data-r="' + x[0] + '"' + (x[0] === "1d" ? ' class="on"' : "")
         + ' onclick="fsqLoad(FSQ.key,\'' + x[0] + '\')">' + x[1] + "</button>").join("")
     + "</div>"
     + '<div class="fsq-chart" id="fsqChart"><div class="ehq-loading">···</div></div>'
     + '<div class="fsq-note">' + S.fsqNote + "</div>";
-  fsqLoad(key, "1mo");
+  fsqLoad(key, "1d");
 }
 async function fsqLoad(key, r){
   const e = ENTITIES[key];
@@ -2963,15 +2968,37 @@ function openCal(){ const m=document.getElementById("calSheet"); if(!m) return; 
 function closeCal(){ const m=document.getElementById("calSheet"); if(!m||m.hidden) return; m.hidden=true; document.body.style.overflow=""; }
 function calShift(delta){ CAL_M+=delta; if(CAL_M<0){CAL_M=11;CAL_Y--;} else if(CAL_M>11){CAL_M=0;CAL_Y++;} CAL_SEL=null; renderCal(); }
 function calPick(dstr){ CAL_SEL=(dstr&&CAL_SEL!==dstr)?dstr:null; renderCal(); }
+function eventRelatedSet(e){
+  var ids=new Set();
+  if(e.itemId) ids.add(e.itemId);
+  (typeof ITEMS!=="undefined"?ITEMS:[]).forEach(function(i){
+    try{ if(e.entity && itemEntities(i).has(e.entity)) ids.add(i.id); }catch(_){}
+    if(e.itemId){
+      if(i.id===e.itemId && i.related) i.related.forEach(function(r){ ids.add(r); });
+      if(i.related && i.related.indexOf(e.itemId)>=0) ids.add(i.id);
+    }
+  });
+  return ids;
+}
+/* Clicking an event filters the feed to only the articles about it (its
+   linked item + related + anything mentioning its entity). Piggybacks the
+   search filter so it auto-clears wherever a real search would. */
 function evGo(evid){
   var e=null; for(var i=0;i<EVENTS.length;i++){ if(EVENTS[i].id===evid){ e=EVENTS[i]; break; } }
   if(!e) return;
   closeCal();
-  if(e.entity && typeof ENTITIES!=="undefined" && ENTITIES[e.entity]){ entityFeedView(e.entity); return; }
-  if(e.itemId){ goToItem(e.itemId); return; }
-  var lbl=(e.label&&e.label.en)||""; var q=String(lbl).split(/[\s(]/)[0]||"";
-  var si=document.getElementById("searchInput"); if(si) si.value=q;
-  if(q) onSearch(q);
+  var ids=eventRelatedSet(e);
+  if(!ids.size){ if(e.itemId) goToItem(e.itemId); return; }
+  EVENT_FILTER=ids;
+  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; TAB="all";
+  var lbl=(e.label&&(e.label[LANG]||e.label.en))||"";
+  QUERY=lbl.trim().toLowerCase();
+  var si=document.getElementById("searchInput"); if(si) si.value=lbl;
+  var clr=document.getElementById("searchClear"); if(clr) clr.hidden=!QUERY;
+  var box=document.getElementById("searchBox"); if(box) box.classList.add("active");
+  pushView();
+  render();
+  var f=document.getElementById("feed"); if(f&&f.scrollIntoView) f.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function renderCal(){
   var body=document.getElementById("calBody"), head=document.getElementById("calHeadTitle"); if(!body) return;
@@ -3674,7 +3701,7 @@ function entityHeadEl(key, S, count, mode){
       + '<div class="ehq-head"><b id="ehqPrice">-</b><span id="ehqChg"></span></div>'
       + '<div class="ehq-tabs">'
         + [["1d", S.r1d], ["5d", S.r1w], ["1mo", S.r1mo], ["1y", S.r1y]].map(x =>
-            '<button data-r="' + x[0] + '"' + (x[0] === "1mo" ? ' class="on"' : "")
+            '<button data-r="' + x[0] + '"' + (x[0] === "1d" ? ' class="on"' : "")
             + ' onclick="ehqLoad(\'' + safe + '\',\'' + x[0] + '\')">' + x[1] + "</button>").join("")
         + '<button class="ehq-expand" onclick="openChartFS(\'' + safe + '\')" title="' + esc(S.fsHint) + '">⛶ ' + S.fsChart + "</button>"
       + "</div>"
@@ -3831,7 +3858,7 @@ function showEntityRailOrig(key){
   p.appendChild(entityHeadEl(key, STRINGS[LANG], count, "rail"));
   rail.insertBefore(p, rail.firstChild);
   const e = ENTITIES[key];
-  if (e.kind === "company" && e.ticker) ehqLoad(key, "1mo");
+  if (e.kind === "company" && e.ticker) ehqLoad(key, "1d");
   rail.scrollTop = 0;
   return true;
 }
@@ -4534,7 +4561,9 @@ function refreshCardRead(id){
    Matches title, gist, why, tags, source, and the cover label,
    in both languages at once, so "hynix" finds Korean items too. */
 let QUERY = "";
+let EVENT_FILTER = null; /* Set<id> | null: filter feed to one event's articles */
 function onSearch(v){
+  EVENT_FILTER = null;
   if (v){ SERIES_VIEW = null; ENTITY_VIEW = null; }
   QUERY = (v || "").trim().toLowerCase();
   const clear = document.getElementById("searchClear");
@@ -4550,6 +4579,7 @@ function clearSearch(){
   onSearch("");
 }
 function matchesQuery(item){
+  if (EVENT_FILTER) return EVENT_FILTER.has(item.id);
   if (!QUERY) return true;
   const hay = [
     item.title.en, item.title.ko, item.title.ja,
@@ -5654,7 +5684,7 @@ function renderFeed(animate){
   if (ENTITY_VIEW && ENTITIES[ENTITY_VIEW]){
     list.appendChild(entityHeadEl(ENTITY_VIEW, S, items.length, "feed"));
     const e0 = ENTITIES[ENTITY_VIEW];
-    if (e0.kind === "company" && e0.ticker) ehqLoad(ENTITY_VIEW, "1mo");
+    if (e0.kind === "company" && e0.ticker) ehqLoad(ENTITY_VIEW, "1d");
     renderEntityDebate(list, items, S);
     hydrateImages();
     applyEngageCounts();
