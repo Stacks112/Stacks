@@ -30,6 +30,13 @@ h1{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}
 .facts b{color:#3E414B;font-weight:600;margin-right:2px}
 @media(prefers-color-scheme:dark){.facts b{color:#C9CDD6}}
 .facts a{color:#2E5BFF;text-decoration:none}
+.tally{display:flex;gap:8px;margin:14px 0 2px;flex-wrap:wrap}
+.tally b{padding:6px 14px;border-radius:999px;font-size:13px;color:#fff;font-weight:700}
+.tally .bl{background:#0E9F5E}.tally .wa{background:#6B7280}.tally .be{background:#E04438}
+b.sp-bull{color:#0E9F5E}b.sp-bear{color:#E04438}b.sp-watch{color:#8E93A0}
+.preds .oc{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:6px}
+.oc-pending{background:#F1F2F4;color:#6B7280}.oc-hit{background:rgba(14,159,94,.12);color:#0E9F5E}.oc-miss{background:rgba(224,68,56,.12);color:#E04438}
+@media(prefers-color-scheme:dark){.oc-pending{background:#20222A;color:#9AA0AC}}
 h2{font-size:16px;margin:26px 0 8px}
 ul{list-style:none;padding:0}
 li{padding:12px 0;border-bottom:1px solid #ECEDF1}
@@ -47,8 +54,10 @@ footer a{color:#8E93A0}
 <p class="desc">뉴욕대 스턴 밸류에이션 교수, &#x27;밸류에이션의 학장&#x27;. 데이터·논문·적정가치 추정을 무료로 공개한다.</p>
 
 <a class="prof" href="https://aswathdamodaran.blogspot.com" target="_blank" rel="noopener nofollow">프로필 ↗</a>
+<div class="tally"><b class="wa">관점 1</b></div>
+
 <h2>관련 글 1건</h2>
-<ul><li><a href="../p/damodaran-country-risk-2026.html">다모다란의 2026 국가위험 업데이트: 기업이 &#x27;어디서&#x27; 버느냐가 가치를 바꾼다</a> <span class="d">Aswath Damodaran (Musings on Markets) · 2026-07-15</span></li></ul>
+<ul><li><b class=sp-watch>관점</b> <a href="../p/damodaran-country-risk-2026.html">다모다란의 2026 국가위험 업데이트: 기업이 &#x27;어디서&#x27; 버느냐가 가치를 바꾼다</a> <span class="d">Aswath Damodaran (Musings on Markets) · 2026-07-15</span></li></ul>
 <footer>
   요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
   <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>

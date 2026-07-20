@@ -30,6 +30,13 @@ h1{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}
 .facts b{color:#3E414B;font-weight:600;margin-right:2px}
 @media(prefers-color-scheme:dark){.facts b{color:#C9CDD6}}
 .facts a{color:#2E5BFF;text-decoration:none}
+.tally{display:flex;gap:8px;margin:14px 0 2px;flex-wrap:wrap}
+.tally b{padding:6px 14px;border-radius:999px;font-size:13px;color:#fff;font-weight:700}
+.tally .bl{background:#0E9F5E}.tally .wa{background:#6B7280}.tally .be{background:#E04438}
+b.sp-bull{color:#0E9F5E}b.sp-bear{color:#E04438}b.sp-watch{color:#8E93A0}
+.preds .oc{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:6px}
+.oc-pending{background:#F1F2F4;color:#6B7280}.oc-hit{background:rgba(14,159,94,.12);color:#0E9F5E}.oc-miss{background:rgba(224,68,56,.12);color:#E04438}
+@media(prefers-color-scheme:dark){.oc-pending{background:#20222A;color:#9AA0AC}}
 h2{font-size:16px;margin:26px 0 8px}
 ul{list-style:none;padding:0}
 li{padding:12px 0;border-bottom:1px solid #ECEDF1}
@@ -47,8 +54,10 @@ footer a{color:#8E93A0}
 <p class="desc">High-Frequency Trading, 초단타매매. 컴퓨터가 시장 데이터를 실시간 분석해 1000분의 1초 단위로 수백만 건의 주문을 내는 거래 방식이다. 같은 가격이면 먼저 낸 주문이 체결되는 &#x27;시간 우선&#x27; 원칙 때문에 속도가 곧 수익이며, 2026년 현재 미국 주식 주문의 약 60%를 차지한다. 개인 투자자가 정보를 조금이라도 늦게 받으면 구조적으로 불리해지는 이유다.</p>
 
 
+<div class="tally"><b class="wa">관점 1</b></div>
+
 <h2>관련 글 1건</h2>
-<ul><li><a href="../p/meru-truth-api-tmtg.html">트럼프의 트루스소셜, 월 10만 달러 &#x27;Truth API&#x27; 출시, 그의 글을 1/1000초 먼저, 알고에게</a> <span class="d">메르 (ranto28) · 2026-07-19</span></li></ul>
+<ul><li><b class=sp-watch>관점</b> <a href="../p/meru-truth-api-tmtg.html">트럼프의 트루스소셜, 월 10만 달러 &#x27;Truth API&#x27; 출시, 그의 글을 1/1000초 먼저, 알고에게</a> <span class="d">메르 (ranto28) · 2026-07-19</span></li></ul>
 <footer>
   요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
   <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>

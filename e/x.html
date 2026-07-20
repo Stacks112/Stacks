@@ -30,6 +30,13 @@ h1{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}
 .facts b{color:#3E414B;font-weight:600;margin-right:2px}
 @media(prefers-color-scheme:dark){.facts b{color:#C9CDD6}}
 .facts a{color:#2E5BFF;text-decoration:none}
+.tally{display:flex;gap:8px;margin:14px 0 2px;flex-wrap:wrap}
+.tally b{padding:6px 14px;border-radius:999px;font-size:13px;color:#fff;font-weight:700}
+.tally .bl{background:#0E9F5E}.tally .wa{background:#6B7280}.tally .be{background:#E04438}
+b.sp-bull{color:#0E9F5E}b.sp-bear{color:#E04438}b.sp-watch{color:#8E93A0}
+.preds .oc{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:6px}
+.oc-pending{background:#F1F2F4;color:#6B7280}.oc-hit{background:rgba(14,159,94,.12);color:#0E9F5E}.oc-miss{background:rgba(224,68,56,.12);color:#E04438}
+@media(prefers-color-scheme:dark){.oc-pending{background:#20222A;color:#9AA0AC}}
 h2{font-size:16px;margin:26px 0 8px}
 ul{list-style:none;padding:0}
 li{padding:12px 0;border-bottom:1px solid #ECEDF1}
@@ -47,8 +54,10 @@ footer a{color:#8E93A0}
 <p class="desc">이제 AI 캠퍼스는 기가와트 단위로 계획된다. 칩뿐 아니라 전력이 규모의 진짜 제약이기 때문이다. 대략 1기가와트면 대도시 하나를 감당하니, 수 기가와트 클러스터는 전력에 대한 산업 규모의 베팅이다.</p>
 
 
+<div class="tally"><b class="bl">강세 1</b></div>
+<h2>예측 · 적중 기록 1건</h2><ul class="preds"><li><span class="oc oc-pending">채점 대기</span> <a href="../p/semianalysis-meta-superintelligence.html">세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터, OpenAI·앤스로픽 추격전의 실상</a><span class="d">2026년 말 채점: 세미애널리시스 전망대로 메타의 AI 컴퓨트가 실제로 OpenAI·앤스로픽을 넘어서는가?</span></li></ul>
 <h2>관련 글 1건</h2>
-<ul><li><a href="../p/semianalysis-meta-superintelligence.html">세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터, OpenAI·앤스로픽 추격전의 실상</a> <span class="d">SemiAnalysis · 2026-07-09</span></li></ul>
+<ul><li><b class=sp-bull>강세</b> <a href="../p/semianalysis-meta-superintelligence.html">세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터, OpenAI·앤스로픽 추격전의 실상</a> <span class="d">SemiAnalysis · 2026-07-09</span></li></ul>
 <footer>
   요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
   <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
