@@ -2,6 +2,163 @@
  "items": [
   {
    "date": "2026-07-20",
+   "id": "kobeissi-alphabet-frozen-chip",
+   "related": [
+    "meru-alphabet-q2-capex-test",
+    "cook-broadcom",
+    "semianalysis-meta-superintelligence"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2079198142218588589",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#243B6B",
+    "label": "FROZEN CHIP"
+   },
+   "tags": [
+    "ALPHABET",
+    "CHIPS",
+    "AI"
+   ],
+   "title": {
+    "en": "Alphabet plans a 'frozen' chip that bakes Gemini into the silicon",
+    "ko": "알파벳, 제미나이를 실리콘에 새겨넣는 '프로즌 칩' 준비",
+    "ja": "アルファベット、ジェミニをシリコンに焼き込む「フローズン・チップ」を計画"
+   },
+   "gist": {
+    "en": "The Kobeissi Letter relays a report from The Information that Alphabet is preparing a new kind of server chip nicknamed a 'frozen' chip. Instead of loading an AI model onto general-purpose hardware every time, the design bakes the blueprint of its Gemini model directly into the silicon. Freezing the model into the circuits removes a lot of the shuttling of data that normally slows things down, so the same answers come out using far less energy and hardware. Alphabet's own engineers reportedly estimate the chip could be six to ten times more efficient than the latest version of its existing AI chip line, the TPU. The catch is flexibility: a frozen chip is fast at running one model but hard to repurpose when the model changes, so it is a bet that Gemini's core stays stable long enough to pay back the custom silicon. The bigger picture is that another giant is going deeper into designing its own chips rather than buying more from Nvidia. If Google can serve its AI far cheaper per query, it strengthens the case that the most valuable AI companies will also be chip companies, and it adds one more customer quietly building an alternative to buying every accelerator off the shelf.",
+    "ko": "코베이시 레터가 디 인포메이션의 보도를 전한다. 알파벳이 '프로즌(frozen) 칩'이라 불리는 새로운 서버용 칩을 준비 중이라는 것이다. 매번 범용 하드웨어에 AI 모델을 얹는 대신, 이 설계는 자사 제미나이 모델의 설계도를 실리콘에 곧바로 새겨넣는다. 모델을 회로에 '얼려' 고정하면 평소 속도를 늦추던 데이터 이동이 크게 줄어, 같은 답을 훨씬 적은 전력과 하드웨어로 낼 수 있다. 알파벳 엔지니어들은 이 칩이 기존 AI 칩 라인(TPU)의 최신판보다 6~10배 효율적일 수 있다고 추정한다고 전해진다. 단점은 유연성이다. 프로즌 칩은 한 모델을 돌릴 땐 빠르지만 모델이 바뀌면 재활용이 어렵다. 결국 제미나이의 핵심 구조가 맞춤형 칩값을 뽑을 만큼 오래 안정적일 것이라는 베팅인 셈이다. 큰 그림은 이렇다. 또 하나의 거대 기업이 엔비디아에서 더 사는 대신 자체 칩 설계로 깊이 들어가고 있다. 구글이 질의 한 건당 AI 비용을 크게 낮출 수 있다면, 가장 값진 AI 기업이 곧 칩 기업이기도 하다는 논리는 힘을 얻고, 가속기를 전량 사서 쓰는 대신 대안을 조용히 만드는 고객이 하나 더 늘어난다.",
+    "ja": "コベイシ・レターがThe Informationの報道を伝える。アルファベットが「フローズン（frozen）チップ」と呼ばれる新型サーバー用チップを準備しているという。毎回汎用ハードにAIモデルを載せる代わりに、この設計は自社ジェミニ・モデルの設計図をシリコンに直接焼き込む。モデルを回路に「凍結」して固定すると、普段は速度を落とすデータのやり取りが大幅に減り、同じ回答をはるかに少ない電力とハードで出せる。アルファベットの技術者は、このチップが既存のAIチップ（TPU）の最新版より6～10倍効率的になりうると見積もっていると伝えられる。難点は柔軟性だ。フローズン・チップは一つのモデルを動かすには速いが、モデルが変わると転用が難しい。つまりジェミニの中核が、専用シリコンの費用を回収できるほど長く安定するという賭けである。大きな構図はこうだ。もう一つの巨人が、エヌビディアから買い増すのではなく自前のチップ設計へ深く踏み込んでいる。グーグルがクエリ当たりのAIコストを大きく下げられるなら、最も価値あるAI企業は同時にチップ企業でもある、という論理は勢いを増し、アクセラレーターを全て市販品で揃える代わりに代替を静かに築く顧客がもう一社加わる。"
+   },
+   "why": {
+    "en": "If a frozen chip cuts the cost of serving Gemini six- to tenfold, Alphabet turns model efficiency into a durable cost moat and leans less on Nvidia.",
+    "ko": "프로즌 칩이 제미나이 서빙 비용을 6~10배 낮춘다면, 알파벳은 모델 효율을 지속적인 비용 해자로 바꾸고 엔비디아 의존도는 줄어든다.",
+    "ja": "フローズン・チップがジェミニの提供コストを6～10倍下げるなら、アルファベットはモデル効率を持続的なコストの堀に変え、エヌビディア依存を薄める。"
+   },
+   "ask": {
+    "en": "Do custom 'frozen' chips give the model owners a lasting edge, or does baking one model into silicon age badly as models keep changing?",
+    "ko": "맞춤형 '프로즌' 칩은 모델 보유 기업에 지속적 우위를 줄까, 아니면 모델이 계속 바뀌는 시대에 한 모델을 실리콘에 굳히는 건 금방 낡아버릴까?",
+    "ja": "専用の「フローズン」チップはモデル保有企業に持続的な優位を与えるのか、それともモデルが変わり続ける中で一つのモデルをシリコンに固めるのはすぐ陳腐化するのか？"
+   },
+   "stance": "watch",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false"
+  },
+  {
+   "date": "2026-07-20",
+   "id": "kobeissi-hedge-funds-tech-exit",
+   "related": [
+    "bilello-earnings-bubble-charts",
+    "kobeissi-us-debt-financing-cost",
+    "semianalysis-meta-superintelligence"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2079213251372646426",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1A0B12",
+    "to": "#5F1E2E",
+    "label": "TECH EXIT"
+   },
+   "tags": [
+    "HEDGEFUNDS",
+    "TECH",
+    "POSITIONING"
+   ],
+   "title": {
+    "en": "Hedge funds are dumping US tech at the fastest pace in a decade",
+    "ko": "헤지펀드, 10년 만에 가장 빠른 속도로 미국 기술주 처분 중",
+    "ja": "ヘッジファンド、この10年で最速ペースで米テック株を投げ売り"
+   },
+   "gist": {
+    "en": "The Kobeissi Letter flags a striking positioning shift: hedge funds have sold US information-technology stocks in six of the last eight weeks, and the eight-week total is the largest in at least ten years. Last week tech was the single most-sold US sector among these funds. As a result, tech now makes up its smallest share of hedge funds' total market exposure since February, and at the current pace that share could drop to a five-year low as soon as next week. Read simply, the fast money is stepping to the sidelines on the trade that has led the market for years. What it does not tell you is direction. Heavy selling by hedge funds can mean smart money sees the AI-and-tech run cooling, or it can be the kind of washed-out positioning that sets up a snap-back when everyone has already sold. Positioning data describes who is holding, not what happens next. Still, it matters because tech is such a large slice of the index that when its most active traders retreat this hard, it removes a buyer that has repeatedly stepped in on dips, and it raises the stakes on the coming megacap earnings to justify valuations without that support.",
+    "ko": "코베이시 레터가 눈에 띄는 포지셔닝 변화를 짚는다. 헤지펀드가 지난 8주 중 6주 동안 미국 정보기술(IT) 주식을 팔았고, 8주 합산 매도 규모는 최소 10년 만에 가장 크다는 것이다. 지난주엔 기술주가 이들 펀드가 가장 많이 판 미국 섹터였다. 그 결과 기술주가 헤지펀드 전체 시장 익스포저에서 차지하는 비중은 2월 이후 최저로 내려갔고, 이 속도라면 이르면 다음 주 5년 만의 최저까지 떨어질 수 있다. 쉽게 말해, 발 빠른 자금이 수년간 시장을 이끌어온 거래에서 발을 빼고 있다. 다만 이것이 방향을 말해주진 않는다. 헤지펀드의 대량 매도는 스마트머니가 AI·기술주 랠리의 열기가 식는다고 본다는 뜻일 수도, 모두가 이미 판 뒤에 반등을 준비하는 '털린 포지션'일 수도 있다. 포지셔닝 데이터는 누가 쥐고 있는지를 말할 뿐, 다음에 무슨 일이 벌어질지는 말하지 않는다. 그래도 중요한 이유는 이렇다. 기술주는 지수에서 워낙 큰 비중이라, 가장 활발한 트레이더가 이렇게 강하게 물러서면 그동안 하락 때마다 사주던 매수 주체가 사라지고, 그 지지 없이 밸류에이션을 정당화해야 하는 다가올 대형주 실적의 부담이 커진다.",
+    "ja": "コベイシ・レターが目を引くポジショニングの変化を指摘する。ヘッジファンドは直近8週のうち6週で米情報技術（IT）株を売り越し、8週の合計売却額は少なくとも10年で最大だという。先週はテックがこれらファンドにとって最も売られた米セクターだった。その結果、テックがヘッジファンドの市場エクスポージャー全体に占める比率は2月以来の低水準に下がり、このペースなら早ければ来週にも5年ぶりの低さになりうる。平たく言えば、俊敏なマネーが長年市場を牽引してきた取引から身を引いている。ただしこれは方向を示さない。ヘッジファンドの大量売却は、スマートマネーがAI・テック相場の熱が冷めると見ているのかもしれないし、皆が売り切った後に反発を用意する「洗い出された」ポジションかもしれない。ポジショニング・データは誰が保有しているかを語るだけで、次に何が起きるかは語らない。それでも重要なのは、テックは指数で非常に大きな比率を占めるため、最も活発なトレーダーがここまで強く退くと、下げるたびに買ってきた買い手が消え、その支えなしにバリュエーションを正当化しなければならない今後の大型株決算の重みが増すからだ。"
+   },
+   "why": {
+    "en": "The most active traders are exiting the trade that has led the market, removing a reliable dip-buyer just as megacap earnings must justify rich valuations.",
+    "ko": "가장 활발한 트레이더가 시장을 이끌던 거래에서 빠지며, 대형주 실적이 높은 밸류에이션을 증명해야 하는 시점에 믿었던 저가 매수 주체가 사라진다.",
+    "ja": "最も活発なトレーダーが市場を牽引した取引から退き、大型株決算が高いバリュエーションを正当化すべき局面で頼れる押し目買い手が消える。"
+   },
+   "ask": {
+    "en": "Record hedge-fund selling of tech: a smart-money warning that the leaders are topping, or washed-out positioning that sets up the next rally?",
+    "ko": "기록적인 헤지펀드의 기술주 매도, 주도주가 고점을 찍는다는 스마트머니의 경고일까, 아니면 다음 랠리를 부르는 '털린 포지션'일까?",
+    "ja": "記録的なヘッジファンドのテック売り--主導株の天井を告げるスマートマネーの警告か、それとも次の上昇を用意する洗い出しか？"
+   },
+   "stance": "bear",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Score next week: did hedge-fund tech exposure fall to a 5-year low as Kobeissi's pace implied?",
+     "ko": "다음 주 채점: 코베이시가 시사한 속도대로 헤지펀드 기술주 익스포저가 5년 최저로 떨어졌는가?",
+     "ja": "来週採点：コベイシが示唆したペース通り、ヘッジファンドのテック比率は5年ぶり低水準まで下がったか。"
+    }
+   },
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false"
+  },
+  {
+   "date": "2026-07-20",
+   "id": "jukan-ms-memory-shortage-2028",
+   "related": [
+    "jukan-server-dram-spot-surge",
+    "jukan-samsung-nvidia-nand-v10",
+    "serenity-meritz-memory"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2079166902035947716",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#3A2A5F",
+    "label": "NO RELIEF"
+   },
+   "tags": [
+    "MEMORY",
+    "DRAM",
+    "SHORTAGE"
+   ],
+   "title": {
+    "en": "Morgan Stanley: the memory shortage shows no signs of easing into 2028",
+    "ko": "모건스탠리, 메모리 부족 2028년까지 완화 조짐 없다",
+    "ja": "モルガン・スタンレー：メモリ不足は2028年まで緩む兆しなし"
+   },
+   "gist": {
+    "en": "Analyst Jukan relays a note from Morgan Stanley's Joseph Moore, who checked in with several data-center buyers last week. His message: the memory crunch is not letting up. Moore says prices look set to rise at least 25% on a like-for-like basis from the second to the third quarter, above both Morgan Stanley's own and outside estimates. Memory here means the DRAM and high-bandwidth chips that AI servers need in bulk, and buyers are so worried about getting enough that cloud customers are reportedly paying premiums over the expected price just to lock in supply. That is the behavior of a market where demand outruns what factories can make. Moore also keeps his longer-range warning intact: the shortage is likely to get worse again in 2027 and 2028, because there simply is not enough memory being built relative to what AI needs, and he does not see that changing. For investors the read-through is straightforward. If a top semiconductor desk is telling clients the squeeze runs for years rather than quarters, the pricing power sits with the memory makers, and the risk to the bullish case is less about demand fading than about whether these steep price forecasts prove too optimistic if AI spending cools.",
+    "ko": "애널리스트 주칸이 모건스탠리의 조셉 무어가 낸 노트를 전한다. 무어는 지난주 여러 데이터센터 구매 담당자들과 접촉했다. 그의 메시지는 간단하다. 메모리 부족이 풀리지 않는다는 것이다. 무어는 동일 조건 기준으로 가격이 2분기에서 3분기 사이 최소 25% 오를 것으로 본다. 이는 모건스탠리 자체 전망과 외부 추정치를 모두 웃도는 수준이다. 여기서 메모리란 AI 서버가 대량으로 필요로 하는 D램과 고대역폭메모리(HBM)를 말한다. 구매자들은 물량 확보가 불안한 나머지, 클라우드 고객들이 공급을 묶어두려 예상가보다 웃돈을 주고 산다고 전해진다. 수요가 공장이 만들 수 있는 양을 앞지르는 시장의 전형적 모습이다. 무어는 장기 경고도 그대로 유지한다. 2027년과 2028년에 부족이 다시 심해질 가능성이 크다는 것이다. AI가 필요로 하는 양에 비해 지어지는 메모리가 턱없이 부족하고, 이 상황이 바뀔 것으로 보지 않기 때문이다. 투자자에겐 함의가 분명하다. 유력 반도체 데스크가 이 압박이 분기가 아니라 수년간 이어진다고 고객에게 말한다면, 가격 결정력은 메모리 제조사 쪽에 있다. 강세론의 위험은 수요가 식는 것보다, AI 지출이 꺾일 때 이 가파른 가격 전망이 지나치게 낙관적으로 드러나는 데 있다.",
+    "ja": "アナリストのジュカンが、モルガン・スタンレーのジョセフ・ムーアのノートを伝える。ムーアは先週、複数のデータセンター調達担当者に確認した。そのメッセージは明快だ--メモリ不足は緩まない。ムーアは、同一条件ベースで価格が第2四半期から第3四半期にかけて少なくとも25%上がると見る。これはモルガン・スタンレー自身の予想も外部推計も上回る。ここでメモリとは、AIサーバーが大量に必要とするDRAMと広帯域メモリ（HBM）を指す。買い手は確保に不安を抱え、クラウド顧客は供給を押さえるために予想価格に上乗せして買っていると伝えられる。需要が工場の生産能力を上回る市場の典型的な姿だ。ムーアは長期の警告も維持する。2027年と2028年に不足が再び深刻化する公算が大きい--AIが求める量に対して作られるメモリが足りず、その状況が変わるとは見ていないからだ。投資家にとって含意は明確だ。有力な半導体デスクが、この逼迫は四半期でなく数年続くと顧客に語るなら、価格決定力はメモリメーカー側にある。強気論のリスクは需要の減退よりも、AI支出が冷えたときにこの急な価格予想が楽観的すぎたと判明する点にある。"
+   },
+   "why": {
+    "en": "A top chip desk telling clients the memory squeeze lasts years, not quarters, hands lasting pricing power to the memory makers.",
+    "ko": "유력 반도체 데스크가 메모리 압박이 분기가 아닌 수년간 이어진다고 고객에게 말하는 것은, 지속적 가격 결정력을 메모리 제조사에 넘겨준다는 뜻이다.",
+    "ja": "有力な半導体デスクがメモリ逼迫は四半期でなく数年続くと顧客に伝えることは、持続的な価格決定力をメモリメーカーに渡すことを意味する。"
+   },
+   "ask": {
+    "en": "A multi-year memory shortage into 2028: durable pricing power for the memory makers, or the kind of forecast that breaks the moment AI capex slows?",
+    "ko": "2028년까지 이어지는 다년간 메모리 부족, 제조사의 지속적 가격 결정력일까, 아니면 AI 투자가 둔화되는 순간 무너질 전망일까?",
+    "ja": "2028年まで続く数年来のメモリ不足--メーカーの持続的な価格決定力か、それともAI投資が鈍った瞬間に崩れる予想か？"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Score when Q3 memory contract prices print: did like-for-like DRAM rise at least 25% Q2->Q3 as Morgan Stanley forecast?",
+     "ko": "3분기 메모리 계약가가 나올 때 채점: 모건스탠리 전망대로 동일 조건 D램이 2분기 대비 최소 25% 올랐는가?",
+     "ja": "第3四半期のメモリ契約価格が出た時点で採点：モルガン・スタンレー予想通り、同一条件DRAMは前四半期比で少なくとも25%上がったか。"
+    }
+   },
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false"
+  },
+  {
+   "date": "2026-07-20",
    "id": "jukan-samsung-nvidia-nand-v10",
    "related": [
     "jukan-memory-cxl-controller-exit",
@@ -5263,6 +5420,72 @@
     "적층 세라믹 콘덴서",
     "積層セラミックコンデンサ",
     "multilayer ceramic capacitor"
+   ]
+  },
+  "MORGAN STANLEY": {
+   "kind": "company",
+   "sector": {
+    "en": "Investment banking / research",
+    "ko": "투자은행·리서치",
+    "ja": "投資銀行・リサーチ"
+   },
+   "desc": {
+    "en": "US global investment bank whose semiconductor research desk is closely watched.",
+    "ko": "미국의 글로벌 투자은행으로, 반도체 리서치 데스크가 시장에서 주목받는다.",
+    "ja": "米国のグローバル投資銀行で、半導体リサーチ・デスクが市場で注目される。"
+   },
+   "aliases": [
+    "모건스탠리",
+    "Morgan Stanley",
+    "モルガン・スタンレー",
+    "MS",
+    "조셉 무어",
+    "Joseph Moore"
+   ],
+   "ticker": "MS",
+   "logo": "morganstanley.com",
+   "exchange": "NYSE",
+   "ceo": {
+    "en": "Ted Pick",
+    "ko": "테드 픽",
+    "ja": "テッド・ピック"
+   },
+   "founded": "1935",
+   "hq": {
+    "en": "New York, USA",
+    "ko": "미국 뉴욕",
+    "ja": "米国ニューヨーク"
+   },
+   "website": "morganstanley.com",
+   "longDesc": {
+    "en": "Morgan Stanley is a leading US investment bank in advisory, trading, and wealth management. Its technology and semiconductor equity research, including analyst Joseph Moore's memory coverage, is widely followed by institutional investors for calls on AI-driven chip demand.",
+    "ko": "모건스탠리는 자문·트레이딩·자산관리를 아우르는 미국의 대표 투자은행이다. 조셉 무어 애널리스트의 메모리 커버리지를 포함한 기술·반도체 주식 리서치는 AI발 칩 수요 전망과 관련해 기관투자자들이 널리 참고한다.",
+    "ja": "モルガン・スタンレーは助言・トレーディング・資産運用を手がける米国有数の投資銀行。ジョセフ・ムーア氏のメモリ担当を含むテック・半導体の株式リサーチは、AI起点のチップ需要見通しで機関投資家に広く参照される。"
+   }
+  },
+  "프로즌 칩": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A chip that bakes a single AI model's weights directly into the silicon for efficiency.",
+    "ko": "단일 AI 모델의 가중치를 실리콘에 직접 새겨 효율을 높인 칩.",
+    "ja": "単一のAIモデルの重みをシリコンに直接焼き込み効率を高めたチップ。"
+   },
+   "longDesc": {
+    "en": "A 'frozen' chip hard-wires one AI model into custom silicon instead of loading it onto general-purpose hardware, cutting data movement and energy per query. It can be far cheaper to run one model but is hard to reuse when the model changes, so it matters to investors as a bet that owning both the model and the chip creates a durable cost advantage.",
+    "ko": "'프로즌' 칩은 AI 모델 하나를 범용 하드웨어에 얹는 대신 맞춤형 실리콘에 고정 배선해, 질의당 데이터 이동과 전력을 줄인다. 한 모델을 돌릴 땐 훨씬 저렴하지만 모델이 바뀌면 재활용이 어렵다. 투자자에게는 모델과 칩을 모두 보유하는 것이 지속적 비용 우위를 만든다는 베팅으로서 중요하다.",
+    "ja": "「フローズン」チップは、AIモデルを汎用ハードに載せる代わりに専用シリコンに固定配線し、クエリ当たりのデータ移動と電力を減らす。一つのモデルを動かすには格段に安いが、モデルが変わると再利用が難しい。投資家にとっては、モデルとチップの双方を持つことが持続的なコスト優位を生むという賭けとして重要だ。"
+   },
+   "aliases": [
+    "프로즌 칩",
+    "frozen chip",
+    "フローズンチップ",
+    "weights-baked chip",
+    "프로즌"
    ]
   }
  }
