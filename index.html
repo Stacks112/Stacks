@@ -4020,7 +4020,8 @@ function refreshCompanyFilter(){
   }
   const psel = document.getElementById("personFilter");
   if (psel){
-    const people = Object.keys(ENTITIES).filter(k => ENTITIES[k].kind === "person")
+    const _AUTHORS = new Set(ITEMS.map(i => i.source));
+    const people = Object.keys(ENTITIES).filter(k => ENTITIES[k].kind === "person" && _AUTHORS.has(k))
       .sort((a, b) => entName(a).localeCompare(entName(b)));
     const cur = people.find(c => c === ENTITY_VIEW) || "";
     psel.innerHTML = '<option value="">' + STRINGS[LANG].byPerson + '</option>'
