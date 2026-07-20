@@ -179,12 +179,39 @@ def _og_tile(Image, ImageDraw, src_path, is_logo, size):
     return tile
 
 
+AV_CACHE = {}  # url -> local ogsrc path (downloaded author avatars)
+
+
+def _download_avatars(items):
+    """Author avatarImg may be a full URL (e.g. unavatar.io). Cache each one
+    locally under ogsrc/ so share cards can show the face. Best-effort."""
+    import os, hashlib, urllib.request
+    os.makedirs("ogsrc", exist_ok=True)
+    urls = {i.get("avatarImg") for i in items
+            if (i.get("avatarImg") or "").startswith("http")}
+    for u in urls:
+        loc = "ogsrc/av-" + hashlib.md5(u.encode()).hexdigest()[:12] + ".png"
+        if os.path.exists(loc):
+            AV_CACHE[u] = loc
+            continue
+        try:
+            req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})
+            data = urllib.request.urlopen(req, timeout=20).read()
+            if len(data) > 500:
+                open(loc, "wb").write(data)
+                AV_CACHE[u] = loc
+        except Exception as e:
+            print(f"[avatar-skip] {u}: {e}")
+
+
 def _og_source(item):
     """Return (path, is_logo) for the card thumbnail, or (None, False)."""
     import os
     av = item.get("avatarImg")
     if av and os.path.exists(av):
         return av, False
+    if av and av.startswith("http") and os.path.exists(AV_CACHE.get(av, "")):
+        return AV_CACHE[av], False
     ph = f"ogsrc/{item['id']}.photo.png"
     lg = f"ogsrc/{item['id']}.logo.png"
     if os.path.exists(ph):
@@ -679,7 +706,7 @@ footer a{{color:#8E93A0}}
 """
 
 
-def sitemap(items, entity_slugs=None, week_slugs=None):
+def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_slugs=None):
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     urls = [(BASE, now, "1.0"), (BASE + "this-week.html", now, "0.7"),
             (BASE + "articles.html", now, "0.6")]
@@ -689,6 +716,10 @@ def sitemap(items, entity_slugs=None, week_slugs=None):
         urls.append((BASE + "e/" + slug + ".html", now, "0.7"))
     for slug in (week_slugs or []):
         urls.append((BASE + "week/" + slug + ".html", now, "0.6"))
+    for slug in (theme_slugs or []):
+        urls.append((BASE + "t/" + slug + ".html", now, "0.8"))
+    for slug in (record_slugs or []):
+        urls.append((BASE + "r/" + slug + ".html", now, "0.8"))
     body = "".join(
         f"<url><loc>{E(u)}</loc><lastmod>{E(m)}</lastmod><priority>{p}</priority></url>"
         for u, m, p in urls
@@ -727,6 +758,224 @@ def feed(items):
 
 def robots():
     return f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n"
+
+
+# ---- theme debate pages + author track-record pages (v78 SEO layer) ----
+# Keys and keyword patterns MUST stay in sync with THEMES in index.html.
+THEMES = {
+    "rates":   {"icon": "🏛️", "ko": "금리·인플레", "en": "Rates & inflation", "ja": "金利・インフレ", "flags": re.I,
+                "kw": r"기준금리|인플레|국채|연준|\bFed\b|FOMC|inflation|interest rates?|rate (?:cut|hike)|treasur|bond yield|\byields?\b|利上げ|利下げ|インフレ|国債|中央銀行"},
+    "dollar":  {"icon": "💵", "ko": "달러·환율", "en": "Dollar & FX", "ja": "ドル・為替", "flags": re.I,
+                "kw": r"달러|환율|원화|엔화|\bdollar\b|\bDXY\b|debasement|exchange rate|\byen\b|為替|円安|円高|ドル|통화"},
+    "aicapex": {"icon": "⚡", "ko": "AI 투자 사이클", "en": "AI capex", "ja": "AI設備投資", "flags": 0,
+                "kw": r"\bAI\b|인공지능|데이터센터|datacenter|data center|\bGPU\b|hyperscaler|capex|설비투자|人工知能|データセンター|設備投資"},
+    "semis":   {"icon": "🔬", "ko": "반도체·메모리", "en": "Semis & memory", "ja": "半導体・メモリ", "flags": re.I,
+                "kw": r"반도체|메모리|파운드리|semiconductor|\bchips?\b|foundry|\bDRAM\b|\bNAND\b|\bHBM\b|\bCXL\b|lithograph|半導体|メモリ"},
+    "energy":  {"icon": "🛢️", "ko": "에너지", "en": "Energy", "ja": "エネルギー", "flags": re.I,
+                "kw": r"에너지|원유|천연가스|전력|원전|\boil\b|natural gas|\bLNG\b|uranium|nuclear|power grid|electricity|\benergy\b|原油|エネルギー|電力|原発"},
+    "crypto":  {"icon": "🪙", "ko": "크립토·금", "en": "Crypto & gold", "ja": "暗号資産・金", "flags": re.I,
+                "kw": r"비트코인|크립토|암호화폐|금값|\bBitcoin\b|\bBTC\b|crypto|stablecoin|\bgold\b|bullion|ビットコイン|暗号資産|金価格"},
+    "trade":   {"icon": "🚢", "ko": "관세·무역", "en": "Tariffs & trade", "ja": "関税・貿易", "flags": re.I,
+                "kw": r"관세|무역|수출\s?규제|수출통제|tariffs?|trade war|export controls?|sanctions?|보호무역|通商|関税|貿易|制裁"},
+    "japan":   {"icon": "🗾", "ko": "일본 시장", "en": "Japan", "ja": "日本市場", "flags": 0,
+                "kw": r"일본|닛케이|엔저|\bJapan(?:ese)?\b|\bNikkei\b|\bBOJ\b|日銀|日本株|東証|日経"},
+}
+
+
+def _theme_hay(i):
+    g = i.get("gist") or {}
+    return " ".join([(i.get("title") or {}).get(l, "") or "" for l in ("en", "ko", "ja")]
+                    + [g.get("en", "") or ""] + [" ".join(i.get("tags") or [])])
+
+
+def theme_matches(items, key):
+    th = THEMES[key]
+    rx = re.compile(th["kw"], th["flags"])
+    return [i for i in items if rx.search(_theme_hay(i))]
+
+
+STANCE_KO = {"bull": "강세", "bear": "약세", "watch": "관점"}
+
+
+def _item_rows(its, rel=".."):
+    return "".join(
+        f'<li>{"<b class=sp-" + i.get("stance","watch") + ">" + STANCE_KO.get(i.get("stance") or "watch","관점") + "</b> " if i.get("stance") else ""}'
+        f'<a href="{rel}/p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+        f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
+        for i in its
+    )
+
+
+_HUB_CSS = """
+body{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}}
+a{color:inherit}.top{font-weight:800;text-decoration:none}
+.kicker{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8E93A0;margin:18px 0 4px}
+h1{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}
+.lead{color:#3E414B;font-size:15px;margin:8px 0 4px}
+@media(prefers-color-scheme:dark){.lead{color:#C9CDD6}}
+.tally{display:flex;gap:8px;margin:14px 0}
+.tally b{padding:6px 14px;border-radius:999px;font-size:13px;color:#fff}
+.tally .bl{background:#0E9F5E}.tally .wa{background:#6B7280}.tally .be{background:#E04438}
+h2{font-size:16px;margin:26px 0 8px}
+ul{list-style:none;padding:0}
+li{padding:12px 0;border-bottom:1px solid #ECEDF1}
+@media(prefers-color-scheme:dark){li{border-color:#26272E}}
+li a{font-weight:600;text-decoration:none}
+.d{display:block;font-size:12px;color:#8E93A0;margin-top:3px}
+b.sp-bull{color:#0E9F5E}b.sp-bear{color:#E04438}b.sp-watch{color:#8E93A0}
+.cta{display:inline-block;margin-top:24px;font-weight:700;text-decoration:none;background:#111;color:#fff;padding:11px 20px;border-radius:999px}
+@media(prefers-color-scheme:dark){.cta{background:#fff;color:#111}}
+footer{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){footer{border-color:#26272E}}
+footer a{color:#8E93A0}
+"""
+
+
+def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=None):
+    import os
+    og_tags = ""
+    tw = "summary"
+    if og_id and os.path.exists(f"og/{og_id}.png"):
+        img = BASE + "og/" + og_id + ".png"
+        og_tags = (f'<meta property="og:image" content="{E(img)}">'
+                   f'<meta property="og:image:width" content="1200">'
+                   f'<meta property="og:image:height" content="630">'
+                   f'<meta name="twitter:image" content="{E(img)}">')
+        tw = "summary_large_image"
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{E(title)}</title>
+<meta name="description" content="{E(metadesc)}">
+<link rel="canonical" href="{E(url)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{SITE}">
+<meta property="og:title" content="{E(title)}">
+<meta property="og:description" content="{E(metadesc)}">
+<meta property="og:url" content="{E(url)}">
+{og_tags}
+<meta name="twitter:card" content="{tw}">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
+<link rel="icon" href="../favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<style>{_HUB_CSS}</style>
+</head>
+<body>
+<a class="top" href="../">◆ {SITE}</a>
+<div class="kicker">{E(kicker)}</div>
+<h1>{h1}</h1>
+<p class="lead">{E(lead)}</p>
+{body_html}
+<a class="cta" href="{E(app_url)}">Stacks 앱에서 라이브로 보기 →</a>
+<footer>
+  요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
+  <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
+</footer>
+</body>
+</html>
+"""
+
+
+def _pseudo_og(og, iid, label, title_ko, avatar_local=None, frm="#0B1220", to="#3B4256"):
+    """Render a 1200x630 share card for a hub page via make_og()."""
+    import os
+    if not og or os.path.exists(f"og/{iid}.png"):
+        return
+    try:
+        make_og({"id": iid, "cover": {"from": frm, "to": to, "label": label},
+                 "title": {"ko": title_ko, "en": title_ko},
+                 "avatarImg": avatar_local or "", "source": "stacksdaily.com",
+                 "date": datetime.now(timezone.utc).strftime("%Y-%m-%d")}, og)
+    except Exception as e:
+        print(f"[og-skip] {iid}: {e}")
+
+
+def build_extra_pages(items, og):
+    """Generate t/{theme}.html + r/{author}.html (+ share cards). Returns
+    (theme_slugs, record_slugs)."""
+    import os, urllib.parse
+    # --- themes ---
+    os.makedirs("t", exist_ok=True)
+    theme_slugs = []
+    for key, th in THEMES.items():
+        t_items = sorted(theme_matches(items, key), key=lambda x: x.get("date", ""), reverse=True)
+        if not t_items:
+            continue
+        theme_slugs.append(key)
+        b = sum(1 for i in t_items if i.get("stance") == "bull")
+        r = sum(1 for i in t_items if i.get("stance") == "bear")
+        w = len(t_items) - b - r
+        url = BASE + "t/" + key + ".html"
+        app_url = BASE + "#theme-" + key
+        title = f"{th['ko']} — 강세 {b} · 약세 {r} 논쟁 · {SITE}"
+        lead = (f"{th['ko']}를 둘러싼 전 세계 투자 논객들의 견해 {len(t_items)}건. "
+                f"강세 {b} · 관점 {w} · 약세 {r}. 누가 맞았는지는 적중 기록으로 검증됩니다.")
+        metadesc = clip(lead, 160)
+        tally = (f'<div class="tally">{"<b class=bl>강세 " + str(b) + "</b>" if b else ""}'
+                 f'{"<b class=wa>관점 " + str(w) + "</b>" if w else ""}'
+                 f'{"<b class=be>약세 " + str(r) + "</b>" if r else ""}</div>')
+        body = tally + f"<h2>관련 글 {len(t_items)}건</h2><ul>" + _item_rows(t_items) + "</ul>"
+        _pseudo_og(og, "theme-" + key, th["en"].upper(),
+                   f"{th['icon']} {th['ko']} — 강세 {b} · 약세 {r}")
+        html_out = _hub_page(url, title, metadesc, "THEME DEBATE", f"{th['icon']} {E(th['ko'])}",
+                             lead, body, app_url, og_id="theme-" + key)
+        open(f"t/{key}.html", "w", encoding="utf-8").write(html_out)
+    for fn in os.listdir("t"):
+        if fn.endswith(".html") and fn[:-5] not in theme_slugs:
+            os.remove(f"t/{fn}")
+
+    # --- author record pages ---
+    try:
+        srcmeta = json.load(open("sources.json", encoding="utf-8"))
+    except Exception:
+        srcmeta = {}
+    name2slug = {}
+    for k, v in srcmeta.items():
+        if isinstance(v, dict) and v.get("source"):
+            name2slug.setdefault(v["source"], k)  # first feed wins (serenity, not serenity_substack)
+    os.makedirs("r", exist_ok=True)
+    by_author = {}
+    for i in items:
+        by_author.setdefault(i.get("source", ""), []).append(i)
+    record_slugs = []
+    for name, its in by_author.items():
+        if not name:
+            continue
+        slug = name2slug.get(name) or slugify(name)
+        record_slugs.append(slug)
+        its = sorted(its, key=lambda x: x.get("date", ""), reverse=True)
+        calls = [i for i in its if i.get("stance") in ("bull", "bear")]
+        hits = sum(1 for i in its if (i.get("outcome") or {}).get("status") == "hit")
+        miss = sum(1 for i in its if (i.get("outcome") or {}).get("status") == "miss")
+        url = BASE + "r/" + slug + ".html"
+        app_url = BASE + "#record-" + urllib.parse.quote(name)
+        title = f"{dispname(name)} 적중 기록 · 콜 {len(calls)}건 · {SITE}"
+        lead = (f"{dispname(name)}의 글 {len(its)}건, 방향성 콜 {len(calls)}건. "
+                + (f"검증된 예측 적중 {hits} · 빗나감 {miss}. " if (hits or miss) else "")
+                + "각 콜의 '그 후 수익률'은 앱의 적중 기록에서 실시간으로 확인됩니다.")
+        metadesc = clip(lead, 160)
+        body = ""
+        if calls:
+            body += f"<h2>방향성 콜 {len(calls)}건</h2><ul>" + _item_rows(calls) + "</ul>"
+        rest = [i for i in its if i not in calls]
+        if rest:
+            body += f"<h2>전체 글</h2><ul>" + _item_rows(rest[:20]) + "</ul>"
+        av = its[0].get("avatarImg") or ""
+        av_local = av if (av and not av.startswith("http") and os.path.exists(av)) else AV_CACHE.get(av)
+        _pseudo_og(og, "record-" + slug, "TRACK RECORD",
+                   f"{dispname(name)} 적중 기록", avatar_local=av_local,
+                   frm="#111827", to="#334155")
+        html_out = _hub_page(url, title, metadesc, "TRACK RECORD", E(dispname(name)),
+                             lead, body, app_url, og_id="record-" + slug)
+        open(f"r/{slug}.html", "w", encoding="utf-8").write(html_out)
+    for fn in os.listdir("r"):
+        if fn.endswith(".html") and fn[:-5] not in record_slugs:
+            os.remove(f"r/{fn}")
+    print(f"[extra] {len(theme_slugs)} theme pages + {len(record_slugs)} record pages")
+    return theme_slugs, record_slugs
 
 
 def _ping_indexnow(items):
@@ -828,6 +1077,7 @@ def main():
     ids = {i["id"] for i in items}
     # social share images (best-effort: skipped if Pillow/fonts unavailable)
     og = _og_setup()
+    _download_avatars(items)
     og_ok = set()
     if og:
         os.makedirs("og", exist_ok=True)
@@ -841,7 +1091,8 @@ def main():
             if os.path.exists(path):
                 og_ok.add(i["id"])
         for fn in os.listdir("og"):
-            if fn.endswith(".png") and fn[:-4] not in ids:
+            if (fn.endswith(".png") and fn[:-4] not in ids
+                    and not fn.startswith(("theme-", "record-"))):
                 os.remove(f"og/{fn}")
     else:
         print("[og] Pillow/CJK font unavailable — skipping share images")
@@ -871,6 +1122,9 @@ def main():
 
     open("articles.html", "w", encoding="utf-8").write(articles_index(items))
 
+    # theme debate + author record hub pages (SEO for #theme-/#record- views)
+    theme_slugs, record_slugs = build_extra_pages(items, og)
+
     # weekly recap page (current week + dated archive)
     os.makedirs("week", exist_ok=True)
     iso = datetime.now(timezone.utc).date().isocalendar()
@@ -885,7 +1139,8 @@ def main():
     )
     week_slugs = sorted(fn[:-5] for fn in os.listdir("week") if fn.endswith(".html"))
 
-    open("sitemap.xml", "w", encoding="utf-8").write(sitemap(items, list(ent_slugs.keys()), week_slugs))
+    open("sitemap.xml", "w", encoding="utf-8").write(
+        sitemap(items, list(ent_slugs.keys()), week_slugs, theme_slugs, record_slugs))
     open("feed.xml", "w", encoding="utf-8").write(feed(items))
     open("robots.txt", "w", encoding="utf-8").write(robots())
     _ping_indexnow(items)
