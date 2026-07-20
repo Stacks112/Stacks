@@ -781,6 +781,22 @@ def main():
         print("[dedash] em/en dashes stripped from items.json")
     items = d["items"]
     entities = d.get("entities", {}) or {}
+    # --- Curated static glossary: a durable term index independent of the
+    # generator. glossary.json terms are merged into entities so BOTH the app
+    # (linkifyEntities tooltips) and the SEO pages link them. This lowers the
+    # bar for what gets a definition without editing the publishing routine. ---
+    try:
+        _gloss = json.load(open("glossary.json", encoding="utf-8"))
+    except Exception:
+        _gloss = {}
+    _gadd = 0
+    for _gk, _gv in _gloss.items():
+        if _gk not in entities:
+            entities[_gk] = _gv; _gadd += 1
+    if _gadd:
+        d["entities"] = entities
+        json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("[glossary] merged " + str(_gadd) + " curated terms into entities")
     items = sorted(items, key=lambda x: x.get("date", ""), reverse=True)
     pats = build_matcher(entities)
 
