@@ -90,15 +90,21 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 - `feeds/*.json` — 자동 수집된 원문 스냅샷(카드화 전 재료).
 - `index.html` (루트) — 프론트엔드 SPA.
 
-## 피드 소스 (fetch_feeds.py FEEDS)
+## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
-- doomberg/netinterest(EN, Substack) — 브라우저 UA로 정상.
-- serenity(rss.app 브리지, X @aleabitoreddit) · serenity_substack(EN) — 정상(트라이얼, ~7/24 결제 전환 필요).
-- goto(JA, note.com/goto_finance) — 後藤達也. 유료라 미리보기(~60자)만 → 카드 짧음(scout 200자 예외 필요).
-- semianalysis(EN, Substack) — Dylan Patel. 전문 제공·고품질이나 발행 드묾(7일↑면 feeds 빔).
-- tesuta(JA, rss.app X @tesuta001) — テスタ. 대부분 잡담·리트윗 → 명백한 시장분석일 때만.
-- ★신규 3종(goto/semianalysis/tesuta)은 v4.3 루틴 프롬프트에도 영구 등록해야 자동
-  카드화됨. 방법: claude/new-sources-2026-07-19.md 참조.
+- doomberg/netinterest(EN, 커스텀도메인 Substack) — 브라우저 UA로 정상.
+- serenity(rss.app 브리지, X @aleabitoreddit) · serenity_substack(EN, 403 잔존) — rss.app Basic 결제 완료(2026-07-20), 기한 리스크 없음.
+- goto(JA, note.com/goto_finance) — 유료라 미리보기만 → 200자 예외.
+- semianalysis(EN, Substack 커스텀도메인) — 발행 드묾, 비면 건너뜀.
+- tesuta(JA, rss.app X @tesuta001) — 명백한 시장분석일 때만.
+- damodaran(EN, Blogspot 무료 전문) — 적정가치 수치 → outcome 추적 우선. (2026-07-20 추가)
+- thediff(EN, rss.app 브리지) — Byrne Hobart/Ghost. 공개 RSS엔 최신 유료글 없음 → 브리지. 제목+미리보기만, 200자 예외. (〃)
+- lynalden(EN, lynalden.com 무료) — 매크로. (〃)
+- jukan(EN, rss.app X @jukan05) — 반도체 애널리스트. (〃)
+- macroalf(EN, rss.app 브리지) — Macro Compass. ⚠️ 순정 *.substack.com은 GH Actions IP를 403으로 막음 → 반드시 rss.app 브리지. 발행 드묾. (〃)
+- bilello(EN, bilello.blog 무료) — Week in Charts, 주간. (〃)
+- kobeissi(EN, rss.app X @KobeissiLetter) — 시황 해석. 발행량 많음 → 실행당 최대 2건. (〃)
+- 소스 추가 절차: fetch_feeds.py FEEDS + sources.json 두 곳만 수정(루틴 프롬프트 수정 불필요). *.substack.com·X 소스는 rss.app 브리지(june 계정, Basic 15피드).
 
 ## 예약 루틴 (발행·알림 — 레포 밖, Claude 예약 작업)
 - **자동 발행 파이프라인 v4.3** — 3h @ :40. 유일한 발행자.
