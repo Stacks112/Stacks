@@ -1,0 +1,56 @@
+{
+ "_README": "Stacks 소스(저자) 레지스트리 — 단일 진실 출처. 소스 추가·이름변경은 여기만 고치면 됨(프롬프트 수정 불필요). feed_id는 feeds/<id>.json 및 fetch_feeds.py FEEDS의 id와 일치. field: source(표시명), lang(KO/JA/EN), category(investor/politician/ceo), avatarImg(선택), wiki(선택), notes(선택, 처리 힌트).",
+ "meru": {
+  "source": "메르",
+  "lang": "KO",
+  "category": "investor",
+  "avatarImg": "meru.png",
+  "notes": "네이버 블로그. 직접접근 403이니 feeds 파일만 사용. sourceUrl은 쿼리스트링 없는 blog.naver.com/ranto28/{글ID}. 맛집·일상 글 제외."
+ },
+ "emin": {
+  "source": "エミン・ユルマズ (Emin Yurumazu)",
+  "lang": "JA",
+  "category": "investor",
+  "notes": "note.com. 유료면 paywall:true, 미리보기만."
+ },
+ "trump": {
+  "source": "Donald J. Trump (@realDonaldTrump)",
+  "lang": "EN",
+  "category": "politician",
+  "avatarImg": "trump.webp",
+  "wiki": "Donald_Trump",
+  "notes": "Truth Social 아카이브. sourceUrl은 가능하면 truthsocial.com 원본. 시장영향 있는 것만 최대 1건."
+ },
+ "serenity": {
+  "source": "Serenity (@aleabitoreddit)",
+  "lang": "EN",
+  "category": "investor",
+  "avatarImg": "serenity.jpg",
+  "notes": "X 게시물(RSS.app). link가 x.com 원본이며 sourceUrl로 사용. 종목·시장 분석만, 실행당 최대 2건. 짧아도 예외 허용."
+ },
+ "serenity_substack": {
+  "source": "Serenity (@aleabitoreddit)",
+  "lang": "EN",
+  "category": "investor",
+  "avatarImg": "serenity.jpg",
+  "notes": "Serenity의 Substack 장문(있으면)."
+ },
+ "goto": {
+  "source": "後藤達也 (Tatsuya Goto)",
+  "lang": "JA",
+  "category": "investor",
+  "notes": "note.com 경제해설. 유료라 미리보기(~60자)만 → 200자 규칙 예외, 제목+미리보기+공개맥락으로 작성하되 없는 수치 지어내기 금지."
+ },
+ "semianalysis": {
+  "source": "SemiAnalysis",
+  "lang": "EN",
+  "category": "investor",
+  "notes": "Substack 반도체 심층분석. 여러 애널리스트가 함께 씀(대표 Dylan Patel). 전문 제공·고품질이나 발행 드묾 — 비면 건너뜀."
+ },
+ "tesuta": {
+  "source": "テスタ (@tesuta001)",
+  "lang": "JA",
+  "category": "investor",
+  "notes": "X 데이트레이더. 대부분 잡담·리트윗 → 명백한 시장·종목 분석 트윗일 때만."
+ }
+}
