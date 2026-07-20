@@ -74,21 +74,35 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 - `feed-sync.yml` — "Sync source feeds". `fetch_feeds.py` 실행 → `feeds/*.json` 커밋.
 - `draft-cards.yml` — "Stacks Scout". **수동 예비용(workflow_dispatch 전용, 스케줄
   없음).** ANTHROPIC_API_KEY 시크릿 필요. 라이브 발행자는 v4.3 루틴(발행 규칙 참조).
-- `apply-v50.yml` · `deploy-worker.yml` · `og-assets.yml` · `stacks-brief.yml` ·
-  `stacks-weekly.yml`.
+- `og-assets.yml` — "OG card images". 6h 주기 + items.json/build_pages.py push 시.
+  Noto CJK 폰트 설치(runner에 기본 없음 — 없으면 OG PNG 전부 스킵됨) 후
+  fetch_og_assets.py + build_pages.py 실행, 생성물(t/·r/·p/·e/·week/·og/·sitemap 등) 커밋.
+  ⚠️ 커밋 스텝은 `git add -A`여야 함: 경로 나열식 git add는 한 pathspec이라도 안 맞으면
+  **전체가 무효**(2>/dev/null||true가 삼켜서 조용히 "no changes") — 2026-07-20 실측·수정.
+- `notify-followers.yml` — 팔로우 푸시 릴레이(시리즈 s_·회사 c_·테마 t_ 태그, 테마는
+  항목당 최대 2개). 샌드박스가 워커에 직접 못 닿아 GH Action이 대신 쏨.
+- `apply-v50.yml` · `deploy-worker.yml` · `stacks-brief.yml` · `stacks-weekly.yml`.
 
 ## 스크립트 (scripts/)
 - `fetch_feeds.py` — RSS 피드 → `feeds/<id>.json`. FEEDS 리스트가 소스 과목록.
   (UA는 브라우저 UA여야 Substack이 안 막음.)
 - `scout.py` — feeds/ → Claude → 3개국어 stance 카드 → items.json (직접 발행). 단독 발행자.
   소스별 상한(PER_SOURCE_CAP)으로 특정 소스 편중 방지.
-- `build_pages.py` — items.json → 정적 페이지/카드. `fetch_og_assets.py` — 위키 이미지.
+- `build_pages.py` — items.json → 정적 SEO 레이어: p/(글)·e/(엔티티)·week/(주간)
+  + **t/(테마 논쟁 허브)·r/(저자 적중 기록)** 페이지, OG 카드 PNG(테마/기록 포함,
+  avatarImg 원격 URL은 ogsrc/av-*.png로 캐시), sitemap·feed·robots. ⚠️ THEMES 정의는
+  index.html·build_pages.py·notify_followers.py **3곳 동기화 필수**(키·키워드).
+- `notify_followers.py` — 새 카드 → OneSignal 태그 푸시(s_시리즈, t_테마 max 2).
+- `fetch_og_assets.py` — 위키 이미지.
 - `apply_v50.py` · `brief.py` · `weekly.py`.
 
 ## 콘텐츠 데이터
 - `items.json` (루트) — 발행된 카드 전체. scout만 쓴다(발행 규칙 참조).
 - `feeds/*.json` — 자동 수집된 원문 스냅샷(카드화 전 재료).
-- `index.html` (루트) — 프론트엔드 SPA.
+- `index.html` (루트) — 프론트엔드 SPA (v78). 테마 논쟁 보드(◧ 테마, THEMES 8종:
+  rates·dollar·aicapex·semis·energy·crypto·trade·japan)·테마 팔로우(localStorage
+  `stk_themes` + OneSignal `t_<key>` 태그)·저자 기록 공유 페이지(#record-)·오늘의 토론
+  일별 로테이션·이벤트 캘린더(#calendar)·적정가치 tv-pill(`target` 필드).
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
@@ -97,14 +111,15 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 - goto(JA, note.com/goto_finance) — 유료라 미리보기만 → 200자 예외.
 - semianalysis(EN, Substack 커스텀도메인) — 발행 드묾, 비면 건너뜀.
 - tesuta(JA, rss.app X @tesuta001) — 명백한 시장분석일 때만.
-- damodaran(EN, Blogspot 무료 전문) — 적정가치 수치 → outcome 추적 우선. (2026-07-20 추가)
+- damodaran(EN, Blogspot 무료 전문) — 적정가치 수치 → outcome 추적 우선. 명시적 적정가치가
+  있으면 카드에 `target:{"value":N,"cur":"USD"}` 추가(프런트 tv-pill이 현재가 대비 괴리율 표시). (2026-07-20 추가)
 - thediff(EN, rss.app 브리지) — Byrne Hobart/Ghost. 공개 RSS엔 최신 유료글 없음 → 브리지. 제목+미리보기만, 200자 예외. (〃)
 - lynalden(EN, lynalden.com 무료) — 매크로. (〃)
 - jukan(EN, rss.app X @jukan05) — 반도체 애널리스트. (〃)
 - macroalf(EN, rss.app 브리지) — Macro Compass. ⚠️ 순정 *.substack.com은 GH Actions IP를 403으로 막음 → 반드시 rss.app 브리지. 발행 드묾. (〃)
 - bilello(EN, bilello.blog 무료) — Week in Charts, 주간. (〃)
 - kobeissi(EN, rss.app X @KobeissiLetter) — 시황 해석. 발행량 많음 → 실행당 최대 2건. (〃)
-- 소스 추가 절차: fetch_feeds.py FEEDS + sources.json 두 곳만 수정(루틴 프롬프트 수정 불필요). *.substack.com·X 소스는 rss.app 브리지(june 계정, Basic 15피드).
+- 소스 추가 절차: fetch_feeds.py FEEDS + sources.json 두 곳만 수정(루틴 프롬프트 수정 불필요). *.substack.com·X 소스는 rss.app 브리지(june 계정, Basic 15피드). **★ 인물 추가 시 프로필 사진(avatarImg) 필수** — X 계정이면 `https://unavatar.io/twitter/<handle>?fallback=false` (june 지시, 2026-07-20).
 - **신규 소스 데뷔 예외(v4.3 루틴 규칙)**: 발행기는 통상 "원문 48시간 이내"만 발행하지만, **feeds에 처음 등장한 소스의 첫 카드 1건은 원문 7일 이내까지 허용**한다(그 이상 오래된 글은 데뷔라도 금지). 이유: 48h 규칙만 있으면 새 소스는 다음 새 글이 올라올 때까지 카드 0개로 보인다(2026-07-20 실측). 데뷔 카드는 피드 정렬(원문일 기준)상 아래에 묻힐 수 있음을 감안하고 1건만.
 
 ## 예약 루틴 (발행·알림 — 레포 밖, Claude 예약 작업)
