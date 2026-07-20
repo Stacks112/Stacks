@@ -1,0 +1,56 @@
+name: Notify followers
+
+# Relays follower pushes for newly published items. The auto-publish
+# pipeline (cloud sandbox) can reach GitHub but not the push Worker,
+# so it only commits items.json — this workflow detects the new items
+# and sends the series push from a runner that can reach the Worker.
+
+on:
+  push:
+    branches: [main]
+    paths: [items.json]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Push tag (e.g. s_ai-power)"
+        required: true
+      title:
+        description: "Notification title (e.g. AI 전력 전쟁 · 새 글)"
+        required: true
+      msg:
+        description: "Notification body (Korean headline)"
+        required: true
+      url:
+        description: "Target URL (https://stacksdaily.com/#sig-<item-id>)"
+        required: true
+      dry:
+        description: "Dry run — log only, do not send"
+        required: false
+        default: "false"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notify-followers
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Send follower push
+        env:
+          PUSH_SECRET: ${{ secrets.PUSH_SECRET }}
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          IN_TAG: ${{ inputs.tag }}
+          IN_TITLE: ${{ inputs.title }}
+          IN_MSG: ${{ inputs.msg }}
+          IN_URL: ${{ inputs.url }}
+          IN_DRY: ${{ inputs.dry }}
+        run: python3 scripts/notify_followers.py
