@@ -461,10 +461,35 @@ def entity_page(key, e, ent_items):
     facts_html = f'<p class="facts">{" · ".join(facts)}</p>' if facts else ""
     metadesc = clip(desc or f"{key} 관련 투자 읽을거리 모음", 160)
     rows = "".join(
-        f'<li><a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+        f'<li>{("<b class=sp-" + i.get("stance") + ">" + STANCE_KO.get(i.get("stance"), "관점") + "</b> ") if i.get("stance") else ""}'
+        f'<a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
         f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
         for i in ent_items
     )
+    # consensus tally + explicit predictions (v79)
+    _b = sum(1 for i in ent_items if i.get("stance") == "bull")
+    _r = sum(1 for i in ent_items if i.get("stance") == "bear")
+    _w = sum(1 for i in ent_items if i.get("stance") == "watch")
+    tally_html = ""
+    if _b or _r or _w:
+        tally_html = ('<div class="tally">'
+                      + (f'<b class="bl">강세 {_b}</b>' if _b else "")
+                      + (f'<b class="wa">관점 {_w}</b>' if _w else "")
+                      + (f'<b class="be">약세 {_r}</b>' if _r else "")
+                      + "</div>")
+    _st_ko = {"pending": "채점 대기", "hit": "적중", "miss": "빗나감"}
+    _preds = [i for i in ent_items if i.get("outcome") and i["outcome"].get("status")]
+    preds_html = ""
+    if _preds:
+        _li = []
+        for i in _preds:
+            oc = i["outcome"]; note = oc.get("note") or {}
+            nt = note.get("ko") or note.get("en") or ""
+            _li.append(f'<li><span class="oc oc-{E(oc["status"])}">{_st_ko.get(oc["status"], "채점 대기")}</span> '
+                       f'<a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+                       f'<span class="d">{E(nt)}</span></li>')
+        preds_html = f'<h2>예측 · 적중 기록 {len(_preds)}건</h2><ul class="preds">{"".join(_li)}</ul>'
+
     about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": key}
     if kind == "company" and ticker:
         about["tickerSymbol"] = ticker.split(".")[0]
@@ -517,6 +542,13 @@ h1{{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}}
 .facts b{{color:#3E414B;font-weight:600;margin-right:2px}}
 @media(prefers-color-scheme:dark){{.facts b{{color:#C9CDD6}}}}
 .facts a{{color:#2E5BFF;text-decoration:none}}
+.tally{{display:flex;gap:8px;margin:14px 0 2px;flex-wrap:wrap}}
+.tally b{{padding:6px 14px;border-radius:999px;font-size:13px;color:#fff;font-weight:700}}
+.tally .bl{{background:#0E9F5E}}.tally .wa{{background:#6B7280}}.tally .be{{background:#E04438}}
+b.sp-bull{{color:#0E9F5E}}b.sp-bear{{color:#E04438}}b.sp-watch{{color:#8E93A0}}
+.preds .oc{{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:6px}}
+.oc-pending{{background:#F1F2F4;color:#6B7280}}.oc-hit{{background:rgba(14,159,94,.12);color:#0E9F5E}}.oc-miss{{background:rgba(224,68,56,.12);color:#E04438}}
+@media(prefers-color-scheme:dark){{.oc-pending{{background:#20222A;color:#9AA0AC}}}}
 h2{{font-size:16px;margin:26px 0 8px}}
 ul{{list-style:none;padding:0}}
 li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
@@ -534,6 +566,8 @@ footer a{{color:#8E93A0}}
 <p class="desc">{E(desc)}</p>
 {facts_html}
 {prof}
+{tally_html}
+{preds_html}
 <h2>관련 글 {len(ent_items)}건</h2>
 <ul>{rows}</ul>
 <footer>
