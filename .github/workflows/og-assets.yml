@@ -43,7 +43,7 @@ jobs:
         run: |
           git config user.name "stacks-og-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ogsrc/ og/ p/ e/ articles.html 2>/dev/null || true
+          git add ogsrc/ og/ p/ e/ t/ r/ week/ articles.html this-week.html sitemap.xml feed.xml robots.txt items.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "no changes"
           else
