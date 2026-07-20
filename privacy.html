@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개인정보처리방침 · Stacks</title>
-<meta name="description" content="Stacks(stacksdaily.com) 개인정보처리방침 / Privacy Policy">
+<title>개인정보처리방침 · Privacy Policy · プライバシーポリシー · Stacks</title>
+<meta name="description" content="Stacks(stacksdaily.com) 개인정보처리방침 / Privacy Policy / プライバシーポリシー">
 <link rel="canonical" href="https://stacksdaily.com/privacy.html">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
@@ -18,6 +18,10 @@
 body{background:var(--bg);color:var(--text);font-family:"Pretendard Variable",-apple-system,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased;}
 .wrap{max-width:720px;margin:0 auto;padding:40px 20px 80px;}
 a{color:var(--accent);}
+.back{font-size:13px;color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:22px;}
+.langbar{display:flex;gap:6px;margin-bottom:26px;}
+.langbar button{font:inherit;font-size:13px;font-weight:700;padding:6px 14px;border:1px solid var(--line);background:var(--bg-soft);color:var(--muted);border-radius:999px;cursor:pointer;}
+.langbar button.on{background:var(--accent);color:#fff;border-color:var(--accent);}
 h1{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin-bottom:6px;}
 .date{font-size:12.5px;color:var(--muted);margin-bottom:28px;}
 h2{font-size:17px;font-weight:800;letter-spacing:-0.01em;margin:30px 0 10px;}
@@ -26,21 +30,26 @@ ul{padding-left:20px;margin:8px 0;}
 li{margin:4px 0;}
 table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px;}
 th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
-th{background:var(--bg-soft);font-weight:700;white-space:nowrap;}
-.box{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;font-size:13.5px;}
-.en{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);}
-.en h2, .en p, .en li{font-family:"Inter",-apple-system,sans-serif;}
-.back{display:inline-block;margin-bottom:22px;font-size:13px;font-weight:700;text-decoration:none;color:var(--muted);}
-.back:hover{color:var(--text);}
-footer{margin-top:40px;font-size:12px;color:var(--muted);}
+th{background:var(--bg-soft);font-weight:700;}
+.box{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;font-size:13.5px;}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);}
+.policy{display:none;}
+.policy.show{display:block;}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="/">&larr; Stacks 홈으로</a>
+  <a class="back" href="/" data-back>&larr; Stacks</a>
+  <div class="langbar">
+    <button data-set="ko">한국어</button>
+    <button data-set="en">English</button>
+    <button data-set="ja">日本語</button>
+  </div>
+
+  <!-- ================= KOREAN ================= -->
+  <div class="policy" data-lang="ko">
   <h1>개인정보처리방침</h1>
   <p class="date">시행일: 2026년 7월 18일</p>
-
   <p>Stacks(stacksdaily.com, 이하 "서비스")는 전 세계 투자 관련 글을 요약·해설해 제공하는 큐레이션 서비스입니다. 서비스는 이용자의 개인정보를 소중히 여기며, 관련 법령을 준수합니다. 본 방침은 서비스가 어떤 정보를 왜 수집하고, 어떻게 보관·처리하는지를 설명합니다.</p>
 
   <h2>1. 수집하는 개인정보와 이용 목적</h2>
@@ -48,7 +57,7 @@ footer{margin-top:40px;font-size:12px;color:var(--muted);}
     <tr><th>기능</th><th>수집 항목</th><th>이용 목적</th></tr>
     <tr><td>뉴스레터 구독</td><td>이메일 주소</td><td>주간 뉴스레터(이번 주 베스트) 발송</td></tr>
     <tr><td>댓글 작성</td><td>닉네임, 댓글 내용, IP 주소의 일방향 해시값</td><td>댓글 게시 및 도배·스팸 방지 (원본 IP는 저장하지 않습니다)</td></tr>
-    <tr><td>푸시 알림</td><td>브라우저 푸시 토큰, 관심사 태그(팔로우한 시리즈·기업)</td><td>새 글·이벤트 알림 발송</td></tr>
+    <tr><td>푸시 알림</td><td>브라우저 푸시 토큰, 관쉬사 태그(팔로우한 시리즈·기업)</td><td>새 글·이벤트 알림 발송</td></tr>
     <tr><td>방문 통계</td><td>쿠키 없는 익명 통계(페이지뷰, 유입 경로)</td><td>서비스 개선 (개인 식별 불가)</td></tr>
   </table>
   <p>이 외의 개인정보는 수집하지 않으며, 회원가입 없이 모든 기능을 이용할 수 있습니다. 북마크·읽음 표시 등은 이용자의 기기(브라우저)에만 저장되고 서버로 전송되지 않습니다.</p>
@@ -89,13 +98,156 @@ footer{margin-top:40px;font-size:12px;color:var(--muted);}
 
   <h2>7. 방침의 변경</h2>
   <p>본 방침이 변경되는 경우 이 페이지에 시행일과 함께 게시합니다.</p>
+  </div>
 
-  <div class="en">
-    <h2>Privacy Policy (English summary)</h2>
-    <p>Stacks (stacksdaily.com) collects: your email address if you subscribe to the newsletter (processed by Stibee or Substack; unsubscribe anytime via the link in every email); a nickname, comment text and a one-way hash of your IP if you post a comment (for spam prevention — the raw IP is never stored); a browser push token and interest tags if you enable notifications (OneSignal); and cookie-free anonymous analytics (GoatCounter). Reading state and bookmarks stay on your device. The site may serve Google AdSense ads, which may use advertising cookies — you can opt out at <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>. For deletion or any privacy request, contact <a href="mailto:wnrakrhdn128@gmail.com">wnrakrhdn128@gmail.com</a>.</p>
+  <!-- ================= ENGLISH ================= -->
+  <div class="policy" data-lang="en">
+  <h1>Privacy Policy</h1>
+  <p class="date">Effective date: July 18, 2026</p>
+  <p>Stacks (stacksdaily.com, the "Service") is a curation service that summarizes and explains investing-related writing from around the world. We value your privacy and comply with applicable laws. This policy explains what information we collect and why, and how we store and process it.</p>
+
+  <h2>1. Information we collect and why</h2>
+  <table>
+    <tr><th>Feature</th><th>Data collected</th><th>Purpose</th></tr>
+    <tr><td>Newsletter</td><td>Email address</td><td>Sending the weekly newsletter (this week's best)</td></tr>
+    <tr><td>Comments</td><td>Nickname, comment text, a one-way hash of your IP address</td><td>Posting comments and preventing spam/abuse (the raw IP is never stored)</td></tr>
+    <tr><td>Push notifications</td><td>Browser push token, interest tags (series/companies you follow)</td><td>Sending new-post and event alerts</td></tr>
+    <tr><td>Analytics</td><td>Cookie-free anonymous stats (page views, referrers)</td><td>Improving the service (no personal identification)</td></tr>
+  </table>
+  <p>We collect no other personal data, and all features work without signing up. Bookmarks and read-state are stored only on your device (browser) and are never sent to our servers.</p>
+
+  <h2>2. Retention and deletion</h2>
+  <ul>
+    <li>Newsletter email: removed from the sending list immediately when you unsubscribe. You can unsubscribe anytime via the link at the bottom of every newsletter.</li>
+    <li>Comments: deleted without delay upon your request.</li>
+    <li>Push token: excluded from sending once you revoke notification permission in your browser.</li>
+  </ul>
+
+  <h2>3. Processors and international transfer</h2>
+  <p>We entrust the processing of personal data to the following providers. Some of them keep servers overseas.</p>
+  <table>
+    <tr><th>Provider</th><th>Function</th></tr>
+    <tr><td>Stibee, Inc. (South Korea)</td><td>Korean newsletter delivery and subscriber management</td></tr>
+    <tr><td>Substack Inc. (USA)</td><td>English and Japanese newsletter delivery and subscriber management</td></tr>
+    <tr><td>OneSignal Inc. (USA)</td><td>Web push notification delivery</td></tr>
+    <tr><td>Cloudflare Inc. (USA)</td><td>Storing and processing comment and view-count data</td></tr>
+    <tr><td>GitHub, Inc. (USA)</td><td>Website hosting</td></tr>
+  </table>
+
+  <h2>4. Cookies and advertising</h2>
+  <p>The Service itself does not use tracking cookies (visit analytics use the cookie-free GoatCounter). However, the Service may display Google AdSense ads, in which case Google and its partners may use advertising cookies to show personalized ads based on your prior visits.</p>
+  <div class="box">
+    You can opt out of personalized advertising at <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>. For more on how Google uses advertising cookies, see the <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google advertising policy</a>.
+  </div>
+
+  <h2>5. Your rights</h2>
+  <ul>
+    <li>Opt out of the newsletter: click the unsubscribe link at the bottom of any email.</li>
+    <li>Turn off push notifications: block notifications in your browser's site settings.</li>
+    <li>Delete comments or request access, correction, or deletion of your data: contact us below.</li>
+  </ul>
+
+  <h2>6. Contact</h2>
+  <p>Privacy inquiries: <a href="mailto:wnrakrhdn128@gmail.com">wnrakrhdn128@gmail.com</a> or X <a href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a></p>
+
+  <h2>7. Changes to this policy</h2>
+  <p>If this policy changes, we will post the update on this page along with its effective date.</p>
+  </div>
+
+  <!-- ================= JAPANESE ================= -->
+  <div class="policy" data-lang="ja">
+  <h1>プライバシーポリシー</h1>
+  <p class="date">施行日: 2026年7月18日</p>
+  <p>Stacks(stacksdaily.com、以下「本サービス」)は、世界中の投資関連の記事を要約・解説して提供するキュレーションサービスです。本サービスは利用者の個人情報を大切に扱い、関連法令を遵守します。本ポリシーは、本サービスがどのような情報をなぜ収集し、どのように保管・処理するかを説明します。</p>
+
+  <h2>1. 収集する個人情報と利用目的</h2>
+  <table>
+    <tr><th>機能</th><th>収集項目</th><th>利用目的</th></tr>
+    <tr><td>ニュースレター購読</td><td>メールアドレス</td><td>週刊ニュースレター(今週のベスト)の配信</td></tr>
+    <tr><td>コメント投稿</td><td>ニックネーム、コメント内容、IPアドレスの一方向ハッシュ値</td><td>コメントの掲載および連投・スパム防止(元のIPは保存しません)</td></tr>
+    <tr><td>プッシュ通知</td><td>ブラウザのプッシュトークン、関心タグ(フォローしたシリーズ・㌁業)</td><td>新着記事・イベント通知の送信</td></tr>
+    <tr><td>アクセス統計</td><td>クッキー不使用の匿名統計(ページビュー、流入経路)</td><td>サービス改善(個人を特定しません)</td></tr>
+  </table>
+  <p>これ以外の個人情報は収集せず、会員登録なしですべての機能を利用できます。ブックマークや既読表示などは利用者の端末(ブラウザ)にのみ保存され、サーバーには送信されません。</p>
+
+  <h2>2. 保有期間および破棄</h2>
+  <ul>
+    <li>ニュースレターのメール:購読解除時に配信リストから直ちに削除します。すべてのニュースレター末尾の配信停止リンクからいつでも解除できます。</li>
+    <li>コメント:利用者が削除を要請した場合、遅滞なく削除します。</li>
+    <li>プッシュトーコン:ブラウザで通知許可を解除すると、送信対象から除外されます。</li>
+  </ul>
+
+  <h2>3. 処理の委託および国外移転</h2>
+  <p>本サービスは、以下の事業者に個人情報の処理を委託します。一部の事業者は海外にサーバーを置いています。</p>
+  <table>
+    <tr><th>委託先</th><th>委託業務</th></tr>
+    <tr><td>Stibee, Inc.(韓国)</td><td>韓国語ニュースレターの配信および購読者管理</td></tr>
+    <tr><td>Substack Inc.(米国)</td><td>英語・日本語ニュースレターの配信および購読者管理</td></tr>
+    <tr><td>OneSignal Inc.(米国)</td><td>ウェブプッシュ通知の送信</td></tr>
+    <tr><td>Cloudflare Inc.(米国)</td><td>コメント・閲覧数データの保存および処理</td></tr>
+    <tr><td>GitHub, Inc.(米国)</td><td>ウェブサイトのホスティング</td></tr>
+  </table>
+
+  <h2>4. クッキーおよび広告</h2>
+  <p>本サービス自体はアクセス追跡クッキーを使用しません(アクセス統計はクッキー不使用のGoatCounterを使用します)。ただし、本サービスはGoogle AdSense広告を掲載する場合があり、その際Googleおよびそのパートナーは広告クッキーを使用して、利用者の過去の閲覧履歴に基づくパーソナライズ広告を表示することがあります。</p>
+  <div class="box">
+    利用者は<a href="https://adssettings.google.com" target="_blank" rel="noopener">Google広告設定</a>でパーソナライズ広告を無効にできます。Googleの広告クッキー使用の詳細は<a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Googleの広告ポリシー</a>をご覧ください。
+  </div>
+
+  <h2>5. 利用者の権利</h2>
+  <ul>
+    <li>ニュースレターの受信拒否:メール末尾の配信停止(購読解除)リンクをクリック</li>
+    <li>プッシュ通知の解除:ブラウザのサイト設定で通知をブロック</li>
+    <li>コメント削除、個人情報の開示・訂正・削除の請求:下記の連絡先までご連絡ください</li>
+  </ul>
+
+  <h2>6. お問い合わせ</h2>
+  <p>個人情報に関するお問い合わせ:<a href="mailto:wnrakrhdn128@gmail.com">wnrakrhdn128@gmail.com</a> または X <a href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a></p>
+
+  <h2>7. ポリシーの変更</h2>
+  <p>本ポリシーが変更される場合、施行日とともにこのページに掲載します。</p>
   </div>
 
   <footer>© Stacks · The Infrastructure Thesis</footer>
 </div>
+
+<script>
+(function(){
+  var VALID = {ko:1, en:1, ja:1};
+  function pick(){
+    try{
+      var u = new URLSearchParams(location.search).get("l");
+      if (u && VALID[u]) return u;
+    }catch(e){}
+    try{
+      var s = localStorage.getItem("stk_lang");
+      if (s && VALID[s]) return s;
+    }catch(e){}
+    var n = (navigator.language || "ko").slice(0,2).toLowerCase();
+    return VALID[n] ? n : "ko";
+  }
+  var BACK = {ko:"← Stacks 홈으로", en:"← Back to Stacks", ja:"← Stacks ホームへ"};
+  function apply(l){
+    document.documentElement.lang = l;
+    var secs = document.querySelectorAll(".policy");
+    for (var i=0;i<secs.length;i++){
+      secs[i].classList.toggle("show", secs[i].getAttribute("data-lang") === l);
+    }
+    var btns = document.querySelectorAll(".langbar button");
+    for (var j=0;j<btns.length;j++){
+      btns[j].classList.toggle("on", btns[j].getAttribute("data-set") === l);
+    }
+    var back = document.querySelector("[data-back]");
+    if (back){ back.textContent = BACK[l] || BACK.ko; back.setAttribute("href", "/?l=" + l); }
+    try{ localStorage.setItem("stk_lang", l); }catch(e){}
+    document.title = (l==="ja" ? "プライバシーポリシー" : l==="en" ? "Privacy Policy" : "개인정보처리방침") + " · Stacks";
+  }
+  apply(pick());
+  var btns = document.querySelectorAll(".langbar button");
+  for (var k=0;k<btns.length;k++){
+    btns[k].addEventListener("click", function(){ apply(this.getAttribute("data-set")); });
+  }
+})();
+</script>
 </body>
 </html>
