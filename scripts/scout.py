@@ -38,18 +38,26 @@ FEEDS_DIR = "feeds"
 
 # feed id -> fixed card fields. Keeps display name / language / category /
 # avatar consistent with the entities already in items.json.
-SOURCE_META = {
-    "meru":              {"source": "메르", "lang": "KO", "category": "investor", "avatarImg": "meru.png"},
-    "emin":              {"source": "エミン・ユルマズ (Emin Yurumazu)", "lang": "JA", "category": "investor"},
-    "trump":             {"source": "Donald J. Trump (@realDonaldTrump)", "lang": "EN", "category": "politician", "avatarImg": "trump.webp", "wiki": "Donald_Trump"},
-    "doomberg":          {"source": "Doomberg", "lang": "EN", "category": "investor"},
-    "netinterest":       {"source": "Marc Rubinstein (Net Interest)", "lang": "EN", "category": "investor"},
-    "serenity":          {"source": "Serenity (@aleabitoreddit)", "lang": "EN", "category": "investor", "avatarImg": "serenity.jpg"},
-    "serenity_substack": {"source": "Serenity (@aleabitoreddit)", "lang": "EN", "category": "investor", "avatarImg": "serenity.jpg"},
-    "goto":              {"source": "後藤達也 (Tatsuya Goto)", "lang": "JA", "category": "investor"},
-    "semianalysis":      {"source": "SemiAnalysis", "lang": "EN", "category": "investor"},
-    "tesuta":            {"source": "テスタ (@tesuta001)", "lang": "JA", "category": "investor"},
-}
+def _load_sources():
+    """Source registry lives in sources.json (repo root) - the single source
+    of truth. Add or rename an author there; no code/prompt edits elsewhere."""
+    try:
+        with open("sources.json", encoding="utf-8") as f:
+            raw = json.load(f)
+    except Exception:
+        return {}
+    meta = {}
+    for k, v in raw.items():
+        if k.startswith("_") or not isinstance(v, dict):
+            continue
+        m = {"source": v.get("source", k), "lang": v.get("lang", "EN"),
+             "category": v.get("category", "investor")}
+        if v.get("avatarImg"): m["avatarImg"] = v["avatarImg"]
+        if v.get("wiki"): m["wiki"] = v["wiki"]
+        meta[k] = m
+    return meta
+
+SOURCE_META = _load_sources()
 
 
 def norm_url(u):
