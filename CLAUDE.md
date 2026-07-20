@@ -99,10 +99,14 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 ## 콘텐츠 데이터
 - `items.json` (루트) — 발행된 카드 전체. scout만 쓴다(발행 규칙 참조).
 - `feeds/*.json` — 자동 수집된 원문 스냅샷(카드화 전 재료).
-- `index.html` (루트) — 프론트엔드 SPA (v78). 테마 논쟁 보드(◧ 테마, THEMES 8종:
+- `index.html` (루트) — 프론트엔드 SPA (v79). 테마 논쟁 보드(◧ 테마, THEMES 8종:
   rates·dollar·aicapex·semis·energy·crypto·trade·japan)·테마 팔로우(localStorage
   `stk_themes` + OneSignal `t_<key>` 태그)·저자 기록 공유 페이지(#record-)·오늘의 토론
   일별 로테이션·이벤트 캘린더(#calendar)·적정가치 tv-pill(`target` 필드).
+  v79: 쏠림 배지(skewInfo: 방향성 3건↑ & 80%↑ 일방 → debate-bar에 ⚠️ 한쪽 쏠림 배지)
+  + 홈 "지금 쏠린 곳" 모듈(skewSec, 테마·기업 스캔 top6) + receipts-strip(종목/테마별
+  outcome 집계 "예측 N건·채점 대기") on 기업·테마 보드. e/ 엔티티 정적 페이지도 컨센서스
+  tally + 예측·적중 기록 블록으로 강화(build_pages).
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
