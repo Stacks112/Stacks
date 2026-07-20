@@ -41,6 +41,9 @@ FEEDS = [
     {"id": "thediff", "url": "https://rss.app/feeds/MqXEWKxMSRlmKIG5.xml", "naver": False},
     {"id": "lynalden", "url": "https://www.lynalden.com/feed/", "naver": False},
     {"id": "jukan", "url": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml", "naver": False},
+    {"id": "macroalf", "url": "https://themacrocompass.substack.com/feed", "naver": False},
+    {"id": "bilello", "url": "https://bilello.blog/feed", "naver": False},
+    {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "naver": False},
 ]
 
 
