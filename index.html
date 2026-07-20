@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v79 :: consensus skew badge + "where the crowd leans" home module + per-ticker/theme receipts strip + richer e/ pages -->
+<!-- STACKS BUILD v80 :: grading queue (outcome.due) + calendar day-pick & past events + event->articles filter + calSheet z-index fix -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1290,6 +1290,8 @@ html[data-lang="ko"] .ws-title{font-family:"Pretendard Variable",sans-serif;lett
 /* My activity sheet */
 #meSheet{position:fixed;inset:0;z-index:13000;}
 #meSheet[hidden]{display:none;}
+#calSheet{position:fixed;inset:0;z-index:13000;}
+#calSheet[hidden]{display:none;}
 .me-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(2px);}
 .me-card{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
@@ -1866,6 +1868,15 @@ html[data-lang="ko"] .stance-pill{font-family:"Pretendard Variable",sans-serif;}
 .skew-badge.sk-bull{color:#0E9F5E;border-color:rgba(14,159,94,.4);background:rgba(14,159,94,.07);}
 .skew-badge.sk-bear{color:#E04438;border-color:rgba(224,68,56,.4);background:rgba(224,68,56,.07);}
 .receipts-strip{margin-top:8px;font-size:12px;font-weight:600;color:var(--muted);}
+.gq-box{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
+.gq-row{display:flex;gap:10px;align-items:flex-start;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:11px 14px;cursor:pointer;font-family:inherit;text-align:left;}
+.gq-d{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--muted);}
+.gq-d.gq-due{color:#2E6BFF;border-color:rgba(46,107,255,.45);}
+.gq-d.gq-late{color:#E04438;border-color:rgba(224,68,56,.4);}
+.gq-main{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.gq-main b{font-size:13.5px;color:var(--text);line-height:1.4;}
+.gq-note{font-size:12px;color:var(--muted);line-height:1.5;}
+.gq-src{font-size:11px;color:var(--muted);font-family:"IBM Plex Mono",monospace;}
 .skew-box{display:flex;flex-wrap:wrap;gap:8px;}
 .skew-chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:9px 14px;cursor:pointer;font-family:inherit;text-align:left;}
 .skew-chip .skc-name{font-size:13.5px;font-weight:700;color:var(--text);}
@@ -1962,6 +1973,10 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .cal-cell{min-height:46px;border-radius:9px;padding:5px 4px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;border:1px solid transparent;}
 .cal-cell.cal-has{background:var(--bg-soft);border-color:var(--line);}
 .cal-cell.cal-today{border-color:#2E6BFF;}
+.cal-cell.cal-has{cursor:pointer;}
+.cal-cell.cal-sel{border-color:var(--text);box-shadow:0 0 0 1px var(--text) inset;}
+.cal-li{cursor:pointer;}
+.cal-back{display:inline-flex;align-items:center;gap:5px;margin-left:8px;font-size:11px;font-weight:700;color:var(--accent);background:none;border:0;cursor:pointer;padding:0;font-family:inherit;text-transform:none;letter-spacing:0;}
 .cal-empty{background:transparent;border:0;}
 .cal-dnum{font-size:11px;font-weight:700;color:var(--text);}
 .cal-cell.cal-today .cal-dnum{color:#2E6BFF;}
@@ -2159,7 +2174,7 @@ footer a{color:var(--muted);}
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v79</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v80</p>
     <p id="foot1"></p>
     <p style="margin-top:8px"><span id="foot2"></span> · <a id="footX" href="https://x.com/InfraThesis" target="_blank" rel="noopener">@InfraThesis</a> · <a href="https://infrathesis.substack.com" target="_blank" rel="noopener">The Infrastructure Thesis</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
@@ -2825,6 +2840,13 @@ function debateTitleHtml(key){
   const p = (LANG === "ko" && e.kind !== "person") ? koEulReul(nm) : "";
   return tmpl.replace("{name}", () => span).replace("{p}", p);
 }
+/* v80 strings: grading queue */
+(function(){ var X={
+  en:{ gqTitle:"Grading queue", gqToday:"Due today", gqLate:"{n}d overdue", gqTBD:"TBD" },
+  ko:{ gqTitle:"채점 대기 큐", gqToday:"오늘 채점", gqLate:"지연 {n}일", gqTBD:"시점 미정" },
+  ja:{ gqTitle:"採点待ちキュー", gqToday:"本日採点", gqLate:"遅延{n}日", gqTBD:"時期未定" }
+}; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
+
 /* ---------------- consensus skew + receipts aggregate (v79) ---------------- */
 (function(){ var X={
   en:{ skewLead:"One-sided", skewTip:"3+ directional calls and 80%+ agree on one side. Extreme agreement can be a contrarian flag.", skewSecTitle:"Where the crowd is leaning", rcPreds:"{n} tracked calls", rcGraded:"graded {g} (hit {h})", rcPending:"{p} pending" },
@@ -2934,12 +2956,23 @@ let STANCE_FILTER = null, STANCE_FILTER_KEY = null, SB_VIEW = false;
 
 
 /* ---------------- events calendar (v77) ---------------- */
-var CAL_Y=null, CAL_M=null;
-const CAL_STR={ en:{title:"Calendar",list:"Upcoming",none:"No events this month."}, ko:{title:"\uC774\uBCA4\uD2B8 \uCE98\uB9B0\uB354",list:"\uB2E4\uAC00\uC624\uB294 \uC77C\uC815",none:"\uC774\uBC88 \uB2EC \uC774\uBCA4\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."}, ja:{title:"\u30A4\u30D9\u30F3\u30C8\u30AB\u30EC\u30F3\u30C0\u30FC",list:"\u4ECA\u5F8C\u306E\u4E88\u5B9A",none:"\u4ECA\u6708\u306E\u30A4\u30D9\u30F3\u30C8\u306F\u3042\u308A\u307E\u305B\u3093\u3002"} };
+var CAL_Y=null, CAL_M=null, CAL_SEL=null;
+const CAL_STR={ en:{title:"Calendar",list:"Upcoming",none:"No events this month.",all:"All"}, ko:{title:"\uC774\uBCA4\uD2B8 \uCE98\uB9B0\uB354",list:"\uB2E4\uAC00\uC624\uB294 \uC77C\uC815",none:"\uC774\uBC88 \uB2EC \uC774\uBCA4\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",all:"전체"}, ja:{title:"\u30A4\u30D9\u30F3\u30C8\u30AB\u30EC\u30F3\u30C0\u30FC",list:"\u4ECA\u5F8C\u306E\u4E88\u5B9A",none:"\u4ECA\u6708\u306E\u30A4\u30D9\u30F3\u30C8\u306F\u3042\u308A\u307E\u305B\u3093\u3002",all:"すべて"} };
 function calLocale(){ return LANG==="ko"?"ko-KR":LANG==="ja"?"ja-JP":"en-US"; }
 function openCal(){ const m=document.getElementById("calSheet"); if(!m) return; if(CAL_Y===null){ var d=new Date(); CAL_Y=d.getFullYear(); CAL_M=d.getMonth(); } renderCal(); m.hidden=false; document.body.style.overflow="hidden"; pushView(); if(typeof track==="function") track("calendar/open"); }
 function closeCal(){ const m=document.getElementById("calSheet"); if(!m||m.hidden) return; m.hidden=true; document.body.style.overflow=""; }
-function calShift(delta){ CAL_M+=delta; if(CAL_M<0){CAL_M=11;CAL_Y--;} else if(CAL_M>11){CAL_M=0;CAL_Y++;} renderCal(); }
+function calShift(delta){ CAL_M+=delta; if(CAL_M<0){CAL_M=11;CAL_Y--;} else if(CAL_M>11){CAL_M=0;CAL_Y++;} CAL_SEL=null; renderCal(); }
+function calPick(dstr){ CAL_SEL=(dstr&&CAL_SEL!==dstr)?dstr:null; renderCal(); }
+function evGo(evid){
+  var e=null; for(var i=0;i<EVENTS.length;i++){ if(EVENTS[i].id===evid){ e=EVENTS[i]; break; } }
+  if(!e) return;
+  closeCal();
+  if(e.entity && typeof ENTITIES!=="undefined" && ENTITIES[e.entity]){ entityFeedView(e.entity); return; }
+  if(e.itemId){ goToItem(e.itemId); return; }
+  var lbl=(e.label&&e.label.en)||""; var q=String(lbl).split(/[\s(]/)[0]||"";
+  var si=document.getElementById("searchInput"); if(si) si.value=q;
+  if(q) onSearch(q);
+}
 function renderCal(){
   var body=document.getElementById("calBody"), head=document.getElementById("calHeadTitle"); if(!body) return;
   var CS=CAL_STR[LANG]||CAL_STR.en, loc=calLocale(); head.textContent=CS.title;
@@ -2954,18 +2987,23 @@ function renderCal(){
   for(var dnum=1;dnum<=dim;dnum++){
     var evs=byDay[dnum]||[]; var cellD=new Date(CAL_Y,CAL_M,dnum); var isToday=cellD.getTime()===todayISO.getTime();
     var dots=evs.slice(0,3).map(function(e){return '<i class="cal-dot ck-'+(e.kind||"x")+'"></i>';}).join("");
-    html+='<span class="cal-cell'+(isToday?" cal-today":"")+(evs.length?" cal-has":"")+'"><span class="cal-dnum">'+dnum+'</span>'+(dots?'<span class="cal-dots">'+dots+'</span>':'')+'</span>';
+    var dstr=CAL_Y+"-"+String(CAL_M+1).padStart(2,"0")+"-"+String(dnum).padStart(2,"0");
+    html+='<span class="cal-cell'+(isToday?" cal-today":"")+(evs.length?" cal-has":"")+(CAL_SEL===dstr?" cal-sel":"")+'"'+(evs.length?' onclick="calPick(\''+dstr+'\')"':'')+'><span class="cal-dnum">'+dnum+'</span>'+(dots?'<span class="cal-dots">'+dots+'</span>':'')+'</span>';
   }
   html+='</div>';
   var monthEvs=[]; Object.keys(byDay).forEach(function(k){ byDay[k].forEach(function(e){monthEvs.push(e);}); });
   monthEvs.sort(function(a,b){return a.date<b.date?-1:1;});
-  html+='<div class="cal-list-h">'+CS.list+'</div>';
-  if(!monthEvs.length){ html+='<div class="cal-none">'+CS.none+'</div>'; }
-  else { html+=monthEvs.map(function(e){
+  var listEvs=monthEvs, selLbl=CS.list;
+  if(CAL_SEL){
+    listEvs=monthEvs.filter(function(e){ return e.date===CAL_SEL; });
+    selLbl=new Date(CAL_SEL+"T00:00:00").toLocaleDateString(loc,{month:"long",day:"numeric",weekday:"short"});
+  }
+  html+='<div class="cal-list-h">'+selLbl+(CAL_SEL?'<button class="cal-back" onclick="calPick(null)">\u2715 '+CS.all+'</button>':'')+'</div>';
+  if(!listEvs.length){ html+='<div class="cal-none">'+CS.none+'</div>'; }
+  else { html+=listEvs.map(function(e){
       var d=new Date(e.date+"T00:00:00"); var dd=d.toLocaleDateString(loc,{month:"short",day:"numeric",weekday:"short"});
       var lbl=(e.label&&(e.label[LANG]||e.label.en))||(e.title&&(e.title[LANG]||e.title.en))||"";
-      var link=e.itemId?' cal-li-link" onclick="closeCal();goToItem(\''+e.itemId+'\')':'"';
-      return '<div class="cal-li'+link+'><span class="cal-li-d ck-'+(e.kind||"x")+'">'+dd+'</span><span class="cal-li-t">'+esc(lbl)+'</span></div>';
+      return '<div class="cal-li cal-li-link" onclick="evGo(\''+e.id+'\')"><span class="cal-li-d ck-'+(e.kind||"x")+'">'+dd+'</span><span class="cal-li-t">'+esc(lbl)+'</span></div>';
     }).join(""); }
   body.innerHTML=html;
 }
@@ -3167,6 +3205,38 @@ async function renderScoreboard(list, S){
     return b.acc - a.acc || b.scored - a.scored || b.items.length - a.items.length;
   });
   loading.remove();
+
+  /* v80: grading queue — pending predictions ordered by due date */
+  try {
+    const pend = ITEMS.filter(i => i.outcome && i.outcome.status === "pending" && (!_rvOnly || i.source === _rvOnly));
+    if (pend.length){
+      pend.sort((a,b) => ((a.outcome.due||"9999") < (b.outcome.due||"9999") ? -1 : 1));
+      const qh = document.createElement("h2");
+      qh.className = "section-title sb-list-title"; qh.style.marginTop = "18px";
+      qh.textContent = S.gqTitle + " · " + pend.length;
+      list.appendChild(qh);
+      const _t0 = new Date(); _t0.setHours(0,0,0,0);
+      const qbox = document.createElement("div"); qbox.className = "gq-box";
+      qbox.innerHTML = pend.map(function(i){
+        var due = i.outcome.due || "";
+        var dcls = "gq-d", dlb = S.gqTBD;
+        if (due){
+          var dd = Math.round((new Date(due+"T00:00:00") - _t0)/86400000);
+          if (dd > 0){ dlb = "D-"+dd; }
+          else if (dd === 0){ dlb = S.gqToday; dcls += " gq-due"; }
+          else { dlb = S.gqLate.replace("{n}", -dd); dcls += " gq-late"; }
+        }
+        var nt = (i.outcome.note && (i.outcome.note[LANG]||i.outcome.note.ko||i.outcome.note.en)) || "";
+        return '<button class="gq-row" onclick="goToItem(\''+i.id+'\')">'
+          + '<span class="'+dcls+'">'+dlb+'</span>'
+          + '<span class="gq-main"><b>'+esc(i.title[LANG]||i.title.en||"")+'</b>'
+          + '<span class="gq-note">'+esc(nt)+'</span>'
+          + '<span class="gq-src">'+esc(i.source)+(due?" \u00b7 "+due:"")+'</span></span>'
+          + '</button>';
+      }).join("");
+      list.appendChild(qbox);
+    }
+  } catch(e){}
 
   const medal = ri => ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1);
   const accHtml = r => {
@@ -4264,7 +4334,7 @@ function renderEvents(){
   bar.hidden = false;
   bar.innerHTML = '<button class="ev-cal-btn" onclick="openCal()">📅</button><span class="ev-title" onclick="openCal()" style="cursor:pointer">' + S.eventsTitle + "</span>"
     + evs.map(x =>
-        '<button class="event-chip" onclick="goToItem(\'' + x.ev.itemId + '\')">'
+        '<button class="event-chip" onclick="evGo(\'' + x.ev.id + '\')">'
         + '<span class="ev-d">' + (x.days === 0 ? S.dToday : "D-" + x.days) + "</span>"
         + '<span class="ev-label">' + x.ev.label[LANG] + "</span>"
         + '<span class="ev-date">' + x.ev.date.slice(5).replace("-", ".") + "</span>"
