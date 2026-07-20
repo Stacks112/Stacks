@@ -58,7 +58,7 @@
   "lang": "EN",
   "category": "investor",
   "wiki": "Aswath_Damodaran",
-  "notes": "NYU 밸류에이션 교수. Blogspot, 무료 전문. 적정가치(fair value) 수치를 자주 제시 → outcome/영수증 추적 우선.",
+  "notes": "NYU 밸류에이션 교수. Blogspot, 무료 전문. 적정가치(fair value) 수치를 자주 제시 → outcome/영수증 추적 우선. 글에 명시적 적정가치가 있으면 카드에 target:{\"value\":<숫자>,\"cur\":\"USD\"} 필드를 추가할 것 — 프런트가 현재가 대비 괴리율 배지(tv-pill)로 표시함.",
   "avatarImg": "https://unavatar.io/twitter/AswathDamodaran?fallback=false"
  },
  "thediff": {
