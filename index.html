@@ -1108,7 +1108,7 @@ html{overscroll-behavior-y:contain;}
   font-family:var(--mono-font);font-size:10px;letter-spacing:0.15em;
   text-transform:uppercase;color:var(--muted);margin-bottom:6px;
 }
-.gist{font-size:14.5px;color:#26282E;white-space:pre-line;}
+.gist{font-size:14.5px;color:var(--text);white-space:pre-line;}
 html[data-lang="ko"] .gist{font-family:var(--ui-font);line-height:1.75;}
 html[data-lang="ja"] .gist{line-height:1.85;}
 .why{margin-top:16px;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px;}
@@ -2037,7 +2037,7 @@ html[data-theme="dark"] .cta-ghost,
 html[data-theme="dark"] .series-notice button{background:#141519;color:var(--text);border-color:#2E3037;}
 html[data-theme="dark"] .c-form input,
 html[data-theme="dark"] .c-form textarea{background:#141519;}
-html[data-theme="dark"] .gist{color:#E7E9EF;}
+html[data-theme="dark"] .gist{color:var(--text);}
 html[data-theme="dark"] .why{background:#1A1B21;}
 html[data-theme="dark"] .why p,
 html[data-theme="dark"] .why .label,
@@ -6589,9 +6589,9 @@ bootData();
   .card.v82c .card-body{max-height:none !important;opacity:1 !important;overflow:visible !important;}
   .card.v82c .gist-fold{margin:0;}
   /* headline + ~3 paragraphs, then fade + 더보기 */
-  .card.v82c .gist{position:relative;max-height:168px;overflow:hidden;color:#33353C;
+  .card.v82c .gist{position:relative;max-height:168px;overflow:hidden;color:var(--text);
     font-size:14px;line-height:1.62;margin:0;}
-  html[data-theme="dark"] .card.v82c .gist{color:#D7DAE2;}
+  html[data-theme="dark"] .card.v82c .gist{color:var(--text);}
   .card.v82c.v82clip .gist::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;
     background:linear-gradient(transparent,var(--card));pointer-events:none;}
   .card.v82c .v82-more{display:none;background:none;border:none;color:var(--accent);font-family:inherit;
