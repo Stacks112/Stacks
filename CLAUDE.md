@@ -49,6 +49,20 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   desc·longDesc 3개국어). 루틴 프롬프트 [4] 용어 규칙도 기준을 낮춰 term을 더 많이
   추가하게 할 것. 자세한 후속 메모: 프로젝트 `claude/house-rules-and-followups-2026-07-19.md`.
 
+- **★ 카드 커버는 "의미 있는 실제 이미지"만 (v83, 2026-07-21, june 지시).** 무의미한
+  그라디언트 라벨 그래픽 금지. 정책: (1) 카드의 주체 회사가 있으면 그 회사 로고
+  (`logoUrl` = google favicon sz=128; clearbit은 죽음), (2) 없으면 큐레이션 목록
+  `COVER_IMG`(index.html 내, Wikimedia Commons 자유이용 이미지, 배열 순서 = 우선순위)에서
+  카드의 tags/entities 키 매칭 — KOSPI→KRX로고, NASDAQ, NIKKEI, BITCOIN, OPEC, FED,
+  IRAN·CHINA 국기(mode:logo), RED SEA·HORMUZ·OIL은 중립 위성/유조선 사진(mode:photo,
+  object-fit:cover), (3) 아무것도 없으면 커버 없음(텍스트 전용). 해상 로직은 `coverImg()`
+  →`coverThumbHtml()`, 로드 실패 시 `coverImgFail()`이 data-fb 폴백 후 박스 제거(graceful).
+  ★ **후티(Houthi) 엠블럼은 의도적으로 제외** — Wikimedia의 후티 슬로건기는 폭력·반유대
+  구호가 새겨진 혐오 상징이라 표시 불가. 홍해 관련 카드는 Bab-el-Mandeb 해협 위성사진으로 대체.
+  큐레이션 확장: 새 지수/기관/토픽이 필요하면 `COVER_IMG`에 항목 추가(자유이용 라이선스 확인).
+  ⚠ **미적용 잔여**: `renderHotRail()`의 `hot-cover`(핫레일 쇼케이스)는 흰 제목 텍스트를
+  올리는 배경이라 아직 그라디언트 유지 — 이미지로 바꾸려면 스크림(어두운 오버레이) 재설계 필요.
+
 ## 자동화: 레지스트리 (수동 프롬프트 편집 없애기 — june 요구)
 
 소스·용어·회사 메타데이터를 v4.3 루틴 프롬프트에 하드코딩하지 말 것. 레포의 데이터
