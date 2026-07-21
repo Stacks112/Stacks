@@ -144,6 +144,11 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   바인딩이 규칙. 상세/서랍/탐색 open은 try/catch로 감싸 실패 시 오버레이 상태를
   반드시 되돌릴 것(보이지 않는 전면 오버레이가 모든 탭을 삼키는 사고 방지).
   진단: URL에 ?v82debug 붙이면 탭/클릭/에러 실시간 배지 표시.
+  (d) 실기기 전면 탭 무반응의 진범(v82.3에서 해결): 피드 MutationObserver 콜백이
+  insertModules()로 feedList를 다시 변경, 자기 순환 무한 루프(초당 ~360 mutation).
+  크롬은 클릭이 살지만 iOS 사파리는 지속 DOM 변동 중 클릭 합성을 페이지 전체에서
+  중단함(터치는 정상 도달, click 이벤트만 미발생. 진단 배지로 실기기 확정).
+  규칙: 옵저버 콜백이 관찰 대상을 변경하면 반드시 disconnect 후 쓰고 다시 observe.
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
