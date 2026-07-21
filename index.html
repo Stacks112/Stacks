@@ -839,6 +839,8 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .chip-click{cursor:pointer;}
 .chip-click:hover{border-color:var(--text);color:var(--text);}
 .has-tip{position:relative;cursor:pointer;}
+.gloss-link{border-bottom:1px dotted var(--muted);cursor:pointer;}
+.gloss-link:hover{border-bottom-color:var(--accent);color:var(--accent);}
 .has-tip:hover{border-color:var(--text);color:var(--text);}
 .entity-tip{
   position:absolute;bottom:calc(100% + 8px);right:-6px;
@@ -2365,6 +2367,71 @@ function entityTip(key){
   return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + quote + follow + hint + '</span>';
 }
 
+/* ---------------- glossary of uncommon terms ----------------
+   Plain-language definitions for jargon that shows up in headlines and
+   bodies (다운스트림, AI 랠리, LNG, HBM ...). Each term links the same way
+   an entity does: dotted underline, hover tooltip on desktop, bottom sheet
+   on mobile. Extend GLOSS to index more terms going forward. */
+const GLOSS = {
+  "다운스트림": {aliases:["다운스트림","downstream","川下"], def:{ko:"공급망에서 최종 소비자에 가까운 완제품 단계. 반도체라면 그 칩을 사서 기기를 만들어 파는 쪽을 말한다.",en:"The part of a supply chain closer to the end customer — the firms that buy components and build the final product.",ja:"サプライチェーンで最終消費者に近い完成品側。半導体ならそのチップを買って機器を作り売る側。"}},
+  "AI 랠리": {aliases:["AI 랠리","AI랠리","AI 상승장","AI rally","AIラリー"], def:{ko:"AI에 대한 기대가 관련 주식을 폭넓게 끌어올리는 강세장 흐름.",en:"The broad stock rally driven by enthusiasm for AI.",ja:"AIへの期待が関連株を広く押し上げる上昇相場。"}},
+  "LNG": {aliases:["LNG","액화천연가스","液化天然ガス"], def:{ko:"액화천연가스. 배로 실어 나르려고 아주 낮은 온도로 냉각해 액체로 만든 천연가스.",en:"Liquefied natural gas — natural gas cooled to a liquid so it can be shipped by sea.",ja:"液化天然ガス。船で運ぶため極低温で冷却し液体にした天然ガス。"}},
+  "네오클라우드": {aliases:["네오클라우드","neocloud","neoclouds","ネオクラウド"], def:{ko:"데이터센터를 짓고 엔비디아 GPU를 빌려주는 신흥 AI 전문 클라우드 업체.",en:"An emerging AI-focused cloud provider that builds data centers and rents out Nvidia GPUs.",ja:"データセンターを建ててエヌビディアGPUを貸す新興のAI特化クラウド事業者。"}},
+  "오픈웨이트": {aliases:["오픈웨이트","open-weight","open weight","オープンウェイト"], def:{ko:"모델의 가중치(학습 결과)를 공개해 누구나 내려받아 돌릴 수 있게 한 AI 모델.",en:"An AI model whose weights (trained parameters) are made public so anyone can download and run it.",ja:"モデルの重み(学習結果)を公開し、誰でもダウンロードして動かせるようにしたAIモデル。"}},
+  "디레버리징": {aliases:["디레버리징","deleveraging","デレバレッジ"], def:{ko:"빌린 돈(레버리지)을 줄이는 것. 강제로 일어나면 자산을 팔아치우게 만든다.",en:"Reducing borrowed money (leverage); when it is forced, it triggers asset selling.",ja:"借入(レバレッジ)を減らすこと。強制的に起きると資産の投げ売りを招く。"}},
+  "ARR": {aliases:["ARR","반복매출","연간 반복 매출","年間経常収益"], def:{ko:"연간 반복 매출. 구독처럼 매년 꾸준히 들어오는 매출을 1년 기준으로 환산한 값.",en:"Annual recurring revenue — subscription-style revenue that recurs each year, stated on an annual basis.",ja:"年間経常収益。サブスクのように毎年継続して入る売上を年換算した値。"}},
+  "HBM": {aliases:["HBM","고대역폭 메모리","広帯域メモリ"], def:{ko:"고대역폭 메모리. 여러 D램을 쌓아 데이터를 아주 빠르게 주고받게 만든 AI용 메모리.",en:"High-bandwidth memory — stacked DRAM that moves data very fast, used in AI accelerators.",ja:"広帯域メモリ。DRAMを積層しデータを高速にやり取りする、AI向けメモリ。"}},
+  "VLCC": {aliases:["VLCC","초대형 유조선","超大型タンカー"], def:{ko:"초대형 원유 운반선. 원유를 대량으로 실어 나르는 가장 큰 급의 유조선.",en:"Very large crude carrier — one of the largest classes of oil tanker.",ja:"超大型原油タンカー。原油を大量に運ぶ最大級のタンカー。"}},
+  "마진콜": {aliases:["마진콜","마진 콜","margin call","追証"], def:{ko:"빌려서 투자한 담보 가치가 떨어질 때, 돈을 더 넣거나 강제로 팔라는 요구.",en:"A demand to add funds or sell when the collateral behind a leveraged position loses value.",ja:"借入投資の担保価値が下がった際、資金追加か強制売却を迫る要求。"}},
+  "밸류에이션": {aliases:["밸류에이션","valuation","バリュエーション"], def:{ko:"주가가 이익·자산·성장 대비 비싼지 싼지를 나타내는 평가.",en:"How expensive or cheap a stock is versus its earnings, assets, or growth.",ja:"株価が利益・資産・成長に対して割高か割安かを示す評価。"}},
+  "리쇼어링": {aliases:["리쇼어링","reshoring","onshoring","リショアリング"], def:{ko:"해외로 나갔던 생산을 자국으로 다시 들여오는 것.",en:"Bringing manufacturing back to a company's home country from overseas.",ja:"海外に出した製造を自国へ戻すこと。"}},
+  "하이퍼스케일러": {aliases:["하이퍼스케일러","hyperscaler","hyperscalers","ハイパースケーラー"], def:{ko:"초대형 클라우드 사업자(MS·구글·아마존·메타 등). 거대한 규모로 데이터센터를 운영한다.",en:"A giant cloud operator (Microsoft, Google, Amazon, Meta) running data centers at massive scale.",ja:"超大規模なクラウド事業者(MS・グーグル・アマゾン・メタ等)。巨大な規模でデータセンターを運用する。"}},
+  "인퍼런스": {aliases:["인퍼런스","추론","inference","推論"], def:{ko:"학습된 AI 모델을 돌려 답을 내는 것. AI를 실제로 대규모로 쓰는 단계.",en:"Running a trained AI model to produce answers — the everyday, at-scale use of AI.",ja:"学習済みAIモデルを動かして答えを出すこと。AIを実運用で大規模に使う段階。"}},
+  "캐펙스": {aliases:["캐펙스","자본지출","capex","CapEx","設備投資"], def:{ko:"자본지출. 데이터센터·반도체·공장처럼 오래 쓰는 자산에 기업이 투자하는 돈.",en:"Capital expenditure — money a company spends on long-lived assets like data centers, chips, and factories.",ja:"設備投資。データセンターや半導体、工場など長期資産に企業が投じる資金。"}}
+};
+let GLOSS_RE = null; const GALIAS2KEY = {};
+function buildGlossMatcher(){
+  GLOSS_RE = null;
+  for (const k in GALIAS2KEY) delete GALIAS2KEY[k];
+  const raw = [];
+  Object.keys(GLOSS).forEach(key => (GLOSS[key].aliases || []).forEach(a => {
+    if (!a) return;
+    const low = a.toLowerCase();
+    if (!(low in GALIAS2KEY)){ GALIAS2KEY[low] = key; raw.push(a); }
+  }));
+  raw.sort((a, b) => b.length - a.length);
+  const pats = raw.map(a => {
+    const head = /^[A-Za-z0-9]/.test(a) ? "\\b" : "";
+    const tail = /[A-Za-z0-9]$/.test(a) ? "\\b" : "";
+    return head + reEsc(a) + tail;
+  });
+  if (pats.length) GLOSS_RE = new RegExp("(" + pats.join("|") + ")", "gi");
+}
+function glossTip(key){
+  const g = GLOSS[key]; if (!g) return "";
+  const sector = {ko:"용어",en:"Glossary",ja:"用語"}[LANG];
+  const hint = '<span class="tip-hint">' + {ko:"평소 잘 안 쓰는 용어예요",en:"An uncommon term, explained",ja:"あまり使われない用語の説明"}[LANG] + "</span>";
+  return '<span class="entity-tip gloss-tip"><span class="tip-sector">' + sector + '</span>' + g.def[LANG] + hint + '</span>';
+}
+function glossTap(el, key){
+  const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+  if (!hoverable){
+    document.querySelectorAll(".has-tip.show").forEach(x => { if (x !== el) x.classList.remove("show"); });
+    if (!el.classList.contains("show")){ el.classList.add("show"); showTipSheet(el, null); }
+    else { el.classList.remove("show"); hideTipSheet(); }
+    return;
+  }
+  el.classList.toggle("show");
+}
+function makeGlossSpan(text, key){
+  const safe = key.replace(/'/g, "\\'");
+  const span = document.createElement("span");
+  span.className = "gloss-link has-tip";
+  span.setAttribute("onclick", "event.stopPropagation(); glossTap(this,'" + safe + "')");
+  span.innerHTML = esc(text) + glossTip(key);
+  return span;
+}
+
 /* ---------------- mini price charts ----------------
    First hover fetches ~30 daily closes through the worker's /quote
    proxy, draws a small sparkline, and caches it for the session. */
@@ -3663,10 +3730,10 @@ function makeEntSpan(text, key){
   span.innerHTML = esc(text) + entityTip(key);
   return span;
 }
-function linkifyEntities(card){
-  if (!ENT_RE) return;
+function linkifyPass(card, RE, A2K, makeSpan){
+  if (!RE) return;
   card.querySelectorAll("h3, .gist, .why p").forEach(container => {
-    const used = new Set(); /* link each entity once per container, so the headline and the body both index the same term */
+    const used = new Set(); /* link each match once per container, so headline and body both index the same term */
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
       acceptNode(n){
         for (let p = n.parentNode; p && p !== container; p = p.parentNode){
@@ -3678,20 +3745,26 @@ function linkifyEntities(card){
     });
     const nodes = []; let t; while ((t = walker.nextNode())) nodes.push(t);
     nodes.forEach(node => {
-      const s = node.nodeValue; ENT_RE.lastIndex = 0;
+      const s = node.nodeValue; RE.lastIndex = 0;
       let m, last = 0, frag = null;
-      while ((m = ENT_RE.exec(s))){
-        const key = ALIAS2KEY[m[0].toLowerCase()];
+      while ((m = RE.exec(s))){
+        const key = A2K[m[0].toLowerCase()];
         if (!key || used.has(key)) continue;
         used.add(key);
         if (!frag) frag = document.createDocumentFragment();
         frag.appendChild(document.createTextNode(s.slice(last, m.index)));
-        frag.appendChild(makeEntSpan(m[0], key));
+        frag.appendChild(makeSpan(m[0], key));
         last = m.index + m[0].length;
       }
       if (frag){ frag.appendChild(document.createTextNode(s.slice(last))); node.parentNode.replaceChild(frag, node); }
     });
   });
+}
+function linkifyEntities(card){
+  /* entities (companies/people) first, then the plain-language glossary of
+     uncommon terms. Glossary skips text already inside an entity link. */
+  linkifyPass(card, ENT_RE, ALIAS2KEY, makeEntSpan);
+  linkifyPass(card, GLOSS_RE, GALIAS2KEY, makeGlossSpan);
 }
 /* shared builder for the entity profile card.
    mode "feed": back button + shown above the filtered article list.
@@ -6252,6 +6325,7 @@ async function bootData(){
     if (ENTITIES["SAMSUNG ELECTRONICS"]) ENTITIES["SAMSUNG ELECTRONICS"].ceo = { ko: "이재용", en: "Jay Y. Lee", ja: "李在鎔" };
   } catch (e) {}
   buildEntityMatcher();
+  buildGlossMatcher();
   initSeen();
   render();
   applyDash();
