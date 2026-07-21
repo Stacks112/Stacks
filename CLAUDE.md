@@ -68,6 +68,11 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 ## 배포/도메인
 - 레포: `Stacks112/Stacks` · 도메인: `stacksdaily.com`
 - 워커: `stacks-comments.wnrakrhdn128.workers.dev` (댓글·투표·푸시)
+  ⚠️ 위 서브도메인의 wnrakrhdn128은 이메일이 아니라 Cloudflare 계정 workers.dev 서브도메인이라 옛 핸들이 남음.
+  라이브 엔드포인트라 문자열만 바꾸면 댓글/투표/푸시가 끊김 — 단순 치환 금지. 250101forever 계정으로 옮기려면
+  june이 Cloudflare에 새 워커+D1 배포 후 index.html COMMENTS_API·notify_followers.py ENDPOINT·이 문서·stats.py 4곳
+  동시 갱신 + 댓글/투표 데이터 마이그레이션. (2026-07-21 이관 대기)
+- ★ 연락/비즈니스 이메일 = 250101forever@gmail.com (2026-07-21 june 지시, wnrakrhdn128@gmail.com에서 전환). 앞으로 모든 대외 이메일은 이 주소로 통일, 옛 이메일 재사용 금지.
 - 워커 소스 단일출처: `worker/index.js` → 커밋 시 deploy-worker.yml이 Cloudflare 자동배포
 
 ## 워크플로 (.github/workflows/)
