@@ -111,6 +111,11 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   조회(과거 이벤트 포함, CAL_SEL) + 이벤트 클릭→관련 글 필터(evGo: entity→논쟁보드,
   itemId→해당 글, 없으면 검색) + 모바일 calSheet ✕버튼 버그 수정(#calSheet fixed/z-index
   13000 — 규칙: me-card 재사용 모달은 반드시 컨테이너에 fixed+z-index 지정).
+  v81: 주가 차트 기본기간 1M→1D(EHQ_RANGE/FSQ 기본 + .on 탭); 이벤트 클릭→관련 카드만
+  필터(EVENT_FILTER Set, evGo/eventRelatedSet, 검색 필터에 편승해 onSearch에서 자동 해제);
+  히어로(.hero)는 3열 대시보드(≥1024)에서만 노출 — max-width:1023에서 숨김(브라우저 확대로
+  뷰포트가 좁아질 때 인트로가 잘못 뜨던 버그 수정); "지금 쏠린 곳"(.skew-box) 가로 스크롤
+  레일 + ≥1024에서 grid-column:1/-1 풀폭.
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
