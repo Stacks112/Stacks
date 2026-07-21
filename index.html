@@ -6345,7 +6345,9 @@ bootData();
     display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;padding:0;}
   /* --- bottom nav --- */
   body{padding-bottom:calc(58px + env(safe-area-inset-bottom));}
-  #v82nav{position:fixed;left:0;right:0;bottom:0;z-index:900;display:flex;
+  /* z-tier: BELOW the app's own overlays (intro z80 / onboard / sheets 12000+),
+     so an open intro fully covers the shell instead of the shell floating above it */
+  #v82nav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;
     border-top:1px solid var(--line);background:var(--bg);
     padding:5px 0 calc(7px + env(safe-area-inset-bottom));}
   #v82nav button{flex:1;background:none;border:none;color:var(--muted);font-family:inherit;font-size:9.5px;
@@ -6354,9 +6356,9 @@ bootData();
   #v82nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.9;}
   #v82nav button.on svg{stroke-width:2.5;}
   /* --- drawer --- */
-  #v82scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1180;opacity:0;pointer-events:none;transition:opacity .22s;}
+  #v82scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:74;opacity:0;pointer-events:none;transition:opacity .22s;}
   #v82scrim.on{opacity:1;pointer-events:auto;}
-  #v82drawer{position:fixed;top:0;bottom:0;left:0;width:80%;max-width:330px;background:var(--bg);z-index:1200;
+  #v82drawer{position:fixed;top:0;bottom:0;left:0;width:80%;max-width:330px;background:var(--bg);z-index:76;
     transform:translateX(-103%);transition:transform .25s ease;overflow-y:auto;
     box-shadow:8px 0 32px rgba(0,0,0,.25);padding:18px 18px calc(24px + env(safe-area-inset-bottom));}
   #v82drawer.on{transform:translateX(0);}
@@ -6408,7 +6410,7 @@ bootData();
   .card.v82c .series-tag{font-size:10.5px;padding:2px 9px;margin:5px 0 0;}
   .card.v82c .engage{margin-top:8px;padding-top:8px;}
   /* --- card detail overlay --- */
-  #v82detail{position:fixed;inset:0;z-index:1100;background:var(--bg);display:none;flex-direction:column;}
+  #v82detail{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;flex-direction:column;}
   #v82detail.on{display:flex;}
   #v82dhead{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid var(--line);flex:0 0 auto;}
   #v82dhead button{background:none;border:none;color:var(--text);font-size:21px;cursor:pointer;padding:2px 8px;}
@@ -6435,6 +6437,21 @@ bootData();
   "use strict";
   if (window.__V82) return; window.__V82 = true;
   var mq = window.matchMedia("(max-width:1023px)");
+  /* ---- beta gate: mobile shell is OPT-IN until confirmed on real iOS ----
+     stacksdaily.com/?v82beta  -> enable (persisted)
+     stacksdaily.com/?v82off   -> disable again
+     Everyone else gets the pre-v82 (v81) mobile experience. */
+  try {
+    if (/v82off/.test(location.search)) localStorage.removeItem("stk_v82");
+    else if (/v82beta/.test(location.search)) localStorage.setItem("stk_v82", "1");
+  } catch(e){}
+  var V82ON = false;
+  try { V82ON = /v82beta/.test(location.search) || localStorage.getItem("stk_v82") === "1"; } catch(e){}
+  if (!V82ON){
+    var offCss = document.getElementById("v82css");
+    if (offCss) offCss.disabled = true;
+    return;
+  }
   var V82S = {
     ko:{home:"홈",explore:"탐색",themes:"테마",cal:"캘린더",notif:"알림",post:"게시물",more:"더 보기",me:"내 정보",record:"적중 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트"},
     en:{home:"Home",explore:"Explore",themes:"Themes",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events"},
@@ -6836,8 +6853,8 @@ bootData();
     onFeedMutate();
   }
 
-  /* ---------- debug badge (?v82debug) ---------- */
-  if (location.search.indexOf("v82debug") >= 0){
+  /* ---------- debug badge (always on while in beta) ---------- */
+  if (V82ON){
     var dbg = document.createElement("div");
     dbg.style.cssText = "position:fixed;top:70px;left:8px;right:8px;z-index:99999;background:rgba(0,0,0,.82);color:#0f0;font:10px/1.5 monospace;padding:6px 8px;border-radius:8px;pointer-events:none;white-space:pre-wrap;";
     dbg.textContent = "v82debug ready";
