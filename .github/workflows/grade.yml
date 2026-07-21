@@ -1,0 +1,58 @@
+name: Stacks Grade Predictions
+
+# Grade due predictions in items.json each morning, then commit + push.
+# 21:30 UTC = 06:30 KST. Also runnable by hand from the Actions tab.
+# Runs on a real headless runner with a native GITHUB_TOKEN, so unlike the
+# Cowork scheduled session it can web-search AND push (no 403 proxy block).
+on:
+  schedule:
+    - cron: "30 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stacks-grade
+  cancel-in-progress: false
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Grade due predictions
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MODEL: claude-sonnet-5
+          MAX_GRADE: "12"
+          WEB_SEARCH_USES: "4"
+          # Pushes are handled by the Cloudflare worker cron; set to "1" to
+          # push freshly graded results from here instead.
+          GRADE_PUSH: "0"
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
+          STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
+          SITE_URL: https://stacksdaily.com
+        run: python scripts/grade.py
+
+      - name: Commit graded outcomes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- items.json; then
+            echo "No grading changes this run."
+            exit 0
+          fi
+          git config user.name  "stacks-bot"
+          git config user.email "stacks-bot@users.noreply.github.com"
+          git add items.json
+          git commit -m "chore: grade predictions"
+          git pull --rebase origin main
+          git push origin main
