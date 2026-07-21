@@ -1603,6 +1603,13 @@ html[data-lang="ko"] .c-form input,html[data-lang="ko"] .c-form textarea{font-fa
 }
 .card-thumb .thumb-logo img{width:22px;height:22px;object-fit:contain;display:block;}
 .card.is-read .card-thumb{opacity:.5;}
+/* v83 image covers: real logo/flag/emblem on a clean light box (no gradient label) */
+.card-thumb-img{overflow:hidden;}
+.card-thumb-img.cti-logo{background:#F4F5F7;justify-content:center;padding:14px 18px;}
+html[data-theme="dark"] .card-thumb-img.cti-logo{background:#EDEFF2;}
+.card-thumb-img.cti-logo img{max-width:82%;max-height:70px;width:auto;object-fit:contain;display:block;}
+.card-thumb-img.cti-photo{padding:0;justify-content:center;}
+.card-thumb-img.cti-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 @media (max-width:560px){
   .card-thumb{height:84px;}
   .card-thumb .thumb-label{font-size:25px;}
@@ -3960,6 +3967,63 @@ async function wikiPhoto(title){
 }
 const logoUrl = domain => "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=128";
 
+/* ---------------- card cover images (content-driven, no meaningless gradient) ----------------
+   Priority: (1) primary company entity logo, (2) curated topic/index/org image
+   (freely-licensed Wikimedia Commons), else no cover (text-only). Curated list is
+   ordered = priority; keys match against a card's tags + mentioned entity keys. */
+const COVER_IMG = [
+  { keys:["KOSPI"],            mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Korea_Exchange_Logo.svg/330px-Korea_Exchange_Logo.svg.png" },
+  { keys:["NASDAQ"],          mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/NASDAQ_Logo.svg/500px-NASDAQ_Logo.svg.png" },
+  { keys:["NIKKEI"],          mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Nikkei_225%281970-%29.svg/330px-Nikkei_225%281970-%29.svg.png" },
+  { keys:["BITCOIN","BTC"],   mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/330px-Bitcoin.svg.png" },
+  { keys:["OPEC"],            mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Flag_of_OPEC.svg/330px-Flag_of_OPEC.svg.png" },
+  { keys:["FED","FEDERAL RESERVE","FOMC"], mode:"logo", url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Seal_of_the_United_States_Federal_Reserve_System.svg/330px-Seal_of_the_United_States_Federal_Reserve_System.svg.png" },
+  { keys:["IRAN"],            mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/330px-Flag_of_Iran.svg.png" },
+  { keys:["CHINA"],           mode:"logo",  url:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/330px-Flag_of_the_People%27s_Republic_of_China.svg.png" },
+  /* geopolitics/energy: neutral photos (NOT any militant emblem), object-fit cover */
+  { keys:["RED SEA"],         mode:"photo", url:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bab-el-Mandeb%2C_outer_space.jpg/500px-Bab-el-Mandeb%2C_outer_space.jpg" },
+  { keys:["HORMUZ"],          mode:"photo", url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Strait_of_Hormuz_and_Musandam_Peninsula_%28MODIS_2018-12-10%29.jpg/500px-Strait_of_Hormuz_and_Musandam_Peninsula_%28MODIS_2018-12-10%29.jpg" },
+  { keys:["OIL"],             mode:"photo", url:"https://upload.wikimedia.org/wikipedia/commons/7/75/Supertanker_AbQaiq.jpg" }
+];
+function coverImg(item){
+  if (item._cimg !== undefined) return item._cimg;
+  let r = null;
+  try {
+    const tagset = {}; (item.tags||[]).forEach(t => tagset[String(t).toUpperCase()] = 1);
+    const mk = itemMainKey(item);
+    const mkUp = mk ? String(mk).toUpperCase() : null;
+    const mkTagged = mk && (tagset[mkUp] ||
+      (ENTITIES[mk] && (ENTITIES[mk].aliases||[]).some(a => tagset[String(a).toUpperCase()])));
+    const companyCover = () => (mk && ENTITIES[mk] && ENTITIES[mk].logo)
+      ? { url:logoUrl(ENTITIES[mk].logo), fb:null, mode:"logo" } : null; /* google favicon (clearbit is dead) */
+    const topicCover = (tagsOnly) => {
+      const keys = {};
+      (item.tags||[]).forEach(t => keys[String(t).toUpperCase()] = 1);
+      if (!tagsOnly) itemEntities(item).forEach(e => keys[String(e).toUpperCase()] = 1);
+      for (const c of COVER_IMG){ if (c.keys.some(k => keys[k])) return { url:c.url, fb:null, mode:c.mode||"logo" }; }
+      return null;
+    };
+    if (mkTagged) r = companyCover();      /* the main company is itself a tagged subject */
+    if (!r) r = topicCover(true);          /* curated index/org/topic named in tags */
+    if (!r) r = companyCover();            /* any main company */
+    if (!r) r = topicCover(false);         /* curated topic among mentioned entities */
+  } catch(e){ r = null; }
+  item._cimg = r;
+  return r;
+}
+function coverThumbHtml(item){
+  const ci = coverImg(item);
+  if (!ci) return "";
+  return '<div class="card-thumb card-thumb-img cti-'+(ci.mode||"logo")+'"><img src="'+esc(ci.url)+'" alt="" loading="lazy"'+(ci.fb?' data-fb="'+esc(ci.fb)+'"':'')+' onerror="coverImgFail(this)"></div>';
+}
+function coverImgFail(img){
+  try {
+    const fb = img.getAttribute("data-fb");
+    if (fb && !img.__fb){ img.__fb = 1; img.src = fb; return; }
+    const box = img.closest(".card-thumb"); if (box) box.remove();
+  } catch(e){}
+}
+
 function swapInPhoto(el, src, alt, fallbackSrc){
   const img = new Image();
   img.alt = alt;
@@ -5749,14 +5813,7 @@ function cardEl(item, S, idx){
       <h3 class="card-title" onclick="toggleCollapse('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${item.title[LANG]}</span><span class="collapse-caret" aria-hidden="true">›</span></h3>
       <div class="card-body">
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
-      <div class="card-thumb" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
-        ${ENTITIES[item.cover.label]
-          ? `<span class="thumb-label has-tip tip-below" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${item.cover.label}${entityTip(item.cover.label)}</span>`
-          : `<span class="thumb-label">${item.cover.label}</span>`}
-        ${item.logo ? (ENTITIES[item.cover.label]
-          ? `<span class="thumb-logo has-tip tip-below" data-logo="${item.id}" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${entityTip(item.cover.label)}</span>`
-          : `<span class="thumb-logo" data-logo="${item.id}"></span>`) : ""}
-      </div>
+      ${coverThumbHtml(item)}
       ${item.series && SERIES[item.series] ? `<button class="series-tag" onclick="openSeries('${item.series}')">${SERIES[item.series].name[LANG]} · ${S.ep.replace("{n}", epNum(item))}</button>` : ""}
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
