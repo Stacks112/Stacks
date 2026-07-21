@@ -4097,6 +4097,7 @@ const COMPANY_FACE = {
 };
 function coverImg(item){
   if (item._cimg !== undefined) return item._cimg;
+  if (item.coverArt){ const r = { url:item.coverArt, fb:null, mode:"photo" }; item._cimg = r; return r; }
   let r = null;
   try {
     const tagset = {}; (item.tags||[]).forEach(t => tagset[String(t).toUpperCase()] = 1);
