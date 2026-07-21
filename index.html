@@ -6834,22 +6834,34 @@ bootData();
     lastY = y;
   }, { passive: true });
 
-  /* ---------- feed render hook ---------- */
-  var pending = false;
+  /* ---------- feed render hook ----------
+     ⚠️ insertModules() itself mutates feedList — the observer MUST be
+     disconnected while we write, or we loop forever (observer → rAF →
+     insertModules → observer …). That churn (~6 mutations/frame) is what
+     made iOS Safari abort synthesized clicks page-wide (v82.0–v82.2 bug:
+     touches landed, click events never fired on real iPhones). */
+  var pending = false, OBS = null;
   function onFeedMutate(){
     if (pending) return;
     pending = true;
     requestAnimationFrame(function(){
       pending = false;
-      applyCompact();
-      insertModules();
-      relabel();
-      setActive();
+      if (OBS) OBS.disconnect();
+      try {
+        applyCompact();
+        insertModules();
+        relabel();
+        setActive();
+      } finally {
+        var list = $("feedList");
+        if (OBS && list) OBS.observe(list, { childList: true });
+      }
     });
   }
   function watchFeed(){
     var list = $("feedList"); if (!list) return;
-    new MutationObserver(onFeedMutate).observe(list, { childList: true });
+    OBS = new MutationObserver(onFeedMutate);
+    OBS.observe(list, { childList: true });
     onFeedMutate();
   }
 
