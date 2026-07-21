@@ -150,6 +150,23 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   중단함(터치는 정상 도달, click 이벤트만 미발생. 진단 배지로 실기기 확정).
   규칙: 옵저버 콜백이 관찰 대상을 변경하면 반드시 disconnect 후 쓰고 다시 observe.
 
+  ★ v82.4(2026-07-21, 여전히 ?v82beta 게이트): june 실기기 피드백 반영 대개편.
+  하단 5탭 재편·개명: 홈 · 찾기(옛 탐색: 검색+오늘의토론+Hot+이벤트, 쏠림 제거) ·
+  탐색(옛 테마, 나침반 아이콘 = #v82hub 허브) · 캘린더 · 알림(#v82notif).
+  - 탐색 허브: '지금 쏠린 곳'을 발산형 bull/bear 비율 바 다이어그램으로(테마+회사,
+    강세% 정렬) + '테마 논쟁 보기'(openThemes) + '적중 기록 보기'(openScoreboard).
+    적중기록은 서랍에서 제거해 여기로 이동.
+  - 알림 탭: 새 글(NEW_IDS)·채점(outcome hit/miss)·오늘의 토론·강한 쏠림을 목록화,
+    행 탭 시 해당 글/테마로. (기존 무반응 = notifBtn 폴백뿐이던 문제 해결)
+  - 상단 커뮤니티 슬라이드(.v82-tabs, <nav> 안 sticky): ★내피드+카테고리 pill +
+    논객/회사 picker(#v82picker). 앱 기존 #tabs·.filter-row는 모바일에서 숨김,
+    검색·보조필터는 찾기 화면으로 이동(openFind가 노드 relocate, 닫으면 원위치).
+  - 카드: gist 2줄→max-height 168px(헤드라인+~3문단)+페이드+'더 보기'(overflow 시만).
+    카드 사이 8px soft 구분, 오늘의토론 모듈 패딩 확대(가독성).
+  - nav z-index 13500(캘린더/미시트 위로 유지 → 캘린더 열어도 하단탭 보임),
+    단 intro/onboard/detail/drawer 중엔 refreshNav()로 숨김(인트로 z80 위로 안 뜸).
+  - 데스크톱 3열 완전 불변(기본은 v82 미빌드, 베타여도 미디어쿼리로 셸 숨김) — 검증됨.
+
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
 - doomberg/netinterest(EN, 커스텀도메인 Substack) — 브라우저 UA로 정상.
