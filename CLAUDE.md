@@ -252,11 +252,17 @@ GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_SYSTEM=/dev/null git push origin main
 대안(사람 개입 필요 시): GitHub 웹(브라우저) 편집으로 커밋(CM6: `.cm-content.cmTile.view`에
 dispatch). 사람 커밋도 가능.
 
-**★ 팔로워 푸시는 샌드박스에서 직접 호출하지 말 것 — 애초에 필요 없다.**
-`stacks-comments.wnrakrhdn128.workers.dev/notify`는 샌드박스의 아웃바운드 프록시가 해당
-workers.dev 도메인 자체를 CONNECT 단계에서 403 차단한다(WebFetch·curl 둘 다 항상 실패, git
-push 문제와는 무관). **하지만 이미 전용 릴레이가 있다**: `.github/workflows/notify-followers.yml`
-+ `scripts/notify_followers.py`. `main`에 `items.json` 변경이 담긴 push가 들어가면 GitHub
-Actions 러너(샌드박스 밖, 정상 인터넷)가 자동으로 새로 추가된 시리즈 항목을 찾아 워커에 푸시를
-보낸다(2026-07-21 v87에서 run #18 Success로 확인). 할 일은 items.json push를 성공시키는 것뿐,
-그다음 팔로워 푸시는 자동이다.
+**★ 팔로워 푸시는 샌드박스에서 직접 호출하지 말 것(어차피 막혀 있다) — 단, 자동 릴레이 상태는
+2026-07-21 기준 미확인/의심.** `stacks-comments.wnrakrhdn128.workers.dev/notify`는 샌드박스의
+아웃바운드 프록시가 해당 workers.dev 도메인 자체를 CONNECT 단계에서 403 차단한다(WebFetch·curl
+둘 다 항상 실패, git push 문제와는 무관). **레포에 전용 릴레이가 있다**: `.github/workflows/
+notify-followers.yml` + `scripts/notify_followers.py` — `main`에 `items.json` 변경이 담긴
+push가 들어가면 GitHub Actions 러너(샌드박스 밖, 정상 인터넷)가 새로 추가된 시리즈 항목을 찾아
+워커에 푸시를 보내는 설계다. **그런데 2026-07-21 v87에서 실제로 새 시리즈 항목이 포함된 push가
+이 릴레이를 트리거한 run(#18)을 직접 열어보니 Failure(exit code 1)였다.** 원인 미상(상세 로그는
+로그인 필요라 샌드박스에서 못 봄). 과거 run들의 "Success" 표시도 실제 발송 성공인지 "보낼 신규
+시리즈 항목이 없어 조용히 통과"한 것인지 로그 없이는 구분 불가하다 — **이 릴레이가 실제로 알림
+발송에 성공한 사례가 아직 한 번도 직접 확인되지 않았다.** 시리즈 있는 새 항목을 발행했으면 해당
+run을 개별로 열어(`/actions/runs/<id>`) Success/Failure를 반드시 확인할 것, 목록 페이지 요약만
+보고 성공이라 단정하지 말 것. 원인 규명은 사람이 브라우저로 로그를 봐줘야 진행 가능
+(`claude/status-2026-07-21-v87-publish-success.md` 참조).
