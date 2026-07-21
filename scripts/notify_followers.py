@@ -17,9 +17,24 @@ import os
 import re
 import subprocess
 import sys
+import urllib.error
 import urllib.request
 
 ENDPOINT = "https://stacks-comments.wnrakrhdn128.workers.dev/notify"
+
+
+def _summary(line):
+    """Append a line to the GitHub Actions job summary (visible on the run
+    page without needing to open raw logs — those require sign-in for a
+    private repo, which the cloud-sandbox publisher session cannot do)."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    try:
+        with open(path, "a") as f:
+            f.write(line + "\n")
+    except OSError:
+        pass
 
 # Theme follower pushes (tag t_<key>). Keys/keywords MUST stay in sync with
 # THEMES in index.html and scripts/build_pages.py.
@@ -45,9 +60,12 @@ def item_themes(it):
 def send(tag, title, msg, url, dry=False):
     if dry:
         print(f"[dry-run] would send: {tag} | {title} | {msg} | {url}")
+        _summary(f"- 🧪 dry-run `{tag}`: {title}")
         return
     secret = os.environ.get("PUSH_SECRET", "")
     if not secret:
+        _summary(f"- ❌ `{tag}`: **PUSH_SECRET repo secret is not set** "
+                  f"(Settings > Secrets and variables > Actions).")
         sys.exit(
             "PUSH_SECRET repo secret is not set. Add it in "
             "Settings > Secrets and variables > Actions > New repository secret."
@@ -58,10 +76,28 @@ def send(tag, title, msg, url, dry=False):
         data=json.dumps(payload).encode(),
         headers={"Content-Type": "application/json"},
     )
-    body = urllib.request.urlopen(req, timeout=30).read().decode()
+    # Always capture the response body, success or HTTP error, so the job
+    # summary shows the real reason instead of an opaque traceback. Common
+    # causes seen in the wild: {"error":"forbidden"} (PUSH_SECRET repo
+    # secret doesn't match the Worker's NOTIFY_SECRET), or
+    # {"error":"ONESIGNAL_REST_KEY secret not set"} (Worker-side secret
+    # missing in the Cloudflare dashboard).
+    try:
+        body = urllib.request.urlopen(req, timeout=30).read().decode()
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")
+        print(f"{tag} -> HTTP {e.code}: {body}")
+        _summary(f"- ❌ `{tag}`: HTTP {e.code} — `{body[:300]}`")
+        sys.exit(f"push failed for {tag}: HTTP {e.code}: {body}")
+    except urllib.error.URLError as e:
+        print(f"{tag} -> connection error: {e}")
+        _summary(f"- ❌ `{tag}`: connection error — `{e}`")
+        sys.exit(f"push failed for {tag}: connection error: {e}")
     print(f"{tag} -> {body}")
     if '"sent":true' not in body.replace(" ", ""):
+        _summary(f"- ❌ `{tag}`: worker responded but did not confirm send — `{body[:300]}`")
         sys.exit(f"push not confirmed by worker: {body}")
+    _summary(f"- ✅ `{tag}`: sent — {title}")
 
 
 def previous_items_json():
@@ -85,7 +121,9 @@ def previous_items_json():
 
 
 def main():
+    _summary("## Notify followers")
     if os.environ.get("EVENT_NAME") == "workflow_dispatch":
+        _summary("Mode: workflow_dispatch (manual)")
         send(
             os.environ["IN_TAG"],
             os.environ["IN_TITLE"],
@@ -99,6 +137,8 @@ def main():
     old_raw = previous_items_json()
     if old_raw is None:
         print("no previous items.json to diff against; skipping")
+        _summary("no previous items.json to diff against (BEFORE_SHA/HEAD~1 both "
+                  "unavailable); skipping. Nothing was sent.")
         return
 
     old_ids = {it["id"] for it in json.loads(old_raw).get("items", [])}
@@ -106,7 +146,12 @@ def main():
     added = [it for it in new.get("items", []) if it["id"] not in old_ids]
     if not added:
         print("no new items in this push; nothing to send")
+        _summary("no new item ids in this push (edits to existing items don't count); "
+                  "nothing to send. This is a normal no-op, not a failure.")
         return
+
+    _summary(f"{len(added)} new item(s) in this push: "
+              f"{', '.join(it['id'] for it in added)}")
 
     for it in added:
         sid = it.get("series")
@@ -120,6 +165,7 @@ def main():
             )
         else:
             print(f"skip series push {it['id']}: not part of a series")
+            _summary(f"- ⏭️ `{it['id']}`: no series, no series-push to send.")
         # theme follower pushes (max 2 themes per item to avoid spam)
         for key, label in item_themes(it)[:2]:
             try:
