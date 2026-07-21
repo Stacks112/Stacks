@@ -4635,6 +4635,7 @@ function onSearch(v){
   const box = document.getElementById("searchBox");
   if (box) box.classList.toggle("active", !!QUERY);
   renderFeedOnly();
+  if (typeof window.v82Search === "function") window.v82Search(QUERY);
 }
 function renderFeedOnly(){ renderFeed(false); }
 function clearSearch(){
@@ -5186,10 +5187,22 @@ async function copyLink(url){
     catch (e2){ return false; }
   }
 }
+/* remember what the reader shared, most-recent first, so the profile
+   "공유 내역" list can show it (device-local, like bookmarks). */
+function recordShare(id){
+  try {
+    let arr = store.get("stk_shares", []);
+    arr = arr.filter(x => x !== id);
+    arr.unshift(id);
+    if (arr.length > 60) arr = arr.slice(0, 60);
+    store.set("stk_shares", arr);
+  } catch (e) {}
+}
 async function shareItem(id){
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
   track("share/" + id);
+  recordShare(id);
   const url = shareUrl(item);
   const title = item.title[LANG];
   /* desktop: just copy the link + toast. mobile: native share sheet. */
@@ -5279,6 +5292,7 @@ function clipStr(s, n){ s = String(s || ""); return s.length > n ? s.slice(0, n 
 async function shareSince(id){
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
+  recordShare(id);
   const url = shareUrl(item);
   /* desktop: same as the card's share button — just copy the link + toast */
   const desktop = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -5529,7 +5543,14 @@ function renderHotRail(){
     a.className = "hot-card";
     a.href = "#sig-" + item.id;
     a.onclick = (ev) => { ev.preventDefault(); goToItem(item.id); };
-    const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:linear-gradient(135deg,${item.cover.from},${item.cover.to})">
+    /* real image instead of a meaningless gradient: a curated photo when we
+       have one, else a clean neutral tint (the logo chip carries the brand);
+       hydrateThumb still upgrades items that have a thumbWiki photo. */
+    const ci = (typeof coverImg === "function") ? coverImg(item) : null;
+    const hotBg = (ci && ci.mode === "photo")
+      ? `linear-gradient(180deg, rgba(10,11,13,.12), rgba(10,11,13,.74)), url('${ci.url}') center/cover no-repeat`
+      : `linear-gradient(150deg, #262b38, #12141a)`;
+    const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:${hotBg}">
            ${item.logo ? `<span class="cover-logo" data-logo="${item.id}"></span>` : ""}
            ${item.paywall ? `<span class="cover-paid">$</span>` : ""}
            ${ENTITIES[item.cover.label]
@@ -6474,8 +6495,14 @@ bootData();
   .card.v82c .cta-row,.card.v82c .comment-box,.card.v82c .related,.card.v82c .gist-fold summary,
   .card.v82c .collapse-caret,.card.v82c .mine-why{display:none !important;}
   .card.v82c .card-thumb{display:none;}
-  .card.v82c.v82cover .card-thumb{display:flex;height:96px;margin:10px 0 4px;}
-  .card.v82c.v82cover .card-thumb .thumb-label{font-size:19px;}
+  /* Twitter-style media: full-width image at the bottom of the card body */
+  .card.v82c .card-thumb-img{display:flex !important;width:100%;height:auto;margin:12px 0 2px;
+    border:1px solid var(--line);border-radius:15px;overflow:hidden;}
+  .card.v82c .card-thumb-img.cti-photo{height:190px;padding:0;}
+  .card.v82c .card-thumb-img.cti-photo img{width:100%;height:100%;object-fit:cover;}
+  .card.v82c .card-thumb-img.cti-logo{height:120px;background:#F4F5F7;justify-content:center;align-items:center;padding:14px;}
+  html[data-theme="dark"] .card.v82c .card-thumb-img.cti-logo{background:#EDEFF2;}
+  .card.v82c .card-thumb-img.cti-logo img{max-width:58%;max-height:58px;width:auto;object-fit:contain;}
   .card.v82c .card-top{margin-bottom:8px;}
   .card.v82c .chips > *:not(:first-child){display:none;}
   .card.v82c .card-title{font-size:16px;line-height:1.4;margin:2px 0 7px;}
@@ -6547,6 +6574,29 @@ bootData();
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .v82-empty{color:var(--muted);font-size:14px;text-align:center;padding:60px 20px;line-height:1.7;}
 
+  /* --- profile drawer: newsletter box --- */
+  .v82dw-nl{margin:16px 0 4px;padding-top:14px;border-top:1px solid var(--line);}
+  .v82dw-nlh{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;color:var(--muted);margin-bottom:10px;}
+  .v82dw-nl .nl{margin:0;padding:0;border:none;background:none;box-shadow:none;}
+  .v82dw-nl #nlSec{display:block;}
+
+  /* --- find: search results --- */
+  #v82findResults{display:none;}
+  .v82-sr{display:block;width:100%;background:none;border:none;border-bottom:1px solid var(--line);
+    padding:14px 2px;text-align:left;cursor:pointer;font-family:inherit;color:var(--text);}
+  .v82-sr-t{font-size:15px;font-weight:700;line-height:1.4;}
+  .v82-sr-m{color:var(--accent);font-size:12.5px;font-weight:600;margin-top:4px;}
+  .v82-sr-s{color:var(--muted);font-size:13px;line-height:1.5;margin-top:4px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+  /* --- explore: community (concept, coming soon) --- */
+  .v82-soon{margin-left:8px;font-size:11px;font-weight:800;color:var(--accent);
+    border:1px solid var(--accent);border-radius:999px;padding:2px 9px;vertical-align:middle;}
+  .v82-comm{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;}
+  .v82-comm-h{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;margin-bottom:8px;}
+  .v82-comm-h .em{font-size:19px;}
+  .v82-comm-d{color:var(--muted);font-size:13.5px;line-height:1.7;margin:0;}
+
   /* --- entity picker (논객 / 회사) --- */
   #v82picker .pk-item{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;
     border-bottom:1px solid var(--line);padding:14px 2px;text-align:left;cursor:pointer;
@@ -6579,19 +6629,34 @@ bootData();
         skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
         themesSec:"테마 논쟁",recordSec:"적중 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntDebate:"오늘의 토론",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
-        bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 적중 기록 보기"},
+        bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 적중 기록 보기",
+        bm:"북마크",follows:"팔로우 내역",shares:"공유 내역",nlLabel:"이번 주 베스트 메일",
+        community:"커뮤니티",communitySec:"커뮤니티",communitySoon:"준비 중",
+        communityDesc:"특정 논객이나 회사를 함께 쫓는 커뮤니티를 만들거나 팔로우하고, 인용해서 덧글을 남기고, 직접 글도 쓰며 서로 소통하는 공간이에요. 곧 찾아옵니다.",
+        emptyFollows:"아직 팔로우한 논객·회사·시리즈가 없어요.",emptyShares:"아직 공유한 글이 없어요.",
+        followsPeople:"논객",followsCompany:"회사",followsSeries:"시리즈"},
     en:{home:"Home",find:"Find",explore:"Explore",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
         skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
         ntNew:"New",ntGrade:"Graded",ntDebate:"Today's debate",ntSkew:"Skew alert",noAlerts:"No new alerts.",
-        bull:"Bull",bear:"Bear",openThemes:"Open theme debates",openRecord:"Open author track record"},
+        bull:"Bull",bear:"Bear",openThemes:"Open theme debates",openRecord:"Open author track record",
+        bm:"Bookmarks",follows:"Following",shares:"Share history",nlLabel:"Weekly best by email",
+        community:"Community",communitySec:"Community",communitySoon:"Coming soon",
+        communityDesc:"A space to create or follow communities around a given author or company, quote-and-comment, post your own takes, and talk with others. Coming soon.",
+        emptyFollows:"You aren't following any authors, companies, or series yet.",emptyShares:"You haven't shared anything yet.",
+        followsPeople:"Author",followsCompany:"Company",followsSeries:"Series"},
     ja:{home:"ホーム",find:"探す",explore:"発見",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
         skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
         ntNew:"新着",ntGrade:"採点",ntDebate:"今日の論点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
-        bull:"強気",bear:"弱気",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る"}
+        bull:"強気",bear:"弱気",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
+        bm:"ブックマーク",follows:"フォロー履歴",shares:"共有履歴",nlLabel:"今週のベストをメール",
+        community:"コミュニティ",communitySec:"コミュニティ",communitySoon:"準備中",
+        communityDesc:"特定の論客や企業を一緒に追うコミュニティを作ったりフォローし、引用してコメントを残し、自分でも投稿して交流できる場です。近日公開。",
+        emptyFollows:"まだフォローした論客・企業・シリーズがありません。",emptyShares:"まだ共有した記事がありません。",
+        followsPeople:"論客",followsCompany:"企業",followsSeries:"シリーズ"}
   };
   function T(){ var l = (typeof LANG !== "undefined" && V82S[LANG]) ? LANG : "ko"; return V82S[l]; }
   function $(id){ return document.getElementById(id); }
@@ -6637,6 +6702,9 @@ bootData();
     /* entity picker */
     var pk = document.createElement("div"); pk.id = "v82picker"; pk.className = "v82-screen"; document.body.appendChild(pk);
     addHead("v82picker", "");
+    /* generic list screen (팔로우 내역 / 공유 내역) */
+    var ls = document.createElement("div"); ls.id = "v82list"; ls.className = "v82-screen"; document.body.appendChild(ls);
+    addHead("v82list", "");
 
     /* card detail */
     var dt = document.createElement("div"); dt.id = "v82detail";
@@ -6697,8 +6765,12 @@ bootData();
       '<button class="v82dw-x" aria-label="close">&times;</button>' +
       '<div class="v82dw-brand"><span style="font-size:20px">👤</span> Stacks</div>' +
       '<button class="v82dw-item" data-act="me"><span class="ic">👤</span>' + t.me + '</button>' +
+      '<button class="v82dw-item" data-act="bm"><span class="ic">🔖</span>' + t.bm + '</button>' +
+      '<button class="v82dw-item" data-act="follows"><span class="ic">👥</span>' + t.follows + '</button>' +
+      '<button class="v82dw-item" data-act="shares"><span class="ic">↗️</span>' + t.shares + '</button>' +
       '<button class="v82dw-item" data-act="alerts"><span class="ic">🔔</span>' + t.alerts + '</button>' +
       '<button class="v82dw-item" data-act="appearance"><span class="ic">🌗</span>' + t.appearance + '</button>' +
+      '<div class="v82dw-nl" id="v82dwNl"><div class="v82dw-nlh"><span>📧</span>' + t.nlLabel + '</div></div>' +
       '<div class="v82dw-langs">' +
         '<button data-lang="ko" class="v82dw-lb ' + (curLang === "ko" ? "on" : "") + '">한국어</button>' +
         '<button data-lang="en" class="v82dw-lb ' + (curLang === "en" ? "on" : "") + '">English</button>' +
@@ -6709,11 +6781,23 @@ bootData();
     for (var ai = 0; ai < acts.length; ai++){ acts[ai].onclick = function(){ drawerAct(this.dataset.act); }; }
     var lbs = dr.querySelectorAll(".v82dw-lb");
     for (var li = 0; li < lbs.length; li++){ lbs[li].onclick = function(){ closeDrawer(true); if (typeof setLang === "function") setLang(this.dataset.lang); }; }
+    /* relocate the newsletter subscribe box into the profile drawer */
+    try {
+      var nl = $("nlSec"), holder = $("v82dwNl");
+      if (nl && holder){
+        nl.hidden = false;
+        if (!nl.querySelector("form,iframe,input,button,a") && typeof renderNewsletter === "function") renderNewsletter();
+        holder.appendChild(nl);
+      }
+    } catch(e){}
   }
   function drawerAct(act){
     if (act === "me"){ closeDrawer(true); if (typeof openMe === "function") openMe(); }
     else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
     else if (act === "appearance"){ closeDrawer(true); if (typeof toggleTheme === "function") toggleTheme(); }
+    else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ try { SERIES_VIEW=null; ENTITY_VIEW=null; QUERY=""; BM_ONLY=true; renderFeed(false); } catch(e){} }); }
+    else if (act === "follows"){ closeDrawer(true); openList("follows"); }
+    else if (act === "shares"){ closeDrawer(true); openList("shares"); }
     else closeDrawer();
   }
   function openDrawer(){
@@ -6749,14 +6833,15 @@ bootData();
     return true;
   }
   function anyScreenOpen(){
-    return ["v82explore","v82hub","v82notif","v82picker"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
+    return ["v82explore","v82hub","v82notif","v82picker","v82list"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
   }
 
   /* ---------- FIND (search + secondary filters + discovery modules) ---------- */
   var EX_HOMES = null;
   function findNodes(){
     var hr = $("hotRail"); var hs = hr && hr.closest("section");
-    return [$("searchBox"), $("todaySec"), $("eventBar"), hs, $("watchSec"), $("nlSec")].filter(Boolean);
+    /* todaySec now pins to the feed top; nlSec now lives in the profile drawer */
+    return [$("searchBox"), $("eventBar"), hs, $("watchSec")].filter(Boolean);
   }
   function openFind(){
     if (!mq.matches) return;
@@ -6769,12 +6854,54 @@ bootData();
       ["sortBtn","bmFilter","freeFilter","unreadFilter"].forEach(function(bid){ var b=$(bid); if(b){ fr.appendChild(b); } });
       ex.appendChild($("searchBox"));
       ex.appendChild(fr);
+      /* dedicated results list shown only while a query is active */
+      var res = $("v82findResults");
+      if (!res){ res = document.createElement("div"); res.id = "v82findResults"; }
+      res.innerHTML = ""; res.style.display = "none";
+      ex.appendChild(res);
       nodes.forEach(function(el){ if (el.id !== "searchBox") ex.appendChild(el); });
       var si = $("searchInput"); if (si) si.focus();
       showScreen("v82explore");
+      v82Search((typeof QUERY !== "undefined") ? QUERY : "");
     } catch(err){ hideScreen("v82explore"); document.body.style.overflow=""; }
     setActive();
   }
+  /* render search results inside the Find screen (the feed itself is on the
+     home screen behind this overlay, so results must render here). */
+  function v82Search(q){
+    if (!mq.matches) return;
+    var ex = $("v82explore"); if (!ex || !ex.classList.contains("on")) return;
+    var res = $("v82findResults"); if (!res) return;
+    q = (q || "").trim();
+    var discovery = [];
+    var ff = $("v82findFilters"); if (ff) discovery.push(ff);
+    if (EX_HOMES) EX_HOMES.forEach(function(h){ if (h.el && h.el.id !== "searchBox") discovery.push(h.el); });
+    if (!q){
+      res.style.display = "none"; res.innerHTML = "";
+      discovery.forEach(function(el){ el.style.display = ""; });
+      return;
+    }
+    discovery.forEach(function(el){ el.style.display = "none"; });
+    var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : {};
+    var hits = [];
+    try { hits = ITEMS.filter(function(it){ return matchesQuery(it); }); } catch(e){ hits = []; }
+    var html = "";
+    if (!hits.length){ html = '<div class="v82-empty">' + (S.searchNone || "결과가 없어요.") + '</div>'; }
+    else hits.slice(0, 60).forEach(function(it, i){
+      var snip = (it.gist && it.gist[LANG]) ? String(it.gist[LANG]).slice(0, 90) : "";
+      html += '<button class="v82-sr" data-id="' + esc(it.id) + '">'
+        + '<div class="v82-sr-t">' + esc(it.title[LANG]) + '</div>'
+        + '<div class="v82-sr-m">' + esc(dispName(it.source)) + '</div>'
+        + (snip ? '<div class="v82-sr-s">' + esc(snip) + '…</div>' : "")
+        + '</button>';
+    });
+    res.innerHTML = html; res.style.display = "block";
+    var btns = res.querySelectorAll(".v82-sr");
+    for (var b = 0; b < btns.length; b++){
+      btns[b].onclick = function(){ var id = this.dataset.id; openCardById(id); };
+    }
+  }
+  window.v82Search = v82Search;
   function closeFind(fromPop){
     var ex = $("v82explore");
     if (!ex || !ex.classList.contains("on")) return false;
@@ -6783,7 +6910,9 @@ bootData();
     var appFilter = document.querySelector("#feed .filter-row");
     ["sortBtn","bmFilter","freeFilter","unreadFilter"].forEach(function(bid){ var b=$(bid); if(b&&appFilter){ appFilter.appendChild(b); } });
     var ff = $("v82findFilters"); if (ff) ff.remove();
+    var rz = $("v82findResults"); if (rz){ rz.style.display = "none"; rz.innerHTML = ""; }
     if (EX_HOMES){
+      EX_HOMES.forEach(function(h){ if (h.el) h.el.style.display = ""; }); /* clear search-mode hiding */
       for (var i = EX_HOMES.length - 1; i >= 0; i--){
         var h = EX_HOMES[i];
         if (h.el.parentNode === ex) continue;
@@ -6844,6 +6973,9 @@ bootData();
     html += '<button class="v82-hub-item" data-open="themes"><span class="em">◧</span>' + t.openThemes + '<span class="ar">›</span></button>';
     html += '<div class="v82-hub-sec">' + t.recordSec + '</div>';
     html += '<button class="v82-hub-item" data-open="record"><span class="em">⚖</span>' + t.openRecord + '<span class="ar">›</span></button>';
+    html += '<div class="v82-hub-sec">' + t.communitySec + '<span class="v82-soon">' + t.communitySoon + '</span></div>';
+    html += '<div class="v82-comm"><div class="v82-comm-h"><span class="em">👥</span>' + t.community + '</div>'
+      + '<p class="v82-comm-d">' + esc(t.communityDesc) + '</p></div>';
     var head = hub.querySelector(".v82-inner");
     if (!head){ head = document.createElement("div"); head.className = "v82-inner"; hub.appendChild(head); }
     head.innerHTML = html;
@@ -6933,6 +7065,76 @@ bootData();
   }
   function closeNotif(fromPop){
     if (!hideScreen("v82notif")) return false;
+    if (!fromPop) silentBack();
+    setActive();
+    return true;
+  }
+
+  /* ---------- generic list (팔로우 내역 / 공유 내역) ---------- */
+  function listRows(kind){
+    var rows = [];
+    try {
+      if (kind === "follows"){
+        var t = T();
+        if (typeof WATCH !== "undefined" && WATCH.forEach){
+          WATCH.forEach(function(k){
+            if (typeof ENTITIES !== "undefined" && ENTITIES[k]){
+              var e = ENTITIES[k], person = e.kind === "person";
+              var nm = e.name || e.label || (e.aliases && e.aliases[0]) || k;
+              rows.push({ em: person ? "👤" : "🏢", t1: nm, t2: person ? t.followsPeople : t.followsCompany, ent: k });
+            }
+          });
+        }
+        if (typeof FOLLOWED !== "undefined" && FOLLOWED.forEach && typeof SERIES !== "undefined"){
+          FOLLOWED.forEach(function(sid){
+            if (SERIES[sid]) rows.push({ em: "📚", t1: (SERIES[sid].name && SERIES[sid].name[LANG]) || sid, t2: t.followsSeries, series: sid });
+          });
+        }
+      } else if (kind === "shares"){
+        var ids = [];
+        try { ids = store.get("stk_shares", []); } catch(e){ ids = []; }
+        ids.forEach(function(id){
+          for (var i = 0; i < ITEMS.length; i++){ if (ITEMS[i].id === id){ rows.push({ em:"↗️", t1: ITEMS[i].title[LANG], t2: dispName(ITEMS[i].source), id: id }); break; } }
+        });
+      }
+    } catch(e){}
+    return rows;
+  }
+  function renderList(kind){
+    var ls = $("v82list"); if (!ls) return;
+    var t = T();
+    var rows = listRows(kind);
+    var html = "";
+    if (!rows.length){ html = '<div class="v82-empty">' + (kind === "shares" ? t.emptyShares : t.emptyFollows) + '</div>'; }
+    else rows.forEach(function(r, i){
+      html += '<button class="v82-nt" data-i="' + i + '"><span class="em">' + r.em + '</span>'
+        + '<span class="bd"><span class="t1">' + esc(r.t1 || "") + '</span>'
+        + '<span class="t2">' + esc(r.t2 || "") + '</span></span></button>';
+    });
+    var inner = ls.querySelector(".v82-inner");
+    if (!inner){ inner = document.createElement("div"); inner.className = "v82-inner"; ls.appendChild(inner); }
+    inner.innerHTML = html;
+    var btns = inner.querySelectorAll(".v82-nt");
+    for (var b = 0; b < btns.length; b++){
+      (function(r){
+        btns[b].onclick = function(){
+          if (r.id){ closeList(true); silentBack(); openCardById(r.id); }
+          else if (r.ent){ closeList(true); silentBack(); if (typeof entityFeedView === "function") entityFeedView(r.ent); setActive(); }
+          else if (r.series){ closeList(true); silentBack(); if (typeof openSeries === "function") openSeries(r.series); setActive(); }
+        };
+      })(rows[+btns[b].dataset.i]);
+    }
+  }
+  function openList(kind){
+    if (!mq.matches) return;
+    var ls = $("v82list"); if (!ls || ls.classList.contains("on")) return;
+    setHeadTitle("v82list", kind === "shares" ? T().shares : T().follows);
+    renderList(kind);
+    showScreen("v82list");
+    setActive();
+  }
+  function closeList(fromPop){
+    if (!hideScreen("v82list")) return false;
     if (!fromPop) silentBack();
     setActive();
     return true;
@@ -7054,6 +7256,14 @@ bootData();
       var allow = it && it.cover && (it.series || (it.hot && covers < 3));
       c.classList.toggle("v82cover", !!allow);
       if (allow) covers++;
+      /* move the cover image to the bottom of the card (after the text,
+         before the action bar) — Twitter-style media placement */
+      if (!c.__v82cov){
+        c.__v82cov = true;
+        var cov = c.querySelector(".card-thumb-img");
+        var eng = c.querySelector(".engage");
+        if (cov && eng && eng.parentNode){ eng.parentNode.insertBefore(cov, eng); }
+      }
       /* read-more affordance under the gist */
       if (!c.__v82more){
         c.__v82more = true;
@@ -7097,11 +7307,14 @@ bootData();
                           '<div class="today-src2">' + (titem.title[LANG] || "") + '</div>';
           din.style.cursor = "pointer";
           din.addEventListener("click", function(){ openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); });
-          mods.push({ after: 2, node: mod("💬 " + (S.todayLabel || T().ntDebate), din, function(){ navGo("find"); }) });
+          mods.push({ top: true, node: mod("💬 " + (S.todayLabel || T().ntDebate), din, function(){ openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); }) });
         }
       }
     } catch(e){}
-    mods.forEach(function(mm){ var c = list.querySelectorAll(".card")[mm.after]; if (c) c.after(mm.node); });
+    mods.forEach(function(mm){
+      if (mm.top){ var first = list.querySelector(".card"); if (first) first.before(mm.node); else list.appendChild(mm.node); }
+      else { var c = list.querySelectorAll(".card")[mm.after]; if (c) c.after(mm.node); }
+    });
   }
   function mod(title, inner, onMore){
     var d = document.createElement("div"); d.className = "v82mod";
@@ -7133,7 +7346,7 @@ bootData();
   }
   function goHomeThen(fn){
     /* leave any shell screen / app view, then run */
-    if (anyScreenOpen()){ closeFind(true); closeHub(true); closeNotif(true); closePicker(true); silentBack(); }
+    if (anyScreenOpen()){ closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeList(true); silentBack(); }
     try { if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && typeof closeThemes==="function") closeThemes(); } catch(e){}
     fn(); setActive();
   }
@@ -7146,23 +7359,23 @@ bootData();
   function navGo(v){
     if (v === "home"){
       if (closeDetail(true)) silentBack();
-      closeFind(false); closeHub(false); closeNotif(false); closePicker(false);
+      closeFind(false); closeHub(false); closeNotif(false); closePicker(false); closeList(true);
       closeAppSheets();
       try { if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && typeof closeThemes==="function") closeThemes(); } catch(e){}
       if (typeof goHome === "function") goHome();
       setActive();
     } else if (v === "find"){
-      closeHub(true); closeNotif(true); closePicker(true); closeDetail(true); closeAppSheets();
+      closeHub(true); closeNotif(true); closePicker(true); closeList(true); closeDetail(true); closeAppSheets();
       openFind();
     } else if (v === "explore"){
-      closeFind(true); closeNotif(true); closePicker(true); closeDetail(true); closeAppSheets();
+      closeFind(true); closeNotif(true); closePicker(true); closeList(true); closeDetail(true); closeAppSheets();
       openHub();
     } else if (v === "cal"){
-      closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeDetail(true);
+      closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeList(true); closeDetail(true);
       if (typeof openCal === "function") openCal();
       setActive();
     } else if (v === "notif"){
-      closeFind(true); closeHub(true); closePicker(true); closeDetail(true); closeAppSheets();
+      closeFind(true); closeHub(true); closePicker(true); closeList(true); closeDetail(true); closeAppSheets();
       openNotif();
     }
   }
@@ -7187,6 +7400,7 @@ bootData();
     var cal = $("calSheet"); if (cal && !cal.hidden) return false;
     var me = $("meSheet"); if (me && !me.hidden) return false;
     if (closeDrawer(true)) return true;
+    if (closeList(true)) return true;
     if (closePicker(true)) { setActive(); return true; }
     if (closeDetail(true)) return true;
     if (closeNotif(true)) return true;
@@ -7251,7 +7465,7 @@ bootData();
   mqChange(function(){
     if (!mq.matches){
       closeDrawer(true); closeDetail(true);
-      closeFind(true); closeHub(true); closeNotif(true); closePicker(true);
+      closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeList(true);
       var nav = document.querySelector("nav"); if (nav) nav.classList.remove("v82hide");
       document.body.style.overflow = "";
       var list = $("feedList");
