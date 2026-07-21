@@ -1100,6 +1100,46 @@ html{overscroll-behavior-y:contain;}
   #sideRight .watch-rail{flex-direction:column;overflow:visible;padding:0;gap:10px;}
   #sideRight .watch-card{width:auto;}
 }
+/* ---------- v83 beta: X-style desktop shell (>=1024, ?v83beta) ---------- */
+@media (min-width:1024px){
+  html.v83 .wrap{
+    display:grid;
+    grid-template-columns:minmax(200px,240px) minmax(0,600px) minmax(280px,340px);
+    gap:0; max-width:1240px; margin:0 auto; padding:0 8px; align-items:start;
+  }
+  html.v83 .hero{display:none;}
+  #v83nav{ grid-column:1; position:sticky; top:64px; height:calc(100vh - 64px);
+    display:flex; flex-direction:column; padding:6px 8px 16px; }
+  #v83nav .v83-brand{ font-weight:900; font-size:20px; letter-spacing:-.02em; padding:10px 12px; color:var(--text); }
+  #v83nav .v83-link{ display:flex; align-items:center; gap:15px; padding:10px 12px; border-radius:999px;
+    font-size:15.5px; font-weight:600; color:var(--text); cursor:pointer; background:none; border:0;
+    width:100%; text-align:left; font-family:inherit; transition:background .12s ease; }
+  #v83nav .v83-link:hover{ background:var(--bg-soft); }
+  #v83nav .v83-link svg{ width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.9;
+    stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto; }
+  #v83nav .v83-cta{ margin:14px 8px 4px; padding:13px; border-radius:999px; background:var(--accent);
+    color:#fff; font-weight:800; font-size:15px; border:0; cursor:pointer; font-family:inherit; }
+  #v83nav .v83-cta:hover{ filter:brightness(1.06); }
+  #v83nav .v83-spacer{ flex:1 1 auto; }
+  #v83nav .v83-me{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:999px;
+    cursor:pointer; background:none; border:0; width:100%; text-align:left; font-family:inherit;
+    color:var(--text); font-size:14.5px; font-weight:700; }
+  #v83nav .v83-me:hover{ background:var(--bg-soft); }
+  #v83nav .v83-me .v83-ava{ width:34px; height:34px; border-radius:50%; background:var(--accent);
+    color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; flex:0 0 auto; }
+  #v83nav > .nl{ margin:0 6px 8px; }
+  #v83center{ grid-column:2; border-left:1px solid var(--line); border-right:1px solid var(--line); min-height:100vh; }
+  html.v83 #v83center > #tabs{ position:sticky; top:56px; z-index:6; background:var(--bg);
+    border-bottom:1px solid var(--line); padding:8px 10px; margin:0; display:flex; gap:6px; overflow-x:auto; }
+  html.v83 #v83center > #tabs::-webkit-scrollbar{ height:0; }
+  html.v83 #feed{ margin:0; }
+  #v83rail{ grid-column:3; position:sticky; top:64px; align-self:start; max-height:calc(100vh - 64px);
+    overflow-y:auto; padding:8px 4px 24px 18px; }
+  #v83rail::-webkit-scrollbar{ width:0; }
+  #v83rail > *{ margin:0 0 16px !important; }
+  #v83rail .v83-search input{ width:100%; box-sizing:border-box; padding:11px 15px; border-radius:999px;
+    border:1px solid var(--line); background:var(--bg-soft); color:var(--text); font:inherit; font-size:14px; }
+}
 .title-orig .badge{
   font-family:var(--mono-font);font-size:9.5px;letter-spacing:0.1em;
   color:var(--muted);border:1px solid var(--line);border-radius:6px;
@@ -4033,7 +4073,138 @@ function unmountDash(){
   d.left = d.right = null; d.mounted = false;
 }
 function applyDash(){
+  if (V83ON && window.matchMedia("(min-width:1024px)").matches){
+    try { if (DASH && DASH.mounted) unmountDash(); } catch(e){}
+    mountV83(); return;
+  }
+  try { if (V83 && V83.mounted) unmountV83(); } catch(e){}
   if (window.matchMedia("(min-width:1024px)").matches) mountDash(); else unmountDash();
+}
+
+/* ---------------- v83 beta: X-style desktop shell (?v83beta) ----------------
+   Opt-in desktop redesign mirroring the mobile v82 beta: a left section-nav,
+   a centered feed, and a right discovery rail. Reuses the app's existing view
+   functions and rendered modules (today's debate, skew, events, hot) so every
+   feature keeps working; nodes are relocated, not duplicated, and restored on
+   the way down. ?v83beta enables (persisted) · ?v83off disables. */
+var V83ON = false;
+try {
+  if (/v83off/.test(location.search)) localStorage.removeItem("stk_v83");
+  else if (/v83beta/.test(location.search)) localStorage.setItem("stk_v83", "1");
+  V83ON = /v83beta/.test(location.search) || localStorage.getItem("stk_v83") === "1";
+} catch (e) {}
+var V83 = null;
+var V83ICONS = {
+  home:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9h13v-9"/></svg>',
+  authors:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>',
+  company:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>',
+  politics:'<svg viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M6 8l-2 6h4zM18 8l2 6h-4z"/></svg>',
+  themes:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',
+  record:'<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 4-6"/></svg>',
+  cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
+  bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>'
+};
+function v83T(k){
+  var s = {
+    ko:{home:"홈",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
+    en:{home:"Home",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
+    ja:{home:"ホーム",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+  };
+  var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
+  return s[l][k];
+}
+function v83Bookmarks(){
+  try {
+    SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
+    if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+    QUERY = ""; BM_ONLY = true;
+    var i = document.getElementById("searchInput"); if (i) i.value = "";
+    if (typeof render === "function") render();
+  } catch (e) {}
+}
+function v83JoinDebate(){
+  try {
+    if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof goToItem === "function"){
+      goToItem(TODAY_ID);
+      if (typeof toggleComments === "function") setTimeout(function(){ toggleComments(TODAY_ID); }, 280);
+    } else if (typeof goHome === "function") goHome();
+  } catch (e) {}
+}
+function mountV83(){
+  if (V83 && V83.mounted) return;
+  var wrap = document.querySelector(".wrap"); if (!wrap) return;
+  var ids = ["tabs", "feed", "todaySec", "skewSec", "eventBar", "watchSec", "nlSec"];
+  var nodes = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var hotRail = document.getElementById("hotRail");
+  var hotSec = hotRail ? hotRail.closest("section") : null;
+  if (hotSec) nodes.push(hotSec);
+  var homes = nodes.map(function(el){ return { el: el, parent: el.parentNode, next: el.nextSibling }; });
+  var feed = document.getElementById("feed");
+  var tabs = document.getElementById("tabs");
+
+  var nav = document.createElement("nav"); nav.id = "v83nav";
+  var center = document.createElement("div"); center.id = "v83center";
+  var rail = document.createElement("aside"); rail.id = "v83rail";
+
+  var links = [
+    ["home", V83ICONS.home, function(){ if (typeof goHome === "function") goHome(); }],
+    ["authors", V83ICONS.authors, function(){ if (typeof setTab === "function") setTab("investor"); }],
+    ["company", V83ICONS.company, function(){ if (typeof setTab === "function") setTab("company"); }],
+    ["politics", V83ICONS.politics, function(){ if (typeof setTab === "function") setTab("politician"); }],
+    ["themes", V83ICONS.themes, function(){ if (typeof openThemes === "function") openThemes(); }],
+    ["record", V83ICONS.record, function(){ if (typeof openScoreboard === "function") openScoreboard(); }],
+    ["cal", V83ICONS.cal, function(){ if (typeof openCal === "function") openCal(); }],
+    ["bm", V83ICONS.bm, v83Bookmarks]
+  ];
+  var html = '<div class="v83-brand">Stacks</div>';
+  links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
+  html += '<button class="v83-cta" id="v83cta">' + v83T("join") + '</button>';
+  html += '<div class="v83-spacer"></div>';
+  html += '<button class="v83-me" id="v83me"><span class="v83-ava">J</span><span>' + v83T("me") + '</span></button>';
+  nav.innerHTML = html;
+  links.forEach(function(x, i){ var b = nav.querySelector('.v83-link[data-i="' + i + '"]'); if (b) b.addEventListener("click", x[2]); });
+  var ctaB = nav.querySelector("#v83cta"); if (ctaB) ctaB.addEventListener("click", v83JoinDebate);
+  var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
+
+  if (feed){
+    wrap.insertBefore(nav, feed);
+    wrap.insertBefore(center, feed);
+    if (feed.nextSibling) wrap.insertBefore(rail, feed.nextSibling); else wrap.appendChild(rail);
+    if (tabs) center.appendChild(tabs);
+    center.appendChild(feed);
+  } else {
+    wrap.appendChild(nav); wrap.appendChild(center); wrap.appendChild(rail);
+  }
+
+  var search = document.createElement("div"); search.className = "v83-search";
+  search.innerHTML = '<input type="search" placeholder="' + v83T("search") + '">';
+  var si = search.querySelector("input");
+  if (si) si.addEventListener("input", function(){
+    var r = document.getElementById("searchInput");
+    if (r){ r.value = this.value; r.dispatchEvent(new Event("input", { bubbles: true })); }
+  });
+  rail.appendChild(search);
+  ["todaySec", "skewSec", "eventBar"].forEach(function(id){ var el = document.getElementById(id); if (el) rail.appendChild(el); });
+  if (hotSec) rail.appendChild(hotSec);
+  var ws = document.getElementById("watchSec"); if (ws) rail.appendChild(ws);
+  var nl = document.getElementById("nlSec");
+  if (nl){ var sp = nav.querySelector(".v83-spacer"); if (sp) nav.insertBefore(nl, sp); else nav.appendChild(nl); }
+
+  document.documentElement.classList.add("v83");
+  V83 = { mounted: true, nav: nav, center: center, rail: rail, homes: homes };
+}
+function unmountV83(){
+  var d = V83; if (!d || !d.mounted) return;
+  document.documentElement.classList.remove("v83");
+  for (var i = d.homes.length - 1; i >= 0; i--){
+    var h = d.homes[i];
+    if (h.next && h.next.parentNode === h.parent) h.parent.insertBefore(h.el, h.next);
+    else h.parent.appendChild(h.el);
+  }
+  if (d.nav) d.nav.remove();
+  if (d.center) d.center.remove();
+  if (d.rail) d.rail.remove();
+  V83 = { mounted: false };
 }
 
 const fmt = d => { const [y,m,day] = String(d||"").slice(0,10).split("-"); return `${y}.${m}.${day}`; };
