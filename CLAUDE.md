@@ -15,7 +15,7 @@
    세션 종료: 큰 작업을 했으면 `claude/status-YYYY-MM-DD.md`에 상태를 저장하고,
    아키텍처가 바뀌었으면 이 파일을 같은 흐름에서 갱신한다.
 
-마지막 확인: 2026-07-20.
+마지막 확인: 2026-07-21.
 
 ## ★ 발행 규칙 (가장 중요 — 꼬임 방지의 핵심)
 
@@ -99,7 +99,7 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 ## 콘텐츠 데이터
 - `items.json` (루트) — 발행된 카드 전체. scout만 쓴다(발행 규칙 참조).
 - `feeds/*.json` — 자동 수집된 원문 스냅샷(카드화 전 재료).
-- `index.html` (루트) — 프론트엔드 SPA (v79). 테마 논쟁 보드(◧ 테마, THEMES 8종:
+- `index.html` (루트) — 프론트엔드 SPA (v82). 테마 논쟁 보드(◧ 테마, THEMES 8종:
   rates·dollar·aicapex·semis·energy·crypto·trade·japan)·테마 팔로우(localStorage
   `stk_themes` + OneSignal `t_<key>` 태그)·저자 기록 공유 페이지(#record-)·오늘의 토론
   일별 로테이션·이벤트 캘린더(#calendar)·적정가치 tv-pill(`target` 필드).
@@ -116,6 +116,23 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   히어로(.hero)는 3열 대시보드(≥1024)에서만 노출 — max-width:1023에서 숨김(브라우저 확대로
   뷰포트가 좁아질 때 인트로가 잘못 뜨던 버그 수정); "지금 쏠린 곳"(.skew-box) 가로 스크롤
   레일 + ≥1024에서 grid-column:1/-1 풀폭.
+  v82: 트위터식 모바일 셸(≤1023 전용, 데스크톱 3열 불변). 기존 코드 무수정 원칙,
+  파일 말미 <style id="v82css">(전부 max-width:1023 미디어쿼리) + <script id="v82js">
+  IIFE 추가 레이어, 기존 코드 수정은 popstate 핸들러 최상단 v82Pop 위임 1줄뿐.
+  구성: (1) 헤더 = 좌 아바타(#v82av, 탭→서랍 #v82drawer: 내 정보 openMe·적중 기록
+  openScoreboard·알림 설정·라이트/다크·언어 3버튼) + 중앙 로고, 스크롤 다운 시
+  nav.v82hide로 자동 숨김 (2) 하단 5탭 #v82nav = 홈·탐색·◧테마·캘린더·알림
+  (3) 탐색 #v82explore = 열 때 [eventBar·todaySec·skewSec·hot섹션·watchSec·nlSec]
+  이동(EX_HOMES 기록, 닫으면 원위치. 홈에선 .wrap > #id CSS로 숨겨 mountDash와
+  소유권 충돌 방지) (4) 카드 축약 .v82c(제목 2줄+gist 2줄+engage만, 커버는
+  시리즈+핫 상위 3건 .v82cover) → 탭 시 #v82detail 오버레이로 카드 노드 이동
+  (placeholder 복원, 이동 방식이라 투표·댓글 리스너 유지) (5) 홈 피드 인라인 모듈
+  .v82mod 3종(2·5·8번째 카드 뒤: 오늘의 토론/쏠린 곳 클론/이벤트 클론, 검색·필터·뷰
+  진입 시 자동 제거) (6) 뒤로가기 = 기존 pushView/popstate 체계에 편입.
+  ⚠️ 함정 두 개(2026-07-21 실측): (a) <html>에 폰트용 data-lang 속성이 있어
+  closest("[data-lang]") 식 위임은 항상 매칭됨, 반드시 자체 클래스로 매칭할 것.
+  (b) history.back()과 pushState를 같은 틱에 섞으면 늦게 온 popstate가 방금 연 뷰를
+  닫음, 뷰를 이어 열 때는 back 없이 닫고(스테일 엔트리 허용) 단독 닫기만 silentBack.
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
