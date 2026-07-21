@@ -6332,7 +6332,7 @@ bootData();
 <style id="v82css">
 /* ============ v82: Twitter-style mobile shell (≤1023px only) ============ */
 @media (min-width:1024px){
-  #v82nav,#v82drawer,#v82scrim,#v82explore,#v82detail,#v82av{display:none !important;}
+  #v82nav,#v82drawer,#v82scrim,#v82explore,#v82detail,#v82av,#v82hub,#v82notif,#v82picker,.v82-tabs{display:none !important;}
 }
 @media (max-width:1023px){
   /* --- header: avatar left · brand centered · old buttons into drawer --- */
@@ -6343,22 +6343,37 @@ bootData();
   nav.v82hide{transform:translateY(-100%);}
   #v82av{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--bg-soft);
     display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;padding:0;}
-  /* --- bottom nav --- */
+
+  /* --- community-slide top tabs (inside sticky header, hides with it) --- */
+  .v82-tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 14px 9px;scrollbar-width:none;
+    border-top:1px solid var(--line);margin-top:2px;-webkit-overflow-scrolling:touch;}
+  .v82-tabs::-webkit-scrollbar{display:none;}
+  .v82-tp{flex:0 0 auto;background:var(--bg-soft);border:1px solid var(--line);color:var(--muted);
+    font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;border-radius:999px;
+    padding:7px 15px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;}
+  .v82-tp.on{background:var(--black);border-color:var(--black);color:#fff;}
+  .v82-tp.mine{border-color:var(--accent);color:var(--accent);}
+  .v82-tp.mine.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .v82-tp.pick.act{border-color:var(--accent);color:var(--accent);}
+
+  /* --- bottom nav (persists over calendar/me sheets; hidden during intro/onboard/detail/drawer) --- */
   body{padding-bottom:calc(58px + env(safe-area-inset-bottom));}
-  /* z-tier: BELOW the app's own overlays (intro z80 / onboard / sheets 12000+),
-     so an open intro fully covers the shell instead of the shell floating above it */
-  #v82nav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;
+  #v82nav{position:fixed;left:0;right:0;bottom:0;z-index:13500;display:flex;
     border-top:1px solid var(--line);background:var(--bg);
     padding:5px 0 calc(7px + env(safe-area-inset-bottom));}
+  #v82nav.v82-off{display:none;}
   #v82nav button{flex:1;background:none;border:none;color:var(--muted);font-family:inherit;font-size:9.5px;
     display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0;cursor:pointer;position:relative;}
   #v82nav button.on{color:var(--text);}
   #v82nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.9;}
   #v82nav button.on svg{stroke-width:2.5;}
-  /* --- drawer --- */
-  #v82scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:74;opacity:0;pointer-events:none;transition:opacity .22s;}
+  /* keep app sheets clear of the persistent nav */
+  #calSheet .me-card,#meSheet .me-card{max-height:80vh;}
+
+  /* --- drawer (modal, above nav) --- */
+  #v82scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:13700;opacity:0;pointer-events:none;transition:opacity .22s;}
   #v82scrim.on{opacity:1;pointer-events:auto;}
-  #v82drawer{position:fixed;top:0;bottom:0;left:0;width:80%;max-width:330px;background:var(--bg);z-index:76;
+  #v82drawer{position:fixed;top:0;bottom:0;left:0;width:80%;max-width:330px;background:var(--bg);z-index:13800;
     transform:translateX(-103%);transition:transform .25s ease;overflow-y:auto;
     box-shadow:8px 0 32px rgba(0,0,0,.25);padding:18px 18px calc(24px + env(safe-area-inset-bottom));}
   #v82drawer.on{transform:translateX(0);}
@@ -6373,44 +6388,56 @@ bootData();
   .v82dw-langs button{flex:1;background:var(--bg-soft);border:1px solid var(--line);color:var(--text);
     border-radius:99px;padding:9px 0;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;}
   .v82dw-langs button.on{border-color:var(--accent);color:var(--accent);font-weight:800;}
-  /* --- explore screen (discovery modules move here) --- */
-  #v82explore{position:fixed;inset:0;z-index:15;background:var(--bg);overflow-y:auto;display:none;
-    padding:64px 20px calc(78px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
-  #v82explore.on{display:block;}
+
+  /* --- shared full-screen shell screens (find / explore-hub / alerts / picker) --- */
+  .v82-screen{position:fixed;inset:0;z-index:40;background:var(--bg);overflow-y:auto;display:none;
+    padding:60px 20px calc(78px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
+  .v82-screen.on{display:block;}
+  .v82-sh{position:fixed;left:0;right:0;top:0;height:52px;z-index:41;display:none;align-items:center;gap:12px;
+    padding:0 16px;background:rgba(14,15,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .v82-sh.on{display:flex;}
+  .v82-sh .bk{background:none;border:none;color:var(--text);font-size:21px;cursor:pointer;padding:2px 6px;line-height:1;}
+  .v82-sh .ti{font-weight:800;font-size:17px;}
   #v82explore > section,#v82explore > .nl,#v82explore > .event-bar{margin:0 0 22px;}
-  /* home top modules hidden on mobile home (they live in explore) */
+  #v82explore .search-box{margin:0 0 12px;}
+  #v82explore .filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;}
+
+  /* home top modules hidden on mobile home (they live in find/explore) */
   .wrap > #eventBar,.wrap > #todaySec,.wrap > #skewSec,.wrap > [data-v82hot],.wrap > #watchSec,.wrap > #nlSec{display:none;}
-  /* theme tab button lives in bottom nav now */
   #tabs .tab-th{display:none;}
-  /* tighter feed head */
-  #feed .tabs{margin:10px 0 10px;}
-  #feed .filter-row{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px 8px;padding:0 20px 4px;justify-content:flex-start;scrollbar-width:none;}
-  #feed .filter-row::-webkit-scrollbar{display:none;}
-  #feed .filter-row .search-box{flex:0 0 66%;}
-  #feed .filter-row > *{flex:0 0 auto;}
+  /* app's own tabs + filter row replaced by .v82-tabs slide */
+  #feed .tabs,#feed .filter-row{display:none;}
+
   /* --- compact (Twitter-style) feed cards --- */
-  #feedList .card{border:none;border-bottom:1px solid var(--line);border-radius:0;box-shadow:none;
-    margin:0 -20px;padding:17px 20px 12px;}
-  .card.v82c{cursor:pointer;} /* iOS: without a pointer cursor Safari won't synthesize clicks for delegated taps */
+  #feedList .card{border:none;border-bottom:8px solid var(--bg-soft);border-radius:0;box-shadow:none;
+    margin:0 -20px;padding:18px 20px 14px;}
   #feedList .card:hover{transform:none;box-shadow:none;}
+  .card.v82c{cursor:pointer;}
   .card.v82c .title-orig,.card.v82c .why,.card.v82c .oc,.card.v82c .since,.card.v82c .ask-block,
   .card.v82c .cta-row,.card.v82c .comment-box,.card.v82c .related,.card.v82c .gist-fold summary,
   .card.v82c .collapse-caret,.card.v82c .mine-why{display:none !important;}
   .card.v82c .card-thumb{display:none;}
-  .card.v82c.v82cover .card-thumb{display:flex;height:86px;margin:8px 0 2px;}
+  .card.v82c.v82cover .card-thumb{display:flex;height:96px;margin:10px 0 4px;}
   .card.v82c.v82cover .card-thumb .thumb-label{font-size:19px;}
-  .card.v82c .card-top{margin-bottom:6px;}
+  .card.v82c .card-top{margin-bottom:8px;}
   .card.v82c .chips > *:not(:first-child){display:none;}
-  .card.v82c .card-title{font-size:15.5px;line-height:1.42;margin:2px 0 4px;}
-  .card.v82c .ct-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .card.v82c .card-title{font-size:16px;line-height:1.4;margin:2px 0 7px;}
+  .card.v82c .ct-text{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
   .card.v82c .card-body{max-height:none !important;opacity:1 !important;overflow:visible !important;}
   .card.v82c .gist-fold{margin:0;}
-  .card.v82c .gist{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-    color:var(--muted);font-size:13.5px;line-height:1.55;margin:0;}
-  .card.v82c .series-tag{font-size:10.5px;padding:2px 9px;margin:5px 0 0;}
-  .card.v82c .engage{margin-top:8px;padding-top:8px;}
+  /* headline + ~3 paragraphs, then fade + 더보기 */
+  .card.v82c .gist{position:relative;max-height:168px;overflow:hidden;color:var(--muted);
+    font-size:14px;line-height:1.62;margin:0;}
+  .card.v82c.v82clip .gist::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;
+    background:linear-gradient(transparent,var(--card));pointer-events:none;}
+  .card.v82c .v82-more{display:none;background:none;border:none;color:var(--accent);font-family:inherit;
+    font-size:13.5px;font-weight:700;cursor:pointer;padding:6px 0 2px;}
+  .card.v82c.v82clip .v82-more{display:inline-block;}
+  .card.v82c .series-tag{font-size:10.5px;padding:2px 9px;margin:8px 0 0;}
+  .card.v82c .engage{margin-top:10px;padding-top:8px;}
+
   /* --- card detail overlay --- */
-  #v82detail{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;flex-direction:column;}
+  #v82detail{position:fixed;inset:0;z-index:13600;background:var(--bg);display:none;flex-direction:column;}
   #v82detail.on{display:flex;}
   #v82dhead{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid var(--line);flex:0 0 auto;}
   #v82dhead button{background:none;border:none;color:var(--text);font-size:21px;cursor:pointer;padding:2px 8px;}
@@ -6418,17 +6445,55 @@ bootData();
   #v82dbody{flex:1;overflow-y:auto;padding:16px 20px calc(46px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
   #v82dbody .card{border:none;border-radius:0;box-shadow:none;padding:0;margin:0;}
   #v82dbody .card:hover{transform:none;box-shadow:none;}
-  /* --- inline feed modules --- */
-  .v82mod{margin:0 -20px;padding:12px 20px 14px;border-bottom:1px solid var(--line);background:var(--bg-soft);}
-  .v82mod-h{display:flex;align-items:baseline;gap:8px;margin-bottom:9px;}
-  .v82mod-h b{font-size:13.5px;font-weight:800;}
+
+  /* --- inline feed modules (today's debate etc.) — roomier --- */
+  .v82mod{margin:0 -20px;padding:18px 20px 20px;border-bottom:8px solid var(--bg-soft);background:var(--card);}
+  .v82mod-h{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;}
+  .v82mod-h b{font-size:14px;font-weight:800;}
   .v82mod-h button{margin-left:auto;background:none;border:none;color:var(--accent);font-family:inherit;
-    font-size:12px;font-weight:700;cursor:pointer;padding:0;}
-  .v82mod .skew-box{flex-wrap:nowrap;overflow-x:auto;display:flex;gap:8px;scrollbar-width:none;}
-  .v82mod .skew-box::-webkit-scrollbar{display:none;}
-  .v82mod .today-q2{font-size:14.5px;font-weight:700;line-height:1.5;}
-  .v82mod .today-src2{font-size:12.5px;color:var(--muted);margin-top:4px;}
-  .v82mod .event-bar{margin:0;position:static;}
+    font-size:12.5px;font-weight:700;cursor:pointer;padding:0;}
+  .v82mod .today-q2{font-size:15px;font-weight:700;line-height:1.6;margin-bottom:8px;}
+  .v82mod .today-src2{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+  /* --- skew diagram (지금 쏠린 곳) --- */
+  .v82-skew-h{font-size:16px;font-weight:800;margin:2px 0 4px;}
+  .v82-skew-sub{font-size:12.5px;color:var(--muted);margin:0 0 16px;line-height:1.5;}
+  .v82-skew-row{width:100%;background:none;border:none;text-align:left;cursor:pointer;padding:12px 2px;
+    border-bottom:1px solid var(--line);font-family:inherit;color:var(--text);}
+  .v82-skew-top{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}
+  .v82-skew-name{font-size:14px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .v82-skew-lean{font-size:12px;font-weight:800;font-family:"IBM Plex Mono",monospace;}
+  .v82-skew-lean.bull{color:#16A34A;}
+  .v82-skew-lean.bear{color:#E5484D;}
+  .v82-skew-track{display:flex;height:12px;border-radius:7px;overflow:hidden;background:var(--bg-soft);}
+  .v82-skew-track i{display:block;height:100%;}
+  .v82-skew-track .b{background:#16A34A;}
+  .v82-skew-track .r{background:#E5484D;}
+  .v82-skew-cts{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);
+    font-family:"IBM Plex Mono",monospace;margin-top:5px;}
+  .v82-hub-sec{font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;
+    margin:26px 0 10px;font-family:"IBM Plex Mono",monospace;}
+  .v82-hub-item{display:flex;align-items:center;gap:12px;width:100%;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;cursor:pointer;
+    font-family:inherit;color:var(--text);font-size:15px;font-weight:700;text-align:left;}
+  .v82-hub-item .em{font-size:19px;flex:0 0 24px;text-align:center;}
+  .v82-hub-item .ar{margin-left:auto;color:var(--muted);font-size:18px;}
+
+  /* --- alerts list --- */
+  .v82-nt{display:flex;gap:12px;width:100%;background:none;border:none;border-bottom:1px solid var(--line);
+    padding:15px 2px;text-align:left;cursor:pointer;font-family:inherit;color:var(--text);}
+  .v82-nt .em{font-size:19px;flex:0 0 26px;text-align:center;}
+  .v82-nt .bd{min-width:0;flex:1;}
+  .v82-nt .t1{font-size:14px;font-weight:700;line-height:1.4;}
+  .v82-nt .t1 .tm{color:var(--muted);font-weight:400;font-size:12px;}
+  .v82-nt .t2{color:var(--muted);font-size:13px;line-height:1.5;margin-top:3px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .v82-empty{color:var(--muted);font-size:14px;text-align:center;padding:60px 20px;line-height:1.7;}
+
+  /* --- entity picker (논객 / 회사) --- */
+  #v82picker .pk-item{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;
+    border-bottom:1px solid var(--line);padding:14px 2px;text-align:left;cursor:pointer;
+    font-family:inherit;color:var(--text);font-size:15px;font-weight:600;}
 }
 </style>
 <script id="v82js">
@@ -6437,10 +6502,8 @@ bootData();
   "use strict";
   if (window.__V82) return; window.__V82 = true;
   var mq = window.matchMedia("(max-width:1023px)");
-  /* ---- beta gate: mobile shell is OPT-IN until confirmed on real iOS ----
-     stacksdaily.com/?v82beta  -> enable (persisted)
-     stacksdaily.com/?v82off   -> disable again
-     Everyone else gets the pre-v82 (v81) mobile experience. */
+  /* ---- beta gate: opt-in until confirmed on real iOS ----
+     ?v82beta enable (persisted) · ?v82off disable · else pre-v82 (v81). */
   try {
     if (/v82off/.test(location.search)) localStorage.removeItem("stk_v82");
     else if (/v82beta/.test(location.search)) localStorage.setItem("stk_v82", "1");
@@ -6452,50 +6515,78 @@ bootData();
     if (offCss) offCss.disabled = true;
     return;
   }
+
   var V82S = {
-    ko:{home:"홈",explore:"탐색",themes:"테마",cal:"캘린더",notif:"알림",post:"게시물",more:"더 보기",me:"내 정보",record:"적중 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트"},
-    en:{home:"Home",explore:"Explore",themes:"Themes",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events"},
-    ja:{home:"ホーム",explore:"発見",themes:"テーマ",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント"}
+    ko:{home:"홈",find:"찾기",explore:"탐색",cal:"캘린더",notif:"알림",post:"게시물",more:"더 보기",
+        me:"내 정보",record:"적중 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
+        skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
+        themesSec:"테마 논쟁",recordSec:"적중 기록",people:"논객",company:"회사",
+        ntNew:"새 글",ntGrade:"채점",ntDebate:"오늘의 토론",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
+        bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 적중 기록 보기"},
+    en:{home:"Home",find:"Find",explore:"Explore",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",
+        me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
+        skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
+        themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
+        ntNew:"New",ntGrade:"Graded",ntDebate:"Today's debate",ntSkew:"Skew alert",noAlerts:"No new alerts.",
+        bull:"Bull",bear:"Bear",openThemes:"Open theme debates",openRecord:"Open author track record"},
+    ja:{home:"ホーム",find:"探す",explore:"発見",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",
+        me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
+        skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
+        themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
+        ntNew:"新着",ntGrade:"採点",ntDebate:"今日の論点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
+        bull:"強気",bear:"弱気",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る"}
   };
   function T(){ var l = (typeof LANG !== "undefined" && V82S[LANG]) ? LANG : "ko"; return V82S[l]; }
   function $(id){ return document.getElementById(id); }
   var SILENT = false;
   function silentBack(){ SILENT = true; try { history.back(); } catch(e){ SILENT = false; } }
 
-  /* ---------- shell DOM ---------- */
   var ICONS = {
     home:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9h13v-9"/></svg>',
-    explore:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
-    themes:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 4v16"/></svg>',
+    find:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+    explore:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.6 8.4-2.2 5-5 2.2 2.2-5z"/></svg>',
     cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
     notif:'<svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>'
   };
+
+  /* ---------- shell DOM ---------- */
   function buildShell(){
     if ($("v82nav")) return;
     var nav = document.createElement("div"); nav.id = "v82nav";
     nav.innerHTML =
       '<button data-v="home" class="on">' + ICONS.home + '<span></span></button>' +
+      '<button data-v="find">' + ICONS.find + '<span></span></button>' +
       '<button data-v="explore">' + ICONS.explore + '<span></span></button>' +
-      '<button data-v="themes">' + ICONS.themes + '<span></span></button>' +
       '<button data-v="cal">' + ICONS.cal + '<span></span></button>' +
       '<button data-v="notif">' + ICONS.notif + '<span></span></button>';
     document.body.appendChild(nav);
-    /* iOS: direct per-button handlers, not container delegation */
     var nbs = nav.querySelectorAll("button");
-    for (var ni2 = 0; ni2 < nbs.length; ni2++){
-      nbs[ni2].onclick = function(){ navGo(this.dataset.v); };
-    }
+    for (var i = 0; i < nbs.length; i++) nbs[i].onclick = function(){ navGo(this.dataset.v); };
+
     var scrim = document.createElement("div"); scrim.id = "v82scrim";
     scrim.addEventListener("click", function(){ closeDrawer(); });
     document.body.appendChild(scrim);
-    var dr = document.createElement("div"); dr.id = "v82drawer";
-    document.body.appendChild(dr);
-    var ex = document.createElement("div"); ex.id = "v82explore";
-    document.body.appendChild(ex);
+    var dr = document.createElement("div"); dr.id = "v82drawer"; document.body.appendChild(dr);
+
+    /* find (search + secondary filters + discovery modules) */
+    var ex = document.createElement("div"); ex.id = "v82explore"; ex.className = "v82-screen"; document.body.appendChild(ex);
+    addHead("v82explore", T().find);
+    /* explore hub (skew diagram + theme debates + track record) */
+    var hub = document.createElement("div"); hub.id = "v82hub"; hub.className = "v82-screen"; document.body.appendChild(hub);
+    addHead("v82hub", T().explore);
+    /* alerts */
+    var nt = document.createElement("div"); nt.id = "v82notif"; nt.className = "v82-screen"; document.body.appendChild(nt);
+    addHead("v82notif", T().notif);
+    /* entity picker */
+    var pk = document.createElement("div"); pk.id = "v82picker"; pk.className = "v82-screen"; document.body.appendChild(pk);
+    addHead("v82picker", "");
+
+    /* card detail */
     var dt = document.createElement("div"); dt.id = "v82detail";
     dt.innerHTML = '<div id="v82dhead"><button id="v82back" aria-label="back">←</button><span class="t"></span></div><div id="v82dbody"></div>';
     document.body.appendChild(dt);
     $("v82back").addEventListener("click", function(){ closeDetail(false); });
+
     var ni = document.querySelector(".nav-inner");
     if (ni && !$("v82av")){
       var av = document.createElement("button"); av.id = "v82av"; av.textContent = "👤";
@@ -6503,16 +6594,42 @@ bootData();
       av.onclick = openDrawer;
       ni.insertBefore(av, ni.firstChild);
     }
+    /* community-slide tabs inside the sticky header */
+    var navEl = document.querySelector("nav");
+    if (navEl && !$("v82tabs")){
+      var strip = document.createElement("div"); strip.className = "v82-tabs"; strip.id = "v82tabs";
+      navEl.appendChild(strip);
+    }
     var hr = $("hotRail"); var hs = hr && hr.closest("section");
     if (hs) hs.setAttribute("data-v82hot","");
     relabel();
   }
+  function addHead(screenId, title){
+    var h = document.createElement("div"); h.className = "v82-sh"; h.id = screenId + "-h";
+    h.innerHTML = '<button class="bk" aria-label="back">←</button><span class="ti"></span>';
+    h.querySelector(".ti").textContent = title;
+    h.querySelector(".bk").onclick = function(){ navGo("home"); };
+    document.body.appendChild(h);
+  }
   function relabel(){
     var t = T(); var nav = $("v82nav"); if (!nav) return;
-    var keys = ["home","explore","themes","cal","notif"];
+    var keys = ["home","find","explore","cal","notif"];
     var sp = nav.querySelectorAll("button span");
     for (var i = 0; i < sp.length; i++) sp[i].textContent = t[keys[i]];
     var dh = document.querySelector("#v82dhead .t"); if (dh) dh.textContent = t.post;
+    setHeadTitle("v82explore", t.find); setHeadTitle("v82hub", t.explore); setHeadTitle("v82notif", t.notif);
+  }
+  function setHeadTitle(id, title){ var h = $(id + "-h"); if (h){ var ti = h.querySelector(".ti"); if (ti) ti.textContent = title; } }
+
+  /* ---------- nav visibility (persist over sheets; hide on splash/detail/drawer) ---------- */
+  function refreshNav(){
+    var nav = $("v82nav"); if (!nav) return;
+    var hide = false;
+    var intro = $("intro"); if (intro && !intro.hidden && !intro.classList.contains("out")) hide = true;
+    var ob = $("onboard"); if (ob && !ob.hidden) hide = true;
+    var dt = $("v82detail"); if (dt && dt.classList.contains("on")) hide = true;
+    var dr = $("v82drawer"); if (dr && dr.classList.contains("on")) hide = true;
+    nav.classList.toggle("v82-off", hide);
   }
 
   /* ---------- drawer ---------- */
@@ -6523,7 +6640,6 @@ bootData();
       '<button class="v82dw-x" aria-label="close">&times;</button>' +
       '<div class="v82dw-brand"><span style="font-size:20px">👤</span> Stacks</div>' +
       '<button class="v82dw-item" data-act="me"><span class="ic">👤</span>' + t.me + '</button>' +
-      '<button class="v82dw-item" data-act="record"><span class="ic">⚖</span>' + t.record + '</button>' +
       '<button class="v82dw-item" data-act="alerts"><span class="ic">🔔</span>' + t.alerts + '</button>' +
       '<button class="v82dw-item" data-act="appearance"><span class="ic">🌗</span>' + t.appearance + '</button>' +
       '<div class="v82dw-langs">' +
@@ -6531,7 +6647,6 @@ bootData();
         '<button data-lang="en" class="v82dw-lb ' + (curLang === "en" ? "on" : "") + '">English</button>' +
         '<button data-lang="ja" class="v82dw-lb ' + (curLang === "ja" ? "on" : "") + '">日本語</button>' +
       '</div>';
-    /* iOS: direct per-button handlers, not container delegation */
     dr.querySelector(".v82dw-x").onclick = function(){ closeDrawer(); };
     var acts = dr.querySelectorAll("[data-act]");
     for (var ai = 0; ai < acts.length; ai++){ acts[ai].onclick = function(){ drawerAct(this.dataset.act); }; }
@@ -6539,12 +6654,8 @@ bootData();
     for (var li = 0; li < lbs.length; li++){ lbs[li].onclick = function(){ closeDrawer(true); if (typeof setLang === "function") setLang(this.dataset.lang); }; }
   }
   function drawerAct(act){
-    /* NOTE: when another view opens right after, close WITHOUT history.back() —
-       back() + pushState in the same tick race, and the late popstate closes
-       the freshly opened view. One stale history entry is the accepted cost. */
     if (act === "me"){ closeDrawer(true); if (typeof openMe === "function") openMe(); }
-    else if (act === "record"){ closeDrawer(true); closeExplore(true); if (typeof openScoreboard === "function") openScoreboard(); setActive(); }
-    else if (act === "alerts"){ closeDrawer(true); notifAct(); }
+    else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
     else if (act === "appearance"){ closeDrawer(true); if (typeof toggleTheme === "function") toggleTheme(); }
     else closeDrawer();
   }
@@ -6552,58 +6663,267 @@ bootData();
     if (!mq.matches) return;
     renderDrawer();
     $("v82drawer").classList.add("on"); $("v82scrim").classList.add("on");
+    refreshNav();
     if (typeof pushView === "function") pushView();
   }
   function closeDrawer(fromPop){
     var dr = $("v82drawer");
     if (!dr || !dr.classList.contains("on")) return false;
     dr.classList.remove("on"); $("v82scrim").classList.remove("on");
+    refreshNav();
     if (!fromPop) silentBack();
     return true;
   }
 
-  /* ---------- explore (discovery modules move in/out) ---------- */
-  var EX_HOMES = null;
-  function exploreNodes(){
-    var hr = $("hotRail"); var hs = hr && hr.closest("section");
-    return [$("eventBar"), $("todaySec"), $("skewSec"), hs, $("watchSec"), $("nlSec")].filter(Boolean);
+  /* ---------- generic screen show/hide ---------- */
+  function showScreen(id){
+    var s = $(id), h = $(id + "-h");
+    if (!s) return;
+    s.classList.add("on"); if (h) h.classList.add("on");
+    s.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+    if (typeof pushView === "function") pushView();
   }
-  function openExplore(){
+  function hideScreen(id){
+    var s = $(id), h = $(id + "-h");
+    if (!s || !s.classList.contains("on")) return false;
+    s.classList.remove("on"); if (h) h.classList.remove("on");
+    document.body.style.overflow = "";
+    return true;
+  }
+  function anyScreenOpen(){
+    return ["v82explore","v82hub","v82notif","v82picker"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
+  }
+
+  /* ---------- FIND (search + secondary filters + discovery modules) ---------- */
+  var EX_HOMES = null;
+  function findNodes(){
+    var hr = $("hotRail"); var hs = hr && hr.closest("section");
+    return [$("searchBox"), $("todaySec"), $("eventBar"), hs, $("watchSec"), $("nlSec")].filter(Boolean);
+  }
+  function openFind(){
     if (!mq.matches) return;
     var ex = $("v82explore"); if (!ex || ex.classList.contains("on")) return;
     try {
-      closeDetail(true);
-      var nodes = exploreNodes();
+      var nodes = findNodes();
       EX_HOMES = nodes.map(function(el){ return { el: el, parent: el.parentNode, next: el.nextSibling }; });
-      nodes.forEach(function(el){ ex.appendChild(el); });
-      ex.classList.add("on");
-      ex.scrollTop = 0;
-      document.body.style.overflow = "hidden";
-      if (typeof pushView === "function") pushView();
-    } catch(err){
-      try { ex.classList.remove("on"); document.body.style.overflow = ""; } catch(e2){}
-    }
+      /* small filter-button row */
+      var fr = document.createElement("div"); fr.className = "filter-row"; fr.id = "v82findFilters";
+      ["sortBtn","bmFilter","freeFilter","unreadFilter"].forEach(function(bid){ var b=$(bid); if(b){ fr.appendChild(b); } });
+      ex.appendChild($("searchBox"));
+      ex.appendChild(fr);
+      nodes.forEach(function(el){ if (el.id !== "searchBox") ex.appendChild(el); });
+      var si = $("searchInput"); if (si) si.focus();
+      showScreen("v82explore");
+    } catch(err){ hideScreen("v82explore"); document.body.style.overflow=""; }
     setActive();
   }
-  function closeExplore(fromPop){
+  function closeFind(fromPop){
     var ex = $("v82explore");
     if (!ex || !ex.classList.contains("on")) return false;
-    ex.classList.remove("on");
-    document.body.style.overflow = "";
+    hideScreen("v82explore");
+    /* restore filter buttons to the app filter-row, then relocated nodes home */
+    var appFilter = document.querySelector("#feed .filter-row");
+    ["sortBtn","bmFilter","freeFilter","unreadFilter"].forEach(function(bid){ var b=$(bid); if(b&&appFilter){ appFilter.appendChild(b); } });
+    var ff = $("v82findFilters"); if (ff) ff.remove();
     if (EX_HOMES){
       for (var i = EX_HOMES.length - 1; i >= 0; i--){
         var h = EX_HOMES[i];
-        if (h.el.parentNode !== ex) continue; /* someone else moved it (dash) — leave it */
+        if (h.el.parentNode === ex) continue;
         if (h.parent && h.parent.isConnected){
           if (h.next && h.next.parentNode === h.parent) h.parent.insertBefore(h.el, h.next);
           else h.parent.appendChild(h.el);
         }
       }
+      /* searchBox/others may still be in ex if not caught above */
+      EX_HOMES.forEach(function(h){ if (h.el.parentNode === ex && h.parent && h.parent.isConnected){ if(h.next&&h.next.parentNode===h.parent) h.parent.insertBefore(h.el,h.next); else h.parent.appendChild(h.el); } });
       EX_HOMES = null;
     }
     if (!fromPop) silentBack();
     setActive();
     return true;
+  }
+
+  /* ---------- EXPLORE hub (skew diagram + themes + record) ---------- */
+  function skewData(){
+    var out = [];
+    try {
+      Object.keys(THEMES).forEach(function(k){
+        var t = stanceTally(themeItems(k)); var dir = t.bull + t.bear;
+        if (dir < 1) return;
+        out.push({ kind:"theme", key:k, label:THEMES[k].label[LANG], icon:THEMES[k].icon, bull:t.bull, bear:t.bear });
+      });
+      var byEnt = {};
+      ITEMS.forEach(function(it){ if(!itemStance(it)) return; itemEntities(it).forEach(function(e){ if(ENTITIES[e]&&ENTITIES[e].kind==="company"){ (byEnt[e]=byEnt[e]||[]).push(it); } }); });
+      Object.keys(byEnt).forEach(function(e){
+        var t = stanceTally(byEnt[e]); var dir = t.bull + t.bear;
+        if (dir < 3) return;
+        out.push({ kind:"ent", key:e, label:entName(e), icon:"", bull:t.bull, bear:t.bear });
+      });
+    } catch(e){}
+    out.forEach(function(o){ var d=o.bull+o.bear; o.pct = d? Math.max(o.bull,o.bear)/d : 0; o.side = o.bull>=o.bear?"bull":"bear"; });
+    out.sort(function(a,b){ return (b.pct-a.pct) || ((b.bull+b.bear)-(a.bull+a.bear)); });
+    return out;
+  }
+  function renderHub(){
+    var hub = $("v82hub"); if (!hub) return;
+    var t = T(), S = (typeof STRINGS!=="undefined"&&STRINGS[LANG])?STRINGS[LANG]:{};
+    var rows = skewData();
+    var html = '<div class="v82-skew-h">' + t.skewTitle + '</div><div class="v82-skew-sub">' + t.skewSub + '</div>';
+    if (!rows.length){
+      html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';
+    } else {
+      rows.forEach(function(o, idx){
+        var dir = o.bull + o.bear, bp = dir? Math.round(o.bull/dir*100):0, rp = 100-bp;
+        var leanLb = (o.side==="bull"?t.bull:t.bear) + " " + Math.round(o.pct*100) + "%";
+        html += '<button class="v82-skew-row" data-i="' + idx + '">'
+          + '<div class="v82-skew-top"><span class="v82-skew-name">' + (o.icon?o.icon+" ":"") + esc(o.label) + '</span>'
+          + '<span class="v82-skew-lean ' + o.side + '">' + esc(leanLb) + '</span></div>'
+          + '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + rp + '%"></i></div>'
+          + '<div class="v82-skew-cts"><span>' + t.bull + ' ' + o.bull + '</span><span>' + t.bear + ' ' + o.bear + '</span></div></button>';
+      });
+    }
+    html += '<div class="v82-hub-sec">' + t.themesSec + '</div>';
+    html += '<button class="v82-hub-item" data-open="themes"><span class="em">◧</span>' + t.openThemes + '<span class="ar">›</span></button>';
+    html += '<div class="v82-hub-sec">' + t.recordSec + '</div>';
+    html += '<button class="v82-hub-item" data-open="record"><span class="em">⚖</span>' + t.openRecord + '<span class="ar">›</span></button>';
+    var head = hub.querySelector(".v82-inner");
+    if (!head){ head = document.createElement("div"); head.className = "v82-inner"; hub.appendChild(head); }
+    head.innerHTML = html;
+    var srows = head.querySelectorAll(".v82-skew-row"), data = rows;
+    for (var i = 0; i < srows.length; i++){
+      srows[i].onclick = function(){
+        var o = data[+this.dataset.i]; if (!o) return;
+        hubOpenView(function(){ if (o.kind==="theme" && typeof openTheme==="function") openTheme(o.key); else if (typeof entityFeedView==="function") entityFeedView(o.key); });
+      };
+    }
+    var opens = head.querySelectorAll("[data-open]");
+    for (var j = 0; j < opens.length; j++){
+      opens[j].onclick = function(){
+        var w = this.dataset.open;
+        hubOpenView(function(){ if (w==="themes" && typeof openThemes==="function") openThemes(); else if (w==="record" && typeof openScoreboard==="function") openScoreboard(); });
+      };
+    }
+  }
+  function hubOpenView(fn){ closeHub(true); silentBack(); try { fn(); } catch(e){} setActive(); }
+  function openHub(){
+    if (!mq.matches) return;
+    var hub = $("v82hub"); if (!hub || hub.classList.contains("on")) return;
+    renderHub();
+    showScreen("v82hub");
+    setActive();
+  }
+  function closeHub(fromPop){
+    if (!hideScreen("v82hub")) return false;
+    if (!fromPop) silentBack();
+    setActive();
+    return true;
+  }
+
+  /* ---------- ALERTS ---------- */
+  function renderNotif(){
+    var nt = $("v82notif"); if (!nt) return;
+    var t = T(), S = (typeof STRINGS!=="undefined"&&STRINGS[LANG])?STRINGS[LANG]:{}, rows = [];
+    try {
+      /* new posts */
+      if (typeof NEW_IDS !== "undefined"){
+        ITEMS.filter(function(i){ return NEW_IDS.has(i.id); }).slice(0,6).forEach(function(i){
+          rows.push({ em:"🆕", t1:t.ntNew, t2:i.title[LANG], id:i.id });
+        });
+      }
+      /* graded / pending outcomes */
+      ITEMS.filter(function(i){ return i.outcome && (i.outcome.status==="hit"||i.outcome.status==="miss"); }).slice(0,4).forEach(function(i){
+        rows.push({ em: i.outcome.status==="hit"?"✅":"❌", t1:t.ntGrade, t2:i.title[LANG], id:i.id });
+      });
+      /* today's debate */
+      if (typeof TODAY_ID !== "undefined" && TODAY_ID){
+        var td = null; for (var k=0;k<ITEMS.length;k++) if (ITEMS[k].id===TODAY_ID){ td=ITEMS[k]; break; }
+        if (td && td.ask) rows.push({ em:"💬", t1:t.ntDebate, t2:td.ask[LANG], id:td.id });
+      }
+      /* strong skews */
+      skewData().filter(function(o){ return o.pct>=0.8 && (o.bull+o.bear)>=3; }).slice(0,4).forEach(function(o){
+        rows.push({ em:"⚠️", t1:t.ntSkew, t2:(o.icon?o.icon+" ":"")+o.label+" · "+(o.side==="bull"?t.bull:t.bear)+" "+Math.round(o.pct*100)+"%",
+          theme:o.kind==="theme"?o.key:null, ent:o.kind==="ent"?o.key:null });
+      });
+    } catch(e){}
+    var html = "";
+    if (!rows.length) html = '<div class="v82-empty">' + t.noAlerts + '</div>';
+    else rows.forEach(function(r, i){
+      html += '<button class="v82-nt" data-i="' + i + '"><span class="em">' + r.em + '</span>'
+        + '<span class="bd"><span class="t1">' + esc(r.t1) + '</span>'
+        + '<span class="t2">' + esc(r.t2||"") + '</span></span></button>';
+    });
+    var inner = nt.querySelector(".v82-inner");
+    if (!inner){ inner = document.createElement("div"); inner.className = "v82-inner"; nt.appendChild(inner); }
+    inner.innerHTML = html;
+    var btns = inner.querySelectorAll(".v82-nt");
+    for (var i2 = 0; i2 < btns.length; i2++){
+      (function(r){
+        btns[i2].onclick = function(){
+          if (r.id){ closeNotif(true); silentBack(); openCardById(r.id); }
+          else if (r.theme){ closeNotif(true); silentBack(); if (typeof openTheme==="function") openTheme(r.theme); setActive(); }
+          else if (r.ent){ closeNotif(true); silentBack(); if (typeof entityFeedView==="function") entityFeedView(r.ent); setActive(); }
+        };
+      })(rows[+btns[i2].dataset.i]);
+    }
+  }
+  function openNotif(){
+    if (!mq.matches) return;
+    var nt = $("v82notif"); if (!nt || nt.classList.contains("on")) return;
+    renderNotif();
+    showScreen("v82notif");
+    setActive();
+  }
+  function closeNotif(fromPop){
+    if (!hideScreen("v82notif")) return false;
+    if (!fromPop) silentBack();
+    setActive();
+    return true;
+  }
+
+  /* ---------- entity picker (논객 / 회사) ---------- */
+  function openPicker(kind){
+    if (!mq.matches) return;
+    var pk = $("v82picker"); if (!pk) return;
+    var t = T();
+    setHeadTitle("v82picker", kind==="person" ? t.people : t.company);
+    var list;
+    if (kind === "person"){
+      var authors = new Set(ITEMS.map(function(i){ return i.source; }));
+      list = Object.keys(ENTITIES).filter(function(k){ return ENTITIES[k].kind==="person" && authors.has(k); }).sort(function(a,b){ return entName(a).localeCompare(entName(b)); });
+    } else {
+      list = Object.keys(ENTITIES).filter(function(k){ return ENTITIES[k].kind==="company"; }).sort(function(a,b){ return a.localeCompare(b); });
+    }
+    var html = list.map(function(k, i){ return '<button class="pk-item" data-k="' + esc(k) + '">' + esc(entName(k)) + '</button>'; }).join("");
+    var inner = pk.querySelector(".v82-inner");
+    if (!inner){ inner = document.createElement("div"); inner.className = "v82-inner"; pk.appendChild(inner); }
+    inner.innerHTML = html || ('<div class="v82-empty">—</div>');
+    var items = inner.querySelectorAll(".pk-item");
+    for (var i = 0; i < items.length; i++){
+      items[i].onclick = function(){
+        var k = this.dataset.k;
+        closePicker(true); silentBack();
+        if (typeof filterByEntity === "function") filterByEntity(k);
+        setActive();
+      };
+    }
+    showScreen("v82picker");
+  }
+  function closePicker(fromPop){
+    if (!hideScreen("v82picker")) return false;
+    if (!fromPop) silentBack();
+    return true;
+  }
+
+  /* ---------- open a card in detail by id ---------- */
+  function openCardById(id){
+    function tryOpen(n){
+      var el = $("sig-" + id);
+      if (el){ openDetail(el); return; }
+      if (n < 12) setTimeout(function(){ tryOpen(n+1); }, 110);
+    }
+    if (!$("sig-" + id) && typeof goToItem === "function") goToItem(id);
+    tryOpen(0);
   }
 
   /* ---------- card detail overlay ---------- */
@@ -6615,15 +6935,15 @@ bootData();
     try {
       DETAIL_PH = document.createComment("v82ph");
       card.parentNode.insertBefore(DETAIL_PH, card);
-      card.classList.remove("v82c","v82cover","collapsed");
+      card.classList.remove("v82c","v82cover","v82clip","collapsed");
       body.appendChild(card);
       dt.classList.add("on");
       body.scrollTop = 0;
       document.body.style.overflow = "hidden";
+      refreshNav();
       if (typeof pushView === "function") pushView();
     } catch(err){
-      /* never leave a half-open invisible overlay eating taps */
-      try { dt.classList.remove("on"); document.body.style.overflow = ""; } catch(e2){}
+      try { dt.classList.remove("on"); document.body.style.overflow = ""; refreshNav(); } catch(e2){}
     }
   }
   function closeDetail(fromPop){
@@ -6641,29 +6961,23 @@ bootData();
         card.classList.add("v82c");
         try { if (typeof READ !== "undefined" && READ.has(id)) card.classList.add("collapsed"); } catch(e){}
         applyCompact();
-      } else {
-        card.remove(); /* feed re-rendered while open; fresh copy already exists */
-      }
+      } else { card.remove(); }
     }
     DETAIL_PH = null;
+    refreshNav();
     if (fromPop === false) silentBack();
     return true;
   }
-  /* tap a compact card (not its buttons/links) -> detail.
-     iOS: attached DIRECTLY to each card (document-level delegation is
-     unreliable in Safari: taps on non-interactive elements don't always
-     synthesize a click that reaches document listeners). */
   function cardTap(e){
     var card = this;
     if (!mq.matches || !card.classList.contains("v82c")) return;
-    /* comments need the full card (comment box is hidden in compact) */
     if (e.target.closest(".eg-comment,.ask-comment")){ openDetail(card); return; }
     if (e.target.closest("a,button,input,textarea,select,summary,.has-tip,.engage,.comment-box,.vote-row")) return;
     e.preventDefault();
     openDetail(card);
   }
 
-  /* ---------- compact cards + cover budget + inline modules ---------- */
+  /* ---------- compact cards + cover budget + read-more ---------- */
   function itemOf(card){
     var id = (card.id || "").replace(/^sig-/, "");
     if (typeof ITEMS === "undefined") return null;
@@ -6683,6 +6997,21 @@ bootData();
       var allow = it && it.cover && (it.series || (it.hot && covers < 3));
       c.classList.toggle("v82cover", !!allow);
       if (allow) covers++;
+      /* read-more affordance under the gist */
+      if (!c.__v82more){
+        c.__v82more = true;
+        var g = c.querySelector(".gist-fold") || c.querySelector(".card-body");
+        if (g){
+          var mb = document.createElement("button");
+          mb.className = "v82-more"; mb.type = "button";
+          mb.textContent = T().more + " →";
+          mb.addEventListener("click", function(e){ e.stopPropagation(); var cc=this.closest(".card"); if(cc) openDetail(cc); });
+          g.appendChild(mb);
+        }
+      }
+      /* mark clipped only when the gist actually overflows */
+      var gi = c.querySelector(".gist");
+      if (gi) c.classList.toggle("v82clip", gi.scrollHeight - gi.clientHeight > 6);
     }
   }
   function plainFeed(){
@@ -6690,25 +7019,6 @@ bootData();
       return !THEME_VIEW && !SB_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !QUERY &&
              !BM_ONLY && !UNREAD_ONLY && !FREE_ONLY && TAB !== "mine";
     } catch(e){ return false; }
-  }
-  function stripIds(el){
-    if (el.removeAttribute) el.removeAttribute("id");
-    var q = el.querySelectorAll ? el.querySelectorAll("[id]") : [];
-    for (var i = 0; i < q.length; i++) q[i].removeAttribute("id");
-    return el;
-  }
-  function mod(title, inner, onMore){
-    var d = document.createElement("div");
-    d.className = "v82mod";
-    var h = document.createElement("div"); h.className = "v82mod-h";
-    var b = document.createElement("b"); b.textContent = title; h.appendChild(b);
-    if (onMore){
-      var m = document.createElement("button"); m.textContent = T().more + " →";
-      m.addEventListener("click", onMore); h.appendChild(m);
-    }
-    d.appendChild(h);
-    d.appendChild(inner);
-    return d;
   }
   function insertModules(){
     if (!mq.matches) return;
@@ -6720,7 +7030,6 @@ bootData();
     if (cards.length < 3) return;
     var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : {};
     var mods = [];
-    /* 1) today's debate (after 2nd card) */
     try {
       if (typeof TODAY_ID !== "undefined" && TODAY_ID){
         var titem = null;
@@ -6730,96 +7039,102 @@ bootData();
           din.innerHTML = '<div class="today-q2">' + (titem.ask[LANG] || "") + '</div>' +
                           '<div class="today-src2">' + (titem.title[LANG] || "") + '</div>';
           din.style.cursor = "pointer";
-          din.addEventListener("click", function(){
-            var tid = TODAY_ID;
-            /* goToItem pages the feed asynchronously (rAF) — poll briefly */
-            function tryOpen(n){
-              var el2 = $("sig-" + tid);
-              if (el2){
-                openDetail(el2);
-                setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(tid); }, 300);
-                return;
-              }
-              if (n < 10) setTimeout(function(){ tryOpen(n + 1); }, 120);
-            }
-            if (!$("sig-" + tid) && typeof goToItem === "function") goToItem(tid);
-            tryOpen(0);
-          });
-          mods.push({ after: 1, node: mod("💬 " + (S.todayLabel || "Today's debate"), din, openExplore) });
+          din.addEventListener("click", function(){ openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); });
+          mods.push({ after: 2, node: mod("💬 " + (S.todayLabel || T().ntDebate), din, function(){ navGo("find"); }) });
         }
       }
     } catch(e){}
-    /* 2) market skew chips (after 5th card) */
-    try {
-      var sb = $("skewBox");
-      if (sb && sb.children.length){
-        var sk = stripIds(sb.cloneNode(true));
-        var st = $("skewTitle");
-        mods.push({ after: 4, node: mod((st && st.textContent) || "Skew", sk, openExplore) });
-      }
-    } catch(e){}
-    /* 3) upcoming events (after 8th card) */
-    try {
-      var eb = $("eventBar");
-      if (eb && !eb.hidden && eb.children.length){
-        var ec = stripIds(eb.cloneNode(true));
-        mods.push({ after: 7, node: mod("📅 " + T().events, ec, function(){ if (typeof openCal === "function") openCal(); }) });
-      }
-    } catch(e){}
-    mods.forEach(function(m){
-      var c = list.querySelectorAll(".card")[m.after];
-      if (c) c.after(m.node);
-    });
+    mods.forEach(function(mm){ var c = list.querySelectorAll(".card")[mm.after]; if (c) c.after(mm.node); });
+  }
+  function mod(title, inner, onMore){
+    var d = document.createElement("div"); d.className = "v82mod";
+    var h = document.createElement("div"); h.className = "v82mod-h";
+    var b = document.createElement("b"); b.textContent = title; h.appendChild(b);
+    if (onMore){ var m = document.createElement("button"); m.textContent = T().more + " →"; m.addEventListener("click", onMore); h.appendChild(m); }
+    d.appendChild(h); d.appendChild(inner); return d;
   }
 
-  /* ---------- bottom nav actions + active state ---------- */
+  /* ---------- community-slide top tabs ---------- */
+  function buildTopTabs(){
+    if (!mq.matches) return;
+    var strip = $("v82tabs"); if (!strip) return;
+    if (typeof CATEGORIES === "undefined") return;
+    var t = T(), cur = (typeof TAB !== "undefined") ? TAB : "all";
+    var html = "";
+    var showMine = false;
+    try { showMine = (typeof mineCount==="function" && mineCount()>0) || cur==="mine"; } catch(e){}
+    if (showMine) html += '<button class="v82-tp mine' + (cur==="mine"?" on":"") + '" data-t="mine">★ ' + ((STRINGS[LANG]&&STRINGS[LANG].myFeed)||"For you") + '</button>';
+    CATEGORIES.forEach(function(c){ html += '<button class="v82-tp' + (cur===c.id?" on":"") + '" data-t="' + c.id + '">' + esc(c[LANG]) + '</button>'; });
+    var entActive = false; try { entActive = !!ENTITY_VIEW; } catch(e){}
+    html += '<button class="v82-tp pick' + (entActive?" act":"") + '" data-pick="person">👤 ' + t.people + ' ▾</button>';
+    html += '<button class="v82-tp pick' + (entActive?" act":"") + '" data-pick="company">🏢 ' + t.company + ' ▾</button>';
+    strip.innerHTML = html;
+    var tps = strip.querySelectorAll("[data-t]");
+    for (var i = 0; i < tps.length; i++){ tps[i].onclick = function(){ var id=this.dataset.t; goHomeThen(function(){ if (typeof setTab==="function") setTab(id); }); }; }
+    var pks = strip.querySelectorAll("[data-pick]");
+    for (var p = 0; p < pks.length; p++){ pks[p].onclick = function(){ openPicker(this.dataset.pick); }; }
+  }
+  function goHomeThen(fn){
+    /* leave any shell screen / app view, then run */
+    if (anyScreenOpen()){ closeFind(true); closeHub(true); closeNotif(true); closePicker(true); silentBack(); }
+    try { if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && typeof closeThemes==="function") closeThemes(); } catch(e){}
+    fn(); setActive();
+  }
+
+  /* ---------- bottom nav ---------- */
+  function closeAppSheets(){
+    try { var cal=$("calSheet"); if(cal && !cal.hidden && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
+    try { var me=$("meSheet"); if(me && !me.hidden && typeof closeMe==="function"){ closeMe(); silentBack(); } } catch(e){}
+  }
   function navGo(v){
-    /* same-tick back()+pushState races (see drawerAct note): when we are about
-       to OPEN a view, close current overlays without touching history. */
     if (v === "home"){
-      if (closeDetail(true)) silentBack();      /* nothing opens after — safe */
-      else if (closeExplore(true)) silentBack();
-      try { if (typeof THEME_VIEW !== "undefined" && THEME_VIEW && typeof closeThemes === "function") closeThemes(); } catch(e){}
+      if (closeDetail(true)) silentBack();
+      closeFind(false); closeHub(false); closeNotif(false); closePicker(false);
+      closeAppSheets();
+      try { if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && typeof closeThemes==="function") closeThemes(); } catch(e){}
       if (typeof goHome === "function") goHome();
       setActive();
+    } else if (v === "find"){
+      closeHub(true); closeNotif(true); closePicker(true); closeDetail(true); closeAppSheets();
+      openFind();
     } else if (v === "explore"){
-      openExplore();
-    } else if (v === "themes"){
-      closeExplore(true); closeDetail(true);
-      if (typeof openThemes === "function") openThemes();
-      setActive();
+      closeFind(true); closeNotif(true); closePicker(true); closeDetail(true); closeAppSheets();
+      openHub();
     } else if (v === "cal"){
+      closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeDetail(true);
       if (typeof openCal === "function") openCal();
+      setActive();
     } else if (v === "notif"){
-      notifAct();
+      closeFind(true); closeHub(true); closePicker(true); closeDetail(true); closeAppSheets();
+      openNotif();
     }
-  }
-  function notifAct(){
-    var nb = $("notifBtn");
-    if (nb && !nb.hidden && nb.onclick){ nb.onclick(); return; }
-    if (typeof openMe === "function") openMe(); /* follow/alert settings live in Me */
   }
   function setActive(){
     var nav = $("v82nav"); if (!nav) return;
     var cur = "home";
-    var ex = $("v82explore");
-    if (ex && ex.classList.contains("on")) cur = "explore";
-    else { try { if (THEME_VIEW) cur = "themes"; } catch(e){} }
+    if ($("v82explore") && $("v82explore").classList.contains("on")) cur = "find";
+    else if ($("v82hub") && $("v82hub").classList.contains("on")) cur = "explore";
+    else if ($("v82notif") && $("v82notif").classList.contains("on")) cur = "notif";
+    else { try { if (THEME_VIEW || SB_VIEW) cur = "explore"; } catch(e){} }
+    try { var cal=$("calSheet"); if (cal && !cal.hidden) cur = "cal"; } catch(e){}
     var bs = nav.querySelectorAll("button");
     for (var i = 0; i < bs.length; i++) bs[i].classList.toggle("on", bs[i].dataset.v === cur);
+    refreshNav();
   }
 
-  /* ---------- back handling: first pick in the app's popstate ---------- */
+  /* ---------- back handling ---------- */
   window.v82Pop = function(){
     if (SILENT){ SILENT = false; return true; }
     if (!mq.matches) return false;
-    /* sheets opened on top (chart/calendar/me) are closed by the app first */
     var cfs = $("chartFS"); if (cfs && !cfs.hidden) return false;
     var cal = $("calSheet"); if (cal && !cal.hidden) return false;
     var me = $("meSheet"); if (me && !me.hidden) return false;
     if (closeDrawer(true)) return true;
+    if (closePicker(true)) { setActive(); return true; }
     if (closeDetail(true)) return true;
-    if (closeExplore(true)) return true;
+    if (closeNotif(true)) return true;
+    if (closeHub(true)) return true;
+    if (closeFind(true)) return true;
     return false;
   };
 
@@ -6834,12 +7149,7 @@ bootData();
     lastY = y;
   }, { passive: true });
 
-  /* ---------- feed render hook ----------
-     ⚠️ insertModules() itself mutates feedList — the observer MUST be
-     disconnected while we write, or we loop forever (observer → rAF →
-     insertModules → observer …). That churn (~6 mutations/frame) is what
-     made iOS Safari abort synthesized clicks page-wide (v82.0–v82.2 bug:
-     touches landed, click events never fired on real iPhones). */
+  /* ---------- feed render hook (observer disconnected while writing) ---------- */
   var pending = false, OBS = null;
   function onFeedMutate(){
     if (pending) return;
@@ -6847,15 +7157,8 @@ bootData();
     requestAnimationFrame(function(){
       pending = false;
       if (OBS) OBS.disconnect();
-      try {
-        applyCompact();
-        insertModules();
-        relabel();
-        setActive();
-      } finally {
-        var list = $("feedList");
-        if (OBS && list) OBS.observe(list, { childList: true });
-      }
+      try { applyCompact(); insertModules(); buildTopTabs(); relabel(); setActive(); }
+      finally { var list = $("feedList"); if (OBS && list) OBS.observe(list, { childList: true }); }
     });
   }
   function watchFeed(){
@@ -6864,16 +7167,24 @@ bootData();
     OBS.observe(list, { childList: true });
     onFeedMutate();
   }
+  /* watch intro/onboard so the nav hides during the splash */
+  function watchSplash(){
+    var io = $("intro"), ob = $("onboard");
+    var mo = new MutationObserver(refreshNav);
+    if (io) mo.observe(io, { attributes:true, attributeFilter:["hidden","class"] });
+    if (ob) mo.observe(ob, { attributes:true, attributeFilter:["hidden","class"] });
+    refreshNav();
+  }
 
-  /* ---------- debug badge (always on while in beta) ---------- */
-  if (V82ON){
+  /* ---------- debug badge (?v82debug) ---------- */
+  if (location.search.indexOf("v82debug") >= 0){
     var dbg = document.createElement("div");
     dbg.style.cssText = "position:fixed;top:70px;left:8px;right:8px;z-index:99999;background:rgba(0,0,0,.82);color:#0f0;font:10px/1.5 monospace;padding:6px 8px;border-radius:8px;pointer-events:none;white-space:pre-wrap;";
     dbg.textContent = "v82debug ready";
     document.body.appendChild(dbg);
     var dn = 0;
     var dsc = function(el){ if(!el||!el.tagName) return "?"; return el.tagName + (el.id?"#"+el.id:"") + (el.className&&el.className.baseVal===undefined?"."+String(el.className).split(" ").slice(0,2).join("."):""); };
-    document.addEventListener("touchstart", function(e){ dn++; dbg.textContent = "[" + dn + "] touch: " + dsc(e.target) + "\npoint: " + dsc(document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY)); }, { passive: true, capture: true });
+    document.addEventListener("touchstart", function(e){ dn++; dbg.textContent = "[" + dn + "] touch: " + dsc(e.target); }, { passive: true, capture: true });
     document.addEventListener("click", function(e){ dbg.textContent += "\nclick: " + dsc(e.target); }, true);
     window.addEventListener("error", function(e){ dbg.textContent += "\nERR: " + e.message; });
   }
@@ -6882,21 +7193,18 @@ bootData();
   var mqChange = function(fn){ if (mq.addEventListener) mq.addEventListener("change", fn); else if (mq.addListener) mq.addListener(fn); };
   mqChange(function(){
     if (!mq.matches){
-      /* -> desktop: put everything back before the dashboard mounts */
-      closeDrawer(true);
-      closeDetail(true);
-      closeExplore(true);
+      closeDrawer(true); closeDetail(true);
+      closeFind(true); closeHub(true); closeNotif(true); closePicker(true);
       var nav = document.querySelector("nav"); if (nav) nav.classList.remove("v82hide");
       document.body.style.overflow = "";
       var list = $("feedList");
       if (list) list.querySelectorAll(".v82mod").forEach(function(m){ m.remove(); });
-    } else {
-      onFeedMutate();
-    }
+    } else { onFeedMutate(); }
   });
 
   buildShell();
   watchFeed();
+  watchSplash();
 })();
 </script>
 </body>
