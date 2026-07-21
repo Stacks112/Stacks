@@ -1215,9 +1215,16 @@ html[data-lang="ko"] .brief-line{font-family:var(--ui-font);}
   position:relative;display:block;width:100%;text-align:left;color:var(--text);
   border:1px solid var(--accent);border-radius:16px;
   background:linear-gradient(135deg,rgba(124,147,255,.1),rgba(124,147,255,.02));
+  box-shadow:0 0 0 1px rgba(124,147,255,.45), 0 0 18px rgba(124,147,255,.32);
+  animation:todayGlow 2.8s ease-in-out infinite;
 }
+@keyframes todayGlow{
+  0%,100%{box-shadow:0 0 0 1px rgba(124,147,255,.40), 0 0 14px rgba(124,147,255,.26);}
+  50%{box-shadow:0 0 0 1px rgba(124,147,255,.75), 0 0 28px rgba(124,147,255,.55);}
+}
+@media (prefers-reduced-motion: reduce){ .today-box{animation:none;} }
 .today-main{cursor:pointer;padding:16px 40px 16px 18px;}
-.today-box:hover{box-shadow:0 10px 26px rgba(124,147,255,.18);}
+.today-box:hover{box-shadow:0 0 0 1px rgba(124,147,255,.7), 0 10px 30px rgba(124,147,255,.4);}
 .today-x{
   position:absolute;top:10px;right:10px;width:26px;height:26px;line-height:1;
   border:none;background:rgba(124,147,255,.12);color:var(--muted);border-radius:50%;
@@ -2021,7 +2028,7 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
-  --bg:#0E0F12;
+  --bg:#000000;
   --card:#141519;
   --bg-soft:#17181C;
   --text:#F2F3F7;
@@ -2029,7 +2036,7 @@ html[data-theme="dark"]{
   --line:#26272E;
   --accent:#7C93FF;
 }
-html[data-theme="dark"] nav{background:rgba(14,15,18,.86);}
+html[data-theme="dark"] nav{background:rgba(0,0,0,.86);}
 html[data-theme="dark"] .card,
 html[data-theme="dark"] .hot-card,
 html[data-theme="dark"] .watch-card{background:#141519;}
@@ -3658,8 +3665,8 @@ function makeEntSpan(text, key){
 }
 function linkifyEntities(card){
   if (!ENT_RE) return;
-  const used = new Set(); /* link each entity at most once per card */
   card.querySelectorAll("h3, .gist, .why p").forEach(container => {
+    const used = new Set(); /* link each entity once per container, so the headline and the body both index the same term */
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
       acceptNode(n){
         for (let p = n.parentNode; p && p !== container; p = p.parentNode){
@@ -7403,6 +7410,23 @@ bootData();
     if (fromPop === false) silentBack();
     return true;
   }
+  /* related-post ("함께 읽기") taps inside the detail overlay: the inline
+     onclick=goToItem only scrolls the hidden feed underneath, so on mobile
+     intercept and swap the open detail for the tapped item's detail. */
+  document.addEventListener("click", function(e){
+    if (!mq.matches) return;
+    var rl = e.target.closest && e.target.closest(".related-link");
+    if (!rl) return;
+    var dt = document.getElementById("v82detail");
+    if (!dt || !dt.classList.contains("on") || !dt.contains(rl)) return;
+    var oc = rl.getAttribute("onclick") || "";
+    var mm = oc.match(/goToItem\(['"]([^'"]+)['"]\)/);
+    if (!mm) return;
+    e.preventDefault(); e.stopPropagation();
+    var tid = mm[1];
+    closeDetail(false);
+    setTimeout(function(){ try { openCardById(tid); } catch(err){} }, 90);
+  }, true);
   function cardTap(e){
     var card = this;
     if (!mq.matches || !card.classList.contains("v82c")) return;
@@ -7460,13 +7484,14 @@ bootData();
           var mb = document.createElement("button");
           mb.className = "v82-more"; mb.type = "button";
           mb.textContent = T().more + " →";
-          mb.addEventListener("click", function(e){ e.stopPropagation(); var cc=this.closest(".card"); if(cc) openDetail(cc); });
+          mb.addEventListener("click", function(e){ e.stopPropagation(); var cc=this.closest(".card"); if(cc){ cc.classList.add("v82expanded"); cc.classList.remove("v82clip"); } });
           g.appendChild(mb);
         }
       }
-      /* mark clipped only when the gist actually overflows */
+      /* mark clipped only when the gist actually overflows (an inline-expanded
+         card stays open, Twitter-style, and is never re-clipped) */
       var gi = c.querySelector(".gist");
-      if (gi) c.classList.toggle("v82clip", gi.scrollHeight - gi.clientHeight > 6);
+      if (gi && !c.classList.contains("v82expanded")) c.classList.toggle("v82clip", gi.scrollHeight - gi.clientHeight > 6);
     }
   }
   function plainFeed(){
