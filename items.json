@@ -1,6 +1,147 @@
 {
  "items": [
   {
+   "date": "2026-07-20",
+   "id": "kobeissi-china-margin-unwind",
+   "related": [
+    "hynix",
+    "jukan-nvidia-cmx-nand-demand"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2079277296507322750",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#7C2D12",
+    "to": "#B91C1C",
+    "label": "MARGIN CALL"
+   },
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "tags": [
+    "CHINA",
+    "MARGIN DEBT",
+    "CHIP STOCKS"
+   ],
+   "title": {
+    "en": "China unwinds $37 billion in margin debt over four days as memory chip stocks lead the rout",
+    "ja": "中国、4日間で370億ドルの信用取引を解消、メモリ半導体株が下落を主導",
+    "ko": "중국, 나흘 새 마진 370억달러 청산, 메모리 반도체주가 낙폭 주도"
+   },
+   "gist": {
+    "en": "Kobeissi flags a fast-moving deleveraging story out of China: margin debt on the Shanghai and Shenzhen exchanges fell 2.8% on Friday, or $11.7 billion, to $405 billion, the largest single-day drop since January 2016. That marks a fourth straight daily decline, wiping out $36.9 billion in leveraged bets over the week. The trigger was a sharp selloff in memory chip stocks, which had drawn the heaviest margin borrowing of any sector during this year's AI-driven rally. The Star 50 index, China's tech benchmark, plunged 7.1% on Friday, its second-worst day of the year, while the broader CSI 300 fell 3.6%. Once chip stocks cracked, margin calls forced leveraged investors to sell, and that selling accelerated the broader market's slide, a classic feedback loop where borrowed money amplifies both the rally and the reversal. It's a reminder that much of this year's memory and AI-chip supercycle enthusiasm, in China as much as in Korea or the US, has been financed with leverage rather than cash, and that leverage cuts both ways. For a market that's been pricing HBM and NAND names for years of shortage-driven pricing power, a deleveraging shock is a live test of how much of the rally was real demand versus borrowed conviction.",
+    "ja": "コベイシが中国発のデレバレッジという速い展開を捉えた。金曜日、上海・深セン取引所の信用取引残高は2.8%、117億ドル減の4,050億ドルとなり、これは2016年1月以来最大の1日の下げ幅だ。これで4日連続の減少となり、1週間で解消されたレバレッジ・ポジションは369億ドルに達した。引き金となったのはメモリ半導体株の急落だ。今年のAI相場の間、最も多くの信用取引を集めたセクターがまさに半導体だったからだ。中国のテック指数STAR50は金曜日だけで7.1%急落し、今年2番目に悪い1日となり、より広いCSI300も3.6%下げた。半導体株が崩れるとマージンコールがレバレッジ投資家の売りを強制し、その売りが市場全体の下落をさらに加速させた。借りた資金が上昇も下落も同じように増幅させる典型的なフィードバックループだ。これは韓国であれ米国であれ中国であれ、今年のメモリ・AI半導体スーパーサイクルへの熱狂のかなりの部分が現金ではなくレバレッジで賄われていたことを示しており、レバレッジは両方向に効くということを改めて突きつける。HBMやNAND銘柄を何年分もの品薄前提の価格決定力で評価してきた市場にとって、今回のデレバレッジ・ショックは、この相場が本物の需要だったのか、それとも借り物の確信だったのかを分ける実際の試金石だ。",
+    "ko": "코베이시가 중국발 디레버리징 이야기를 빠르게 포착했다. 금요일 상하이·선전 거래소의 신용융자 잔고가 2.8%, 117억달러 줄어든 4,050억달러로 마감했는데 이는 2016년 1월 이후 최대 일일 낙폭이다. 이걸로 나흘 연속 감소가 이어졌고, 한 주 동안 청산된 레버리지 베팅만 369억달러에 달한다. 방아쇠는 메모리 반도체주의 급락이었다. 올해 AI발 랠리 기간 동안 가장 많은 신용융자를 끌어모은 섹터가 바로 반도체였기 때문이다. 중국 기술주 지수인 STAR50은 금요일 하루 만에 7.1% 급락해 올해 두 번째로 나쁜 하루를 기록했고, 더 넓은 CSI300도 3.6% 빠졌다. 반도체주가 무너지자 마진콜이 레버리지 투자자들의 매도를 강제했고, 그 매도가 다시 전체 시장의 하락을 가속시켰다. 빌린 돈이 상승과 하락을 둘 다 증폭시키는 전형적인 되먹임 구조다. 이는 한국이든 미국이든 중국이든, 올해 메모리·AI반도체 슈퍼사이클에 대한 열기의 상당 부분이 현금이 아니라 레버리지로 조달됐다는 걸 보여주는 신호이며, 레버리지는 양쪽 방향 모두로 작동한다는 걸 다시 일깨운다. HBM과 낸드 종목들을 몇 년 치 품귀 기반 가격결정력으로 밸류에이션해온 시장 입장에서, 이번 디레버리징 충격은 이 랠리가 진짜 수요였는지 빌린 확신이었는지를 가르는 실제 시험대다."
+   },
+   "why": {
+    "en": "Leverage that inflated the AI chip trade in China can unwind just as fast, and margin calls don't care about your investment thesis.",
+    "ja": "中国のAI半導体相場を膨らませたレバレッジは同じ速さで解消され得り、マージンコールは投資ロジックを考慮しない。",
+    "ko": "중국 AI 반도체 랠리를 부풀렸던 레버리지는 그만큼 빠르게 풀릴 수 있고, 마진콜은 투자 논리를 봐주지 않는다."
+   },
+   "ask": {
+    "en": "A healthy shakeout of excess leverage, or the first crack in this year's AI chip supercycle story?",
+    "ja": "過剰レバレッジを洗い流す健全な調整か、それとも今年のAI半導体スーパーサイクルという物語の最初の亀裂か?",
+    "ko": "과도한 레버리지를 씻어내는 건강한 조정일까, 아니면 올해 AI 반도체 슈퍼사이클 서사의 첫 균열일까?"
+   },
+   "stance": "bear"
+  },
+  {
+   "date": "2026-07-20",
+   "id": "kobeissi-iran-ceasefire-mediation",
+   "series": "oil-geopolitics",
+   "related": [
+    "meru-houthi-blockade",
+    "hormuz-meru",
+    "potus-hormuz"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2079261822121857132",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#B45309",
+    "to": "#F79009",
+    "label": "CEASEFIRE"
+   },
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "tags": [
+    "IRAN",
+    "HORMUZ",
+    "CEASEFIRE"
+   ],
+   "title": {
+    "en": "Mediators push a US-Iran ceasefire as Hormuz traffic collapses to 10 ships a day",
+    "ja": "ホルムズ海峡の通航が1日10隻に激減、仲介国が米・イラン停戦を推進",
+    "ko": "호르무즈 통행 하루 10척으로 붕괴, 중재자들 미-이란 휴전 추진"
+   },
+   "gist": {
+    "en": "Kobeissi cites a Wall Street Journal report that mediators, reportedly including Qatar, are working to push the US and Iran toward a new ceasefire. The concern driving the diplomacy: without a deal, the US and Iran could settle into a prolonged pattern of conflict that stays below the threshold of all-out war but keeps disrupting regional trade and energy flows indefinitely, a slow bleed rather than a resolution. The scale of the disruption is already stark. Traffic through the Strait of Hormuz, normally one of the world's busiest oil corridors, has collapsed to just 10 ships a day. Qatar has floated a 10-day ceasefire that would also lift restrictions on shipping through the strait, an attempt to cool tensions enough to let tanker traffic resume even if the underlying dispute isn't settled. Brent crude continues trading around $90 a barrel, still elevated from where it sat before this round of escalation began. This lands right on top of the Houthis' own blockade declaration against Saudi Arabia, meaning oil's two main Middle East chokepoints, Hormuz and the Red Sea, are now both compromised at the same time, leaving tankers few good options and shippers paying up for whichever bad one they choose.",
+    "ja": "コベイシがウォール・ストリート・ジャーナルを引用し、カタールなどの仲介国が米国とイランを新たな停戦へと押し進めていると伝えた。この外交を急がせている懸念はこうだ。合意がなければ、米国とイランは全面戦争の一歩手前で対立を続けながら、地域の貿易とエネルギーの流れは無期限に妨げられ続けるパターンに陥りかねない、つまり解決ではなくじわじわと出血し続ける状態だ。破壊の規模はすでに明らかだ。世界で最も混雑する原油航路の一つであるホルムズ海峡の通航量は、1日わずか10隻にまで落ち込んだ。カタールは10日間の停戦を提案しており、これには海峡の通航制限解除も含まれる、根本的な対立が解決しなくてもタンカーの往来を再開できる程度まで緊張を冷やそうという試みだ。ブレント原油は依然として1バレル90ドル前後で取引されており、今回の激化局面が始まる前より高い水準が続いている。これはフーシ派によるサウジ封鎖宣言とちょうど重なるタイミングであり、原油の二大中東チョークポイントであるホルムズと紅海が同時に危うくなっていることを意味する。タンカーにはほとんど選択肢がなく、どちらの悪い経路を選んでも割高な代償を払うことになる。",
+    "ko": "코베이시가 월스트리트저널을 인용해, 카타르 등 중재국들이 미국과 이란을 새 휴전으로 밀어붙이고 있다고 전했다. 외교전을 서두르게 만드는 우려는 이거다. 합의가 없으면 미국과 이란이 전면전 문턱 아래에서 갈등을 계속 이어가되 지역 무역과 에너지 흐름은 무기한 계속 방해받는 패턴, 즉 해결이 아니라 서서히 피 흘리는 상태로 굳어질 수 있다는 것. 이미 파괴 규모는 뚜렷하다. 세계에서 가장 붐비는 원유 항로 중 하나인 호르무즈 해협의 통행량이 하루 10척으로 붕괴했다. 카타르는 10일간의 휴전을 제안했는데 여기엔 해협 통행 제한 해제도 포함돼 있다, 근본 분쟁이 해결되지 않더라도 유조선 통행을 재개할 만큼 긴장을 식히려는 시도다. 브렌트유는 여전히 배럴당 90달러 선에서 거래되고 있는데, 이번 격화 국면이 시작되기 전보다 여전히 높은 수준이다. 이는 후티의 사우디 봉쇄 선언과 정확히 겹치는 시점이라, 원유의 두 핵심 중동 관문인 호르무즈와 홍해가 동시에 위태로워졌다는 뜻이다. 유조선들은 선택지가 거의 없고, 어느 나쁜 경로를 택하든 웃돈을 치러야 한다."
+   },
+   "why": {
+    "en": "A ceasefire would ease the chokepoint squeeze on oil, but until it's signed, tankers are routing around two closed doors, not one.",
+    "ja": "停戦が実現すればチョークポイントの圧迫は緩和されるが、署名されるまでタンカーは閉ざされた二つの扉を同時に避けて航行しなければならない。",
+    "ko": "휴전이 성사되면 초크포인트 압박이 풀리겠지만, 서명 전까지 유조선은 닫힌 문 두 개를 동시에 피해 다녀야 한다."
+   },
+   "ask": {
+    "en": "A real off-ramp from the Hormuz standoff, or just enough of a pause to keep oil prices from spiraling before the next flare-up?",
+    "ja": "ホルムズ対峙からの本当の出口なのか、それとも次の激化までに原油価格の暴走を止めるだけの一時停止なのか?",
+    "ko": "호르무즈 대치의 진짜 출구일까, 아니면 다음 격화 전까지 유가 폭주만 막는 임시 휴지기일까?"
+   },
+   "stance": "watch"
+  },
+  {
+   "date": "2026-07-20",
+   "id": "serenity-nvda-nbis-stake",
+   "series": "ai-power",
+   "related": [
+    "serenity-neocloud-iren-arr",
+    "meru-alphabet-q2-capex-test"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2079319999915925938",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#2E5BFF",
+    "label": "NVDA STAKE"
+   },
+   "avatarImg": "serenity.jpg",
+   "tags": [
+    "NVDA",
+    "NBIS",
+    "NEOCLOUD"
+   ],
+   "title": {
+    "en": "Nvidia's 9.3% stake in Nebius comes to light, and $NBIS pops after hours",
+    "ja": "エヌビディア、ネビウスの9.3%株式保有が判明、$NBIS時間外急伸",
+    "ko": "엔비디아, 네비우스 지분 9.3% 보유 드러나, $NBIS 시간외 급등"
+   },
+   "gist": {
+    "en": "Serenity flags why Nebius ($NBIS) is popping after hours: an SEC filing disclosed that Nvidia holds a 9.3% beneficial ownership stake in the company. The position itself isn't brand new, it traces back to Nvidia's existing 1.19 million shares plus a $2 billion prefunded warrant covering roughly 21 million more, a stake Nvidia built earlier as part of its broader strategy of taking equity in the neocloud operators that rent out its GPUs. What moved the stock wasn't the size of the stake so much as the fact that it's now on paper and confirmed, a concrete reminder that Nvidia has real skin in the game at one of the more prominent neocloud names. For a stock like Nebius, whose entire pitch is that it can secure and deploy Nvidia GPUs at scale for AI customers, having Nvidia itself as a nearly 10% owner is a sentiment boost even if the economic reality hasn't changed. It reinforces the read that Nvidia is increasingly financing its own demand, not just selling chips but also owning stakes in the companies that buy and rent them out, blurring the line between supplier and customer across the AI infrastructure stack.",
+    "ja": "セレニティが、ネビウス($NBIS)が時間外で急伸した理由を指摘した。SEC開示により、エヌビディアがネビウスの9.3%の実質保有株式を持っていることが判明した。このポジション自体は新しいものではなく、エヌビディアが既存に保有する119万株に、約2,100万株をカバーする20億ドル規模のプリファンデッド・ワラントを加えたもので、エヌビディアが自社GPUを貸し出すネオクラウド企業への出資を進めてきたより大きな戦略の一部として、以前から築かれていたポジションだ。株価を動かしたのは持ち株比率の大きさそのものというより、それが今や正式な書類で確認されたという事実そのものだ、つまりエヌビディアが代表的なネオクラウド企業の一つに実際に利害関係を持っているという具体的な証拠だ。「AI顧客向けにエヌビディアのGPUを大規模に確保・展開できる」ことが事業のすべてであるネビウスのような銘柄にとって、エヌビディア自身が10%近い株主であるという事実は、経済的実態が変わらなくても心理的な好材料だ。これは、エヌビディアがチップを売るだけでなく、それを借りて貸し出す企業の株式まで保有することで自ら需要を調達しているという見方、つまり供給者と顧客の境界が曖昧になっているという解釈を裏付ける。",
+    "ko": "세레니티가 네비우스($NBIS)가 시간외에서 급등한 이유를 짚었다. SEC 공시에 따르면 엔비디아가 네비우스 지분 9.3%를 실질보유하고 있다는 사실이 드러났다. 포지션 자체는 새롭지 않다, 엔비디아가 기존에 보유한 119만주에 약 2,100만주를 커버하는 20억달러 규모의 선지급 워런트를 더한 것으로, 엔비디아가 자사 GPU를 빌려주는 네오클라우드 업체들에 지분 투자를 해온 더 큰 전략의 일부로 이전에 구축된 포지션이다. 주가를 움직인 건 지분 규모 자체라기보다, 그게 이제 공식 서류로 확인됐다는 사실 그 자체다, 즉 엔비디아가 대표적 네오클라우드 기업 하나에 실제로 이해관계를 걸고 있다는 구체적 증거다. 네비우스처럼 'AI 고객사를 위해 엔비디아 GPU를 대규모로 확보·배치할 수 있다'는 게 사업의 전부인 종목에게, 엔비디아 본인이 지분 10% 가까이를 가진 주주라는 사실은 경제적 실체가 바뀌지 않았어도 심리적으로는 호재다. 이는 엔비디아가 칩을 팔기만 하는 게 아니라 그걸 사서 빌려주는 회사들의 지분까지 보유하며 스스로 수요를 조달하고 있다는, 공급자와 고객 사이 경계가 흐려지고 있다는 해석을 뒷받침한다."
+   },
+   "why": {
+    "en": "Nvidia owning nearly a tenth of its own customer is a sentiment win for Nebius, but it's also a sign Nvidia is financing its own demand curve.",
+    "ja": "エヌビディアが自社顧客の株式を10%近く保有しているのはネビウスにとって心理的な好材料だが、同時にエヌビディア自身が需要曲線に資金を注ぎ込んでいる兆候でもある。",
+    "ko": "엔비디아가 자사 고객사 지분을 10% 가까이 보유한다는 건 네비우스엔 심리적 호재지만, 동시에 엔비디아가 스스로 수요 곡선에 자금을 대고 있다는 신호이기도 하다."
+   },
+   "ask": {
+    "en": "A vote of confidence from the chip supplier itself, or a sign that Nvidia is quietly propping up demand for its own GPUs?",
+    "ja": "チップ供給元自身による信任投票なのか、それともエヌビディアが密かに自社GPUの需要を下支えしている兆候なのか?",
+    "ko": "칩 공급사 스스로의 신뢰 표시일까, 아니면 엔비디아가 조용히 자사 GPU 수요를 떠받치고 있다는 신호일까?"
+   },
+   "stance": "bull"
+  },
+  {
    "date": "2026-07-21",
    "id": "meru-houthi-blockade",
    "series": "oil-geopolitics",
@@ -6135,6 +6276,35 @@
     "インプライド相関",
     "임플라이드 코릴레이션"
    ]
+  },
+  "마진콜": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "name": {
+    "en": "Margin Call",
+    "ko": "마진콜",
+    "ja": "マージンコール"
+   },
+   "aliases": [
+    "마진콜",
+    "margin call",
+    "마진 콜",
+    "マージンコール"
+   ],
+   "desc": {
+    "en": "A broker's demand for more cash or collateral after a leveraged position loses value.",
+    "ko": "레버리지 포지션 가치가 떨어지면 증권사가 추가 증거금이나 현금을 요구하는 것.",
+    "ja": "レバレッジ・ポジションの価値が下落した際に証券会社が追加の証拠金や現金を要求すること。"
+   },
+   "longDesc": {
+    "en": "When borrowed money funds a position and the position's value falls below a maintenance threshold, the broker demands the investor top up cash or securities, or else the broker force-sells the position. Because the sale itself pushes prices lower, margin calls can cascade into a feedback loop that turns an ordinary selloff into a sharper, faster one.",
+    "ko": "빌린 돈으로 만든 포지션의 가치가 유지증거금 기준 아래로 떨어지면, 증권사는 투자자에게 현금이나 증권을 추가로 채워 넣으라고 요구하고, 그러지 못하면 강제로 포지션을 매도한다. 이 매도 자체가 가격을 더 끌어내리기 때문에, 마진콜은 되먹임 구조로 번져 평범한 조정을 더 가파르고 빠른 급락으로 바꿔놓을 수 있다.",
+    "ja": "借入資金で作ったポジションの価値が維持証拠金の基準を下回ると、証券会社は投資家に現金や証券の追加差し入れを要求し、応じられなければポジションを強制的に売却する。この売却自体が価格をさらに押し下げるため、マージンコールは連鎖して、通常の調整をより急で速い急落に変えることがある。"
+   }
   }
  }
 }
