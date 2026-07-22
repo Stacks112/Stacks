@@ -343,6 +343,14 @@ def page_html(item, ent_links=None, og_img=None):
         ent_html = f'<nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips">{chips}</div></nav>'
 
     img_url = BASE + "og/" + iid + ".png" if og_img else ""
+    # Recommended NewsArticle fields for richer Google results:
+    #   image  -> the article's OG card (enables a large thumbnail in Search/News)
+    #   author.url -> the author's X profile, when the avatar is an X-handle avatar
+    if img_url:
+        ld["image"] = img_url
+    _m = re.search(r"unavatar\.io/twitter/([A-Za-z0-9_]+)", item.get("avatarImg", "") or "")
+    if _m:
+        ld["author"]["url"] = "https://x.com/" + _m.group(1)
     og_img_tags = (
         f'<meta property="og:image" content="{E(img_url)}">'
         f'<meta property="og:image:width" content="1200">'
