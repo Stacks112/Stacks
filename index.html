@@ -6,20 +6,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FFFFFF">
 <title>Stacks: The world's best investing reads, in your language</title>
-<meta name="description" content="Sharp investment writing from around the world, summarized in your language, with a take. Curated by The Infrastructure Thesis.">
-<meta property="og:title" content="Stacks: The world's best investing reads, in your language">
-<meta property="og:description" content="Sharp investment writing from around the world, summarized in your language, with a take.">
+<meta id="metaDesc" name="description" content="Sharp investment writing from around the world, summarized in your language, with a take. Curated by The Infrastructure Thesis.">
+<meta id="ogTitle" property="og:title" content="Stacks: The world's best investing reads, in your language">
+<meta id="ogDesc" property="og:description" content="Sharp investment writing from around the world, summarized in your language, with a take.">
 <meta property="og:url" content="https://stacksdaily.com/">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://stacksdaily.com/">
+<link id="canonLink" rel="canonical" href="https://stacksdaily.com/">
 <meta name="naver-site-verification" content="7ad141a86215f13ff01bae92bd2c718fb2f564e2" />
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="manifest" href="manifest.json">
 <meta name="robots" content="index,follow">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="feed.xml">
-<link rel="icon" href="favicon-32.png" sizes="32x32">
+<!-- favicons: root .ico + 96px PNG (Google recommends >48px) so the site icon
+     shows in search results; keep URLs stable per Google's guidance -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon-96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- international targeting: let Google serve the right language version -->
+<link rel="alternate" hreflang="x-default" href="https://stacksdaily.com/">
+<link rel="alternate" hreflang="en" href="https://stacksdaily.com/">
+<link rel="alternate" hreflang="ko" href="https://stacksdaily.com/?l=ko">
+<link rel="alternate" hreflang="ja" href="https://stacksdaily.com/?l=ja">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Stacks">
@@ -160,6 +169,8 @@ const CATEGORIES = [
 const STRINGS = {
   en: {
     appName: "Stacks",
+    metaTitle: "Stacks: The world's best investing reads, in your language",
+    metaDesc: "Sharp investment writing from around the world, summarized in English, with a take. Curated by The Infrastructure Thesis.",
     heroTitle: "Reading Made Easy",
     heroSub: "The world's best investing minds, in your language.",
     heroCta: "Explore Signals",
@@ -304,6 +315,8 @@ const STRINGS = {
   },
   ko: {
     appName: "스택스",
+    metaTitle: "Stacks 스택스 — 전 세계 투자 고수의 글을 한국어로, 요약과 관점까지",
+    metaDesc: "메르·코베이시·다모다란 등 전 세계 투자 고수들의 글을 한국어로 요약하고, 강세·약세 관점까지 정리해 드립니다. 예측 적중 기록도 함께.",
     heroTitle: "읽는 투자, 쉽게",
     heroSub: "전 세계 투자 고수들의 글을, 당신의 언어로",
     heroCta: "시그널 보기",
@@ -448,6 +461,8 @@ const STRINGS = {
   },
   ja: {
     appName: "スタックス",
+    metaTitle: "Stacks スタックス — 世界の投資家の記事を日本語で、要約と視点付き",
+    metaDesc: "世界の投資家たちの記事を日本語に要約し、強気・弱気の視点まで整理。予測の的中記録も公開。",
     heroTitle: "読む投資を、かんたんに",
     heroSub: "世界の投資の達人たちの記事を、あなたの言語で。",
     heroCta: "シグナルを見る",
@@ -2440,6 +2455,23 @@ let LANG = langParam() || lsGet("stk_lang") ||
 let TAB = "all";
 
 function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsSet("stk_lang", l); closeLangMenu(); render(); }
+
+/* v83.7: keep the tab title / meta description / canonical in sync with the
+   selected language. document.title also drives the browser tab label. */
+function applyMetaLang(S){
+  if (!S) S = STRINGS[LANG] || STRINGS.en;
+  if (S.metaTitle) document.title = S.metaTitle;
+  var md = document.getElementById("metaDesc"); if (md && S.metaDesc) md.setAttribute("content", S.metaDesc);
+  var ot = document.getElementById("ogTitle"); if (ot && S.metaTitle) ot.setAttribute("content", S.metaTitle);
+  var od = document.getElementById("ogDesc"); if (od && S.metaDesc) od.setAttribute("content", S.metaDesc);
+  /* canonical: ?l=ko / ?l=ja self-reference (so hreflang alternates are valid);
+     English / no-param map to the bare root. */
+  var canon = document.getElementById("canonLink");
+  if (canon){
+    canon.setAttribute("href", (LANG === "ko") ? "https://stacksdaily.com/?l=ko"
+      : (LANG === "ja") ? "https://stacksdaily.com/?l=ja" : "https://stacksdaily.com/");
+  }
+}
 
 /* ---------------- language dropdown ----------------
    Shows only the current language (with its flag); tapping it drops
@@ -6532,6 +6564,10 @@ function render(){
   const S = STRINGS[LANG];
   document.documentElement.setAttribute("data-lang", LANG);
   document.documentElement.lang = LANG;
+  /* v83.7: localize the browser tab title + search meta per language, and
+     self-canonicalize the ?l= language URL so Google can serve the right
+     language version (paired with the <link hreflang> alternates in <head>). */
+  try { applyMetaLang(S); } catch (e) {}
   renderLangMenu();
   document.getElementById("appName").textContent = S.appName;
   document.getElementById("heroTitle").textContent = S.heroTitle;
