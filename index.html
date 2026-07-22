@@ -1109,8 +1109,7 @@ html{overscroll-behavior-y:contain;}
   }
   html.v83 .hero{display:none;}
   #v83nav{ grid-column:1; position:sticky; top:64px; height:calc(100vh - 64px);
-    display:flex; flex-direction:column; padding:6px 8px 16px; }
-  #v83nav .v83-brand{ font-weight:900; font-size:20px; letter-spacing:-.02em; padding:10px 12px; color:var(--text); }
+    display:flex; flex-direction:column; padding:14px 8px 16px; }
   #v83nav .v83-link{ display:flex; align-items:center; gap:15px; padding:10px 12px; border-radius:999px;
     font-size:15.5px; font-weight:600; color:var(--text); cursor:pointer; background:none; border:0;
     width:100%; text-align:left; font-family:inherit; transition:background .12s ease; }
@@ -1139,6 +1138,58 @@ html{overscroll-behavior-y:contain;}
   #v83rail > *{ margin:0 0 16px !important; }
   #v83rail .v83-search input{ width:100%; box-sizing:border-box; padding:11px 15px; border-radius:999px;
     border:1px solid var(--line); background:var(--bg-soft); color:var(--text); font:inherit; font-size:14px; }
+  /* v83.1: today's debate pinned to the top of the center feed */
+  html.v83 #eventBar{ display:none !important; }
+  html.v83 #v83center > #todaySec{ margin:14px 14px 4px; }
+  /* v83.1: skew trend timeline (replaces the horizontal chip rail on desktop beta) */
+  #v83rail .sktl-sub{ font-size:11.5px; color:var(--muted); margin:-2px 0 10px; }
+  #v83rail .sktl{ position:relative; padding-left:18px; }
+  #v83rail .sktl::before{ content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px; background:var(--line); border-radius:2px; }
+  #v83rail .sktl-row{ position:relative; display:block; width:100%; text-align:left; background:none; border:0; font-family:inherit;
+    color:var(--text); cursor:pointer; padding:7px 6px 7px 10px; border-radius:10px; }
+  #v83rail .sktl-row:hover{ background:var(--bg-soft); }
+  #v83rail .sktl-row::before{ content:""; position:absolute; left:-17px; top:13px; width:8px; height:8px; border-radius:50%;
+    background:var(--muted); box-shadow:0 0 0 3px var(--bg); }
+  #v83rail .sktl-row.sk-bull::before{ background:#12B76A; }
+  #v83rail .sktl-row.sk-bear::before{ background:#F04438; }
+  #v83rail .sktl-d{ font-family:var(--mono-font); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.04em; }
+  #v83rail .sktl-d .sktl-now{ color:var(--accent); font-weight:800; margin-left:6px; letter-spacing:0; }
+  #v83rail .sktl-name{ display:block; font-size:13.5px; font-weight:800; margin:2px 0 1px; }
+  #v83rail .sktl-tag{ font-size:11.5px; font-weight:700; }
+  #v83rail .sktl-row.sk-bull .sktl-tag{ color:#12B76A; }
+  #v83rail .sktl-row.sk-bear .sktl-tag{ color:#F04438; }
+  #v83rail .sktl-shift{ font-size:10.5px; color:var(--muted); margin-left:6px; font-weight:600; }
+  /* v83.1: rail mini calendar (upcoming events) */
+  #v83calSec .cal-cell{ min-height:36px; padding:3px 2px 3px; gap:2px; }
+  #v83calSec .cal-dnum{ font-size:10px; }
+  #v83calSec .cal-nav{ margin-bottom:8px; }
+  #v83calSec .cal-nav b{ font-size:13.5px; }
+  #v83calSec .cal-arrow{ width:28px; height:28px; border-radius:8px; font-size:15px; }
+  #v83calSec .cal-list-h{ margin:12px 0 4px; }
+  #v83calSec .cal-li{ padding:7px 2px; }
+  #v83calSec .cal-li-t{ font-size:12.5px; }
+  #v83calSec .ev-dday{ font-family:var(--mono-font); font-size:10px; font-weight:800; color:var(--accent); margin-left:auto; white-space:nowrap; }
+  /* v83.1: entity directory cards (기업/투자 고수/정치인 tabs) */
+  .v83dir-head{ padding:16px 14px 2px; }
+  .v83dir-head b{ font-size:18px; font-weight:800; letter-spacing:-.02em; }
+  .v83dir-head p{ font-size:12.5px; color:var(--muted); margin:4px 0 0; }
+  .v83dir{ display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:14px; }
+  .v83dc{ display:flex; flex-direction:column; text-align:left; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; overflow:hidden; cursor:pointer; padding:0; font-family:inherit; color:var(--text);
+    transition:transform .12s ease, box-shadow .12s ease; }
+  .v83dc:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.08); }
+  .v83dc-cover{ height:130px; display:flex; align-items:center; justify-content:center; background:var(--bg-soft);
+    position:relative; overflow:hidden; flex:0 0 auto; }
+  .v83dc-cover img.v83dc-logo{ width:58px; height:58px; border-radius:14px; background:#fff; padding:6px; box-sizing:content-box; }
+  .v83dc-cover img.v83dc-face{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .v83dc-cover .v83dc-init{ width:64px; height:64px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; }
+  .v83dc-body{ padding:12px 14px 14px; display:flex; flex-direction:column; gap:4px; flex:1 1 auto; }
+  .v83dc-body b{ font-size:15px; font-weight:800; letter-spacing:-.01em; line-height:1.3; }
+  .v83dc-meta{ font-family:var(--mono-font); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .v83dc-desc{ font-size:12.5px; color:var(--muted); line-height:1.55; margin:2px 0 0;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .v83dc-n{ margin-top:auto; padding-top:8px; font-size:11px; font-weight:800; color:var(--accent); }
 }
 .title-orig .badge{
   font-family:var(--mono-font);font-size:9.5px;letter-spacing:0.1em;
@@ -3023,6 +3074,8 @@ function renderSkew(){
   if(!sec||!box) return;
   var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
   if(!homeView){ sec.hidden=true; return; }
+  /* v83.1 desktop beta: trend timeline instead of horizontal chips */
+  if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83RenderSkewTrend === "function"){ v83RenderSkewTrend(sec, box, ttl); return; }
   var S=STRINGS[LANG], out=[];
   try {
     Object.keys(THEMES).forEach(function(k){ var sk=skewInfo(themeItems(k)); if(sk) out.push({kind:"theme",key:k,label:THEMES[k].label[LANG],icon:THEMES[k].icon,sk:sk}); });
@@ -4156,7 +4209,7 @@ function mountV83(){
     ["cal", V83ICONS.cal, function(){ if (typeof openCal === "function") openCal(); }],
     ["bm", V83ICONS.bm, v83Bookmarks]
   ];
-  var html = '<div class="v83-brand">Stacks</div>';
+  var html = '';
   links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
   html += '<button class="v83-cta" id="v83cta">' + v83T("join") + '</button>';
   html += '<div class="v83-spacer"></div>';
@@ -4171,6 +4224,8 @@ function mountV83(){
     wrap.insertBefore(center, feed);
     if (feed.nextSibling) wrap.insertBefore(rail, feed.nextSibling); else wrap.appendChild(rail);
     if (tabs) center.appendChild(tabs);
+    /* v83.1: today's debate pinned to the very top of the feed column */
+    var td0 = document.getElementById("todaySec"); if (td0) center.appendChild(td0);
     center.appendChild(feed);
   } else {
     wrap.appendChild(nav); wrap.appendChild(center); wrap.appendChild(rail);
@@ -4184,7 +4239,12 @@ function mountV83(){
     if (r){ r.value = this.value; r.dispatchEvent(new Event("input", { bubbles: true })); }
   });
   rail.appendChild(search);
-  ["todaySec", "skewSec", "eventBar"].forEach(function(id){ var el = document.getElementById(id); if (el) rail.appendChild(el); });
+  var sk0 = document.getElementById("skewSec"); if (sk0) rail.appendChild(sk0);
+  /* v83.1: upcoming events as an inline mini calendar (the horizontal chip
+     bar #eventBar stays in place but is hidden by CSS in the v83 shell) */
+  var calSec = document.createElement("section"); calSec.id = "v83calSec";
+  calSec.innerHTML = '<h2 class="section-title" id="v83calTitle"></h2><div id="v83calBody"></div>';
+  rail.appendChild(calSec);
   if (hotSec) rail.appendChild(hotSec);
   var ws = document.getElementById("watchSec"); if (ws) rail.appendChild(ws);
   var nl = document.getElementById("nlSec");
@@ -4192,6 +4252,8 @@ function mountV83(){
 
   document.documentElement.classList.add("v83");
   V83 = { mounted: true, nav: nav, center: center, rail: rail, homes: homes };
+  try { if (typeof v83RenderCal === "function") v83RenderCal(); } catch (e) {}
+  try { if (typeof renderSkew === "function") renderSkew(); } catch (e) {}
 }
 function unmountV83(){
   var d = V83; if (!d || !d.mounted) return;
@@ -4205,6 +4267,218 @@ function unmountV83(){
   if (d.center) d.center.remove();
   if (d.rail) d.rail.remove();
   V83 = { mounted: false };
+}
+
+/* ---------------- v83.1 additions (2026-07-22, june 지시) ----------------
+   (1) rail mini calendar replacing the horizontal event chips
+   (2) skew TREND timeline replacing the horizontal skew chips (renderSkew branches here)
+   (3) entity directory cards for the 기업/투자 고수/정치인 tabs (renderFeed branches here) */
+
+/* ---- (1) rail mini calendar ---- */
+var V83CAL = { y: null, m: null, sel: null };
+function v83CalShift(d){ V83CAL.m += d; if (V83CAL.m < 0){ V83CAL.m = 11; V83CAL.y--; } else if (V83CAL.m > 11){ V83CAL.m = 0; V83CAL.y++; } V83CAL.sel = null; v83RenderCal(); }
+function v83CalPick(dstr){ V83CAL.sel = (dstr && V83CAL.sel !== dstr) ? dstr : null; v83RenderCal(); }
+function v83RenderCal(){
+  var body = document.getElementById("v83calBody"), t = document.getElementById("v83calTitle");
+  if (!body) return;
+  var S = STRINGS[LANG], CS = CAL_STR[LANG] || CAL_STR.en, loc = calLocale();
+  if (t) t.textContent = S.eventsTitle;
+  if (V83CAL.y === null){ var dn = new Date(); V83CAL.y = dn.getFullYear(); V83CAL.m = dn.getMonth(); }
+  var first = new Date(V83CAL.y, V83CAL.m, 1), startDow = first.getDay(), dim = new Date(V83CAL.y, V83CAL.m + 1, 0).getDate();
+  var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
+  var byDay = {};
+  (typeof EVENTS !== "undefined" ? EVENTS : []).forEach(function(e){
+    var d = new Date(e.date + "T00:00:00");
+    if (d.getFullYear() === V83CAL.y && d.getMonth() === V83CAL.m){ (byDay[d.getDate()] = byDay[d.getDate()] || []).push(e); }
+  });
+  var wd = LANG === "ko" ? ["일","월","화","수","목","금","토"] : LANG === "ja" ? ["日","月","火","水","木","金","土"] : ["S","M","T","W","T","F","S"];
+  var monthLbl = new Date(V83CAL.y, V83CAL.m, 1).toLocaleDateString(loc, { year: "numeric", month: "long" });
+  var html = '<div class="cal-nav"><button class="cal-arrow" onclick="v83CalShift(-1)">‹</button><b>' + monthLbl + '</b><button class="cal-arrow" onclick="v83CalShift(1)">›</button></div>';
+  html += '<div class="cal-grid">' + wd.map(function(w){ return '<span class="cal-wd">' + w + '</span>'; }).join("");
+  for (var i = 0; i < startDow; i++) html += '<span class="cal-cell cal-empty"></span>';
+  for (var dnum = 1; dnum <= dim; dnum++){
+    var evs = byDay[dnum] || []; var cellD = new Date(V83CAL.y, V83CAL.m, dnum);
+    var isToday = cellD.getTime() === todayD.getTime();
+    var dots = evs.slice(0, 3).map(function(e){ return '<i class="cal-dot ck-' + (e.kind || "x") + '"></i>'; }).join("");
+    var dstr = V83CAL.y + "-" + String(V83CAL.m + 1).padStart(2, "0") + "-" + String(dnum).padStart(2, "0");
+    html += '<span class="cal-cell' + (isToday ? " cal-today" : "") + (evs.length ? " cal-has" : "") + (V83CAL.sel === dstr ? " cal-sel" : "") + '"'
+      + (evs.length ? ' onclick="v83CalPick(\'' + dstr + '\')"' : '')
+      + '><span class="cal-dnum">' + dnum + '</span>' + (dots ? '<span class="cal-dots">' + dots + '</span>' : '') + '</span>';
+  }
+  html += '</div>';
+  var listEvs, selLbl;
+  if (V83CAL.sel){
+    listEvs = (typeof EVENTS !== "undefined" ? EVENTS : []).filter(function(e){ return e.date === V83CAL.sel; });
+    selLbl = new Date(V83CAL.sel + "T00:00:00").toLocaleDateString(loc, { month: "long", day: "numeric", weekday: "short" });
+  } else {
+    listEvs = (typeof EVENTS !== "undefined" ? EVENTS : [])
+      .filter(function(e){ return new Date(e.date + "T00:00:00") >= todayD; })
+      .sort(function(a, b){ return a.date < b.date ? -1 : 1; }).slice(0, 5);
+    selLbl = CS.list;
+  }
+  html += '<div class="cal-list-h">' + selLbl + (V83CAL.sel ? '<button class="cal-back" onclick="v83CalPick(null)">✕ ' + CS.all + '</button>' : '') + '</div>';
+  if (!listEvs.length){ html += '<div class="cal-none">' + CS.none + '</div>'; }
+  else {
+    html += listEvs.map(function(e){
+      var d = new Date(e.date + "T00:00:00");
+      var dd = d.toLocaleDateString(loc, { month: "short", day: "numeric", weekday: "short" });
+      var days = Math.round((d - todayD) / 86400000);
+      var dday = days === 0 ? S.dToday : (days > 0 ? "D-" + days : "");
+      var lbl = (e.label && (e.label[LANG] || e.label.en)) || (e.title && (e.title[LANG] || e.title.en)) || "";
+      return '<div class="cal-li cal-li-link" onclick="evGo(\'' + e.id + '\')"><span class="cal-li-d ck-' + (e.kind || "x") + '">' + dd + '</span><span class="cal-li-t">' + esc(lbl) + '</span>' + (dday ? '<span class="ev-dday">' + dday + '</span>' : '') + '</div>';
+    }).join("");
+  }
+  body.innerHTML = html;
+}
+
+/* ---- (2) skew trend: where the crowd leaned, and where it moved next ----
+   Segments of consecutive days sharing the same dominant lean (dominant =
+   highest-agreement theme/company over the trailing 7 days as of that day).
+   Newest first; adjacent segments make the shift visible ("A였다가 → B로"). */
+function v83SkewStr(){
+  var s = {
+    ko: { sub: "최근 2주, 쏠림이 어디로 움직였는지", now: "현재", moved: "여기서 이동" },
+    en: { sub: "How the crowd's lean moved over the last 2 weeks", now: "Now", moved: "moved from here" },
+    ja: { sub: "直近2週間、偏りがどう動いたか", now: "現在", moved: "ここから移動" }
+  };
+  return s[LANG] || s.ko;
+}
+function v83SkewDominant(endStr){
+  var end = new Date(endStr + "T00:00:00"); var start = new Date(end.getTime() - 6 * 86400000);
+  var s0 = start.toISOString().slice(0, 10), e0 = endStr;
+  function inWin(i){ return i.date >= s0 && i.date <= e0; }
+  var best = null;
+  function consider(c){ if (!best || c.sk.pct > best.sk.pct || (c.sk.pct === best.sk.pct && c.sk.dir > best.sk.dir)) best = c; }
+  try {
+    Object.keys(THEMES).forEach(function(k){
+      var sk = skewInfo(themeItems(k).filter(inWin));
+      if (sk) consider({ kind: "theme", key: k, label: THEMES[k].label[LANG], icon: THEMES[k].icon, sk: sk });
+    });
+    var byEnt = {};
+    ITEMS.forEach(function(it){
+      if (!itemStance(it) || !inWin(it)) return;
+      itemEntities(it).forEach(function(e){ if (ENTITIES[e] && ENTITIES[e].kind === "company"){ (byEnt[e] = byEnt[e] || []).push(it); } });
+    });
+    Object.keys(byEnt).forEach(function(e){
+      var sk = skewInfo(byEnt[e]);
+      if (sk) consider({ kind: "ent", key: e, label: entName(e), icon: "", sk: sk });
+    });
+  } catch (e) { return null; }
+  return best;
+}
+function v83RenderSkewTrend(sec, box, ttl){
+  var S = STRINGS[LANG], T = v83SkewStr();
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var segs = [];
+  for (var d = 13; d >= 0; d--){
+    var day = new Date(today.getTime() - d * 86400000);
+    var ds = day.toISOString().slice(0, 10);
+    var c = v83SkewDominant(ds);
+    if (!c) continue;
+    var last = segs[segs.length - 1];
+    if (last && last.c.kind === c.kind && last.c.key === c.key && last.c.sk.side === c.sk.side){ last.to = ds; last.c = c; }
+    else segs.push({ from: ds, to: ds, c: c });
+  }
+  if (!segs.length){ sec.hidden = true; return; }
+  segs.reverse(); /* newest first */
+  var fmtD = function(s){ return s.slice(5).replace("-", "."); };
+  box.innerHTML = '<div class="sktl-sub">' + esc(T.sub) + '</div><div class="sktl">'
+    + segs.map(function(sg, i){
+        var c = sg.c, sideLb = c.sk.side === "bull" ? S.stanceBull : S.stanceBear, pct = Math.round(c.sk.pct * 100);
+        var oc = c.kind === "theme" ? "openTheme('" + String(c.key).replace(/'/g, "\\'") + "')" : "entityFeedView('" + String(c.key).replace(/'/g, "\\'") + "')";
+        var range = sg.from === sg.to ? fmtD(sg.from) : fmtD(sg.from) + "–" + fmtD(sg.to);
+        return '<button class="sktl-row sk-' + c.sk.side + '" onclick="' + oc + '">'
+          + '<span class="sktl-d">' + range + (i === 0 ? '<span class="sktl-now">● ' + esc(T.now) + '</span>' : '') + '</span>'
+          + '<span class="sktl-name">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
+          + '<span class="sktl-tag">' + esc(sideLb) + ' ' + pct + '% · ' + c.sk.dir + '</span>'
+          + (i < segs.length - 1 ? '<span class="sktl-shift">↑ ' + esc(T.moved) + '</span>' : '')
+          + '</button>';
+      }).join("") + '</div>';
+  if (ttl) ttl.textContent = S.skewSecTitle;
+  sec.hidden = false;
+  if (typeof track === "function") track("skew/trend");
+}
+
+/* ---- (3) entity directory: 기업/투자 고수/정치인 land on visual cards ---- */
+function v83DirTab(){
+  if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
+  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician") return null;
+  if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY) return null;
+  if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
+  if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
+  return TAB;
+}
+function v83DirStr(){
+  var s = {
+    ko: { company: "기업", investor: "투자 고수", politician: "정치인",
+          sub: "카드를 누르면 관련 글과 논쟁 보드를 볼 수 있어요.", n: "글 {n}건", empty: "아직 등록된 카드가 없어요." },
+    en: { company: "Companies", investor: "Investors", politician: "Politicians",
+          sub: "Tap a card to see its articles and the debate board.", n: "{n} articles", empty: "Nothing here yet." },
+    ja: { company: "企業", investor: "投資家", politician: "政治家",
+          sub: "カードを押すと関連記事と論争ボードが見られます。", n: "記事{n}件", empty: "まだカードがありません。" }
+  };
+  return s[LANG] || s.ko;
+}
+function renderV83Dir(list, S, kind){
+  var T = v83DirStr(), entries = [];
+  if (kind === "company"){
+    Object.keys(ENTITIES).forEach(function(k){
+      var e = ENTITIES[k]; if (!e || e.kind !== "company") return;
+      var n = ITEMS.filter(function(i){ return itemEntities(i).has(k); }).length;
+      if (!n) return; /* only companies that actually have coverage */
+      entries.push({ key: k, name: entName(k), img: e.logo ? logoUrl(e.logo) : null, imgKind: "logo",
+        meta: [(e.sector && (e.sector[LANG] || e.sector.en)) || "", e.ticker ? String(e.ticker).toUpperCase() : ""].filter(Boolean).join(" · "),
+        desc: (e.desc && (e.desc[LANG] || e.desc.en)) || "", n: n });
+    });
+  } else {
+    var srcInfo = {};
+    ITEMS.forEach(function(i){
+      var s0 = srcInfo[i.source] = srcInfo[i.source] || { cat: i.category, n: 0, avatar: null, wiki: null };
+      s0.n++;
+      if (!s0.avatar && i.avatarImg) s0.avatar = i.avatarImg;
+      if (!s0.wiki && i.wiki) s0.wiki = i.wiki;
+    });
+    Object.keys(srcInfo).forEach(function(k){
+      if (srcInfo[k].cat !== kind) return;
+      var e = ENTITIES[k] || {};
+      entries.push({ key: k, name: entName(k), img: srcInfo[k].avatar, imgKind: "face", wiki: srcInfo[k].wiki,
+        meta: (e.sector && (e.sector[LANG] || e.sector.en)) || "",
+        desc: (e.desc && (e.desc[LANG] || e.desc.en)) || "", n: srcInfo[k].n });
+    });
+  }
+  entries.sort(function(a, b){ return (b.n - a.n) || a.name.localeCompare(b.name); });
+  var head = document.createElement("div");
+  head.className = "v83dir-head";
+  head.innerHTML = '<b>' + esc(T[kind]) + '</b><p>' + esc(T.sub) + '</p>';
+  list.appendChild(head);
+  if (!entries.length){
+    var em = document.createElement("div"); em.className = "empty"; em.textContent = T.empty; list.appendChild(em); return;
+  }
+  var grid = document.createElement("div");
+  grid.className = "v83dir";
+  grid.innerHTML = entries.map(function(x){
+    var safe = String(x.key).replace(/'/g, "\\'");
+    var cover;
+    if (x.img && x.imgKind === "face") cover = '<img class="v83dc-face" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.remove()">';
+    else if (x.img) cover = '<img class="v83dc-logo" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.remove()">';
+    else cover = '<span class="v83dc-init">' + esc(initial(x.name || "?")) + '</span>';
+    return '<button class="v83dc" data-ent="' + esc(x.key) + '" onclick="entityFeedView(\'' + safe + '\')">'
+      + '<span class="v83dc-cover">' + cover + '</span>'
+      + '<span class="v83dc-body"><b>' + esc(x.name) + '</b>'
+      + (x.meta ? '<span class="v83dc-meta">' + esc(x.meta) + '</span>' : '')
+      + (x.desc ? '<p class="v83dc-desc">' + esc(x.desc) + '</p>' : '')
+      + '<span class="v83dc-n">' + T.n.replace("{n}", x.n) + '</span></span></button>';
+  }).join("");
+  list.appendChild(grid);
+  /* people without a stored avatar: try their wiki portrait asynchronously */
+  entries.forEach(function(x){
+    if (x.imgKind !== "face" || x.img || !x.wiki || typeof wikiPhoto !== "function") return;
+    wikiPhoto(x.wiki).then(function(u){
+      if (!u) return;
+      var b = grid.querySelector('.v83dc[data-ent="' + (window.CSS && CSS.escape ? CSS.escape(x.key) : x.key) + '"] .v83dc-cover');
+      if (b && !b.querySelector("img")) b.innerHTML = '<img class="v83dc-face" src="' + esc(u) + '" alt="" onerror="this.remove()">';
+    });
+  });
 }
 
 const fmt = d => { const [y,m,day] = String(d||"").slice(0,10).split("-"); return `${y}.${m}.${day}`; };
@@ -4736,6 +5010,8 @@ function renderEvents(){
         + '<span class="ev-date">' + x.ev.date.slice(5).replace("-", ".") + "</span>"
         + '<span class="ev-bell' + (al[x.ev.id] ? " on" : "") + '" role="button" tabindex="0" aria-label="alert" onclick="toggleEvtAlert(\'' + x.ev.id + '\', event)">' + svgIcon("bell") + "</span>"
         + "</span>").join("");
+  /* v83.1: keep the rail mini calendar in sync (chips are CSS-hidden in v83) */
+  try { if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83RenderCal === "function") v83RenderCal(); } catch (e) {}
 }
 /* per-event alert subscription (shared store with the v82 notif settings) */
 function evtAlerts(){ try { return (store.get("stk_notif", {}) || {}).events || {}; } catch(e){ return {}; } }
@@ -6001,6 +6277,14 @@ function renderFeed(animate){
   if (SB_VIEW){
     renderScoreboard(list, S);
     hydrateImages();
+    return;
+  }
+
+  /* v83.1 desktop beta: 기업/투자 고수/정치인 tabs land on a visual entity
+     directory (image + description cards) instead of a raw category feed */
+  if (typeof v83DirTab === "function" && v83DirTab()){
+    renderV83Dir(list, S, v83DirTab());
+    if (typeof hydrateImages === "function") hydrateImages();
     return;
   }
 
