@@ -62,12 +62,12 @@ def send(tag, title, msg, url, dry=False):
         print(f"[dry-run] would send: {tag} | {title} | {msg} | {url}")
         _summary(f"- 🧪 dry-run `{tag}`: {title}")
         return
-    secret = os.environ.get("PUSH_SECRET", "")
+    secret = os.environ.get("STACKS_NOTIFY_SECRET") or os.environ.get("PUSH_SECRET", "")
     if not secret:
-        _summary(f"- ❌ `{tag}`: **PUSH_SECRET repo secret is not set** "
+        _summary(f"- ❌ `{tag}`: **STACKS_NOTIFY_SECRET repo secret is not set** "
                   f"(Settings > Secrets and variables > Actions).")
         sys.exit(
-            "PUSH_SECRET repo secret is not set. Add it in "
+            "STACKS_NOTIFY_SECRET (or legacy PUSH_SECRET) repo secret is not set. Add it in "
             "Settings > Secrets and variables > Actions > New repository secret."
         )
     payload = {"secret": secret, "tag": tag, "title": title, "msg": msg, "url": url}
