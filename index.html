@@ -175,7 +175,7 @@ const STRINGS = {
     heroSub: "The world's best investing minds, in your language.",
     heroCta: "Explore Signals",
     introCta: "Take a look around",
-    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking", ceo:"CEO", coverage:"Where investors stand", recentTakes:"Recent takes", follow:"Follow" },
+    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking", ceo:"CEO", coverage:"Where investors stand", recentTakes:"Recent takes", follow:"Follow", featTitle:"This week’s reads", featPill:"This week" },
     install: "Add to Home Screen",
     installIOS: "To install: tap Share, then Add to Home Screen.",
     hot: "Hot this week",
@@ -322,7 +322,7 @@ const STRINGS = {
     heroSub: "전 세계 투자 고수들의 글을, 당신의 언어로",
     heroCta: "시그널 보기",
     introCta: "더 둘러보기",
-    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중", ceo:"CEO", coverage:"투자자들의 관점", recentTakes:"최근 관점", follow:"팔로우" },
+    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중", ceo:"CEO", coverage:"투자자들의 관점", recentTakes:"최근 관점", follow:"팔로우", featTitle:"이번 주 주목할 읽을거리", featPill:"이번 주" },
     install: "홈 화면에 추가",
     installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
     hot: "이번 주 핫한 읽을거리",
@@ -469,7 +469,7 @@ const STRINGS = {
     heroSub: "世界の投資の達人たちの記事を、あなたの言語で。",
     heroCta: "シグナルを見る",
     introCta: "もっと見る",
-    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中", ceo:"CEO", coverage:"投資家の見方", recentTakes:"最近の視点", follow:"フォロー" },
+    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中", ceo:"CEO", coverage:"投資家の見方", recentTakes:"最近の視点", follow:"フォロー", featTitle:"今週の注目の記事", featPill:"今週" },
     install: "ホーム画面に追加",
     installIOS: "インストールするには共有ボタンから「ホーム画面に追加」を選択してください。",
     hot: "今週の注目",
@@ -1135,6 +1135,35 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
 /* responsive — horizontal row scrolls; phones shrink a touch on small screens */
 @media (max-width:720px){ .intro-ph{--w:200px;} .intro-track{gap:22px;padding:8px 20px 14px;} }
 @media (max-height:720px){ .intro-cards{margin-top:26px;} }
+/* ---- landing sections (below the hero) ---- */
+.intro-sec{width:100%;max-width:1240px;margin:0 auto;padding:14px 0 64px;text-align:left;}
+.isec-title{font-size:clamp(23px,2.8vw,33px);font-weight:800;letter-spacing:-.03em;color:var(--text);
+  margin:0 0 18px;padding:0 clamp(20px,5vw,52px);}
+html[data-lang="ko"] .isec-title{font-family:var(--ui-font);}
+.feat-row{display:flex;gap:18px;overflow-x:auto;padding:4px clamp(20px,5vw,52px) 12px;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;}
+.feat-row::-webkit-scrollbar{display:none;}
+.feat-card{flex:0 0 auto;width:262px;aspect-ratio:1/1.1;border-radius:22px;overflow:hidden;
+  position:relative;scroll-snap-align:start;cursor:pointer;text-decoration:none;display:block;
+  background:linear-gradient(150deg,var(--cf,#1f2937),var(--ct,#0b1220));
+  box-shadow:0 14px 34px -16px rgba(15,18,30,.4);transition:transform .18s ease,box-shadow .18s ease;}
+.feat-card:hover{transform:translateY(-3px);box-shadow:0 22px 44px -18px rgba(15,18,30,.5);}
+.feat-card > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.feat-card::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.05) 58%);}
+.feat-pill{position:absolute;top:14px;left:14px;z-index:2;font-size:9.5px;font-weight:800;
+  letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:7px;
+  background:rgba(10,10,12,.5);color:#fff;backdrop-filter:blur(4px);}
+.feat-lbl{position:absolute;top:16px;right:14px;z-index:2;font-size:9px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);}
+.feat-meta{position:absolute;left:16px;right:16px;bottom:15px;z-index:2;}
+.feat-t{color:#fff;font-size:18px;font-weight:800;line-height:1.24;letter-spacing:-.02em;
+  word-break:keep-all;overflow-wrap:break-word;text-shadow:0 1px 12px rgba(0,0,0,.45);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.feat-by{display:flex;align-items:center;gap:6px;margin-top:9px;font-size:11px;font-weight:600;color:rgba(255,255,255,.85);}
+.feat-by img{width:18px;height:18px;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.2);flex:0 0 auto;}
+.feat-by .stance-pill{margin-left:auto;font-size:9px;padding:2px 8px;}
+@media (max-width:720px){ .feat-card{width:220px;} .isec-title{margin-bottom:14px;} }
 .entity-head .eh-desc{font-size:13.5px;line-height:1.62;color:var(--text);margin:12px 0 0;}
 .entity-head .eh-top{display:flex;align-items:center;gap:12px;}
 .entity-head .eh-logo{
@@ -2603,6 +2632,10 @@ footer a{color:var(--muted);}
     </div>
     <div class="intro-cards" id="introCards" aria-hidden="true"></div>
   </div>
+  <section class="intro-sec" id="featSec" hidden>
+    <h2 class="isec-title" id="featTitle"></h2>
+    <div class="feat-row" id="featRow"></div>
+  </section>
 </div>
 
 <div class="onboard" id="onboard" hidden>
@@ -7725,6 +7758,7 @@ function showIntro(){
   var tbc = document.getElementById("introTbCta"); if (tbc) tbc.innerHTML = S.introCta + " &rarr;";
   var sc = document.querySelector(".intro"); if (sc) sc.scrollTop = 0;
   try { buildIntroCards(); } catch (e) {}
+  try { buildIntroFeatured(); } catch (e) {}
   el.hidden = false;
   document.body.style.overflow = "hidden";
   return true;
@@ -7915,6 +7949,39 @@ function buildIntroCards(){
   box.innerHTML = '<div class="intro-track">' + phones.map(function(html, idx){
     return '<div class="intro-ph" style="animation-delay:' + (0.09 * idx + 0.12).toFixed(2) + 's">' + html + '</div>';
   }).join("") + '</div>';
+}
+/* leave the intro and open the tapped item */
+function introGo(id){ try { closeIntro(); } catch (e) {} try { goToItem(id); } catch (e) {}
+  return false; }
+/* v83.9d: "Featured" landing section — this week's hot reads as horizontal
+   cards (Autopilot Featured-style). Real items flagged hot. */
+function buildIntroFeatured(){
+  var sec = document.getElementById("featSec"), row = document.getElementById("featRow");
+  if (!sec || !row) return;
+  if (typeof ITEMS === "undefined" || !ITEMS.length){ sec.hidden = true; return; }
+  var S = STRINGS[LANG], PH = (S && S.ph) || {};
+  var tx = function(o){ return o ? (o[LANG] || o.en || "") : ""; };
+  var ttl = document.getElementById("featTitle");
+  if (ttl) ttl.textContent = PH.featTitle || "This week’s reads";
+  var hot = ITEMS.filter(function(i){ return i.hot && i.title; })
+    .sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 8);
+  if (!hot.length){ sec.hidden = true; return; }
+  row.innerHTML = hot.map(function(it){
+    var cov = it.cover || {}, ci = null; try { ci = coverImg(it); } catch (e) {}
+    var img = (ci && ci.url) ? '<img src="' + esc(ci.url) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '';
+    var av = it.avatarImg ? '<img src="' + esc(it.avatarImg) + '" alt="" onerror="this.style.display=\'none\'">' : '';
+    var st = itemStance(it), sm = st ? stanceMeta(st) : null;
+    var lbl = cov.label ? '<span class="feat-lbl">' + esc(cov.label) + '</span>' : '';
+    var idJs = String(it.id).replace(/'/g, "\\'");
+    return '<a class="feat-card" href="#sig-' + esc(it.id) + '" onclick="return introGo(\'' + idJs + '\')"'
+      + ' style="--cf:' + esc(cov.from || "#1f2937") + ';--ct:' + esc(cov.to || "#0b1220") + '">'
+      + img
+      + '<span class="feat-pill">' + esc(PH.featPill || "This week") + '</span>' + lbl
+      + '<div class="feat-meta"><div class="feat-t">' + esc(tx(it.title)) + '</div>'
+      +   '<div class="feat-by">' + av + '<span>' + esc(dispName(it.source)) + '</span>'
+      +   (sm ? '<span class="stance-pill sp-' + sm.key + '">' + sm.label + '</span>' : '') + '</div></div></a>';
+  }).join("");
+  sec.hidden = false;
 }
 function closeIntro(){
   const el = document.getElementById("intro");
