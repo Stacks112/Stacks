@@ -951,14 +951,38 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .entity-head .eh-name{font-size:20px;font-weight:800;letter-spacing:-.015em;}
 .entity-head .eh-sub{font-size:11px;color:var(--muted);margin-top:2px;font-family:var(--mono-font);text-transform:uppercase;letter-spacing:.06em;}
 /* ---------- intro (landing) page ---------- */
+/* v83.9b: a full scrollable landing (Autopilot-style) with a sticky top bar.
+   The overlay itself scrolls vertically; the top bar stays pinned. */
 .intro{
   position:fixed;inset:0;z-index:80;background:var(--bg);
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:24px;opacity:1;transition:opacity .4s ease;overflow:auto;
+  display:flex;flex-direction:column;text-align:center;
+  opacity:1;transition:opacity .4s ease;overflow-y:auto;overflow-x:hidden;
 }
 .intro.out{opacity:0;pointer-events:none;}
-/* v83.8: Autopilot-style landing — centered hero + fanned preview cards.
-   The app icon sits above the brand label; the headline is oversized. */
+/* sticky top bar: brand left, "look around" button right */
+.intro-topbar{
+  position:sticky;top:0;z-index:20;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px clamp(16px,4vw,40px);background:var(--bg);border-bottom:1px solid var(--line);
+}
+.itb-brand{display:flex;align-items:center;gap:9px;}
+.app-icon.itb-icon{width:30px;height:30px;border-radius:9px;box-shadow:none;margin:0;}
+.app-icon.itb-icon svg{width:18px;height:18px;}
+.itb-name{font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+.itb-cta{
+  border:0;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:700;white-space:nowrap;
+  padding:9px 18px;border-radius:999px;background:var(--black);color:#fff;transition:opacity .15s;
+}
+.itb-cta:hover{opacity:.85;}
+html[data-theme="dark"] .itb-cta{background:#fff;color:#111214;}
+html[data-lang="ko"] .itb-name,html[data-lang="ko"] .itb-cta{font-family:var(--ui-font);}
+/* hero fills the first screen; sits between the bar and (future) sections */
+.intro-hero{
+  flex:0 0 auto;min-height:calc(100vh - 56px);width:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:28px 24px 44px;
+}
+/* v83.9: centered hero — app icon above brand label, oversized headline. */
 .intro-box{max-width:920px;width:100%;}
 .intro-box .app-icon{margin:0 auto 14px;}
 .intro-box .app-name{font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text);margin-bottom:22px;}
@@ -966,27 +990,29 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .intro-sub{font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:52ch;margin:0 auto 28px;line-height:1.55;}
 .intro-cta{border:0;cursor:pointer;font-family:inherit;font-size:15px;padding:15px 30px;}
 html[data-lang="ko"] .intro-box{font-family:var(--ui-font);}
-/* v83.9: Autopilot-style device mockups — large realistic iPhone frames,
-   each showing a DISTINCT Stacks screen, fanned and overlapping. Screens use
-   fixed colors (not theme vars) so they read like real product screenshots
-   in both light and dark app themes. */
-.intro-cards{display:flex;justify-content:center;align-items:flex-start;
-  margin-top:42px;pointer-events:none;min-height:300px;perspective:1900px;}
+/* v83.9b: Autopilot-style device mockups — large realistic iPhone frames,
+   each a DISTINCT Stacks screen, laid out in a HORIZONTAL row (swipe/scroll),
+   not a fan. Screens use fixed colors (not theme vars) so they read like real
+   product screenshots in both light and dark app themes. */
+.intro-cards{width:100%;overflow-x:auto;overflow-y:hidden;margin-top:40px;
+  scrollbar-width:none;-ms-overflow-style:none;pointer-events:auto;}
+.intro-cards::-webkit-scrollbar{display:none;}
+.intro-track{display:flex;gap:20px;width:max-content;margin:0 auto;
+  padding:8px 24px 16px;scroll-snap-type:x mandatory;}
 .intro-ph{
-  --w:214px;--r:0deg;--ty:0px;
-  position:relative;width:var(--w);flex:0 0 auto;z-index:1;
+  --w:212px;
+  position:relative;width:var(--w);flex:0 0 auto;scroll-snap-align:center;
   border-radius:30px;padding:6px;
   background:linear-gradient(158deg,#3a3d44 0%,#0c0d10 62%,#000 100%);
-  box-shadow:0 36px 60px -20px rgba(15,18,30,.45),0 12px 24px -14px rgba(15,18,30,.34),
+  box-shadow:0 34px 58px -22px rgba(15,18,30,.4),0 10px 22px -14px rgba(15,18,30,.3),
     inset 0 0 0 1px rgba(255,255,255,.06);
-  transform-origin:bottom center;transform:translateY(var(--ty)) rotate(var(--r));
-  opacity:0;animation:phIn .8s cubic-bezier(.2,.72,.18,1) both;}
-html[data-theme="dark"] .intro-ph{box-shadow:0 36px 66px -18px rgba(0,0,0,.72),
+  opacity:0;transform:translateY(30px);
+  animation:phIn .7s cubic-bezier(.2,.72,.18,1) both;}
+html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
   inset 0 0 0 1px rgba(255,255,255,.08);}
-.intro-ph:not(:first-child){margin-left:-120px;}
 @keyframes phIn{
-  from{opacity:0;transform:translateY(calc(var(--ty) + 48px)) scale(.93) rotate(var(--r));}
-  to{opacity:1;transform:translateY(var(--ty)) rotate(var(--r));}}
+  from{opacity:0;transform:translateY(30px) scale(.97);}
+  to{opacity:1;transform:translateY(0) scale(1);}}
 .ph-scr{position:relative;border-radius:25px;overflow:hidden;background:#fff;
   aspect-ratio:9/19.3;display:flex;flex-direction:column;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",var(--ui-font),sans-serif;}
@@ -1077,16 +1103,9 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 36px 66px -18px rgba(0,0,0,.72),
 .pst-badge{font-size:8px;font-weight:800;padding:2px 7px;border-radius:20px;flex:0 0 auto;}
 .pst-badge.ok{color:#087443;background:rgba(18,183,106,.13);}
 .pst-badge.pend{color:#98a2b3;background:#f2f4f7;}
-/* responsive */
-@media (max-width:940px){ .intro-ph{--w:196px;} .intro-ph:not(:first-child){margin-left:-110px;} }
-@media (max-width:720px){
-  .intro-cards{min-height:0;margin-top:32px;}
-  .intro-ph{--w:220px!important;display:none;margin-left:0;}
-  .intro-ph.ph-hero{display:block;}
-  .intro-ph.ph-hero{--r:0deg!important;--ty:0px!important;}
-}
-@media (max-height:720px){ .intro-cards{margin-top:24px;} }
-@media (max-height:600px){ .intro-cards{display:none;} }
+/* responsive — horizontal row scrolls; phones shrink a touch on small screens */
+@media (max-width:720px){ .intro-ph{--w:196px;} .intro-track{gap:16px;padding:8px 20px 14px;} }
+@media (max-height:720px){ .intro-cards{margin-top:26px;} }
 .entity-head .eh-desc{font-size:13.5px;line-height:1.62;color:var(--text);margin:12px 0 0;}
 .entity-head .eh-top{display:flex;align-items:center;gap:12px;}
 .entity-head .eh-logo{
@@ -2538,12 +2557,21 @@ footer a{color:var(--muted);}
 </div>
 
 <div class="intro" id="intro" hidden>
-  <div class="intro-box">
-    <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
-    <div class="app-name" id="introName"></div>
-    <h1 id="introTitle"></h1>
-    <p class="intro-sub" id="introSub"></p>
-    <button class="cta intro-cta" id="introCta" onclick="closeIntro()"></button>
+  <header class="intro-topbar">
+    <div class="itb-brand">
+      <span class="app-icon itb-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></span>
+      <span class="itb-name" id="introTbName"></span>
+    </div>
+    <button class="itb-cta" id="introTbCta" onclick="closeIntro()"></button>
+  </header>
+  <div class="intro-hero">
+    <div class="intro-box">
+      <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
+      <div class="app-name" id="introName"></div>
+      <h1 id="introTitle"></h1>
+      <p class="intro-sub" id="introSub"></p>
+      <button class="cta intro-cta" id="introCta" onclick="closeIntro()"></button>
+    </div>
     <div class="intro-cards" id="introCards" aria-hidden="true"></div>
   </div>
 </div>
@@ -7652,6 +7680,9 @@ function showIntro(){
   document.getElementById("introTitle").textContent = S.heroTitle;
   document.getElementById("introSub").textContent = S.heroSub;
   document.getElementById("introCta").innerHTML = S.introCta + " &rarr;";
+  var tbn = document.getElementById("introTbName"); if (tbn) tbn.textContent = S.appName;
+  var tbc = document.getElementById("introTbCta"); if (tbc) tbc.innerHTML = S.introCta + " &rarr;";
+  var sc = document.querySelector(".intro"); if (sc) sc.scrollTop = 0;
   try { buildIntroCards(); } catch (e) {}
   el.hidden = false;
   document.body.style.overflow = "hidden";
@@ -7791,18 +7822,12 @@ function buildIntroCards(){
       + '</div></div>';
   }
 
-  /* ---- assemble the fan. Lean (dark) sits center & elevated & on top;
-     Read is the mobile hero (colorful, core screen). ---- */
-  var phones = [
-    { html: scrRead(readItem),     r:-11, ty:46, z:2, hero:true },
-    { html: scrDebate(debateItem), r:-4,  ty:14, z:3 },
-    { html: scrLean(),             r:3,   ty:-2, z:5 },
-    { html: scrTrack(),            r:11,  ty:42, z:2 }
-  ];
-  box.innerHTML = phones.map(function(p, idx){
-    return '<div class="intro-ph' + (p.hero ? " ph-hero" : "") + '" style="--r:' + p.r + 'deg;--ty:' + p.ty
-      + 'px;z-index:' + p.z + ';animation-delay:' + (0.1 * idx + 0.12).toFixed(2) + 's">' + p.html + '</div>';
-  }).join("");
+  /* ---- assemble a horizontal row (Autopilot hero): Read, Lean, Debate, Track.
+     Lean (dark) sits 2nd so a colorful screen leads on each side. ---- */
+  var phones = [ scrRead(readItem), scrLean(), scrDebate(debateItem), scrTrack() ];
+  box.innerHTML = '<div class="intro-track">' + phones.map(function(html, idx){
+    return '<div class="intro-ph" style="animation-delay:' + (0.09 * idx + 0.12).toFixed(2) + 's">' + html + '</div>';
+  }).join("") + '</div>';
 }
 function closeIntro(){
   const el = document.getElementById("intro");
