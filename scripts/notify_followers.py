@@ -74,7 +74,19 @@ def send(tag, title, msg, url, dry=False):
     req = urllib.request.Request(
         ENDPOINT,
         data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            # Cloudflare's Browser Integrity Check rejects the default
+            # "Python-urllib/3.x" User-Agent with HTTP 403 (error code 1010)
+            # at the edge, before the request ever reaches the Worker — so the
+            # Worker's own secret/auth never even runs. Send a normal browser
+            # UA so the request passes the edge check.
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/125.0.0.0 Safari/537.36"
+            ),
+        },
     )
     # Always capture the response body, success or HTTP error, so the job
     # summary shows the real reason instead of an opaque traceback. Common
