@@ -175,7 +175,7 @@ const STRINGS = {
     heroSub: "The world's best investing minds, in your language.",
     heroCta: "Explore Signals",
     introCta: "Take a look around",
-    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking" },
+    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking", ceo:"CEO", coverage:"Where investors stand", recentTakes:"Recent takes", follow:"Follow" },
     install: "Add to Home Screen",
     installIOS: "To install: tap Share, then Add to Home Screen.",
     hot: "Hot this week",
@@ -322,7 +322,7 @@ const STRINGS = {
     heroSub: "전 세계 투자 고수들의 글을, 당신의 언어로",
     heroCta: "시그널 보기",
     introCta: "더 둘러보기",
-    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중" },
+    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중", ceo:"CEO", coverage:"투자자들의 관점", recentTakes:"최근 관점", follow:"팔로우" },
     install: "홈 화면에 추가",
     installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
     hot: "이번 주 핫한 읽을거리",
@@ -469,7 +469,7 @@ const STRINGS = {
     heroSub: "世界の投資の達人たちの記事を、あなたの言語で。",
     heroCta: "シグナルを見る",
     introCta: "もっと見る",
-    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中" },
+    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中", ceo:"CEO", coverage:"投資家の見方", recentTakes:"最近の視点", follow:"フォロー" },
     install: "ホーム画面に追加",
     installIOS: "インストールするには共有ボタンから「ホーム画面に追加」を選択してください。",
     hot: "今週の注目",
@@ -997,10 +997,10 @@ html[data-lang="ko"] .intro-box{font-family:var(--ui-font);}
 .intro-cards{width:100%;overflow-x:auto;overflow-y:hidden;margin-top:40px;
   scrollbar-width:none;-ms-overflow-style:none;pointer-events:auto;}
 .intro-cards::-webkit-scrollbar{display:none;}
-.intro-track{display:flex;gap:20px;width:max-content;margin:0 auto;
-  padding:8px 24px 16px;scroll-snap-type:x mandatory;}
+.intro-track{display:flex;gap:38px;width:max-content;margin:0 auto;
+  padding:8px 28px 18px;scroll-snap-type:x mandatory;}
 .intro-ph{
-  --w:212px;
+  --w:222px;
   position:relative;width:var(--w);flex:0 0 auto;scroll-snap-align:center;
   border-radius:30px;padding:6px;
   background:linear-gradient(158deg,#3a3d44 0%,#0c0d10 62%,#000 100%);
@@ -1040,15 +1040,16 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
 .psr-label{position:absolute;left:14px;top:36px;z-index:3;color:rgba(255,255,255,.92);
   font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;}
 .psr-title{position:absolute;left:14px;right:14px;bottom:13px;z-index:3;color:#fff;
-  font-size:14px;font-weight:800;line-height:1.24;letter-spacing:-.012em;text-shadow:0 1px 14px rgba(0,0,0,.4);
+  font-size:14px;font-weight:800;line-height:1.32;letter-spacing:-.012em;text-shadow:0 1px 14px rgba(0,0,0,.4);
+  word-break:keep-all;overflow-wrap:break-word;
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.psr-body{padding:12px 14px 13px;flex:1;display:flex;flex-direction:column;gap:8px;min-height:0;}
+.psr-body{padding:13px 15px 14px;flex:1;display:flex;flex-direction:column;gap:9px;min-height:0;}
 .psr-by{display:flex;align-items:center;gap:7px;}
 .psr-av{width:20px;height:20px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex:0 0 auto;}
 .psr-src{font-size:10.5px;font-weight:700;color:#111214;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.psr-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;margin-top:1px;}
-.psr-sum{font-size:10px;line-height:1.5;color:#3d4149;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.psr-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;margin-top:2px;}
+.psr-sum{font-size:10.5px;line-height:1.62;color:#3d4149;word-break:keep-all;overflow-wrap:break-word;
+  display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
 .psr-cta{margin-top:auto;background:#111214;color:#fff;text-align:center;
   font-size:11px;font-weight:700;padding:10px;border-radius:10px;}
 /* screen 2: lean (dark hero) */
@@ -1077,16 +1078,17 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
 .psd-h{display:flex;align-items:center;gap:6px;font-size:8.5px;font-weight:800;letter-spacing:.11em;
   text-transform:uppercase;color:#d92d20;}
 .psd-h::before{content:"";width:6px;height:6px;border-radius:50%;background:#d92d20;}
-.psd-q{font-size:13.5px;font-weight:800;line-height:1.34;letter-spacing:-.012em;color:#111214;
-  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.psd-q{font-size:13.5px;font-weight:800;line-height:1.46;letter-spacing:-.012em;color:#111214;
+  word-break:keep-all;overflow-wrap:break-word;
+  display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
 .psd-split{display:flex;height:32px;border-radius:10px;overflow:hidden;font-size:10.5px;font-weight:800;color:#fff;}
 .psd-split span{display:flex;align-items:center;justify-content:center;gap:4px;}
 .psd-split .dsb{background:#12b76a;flex:1;}.psd-split .dsr{background:#f04438;flex:1;}
 .psd-voices{display:flex;flex-direction:column;gap:10px;margin-top:1px;}
 .psd-v{display:flex;align-items:flex-start;gap:8px;}
 .psd-v img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex:0 0 auto;margin-top:1px;}
-.psd-v span{font-size:10px;color:#475467;line-height:1.4;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.psd-v span{font-size:10px;color:#475467;line-height:1.52;word-break:keep-all;overflow-wrap:break-word;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 /* screen 4: track record */
 .pst{background:#fff;flex:1;display:flex;flex-direction:column;gap:10px;padding:38px 15px 0;}
 .pst-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;}
@@ -1098,13 +1100,40 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
 .pst-ic{width:18px;height:18px;border-radius:6px;flex:0 0 auto;display:flex;align-items:center;
   justify-content:center;font-size:10px;font-weight:800;color:#fff;}
 .pst-ic.ok{background:#12b76a;}.pst-ic.pend{background:#eef0f3;color:#98a2b3;}
-.pst-t{flex:1;font-size:10px;font-weight:600;color:#111214;line-height:1.3;min-width:0;
+.pst-t{flex:1;font-size:10px;font-weight:600;color:#111214;line-height:1.42;min-width:0;
+  word-break:keep-all;overflow-wrap:break-word;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .pst-badge{font-size:8px;font-weight:800;padding:2px 7px;border-radius:20px;flex:0 0 auto;}
 .pst-badge.ok{color:#087443;background:rgba(18,183,106,.13);}
 .pst-badge.pend{color:#98a2b3;background:#f2f4f7;}
+/* screen 5: profile (person photo — Autopilot Pelosi-style) */
+.psp-cover{position:relative;height:54%;flex:0 0 auto;overflow:hidden;
+  background:linear-gradient(150deg,#334155,#0b1220);}
+.psp-cover img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;}
+.psp-cover::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0) 50%);}
+.psp-co{position:absolute;left:14px;top:36px;z-index:3;color:rgba(255,255,255,.92);
+  font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;}
+.psp-name{position:absolute;left:14px;right:14px;bottom:12px;z-index:3;}
+.psp-name b{display:block;color:#fff;font-size:19px;font-weight:800;letter-spacing:-.02em;
+  line-height:1.12;text-shadow:0 1px 14px rgba(0,0,0,.5);}
+.psp-name span{display:block;color:rgba(255,255,255,.84);font-size:10px;font-weight:600;margin-top:3px;}
+.psp-body{padding:12px 15px 14px;flex:1;display:flex;flex-direction:column;gap:10px;min-height:0;}
+.psp-role{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:#667085;}
+.psp-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;}
+.psp-split{display:flex;flex-direction:column;gap:6px;}
+.psp-splitbar{display:flex;height:9px;border-radius:6px;overflow:hidden;background:#eef0f3;}
+.psp-splitbar i{display:block;height:100%;}
+.psp-splitbar .sb-bull{background:#12b76a;}.psp-splitbar .sb-watch{background:#98a2b3;}.psp-splitbar .sb-bear{background:#f04438;}
+.psp-splitlb{display:flex;justify-content:space-between;font-size:9px;font-weight:700;}
+.psp-take{display:flex;align-items:flex-start;gap:8px;}
+.psp-take img{width:20px;height:20px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex:0 0 auto;margin-top:1px;}
+.psp-take span{font-size:10px;color:#475467;line-height:1.5;word-break:keep-all;overflow-wrap:break-word;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.psp-cta{margin-top:auto;background:#111214;color:#fff;text-align:center;
+  font-size:11px;font-weight:700;padding:11px;border-radius:10px;}
 /* responsive — horizontal row scrolls; phones shrink a touch on small screens */
-@media (max-width:720px){ .intro-ph{--w:196px;} .intro-track{gap:16px;padding:8px 20px 14px;} }
+@media (max-width:720px){ .intro-ph{--w:200px;} .intro-track{gap:22px;padding:8px 20px 14px;} }
 @media (max-height:720px){ .intro-cards{margin-top:26px;} }
 .entity-head .eh-desc{font-size:13.5px;line-height:1.62;color:var(--text);margin:12px 0 0;}
 .entity-head .eh-top{display:flex;align-items:center;gap:12px;}
@@ -7753,6 +7782,22 @@ function buildIntroCards(){
   /* debate voices: 2 short takes from other recent items */
   var voiceItems = recent.filter(function(i){ return i !== debateItem && (tx(i.why) || tx(i.gist)); }).slice(0, 2);
 
+  /* profile screen: feature the most-discussed company that has a real portrait
+     photo (COMPANY_FACE), headed by its CEO — e.g. NVIDIA → Jensen Huang. */
+  var CEO = { "NVIDIA":"Jensen Huang", "SK HYNIX":"Kwak Noh-jung", "TESLA":"Elon Musk",
+    "APPLE":"Tim Cook", "META":"Mark Zuckerberg", "MICROSOFT":"Satya Nadella", "AMAZON":"Andy Jassy",
+    "AMD":"Lisa Su", "OPENAI":"Sam Altman", "SAMSUNG ELECTRONICS":"Lee Jae-yong", "BERKSHIRE HATHAWAY":"Warren Buffett" };
+  var coFreq = {};
+  recent.forEach(function(i){ (i.tags || []).forEach(function(t){
+    var u = String(t).toUpperCase();
+    if (CEO[u] && (typeof COMPANY_FACE === "undefined" || COMPANY_FACE[u])) coFreq[u] = (coFreq[u] || 0) + 1;
+  }); });
+  var profCo = Object.keys(coFreq).sort(function(a, b){ return coFreq[b] - coFreq[a]; })[0] || null;
+  var profItems = profCo ? recent.filter(function(i){
+    return (i.tags || []).some(function(t){ return String(t).toUpperCase() === profCo; }); }) : [];
+  var pcnt = { bull:0, bear:0, watch:0 };
+  profItems.forEach(function(i){ var s = itemStance(i); if (s) pcnt[s]++; });
+
   /* ---- screen builders ---- */
   function scrRead(it){
     var st = itemStance(it), sm = st ? stanceMeta(st) : null, cov = it.cover || {};
@@ -7821,10 +7866,40 @@ function buildIntroCards(){
       + '<div class="pst-list">' + list + '</div>'
       + '</div></div>';
   }
+  function scrProfile(){
+    if (!profCo) return null;
+    var photo = COMPANY_FACE[profCo];
+    var name = CEO[profCo];
+    var coLabel = dispName ? profCo : profCo;
+    var pt = pcnt.bull + pcnt.bear + pcnt.watch || 1;
+    var wB = Math.round(pcnt.bull / pt * 100), wW = Math.round(pcnt.watch / pt * 100), wR = Math.max(0, 100 - wB - wW);
+    var takes = profItems.filter(function(i){ return tx(i.why) || tx(i.gist); }).slice(0, 2).map(function(i){
+      var av = i.avatarImg ? '<img src="' + esc(i.avatarImg) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+        : '<span class="psr-av" style="width:20px;height:20px"></span>';
+      return '<div class="psp-take">' + av + '<span>' + esc((tx(i.why) || tx(i.gist)).slice(0, 110)) + '</span></div>';
+    }).join("");
+    var img = photo ? '<img src="' + esc(photo) + '" alt="" onerror="this.style.display=\'none\'">' : '';
+    return '<div class="ph-scr"><div class="psp-cover">' + img + phStatus(true)
+      + '<span class="psr-back">&#8249;</span>'
+      + '<span class="psp-co">' + esc(coLabel) + '</span>'
+      + '<span class="psp-name"><b>' + esc(name) + '</b><span>' + esc(profCo) + ' &middot; ' + L("ceo", "CEO") + '</span></span>'
+      + '</div>'
+      + '<div class="psp-body">'
+      +   '<div class="psp-role">' + L("coverage", "Where investors stand") + PH_VF + '</div>'
+      +   '<div class="psp-split"><div class="psp-splitbar">'
+      +     '<i class="sb-bull" style="width:' + wB + '%"></i><i class="sb-watch" style="width:' + wW + '%"></i><i class="sb-bear" style="width:' + wR + '%"></i>'
+      +   '</div><div class="psp-splitlb"><span style="color:#087443">' + esc(S.stanceBull) + ' ' + pcnt.bull + '</span>'
+      +     '<span style="color:#667085">' + esc(S.stanceWatch) + ' ' + pcnt.watch + '</span>'
+      +     '<span style="color:#b42318">' + esc(S.stanceBear) + ' ' + pcnt.bear + '</span></div></div>'
+      +   '<div class="psp-h">' + L("recentTakes", "Recent takes") + '</div>'
+      +   takes
+      +   '<div class="psp-cta">' + L("follow", "Follow") + '</div>'
+      + '</div></div>';
+  }
 
-  /* ---- assemble a horizontal row (Autopilot hero): Read, Lean, Debate, Track.
-     Lean (dark) sits 2nd so a colorful screen leads on each side. ---- */
-  var phones = [ scrRead(readItem), scrLean(), scrDebate(debateItem), scrTrack() ];
+  /* ---- assemble a horizontal row (Autopilot hero): Read, Profile, Lean, Debate, Track.
+     Profile (person photo) sits 2nd; Lean (dark) center. Nulls filtered. ---- */
+  var phones = [ scrRead(readItem), scrProfile(), scrLean(), scrDebate(debateItem), scrTrack() ].filter(Boolean);
   box.innerHTML = '<div class="intro-track">' + phones.map(function(html, idx){
     return '<div class="intro-ph" style="animation-delay:' + (0.09 * idx + 0.12).toFixed(2) + 's">' + html + '</div>';
   }).join("") + '</div>';
