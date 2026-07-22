@@ -8675,11 +8675,11 @@ bootData();
   /* ---- beta gate: opt-in until confirmed on real iOS ----
      ?v82beta enable (persisted) · ?v82off disable · else pre-v82 (v81). */
   try {
-    if (/v82off/.test(location.search)) localStorage.removeItem("stk_v82");
-    else if (/v82beta/.test(location.search)) localStorage.setItem("stk_v82", "1");
+    if (/v82off/.test(location.search)) localStorage.setItem("stk_v82_off", "1");
+    else if (/v82beta/.test(location.search)) localStorage.removeItem("stk_v82_off");
   } catch(e){}
-  var V82ON = false;
-  try { V82ON = /v82beta/.test(location.search) || localStorage.getItem("stk_v82") === "1"; } catch(e){}
+  var V82ON = true;   /* v82 shipped as the default mobile shell — ?v82off opts out (persisted) */
+  try { V82ON = localStorage.getItem("stk_v82_off") !== "1"; } catch(e){}
   if (!V82ON){
     var offCss = document.getElementById("v82css");
     if (offCss) offCss.disabled = true;
