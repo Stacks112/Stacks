@@ -1261,6 +1261,38 @@ html{overscroll-behavior-y:contain;}
     font-family:inherit; font-size:12px; font-weight:800; color:var(--accent); cursor:pointer; }
   .v83cal-page{ padding:6px 20px 26px; }
   .v83cal-page .cal-cell{ min-height:52px; }
+  /* v83.6: 헤더 콘텐츠를 3열 그리드 폭(1240px)에 정렬 — 브랜드는 좌측 내비 끝,
+     언어 버튼은 우측 레일 끝. 바 자체 폭·높이는 그대로. 브랜드 확대. */
+  html.v83 .nav-inner{ max-width:1240px; padding:12px 16px; }
+  html.v83 .brand{ font-size:21px; gap:11px; letter-spacing:-.02em; }
+  html.v83 .brand .logo{ width:36px; height:36px; border-radius:11px; }
+  html.v83 .brand .logo svg{ width:22px; height:22px; }
+  /* v83.6: 임박 이벤트 D-day 뱃지 */
+  #v83calSec .cal-li-d{ min-width:44px; text-align:center; }
+  /* v83.6: 쏠림 페이지 — 지난주 → 지금 히어로 + 랭킹 이동 */
+  .skh{ display:flex; align-items:center; gap:12px; padding:14px 20px 4px; flex-wrap:wrap; }
+  .skh-chip{ display:flex; flex-direction:column; gap:2px; border:1.5px solid var(--line); border-radius:14px;
+    padding:10px 16px; background:var(--bg-soft); }
+  .skh-chip small{ font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .skh-chip b{ font-size:15.5px; font-weight:800; letter-spacing:-.01em; }
+  .skh-chip .skh-side{ font-size:11.5px; font-weight:800; }
+  .skh-chip.skh-now{ border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .skh-side.sk-bull{ color:#12B76A; } .skh-side.sk-bear{ color:#F04438; }
+  .skh-arr{ font-size:22px; font-weight:800; color:var(--muted); }
+  .skr{ padding:0 6px; }
+  .skr-row{ display:flex; align-items:center; gap:11px; width:100%; text-align:left; background:none; border:0;
+    border-bottom:1px solid var(--line); padding:10px 8px; cursor:pointer; font-family:inherit; color:var(--text); border-radius:8px; }
+  .skr-row:hover{ background:var(--bg-soft); }
+  .skr-rk{ font-family:var(--mono-font); font-size:13px; font-weight:800; width:22px; color:var(--muted); }
+  .skr-name{ font-size:14px; font-weight:800; letter-spacing:-.01em; }
+  .skr-side{ font-size:11.5px; font-weight:800; margin-left:2px; }
+  .skr-side.sk-bull{ color:#12B76A; } .skr-side.sk-bear{ color:#F04438; }
+  .skr-n{ font-size:11px; color:var(--muted); font-weight:700; }
+  .skr-mv{ margin-left:auto; font-family:var(--mono-font); font-size:11.5px; font-weight:800; padding:3px 9px;
+    border-radius:999px; border:1px solid var(--line); color:var(--muted); }
+  .skr-mv.up{ color:#12B76A; border-color:#12B76A; }
+  .skr-mv.dn{ color:#F04438; border-color:#F04438; }
+  .skr-mv.new{ color:var(--accent); border-color:var(--accent); }
   /* v83.3: "이번 주 핫한 읽을거리" as an X Today's-News style list */
   html.v83 #v83rail .hot-rail{ display:flex; flex-direction:column; gap:0; overflow:visible; padding:0; }
   html.v83 .hotl-row{ display:flex; flex-direction:column; gap:3px; text-align:left; background:none; border:0;
@@ -4419,13 +4451,13 @@ function v83RenderCal(){
   var html = "";
   if (!evs.length){ html = '<div class="cal-none">' + CS.none + '</div>'; }
   else {
+    /* v83.6: 날짜·요일 텍스트 대신 D-day 뱃지만 왼쪽에 (june 지시) */
     html = evs.map(function(e){
       var d = new Date(e.date + "T00:00:00");
-      var dd = d.toLocaleDateString(loc, { month: "short", day: "numeric", weekday: "short" });
       var days = Math.round((d - todayD) / 86400000);
-      var dday = days === 0 ? S.dToday : (days > 0 ? "D-" + days : "");
+      var dday = days === 0 ? S.dToday : "D-" + days;
       var lbl = (e.label && (e.label[LANG] || e.label.en)) || (e.title && (e.title[LANG] || e.title.en)) || "";
-      return '<div class="cal-li cal-li-link" onclick="evGo(\'' + e.id + '\')"><span class="cal-li-d ck-' + (e.kind || "x") + '">' + dd + '</span><span class="cal-li-t">' + esc(lbl) + '</span>' + (dday ? '<span class="ev-dday">' + dday + '</span>' : '') + '</div>';
+      return '<div class="cal-li cal-li-link" onclick="evGo(\'' + e.id + '\')"><span class="cal-li-d ck-' + (e.kind || "x") + '">' + dday + '</span><span class="cal-li-t">' + esc(lbl) + '</span></div>';
     }).join("");
   }
   html += '<button class="v83cal-more" onclick="if(typeof setTab===\'function\')setTab(\'cal\')">' + moreLbl + '</button>';
@@ -4545,16 +4577,48 @@ function v83SkewSegments(){
 function v83SkewPageStr(){
   var s = {
     ko: { sub: "최근 {d}일, 방향성 있는 글이 하루하루 어느 쪽에 쏠렸는지. 초록=강세, 빨강=약세, 노랑=엇갈림.",
-          themes: "테마별 추이", ents: "기업별 추이", flipTo: "→ {s} 전환", keep: "{s} 유지",
-          bull: "강세", bear: "약세", none: "이 기간엔 방향성 있는 글이 없어요." },
+          themes: "일별 추이 · 테마", ents: "일별 추이 · 기업", flipTo: "→ {s} 전환", keep: "{s} 유지",
+          bull: "강세", bear: "약세", none: "이 기간엔 방향성 있는 글이 없어요.",
+          lastWk: "지난주", nowLb: "지금", heroSame: "지난주에 이어 이번 주도 여기에 쏠려 있어요.",
+          heroMove: "지난주와 지금, 쏠림이 이렇게 이동했어요.", heroOnly: "지금 논쟁이 가장 뜨거운 곳이에요.",
+          rank: "쏠림 랭킹 · 이번 주 vs 지난주", rankN: "글 {n}건", mvNew: "NEW", mvKeep: "유지" },
     en: { sub: "Day by day over the last {d} days: which side directional calls leaned. Green=bull, red=bear, yellow=split.",
-          themes: "By theme", ents: "By company", flipTo: "→ flipped {s}", keep: "holding {s}",
-          bull: "bullish", bear: "bearish", none: "No directional calls in this window." },
+          themes: "Daily · themes", ents: "Daily · companies", flipTo: "→ flipped {s}", keep: "holding {s}",
+          bull: "bullish", bear: "bearish", none: "No directional calls in this window.",
+          lastWk: "Last week", nowLb: "Now", heroSame: "The crowd is still parked here.",
+          heroMove: "Where the crowd moved between last week and now.", heroOnly: "Where the debate is hottest right now.",
+          rank: "Lean ranking · this week vs last", rankN: "{n} calls", mvNew: "NEW", mvKeep: "=" },
     ja: { sub: "直近{d}日、方向性のある記事がどちらに偏ったか。緑=強気、赤=弱気、黄=交錯。",
-          themes: "テーマ別", ents: "企業別", flipTo: "→ {s}へ転換", keep: "{s}維持",
-          bull: "強気", bear: "弱気", none: "この期間、方向性のある記事はありません。" }
+          themes: "日別 · テーマ", ents: "日別 · 企業", flipTo: "→ {s}へ転換", keep: "{s}維持",
+          bull: "強気", bear: "弱気", none: "この期間、方向性のある記事はありません。",
+          lastWk: "先週", nowLb: "今", heroSame: "先週に続き今週もここに偏っています。",
+          heroMove: "先週と今、偏りはこう動きました。", heroOnly: "今、議論が最も熱い場所。",
+          rank: "偏りランキング · 今週 vs 先週", rankN: "記事{n}件", mvNew: "NEW", mvKeep: "=" }
   };
   return s[LANG] || s.ko;
+}
+/* v83.6: 한 주 창(window)에서 테마별 쏠림 세기(방향성 글 수)와 우세 편 계산 */
+function v83ThemeAttention(lo, hi){
+  var out = [];
+  try {
+    Object.keys(THEMES).forEach(function(k){
+      var t = { bull: 0, bear: 0 };
+      themeItems(k).forEach(function(it){
+        var st = itemStance(it);
+        if (st !== "bull" && st !== "bear") return;
+        if (it.date < lo || it.date > hi) return;
+        t[st]++;
+      });
+      var dir = t.bull + t.bear;
+      if (!dir) return;
+      out.push({ key: k, label: THEMES[k].label[LANG], icon: THEMES[k].icon,
+        dir: dir, bull: t.bull, bear: t.bear,
+        side: t.bull >= t.bear ? "bull" : "bear",
+        pct: Math.round(Math.max(t.bull, t.bear) / dir * 100) });
+    });
+  } catch (e) {}
+  out.sort(function(a, b){ return (b.dir - a.dir) || (b.pct - a.pct); });
+  return out;
 }
 function v83SkewRows(days){
   /* returns {themes:[row], ents:[row]}; row = {kind,key,label,icon,cells:[side|null],bull,bear} */
@@ -4613,6 +4677,56 @@ function renderV83SkewPage(list, S){
   if (!data.themes.length && !data.ents.length){
     var em = document.createElement("div"); em.className = "empty"; em.textContent = T.none; list.appendChild(em); return;
   }
+
+  /* ---- v83.6: "지난주 → 지금" 히어로 + 쏠림 랭킹 이동 (june 지시:
+     이전에 어디 있다가 지금 어디로 쏠렸는지가 한눈에) ---- */
+  try {
+    var d0 = new Date(); d0.setHours(0, 0, 0, 0);
+    var iso = function(off){ return new Date(d0.getTime() - off * 86400000).toISOString().slice(0, 10); };
+    var nowA = v83ThemeAttention(iso(6), iso(0));       /* 최근 7일 */
+    var prevA = v83ThemeAttention(iso(13), iso(7));     /* 그 전 7일 */
+    var sideLb = function(c){ return c.side === "bull" ? T.bull : T.bear; };
+    var chip = function(lb, c, now){
+      return '<span class="skh-chip' + (now ? " skh-now" : "") + '"><small>' + esc(lb) + '</small>'
+        + '<b>' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</b>'
+        + '<span class="skh-side sk-' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '% · ' + T.rankN.replace("{n}", c.dir) + '</span></span>';
+    };
+    if (nowA.length){
+      var topNow = nowA[0], topPrev = prevA.length ? prevA[0] : null;
+      var hero = document.createElement("div");
+      hero.className = "skh";
+      if (topPrev && topPrev.key !== topNow.key){
+        hero.innerHTML = chip(T.lastWk, topPrev, false) + '<span class="skh-arr">→</span>' + chip(T.nowLb, topNow, true);
+      } else {
+        hero.innerHTML = chip(T.nowLb, topNow, true);
+      }
+      var cap = document.createElement("p");
+      cap.className = "sktl-sub"; cap.style.padding = "4px 22px 0";
+      cap.textContent = topPrev ? (topPrev.key !== topNow.key ? T.heroMove : T.heroSame) : T.heroOnly;
+      list.appendChild(hero);
+      list.appendChild(cap);
+      /* 랭킹: 이번 주 top6 + 지난주 대비 순위 이동 */
+      var rk = document.createElement("div");
+      rk.className = "v83skew-page";
+      var prevIdx = {}; prevA.forEach(function(c, i){ prevIdx[c.key] = i; });
+      rk.innerHTML = '<div class="v83dir-group sktr-g">' + esc(T.rank) + '</div><div class="skr">'
+        + nowA.slice(0, 6).map(function(c, i){
+            var pi = prevIdx[c.key];
+            var mv;
+            if (pi === undefined) mv = '<span class="skr-mv new">' + esc(T.mvNew) + '</span>';
+            else if (pi > i) mv = '<span class="skr-mv up">▲' + (pi - i) + '</span>';
+            else if (pi < i) mv = '<span class="skr-mv dn">▼' + (i - pi) + '</span>';
+            else mv = '<span class="skr-mv">' + esc(T.mvKeep) + '</span>';
+            return '<button class="skr-row" onclick="openTheme(\'' + String(c.key).replace(/'/g, "\\'") + '\')">'
+              + '<span class="skr-rk">' + (i + 1) + '</span>'
+              + '<span class="skr-name">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
+              + '<span class="skr-side sk-' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span>'
+              + '<span class="skr-n">' + T.rankN.replace("{n}", c.dir) + '</span>'
+              + mv + '</button>';
+          }).join("") + '</div>';
+      list.appendChild(rk);
+    }
+  } catch (e) {}
   var half = Math.floor(days.length / 2);
   var sideOf = function(r, from, to){
     var b = 0, s = 0;
@@ -4686,6 +4800,17 @@ function v83DirStr(){
   };
   return s[LANG] || s.ko;
 }
+/* v83.6: 소스명에 @핸들이 없는 저자들의 공개 X(트위터) 계정 — 프로필 사진용.
+   (item.avatarImg가 이미 있으면 그쪽이 우선. 메르·唐鎌大輔는 공개 프로필 사진이
+   없어 이니셜 유지.) */
+var AVATAR_TW = {
+  "Doomberg": "DoombergT",
+  "Howard Marks (Oaktree)": "HowardMarksBook",
+  "Marc Rubinstein (Net Interest)": "MarcRuby",
+  "SemiAnalysis": "dylan522p",
+  "エミン・ユルマズ (Emin Yurumazu)": "yurumazu",
+  "後藤達也 (Tatsuya Goto)": "goto_finance"
+};
 function v83DirEntries(kind){
   var entries = [];
   if (kind === "company"){
@@ -4712,6 +4837,8 @@ function v83DirEntries(kind){
       /* v83.5: 트위터 계정 소스는 핸들에서 트위터 프로필 사진을 바로 가져온다
          (avatarImg가 비어 있던 인물 카드 커버 채우기 — june 지시) */
       if (!av){ var hm = String(k).match(/@([A-Za-z0-9_]{2,20})/); if (hm) av = "https://unavatar.io/twitter/" + hm[1] + "?fallback=false"; }
+      /* v83.6: 이름에 핸들이 없는 저자들의 알려진 X 계정 매핑 (june 지시) */
+      if (!av && typeof AVATAR_TW !== "undefined" && AVATAR_TW[k]) av = "https://unavatar.io/twitter/" + AVATAR_TW[k] + "?fallback=false";
       entries.push({ key: k, name: entName(k), img: av, imgKind: "face", wiki: srcInfo[k].wiki,
         meta: (e.sector && (e.sector[LANG] || e.sector.en)) || "",
         desc: (e.desc && (e.desc[LANG] || e.desc.en)) || "", n: srcInfo[k].n });
