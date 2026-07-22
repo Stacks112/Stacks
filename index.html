@@ -1141,6 +1141,7 @@ html{overscroll-behavior-y:contain;}
     border:1px solid var(--line); background:var(--bg-soft); color:var(--text); font:inherit; font-size:14px; }
   /* v83.1: today's debate pinned to the top of the center feed */
   html.v83 #eventBar{ display:none !important; }
+  html.v83 #skewSec{ display:none !important; } /* v83.4: module retired, now a menu page */
   html.v83 #v83center > #todaySec{ margin:14px 14px 4px; }
   /* v83.1: skew trend timeline (replaces the horizontal chip rail on desktop beta)
      v83.2: lives in the LEFT nav (above 캘린더) — scoped to html.v83 + nav compact overrides */
@@ -1207,6 +1208,11 @@ html{overscroll-behavior-y:contain;}
   .v83dc-n{ margin-top:auto; padding-top:8px; font-size:11px; font-weight:800; color:var(--accent); }
   .v83dir-group{ padding:16px 14px 0; font-size:12px; font-weight:800; color:var(--muted);
     letter-spacing:.08em; text-transform:uppercase; }
+  /* v83.4: "지금 쏠린 곳" full page */
+  .v83skew-page{ padding:10px 20px 26px; }
+  .v83skew-page .sktl-name{ font-size:15px; }
+  .v83skew-page .sktl-tag{ font-size:12.5px; }
+  .v83skew-page .sktl-row{ padding:10px 8px 10px 12px; }
   /* v83.3: "이번 주 핫한 읽을거리" as an X Today's-News style list */
   html.v83 #v83rail .hot-rail{ display:flex; flex-direction:column; gap:0; overflow:visible; padding:0; }
   html.v83 .hotl-row{ display:flex; flex-direction:column; gap:3px; text-align:left; background:none; border:0;
@@ -3108,10 +3114,9 @@ function receiptsStripHtml(items){
 function renderSkew(){
   var sec=document.getElementById("skewSec"), box=document.getElementById("skewBox"), ttl=document.getElementById("skewTitle");
   if(!sec||!box) return;
-  /* v83.1 desktop beta: trend timeline instead of horizontal chips.
-     v83.2: lives in the LEFT nav as a standing module, so it stays visible
-     in every view (no homeView gate). */
-  if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83RenderSkewTrend === "function"){ v83RenderSkewTrend(sec, box, ttl); return; }
+  /* v83.4: in the desktop beta the module is retired — "지금 쏠린 곳" is now
+     a left-nav menu item with its own page (TAB="skew"). */
+  if (typeof V83 !== "undefined" && V83 && V83.mounted){ sec.hidden = true; return; }
   var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
   if(!homeView){ sec.hidden=true; return; }
   var S=STRINGS[LANG], out=[];
@@ -4199,13 +4204,14 @@ var V83ICONS = {
   themes:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',
   record:'<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 4-6"/></svg>',
   cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
-  bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>'
+  bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
+  skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>'
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Browse",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
-    ja:{home:"ホーム",browse:"ピックアップ",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -4242,10 +4248,12 @@ function mountV83(){
   var center = document.createElement("div"); center.id = "v83center";
   var rail = document.createElement("aside"); rail.id = "v83rail";
 
-  /* v83.3: 투자 고수/기업/정치인은 "골라보기" 하나로 통합 (june 지시) */
+  /* v83.3: 투자 고수/기업/정치인은 "골라보기" 하나로 통합 (june 지시)
+     v83.4: "지금 쏠린 곳"도 인라인 모듈 대신 정식 메뉴 항목 (june 지시) */
   var links = [
     ["home", V83ICONS.home, function(){ if (typeof goHome === "function") goHome(); }],
     ["browse", V83ICONS.authors, function(){ if (typeof setTab === "function") setTab("browse"); }],
+    ["skew", V83ICONS.skew, function(){ if (typeof setTab === "function") setTab("skew"); }],
     ["themes", V83ICONS.themes, function(){ if (typeof openThemes === "function") openThemes(); }],
     ["record", V83ICONS.record, function(){ if (typeof openScoreboard === "function") openScoreboard(); }],
     ["cal", V83ICONS.cal, function(){ if (typeof openCal === "function") openCal(); }],
@@ -4281,10 +4289,8 @@ function mountV83(){
     if (r){ r.value = this.value; r.dispatchEvent(new Event("input", { bubbles: true })); }
   });
   rail.appendChild(search);
-  /* v83.2: "지금 쏠린 곳" trend lives in the LEFT nav, right above 캘린더 */
-  var sk0 = document.getElementById("skewSec");
-  var calLink = nav.querySelector('.v83-link[data-k="cal"]');
-  if (sk0){ if (calLink) nav.insertBefore(sk0, calLink); else rail.appendChild(sk0); }
+  /* v83.4: skewSec 인라인 모듈은 은퇴 — "지금 쏠린 곳"은 좌측 메뉴의 정식
+     항목(TAB="skew" 전용 페이지)이 됐다. 노드는 제자리에 두고 CSS로 숨김. */
   /* v83.1: upcoming events as an inline mini calendar (the horizontal chip
      bar #eventBar stays in place but is hidden by CSS in the v83 shell) */
   var calSec = document.createElement("section"); calSec.id = "v83calSec";
@@ -4312,8 +4318,8 @@ function unmountV83(){
   if (d.center) d.center.remove();
   if (d.rail) d.rail.remove();
   V83 = { mounted: false };
-  /* the pseudo "browse" tab and single-article view only exist inside v83 */
-  try { if (TAB === "browse") TAB = "all"; } catch (e) {}
+  /* the pseudo "browse"/"skew" tabs and single-article view only exist inside v83 */
+  try { if (TAB === "browse" || TAB === "skew") TAB = "all"; } catch (e) {}
   try { if (typeof V83ITEM !== "undefined") V83ITEM = null; } catch (e) {}
 }
 
@@ -4414,8 +4420,7 @@ function v83SkewDominant(endStr){
   } catch (e) { return null; }
   return best;
 }
-function v83RenderSkewTrend(sec, box, ttl){
-  var S = STRINGS[LANG], T = v83SkewStr();
+function v83SkewSegments(){
   var today = new Date(); today.setHours(0, 0, 0, 0);
   var segs = [];
   for (var d = 13; d >= 0; d--){
@@ -4427,10 +4432,24 @@ function v83RenderSkewTrend(sec, box, ttl){
     if (last && last.c.kind === c.kind && last.c.key === c.key && last.c.sk.side === c.sk.side){ last.to = ds; last.c = c; }
     else segs.push({ from: ds, to: ds, c: c });
   }
-  if (!segs.length){ sec.hidden = true; return; }
   segs.reverse(); /* newest first */
+  return segs;
+}
+/* v83.4: "지금 쏠린 곳" full page (left-nav menu item, TAB="skew") */
+function renderV83SkewPage(list, S){
+  var T = v83SkewStr();
+  var head = document.createElement("div");
+  head.className = "v83dir-head";
+  head.innerHTML = '<b>' + esc(S.skewSecTitle) + '</b><p>' + esc(T.sub) + '</p>';
+  list.appendChild(head);
+  var segs = v83SkewSegments();
+  if (!segs.length){
+    var em = document.createElement("div"); em.className = "empty"; em.textContent = S.empty; list.appendChild(em); return;
+  }
   var fmtD = function(s){ return s.slice(5).replace("-", "."); };
-  box.innerHTML = '<div class="sktl-sub">' + esc(T.sub) + '</div><div class="sktl">'
+  var wrapEl = document.createElement("div");
+  wrapEl.className = "v83skew-page";
+  wrapEl.innerHTML = '<div class="sktl">'
     + segs.map(function(sg, i){
         var c = sg.c, sideLb = c.sk.side === "bull" ? S.stanceBull : S.stanceBear, pct = Math.round(c.sk.pct * 100);
         var oc = c.kind === "theme" ? "openTheme('" + String(c.key).replace(/'/g, "\\'") + "')" : "entityFeedView('" + String(c.key).replace(/'/g, "\\'") + "')";
@@ -4442,9 +4461,8 @@ function v83RenderSkewTrend(sec, box, ttl){
           + (i < segs.length - 1 ? '<span class="sktl-shift">↑ ' + esc(T.moved) + '</span>' : '')
           + '</button>';
       }).join("") + '</div>';
-  if (ttl) ttl.textContent = S.skewSecTitle;
-  sec.hidden = false;
-  if (typeof track === "function") track("skew/trend");
+  list.appendChild(wrapEl);
+  if (typeof track === "function") track("skew/page");
 }
 
 /* ---- (2.5) v83.3: single-article page — 오늘의 토론/핫 리스트 클릭 시
@@ -4468,7 +4486,7 @@ function v83CloseItem(){ V83ITEM = null; render(); }
 /* ---- (3) entity directory: 기업/투자 고수/정치인 land on visual cards ---- */
 function v83DirTab(){
   if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
-  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician" && TAB !== "browse") return null;
+  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew") return null;
   if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
@@ -6095,8 +6113,24 @@ if (ONESIGNAL_APP_ID){
   const nb = document.getElementById("notifBtn");
   if (nb){
     nb.hidden = false;
+    /* v83.4: the bare promptPush() shows NOTHING when the user is already
+       subscribed or the browser has denied permission — the button felt dead
+       (june 보고). Give explicit feedback for those two states instead. */
     nb.onclick = () => {
-      window.OneSignalDeferred.push(os2 => { os2.Slidedown.promptPush({ force: true }); });
+      const NT = ({
+        ko: { on: "알림이 이미 켜져 있어요 ✓", off: "브라우저에서 알림이 차단돼 있어요. 주소창의 사이트 설정에서 허용해 주세요." },
+        en: { on: "Notifications are already on ✓", off: "Notifications are blocked by the browser. Allow them in the site settings." },
+        ja: { on: "通知はすでにオンです ✓", off: "ブラウザで通知がブロックされています。サイト設定で許可してください。" }
+      })[LANG] || { on: "OK ✓", off: "Blocked" };
+      window.OneSignalDeferred.push(async os2 => {
+        try {
+          const perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
+          const opted = !!(os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optedIn);
+          if (perm === "denied"){ if (typeof showToast === "function") showToast(NT.off); return; }
+          if (perm === "granted" && opted){ if (typeof showToast === "function") showToast(NT.on); return; }
+          os2.Slidedown.promptPush({ force: true });
+        } catch (e) { try { os2.Slidedown.promptPush({ force: true }); } catch (e2) {} }
+      });
     };
   }
 }
@@ -6190,6 +6224,19 @@ function renderToday(){
      column, so it should only appear on the actual home feed (전체 tab) —
      not above the 기업/정치인 directories or other category tabs. */
   if (typeof V83 !== "undefined" && V83 && V83.mounted && (TAB !== "all" || (typeof V83ITEM !== "undefined" && V83ITEM))) homeView = false;
+  /* v83.4 (전 셸 공통, june 지시): 하루에 한 번, 그날 "첫 방문"의 세션에서만
+     노출. 첫 방문 세션 안에서는 홈으로 돌아올 때마다 계속 보이지만, 같은 날
+     새로 접속하면 더 이상 보이지 않는다. */
+  let firstVisitToday = false;
+  try {
+    if (sessionStorage.getItem("stk_today_sess") === todayStr()) firstVisitToday = true;
+    else if (store.get("stk_today_seen", "") !== todayStr()){
+      firstVisitToday = true;
+      sessionStorage.setItem("stk_today_sess", todayStr());
+      store.set("stk_today_seen", todayStr());
+    }
+  } catch (e) { firstVisitToday = true; }
+  if (!firstVisitToday) homeView = false;
   const dismissed = store.get("stk_today_dismiss", "") === todayStr();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
   if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
@@ -6391,9 +6438,11 @@ function renderFeed(animate){
   }
 
   /* v83.1 desktop beta: 기업/투자 고수/정치인 tabs land on a visual entity
-     directory (image + description cards) instead of a raw category feed */
+     directory (image + description cards) instead of a raw category feed.
+     v83.4: TAB="skew"는 "지금 쏠린 곳" 전용 페이지. */
   if (typeof v83DirTab === "function" && v83DirTab()){
-    renderV83Dir(list, S, v83DirTab());
+    if (v83DirTab() === "skew") renderV83SkewPage(list, S);
+    else renderV83Dir(list, S, v83DirTab());
     if (typeof hydrateImages === "function") hydrateImages();
     return;
   }
