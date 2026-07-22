@@ -2,6 +2,140 @@
  "items": [
   {
    "date": "2026-07-22",
+   "id": "jukan-opensource-memory-multiplier",
+   "related": [
+    "jukan-memory-price-pushback",
+    "serenity-kioxia-samsung-memory-rally",
+    "hynix"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2079831926698078460",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "series": "hynix-premium",
+   "cover": {
+    "from": "#1B1035",
+    "to": "#4C1D95",
+    "label": "MEMORY MULTIPLIER"
+   },
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "tags": [
+    "MEMORY",
+    "OPEN SOURCE AI",
+    "HBM"
+   ],
+   "title": {
+    "en": "Open source AI may multiply memory demand, not shrink it",
+    "ja": "オープンソースAIはメモリ需要を減らすどころか増やすかもしれない",
+    "ko": "오픈소스 AI가 메모리 수요를 줄이는 게 아니라 늘릴 수도 있다"
+   },
+   "gist": {
+    "en": "Open source AI models could turn out to be bullish, not bearish, for memory chipmakers, according to a point BofA analyst Vivek Arya raised that Jukan is amplifying. The intuition many investors have is that cheaper open weight models mean less spending on expensive memory hardware. Arya argues the opposite. Closed models like GPT or Gemini pool global demand into a small number of massive shared data centers, so the memory footprint per user actually shrinks as usage scales. Open models work the other way: every company that self hosts the same open model has to replicate the full set of weights and build its own separate memory pool, plus a dedicated KV cache, the temporary memory that holds a model's short term notes while it is generating an answer. With context windows of 128,000 to 1 million tokens becoming normal in 2026, that cache alone can top 40 gigabytes per active session. Layer on cheap Chinese open source APIs, which are pushing more companies to self host instead of renting from a big cloud, and you get more separate deployments, not fewer. Each one needs its own high bandwidth memory. So a wave of adoption that looks like it should be memory light instead multiplies memory sockets across the industry, a dynamic that plays directly into demand for chips like SK hynix's HBM stacks.",
+    "ja": "オープンソースAIモデルが広がるほど、メモリ半導体の需要はむしろ増えるという見方が出ている。バンク・オブ・アメリカ(BofA)の半導体アナリスト、ヴィヴェク・アーリヤが示した論点を、情報発信者Jukanが Xで紹介した。多くの投資家は、安価なオープンウェイトモデルが増えれば高価なメモリハードウェアへの支出も減ると考えがちだ。アーリヤの主張はその逆だ。GPTやGeminiのようなクローズド型モデルは、世界中の需要を少数の大型データセンターにある共有HBMプールに集約して処理するため、利用が増えるほど利用者一人当たりに必要なメモリはむしろ減っていく構造になる。一方オープンソースモデルは逆の方向に動く。同じオープンモデルを自社サーバーに直接載せる、セルフホスティングする企業が1万社あれば、その1万社それぞれがモデルの重み全体を個別に複製し、さらに独自のKVキャッシュ、モデルが回答を生成する間、一時的に保持する「メモ」まで新たに用意する必要がある。2026年には12万8000から最大100万トークンという長い文脈窓が当たり前になりつつあり、このキャッシュだけでセッションあたり40ギガバイトを超えることもある。ここに安価な中国製オープンソースAPIが加わると、大手クラウドを借りるより自前でサーバーを持つ企業がさらに増え、それは個別の導入が増えることを意味し、導入ごとに広帯域メモリ(HBM)が別々に必要になる。一見メモリ使用量を減らしそうなオープンソースの普及が、逆にメモリソケット需要を何倍にも増やす格好であり、SKハイニックスのようなHBM供給企業にとって直接的な追い風となる流れだ。",
+    "ko": "오픈소스 AI 모델이 확산될수록 메모리 반도체 수요가 줄어드는 게 아니라 오히려 늘어날 수 있다는 분석이 나왔다. 뱅크오브아메리카(BofA) 반도체 애널리스트 비벡 아리아가 던진 논점을 정보매체 주칸이 X에서 소개했다. 흔히 투자자들은 값싼 오픈웨이트 모델이 늘면 비싼 메모리 하드웨어 지출도 줄어들 거라 생각한다. 아리아의 주장은 정반대다. GPT나 제미나이 같은 폐쇄형 모델은 전세계 수요를 소수의 대형 데이터센터에 있는 공유 HBM 풀로 모아 처리하기 때문에, 사용량이 늘어날수록 이용자 1인당 필요한 메모리는 오히려 줄어드는 구조다. 반면 오픈소스 모델은 정반대로 움직인다. 같은 오픈 모델을 자체 서버에 직접 얹는, 셀프호스팅하는 기업이 1만 곳이라면, 그 1만 곳 각각이 모델 가중치 전체를 따로 복제해야 하고, 각자 별도의 KV 캐시, 모델이 답을 생성하는 동안 임시로 들고 있는 메모까지 새로 갖춰야 한다. 2026년 들어 12만8000토큰에서 최대 100만 토큰짜리 긴 문맥창이 흔해지면서, 이 캐시 하나만으로도 세션당 40기가바이트를 넘길 수 있다. 여기에 값싼 중국산 오픈소스 API까지 더해지면 대형 클라우드를 빌리는 대신 직접 서버를 두는 기업이 더 늘어나는데, 이는 곧 별도 배치가 더 많아진다는 뜻이고, 배치마다 고대역폭 메모리(HBM)가 따로 필요하다. 언뜻 메모리를 덜 쓸 것 같은 오픈소스 확산이 오히려 메모리 소켓 수요를 여러 배로 불리는 셈이며, 이는 SK하이닉스 같은 HBM 공급사에 직접적인 호재로 이어지는 흐름이다."
+   },
+   "why": {
+    "en": "If this thesis holds, the bear case that cheap open models will shrink AI infrastructure spending gets flipped on its head, meaning memory demand for HBM makers could keep compounding even as model costs fall.",
+    "ja": "この見方が正しければ、安価なオープンモデルがAIインフラ投資を減らすという弱気論は逆転し、モデルコストが下がってもHBMメモリ需要は拡大し続ける可能性があるということになる。",
+    "ko": "이 논리가 맞다면 값싼 오픈소스 모델이 AI 인프라 지출을 줄일 거라는 약세론이 뒤집히는 셈이라, 모델 비용이 내려가도 HBM 메모리 수요는 계속 커질 수 있다는 뜻이다."
+   },
+   "ask": {
+    "en": "Does the self-hosting math actually multiply memory demand as open models spread, or will efficiency gains in inference eventually offset the extra footprint?",
+    "ja": "オープンモデルが広がるにつれ、セルフホスティングの計算通りメモリ需要は本当に倍増するのか、それとも推論効率の改善が増えたメモリ負担をいずれ相殺するのか。",
+    "ko": "오픈소스 모델이 늘어날수록 셀프호스팅 수학대로 메모리 수요가 정말 배가될까, 아니면 추론 효율이 개선되면서 늘어난 메모리 부담을 결국 상쇄하게 될까?"
+   },
+   "stance": "bull"
+  },
+  {
+   "date": "2026-07-21",
+   "id": "kobeissi-china-nuclear-buildout",
+   "related": [],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2079690884300296389",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#000000",
+    "to": "#CA8A04",
+    "label": "ATOMIC RACE"
+   },
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "tags": [
+    "NUCLEAR",
+    "CHINA",
+    "ENERGY"
+   ],
+   "title": {
+    "en": "China is building nuclear reactors faster than the rest of the world combined",
+    "ja": "中国は世界の他国合計より速いペースで原発を建設している",
+    "ko": "중국, 나머지 국가를 다 합친 것보다 빠르게 원전을 짓고 있다"
+   },
+   "gist": {
+    "en": "China is pulling dramatically ahead of the rest of the world in building new nuclear power plants, with 39 reactors currently under construction, more than the next 12 countries put together, according to Kobeissi. India and Russia follow with just 8 and 7 respectively, each under half of China's total. China is also building far faster: its reactors under construction have been underway for an average of only about 2.8 years, versus a global average of 5.8 years that is dragged down by chronically delayed projects like India's 22 year build and Brazil's 16 year build. The United States, by contrast, currently has no large commercial nuclear reactors under construction at all. The buildout fits a broader pattern where Beijing treats energy infrastructure as a strategic asset to be scaled quickly rather than a slow, permit heavy undertaking, and it is happening as global electricity demand from AI data centers and electrification pushes utilities everywhere to look for reliable, always on power sources. A pipeline this size, if it keeps its pace, would give China outsized influence over uranium demand, reactor technology exports and the broader nuclear supply chain for years to come, at a time when the West is still debating whether and how fast to restart its own nuclear build cycle.",
+    "ja": "中国が新規原発建設で世界の他国を圧倒的にリードしている。コベイシによると、現在中国で建設中の原子炉は39基で、これに続く12カ国を合計した数よりも多い。2位のインドと3位のロシアはそれぞれ8基、7基で、中国の半分にも満たない。スピードも際立つ。中国で建設中の原子炉は着工から平均わずか約2.8年しか経っていないのに対し、世界平均は5.8年に達する。インドの22年、ブラジルの16年という長期遅延プロジェクトが世界平均を押し上げている格好だ。一方、米国は現在建設中の大型商業原子炉が一基もない。この建設ラッシュは、北京がエネルギーインフラを許認可に時間のかかる事業ではなく、急いで規模を拡大すべき戦略資産として扱うという、おなじみのパターンと重なる。同時に、AIデータセンターや電化需要が世界の電力網を圧迫する中、各国の電力会社が安定的に稼働し続ける電源を探し求める時期とも一致する。このペースが続けば、中国は今後数年にわたりウラン需要や原発技術の輸出、原発サプライチェーン全体で圧倒的な影響力を握る一方、欧米は自国の原発再稼働のペースを巡っていまだ議論を続けている。",
+    "ko": "중국이 신규 원자력발전소 건설에서 나머지 세계를 압도적으로 앞서고 있다. 코베이시에 따르면 현재 중국이 짓고 있는 원자로는 39기로, 그 뒤를 잇는 12개국을 모두 합친 것보다 많다. 2위와 3위인 인도와 러시아는 각각 8기, 7기로 중국의 절반에도 못 미친다. 속도도 압도적이다. 중국의 건설 중인 원자로는 착공 후 평균 약 2.8년이 지났는데, 전세계 평균은 5.8년이나 걸린다. 인도의 22년, 브라질의 16년짜리 장기 지연 프로젝트들이 전세계 평균을 끌어올린 탓이다. 반면 미국은 현재 짓고 있는 대형 상업용 원자로가 단 한 기도 없다. 이런 건설 붐은 베이징이 에너지 인프라를 허가 절차에 오래 매이는 사업이 아니라 빠르게 규모를 키워야 할 전략자산으로 다루는 익숙한 패턴과 맞닿아 있다. 동시에 AI 데이터센터와 전기화 수요가 전세계 전력망을 압박하면서, 각국 전력회사들이 안정적으로 24시간 돌아가는 전원을 찾아 나서는 시점과도 맞물린다. 이 속도가 유지된다면 중국은 앞으로 수년간 우라늄 수요, 원전 기술 수출, 원전 공급망 전반에서 압도적인 영향력을 쥐게 되는 반면 서방은 여전히 자국 원전 재가동 속도를 놓고 논쟁 중이다."
+   },
+   "why": {
+    "en": "A nuclear buildout this lopsided points to who will control uranium demand and reactor exports for the next decade, and it underscores how much slower the West has been to treat baseload power as urgent even as AI driven electricity demand keeps climbing.",
+    "ja": "これほど一方的な原発建設の差は、今後10年間ウラン需要と原発輸出を誰が握るかを示す指標であり、AI由来の電力需要が伸び続ける中で欧米がベースロード電源の確保をいかに後回しにしてきたかを浮き彫りにする。",
+    "ko": "이렇게 압도적인 원전 건설 격차는 앞으로 10년간 우라늄 수요와 원전 수출을 누가 쥐게 될지를 보여주는 지표이자, AI발 전력수요가 계속 늘어나는데도 서방이 기저전원 확보를 얼마나 느리게 다뤄왔는지를 드러낸다."
+   },
+   "ask": {
+    "en": "If China keeps building reactors at this pace while the US has none under construction, does the West eventually have to fast track its own nuclear restart, or will renewables and gas fill the gap instead?",
+    "ja": "中国がこのペースで原発建設を続け、米国が一基も建設していない状況が続けば、欧米は結局自国の原発再稼働を急ぐことになるのか、それとも再生可能エネルギーとガスがその空白を埋めることになるのか。",
+    "ko": "중국이 이 속도로 원전을 계속 짓고 미국은 단 한 기도 짓지 않는 상황이 이어진다면, 서방은 결국 자국 원전 재가동을 서두르게 될까, 아니면 재생에너지와 가스가 그 공백을 메우게 될까?"
+   },
+   "stance": "watch"
+  },
+  {
+   "date": "2026-07-22",
+   "id": "kobeissi-labor-share-record-low",
+   "related": [],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2079732407708659983",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#111827",
+    "to": "#6B7280",
+    "label": "WAGE SQUEEZE"
+   },
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "tags": [
+    "LABOR SHARE",
+    "CORPORATE PROFITS",
+    "GDI"
+   ],
+   "title": {
+    "en": "Workers' share of US income falls near a century-long low",
+    "ja": "米国の労働所得比率、ほぼ100年ぶりの低水準に",
+    "ko": "미국 노동소득 비중, 거의 100년 만에 최저 수준으로"
+   },
+   "gist": {
+    "en": "Workers are taking home a shrinking slice of the US economy's income pie, and the gap is now near a century wide record. According to Kobeissi, the share of wages and salaries in Gross Domestic Income, a measure of every dollar earned across the economy including wages, corporate profits and investment income, has fallen to about 43%, close to the lowest level since records began in 1929. That share peaked near 52% in the 1940s and never dropped below 48% through the 1960s, so the current reading marks a striking break from the mid century pattern. The flip side of a shrinking labor share is a growing share going to corporate profits and investment income, which is one reason equity markets have been able to keep expanding profit margins even as consumer facing headlines about wage growth or living costs continue. It is also a structural tailwind for the argument that corporations, not households, have captured most of the gains from decades of productivity growth, automation and, more recently, AI adoption. A labor share this low, sustained over time, tends to widen wealth inequality and can eventually feed into political pressure for policy responses such as higher minimum wages, tax changes on corporate profits or renewed union activity.",
+    "ja": "米国経済で労働者が受け取る所得の取り分が、ほぼ100年ぶりの低水準まで縮小している。コベイシによると、賃金・給与が国内総所得(GDI、賃金・企業利益・投資所得をすべて合わせた経済全体の所得を測る指標)に占める比率は約43%まで下がり、統計開始の1929年以降で最低水準に近い。この比率は1940年代に約52%でピークを付け、1960年代を通じても48%を下回ったことがなかったことを踏まえると、現在の43%は中世紀のパターンとは明らかに異なる流れだ。労働所得の比率が縮む一方で、企業利益と投資所得の比率は拡大しており、これは消費者の間で賃金上昇や生活費負担への不満が続く中でも、株式市場が利益率を伸ばし続けられた理由の一つだ。また、この数十年の生産性向上や自動化、そして近年のAI導入による果実の大半を、家計ではなく企業が取り込んできたという見方を裏付ける構造的な根拠でもある。これほど低い労働所得比率が長く続けば格差はさらに広がり、最終的には最低賃金の引き上げや法人利益への課税見直し、労働組合活動の再燃といった政策的な反作用につながる可能性がある。",
+    "ko": "미국 경제에서 노동자가 가져가는 소득 몫이 거의 100년 만에 최저 수준까지 쪼그라들었다. 코베이시에 따르면 임금과 급여가 국내총소득(GDI, 임금·기업이익·투자소득을 모두 합친 경제 전체의 소득을 재는 지표)에서 차지하는 비중이 약 43%까지 떨어졌는데, 이는 관련 통계가 시작된 1929년 이후 최저 수준에 가깝다. 이 비중은 1940년대에 약 52%로 정점을 찍었고 1960년대까지도 48% 아래로 내려간 적이 없었던 걸 감안하면, 지금의 43%는 중반 세기의 패턴과는 확연히 다른 흐름이다. 노동소득 비중이 줄어드는 만큼 그 반대편에서 기업이익과 투자소득의 비중은 커지고 있는데, 이는 소비자들 사이에서 임금 상승이나 생활비 부담에 대한 불만이 이어지는 와중에도 증시가 계속 이익률을 늘려올 수 있었던 이유 중 하나다. 또한 지난 수십년간 생산성 향상과 자동화, 그리고 최근의 AI 도입으로 생긴 과실 대부분을 가계가 아니라 기업이 가져갔다는 주장에 힘을 싣는 구조적 근거이기도 하다. 이렇게 낮은 노동소득 비중이 오래 이어지면 빈부격차가 더 벌어지고, 결국 최저임금 인상이나 법인이익 관련 세제 변화, 노동조합 활동 재점화 같은 정책적 반작용으로 이어질 가능성이 있다."
+   },
+   "why": {
+    "en": "A labor share this low is a quiet explanation for why corporate earnings and stock buybacks keep setting records even when headlines about wages and affordability sound gloomy, and it is a slow burning fuse for political and regulatory risk aimed at corporate profits.",
+    "ja": "これほど低い労働所得比率は、賃金や物価に関するニュースが暗く見えても企業利益や自社株買いが最高値を更新し続ける理由を静かに説明すると同時に、企業利益を狙った政治・規制リスクをじわじわと膨らませる導火線でもある。",
+    "ko": "이렇게 낮은 노동소득 비중은 임금·물가 관련 뉴스가 우울해 보여도 기업이익과 자사주 매입이 계속 사상 최고치를 찍는 이유를 조용히 설명해주는 동시에, 기업이익을 겨냥한 정치·규제 리스크를 서서히 키우는 도화선이기도 하다."
+   },
+   "ask": {
+    "en": "Is a record low labor share simply the price of an AI driven productivity boom that will eventually lift wages too, or is it a warning sign that inequality has to be addressed before it becomes a bigger political risk for markets?",
+    "ja": "史上最低水準の労働所得比率は、いずれ賃金も押し上げるAI主導の生産性向上の対価に過ぎないのか、それとも市場にとってより大きな政治的リスクになる前に是正すべき格差の警告サインなのか。",
+    "ko": "사상 최저 수준의 노동소득 비중은 결국 임금도 끌어올릴 AI발 생산성 향상의 대가일 뿐일까, 아니면 시장에 더 큰 정치적 리스크가 되기 전에 손봐야 할 불평등의 경고 신호일까?"
+   },
+   "stance": "watch"
+  },
+  {
+   "date": "2026-07-22",
    "id": "meru-kolon-tissuegene-tgc-phase3-miss",
    "related": [],
    "source": "메르",
@@ -8085,6 +8219,60 @@
     "rare-earth magnets",
     "レアアース",
     "レアアース磁石"
+   ]
+  },
+  "VIVEK ARYA": {
+   "kind": "person",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "name": {
+    "en": "Vivek Arya",
+    "ko": "비벡 아리아",
+    "ja": "ヴィヴェク・アーリヤ"
+   },
+   "desc": {
+    "en": "Managing director and senior semiconductor research analyst at Bank of America Securities, closely watched for AI chip demand calls.",
+    "ko": "뱅크오브아메리카(BofA) 증권의 매니징 디렉터 겸 수석 반도체 리서치 애널리스트. AI 반도체 수요 전망으로 주목받는다.",
+    "ja": "バンク・オブ・アメリカ証券のマネジングディレクター件シニア半導体リサーチアナリスト。AI半導体需要見通しで注目される。"
+   },
+   "url": "https://www.tipranks.com/experts/analysts/vivek-arya",
+   "aliases": [
+    "Vivek Arya",
+    "비벡 아리아",
+    "아리아",
+    "ヴィヴェク・アーリヤ",
+    "アーリヤ"
+   ]
+  },
+  "GDI": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "name": {
+    "en": "GDI",
+    "ko": "GDI(국내총소득)",
+    "ja": "GDI(国内総所得)"
+   },
+   "desc": {
+    "en": "Measures all income earned in the economy; an alternate lens on GDP.",
+    "ko": "경제 전체에서 벌어들인 소득을 재는 지표로, GDP를 소득 쪽에서 보는 지표다.",
+    "ja": "経済全体で稼いだ所得を測る指標で、GDPを所得側から見た指標。"
+   },
+   "longDesc": {
+    "en": "Gross Domestic Income (GDI) totals all income generated in an economy, wages, corporate profits and investment income, and should in theory equal GDP since one side's spending is another side's income. Splitting GDI into wage share versus profit share shows who is capturing the gains from economic growth, which is why investors watch the wage share as a signal for corporate margin durability and inequality trends.",
+    "ko": "국내총소득(GDI)은 임금, 기업이익, 투자소득 등 한 경제에서 벌어들인 모든 소득을 합친 지표로, 이론상 GDP(지출 측면 집계)와 같아야 한다. GDI를 임금 몫과 이익 몫으로 나눠 보면 경제성장의 과실을 누가 가져가는지가 드러나기 때문에, 투자자들은 임금 비중을 기업 마진의 지속가능성과 불평등 흐름을 가늠하는 신호로 지켜본다.",
+    "ja": "国内総所得(GDI)は賃金、企業利益、投資所得など経済全体で生まれたすべての所得を合計した指標で、理論上はGDP(支出側の集計)と一致するはずだ。GDIを賃金の取り分と利益の取り分に分けて見ると、経済成長の果実を誰が得ているかが分かるため、投資家は賃金比率を企業マージンの持続性や格差動向を測るシグナルとして注視している。"
+   },
+   "aliases": [
+    "GDI",
+    "국내총소득",
+    "国内総所得"
    ]
   }
  }
