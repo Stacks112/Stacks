@@ -183,7 +183,7 @@ const STRINGS = {
     appName: "Stacks",
     metaTitle: "Stacks | The world's best investing minds in your language, summarized with a take",
     metaDesc: "Sharp investment writing from around the world, summarized in English, with a take. Curated by The Infrastructure Thesis.",
-    heroTitle: "Investing, easy to read and easy to understand",
+    heroTitle: "Investing, easy to read <br class=\"hbr\">and easy to understand",
     heroSub: "The world's best investing reads, summarized with a take, in your language.",
     heroCta: "Explore Signals",
     introCta: "Take a look around",
@@ -1013,6 +1013,9 @@ html[data-lang="ko"] .itb-name,html[data-lang="ko"] .itb-cta{font-family:var(--u
 .intro-box .app-name{font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text);margin-bottom:22px;}
 .intro-box h1{font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.045em;line-height:1.05;margin:0 0 18px;word-break:keep-all;}
 html[data-lang="ko"] .intro-box h1,html[data-lang="ja"] .intro-box h1{word-break:keep-all;}
+/* responsive hero break: force a clean break on wider screens, natural wrap on narrow */
+.hbr{display:none;}
+@media (min-width:680px){ .hbr{display:inline;} }
 .intro-sub{font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:52ch;margin:0 auto 28px;line-height:1.55;}
 .intro-cta{border:0;cursor:pointer;font-family:inherit;font-size:15px;padding:15px 30px;}
 html[data-lang="ko"] .intro-box{font-family:var(--ui-font);}
@@ -4703,11 +4706,11 @@ function applyDash(){
    functions and rendered modules (today's debate, skew, events, hot) so every
    feature keeps working; nodes are relocated, not duplicated, and restored on
    the way down. ?v83beta enables (persisted) · ?v83off disables. */
-var V83ON = false;
+var V83ON = true;   /* v83 shipped as the default desktop shell — ?v83off opts out (persisted) */
 try {
-  if (/v83off/.test(location.search)) localStorage.removeItem("stk_v83");
-  else if (/v83beta/.test(location.search)) localStorage.setItem("stk_v83", "1");
-  V83ON = /v83beta/.test(location.search) || localStorage.getItem("stk_v83") === "1";
+  if (/v83off/.test(location.search)) localStorage.setItem("stk_v83_off", "1");
+  else if (/v83beta/.test(location.search)) localStorage.removeItem("stk_v83_off");
+  V83ON = localStorage.getItem("stk_v83_off") !== "1";
 } catch (e) {}
 var V83 = null;
 var V83ICONS = {
@@ -6976,7 +6979,7 @@ function render(){
   try { applyMetaLang(S); } catch (e) {}
   renderLangMenu();
   document.getElementById("appName").textContent = S.appName;
-  document.getElementById("heroTitle").textContent = S.heroTitle;
+  document.getElementById("heroTitle").innerHTML = S.heroTitle;
   document.getElementById("heroSub").textContent = S.heroSub;
   document.getElementById("heroCta").innerHTML = S.heroCta + " &rarr;";
   if (typeof refreshInstallUI === "function") refreshInstallUI();
@@ -7925,7 +7928,7 @@ function showIntro(){
   if (!el) return false;
   const S = STRINGS[LANG];
   document.getElementById("introName").textContent = S.appName;
-  document.getElementById("introTitle").textContent = S.heroTitle;
+  document.getElementById("introTitle").innerHTML = S.heroTitle;
   document.getElementById("introSub").textContent = S.heroSub;
   document.getElementById("introCta").innerHTML = S.introCta + " &rarr;";
   var tbn = document.getElementById("introTbName"); if (tbn) tbn.textContent = S.appName;
