@@ -169,7 +169,7 @@ const CATEGORIES = [
 const STRINGS = {
   en: {
     appName: "Stacks",
-    metaTitle: "Stacks: The world's best investing reads, in your language",
+    metaTitle: "Stacks | The world's best investing minds in your language, summarized with a take",
     metaDesc: "Sharp investment writing from around the world, summarized in English, with a take. Curated by The Infrastructure Thesis.",
     heroTitle: "Reading Made Easy",
     heroSub: "The world's best investing minds, in your language.",
@@ -315,7 +315,7 @@ const STRINGS = {
   },
   ko: {
     appName: "스택스",
-    metaTitle: "Stacks 스택스 — 전 세계 투자 고수의 글을 한국어로, 요약과 관점까지",
+    metaTitle: "스택스(Stacks) | 전 세계 투자 고수의 글을 내 언어로, 요약과 관점까지",
     metaDesc: "메르·코베이시·다모다란 등 전 세계 투자 고수들의 글을 한국어로 요약하고, 강세·약세 관점까지 정리해 드립니다. 예측 적중 기록도 함께.",
     heroTitle: "읽는 투자, 쉽게",
     heroSub: "전 세계 투자 고수들의 글을, 당신의 언어로",
@@ -461,7 +461,7 @@ const STRINGS = {
   },
   ja: {
     appName: "スタックス",
-    metaTitle: "Stacks スタックス — 世界の投資家の記事を日本語で、要約と視点付き",
+    metaTitle: "スタックス(Stacks) | 世界の投資の達人の記事をあなたの言語で、要約と視点まで",
     metaDesc: "世界の投資家たちの記事を日本語に要約し、強気・弱気の視点まで整理。予測の的中記録も公開。",
     heroTitle: "読む投資を、かんたんに",
     heroSub: "世界の投資の達人たちの記事を、あなたの言語で。",
@@ -951,13 +951,45 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .intro{
   position:fixed;inset:0;z-index:80;background:var(--bg);
   display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:24px;opacity:1;transition:opacity .4s ease;
+  padding:24px;opacity:1;transition:opacity .4s ease;overflow:auto;
 }
 .intro.out{opacity:0;pointer-events:none;}
-.intro-box h1{font-size:clamp(30px,5vw,44px);letter-spacing:-.03em;margin:0 0 14px;}
-.intro-sub{font-size:16px;color:var(--muted);max-width:46ch;margin:0 auto 30px;}
-.intro-cta{border:0;cursor:pointer;font-family:inherit;font-size:15px;}
+/* v83.8: Autopilot-style landing — centered hero + fanned preview cards.
+   The app icon sits above the brand label; the headline is oversized. */
+.intro-box{max-width:920px;width:100%;}
+.intro-box .app-icon{margin:0 auto 14px;}
+.intro-box .app-name{font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text);margin-bottom:22px;}
+.intro-box h1{font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.045em;line-height:1.02;margin:0 0 18px;}
+.intro-sub{font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:52ch;margin:0 auto 28px;line-height:1.55;}
+.intro-cta{border:0;cursor:pointer;font-family:inherit;font-size:15px;padding:15px 30px;}
 html[data-lang="ko"] .intro-box{font-family:var(--ui-font);}
+/* fanned preview cards (real Stacks content) */
+.intro-cards{display:flex;justify-content:center;align-items:flex-end;margin-top:52px;
+  perspective:1400px;pointer-events:none;min-height:210px;}
+.intro-pc{width:168px;flex:0 0 auto;background:var(--card);border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;text-align:left;box-shadow:0 22px 50px rgba(0,0,0,.16);
+  transform-origin:bottom center;opacity:0;animation:ipcIn .6s cubic-bezier(.2,.7,.2,1) forwards;}
+.intro-pc:not(:first-child){margin-left:-40px;}
+html[data-theme="dark"] .intro-pc{box-shadow:0 22px 50px rgba(0,0,0,.55);}
+@keyframes ipcIn{from{opacity:0;transform:translateY(26px) scale(.94) rotate(var(--r,0deg));}
+  to{opacity:1;transform:translateY(var(--ty,0px)) rotate(var(--r,0deg));}}
+.ipc-cover{display:block;height:96px;background:var(--bg-soft);overflow:hidden;}
+.ipc-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.ipc-cover-blank{background:linear-gradient(135deg,var(--bg-soft),var(--line));}
+.ipc-body{display:block;padding:11px 13px 14px;}
+.ipc-src{display:block;font-family:var(--mono-font);font-size:9.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ipc-t{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  font-size:13px;font-weight:800;line-height:1.32;letter-spacing:-.01em;color:var(--text);margin-bottom:9px;}
+.intro-pc .stance-pill{font-size:10px;padding:2px 9px;}
+@media (max-width:720px){
+  .intro-cards{min-height:180px;margin-top:38px;}
+  .intro-pc{width:132px;}
+  .intro-pc:not(:first-child){margin-left:-34px;}
+  .intro-pc:nth-child(n+5){display:none;}
+}
+@media (max-width:480px){ .intro-pc:nth-child(n+4){display:none;} .intro-pc{width:124px;} }
+@media (max-height:660px){ .intro-cards{display:none;} }
 .entity-head .eh-desc{font-size:13.5px;line-height:1.62;color:var(--text);margin:12px 0 0;}
 .entity-head .eh-top{display:flex;align-items:center;gap:12px;}
 .entity-head .eh-logo{
@@ -2415,6 +2447,7 @@ footer a{color:var(--muted);}
     <h1 id="introTitle"></h1>
     <p class="intro-sub" id="introSub"></p>
     <button class="cta intro-cta" id="introCta" onclick="closeIntro()"></button>
+    <div class="intro-cards" id="introCards" aria-hidden="true"></div>
   </div>
 </div>
 
@@ -7522,9 +7555,35 @@ function showIntro(){
   document.getElementById("introTitle").textContent = S.heroTitle;
   document.getElementById("introSub").textContent = S.heroSub;
   document.getElementById("introCta").innerHTML = S.introCta + " &rarr;";
+  try { buildIntroCards(); } catch (e) {}
   el.hidden = false;
   document.body.style.overflow = "hidden";
   return true;
+}
+/* v83.8: fanned preview cards on the intro, built from real recent items
+   (Autopilot-style product peek). Skips silently if items aren't loaded. */
+function buildIntroCards(){
+  var box = document.getElementById("introCards"); if (!box) return;
+  if (typeof ITEMS === "undefined" || !ITEMS.length){ box.innerHTML = ""; return; }
+  var pool = ITEMS.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 16);
+  var withCover = pool.filter(function(i){ try { return !!coverImg(i); } catch (e) { return false; } });
+  var pick = (withCover.length >= 5 ? withCover : pool).slice(0, 5);
+  var fan = [[-9, 22], [-4.5, 8], [0, -6], [4.5, 8], [9, 22]]; /* [rotateDeg, translateY] */
+  box.innerHTML = pick.map(function(it, idx){
+    var f = fan[idx] || [0, 0];
+    var st = itemStance(it), sm = st ? stanceMeta(st) : null;
+    var ci = null; try { ci = coverImg(it); } catch (e) {}
+    var cover = (ci && ci.url)
+      ? '<span class="ipc-cover"><img src="' + esc(ci.url) + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'ipc-cover-blank\'); this.remove()"></span>'
+      : '<span class="ipc-cover ipc-cover-blank"></span>';
+    return '<div class="intro-pc" style="--r:' + f[0] + 'deg; --ty:' + f[1] + 'px; animation-delay:' + (0.08 * idx + 0.15).toFixed(2) + 's">'
+      + cover
+      + '<span class="ipc-body">'
+      + '<span class="ipc-src">' + esc(dispName(it.source)) + '</span>'
+      + '<span class="ipc-t">' + esc((it.title && (it.title[LANG] || it.title.en)) || "") + '</span>'
+      + (sm ? '<span class="stance-pill sp-' + sm.key + '">' + sm.label + '</span>' : '')
+      + '</span></div>';
+  }).join("");
 }
 function closeIntro(){
   const el = document.getElementById("intro");
