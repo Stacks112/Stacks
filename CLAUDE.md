@@ -102,6 +102,19 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
 - ★ 연락/비즈니스 이메일 = 250101forever@gmail.com (2026-07-21 june 지시, wnrakrhdn128@gmail.com에서 전환). 앞으로 모든 대외 이메일은 이 주소로 통일, 옛 이메일 재사용 금지.
 - 워커 소스 단일출처: `worker/index.js` → 커밋 시 deploy-worker.yml이 Cloudflare 자동배포
 
+## SEO / 메타 (2026-07-22, v83.7)
+- **탭 제목·검색 스니펫이 언어별로 바뀜**: STRINGS[lang]에 `metaTitle`·`metaDesc` 추가 →
+  render()가 `applyMetaLang()`으로 `document.title`, `#metaDesc`, `#ogTitle/#ogDesc`,
+  `#canonLink`를 LANG에 맞게 갱신. 언어 바꾸면 브라우저 탭 제목도 즉시 바뀐다. Googlebot은
+  JS 렌더링하므로 `?l=ko`/`?l=ja` 크롤 시 각각 한/일 제목을 본다.
+- **국제 타깃팅**: `<head>`에 hreflang 대체 링크(x-default·en=root, ko=?l=ko, ja=?l=ja).
+  canonical은 ?l=ko/ja면 자기참조, 영어/무파라미터면 root — hreflang 유효 조건 충족.
+- **파비콘(구글 검색결과 아이콘)**: 루트 `favicon.ico`(16/32/48) + `favicon-96.png`(rel=icon,
+  구글 권장 >48px). URL 안정 유지(구글 요건). 재크롤링에 수일~수주 소요, GSC URL 검사로 촉진.
+  ⚠️ 개별 글 페이지(build_pages.py 템플릿)는 아직 옛 32px만 참조 — 홈 우선, 필요 시 후속 반영.
+- "stacks" 단일 키워드 상위노출은 코드로 보장 불가(STX 크립토 등 경쟁 극심). "stacksdaily"·
+  "stacks 투자"는 가능 영역. 지속 레버: GSC 등록·사이트맵 제출·백링크·시간.
+
 ## 워크플로 (.github/workflows/)
 - `feed-sync.yml` — "Sync source feeds". `fetch_feeds.py` 실행 → `feeds/*.json` 커밋.
 - `draft-cards.yml` — "Stacks Scout". **수동 예비용(workflow_dispatch 전용, 스케줄
