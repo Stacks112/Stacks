@@ -264,6 +264,18 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
       v83.4의 v83SkewSegments/Dominant는 미사용으로 남음(무해).
   (8) 내 활동(meSheet, 전 셸): **연속 방문 스트릭**(🔥N) 스탯 + **팔로잉 목록**
       (기업 WATCH·시리즈 FOLLOWED·테마 팔로우 칩, 클릭=해당 뷰로 이동).
+  v83.6 (2026-07-22, june 지시 4건):
+  (1) 헤더 정렬: html.v83 .nav-inner를 3열 그리드와 동일한 1240px로 — 브랜드=좌측 내비 끝,
+      언어 버튼=우측 레일 끝(X 스타일). 브랜드 확대(21px/로고 36px). 바 폭·높이 불변, 클래식 불변.
+  (2) 레일 다가오는 이벤트: 날짜·요일 텍스트 제거, **D-day 뱃지만**(오늘/D-n, kind 색) 왼쪽 표시.
+  (3) 프로필 사진: 이름에 @핸들 없는 저자용 **AVATAR_TW 매핑**(Doomberg=DoombergT,
+      Howard Marks=HowardMarksBook, Marc Rubinstein=MarcRuby, SemiAnalysis=dylan522p,
+      エミン=yurumazu, 後藤=goto_finance) → unavatar 트위터. item.avatarImg 우선.
+      메르·唐鎌大輔는 공개 사진 없음 → 이니셜 유지(원하면 sources.json avatarImg로 보강).
+  (4) 쏠림 페이지에 **"지난주 → 지금" 히어로 + 쏠림 랭킹 이동** 추가: v83ThemeAttention으로
+      최근 7일 vs 그 전 7일 테마별 방향성 글 수·우세 편 계산 → top1 이동 히어로 칩(같으면
+      "이어서 유지" 캡션), 이번 주 top6 랭킹 + 지난주 대비 ▲n/▼n/NEW/= 뱃지. 그 아래 기존
+      일별 스트립(테마/기업) 유지. "이전에 어디 있다가 지금 어디로"가 첫 화면에서 읽힘.
 
   ★ v82.4(2026-07-21, 여전히 ?v82beta 게이트): june 실기기 피드백 반영 대개편.
   하단 5탭 재편·개명: 홈 · 찾기(옛 탐색: 검색+오늘의토론+Hot+이벤트, 쏠림 제거) ·
