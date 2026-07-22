@@ -36,7 +36,7 @@ jobs:
           WEB_SEARCH_USES: "4"
           # Pushes are handled by the Cloudflare worker cron; set to "1" to
           # push freshly graded results from here instead.
-          GRADE_PUSH: "0"
+          GRADE_PUSH: "1"
           STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
           STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
           SITE_URL: https://stacksdaily.com
