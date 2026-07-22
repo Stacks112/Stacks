@@ -175,6 +175,7 @@ const STRINGS = {
     heroSub: "The world's best investing minds, in your language.",
     heroCta: "Explore Signals",
     introCta: "Take a look around",
+    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking" },
     install: "Add to Home Screen",
     installIOS: "To install: tap Share, then Add to Home Screen.",
     hot: "Hot this week",
@@ -321,6 +322,7 @@ const STRINGS = {
     heroSub: "전 세계 투자 고수들의 글을, 당신의 언어로",
     heroCta: "시그널 보기",
     introCta: "더 둘러보기",
+    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중" },
     install: "홈 화면에 추가",
     installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
     hot: "이번 주 핫한 읽을거리",
@@ -467,6 +469,7 @@ const STRINGS = {
     heroSub: "世界の投資の達人たちの記事を、あなたの言語で。",
     heroCta: "シグナルを見る",
     introCta: "もっと見る",
+    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中" },
     install: "ホーム画面に追加",
     installIOS: "インストールするには共有ボタンから「ホーム画面に追加」を選択してください。",
     hot: "今週の注目",
@@ -963,33 +966,127 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .intro-sub{font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:52ch;margin:0 auto 28px;line-height:1.55;}
 .intro-cta{border:0;cursor:pointer;font-family:inherit;font-size:15px;padding:15px 30px;}
 html[data-lang="ko"] .intro-box{font-family:var(--ui-font);}
-/* fanned preview cards (real Stacks content) */
-.intro-cards{display:flex;justify-content:center;align-items:flex-end;margin-top:52px;
-  perspective:1400px;pointer-events:none;min-height:210px;}
-.intro-pc{width:168px;flex:0 0 auto;background:var(--card);border:1px solid var(--line);
-  border-radius:20px;overflow:hidden;text-align:left;box-shadow:0 22px 50px rgba(0,0,0,.16);
-  transform-origin:bottom center;opacity:0;animation:ipcIn .6s cubic-bezier(.2,.7,.2,1) forwards;}
-.intro-pc:not(:first-child){margin-left:-40px;}
-html[data-theme="dark"] .intro-pc{box-shadow:0 22px 50px rgba(0,0,0,.55);}
-@keyframes ipcIn{from{opacity:0;transform:translateY(26px) scale(.94) rotate(var(--r,0deg));}
-  to{opacity:1;transform:translateY(var(--ty,0px)) rotate(var(--r,0deg));}}
-.ipc-cover{display:block;height:96px;background:var(--bg-soft);overflow:hidden;}
-.ipc-cover img{width:100%;height:100%;object-fit:cover;display:block;}
-.ipc-cover-blank{background:linear-gradient(135deg,var(--bg-soft),var(--line));}
-.ipc-body{display:block;padding:11px 13px 14px;}
-.ipc-src{display:block;font-family:var(--mono-font);font-size:9.5px;font-weight:700;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.ipc-t{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-  font-size:13px;font-weight:800;line-height:1.32;letter-spacing:-.01em;color:var(--text);margin-bottom:9px;}
-.intro-pc .stance-pill{font-size:10px;padding:2px 9px;}
+/* v83.9: Autopilot-style device mockups — large realistic iPhone frames,
+   each showing a DISTINCT Stacks screen, fanned and overlapping. Screens use
+   fixed colors (not theme vars) so they read like real product screenshots
+   in both light and dark app themes. */
+.intro-cards{display:flex;justify-content:center;align-items:flex-start;
+  margin-top:42px;pointer-events:none;min-height:300px;perspective:1900px;}
+.intro-ph{
+  --w:214px;--r:0deg;--ty:0px;
+  position:relative;width:var(--w);flex:0 0 auto;z-index:1;
+  border-radius:30px;padding:6px;
+  background:linear-gradient(158deg,#3a3d44 0%,#0c0d10 62%,#000 100%);
+  box-shadow:0 36px 60px -20px rgba(15,18,30,.45),0 12px 24px -14px rgba(15,18,30,.34),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+  transform-origin:bottom center;transform:translateY(var(--ty)) rotate(var(--r));
+  opacity:0;animation:phIn .8s cubic-bezier(.2,.72,.18,1) both;}
+html[data-theme="dark"] .intro-ph{box-shadow:0 36px 66px -18px rgba(0,0,0,.72),
+  inset 0 0 0 1px rgba(255,255,255,.08);}
+.intro-ph:not(:first-child){margin-left:-120px;}
+@keyframes phIn{
+  from{opacity:0;transform:translateY(calc(var(--ty) + 48px)) scale(.93) rotate(var(--r));}
+  to{opacity:1;transform:translateY(var(--ty)) rotate(var(--r));}}
+.ph-scr{position:relative;border-radius:25px;overflow:hidden;background:#fff;
+  aspect-ratio:9/19.3;display:flex;flex-direction:column;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",var(--ui-font),sans-serif;}
+/* status bar */
+.ph-status{position:absolute;top:0;left:0;right:0;height:30px;z-index:6;
+  display:flex;align-items:center;justify-content:space-between;padding:9px 15px 0;
+  color:#111214;}
+.ph-status.phs-d{color:#fff;}
+.phs-t{font-size:11px;font-weight:700;letter-spacing:.01em;}
+.phs-ic{display:flex;align-items:center;}
+.phs-ic svg{display:block;}
+.ph-scr .stance-pill{font-size:9px;padding:2px 8px;line-height:1.3;}
+.ph-scr .sp-watch{color:#667085;background:#f2f4f7;border:1px solid #e4e7ec;}
+.ph-scr .sp-bull{color:#087443;background:rgba(18,183,106,.13);border:1px solid rgba(18,183,106,.3);}
+.ph-scr .sp-bear{color:#b42318;background:rgba(240,68,56,.11);border:1px solid rgba(240,68,56,.28);}
+.ph-vf{color:#2E5BFF;flex:0 0 auto;display:inline-flex;}
+/* screen 1: read (article) */
+.psr-cover{position:relative;height:46%;flex:0 0 auto;overflow:hidden;
+  background:linear-gradient(150deg,var(--cf,#1f2937),var(--ct,#0b1220));}
+.psr-cover::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.58),rgba(0,0,0,0) 56%);}
+.psr-back{position:absolute;top:33px;left:11px;z-index:3;width:23px;height:23px;border-radius:50%;
+  background:rgba(255,255,255,.2);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:15px;line-height:1;}
+.psr-label{position:absolute;left:14px;top:36px;z-index:3;color:rgba(255,255,255,.92);
+  font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;}
+.psr-title{position:absolute;left:14px;right:14px;bottom:13px;z-index:3;color:#fff;
+  font-size:14px;font-weight:800;line-height:1.24;letter-spacing:-.012em;text-shadow:0 1px 14px rgba(0,0,0,.4);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.psr-body{padding:12px 14px 13px;flex:1;display:flex;flex-direction:column;gap:8px;min-height:0;}
+.psr-by{display:flex;align-items:center;gap:7px;}
+.psr-av{width:20px;height:20px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex:0 0 auto;}
+.psr-src{font-size:10.5px;font-weight:700;color:#111214;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.psr-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;margin-top:1px;}
+.psr-sum{font-size:10px;line-height:1.5;color:#3d4149;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.psr-cta{margin-top:auto;background:#111214;color:#fff;text-align:center;
+  font-size:11px;font-weight:700;padding:10px;border-radius:10px;}
+/* screen 2: lean (dark hero) */
+.psl{background:#0b0b0d;color:#fff;flex:1;display:flex;flex-direction:column;padding:36px 15px 0;}
+.psl-lb{font-size:9.5px;font-weight:700;color:#8a8f98;letter-spacing:.02em;margin-bottom:4px;}
+.psl-big{font-size:27px;font-weight:800;letter-spacing:-.03em;line-height:1;}
+.psl-big small{font-size:14px;font-weight:800;color:#fff;margin-left:3px;}
+.psl-sub{font-size:9.5px;color:#7d828b;margin-top:6px;}
+.psl-bar{display:flex;height:8px;border-radius:6px;overflow:hidden;margin:13px 0 12px;background:#1c1d22;}
+.psl-bar i{display:block;height:100%;}
+.psl-bar .lb-bull{background:#12b76a;}.psl-bar .lb-watch{background:#565b66;}.psl-bar .lb-bear{background:#f04438;}
+.psl-card{background:#151619;border-radius:14px;padding:11px 12px;display:flex;flex-direction:column;gap:10px;}
+.psl-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;}
+.psl-tk{display:flex;align-items:center;gap:8px;color:#e7e9ec;font-weight:700;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.psl-dot{width:17px;height:17px;border-radius:5px;font-size:8px;font-weight:800;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;color:#fff;}
+.psl-pct{font-weight:800;font-variant-numeric:tabular-nums;flex:0 0 auto;}
+.psl-note{margin-top:auto;text-align:center;font-size:8px;color:#565b66;padding:11px 0 0;}
+.psl-tabs{display:flex;justify-content:space-around;align-items:center;margin-top:11px;
+  padding:10px 0 12px;border-top:1px solid #1a1b1f;}
+.psl-tabs i{width:19px;height:19px;border-radius:6px;background:#26282e;display:block;}
+.psl-tabs i:first-child{background:#fff;}
+/* screen 3: debate */
+.psd{background:#fff;flex:1;display:flex;flex-direction:column;gap:11px;padding:38px 15px 0;}
+.psd-h{display:flex;align-items:center;gap:6px;font-size:8.5px;font-weight:800;letter-spacing:.11em;
+  text-transform:uppercase;color:#d92d20;}
+.psd-h::before{content:"";width:6px;height:6px;border-radius:50%;background:#d92d20;}
+.psd-q{font-size:13.5px;font-weight:800;line-height:1.34;letter-spacing:-.012em;color:#111214;
+  display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+.psd-split{display:flex;height:32px;border-radius:10px;overflow:hidden;font-size:10.5px;font-weight:800;color:#fff;}
+.psd-split span{display:flex;align-items:center;justify-content:center;gap:4px;}
+.psd-split .dsb{background:#12b76a;flex:1;}.psd-split .dsr{background:#f04438;flex:1;}
+.psd-voices{display:flex;flex-direction:column;gap:10px;margin-top:1px;}
+.psd-v{display:flex;align-items:flex-start;gap:8px;}
+.psd-v img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex:0 0 auto;margin-top:1px;}
+.psd-v span{font-size:10px;color:#475467;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+/* screen 4: track record */
+.pst{background:#fff;flex:1;display:flex;flex-direction:column;gap:10px;padding:38px 15px 0;}
+.pst-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;}
+.pst-hero{display:flex;align-items:baseline;gap:7px;}
+.pst-num{font-size:29px;font-weight:800;letter-spacing:-.03em;color:#111214;line-height:1;}
+.pst-hero small{font-size:10px;font-weight:700;color:#667085;}
+.pst-list{display:flex;flex-direction:column;gap:9px;margin-top:2px;}
+.pst-r{display:flex;align-items:center;gap:8px;}
+.pst-ic{width:18px;height:18px;border-radius:6px;flex:0 0 auto;display:flex;align-items:center;
+  justify-content:center;font-size:10px;font-weight:800;color:#fff;}
+.pst-ic.ok{background:#12b76a;}.pst-ic.pend{background:#eef0f3;color:#98a2b3;}
+.pst-t{flex:1;font-size:10px;font-weight:600;color:#111214;line-height:1.3;min-width:0;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.pst-badge{font-size:8px;font-weight:800;padding:2px 7px;border-radius:20px;flex:0 0 auto;}
+.pst-badge.ok{color:#087443;background:rgba(18,183,106,.13);}
+.pst-badge.pend{color:#98a2b3;background:#f2f4f7;}
+/* responsive */
+@media (max-width:940px){ .intro-ph{--w:196px;} .intro-ph:not(:first-child){margin-left:-110px;} }
 @media (max-width:720px){
-  .intro-cards{min-height:180px;margin-top:38px;}
-  .intro-pc{width:132px;}
-  .intro-pc:not(:first-child){margin-left:-34px;}
-  .intro-pc:nth-child(n+5){display:none;}
+  .intro-cards{min-height:0;margin-top:32px;}
+  .intro-ph{--w:220px!important;display:none;margin-left:0;}
+  .intro-ph.ph-hero{display:block;}
+  .intro-ph.ph-hero{--r:0deg!important;--ty:0px!important;}
 }
-@media (max-width:480px){ .intro-pc:nth-child(n+4){display:none;} .intro-pc{width:124px;} }
-@media (max-height:660px){ .intro-cards{display:none;} }
+@media (max-height:720px){ .intro-cards{margin-top:24px;} }
+@media (max-height:600px){ .intro-cards{display:none;} }
 .entity-head .eh-desc{font-size:13.5px;line-height:1.62;color:var(--text);margin:12px 0 0;}
 .entity-head .eh-top{display:flex;align-items:center;gap:12px;}
 .entity-head .eh-logo{
@@ -7560,29 +7657,151 @@ function showIntro(){
   document.body.style.overflow = "hidden";
   return true;
 }
-/* v83.8: fanned preview cards on the intro, built from real recent items
-   (Autopilot-style product peek). Skips silently if items aren't loaded. */
+/* v83.9: Autopilot-style device mockups on the intro. Four large realistic
+   iPhone frames, each a DISTINCT Stacks screen built from real data:
+   Read (article), Lean (aggregate stance, dark hero), Debate (the "ask"
+   question), Track record (predictions + outcome). Numbers are all real
+   aggregates of the loaded feed, so nothing is fabricated. */
+var PH_SIG = '<svg width="49" height="12" viewBox="0 0 49 12" fill="currentColor" aria-hidden="true">'
+  + '<rect x="0" y="7.5" width="2.5" height="4.5" rx="1"/><rect x="3.8" y="5.5" width="2.5" height="6.5" rx="1"/>'
+  + '<rect x="7.6" y="3.5" width="2.5" height="8.5" rx="1"/><rect x="11.4" y="1.5" width="2.5" height="10.5" rx="1"/>'
+  + '<path d="M18.4 4.05c2.35-2.05 5.95-2.05 8.3 0l-1.28 1.4c-1.63-1.45-4.11-1.45-5.74 0z"/>'
+  + '<path d="M20.55 6.5c1.15-.98 2.9-.98 4.05 0l-1.28 1.38c-.5-.42-.99-.42-1.49 0z"/>'
+  + '<circle cx="22.55" cy="9.25" r="1.05"/>'
+  + '<rect x="33.5" y="1.6" width="12.4" height="8.8" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.1"/>'
+  + '<rect x="35" y="3.1" width="7.6" height="5.8" rx="1.2"/><rect x="46.8" y="4.3" width="1.6" height="3.4" rx=".8"/></svg>';
+var PH_VF = '<svg class="ph-vf" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+  + '<path d="M12 2 14.6 4.3l3.4-.4.9 3.3 3 1.6-1.4 3.1 1.4 3.1-3 1.6-.9 3.3-3.4-.4L12 22l-2.6-2.3-3.4.4-.9-3.3-3-1.6 1.4-3.1L2 8.8l3-1.6.9-3.3 3.4.4Z"/>'
+  + '<path d="m8.6 12 2.3 2.3 4.5-4.6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function phStatus(white){
+  return '<div class="ph-status' + (white ? ' phs-d' : '') + '"><span class="phs-t">9:41</span>'
+    + '<span class="phs-ic">' + PH_SIG + '</span></div>';
+}
 function buildIntroCards(){
   var box = document.getElementById("introCards"); if (!box) return;
   if (typeof ITEMS === "undefined" || !ITEMS.length){ box.innerHTML = ""; return; }
-  var pool = ITEMS.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 16);
-  var withCover = pool.filter(function(i){ try { return !!coverImg(i); } catch (e) { return false; } });
-  var pick = (withCover.length >= 5 ? withCover : pool).slice(0, 5);
-  var fan = [[-9, 22], [-4.5, 8], [0, -6], [4.5, 8], [9, 22]]; /* [rotateDeg, translateY] */
-  box.innerHTML = pick.map(function(it, idx){
-    var f = fan[idx] || [0, 0];
-    var st = itemStance(it), sm = st ? stanceMeta(st) : null;
-    var ci = null; try { ci = coverImg(it); } catch (e) {}
-    var cover = (ci && ci.url)
-      ? '<span class="ipc-cover"><img src="' + esc(ci.url) + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'ipc-cover-blank\'); this.remove()"></span>'
-      : '<span class="ipc-cover ipc-cover-blank"></span>';
-    return '<div class="intro-pc" style="--r:' + f[0] + 'deg; --ty:' + f[1] + 'px; animation-delay:' + (0.08 * idx + 0.15).toFixed(2) + 's">'
-      + cover
-      + '<span class="ipc-body">'
-      + '<span class="ipc-src">' + esc(dispName(it.source)) + '</span>'
-      + '<span class="ipc-t">' + esc((it.title && (it.title[LANG] || it.title.en)) || "") + '</span>'
-      + (sm ? '<span class="stance-pill sp-' + sm.key + '">' + sm.label + '</span>' : '')
-      + '</span></div>';
+  var S = STRINGS[LANG], PH = (S && S.ph) || {};
+  var L = function(k, fb){ return esc(PH[k] || fb); };
+  var tx = function(o){ return o ? (o[LANG] || o.en || "") : ""; };
+  var recent = ITEMS.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 44);
+
+  /* --- pick a distinct source item per screen --- */
+  var readItem = recent.find(function(i){ return i.cover && i.title && itemStance(i) && tx(i.gist); }) || recent[0];
+  var debateItem = recent.find(function(i){ return i !== readItem && i.ask && tx(i.ask).length > 24; })
+    || recent.find(function(i){ return i !== readItem; }) || recent[0];
+
+  /* --- lean aggregation (real counts across the recent feed) --- */
+  var cnt = { bull:0, bear:0, watch:0 };
+  recent.forEach(function(i){ var s = itemStance(i); if (s) cnt[s]++; });
+  var tot = cnt.bull + cnt.bear + cnt.watch || 1;
+  var pB = Math.round(cnt.bull / tot * 100), pW = Math.round(cnt.watch / tot * 100), pR = Math.max(0, 100 - pB - pW);
+  /* directional lean: of the calls that actually took a side, which way and how strongly */
+  var dir = cnt.bull + cnt.bear;
+  var leadKey, leadPct;
+  if (dir > 0){ leadKey = cnt.bull >= cnt.bear ? "bull" : "bear";
+    leadPct = Math.round((leadKey === "bull" ? cnt.bull : cnt.bear) / dir * 100); }
+  else { leadKey = "watch"; leadPct = pW; }
+  var STC = { bull:"#12b76a", bear:"#f04438", watch:"#98a2b3" };
+
+  /* lean card rows: 3 recent items, main tag + their stance */
+  var seenTag = {}, leanRows = [];
+  recent.forEach(function(i){
+    if (leanRows.length >= 3) return;
+    var s = itemStance(i); if (!s) return;
+    var tag = (i.tags && i.tags[0]) ? String(i.tags[0]) : dispName(i.source);
+    var key = tag.toUpperCase(); if (seenTag[key]) return; seenTag[key] = 1;
+    leanRows.push({ name: tag, sym: tag.replace(/[^A-Za-z0-9가-힣ぁ-ヶ一-龠]/g, "").slice(0, 1).toUpperCase() || "•",
+      color: STC[s], lab: stanceMeta(s).label });
+  });
+
+  /* track record: real count of tracked predictions + a list with real outcome status */
+  var tracked = ITEMS.filter(function(i){ return i.outcome && i.outcome.status; });
+  var trackNum = tracked.length || recent.length;
+  var trackList = recent.filter(function(i){ return i.title && i !== readItem; }).slice(0, 4);
+
+  /* debate voices: 2 short takes from other recent items */
+  var voiceItems = recent.filter(function(i){ return i !== debateItem && (tx(i.why) || tx(i.gist)); }).slice(0, 2);
+
+  /* ---- screen builders ---- */
+  function scrRead(it){
+    var st = itemStance(it), sm = st ? stanceMeta(st) : null, cov = it.cover || {};
+    var av = it.avatarImg
+      ? '<img class="psr-av" src="' + esc(it.avatarImg) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+      : '<span class="psr-av"></span>';
+    return '<div class="ph-scr">' + phStatus(true)
+      + '<div class="psr-cover" style="--cf:' + esc(cov.from || "#1f2937") + ';--ct:' + esc(cov.to || "#0b1220") + '">'
+      +   '<span class="psr-back">&#8249;</span>'
+      +   (cov.label ? '<span class="psr-label">' + esc(cov.label) + '</span>' : '')
+      +   '<span class="psr-title">' + esc(tx(it.title)) + '</span>'
+      + '</div>'
+      + '<div class="psr-body">'
+      +   '<div class="psr-by">' + av + '<span class="psr-src">' + esc(dispName(it.source)) + '</span>' + PH_VF + '</div>'
+      +   (sm ? '<span class="stance-pill sp-' + sm.key + '">' + sm.label + '</span>' : '')
+      +   '<div class="psr-h">' + L("summary", "Summary") + '</div>'
+      +   '<div class="psr-sum">' + esc(tx(it.gist)) + '</div>'
+      +   '<div class="psr-cta">' + L("read", "Read the original") + '</div>'
+      + '</div></div>';
+  }
+  function scrLean(){
+    var rows = leanRows.map(function(r){
+      return '<div class="psl-row"><span class="psl-tk"><span class="psl-dot" style="background:' + r.color + '">'
+        + esc(r.sym) + '</span>' + esc(r.name) + '</span>'
+        + '<span class="psl-pct" style="color:' + r.color + '">' + esc(r.lab) + '</span></div>';
+    }).join("");
+    return '<div class="ph-scr"><div class="psl">' + phStatus(true)
+      + '<div style="height:16px"></div>'
+      + '<div class="psl-lb">' + L("lean", "This week’s lean") + '</div>'
+      + '<div class="psl-big">' + esc(stanceMeta(leadKey).label) + ' <small style="color:' + STC[leadKey] + '">' + leadPct + '%</small></div>'
+      + '<div class="psl-sub">' + L("leanSub", "Where the feed leans right now") + '</div>'
+      + '<div class="psl-bar"><i class="lb-bull" style="width:' + pB + '%"></i>'
+      +   '<i class="lb-watch" style="width:' + pW + '%"></i><i class="lb-bear" style="width:' + pR + '%"></i></div>'
+      + '<div class="psl-card">' + rows + '</div>'
+      + '<div class="psl-note">' + L("illus", "Live aggregate of the feed") + '</div>'
+      + '<div class="psl-tabs"><i></i><i></i><i></i></div>'
+      + '</div></div>';
+  }
+  function scrDebate(it){
+    var voices = voiceItems.map(function(v){
+      var av = v.avatarImg
+        ? '<img src="' + esc(v.avatarImg) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+        : '<span class="psr-av" style="margin-top:1px"></span>';
+      return '<div class="psd-v">' + av + '<span>' + esc((tx(v.why) || tx(v.gist)).slice(0, 120)) + '</span></div>';
+    }).join("");
+    return '<div class="ph-scr"><div class="psd">' + phStatus(false)
+      + '<div style="height:14px"></div>'
+      + '<div class="psd-h">' + L("debate", "Today’s debate") + '</div>'
+      + '<div class="psd-q">' + esc(tx(it.ask) || tx(it.title)) + '</div>'
+      + '<div class="psd-split"><span class="dsb">&#9650; ' + esc(S.stanceBull) + '</span>'
+      +   '<span class="dsr">' + esc(S.stanceBear) + ' &#9660;</span></div>'
+      + '<div class="psd-voices">' + voices + '</div>'
+      + '</div></div>';
+  }
+  function scrTrack(){
+    var list = trackList.map(function(it){
+      var done = it.outcome && it.outcome.status && it.outcome.status !== "pending";
+      return '<div class="pst-r"><span class="pst-ic ' + (done ? "ok" : "pend") + '">' + (done ? "&#10003;" : "&#183;") + '</span>'
+        + '<span class="pst-t">' + esc(tx(it.title)) + '</span>'
+        + '<span class="pst-badge ' + (done ? "ok" : "pend") + '">' + (done ? L("hit", "Hit") : L("tracking", "Tracking")) + '</span></div>';
+    }).join("");
+    return '<div class="ph-scr"><div class="pst">' + phStatus(false)
+      + '<div style="height:14px"></div>'
+      + '<div class="pst-h">' + L("record", "Track record") + '</div>'
+      + '<div class="pst-hero"><span class="pst-num">' + trackNum + '</span><small>' + L("tracked", "predictions tracked") + '</small></div>'
+      + '<div class="pst-list">' + list + '</div>'
+      + '</div></div>';
+  }
+
+  /* ---- assemble the fan. Lean (dark) sits center & elevated & on top;
+     Read is the mobile hero (colorful, core screen). ---- */
+  var phones = [
+    { html: scrRead(readItem),     r:-11, ty:46, z:2, hero:true },
+    { html: scrDebate(debateItem), r:-4,  ty:14, z:3 },
+    { html: scrLean(),             r:3,   ty:-2, z:5 },
+    { html: scrTrack(),            r:11,  ty:42, z:2 }
+  ];
+  box.innerHTML = phones.map(function(p, idx){
+    return '<div class="intro-ph' + (p.hero ? " ph-hero" : "") + '" style="--r:' + p.r + 'deg;--ty:' + p.ty
+      + 'px;z-index:' + p.z + ';animation-delay:' + (0.1 * idx + 0.12).toFixed(2) + 's">' + p.html + '</div>';
   }).join("");
 }
 function closeIntro(){
