@@ -114,6 +114,20 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   ⚠️ 개별 글 페이지(build_pages.py 템플릿)는 아직 옛 32px만 참조 — 홈 우선, 필요 시 후속 반영.
 - "stacks" 단일 키워드 상위노출은 코드로 보장 불가(STX 크립토 등 경쟁 극심). "stacksdaily"·
   "stacks 투자"는 가능 영역. 지속 레버: GSC 등록·사이트맵 제출·백링크·시간.
+- **탭/검색 제목 최종안(v83.8, june 확정)**: KO "스택스(Stacks) | 전 세계 투자 고수의 글을
+  내 언어로, 요약과 관점까지" · EN "Stacks | The world's best investing minds in your
+  language, summarized with a take" · JA "スタックス(Stacks) | 世界の投資の達人の記事を
+  あなたの言語で、要約と視点まで". (STRINGS[lang].metaTitle)
+
+## 인트로 페이지 (v83.8, Autopilot 스타일 — june 지시)
+`#intro` 첫 방문 오버레이를 Autopilot(joinautopilot.com) 랜딩처럼 개편: 중앙 로고 아이콘 →
+브랜드 라벨(introName) → 초대형 헤드라인(introTitle=heroTitle, clamp 40~76px) → 서브
+(introSub) → 검정 알약 CTA(introCta) → 그 아래 **부채꼴로 펼쳐진 실제 콘텐츠 미리보기 카드**
+(`#introCards`, buildIntroCards()가 최근 items 5개로 생성: 커버 이미지+출처+제목 3줄+stance
+pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn 등장 애니메이션). 폰 목업 대신
+자사 카드를 써서 "제품 미리보기" 효과. 반응형: ≤720px 4장/≤480px 3장/세로<660px 카드 숨김.
+라이트·다크 모두 대응(테마 변수). showIntro()에서 buildIntroCards() 호출, 최초 1회만 노출은
+기존과 동일(stk_intro_seen). CTA/onboard 흐름 불변.
 
 ## 워크플로 (.github/workflows/)
 - `feed-sync.yml` — "Sync source feeds". `fetch_feeds.py` 실행 → `feeds/*.json` 커밋.
