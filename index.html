@@ -1141,24 +1141,38 @@ html{overscroll-behavior-y:contain;}
   /* v83.1: today's debate pinned to the top of the center feed */
   html.v83 #eventBar{ display:none !important; }
   html.v83 #v83center > #todaySec{ margin:14px 14px 4px; }
-  /* v83.1: skew trend timeline (replaces the horizontal chip rail on desktop beta) */
-  #v83rail .sktl-sub{ font-size:11.5px; color:var(--muted); margin:-2px 0 10px; }
-  #v83rail .sktl{ position:relative; padding-left:18px; }
-  #v83rail .sktl::before{ content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px; background:var(--line); border-radius:2px; }
-  #v83rail .sktl-row{ position:relative; display:block; width:100%; text-align:left; background:none; border:0; font-family:inherit;
+  /* v83.1: skew trend timeline (replaces the horizontal chip rail on desktop beta)
+     v83.2: lives in the LEFT nav (above 캘린더) — scoped to html.v83 + nav compact overrides */
+  html.v83 .sktl-sub{ font-size:11.5px; color:var(--muted); margin:-2px 0 10px; }
+  html.v83 .sktl{ position:relative; padding-left:18px; }
+  html.v83 .sktl::before{ content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px; background:var(--line); border-radius:2px; }
+  html.v83 .sktl-row{ position:relative; display:block; width:100%; text-align:left; background:none; border:0; font-family:inherit;
     color:var(--text); cursor:pointer; padding:7px 6px 7px 10px; border-radius:10px; }
-  #v83rail .sktl-row:hover{ background:var(--bg-soft); }
-  #v83rail .sktl-row::before{ content:""; position:absolute; left:-17px; top:13px; width:8px; height:8px; border-radius:50%;
+  html.v83 .sktl-row:hover{ background:var(--bg-soft); }
+  html.v83 .sktl-row::before{ content:""; position:absolute; left:-17px; top:13px; width:8px; height:8px; border-radius:50%;
     background:var(--muted); box-shadow:0 0 0 3px var(--bg); }
-  #v83rail .sktl-row.sk-bull::before{ background:#12B76A; }
-  #v83rail .sktl-row.sk-bear::before{ background:#F04438; }
-  #v83rail .sktl-d{ font-family:var(--mono-font); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.04em; }
-  #v83rail .sktl-d .sktl-now{ color:var(--accent); font-weight:800; margin-left:6px; letter-spacing:0; }
-  #v83rail .sktl-name{ display:block; font-size:13.5px; font-weight:800; margin:2px 0 1px; }
-  #v83rail .sktl-tag{ font-size:11.5px; font-weight:700; }
-  #v83rail .sktl-row.sk-bull .sktl-tag{ color:#12B76A; }
-  #v83rail .sktl-row.sk-bear .sktl-tag{ color:#F04438; }
-  #v83rail .sktl-shift{ font-size:10.5px; color:var(--muted); margin-left:6px; font-weight:600; }
+  html.v83 .sktl-row.sk-bull::before{ background:#12B76A; }
+  html.v83 .sktl-row.sk-bear::before{ background:#F04438; }
+  html.v83 .sktl-d{ font-family:var(--mono-font); font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.04em; }
+  html.v83 .sktl-d .sktl-now{ color:var(--accent); font-weight:800; margin-left:6px; letter-spacing:0; }
+  html.v83 .sktl-name{ display:block; font-size:13.5px; font-weight:800; margin:2px 0 1px; }
+  html.v83 .sktl-tag{ font-size:11.5px; font-weight:700; }
+  html.v83 .sktl-row.sk-bull .sktl-tag{ color:#12B76A; }
+  html.v83 .sktl-row.sk-bear .sktl-tag{ color:#F04438; }
+  html.v83 .sktl-shift{ font-size:10.5px; color:var(--muted); margin-left:6px; font-weight:600; }
+  /* nav placement: compact + scroll if tall */
+  #v83nav{ overflow-y:auto; }
+  #v83nav::-webkit-scrollbar{ width:0; }
+  #v83nav #skewSec{ margin:10px 4px 8px; padding:10px 8px 4px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  #v83nav #skewSec .section-title{ font-size:11.5px; margin:0 0 4px; }
+  #v83nav .sktl-sub{ font-size:10.5px; margin:0 0 8px; }
+  #v83nav .sktl{ padding-left:15px; }
+  #v83nav .sktl-row{ padding:5px 4px 5px 8px; }
+  #v83nav .sktl-row::before{ left:-14px; top:11px; width:7px; height:7px; }
+  #v83nav .sktl-name{ font-size:12.5px; }
+  #v83nav .sktl-tag{ font-size:10.5px; }
+  #v83nav .sktl-d{ font-size:9px; }
+  #v83nav .sktl-shift{ font-size:9.5px; }
   /* v83.1: rail mini calendar (upcoming events) */
   #v83calSec .cal-cell{ min-height:36px; padding:3px 2px 3px; gap:2px; }
   #v83calSec .cal-dnum{ font-size:10px; }
@@ -2396,7 +2410,13 @@ document.addEventListener("click", (ev) => {
     sy = null; d = 0; active = false;
   }, { passive: true });
 })();
-function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false; if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
+function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
+  /* v83.2 bugfix: switching category must also leave the theme-board /
+     author-record views, or the tab click looks dead (THEME_VIEW kept
+     winning inside renderFeed). Applies to every shell. */
+  if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+  if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
 
 
 
@@ -3072,10 +3092,12 @@ function receiptsStripHtml(items){
 function renderSkew(){
   var sec=document.getElementById("skewSec"), box=document.getElementById("skewBox"), ttl=document.getElementById("skewTitle");
   if(!sec||!box) return;
+  /* v83.1 desktop beta: trend timeline instead of horizontal chips.
+     v83.2: lives in the LEFT nav as a standing module, so it stays visible
+     in every view (no homeView gate). */
+  if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83RenderSkewTrend === "function"){ v83RenderSkewTrend(sec, box, ttl); return; }
   var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
   if(!homeView){ sec.hidden=true; return; }
-  /* v83.1 desktop beta: trend timeline instead of horizontal chips */
-  if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83RenderSkewTrend === "function"){ v83RenderSkewTrend(sec, box, ttl); return; }
   var S=STRINGS[LANG], out=[];
   try {
     Object.keys(THEMES).forEach(function(k){ var sk=skewInfo(themeItems(k)); if(sk) out.push({kind:"theme",key:k,label:THEMES[k].label[LANG],icon:THEMES[k].icon,sk:sk}); });
@@ -3525,6 +3547,9 @@ function goHome(ev){
   SERIES_VIEW = null; ENTITY_VIEW = null; TAB = "all";
   QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
   STANCE_FILTER = null; SB_VIEW = false;
+  /* v83.2 bugfix: Home must also leave the theme-board / record views */
+  if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+  if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   render();
   try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); }
@@ -4239,7 +4264,10 @@ function mountV83(){
     if (r){ r.value = this.value; r.dispatchEvent(new Event("input", { bubbles: true })); }
   });
   rail.appendChild(search);
-  var sk0 = document.getElementById("skewSec"); if (sk0) rail.appendChild(sk0);
+  /* v83.2: "지금 쏠린 곳" trend lives in the LEFT nav, right above 캘린더 */
+  var sk0 = document.getElementById("skewSec");
+  var calLink = nav.querySelector('.v83-link[data-i="6"]');
+  if (sk0){ if (calLink) nav.insertBefore(sk0, calLink); else rail.appendChild(sk0); }
   /* v83.1: upcoming events as an inline mini calendar (the horizontal chip
      bar #eventBar stays in place but is hidden by CSS in the v83 shell) */
   var calSec = document.createElement("section"); calSec.id = "v83calSec";
@@ -6100,7 +6128,11 @@ function renderToday(){
   const sec = document.getElementById("todaySec");
   const main = document.getElementById("todayMain");
   if (!sec || !main) return;
-  const homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  let homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  /* v83.2: in the desktop beta the debate is pinned to the top of the feed
+     column, so it should only appear on the actual home feed (전체 tab) —
+     not above the 기업/정치인 directories or other category tabs. */
+  if (typeof V83 !== "undefined" && V83 && V83.mounted && TAB !== "all") homeView = false;
   const dismissed = store.get("stk_today_dismiss", "") === todayStr();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
   if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
