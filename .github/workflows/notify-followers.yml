@@ -45,6 +45,7 @@ jobs:
 
       - name: Send follower push
         env:
+          STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
           PUSH_SECRET: ${{ secrets.PUSH_SECRET }}
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
