@@ -8069,10 +8069,15 @@ function buildIntroRanks(){
   var token = (buildIntroRanks._t = (buildIntroRanks._t || 0) + 1); /* guard stale async */
   function render(useAcc){
     var rows = Object.keys(bySrc).map(function(k){ var r = bySrc[k]; r.acc = r.scored ? r.match / r.scored : null; return r; });
+    var MIN = 3; /* need a real sample before an accuracy % ranks — a lone 1/1
+      shouldn't outrank a 7/8 track record */
     rows.sort(function(a, b){
-      if (useAcc){ if (a.acc == null && b.acc == null) return b.dir - a.dir;
-        if (a.acc == null) return 1; if (b.acc == null) return -1;
-        return b.acc - a.acc || b.scored - a.scored; }
+      if (useAcc){
+        var ae = a.acc != null && a.scored >= MIN, be = b.acc != null && b.scored >= MIN;
+        if (ae !== be) return ae ? -1 : 1;                 /* qualified authors first */
+        if (ae && be) return b.acc - a.acc || b.scored - a.scored;
+        return b.scored - a.scored || b.dir - a.dir;       /* not enough sample: by volume */
+      }
       return b.dir - a.dir || b.items.length - a.items.length;
     });
     wrap.innerHTML = rows.slice(0, 4).map(function(r, idx){
