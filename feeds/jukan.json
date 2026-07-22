@@ -1,7 +1,13 @@
 {
  "source": "jukan",
- "fetched_at": "2026-07-22T07:15:08.933569+00:00",
+ "fetched_at": "2026-07-22T10:39:35.631840+00:00",
  "items": [
+  {
+   "title": "BofA’s Vivek Arya made an excellent point, which I’d like to share. Is open-source AI bearish for memory? Closed models amortize global demand across shared HBM pools concentrated in a handful of data centers, whereas open models create a new memory footprint with every deployment. If 10,000 companies self-host the same open model, the model weights must be replicated across 10,000 separate HBM pools, with each deployment also requiring its own KV cache. As 128K–1M token contexts become commonplace in 2026, the KV cache alone can exceed 40GB per active session. Low-cost Chinese APIs drive greater inference demand, broader enterprise self-hosting, and more memory sockets worldwide. In short,",
+   "link": "https://x.com/jukan05/status/2079831926698078460",
+   "published": "2026-07-22T07:32:00+00:00",
+   "content": "BofA’s Vivek Arya made an excellent point, which I’d like to share.\n\nIs open-source AI bearish for memory?\n\nClosed models amortize global demand across shared HBM pools concentrated in a handful of data centers, whereas open models create a new memory footprint with every deployment. If 10,000 companies self-host the same open model, the model weights must be replicated across 10,000 separate HBM pools, with each deployment also requiring its own KV cache. As 128K–1M token contexts become commonplace in 2026, the KV cache alone can exceed 40GB per active session.\n\nLow-cost Chinese APIs drive greater inference demand, broader enterprise self-hosting, and more memory sockets worldwide. In short, closed models concentrate memory demand, while open models multiply it.\n— Jukan (@jukan05) Jul 22, 2026"
+  },
   {
    "title": "What the actual fuck are you talking about? You seem to be under the delusion that I deliberately spread malicious rumors about Intel with some kind of ulterior motive, but: 1. This isn’t even negative news about Intel in the first place. 2. The reason Intel is down right now is because the Korean stock market is going through a correction. 3. I’m not the original source of this report. It came from the Korean media, and plenty of other people had already reposted it before I did. I genuinely have no idea what kind of batshit logic leads you to conclude that I crashed Intel’s stock by spreading malicious rumors. Intel is my second-largest position. P.S. I’ve been feeling really drained latel",
    "link": "https://x.com/jukan05/status/2079825319461056688",
@@ -85,12 +91,6 @@
    "link": "https://x.com/jukan05/status/2079477448841027818",
    "published": "2026-07-21T08:03:00+00:00",
    "content": "Hmm… TrendForce expects the NAND supply shortage to ease in 2027.\n\n“TrendForce noted that while servers already account for more than 40% of total NAND flash bit demand, smartphones and notebooks still represent nearly 40% combined and therefore continue to have a significant impact on overall demand.\n\nIn terms of inventory, memory manufacturers’ inventory levels remain relatively low. Although module makers’ inventories have risen because of weakness in the consumer market, inventories held by other buyers remain manageable.\n\nTaking these factors together, TrendForce expects the NAND flash bit supply-demand gap to remain at negative 4–5% in 2026, indicating a continued shortage. However, the gap is expected to turn positive in the second half of 2027, easing the pressure from tight supply.”\n— Jukan (@jukan05) Jul 21, 2026"
-  },
-  {
-   "title": "What is this supposed to mean? Do Qualcomm or TSMC use Huawei’s designs?",
-   "link": "https://x.com/jukan05/status/2079425057227723089",
-   "published": "2026-07-21T04:35:00+00:00",
-   "content": "What is this supposed to mean? Do Qualcomm or TSMC use Huawei’s designs?Jukan (@jukan05)FT: CHINA’S MINISTRY OF COMMERCE HAS DISCUSSED WITH AI COMPANIES, INCLUDING ALIBABA, BYTEDANCE, AND ZHIPU AI, POSSIBLE RESTRICTIONS ON THE OVERSEAS TRANSFER OF KEY DATA USED TO TRAIN AI MODELS, AS WELL AS ON FOREIGN USERS DOWNLOADING MODEL WEIGHTS.\n\nHOWEVER, CHINA PLANS TO CONTINUE ALLOWING OVERSEAS CUSTOMERS TO ACCESS THESE MODELS AND SERVICES.—  https://x.com/jukan05/status/2079424458075279484 \n— Jukan (@jukan05) Jul 21, 2026"
   }
  ]
 }
