@@ -1128,9 +1128,10 @@ html{overscroll-behavior-y:contain;}
     color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; flex:0 0 auto; }
   #v83nav > .nl{ margin:0 6px 8px; }
   #v83center{ grid-column:2; border-left:1px solid var(--line); border-right:1px solid var(--line); min-height:100vh; }
-  html.v83 #v83center > #tabs{ position:sticky; top:56px; z-index:6; background:var(--bg);
-    border-bottom:1px solid var(--line); padding:8px 10px; margin:0; display:flex; gap:6px; overflow-x:auto; }
-  html.v83 #v83center > #tabs::-webkit-scrollbar{ height:0; }
+  /* v83.3: category pills + in-feed filter row retired — the left nav and the
+     rail search cover both (june 지시) */
+  html.v83 #v83center > #tabs{ display:none; }
+  html.v83 #feed .filter-row{ display:none; }
   html.v83 #feed{ margin:0; }
   #v83rail{ grid-column:3; position:sticky; top:64px; align-self:start; max-height:calc(100vh - 64px);
     overflow-y:auto; padding:8px 4px 24px 18px; }
@@ -1204,6 +1205,20 @@ html{overscroll-behavior-y:contain;}
   .v83dc-desc{ font-size:12.5px; color:var(--muted); line-height:1.55; margin:2px 0 0;
     display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
   .v83dc-n{ margin-top:auto; padding-top:8px; font-size:11px; font-weight:800; color:var(--accent); }
+  .v83dir-group{ padding:16px 14px 0; font-size:12px; font-weight:800; color:var(--muted);
+    letter-spacing:.08em; text-transform:uppercase; }
+  /* v83.3: "이번 주 핫한 읽을거리" as an X Today's-News style list */
+  html.v83 #v83rail .hot-rail{ display:flex; flex-direction:column; gap:0; overflow:visible; padding:0; }
+  html.v83 .hotl-row{ display:flex; flex-direction:column; gap:3px; text-align:left; background:none; border:0;
+    border-bottom:1px solid var(--line); padding:10px 4px; cursor:pointer; font-family:inherit;
+    color:var(--text); width:100%; border-radius:8px; }
+  html.v83 .hotl-row:last-child{ border-bottom:0; }
+  html.v83 .hotl-row:hover{ background:var(--bg-soft); }
+  html.v83 .hotl-t{ font-size:14px; font-weight:800; line-height:1.35; letter-spacing:-.01em;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  html.v83 .hotl-m{ font-size:11.5px; color:var(--muted); }
+  /* v83.3: single-article page top spacing */
+  html.v83 #feedList > .series-header{ margin-top:12px; }
 }
 .title-orig .badge{
   font-family:var(--mono-font);font-size:9.5px;letter-spacing:0.1em;
@@ -2091,7 +2106,7 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .tg-seg.ds-bull{background:#12B76A;}.tg-seg.ds-watch{background:#9BA1B0;}.tg-seg.ds-bear{background:#F04438;}
 .tg-counts{font-size:11px;font-weight:700;color:var(--muted);}
 .bw-strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px;}
-.bw-cell{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;}
+.bw-cell{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;min-width:0;overflow:hidden;}
 .bw-lb{font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
 .bw-cell b{font-size:12.5px;color:var(--text);}
 .bw-t{font-size:11.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
@@ -2416,6 +2431,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
      winning inside renderFeed). Applies to every shell. */
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (typeof V83ITEM !== "undefined") V83ITEM = null;
   if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
 
 
@@ -3442,37 +3458,6 @@ async function renderScoreboard(list, S){
   });
   loading.remove();
 
-  /* v80: grading queue — pending predictions ordered by due date */
-  try {
-    const pend = ITEMS.filter(i => i.outcome && i.outcome.status === "pending" && (!_rvOnly || i.source === _rvOnly));
-    if (pend.length){
-      pend.sort((a,b) => ((a.outcome.due||"9999") < (b.outcome.due||"9999") ? -1 : 1));
-      const qh = document.createElement("h2");
-      qh.className = "section-title sb-list-title"; qh.style.marginTop = "18px";
-      qh.textContent = S.gqTitle + " · " + pend.length;
-      list.appendChild(qh);
-      const _t0 = new Date(); _t0.setHours(0,0,0,0);
-      const qbox = document.createElement("div"); qbox.className = "gq-box";
-      qbox.innerHTML = pend.map(function(i){
-        var due = i.outcome.due || "";
-        var dcls = "gq-d", dlb = S.gqTBD;
-        if (due){
-          var dd = Math.round((new Date(due+"T00:00:00") - _t0)/86400000);
-          if (dd > 0){ dlb = "D-"+dd; }
-          else if (dd === 0){ dlb = S.gqToday; dcls += " gq-due"; }
-          else { dlb = S.gqLate.replace("{n}", -dd); dcls += " gq-late"; }
-        }
-        var nt = (i.outcome.note && (i.outcome.note[LANG]||i.outcome.note.ko||i.outcome.note.en)) || "";
-        return '<button class="gq-row" onclick="goToItem(\''+i.id+'\')">'
-          + '<span class="'+dcls+'">'+dlb+'</span>'
-          + '<span class="gq-main"><b>'+esc(i.title[LANG]||i.title.en||"")+'</b>'
-          + '<span class="gq-note">'+esc(nt)+'</span>'
-          + '<span class="gq-src">'+esc(i.source)+(due?" \u00b7 "+due:"")+'</span></span>'
-          + '</button>';
-      }).join("");
-      list.appendChild(qbox);
-    }
-  } catch(e){}
 
   const medal = ri => ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1);
   const accHtml = r => {
@@ -3507,6 +3492,39 @@ async function renderScoreboard(list, S){
       + "</div>").join("");
   list.appendChild(tbl);
   try{ const _sbRows=tbl.querySelectorAll(".sb-row"); for(let _ri=1;_ri<_sbRows.length;_ri++){ (function(el,r){ if(!r) return; el.style.cursor="pointer"; el.addEventListener("click",function(ev){ if(ev.target&&ev.target.closest&&ev.target.closest("button")) return; openRecord(r.src); }); })(_sbRows[_ri], rows[_ri-1]); } }catch(e){}
+
+  /* v80: grading queue — pending predictions ordered by due date
+     (v83.3: moved BELOW the author accuracy leaderboard — june 지시) */
+  try {
+    const pend = ITEMS.filter(i => i.outcome && i.outcome.status === "pending" && (!_rvOnly || i.source === _rvOnly));
+    if (pend.length){
+      pend.sort((a,b) => ((a.outcome.due||"9999") < (b.outcome.due||"9999") ? -1 : 1));
+      const qh = document.createElement("h2");
+      qh.className = "section-title sb-list-title"; qh.style.marginTop = "18px";
+      qh.textContent = S.gqTitle + " · " + pend.length;
+      list.appendChild(qh);
+      const _t0 = new Date(); _t0.setHours(0,0,0,0);
+      const qbox = document.createElement("div"); qbox.className = "gq-box";
+      qbox.innerHTML = pend.map(function(i){
+        var due = i.outcome.due || "";
+        var dcls = "gq-d", dlb = S.gqTBD;
+        if (due){
+          var dd = Math.round((new Date(due+"T00:00:00") - _t0)/86400000);
+          if (dd > 0){ dlb = "D-"+dd; }
+          else if (dd === 0){ dlb = S.gqToday; dcls += " gq-due"; }
+          else { dlb = S.gqLate.replace("{n}", -dd); dcls += " gq-late"; }
+        }
+        var nt = (i.outcome.note && (i.outcome.note[LANG]||i.outcome.note.ko||i.outcome.note.en)) || "";
+        return '<button class="gq-row" onclick="goToItem(\''+i.id+'\')">'
+          + '<span class="'+dcls+'">'+dlb+'</span>'
+          + '<span class="gq-main"><b>'+esc(i.title[LANG]||i.title.en||"")+'</b>'
+          + '<span class="gq-note">'+esc(nt)+'</span>'
+          + '<span class="gq-src">'+esc(i.source)+(due?" \u00b7 "+due:"")+'</span></span>'
+          + '</button>';
+      }).join("");
+      list.appendChild(qbox);
+    }
+  } catch(e){}
 
   const lh = document.createElement("h2");
   lh.className = "section-title sb-list-title";
@@ -3550,6 +3568,7 @@ function goHome(ev){
   /* v83.2 bugfix: Home must also leave the theme-board / record views */
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (typeof V83ITEM !== "undefined") V83ITEM = null;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   render();
   try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); }
@@ -4184,9 +4203,9 @@ var V83ICONS = {
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
-    en:{home:"Home",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
-    ja:{home:"ホーム",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Browse",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
+    ja:{home:"ホーム",browse:"ピックアップ",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -4202,9 +4221,8 @@ function v83Bookmarks(){
 }
 function v83JoinDebate(){
   try {
-    if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof goToItem === "function"){
-      goToItem(TODAY_ID);
-      if (typeof toggleComments === "function") setTimeout(function(){ toggleComments(TODAY_ID); }, 280);
+    if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof v83OpenItem === "function"){
+      v83OpenItem(TODAY_ID, true); /* v83.3: page swap, not deep scroll */
     } else if (typeof goHome === "function") goHome();
   } catch (e) {}
 }
@@ -4224,18 +4242,17 @@ function mountV83(){
   var center = document.createElement("div"); center.id = "v83center";
   var rail = document.createElement("aside"); rail.id = "v83rail";
 
+  /* v83.3: 투자 고수/기업/정치인은 "골라보기" 하나로 통합 (june 지시) */
   var links = [
     ["home", V83ICONS.home, function(){ if (typeof goHome === "function") goHome(); }],
-    ["authors", V83ICONS.authors, function(){ if (typeof setTab === "function") setTab("investor"); }],
-    ["company", V83ICONS.company, function(){ if (typeof setTab === "function") setTab("company"); }],
-    ["politics", V83ICONS.politics, function(){ if (typeof setTab === "function") setTab("politician"); }],
+    ["browse", V83ICONS.authors, function(){ if (typeof setTab === "function") setTab("browse"); }],
     ["themes", V83ICONS.themes, function(){ if (typeof openThemes === "function") openThemes(); }],
     ["record", V83ICONS.record, function(){ if (typeof openScoreboard === "function") openScoreboard(); }],
     ["cal", V83ICONS.cal, function(){ if (typeof openCal === "function") openCal(); }],
     ["bm", V83ICONS.bm, v83Bookmarks]
   ];
   var html = '';
-  links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
+  links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '" data-k="' + x[0] + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
   html += '<button class="v83-cta" id="v83cta">' + v83T("join") + '</button>';
   html += '<div class="v83-spacer"></div>';
   html += '<button class="v83-me" id="v83me"><span class="v83-ava">J</span><span>' + v83T("me") + '</span></button>';
@@ -4266,7 +4283,7 @@ function mountV83(){
   rail.appendChild(search);
   /* v83.2: "지금 쏠린 곳" trend lives in the LEFT nav, right above 캘린더 */
   var sk0 = document.getElementById("skewSec");
-  var calLink = nav.querySelector('.v83-link[data-i="6"]');
+  var calLink = nav.querySelector('.v83-link[data-k="cal"]');
   if (sk0){ if (calLink) nav.insertBefore(sk0, calLink); else rail.appendChild(sk0); }
   /* v83.1: upcoming events as an inline mini calendar (the horizontal chip
      bar #eventBar stays in place but is hidden by CSS in the v83 shell) */
@@ -4295,6 +4312,9 @@ function unmountV83(){
   if (d.center) d.center.remove();
   if (d.rail) d.rail.remove();
   V83 = { mounted: false };
+  /* the pseudo "browse" tab and single-article view only exist inside v83 */
+  try { if (TAB === "browse") TAB = "all"; } catch (e) {}
+  try { if (typeof V83ITEM !== "undefined") V83ITEM = null; } catch (e) {}
 }
 
 /* ---------------- v83.1 additions (2026-07-22, june 지시) ----------------
@@ -4427,10 +4447,28 @@ function v83RenderSkewTrend(sec, box, ttl){
   if (typeof track === "function") track("skew/trend");
 }
 
+/* ---- (2.5) v83.3: single-article page — 오늘의 토론/핫 리스트 클릭 시
+   피드 깊숙이 스크롤하는 대신 그 글만 있는 페이지로 전환(← 뒤로) ---- */
+var V83ITEM = null;
+function v83OpenItem(id, withComments){
+  V83ITEM = id;
+  SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
+  if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+  if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
+  QUERY = "";
+  var si = document.getElementById("searchInput"); if (si) si.value = "";
+  render();
+  try { window.scrollTo({ top: 0, behavior: "auto" }); } catch (e) {}
+  if (withComments) setTimeout(function(){ try { toggleComments(id); } catch (e) {} }, 320);
+  if (typeof track === "function") track("v83/item");
+}
+function v83CloseItem(){ V83ITEM = null; render(); }
+
 /* ---- (3) entity directory: 기업/투자 고수/정치인 land on visual cards ---- */
 function v83DirTab(){
   if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
-  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician") return null;
+  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician" && TAB !== "browse") return null;
   if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
@@ -4438,17 +4476,17 @@ function v83DirTab(){
 }
 function v83DirStr(){
   var s = {
-    ko: { company: "기업", investor: "투자 고수", politician: "정치인",
+    ko: { browse: "골라보기", company: "기업", investor: "투자 고수", politician: "정치인",
           sub: "카드를 누르면 관련 글과 논쟁 보드를 볼 수 있어요.", n: "글 {n}건", empty: "아직 등록된 카드가 없어요." },
-    en: { company: "Companies", investor: "Investors", politician: "Politicians",
+    en: { browse: "Browse", company: "Companies", investor: "Investors", politician: "Politicians",
           sub: "Tap a card to see its articles and the debate board.", n: "{n} articles", empty: "Nothing here yet." },
-    ja: { company: "企業", investor: "投資家", politician: "政治家",
+    ja: { browse: "ピックアップ", company: "企業", investor: "投資家", politician: "政治家",
           sub: "カードを押すと関連記事と論争ボードが見られます。", n: "記事{n}件", empty: "まだカードがありません。" }
   };
   return s[LANG] || s.ko;
 }
-function renderV83Dir(list, S, kind){
-  var T = v83DirStr(), entries = [];
+function v83DirEntries(kind){
+  var entries = [];
   if (kind === "company"){
     Object.keys(ENTITIES).forEach(function(k){
       var e = ENTITIES[k]; if (!e || e.kind !== "company") return;
@@ -4475,13 +4513,9 @@ function renderV83Dir(list, S, kind){
     });
   }
   entries.sort(function(a, b){ return (b.n - a.n) || a.name.localeCompare(b.name); });
-  var head = document.createElement("div");
-  head.className = "v83dir-head";
-  head.innerHTML = '<b>' + esc(T[kind]) + '</b><p>' + esc(T.sub) + '</p>';
-  list.appendChild(head);
-  if (!entries.length){
-    var em = document.createElement("div"); em.className = "empty"; em.textContent = T.empty; list.appendChild(em); return;
-  }
+  return entries;
+}
+function v83DirGrid(list, entries, T){
   var grid = document.createElement("div");
   grid.className = "v83dir";
   grid.innerHTML = entries.map(function(x){
@@ -4507,6 +4541,29 @@ function renderV83Dir(list, S, kind){
       if (b && !b.querySelector("img")) b.innerHTML = '<img class="v83dc-face" src="' + esc(u) + '" alt="" onerror="this.remove()">';
     });
   });
+}
+function renderV83Dir(list, S, kind){
+  var T = v83DirStr();
+  var head = document.createElement("div");
+  head.className = "v83dir-head";
+  head.innerHTML = '<b>' + esc(T[kind]) + '</b><p>' + esc(T.sub) + '</p>';
+  list.appendChild(head);
+  /* v83.3 "골라보기": 투자 고수 + 기업 + 정치인을 한 화면에 섹션으로 */
+  var kinds = kind === "browse" ? ["investor", "company", "politician"] : [kind];
+  var any = false;
+  kinds.forEach(function(k2){
+    var es = v83DirEntries(k2);
+    if (!es.length) return;
+    any = true;
+    if (kind === "browse"){
+      var g = document.createElement("div"); g.className = "v83dir-group"; g.textContent = T[k2];
+      list.appendChild(g);
+    }
+    v83DirGrid(list, es, T);
+  });
+  if (!any){
+    var em = document.createElement("div"); em.className = "empty"; em.textContent = T.empty; list.appendChild(em);
+  }
 }
 
 const fmt = d => { const [y,m,day] = String(d||"").slice(0,10).split("-"); return `${y}.${m}.${day}`; };
@@ -6132,7 +6189,7 @@ function renderToday(){
   /* v83.2: in the desktop beta the debate is pinned to the top of the feed
      column, so it should only appear on the actual home feed (전체 tab) —
      not above the 기업/정치인 directories or other category tabs. */
-  if (typeof V83 !== "undefined" && V83 && V83.mounted && TAB !== "all") homeView = false;
+  if (typeof V83 !== "undefined" && V83 && V83.mounted && (TAB !== "all" || (typeof V83ITEM !== "undefined" && V83ITEM))) homeView = false;
   const dismissed = store.get("stk_today_dismiss", "") === todayStr();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
   if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
@@ -6141,7 +6198,12 @@ function renderToday(){
   const S = STRINGS[LANG];
   const n = COMMENT_COUNTS[item.id] || 0;
   sec.hidden = false;
-  main.onclick = () => { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); track("today/" + item.id); };
+  main.onclick = () => {
+    /* v83.3: open as its own page instead of deep-scrolling the feed */
+    if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83OpenItem === "function"){ v83OpenItem(item.id, true); }
+    else { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); }
+    track("today/" + item.id);
+  };
   main.innerHTML =
     '<div class="today-top"><span class="today-tag">💬 ' + S.todayLabel + "</span>"
       + (n ? '<span class="today-n">' + S.todayComments.replace("{n}", n) + "</span>" : "") + "</div>"
@@ -6163,6 +6225,22 @@ function renderHotRail(){
     pool.filter(i => i.hot && !seen.has(i.id))
       .sort((a, b) => (a.date < b.date ? 1 : -1))
       .forEach(i => { if (hotList.length < 5){ hotList.push(i); seen.add(i.id); } });
+  }
+  /* v83.3: X "Today's News" 스타일 컴팩트 리스트 (헤드라인 + 메타) */
+  if (typeof V83 !== "undefined" && V83 && V83.mounted){
+    const S2 = STRINGS[LANG];
+    rail.innerHTML = "";
+    hotList.forEach(item => {
+      const v = VIEW_COUNTS[item.id] || 0, c = COMMENT_COUNTS[item.id] || 0;
+      const b = document.createElement("button");
+      b.className = "hotl-row";
+      b.onclick = () => { if (typeof v83OpenItem === "function") v83OpenItem(item.id); else goToItem(item.id); };
+      b.innerHTML = '<span class="hotl-t">' + esc(item.title[LANG] || item.title.en || "") + '</span>'
+        + '<span class="hotl-m">' + esc(dispName(item.source)) + ' · ' + fmt(item.date)
+        + (v ? ' · ' + esc(S2.views) + ' ' + v : '') + (c ? ' · 💬 ' + c : '') + '</span>';
+      rail.appendChild(b);
+    });
+    return;
   }
   rail.innerHTML = "";
   hotList.forEach(item => {
@@ -6318,6 +6396,24 @@ function renderFeed(animate){
     renderV83Dir(list, S, v83DirTab());
     if (typeof hydrateImages === "function") hydrateImages();
     return;
+  }
+
+  /* v83.3: single-article page (오늘의 토론/핫 리스트에서 진입) */
+  if (typeof V83ITEM !== "undefined" && V83ITEM && typeof V83 !== "undefined" && V83 && V83.mounted
+      && !ENTITY_VIEW && !SERIES_VIEW && !QUERY){
+    const _it = ITEMS.find(i => i.id === V83ITEM);
+    if (_it){
+      const hb = document.createElement("div");
+      hb.className = "series-header";
+      hb.innerHTML = '<button class="series-close" onclick="v83CloseItem()">← ' + S.seriesClose + "</button>";
+      list.appendChild(hb);
+      list.appendChild(cardEl(_it, S, 0));
+      if (window.hydrateImages) hydrateImages();
+      applyEngageCounts();
+      setupViewObserver();
+      return;
+    }
+    V83ITEM = null;
   }
 
   /* "For you": explicit "why this feed" header + empty state */
