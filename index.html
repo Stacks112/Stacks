@@ -5226,6 +5226,18 @@ const COMPANY_FACE = {
   "SAMSUNG ELECTRONICS":WM+"d/de/Lee_Jae-yong_in_2016.jpg/400px-Lee_Jae-yong_in_2016.jpg",
   "BERKSHIRE HATHAWAY": WM+"d/d4/Warren_Buffett_at_the_2015_SelectUSA_Investment_Summit_%28cropped%29.jpg/400px-Warren_Buffett_at_the_2015_SelectUSA_Investment_Summit_%28cropped%29.jpg"
 };
+/* Wikimedia rejects arbitrary thumbnail widths (e.g. 400px) for many files with
+   HTTP 400 "use listed thumbnail sizes" — so the hard-coded /400px- URLs above
+   fail to load. Special:FilePath?width= redirects to a valid cached size, so it
+   always resolves. Convert on read. (Fixes both the intro profile photo and any
+   company-face cover.) */
+function wmFace(u){
+  if (!u || u.indexOf("/thumb/") < 0) return u;
+  var seg = u.split("/thumb/")[1]; if (!seg) return u;
+  var parts = seg.split("/");      // ["e","e6","Name.jpg","400px-Name.jpg"]
+  if (parts.length < 3) return u;
+  return "https://commons.wikimedia.org/wiki/Special:FilePath/" + parts[2] + "?width=480";
+}
 function coverImg(item){
   if (item._cimg !== undefined) return item._cimg;
   if (item.coverArt){ const r = { url:item.coverArt, fb:null, mode:"photo" }; item._cimg = r; return r; }
@@ -5247,7 +5259,7 @@ function coverImg(item){
     };
     /* a company → its representative person, company logo as a small badge */
     const companyFace = () => {
-      if (mk && COMPANY_FACE[mkUp]){ const lg = companyLogo(); return { url:COMPANY_FACE[mkUp], fb:lg, mode:"face", badge:lg }; }
+      if (mk && COMPANY_FACE[mkUp]){ const lg = companyLogo(); return { url:wmFace(COMPANY_FACE[mkUp]), fb:lg, mode:"face", badge:lg }; }
       return null;
     };
     const companyCover = () => { const lg = companyLogo(); return lg ? { url:lg, fb:null, mode:"logo" } : null; };
@@ -7868,7 +7880,7 @@ function buildIntroCards(){
   }
   function scrProfile(){
     if (!profCo) return null;
-    var photo = COMPANY_FACE[profCo];
+    var photo = wmFace(COMPANY_FACE[profCo]);
     var name = CEO[profCo];
     var coLabel = dispName ? profCo : profCo;
     var pt = pcnt.bull + pcnt.bear + pcnt.watch || 1;
