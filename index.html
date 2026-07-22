@@ -149,6 +149,12 @@ let THEME_SAVED = null;
 try { THEME_SAVED = localStorage.getItem("stk_theme"); } catch(e){}
 let THEME = THEME_SAVED || themeByClock();
 document.documentElement.setAttribute("data-theme", THEME);
+/* readability beta gate: ?rbeta enables (persisted) · ?rboff disables */
+try {
+  if (/rboff/.test(location.search)) localStorage.removeItem("stk_rbeta");
+  else if (/rbeta/.test(location.search)) localStorage.setItem("stk_rbeta", "1");
+  if (localStorage.getItem("stk_rbeta") === "1") document.documentElement.classList.add("rbeta");
+} catch (e) {}
 
 
 /* ---------------- upcoming events (countdown bar) ----------------
@@ -871,6 +877,20 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .has-tip{position:relative;cursor:pointer;}
 .gloss-link{border-bottom:1px dotted var(--muted);cursor:pointer;}
 .gloss-link:hover{border-bottom-color:var(--accent);color:var(--accent);}
+/* ================= readability beta (?rbeta) =================
+   Cleaner, Twitter-like feed: body mentions lose the heavy bold+underline,
+   headline is lighter, cards get a crisp hairline divider, and the byline
+   sits on one line. Opt-in via ?rbeta (persisted) · ?rboff to disable. */
+html.rbeta .ent-link{font-weight:inherit;text-underline-offset:3px;text-decoration-color:rgba(130,140,160,.42);}
+html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
+@media (max-width:1023px){
+  html.rbeta .card.v82c .card-title{font-weight:700;letter-spacing:-.01em;font-size:16.5px;line-height:1.42;margin:2px 0 9px;}
+  html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
+  html.rbeta .src-block{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:2px 7px;}
+  html.rbeta .src-date{font-size:11.5px;}
+  html.rbeta .src-date::before{content:"· ";color:var(--muted);}
+}
+/* ============================================================= */
 .has-tip:hover{border-color:var(--text);color:var(--text);}
 .entity-tip{
   position:absolute;bottom:calc(100% + 8px);right:-6px;
