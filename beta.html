@@ -4779,13 +4779,15 @@ var V83ICONS = {
   record:'<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 4-6"/></svg>',
   cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
   bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
-  skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>'
+  skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
+  alerts:'<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
+  appearance:'<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>'
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",alerts:"Notifications",appearance:"Appearance",join:"Join today's debate",search:"Search",me:"My page"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",alerts:"通知設定",appearance:"テーマ",join:"今日の論点に参加",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -4832,7 +4834,10 @@ function mountV83(){
     ["record", V83ICONS.record, function(){ if (typeof openScoreboard === "function") openScoreboard(); }],
     /* v83.5: 캘린더도 모달이 아니라 페이지 전환 (june 지시) */
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
-    ["bm", V83ICONS.bm, v83Bookmarks]
+    ["bm", V83ICONS.bm, v83Bookmarks],
+    /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel */
+    ["alerts", V83ICONS.alerts, function(){ if (typeof v83AlertsPanel === "function") v83AlertsPanel(); }],
+    ["appearance", V83ICONS.appearance, function(){ if (typeof toggleTheme === "function") toggleTheme(); }]
   ];
   var html = '';
   links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '" data-k="' + x[0] + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
@@ -4857,7 +4862,10 @@ function mountV83(){
       b.addEventListener("click", function(){ if (typeof setTab === "function") setTab(b.dataset.f); });
       try { b.classList.toggle("on", b.dataset.f === TAB); } catch (e) {}
     });
-    center.appendChild(fsw);
+    /* 2026-07-23 june: tabs live in the fixed top bar, like X */
+    var ni0 = document.querySelector(".nav-inner");
+    if (ni0) ni0.insertBefore(fsw, ni0.querySelector(".lang-menu"));
+    else center.appendChild(fsw);
     /* v83.1: today's debate pinned to the very top of the feed column */
     var td0 = document.getElementById("todaySec"); if (td0) center.appendChild(td0);
     center.appendChild(feed);
@@ -4882,8 +4890,9 @@ function mountV83(){
   rail.appendChild(calSec);
   if (hotSec) rail.appendChild(hotSec);
   var ws = document.getElementById("watchSec"); if (ws) rail.appendChild(ws);
+  /* 2026-07-23 june: newsletter lives at the bottom of the right rail */
   var nl = document.getElementById("nlSec");
-  if (nl){ var sp = nav.querySelector(".v83-spacer"); if (sp) nav.insertBefore(nl, sp); else nav.appendChild(nl); }
+  if (nl) rail.appendChild(nl);
 
   document.documentElement.classList.add("v83");
   V83 = { mounted: true, nav: nav, center: center, rail: rail, homes: homes };
@@ -4898,6 +4907,7 @@ function unmountV83(){
     if (h.next && h.next.parentNode === h.parent) h.parent.insertBefore(h.el, h.next);
     else h.parent.appendChild(h.el);
   }
+  var fsw0 = document.getElementById("v83fsw"); if (fsw0) fsw0.remove();
   if (d.nav) d.nav.remove();
   if (d.center) d.center.remove();
   if (d.rail) d.rail.remove();
@@ -9704,6 +9714,115 @@ bootData();
   watchSplash();
 })();
 </script>
+<!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
+<style id="v83tw-css">
+/* --- card formatting on ALL widths (these rules were mobile-only before) --- */
+html.rbeta .why .label{font-weight:800;}
+html.rbeta .why p{white-space:pre-line;line-height:1.6;font-weight:400;}
+html.rbeta .ask-block .ask-q{white-space:pre-line;line-height:1.55;font-weight:400;}
+html.rbeta .today-q{white-space:pre-line;line-height:1.55;}
+html.rbeta .oc .oc-sep{display:none;}
+html.rbeta .oc .oc-note{display:block;margin-top:2px;}
+/* --- v83 top bar: brand + 최신/팔로잉 tabs only (like X) --- */
+html.v83 #themeBtn,html.v83 #meBtn,html.v83 #notifBtn{display:none !important;}
+html.v83 .nav-inner{position:relative;}
+html.v83 #v83fsw{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);
+  width:min(460px,38vw);border-bottom:none;background:transparent;display:flex;z-index:2;}
+html.v83 #v83fsw button{padding:0 0 2px;font-size:14.5px;}
+/* --- newsletter box: bottom of the right rail --- */
+#v83rail #nlSec{margin-top:4px;}
+/* --- notification settings panel (left-nav item) --- */
+.v83np-ov{position:fixed;inset:0;z-index:14400;background:rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:center;}
+.v83np{background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  width:min(420px,92vw);padding:18px 20px 16px;box-shadow:0 18px 50px rgba(0,0,0,.25);}
+.v83np h3{font-size:15.5px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between;}
+.v83np h3 button{background:none;border:none;font-size:16px;cursor:pointer;color:var(--muted);padding:2px 6px;}
+.v83np-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 2px;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer;
+  background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;
+  font-family:var(--ui-font);color:var(--text);}
+.v83np-row:last-of-type{border-bottom:none;}
+.v83np-sw{flex:0 0 40px;height:23px;border-radius:999px;background:var(--line);position:relative;transition:background .15s;}
+.v83np-sw::after{content:"";position:absolute;top:2.5px;left:3px;width:18px;height:18px;border-radius:50%;
+  background:#fff;transition:left .15s;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+.v83np-sw.on{background:var(--accent);}
+.v83np-sw.on::after{left:19px;}
+.v83np-push{margin-top:12px;width:100%;padding:11px;border-radius:999px;border:1px solid var(--line);
+  background:var(--bg-soft);color:var(--text);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--ui-font);}
+.v83np-push:hover{border-color:var(--text);}
+</style>
+<script id="v83tw-js">
+/* v83 desktop: notification settings panel (reads/writes the same stk_notif
+   store as the mobile drawer, so preferences stay in sync across layouts). */
+(function(){
+"use strict";
+var NPS = {
+  ko: { title:"알림 설정", newpost:"새 글 알림", debate:"오늘의 토론 알림",
+        follow:"팔로우 새 글 알림", events:"이벤트 알림", push:"브라우저 푸시 알림 켜기" },
+  en: { title:"Notification settings", newpost:"New posts", debate:"Today's debate",
+        follow:"New posts from who you follow", events:"Event alerts", push:"Enable browser push" },
+  ja: { title:"通知設定", newpost:"新着記事", debate:"今日の論点",
+        follow:"フォロー中の新着", events:"イベント通知", push:"ブラウザ通知をオンにする" }
+};
+function npT(){ return NPS[(typeof LANG !== "undefined" && NPS[LANG]) ? LANG : "ko"]; }
+function npGet(){
+  var d = { newpost:true, debate:true, follow:true, eventsMaster:true };
+  try {
+    var s = store.get("stk_notif", null);
+    if (s && typeof s === "object"){
+      d.newpost = s.newpost !== false; d.debate = s.debate !== false;
+      d.follow = s.follow !== false; d.eventsMaster = s.eventsMaster !== false;
+    }
+  } catch (e){}
+  return d;
+}
+function npSet(key, on){
+  try {
+    var p = store.get("stk_notif", {}) || {};
+    p[key] = on;
+    store.set("stk_notif", p);
+  } catch (e){}
+}
+window.v83AlertsPanel = function(){
+  var old = document.getElementById("v83npOv");
+  if (old){ old.remove(); return; }
+  var t = npT(), p = npGet();
+  var ov = document.createElement("div");
+  ov.id = "v83npOv"; ov.className = "v83np-ov";
+  var row = function(key, label, on){
+    return '<button class="v83np-row" data-np="' + key + '"><span>' + label
+      + '</span><span class="v83np-sw' + (on ? " on" : "") + '"></span></button>';
+  };
+  ov.innerHTML = '<div class="v83np">'
+    + '<h3>' + t.title + '<button aria-label="close">&#x2715;</button></h3>'
+    + row("newpost", t.newpost, p.newpost)
+    + row("debate", t.debate, p.debate)
+    + row("follow", t.follow, p.follow)
+    + row("eventsMaster", t.events, p.eventsMaster)
+    + '<button class="v83np-push">' + t.push + '</button>'
+    + '</div>';
+  document.body.appendChild(ov);
+  ov.addEventListener("click", function(e){ if (e.target === ov) ov.remove(); });
+  ov.querySelector("h3 button").addEventListener("click", function(){ ov.remove(); });
+  ov.querySelectorAll("[data-np]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var sw = b.querySelector(".v83np-sw");
+      var on = !sw.classList.contains("on");
+      sw.classList.toggle("on", on);
+      npSet(b.getAttribute("data-np"), on);
+    });
+  });
+  ov.querySelector(".v83np-push").addEventListener("click", function(){
+    /* delegate to the (hidden) original top-bar push button — it owns the
+       OneSignal prompt + already-on / blocked feedback logic */
+    var nb = document.getElementById("notifBtn");
+    if (nb && typeof nb.onclick === "function") nb.onclick();
+  });
+};
+})();
+</script>
+
 <!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
 <style id="twc-css">
 .twc-ov{position:fixed;inset:0;z-index:14500;background:rgba(0,0,0,.45);
