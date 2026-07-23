@@ -167,6 +167,7 @@ Rules:
 - Translate faithfully; do not add facts not in the source. If the source is thin, keep the gist shorter rather than padding.
 - ko and ja must carry the same meaning as en, natural in each language.
 - Never fabricate numbers. Prefer the writer's own figures.
+- PLAIN LANGUAGE — this is the top style rule. Write so a busy non-expert reads it once and gets it. Use common, everyday words. Do NOT use literary metaphors, analogies, or figures of speech: no "weather vane / bellwether / barometer / litmus test / canary / double-edged sword"-style images, and in Korean specifically avoid 풍향계·바로미터·신호탄·불쏘시개·시금석·양날의 검 and similar. Say the thing directly and concretely instead (e.g. not "AI 투자를 가늠하는 풍향계" but "AI 투자가 계속 늘지 보여주는 대표 사례"). Keep sentences short. When a technical term is truly needed, keep it but phrase the rest plainly.
 - Return JSON only.
 
 SOURCE LANGUAGE: {lang}
