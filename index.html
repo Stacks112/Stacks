@@ -242,6 +242,7 @@ const STRINGS = {
     themeLight: "Light mode",
     commentsClose: "Hide comments",
     allRead: "You're all caught up. Nothing unread.",
+    readDivider: "Already read",
     markRead: "Mark as read",
     readDone: "Read ✓",
     like: "Like",
@@ -389,6 +390,7 @@ const STRINGS = {
     themeLight: "라이트 모드",
     commentsClose: "댓글 접기",
     allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
+    readDivider: "이미 읽은 글",
     markRead: "읽음 표시",
     readDone: "읽음 ✓",
     like: "좋아요",
@@ -536,6 +538,7 @@ const STRINGS = {
     themeLight: "ライトモード",
     commentsClose: "コメントを閉じる",
     allRead: "すべて読みました。未読はありません。",
+    readDivider: "既読の記事",
     markRead: "既読にする",
     readDone: "既読 ✓",
     like: "いいね",
@@ -3024,7 +3027,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof V83ITEM !== "undefined") V83ITEM = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
      가드에 막혀 아무 것도 안 바뀌는 것처럼 보였다 — 페이지 탭 진입 시 해제. */
-  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; }
+  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false; }
   if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
 
 
@@ -3708,7 +3711,7 @@ function renderSkew(){
   /* v83.4: in the desktop beta the module is retired — "지금 쏠린 곳" is now
      a left-nav menu item with its own page (TAB="skew"). */
   if (typeof V83 !== "undefined" && V83 && V83.mounted){ sec.hidden = true; return; }
-  var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && !READ_VIEW && TAB !== "mine";
   if(!homeView){ sec.hidden=true; return; }
   var S=STRINGS[LANG], out=[];
   try {
@@ -3811,7 +3814,7 @@ function evGo(evid){
   var ids=eventRelatedSet(e);
   if(!ids.size){ if(e.itemId) goToItem(e.itemId); return; }
   EVENT_FILTER=ids;
-  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; TAB="all";
+  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; READ_VIEW=false; TAB="all";
   var lbl=(e.label&&(e.label[LANG]||e.label.en))||"";
   QUERY=lbl.trim().toLowerCase();
   var si=document.getElementById("searchInput"); if(si) si.value=lbl;
@@ -4159,7 +4162,7 @@ function railStanceTap(key, k){
 function goHome(ev){
   if (ev && ev.preventDefault) ev.preventDefault();
   SERIES_VIEW = null; ENTITY_VIEW = null; TAB = "all";
-  QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
+  QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
   STANCE_FILTER = null; SB_VIEW = false;
   /* v83.2 bugfix: Home must also leave the theme-board / record views */
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
@@ -4386,7 +4389,7 @@ function goToItem(id){
   let changed = false;
   if (TAB !== "all" && target.category !== TAB){ TAB = "all"; changed = true; }
   if (QUERY || BM_ONLY || UNREAD_ONLY || FREE_ONLY){
-    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
+    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
     const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
     changed = true;
   }
@@ -4796,13 +4799,16 @@ var V83ICONS = {
   record:'<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 4-6"/></svg>',
   cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
   bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
-  skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>'
+  skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
+  readlist:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>',
+  alerts:'<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
+  appearance:'<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>'
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",join:"Join today's debate",search:"Search",me:"My page"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",join:"Join today's debate",search:"Search",me:"My page"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",join:"今日の論点に参加",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -4811,7 +4817,18 @@ function v83Bookmarks(){
   try {
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
-    QUERY = ""; BM_ONLY = true;
+    QUERY = ""; BM_ONLY = true; READ_VIEW = false;
+    var i = document.getElementById("searchInput"); if (i) i.value = "";
+    if (typeof render === "function") render();
+  } catch (e) {}
+}
+/* 읽음 하이브리드: 좌측 '읽은 글' 보관함 */
+function v83ReadList(){
+  try {
+    SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
+    if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+    if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; READ_VIEW = true;
     var i = document.getElementById("searchInput"); if (i) i.value = "";
     if (typeof render === "function") render();
   } catch (e) {}
@@ -4849,7 +4866,11 @@ function mountV83(){
     ["record", V83ICONS.record, function(){ if (typeof openScoreboard === "function") openScoreboard(); }],
     /* v83.5: 캘린더도 모달이 아니라 페이지 전환 (june 지시) */
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
-    ["bm", V83ICONS.bm, v83Bookmarks]
+    ["bm", V83ICONS.bm, v83Bookmarks],
+    ["readlist", V83ICONS.readlist, function(){ if (typeof v83ReadList === "function") v83ReadList(); }],
+    /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel */
+    ["alerts", V83ICONS.alerts, function(){ if (typeof v83AlertsPanel === "function") v83AlertsPanel(); }],
+    ["appearance", V83ICONS.appearance, function(){ if (typeof toggleTheme === "function") toggleTheme(); }]
   ];
   var html = '';
   links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '" data-k="' + x[0] + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
@@ -4857,7 +4878,17 @@ function mountV83(){
   html += '<div class="v83-spacer"></div>';
   html += '<button class="v83-me" id="v83me"><span class="v83-ava">J</span><span>' + v83T("me") + '</span></button>';
   nav.innerHTML = html;
-  links.forEach(function(x, i){ var b = nav.querySelector('.v83-link[data-i="' + i + '"]'); if (b) b.addEventListener("click", x[2]); });
+  links.forEach(function(x, i){ var b = nav.querySelector('.v83-link[data-i="' + i + '"]'); if (!b) return;
+    b.addEventListener("click", function(){
+      /* 2026-07-23 june: only the selected menu is bold (alerts/theme are actions, not pages) */
+      if (x[0] !== "alerts" && x[0] !== "appearance"){
+        nav.querySelectorAll(".v83-link.on").forEach(function(o){ o.classList.remove("on"); });
+        b.classList.add("on");
+      }
+      x[2]();
+    });
+  });
+  var hb0 = nav.querySelector('.v83-link[data-k="home"]'); if (hb0) hb0.classList.add("on");
   var ctaB = nav.querySelector("#v83cta"); if (ctaB) ctaB.addEventListener("click", v83JoinDebate);
   var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
 
@@ -4874,7 +4905,10 @@ function mountV83(){
       b.addEventListener("click", function(){ if (typeof setTab === "function") setTab(b.dataset.f); });
       try { b.classList.toggle("on", b.dataset.f === TAB); } catch (e) {}
     });
-    center.appendChild(fsw);
+    /* 2026-07-23 june: tabs live in the fixed top bar, like X */
+    var ni0 = document.querySelector(".nav-inner");
+    if (ni0) ni0.insertBefore(fsw, ni0.querySelector(".lang-menu"));
+    else center.appendChild(fsw);
     /* v83.1: today's debate pinned to the very top of the feed column */
     var td0 = document.getElementById("todaySec"); if (td0) center.appendChild(td0);
     center.appendChild(feed);
@@ -4899,8 +4933,9 @@ function mountV83(){
   rail.appendChild(calSec);
   if (hotSec) rail.appendChild(hotSec);
   var ws = document.getElementById("watchSec"); if (ws) rail.appendChild(ws);
+  /* 2026-07-23 june: newsletter lives at the bottom of the right rail */
   var nl = document.getElementById("nlSec");
-  if (nl){ var sp = nav.querySelector(".v83-spacer"); if (sp) nav.insertBefore(nl, sp); else nav.appendChild(nl); }
+  if (nl) rail.appendChild(nl);
 
   document.documentElement.classList.add("v83");
   V83 = { mounted: true, nav: nav, center: center, rail: rail, homes: homes };
@@ -4915,6 +4950,7 @@ function unmountV83(){
     if (h.next && h.next.parentNode === h.parent) h.parent.insertBefore(h.el, h.next);
     else h.parent.appendChild(h.el);
   }
+  var fsw0 = document.getElementById("v83fsw"); if (fsw0) fsw0.remove();
   if (d.nav) d.nav.remove();
   if (d.center) d.center.remove();
   if (d.rail) d.rail.remove();
@@ -5270,6 +5306,8 @@ function renderV83SkewPage(list, S){
 var V83ITEM = null;
 function v83OpenItem(id, withComments){
   V83ITEM = id;
+  /* 읽음 하이브리드: 상세를 연 것 자체가 읽음 */
+  try { if (typeof setRead === "function") setRead(id); } catch (e){}
   SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
@@ -5286,19 +5324,19 @@ function v83CloseItem(){ V83ITEM = null; render(); }
 /* ---- (3) entity directory: 기업/투자 고수/정치인 land on visual cards ---- */
 function v83DirTab(){
   if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
-  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal") return null;
-  if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY) return null;
+  if (TAB !== "company" && TAB !== "investor" && TAB !== "ceo" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal") return null;
+  if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY || READ_VIEW) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
   return TAB;
 }
 function v83DirStr(){
   var s = {
-    ko: { browse: "골라보기", company: "기업", investor: "투자 고수", politician: "정치인",
+    ko: { browse: "골라보기", company: "기업", investor: "투자 고수", ceo: "기업인", politician: "정치인",
           sub: "카드를 누르면 관련 글과 논쟁 보드를 볼 수 있어요.", n: "글 {n}건", empty: "아직 등록된 카드가 없어요." },
-    en: { browse: "Browse", company: "Companies", investor: "Investors", politician: "Politicians",
+    en: { browse: "Browse", company: "Companies", investor: "Investors", ceo: "Executives", politician: "Politicians",
           sub: "Tap a card to see its articles and the debate board.", n: "{n} articles", empty: "Nothing here yet." },
-    ja: { browse: "ピックアップ", company: "企業", investor: "投資家", politician: "政治家",
+    ja: { browse: "ピックアップ", company: "企業", investor: "投資家", ceo: "経営者", politician: "政治家",
           sub: "カードを押すと関連記事と論争ボードが見られます。", n: "記事{n}件", empty: "まだカードがありません。" }
   };
   return s[LANG] || s.ko;
@@ -5406,7 +5444,7 @@ function renderV83Dir(list, S, kind){
     var allLb = ({ ko: "전체", en: "All", ja: "すべて" })[LANG] || "전체";
     var pills = document.createElement("div");
     pills.className = "v83bf";
-    pills.innerHTML = [["all", allLb], ["investor", T.investor], ["company", T.company], ["politician", T.politician]]
+    pills.innerHTML = [["all", allLb], ["investor", T.investor], ["ceo", T.ceo], ["company", T.company], ["politician", T.politician]]
       .map(function(p){ return '<button class="v83bf-p' + (V83BROWSE_F === p[0] ? " on" : "") + '" onclick="v83BrowseFilter(\'' + p[0] + '\')">' + esc(p[1]) + '</button>'; }).join("");
     list.appendChild(pills);
   }
@@ -5433,7 +5471,7 @@ function renderV83Dir(list, S, kind){
   }
   /* v83.3 "골라보기": 투자 고수 + 기업 + 정치인 섹션 (필터 반영) */
   var kinds = isBrowse
-    ? (V83BROWSE_F === "all" ? ["investor", "company", "politician"] : [V83BROWSE_F])
+    ? (V83BROWSE_F === "all" ? ["investor", "ceo", "company", "politician"] : [V83BROWSE_F])
     : [kind];
   var any = false;
   kinds.forEach(function(k2){
@@ -7123,7 +7161,7 @@ function renderToday(){
   const sec = document.getElementById("todaySec");
   const main = document.getElementById("todayMain");
   if (!sec || !main) return;
-  let homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  let homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && !READ_VIEW && TAB !== "mine";
   /* v83.2: in the desktop beta the debate is pinned to the top of the feed
      column, so it should only appear on the actual home feed (전체 tab) —
      not above the 기업/정치인 directories or other category tabs. */
@@ -7269,6 +7307,8 @@ function renderAfterHot(S){
 const FEED_PAGE_SIZE = 10;
 let CUR_ITEMS = [];
 let SHOWN = 0;
+var READ_VIEW = false;     /* 좌측 '읽은 글' 보관함 뷰 */
+var READ_DIV_IDX = -1;     /* 피드에서 "이미 읽은 글" 구분선이 들어갈 인덱스 */
 let feedIO = null;
 
 function appendFeedPage(S){
@@ -7279,6 +7319,12 @@ function appendFeedPage(S){
   const start = SHOWN;
   const end = Math.min(start + FEED_PAGE_SIZE, CUR_ITEMS.length);
   for (let idx = start; idx < end; idx++){
+    if (READ_DIV_IDX >= 0 && idx === READ_DIV_IDX && !document.getElementById("readDivider")){
+      const dv = document.createElement("div");
+      dv.id = "readDivider"; dv.className = "read-div";
+      dv.innerHTML = "<span>" + esc(S.readDivider || "이미 읽은 글") + "</span>";
+      list.appendChild(dv);
+    }
     const el = cardEl(CUR_ITEMS[idx], S, idx - start);
     list.appendChild(el);
     linkifyEntities(el);
@@ -7374,7 +7420,10 @@ function renderFeed(animate){
       hb.className = "series-header";
       hb.innerHTML = '<button class="series-close" onclick="v83CloseItem()">← ' + S.seriesClose + "</button>";
       list.appendChild(hb);
-      list.appendChild(cardEl(_it, S, 0));
+      const _ac = cardEl(_it, S, 0);
+      _ac.classList.remove("collapsed");
+      _ac.classList.add("v83one");
+      list.appendChild(_ac);
       if (window.hydrateImages) hydrateImages();
       applyEngageCounts();
       setupViewObserver();
@@ -7461,6 +7510,7 @@ function renderFeed(animate){
 
   let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
   if (BM_ONLY) items = items.filter(i => BM.has(i.id));
+  if (READ_VIEW) items = items.filter(i => READ.has(i.id));
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (QUERY) items = items.filter(matchesQuery);
   if (ENTITY_VIEW) items = items.filter(i => itemEntities(i).has(ENTITY_VIEW));
@@ -7487,6 +7537,21 @@ function renderFeed(animate){
     hydrateImages();
     return;
   }
+  /* 읽음 하이브리드: 세션 시작 시점 스냅샷 기준 강등 — 이번 세션에 '열어본' 글은
+     제자리 유지, 다음 방문부터 하단 "이미 읽은 글" 그룹으로 */
+  READ_DIV_IDX = -1;
+  try {
+    const _plain = !UNREAD_ONLY && !BM_ONLY && !FREE_ONLY && !READ_VIEW && !QUERY
+      && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW
+      && (typeof EVENT_FILTER === "undefined" || !EVENT_FILTER)
+      && (typeof READ_BASE !== "undefined");
+    if (_plain){
+      const _dem = i => READ_BASE.has(i.id) || (typeof READ_SWEPT !== "undefined" && READ_SWEPT.has(i.id));
+      const _fresh = items.filter(i => !_dem(i));
+      const _done = items.filter(_dem);
+      if (_fresh.length && _done.length){ READ_DIV_IDX = _fresh.length; items = _fresh.concat(_done); }
+    }
+  } catch (e){}
   CUR_ITEMS = items;
   SHOWN = 0;
   appendFeedPage(S);
@@ -7568,6 +7633,7 @@ function cardEl(item, S, idx){
         <button class="eg eg-share" id="share-${item.id}" onclick="shareItem('${item.id}')" aria-label="${S.share}" title="${S.share}">${svgIcon("share")}</button>
         <button class="eg eg-read${READ.has(item.id) ? " on" : ""}" onclick="toggleRead('${item.id}')" aria-label="${S.markRead}" title="${S.markRead}">${svgIcon("read")}</button>
       </div>
+      ${(typeof twInlineHtml === "function" && COMMENTS_API) ? twInlineHtml(item.id) : ""}
       <div class="comment-box" id="cbox-${item.id}" hidden></div>
       ${relHtml}
       </div>
@@ -9780,5 +9846,1144 @@ bootData();
   watchSplash();
 })();
 </script>
+<!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
+<style id="v83tw-css">
+/* --- card formatting on ALL widths (these rules were mobile-only before) --- */
+html.rbeta .why .label{font-weight:800;}
+html.rbeta .why p{white-space:pre-line;line-height:1.6;font-weight:400;}
+html.rbeta .ask-block .ask-q{white-space:pre-line;line-height:1.55;font-weight:400;}
+html.rbeta .today-q{white-space:pre-line;line-height:1.55;}
+html.rbeta .oc .oc-sep{display:none;}
+html.rbeta .oc .oc-note{display:block;margin-top:2px;}
+/* --- v83 top bar: brand + 최신/팔로잉 tabs only (like X) --- */
+html.v83 #themeBtn,html.v83 #meBtn,html.v83 #notifBtn{display:none !important;}
+html.v83 .nav-inner{position:relative;}
+/* keep the top bar above the sticky side columns (z:20). Without this, at the
+   bottom of a short page the left panel un-sticks, scrolls up, and — same z-index
+   but later in the DOM — paints over the Stacks logo (june 보고).
+   NOTE: the left panel is also a <nav> (#v83nav), so scope this to the top bar
+   only via :not([id]) — otherwise the panel inherits z:50 and the bug persists. */
+html.v83 nav:not([id]){z-index:50;}
+html.v83 #v83fsw{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);
+  width:min(460px,38vw);border-bottom:none;background:transparent;display:flex;z-index:2;}
+html.v83 #v83fsw button{padding:0 0 2px;font-size:14.5px;}
+/* --- newsletter box: bottom of the right rail --- */
+#v83rail #nlSec{margin-top:4px;}
+/* --- left nav: only the ACTIVE menu is bold (X-style) --- */
+html.v83 #v83nav .v83-link{font-weight:500;}
+html.v83 #v83nav .v83-link.on{font-weight:800;}
+/* --- search dropdown (recent searches / guide + today's popular) --- */
+html.v83 .v83-search{position:relative;}
+.v83sd{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:60;
+  background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 12px 40px rgba(0,0,0,.28);padding:6px 0 8px;overflow:hidden;}
+.v83sd-h{display:flex;align-items:center;justify-content:space-between;
+  font-size:13.5px;font-weight:800;padding:10px 16px 6px;}
+.v83sd-h button{background:none;border:0;color:var(--accent);font-size:12px;
+  font-weight:700;cursor:pointer;font-family:var(--ui-font);padding:2px 4px;}
+.v83sd-row{display:flex;align-items:center;gap:11px;width:100%;padding:9px 16px;
+  background:none;border:0;text-align:left;font-family:var(--ui-font);font-size:13.5px;
+  color:var(--text);cursor:pointer;}
+.v83sd-row:hover{background:var(--bg-soft);}
+.v83sd-row .ic{flex:0 0 auto;opacity:.65;font-size:14px;}
+.v83sd-row .lb{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.v83sd-row .sub{flex:0 0 auto;color:var(--muted);font-size:11.5px;}
+.v83sd-row .rm{flex:0 0 auto;color:var(--muted);font-size:13px;padding:0 2px;}
+.v83sd-row .rm:hover{color:var(--text);}
+.v83sd-guide{padding:22px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;}
+.v83sd-div{height:1px;background:var(--line);margin:6px 0;}
+/* --- 읽음 하이브리드 --- */
+/* "이미 읽은 글" 구분선 */
+.read-div{display:flex;align-items:center;gap:12px;margin:26px 14px 10px;color:var(--muted);
+  font-size:12px;font-weight:700;letter-spacing:.02em;}
+.read-div::before,.read-div::after{content:"";flex:1;height:1px;background:var(--line);}
+/* 피드 카드 3문단 프리뷰 (상세 뷰 .v83one과 접힌 카드는 제외) */
+html.v83 .card.v83clip .gist{max-height:215px;overflow:hidden;position:relative;}
+html.v83 .card.v83clip .gist::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;
+  background:linear-gradient(rgba(0,0,0,0),var(--card));pointer-events:none;}
+.v83-more{display:none;background:none;border:0;color:var(--accent);font-weight:700;
+  font-size:13.5px;cursor:pointer;padding:8px 0 0;font-family:var(--ui-font);}
+html.v83 .card.v83clip .v83-more{display:inline-flex;}
+html.v83 .card.v83one .card-body{max-height:none !important;opacity:1 !important;}
+/* ✓ 읽음: 좌측 '읽은 글' 메뉴가 받을 때 살짝 반짝 */
+@keyframes v83ReadPulse{0%{background:var(--bg-soft);transform:scale(1)}45%{background:var(--bg-soft);transform:scale(1.06)}100%{transform:scale(1)}}
+#v83nav .v83-link.v83-read-pulse{animation:v83ReadPulse .7s ease;}
+/* 실행 취소 토스트 */
+.v83-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:15100;
+  background:var(--black);color:#fff;border-radius:999px;padding:11px 10px 11px 18px;
+  font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:var(--ui-font);}
+.v83-toast button{background:none;border:0;color:#8FB8FF;font-weight:800;font-size:13px;
+  cursor:pointer;padding:4px 10px;font-family:var(--ui-font);}
+html[data-theme="dark"] .v83-toast{background:#2A2C33;}
+/* --- notification settings panel (left-nav item) --- */
+.v83np-ov{position:fixed;inset:0;z-index:14400;background:rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:center;}
+.v83np{background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  width:min(420px,92vw);padding:18px 20px 16px;box-shadow:0 18px 50px rgba(0,0,0,.25);}
+.v83np h3{font-size:15.5px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between;}
+.v83np h3 button{background:none;border:none;font-size:16px;cursor:pointer;color:var(--muted);padding:2px 6px;}
+.v83np-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 2px;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer;
+  background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;
+  font-family:var(--ui-font);color:var(--text);}
+.v83np-row:last-of-type{border-bottom:none;}
+.v83np-sw{flex:0 0 40px;height:23px;border-radius:999px;background:var(--line);position:relative;transition:background .15s;}
+.v83np-sw::after{content:"";position:absolute;top:2.5px;left:3px;width:18px;height:18px;border-radius:50%;
+  background:#fff;transition:left .15s;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+.v83np-sw.on{background:var(--accent);}
+.v83np-sw.on::after{left:19px;}
+.v83np-push{margin-top:12px;width:100%;padding:11px;border-radius:999px;border:1px solid var(--line);
+  background:var(--bg-soft);color:var(--text);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--ui-font);
+  transition:border-color .15s,background .15s;}
+.v83np-push:hover{border-color:var(--text);}
+/* push ON: white (theme-text) 2px border so the state is visible at a glance */
+.v83np-push.on{border:2px solid var(--text);padding:10px;background:var(--bg);}
+.v83np-blocked{margin-top:8px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5;}
+</style>
+<script id="v83tw-js">
+/* v83 desktop: notification settings panel (reads/writes the same stk_notif
+   store as the mobile drawer, so preferences stay in sync across layouts). */
+(function(){
+"use strict";
+var NPS = {
+  ko: { title:"알림 설정", newpost:"새 글 알림", debate:"오늘의 토론 알림",
+        follow:"팔로우 새 글 알림", events:"이벤트 알림", push:"브라우저 푸시 알림 켜기",
+        pushOn:"브라우저 푸시 알림 켜짐 ✓", pushBlocked:"브라우저에서 알림이 차단돼 있어요. 주소창의 사이트 설정에서 허용해 주세요." },
+  en: { title:"Notification settings", newpost:"New posts", debate:"Today's debate",
+        follow:"New posts from who you follow", events:"Event alerts", push:"Enable browser push",
+        pushOn:"Browser push is on ✓", pushBlocked:"Notifications are blocked by the browser. Allow them in the site settings." },
+  ja: { title:"通知設定", newpost:"新着記事", debate:"今日の論点",
+        follow:"フォロー中の新着", events:"イベント通知", push:"ブラウザ通知をオンにする",
+        pushOn:"ブラウザ通知はオン ✓", pushBlocked:"ブラウザで通知がブロックされています。サイト設定で許可してください。" }
+};
+function npT(){ return NPS[(typeof LANG !== "undefined" && NPS[LANG]) ? LANG : "ko"]; }
+function npGet(){
+  var d = { newpost:true, debate:true, follow:true, eventsMaster:true };
+  try {
+    var s = store.get("stk_notif", null);
+    if (s && typeof s === "object"){
+      d.newpost = s.newpost !== false; d.debate = s.debate !== false;
+      d.follow = s.follow !== false; d.eventsMaster = s.eventsMaster !== false;
+    }
+  } catch (e){}
+  return d;
+}
+function npSet(key, on){
+  try {
+    var p = store.get("stk_notif", {}) || {};
+    p[key] = on;
+    store.set("stk_notif", p);
+  } catch (e){}
+}
+window.v83AlertsPanel = function(){
+  var old = document.getElementById("v83npOv");
+  if (old){ old.remove(); return; }
+  var t = npT(), p = npGet();
+  var ov = document.createElement("div");
+  ov.id = "v83npOv"; ov.className = "v83np-ov";
+  var row = function(key, label, on){
+    return '<button class="v83np-row" data-np="' + key + '"><span>' + label
+      + '</span><span class="v83np-sw' + (on ? " on" : "") + '"></span></button>';
+  };
+  ov.innerHTML = '<div class="v83np">'
+    + '<h3>' + t.title + '<button aria-label="close">&#x2715;</button></h3>'
+    + row("newpost", t.newpost, p.newpost)
+    + row("debate", t.debate, p.debate)
+    + row("follow", t.follow, p.follow)
+    + row("eventsMaster", t.events, p.eventsMaster)
+    + '<button class="v83np-push">' + t.push + '</button>'
+    + '<div class="v83np-blocked" hidden></div>'
+    + '</div>';
+  document.body.appendChild(ov);
+  ov.addEventListener("click", function(e){ if (e.target === ov) ov.remove(); });
+  ov.querySelector("h3 button").addEventListener("click", function(){ ov.remove(); });
+  ov.querySelectorAll("[data-np]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var sw = b.querySelector(".v83np-sw");
+      var on = !sw.classList.contains("on");
+      sw.classList.toggle("on", on);
+      npSet(b.getAttribute("data-np"), on);
+    });
+  });
+  var pushBtn = ov.querySelector(".v83np-push");
+  var blockedNote = ov.querySelector(".v83np-blocked");
+  var pushIsOn = false; /* last known subscription state */
+  /* reflect the live push state on the button: white border + "켜짐 ✓" when on,
+     a small note when the browser has blocked notifications. */
+  function apply(opted){
+    var perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
+    pushIsOn = (perm === "granted" && opted);
+    if (pushIsOn){
+      pushBtn.classList.add("on"); pushBtn.textContent = t.pushOn;
+      if (blockedNote){ blockedNote.hidden = true; }
+    } else if (perm === "denied"){
+      pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+      if (blockedNote){ blockedNote.hidden = false; blockedNote.textContent = t.pushBlocked; }
+    } else {
+      pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+      if (blockedNote){ blockedNote.hidden = true; }
+    }
+  }
+  function reflectPush(){
+    try {
+      var perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
+      if (window.OneSignalDeferred && perm === "granted"){
+        var resolved = false;
+        window.OneSignalDeferred.push(function(os2){
+          var opted = false;
+          try { opted = !!(os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optedIn); } catch (e){}
+          resolved = true; apply(opted);
+        });
+        /* only guess "on" if the SDK never answered — never override a real opt-out */
+        setTimeout(function(){ if (!resolved) apply(true); }, 1500);
+      } else {
+        apply(false);
+      }
+    } catch (e){}
+  }
+  reflectPush();
+  pushBtn.addEventListener("click", function(){
+    if (pushIsOn){
+      /* turn OFF: opt out of push (keeps browser permission, drops subscription) */
+      pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+      pushIsOn = false;
+      if (window.OneSignalDeferred){
+        window.OneSignalDeferred.push(function(os2){
+          try {
+            if (os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optOut) os2.User.PushSubscription.optOut();
+          } catch (e){}
+        });
+      }
+      setTimeout(reflectPush, 1500);
+      return;
+    }
+    /* turn ON: delegate to the (hidden) top-bar push button — it owns the
+       OneSignal opt-in prompt + blocked-permission feedback */
+    var nb = document.getElementById("notifBtn");
+    if (nb && typeof nb.onclick === "function") nb.onclick();
+    setTimeout(reflectPush, 1500);
+  });
+};
+
+/* ---- 최신/팔로잉 tabs: match the center column's width exactly (X-style) ---- */
+function alignFsw(){
+  try {
+    var f = document.getElementById("v83fsw");
+    var c = document.getElementById("v83center");
+    if (!f || !c || !f.parentElement || !document.documentElement.classList.contains("v83")) return;
+    var cr = c.getBoundingClientRect(), nr = f.parentElement.getBoundingClientRect();
+    if (!cr.width) return;
+    f.style.left = (cr.left - nr.left) + "px";
+    f.style.width = cr.width + "px";
+    f.style.transform = "none";
+  } catch (e){}
+}
+window.addEventListener("resize", alignFsw);
+(function retryAlign(n){
+  alignFsw();
+  if (n > 0) setTimeout(function(){ retryAlign(n - 1); }, 400);
+})(12);
+try {
+  new MutationObserver(alignFsw)
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+} catch (e){}
+
+/* ---- search dropdown: recent searches / guide + today's popular (3) ---- */
+var SDS = {
+  ko: { recent:"최근 검색", clear:"모두 지우기", trend:"오늘의 인기",
+        guide:"사람, 기업, 키워드로 검색해보세요", posts:"글 {n}개" },
+  en: { recent:"Recent", clear:"Clear all", trend:"Popular today",
+        guide:"Try searching for people, companies, or keywords", posts:"{n} posts" },
+  ja: { recent:"最近の検索", clear:"すべて消去", trend:"今日の人気",
+        guide:"人物、企業、キーワードで検索してみましょう", posts:"{n}件" }
+};
+function sdT(){ return SDS[(typeof LANG !== "undefined" && SDS[LANG]) ? LANG : "ko"]; }
+function sdRecent(){ try { var r = store.get("stk_recent_q", []); return Array.isArray(r) ? r : []; } catch(e){ return []; } }
+function sdSaveRecent(q){
+  q = String(q || "").trim(); if (!q) return;
+  var r = sdRecent().filter(function(x){ return x !== q; });
+  r.unshift(q);
+  try { store.set("stk_recent_q", r.slice(0, 8)); } catch(e){}
+}
+function sdTrend3(){
+  var out = [];
+  try {
+    var cnt = {};
+    var items = (typeof ITEMS !== "undefined" ? ITEMS : []).slice(0, 20);
+    items.forEach(function(it){
+      (it.tags || []).forEach(function(t){ cnt[t] = (cnt[t] || 0) + 1; });
+      var src = (typeof dispName === "function") ? dispName(it.source) : it.source;
+      if (src) cnt[src] = (cnt[src] || 0) + 1;
+    });
+    out = Object.keys(cnt).map(function(k){ return { label: k, n: cnt[k] }; })
+      .filter(function(o){ return o.n >= 2; })
+      .sort(function(a, b){ return b.n - a.n; })
+      .slice(0, 3);
+  } catch(e){}
+  return out;
+}
+function sdEsc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
+function sdApply(q){
+  var wrap = document.querySelector(".v83-search");
+  var inp = wrap ? wrap.querySelector("input") : null;
+  if (inp){
+    inp.value = q;
+    inp.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+  sdSaveRecent(q);
+  sdHide();
+}
+function sdHide(){ var d = document.getElementById("v83sd"); if (d) d.remove(); }
+function sdShow(){
+  var wrap = document.querySelector(".v83-search");
+  if (!wrap) return;
+  sdHide();
+  var t = sdT(), rec = sdRecent(), tr = sdTrend3();
+  var h = "";
+  if (rec.length){
+    h += '<div class="v83sd-h">' + t.recent + '<button data-sdclear>' + t.clear + "</button></div>";
+    rec.slice(0, 6).forEach(function(q, i){
+      h += '<button class="v83sd-row" data-sdq="' + sdEsc(q) + '"><span class="ic">&#128336;</span>'
+        + '<span class="lb">' + sdEsc(q) + '</span><span class="rm" data-sdrm="' + i + '">&#x2715;</span></button>';
+    });
+  } else {
+    h += '<div class="v83sd-guide">' + t.guide + "</div>";
+  }
+  if (tr.length){
+    h += '<div class="v83sd-div"></div><div class="v83sd-h">' + t.trend + "</div>";
+    tr.forEach(function(o){
+      h += '<button class="v83sd-row" data-sdq="' + sdEsc(o.label) + '"><span class="ic">&#128293;</span>'
+        + '<span class="lb">' + sdEsc(o.label) + '</span>'
+        + '<span class="sub">' + t.posts.replace("{n}", o.n) + "</span></button>";
+    });
+  }
+  var d = document.createElement("div");
+  d.id = "v83sd"; d.className = "v83sd";
+  d.innerHTML = h;
+  wrap.appendChild(d);
+  d.querySelectorAll("[data-sdq]").forEach(function(b){
+    b.addEventListener("click", function(e){
+      var rm = e.target.closest("[data-sdrm]");
+      if (rm){
+        e.stopPropagation();
+        var r = sdRecent(); r.splice(parseInt(rm.getAttribute("data-sdrm"), 10), 1);
+        try { store.set("stk_recent_q", r); } catch(err){}
+        sdShow();
+        return;
+      }
+      sdApply(b.getAttribute("data-sdq"));
+    });
+  });
+  var cl = d.querySelector("[data-sdclear]");
+  if (cl) cl.addEventListener("click", function(){
+    try { store.set("stk_recent_q", []); } catch(e){}
+    sdShow();
+  });
+}
+document.addEventListener("focusin", function(e){
+  if (e.target && e.target.matches && e.target.matches(".v83-search input")) sdShow();
+});
+document.addEventListener("click", function(e){
+  if (!e.target.closest || !e.target.closest(".v83-search")) sdHide();
+});
+document.addEventListener("keydown", function(e){
+  if (e.key === "Enter" && e.target && e.target.matches && e.target.matches(".v83-search input")){
+    sdSaveRecent(e.target.value);
+    sdHide();
+  }
+  if (e.key === "Escape") sdHide();
+});
+
+/* ==== 읽음 하이브리드 (2026-07-23 june 결정) ==================================
+   - READ_BASE: 세션 시작 시점의 읽음 스냅샷 (코어 강등 파티션이 참조 —
+     이번 세션에 열어본 글은 제자리 유지, 다음 방문부터 하단으로)
+   - ✓ 직접 클릭: 카드가 좌측 '읽은 글' 메뉴로 날아가는 애니메이션 + 실행 취소 */
+window.READ_BASE = new Set(typeof READ !== "undefined" ? READ : []);
+window.READ_SWEPT = new Set();
+
+var RHS = {
+  ko: { swept: "읽은 글로 이동했어요", undo: "실행 취소" },
+  en: { swept: "Moved to Read", undo: "Undo" },
+  ja: { swept: "既読に移動しました", undo: "元に戻す" }
+};
+function rhT(){ return RHS[(typeof LANG !== "undefined" && RHS[LANG]) ? LANG : "ko"]; }
+
+function rhFly(card){
+  try {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var target = document.querySelector('#v83nav .v83-link[data-k="readlist"]')
+              || document.querySelector('#v83nav .v83-me');
+    if (!target || !card) return;
+    var r1 = card.getBoundingClientRect(), r2 = target.getBoundingClientRect();
+    var ghost = card.cloneNode(true);
+    ghost.style.cssText = "position:fixed;left:" + r1.left + "px;top:" + r1.top + "px;width:" + r1.width
+      + "px;height:" + r1.height + "px;margin:0;z-index:15000;pointer-events:none;overflow:hidden;"
+      + "transform-origin:center center;transition:transform .55s cubic-bezier(.45,0,.65,.35),opacity .55s ease;";
+    document.body.appendChild(ghost);
+    requestAnimationFrame(function(){
+      var dx = (r2.left + r2.width / 2) - (r1.left + r1.width / 2);
+      var dy = (r2.top + r2.height / 2) - (r1.top + r1.height / 2);
+      ghost.style.transform = "translate(" + dx + "px," + dy + "px) scale(0.05)";
+      ghost.style.opacity = "0.3";
+    });
+    setTimeout(function(){ ghost.remove(); }, 620);
+    setTimeout(function(){
+      target.classList.add("v83-read-pulse");
+      setTimeout(function(){ target.classList.remove("v83-read-pulse"); }, 750);
+    }, 380);
+    /* 원래 카드는 부드럽게 접힘 (아래 카드 점프 방지) */
+    card.style.overflow = "hidden";
+    card.style.maxHeight = r1.height + "px";
+    card.style.transition = "max-height .42s ease .1s, opacity .3s ease, margin .42s ease .1s, padding .42s ease .1s";
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      card.style.maxHeight = "0px"; card.style.opacity = "0";
+      card.style.marginTop = "0"; card.style.marginBottom = "0";
+      card.style.paddingTop = "0"; card.style.paddingBottom = "0";
+    }); });
+  } catch (e){}
+}
+
+var rhToastEl = null;
+function rhToast(id){
+  var t = rhT();
+  if (rhToastEl) rhToastEl.remove();
+  var d = document.createElement("div");
+  d.className = "v83-toast";
+  d.innerHTML = "<span>" + t.swept + "</span><button>" + t.undo + "</button>";
+  d.querySelector("button").addEventListener("click", function(){
+    try {
+      READ.delete(id); READ_SWEPT.delete(id);
+      store.set("stk_read", Array.from(READ));
+      if (typeof renderFeedOnly === "function") renderFeedOnly();
+    } catch (e){}
+    d.remove(); rhToastEl = null;
+  });
+  document.body.appendChild(d);
+  rhToastEl = d;
+  setTimeout(function(){ if (rhToastEl === d){ d.remove(); rhToastEl = null; } }, 5000);
+}
+
+/* ✓ 클릭 오버라이드: 데스크톱 v83에서 '읽음 표시'는 치우기 제스처 */
+if (typeof toggleRead === "function"){
+  var _origToggleRead = toggleRead;
+  window.toggleRead = function(id){
+    var desk = document.documentElement.classList.contains("v83");
+    var marking = !(typeof READ !== "undefined" && READ.has(id));
+    if (!desk || !marking){ _origToggleRead(id); return; }
+    try {
+      READ.add(id);
+      if (typeof logRead === "function") logRead(id);
+      store.set("stk_read", Array.from(READ));
+    } catch (e){}
+    READ_SWEPT.add(id);
+    var card = document.getElementById("sig-" + id);
+    if (card) rhFly(card);
+    setTimeout(function(){ if (typeof renderFeedOnly === "function") renderFeedOnly(); }, 560);
+    rhToast(id);
+    try { if (typeof track === "function") track("readsweep/" + id); } catch (e){}
+  };
+}
+
+/* ---- 피드 카드 3문단 프리뷰: 넘치는 카드만 클램프 + "더 보기 →" (상세로) ---- */
+function v83ClipScan(){
+  if (!document.documentElement.classList.contains("v83")) return;
+  document.querySelectorAll("#feedList > .card").forEach(function(c){
+    if (c.classList.contains("v83one") || c.classList.contains("collapsed")){
+      c.classList.remove("v83clip");
+      return;
+    }
+    if (c.__v83clip) return;
+    var g = c.querySelector(".gist");
+    if (!g || !g.clientHeight) return;   /* not laid out yet: retry next tick */
+    c.__v83clip = true;
+    var id = (c.id || "").replace(/^sig-/, "");
+    if (!c.querySelector(".v83-more")){
+      var fold = c.querySelector(".gist-fold") || g.parentElement;
+      var b = document.createElement("button");
+      b.className = "v83-more"; b.type = "button";
+      b.textContent = (((typeof STRINGS !== "undefined" && STRINGS[LANG]) || {}).loadMore || "더 보기") + " →";
+      b.addEventListener("click", function(e){
+        e.stopPropagation();
+        if (typeof v83OpenItem === "function") v83OpenItem(id);
+      });
+      fold.appendChild(b);
+    }
+    c.classList.toggle("v83clip", g.scrollHeight > 260);
+  });
+}
+setInterval(v83ClipScan, 1000);
+v83ClipScan();
+})();
+</script>
+
+<!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
+<style id="twc-css">
+.twc-ov{position:fixed;inset:0;z-index:14500;background:rgba(0,0,0,.45);
+  display:flex;align-items:flex-end;justify-content:center;}
+.twc-sheet{background:var(--bg);width:100%;height:96dvh;max-height:96dvh;
+  border-radius:18px 18px 0 0;display:flex;flex-direction:column;overflow:hidden;
+  animation:twcUp .26s cubic-bezier(.2,.8,.25,1);}
+@keyframes twcUp{from{transform:translateY(40px);opacity:.6}to{transform:translateY(0);opacity:1}}
+@media(min-width:720px){
+  .twc-ov{align-items:center;}
+  .twc-sheet{width:600px;height:auto;max-height:86vh;border-radius:16px;}
+}
+.twc-head{display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border-bottom:1px solid var(--line);flex:0 0 auto;}
+.twc-back{background:none;border:none;cursor:pointer;color:var(--text);
+  font-size:20px;line-height:1;padding:6px 8px;border-radius:50%;}
+.twc-back:hover{background:var(--bg-soft);}
+.twc-title{font-weight:800;font-size:15.5px;flex:1;}
+.twc-title span{color:var(--muted);font-weight:600;font-size:13px;margin-left:4px;}
+.twc-sort{background:var(--bg-soft);border:1px solid var(--line);color:var(--text);
+  font-size:12px;font-weight:700;border-radius:999px;padding:6px 12px;cursor:pointer;}
+.twc-orig{padding:12px 16px;border-bottom:1px solid var(--line);flex:0 0 auto;
+  display:flex;gap:10px;align-items:flex-start;}
+.twc-orig .twi-av{width:34px;height:34px;font-size:14px;flex:0 0 34px;}
+.twc-orig-t{font-size:13.5px;line-height:1.45;}
+.twc-orig-t b{font-size:13px;}
+.twc-orig-t .twi-hd{color:var(--muted);font-weight:500;font-size:12.5px;}
+.twc-scroll{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;padding:4px 0 12px;}
+.twc-status{padding:28px 16px;text-align:center;color:var(--muted);font-size:13.5px;}
+/* ---- one comment row ---- */
+.twi{display:flex;gap:10px;padding:10px 16px 2px;position:relative;}
+.twi-g{display:flex;flex-direction:column;align-items:center;flex:0 0 40px;}
+.twi-av{width:40px;height:40px;border-radius:50%;color:#fff;font-weight:800;
+  font-size:16px;display:flex;align-items:center;justify-content:center;
+  user-select:none;flex:0 0 auto;}
+.twi-line{width:2px;flex:1 1 auto;background:var(--line);margin-top:4px;border-radius:2px;min-height:8px;}
+.twi-m{flex:1;min-width:0;padding-bottom:8px;}
+.twi:not(.twi-r) > .twi-m{border-bottom:1px solid var(--line);}
+.twi-h{display:flex;align-items:baseline;gap:5px;font-size:13.5px;flex-wrap:wrap;}
+.twi-h b{font-weight:800;}
+.twi-badge{color:#1d9bf0;font-size:13px;}
+.twi-hd{color:var(--muted);font-size:13px;font-weight:500;}
+.twi-t{font-size:14.5px;line-height:1.55;white-space:pre-wrap;word-break:break-word;margin-top:1px;}
+.twi-mention{color:#1d9bf0;}
+.twi-a{display:flex;gap:26px;margin-top:7px;align-items:center;}
+.twi-a button{background:none;border:none;cursor:pointer;color:var(--muted);
+  font-size:12.5px;display:flex;align-items:center;gap:5px;padding:2px 0;font-family:var(--ui-font);}
+.twi-a button svg{width:16px;height:16px;}
+.twi-a .twi-like.on{color:#f91880;}
+.twi-a .twi-like.on .twi-heart{animation:twcPop .35s ease;}
+@keyframes twcPop{0%{transform:scale(.6)}55%{transform:scale(1.35)}100%{transform:scale(1)}}
+.twi-more{background:none;border:none;cursor:pointer;color:#1d9bf0;font-size:13px;
+  font-weight:600;padding:6px 0 2px;display:flex;align-items:center;gap:8px;font-family:var(--ui-font);}
+.twi-more:before{content:"";width:26px;height:1.5px;background:var(--line);display:inline-block;}
+.twi-kids{margin-top:2px;}
+.twi-r{padding:8px 0 0 0;}
+.twi-r .twi-g{flex:0 0 32px;}
+.twi-r .twi-av{width:32px;height:32px;font-size:13px;}
+.twi-r .twi-m{padding-bottom:6px;}
+/* ---- composer ---- */
+.twc-comp{flex:0 0 auto;border-top:1px solid var(--line);padding:8px 12px
+  calc(10px + env(safe-area-inset-bottom));background:var(--bg);}
+.twc-chip{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);
+  padding:0 4px 7px;}
+.twc-chip b{color:#1d9bf0;font-weight:600;}
+.twc-chip button{background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:12px;padding:2px 6px;}
+.twc-namerow{display:flex;gap:8px;padding:0 4px 8px;align-items:center;}
+.twc-namerow input{flex:1;border:1px solid var(--line);background:var(--bg-soft);
+  color:var(--text);border-radius:10px;padding:8px 12px;font-size:13.5px;
+  font-family:var(--ui-font);outline:none;}
+.twc-namerow input:focus{border-color:var(--text);}
+.twc-namerow label{font-size:12px;color:var(--muted);white-space:nowrap;}
+.twc-row{display:flex;gap:9px;align-items:flex-end;}
+.twc-row .twi-av{width:34px;height:34px;font-size:14px;cursor:pointer;flex:0 0 34px;}
+.twc-input{flex:1;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);
+  border-radius:18px;padding:8px 14px;font-size:14.5px;line-height:1.45;resize:none;
+  max-height:120px;font-family:var(--ui-font);outline:none;}
+.twc-input:focus{border-color:#1d9bf0;}
+.twc-send{background:#1d9bf0;color:#fff;border:none;border-radius:999px;
+  font-weight:800;font-size:13.5px;padding:9px 16px;cursor:pointer;flex:0 0 auto;
+  font-family:var(--ui-font);}
+.twc-send:disabled{opacity:.45;cursor:default;}
+.twc-err{color:#d93025;font-size:12px;padding:6px 4px 0;}
+.twc-err.ok{color:var(--muted);}
+html[data-theme="dark"] .twc-ov{background:rgba(0,0,0,.6);}
+html[data-theme="dark"] .twc-input,
+html[data-theme="dark"] .twc-namerow input{background:#141519;}
+/* ---- inline reply bar at the bottom of each post (desktop v83, X-style) ---- */
+.twin{display:none;}
+html.v83 .twin{display:flex;align-items:center;gap:9px;margin-top:12px;
+  padding-top:12px;border-top:1px solid var(--line);}
+.twin .twi-av{width:32px;height:32px;font-size:13px;flex:0 0 32px;}
+.twin-in{flex:1;min-width:0;border:1px solid transparent;background:var(--bg-soft);
+  color:var(--text);border-radius:999px;padding:9px 15px;font-size:13.5px;
+  font-family:var(--ui-font);outline:none;}
+.twin-in:focus{border-color:#1d9bf0;background:var(--bg);}
+.twin-send{background:#1d9bf0;color:#fff;border:none;border-radius:999px;
+  font-weight:800;font-size:12.5px;padding:8px 15px;cursor:pointer;flex:0 0 auto;
+  font-family:var(--ui-font);}
+.twin-send:disabled{opacity:.5;cursor:default;}
+html[data-theme="dark"] .twin-in:focus{background:#141519;}
+/* ---- inline comment previews under the reply bar (desktop v83) ---- */
+.twin-list{display:none;}
+html.v83 .twin-list{display:block;}
+.twin-it{display:flex;gap:9px;margin-top:12px;cursor:pointer;}
+.twin-it .twi-av{width:30px;height:30px;font-size:12.5px;flex:0 0 30px;}
+.twin-it-m{flex:1;min-width:0;}
+.twin-it .twi-h{font-size:13px;}
+.twin-it .twi-t{font-size:13.5px;line-height:1.5;}
+.twin-more{background:none;border:0;color:#1d9bf0;font-size:13px;font-weight:600;
+  padding:10px 0 2px;cursor:pointer;font-family:var(--ui-font);display:block;}
+/* ---- links + internal quote cards inside comments ---- */
+.twi-link{color:#1d9bf0;text-decoration:none;word-break:break-all;}
+.twi-link:hover{text-decoration:underline;}
+.twi-quote{margin-top:8px;border:1px solid var(--line);border-radius:14px;
+  padding:10px 12px;cursor:pointer;transition:background .12s;}
+.twi-quote:hover{background:var(--bg-soft);}
+.twi-quote-h{display:flex;align-items:center;gap:7px;font-size:12.5px;}
+.twi-qav{width:20px !important;height:20px !important;font-size:10px !important;flex:0 0 20px !important;}
+.twi-quote-t{font-size:13.5px;font-weight:700;margin-top:4px;line-height:1.45;word-break:keep-all;}
+.twc-beta-tag{position:fixed;left:10px;bottom:10px;z-index:13990;background:#1d9bf0;
+  color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;border-radius:999px;
+  padding:3px 9px;opacity:.85;pointer-events:none;font-family:var(--mono-font);}
+</style>
+<script id="twc-js">
+/* ==== BETA comment sheet — replaces the inline comment box ==== */
+(function(){
+"use strict";
+if (typeof COMMENTS_API === "undefined" || !COMMENTS_API) return;
+
+var TWS = {
+  en: { title:"Comments", top:"Top", newest:"Latest",
+    viewReplies:"View {n} replies", viewReply:"View 1 reply", hideReplies:"Hide replies",
+    ph:"Post your reply", nameLabel:"Name", namePh:"Name shown with your comments",
+    replyingTo:"Replying to {h}", cancel:"Cancel", reply:"Reply",
+    empty:"No comments yet. Start the conversation.", loading:"Loading comments…",
+    error:"Couldn't post. Please try again.", rate:"Too fast — try again in a minute.",
+    sent:"Posted.", now:"now", min:"m", hr:"h", day:"d", viewAll:"View all {n} comments" },
+  ko: { title:"댓글", top:"인기순", newest:"최신순",
+    viewReplies:"답글 {n}개 보기", viewReply:"답글 1개 보기", hideReplies:"답글 접기",
+    ph:"댓글을 남겨보세요", nameLabel:"이름", namePh:"댓글에 표시될 이름 (한 번만 설정)",
+    replyingTo:"{h}님에게 답글 남기는 중", cancel:"취소", reply:"답글",
+    empty:"아직 댓글이 없어요. 첫 대화를 시작해보세요.", loading:"댓글 불러오는 중…",
+    error:"등록에 실패했어요. 다시 시도해주세요.", rate:"너무 빨라요. 잠시 후 다시 시도해주세요.",
+    sent:"게시됐어요.", now:"방금", min:"분", hr:"시간", day:"일", viewAll:"댓글 {n}개 모두 보기" },
+  ja: { title:"コメント", top:"人気順", newest:"新着順",
+    viewReplies:"返信{n}件を表示", viewReply:"返信1件を表示", hideReplies:"返信を隠す",
+    ph:"返信を投稿", nameLabel:"名前", namePh:"コメントに表示される名前",
+    replyingTo:"{h}さんに返信中", cancel:"キャンセル", reply:"返信",
+    empty:"まだコメントがありません。最初の会話を始めましょう。", loading:"コメントを読み込み中…",
+    error:"投稿できませんでした。もう一度お試しください。", rate:"速すぎます。少し待ってから再試行してください。",
+    sent:"投稿しました。", now:"たった今", min:"分", hr:"時間", day:"日", viewAll:"コメント{n}件をすべて表示" }
+};
+function TW(){ return TWS[(typeof LANG !== "undefined" && TWS[LANG]) ? LANG : "ko"]; }
+
+var TWC = { id:null, sort:"top", rows:[], open:{}, replyTo:null };
+
+/* deterministic hash for avatar color + handle suffix */
+function twHash(s){
+  var h = 5381; s = String(s || "");
+  for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h;
+}
+function twHandle(nick){
+  var slug = String(nick || "").toLowerCase().replace(/\s+/g, "_")
+    .replace(/[^a-z0-9_가-힣ぁ-ゖァ-ヺ一-龯]/g, "").slice(0, 12);
+  if (!slug) slug = "user";
+  return "@" + slug + "_" + String(twHash(nick) % 10000).padStart(4, "0");
+}
+function twAvatar(nick, cls){
+  var h = twHash(nick) % 360;
+  var ch = String(nick || "?").trim().charAt(0).toUpperCase() || "?";
+  return '<div class="twi-av ' + (cls || "") + '" style="background:hsl(' + h + ',52%,44%)">' + esc(ch) + "</div>";
+}
+function twTime(iso){
+  var W = TW();
+  try {
+    var t = new Date(iso).getTime();
+    if (!isFinite(t)) return "";
+    var d = Math.max(0, (Date.now() - t) / 1000);
+    if (d < 60) return W.now;
+    if (d < 3600) return Math.floor(d / 60) + W.min;
+    if (d < 86400) return Math.floor(d / 3600) + W.hr;
+    if (d < 7 * 86400) return Math.floor(d / 86400) + W.day;
+    var dt = new Date(t);
+    return String(dt.getMonth() + 1).padStart(2, "0") + "." + String(dt.getDate()).padStart(2, "0");
+  } catch (e){ return ""; }
+}
+function twLinkify(escaped){
+  /* URLs first (matched on the escaped text; & is already &amp; which is valid in href) */
+  var out = escaped.replace(/(https?:\/\/[^\s<]+)/g, function(m){
+    return '<a class="twi-link" href="' + m + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + m + "</a>";
+  });
+  return out.replace(/(^|[\s])(@[\w가-힣ぁ-ゖァ-ヺ一-龯._-]{1,24})/g,
+    '$1<span class="twi-mention">$2</span>');
+}
+
+/* ---- internal post links -> quote card (like a quoted tweet) ---- */
+function twQuoteId(text){
+  try {
+    var re = /(?:stacksdaily\.com|stacks112\.github\.io|wnrakrhdn128\.workers\.dev)\/(?:p\/([a-z0-9_-]+)\.html|s\/([a-z0-9_-]+)|#?sig-([a-z0-9_-]+))/gi;
+    var m;
+    while ((m = re.exec(text))){
+      var id = m[1] || m[2] || m[3];
+      if (id && typeof ITEMS !== "undefined" && ITEMS.some(function(x){ return x.id === id; })) return id;
+    }
+  } catch (e){}
+  return null;
+}
+function twQuoteHtml(id){
+  var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === id; }) : null;
+  if (!it) return "";
+  var src = (typeof dispName === "function") ? dispName(it.source) : it.source;
+  return '<div class="twi-quote" onclick="twOpenQuote(\'' + id + '\', event)">'
+    + '<div class="twi-quote-h">' + twAvatar(src, "twi-qav") + "<b>" + esc(src) + "</b>"
+    + '<span class="twi-hd">· ' + esc((it.date || "").slice(5)) + "</span></div>"
+    + '<div class="twi-quote-t">' + esc(it.title && (it.title[LANG] || it.title.en) || "") + "</div>"
+    + "</div>";
+}
+window.twOpenQuote = function(id, ev){
+  if (ev){ ev.stopPropagation(); ev.preventDefault(); }
+  closeComments();
+  if (document.documentElement.classList.contains("v83") && typeof v83OpenItem === "function") v83OpenItem(id);
+  else if (typeof goToItem === "function") goToItem(id);
+};
+
+/* ---------- sheet skeleton (built once) ---------- */
+var twcBuilt = false;
+function twcBuild(){
+  if (twcBuilt) return;
+  twcBuilt = true;
+  var ov = document.createElement("div");
+  ov.id = "twcOv";
+  ov.className = "twc-ov";
+  ov.hidden = true;
+  ov.innerHTML =
+    '<div class="twc-sheet" role="dialog" aria-modal="true">'
+    + '<div class="twc-head">'
+    +   '<button class="twc-back" onclick="closeComments()" aria-label="close">&#x2715;</button>'
+    +   '<div class="twc-title" id="twcTitle"></div>'
+    +   '<button class="twc-sort" id="twcSort" onclick="twcToggleSort()"></button>'
+    + '</div>'
+    + '<div class="twc-orig" id="twcOrig"></div>'
+    + '<div class="twc-scroll" id="twcList"></div>'
+    + '<div class="twc-comp">'
+    +   '<div class="twc-chip" id="twcChip" hidden></div>'
+    +   '<div class="twc-namerow" id="twcNameRow" hidden>'
+    +     '<input id="twcName" type="text" maxlength="40" autocomplete="nickname">'
+    +   '</div>'
+    +   '<div class="twc-row">'
+    +     '<span id="twcMyAv" onclick="twcEditName()"></span>'
+    +     '<textarea class="twc-input" id="twcText" rows="1"></textarea>'
+    +     '<button class="twc-send" id="twcSend" onclick="twcSubmit()" disabled></button>'
+    +   '</div>'
+    +   '<input id="twcHp" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">'
+    +   '<div class="twc-err" id="twcErr" hidden></div>'
+    + '</div></div>';
+  document.body.appendChild(ov);
+  ov.addEventListener("click", function(e){ if (e.target === ov) closeComments(); });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && !ov.hidden) closeComments();
+  });
+  var ta = document.getElementById("twcText");
+  ta.addEventListener("input", function(){
+    ta.style.height = "auto";
+    ta.style.height = Math.min(120, ta.scrollHeight) + "px";
+    document.getElementById("twcSend").disabled = !ta.value.trim();
+  });
+}
+
+/* ---------- open / close (override the old inline box) ---------- */
+window.toggleComments = function(id){
+  twcBuild();
+  var W = TW();
+  TWC.id = id; TWC.rows = []; TWC.open = {}; TWC.replyTo = null; TWC.sort = "top";
+  var ov = document.getElementById("twcOv");
+  ov.hidden = false;
+  document.body.style.overflow = "hidden";
+  document.getElementById("twcTitle").innerHTML = esc(W.title) + ' <span id="twcCount"></span>';
+  document.getElementById("twcSort").textContent = W.top + " ▾";
+  document.getElementById("twcText").placeholder = W.ph;
+  document.getElementById("twcSend").textContent = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG].cSubmit : "Post";
+  document.getElementById("twcName").placeholder = W.namePh;
+  twcClearReply();
+  twcSetIdentity();
+  /* original post context (like Twitter shows the tweet above replies) */
+  var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === id; }) : null;
+  var og = document.getElementById("twcOrig");
+  if (it){
+    var src = (typeof dispName === "function") ? dispName(it.source) : it.source;
+    og.hidden = false;
+    og.innerHTML = twAvatar(src)
+      + '<div class="twc-orig-t"><b>' + esc(src) + '</b> <span class="twi-hd">· '
+      + esc((it.date || "").slice(5)) + '</span><br>' + esc(it.title && (it.title[LANG] || it.title.en) || "") + "</div>";
+  } else { og.hidden = true; og.innerHTML = ""; }
+  if (typeof setRead === "function") setRead(id);
+  twcLoad();
+};
+window.closeComments = function(){
+  var ov = document.getElementById("twcOv");
+  if (ov) ov.hidden = true;
+  document.body.style.overflow = "";
+  TWC.id = null; TWC.replyTo = null;
+};
+window.twcToggleSort = function(){
+  var W = TW();
+  TWC.sort = TWC.sort === "top" ? "new" : "top";
+  document.getElementById("twcSort").textContent = (TWC.sort === "top" ? W.top : W.newest) + " ▾";
+  twcRender();
+};
+
+/* ---------- identity (device pseudo-profile, no login) ---------- */
+function twcNick(){ return (typeof lsGet === "function" && lsGet("stk_nick")) || ""; }
+function twcSetIdentity(){
+  var n = twcNick();
+  document.getElementById("twcMyAv").innerHTML = twAvatar(n || "?");
+  document.getElementById("twcNameRow").hidden = !!n;
+  if (!n) document.getElementById("twcName").value = "";
+}
+window.twcEditName = function(){
+  var row = document.getElementById("twcNameRow");
+  row.hidden = false;
+  var inp = document.getElementById("twcName");
+  inp.value = twcNick();
+  inp.focus();
+};
+
+/* ---------- data ---------- */
+function twcLoad(){
+  var W = TW();
+  var list = document.getElementById("twcList");
+  list.innerHTML = '<div class="twc-status">' + W.loading + "</div>";
+  fetch(COMMENTS_API + "/comments?pageId=" + encodeURIComponent(TWC.id))
+    .then(function(r){ if (!r.ok) throw 0; return r.json(); })
+    .then(function(j){
+      TWC.rows = (j && Array.isArray(j.data)) ? j.data : [];
+      twcRender();
+      TWIN_CACHE[TWC.id] = TWC.rows;
+      twinRender(TWC.id);
+    })
+    .catch(function(){
+      list.innerHTML = '<div class="twc-status">' + W.empty + "</div>";
+    });
+}
+function twcTree(){
+  var roots = [], kids = {};
+  TWC.rows.forEach(function(c){
+    if (c.parentId){ (kids[c.parentId] = kids[c.parentId] || []).push(c); }
+    else roots.push(c);
+  });
+  if (!roots.length) roots = TWC.rows.slice();
+  for (var k in kids) kids[k].sort(function(a, b){ return (a.id || 0) - (b.id || 0); });
+  if (TWC.sort === "top"){
+    roots.sort(function(a, b){
+      var d = (Number(b.likes) || 0) - (Number(a.likes) || 0);
+      return d !== 0 ? d : (b.id || 0) - (a.id || 0);
+    });
+  } else {
+    roots.sort(function(a, b){ return (b.id || 0) - (a.id || 0); });
+  }
+  return { roots: roots, kids: kids };
+}
+function twcItemHtml(c, isReply, kidCount, isOpen){
+  var W = TW();
+  var cid = (c.id == null) ? "" : String(c.id);
+  var likes = Number(c.likes) || 0;
+  var liked = cid && typeof CLIKED !== "undefined" && CLIKED.has(cid);
+  var admin = !!c.admin;
+  var acts = cid
+    ? '<div class="twi-a">'
+      + '<button onclick="twcReply(\'' + cid + '\')">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.97 0 9-3.58 9-8s-4.03-8-9-8-9 3.58-9 8c0 1.9.74 3.64 1.98 5.01L4 21l4.13-1.38A9.9 9.9 0 0 0 12 21z"/></svg>'
+      + (kidCount ? "<span>" + kidCount + "</span>" : "") + "</button>"
+      + '<button class="twi-like' + (liked ? " on" : "") + '" onclick="twcLike(\'' + cid + '\', this)">'
+      + '<span class="twi-heart">' + (liked ? "♥" : "♡") + '</span><span>' + (likes || "") + "</span></button>"
+      + "</div>"
+    : "";
+  var more = (!isReply && kidCount)
+    ? '<button class="twi-more" onclick="twcToggleKids(\'' + cid + '\')">'
+      + (isOpen ? W.hideReplies
+         : (kidCount === 1 ? W.viewReply : W.viewReplies.replace("{n}", kidCount)))
+      + "</button>"
+    : "";
+  var qid = twQuoteId(c.content);
+  return '<div class="twi' + (isReply ? " twi-r" : "") + (isOpen ? " twi-open" : "")
+    + (kidCount ? " twi-haskids" : "") + '" id="twi-' + cid + '">'
+    + '<div class="twi-g">' + twAvatar(c.nickname)
+    + ((isOpen && kidCount) ? '<div class="twi-line"></div>' : "") + "</div>"
+    + '<div class="twi-m">'
+    + '<div class="twi-h"><b>' + esc(c.nickname) + "</b>"
+    + (admin ? '<span class="twi-badge" title="Stacks">✓</span>' : "")
+    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + "</span></div>"
+    + '<div class="twi-t">' + twLinkify(esc(c.content)) + "</div>"
+    + (qid ? twQuoteHtml(qid) : "")
+    + acts + more
+    + (isOpen ? '<div class="twi-kids" id="twk-' + cid + '"></div>' : "")
+    + "</div></div>";
+}
+function twcRender(){
+  var W = TW();
+  var list = document.getElementById("twcList");
+  var n = TWC.rows.length;
+  var cnt = document.getElementById("twcCount");
+  if (cnt) cnt.textContent = n ? (typeof fmtCount === "function" ? fmtCount(n) : n) : "";
+  if (!n){
+    list.innerHTML = '<div class="twc-status">' + W.empty + "</div>";
+    return;
+  }
+  var t = twcTree();
+  list.innerHTML = t.roots.map(function(c){
+    var kc = (c.id != null && t.kids[c.id]) ? t.kids[c.id].length : 0;
+    var open = !!TWC.open[c.id];
+    return twcItemHtml(c, false, kc, open);
+  }).join("");
+  /* fill expanded reply groups */
+  t.roots.forEach(function(c){
+    if (!TWC.open[c.id]) return;
+    var box = document.getElementById("twk-" + c.id);
+    if (box && t.kids[c.id]){
+      box.innerHTML = t.kids[c.id].map(function(k){ return twcItemHtml(k, true, 0, false); }).join("");
+    }
+  });
+}
+window.twcToggleKids = function(cid){
+  TWC.open[cid] = !TWC.open[cid];
+  twcRender();
+};
+
+/* ---------- like ---------- */
+window.twcLike = function(cid, btn){
+  cid = String(cid);
+  var on = !CLIKED.has(cid);
+  if (on) CLIKED.add(cid); else CLIKED.delete(cid);
+  store.set("stk_cliked", Array.from(CLIKED));
+  var row = TWC.rows.find(function(c){ return String(c.id) === cid; });
+  if (row) row.likes = Math.max(0, (Number(row.likes) || 0) + (on ? 1 : -1));
+  if (btn){
+    btn.classList.toggle("on", on);
+    var v = row ? row.likes : 0;
+    btn.innerHTML = '<span class="twi-heart">' + (on ? "♥" : "♡") + '</span><span>' + (v || "") + "</span>";
+  }
+  if (on && typeof track === "function") track("clike/" + cid);
+  fetch(COMMENTS_API + "/clike", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ commentId: cid, action: on ? "like" : "unlike" })
+  }).then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      if (j && typeof j.likes === "number" && row){ row.likes = j.likes; }
+    }).catch(function(){});
+};
+
+/* ---------- reply targeting (replies attach to the ROOT; nested targets get an @mention) ---------- */
+window.twcReply = function(cid){
+  var W = TW();
+  var c = TWC.rows.find(function(x){ return String(x.id) === String(cid); });
+  if (!c) return;
+  var rootId = c.parentId ? String(c.parentId) : String(c.id);
+  var isNested = !!c.parentId;
+  TWC.replyTo = { root: rootId, name: c.nickname, handle: twHandle(c.nickname) };
+  if (c.parentId) TWC.open[rootId] = true;
+  var chip = document.getElementById("twcChip");
+  chip.hidden = false;
+  chip.innerHTML = W.replyingTo.replace("{h}", "<b>" + esc(TWC.replyTo.handle) + "</b>")
+    + ' <button onclick="twcClearReply()">' + W.cancel + "</button>";
+  var ta = document.getElementById("twcText");
+  if (isNested && ta.value.indexOf(TWC.replyTo.handle) !== 0){
+    ta.value = TWC.replyTo.handle + " " + ta.value.replace(/^@\S+\s*/, "");
+  }
+  ta.focus();
+  ta.dispatchEvent(new Event("input"));
+};
+window.twcClearReply = function(){
+  TWC.replyTo = null;
+  var chip = document.getElementById("twcChip");
+  if (chip){ chip.hidden = true; chip.innerHTML = ""; }
+};
+
+/* ---------- submit ---------- */
+window.twcSubmit = function(){
+  var W = TW();
+  var ta = document.getElementById("twcText");
+  var err = document.getElementById("twcErr");
+  var send = document.getElementById("twcSend");
+  var content = ta.value.trim();
+  if (!content) return;
+  /* first-time: need a name */
+  var nameRow = document.getElementById("twcNameRow");
+  var nameInp = document.getElementById("twcName");
+  var nick = twcNick();
+  if (!nameRow.hidden && nameInp.value.trim()) nick = nameInp.value.trim();
+  if (!nick){
+    nameRow.hidden = false;
+    nameInp.focus();
+    return;
+  }
+  lsSet("stk_nick", nick);
+  nameRow.hidden = true;
+  twcSetIdentity();
+  send.disabled = true;
+  err.hidden = true;
+  fetch(COMMENTS_API + "/comments", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      pageId: TWC.id, content: content, nickname: nick,
+      parentId: TWC.replyTo ? TWC.replyTo.root : undefined,
+      website: document.getElementById("twcHp").value || "",
+      /* hidden: operator badge — set localStorage stk_admin_key on your own
+         device to post verified ✓ comments (needs worker v10) */
+      adminKey: (typeof lsGet === "function" && lsGet("stk_admin_key")) || undefined
+    })
+  }).then(function(r){
+    if (!r.ok) throw (r.status === 429 ? "rate" : "bad");
+    ta.value = ""; ta.style.height = "auto";
+    if (TWC.replyTo) TWC.open[TWC.replyTo.root] = true;
+    twcClearReply();
+    if (typeof track === "function") track("comment/" + TWC.id);
+    if (typeof bumpCommentCount === "function") bumpCommentCount(TWC.id);
+    twcLoad();
+    send.disabled = true; /* textarea is empty again */
+  }).catch(function(e){
+    err.hidden = false;
+    err.className = "twc-err";
+    err.textContent = e === "rate" ? W.rate : W.error;
+    send.disabled = !ta.value.trim();
+  });
+};
+
+/* ---------- inline reply bar under each post (rendered by the card template) ---------- */
+window.twInlineHtml = function(id){
+  var W = TW();
+  var nick = twcNick();
+  var send = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG].cSubmit : "Post";
+  return '<div class="twin">'
+    + twAvatar(nick || "?")
+    + '<input class="twin-in" id="twin-' + id + '" maxlength="2000" placeholder="' + esc(W.ph)
+    + '" onkeydown="twInlineKey(event, \'' + id + '\')">'
+    + '<button class="twin-send" id="twinb-' + id + '" onclick="twInlineSend(\'' + id + '\')">' + send + "</button>"
+    + "</div>"
+    + '<div class="twin-list" id="twinl-' + id + '" data-twinl="' + id + '"></div>';
+};
+
+/* ---------- inline comment previews: lazy-loaded per visible card ---------- */
+var TWIN_CACHE = {};
+function twinItem(c, pageId){
+  var qid = twQuoteId(c.content);
+  return '<div class="twin-it" onclick="if(event.target.closest(\'a,.twi-quote\'))return;toggleComments(\'' + pageId + '\')">'
+    + twAvatar(c.nickname)
+    + '<div class="twin-it-m">'
+    + '<div class="twi-h"><b>' + esc(c.nickname) + "</b>"
+    + (c.admin ? '<span class="twi-badge" title="Stacks">✓</span>' : "")
+    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + "</span></div>"
+    + '<div class="twi-t">' + twLinkify(esc(c.content)) + "</div>"
+    + (qid ? twQuoteHtml(qid) : "")
+    + "</div></div>";
+}
+function twinRender(id){
+  var el = document.getElementById("twinl-" + id);
+  if (!el) return;
+  var rows = TWIN_CACHE[id] || [];
+  if (!rows.length){ el.innerHTML = ""; return; }
+  var W = TW();
+  var roots = rows.filter(function(c){ return !c.parentId; });
+  if (!roots.length) roots = rows.slice();
+  roots.sort(function(a, b){
+    var d = (Number(b.likes) || 0) - (Number(a.likes) || 0);
+    return d !== 0 ? d : (b.id || 0) - (a.id || 0);
+  });
+  var top = roots.slice(0, 2);
+  var html = top.map(function(c){ return twinItem(c, id); }).join("");
+  if (rows.length > top.length){
+    html += '<button class="twin-more" onclick="toggleComments(\'' + id + '\')">'
+      + W.viewAll.replace("{n}", rows.length) + "</button>";
+  }
+  el.innerHTML = html;
+}
+function twinLoad(id, force){
+  if (!force && TWIN_CACHE[id] !== undefined){ twinRender(id); return; }
+  fetch(COMMENTS_API + "/comments?pageId=" + encodeURIComponent(id))
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      TWIN_CACHE[id] = (j && Array.isArray(j.data)) ? j.data : [];
+      twinRender(id);
+    })
+    .catch(function(){});
+}
+/* Load previews for every rendered card that has comments. No
+   IntersectionObserver: it never fires for the zero-height placeholder in
+   some layouts. /counts already tells us which pages have comments, so at
+   most a handful of fetches happen, cached in TWIN_CACHE across re-renders. */
+var TWIN_LOADING = {};
+function twinScan(){
+  document.querySelectorAll(".twin-list").forEach(function(el){
+    var id = el.getAttribute("data-twinl");
+    if (!id) return;
+    if (TWIN_CACHE[id] !== undefined){
+      /* re-render after the feed rebuilt this card */
+      if (!el.firstChild && TWIN_CACHE[id].length) twinRender(id);
+      return;
+    }
+    if (TWIN_LOADING[id]) return;
+    var n = (typeof COMMENT_COUNTS !== "undefined" && COMMENT_COUNTS[id]) || 0;
+    if (n > 0){
+      TWIN_LOADING[id] = 1;
+      twinLoad(id);
+    }
+    /* count 0 or counts not loaded yet: leave unmarked so a later scan retries */
+  });
+}
+var twinScanQueued = false;
+try {
+  /* setTimeout (not rAF): rAF never fires in a background tab, which would
+     permanently wedge the debounce flag and kill the scan loop */
+  new MutationObserver(function(){
+    if (twinScanQueued) return;
+    twinScanQueued = true;
+    setTimeout(function(){ twinScanQueued = false; twinScan(); }, 120);
+  }).observe(document.body, { childList: true, subtree: true });
+} catch (e){}
+/* fallback ticker: catches /counts arriving without any DOM mutation */
+setInterval(twinScan, 2500);
+twinScan();
+window.twInlineKey = function(ev, id){
+  if (ev && ev.key === "Enter"){ ev.preventDefault(); twInlineSend(id); }
+};
+window.twInlineSend = function(id){
+  var W = TW();
+  var inp = document.getElementById("twin-" + id);
+  var btn = document.getElementById("twinb-" + id);
+  if (!inp) return;
+  var text = inp.value.trim();
+  if (!text){ toggleComments(id); return; }   /* empty tap = open the thread */
+  var nick = twcNick();
+  if (!nick){
+    /* no name yet: hand off to the sheet (it owns the one-time name flow) */
+    toggleComments(id);
+    var ta = document.getElementById("twcText");
+    if (ta){ ta.value = text; ta.dispatchEvent(new Event("input")); }
+    twcEditName();
+    inp.value = "";
+    return;
+  }
+  if (btn) btn.disabled = true;
+  fetch(COMMENTS_API + "/comments", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      pageId: id, content: text, nickname: nick, website: "",
+      adminKey: (typeof lsGet === "function" && lsGet("stk_admin_key")) || undefined
+    })
+  }).then(function(r){
+    if (!r.ok) throw (r.status === 429 ? "rate" : "bad");
+    inp.value = "";
+    inp.placeholder = W.sent + " ✓";
+    setTimeout(function(){ inp.placeholder = W.ph; }, 2500);
+    if (typeof track === "function") track("comment/" + id);
+    if (typeof bumpCommentCount === "function") bumpCommentCount(id);
+    twinLoad(id, true);
+    if (TWC.id === id) twcLoad();
+  }).catch(function(e){
+    inp.placeholder = (e === "rate") ? W.rate : W.error;
+    setTimeout(function(){ inp.placeholder = W.ph; }, 3000);
+  }).then(function(){ if (btn) btn.disabled = false; });
+};
+
+})();
+</script>
+
 </body>
 </html>
