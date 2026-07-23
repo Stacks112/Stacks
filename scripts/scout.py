@@ -219,6 +219,7 @@ def build_card(item, meta, gen, used_ids):
     card = {
         "id": cid,
         "date": date,
+        "ts": datetime.now(timezone.utc).isoformat(),  # 발행(카딩) 시각 — 프론트 "N시간 전" 표기용
         "source": meta["source"],
         "sourceUrl": item["link"],
         "sourceLang": meta["lang"],

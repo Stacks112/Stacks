@@ -1087,6 +1087,26 @@ def main():
     if _sanitize_dashes(d):
         json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print("[dedash] em/en dashes stripped from items.json")
+    # --- ts backfill: the app shows "N hours ago" for items <24h old, which needs
+    # a per-item publish timestamp. Stamp any item missing `ts`: today's items get
+    # "now" (approx. when they were carded, which is when this build runs on publish);
+    # older items get their date at noon UTC so the app cleanly falls back to the date.
+    # This guarantees ts regardless of which path added the card (scout or the
+    # auto-publish session). Items that already carry ts are left untouched. ---
+    def _stamp_ts(doc):
+        changed = False
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        now_iso = datetime.now(timezone.utc).isoformat()
+        for it in doc.get("items", []):
+            if it.get("ts"):
+                continue
+            dt = it.get("date") or today
+            it["ts"] = now_iso if dt == today else (dt + "T12:00:00+00:00")
+            changed = True
+        return changed
+    if _stamp_ts(d):
+        json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("[ts] backfilled publish timestamps in items.json")
     items = d["items"]
     entities = d.get("entities", {}) or {}
     # --- Curated static glossary: a durable term index independent of the
