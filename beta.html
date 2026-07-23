@@ -10616,36 +10616,42 @@ function twinLoad(id, force){
     })
     .catch(function(){});
 }
-var twinIO = ("IntersectionObserver" in window) ? new IntersectionObserver(function(entries){
-  entries.forEach(function(en){
-    if (!en.isIntersecting) return;
-    twinIO.unobserve(en.target);
-    var id = en.target.getAttribute("data-twinl");
-    if (!id) return;
-    if (TWIN_CACHE[id] !== undefined){ twinRender(id); return; }
-    var n = (typeof COMMENT_COUNTS !== "undefined" && COMMENT_COUNTS[id]) || 0;
-    if (n > 0) twinLoad(id);
-  });
-}, { rootMargin: "250px" }) : null;
-var twinScanQueued = false;
-function twinObserveAll(){
-  if (!twinIO) return;
+/* Load previews for every rendered card that has comments. No
+   IntersectionObserver: it never fires for the zero-height placeholder in
+   some layouts. /counts already tells us which pages have comments, so at
+   most a handful of fetches happen, cached in TWIN_CACHE across re-renders. */
+var TWIN_LOADING = {};
+function twinScan(){
   document.querySelectorAll(".twin-list").forEach(function(el){
-    if (el.getAttribute("data-twobs")) return;
-    el.setAttribute("data-twobs", "1");
-    twinIO.observe(el);
+    var id = el.getAttribute("data-twinl");
+    if (!id) return;
+    if (TWIN_CACHE[id] !== undefined){
+      /* re-render after the feed rebuilt this card */
+      if (!el.firstChild && TWIN_CACHE[id].length) twinRender(id);
+      return;
+    }
+    if (TWIN_LOADING[id]) return;
+    var n = (typeof COMMENT_COUNTS !== "undefined" && COMMENT_COUNTS[id]) || 0;
+    if (n > 0){
+      TWIN_LOADING[id] = 1;
+      twinLoad(id);
+    }
+    /* count 0 or counts not loaded yet: leave unmarked so a later scan retries */
   });
 }
+var twinScanQueued = false;
 try {
   /* setTimeout (not rAF): rAF never fires in a background tab, which would
-     permanently wedge the debounce flag and kill the observer loop */
+     permanently wedge the debounce flag and kill the scan loop */
   new MutationObserver(function(){
     if (twinScanQueued) return;
     twinScanQueued = true;
-    setTimeout(function(){ twinScanQueued = false; twinObserveAll(); }, 80);
+    setTimeout(function(){ twinScanQueued = false; twinScan(); }, 120);
   }).observe(document.body, { childList: true, subtree: true });
 } catch (e){}
-twinObserveAll();
+/* fallback ticker: catches /counts arriving without any DOM mutation */
+setInterval(twinScan, 2500);
+twinScan();
 window.twInlineKey = function(ev, id){
   if (ev && ev.key === "Enter"){ ev.preventDefault(); twInlineSend(id); }
 };
