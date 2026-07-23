@@ -1,6 +1,153 @@
 {
  "items": [
   {
+   "date": "2026-07-23",
+   "id": "semianalysis-vera-rubin-nvl72-tco",
+   "related": [
+    "semianalysis-meta-infra-culture-reset",
+    "semianalysis-meta-superintelligence",
+    "serenity-nvda-nbis-stake"
+   ],
+   "source": "SemiAnalysis",
+   "sourceUrl": "https://newsletter.semianalysis.com/p/vera-rubin-nvl72-vs-gb200-nvl72-inference",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#059669",
+    "label": "RUBIN VS GB200"
+   },
+   "tags": [
+    "NVDA",
+    "AI CHIPS",
+    "TCO"
+   ],
+   "stance": "bull",
+   "title": {
+    "en": "SemiAnalysis: Nvidia's next-gen Rubin chip shows 5x better performance per dollar than today's Blackwell, per early data",
+    "ko": "세미애널리시스: 엔비디아 차세대 루빈 칩, 현재 블랙웰 대비 성능 대비 가격 5배, 초기 데이터 기준",
+    "ja": "セミアナリシス：エヌビディア次世代ルービンチップ、性能あたり価格で現行ブラックウェルの5倍、初期データで判明"
+   },
+   "gist": {
+    "en": "Nvidia's next-generation Vera Rubin NVL72 rack system is delivering roughly five times the performance per dollar and 5.4 times the performance per megawatt of today's Blackwell GB200 NVL72, according to early benchmark data reviewed by semiconductor research firm SemiAnalysis. The numbers come from engineering samples run on the AI model DeepSeek R1, and the gap widens further when compared against GB200's own rough early bringup period in 2025, since Rubin is still in that same early stage now and its results are expected to keep improving as the surrounding software matures, the same pattern SemiAnalysis says it saw with Blackwell. The early figures were gathered by cloud provider CoreWeave and have not been independently verified. Nvidia has committed to submitting checkable numbers to the industry benchmark group InferenceX by the third quarter of 2026, with Google expected to submit results for its TPUv7 chip and AMD for its MI455X chip around the same time, which would let investors compare all three on equal footing for the first time. One reason SemiAnalysis expects a smoother rollout for Rubin is software continuity, its chip can reuse Blackwell's low-level code, unlike Blackwell, which could not reuse the prior generation's, a technical detail that can determine how quickly a new chip generation actually reaches full performance in production.",
+    "ko": "엔비디아의 차세대 랙 시스템 '베라 루빈 NVL72'가 초기 벤치마크 기준으로 현재 블랙웰 GB200 NVL72 대비 달러당 성능은 약 5배, 메가와트당 성능은 5.4배에 이른다고 반도체 리서치업체 세미애널리시스가 전했다. 이 수치는 AI 모델 딥시크 R1을 돌린 엔지니어링 샘플에서 나온 것이며, 2025년 GB200 초기 도입 시기와 비교하면 격차는 더 벌어진다. 루빈이 지금 바로 그 초기 단계에 있어 앞으로 주변 소프트웨어가 성숙할수록 성능이 계속 개선될 것으로 보이는데, 세미애널리시스는 블랙웰 때도 같은 패턴을 봤다고 밝혔다. 이 초기 수치는 클라우드 업체 코어위브가 수집했고 아직 독립적으로 검증되진 않았다. 엔비디아는 2026년 3분기까지 업계 벤치마크 그룹 인퍼런스X에 검증 가능한 수치를 제출하겠다고 약속했고, 비슷한 시기에 구글은 자사 TPU v7, AMD는 MI455X 칩 결과를 낼 것으로 예상돼 처음으로 세 회사를 동일 선상에서 비교할 수 있게 될 전망이다. 세미애널리시스가 루빈의 순조로운 출시를 기대하는 이유 중 하나는 소프트웨어 연속성이다. 루빈은 블랙웰의 저수준 코드를 재사용할 수 있는 반면, 블랙웰은 이전 세대 코드를 재사용하지 못했는데, 이는 새 칩 세대가 실제 양산에서 얼마나 빨리 완전한 성능에 도달하는지를 좌우하는 기술적 디테일이다.",
+    "ja": "エヌビディアの次世代ラックシステム「ベラ・ルービンNVL72」が、初期ベンチマーク基準で現行ブラックウェルGB200 NVL72に比べてドルあたり性能は約5倍、メガワットあたり性能は5.4倍に達すると半導体リサーチ企業セミアナリシスが伝えた。この数値はAIモデル、ディープシークR1を動かしたエンジニアリングサンプルから得られたもので、2025年のGB200初期導入期と比べると差はさらに広がる。ルービンは今まさにその初期段階にあり、周辺ソフトウェアが成熟するにつれて性能は改善し続けると見られる。セミアナリシスはブラックウェルの時も同じパターンを見たとしている。この初期数値はクラウド事業者コアウィーブが収集したもので、まだ独立検証はされていない。エヌビディアは2026年第3四半期までに業界ベンチマークグループInferenceXへ検証可能な数値を提出すると約束しており、同じ頃にグーグルは自社TPU v7、AMDはMI455Xチップの結果を出すと見られ、初めて3社を同じ土俵で比較できるようになる見通しだ。セミアナリシスがルービンの円滑な立ち上げを見込む理由の一つがソフトウェアの連続性だ。ルービンはブラックウェルの低レベルコードを再利用できる一方、ブラックウェルは前世代のコードを再利用できなかった。これは新チップ世代が実際の量産でどれだけ早く完全な性能に到達するかを左右する技術的な要素だ。"
+   },
+   "why": {
+    "en": "If these early numbers hold up under independent verification, Rubin's efficiency lead would reinforce Nvidia's pricing power and add pressure on AMD and custom-silicon rivals trying to close the gap, while the smoother software transition lowers the risk that the new generation stalls in production the way earlier chip launches sometimes have.",
+    "ko": "이 초기 수치가 독립 검증에서도 유지된다면 루빈의 효율 우위는 엔비디아의 가격결정력을 강화하고 AMD 등 경쟁 칩 진영에 더 큰 압박이 될 수 있다. 소프트웨어 전환이 매끄럽다는 점은 이전 세대 칩 출시 때처럼 양산 단계에서 성능이 정체될 위험도 낮춘다는 의미다.",
+    "ja": "この初期数値が独立検証でも維持されれば、ルービンの効率優位はエヌビディアの価格決定力を強化し、AMDなど競合チップ陣営への圧力も増す。ソフトウェア移行が円滑だという点は、過去のチップ発売時のように量産段階で性能が停滞するリスクを下げるという意味でもある。"
+   },
+   "ask": {
+    "en": "How much should investors trust Nvidia-linked performance numbers before third-party verification lands, and will Rubin's lead hold up once InferenceX publishes checkable results in Q3 2026?",
+    "ko": "제3자 검증 전에 나온 엔비디아 쪽 성능 수치를 투자자는 얼마나 신뢰할 수 있을까? 2026년 3분기 인퍼런스X 검증 결과가 나올 때까지 지켜볼 만한 대목이다.",
+    "ja": "第三者検証前に出たエヌビディア側の性能数値を投資家はどこまで信頼すべきか。2026年第3四半期にInferenceXの検証結果が出るまで注目される点だ。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Grade whether Nvidia submits verifiable Rubin benchmark numbers to InferenceX by Q3 2026, and whether they roughly match today's early 5x per-dollar claim.",
+     "ko": "2026년 3분기까지 엔비디아가 루빈 칩의 검증 가능한 벤치마크 수치를 인퍼런스X에 제출하는지, 그 수치가 오늘 나온 달러당 성능 5배 주장과 대체로 일치하는지 채점.",
+     "ja": "2026年第3四半期までにエヌビディアがルービンチップの検証可能なベンチマーク数値をInferenceXに提出するか、その数値が今回の性能あたり価格5倍という主張とおおむね一致するかを採点。"
+    }
+   }
+  },
+  {
+   "date": "2026-07-23",
+   "id": "jukan-samsung-elec-mechanics-mlcc-lta",
+   "related": [
+    "jukan-opensource-memory-multiplier",
+    "hynix",
+    "serenity-kioxia-samsung-memory-rally"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2080084993339236358",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#1B1035",
+    "to": "#7C3AED",
+    "label": "MLCC LTA DEAL"
+   },
+   "tags": [
+    "MLCC",
+    "LTA",
+    "SUPPLY CHAIN"
+   ],
+   "stance": "bull",
+   "title": {
+    "en": "Samsung Electro-Mechanics signs MLCC supply deal with an unnamed 'large global company', extending Big Tech's part hoarding beyond memory",
+    "ko": "삼성전기, '대형 글로벌 기업'과 MLCC 공급계약 체결, 빅테크의 부품 선점이 메모리 넘어 확산",
+    "ja": "サムスン電機、非公開の「大手グローバル企業」とMLCC供給契約、ビッグテックの部品確保がメモリ超えて拡大"
+   },
+   "gist": {
+    "en": "Samsung Electro-Mechanics has signed a long-term supply agreement for MLCCs, the tiny ceramic capacitors used in nearly every electronic device, with a customer it identified only as 'a large global company', according to a post from semiconductor analyst Jukan on X. Jukan's read is that the vague description points to a major technology company, and that the significance is less about this one deal and more about the pattern it confirms, that long-term agreements, the multi-year contracts that lock in supply and pricing years in advance, are spreading beyond memory chips into passive components like MLCCs. That pattern has already reshaped the memory chip market this year, where SK hynix and Samsung Electronics have used LTAs to guarantee revenue from AI-hungry customers regardless of the usual boom-bust cycle. If the same dynamic is now taking hold for a component as basic and previously commoditized as MLCCs, Jukan suggests it is a sign that Big Tech's appetite for guaranteed component supply is broadening well past the chips that get the most attention, toward the more ordinary parts that go into every server and device.",
+    "ko": "삼성전기가 '대형 글로벌 기업'이라고만 밝힌 고객사와 MLCC, 거의 모든 전자기기에 들어가는 작은 세라믹 콘덴서의 장기 공급계약을 맺었다고 반도체 애널리스트 주칸이 X에서 전했다. 주칸은 이 모호한 표현이 사실상 대형 빅테크를 가리킨다고 보면서, 이번 계약 자체보다 이것이 보여주는 흐름에 더 주목한다. 몇 년치 물량과 가격을 미리 묶는 장기공급계약(LTA)이 메모리 반도체를 넘어 MLCC 같은 수동부품으로까지 번지고 있다는 것이다. 이런 흐름은 올해 메모리 시장에서 이미 뚜렷했다. SK하이닉스와 삼성전자는 LTA를 활용해 AI 수요가 몰리는 고객사로부터 매출을 미리 확보하며 통상적인 호황과 불황의 반복에서 벗어나려 해왔다. 그동안 범용 부품 취급을 받던 MLCC에서도 같은 움직임이 나타난다면, 이는 빅테크가 부품 공급을 미리 확보하려는 수요가 가장 주목받는 반도체를 넘어 서버와 기기마다 들어가는 더 평범한 부품으로까지 넓어지고 있다는 신호라고 주칸은 짚었다.",
+    "ja": "サムスン電機が「大手グローバル企業」とだけ明かした顧客と、MLCC、ほぼすべての電子機器に使われる小さなセラミックコンデンサの長期供給契約を結んだと、半導体アナリストのJukanがXで伝えた。Jukanはこの曖昧な表現が実質的に大手ビッグテックを指すと見て、今回の契約そのものより、それが示す流れに注目する。数年分の数量・価格を事前に約束する長期供給契約(LTA)が、メモリ半導体を超えてMLCCのような受動部品にまで広がっているという点だ。この流れは今年のメモリ市場ですでに顕著だった。SKハイニックスとサムスン電子はLTAを活用し、AI需要が集中する顧客から売上を事前に確保することで、通常の好況・不況の繰り返しから抜け出そうとしてきた。これまで汎用部品として扱われてきたMLCCでも同じ動きが見られるなら、これはビッグテックが部品供給を事前に確保したいという欲求が、最も注目される半導体を超え、サーバーや機器ごとに使われるより地味な部品にまで広がっているサインだとJukanは指摘する。"
+   },
+   "why": {
+    "en": "If Big Tech is now locking up MLCC supply the way it has memory chips, that points to a broader component squeeze across the AI hardware supply chain, and could mean steadier, more predictable revenue for passive-component makers like Samsung Electro-Mechanics that have historically lived and died by commodity cycles.",
+    "ko": "빅테크가 메모리처럼 MLCC 공급까지 미리 묶어두기 시작했다면, 이는 AI 하드웨어 공급망 전반에서 부품 부족이 넓어지고 있다는 신호다. 그동안 범용 사이클에 좌우되던 삼성전기 같은 수동부품 업체에도 더 안정적인 매출이 기대될 수 있다는 뜻이다.",
+    "ja": "ビッグテックがメモリのようにMLCC供給まで事前に固め始めたなら、これはAIハードウェアのサプライチェーン全体で部品不足が広がっているサインだ。これまで汎用サイクルに左右されてきたサムスン電機のような受動部品メーカーにも、より安定した売上が期待できるという意味になる。"
+   },
+   "ask": {
+    "en": "If long-term agreements keep spreading to commodity components like MLCCs, should cyclical parts makers start getting valued more like structural growth stories, the way memory chipmakers increasingly are?",
+    "ko": "MLCC 같은 범용 부품까지 장기계약으로 묶이는 흐름이 계속되면, 그동안 사이클에 좌우되던 부품주들의 밸류에이션도 메모리처럼 구조적 성장주로 다시 매겨져야 할까?",
+    "ja": "MLCCのような汎用部品まで長期契約で固定される流れが続けば、これまでサイクル株として扱われてきた部品メーカーの評価も、メモリのように構造的成長株として見直されるべきだろうか。"
+   }
+  },
+  {
+   "date": "2026-07-23",
+   "id": "kobeissi-china-star50-record-inflow",
+   "related": [
+    "kobeissi-china-margin-unwind",
+    "kobeissi-china-rare-earth-exports-low"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2080097413113528755",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#450A0A",
+    "to": "#22C55E",
+    "label": "STAR 50 SURGE"
+   },
+   "tags": [
+    "CHINA",
+    "STAR50",
+    "ETF FLOWS"
+   ],
+   "stance": "bull",
+   "title": {
+    "en": "China's Star 50 tech fund pulls in a record $2 billion in a single day, driving the index's best day in nearly two years",
+    "ko": "중국 최대 기술주 ETF 스타50, 하루 만에 사상 최대 20억달러 유입, 지수는 2년래 최대폭 상승",
+    "ja": "中国最大のテック株ETF「STAR50」、1日で過去最大の20億ドル流入、指数は約2年ぶりの上げ幅"
+   },
+   "gist": {
+    "en": "Chinese investors poured a record $2.0 billion into the Star 50 ETF, the country's largest tech-focused fund, on a single day this week, according to the Kobeissi Letter, more than double the previous daily record set in December 2020. That wave of buying helped push the underlying Star 50 index, which tracks Shanghai's Sci-Tech Innovation Board of tech and chip companies, up 11 percent the next day, its biggest one-day gain in nearly two years. The rebound follows a rough stretch just last week, when a wave of forced selling wiped out roughly $37 billion in margin debt over four days as leveraged bets on chip stocks unwound, dragging the same index down sharply. The comeback has state-linked money behind it too. China's so-called National Team funds, state-backed investment vehicles that typically step in to support markets during selloffs, took in $10 billion over the last three trading sessions, the most since April 2025. Separately, at least five of China's largest insurers have pledged to increase their stock holdings, with one insurer, China Life, alone buying more than $1.5 billion of stocks and funds. Kobeissi's read is straightforward, Chinese investors keep showing up to buy dips, turning what looked like a leverage-driven crash into a fast, well-supported recovery.",
+    "ko": "중국 투자자들이 이번주 하루 만에 중국 최대 기술주 펀드인 스타50 ETF에 사상 최대 규모인 20억달러를 쏟아부었다고 코베이시레터가 전했다. 2020년 12월 세운 기존 최대 기록의 두 배가 넘는 규모다. 이 매수세에 힘입어 상하이 커촹반의 기술·반도체 기업들을 담은 기초지수인 스타50 지수는 다음날 11% 올라 거의 2년 만에 하루 최대 상승폭을 기록했다. 이번 반등은 불과 일주일 전 반도체주에 몰린 레버리지 베팅이 풀리면서 나흘간 마진 부채 약 370억달러가 청산돼 같은 지수가 크게 밀렸던 것과 정반대 흐름이다. 이번 반등 뒤에는 국가배경 자금도 있다. 주가 급락기에 시장을 떠받치기 위해 매수에 나서는 중국의 이른바 '국가대표팀' 펀드들이 최근 3거래일 동안 100억달러를 사들였는데, 2025년 4월 이후 최대 규모다. 별도로 중국 대형 보험사 최소 5곳이 주식 보유를 늘리겠다고 밝혔고, 이 중 한 곳인 중국인수(차이나라이프)만 15억달러 넘는 주식·펀드를 사들였다. 코베이시의 결론은 단순하다. 중국 투자자들은 계속 저가매수에 나서고 있고, 레버리지발 급락처럼 보였던 상황이 빠르고 탄탄한 반등으로 바뀌었다는 것이다.",
+    "ja": "中国の投資家が今週、中国最大のテック特化型ファンドであるSTAR50 ETFに1日で過去最大の20億ドルを投じたとコベイシレターが伝えた。2020年12月に立てたそれまでの最大記録の2倍を超える規模だ。この買いに支えられ、上海科創板のテック・半導体企業で構成される基礎指数STAR50は翌日11%上昇し、約2年ぶりの1日の上げ幅を記録した。この反発は、わずか1週間前に半導体株への レバレッジ投資が解消され、4日間で証拠金債務約370億ドルが清算されて同指数が大きく下落したのとは正反対の動きだ。今回の反発の背景には国家系資金もある。株価急落時に相場を支えるために買いに入る中国の通称「国家隊」ファンドが直近3取引日で100億ドルを買い入れており、2025年4月以来の規模となる。別途、中国の大手保険会社少なくとも5社が株式保有を増やすと表明しており、そのうちの1社である中国人寿(チャイナライフ)だけで15億ドル超の株式・ファンドを購入した。コベイシの結論はシンプルだ。中国の投資家は買い続けており、レバレッジ主導の急落に見えた状況が、速く手厚い支えのある反発に変わったということだ。"
+   },
+   "why": {
+    "en": "This is the same market that cracked hard just days ago on a leverage unwind, so a record-setting, state-supported rebound this fast suggests Chinese authorities and large domestic investors are determined to keep AI and tech stocks propped up, a dynamic global investors watching China's chip and tech sector will want to track.",
+    "ko": "며칠 전 레버리지 청산으로 크게 흔들렸던 바로 그 시장이다. 이렇게 빠르게, 그것도 국가자금까지 동원돼 사상 최대 규모로 반등했다는 건 중국 당국과 대형 국내 투자자들이 AI·기술주를 계속 떠받치려 한다는 의지로 읽힌다. 중국 반도체·기술주를 지켜보는 해외 투자자라면 눈여겨볼 대목이다.",
+    "ja": "数日前にレバレッジ清算で大きく揺れたのと同じ市場だ。これほど速く、しかも国家系資金まで動員して過去最大規模で反発したというのは、中国当局と大口の国内投資家がAI・テック株を支え続ける意思を持っていることを示す。中国の半導体・テック株を見ている海外投資家にとって注視すべき動きだ。"
+   },
+   "ask": {
+    "en": "Is this rebound, backed by state funds and insurers, a genuine return of demand, or just the familiar pattern where a leverage-driven crash gets offset by state-directed buying afterward?",
+    "ko": "국가대표팀과 보험사까지 동원된 이번 반등은 진짜 수요 회복일까, 아니면 레버리지 청산 다음엔 관제 매수가 뒤따르는 패턴이 반복되는 것뿐일까?",
+    "ja": "国家隊や保険会社まで動員されたこの反発は本物の需要回復なのか、それともレバレッジ清算の後に官製買いが入るいつものパターンにすぎないのか。"
+   }
+  },
+  {
    "date": "2026-07-22",
    "id": "serenity-googl-q2-cloud-beat",
    "series": "ai-power",
@@ -9203,6 +9350,155 @@
     "en": "Founded in 1988, BlackRock is the world's largest asset manager with trillions of dollars under management across index funds, ETFs and institutional mandates. Its iShares Bitcoin Trust (IBIT), launched in January 2024, quickly became the dominant spot Bitcoin ETF by assets, making BlackRock's flows a widely watched gauge of institutional crypto demand.",
     "ko": "1988년 설립된 세계 최대 자산운용사로, 인덱스펀드·ETF·기관 자금 등을 합쳐 수조달러를 운용한다. 2024년 1월 출시한 아이셰어즈 비트코인 트러스트(IBIT)는 빠르게 자산 기준 최대 비트코인 현물 ETF로 올라섰고, 블랙록의 자금 흐름은 기관 암호화폐 수요를 가늠하는 대표 지표로 꼽힌다.",
     "ja": "1988年設立の世界最大の資産運用会社で、インデックスファンド・ETF・機関投資家向け運用を合わせて数兆ドルを運用する。2024年1月に立ち上げたiシェアーズ・ビットコイン・トラスト(IBIT)は瞬く間に資産規模で最大のビットコイン現物ETFとなり、ブラックロックの資金フローは機関投資家の暗号資産需要を測る代表的な指標とされる。"
+   }
+  },
+  "SAMSUNG ELECTRO-MECHANICS": {
+   "kind": "company",
+   "ticker": "009150.ks",
+   "sector": {
+    "en": "Electronic Components",
+    "ko": "전자부품",
+    "ja": "電子部品"
+   },
+   "desc": {
+    "en": "Samsung affiliate making MLCCs, camera modules and semiconductor substrates.",
+    "ko": "MLCC·카메라모듈·반도체기판을 만드는 삼성 계열사.",
+    "ja": "MLCC・カメラモジュール・半導体基板を手掛けるサムスン系列会社。"
+   },
+   "aliases": [
+    "삼성전기",
+    "Samsung Electro-Mechanics",
+    "SEMCO",
+    "サムスン電機"
+   ],
+   "logo": "samsungsem.com",
+   "exchange": "KOSPI",
+   "ceo": {
+    "en": "Jang Duk-hyun",
+    "ko": "장덕현",
+    "ja": "チャン・ドクヒョン"
+   },
+   "hq": {
+    "en": "Suwon, South Korea",
+    "ko": "경기 수원",
+    "ja": "韓国・水原"
+   },
+   "website": "https://www.samsungsem.com",
+   "founded": "1973",
+   "longDesc": {
+    "en": "Founded in 1973 as a Samsung Electronics affiliate, Samsung Electro-Mechanics makes multi-layer ceramic capacitors (MLCCs), camera modules and semiconductor substrates used across smartphones, cars and data center hardware. It is one of the world's largest MLCC makers alongside Japan's Murata and Taiyo Yuden, and has increasingly supplied components for AI servers.",
+    "ko": "1973년 삼성전자 계열사로 설립됐다. MLCC(적층세라믹콘덴서)·카메라모듈·반도체기판을 만들며, 스마트폰과 자동차, 데이터센터 서버 등에 두루 쓰인다. 일본 무라타, 다이요유덴과 함께 세계 최대 MLCC 업체 중 하나로, 최근에는 AI 서버용 부품 공급도 늘리고 있다.",
+    "ja": "1973年にサムスン電子の系列会社として設立。MLCC(積層セラミックコンデンサ)・カメラモジュール・半導体基板を手掛け、スマートフォンや自動車、データセンターサーバーなどに広く使われる。日本の村田製作所、太陽誘電と並ぶ世界最大級のMLCCメーカーで、近年はAIサーバー向け部品供給も増やしている。"
+   }
+  },
+  "COREWEAVE": {
+   "kind": "company",
+   "ticker": "CRWV",
+   "sector": {
+    "en": "Cloud / AI Infrastructure",
+    "ko": "클라우드/AI 인프라",
+    "ja": "クラウド/AIインフラ"
+   },
+   "desc": {
+    "en": "Cloud provider specializing in GPU computing for AI workloads.",
+    "ko": "AI 연산에 특화된 GPU 클라우드 제공업체.",
+    "ja": "AI向けGPUクラウドに特化した企業。"
+   },
+   "aliases": [
+    "CoreWeave",
+    "코어위브",
+    "コアウィーブ"
+   ],
+   "logo": "coreweave.com",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "en": "Michael Intrator",
+    "ko": "마이클 인트레이터",
+    "ja": "マイケル・イントレーター"
+   },
+   "hq": {
+    "en": "Livingston, New Jersey, US",
+    "ko": "미국 뉴저지 리빙스턴",
+    "ja": "米国ニュージャージー州リビングストン"
+   },
+   "website": "https://www.coreweave.com",
+   "founded": "2017",
+   "listed": "2025.3",
+   "longDesc": {
+    "en": "Originally a cryptocurrency mining operation, CoreWeave pivoted to renting out Nvidia GPUs for AI training and inference. It became one of the largest independent AI cloud providers, backed by close ties to Nvidia and large contracts with AI labs, and listed on Nasdaq in March 2025.",
+    "ko": "원래 암호화폐 채굴 업체였다가 엔비디아 GPU를 빌려주는 AI 클라우드 사업으로 전환했다. 엔비디아와의 긴밀한 관계와 AI 연구소들과의 대형 계약을 등에 업고 대표적인 독립 AI 클라우드 업체로 성장했으며, 2025년 3월 나스닥에 상장했다.",
+    "ja": "元は暗号資産マイニング企業だったが、エヌビディアGPUを貸し出すAIクラウド事業に転換した。エヌビディアとの緊密な関係と大手AI研究機関との大型契約を背景に、代表的な独立系AIクラウド企業に成長し、2025年3月にナスダックに上場した。"
+   }
+  },
+  "STAR 50": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "An index tracking 50 major tech and chip companies on Shanghai's Sci-Tech Innovation Board.",
+    "ko": "상하이 커촹반(과학혁신판)의 대표 기술·반도체 기업 50곳을 담은 지수.",
+    "ja": "上海科創板の主要テック・半導体企業50社で構成される指数。"
+   },
+   "aliases": [
+    "STAR 50",
+    "스타50",
+    "科创50",
+    "커촹반50"
+   ],
+   "longDesc": {
+    "en": "The STAR 50 Index tracks the 50 largest companies on the Shanghai Stock Exchange's Sci-Tech Innovation Board (STAR Market), a Nasdaq-style board launched in 2019 for tech, chip and biotech firms. Because it is heavily weighted toward semiconductors and AI-related names, it tends to move sharply on swings in China's tech and chip sentiment, and its moves are often read as a signal of state-directed buying or selling in Chinese markets.",
+    "ko": "스타50 지수는 상하이거래소 커촹반(과학혁신판)에 상장된 상위 50개 기업을 담은 지수다. 커촹반은 2019년 출범한 나스닥 스타일의 기술·반도체·바이오 전문 시장이다. 반도체와 AI 관련 종목 비중이 커서 중국 기술주 심리가 흔들릴 때 크게 출렁이는 편이며, 지수 움직임은 중국 정부·국유자금의 매수·매도 신호로도 자주 읽힌다.",
+    "ja": "STAR50指数は上海証券取引所の科創板に上場する上位50社で構成される指数だ。科創板は2019年に開設されたナスダック型のテック・半導体・バイオ専門市場。半導体・AI関連銘柄の比重が大きく、中国テック株心理が揺れると大きく動きやすい。指数の動きは中国当局・国有資金の売買サインとしてもよく読み取られる。"
+   }
+  },
+  "NATIONAL TEAM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Informal name for Chinese state-backed funds that buy stocks to support the market during selloffs.",
+    "ko": "주가 급락기에 증시를 떠받치기 위해 매수에 나서는 중국 국유·국가배경 펀드를 부르는 별칭.",
+    "ja": "株価急落時に相場を支えるために買いに入る中国の国有・国家系ファンドの通称。"
+   },
+   "aliases": [
+    "National Team",
+    "국가대표팀",
+    "국가팀",
+    "国家队"
+   ],
+   "longDesc": {
+    "en": "'National Team' is the market nickname for a loose group of Chinese state-linked investment vehicles, including sovereign funds, state banks and China's Central Huijin Investment, that buy stocks during sharp selloffs to slow declines and steady sentiment. Their appearance is widely read as a signal that Beijing sees a market drop as a priority to address, though the buying is not always officially confirmed in real time.",
+    "ko": "'국가대표팀'은 국유펀드, 국유은행, 중국 중앙후이진투자 등 중국 정부와 연결된 투자기관들을 묶어 부르는 시장 별칭이다. 주가가 급락할 때 매수에 나서 하락폭을 늦추고 투자심리를 안정시키는 역할을 한다. 이들이 등장했다는 신호는 중국 정부가 증시 하락을 중요하게 보고 있다는 뜻으로 해석되곤 하지만, 매수 사실이 실시간으로 공식 확인되는 경우는 많지 않다.",
+    "ja": "「国家隊」は、国有ファンドや国有銀行、中国中央匯金投資などの中国政府とつながる投資機関を指す市場での通称だ。株価が急落した際に買いに入り、下落幅を抑えて投資家心理を落ち着かせる役割を果たす。その登場は中国政府が株価下落を重視しているサインと受け止められることが多いが、買い付けの事実がリアルタイムで公式確認されることは少ない。"
+   }
+  },
+  "TCO": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Total cost of ownership, the full cost of running hardware over its lifetime, not just its purchase price.",
+    "ko": "장비를 사는 가격뿐 아니라 운용 기간 전체 비용까지 합친 총소유비용.",
+    "ja": "機器の購入価格だけでなく、稼働期間全体の費用まで含めた総保有コスト。"
+   },
+   "aliases": [
+    "TCO",
+    "총소유비용",
+    "トータルコストオブオーナーシップ"
+   ],
+   "longDesc": {
+    "en": "Total Cost of Ownership adds up everything it costs to own and run a piece of hardware over its useful life, the purchase price plus power, cooling, floor space, networking and maintenance. For AI chips, power and cooling costs can rival or exceed the sticker price over a few years, so a chip that costs more upfront but uses less electricity per unit of performance can still be the cheaper choice on a TCO basis, which is why chipmakers and cloud providers increasingly market performance per dollar of TCO rather than raw speed.",
+    "ko": "총소유비용(TCO)은 장비를 사서 운용 기간 내내 쓰는 데 드는 모든 비용을 더한 개념이다. 구매가격에 전력, 냉각, 설치 공간, 네트워크, 유지보수 비용까지 합친다. AI 칩의 경우 몇 년만 지나도 전력·냉각 비용이 구매가격에 맞먹거나 넘어설 수 있어서, 초기 가격은 비싸도 성능 대비 전력을 덜 쓰는 칩이 TCO 기준으로는 더 저렴할 수 있다. 그래서 칩 제조사와 클라우드 업체들은 단순 속도보다 TCO 대비 성능을 앞세워 마케팅하는 경우가 늘고 있다.",
+    "ja": "総保有コスト(TCO)は、機器を購入して稼働期間中に使い続けるためにかかるすべての費用を合計した概念だ。購入価格に電力、冷却、設置スペース、ネットワーク、保守費用まで含む。AIチップの場合、数年もすれば電力・冷却費が購入価格に匹敵、あるいは上回ることもあり、初期価格が高くても性能あたりの消費電力が少ないチップの方がTCOベースでは安くつくことがある。そのためチップメーカーやクラウド事業者は、単純な速度よりTCOあたりの性能を前面に出して訴求することが増えている。"
    }
   }
  }
