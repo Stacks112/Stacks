@@ -900,8 +900,11 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   /* outcome (예측 추적 중): note drops to its own line */
   html.rbeta .oc .oc-sep{display:none;}
   html.rbeta .oc .oc-note{display:block;margin-top:2px;}
-  /* hide the top category filter pills (전체/투자 고수/정치인…) */
-  html.rbeta #v82tabs,html.rbeta .v82-tabs{display:none !important;}
+  /* top-bar feed switcher (최신 / 팔로잉), Twitter-style — replaces the category pills */
+  html.rbeta #v82tabs{display:flex !important;gap:0;padding:0;overflow:visible;border-bottom:1px solid var(--line);}
+  html.rbeta #v82tabs .v82fsw-t{flex:1;background:none;border:0;color:var(--muted);font-family:inherit;font-size:15px;font-weight:700;padding:13px 0 12px;position:relative;cursor:pointer;}
+  html.rbeta #v82tabs .v82fsw-t.on{color:var(--text);}
+  html.rbeta #v82tabs .v82fsw-t.on::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;width:54px;height:3px;border-radius:3px;background:var(--accent);}
   /* remove the top-bar language chip — language lives in the profile drawer now */
   html.rbeta .nav-inner .lang-menu{display:none !important;}
   html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
@@ -9553,6 +9556,17 @@ bootData();
   function buildTopTabs(){
     if (!mq.matches) return;
     var strip = $("v82tabs"); if (!strip) return;
+    /* rbeta: Twitter-style 최신 / 팔로잉 switcher instead of category pills */
+    if (typeof RBETA !== "undefined" && RBETA){
+      var _cur = (typeof TAB !== "undefined") ? TAB : "all";
+      var _L = ({ ko:["최신","팔로잉"], en:["Latest","Following"], ja:["最新","フォロー中"] })[typeof LANG!=="undefined"?LANG:"ko"] || ["최신","팔로잉"];
+      strip.innerHTML =
+        '<button class="v82fsw-t' + (_cur!=="mine"?" on":"") + '" data-t="all">' + _L[0] + '</button>' +
+        '<button class="v82fsw-t' + (_cur==="mine"?" on":"") + '" data-t="mine">' + _L[1] + '</button>';
+      var _bs = strip.querySelectorAll("[data-t]");
+      for (var _i=0;_i<_bs.length;_i++){ _bs[_i].onclick = function(){ var id=this.dataset.t; goHomeThen(function(){ if (typeof setTab==="function") setTab(id); }); }; }
+      return;
+    }
     if (typeof CATEGORIES === "undefined") return;
     var t = T(), cur = (typeof TAB !== "undefined") ? TAB : "all";
     var html = "";
