@@ -155,6 +155,7 @@ try {
   else if (/rbeta/.test(location.search)) localStorage.setItem("stk_rbeta", "1");
   if (localStorage.getItem("stk_rbeta") === "1") document.documentElement.classList.add("rbeta");
 } catch (e) {}
+var RBETA = document.documentElement.classList.contains("rbeta");
 
 
 /* ---------------- upcoming events (countdown bar) ----------------
@@ -884,15 +885,24 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 html.rbeta .ent-link{font-weight:inherit;text-underline-offset:3px;text-decoration-color:rgba(130,140,160,.42);}
 html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
 @media (max-width:1023px){
-  html.rbeta .card.v82c .card-title{font-weight:700;letter-spacing:-.01em;font-size:16.5px;line-height:1.42;margin:2px 0 9px;}
-  /* airier body: bigger text + wider line spacing → lines wrap more often */
-  html.rbeta .card.v82c .gist{font-size:16.5px;line-height:2.0;}
-  html[data-lang="ja"].rbeta .card.v82c .gist{line-height:2.05;}
+  /* headline: break at word boundaries (Korean/Japanese) for readable wrapping */
+  html.rbeta .card.v82c .card-title,html.rbeta .card.v82c .ct-text{font-weight:700;letter-spacing:-.01em;font-size:16.5px;line-height:1.42;margin:2px 0 9px;word-break:keep-all;}
+  /* body: bigger text, tighter leading, paragraphs split per sentence with a blank line between */
+  html.rbeta .card.v82c .gist{font-size:16.5px;line-height:1.6;white-space:pre-line;}
+  html.rbeta .why p{white-space:pre-line;line-height:1.6;}
+  html.rbeta .ask-q{white-space:pre-line;line-height:1.55;}
+  html.rbeta .today-q{white-space:pre-line;line-height:1.55;}
+  /* outcome (예측 추적 중): note drops to its own line */
+  html.rbeta .oc .oc-sep{display:none;}
+  html.rbeta .oc .oc-note{display:block;margin-top:2px;}
   /* hide the top category filter pills (전체/투자 고수/정치인…) */
   html.rbeta #v82tabs,html.rbeta .v82-tabs{display:none !important;}
   html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
-  html.rbeta .src-block{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:2px 7px;}
-  html.rbeta .src-date{font-size:11.5px;}
+  /* byline: avatar + name always on one line; long names truncate with … */
+  html.rbeta .card-top{flex-wrap:nowrap;align-items:center;}
+  html.rbeta .src-block{flex:1 1 auto;min-width:0;flex-direction:row;flex-wrap:nowrap;align-items:baseline;gap:7px;overflow:hidden;}
+  html.rbeta .src-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+  html.rbeta .src-date{flex:0 0 auto;white-space:nowrap;font-size:11.5px;}
   html.rbeta .src-date::before{content:"· ";color:var(--muted);}
 }
 /* ============================================================= */
@@ -3001,10 +3011,11 @@ function paraGist(text){
     sentences = text.split(/(?<=[a-z\)'"%][.!?]) (?=[A-Z'"])/);
   }
   const out = [];
-  for (let i = 0; i < sentences.length; i += 2){
-    out.push(sentences.slice(i, i + 2).join(LANG === "ja" ? "" : " ").trim());
+  const step = (typeof RBETA !== "undefined" && RBETA) ? 1 : 2;   /* rbeta: one sentence per paragraph */
+  for (let i = 0; i < sentences.length; i += step){
+    out.push(sentences.slice(i, i + step).join(LANG === "ja" ? "" : " ").trim());
   }
-  return out.join("\n\n");
+  return out.filter(Boolean).join("\n\n");
 }
 
 /* friendly display names — keeps the underlying key/source stable for
@@ -3504,6 +3515,9 @@ function itemStance(item){
   return (s === "bull" || s === "bear") ? s : (s ? "watch" : null);
 }
 function stancePillHtml(item){
+  /* rbeta: geopolitical/macro posts (oil-geopolitics) don't get a bull/bear tag —
+     macro news doesn't call a single company or sector up or down. */
+  if (typeof RBETA !== "undefined" && RBETA && item.series === "oil-geopolitics") return "";
   const s = itemStance(item);
   if (!s) return "";
   const m = stanceMeta(s);
@@ -7109,7 +7123,7 @@ function renderToday(){
   main.innerHTML =
     '<div class="today-top"><span class="today-tag">💬 ' + S.todayLabel + "</span>"
       + (n ? '<span class="today-n">' + S.todayComments.replace("{n}", n) + "</span>" : "") + "</div>"
-    + '<div class="today-q">' + esc(item.ask[LANG]) + "</div>"
+    + '<div class="today-q">' + esc(RBETA ? paraGist(item.ask[LANG]) : item.ask[LANG]) + "</div>"
     + '<div class="today-src">' + esc(dispName(item.source)) + " · " + esc(item.title[LANG]) + "</div>"
     + '<div class="today-cta">' + S.todayJoin + " →</div>";
 }
@@ -7491,12 +7505,12 @@ function cardEl(item, S, idx){
       </details>
       <div class="why">
         <div class="label">${S.why}</div>
-        <p>${item.why[LANG]}</p>
+        <p>${RBETA ? esc(paraGist(item.why[LANG])) : item.why[LANG]}</p>
       </div>
-      ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? ` · <span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
+      ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
       ${item.ask && COMMENTS_API ? `<div class="ask-block">
-        <div class="ask-q">💬 ${esc(item.ask[LANG])}</div>
+        <div class="ask-q">💬 ${RBETA ? esc(paraGist(item.ask[LANG])) : esc(item.ask[LANG])}</div>
         <div class="vote-row" data-vote="${item.id}">
           <button class="vote-btn vote-up" onclick="castVote('${item.id}','up')"><span class="vd">🟢</span><span class="vl">${S.voteOpp}</span><b class="vn vn-up">0</b></button>
           <button class="vote-btn vote-down" onclick="castVote('${item.id}','down')"><span class="vd">🔴</span><span class="vl">${S.voteTrap}</span><b class="vn vn-down">0</b></button>
