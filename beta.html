@@ -10637,10 +10637,12 @@ function twinObserveAll(){
   });
 }
 try {
+  /* setTimeout (not rAF): rAF never fires in a background tab, which would
+     permanently wedge the debounce flag and kill the observer loop */
   new MutationObserver(function(){
     if (twinScanQueued) return;
     twinScanQueued = true;
-    requestAnimationFrame(function(){ twinScanQueued = false; twinObserveAll(); });
+    setTimeout(function(){ twinScanQueued = false; twinObserveAll(); }, 80);
   }).observe(document.body, { childList: true, subtree: true });
 } catch (e){}
 twinObserveAll();
