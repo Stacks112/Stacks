@@ -7265,6 +7265,14 @@ function renderHotRail(){
           b.appendChild(cv10);
         }
       } catch (e) {}
+      /* round11: hover one-line summary */
+      try {
+        var sm11 = document.createElement("span");
+        sm11.className = "hotl-sum";
+        var g11 = (item.gist && (item.gist[LANG] || item.gist.en)) || "";
+        sm11.textContent = String(g11).replace(/\s+/g, " ").trim();
+        if (sm11.textContent) b.appendChild(sm11);
+      } catch (e) {}
       rail.appendChild(b);
     });
     return;
@@ -9999,7 +10007,8 @@ html[data-theme="dark"] .v83-toast{background:#2A2C33;}
 /* ② 읽음 표시된 글은 '왜 중요한가'도 핵심처럼 흐리게 */
 .card.is-read .why{opacity:.55;}
 /* ④ '왜 중요한가' 라벨 확대 + 본문 크기·행간을 핵심(gist)과 동일하게 */
-.why .label{font-size:13px;letter-spacing:.08em;margin-bottom:8px;}
+/* 라운드11: 라벨도 본문과 같은 Pretendard로 (기존 모노스페이스 코드체 탈피) */
+.why .label{font-family:var(--ui-font);font-size:13px;letter-spacing:-.01em;text-transform:none;margin-bottom:8px;}
 .why p{font-size:14.5px;}
 html[data-lang="ko"] .why p{line-height:1.75;}
 html[data-lang="ja"] .why p{line-height:1.85;}
@@ -10021,6 +10030,15 @@ html.v83 .hotl-cov.hotl-cov-logo{background-size:contain;background-color:#EDEFF
   background-origin:content-box;padding:0;box-sizing:border-box;}
 html.v83 .hotl-row:hover .hotl-cov.hotl-cov-logo,
 html.v83 .hotl-row:focus-visible .hotl-cov.hotl-cov-logo{padding:12px;}
+/* --- 라운드11 --- */
+/* ✓ 수동 읽음 버튼 폐지 (스크롤로 지나침 = 본 글) */
+.engage .eg-read{display:none !important;}
+/* 핫 리스트 hover: 이미지 아래 한줄요약 */
+html.v83 .hotl-sum{display:block;max-height:0;opacity:0;overflow:hidden;margin-top:0;
+  font-size:12px;line-height:1.55;color:var(--muted);font-weight:500;
+  white-space:nowrap;text-overflow:ellipsis;
+  transition:max-height .28s cubic-bezier(.4,0,.2,1),opacity .22s ease,margin-top .28s cubic-bezier(.4,0,.2,1);}
+html.v83 .hotl-row:hover .hotl-sum,html.v83 .hotl-row:focus-visible .hotl-sum{max-height:20px;opacity:1;margin-top:5px;}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -10276,104 +10294,115 @@ document.addEventListener("keydown", function(e){
   if (e.key === "Escape") sdHide();
 });
 
-/* ==== 읽음 하이브리드 (2026-07-23 june 결정) ==================================
+/* ==== 읽음 하이브리드 → 라운드11 개편 (2026-07-23 june 결정) ==================
+   - ✓ 수동 읽음 버튼 폐지 (CSS로 숨김). 트위터처럼 스크롤로 지나친 글이 곧 '본 글'.
+   - 스크롤로 카드를 완전히 지나치면 stk_seen_pending에 기록만 하고,
+     다음 방문 시작 시 READ로 합류 → 하단 '이미 읽은 글' 그룹으로 강등.
+     (이번 세션 화면은 절대 건드리지 않음: 스크롤 중 카드가 접히거나 움직이지 않게)
    - READ_BASE: 세션 시작 시점의 읽음 스냅샷 (코어 강등 파티션이 참조 —
-     이번 세션에 열어본 글은 제자리 유지, 다음 방문부터 하단으로)
-   - ✓ 직접 클릭: 카드가 좌측 '읽은 글' 메뉴로 날아가는 애니메이션 + 실행 취소 */
+     이번 세션에 열어본 글은 제자리 유지, 다음 방문부터 하단으로) */
+var SEEN_PEND = (function(){ try { return new Set(JSON.parse(localStorage.getItem("stk_seen_pending") || "[]")); } catch (e){ return new Set(); } })();
+function seenSave(){ try { localStorage.setItem("stk_seen_pending", JSON.stringify(Array.from(SEEN_PEND))); } catch (e){} }
+/* 지난 방문에 스크롤로 지나친 글 합류 (READ_BASE 스냅샷 전에!) */
+try {
+  if (SEEN_PEND.size && typeof READ !== "undefined"){
+    var _sn = 0;
+    SEEN_PEND.forEach(function(id){
+      if (!READ.has(id)){ READ.add(id); _sn++; try { if (typeof logRead === "function") logRead(id); } catch (e){} }
+    });
+    if (_sn) store.set("stk_read", Array.from(READ));
+    SEEN_PEND = new Set(); seenSave();
+  }
+} catch (e){}
 window.READ_BASE = new Set(typeof READ !== "undefined" ? READ : []);
 window.READ_SWEPT = new Set();
 
-var RHS = {
-  ko: { swept: "읽은 글로 이동했어요", undo: "실행 취소" },
-  en: { swept: "Moved to Read", undo: "Undo" },
-  ja: { swept: "既読に移動しました", undo: "元に戻す" }
-};
-function rhT(){ return RHS[(typeof LANG !== "undefined" && RHS[LANG]) ? LANG : "ko"]; }
+/* 스크롤 추적: 일반 피드(최신/팔로잉)에서만, 카드 하단이 화면 위로 40px 이상
+   지나가면 '본 글' 후보로 기록. rAF 대신 setTimeout (백그라운드 탭 함정 회피) */
+var seenTick = null;
+window.addEventListener("scroll", function(){
+  if (seenTick) return;
+  seenTick = setTimeout(function(){
+    seenTick = null;
+    try {
+      if (typeof V83ITEM !== "undefined" && V83ITEM) return;
+      if (typeof QUERY !== "undefined" && QUERY) return;
+      if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW) return;
+      if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW) return;
+      if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return;
+      if (typeof SB_VIEW !== "undefined" && SB_VIEW) return;
+      if (typeof READ_VIEW !== "undefined" && READ_VIEW) return;
+      if (typeof BM_ONLY !== "undefined" && BM_ONLY) return;
+      if (typeof UNREAD_ONLY !== "undefined" && UNREAD_ONLY) return;
+      if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return;
+      var dirty = false;
+      document.querySelectorAll('#feedList > .card[id^="sig-"]').forEach(function(c){
+        if (c.getBoundingClientRect().bottom < -40){
+          var id = c.id.slice(4);
+          if (typeof READ !== "undefined" && READ.has(id)) return;
+          if (!SEEN_PEND.has(id)){ SEEN_PEND.add(id); dirty = true; }
+        }
+      });
+      if (dirty) seenSave();
+    } catch (e){}
+  }, 350);
+}, { passive: true });
 
-/* 라운드10: 카드가 싹 접히고 → 서류(📄) 아이콘 칩이 등장 → 좌측 '읽은 글'로 슝 */
-function rhFly(card){
+/* ==== 라운드11: 북마크 비행 애니메이션 (읽음 애니메이션에서 이관) ============
+   북마크 버튼 클릭 → 버튼 자리에서 🔖 칩이 톡 등장 → 좌측 '북마크' 메뉴로
+   슝~ 날아가 아이콘 속으로 쏙 들어가고 → 메뉴가 반짝 */
+function bmFly(fromEl){
   try {
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var target = document.querySelector('#v83nav .v83-link[data-k="readlist"]')
-              || document.querySelector('#v83nav .v83-me');
-    if (!target || !card) return;
-    var r1 = card.getBoundingClientRect(), r2 = target.getBoundingClientRect();
+    var target = document.querySelector('#v83nav .v83-link[data-k="bm"]');
+    if (!target || !fromEl) return;
+    var r1 = fromEl.getBoundingClientRect(), r2 = target.getBoundingClientRect();
     var cx = r1.left + r1.width / 2, cy = Math.max(60, Math.min(r1.top + r1.height / 2, window.innerHeight - 60));
-    /* 1) 카드가 싹 접힘 (아래 카드가 자연스럽게 올라옴) */
-    card.style.overflow = "hidden";
-    card.style.maxHeight = r1.height + "px";
-    card.style.transition = "max-height .38s cubic-bezier(.4,0,.2,1), opacity .26s ease, margin .38s cubic-bezier(.4,0,.2,1), padding .38s cubic-bezier(.4,0,.2,1)";
-    setTimeout(function(){
-      card.style.maxHeight = "0px"; card.style.opacity = "0";
-      card.style.marginTop = "0"; card.style.marginBottom = "0";
-      card.style.paddingTop = "0"; card.style.paddingBottom = "0";
-    }, 20);
-    /* 2) 접힌 자리에서 서류 아이콘 칩이 톡 하고 등장 */
+    /* 타깃은 메뉴의 아이콘(첫 svg) 중심 — '북마크 모양까지 들어가게' */
+    var ticon = target.querySelector("svg") || target;
+    var rt = ticon.getBoundingClientRect();
+    var tx = rt.left + rt.width / 2, ty = rt.top + rt.height / 2;
+    /* 1) 버튼 자리에서 🔖 칩 등장 */
     var chip = document.createElement("div");
-    chip.className = "rh-chip";
-    chip.textContent = "📄";
+    chip.className = "rh-chip bm-chip";
+    chip.textContent = "🔖";
     chip.style.left = cx + "px";
     chip.style.top = cy + "px";
     document.body.appendChild(chip);
     setTimeout(function(){
       chip.style.transform = "translate(-50%,-50%) scale(1)";
       chip.style.opacity = "1";
-    }, 40);
-    /* 3) 칩이 '읽은 글' 메뉴로 슝~ (살짝 기울며 작아지면서) */
+    }, 30);
+    /* 2) 북마크 아이콘까지 슝~ (끝까지 잘 보이게 날아간 뒤) */
     setTimeout(function(){
-      var dx = (r2.left + r2.width / 2) - cx;
-      var dy = (r2.top + r2.height / 2) - cy;
-      chip.style.transition = "transform .55s cubic-bezier(.5,-0.1,.7,.35), opacity .45s ease .18s";
-      chip.style.transform = "translate(calc(-50% + " + dx + "px), calc(-50% + " + dy + "px)) scale(.28) rotate(-14deg)";
+      chip.style.transition = "transform .6s cubic-bezier(.45,-0.05,.55,.5)";
+      chip.style.transform = "translate(calc(-50% + " + (tx - cx) + "px), calc(-50% + " + (ty - cy) + "px)) scale(.55) rotate(-10deg)";
+    }, 300);
+    /* 3) 도착하면 아이콘 속으로 쏙 (여기서만 축소·페이드) */
+    setTimeout(function(){
+      chip.style.transition = "transform .22s ease-in, opacity .22s ease-in";
+      chip.style.transform = "translate(calc(-50% + " + (tx - cx) + "px), calc(-50% + " + (ty - cy) + "px)) scale(.1)";
       chip.style.opacity = "0";
-    }, 330);
-    setTimeout(function(){ chip.remove(); }, 950);
+    }, 910);
+    setTimeout(function(){ chip.remove(); }, 1180);
     /* 4) 메뉴가 받으면서 반짝 */
     setTimeout(function(){
       target.classList.add("v83-read-pulse");
       setTimeout(function(){ target.classList.remove("v83-read-pulse"); }, 750);
-    }, 700);
+    }, 930);
   } catch (e){}
 }
 
-var rhToastEl = null;
-function rhToast(id){
-  var t = rhT();
-  if (rhToastEl) rhToastEl.remove();
-  var d = document.createElement("div");
-  d.className = "v83-toast";
-  d.innerHTML = "<span>" + t.swept + "</span><button>" + t.undo + "</button>";
-  d.querySelector("button").addEventListener("click", function(){
-    try {
-      READ.delete(id); READ_SWEPT.delete(id);
-      store.set("stk_read", Array.from(READ));
-      if (typeof renderFeedOnly === "function") renderFeedOnly();
-    } catch (e){}
-    d.remove(); rhToastEl = null;
-  });
-  document.body.appendChild(d);
-  rhToastEl = d;
-  setTimeout(function(){ if (rhToastEl === d){ d.remove(); rhToastEl = null; } }, 5000);
-}
-
-/* ✓ 클릭 오버라이드: 데스크톱 v83에서 '읽음 표시'는 치우기 제스처 */
-if (typeof toggleRead === "function"){
-  var _origToggleRead = toggleRead;
-  window.toggleRead = function(id){
-    var desk = document.documentElement.classList.contains("v83");
-    var marking = !(typeof READ !== "undefined" && READ.has(id));
-    if (!desk || !marking){ _origToggleRead(id); return; }
-    try {
-      READ.add(id);
-      if (typeof logRead === "function") logRead(id);
-      store.set("stk_read", Array.from(READ));
-    } catch (e){}
-    READ_SWEPT.add(id);
-    var card = document.getElementById("sig-" + id);
-    if (card) rhFly(card);
-    setTimeout(function(){ if (typeof renderFeedOnly === "function") renderFeedOnly(); }, 560);
-    rhToast(id);
-    try { if (typeof track === "function") track("readsweep/" + id); } catch (e){}
+/* 북마크 오버라이드: 추가할 때만 비행 (해제는 조용히) */
+if (typeof toggleBookmark === "function"){
+  var _origToggleBookmark = toggleBookmark;
+  window.toggleBookmark = function(id){
+    var adding = !(typeof BM !== "undefined" && BM.has(id));
+    _origToggleBookmark(id);
+    if (adding){
+      var from = document.getElementById("bm-" + id) || document.getElementById("sig-" + id);
+      if (from) bmFly(from);
+    }
   };
 }
 
