@@ -1,11 +1,29 @@
 name: Stacks Weekly Best
 
 # Every Sunday 08:00 KST (= Saturday 23:00 UTC): build the weekly digest in
-# ko/en/ja under weekly/, commit it, and push an announcement to readers.
+# ko/en/ja under weekly/, commit it, email subscribers (Resend), and push an
+# announcement to readers.
+#
+# Manual runs (workflow_dispatch) accept a test_to input: when set, the email
+# goes ONLY to that address (subscriber list is not touched) so you can verify
+# delivery + look before broadcasting.
 on:
   schedule:
     - cron: "0 23 * * 6"
   workflow_dispatch:
+    inputs:
+      test_to:
+        description: "Test send: email address to send ONLY to (leave blank for real broadcast)"
+        required: false
+        default: ""
+      lang:
+        description: "Email language (ko/en/ja)"
+        required: false
+        default: "ko"
+      dry_run:
+        description: "1 = build messages but do not actually send"
+        required: false
+        default: "0"
 
 permissions:
   contents: write
@@ -24,14 +42,28 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Build weekly digest + announce
+      - name: Build weekly digest + email + announce
         env:
           STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
           STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
           SITE_URL: https://stacksdaily.com
+          # --- email (Resend + Stibee) ---
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          STIBEE_API_KEY: ${{ secrets.STIBEE_API_KEY }}
+          STIBEE_LIST_ID: ${{ secrets.STIBEE_LIST_ID }}
+          UNSUB_BASE: ${{ secrets.UNSUB_BASE }}
+          UNSUB_SECRET: ${{ secrets.UNSUB_SECRET }}
+          # --- manual test-send inputs (blank on scheduled runs) ---
+          WEEKLY_TEST_TO: ${{ github.event.inputs.test_to }}
+          WEEKLY_LANG: ${{ github.event.inputs.lang }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: python scripts/weekly.py
 
       - name: Commit the digest
+        # skip committing on a test-only manual run (no content should change,
+        # but guard anyway so test runs never create commits)
+        if: ${{ github.event.inputs.test_to == '' }}
         run: |
           if [ -n "$(git status --porcelain weekly/)" ]; then
             git config user.name  "stacks-bot"
