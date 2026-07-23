@@ -905,6 +905,12 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   html.rbeta #v82tabs .v82fsw-t{flex:1;background:none;border:0;color:var(--muted);font-family:inherit;font-size:15px;font-weight:700;padding:13px 0 12px;position:relative;cursor:pointer;}
   html.rbeta #v82tabs .v82fsw-t.on{color:var(--text);}
   html.rbeta #v82tabs .v82fsw-t.on::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;width:54px;height:3px;border-radius:3px;background:var(--accent);}
+  /* calendar as a full page (like 찾기/탐색) instead of a popup card */
+  html.rbeta #calSheet{z-index:13600;}
+  html.rbeta #calSheet .me-backdrop{display:none;}
+  html.rbeta #calSheet .me-card{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;border-radius:0;box-shadow:none;transform:none;display:flex;flex-direction:column;background:var(--bg);}
+  html.rbeta #calSheet .me-head{position:sticky;top:0;padding:15px 16px;border-bottom:1px solid var(--line);background:var(--bg);z-index:1;}
+  html.rbeta #calSheet #calBody{flex:1;min-height:0;overflow-y:auto;padding:10px 16px calc(64px + env(safe-area-inset-bottom));}
   /* remove the top-bar language chip — language lives in the profile drawer now */
   html.rbeta .nav-inner .lang-menu{display:none !important;}
   html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
