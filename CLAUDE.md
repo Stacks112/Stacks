@@ -336,6 +336,8 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
 - macroalf(EN, rss.app 브리지) — Macro Compass. ⚠️ 순정 *.substack.com은 GH Actions IP를 403으로 막음 → 반드시 rss.app 브리지. 발행 드묾. (〃)
 - bilello(EN, bilello.blog 무료) — Week in Charts, 주간. (〃)
 - kobeissi(EN, rss.app X @KobeissiLetter) — 시황 해석. 발행량 많음 → 실행당 최대 2건. (〃)
+- camillo(EN, rss.app X @ChrisCamillo) — 소셜 차익거래 트레이더(Dumb Money/TickerTags 창업자). 잡담·라이브스트림 홍보 다수 → 명백한 종목·시장 콜일 때만. (2026-07-23 추가)
+- pichai(EN, rss.app X @sundarpichai, category ceo) — 구글·알파벳 CEO. RT 다수 섞임 → 본인 발언 중 실적·제품·AI 전략 관련만. (〃)
 - 소스 추가 절차: fetch_feeds.py FEEDS + sources.json 두 곳만 수정(루틴 프롬프트 수정 불필요). *.substack.com·X 소스는 rss.app 브리지(june 계정, Basic 15피드). **★ 인물 추가 시 프로필 사진(avatarImg) 필수** — X 계정이면 `https://unavatar.io/twitter/<handle>?fallback=false` (june 지시, 2026-07-20).
 - **신규 소스 데뷔 예외(v4.3 루틴 규칙)**: 발행기는 통상 "원문 48시간 이내"만 발행하지만, **feeds에 처음 등장한 소스의 첫 카드 1건은 원문 7일 이내까지 허용**한다(그 이상 오래된 글은 데뷔라도 금지). 이유: 48h 규칙만 있으면 새 소스는 다음 새 글이 올라올 때까지 카드 0개로 보인다(2026-07-20 실측). 데뷔 카드는 피드 정렬(원문일 기준)상 아래에 묻힐 수 있음을 감안하고 1건만.
 
