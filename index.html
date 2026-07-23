@@ -905,12 +905,21 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   html.rbeta #v82tabs .v82fsw-t{flex:1;background:none;border:0;color:var(--muted);font-family:inherit;font-size:15px;font-weight:700;padding:13px 0 12px;position:relative;cursor:pointer;}
   html.rbeta #v82tabs .v82fsw-t.on{color:var(--text);}
   html.rbeta #v82tabs .v82fsw-t.on::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;width:54px;height:3px;border-radius:3px;background:var(--accent);}
-  /* calendar as a full page (like 찾기/탐색) instead of a popup card */
-  html.rbeta #calSheet{z-index:13600;}
+  /* calendar as a full page (like 찾기/탐색) instead of a popup card —
+     z-index 40 (same layer as .v82-screen) so the bottom nav (13500) stays visible */
+  html.rbeta #calSheet{z-index:40;}
   html.rbeta #calSheet .me-backdrop{display:none;}
   html.rbeta #calSheet .me-card{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;border-radius:0;box-shadow:none;transform:none;display:flex;flex-direction:column;background:var(--bg);}
-  html.rbeta #calSheet .me-head{position:sticky;top:0;padding:15px 16px;border-bottom:1px solid var(--line);background:var(--bg);z-index:1;}
-  html.rbeta #calSheet #calBody{flex:1;min-height:0;overflow-y:auto;padding:10px 16px calc(64px + env(safe-area-inset-bottom));}
+  html.rbeta #calSheet .me-head{flex:0 0 auto;height:52px;box-sizing:border-box;display:flex;align-items:center;padding:0 16px;border-bottom:1px solid var(--line);background:var(--bg);}
+  html.rbeta #calSheet #calBody{flex:1;min-height:0;overflow-y:auto;padding:10px 16px calc(78px + env(safe-area-inset-bottom));}
+  /* 찾기: Twitter-style discover sections */
+  html.rbeta #v82findDisco{margin-top:6px;}
+  html.rbeta .v82fd-sec{margin:0 0 28px;}
+  html.rbeta .v82fd-sec h3{font-size:18px;font-weight:800;letter-spacing:-.02em;margin:0 0 2px;}
+  html.rbeta .v82fd-row{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:13px 0;font-family:inherit;color:var(--text);cursor:pointer;}
+  html.rbeta .v82fd-row:last-child{border-bottom:0;}
+  html.rbeta .v82fd-t{font-size:15px;font-weight:700;line-height:1.42;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  html.rbeta .v82fd-m{display:block;margin-top:5px;font-size:12px;color:var(--muted);}
   /* remove the top-bar language chip — language lives in the profile drawer now */
   html.rbeta .nav-inner .lang-menu{display:none !important;}
   html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
@@ -8977,10 +8986,57 @@ bootData();
     /* todaySec now pins to the feed top; nlSec now lives in the profile drawer */
     return [$("searchBox"), $("eventBar"), hs, $("watchSec")].filter(Boolean);
   }
+  /* rbeta 찾기: 나를 위한 추천 / 인기 / 이번 주 핫한 읽을거리 (compact Twitter-style lists) */
+  function buildFindDisco(ex){
+    var dd = $("v82findDisco");
+    if (!dd){ dd = document.createElement("div"); dd.id = "v82findDisco"; }
+    ex.appendChild(dd);
+    var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : {};
+    var L = ({ ko:["나를 위한 추천","인기"], en:["For you","Popular"], ja:["あなたへのおすすめ","人気"] })[LANG] || ["나를 위한 추천","인기"];
+    var score = function(i){ return (VIEW_COUNTS[i.id]||0) + (LIKE_COUNTS[i.id]||0)*3 + (COMMENT_COUNTS[i.id]||0)*2; };
+    var used = {};
+    var mine = [];
+    try { mine = ITEMS.filter(function(i){ return mineReasons(i).length; }).sort(function(a,b){ return a.date<b.date?1:-1; }).slice(0,4); } catch(e){ mine = []; }
+    if (!mine.length) mine = ITEMS.slice().sort(function(a,b){ return a.date<b.date?1:-1; }).slice(0,4);
+    mine.forEach(function(i){ used[i.id]=1; });
+    var pop = ITEMS.slice().sort(function(a,b){ return score(b)-score(a) || (a.date<b.date?1:-1); })
+      .filter(function(i){ return !used[i.id]; }).slice(0,5);
+    pop.forEach(function(i){ used[i.id]=1; });
+    var cutoff = new Date(Date.now()-7*86400*1000).toISOString().slice(0,10);
+    var hot = ITEMS.filter(function(i){ return i.hot || i.date>=cutoff; })
+      .sort(function(a,b){ return a.date<b.date?1:-1; }).slice(0,8);
+    function row(i){
+      var v = VIEW_COUNTS[i.id]||0, c = COMMENT_COUNTS[i.id]||0;
+      var meta = esc(dispName(i.source)) + " · " + fmt(i.date) + " · " + (S.views||"조회수") + " " + v + (c ? " · 💬 " + c : "");
+      return '<button type="button" class="v82fd-row" data-id="' + i.id + '">'
+        + '<span class="v82fd-t">' + esc(i.title[LANG]||i.title.en) + '</span>'
+        + '<span class="v82fd-m">' + meta + '</span></button>';
+    }
+    function sec(title, list){ return list.length ? '<div class="v82fd-sec"><h3>' + esc(title) + '</h3>' + list.map(row).join("") + '</div>' : ""; }
+    dd.innerHTML = sec(L[0], mine) + sec(L[1], pop) + sec(S.hot||"이번 주 핫한 읽을거리", hot);
+    var rows = dd.querySelectorAll(".v82fd-row");
+    for (var r = 0; r < rows.length; r++) rows[r].onclick = function(){ openCardById(this.dataset.id); };
+  }
   function openFind(){
     if (!mq.matches) return;
     var ex = $("v82explore"); if (!ex || ex.classList.contains("on")) return;
     try {
+      /* rbeta: Twitter-style discover — search on top, then 추천/인기/이번 주 핫한 읽을거리 */
+      if (typeof RBETA !== "undefined" && RBETA){
+        var sb0 = $("searchBox");
+        EX_HOMES = sb0 ? [{ el: sb0, parent: sb0.parentNode, next: sb0.nextSibling }] : [];
+        if (sb0) ex.appendChild(sb0);
+        var res0 = $("v82findResults");
+        if (!res0){ res0 = document.createElement("div"); res0.id = "v82findResults"; }
+        res0.innerHTML = ""; res0.style.display = "none";
+        ex.appendChild(res0);
+        buildFindDisco(ex);
+        var sif = $("searchInput"); if (sif) sif.focus();
+        showScreen("v82explore");
+        v82Search((typeof QUERY !== "undefined") ? QUERY : "");
+        setActive();
+        return;
+      }
       var nodes = findNodes();
       EX_HOMES = nodes.map(function(el){ return { el: el, parent: el.parentNode, next: el.nextSibling }; });
       /* small filter-button row */
@@ -9009,6 +9065,7 @@ bootData();
     q = (q || "").trim();
     var discovery = [];
     var ff = $("v82findFilters"); if (ff) discovery.push(ff);
+    var dd = $("v82findDisco"); if (dd) discovery.push(dd);
     if (EX_HOMES) EX_HOMES.forEach(function(h){ if (h.el && h.el.id !== "searchBox") discovery.push(h.el); });
     if (!q){
       res.style.display = "none"; res.innerHTML = "";
