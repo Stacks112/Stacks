@@ -5289,7 +5289,7 @@ function v83CloseItem(){ V83ITEM = null; render(); }
 /* ---- (3) entity directory: 기업/투자 고수/정치인 land on visual cards ---- */
 function v83DirTab(){
   if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
-  if (TAB !== "company" && TAB !== "investor" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal") return null;
+  if (TAB !== "company" && TAB !== "investor" && TAB !== "ceo" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal") return null;
   if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
@@ -5297,11 +5297,11 @@ function v83DirTab(){
 }
 function v83DirStr(){
   var s = {
-    ko: { browse: "골라보기", company: "기업", investor: "투자 고수", politician: "정치인",
+    ko: { browse: "골라보기", company: "기업", investor: "투자 고수", ceo: "기업인", politician: "정치인",
           sub: "카드를 누르면 관련 글과 논쟁 보드를 볼 수 있어요.", n: "글 {n}건", empty: "아직 등록된 카드가 없어요." },
-    en: { browse: "Browse", company: "Companies", investor: "Investors", politician: "Politicians",
+    en: { browse: "Browse", company: "Companies", investor: "Investors", ceo: "Executives", politician: "Politicians",
           sub: "Tap a card to see its articles and the debate board.", n: "{n} articles", empty: "Nothing here yet." },
-    ja: { browse: "ピックアップ", company: "企業", investor: "投資家", politician: "政治家",
+    ja: { browse: "ピックアップ", company: "企業", investor: "投資家", ceo: "経営者", politician: "政治家",
           sub: "カードを押すと関連記事と論争ボードが見られます。", n: "記事{n}件", empty: "まだカードがありません。" }
   };
   return s[LANG] || s.ko;
@@ -5409,7 +5409,7 @@ function renderV83Dir(list, S, kind){
     var allLb = ({ ko: "전체", en: "All", ja: "すべて" })[LANG] || "전체";
     var pills = document.createElement("div");
     pills.className = "v83bf";
-    pills.innerHTML = [["all", allLb], ["investor", T.investor], ["company", T.company], ["politician", T.politician]]
+    pills.innerHTML = [["all", allLb], ["investor", T.investor], ["ceo", T.ceo], ["company", T.company], ["politician", T.politician]]
       .map(function(p){ return '<button class="v83bf-p' + (V83BROWSE_F === p[0] ? " on" : "") + '" onclick="v83BrowseFilter(\'' + p[0] + '\')">' + esc(p[1]) + '</button>'; }).join("");
     list.appendChild(pills);
   }
@@ -5436,7 +5436,7 @@ function renderV83Dir(list, S, kind){
   }
   /* v83.3 "골라보기": 투자 고수 + 기업 + 정치인 섹션 (필터 반영) */
   var kinds = isBrowse
-    ? (V83BROWSE_F === "all" ? ["investor", "company", "politician"] : [V83BROWSE_F])
+    ? (V83BROWSE_F === "all" ? ["investor", "ceo", "company", "politician"] : [V83BROWSE_F])
     : [kind];
   var any = false;
   kinds.forEach(function(k2){
@@ -9737,6 +9737,10 @@ html.rbeta .oc .oc-note{display:block;margin-top:2px;}
 /* --- v83 top bar: brand + 최신/팔로잉 tabs only (like X) --- */
 html.v83 #themeBtn,html.v83 #meBtn,html.v83 #notifBtn{display:none !important;}
 html.v83 .nav-inner{position:relative;}
+/* keep the top bar above the sticky side columns (z:20). Without this, at the
+   bottom of a short page the left panel un-sticks, scrolls up, and — same z-index
+   but later in the DOM — paints over the Stacks logo (june 보고). */
+html.v83 nav{z-index:50;}
 html.v83 #v83fsw{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);
   width:min(460px,38vw);border-bottom:none;background:transparent;display:flex;z-index:2;}
 html.v83 #v83fsw button{padding:0 0 2px;font-size:14.5px;}
@@ -9857,31 +9861,35 @@ window.v83AlertsPanel = function(){
   });
   var pushBtn = ov.querySelector(".v83np-push");
   var blockedNote = ov.querySelector(".v83np-blocked");
+  var pushIsOn = false; /* last known subscription state */
   /* reflect the live push state on the button: white border + "켜짐 ✓" when on,
      a small note when the browser has blocked notifications. */
+  function apply(opted){
+    var perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
+    pushIsOn = (perm === "granted" && opted);
+    if (pushIsOn){
+      pushBtn.classList.add("on"); pushBtn.textContent = t.pushOn;
+      if (blockedNote){ blockedNote.hidden = true; }
+    } else if (perm === "denied"){
+      pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+      if (blockedNote){ blockedNote.hidden = false; blockedNote.textContent = t.pushBlocked; }
+    } else {
+      pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+      if (blockedNote){ blockedNote.hidden = true; }
+    }
+  }
   function reflectPush(){
     try {
       var perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
-      var apply = function(opted){
-        if (perm === "granted" && opted){
-          pushBtn.classList.add("on"); pushBtn.textContent = t.pushOn;
-          if (blockedNote){ blockedNote.hidden = true; }
-        } else if (perm === "denied"){
-          pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
-          if (blockedNote){ blockedNote.hidden = false; blockedNote.textContent = t.pushBlocked; }
-        } else {
-          pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
-          if (blockedNote){ blockedNote.hidden = true; }
-        }
-      };
       if (window.OneSignalDeferred && perm === "granted"){
+        var resolved = false;
         window.OneSignalDeferred.push(function(os2){
           var opted = false;
           try { opted = !!(os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optedIn); } catch (e){}
-          apply(opted);
+          resolved = true; apply(opted);
         });
-        /* fallback if the SDK never resolves: granted permission ≈ on */
-        setTimeout(function(){ if (pushBtn && !pushBtn.classList.contains("on") && perm === "granted") apply(true); }, 1200);
+        /* only guess "on" if the SDK never answered — never override a real opt-out */
+        setTimeout(function(){ if (!resolved) apply(true); }, 1500);
       } else {
         apply(false);
       }
@@ -9889,11 +9897,24 @@ window.v83AlertsPanel = function(){
   }
   reflectPush();
   pushBtn.addEventListener("click", function(){
-    /* delegate to the (hidden) original top-bar push button — it owns the
-       OneSignal prompt + already-on / blocked feedback logic */
+    if (pushIsOn){
+      /* turn OFF: opt out of push (keeps browser permission, drops subscription) */
+      pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+      pushIsOn = false;
+      if (window.OneSignalDeferred){
+        window.OneSignalDeferred.push(function(os2){
+          try {
+            if (os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optOut) os2.User.PushSubscription.optOut();
+          } catch (e){}
+        });
+      }
+      setTimeout(reflectPush, 1500);
+      return;
+    }
+    /* turn ON: delegate to the (hidden) top-bar push button — it owns the
+       OneSignal opt-in prompt + blocked-permission feedback */
     var nb = document.getElementById("notifBtn");
     if (nb && typeof nb.onclick === "function") nb.onclick();
-    /* re-check the state after the prompt settles */
     setTimeout(reflectPush, 1500);
   });
 };
