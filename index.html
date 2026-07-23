@@ -149,11 +149,11 @@ let THEME_SAVED = null;
 try { THEME_SAVED = localStorage.getItem("stk_theme"); } catch(e){}
 let THEME = THEME_SAVED || themeByClock();
 document.documentElement.setAttribute("data-theme", THEME);
-/* readability beta gate: ?rbeta enables (persisted) · ?rboff disables */
+/* readability redesign shipped as the default — ?rboff opts out (persisted), ?rbeta clears the opt-out */
 try {
-  if (/rboff/.test(location.search)) localStorage.removeItem("stk_rbeta");
-  else if (/rbeta/.test(location.search)) localStorage.setItem("stk_rbeta", "1");
-  if (localStorage.getItem("stk_rbeta") === "1") document.documentElement.classList.add("rbeta");
+  if (/rboff/.test(location.search)) localStorage.setItem("stk_rbeta_off", "1");
+  else if (/rbeta/.test(location.search)) localStorage.removeItem("stk_rbeta_off");
+  if (localStorage.getItem("stk_rbeta_off") !== "1") document.documentElement.classList.add("rbeta");
 } catch (e) {}
 var RBETA = document.documentElement.classList.contains("rbeta");
 
