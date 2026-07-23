@@ -887,10 +887,15 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
 @media (max-width:1023px){
   /* headline: break at word boundaries (Korean/Japanese) for readable wrapping */
   html.rbeta .card.v82c .card-title,html.rbeta .card.v82c .ct-text{font-weight:700;letter-spacing:-.01em;font-size:16.5px;line-height:1.42;margin:2px 0 9px;word-break:keep-all;}
-  /* body: bigger text, tighter leading, paragraphs split per sentence with a blank line between */
-  html.rbeta .card.v82c .gist{font-size:16.5px;line-height:1.6;white-space:pre-line;}
-  html.rbeta .why p{white-space:pre-line;line-height:1.6;}
-  html.rbeta .ask-q{white-space:pre-line;line-height:1.55;}
+  /* body: Twitter-ish size, tighter leading, paragraphs split per sentence with a blank line between */
+  html.rbeta .card.v82c .gist{font-size:15px;line-height:1.6;white-space:pre-line;}
+  /* fix: "더 보기" fully expands the body (the base 168px clamp stays put otherwise) */
+  html.rbeta .card.v82c.v82expanded .gist{max-height:none;overflow:visible;}
+  /* why: bold the "왜 중요한가" label, keep the body text regular */
+  html.rbeta .why .label{font-weight:800;}
+  html.rbeta .why p{white-space:pre-line;line-height:1.6;font-weight:400;}
+  /* opportunity/trap (ask) card: no bold */
+  html.rbeta .ask-block .ask-q{white-space:pre-line;line-height:1.55;font-weight:400;}
   html.rbeta .today-q{white-space:pre-line;line-height:1.55;}
   /* outcome (예측 추적 중): note drops to its own line */
   html.rbeta .oc .oc-sep{display:none;}
@@ -898,12 +903,11 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   /* hide the top category filter pills (전체/투자 고수/정치인…) */
   html.rbeta #v82tabs,html.rbeta .v82-tabs{display:none !important;}
   html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
-  /* byline: avatar + name always on one line; long names truncate with … */
-  html.rbeta .card-top{flex-wrap:nowrap;align-items:center;}
-  html.rbeta .src-block{flex:1 1 auto;min-width:0;flex-direction:row;flex-wrap:nowrap;align-items:baseline;gap:7px;overflow:hidden;}
-  html.rbeta .src-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
-  html.rbeta .src-date{flex:0 0 auto;white-space:nowrap;font-size:11.5px;}
-  html.rbeta .src-date::before{content:"· ";color:var(--muted);}
+  /* byline: avatar + full name on one line, date on the line below (name never truncated) */
+  html.rbeta .card-top{flex-wrap:nowrap;align-items:flex-start;}
+  html.rbeta .src-block{flex:1 1 auto;min-width:0;flex-direction:column;align-items:flex-start;gap:1px;overflow:visible;}
+  html.rbeta .src-name{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;min-width:0;}
+  html.rbeta .src-date{white-space:nowrap;font-size:11.5px;}
 }
 /* ============================================================= */
 .has-tip:hover{border-color:var(--text);color:var(--text);}
