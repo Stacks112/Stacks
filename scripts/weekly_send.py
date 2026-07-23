@@ -35,6 +35,11 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from weekly_email import render_email, select_hot  # noqa: E402
 
+# A real browser-ish User-Agent: Cloudflare (in front of api.resend.com /
+# api.stibee.com) 403s the default "Python-urllib/x" signature (error 1010).
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
+
 STIBEE_KEY = os.environ.get("STIBEE_API_KEY", "")
 STIBEE_LIST = os.environ.get("STIBEE_LIST_ID", "mK4zRfYXD3P_8shW-ErZAF-hNA_XYQ==")
 RESEND_KEY = os.environ.get("RESEND_API_KEY", "")
@@ -83,7 +88,8 @@ def fetch_subscribers():
     Tries the known v1 list-subscribers endpoints; raises if none respond."""
     if not STIBEE_KEY:
         raise RuntimeError("STIBEE_API_KEY not set")
-    headers = {"AccessToken": STIBEE_KEY, "Content-Type": "application/json"}
+    headers = {"AccessToken": STIBEE_KEY, "Content-Type": "application/json",
+               "User-Agent": UA, "Accept": "application/json"}
     candidates = [
         "https://api.stibee.com/v1/lists/%s/subscribers?page=%d&size=500",
         "https://api.stibee.com/v1/lists/%s/subscribers/all?page=%d&size=500",
@@ -144,7 +150,8 @@ def resend_batch(messages):
     req = urllib.request.Request(
         "https://api.resend.com/emails/batch", data=body, method="POST",
         headers={"Authorization": "Bearer " + RESEND_KEY,
-                 "Content-Type": "application/json"})
+                 "Content-Type": "application/json",
+                 "User-Agent": UA, "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=45) as r:
         return json.loads(r.read().decode("utf-8"))
 
