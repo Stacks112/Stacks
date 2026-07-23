@@ -9783,8 +9783,12 @@ html.v83 .v83-search{position:relative;}
 .v83np-sw.on{background:var(--accent);}
 .v83np-sw.on::after{left:19px;}
 .v83np-push{margin-top:12px;width:100%;padding:11px;border-radius:999px;border:1px solid var(--line);
-  background:var(--bg-soft);color:var(--text);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--ui-font);}
+  background:var(--bg-soft);color:var(--text);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--ui-font);
+  transition:border-color .15s,background .15s;}
 .v83np-push:hover{border-color:var(--text);}
+/* push ON: white (theme-text) 2px border so the state is visible at a glance */
+.v83np-push.on{border:2px solid var(--text);padding:10px;background:var(--bg);}
+.v83np-blocked{margin-top:8px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5;}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -9793,11 +9797,14 @@ html.v83 .v83-search{position:relative;}
 "use strict";
 var NPS = {
   ko: { title:"알림 설정", newpost:"새 글 알림", debate:"오늘의 토론 알림",
-        follow:"팔로우 새 글 알림", events:"이벤트 알림", push:"브라우저 푸시 알림 켜기" },
+        follow:"팔로우 새 글 알림", events:"이벤트 알림", push:"브라우저 푸시 알림 켜기",
+        pushOn:"브라우저 푸시 알림 켜짐 ✓", pushBlocked:"브라우저에서 알림이 차단돼 있어요. 주소창의 사이트 설정에서 허용해 주세요." },
   en: { title:"Notification settings", newpost:"New posts", debate:"Today's debate",
-        follow:"New posts from who you follow", events:"Event alerts", push:"Enable browser push" },
+        follow:"New posts from who you follow", events:"Event alerts", push:"Enable browser push",
+        pushOn:"Browser push is on ✓", pushBlocked:"Notifications are blocked by the browser. Allow them in the site settings." },
   ja: { title:"通知設定", newpost:"新着記事", debate:"今日の論点",
-        follow:"フォロー中の新着", events:"イベント通知", push:"ブラウザ通知をオンにする" }
+        follow:"フォロー中の新着", events:"イベント通知", push:"ブラウザ通知をオンにする",
+        pushOn:"ブラウザ通知はオン ✓", pushBlocked:"ブラウザで通知がブロックされています。サイト設定で許可してください。" }
 };
 function npT(){ return NPS[(typeof LANG !== "undefined" && NPS[LANG]) ? LANG : "ko"]; }
 function npGet(){
@@ -9835,6 +9842,7 @@ window.v83AlertsPanel = function(){
     + row("follow", t.follow, p.follow)
     + row("eventsMaster", t.events, p.eventsMaster)
     + '<button class="v83np-push">' + t.push + '</button>'
+    + '<div class="v83np-blocked" hidden></div>'
     + '</div>';
   document.body.appendChild(ov);
   ov.addEventListener("click", function(e){ if (e.target === ov) ov.remove(); });
@@ -9847,11 +9855,46 @@ window.v83AlertsPanel = function(){
       npSet(b.getAttribute("data-np"), on);
     });
   });
-  ov.querySelector(".v83np-push").addEventListener("click", function(){
+  var pushBtn = ov.querySelector(".v83np-push");
+  var blockedNote = ov.querySelector(".v83np-blocked");
+  /* reflect the live push state on the button: white border + "켜짐 ✓" when on,
+     a small note when the browser has blocked notifications. */
+  function reflectPush(){
+    try {
+      var perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
+      var apply = function(opted){
+        if (perm === "granted" && opted){
+          pushBtn.classList.add("on"); pushBtn.textContent = t.pushOn;
+          if (blockedNote){ blockedNote.hidden = true; }
+        } else if (perm === "denied"){
+          pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+          if (blockedNote){ blockedNote.hidden = false; blockedNote.textContent = t.pushBlocked; }
+        } else {
+          pushBtn.classList.remove("on"); pushBtn.textContent = t.push;
+          if (blockedNote){ blockedNote.hidden = true; }
+        }
+      };
+      if (window.OneSignalDeferred && perm === "granted"){
+        window.OneSignalDeferred.push(function(os2){
+          var opted = false;
+          try { opted = !!(os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optedIn); } catch (e){}
+          apply(opted);
+        });
+        /* fallback if the SDK never resolves: granted permission ≈ on */
+        setTimeout(function(){ if (pushBtn && !pushBtn.classList.contains("on") && perm === "granted") apply(true); }, 1200);
+      } else {
+        apply(false);
+      }
+    } catch (e){}
+  }
+  reflectPush();
+  pushBtn.addEventListener("click", function(){
     /* delegate to the (hidden) original top-bar push button — it owns the
        OneSignal prompt + already-on / blocked feedback logic */
     var nb = document.getElementById("notifBtn");
     if (nb && typeof nb.onclick === "function") nb.onclick();
+    /* re-check the state after the prompt settles */
+    setTimeout(reflectPush, 1500);
   });
 };
 
