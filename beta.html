@@ -9739,8 +9739,10 @@ html.v83 #themeBtn,html.v83 #meBtn,html.v83 #notifBtn{display:none !important;}
 html.v83 .nav-inner{position:relative;}
 /* keep the top bar above the sticky side columns (z:20). Without this, at the
    bottom of a short page the left panel un-sticks, scrolls up, and — same z-index
-   but later in the DOM — paints over the Stacks logo (june 보고). */
-html.v83 nav{z-index:50;}
+   but later in the DOM — paints over the Stacks logo (june 보고).
+   NOTE: the left panel is also a <nav> (#v83nav), so scope this to the top bar
+   only via :not([id]) — otherwise the panel inherits z:50 and the bug persists. */
+html.v83 nav:not([id]){z-index:50;}
 html.v83 #v83fsw{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);
   width:min(460px,38vw);border-bottom:none;background:transparent;display:flex;z-index:2;}
 html.v83 #v83fsw button{padding:0 0 2px;font-size:14.5px;}
