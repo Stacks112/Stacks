@@ -9021,15 +9021,16 @@ bootData();
   function renderDrawer(){
     var t = T(); var dr = $("v82drawer"); if (!dr) return;
     var curLang = (typeof LANG !== "undefined") ? LANG : "ko";
+    var _dwT = (typeof v83T === "function") ? v83T : function(k){ return (t[k] !== undefined ? t[k] : k); };
+    function _dwItem(k, icon){ return '<button class="v82dw-item" data-act="' + k + '"><span class="ic">' + icon + '</span>' + _dwT(k) + '</button>'; }
     dr.innerHTML =
       '<button class="v82dw-x" aria-label="close">&times;</button>' +
       '<div class="v82dw-brand"><span style="font-size:20px">👤</span> Stacks</div>' +
-      '<button class="v82dw-item" data-act="me"><span class="ic">👤</span>' + t.me + '</button>' +
-      '<button class="v82dw-item" data-act="bm"><span class="ic">🔖</span>' + t.bm + '</button>' +
-      '<button class="v82dw-item" data-act="follows"><span class="ic">👥</span>' + t.follows + '</button>' +
-      '<button class="v82dw-item" data-act="shares"><span class="ic">↗️</span>' + t.shares + '</button>' +
-      '<button class="v82dw-item" data-act="alerts"><span class="ic">🔔</span>' + t.alerts + '</button>' +
-      '<button class="v82dw-item" data-act="appearance"><span class="ic">🌗</span>' + t.appearance + '</button>' +
+      _dwItem("home", "🏠") + _dwItem("browse", "🧭") + _dwItem("skew", "📈") +
+      _dwItem("themes", "💬") + _dwItem("record", "🎯") + _dwItem("cal", "📅") +
+      _dwItem("bm", "🔖") + _dwItem("alerts", "🔔") + _dwItem("appearance", "🌗") +
+      '<button class="v82dw-item v82dw-join" data-act="join"><span class="ic">🗳️</span>' + _dwT("join") + '</button>' +
+      _dwItem("me", "👤") +
       '<div class="v82dw-nl" id="v82dwNl"><div class="v82dw-nlh"><span>📧</span>' + t.nlLabel + '</div></div>' +
       '<div class="v82dw-langs">' +
         '<button data-lang="ko" class="v82dw-lb ' + (curLang === "ko" ? "on" : "") + '">한국어</button>' +
@@ -9053,8 +9054,15 @@ bootData();
   }
   function drawerAct(act){
     if (act === "me"){ closeDrawer(true); if (typeof openMe === "function") openMe(); }
+    else if (act === "home"){ closeDrawer(true); navGo("home"); }
+    else if (act === "browse"){ closeDrawer(true); navGo("find"); }
+    else if (act === "skew"){ closeDrawer(true); navGo("explore"); }
+    else if (act === "themes"){ closeDrawer(true); if (typeof openThemes === "function") openThemes(); try { setActive(); } catch(e){} }
+    else if (act === "record"){ closeDrawer(true); if (typeof openScoreboard === "function") openScoreboard(); try { setActive(); } catch(e){} }
+    else if (act === "cal"){ closeDrawer(true); navGo("cal"); }
     else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
     else if (act === "appearance"){ closeDrawer(true); if (typeof toggleTheme === "function") toggleTheme(); }
+    else if (act === "join"){ closeDrawer(true); if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof openCardById === "function") openCardById(TODAY_ID); else navGo("home"); }
     else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ try { SERIES_VIEW=null; ENTITY_VIEW=null; QUERY=""; BM_ONLY=true; renderFeed(false); } catch(e){} }); }
     else if (act === "follows"){ closeDrawer(true); openList("follows"); }
     else if (act === "shares"){ closeDrawer(true); openList("shares"); }
@@ -10058,6 +10066,16 @@ html.v83 #v83rail .v83-search{position:sticky;top:0;z-index:6;background:var(--b
 #v83relSec .hot-rail{display:flex;flex-direction:column;gap:0;overflow:visible;padding:0;}
 /* 긍정/부정이 댓글 아래로 내려갔으니 위 여백으로 구분 */
 .v83one .ask-block{margin-top:18px;margin-bottom:2px;}
+/* --- 라운드14 (모바일) --- */
+@media (max-width:1023px){
+  /* 상단 고정바 Stacks 로고를 화면 정중앙에 (좌 아바타/우 여백 폭을 대칭으로) */
+  .nav-inner{grid-template-columns:1fr auto 1fr !important;}
+  .nav-inner #v82av{justify-self:start;}
+  .nav-inner .brand{justify-self:center;}
+  .nav-inner .lang-menu{justify-self:end;}
+  /* 게시물 상세보기 본문 배경을 페이지 배경(다크=검정/라이트=흰색)과 동일하게 */
+  #v82dbody .card{background:var(--bg) !important;}
+}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
