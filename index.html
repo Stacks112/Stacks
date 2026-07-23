@@ -10043,6 +10043,21 @@ html.v83 .hotl-sum{display:block;width:100%;padding:26px 11px 9px;box-sizing:bor
 .unread-dot{display:none !important;}
 #feedList .card.is-read h3,#feedList .card.is-read .gist,#feedList .card.is-read .title-orig,
 #feedList .card.is-read .card-thumb,#feedList .card.is-read .engage,#feedList .card.is-read .why{opacity:1 !important;}
+/* --- 라운드13 --- */
+/* (1) 검색창을 우측 패널 최상단에 고정 (스크롤해도 상단 유지) */
+html.v83 #v83rail .v83-search{position:sticky;top:0;z-index:6;background:var(--bg);
+  padding:6px 0 10px;margin:0 0 6px !important;}
+/* (1) 좌측 패널로 옮긴 언어선택 */
+#v83nav .v83-lang.lang-menu{margin:2px 6px 6px;align-self:stretch;}
+#v83nav .v83-lang .lang-cur{width:100%;justify-content:flex-start;gap:9px;padding:9px 14px;
+  border-radius:999px;font-size:14.5px;font-weight:700;}
+#v83nav .v83-lang .lang-cur .lc-arrow{margin-left:auto;}
+#v83nav .v83-lang .lang-opts{left:0;right:0;top:auto;bottom:calc(100% + 6px);min-width:0;z-index:40;}
+/* (2) 함께 읽기: 상세뷰에서만 우측 패널에 노출. 카드 안 원본 related는 숨김 */
+.v83one .related{display:none !important;}
+#v83relSec .hot-rail{display:flex;flex-direction:column;gap:0;overflow:visible;padding:0;}
+/* 긍정/부정이 댓글 아래로 내려갔으니 위 여백으로 구분 */
+.v83one .ask-block{margin-top:18px;margin-bottom:2px;}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -10449,12 +10464,19 @@ function v83CardFix(card){
   var id = (card.id || "").replace(/^sig-/, "");
   if (card.classList.contains("v83one")){
     if (card.__v83fix) return; card.__v83fix = true;
-    /* Item6: 긍정/부정(ask)을 댓글 입력바 바로 위로 + "댓글로 의견" 제거 */
+    /* 라운드13: 긍정/부정(ask)을 댓글 영역 맨 아래(옛 '함께 읽기' 자리)로 이동 +
+       "댓글로 의견" 제거. '함께 읽기'는 우측 패널로 빠졌다(v83RelatedRail). */
     var ask = card.querySelector(".ask-block");
     if (ask){
       var ac = ask.querySelector(".ask-comment"); if (ac) ac.remove();
-      var composer = card.querySelector(".twin");
-      if (composer && composer.parentNode) composer.parentNode.insertBefore(ask, composer);
+      var body = card.querySelector(".card-body") || card;
+      var cbox = card.querySelector(".comment-box");
+      if (cbox && cbox.parentNode){
+        if (cbox.nextSibling) cbox.parentNode.insertBefore(ask, cbox.nextSibling);
+        else cbox.parentNode.appendChild(ask);
+      } else {
+        body.appendChild(ask);
+      }
     }
     /* Item5: 예측 추적(oc)을 원문보기 옆 아이콘으로 접기 */
     var oc = card.querySelector(".oc");
@@ -10520,6 +10542,145 @@ function v83ClipScan(){
 }
 setInterval(v83ClipScan, 1000);
 v83ClipScan();
+
+/* ==== 라운드13: 언어선택 좌측 이동 + 즉시 반영 + 검색 상단고정 + 함께읽기 우측 ==== */
+/* (1) 우측 상단 언어선택을 좌측 패널(#v83nav)로 이동 (CTA 위) */
+function v83MoveLang(){
+  try {
+    var nav = document.getElementById("v83nav");
+    var lm = document.getElementById("langMenu");
+    if (!nav || !lm) return;
+    if (nav.contains(lm)) return;
+    lm.classList.add("v83-lang");
+    var cta = document.getElementById("v83cta");
+    if (cta && cta.parentNode === nav) nav.insertBefore(lm, cta);
+    else nav.appendChild(lm);
+  } catch (e){}
+}
+
+/* (3) 언어 변경 시 좌측 패널이 새로고침 없이 즉시 바뀌도록 라벨 다시 세팅 */
+function v83Relabel(){
+  try {
+    var nav = document.getElementById("v83nav");
+    if (!nav) return;
+    nav.querySelectorAll(".v83-link").forEach(function(b){
+      var k = b.getAttribute("data-k"); if (!k) return;
+      var sp = b.querySelector("span");
+      if (sp && typeof v83T === "function") sp.textContent = v83T(k);
+    });
+    var cta = document.getElementById("v83cta");
+    if (cta && typeof v83T === "function") cta.textContent = v83T("join");
+    var me = document.getElementById("v83me");
+    if (me){ var ms = me.querySelector("span:not(.v83-ava)"); if (ms && typeof v83T === "function") ms.textContent = v83T("me"); }
+    var si = document.querySelector(".v83-search input");
+    if (si && typeof v83T === "function") si.placeholder = v83T("search");
+    var fsw = document.getElementById("v83fsw");
+    if (fsw){
+      var fl = ({ ko:["최신","팔로잉"], en:["New","Following"], ja:["最新","フォロー中"] })[(typeof LANG!=="undefined")?LANG:"ko"] || ["최신","팔로잉"];
+      var ba = fsw.querySelector('button[data-f="all"]'); if (ba) ba.textContent = fl[0];
+      var bm = fsw.querySelector('button[data-f="mine"]'); if (bm) bm.textContent = fl[1];
+    }
+  } catch (e){}
+}
+
+/* (2) '함께 읽기'를 우측 패널 상세뷰에 — 다가오는 이벤트와 핫 리스트 사이, 3개, hover */
+function v83RelatedRail(){
+  try {
+    var rail = document.getElementById("v83rail");
+    var existing = document.getElementById("v83relSec");
+    var active = (typeof V83ITEM !== "undefined" && V83ITEM) && rail
+      && !(typeof QUERY !== "undefined" && QUERY)
+      && !(typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW)
+      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW);
+    if (!active){ if (existing) existing.remove(); return; }
+    var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === V83ITEM; }) : null;
+    var rel = (it && it.related ? it.related : [])
+      .map(function(rid){ return (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === rid; }) : null; })
+      .filter(Boolean).slice(0, 3);
+    if (!rel.length){ if (existing) existing.remove(); return; }
+    /* 이미 같은 글로 그려져 있으면 재생성 생략 */
+    if (existing && existing.getAttribute("data-for") === V83ITEM) return;
+    if (existing) existing.remove();
+    var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : null;
+    var sec = document.createElement("section");
+    sec.id = "v83relSec";
+    sec.setAttribute("data-for", V83ITEM);
+    var title = (S && S.related) ? S.related : "함께 읽기";
+    var h = document.createElement("h2"); h.className = "section-title"; h.textContent = title;
+    sec.appendChild(h);
+    var wrap = document.createElement("div"); wrap.className = "hot-rail";
+    rel.forEach(function(item){ wrap.appendChild(v83HotlRow(item)); });
+    sec.appendChild(wrap);
+    var cal = document.getElementById("v83calSec");
+    var hotSec = null;
+    var hr = document.getElementById("hotRail"); if (hr) hotSec = hr.closest("section");
+    if (hotSec && hotSec.parentNode === rail) rail.insertBefore(sec, hotSec);
+    else if (cal && cal.nextSibling) rail.insertBefore(sec, cal.nextSibling);
+    else rail.appendChild(sec);
+  } catch (e){}
+}
+
+/* 핫 리스트와 동일한 hover(카드 이미지 + 한줄요약) 행 생성 */
+function v83HotlRow(item){
+  var b = document.createElement("button");
+  b.className = "hotl-row";
+  b.onclick = function(){ if (typeof v83OpenItem === "function") v83OpenItem(item.id); else if (typeof goToItem === "function") goToItem(item.id); };
+  var LANG2 = (typeof LANG !== "undefined") ? LANG : "ko";
+  var v = (typeof VIEW_COUNTS !== "undefined" && VIEW_COUNTS[item.id]) || 0;
+  var c = (typeof COMMENT_COUNTS !== "undefined" && COMMENT_COUNTS[item.id]) || 0;
+  var S2 = (typeof STRINGS !== "undefined" && STRINGS[LANG2]) ? STRINGS[LANG2] : {};
+  var meta = ((typeof dispName === "function") ? dispName(item.source) : (item.source || ""))
+    + " · " + ((typeof fmt === "function") ? fmt(item.date) : (item.date || ""))
+    + (v ? " · " + (S2.views || "") + " " + v : "") + (c ? " · 💬 " + c : "");
+  b.innerHTML = '<span class="hotl-t"></span><span class="hotl-m"></span>';
+  b.querySelector(".hotl-t").textContent = (item.title[LANG2] || item.title.en || "");
+  b.querySelector(".hotl-m").textContent = meta;
+  try {
+    var cv = document.createElement("span");
+    cv.className = "hotl-cov";
+    var ci = (typeof coverImg === "function") ? coverImg(item) : null;
+    if (ci && ci.url){
+      if (!(ci.mode === "photo" || ci.mode === "face")) cv.className += " hotl-cov-logo";
+      cv.style.backgroundImage = "url('" + String(ci.url).replace(/'/g, "%27") + "')";
+    } else {
+      cv.className += " hotl-cov-plain";
+    }
+    var g = String((item.gist && (item.gist[LANG2] || item.gist.en)) || "").replace(/\s+/g, " ").trim();
+    var sum = "";
+    for (var i = 0; i < g.length; i++){
+      sum += g[i]; var ch = g[i];
+      if ((ch === "." || ch === "!" || ch === "?") && (i + 1 >= g.length || g[i + 1] === " ") && sum.length >= 40) break;
+    }
+    if (sum.length > 110) sum = sum.slice(0, 108) + "…";
+    if (sum){ var sm = document.createElement("span"); sm.className = "hotl-sum"; sm.textContent = sum; cv.appendChild(sm); }
+    b.appendChild(cv);
+  } catch (e){}
+  return b;
+}
+
+/* render()를 감싸 언어 라벨/함께읽기 패널을 매 렌더마다 동기화 */
+if (typeof render === "function"){
+  var _v83origRender = render;
+  window.render = function(){
+    var r = _v83origRender.apply(this, arguments);
+    try { var one = document.querySelector("#feedList > .card.v83one"); if (one) v83CardFix(one); } catch (e){}
+    try { v83MoveLang(); } catch (e){}
+    try { v83Relabel(); } catch (e){}
+    try { v83RelatedRail(); } catch (e){}
+    return r;
+  };
+}
+/* 마운트가 비동기(데이터 로드 후)라 render 래퍼만으론 초기 이동이 늦을 수 있어,
+   #v83nav가 생기는 즉시 언어선택을 옮기도록 짧게 폴링 */
+var _v83initN = 0;
+var _v83initTimer = setInterval(function(){
+  _v83initN++;
+  try { v83MoveLang(); v83Relabel(); } catch (e){}
+  var nav = document.getElementById("v83nav"), lm = document.getElementById("langMenu");
+  if (nav && lm && nav.contains(lm)) { clearInterval(_v83initTimer); }
+  else if (_v83initN > 40) { clearInterval(_v83initTimer); }
+}, 150);
+v83MoveLang(); v83Relabel(); v83RelatedRail();
 })();
 </script>
 
