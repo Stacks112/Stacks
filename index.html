@@ -5328,7 +5328,10 @@ function renderV83SkewPage(list, S){
    피드 깊숙이 스크롤하는 대신 그 글만 있는 페이지로 전환(← 뒤로) ---- */
 var V83ITEM = null;
 function v83OpenItem(id, withComments){
+  var wasOpen = !!V83ITEM;
   V83ITEM = id;
+  /* round10: browser Back closes the article view instead of leaving the site */
+  if (!wasOpen){ try { pushView(); } catch (e) {} }
   /* 읽음 하이브리드: 상세를 연 것 자체가 읽음 */
   try { if (typeof setRead === "function") setRead(id); } catch (e){}
   SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
@@ -7008,6 +7011,7 @@ window.addEventListener("popstate", function(){
     const me = document.getElementById("meSheet");
   if (me && !me.hidden){ closeMe(); return; }
   if (document.getElementById("entityRailPanel")){ closeEntityRail(); return; }
+  if (typeof V83ITEM !== "undefined" && V83ITEM){ v83CloseItem(); return; }
   if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
   if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return; }
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW){ closeThemes(); return; }
@@ -7251,6 +7255,16 @@ function renderHotRail(){
       b.innerHTML = '<span class="hotl-t">' + esc(item.title[LANG] || item.title.en || "") + '</span>'
         + '<span class="hotl-m">' + esc(dispName(item.source)) + ' · ' + fmt(item.date)
         + (v ? ' · ' + esc(S2.views) + ' ' + v : '') + (c ? ' · 💬 ' + c : '') + '</span>';
+      /* round10: hover cover image */
+      try {
+        var ci10 = (typeof coverImg === "function") ? coverImg(item) : null;
+        if (ci10 && ci10.url){
+          var cv10 = document.createElement("span");
+          cv10.className = "hotl-cov" + ((ci10.mode === "photo" || ci10.mode === "face") ? "" : " hotl-cov-logo");
+          cv10.style.backgroundImage = "url('" + String(ci10.url).replace(/'/g, "%27") + "')";
+          b.appendChild(cv10);
+        }
+      } catch (e) {}
       rail.appendChild(b);
     });
     return;
@@ -9925,7 +9939,7 @@ html.v83 #feedList > .card:not(.v83one) .ask-block{display:none;}
 /* Item4: 피드에서 핵심(gist) 클릭 시 커서 */
 html.v83 #feedList > .card:not(.v83one) .gist{cursor:pointer;}
 /* Item5: 상세에서 예측 추적은 원문보기 옆 아이콘으로 접힘 */
-.oc-toggle{background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;
+.oc-toggle{background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;color:var(--text);
   cursor:pointer;font-size:14px;line-height:1;padding:5px 9px;display:inline-flex;align-items:center;gap:5px;}
 .oc-toggle:hover{border-color:var(--text);}
 .oc-toggle.on{border-color:var(--accent);}
@@ -9981,6 +9995,32 @@ html[data-theme="dark"] .v83-toast{background:#2A2C33;}
 /* push ON: white (theme-text) 2px border so the state is visible at a glance */
 .v83np-push.on{border:2px solid var(--text);padding:10px;background:var(--bg);}
 .v83np-blocked{margin-top:8px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5;}
+/* --- 라운드10 (2026-07-23 june feedback) --- */
+/* ② 읽음 표시된 글은 '왜 중요한가'도 핵심처럼 흐리게 */
+.card.is-read .why{opacity:.55;}
+/* ④ '왜 중요한가' 라벨 확대 + 본문 크기·행간을 핵심(gist)과 동일하게 */
+.why .label{font-size:13px;letter-spacing:.08em;margin-bottom:8px;}
+.why p{font-size:14.5px;}
+html[data-lang="ko"] .why p{line-height:1.75;}
+html[data-lang="ja"] .why p{line-height:1.85;}
+/* ③ 읽음 애니메이션: 서류 아이콘 칩이 '읽은 글' 메뉴로 비행 */
+.rh-chip{position:fixed;z-index:15000;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border-radius:14px;background:var(--bg);
+  border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.3);
+  font-size:24px;line-height:1;
+  transform:translate(-50%,-50%) scale(.2);opacity:0;
+  transition:transform .18s cubic-bezier(.2,.9,.4,1.2),opacity .15s ease;}
+html[data-theme="dark"] .rh-chip{background:#2A2C33;border-color:#3A3D45;}
+/* ⑥ 이번 주 핫한 읽을거리: hover 시 카드 이미지 펼침 */
+html.v83 .hotl-cov{display:block;width:100%;height:0;opacity:0;margin-top:0;border-radius:10px;
+  background-position:center;background-size:cover;background-repeat:no-repeat;
+  transition:height .28s cubic-bezier(.4,0,.2,1),opacity .22s ease,margin-top .28s cubic-bezier(.4,0,.2,1),padding .28s cubic-bezier(.4,0,.2,1);}
+html.v83 .hotl-row:hover .hotl-cov,html.v83 .hotl-row:focus-visible .hotl-cov{height:118px;opacity:1;margin-top:7px;}
+html.v83 .hotl-cov.hotl-cov-logo{background-size:contain;background-color:#EDEFF2;
+  background-origin:content-box;padding:0;box-sizing:border-box;}
+html.v83 .hotl-row:hover .hotl-cov.hotl-cov-logo,
+html.v83 .hotl-row:focus-visible .hotl-cov.hotl-cov-logo{padding:12px;}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -10250,6 +10290,7 @@ var RHS = {
 };
 function rhT(){ return RHS[(typeof LANG !== "undefined" && RHS[LANG]) ? LANG : "ko"]; }
 
+/* 라운드10: 카드가 싹 접히고 → 서류(📄) 아이콘 칩이 등장 → 좌측 '읽은 글'로 슝 */
 function rhFly(card){
   try {
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -10257,31 +10298,41 @@ function rhFly(card){
               || document.querySelector('#v83nav .v83-me');
     if (!target || !card) return;
     var r1 = card.getBoundingClientRect(), r2 = target.getBoundingClientRect();
-    var ghost = card.cloneNode(true);
-    ghost.style.cssText = "position:fixed;left:" + r1.left + "px;top:" + r1.top + "px;width:" + r1.width
-      + "px;height:" + r1.height + "px;margin:0;z-index:15000;pointer-events:none;overflow:hidden;"
-      + "transform-origin:center center;transition:transform .55s cubic-bezier(.45,0,.65,.35),opacity .55s ease;";
-    document.body.appendChild(ghost);
-    requestAnimationFrame(function(){
-      var dx = (r2.left + r2.width / 2) - (r1.left + r1.width / 2);
-      var dy = (r2.top + r2.height / 2) - (r1.top + r1.height / 2);
-      ghost.style.transform = "translate(" + dx + "px," + dy + "px) scale(0.05)";
-      ghost.style.opacity = "0.3";
-    });
-    setTimeout(function(){ ghost.remove(); }, 620);
-    setTimeout(function(){
-      target.classList.add("v83-read-pulse");
-      setTimeout(function(){ target.classList.remove("v83-read-pulse"); }, 750);
-    }, 380);
-    /* 원래 카드는 부드럽게 접힘 (아래 카드 점프 방지) */
+    var cx = r1.left + r1.width / 2, cy = Math.max(60, Math.min(r1.top + r1.height / 2, window.innerHeight - 60));
+    /* 1) 카드가 싹 접힘 (아래 카드가 자연스럽게 올라옴) */
     card.style.overflow = "hidden";
     card.style.maxHeight = r1.height + "px";
-    card.style.transition = "max-height .42s ease .1s, opacity .3s ease, margin .42s ease .1s, padding .42s ease .1s";
-    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    card.style.transition = "max-height .38s cubic-bezier(.4,0,.2,1), opacity .26s ease, margin .38s cubic-bezier(.4,0,.2,1), padding .38s cubic-bezier(.4,0,.2,1)";
+    setTimeout(function(){
       card.style.maxHeight = "0px"; card.style.opacity = "0";
       card.style.marginTop = "0"; card.style.marginBottom = "0";
       card.style.paddingTop = "0"; card.style.paddingBottom = "0";
-    }); });
+    }, 20);
+    /* 2) 접힌 자리에서 서류 아이콘 칩이 톡 하고 등장 */
+    var chip = document.createElement("div");
+    chip.className = "rh-chip";
+    chip.textContent = "📄";
+    chip.style.left = cx + "px";
+    chip.style.top = cy + "px";
+    document.body.appendChild(chip);
+    setTimeout(function(){
+      chip.style.transform = "translate(-50%,-50%) scale(1)";
+      chip.style.opacity = "1";
+    }, 40);
+    /* 3) 칩이 '읽은 글' 메뉴로 슝~ (살짝 기울며 작아지면서) */
+    setTimeout(function(){
+      var dx = (r2.left + r2.width / 2) - cx;
+      var dy = (r2.top + r2.height / 2) - cy;
+      chip.style.transition = "transform .55s cubic-bezier(.5,-0.1,.7,.35), opacity .45s ease .18s";
+      chip.style.transform = "translate(calc(-50% + " + dx + "px), calc(-50% + " + dy + "px)) scale(.28) rotate(-14deg)";
+      chip.style.opacity = "0";
+    }, 330);
+    setTimeout(function(){ chip.remove(); }, 950);
+    /* 4) 메뉴가 받으면서 반짝 */
+    setTimeout(function(){
+      target.classList.add("v83-read-pulse");
+      setTimeout(function(){ target.classList.remove("v83-read-pulse"); }, 750);
+    }, 700);
   } catch (e){}
 }
 
