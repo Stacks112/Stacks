@@ -242,6 +242,7 @@ const STRINGS = {
     themeLight: "Light mode",
     commentsClose: "Hide comments",
     allRead: "You're all caught up. Nothing unread.",
+    readDivider: "Already read",
     markRead: "Mark as read",
     readDone: "Read ✓",
     like: "Like",
@@ -389,6 +390,7 @@ const STRINGS = {
     themeLight: "라이트 모드",
     commentsClose: "댓글 접기",
     allRead: "다 읽었어요. 안 읽은 글이 없습니다.",
+    readDivider: "이미 읽은 글",
     markRead: "읽음 표시",
     readDone: "읽음 ✓",
     like: "좋아요",
@@ -536,6 +538,7 @@ const STRINGS = {
     themeLight: "ライトモード",
     commentsClose: "コメントを閉じる",
     allRead: "すべて読みました。未読はありません。",
+    readDivider: "既読の記事",
     markRead: "既読にする",
     readDone: "既読 ✓",
     like: "いいね",
@@ -3007,7 +3010,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof V83ITEM !== "undefined") V83ITEM = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
      가드에 막혀 아무 것도 안 바뀌는 것처럼 보였다 — 페이지 탭 진입 시 해제. */
-  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; }
+  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false; }
   if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
 
 
@@ -3691,7 +3694,7 @@ function renderSkew(){
   /* v83.4: in the desktop beta the module is retired — "지금 쏠린 곳" is now
      a left-nav menu item with its own page (TAB="skew"). */
   if (typeof V83 !== "undefined" && V83 && V83.mounted){ sec.hidden = true; return; }
-  var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  var homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && !READ_VIEW && TAB !== "mine";
   if(!homeView){ sec.hidden=true; return; }
   var S=STRINGS[LANG], out=[];
   try {
@@ -3794,7 +3797,7 @@ function evGo(evid){
   var ids=eventRelatedSet(e);
   if(!ids.size){ if(e.itemId) goToItem(e.itemId); return; }
   EVENT_FILTER=ids;
-  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; TAB="all";
+  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; READ_VIEW=false; TAB="all";
   var lbl=(e.label&&(e.label[LANG]||e.label.en))||"";
   QUERY=lbl.trim().toLowerCase();
   var si=document.getElementById("searchInput"); if(si) si.value=lbl;
@@ -4142,7 +4145,7 @@ function railStanceTap(key, k){
 function goHome(ev){
   if (ev && ev.preventDefault) ev.preventDefault();
   SERIES_VIEW = null; ENTITY_VIEW = null; TAB = "all";
-  QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
+  QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
   STANCE_FILTER = null; SB_VIEW = false;
   /* v83.2 bugfix: Home must also leave the theme-board / record views */
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
@@ -4369,7 +4372,7 @@ function goToItem(id){
   let changed = false;
   if (TAB !== "all" && target.category !== TAB){ TAB = "all"; changed = true; }
   if (QUERY || BM_ONLY || UNREAD_ONLY || FREE_ONLY){
-    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false;
+    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
     const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
     changed = true;
   }
@@ -4780,14 +4783,15 @@ var V83ICONS = {
   cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
   bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
   skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
+  readlist:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>',
   alerts:'<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
   appearance:'<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>'
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",alerts:"Notifications",appearance:"Appearance",join:"Join today's debate",search:"Search",me:"My page"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",alerts:"通知設定",appearance:"テーマ",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",join:"Join today's debate",search:"Search",me:"My page"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",join:"今日の論点に参加",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -4796,7 +4800,18 @@ function v83Bookmarks(){
   try {
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
-    QUERY = ""; BM_ONLY = true;
+    QUERY = ""; BM_ONLY = true; READ_VIEW = false;
+    var i = document.getElementById("searchInput"); if (i) i.value = "";
+    if (typeof render === "function") render();
+  } catch (e) {}
+}
+/* 읽음 하이브리드: 좌측 '읽은 글' 보관함 */
+function v83ReadList(){
+  try {
+    SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
+    if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+    if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; READ_VIEW = true;
     var i = document.getElementById("searchInput"); if (i) i.value = "";
     if (typeof render === "function") render();
   } catch (e) {}
@@ -4835,6 +4850,7 @@ function mountV83(){
     /* v83.5: 캘린더도 모달이 아니라 페이지 전환 (june 지시) */
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
     ["bm", V83ICONS.bm, v83Bookmarks],
+    ["readlist", V83ICONS.readlist, function(){ if (typeof v83ReadList === "function") v83ReadList(); }],
     /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel */
     ["alerts", V83ICONS.alerts, function(){ if (typeof v83AlertsPanel === "function") v83AlertsPanel(); }],
     ["appearance", V83ICONS.appearance, function(){ if (typeof toggleTheme === "function") toggleTheme(); }]
@@ -5273,6 +5289,8 @@ function renderV83SkewPage(list, S){
 var V83ITEM = null;
 function v83OpenItem(id, withComments){
   V83ITEM = id;
+  /* 읽음 하이브리드: 상세를 연 것 자체가 읽음 */
+  try { if (typeof setRead === "function") setRead(id); } catch (e){}
   SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
@@ -5290,7 +5308,7 @@ function v83CloseItem(){ V83ITEM = null; render(); }
 function v83DirTab(){
   if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
   if (TAB !== "company" && TAB !== "investor" && TAB !== "ceo" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal") return null;
-  if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY) return null;
+  if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY || READ_VIEW) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
   return TAB;
@@ -7126,7 +7144,7 @@ function renderToday(){
   const sec = document.getElementById("todaySec");
   const main = document.getElementById("todayMain");
   if (!sec || !main) return;
-  let homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && TAB !== "mine";
+  let homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && !READ_VIEW && TAB !== "mine";
   /* v83.2: in the desktop beta the debate is pinned to the top of the feed
      column, so it should only appear on the actual home feed (전체 tab) —
      not above the 기업/정치인 directories or other category tabs. */
@@ -7272,6 +7290,8 @@ function renderAfterHot(S){
 const FEED_PAGE_SIZE = 10;
 let CUR_ITEMS = [];
 let SHOWN = 0;
+var READ_VIEW = false;     /* 좌측 '읽은 글' 보관함 뷰 */
+var READ_DIV_IDX = -1;     /* 피드에서 "이미 읽은 글" 구분선이 들어갈 인덱스 */
 let feedIO = null;
 
 function appendFeedPage(S){
@@ -7282,6 +7302,12 @@ function appendFeedPage(S){
   const start = SHOWN;
   const end = Math.min(start + FEED_PAGE_SIZE, CUR_ITEMS.length);
   for (let idx = start; idx < end; idx++){
+    if (READ_DIV_IDX >= 0 && idx === READ_DIV_IDX && !document.getElementById("readDivider")){
+      const dv = document.createElement("div");
+      dv.id = "readDivider"; dv.className = "read-div";
+      dv.innerHTML = "<span>" + esc(S.readDivider || "이미 읽은 글") + "</span>";
+      list.appendChild(dv);
+    }
     const el = cardEl(CUR_ITEMS[idx], S, idx - start);
     list.appendChild(el);
     linkifyEntities(el);
@@ -7377,7 +7403,10 @@ function renderFeed(animate){
       hb.className = "series-header";
       hb.innerHTML = '<button class="series-close" onclick="v83CloseItem()">← ' + S.seriesClose + "</button>";
       list.appendChild(hb);
-      list.appendChild(cardEl(_it, S, 0));
+      const _ac = cardEl(_it, S, 0);
+      _ac.classList.remove("collapsed");
+      _ac.classList.add("v83one");
+      list.appendChild(_ac);
       if (window.hydrateImages) hydrateImages();
       applyEngageCounts();
       setupViewObserver();
@@ -7464,6 +7493,7 @@ function renderFeed(animate){
 
   let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
   if (BM_ONLY) items = items.filter(i => BM.has(i.id));
+  if (READ_VIEW) items = items.filter(i => READ.has(i.id));
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (QUERY) items = items.filter(matchesQuery);
   if (ENTITY_VIEW) items = items.filter(i => itemEntities(i).has(ENTITY_VIEW));
@@ -7490,6 +7520,21 @@ function renderFeed(animate){
     hydrateImages();
     return;
   }
+  /* 읽음 하이브리드: 세션 시작 시점 스냅샷 기준 강등 — 이번 세션에 '열어본' 글은
+     제자리 유지, 다음 방문부터 하단 "이미 읽은 글" 그룹으로 */
+  READ_DIV_IDX = -1;
+  try {
+    const _plain = !UNREAD_ONLY && !BM_ONLY && !FREE_ONLY && !READ_VIEW && !QUERY
+      && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW
+      && (typeof EVENT_FILTER === "undefined" || !EVENT_FILTER)
+      && (typeof READ_BASE !== "undefined");
+    if (_plain){
+      const _dem = i => READ_BASE.has(i.id) || (typeof READ_SWEPT !== "undefined" && READ_SWEPT.has(i.id));
+      const _fresh = items.filter(i => !_dem(i));
+      const _done = items.filter(_dem);
+      if (_fresh.length && _done.length){ READ_DIV_IDX = _fresh.length; items = _fresh.concat(_done); }
+    }
+  } catch (e){}
   CUR_ITEMS = items;
   SHOWN = 0;
   appendFeedPage(S);
@@ -9771,6 +9816,30 @@ html.v83 .v83-search{position:relative;}
 .v83sd-row .rm:hover{color:var(--text);}
 .v83sd-guide{padding:22px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;}
 .v83sd-div{height:1px;background:var(--line);margin:6px 0;}
+/* --- 읽음 하이브리드 --- */
+/* "이미 읽은 글" 구분선 */
+.read-div{display:flex;align-items:center;gap:12px;margin:26px 14px 10px;color:var(--muted);
+  font-size:12px;font-weight:700;letter-spacing:.02em;}
+.read-div::before,.read-div::after{content:"";flex:1;height:1px;background:var(--line);}
+/* 피드 카드 3문단 프리뷰 (상세 뷰 .v83one과 접힌 카드는 제외) */
+html.v83 .card.v83clip .gist{max-height:215px;overflow:hidden;position:relative;}
+html.v83 .card.v83clip .gist::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;
+  background:linear-gradient(rgba(0,0,0,0),var(--card));pointer-events:none;}
+.v83-more{display:none;background:none;border:0;color:var(--accent);font-weight:700;
+  font-size:13.5px;cursor:pointer;padding:8px 0 0;font-family:var(--ui-font);}
+html.v83 .card.v83clip .v83-more{display:inline-flex;}
+html.v83 .card.v83one .card-body{max-height:none !important;opacity:1 !important;}
+/* ✓ 읽음: 좌측 '읽은 글' 메뉴가 받을 때 살짝 반짝 */
+@keyframes v83ReadPulse{0%{background:var(--bg-soft);transform:scale(1)}45%{background:var(--bg-soft);transform:scale(1.06)}100%{transform:scale(1)}}
+#v83nav .v83-link.v83-read-pulse{animation:v83ReadPulse .7s ease;}
+/* 실행 취소 토스트 */
+.v83-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:15100;
+  background:var(--black);color:#fff;border-radius:999px;padding:11px 10px 11px 18px;
+  font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:var(--ui-font);}
+.v83-toast button{background:none;border:0;color:#8FB8FF;font-weight:800;font-size:13px;
+  cursor:pointer;padding:4px 10px;font-family:var(--ui-font);}
+html[data-theme="dark"] .v83-toast{background:#2A2C33;}
 /* --- notification settings panel (left-nav item) --- */
 .v83np-ov{position:fixed;inset:0;z-index:14400;background:rgba(0,0,0,.35);
   display:flex;align-items:center;justify-content:center;}
@@ -10049,6 +10118,126 @@ document.addEventListener("keydown", function(e){
   }
   if (e.key === "Escape") sdHide();
 });
+
+/* ==== 읽음 하이브리드 (2026-07-23 june 결정) ==================================
+   - READ_BASE: 세션 시작 시점의 읽음 스냅샷 (코어 강등 파티션이 참조 —
+     이번 세션에 열어본 글은 제자리 유지, 다음 방문부터 하단으로)
+   - ✓ 직접 클릭: 카드가 좌측 '읽은 글' 메뉴로 날아가는 애니메이션 + 실행 취소 */
+window.READ_BASE = new Set(typeof READ !== "undefined" ? READ : []);
+window.READ_SWEPT = new Set();
+
+var RHS = {
+  ko: { swept: "읽은 글로 이동했어요", undo: "실행 취소" },
+  en: { swept: "Moved to Read", undo: "Undo" },
+  ja: { swept: "既読に移動しました", undo: "元に戻す" }
+};
+function rhT(){ return RHS[(typeof LANG !== "undefined" && RHS[LANG]) ? LANG : "ko"]; }
+
+function rhFly(card){
+  try {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var target = document.querySelector('#v83nav .v83-link[data-k="readlist"]')
+              || document.querySelector('#v83nav .v83-me');
+    if (!target || !card) return;
+    var r1 = card.getBoundingClientRect(), r2 = target.getBoundingClientRect();
+    var ghost = card.cloneNode(true);
+    ghost.style.cssText = "position:fixed;left:" + r1.left + "px;top:" + r1.top + "px;width:" + r1.width
+      + "px;height:" + r1.height + "px;margin:0;z-index:15000;pointer-events:none;overflow:hidden;"
+      + "transform-origin:center center;transition:transform .55s cubic-bezier(.45,0,.65,.35),opacity .55s ease;";
+    document.body.appendChild(ghost);
+    requestAnimationFrame(function(){
+      var dx = (r2.left + r2.width / 2) - (r1.left + r1.width / 2);
+      var dy = (r2.top + r2.height / 2) - (r1.top + r1.height / 2);
+      ghost.style.transform = "translate(" + dx + "px," + dy + "px) scale(0.05)";
+      ghost.style.opacity = "0.3";
+    });
+    setTimeout(function(){ ghost.remove(); }, 620);
+    setTimeout(function(){
+      target.classList.add("v83-read-pulse");
+      setTimeout(function(){ target.classList.remove("v83-read-pulse"); }, 750);
+    }, 380);
+    /* 원래 카드는 부드럽게 접힘 (아래 카드 점프 방지) */
+    card.style.overflow = "hidden";
+    card.style.maxHeight = r1.height + "px";
+    card.style.transition = "max-height .42s ease .1s, opacity .3s ease, margin .42s ease .1s, padding .42s ease .1s";
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      card.style.maxHeight = "0px"; card.style.opacity = "0";
+      card.style.marginTop = "0"; card.style.marginBottom = "0";
+      card.style.paddingTop = "0"; card.style.paddingBottom = "0";
+    }); });
+  } catch (e){}
+}
+
+var rhToastEl = null;
+function rhToast(id){
+  var t = rhT();
+  if (rhToastEl) rhToastEl.remove();
+  var d = document.createElement("div");
+  d.className = "v83-toast";
+  d.innerHTML = "<span>" + t.swept + "</span><button>" + t.undo + "</button>";
+  d.querySelector("button").addEventListener("click", function(){
+    try {
+      READ.delete(id); READ_SWEPT.delete(id);
+      store.set("stk_read", Array.from(READ));
+      if (typeof renderFeedOnly === "function") renderFeedOnly();
+    } catch (e){}
+    d.remove(); rhToastEl = null;
+  });
+  document.body.appendChild(d);
+  rhToastEl = d;
+  setTimeout(function(){ if (rhToastEl === d){ d.remove(); rhToastEl = null; } }, 5000);
+}
+
+/* ✓ 클릭 오버라이드: 데스크톱 v83에서 '읽음 표시'는 치우기 제스처 */
+if (typeof toggleRead === "function"){
+  var _origToggleRead = toggleRead;
+  window.toggleRead = function(id){
+    var desk = document.documentElement.classList.contains("v83");
+    var marking = !(typeof READ !== "undefined" && READ.has(id));
+    if (!desk || !marking){ _origToggleRead(id); return; }
+    try {
+      READ.add(id);
+      if (typeof logRead === "function") logRead(id);
+      store.set("stk_read", Array.from(READ));
+    } catch (e){}
+    READ_SWEPT.add(id);
+    var card = document.getElementById("sig-" + id);
+    if (card) rhFly(card);
+    setTimeout(function(){ if (typeof renderFeedOnly === "function") renderFeedOnly(); }, 560);
+    rhToast(id);
+    try { if (typeof track === "function") track("readsweep/" + id); } catch (e){}
+  };
+}
+
+/* ---- 피드 카드 3문단 프리뷰: 넘치는 카드만 클램프 + "더 보기 →" (상세로) ---- */
+function v83ClipScan(){
+  if (!document.documentElement.classList.contains("v83")) return;
+  document.querySelectorAll("#feedList > .card").forEach(function(c){
+    if (c.classList.contains("v83one") || c.classList.contains("collapsed")){
+      c.classList.remove("v83clip");
+      return;
+    }
+    if (c.__v83clip) return;
+    var g = c.querySelector(".gist");
+    if (!g || !g.clientHeight) return;   /* not laid out yet: retry next tick */
+    c.__v83clip = true;
+    var id = (c.id || "").replace(/^sig-/, "");
+    if (!c.querySelector(".v83-more")){
+      var fold = c.querySelector(".gist-fold") || g.parentElement;
+      var b = document.createElement("button");
+      b.className = "v83-more"; b.type = "button";
+      b.textContent = (((typeof STRINGS !== "undefined" && STRINGS[LANG]) || {}).loadMore || "더 보기") + " →";
+      b.addEventListener("click", function(e){
+        e.stopPropagation();
+        if (typeof v83OpenItem === "function") v83OpenItem(id);
+      });
+      fold.appendChild(b);
+    }
+    c.classList.toggle("v83clip", g.scrollHeight > 260);
+  });
+}
+setInterval(v83ClipScan, 1000);
+v83ClipScan();
 })();
 </script>
 
