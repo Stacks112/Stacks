@@ -398,8 +398,8 @@ const STRINGS = {
     loadMore: "더 보기",
     dashBrowse: "둘러보기",
     askCta: "댓글로 의견",
-    voteOpp: "기회",
-    voteTrap: "함정",
+    voteOpp: "긍정",
+    voteTrap: "부정",
     votePrompt: "당신의 생각은?",
     voteResult: "{u}%가 기회로 봅니다",
     ocHit: "예측 적중 ✓",
@@ -645,9 +645,10 @@ const STRINGS = {
   --radius:20px;
   /* Apple's system UI font on Apple devices (San Francisco + Apple SD Gothic Neo
      for Korean), graceful system fallbacks elsewhere. */
-  --ui-font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ui-font:"Pretendard Variable","Pretendard JP Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono-font:ui-monospace,"SF Mono","SFMono-Regular",Menlo,"Cascadia Mono",Consolas,monospace;
 }
+html[data-lang="ja"]{--ui-font:"Pretendard JP Variable","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
 *{margin:0;padding:0;box-sizing:border-box;}
 [hidden]{display:none !important;}
 html{scroll-behavior:smooth;}
@@ -2732,6 +2733,9 @@ footer a{color:var(--muted);}
 }
 .no-anim .card{animation:none !important;}
 </style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </head>
 <body>
 <nav>
@@ -3025,6 +3029,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
   if (typeof V83ITEM !== "undefined") V83ITEM = null;
+  if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
      가드에 막혀 아무 것도 안 바뀌는 것처럼 보였다 — 페이지 탭 진입 시 해제. */
   if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false; }
@@ -4462,7 +4467,7 @@ function makeEntSpan(text, key){
   const span = document.createElement("span");
   span.className = "ent-link has-tip";
   span.setAttribute("onmouseenter", "loadQuote('" + safe + "')");
-  span.setAttribute("onclick", "entityTap(this,'" + safe + "')");
+  span.setAttribute("onclick", "event.stopPropagation(); entityTap(this,'" + safe + "')");
   span.innerHTML = esc(text) + entityTip(key);
   return span;
 }
@@ -4661,7 +4666,7 @@ function entityTapOrig(el, key){
   el.classList.remove("show");
   hideTipSheet();
   /* desktop: show the profile in the right rail, never yank the reader's scroll */
-  if (window.matchMedia("(min-width:1024px)").matches && document.getElementById("sideRight")){
+  if (window.matchMedia("(min-width:1024px)").matches && (document.getElementById("sideRight") || document.getElementById("v83rail"))){
     if (showEntityRail(key)) return;
   }
   entityFeedView(key);
@@ -4684,7 +4689,7 @@ function showEntityRail(key){
   return ok;
 }
 function showEntityRailOrig(key){
-  const rail = document.getElementById("sideRight");
+  const rail = document.getElementById("sideRight") || document.getElementById("v83rail");
   if (!rail || !ENTITIES[key]) return false;
   if (ENTITY_VIEW) closeEntity(); /* avoid two profile cards (duplicate chart ids) */
   closeEntityRail();
@@ -5328,6 +5333,7 @@ function v83DirTab(){
   if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY || READ_VIEW) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
+  if (typeof V83ITEM !== "undefined" && V83ITEM) return null;
   return TAB;
 }
 function v83DirStr(){
@@ -9506,6 +9512,7 @@ bootData();
     if (!mq.matches || !card) return;
     var dt = $("v82detail"), body = $("v82dbody");
     if (dt.classList.contains("on")) return;
+    try { var _rid=(card.id||"").replace(/^sig-/,""); if(_rid && typeof setRead==="function") setRead(_rid); } catch(e){}
     try {
       DETAIL_PH = document.createComment("v82ph");
       card.parentNode.insertBefore(DETAIL_PH, card);
@@ -10406,10 +10413,12 @@ v83ClipScan();
 html[data-theme="dark"] .twc-ov{background:rgba(0,0,0,.6);}
 html[data-theme="dark"] .twc-input,
 html[data-theme="dark"] .twc-namerow input{background:#141519;}
-/* ---- inline reply bar at the bottom of each post (desktop v83, X-style) ---- */
-.twin{display:none;}
-html.v83 .twin{display:flex;align-items:center;gap:9px;margin-top:12px;
+/* ---- inline reply bar at the bottom of each post (X-style; desktop + mobile) ---- */
+.twin{display:flex;align-items:center;gap:9px;margin-top:12px;
   padding-top:12px;border-top:1px solid var(--line);}
+/* mobile feed cards collapse to headline-only when read — hide the bar there so
+   collapsed cards stay clean; it still shows on expanded/detail cards */
+.card.collapsed .twin,.card.collapsed .twin-list{display:none;}
 .twin .twi-av{width:32px;height:32px;font-size:13px;flex:0 0 32px;}
 .twin-in{flex:1;min-width:0;border:1px solid transparent;background:var(--bg-soft);
   color:var(--text);border-radius:999px;padding:9px 15px;font-size:13.5px;
@@ -10420,9 +10429,8 @@ html.v83 .twin{display:flex;align-items:center;gap:9px;margin-top:12px;
   font-family:var(--ui-font);}
 .twin-send:disabled{opacity:.5;cursor:default;}
 html[data-theme="dark"] .twin-in:focus{background:#141519;}
-/* ---- inline comment previews under the reply bar (desktop v83) ---- */
-.twin-list{display:none;}
-html.v83 .twin-list{display:block;}
+/* ---- inline comment previews under the reply bar (desktop + mobile) ---- */
+.twin-list{display:block;}
 .twin-it{display:flex;gap:9px;margin-top:12px;cursor:pointer;}
 .twin-it .twi-av{width:30px;height:30px;font-size:12.5px;flex:0 0 30px;}
 .twin-it-m{flex:1;min-width:0;}
