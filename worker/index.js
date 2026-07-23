@@ -1,3 +1,10 @@
+/* Stacks comments worker (v8.2 = v8.1 + surge alerts cron)
+   v8.2 ADDS ONLY: a scheduled() cron + /cron/surge[-dryrun] routes that price
+   every followed company from items.json and push the day's biggest movers
+   (|daily change| >= 4%) to their c_<slug> follow tags. Nothing from v8.1 was
+   changed. Reuses the same D1 + ONESIGNAL_REST_KEY/NOTIFY_SECRET secrets.
+   ORIGINAL v8.1 HEADER BELOW.
+*/
 /* Stacks comments worker (v8.1)
    (v8.1, auto-deploy test) = your existing v8 (per-timezone + multi-language push delivery,
      ranged quotes, views/likes, comment replies & likes, /notify)
@@ -24,6 +31,11 @@ const MAX_NICK = 40;
 const MAX_CONTENT = 2000;
 const RATE_LIMIT_PER_MIN = 3;
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
+
+/* ---- surge-alert config (v8.2 additions) ---- */
+const ITEMS_URL = "https://raw.githubusercontent.com/Stacks112/Stacks/main/items.json";
+const SURGE_ABS_MIN = 4;   // push only |daily % change| >= this
+const SURGE_TOP_N = 3;     // at most this many movers per day
 
 function cors(origin) {
   const ok = ALLOWED_ORIGINS.includes(origin);
@@ -119,6 +131,150 @@ function langMap(p, base, limit) {
   return out;
 }
 
+
+/* ===================== surge alerts (v8.2) ===================== */
+/* company follow-tag slug — MUST stay identical to the site's slugTag()
+   in index.html, or pushes miss every subscriber:
+   c_ + name.toLowerCase, non-alnum(+Hangul) -> "_", trimmed. */
+function surgeSlug(k) {
+  return String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g, "_").replace(/^_+|_+$/g, "");
+}
+
+/* stooq-style ticker -> Yahoo symbol, identical mapping to the /quote route. */
+function yahooSymbol(rawTicker) {
+  const s = String(rawTicker || "").toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 20);
+  if (!s) return "";
+  if (s.endsWith(".us")) return s.slice(0, -3).toUpperCase();
+  if (s.endsWith(".ks")) return s.slice(0, -3).toUpperCase() + ".KS";
+  if (s.endsWith(".jp")) return s.slice(0, -3).toUpperCase() + ".T";
+  return s.toUpperCase();
+}
+
+/* most-recent completed daily close vs the prior close (percent).
+   returns { pct, price, prevClose, currency } or null. never throws. */
+async function fetchDailyChange(rawTicker) {
+  const ysym = yahooSymbol(rawTicker);
+  if (!ysym) return null;
+  try {
+    const yr = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/"
+        + encodeURIComponent(ysym) + "?range=5d&interval=1d",
+      { headers: { "User-Agent": "Mozilla/5.0 (compatible; StacksSurge/1.0)" } });
+    if (!yr.ok) return null;
+    const j = await yr.json();
+    const res = j && j.chart && j.chart.result && j.chart.result[0];
+    if (!res) return null;
+    const cl = (res.indicators && res.indicators.quote
+                && res.indicators.quote[0] && res.indicators.quote[0].close) || [];
+    const closes = cl.filter(c => c != null && isFinite(c));
+    if (closes.length < 2) return null;
+    const last = closes[closes.length - 1];
+    const prev = closes[closes.length - 2];
+    if (!prev) return null;
+    return {
+      pct: (last - prev) / prev * 100,
+      price: last,
+      prevClose: prev,
+      currency: (res.meta && res.meta.currency) || ""
+    };
+  } catch (e) { return null; }
+}
+
+/* one OneSignal push to a company follow tag. returns bool. */
+async function osPushTag(env, tag, headings, contents, link) {
+  if (!env.ONESIGNAL_REST_KEY) return false;
+  const payload = {
+    app_id: ONESIGNAL_APP_ID,
+    headings,
+    contents,
+    url: link ? String(link).slice(0, 500) : undefined,
+    filters: [{ field: "tag", key: String(tag).slice(0, 80), relation: "=", value: "1" }]
+  };
+  try {
+    const res = await fetch("https://api.onesignal.com/notifications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Key " + env.ONESIGNAL_REST_KEY },
+      body: JSON.stringify(payload)
+    });
+    return res.ok;
+  } catch (e) { return false; }
+}
+
+/* read items.json entities, price every followable company, return the
+   top-N movers whose |daily change| >= threshold. read-only, never throws. */
+async function computeSurges() {
+  let entities = {};
+  try {
+    const r = await fetch(ITEMS_URL, { cf: { cacheTtl: 60 } });
+    if (!r.ok) return [];
+    const data = await r.json();
+    entities = (data && data.entities) || {};
+  } catch (e) { return []; }
+  const companies = [];
+  for (const name in entities) {
+    const e = entities[name];
+    if (e && e.kind === "company" && e.ticker) companies.push({ name, ticker: e.ticker });
+  }
+  const moved = [];
+  for (const c of companies) {
+    const q = await fetchDailyChange(c.ticker);
+    if (q && isFinite(q.pct) && Math.abs(q.pct) >= SURGE_ABS_MIN) {
+      moved.push({
+        name: c.name,
+        ticker: c.ticker,
+        pct: Math.round(q.pct * 100) / 100,
+        price: q.price,
+        currency: q.currency,
+        tag: "c_" + surgeSlug(c.name)
+      });
+    }
+  }
+  moved.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct));
+  return moved.slice(0, SURGE_TOP_N);
+}
+
+async function ensureSurgeTable(db) {
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS surge_alerts (" +
+    "date TEXT NOT NULL, tag TEXT NOT NULL, PRIMARY KEY (date, tag))"
+  );
+}
+
+/* compute + (unless dryRun) push, deduping one push per company per UTC day. */
+async function runSurgeAlerts(env, opts) {
+  const dryRun = !!(opts && opts.dryRun);
+  const surges = await computeSurges();
+  const date = new Date().toISOString().slice(0, 10);
+  if (dryRun) {
+    return { date, dryRun: true, threshold: SURGE_ABS_MIN, count: surges.length, surges };
+  }
+  const out = [];
+  await ensureSurgeTable(env.DB);
+  for (const sge of surges) {
+    const dup = await env.DB
+      .prepare("SELECT 1 FROM surge_alerts WHERE date = ?1 AND tag = ?2")
+      .bind(date, sge.tag).first();
+    if (dup) { out.push({ ...sge, sent: false, skipped: "already_sent_today" }); continue; }
+    const up = sge.pct >= 0;
+    const arrow = up ? "▲" : "▼";
+    const abs = Math.abs(sge.pct).toFixed(1);
+    const heading = sge.name + " " + arrow + abs + "%";
+    const headings = { en: heading, ko: heading, ja: heading };
+    const contents = {
+      en: sge.name + " closed " + arrow + abs + "% yesterday. Read the latest on Stacks.",
+      ko: sge.name + ", 어제 " + arrow + abs + "% " + (up ? "급등" : "급락") + " 마감. Stacks에서 확인하세요.",
+      ja: sge.name + "、昨日" + arrow + abs + "% " + (up ? "急騰" : "急落") + "。Stacksでチェック。"
+    };
+    const ok = await osPushTag(env, sge.tag, headings, contents, "https://stacksdaily.com/");
+    if (ok) {
+      await env.DB.prepare("INSERT OR IGNORE INTO surge_alerts (date, tag) VALUES (?1, ?2)")
+        .bind(date, sge.tag).run();
+    }
+    out.push({ ...sge, sent: ok });
+  }
+  return { date, dryRun: false, threshold: SURGE_ABS_MIN, count: out.length, sent: out };
+}
+/* =================== end surge alerts (v8.2) =================== */
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
@@ -126,6 +282,26 @@ export default {
 
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: cors(origin) });
+    }
+
+    /* ---------- surge alerts: read-only diagnostic (no secret) ----------
+       returns today's computed movers without pushing or writing to D1.
+       This is what the 08:20 KST monitor task polls. */
+    if (url.pathname === "/cron/surge-dryrun") {
+      const r = await runSurgeAlerts(env, { dryRun: true });
+      return json(r, 200, origin);
+    }
+    /* ---------- surge alerts: force a real send (June only) ----------
+       same NOTIFY_SECRET as /notify. Deduped per company per day. */
+    if (url.pathname === "/cron/surge") {
+      const p = request.method === "POST"
+        ? await request.json().catch(() => ({}))
+        : Object.fromEntries(url.searchParams);
+      if (!env.NOTIFY_SECRET || p.secret !== env.NOTIFY_SECRET) {
+        return json({ error: "forbidden" }, 403, origin);
+      }
+      const r = await runSurgeAlerts(env, { dryRun: false });
+      return json(r, 200, origin);
     }
     /* ---------- quote: /quote?s=SYMBOL ----------
        Ranged daily/intraday prices via Yahoo Finance with a cache,
@@ -437,5 +613,18 @@ export default {
     }
 
     return json({ error: "method not allowed" }, 405, origin);
+  },
+
+  /* ---------- CRON: surge alerts (Cron Trigger: 0 23 * * 1-5 = KST Tue-Sat 08:00) ----------
+     Prices every followed company from items.json and pushes the day's biggest
+     movers (|change| >= 4%) to their c_<slug> follow tags. One push per company
+     per UTC day (D1 surge_alerts dedupe). A cron must never throw. */
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil((async () => {
+      try {
+        if (!env.DB || !env.ONESIGNAL_REST_KEY) return;
+        await runSurgeAlerts(env, { dryRun: false });
+      } catch (e) { /* swallow: cron must never throw */ }
+    })());
   }
 };

@@ -20,3 +20,7 @@ account_id = "898876c2b7fe1652e72736e182ad610b"
 binding = "DB"
 database_name = "stacks-comments"
 database_id = "ddc4f84e-badf-4ff2-9b4e-f07c378784cf"
+
+# Cron trigger (v8.2): weekdays 23:00 UTC = KST Tue-Sat 08:00
+[triggers]
+crons = ["0 23 * * 1-5"]
