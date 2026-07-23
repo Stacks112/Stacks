@@ -10053,12 +10053,16 @@ html.v83 .nav-inner .v83-search input{width:100%;box-sizing:border-box;padding:9
   font:inherit;font-size:13.5px;}
 html:not(.v83) .v83-search{display:none;}
 /* 검색창이 상단바 우측을 차지하므로 탭 스위처는 중앙 유지(기존 absolute 그대로) */
-/* (1) 좌측 패널로 옮긴 언어선택 */
-#v83nav .v83-lang.lang-menu{margin:2px 6px 6px;align-self:stretch;}
-#v83nav .v83-lang .lang-cur{width:100%;justify-content:flex-start;gap:9px;padding:9px 14px;
-  border-radius:999px;font-size:14.5px;font-weight:700;}
-#v83nav .v83-lang .lang-cur .lc-arrow{margin-left:auto;}
-#v83nav .v83-lang .lang-opts{left:0;right:0;top:auto;bottom:calc(100% + 6px);min-width:0;z-index:40;}
+/* (1)→라운드17: 언어선택을 좌측 패널의 다른 메뉴와 똑같은 모양으로 (칩 느낌 제거) */
+#v83nav .v83-lang.lang-menu{margin:0;align-self:stretch;}
+#v83nav .v83-lang .lang-cur{width:100%;justify-content:flex-start;background:none;border:0;
+  gap:19px;padding:11px 14px;border-radius:999px;font-size:19.5px;font-weight:400;letter-spacing:-.01em;
+  font-family:inherit;color:var(--text);}
+#v83nav .v83-lang .lang-cur:hover{background:var(--bg-soft);border:0;}
+#v83nav .v83-lang .lang-flag{width:26px;height:20px;border-radius:3px;flex:0 0 auto;}
+#v83nav .v83-lang .lang-cur .lc-arrow{margin-left:auto;font-size:11px;}
+#v83nav .v83-lang .lang-opts{left:8px;right:8px;top:auto;bottom:calc(100% + 4px);min-width:0;z-index:40;}
+#v83nav .v83-lang .lang-opts button{font-size:15px;padding:10px 14px;gap:11px;}
 /* (2) 함께 읽기: 상세뷰에서만 우측 패널에 노출. 카드 안 원본 related는 숨김 */
 .v83one .related{display:none !important;}
 #v83relSec .hot-rail{display:flex;flex-direction:column;gap:0;overflow:visible;padding:0;}
@@ -10089,7 +10093,7 @@ html.v83 #v83nav .v83-link svg{width:26px;height:26px;stroke-width:1.8;}
 html.v83 #v83nav .v83-cta{padding:15px;font-size:16.5px;margin:16px 8px 6px;}
 html.v83 #v83nav .v83-me{font-size:15px;gap:11px;padding:10px 12px;}
 html.v83 #v83nav .v83-me .v83-ava{width:38px;height:38px;font-size:16px;}
-html.v83 #v83nav .v83-lang .lang-cur{font-size:15px;}
+html.v83 #v83nav .v83-lang .lang-cur{font-size:19.5px;}
 /* 상단바: 최신/팔로잉 탭 글씨를 X 탭 크기로 */
 html.v83 #v83fsw button{font-size:15.5px;}
 /* 우측 패널: X처럼 섹션마다 둥근 테두리 박스 */
@@ -10099,6 +10103,18 @@ html.v83 #v83rail section:not(.nl){border:1px solid var(--line);border-radius:16
 html.v83 #v83rail section:not(.nl) > .section-title{font-size:19px;font-weight:800;
   letter-spacing:-.02em;margin:0 0 12px;}
 html.v83 #v83rail .hotl-row{padding:10px 2px;}
+/* --- 라운드17 --- */
+/* ① 피드 카드에선 댓글창(입력바+미리보기+스레드)과 함께 읽기 숨김 — 상세에서만 */
+html.v83 #feedList > .card:not(.v83one) .twin,
+html.v83 #feedList > .card:not(.v83one) .twin-list,
+html.v83 #feedList > .card:not(.v83one) .comment-box,
+html.v83 #feedList > .card:not(.v83one) .related{display:none !important;}
+/* ② 상단바 위아래 폭 축소 (12px→7px) + 컬럼 고정 오프셋 보정 */
+html.v83 .nav-inner{padding:7px 16px;}
+html.v83 .nav-inner .v83-search input{padding:8px 15px;}
+html.v83 #v83nav{top:52px;height:calc(100vh - 52px);}
+html.v83 #v83rail{top:52px;max-height:calc(100vh - 52px);}
+html.v83 #v83fsw button{padding:0 0 1px;}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -10632,6 +10648,13 @@ function v83Relabel(){
       var ba = fsw.querySelector('button[data-f="all"]'); if (ba) ba.textContent = fl[0];
       var bm = fsw.querySelector('button[data-f="mine"]'); if (bm) bm.textContent = fl[1];
     }
+    /* 라운드17: 좌측 패널의 언어 항목은 코드(KO) 대신 풀네임(한국어)으로 — 메뉴답게 */
+    var LNAMES = { KO:"한국어", EN:"English", JA:"日本語" };
+    document.querySelectorAll("#v83nav .v83-lang span").forEach(function(sp){
+      if (sp.classList.contains("lc-arrow")) return;
+      var full = LNAMES[(sp.textContent || "").trim()];
+      if (full) sp.textContent = full;
+    });
   } catch (e){}
 }
 
