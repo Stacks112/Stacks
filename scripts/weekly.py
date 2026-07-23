@@ -88,10 +88,22 @@ def notify(tag, title, msg, url):
         return False
 
 
-def send_newsletter(md_by_lang):
-    """Hook for a real ESP send. No-op by default (no public Substack API).
-    Return True if a send actually happened."""
-    return False
+def send_newsletter(hot):
+    """Send the weekly digest as an HTML email via Resend to the Stibee
+    subscriber list (see scripts/weekly_send.py). No-op if keys are absent,
+    so the workflow stays green until the secrets are configured.
+    Returns True if a send actually happened."""
+    if not (os.environ.get("RESEND_API_KEY") and
+            (os.environ.get("STIBEE_API_KEY") or os.environ.get("WEEKLY_TEST_TO"))):
+        print("email send skipped: RESEND_API_KEY / STIBEE_API_KEY not set")
+        return False
+    try:
+        import weekly_send
+        sent, errors = weekly_send.send_weekly(hot)
+        return sent > 0 and not errors
+    except Exception as e:  # noqa: BLE001
+        print("email send failed: %s" % e)
+        return False
 
 
 def main():
@@ -116,7 +128,7 @@ def main():
             f.write(md)
         print("wrote " + path)
 
-    sent = send_newsletter(md_by_lang)
+    sent = send_newsletter(hot)
 
     # announce to readers regardless (the site's Weekly is fresh)
     n = len(hot)
