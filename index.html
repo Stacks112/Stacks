@@ -902,6 +902,8 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   html.rbeta .oc .oc-note{display:block;margin-top:2px;}
   /* hide the top category filter pills (전체/투자 고수/정치인…) */
   html.rbeta #v82tabs,html.rbeta .v82-tabs{display:none !important;}
+  /* remove the top-bar language chip — language lives in the profile drawer now */
+  html.rbeta .nav-inner .lang-menu{display:none !important;}
   html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
   /* byline: avatar + full name on one line, date on the line below (name never truncated) */
   html.rbeta .card-top{flex-wrap:nowrap;align-items:flex-start;}
@@ -2886,8 +2888,19 @@ function langParam(){
   try { const l = new URLSearchParams(location.search).get("l"); if (l === "ko" || l === "en" || l === "ja") return l; } catch (e) {}
   return null;
 }
+/* default language by country of access (timezone proxy): Korea→ko, Japan→ja, else English */
+function geoLang(){
+  try {
+    var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "");
+    if (tz.indexOf("Seoul") !== -1) return "ko";
+    if (tz.indexOf("Tokyo") !== -1) return "ja";
+    return "en";
+  } catch(e){ return "en"; }
+}
 let LANG = langParam() || lsGet("stk_lang") ||
-  ((l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : "en")((navigator.language || "").toLowerCase()));
+  ((typeof RBETA !== "undefined" && RBETA)
+    ? geoLang()
+    : ((l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : "en")((navigator.language || "").toLowerCase())));
 let TAB = "all";
 
 function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsSet("stk_lang", l); closeLangMenu(); render(); }
