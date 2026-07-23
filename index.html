@@ -10046,9 +10046,13 @@ html.v83 .hotl-sum{display:block;width:100%;padding:26px 11px 9px;box-sizing:bor
 #feedList .card.is-read h3,#feedList .card.is-read .gist,#feedList .card.is-read .title-orig,
 #feedList .card.is-read .card-thumb,#feedList .card.is-read .engage,#feedList .card.is-read .why{opacity:1 !important;}
 /* --- 라운드13 --- */
-/* (1) 검색창을 우측 패널 최상단에 고정 (스크롤해도 상단 유지) */
-html.v83 #v83rail .v83-search{position:sticky;top:0;z-index:6;background:var(--bg);
-  padding:6px 0 10px;margin:0 0 6px !important;}
+/* (1)→라운드16: 검색창은 상단바 맨 우측 (X처럼). 이동은 v83MoveSearch()가 수행 */
+html.v83 .nav-inner .v83-search{margin-left:auto;width:min(290px,24vw);flex:0 0 auto;}
+html.v83 .nav-inner .v83-search input{width:100%;box-sizing:border-box;padding:9px 16px;
+  border-radius:999px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);
+  font:inherit;font-size:13.5px;}
+html:not(.v83) .v83-search{display:none;}
+/* 검색창이 상단바 우측을 차지하므로 탭 스위처는 중앙 유지(기존 absolute 그대로) */
 /* (1) 좌측 패널로 옮긴 언어선택 */
 #v83nav .v83-lang.lang-menu{margin:2px 6px 6px;align-self:stretch;}
 #v83nav .v83-lang .lang-cur{width:100%;justify-content:flex-start;gap:9px;padding:9px 14px;
@@ -10077,6 +10081,24 @@ html.v83 #v83rail .v83-search{position:sticky;top:0;z-index:6;background:var(--b
   /* 피드 카드의 인라인 댓글 입력창 제거 — 💬 아이콘으로 댓글 시트(새창) 열림 */
   .card.v82c .twin,.card.v82c .twin-list{display:none !important;}
 }
+/* --- 라운드16: 데스크톱 X 파리티 --- */
+/* 좌측 패널: X처럼 큰 글씨(20px 일반 굵기, 선택만 볼드) + 큰 아이콘 */
+html.v83 #v83nav .v83-link{font-size:19.5px;font-weight:400;gap:19px;padding:11px 14px;letter-spacing:-.01em;}
+html.v83 #v83nav .v83-link.on{font-weight:800;}
+html.v83 #v83nav .v83-link svg{width:26px;height:26px;stroke-width:1.8;}
+html.v83 #v83nav .v83-cta{padding:15px;font-size:16.5px;margin:16px 8px 6px;}
+html.v83 #v83nav .v83-me{font-size:15px;gap:11px;padding:10px 12px;}
+html.v83 #v83nav .v83-me .v83-ava{width:38px;height:38px;font-size:16px;}
+html.v83 #v83nav .v83-lang .lang-cur{font-size:15px;}
+/* 상단바: 최신/팔로잉 탭 글씨를 X 탭 크기로 */
+html.v83 #v83fsw button{font-size:15.5px;}
+/* 우측 패널: X처럼 섹션마다 둥근 테두리 박스 */
+html.v83 #v83rail{padding:8px 10px 24px 18px;}
+html.v83 #v83rail section:not(.nl){border:1px solid var(--line);border-radius:16px;
+  padding:14px 16px 12px;background:var(--bg);}
+html.v83 #v83rail section:not(.nl) > .section-title{font-size:19px;font-weight:800;
+  letter-spacing:-.02em;margin:0 0 12px;}
+html.v83 #v83rail .hotl-row{padding:10px 2px;}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -10577,6 +10599,17 @@ function v83MoveLang(){
   } catch (e){}
 }
 
+/* 라운드16: 검색창을 우측 패널 최상단 → 상단바 맨 우측으로 이동 (X처럼) */
+function v83MoveSearch(){
+  try {
+    var ni = document.querySelector(".nav-inner");
+    var sr = document.querySelector(".v83-search");
+    if (!ni || !sr) return;
+    if (sr.parentNode === ni) return;
+    ni.appendChild(sr);
+  } catch (e){}
+}
+
 /* (3) 언어 변경 시 좌측 패널이 새로고침 없이 즉시 바뀌도록 라벨 다시 세팅 */
 function v83Relabel(){
   try {
@@ -10684,6 +10717,7 @@ if (typeof render === "function"){
     var r = _v83origRender.apply(this, arguments);
     try { var one = document.querySelector("#feedList > .card.v83one"); if (one) v83CardFix(one); } catch (e){}
     try { v83MoveLang(); } catch (e){}
+    try { v83MoveSearch(); } catch (e){}
     try { v83Relabel(); } catch (e){}
     try { v83RelatedRail(); } catch (e){}
     return r;
@@ -10694,12 +10728,15 @@ if (typeof render === "function"){
 var _v83initN = 0;
 var _v83initTimer = setInterval(function(){
   _v83initN++;
-  try { v83MoveLang(); v83Relabel(); } catch (e){}
+  try { v83MoveLang(); v83MoveSearch(); v83Relabel(); } catch (e){}
   var nav = document.getElementById("v83nav"), lm = document.getElementById("langMenu");
-  if (nav && lm && nav.contains(lm)) { clearInterval(_v83initTimer); }
+  var ni = document.querySelector(".nav-inner"), sr = document.querySelector(".v83-search");
+  var langOk = nav && lm && nav.contains(lm);
+  var searchOk = ni && sr && sr.parentNode === ni;
+  if (langOk && searchOk) { clearInterval(_v83initTimer); }
   else if (_v83initN > 40) { clearInterval(_v83initTimer); }
 }, 150);
-v83MoveLang(); v83Relabel(); v83RelatedRail();
+v83MoveLang(); v83MoveSearch(); v83Relabel(); v83RelatedRail();
 })();
 </script>
 
