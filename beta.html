@@ -10132,6 +10132,25 @@ html.v83 .twin{display:flex;align-items:center;gap:9px;margin-top:12px;
   font-family:var(--ui-font);}
 .twin-send:disabled{opacity:.5;cursor:default;}
 html[data-theme="dark"] .twin-in:focus{background:#141519;}
+/* ---- inline comment previews under the reply bar (desktop v83) ---- */
+.twin-list{display:none;}
+html.v83 .twin-list{display:block;}
+.twin-it{display:flex;gap:9px;margin-top:12px;cursor:pointer;}
+.twin-it .twi-av{width:30px;height:30px;font-size:12.5px;flex:0 0 30px;}
+.twin-it-m{flex:1;min-width:0;}
+.twin-it .twi-h{font-size:13px;}
+.twin-it .twi-t{font-size:13.5px;line-height:1.5;}
+.twin-more{background:none;border:0;color:#1d9bf0;font-size:13px;font-weight:600;
+  padding:10px 0 2px;cursor:pointer;font-family:var(--ui-font);display:block;}
+/* ---- links + internal quote cards inside comments ---- */
+.twi-link{color:#1d9bf0;text-decoration:none;word-break:break-all;}
+.twi-link:hover{text-decoration:underline;}
+.twi-quote{margin-top:8px;border:1px solid var(--line);border-radius:14px;
+  padding:10px 12px;cursor:pointer;transition:background .12s;}
+.twi-quote:hover{background:var(--bg-soft);}
+.twi-quote-h{display:flex;align-items:center;gap:7px;font-size:12.5px;}
+.twi-qav{width:20px !important;height:20px !important;font-size:10px !important;flex:0 0 20px !important;}
+.twi-quote-t{font-size:13.5px;font-weight:700;margin-top:4px;line-height:1.45;word-break:keep-all;}
 .twc-beta-tag{position:fixed;left:10px;bottom:10px;z-index:13990;background:#1d9bf0;
   color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;border-radius:999px;
   padding:3px 9px;opacity:.85;pointer-events:none;font-family:var(--mono-font);}
@@ -10149,21 +10168,21 @@ var TWS = {
     replyingTo:"Replying to {h}", cancel:"Cancel", reply:"Reply",
     empty:"No comments yet. Start the conversation.", loading:"Loading comments…",
     error:"Couldn't post. Please try again.", rate:"Too fast — try again in a minute.",
-    sent:"Posted.", now:"now", min:"m", hr:"h", day:"d" },
+    sent:"Posted.", now:"now", min:"m", hr:"h", day:"d", viewAll:"View all {n} comments" },
   ko: { title:"댓글", top:"인기순", newest:"최신순",
     viewReplies:"답글 {n}개 보기", viewReply:"답글 1개 보기", hideReplies:"답글 접기",
     ph:"댓글을 남겨보세요", nameLabel:"이름", namePh:"댓글에 표시될 이름 (한 번만 설정)",
     replyingTo:"{h}님에게 답글 남기는 중", cancel:"취소", reply:"답글",
     empty:"아직 댓글이 없어요. 첫 대화를 시작해보세요.", loading:"댓글 불러오는 중…",
     error:"등록에 실패했어요. 다시 시도해주세요.", rate:"너무 빨라요. 잠시 후 다시 시도해주세요.",
-    sent:"게시됐어요.", now:"방금", min:"분", hr:"시간", day:"일" },
+    sent:"게시됐어요.", now:"방금", min:"분", hr:"시간", day:"일", viewAll:"댓글 {n}개 모두 보기" },
   ja: { title:"コメント", top:"人気順", newest:"新着順",
     viewReplies:"返信{n}件を表示", viewReply:"返信1件を表示", hideReplies:"返信を隠す",
     ph:"返信を投稿", nameLabel:"名前", namePh:"コメントに表示される名前",
     replyingTo:"{h}さんに返信中", cancel:"キャンセル", reply:"返信",
     empty:"まだコメントがありません。最初の会話を始めましょう。", loading:"コメントを読み込み中…",
     error:"投稿できませんでした。もう一度お試しください。", rate:"速すぎます。少し待ってから再試行してください。",
-    sent:"投稿しました。", now:"たった今", min:"分", hr:"時間", day:"日" }
+    sent:"投稿しました。", now:"たった今", min:"分", hr:"時間", day:"日", viewAll:"コメント{n}件をすべて表示" }
 };
 function TW(){ return TWS[(typeof LANG !== "undefined" && TWS[LANG]) ? LANG : "ko"]; }
 
@@ -10201,9 +10220,42 @@ function twTime(iso){
   } catch (e){ return ""; }
 }
 function twLinkify(escaped){
-  return escaped.replace(/(^|[\s>])(@[\w가-힣ぁ-ゖァ-ヺ一-龯._-]{1,24})/g,
+  /* URLs first (matched on the escaped text; & is already &amp; which is valid in href) */
+  var out = escaped.replace(/(https?:\/\/[^\s<]+)/g, function(m){
+    return '<a class="twi-link" href="' + m + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">' + m + "</a>";
+  });
+  return out.replace(/(^|[\s])(@[\w가-힣ぁ-ゖァ-ヺ一-龯._-]{1,24})/g,
     '$1<span class="twi-mention">$2</span>');
 }
+
+/* ---- internal post links -> quote card (like a quoted tweet) ---- */
+function twQuoteId(text){
+  try {
+    var re = /(?:stacksdaily\.com|stacks112\.github\.io|wnrakrhdn128\.workers\.dev)\/(?:p\/([a-z0-9_-]+)\.html|s\/([a-z0-9_-]+)|#?sig-([a-z0-9_-]+))/gi;
+    var m;
+    while ((m = re.exec(text))){
+      var id = m[1] || m[2] || m[3];
+      if (id && typeof ITEMS !== "undefined" && ITEMS.some(function(x){ return x.id === id; })) return id;
+    }
+  } catch (e){}
+  return null;
+}
+function twQuoteHtml(id){
+  var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === id; }) : null;
+  if (!it) return "";
+  var src = (typeof dispName === "function") ? dispName(it.source) : it.source;
+  return '<div class="twi-quote" onclick="twOpenQuote(\'' + id + '\', event)">'
+    + '<div class="twi-quote-h">' + twAvatar(src, "twi-qav") + "<b>" + esc(src) + "</b>"
+    + '<span class="twi-hd">· ' + esc((it.date || "").slice(5)) + "</span></div>"
+    + '<div class="twi-quote-t">' + esc(it.title && (it.title[LANG] || it.title.en) || "") + "</div>"
+    + "</div>";
+}
+window.twOpenQuote = function(id, ev){
+  if (ev){ ev.stopPropagation(); ev.preventDefault(); }
+  closeComments();
+  if (document.documentElement.classList.contains("v83") && typeof v83OpenItem === "function") v83OpenItem(id);
+  else if (typeof goToItem === "function") goToItem(id);
+};
 
 /* ---------- sheet skeleton (built once) ---------- */
 var twcBuilt = false;
@@ -10316,6 +10368,8 @@ function twcLoad(){
     .then(function(j){
       TWC.rows = (j && Array.isArray(j.data)) ? j.data : [];
       twcRender();
+      TWIN_CACHE[TWC.id] = TWC.rows;
+      twinRender(TWC.id);
     })
     .catch(function(){
       list.innerHTML = '<div class="twc-status">' + W.empty + "</div>";
@@ -10360,6 +10414,7 @@ function twcItemHtml(c, isReply, kidCount, isOpen){
          : (kidCount === 1 ? W.viewReply : W.viewReplies.replace("{n}", kidCount)))
       + "</button>"
     : "";
+  var qid = twQuoteId(c.content);
   return '<div class="twi' + (isReply ? " twi-r" : "") + (isOpen ? " twi-open" : "")
     + (kidCount ? " twi-haskids" : "") + '" id="twi-' + cid + '">'
     + '<div class="twi-g">' + twAvatar(c.nickname)
@@ -10369,6 +10424,7 @@ function twcItemHtml(c, isReply, kidCount, isOpen){
     + (admin ? '<span class="twi-badge" title="Stacks">✓</span>' : "")
     + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + "</span></div>"
     + '<div class="twi-t">' + twLinkify(esc(c.content)) + "</div>"
+    + (qid ? twQuoteHtml(qid) : "")
     + acts + more
     + (isOpen ? '<div class="twi-kids" id="twk-' + cid + '"></div>' : "")
     + "</div></div>";
@@ -10512,8 +10568,82 @@ window.twInlineHtml = function(id){
     + '<input class="twin-in" id="twin-' + id + '" maxlength="2000" placeholder="' + esc(W.ph)
     + '" onkeydown="twInlineKey(event, \'' + id + '\')">'
     + '<button class="twin-send" id="twinb-' + id + '" onclick="twInlineSend(\'' + id + '\')">' + send + "</button>"
-    + "</div>";
+    + "</div>"
+    + '<div class="twin-list" id="twinl-' + id + '" data-twinl="' + id + '"></div>';
 };
+
+/* ---------- inline comment previews: lazy-loaded per visible card ---------- */
+var TWIN_CACHE = {};
+function twinItem(c, pageId){
+  var qid = twQuoteId(c.content);
+  return '<div class="twin-it" onclick="if(event.target.closest(\'a,.twi-quote\'))return;toggleComments(\'' + pageId + '\')">'
+    + twAvatar(c.nickname)
+    + '<div class="twin-it-m">'
+    + '<div class="twi-h"><b>' + esc(c.nickname) + "</b>"
+    + (c.admin ? '<span class="twi-badge" title="Stacks">✓</span>' : "")
+    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + "</span></div>"
+    + '<div class="twi-t">' + twLinkify(esc(c.content)) + "</div>"
+    + (qid ? twQuoteHtml(qid) : "")
+    + "</div></div>";
+}
+function twinRender(id){
+  var el = document.getElementById("twinl-" + id);
+  if (!el) return;
+  var rows = TWIN_CACHE[id] || [];
+  if (!rows.length){ el.innerHTML = ""; return; }
+  var W = TW();
+  var roots = rows.filter(function(c){ return !c.parentId; });
+  if (!roots.length) roots = rows.slice();
+  roots.sort(function(a, b){
+    var d = (Number(b.likes) || 0) - (Number(a.likes) || 0);
+    return d !== 0 ? d : (b.id || 0) - (a.id || 0);
+  });
+  var top = roots.slice(0, 2);
+  var html = top.map(function(c){ return twinItem(c, id); }).join("");
+  if (rows.length > top.length){
+    html += '<button class="twin-more" onclick="toggleComments(\'' + id + '\')">'
+      + W.viewAll.replace("{n}", rows.length) + "</button>";
+  }
+  el.innerHTML = html;
+}
+function twinLoad(id, force){
+  if (!force && TWIN_CACHE[id] !== undefined){ twinRender(id); return; }
+  fetch(COMMENTS_API + "/comments?pageId=" + encodeURIComponent(id))
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      TWIN_CACHE[id] = (j && Array.isArray(j.data)) ? j.data : [];
+      twinRender(id);
+    })
+    .catch(function(){});
+}
+var twinIO = ("IntersectionObserver" in window) ? new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if (!en.isIntersecting) return;
+    twinIO.unobserve(en.target);
+    var id = en.target.getAttribute("data-twinl");
+    if (!id) return;
+    if (TWIN_CACHE[id] !== undefined){ twinRender(id); return; }
+    var n = (typeof COMMENT_COUNTS !== "undefined" && COMMENT_COUNTS[id]) || 0;
+    if (n > 0) twinLoad(id);
+  });
+}, { rootMargin: "250px" }) : null;
+var twinScanQueued = false;
+function twinObserveAll(){
+  if (!twinIO) return;
+  document.querySelectorAll(".twin-list").forEach(function(el){
+    if (el.getAttribute("data-twobs")) return;
+    el.setAttribute("data-twobs", "1");
+    twinIO.observe(el);
+  });
+}
+try {
+  new MutationObserver(function(){
+    if (twinScanQueued) return;
+    twinScanQueued = true;
+    requestAnimationFrame(function(){ twinScanQueued = false; twinObserveAll(); });
+  }).observe(document.body, { childList: true, subtree: true });
+} catch (e){}
+twinObserveAll();
 window.twInlineKey = function(ev, id){
   if (ev && ev.key === "Enter"){ ev.preventDefault(); twInlineSend(id); }
 };
@@ -10548,6 +10678,7 @@ window.twInlineSend = function(id){
     setTimeout(function(){ inp.placeholder = W.ph; }, 2500);
     if (typeof track === "function") track("comment/" + id);
     if (typeof bumpCommentCount === "function") bumpCommentCount(id);
+    twinLoad(id, true);
     if (TWC.id === id) twcLoad();
   }).catch(function(e){
     inp.placeholder = (e === "rate") ? W.rate : W.error;
