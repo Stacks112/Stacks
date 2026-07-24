@@ -48,25 +48,56 @@ _SLUG_BY_KEY = {}
 _KEY_BY_SLUG = {}
 
 
+def _ascii_slug(s):
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+
+def _claim(key, base):
+    """base 슬러그를 key에 배정. 다른 키가 이미 그 슬러그를 쓰면 접미사로 분리."""
+    slug = base
+    if _KEY_BY_SLUG.get(slug, key) != key:
+        slug = base + "-" + hashlib.md5(key.encode("utf-8")).hexdigest()[:6]
+    _SLUG_BY_KEY[key] = slug
+    _KEY_BY_SLUG[slug] = key
+    return slug
+
+
+def register_slugs_from_aliases(entities):
+    """비ASCII 엔티티 키의 슬러그를 엔티티 aliases의 영어 표기에서 자동 도출한다.
+    (SLUG_OVERRIDE를 손으로 유지할 필요 없음.) 정렬 순서로 처리해 실행 간 안정적."""
+    for key in sorted(entities):
+        if key in _SLUG_BY_KEY:
+            continue
+        if key in SLUG_OVERRIDE:
+            _claim(key, SLUG_OVERRIDE[key])
+            continue
+        base = _ascii_slug(key)
+        if base:  # ASCII 키는 기존 슬러그 그대로 (하위호환)
+            _claim(key, base)
+            continue
+        cand = ""  # 비ASCII: 첫 ASCII 별칭에서 슬러그 도출
+        for al in (entities.get(key) or {}).get("aliases", []):
+            s = _ascii_slug(al)
+            if s:
+                cand = s
+                break
+        if not cand:  # 쓸 만한 영어 별칭이 없으면 안정적 해시로 폴백
+            cand = "k-" + hashlib.md5(key.encode("utf-8")).hexdigest()[:8]
+        _claim(key, cand)
+
+
 def slugify(key):
     cached = _SLUG_BY_KEY.get(key)
     if cached is not None:
         return cached
     if key in SLUG_OVERRIDE:
-        slug = SLUG_OVERRIDE[key]
+        base = SLUG_OVERRIDE[key]
     else:
         base = re.sub(r"[^a-z0-9]+", "-", key.lower()).strip("-")
         if not base:
-            # 순수 한글 등 비ASCII 키는 [a-z0-9]가 없어 슬러그가 비고,
-            # 예전에는 모두 "x"로 뭉개져 e/x.html 하나로 충돌했다.
+            # 별칭 등록 전 비ASCII 키가 여기 오면 안정적 해시로 폴백.
             base = "k-" + hashlib.md5(key.encode("utf-8")).hexdigest()[:8]
-        slug = base
-        # 다른 키가 이미 이 슬러그를 차지했으면 안정적 접미사로 구분.
-        if _KEY_BY_SLUG.get(slug, key) != key:
-            slug = base + "-" + hashlib.md5(key.encode("utf-8")).hexdigest()[:6]
-    _SLUG_BY_KEY[key] = slug
-    _KEY_BY_SLUG[slug] = key
-    return slug
+    return _claim(key, base)
 
 
 def build_matcher(entities):
@@ -1146,6 +1177,7 @@ def main():
         json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print("[glossary] merged " + str(_gadd) + " curated terms into entities")
     items = sorted(items, key=lambda x: x.get("date", ""), reverse=True)
+    register_slugs_from_aliases(entities)
     pats = build_matcher(entities)
 
     # which entities each item touches (for internal links)
