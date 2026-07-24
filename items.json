@@ -4995,13 +4995,13 @@
       },
       "stance": "watch",
       "outcome": {
-        "status": "pending",
+        "status": "hit",
         "note": {
-          "en": "Grade on July 23: did Alphabet keep 2026 capex guidance at ~$180-190B (hold), raise, or cut it?",
-          "ko": "7월 23일 채점: 알파벳이 2026년 CAPEX 가이던스를 약 1,800~1,900억 달러로 유지(hold)했는가, 상향인가, 하향인가?",
-          "ja": "7月23日に採点：アルファベットは2026年の設備投資ガイダンスを約1,800〜1,900億ドルで維持したか、引き上げか、引き下げか？"
+          "en": "Alphabet's Q2 2026 earnings (reported July 22, 2026) beat revenue and profit estimates, but the company raised its 2026 capex guidance to $195-205B from the prior $180-190B, and GOOGL shares fell about 5-7% on the capex hike despite the beat -- confirming Meru's call that the capex line, not profit, would drive the market reaction.",
+          "ko": "알파벳의 2026년 2분기 실적(7월 22일 발표)은 매출과 이익 모두 예상치를 웃돌았지만, 회사는 2026년 CAPEX 가이던스를 기존 1,800~1,900억 달러에서 1,950~2,050억 달러로 상향했고, 실적 호조에도 CAPEX 확대 우려로 주가는 약 5~7% 하락했다. 이는 이익이 아니라 CAPEX 한 줄이 시장 반응을 좌우한다는 메르의 전망을 확인시켰다.",
+          "ja": "アルファベットの2026年第2四半期決算(7月22日発表)は売上・利益とも予想を上回ったが、会社は2026年の設備投資ガイダンスを従来の1,800〜1,900億ドルから1,950〜2,050億ドルへ引き上げ、好決算にもかかわらず設備投資拡大への懸念からGOOGL株は約5〜7%下落した。これは利益ではなく設備投資の一行が市場の反応を左右するというメルの見立てを裏付けた。"
         },
-        "due": "2026-07-25"
+        "gradedOn": "2026-07-25"
       },
       "ts": "2026-07-20T12:00:00+00:00"
     },
