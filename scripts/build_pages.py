@@ -17,6 +17,7 @@ the RSS feed stay in lockstep with published content. No external deps.
 import html
 import json
 import re
+import hashlib
 from datetime import datetime, timezone
 
 BASE = "https://stacksdaily.com/"
@@ -42,11 +43,30 @@ def clip(text, n):
 SLUG_OVERRIDE = {"메르": "meru"}
 
 
+# 슬러그 소유권 레지스트리 (같은 키는 항상 같은 슬러그, 충돌은 결정적으로 분리)
+_SLUG_BY_KEY = {}
+_KEY_BY_SLUG = {}
+
+
 def slugify(key):
+    cached = _SLUG_BY_KEY.get(key)
+    if cached is not None:
+        return cached
     if key in SLUG_OVERRIDE:
-        return SLUG_OVERRIDE[key]
-    s = re.sub(r"[^a-z0-9]+", "-", key.lower()).strip("-")
-    return s or "x"
+        slug = SLUG_OVERRIDE[key]
+    else:
+        base = re.sub(r"[^a-z0-9]+", "-", key.lower()).strip("-")
+        if not base:
+            # 순수 한글 등 비ASCII 키는 [a-z0-9]가 없어 슬러그가 비고,
+            # 예전에는 모두 "x"로 뭉개져 e/x.html 하나로 충돌했다.
+            base = "k-" + hashlib.md5(key.encode("utf-8")).hexdigest()[:8]
+        slug = base
+        # 다른 키가 이미 이 슬러그를 차지했으면 안정적 접미사로 구분.
+        if _KEY_BY_SLUG.get(slug, key) != key:
+            slug = base + "-" + hashlib.md5(key.encode("utf-8")).hexdigest()[:6]
+    _SLUG_BY_KEY[key] = slug
+    _KEY_BY_SLUG[slug] = key
+    return slug
 
 
 def build_matcher(entities):
