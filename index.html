@@ -190,11 +190,16 @@ const STRINGS = {
     ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking", ceo:"CEO", coverage:"Where investors stand", recentTakes:"Recent takes", follow:"Follow", featTitle:"This week’s reads", featPill:"This week", rankTitle:"Top performers", popTitle:"Popular", rankSub:"See which investors call it right most often.", popSub:"The reads everyone’s on right now.", calls:" calls", hitN:"Hit", w1:"1W", w2:"1M", w3:"3M", w4:"1Y", howTitle:"How it works.", hitRate:"Hit rate", howSectors:["AI","Semis","EV"], howRole:"Investor", rolePol:"Politician", step1H:"Follow the minds you trust", step1D:"Follow the investors and companies you care about.", step2H:"Pick the sectors you follow", step2D:"See what the sharpest investors think across that sector.", step3H:"Investing made easy to read", step3D:"The world’s top investors in your language — summarized.", rankNote:"Sample figures — the live ranking is on the site.", jargon:{pre:"This stock's ", term:"valuation", def:"How a company’s price compares with what it’s actually worth.", post:" looks stretched."} },
     install: "Add to Home Screen",
     installIOS: "To install: tap Share, then Add to Home Screen.",
+    miInvite: "Add Stacks to your home screen?",
+    browserGeneric: "your browser",
     iosGuideTitle: "Add to Home Screen",
-    iosGuideLead: "Two quick steps in Safari to use Stacks like an app.",
-    iosGuideS1Bottom: "Tap the Share button at the bottom of Safari",
-    iosGuideS1Top: "Tap the Share button at the top right of Safari",
+    iosGuideLead: "Two quick steps in {b} to use Stacks like an app.",
+    iosGuideS1Bottom: "Tap the Share button at the bottom of {b}",
+    iosGuideS1Top: "Tap the Share button at the top right of {b}",
+    guideShareGeneric: "Tap the Share button in {b}",
+    guideMenuAndroid: "Open the {b} menu (⋮)",
     iosGuideS2: "Choose ‘Add to Home Screen’",
+    guideS2Android: "Choose ‘Add to Home screen’ or ‘Install app’",
     iosGuideDone: "Got it",
     hot: "Hot this week",
     original: "Original",
@@ -344,11 +349,16 @@ const STRINGS = {
     ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중", ceo:"CEO", coverage:"투자자들의 관점", recentTakes:"최근 관점", follow:"팔로우", featTitle:"이번 주 주목할 읽을거리", featPill:"이번 주", rankTitle:"적중 랭킹", popTitle:"인기 글", rankSub:"투자 고수들의 적중 랭킹을 확인해보세요.", popSub:"지금 인기 있는 글을 확인해보세요.", calls:"개 예측", hitN:"적중", w1:"1주", w2:"1개월", w3:"3개월", w4:"1년", howTitle:"이렇게 작동해요.", hitRate:"적중률", howSectors:["반도체","AI","2차전지"], howRole:"투자 고수", rolePol:"정치인", step1H:"고수·기업을 팔로우하세요", step1D:"관심 있는 투자 고수나 기업을 팔로우하세요.", step2H:"관심 섹터를 설정하세요", step2D:"그 섹터의 투자 고수들의 의견을 한데 모아 봅니다.", step3H:"어려운 투자, 쉽게 읽으세요", step3D:"전 세계 고수들의 글을 당신의 언어로, 요약과 함께.", rankNote:"예시 데이터예요. 실제 랭킹은 사이트에서 확인하세요.", jargon:{pre:"이 종목은 ", term:"밸류에이션", def:"기업 가치 대비 주가가 어느 수준인지 보여주는 지표예요.", post:"이 높아요."} },
     install: "홈 화면에 추가",
     installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
+    miInvite: "Stacks를 홈 화면에 추가하고 싶으신가요?",
+    browserGeneric: "브라우저",
     iosGuideTitle: "홈 화면에 추가",
-    iosGuideLead: "사파리에서 두 단계면 앱처럼 쓸 수 있어요.",
-    iosGuideS1Bottom: "사파리 화면 아래쪽의 공유 버튼을 누르세요",
-    iosGuideS1Top: "사파리 오른쪽 위의 공유 버튼을 누르세요",
+    iosGuideLead: "{b}에서 두 단계면 앱처럼 쓸 수 있어요.",
+    iosGuideS1Bottom: "{b} 화면 아래쪽의 공유 버튼을 누르세요",
+    iosGuideS1Top: "{b} 오른쪽 위의 공유 버튼을 누르세요",
+    guideShareGeneric: "{b}의 공유 버튼을 누르세요",
+    guideMenuAndroid: "{b} 메뉴(⋮)를 누르세요",
     iosGuideS2: "'홈 화면에 추가'를 선택하세요",
+    guideS2Android: "'홈 화면에 추가' 또는 '앱 설치'를 선택하세요",
     iosGuideDone: "알겠어요",
     hot: "이번 주 핫한 읽을거리",
     original: "원문",
@@ -498,11 +508,16 @@ const STRINGS = {
     ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中", ceo:"CEO", coverage:"投資家の見方", recentTakes:"最近の視点", follow:"フォロー", featTitle:"今週の注目の記事", featPill:"今週", rankTitle:"実績ランキング", popTitle:"人気の記事", rankSub:"投資の達人の的中ランキングをチェック。", popSub:"いま人気の記事をチェック。", calls:"件の予測", hitN:"的中", w1:"1週", w2:"1ヶ月", w3:"3ヶ月", w4:"1年", howTitle:"使い方", hitRate:"的中率", howSectors:["半導体","AI","EV"], howRole:"投資家", rolePol:"政治家", step1H:"気になる投資家をフォロー", step1D:"気になる投資家や企業をフォローしましょう。", step2H:"気になるセクターを設定", step2D:"そのセクターの達人たちの見方をまとめて表示。", step3H:"むずかしい投資を、やさしく", step3D:"世界の達人の記事を、あなたの言語で要約付きで。", rankNote:"サンプルデータです。実際のランキングはサイトで。", jargon:{pre:"この銘柄は", term:"バリュエーション", def:"企業価値に対して株価がどの水準かを示す指標です。", post:"が高い。"} },
     install: "ホーム画面に追加",
     installIOS: "インストールするには共有ボタンから「ホーム画面に追加」を選択してください。",
+    miInvite: "Stacksをホーム画面に追加しますか？",
+    browserGeneric: "ブラウザ",
     iosGuideTitle: "ホーム画面に追加",
-    iosGuideLead: "Safariで2ステップ、アプリのように使えます。",
-    iosGuideS1Bottom: "Safari下部の共有ボタンをタップ",
-    iosGuideS1Top: "Safari右上の共有ボタンをタップ",
+    iosGuideLead: "{b}で2ステップ、アプリのように使えます。",
+    iosGuideS1Bottom: "{b}画面下部の共有ボタンをタップ",
+    iosGuideS1Top: "{b}右上の共有ボタンをタップ",
+    guideShareGeneric: "{b}の共有ボタンをタップ",
+    guideMenuAndroid: "{b}のメニュー（⋮）を開く",
     iosGuideS2: "「ホーム画面に追加」を選択",
+    guideS2Android: "「ホーム画面に追加」または「アプリをインストール」を選択",
     iosGuideDone: "OK",
     hot: "今週の注目",
     original: "原文",
@@ -7779,11 +7794,31 @@ const isIpad = () => {
   } catch (e) { return false; }
 };
 
-/* iOS는 버튼 클릭으로 '홈 화면에 추가'를 직접 실행할 수 없다(애플이 설치 API 미제공).
-   그래서 탭 시 공유 → 홈 화면에 추가 2단계를 아이콘·화살표로 짚어주는 바텀시트를 띄운다. */
+/* 버튼 클릭으로 '홈 화면에 추가'를 직접 실행할 수 없는 환경(iOS 전 브라우저, 설치
+   프롬프트를 안 주는 안드로이드 브라우저 등)에서, 탭 시 공유/메뉴 → 홈 화면에 추가
+   2단계를 브라우저에 맞게 짚어주는 바텀시트를 띄운다. 사파리 고정이 아니라 UA로 분기. */
 const IOSG_SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1"/></svg>';
+const IOSG_MENU = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>';
 const IOSG_ADD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg>';
 const IOSG_ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14"/><path d="M6 13l6 6 6-6"/></svg>';
+/* UA로 플랫폼·브라우저를 판별. iOS 전용 토큰(CriOS/EdgiOS/FxiOS/OPiOS)을 먼저 확인하고,
+   Edge(Edg)·Opera(OPR)·삼성은 Chrome보다 먼저 잡아야 오분류를 막는다. */
+function uaInfo(){
+  var ua = navigator.userAgent || "";
+  var ios = isIOS(), android = /android/i.test(ua);
+  var key = "other", name = "";
+  if (/CriOS/i.test(ua)) { key = "chrome"; name = "Chrome"; }
+  else if (/EdgiOS/i.test(ua)) { key = "edge"; name = "Edge"; }
+  else if (/FxiOS/i.test(ua)) { key = "firefox"; name = "Firefox"; }
+  else if (/(OPiOS|OPR|OPT)/i.test(ua)) { key = "opera"; name = "Opera"; }
+  else if (/SamsungBrowser/i.test(ua)) { key = "samsung"; name = "Samsung Internet"; }
+  else if (/(EdgA|Edg)/i.test(ua)) { key = "edge"; name = "Edge"; }
+  else if (ios && /Safari/i.test(ua)) { key = "safari"; name = "Safari"; }
+  else if (/Firefox/i.test(ua)) { key = "firefox"; name = "Firefox"; }
+  else if (/Chrome/i.test(ua)) { key = "chrome"; name = "Chrome"; }
+  else if (/Safari/i.test(ua)) { key = "safari"; name = "Safari"; }
+  return { ios: ios, android: android, key: key, name: name };
+}
 function closeIosGuide(){
   const ov = document.getElementById("iosGuide");
   if (ov) ov.hidden = true;
@@ -7792,6 +7827,17 @@ function closeIosGuide(){
 function openIosGuide(){
   try {
     const S = STRINGS[LANG];
+    const info = uaInfo();
+    const bname = info.name || S.browserGeneric;
+    /* 1단계: 안드로이드는 메뉴(⋮), iOS 사파리는 정확한 위치(폰=아래/패드=오른쪽 위),
+       그 외 iOS 브라우저는 위치가 제각각이라 '공유 버튼'만 일반적으로 안내. */
+    let s1, icon1, showArrow;
+    if (info.android){ s1 = S.guideMenuAndroid; icon1 = IOSG_MENU; showArrow = false; }
+    else if (info.key === "safari"){ s1 = isIpad() ? S.iosGuideS1Top : S.iosGuideS1Bottom; icon1 = IOSG_SHARE; showArrow = !isIpad(); }
+    else { s1 = S.guideShareGeneric; icon1 = IOSG_SHARE; showArrow = false; }
+    s1 = String(s1 || "").replace("{b}", bname);
+    const s2 = info.android ? S.guideS2Android : S.iosGuideS2;
+    const lead = String(S.iosGuideLead || "").replace("{b}", bname);
     let ov = document.getElementById("iosGuide");
     if (!ov){
       ov = document.createElement("div");
@@ -7801,8 +7847,8 @@ function openIosGuide(){
         +   '<button class="iosg-x" aria-label="close">&times;</button>'
         +   '<div class="iosg-ttl"></div>'
         +   '<div class="iosg-lead"></div>'
-        +   '<div class="iosg-step"><span class="iosg-n">1</span><span class="iosg-t iosg-s1"></span><span class="iosg-ic">' + IOSG_SHARE + '</span></div>'
-        +   '<div class="iosg-step"><span class="iosg-n">2</span><span class="iosg-t iosg-s2"></span><span class="iosg-ic">' + IOSG_ADD + '</span></div>'
+        +   '<div class="iosg-step"><span class="iosg-n">1</span><span class="iosg-t iosg-s1"></span><span class="iosg-ic iosg-ic1"></span></div>'
+        +   '<div class="iosg-step"><span class="iosg-n">2</span><span class="iosg-t iosg-s2"></span><span class="iosg-ic iosg-ic2"></span></div>'
         +   '<button class="iosg-done"></button>'
         + '</div>'
         + '<div class="iosg-arrow">' + IOSG_ARROW + '</div>';
@@ -7812,14 +7858,16 @@ function openIosGuide(){
       ov.querySelector(".iosg-done").addEventListener("click", closeIosGuide);
     }
     ov.querySelector(".iosg-ttl").textContent = S.iosGuideTitle;
-    ov.querySelector(".iosg-lead").textContent = S.iosGuideLead;
-    ov.querySelector(".iosg-s1").textContent = isIpad() ? S.iosGuideS1Top : S.iosGuideS1Bottom;
-    ov.querySelector(".iosg-s2").textContent = S.iosGuideS2;
+    ov.querySelector(".iosg-lead").textContent = lead;
+    ov.querySelector(".iosg-s1").textContent = s1;
+    ov.querySelector(".iosg-ic1").innerHTML = icon1;
+    ov.querySelector(".iosg-s2").textContent = s2;
+    ov.querySelector(".iosg-ic2").innerHTML = IOSG_ADD;
     ov.querySelector(".iosg-done").textContent = S.iosGuideDone;
-    ov.querySelector(".iosg-arrow").hidden = isIpad(); /* 하단 공유 버튼 화살표는 아이폰만 */
+    ov.querySelector(".iosg-arrow").hidden = !showArrow; /* 하단 공유버튼 화살표는 아이폰 사파리만 */
     ov.hidden = false;
     try { document.body.style.overflow = "hidden"; } catch (e) {}
-    if (typeof track === "function") track("install/ios-guide");
+    if (typeof track === "function") track("install/guide/" + info.key);
   } catch (e) {}
 }
 
@@ -7865,9 +7913,10 @@ function refreshMiniInstall(){
       miniInstallBtn.textContent = S.install;
       miniInstallBtn.hidden = false;
       miniInstall.hidden = false;
-    } else if (isIOS()){
-      /* iOS: 긴 안내문 대신 '홈 화면에 추가' 버튼 → 탭하면 시각 가이드 */
-      miniInstallText.textContent = "Stacks";
+    } else if (isIOS() || /android/i.test(navigator.userAgent)){
+      /* iOS(전 브라우저) + 설치 프롬프트를 안 주는 안드로이드: 안내문 대신 초대 문구 +
+         '홈 화면에 추가' 버튼 → 탭하면 브라우저에 맞는 시각 가이드 */
+      miniInstallText.textContent = S.miInvite;
       miniInstallBtn.textContent = S.install;
       miniInstallBtn.hidden = false;
       miniInstall.hidden = false;
@@ -7884,7 +7933,7 @@ if (miniInstallBtn) miniInstallBtn.addEventListener("click", async () => {
     refreshMiniInstall();
     return;
   }
-  if (isIOS()) openIosGuide(); /* iOS: 원클릭 설치 불가 → 시각 가이드 */
+  openIosGuide(); /* 원클릭 설치 불가 환경 → 브라우저별 시각 가이드 */
 });
 const miniClose = document.getElementById("miniInstallClose");
 if (miniClose) miniClose.addEventListener("click", () => {
