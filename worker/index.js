@@ -131,9 +131,9 @@ async function hmac24(secret, msg) {
    only key) and UNSUB_SECRET; silently skipped if either is missing. */
 const WELCOME_COPY = {
   ko: {
-    subj: "Stacks 구독 완료 — 매주 일요일에 만나요",
-    hi: "구독해 주셔서 고마워요!",
-    body: "매주 일요일 아침, 이번 주 가장 중요한 투자 읽을거리를 요약과 관점까지 담아 이 메일함으로 보내드려요.",
+    subj: "🎉 Stacks 구독 완료! 매주 일요일에 만나요",
+    hi: "구독해 주셔서 감사해요!",
+    body: "매주 일요일 아침,<br>이번 주 가장 중요한 투자 읽을거리를 요약과 관점까지 담아 이 메일함으로 보내드려요.",
     note: "그동안의 글이 궁금하면 지금 바로 둘러보세요.",
     cta: "Stacks 둘러보기",
     unsub: "구독 해지"
