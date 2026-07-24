@@ -2,6 +2,148 @@
   "items": [
     {
       "date": "2026-07-24",
+      "id": "kobeissi-oracle-cds-record",
+      "related": [
+        "kobeissi-us-debt-financing-cost"
+      ],
+      "source": "The Kobeissi Letter (@KobeissiLetter)",
+      "sourceUrl": "https://x.com/KobeissiLetter/status/2080638100204568914",
+      "sourceLang": "EN",
+      "category": "investor",
+      "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+      "hot": true,
+      "paywall": false,
+      "ts": "2026-07-24T15:49:17.000+00:00",
+      "cover": {
+        "from": "#7F1D1D",
+        "to": "#111827",
+        "label": "ORACLE CDS AT RECORD"
+      },
+      "tags": [
+        "ORACLE",
+        "CDS",
+        "AI CAPEX"
+      ],
+      "stance": "bear",
+      "title": {
+        "en": "Oracle's credit-default insurance jumps to a record high, with S&P placing the company just one notch above junk",
+        "ko": "오라클 신용부도 보험료 사상 최고치, S&P 신용등급은 정크본드 바로 위 단계로 강등",
+        "ja": "オラクルの信用不履行保険料が過去最高、S&Pの格付けはジャンク直前まで低下"
+      },
+      "gist": {
+        "en": "Oracle's cost of insuring against a default has hit a record, with five-year credit default swaps trading near 203 basis points, meaning investors now pay roughly $203,000 a year to insure $10 million of the company's debt against non-payment, The Kobeissi Letter reports. That level has more than quadrupled since mid-2025 and now sits above where Oracle's CDS traded at the peak of the 2008 financial crisis. The stress shows up in the bond market too. Oracle's 6.7% notes due 2056 widened 8 basis points this week to a 263 basis point spread over Treasurys, and its 5.7% notes due 2036 widened 9 basis points to 205. S&P Global Ratings downgraded Oracle to BBB-, one notch above junk, on July 9th, citing the company's fast-growing spending on AI data centers. Oracle has taken on debt at an unusual pace to build out cloud capacity for AI customers including OpenAI, and investors are increasingly pricing in the risk that revenue from those contracts doesn't arrive fast enough to cover the bill. A further downgrade to junk status would raise Oracle's borrowing costs even more and could trigger selling by funds that only hold investment-grade debt.",
+        "ko": "오라클의 부도보험 비용이 사상 최고치를 찍었다. 5년 만기 신용부도스와프(CDS) 스프레드가 203bp 안팎까지 올라, 투자자들이 오라클 부채 1000만 달러어치를 1년간 부도로부터 보장받는 데 약 20만3000달러를 내는 상황이라고 코베이시레터가 전한다. 이 수준은 2025년 중반 이후 4배 넘게 뛴 것으로, 2008년 금융위기 정점 때의 CDS 스프레드보다도 높다. 채권시장에서도 부담이 나타난다. 오라클의 2056년 만기 6.7% 채권 스프레드는 이번 주 8bp 확대돼 국채 대비 263bp가 됐고, 2036년 만기 5.7% 채권도 9bp 확대돼 205bp가 됐다. S&P글로벌은 7월 9일 오라클의 신용등급을 정크본드 바로 위 단계인 BBB-로 강등했는데, 급증하는 AI 데이터센터 투자 지출을 이유로 들었다. 오라클은 오픈AI 등 AI 고객사를 위한 클라우드 용량 확충을 위해 이례적인 속도로 부채를 늘려왔고, 투자자들은 이 계약들에서 나오는 매출이 상환 속도를 못 따라갈 위험을 점점 더 가격에 반영하고 있다. 정크 등급으로 추가 강등되면 오라클의 조달비용은 더 오르고, 투자등급 채권만 담는 펀드들의 매도가 촉발될 수 있다.",
+        "ja": "オラクルのデフォルト保険コストが過去最高を記録した。5年物クレジット・デフォルト・スワップ(CDS)のスプレッドが203bp前後まで上昇し、投資家がオラクルの負債1000万ドル分を1年間デフォルトから保証してもらうのに約20万3000ドルを払う状況になっていると、コベイシ・レターが伝える。この水準は2025年半ば以降4倍以上に跳ね上がり、2008年の金融危機のピーク時のCDSスプレッドを上回る。債券市場でも負担が表れている。オラクルの2056年満期6.7%債のスプレッドは今週8bp拡大し、国債対比263bpとなった。2036年満期5.7%債も9bp拡大し205bpとなった。S&Pグローバルは7月9日、急増するAIデータセンター投資支出を理由にオラクルの格付けをジャンク直前のBBB-に引き下げた。オラクルはOpenAIなどAI顧客向けのクラウド容量拡張のため異例のペースで負債を積み増しており、投資家はこれらの契約からの収益が返済ペースに追いつかないリスクを一段と価格に織り込みつつある。さらにジャンク級へ格下げされれば、オラクルの調達コストはさらに上がり、投資適格債のみを保有するファンドの売りを誘発しかねない。"
+      },
+      "why": {
+        "en": "If a company at the center of the AI buildout can't convince credit markets it will cover its own debt, that's a warning sign for every hyperscaler financing capex with borrowed money, not just Oracle.",
+        "ko": "AI 인프라 투자의 중심에 있는 기업조차 신용시장의 신뢰를 얻지 못한다면, 이는 오라클만이 아니라 빚으로 캐펙스를 조달하는 모든 하이퍼스케일러에 대한 경고 신호다.",
+        "ja": "AIインフラ投資の中心にいる企業ですら信用市場の信頼を得られないなら、これはオラクルだけでなく、借金でキャペックスを賄うすべてのハイパースケーラーへの警告になる。"
+      },
+      "ask": {
+        "en": "Oracle's CDS spread is now pricing in real default risk even as its AI cloud backlog keeps growing. Is this a temporary scare over AI capex debt, or the first crack in the hyperscaler credit story?",
+        "ko": "AI 클라우드 수주잔고는 계속 늘어나는데도 오라클의 CDS 스프레드는 실질적인 부도 위험을 반영하고 있다. 이건 AI 캐펙스발 부채에 대한 일시적 불안일까, 하이퍼스케일러 신용 스토리에 생긴 첫 균열일까?",
+        "ja": "AIクラウドの受注残高は増え続けているのに、オラクルのCDSスプレッドは実質的なデフォルトリスクを織り込んでいる。これはAIキャペックス由来の負債への一時的な不安なのか、それともハイパースケーラーの信用ストーリーに入った最初のひびなのか。"
+      }
+    },
+    {
+      "date": "2026-07-24",
+      "id": "jukan-samsung-hynix-silicon-valley-deal",
+      "related": [
+        "jukan-amd-samsung-hbm4-deal",
+        "jukan-morgan-stanley-bearish-memory",
+        "jukan-hynix-intel-ohio-fab"
+      ],
+      "source": "Jukan (@jukan05)",
+      "sourceUrl": "https://x.com/jukan05/status/2080618741101191377",
+      "sourceLang": "EN",
+      "category": "investor",
+      "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+      "hot": true,
+      "paywall": false,
+      "ts": "2026-07-24T15:49:17.000+00:00",
+      "cover": {
+        "from": "#1E3A8A",
+        "to": "#0F766E",
+        "label": "US-KOREA CHIP DEAL"
+      },
+      "tags": [
+        "SAMSUNG",
+        "SK HYNIX",
+        "MEGA DEAL"
+      ],
+      "stance": "bull",
+      "title": {
+        "en": "Korea's presidential office says Samsung and SK hynix are about to announce “very large-scale” deals with US tech firms during President Lee Jae-myung's Silicon Valley trip",
+        "ko": "대통령실 \"삼성전자·SK하이닉스, 이재명 대통령 실리콘밸리 방문 중 미국 빅테크와 '초대형' 계약 발표 임박\"",
+        "ja": "韓国大統領府「サムスン電子とSKハイニックス、李在明大統領のシリコンバレー訪問中に米テック企業と『超大型』契約を発表へ」"
+      },
+      "gist": {
+        "en": "Samsung Electronics and SK hynix are expected to sign “very large-scale” supply contracts with major US technology companies during President Lee Jae-myung's upcoming trip to Silicon Valley, Kim Yong-beom, the presidential chief of staff for policy, said, according to semiconductor analyst Jukan. Kim, a career financial regulator who now leads the economic side of Lee's policy team, did not name which US companies are involved or specify whether the deals cover memory chips, foundry work, or both. The trip comes as Korea's two memory giants race to lock in customers for HBM4, the next generation of high-bandwidth memory that feeds AI accelerators. Samsung is still working to close a definitive supply agreement with AMD, while SK hynix is defending its position as Nvidia's main HBM supplier. A presidential-level announcement would put Seoul's diplomatic weight behind commercial contracts that are normally negotiated privately between companies, a sign of how central memory chip exports have become to Korea's economic relationship with Washington.",
+        "ko": "이재명 대통령의 실리콘밸리 순방 기간 중 삼성전자와 SK하이닉스가 미국 주요 테크기업들과 '초대형' 공급계약을 발표할 것으로 보인다고 김용범 대통령실 정책실장이 밝혔다고 반도체 애널리스트 주칸이 전한다. 정통 경제관료 출신으로 현재 이재명 정부의 경제 정책을 총괄하는 김 실장은 어떤 미국 기업이 관련돼 있는지, 계약이 메모리 반도체인지 파운드리인지는 밝히지 않았다. 이번 순방은 한국의 두 메모리 공룡이 AI 가속기에 들어가는 차세대 고대역폭 메모리인 HBM4 고객 확보 경쟁을 벌이는 가운데 이뤄진다. 삼성전자는 AMD와의 본계약 체결을 아직 마무리 짓지 못했고, SK하이닉스는 엔비디아의 주력 HBM 공급사 지위를 지키고 있다. 통상 기업 간 비공개로 협상되는 상업 계약이 대통령급 발표로 이어진다면, 이는 메모리 반도체 수출이 한미 경제관계에서 얼마나 중심적인 사안이 됐는지를 보여주는 신호다.",
+        "ja": "李在明大統領のシリコンバレー訪問中に、サムスン電子とSKハイニックスが米主要テック企業と『超大型』の供給契約を発表する見通しだと、大統領府の金融政策専門家である金龍範(キム・ヨンボム)政策室長が明らかにしたと、半導体アナリストのJukan氏が伝える。経済官僚出身で現在李政権の経済政策を統括する金室長は、どの米企業が関わるか、契約がメモリ半導体かファウンドリかは明らかにしなかった。今回の訪問は、韓国の二大メモリ企業がAIアクセラレータに搭載する次世代高帯域メモリ、HBM4の顧客獲得競争を繰り広げる中で行われる。サムスン電子はAMDとの本契約締結をまだ終えておらず、SKハイニックスはエヌビディア向けHBM供給の主力としての地位を守っている。通常は企業間で非公開に交渉される商業契約が大統領級の発表につながるなら、メモリ半導体輸出が米韓経済関係でどれほど中心的な案件になったかを示すサインだ。"
+      },
+      "why": {
+        "en": "A presidential visit turning into a corporate contract announcement would confirm memory chips are now treated as a matter of state, and it raises the stakes on whether Samsung finally lands a marquee customer beyond Nvidia.",
+        "ko": "대통령 순방이 곧 기업 계약 발표로 이어진다면 메모리 반도체가 이제 국가적 사안으로 다뤄지고 있다는 뜻이고, 삼성이 엔비디아 외에 대형 고객을 확보할지 여부의 무게도 커진다.",
+        "ja": "大統領訪問がそのまま企業契約発表につながるなら、メモリ半導体がもはや国家的な案件として扱われている証拠であり、サムスンがエヌビディア以外の大口顧客を確保できるかどうかの重みも増す。"
+      },
+      "ask": {
+        "en": "If Samsung and SK hynix announce their deals alongside a presidential visit rather than through normal investor relations channels, does that change how much weight markets should put on the news?",
+        "ko": "삼성과 SK하이닉스가 통상적인 IR 채널이 아니라 대통령 순방에 맞춰 계약을 발표한다면, 시장이 이 소식에 두는 무게도 달라져야 할까?",
+        "ja": "サムスンとSKハイニックスが通常のIRチャネルではなく大統領訪問に合わせて契約を発表するなら、市場がこのニュースに置く重みも変わるべきだろうか。"
+      }
+    },
+    {
+      "date": "2026-07-23",
+      "id": "kobeissi-us-home-price-record",
+      "related": [
+        "kobeissi-10y-yield-breaks-470",
+        "kobeissi-us-debt-financing-cost",
+        "kobeissi-us-job-postings-decline"
+      ],
+      "source": "The Kobeissi Letter (@KobeissiLetter)",
+      "sourceUrl": "https://x.com/KobeissiLetter/status/2080402288057663596",
+      "sourceLang": "EN",
+      "category": "investor",
+      "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+      "hot": false,
+      "paywall": false,
+      "ts": "2026-07-24T15:49:17.000+00:00",
+      "cover": {
+        "from": "#92400E",
+        "to": "#1F2937",
+        "label": "HOME PRICES HIT RECORD"
+      },
+      "tags": [
+        "HOUSING",
+        "HOME PRICES",
+        "AFFORDABILITY"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "US existing home prices hit a record $408,776 in June, even as new listings shrink to their lowest since December",
+        "ko": "미국 기존주택 중간가격 6월 40만8776달러로 사상 최고, 신규 매물은 12월 이후 최저",
+        "ja": "米中古住宅価格、6月に過去最高の40万8776ドル、新規売り出しは12月以来の最低水準"
+      },
+      "gist": {
+        "en": "The median price of an existing US home sold in June rose 2.2% year over year to a record $408,776, The Kobeissi Letter reports, citing National Association of Realtors data. San Francisco led metro-area price gains at 9.2% year over year, followed by Pittsburgh at 9.1% and West Palm Beach at 8.6%, with luxury purchases driving much of the increase in those markets. Sales activity picked up alongside prices. Existing home sales rose 4.2% year over year to a seasonally adjusted annual rate of about 4.4 million, the fastest pace since November 2022, and San Francisco and West Palm Beach also posted the sharpest jumps in closed sales, up 23.8% and 23.1% respectively. But the supply side is tightening rather than easing the pressure. New listings fell 0.8% from May to 377,000, their lowest level since December, meaning buyers are competing for a shrinking pool of homes even as borrowing costs stay elevated. The combination of record prices, quickening sales and shrinking inventory points to a housing market where affordability keeps getting worse for anyone not already buying with cash or heavy equity from a prior home.",
+        "ko": "6월 미국 기존주택 중간 판매가격이 전년 대비 2.2% 올라 40만8776달러로 사상 최고치를 기록했다고 코베이시레터가 전미부동산중개인협회(NAR) 자료를 인용해 전한다. 지역별로는 샌프란시스코가 전년 대비 9.2% 올라 상승률 1위였고, 피츠버그(9.1%), 웨스트팜비치(8.6%)가 뒤를 이었는데 이들 지역에서는 고가 매물 거래가 상승세를 주도했다. 가격뿐 아니라 거래량도 함께 늘었다. 기존주택 판매는 전년 대비 4.2% 늘어 계절조정 연율 약 440만 건으로 2022년 11월 이후 가장 빠른 속도를 보였고, 샌프란시스코와 웨스트팜비치는 성사된 거래 건수 증가율에서도 각각 23.8%, 23.1%로 가장 가파른 상승폭을 기록했다. 다만 공급 쪽은 오히려 더 빡빡해지고 있다. 신규 매물은 5월 대비 0.8% 줄어 37만7000건으로 12월 이후 최저치를 기록했는데, 이는 대출금리가 여전히 높은 상황에서 매수자들이 점점 줄어드는 매물을 두고 경쟁하고 있다는 뜻이다. 사상 최고가와 빨라지는 거래 속도, 줄어드는 재고가 겹치면서 현금이나 기존 주택의 두터운 자기자본 없이는 접근하기 더 어려워지는 주택시장을 보여준다.",
+        "ja": "6月の米中古住宅の中央販売価格が前年比2.2%上昇し、過去最高の40万8776ドルとなったと、コベイシ・レターが全米不動産業者協会(NAR)のデータを引用して伝える。地域別ではサンフランシスコが前年比9.2%上昇でトップ、ピッツバーグ(9.1%)、ウェストパームビーチ(8.6%)が続き、これらの地域では高額物件の取引が上昇をけん引した。価格だけでなく取引量も増えている。中古住宅販売は前年比4.2%増、季節調整済み年率約440万件となり2022年11月以来最速のペースとなった。サンフランシスコとウェストパームビーチは成約件数の増加率でもそれぞれ23.8%、23.1%と最大の伸びを記録した。ただ供給面はむしろ引き締まっている。新規売り出しは5月比0.8%減の37万7000件と12月以来の最低水準となり、借入コストが高止まりする中で買い手が減少する物件を奪い合っている状況を示す。過去最高値、加速する取引、縮小する在庫が重なり、現金や既存住宅の厚い自己資本を持たない買い手にとって手が届きにくくなり続ける住宅市場が浮かび上がる。"
+      },
+      "why": {
+        "en": "Housing costs feed directly into how the Fed reads inflation and how much room households have to spend on anything else, so a market that's both accelerating and getting less affordable at the same time complicates the rate-cut case.",
+        "ko": "주거비는 연준의 인플레이션 판단과 가계가 다른 소비에 쓸 여력에 직접 영향을 준다. 그래서 시장이 빨라지는 동시에 접근성은 나빠지는 지금 상황은 금리 인하 논리를 더 복잡하게 만든다.",
+        "ja": "住宅コストは連邦準備制度のインフレ判断や家計の他の支出余力に直結する。市場が加速すると同時に手が届きにくくなっている今の状況は、利下げの論理を一段と複雑にする。"
+      },
+      "ask": {
+        "en": "Record prices and a four-year sales high are happening at the same time as shrinking listings. Is this a housing market genuinely strengthening, or one where fewer sellers are just locking in gains before conditions turn?",
+        "ko": "사상 최고가와 4년 만의 최고 판매 속도가 매물 감소와 동시에 벌어지고 있다. 이건 진짜로 강해지는 주택시장일까, 아니면 상황이 바뀌기 전에 이익을 확정하려는 매도자만 줄어든 결과일까?",
+        "ja": "過去最高値と4年ぶりの販売ペースが、売り出し物件の減少と同時に起きている。これは本当に強含む住宅市場なのか、それとも状況が変わる前に利益を確定させたい売り手が減っているだけなのか。"
+      }
+    },
+    {
+      "date": "2026-07-24",
       "id": "jukan-amd-samsung-hbm4-deal",
       "series": "hynix-premium",
       "related": [
@@ -11846,6 +11988,117 @@
         "ja": "KLAは半導体を直接製造する装置ではなく、製造のほぼ全工程で欠陥を検査する工程管理・検査装置を手がける企業だ。欠陥を早期に発見できなければウエハー1バッチ分を丸ごと廃棄することになりかねないため、半導体メーカーがHBMや3D積層メモリーのようにより複雑で許容誤差の小さい構造へ進むほど、KLAの検査装置は必須のものと見なされる。他の装置メーカー同様、KLAの納期も半導体サプライチェーン全体がどれほど逼迫しているかを示す指標となる。"
       },
       "ticker": "KLAC"
+    },
+    "ORACLE": {
+      "kind": "company",
+      "ticker": "ORCL",
+      "sector": {
+        "en": "Enterprise software / cloud infrastructure",
+        "ko": "기업용 소프트웨어·클라우드 인프라",
+        "ja": "エンタープライズソフトウェア・クラウドインフラ"
+      },
+      "desc": {
+        "en": "US database and cloud giant that has taken on heavy debt to build AI data center capacity.",
+        "ko": "AI 데이터센터 확충을 위해 대규모 부채를 떠안은 미국 데이터베이스·클라우드 대기업.",
+        "ja": "AIデータセンター拡張のため多額の負債を抱えた米データベース・クラウド大手。"
+      },
+      "aliases": [
+        "Oracle",
+        "오라클",
+        "オラクル",
+        "ORCL"
+      ],
+      "logo": "oracle.com",
+      "exchange": "NYSE",
+      "ceo": {
+        "en": "Clay Magouyrk · Mike Sicilia (Co-CEOs)",
+        "ko": "클레이 마고위르크 · 마이크 시칠리아 (공동대표)",
+        "ja": "クレイ・マゴイルク・マイク・シチリア (共同CEO)"
+      },
+      "founded": "1977",
+      "listed": "1986",
+      "hq": {
+        "en": "Austin, Texas, USA",
+        "ko": "미국 텍사스 오스틴",
+        "ja": "米国テキサス州オースティン"
+      },
+      "website": "https://www.oracle.com",
+      "longDesc": {
+        "en": "Founded in 1977, Oracle built its business on database software before pushing hard into cloud infrastructure to compete with AWS, Microsoft Azure and Google Cloud. Under founder Larry Ellison, the company signed large AI-cloud contracts including with OpenAI, funding the buildout with a rapid increase in debt. In September 2025 Safra Catz moved from CEO to Executive Vice Chair, with Clay Magouyrk and Mike Sicilia taking over as co-CEOs.",
+        "ko": "1977년 설립된 오라클은 데이터베이스 소프트웨어로 성장한 뒤 AWS·마이크로소프트 애저·구글 클라우드에 맞서 클라우드 인프라 사업을 공격적으로 확장했다. 창업자 래리 엘리슨 체제에서 오픈AI 등과 대형 AI 클라우드 계약을 맺었고, 이를 뒷받침하기 위해 부채를 빠르게 늘렸다. 2025년 9월 사프라 카츠가 CEO에서 이사회 수석부의장으로 자리를 옮기고, 클레이 마고위르크와 마이크 시칠리아가 공동대표를 맡았다.",
+        "ja": "1977年設立のオラクルはデータベースソフトウェアで成長し、その後AWS・マイクロソフトAzure・グーグルクラウドに対抗してクラウドインフラ事業を積極的に拡大した。創業者ラリー・エリソン体制のもとOpenAIなどと大型AIクラウド契約を結び、その資金を賄うため負債を急速に増やした。2025年9月にサフラ・キャッツがCEOから取締役会エグゼクティブ・バイスチェアに退き、クレイ・マゴイルクとマイク・シチリアが共同CEOに就任した。"
+      }
+    },
+    "CDS": {
+      "kind": "term",
+      "sector": {
+        "en": "Glossary",
+        "ko": "용어",
+        "ja": "用語"
+      },
+      "desc": {
+        "en": "A derivative contract that pays out if a company defaults on its debt, priced like insurance.",
+        "ko": "기업이 부채를 갚지 못하면 보상금이 지급되는 파생상품으로, 보험료처럼 가격이 매겨진다.",
+        "ja": "企業が債務不履行に陥った場合に支払われるデリバティブ契約で、保険料のように価格が付けられる。"
+      },
+      "longDesc": {
+        "en": "A credit default swap, or CDS, works like insurance against a company's bond default: the buyer pays an annual premium, quoted in basis points, and the seller pays out if the company fails to pay its debt. A CDS spread of 200 basis points means insuring $10 million of debt for a year costs about $200,000. Because CDS trade freely, the price moves in real time as investors reassess default risk, often faster than credit rating agencies update their ratings, which makes CDS spreads a closely watched early warning gauge distinct from a bond's credit spread over Treasurys.",
+        "ko": "신용부도스와프(CDS)는 기업의 채권 부도에 대비한 보험처럼 작동한다. 매수자는 베이시스포인트로 표시되는 연간 보험료를 내고, 기업이 빚을 갚지 못하면 매도자가 보상금을 지급한다. CDS 스프레드가 200bp라면 1000만 달러어치 부채를 1년간 보장받는 데 약 20만 달러가 든다. CDS는 시장에서 자유롭게 거래되므로 투자자들이 부도 위험을 다시 평가할 때마다 가격이 실시간으로 움직이는데, 이는 대개 신용평가사의 등급 조정보다 빠르다. 그래서 CDS 스프레드는 국채 대비 회사채 금리차인 크레딧 스프레드와는 별개로, 시장이 주시하는 조기 경보 지표로 꼽힌다.",
+        "ja": "クレジット・デフォルト・スワップ(CDS)は、企業の債券デフォルトに備える保険のように機能する。買い手はベーシスポイントで表示される年間保険料を支払い、企業が債務を履行できなければ売り手が保険金を支払う。CDSスプレッドが200bpの場合、1000万ドルの負債を1年間保証するのに約20万ドルかかる。CDSは市場で自由に取引されるため、投資家がデフォルトリスクを再評価するたびに価格がリアルタイムで動き、多くの場合、格付け会社の格付け見直しより速い。そのため、国債対比の社債利回り差であるクレジットスプレッドとは別に、市場が注視する早期警戒指標とされる。"
+      },
+      "aliases": [
+        "CDS",
+        "신용부도스와프",
+        "크레딧디폴트스와프",
+        "크레딧 디폴트 스와프",
+        "credit default swap",
+        "Credit Default Swap",
+        "クレジット・デフォルト・スワップ",
+        "CDSスプレッド"
+      ],
+      "name": {
+        "en": "Credit default swap (CDS)",
+        "ko": "신용부도스와프(CDS)",
+        "ja": "クレジット・デフォルト・スワップ(CDS)"
+      }
+    },
+    "Kim Yong-beom": {
+      "kind": "person",
+      "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%EC%9A%A9%EB%B2%94_(%EA%B3%B5%EB%AC%B4%EC%9B%90)",
+      "sector": {
+        "en": "Government official",
+        "ko": "공직자",
+        "ja": "政府高官"
+      },
+      "desc": {
+        "en": "South Korea's presidential chief of staff for policy, a career financial regulator now steering the Lee Jae-myung administration's economic agenda.",
+        "ko": "이재명 정부의 경제 정책을 총괄하는 대통령실 정책실장으로, 금융위원회 부위원장 등을 지낸 정통 경제관료 출신이다.",
+        "ja": "李在明政権の経済政策を統括する大統領府政策室長で、金融委員会副委員長などを歴任した経済官僚出身。"
+      },
+      "aliases": [
+        "Kim Yong-beom",
+        "김용범",
+        "キム・ヨンボム"
+      ]
+    },
+    "Lee Jae-myung": {
+      "kind": "person",
+      "url": "https://en.wikipedia.org/wiki/Lee_Jae-myung",
+      "sector": {
+        "en": "Head of State",
+        "ko": "국가원수",
+        "ja": "国家元首"
+      },
+      "desc": {
+        "en": "President of South Korea since 2025, whose administration has pushed memory-chip diplomacy with the US as a pillar of its economic strategy.",
+        "ko": "2025년 취임한 대한민국 대통령으로, 미국을 상대로 한 반도체 외교를 경제 전략의 한 축으로 삼고 있다.",
+        "ja": "2025年就任の韓国大統領。対米半導体外交を経済戦略の柱の一つとしている。"
+      },
+      "aliases": [
+        "Lee Jae-myung",
+        "이재명",
+        "李在明"
+      ]
     }
   }
 }
