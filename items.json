@@ -2,6 +2,143 @@
   "items": [
     {
       "date": "2026-07-24",
+      "id": "jensen-open-models-letter",
+      "related": [
+        "meru-kimi-moment"
+      ],
+      "source": "Jensen Huang (@JensenHuang)",
+      "sourceUrl": "https://x.com/JensenHuang/status/2080643682408321103",
+      "sourceLang": "EN",
+      "category": "ceo",
+      "avatarImg": "https://unavatar.io/twitter/JensenHuang?fallback=false",
+      "wiki": "Jensen_Huang",
+      "hot": true,
+      "paywall": false,
+      "ts": "2026-07-24T18:48:36.126+00:00",
+      "cover": {
+        "from": "#0F172A",
+        "to": "#059669",
+        "label": "NVIDIA GOES OPEN"
+      },
+      "tags": [
+        "NVIDIA",
+        "OPEN MODELS",
+        "AI POLICY"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "Jensen Huang joins X and uses his first post to back open AI models alongside closed ones",
+        "ko": "젠슨 황, 오늘 X 첫 게시물로 오픈소스 AI 모델 지지 서한 공유",
+        "ja": "ジェンスン・フアン、X初投稿でオープンAIモデル支持の書簡を共有"
+      },
+      "gist": {
+        "en": "Nvidia CEO Jensen Huang posted on X for the first time on July 24th, using the debut to share a letter Nvidia signed arguing that open AI models deserve as much support as closed, proprietary ones. The letter states that AI will transform every industry, power every company, and eventually be built by every country, and argues open models strengthen safety and cybersecurity, speed up innovation and its spread to more users, and let countries build AI systems under their own control rather than depending entirely on foreign providers. Huang's post frames the choice between open and closed models as false, saying the world needs both kinds of frontier systems rather than picking one over the other. The full letter is posted as a PDF on Nvidia's own site. Huang's move comes as Nvidia, whose GPUs power most AI training and inference worldwide, has increasingly positioned itself as a backer of open-weight models such as Meta's Llama family, even as it also profits from closed labs like OpenAI and Anthropic buying its chips. Taking a public stance now lands in the middle of an active policy fight in Washington and Beijing over whether open-source AI helps or threatens national security, a debate that could shape future export rules and government AI contracts.",
+        "ko": "엔비디아 CEO 젠슨 황이 7월 24일 X에 첫 게시물을 올리며, 엔비디아가 서명한 오픈소스 AI 모델 지지 서한을 공유했다. 서한은 AI가 모든 산업을 바꾸고 모든 기업의 동력이 되며 결국 모든 나라가 AI를 직접 만들게 될 것이라고 전제한 뒤, 오픈소스 모델이 안전과 사이버 보안을 강화하고 혁신과 그 확산 속도를 높이며, 각국이 외국 공급자에게 전적으로 의존하지 않고 자국 통제하에 AI 시스템을 구축할 수 있게 한다고 주장한다. 황은 게시물에서 오픈소스와 폐쇄형 모델 중 하나를 골라야 한다는 프레임 자체를 반박하며, 세계는 두 종류의 최상위 모델을 모두 필요로 한다고 말했다. 서한 전문은 PDF로 엔비디아 자체 사이트에 올라와 있다. 전 세계 AI 학습·추론 대부분을 엔비디아 GPU가 떠받치는 가운데, 회사는 메타의 라마 계열 같은 오픈웨이트 모델의 지지자로 점점 더 자리매김해왔다. 동시에 오픈AI·앤스로픽 같은 폐쇄형 연구소가 엔비디아 칩을 사들이는 데서도 이익을 얻는다. 이번 공개 발언은 오픈소스 AI가 국가안보에 도움이 되는지 위협이 되는지를 두고 워싱턴과 베이징에서 벌어지는 정책 논쟁 한복판에서 나왔고, 이는 향후 수출 규제와 정부 AI 조달 방향에도 영향을 줄 수 있는 사안이다.",
+        "ja": "エヌビディアCEOジェンスン・フアンが7月24日、X初投稿でエヌビディアが署名したオープンAIモデル支持の書簡を共有した。書簡はAIがあらゆる産業を変え、あらゆる企業の原動力となり、やがてすべての国が自らAIを作るようになると前提したうえで、オープンモデルが安全性とサイバーセキュリティを強化し、イノベーションとその普及速度を高め、各国が外国の供給者に全面依存せず自国の管理下でAIシステムを構築できるようにすると主張する。フアンは投稿でオープンか閉鎖型かの二択という枠組み自体に反論し、世界は両方の最先端モデルを必要としていると述べた。書簡全文はPDFでエヌビディア自身のサイトに掲載されている。世界のAI学習・推論の大半をエヌビディアのGPUが支える中、同社はメタのLlama系のようなオープンウェイトモデルの支持者としての立場を強めてきた。同時にOpenAIやAnthropicのような閉鎖型研究所がエヌビディアのチップを買うことでも利益を得る。今回の公の発言は、オープンソースAIが国家安全保障に資するのか脅威になるのかを巡ってワシントンと北京で続く政策論争の渦中で出てきたもので、今後の輸出規制や政府のAI調達方針にも影響しうる。"
+      },
+      "why": {
+        "en": "Nvidia's own CEO is now on record backing open models even though the company's business depends on both open and closed labs buying its chips, a stance that could shape whether Washington tightens or loosens rules on open-source AI.",
+        "ko": "엔비디아의 사업 자체가 오픈소스와 폐쇄형 연구소 양쪽 모두의 칩 구매에 의존하는데, CEO가 공개적으로 오픈소스 편을 든 셈이다. 이 입장이 워싱턴의 오픈소스 AI 규제 방향에 영향을 줄 수 있다.",
+        "ja": "エヌビディアの事業はオープンと閉鎖型両方の研究所によるチップ購入に依存しているのに、CEOが公にオープンモデル支持を表明した形だ。この立場がワシントンのオープンソースAI規制の方向性に影響しうる。"
+      },
+      "ask": {
+        "en": "Is Jensen Huang's open-models stance a genuine policy position, or a hedge to keep selling chips to both open-source labs and closed frontier players no matter which side wins the argument?",
+        "ko": "젠슨 황의 오픈소스 지지는 진짜 정책적 소신일까, 아니면 오픈소스든 폐쇄형이든 어느 쪽이 이기든 양쪽 모두에 칩을 계속 팔기 위한 헤지일까?",
+        "ja": "ジェンスン・フアンのオープンモデル支持は本当の政策的立場なのか、それともどちらが勝ってもオープンにも閉鎖型にもチップを売り続けるためのヘッジなのか?"
+      }
+    },
+    {
+      "date": "2026-07-24",
+      "id": "kobeissi-ai-capex-sox-correlation-collapse",
+      "related": [
+        "kobeissi-oracle-cds-record"
+      ],
+      "source": "The Kobeissi Letter (@KobeissiLetter)",
+      "sourceUrl": "https://x.com/KobeissiLetter/status/2080662439478125011",
+      "sourceLang": "EN",
+      "category": "investor",
+      "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+      "hot": true,
+      "paywall": false,
+      "ts": "2026-07-24T18:48:36.126+00:00",
+      "cover": {
+        "from": "#1E1B4B",
+        "to": "#7C3AED",
+        "label": "AI TRADE SPLITS"
+      },
+      "tags": [
+        "SOX",
+        "AI CAPEX",
+        "HYPERSCALERS"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "Wall Street stops trading AI chipmakers and AI spenders as one trade, as their 30-day correlation collapses toward zero",
+        "ko": "AI 반도체주와 AI 투자기업, 한 몸처럼 움직이던 30일 상관관계가 거의 0으로 붕괴",
+        "ja": "AI半導体株とAI投資企業、一体で動いていた30日相関がほぼゼロに崩壊"
+      },
+      "gist": {
+        "en": "The stock market is starting to treat AI chipmakers and AI spenders as two separate trades instead of one, The Kobeissi Letter reports. The 30-day correlation between the largest US capital-expenditure spenders on AI infrastructure and the semiconductor index, the SOX, has fallen to near zero, the lowest reading in at least four and a half years. That's down sharply from +0.78 in April, and well below the +0.60 average correlation since the start of 2022. Since early June the two groups have moved in opposite directions: semiconductor stocks have rallied even as the biggest AI infrastructure spenders, the hyperscalers pouring hundreds of billions into data centers, have declined, and the pattern has also run in reverse on other days. Kobeissi reads the split as a sign that investors no longer see AI chip demand and AI infrastructure spending as a single story that rises and falls together. Chipmakers keep benefiting from AI demand regardless of who is paying for it, while hyperscalers face growing questions about whether their spending will generate enough revenue to justify the cost. Kobeissi's conclusion is that the next phase of the AI trade will be judged on profitability rather than on how much companies are willing to spend.",
+        "ko": "주식시장이 AI 반도체주와 AI 투자기업을 하나의 거래로 묶어보던 시각에서 벗어나 둘을 별개로 취급하기 시작했다고 코베이시레터가 전한다. 미국 대형 AI 인프라 투자기업들과 반도체지수(SOX) 사이 30일 상관계수가 거의 0까지 떨어졌는데, 이는 최소 4년 반 만에 가장 낮은 수준이다. 4월의 +0.78에서 급격히 하락한 수치이자, 2022년 이후 평균 상관계수 +0.60을 크게 밑도는 값이다. 6월 초 이후로는 두 그룹이 반대 방향으로 움직였다. 반도체주가 오르는 동안 데이터센터에 수천억 달러를 쏟아붓는 대형 AI 인프라 투자기업들은 하락했고, 다른 날에는 그 반대 패턴도 나타났다. 코베이시는 이 균열을 투자자들이 더는 AI 반도체 수요와 AI 인프라 투자를 함께 오르내리는 하나의 이야기로 보지 않는다는 신호로 해석한다. 반도체 기업들은 누가 돈을 대든 AI 수요의 수혜를 계속 받는 반면, 하이퍼스케일러들은 지출한 돈만큼의 매출이 나올지에 대한 의문이 커지고 있다. 코베이시의 결론은 AI 거래의 다음 국면은 얼마나 많이 쓰느냐가 아니라 수익성으로 평가받게 되리라는 것이다.",
+        "ja": "株式市場がAI半導体株とAI投資企業をひとつの取引として見る見方から離れ、両者を別々に扱い始めたと、コベイシ・レターが伝える。米大手AIインフラ投資企業群と半導体指数(SOX)の30日相関係数がほぼゼロまで下がり、これは少なくとも4年半ぶりの低水準だ。4月の+0.78から急落した数値で、2022年以降の平均相関係数+0.60を大きく下回る。6月初め以降、両グループは逆方向に動いた。半導体株が上昇する一方でデータセンターに数千億ドルを注ぎ込む大手AIインフラ投資企業は下落し、別の日には逆のパターンも見られた。コベイシはこの分裂を、投資家がもはやAI半導体需要とAIインフラ投資を共に上下する一つの物語として見ていないサインだと解釈する。半導体企業は誰が資金を出そうとAI需要の恩恵を受け続ける一方、ハイパースケーラーは支出に見合う収益が出るかという疑問が強まっている。コベイシの結論は、AI取引の次の局面はどれだけ使うかではなく収益性で評価されるようになる、というものだ。"
+      },
+      "why": {
+        "en": "A falling correlation means chipmakers can keep winning even if a hyperscaler's AI spending disappoints, but it also means the market is starting to grade AI spenders on returns, not just on how much they spend.",
+        "ko": "상관관계가 깨지면 하이퍼스케일러 실적이 나빠도 반도체주는 계속 오를 수 있지만, 동시에 시장이 AI 투자기업을 지출 규모가 아니라 실제 수익률로 평가하기 시작했다는 뜻이기도 하다.",
+        "ja": "相関が崩れれば、ハイパースケーラーの業績が悪くても半導体株は上がり続けられるが、同時に市場がAI投資企業を支出額ではなく実際の収益率で評価し始めたことも意味する。"
+      },
+      "ask": {
+        "en": "Is this correlation breakdown the start of investors properly separating AI chip demand from AI capex risk, or just short-term noise from a handful of earnings surprises that will re-correlate once the dust settles?",
+        "ko": "이번 상관관계 붕괴는 투자자들이 AI 반도체 수요와 AI 캐펙스 리스크를 제대로 분리하기 시작했다는 신호일까, 아니면 몇몇 실적 서프라이즈가 만든 일시적 소음이라 조만간 다시 붙어 움직일까?",
+        "ja": "この相関崩壊は、投資家がAI半導体需要とAIキャペックスリスクを正しく切り分け始めたサインなのか、それとも一部の決算サプライズが生んだ一時的なノイズで、いずれまた連動して動くのか?"
+      }
+    },
+    {
+      "date": "2026-07-24",
+      "id": "netinterest-stripe-paypal-bid",
+      "related": [],
+      "source": "Marc Rubinstein (Net Interest)",
+      "sourceUrl": "https://www.netinterest.co/p/paypal-declined",
+      "sourceLang": "EN",
+      "category": "investor",
+      "thumbWiki": "PayPal",
+      "hot": true,
+      "paywall": true,
+      "ts": "2026-07-24T18:48:36.126+00:00",
+      "cover": {
+        "from": "#075985",
+        "to": "#1D4ED8",
+        "label": "$53B PAYPAL BID"
+      },
+      "tags": [
+        "STRIPE",
+        "PAYPAL",
+        "M&A"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "Stripe, once rejected by PayPal, comes back with a $53 billion offer to buy the company that spurned it",
+        "ko": "한때 페이팔에 거절당한 스트라이프, 이번엔 530억 달러에 페이팔 인수 제안",
+        "ja": "かつてペイパルに拒まれたストライプ、今度は530億ドルでペイパル買収を提案"
+      },
+      "gist": {
+        "en": "Stripe and private equity firm Advent have offered to acquire PayPal for around $53 billion, Net Interest's Marc Rubinstein reports, with the deal reportedly structured so Stripe and Advent would each own half of PayPal, backed by $50 billion in committed bank financing. The offer follows a secondary tender offer that valued Stripe itself at $159 billion, and it closes a loop that started in 2013, when PayPal, then still owned by eBay, tried to buy Stripe outright and was turned down by founders Patrick and John Collison. PayPal instead bought Braintree, the maker of Venmo, for $800 million, but over the following decade Stripe's payment volume compounded at 70% a year against Braintree's 43%. Last year Stripe processed $1.9 trillion in payments to Braintree's $600 billion. PayPal, meanwhile, has churned through three CEOs in three years and a string of missteps since. Rubinstein frames the central question as why Stripe, now the clear winner of that old rivalry, wants to buy the company it once tried to escape, and whether $53 billion is close to the right price, a question his fuller analysis addresses beyond this preview.",
+        "ko": "스트라이프와 사모펀드 어드벤트가 페이팔을 약 530억 달러에 인수하겠다고 제안했다고 넷 인터레스트의 마크 루빈스타인이 전한다. 알려진 거래 구조상 스트라이프와 어드벤트가 각각 페이팔 지분 절반씩을 갖게 되며, 500억 달러 규모의 은행 대출 약정이 뒷받침한다. 이번 제안은 스트라이프 자체 기업가치를 1590억 달러로 평가한 세컨더리 텐더오퍼 직후에 나왔고, 2013년으로 거슬러 올라가는 인연에 마침표를 찍는 모양새다. 당시 이베이 소유였던 페이팔은 스트라이프를 통째로 인수하려 했지만 창업자 패트릭·존 콜리슨 형제에게 거절당했다. 대신 페이팔은 벤모의 모회사 브레인트리를 8억 달러에 인수했는데, 이후 10년간 스트라이프의 결제액은 연 70%씩 복리로 늘어난 반면 브레인트리는 43%에 그쳤다. 지난해 스트라이프는 1조9000억 달러, 브레인트리는 6000억 달러를 처리했다. 그사이 페이팔은 3년 새 CEO 세 명을 거치며 여러 실책을 겪었다. 루빈스타인은 그 오랜 경쟁에서 확실히 승리한 스트라이프가 왜 한때 벗어나려 했던 회사를 다시 사려는지, 그리고 530억 달러가 적정 가격에 가까운지를 핵심 질문으로 던지는데, 이 답은 미리보기 이후의 본문에서 다룬다.",
+        "ja": "ストライプとプライベートエクイティのアドベントがペイパルを約530億ドルで買収すると提案したと、ネット・インタレストのマーク・ルビンスタインが伝える。伝えられる取引構造ではストライプとアドベントがそれぞれペイパル株の半分ずつを持ち、500億ドル規模の銀行融資コミットメントが支える。今回の提案は、ストライプ自身の企業価値を1590億ドルと評価したセカンダリー・テンダーオファーの直後に出てきたもので、2013年にさかのぼる因縁に区切りをつける形だ。当時イーベイ傘下だったペイパルはストライプを丸ごと買収しようとしたが、創業者パトリック・ジョン・コリソン兄弟に断られた。代わりにペイパルはVenmoの親会社ブレインツリーを8億ドルで買収したが、その後10年でストライプの決済額は年70%の複利で伸びた一方、ブレインツリーは43%にとどまった。昨年ストライプは1兆9000億ドル、ブレインツリーは6000億ドルを処理した。その間ペイパルは3年でCEOを3人替え、数々の失策を重ねてきた。ルビンスタインは、その長い競争に明確に勝ったストライプがなぜかつて逃れようとした会社を今また買おうとするのか、そして530億ドルが妥当な価格に近いのかを核心的な問いとして投げかけるが、その答えはプレビュー以降の本文で扱われる。"
+      },
+      "why": {
+        "en": "A Stripe-Advent takeover would end PayPal's run as an independent public company and hand control of one of the internet's original payment rails to its biggest private rival, reshaping who sets the terms for online checkout.",
+        "ko": "스트라이프와 어드벤트의 인수가 성사되면 페이팔은 독립 상장사로서의 역사를 마감하고, 인터넷 초기 결제망 하나가 가장 큰 비상장 라이벌의 손에 넘어가게 된다. 온라인 결제 조건을 누가 정하느냐의 판도가 바뀌는 셈이다.",
+        "ja": "ストライプとアドベントによる買収が成立すれば、ペイパルは独立系上場企業としての歴史に幕を下ろし、インターネット初期の決済網の一つが最大の未上場ライバルの手に渡ることになる。オンライン決済の条件を誰が決めるかという構図が変わる。"
+      },
+      "ask": {
+        "en": "PayPal once had the chance to own Stripe for a fraction of today's price and passed. Is $53 billion a fair price for Stripe to finally close that loop, or is PayPal being bought cheap at the bottom of its own decline?",
+        "ko": "페이팔은 한때 지금보다 훨씬 싼 값에 스트라이프를 살 기회가 있었지만 놓쳤다. 530억 달러는 스트라이프가 그 인연을 마무리 짓기에 적정한 값일까, 아니면 페이팔이 쇠락의 바닥에서 헐값에 팔리는 걸까?",
+        "ja": "ペイパルはかつて今よりずっと安い値段でストライプを買う機会があったが、逃した。530億ドルはストライプがその因縁に区切りをつけるのに妥当な価格なのか、それともペイパルが自らの凋落の底値で安く買われようとしているのか?"
+      }
+    },
+    {
+      "date": "2026-07-24",
       "id": "kobeissi-oracle-cds-record",
       "related": [
         "kobeissi-us-debt-financing-cost"
@@ -12098,6 +12235,128 @@
         "Lee Jae-myung",
         "이재명",
         "李在明"
+      ]
+    },
+    "Jensen Huang (@JensenHuang)": {
+      "kind": "person",
+      "url": "https://x.com/JensenHuang",
+      "sector": {
+        "en": "CEO",
+        "ko": "CEO",
+        "ja": "CEO"
+      },
+      "desc": {
+        "en": "Nvidia's co-founder and CEO since 1993, whose GPUs became the backbone of the AI boom.",
+        "ko": "1993년부터 엔비디아를 이끌어온 공동창업자 겸 CEO. 그의 GPU가 AI 붐의 근간이 됐다.",
+        "ja": "1993年からエヌビディアを率いる共同創業者兼CEO。彼のGPUがAIブームの基盤となった。"
+      },
+      "aliases": [
+        "Jensen Huang",
+        "Huang",
+        "젠슨 황",
+        "황런쉰",
+        "ジェンスン・フアン",
+        "フアン"
+      ]
+    },
+    "STRIPE": {
+      "kind": "company",
+      "sector": {
+        "en": "Fintech / payments",
+        "ko": "핀테크·결제",
+        "ja": "フィンテック・決済"
+      },
+      "desc": {
+        "en": "Private payments infrastructure company that built much of the internet's online checkout software.",
+        "ko": "인터넷 온라인 결제 소프트웨어 상당수를 만든 비상장 결제 인프라 기업.",
+        "ja": "インターネットのオンライン決済ソフトウェアの多くを手がける未上場の決済インフラ企業。"
+      },
+      "aliases": [
+        "Stripe",
+        "스트라이프",
+        "ストライプ"
+      ],
+      "logo": "stripe.com",
+      "exchange": "비상장",
+      "ceo": {
+        "en": "Patrick Collison",
+        "ko": "패트릭 콜리슨",
+        "ja": "パトリック・コリソン"
+      },
+      "founded": "2010",
+      "hq": {
+        "en": "South San Francisco, USA",
+        "ko": "미국 사우스샌프란시스코",
+        "ja": "米国・サウスサンフランシスコ"
+      },
+      "website": "https://stripe.com",
+      "longDesc": {
+        "en": "Founded in 2010 by brothers Patrick and John Collison, Stripe built software that made it simple for websites and apps to accept online payments. It grew from a small developer tool into one of the world's most valuable private companies, processing trillions of dollars in payment volume a year for businesses ranging from startups to Amazon and Google.",
+        "ko": "2010년 패트릭·존 콜리슨 형제가 창업한 스트라이프는 웹사이트와 앱이 온라인 결제를 손쉽게 받을 수 있게 해주는 소프트웨어를 만들었다. 작은 개발자 도구에서 출발해 세계에서 가장 몸값 높은 비상장 기업 중 하나로 성장했으며, 스타트업부터 아마존·구글까지 매년 수조 달러의 결제액을 처리한다.",
+        "ja": "2010年にパトリックとジョンのコリソン兄弟が創業したストライプは、ウェブサイトやアプリがオンライン決済を簡単に受け付けられるソフトウェアを作った。小さな開発者向けツールから出発し、世界で最も企業価値の高い未上場企業の一つに成長し、スタートアップからアマゾン・グーグルまで毎年数兆ドルの決済額を処理する。"
+      }
+    },
+    "PAYPAL": {
+      "kind": "company",
+      "ticker": "PYPL",
+      "sector": {
+        "en": "Fintech / payments",
+        "ko": "핀테크·결제",
+        "ja": "フィンテック・決済"
+      },
+      "desc": {
+        "en": "One of the original online payment companies, now a takeover target after years of slowing growth.",
+        "ko": "초창기 온라인 결제 기업 중 하나. 성장 둔화가 이어지며 인수 대상으로 거론된다.",
+        "ja": "草創期のオンライン決済企業の一つ。成長鈍化が続き買収対象として取り沙汰される。"
+      },
+      "aliases": [
+        "PayPal",
+        "페이팔",
+        "ペイパル",
+        "PYPL"
+      ],
+      "logo": "paypal.com",
+      "exchange": "NASDAQ",
+      "ceo": {
+        "en": "Alex Chriss",
+        "ko": "알렉스 크리스",
+        "ja": "アレックス・クリス"
+      },
+      "founded": "1998",
+      "listed": "2002",
+      "hq": {
+        "en": "San Jose, USA",
+        "ko": "미국 새너제이",
+        "ja": "米国・サンノゼ"
+      },
+      "website": "https://www.paypal.com",
+      "longDesc": {
+        "en": "Founded in 1998, PayPal helped popularize paying online and later spun off from eBay in 2015 to become an independent public company. It acquired Braintree and Venmo in 2013 to fend off newer rivals like Stripe, but growth has slowed and the company has cycled through multiple CEOs since, making it a subject of takeover speculation.",
+        "ko": "1998년 설립된 페이팔은 온라인 결제 대중화를 이끌었고, 2015년 이베이에서 분사해 독립 상장사가 됐다. 2013년 브레인트리와 벤모를 인수해 스트라이프 같은 신흥 경쟁자를 막으려 했지만, 이후 성장이 둔화되고 CEO가 여러 차례 바뀌며 인수설의 대상이 되어 왔다.",
+        "ja": "1998年設立のペイパルはオンライン決済の普及を牽引し、2015年にイーベイから分離して独立上場企業となった。2013年にブレインツリーとVenmoを買収しストライプのような新興ライバルに対抗しようとしたが、その後成長が鈍化しCEOが何度も交代し、買収の噂の対象となってきた。"
+      }
+    },
+    "SECONDARY TENDER OFFER": {
+      "kind": "term",
+      "sector": {
+        "en": "Glossary",
+        "ko": "용어",
+        "ja": "用語"
+      },
+      "desc": {
+        "en": "A sale of existing shareholders' stock to new investors, not new shares from the company.",
+        "ko": "회사가 새 주식을 찍는 게 아니라 기존 주주 지분을 새 투자자에게 파는 거래.",
+        "ja": "会社が新株を発行するのではなく、既存株主の株式を新規投資家に売る取引。"
+      },
+      "longDesc": {
+        "en": "In a secondary tender offer, current shareholders, often employees or early investors, sell their shares directly to new buyers at an agreed price, and the company itself raises no new cash. It's common for private companies like Stripe that want to give employees liquidity and set a fresh valuation without going public.",
+        "ko": "세컨더리 텐더오퍼에서는 기존 주주(주로 직원이나 초기 투자자)가 합의된 가격에 자기 주식을 새 투자자에게 직접 팔고, 회사는 새 자금을 조달하지 않는다. 스트라이프처럼 상장하지 않고도 직원들에게 현금화 기회를 주고 새 기업가치를 매기고 싶은 비상장 기업들이 자주 활용한다.",
+        "ja": "セカンダリー・テンダーオファーでは、既存株主(主に従業員や初期投資家)が合意価格で自分の株式を新規投資家に直接売り、会社自体は新たな資金を調達しない。ストライプのように上場せず従業員に現金化の機会を与え、新しい企業価値を付けたい未上場企業がよく使う。"
+      },
+      "aliases": [
+        "세컨더리 텐더오퍼",
+        "secondary tender offer",
+        "セカンダリー・テンダーオファー"
       ]
     }
   }
