@@ -7243,11 +7243,35 @@ function render(){
    back to the newest item that has a discussion prompt. Only shows on the
    plain home view (not search / entity / series / scoreboard). */
 let TODAY_ID = null;
+/* ✕로 박스를 닫을 때 즉시 사라지지 않고 위로 접히며(높이·여백 0 + 페이드) 사라지는
+   애니메이션. 끝나면 hidden 처리하고 인라인 스타일을 정리해 다음에 다시 열릴 때 정상 복귀. */
+function collapseHide(el, done){
+  if (!el || el.hidden){ if (done) done(); return; }
+  try {
+    if (el.__collapsing) return;         /* 중복 클릭 방지 */
+    el.__collapsing = true;
+    var h = el.scrollHeight;
+    el.style.overflow = "hidden";
+    el.style.maxHeight = h + "px";
+    void el.offsetHeight;                 /* 시작 높이 확정 (reflow) */
+    el.style.transition = "max-height .32s cubic-bezier(.4,0,.2,1), opacity .22s ease, margin .32s ease, padding .32s ease";
+    el.style.maxHeight = "0px"; el.style.opacity = "0";
+    el.style.marginTop = "0px"; el.style.marginBottom = "0px";
+    el.style.paddingTop = "0px"; el.style.paddingBottom = "0px";
+    setTimeout(function(){
+      el.hidden = true;
+      el.style.transition = ""; el.style.maxHeight = ""; el.style.overflow = ""; el.style.opacity = "";
+      el.style.marginTop = ""; el.style.marginBottom = ""; el.style.paddingTop = ""; el.style.paddingBottom = "";
+      el.__collapsing = false;
+      if (done) done();
+    }, 340);
+  } catch (e){ el.hidden = true; el.__collapsing = false; if (done) done(); }
+}
 function dismissToday(ev){
   if (ev){ ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
   store.set("stk_today_dismiss", todayStr());
   const sec = document.getElementById("todaySec");
-  if (sec) sec.hidden = true;
+  if (sec) collapseHide(sec);
   track("today/dismiss");
 }
 function renderToday(){
@@ -7932,7 +7956,7 @@ if (miniInstallBtn) miniInstallBtn.addEventListener("click", async () => {
 const miniClose = document.getElementById("miniInstallClose");
 if (miniClose) miniClose.addEventListener("click", () => {
   store.set("stk_hide_install", true);
-  miniInstall.hidden = true;
+  collapseHide(miniInstall);
 });
 
 window.addEventListener("beforeinstallprompt", e => {
@@ -9911,7 +9935,7 @@ bootData();
             (ctx ? '<div class="v82today-ctx">' + esc(ctx) + '</div>' : "") +
             '<div class="v82today-src">' + esc(dispName(titem.source)) + ' · ' + esc(titem.title[LANG] || "") + '</div>' +
             '<div class="v82today-cta">' + (S.todayJoin || T().ntDebate) + ' →</div>';
-          tc.querySelector(".v82today-x").addEventListener("click", function(ev){ ev.stopPropagation(); window.__v82todayHid = TODAY_ID; tc.remove(); });
+          tc.querySelector(".v82today-x").addEventListener("click", function(ev){ ev.stopPropagation(); window.__v82todayHid = TODAY_ID; if (typeof collapseHide === "function") collapseHide(tc, function(){ tc.remove(); }); else tc.remove(); });
           tc.addEventListener("click", function(){ openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); });
           mods.push({ top: true, node: tc });
         }
