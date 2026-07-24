@@ -125,6 +125,82 @@ async function hmac24(secret, msg) {
   return [...new Uint8Array(sig)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 24);
 }
 
+/* ---------- welcome email (sent right after a new /subscribe) ----------
+   Localized copy; unsubscribe link is the same HMAC one-click link the
+   weekly email uses. Requires the worker secrets RESEND_API_KEY (sending-
+   only key) and UNSUB_SECRET; silently skipped if either is missing. */
+const WELCOME_COPY = {
+  ko: {
+    subj: "Stacks 구독 완료 — 매주 일요일에 만나요",
+    hi: "구독해 주셔서 고마워요!",
+    body: "매주 일요일 아침, 이번 주 가장 중요한 투자 읽을거리를 요약과 관점까지 담아 이 메일함으로 보내드려요.",
+    note: "그동안의 글이 궁금하면 지금 바로 둘러보세요.",
+    cta: "Stacks 둘러보기",
+    unsub: "구독 해지"
+  },
+  en: {
+    subj: "You\u2019re subscribed to Stacks \u2014 see you Sunday",
+    hi: "Thanks for subscribing!",
+    body: "Every Sunday morning we\u2019ll send this inbox the week\u2019s most important investing reads, summarized with a take.",
+    note: "Want a head start? The archive is open now.",
+    cta: "Explore Stacks",
+    unsub: "Unsubscribe"
+  },
+  ja: {
+    subj: "Stacksの購読完了 — 毎週日曜にお届けします",
+    hi: "ご購読ありがとうございます！",
+    body: "毎週日曜の朝、今週最も重要な投資の読みものを、要約と視点付きでこのメールボックスにお届けします。",
+    note: "これまでの記事は今すぐご覧いただけます。",
+    cta: "Stacksを見る",
+    unsub: "購読解除"
+  }
+};
+
+async function sendWelcome(env, workerOrigin, email, lang) {
+  if (!env.RESEND_API_KEY) return;  // welcome mail not configured — fine
+  const T = WELCOME_COPY[lang] || WELCOME_COPY.ko;
+  let unsubUrl = "https://stacksdaily.com";
+  if (env.UNSUB_SECRET) {
+    const t = await hmac24(env.UNSUB_SECRET, email);
+    unsubUrl = workerOrigin + "/unsub?e=" + encodeURIComponent(email) + "&t=" + t;
+  }
+  const html =
+    "<!DOCTYPE html><html><body style=\"margin:0;padding:0;background:#f4f5f7\">"
+    + "<div style=\"max-width:520px;margin:0 auto;padding:32px 20px;"
+    + "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans KR',sans-serif\">"
+    + "<div style=\"background:#ffffff;border-radius:16px;padding:36px 32px;text-align:center;"
+    + "border:1px solid #e5e7eb\">"
+    + "<img src=\"https://stacksdaily.com/apple-touch-icon.png\" width=\"56\" height=\"56\" alt=\"Stacks\" "
+    + "style=\"border-radius:14px;display:block;margin:0 auto 20px\">"
+    + "<h1 style=\"font-size:20px;margin:0 0 12px;color:#111827\">" + T.hi + "</h1>"
+    + "<p style=\"font-size:15px;line-height:1.65;color:#4b5563;margin:0 0 8px\">" + T.body + "</p>"
+    + "<p style=\"font-size:14px;line-height:1.6;color:#6b7280;margin:0 0 24px\">" + T.note + "</p>"
+    + "<a href=\"https://stacksdaily.com\" style=\"display:inline-block;background:#111827;color:#ffffff;"
+    + "text-decoration:none;font-size:14px;font-weight:600;padding:12px 28px;border-radius:999px\">"
+    + T.cta + "</a>"
+    + "</div>"
+    + "<p style=\"text-align:center;font-size:12px;color:#9ca3af;margin:20px 0 0\">"
+    + "Stacks \u00b7 <a href=\"" + unsubUrl + "\" style=\"color:#9ca3af\">" + T.unsub + "</a></p>"
+    + "</div></body></html>";
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + env.RESEND_API_KEY
+    },
+    body: JSON.stringify({
+      from: env.RESEND_FROM || "Stacks Weekly <weekly@stacksdaily.com>",
+      to: [email],
+      subject: T.subj,
+      html: html,
+      headers: {
+        "List-Unsubscribe": "<" + unsubUrl + ">",
+        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"
+      }
+    })
+  });
+}
+
 /* build a OneSignal language map ({en, ko, ja, ...}) for a heading or body,
    from an object {en,ko,ja}, flat title_en/title_ko/..., or a plain string.
    OneSignal requires an "en" fallback, so we always fill it. */
@@ -490,10 +566,19 @@ export default {
         return json({ ok: false, error: "invalid email" }, 400, origin);
       }
       await ensureTables(env.DB);
+      // was this address already an active subscriber? (guards duplicate welcomes)
+      const prev = await env.DB.prepare(
+        "SELECT unsubscribed FROM subscribers WHERE email = ?1").bind(email).first();
+      const wasActive = prev && !prev.unsubscribed;
       await env.DB.prepare(
         "INSERT INTO subscribers (email, lang, unsubscribed) VALUES (?1, ?2, 0) " +
         "ON CONFLICT(email) DO UPDATE SET lang = ?2, unsubscribed = 0"
       ).bind(email, lang).run();
+      if (!wasActive) {
+        // fresh (or re-activated) subscriber → send the welcome email.
+        // Never let a mail hiccup break the signup itself.
+        try { await sendWelcome(env, url.origin, email, lang); } catch (e) {}
+      }
       return json({ ok: true }, 200, origin);
     }
 
