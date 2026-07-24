@@ -25,6 +25,8 @@ from datetime import datetime, timedelta, timezone
 KST = timezone(timedelta(hours=9))
 WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
 SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
 SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 OUT_DIR = os.environ.get("OUT_DIR", "weekly")
@@ -75,11 +77,11 @@ def notify(tag, title, msg, url):
     if not WORKER or not SECRET:
         print("[skip] worker url / secret not set")
         return False
-    print("[debug] worker_rev=%s secret_len=%d fp=%s..%s"
-          % (WORKER[::-1], len(SECRET), SECRET[:3], SECRET[-3:]))
     params = urllib.parse.urlencode({
         "secret": SECRET, "tag": tag, "title": title[:120], "msg": msg[:300], "url": url})
-    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET")
+    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET",
+                                 headers={"User-Agent": UA,
+                                          "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=25) as r:
             out = json.loads(r.read().decode("utf-8"))

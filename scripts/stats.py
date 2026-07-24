@@ -34,6 +34,8 @@ from datetime import datetime, timedelta, timezone
 KST = timezone(timedelta(hours=9))
 WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
 SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 LLM_MODEL = os.environ.get("STATS_LLM_MODEL", "claude-3-5-sonnet-latest")
 ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
@@ -76,7 +78,9 @@ def notify(tag, title, msg, url):
     params = urllib.parse.urlencode({
         "secret": SECRET, "tag": tag,
         "title": title[:120], "msg": msg[:300], "url": url})
-    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET")
+    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET",
+                                 headers={"User-Agent": UA,
+                                          "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=25) as r:
             out = json.loads(r.read().decode("utf-8"))

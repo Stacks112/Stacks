@@ -48,6 +48,8 @@ WS_USES = int(os.environ.get("WEB_SEARCH_USES", "4"))
 GRADE_PUSH = os.environ.get("GRADE_PUSH", "0") == "1"
 WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
 SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 
 API_URL = "https://api.anthropic.com/v1/messages"
@@ -165,7 +167,9 @@ def notify(title, msg, url):
         "secret": SECRET, "tag": "daily",
         "title": title[:120], "msg": msg[:300], "url": url,
     })
-    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET")
+    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET",
+                                 headers={"User-Agent": UA,
+                                          "Accept": "application/json"})
     try:
         with urllib.request.urlopen(req, timeout=25) as r:
             out = json.loads(r.read().decode("utf-8"))
