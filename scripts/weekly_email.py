@@ -27,6 +27,9 @@ KST = timezone(timedelta(hours=9))
 # CSS "S" glyph, which is not the brand mark.
 ICON_PATH = "/apple-touch-icon.png"
 BRAND = "#2E5BFF"
+# emoji for the in-body "이번 주 Stacks 베스트" heading (app icon stays only in
+# the top header). 🏆 = "best" of the week.
+HEADING_EMOJI = "🏆"
 
 STANCE = {
     "bull":    {"ko": "강세", "en": "Bull",    "ja": "強気", "fg": "#0B7A4B", "bg": "#E7F7EF"},
@@ -191,15 +194,67 @@ def _link_pass(runs, rx, a2k, used, url):
     return out
 
 
-def linkify(text, ctx, url):
+def linkify(text, ctx, url, used=None):
     """Escape plain text, then wrap entity + glossary terms (once each) as links
-    to the article. Newlines become <br>."""
+    to the article. Pass a shared `used` set to keep 'link each term once' across
+    a whole multi-paragraph gist. Newlines become <br>."""
     runs = [("text", _esc(text))]
-    used = set()
+    if used is None:
+        used = set()
     runs = _link_pass(runs, ctx.get("ent_rx"), ctx.get("ent_a2k", {}), used, url)
     runs = _link_pass(runs, ctx.get("gloss_rx"), ctx.get("gloss_a2k", {}), used, url)
     joined = "".join(c for _, c in runs)
     return joined.replace("\n", "<br>")
+
+
+# ---------------------------------------------------------------- paragraphs
+def _sentences(text):
+    """Split prose into sentences (ko '다./요.', en '.', ja '。'), guarding
+    decimals like 16.3 so they don't split."""
+    text = (text or "").strip()
+    enders = ".!?。！？"
+    out, buf, i, n = [], "", 0, len(text)
+    while i < n:
+        ch = text[i]
+        buf += ch
+        if ch in enders:
+            prev = text[i - 1] if i > 0 else ""
+            nxt = text[i + 1] if i + 1 < n else ""
+            if ch == "." and prev.isdigit() and nxt.isdigit():
+                i += 1
+                continue
+            j = i + 1
+            while j < n and text[j] in " \t":
+                j += 1
+            out.append(buf.strip())
+            buf = ""
+            i = j
+            continue
+        i += 1
+    if buf.strip():
+        out.append(buf.strip())
+    return [s for s in out if s]
+
+
+def paragraphize(text, target=150):
+    """Group sentences into readable paragraphs (~target chars each)."""
+    sents = _sentences(text)
+    if not sents:
+        return [text.strip()] if (text or "").strip() else []
+    paras, cur, curlen = [], [], 0
+    for s in sents:
+        cur.append(s)
+        curlen += len(s)
+        if curlen >= target:
+            paras.append(" ".join(cur))
+            cur, curlen = [], 0
+    if cur:
+        tail = " ".join(cur)
+        if paras and curlen < target * 0.45:
+            paras[-1] = paras[-1] + " " + tail  # avoid a lonely short paragraph
+        else:
+            paras.append(tail)
+    return paras
 
 
 # ---------------------------------------------------------------- since calc
@@ -290,12 +345,16 @@ def shorten_title(s, maxlen=38):
     return cut.rstrip() + "…"
 
 
+SUBJECT_EMOJI = "📈"
+
+
 def subject_line(lang, top_item):
     base = L[_lang(lang)]["best"]
     if not top_item:
-        return base
+        return "%s %s" % (SUBJECT_EMOJI, base)
     t = shorten_title(_t(top_item.get("title"), lang))
-    return "%s: %s" % (base, t) if t else base
+    # emoji up front (restored), and a comma — not a colon — before the headline
+    return "%s %s, %s" % (SUBJECT_EMOJI, base, t) if t else "%s %s" % (SUBJECT_EMOJI, base)
 
 
 # ---------------------------------------------------------------- enrich
@@ -377,7 +436,14 @@ def _card_html(lang, ctx, site, it):
         % (st["fg"], st["bg"], st[_lang(lang)])
     )
     title = _esc(_t(it.get("title"), lang))
-    gist = linkify(_t(it.get("gist"), lang), ctx, url)
+    # paragraph breaks: split the one-block gist into readable paragraphs, and
+    # link each indexed term once across the WHOLE gist (shared `used`).
+    used = set()
+    gist_paras = paragraphize(_t(it.get("gist"), lang))
+    gist = "".join(
+        '<p style="margin:0 0 13px;">%s</p>' % linkify(p, ctx, url, used)
+        for p in gist_paras
+    ) or '<p style="margin:0;">%s</p>' % linkify(_t(it.get("gist"), lang), ctx, url, used)
     why = linkify(_t(it.get("why"), lang), ctx, url)
     src = _esc(it.get("source", ""))
     date = _esc(it.get("date", ""))
@@ -412,60 +478,90 @@ def _card_html(lang, ctx, site, it):
         '<a href="%s" style="text-decoration:none;color:#111318;">'
         '<div style="font-size:19px;line-height:1.4;font-weight:800;letter-spacing:-.01em;margin:0 0 12px;">%s</div>'
         '</a>'
-        # full gist
-        '<div style="font-size:14.5px;line-height:1.7;color:#2C2F36;">%s</div>'
+        # full gist (paragraphed)
+        '<div style="font-size:14.5px;line-height:1.75;color:#2C2F36;">%s</div>'
         # why band
-        '<div style="font-size:11px;font-weight:700;color:#8B93A1;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 4px;">%s</div>'
+        '<div style="font-size:11px;font-weight:700;color:#8B93A1;letter-spacing:.06em;text-transform:uppercase;margin:14px 0 4px;">%s</div>'
         '<div style="font-size:14px;line-height:1.65;color:#3B3F46;">%s</div>'
         '%s'   # tags
         '%s'   # since badge
-        # links
-        '<div style="margin:16px 0 0;">'
-        '<a href="%s" style="display:inline-block;font-size:13px;font-weight:700;color:%s;text-decoration:none;margin-right:16px;">%s &rarr;</a>'
-        '<a href="%s" style="display:inline-block;font-size:13px;font-weight:700;color:#6B7280;text-decoration:none;">%s &nearr;</a>'
+        # actions: solid black "원문 보기" button + Stacks text link
+        '<div style="margin:18px 0 0;">'
+        '<a href="%s" style="display:inline-block;background:#111318;color:#ffffff;font-size:13px;font-weight:800;'
+        'text-decoration:none;padding:11px 20px;border-radius:999px;">%s ↗</a>'
+        '<a href="%s" style="display:inline-block;font-size:13px;font-weight:700;color:%s;text-decoration:none;'
+        'margin-left:16px;line-height:40px;vertical-align:middle;">%s →</a>'
         '</div>'
         '</td></tr></table>'
         '</td></tr>'
         % (url, og, badge, src, date, url, title, gist,
            _esc(T["why"]).upper(), why, tag_html, since_html,
-           url, BRAND, _esc(T["read"]), orig, _esc(T["orig"]))
+           orig, _esc(T["orig"]), url, BRAND, _esc(T["read"]))
     )
 
 
-def _attn_sentence(lang, this, last):
-    def nm(keys):
-        return "·".join('<b style="color:#111318;">%s</b>' % _esc(k) for k in keys[:2])
-    if not this:
-        return ""
-    lg = _lang(lang)
-    if last:
-        if lg == "en":
-            return "Last week attention clustered on %s; this week it shifted to %s." % (nm(last), nm(this))
-        if lg == "ja":
-            return "先週は%sに関心が集まっていましたが、今週は%sへ移りました。" % (nm(last), nm(this))
-        return "지난주엔 %s에 관심이 몰렸는데, 이번주엔 %s로 옮겨갔어요." % (nm(last), nm(this))
-    if lg == "en":
-        return "This week attention clustered on %s." % nm(this)
-    if lg == "ja":
-        return "今週は%sに関心が集まりました。" % nm(this)
-    return "이번주엔 %s에 관심이 몰렸어요." % nm(this)
+_ATTN_LABELS = {
+    "ko": {"last": "지난주", "this": "이번주", "cap": "🔥 %s가 이번 주 새로 떠올랐어요"},
+    "en": {"last": "Last week", "this": "This week", "cap": "🔥 %s newly surged this week"},
+    "ja": {"last": "先週", "this": "今週", "cap": "🔥 %s が今週新たに浮上"},
+}
+
+
+def _attn_chip(name, mode):
+    """mode: 'last' (muted), 'carry' (in both weeks), 'new' (newcomer)."""
+    style = {
+        "last":  "background:#EEF0F3;color:#6B7280;",
+        "carry": "background:#EAF0FF;color:#2E5BFF;",
+        "new":   "background:#111318;color:#ffffff;",
+    }.get(mode, "background:#EEF0F3;color:#6B7280;")
+    tag = ('<span style="font-size:9px;font-weight:800;letter-spacing:.08em;'
+           'margin-left:7px;opacity:.8;">NEW</span>') if mode == "new" else ""
+    return ('<div style="margin:0 0 8px;"><span style="display:inline-block;%s'
+            'font-size:13px;font-weight:700;padding:7px 12px;border-radius:8px;'
+            'white-space:nowrap;">%s%s</span></div>' % (style, _esc(name), tag))
 
 
 def _attn_html(lang, ctx):
     T = L[_lang(lang)]
+    lb = _ATTN_LABELS[_lang(lang)]
     attn = ctx.get("attn") or {}
-    sentence = _attn_sentence(lang, attn.get("this") or [], attn.get("last") or [])
-    if not sentence:
+    this = (attn.get("this") or [])[:3]
+    last = (attn.get("last") or [])[:3]
+    if not this and not last:
         return ""
+    lastset = set(last)
+    empty = '<div style="color:#B6BBC4;font-size:13px;padding:7px 0;">—</div>'
+    left = "".join(_attn_chip(k, "last") for k in last) or empty
+    right = "".join(_attn_chip(k, "new" if k not in lastset else "carry")
+                    for k in this) or empty
+    newcomers = [k for k in this if k not in lastset]
+    caption = ""
+    if newcomers:
+        caption = ('<div style="font-size:12.5px;color:#8B93A1;margin:16px 0 0;'
+                   'padding:12px 0 0;border-top:1px solid #EEF0F3;">%s</div>'
+                   % (lb["cap"] % "·".join(newcomers[:2])))
+    lbl = ('<div style="font-size:11px;font-weight:700;color:#9AA0A6;'
+           'letter-spacing:.04em;margin:0 0 10px;">%s</div>')
     return (
         '<tr><td style="padding:2px 0 16px;">'
         '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
         'style="border:1px solid #E5E7EB;border-radius:14px;background:#FBFCFE;">'
-        '<tr><td style="padding:18px 20px;">'
-        '<div style="font-size:11px;font-weight:700;color:%s;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px;">%s</div>'
-        '<div style="font-size:14.5px;line-height:1.65;color:#3B3F46;">%s</div>'
+        '<tr><td style="padding:18px 20px 20px;">'
+        '<div style="font-size:11px;font-weight:700;color:%s;letter-spacing:.08em;'
+        'text-transform:uppercase;margin:0 0 14px;">%s</div>'
+        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0"><tr>'
+        '<td width="43%%" valign="top">%s%s</td>'
+        '<td width="14%%" align="center" valign="middle" '
+        'style="font-size:28px;font-weight:800;color:%s;">&rarr;</td>'
+        '<td width="43%%" valign="top">%s%s</td>'
+        '</tr></table>'
+        '%s'
         '</td></tr></table></td></tr>'
-        % (BRAND, _esc(T["attn"]), sentence)
+        % (BRAND, _esc(T["attn"]),
+           lbl % _esc(lb["last"]), left,
+           BRAND,
+           lbl % _esc(lb["this"]), right,
+           caption)
     )
 
 
@@ -523,7 +619,7 @@ def render_email(lang, ctx, site, unsub="{{unsubscribe}}"):
         '</table></td></tr></table></body></html>'
         % (_lang(lang), _esc(T["best"]), _esc(T["best"]), _esc(T["sub"]),
            _icon_img(site, 26, 7, 9), _esc(T["range"]), _esc(rng),
-           _icon_img(site, 24, 6, 10), _esc(T["best"]), _esc(T["sub"]),
+           '<span style="margin-right:8px;">' + HEADING_EMOJI + '</span>', _esc(T["best"]), _esc(T["sub"]),
            cards_html, attn_html,
            site + "/", _esc(T["more"]),
            _esc(T["tail"]), site + "/", unsub, _esc(T["unsub"]))
