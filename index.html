@@ -3025,7 +3025,15 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
      가드에 막혀 아무 것도 안 바뀌는 것처럼 보였다 — 페이지 탭 진입 시 해제. */
-  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false; }
+  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
+    /* v83 버그픽스: evGo가 이벤트 라벨을 QUERY/검색창에 남겨, 캘린더 등 페이지 탭 재진입 시
+       v83DirTab()이 QUERY 때문에 null을 반환 → 라벨 검색결과(0건) "결과가 없어요"가 떴다.
+       페이지 탭 진입 시 검색 상태를 초기화해 정상적으로 페이지가 다시 뜨게 한다. */
+    QUERY = "";
+    var _si = document.getElementById("searchInput"); if (_si) _si.value = "";
+    var _sc = document.getElementById("searchClear"); if (_sc) _sc.hidden = true;
+    var _sb = document.getElementById("searchBox"); if (_sb) _sb.classList.remove("active");
+  }
   if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
 
 
@@ -4822,9 +4830,9 @@ var V83ICONS = {
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 토론 참여",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",join:"Join today's debate",search:"Search",me:"My page"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",join:"今日の論点に参加",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 핫글",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Browse",skew:"Crowd lean",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Theme debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",join:"Today's hot post",search:"Search",me:"My page"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",join:"今日のホット記事",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -4849,11 +4857,25 @@ function v83ReadList(){
     if (typeof render === "function") render();
   } catch (e) {}
 }
+/* 오늘의 핫글: 최근 7일 조회/좋아요/댓글 스코어 1위 글(없으면 hot 플래그, 그래도
+   없으면 최신)을 골라 그 글의 상세 페이지로 이동한다. */
+function v83TopHotId(){
+  try {
+    var cutoff = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
+    var pool = ITEMS.filter(function(i){ return i.date >= cutoff; });
+    var score = function(i){ return (VIEW_COUNTS[i.id] || 0) + (LIKE_COUNTS[i.id] || 0) * 3 + (COMMENT_COUNTS[i.id] || 0) * 2; };
+    var list = pool.filter(function(i){ return score(i) > 0; })
+      .sort(function(a, b){ return score(b) - score(a) || (a.date < b.date ? 1 : -1); });
+    if (!list.length) list = pool.filter(function(i){ return i.hot; }).sort(function(a, b){ return a.date < b.date ? 1 : -1; });
+    if (!list.length) list = ITEMS.slice().sort(function(a, b){ return a.date < b.date ? 1 : -1; });
+    return list.length ? list[0].id : null;
+  } catch (e) { return null; }
+}
 function v83JoinDebate(){
   try {
-    if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof v83OpenItem === "function"){
-      v83OpenItem(TODAY_ID, true); /* v83.3: page swap, not deep scroll */
-    } else if (typeof goHome === "function") goHome();
+    var id = v83TopHotId();
+    if (id && typeof v83OpenItem === "function"){ v83OpenItem(id); return; } /* 해당 글의 상세 페이지로 */
+    if (typeof goHome === "function") goHome();
   } catch (e) {}
 }
 function mountV83(){
@@ -9999,6 +10021,8 @@ html.v83 .card.v83clip .gist::after{content:"";position:absolute;left:0;right:0;
 .v83-more{display:none;background:none;border:0;color:var(--accent);font-weight:700;
   font-size:13.5px;cursor:pointer;padding:8px 0 0;font-family:var(--ui-font);}
 html.v83 .card.v83clip .v83-more{display:inline-flex;}
+/* 더 보기로 인라인 펼침(트위터식): 클램프 해제, 페이드/버튼은 v83clip 제거로 사라짐 */
+html.v83 .card.v83expanded .gist{max-height:none !important;overflow:visible !important;}
 html.v83 .card.v83one .card-body{max-height:none !important;opacity:1 !important;}
 /* ✓ 읽음: 좌측 '읽은 글' 메뉴가 받을 때 살짝 반짝 */
 @keyframes v83ReadPulse{0%{background:var(--bg-soft);transform:scale(1)}45%{background:var(--bg-soft);transform:scale(1.06)}100%{transform:scale(1)}}
@@ -10154,6 +10178,23 @@ html.v83 .nav-inner .v83-search input{padding:8px 15px;}
 html.v83 #v83nav{top:52px;height:calc(100vh - 52px);}
 html.v83 #v83rail{top:52px;max-height:calc(100vh - 52px);}
 html.v83 #v83fsw button{padding:0 0 1px;}
+/* 상단 고정바 좌우 정렬 (트위터 모바일 참고, june 지시):
+   nav-inner를 본문 3열 그리드(.wrap)와 완전히 동일하게 만들어 — 브랜드 Stacks는
+   좌측 패널 메뉴(아이콘) 좌측끝에, 검색창은 우측 패널(레일) 좌측끝~우측끝에 정확히 맞춘다. */
+@media (min-width:1024px){
+  html.v83 .nav-inner{
+    display:grid !important;
+    grid-template-columns:minmax(200px,240px) minmax(0,600px) minmax(280px,340px);
+    gap:0; max-width:1240px; padding:7px 8px !important; align-items:center;
+    justify-content:start; justify-items:start;
+  }
+  /* 브랜드: col1 안에서 좌측 내비 아이콘(내비 패딩 8 + 링크 패딩 14 = 22px)과 좌측끝 정렬 */
+  html.v83 .nav-inner .brand{ grid-column:1; justify-self:start; margin-left:22px; }
+  /* 검색창: col3(우측 레일)에 꽉 채우되 레일 패딩(왼18/오10)과 동일하게 → 레일 박스와 좌우 정렬 */
+  html.v83 .nav-inner .v83-search{ grid-column:3; justify-self:stretch; margin:0 !important;
+    width:auto !important; padding:0 10px 0 18px; box-sizing:border-box; }
+  html.v83 .nav-inner .v83-search input{ width:100% !important; }
+}
 </style>
 <script id="v83tw-js">
 /* v83 desktop: notification settings panel (reads/writes the same stk_notif
@@ -10695,12 +10736,14 @@ function v83ClipScan(){
       b.className = "v83-more"; b.type = "button";
       b.textContent = (((typeof STRINGS !== "undefined" && STRINGS[LANG]) || {}).loadMore || "더 보기") + " →";
       b.addEventListener("click", function(e){
+        /* 모바일과 동일: 더 보기 → 상세로 이동하지 않고 그 자리에서 본문을 펼침 */
         e.stopPropagation();
-        if (typeof v83OpenItem === "function") v83OpenItem(id);
+        c.classList.add("v83expanded");
+        c.classList.remove("v83clip");
       });
       fold.appendChild(b);
     }
-    c.classList.toggle("v83clip", g.scrollHeight > 260);
+    if (!c.classList.contains("v83expanded")) c.classList.toggle("v83clip", g.scrollHeight > 260);
   });
 }
 setInterval(v83ClipScan, 1000);
