@@ -2,6 +2,159 @@
   "items": [
     {
       "date": "2026-07-24",
+      "id": "kobeissi-datacenter-power-2035",
+      "related": [
+        "jukan-nvidia-800v-hvdc-delay",
+        "potus-datacenters",
+        "doomberg-kilby"
+      ],
+      "source": "The Kobeissi Letter (@KobeissiLetter)",
+      "sourceUrl": "https://x.com/KobeissiLetter/status/2080718541591035927",
+      "sourceLang": "EN",
+      "category": "investor",
+      "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+      "hot": true,
+      "paywall": false,
+      "series": "ai-power",
+      "cover": {
+        "from": "#78350F",
+        "to": "#F59E0B",
+        "label": "194 GIGAWATTS"
+      },
+      "tags": [
+        "POWER GRID",
+        "DATA CENTER",
+        "AI CAPEX"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "US data center power demand seen surging 253% by 2035, to 194 gigawatts",
+        "ko": "미국 데이터센터 전력 수요, 2035년까지 253% 급증해 194기가와트 전망",
+        "ja": "米データセンターの電力需要、2035年までに253%急増し194ギガワットへ"
+      },
+      "gist": {
+        "en": "US data center electricity demand is projected to jump 253% from 2026 levels to a record 194 gigawatts by 2035, The Kobeissi Letter reports, a figure roughly equal to the output of 194 traditional nuclear reactors. As a result, data centers are expected to account for about 20% of total US electricity consumption by 2035, up from roughly 6% today, with the share already projected to hit 12% by 2030. Much of the buildout is concentrated in a handful of grid regions, chief among them PJM, the interconnection that serves Washington DC and 13 states including Virginia, Pennsylvania and Ohio, where AI data center clusters are expanding fastest. The projection captures a shift already visible in utility earnings and grid planning: power availability, not chip supply, is increasingly the constraint that determines how fast hyperscalers can bring new AI capacity online. Utilities in PJM territory have flagged multiyear queues for new large-load interconnections, and grid operators warn that demand growth of this scale requires new generation and transmission capacity, and in some cases, direct on-site power deals that bypass the public grid entirely.",
+        "ko": "미국 데이터센터의 전력 수요가 2026년 대비 253% 급증해 2035년까지 194기가와트에 이를 것이라고 코베이시레터가 전망했다. 1기가와트는 전통적인 원자력발전소 1기의 발전용량과 맞먹는 규모로, 원전 194기 분량의 전력이 새로 필요해진다는 뜻이다. 이 추세대로면 데이터센터가 미국 전체 전력 소비에서 차지하는 비중은 현재 약 6%에서 2035년 약 20%까지 오르고, 2030년에는 이미 12% 수준에 이를 전망이다. 수요 증가는 몇몇 특정 송전망 지역에 집중돼 있는데, 대표적인 곳이 워싱턴DC와 버지니아·펜실베이니아·오하이오 등 13개 주에 전력을 공급하는 PJM 지역이다. AI 데이터센터 단지가 가장 빠르게 늘어나는 곳이기도 하다. 이 전망은 최근 전력회사 실적과 송전망 계획에서 이미 나타나고 있는 흐름과 맞닿아 있다. 이제 AI 인프라 확장 속도를 좌우하는 건 반도체 공급이 아니라 전력 확보 여부라는 얘기다. PJM 관할 전력회사들은 대형 신규 접속 신청이 몇 년씩 밀려 있다고 밝혔고, 송전망 운영사들은 이 정도 규모의 수요 증가를 감당하려면 새 발전·송전 설비는 물론, 아예 공용 송전망을 거치지 않고 직접 전력을 끌어오는 계약까지 필요하다고 경고한다.",
+        "ja": "米国のデータセンター電力需要が2026年比253%急増し、2035年までに過去最高の194ギガワットに達するとコベイシ・レターが伝えた。1ギガワットは従来型原子炉1基分の発電容量にほぼ相当し、原発194基分の電力が新たに必要になる計算だ。この予測通りなら、データセンターが米国全体の電力消費に占める割合は現在の約6%から2035年には約20%まで上昇し、2030年時点ですでに12%に達する見通しだという。需要増加は一部の送電網エリアに集中しており、代表例がワシントンDCとバージニア・ペンシルベニア・オハイオなど13州に電力を供給するPJMだ。AIデータセンター群が最も急速に拡大している地域でもある。この予測は電力会社の決算や送電網計画にすでに表れている流れと重なる。AIインフラの拡張スピードを左右するのは半導体供給ではなく、電力確保になりつつあるということだ。PJM管内の電力会社は大型の新規接続申請が数年待ちの状態だと明らかにしており、送電網の運営者はこの規模の需要増に対応するには新たな発電・送電設備に加え、公共送電網を経由しない直接電力調達契約まで必要になると警告している。"
+      },
+      "why": {
+        "en": "If electricity, not GPUs, becomes the hard ceiling on AI capacity growth, the winners shift from chipmakers to whoever controls power generation, transmission rights and grid interconnection queues.",
+        "ko": "AI 설비 확장의 상한선이 GPU가 아니라 전력이 된다면, 승자는 반도체 기업에서 발전·송전권·계통연계 대기열을 쥔 쪽으로 옮겨간다.",
+        "ja": "AI設備拡張の上限がGPUではなく電力になるなら、勝者は半導体メーカーから発電・送電権・系統連系の順番待ちを握る側へと移る。"
+      },
+      "ask": {
+        "en": "Power grid capacity, not chip supply, may be the real bottleneck on the AI buildout through 2035. Does that make utilities and grid infrastructure the next AI trade, or is off-grid power the faster path?",
+        "ko": "2035년까지 AI 설비투자의 진짜 병목은 반도체가 아니라 전력망일 수 있다. 그렇다면 다음 AI 트레이드는 전력회사·송전 인프라일까, 아니면 송전망을 거치지 않는 오프그리드 발전이 더 빠른 길일까?",
+        "ja": "2035年までのAI設備投資の本当のボトルネックは半導体ではなく送電網かもしれない。次のAIトレードは電力会社・送電インフラなのか、それとも送電網を経由しないオフグリッド発電の方が近道なのか。"
+      },
+      "ts": "2026-07-24T21:50:00.000+00:00"
+    },
+    {
+      "date": "2026-07-24",
+      "id": "trump-eu-301-investigation-bigtech-fines",
+      "related": [
+        "kobeissi-canada-tariff",
+        "meru-forced-labor-tariff-korea",
+        "trump-generic-drug-tariff-reshoring"
+      ],
+      "source": "Donald J. Trump (@realDonaldTrump)",
+      "sourceUrl": "https://truthsocial.com/@realDonaldTrump/116976043318889040",
+      "sourceLang": "EN",
+      "category": "politician",
+      "avatarImg": "trump.webp",
+      "hot": true,
+      "paywall": false,
+      "cover": {
+        "from": "#1E3A5F",
+        "to": "#0F172A",
+        "label": "301 PROBE"
+      },
+      "tags": [
+        "EU TARIFF",
+        "301 INVESTIGATION",
+        "BIG TECH"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "Trump opens Section 301 probe into EU over fines on Apple, Meta, Amazon and Google, threatens tariffs in response",
+        "ko": "트럼프, EU의 애플·메타·아마존·구글 연이은 벌금에 무역법 301조 조사 착수... 관세로 맞대응 예고",
+        "ja": "トランプ氏、EUによるアップル・メタ・アマゾン・グーグルへの相次ぐ制裁金に対しセクション301調査を開始...関税で報復を予告"
+      },
+      "gist": {
+        "en": "President Trump announced the US has opened a Section 301 investigation into what he calls the European Union's practice of \"robbing\" American companies through antitrust fines, and threatened a \"substantial tariff\" on the EU in response. In a Truth Social post, Trump listed the EU's recent penalties: $15 billion against Apple, $3 billion against Meta, $2.5 billion against Amazon, and, just announced, another $1 billion against Google, which he said brings Google's cumulative EU fines above $18 billion. He called the fines \"illegal and highly discriminatory,\" said they began under the Biden administration, and pledged the practice \"is not going to continue during the Trump Administration.\" Section 301 is a US trade law tool that lets the president investigate a foreign government's practices and, if found unfair, impose retaliatory tariffs without new legislation, the same authority Trump has used against China and other trading partners. He gave no specific tariff rate or timeline, saying only that penalties on US companies \"will be entirely reversed\" and a tariff is expected \"at the earliest possible moment.\" The EU has used antitrust enforcement against US tech giants for years under its Digital Markets Act and general competition rules, arguing the fines address anticompetitive conduct rather than target American firms specifically.",
+        "ko": "트럼프 대통령이 EU가 반독점 벌금을 앞세워 미국 기업들을 '약탈'하고 있다며 무역법 301조 조사에 착수했다고 밝히고, 이에 맞서 EU에 '상당한 관세'를 물리겠다고 예고했다. 그는 트루스소셜 게시물에서 EU의 최근 제재 내역을 나열했다. 애플에 150억 달러, 메타에 30억 달러, 아마존에 25억 달러, 그리고 방금 발표된 구글 추가 벌금 10억 달러까지, 이번 건으로 구글의 EU 누적 벌금이 180억 달러를 넘어섰다고 주장했다. 그는 이 벌금들을 '불법적이고 심각하게 차별적'이라 부르며, 바이든 행정부 때 시작된 관행이 '트럼프 행정부에서는 계속되지 않을 것'이라고 말했다. 무역법 301조는 대통령이 외국 정부의 관행을 조사해 불공정하다고 판단되면 별도 입법 없이 보복관세를 매길 수 있게 하는 미국 통상법 조항으로, 트럼프가 중국을 비롯한 다른 교역국을 상대로 이미 여러 차례 써온 카드다. 그는 구체적인 관세율이나 시행 시점은 밝히지 않은 채, 미국 기업에 매겨진 벌금은 '전부 되돌려질 것'이고 관세는 '가능한 한 빨리' 부과될 것이라고만 말했다. EU는 수년간 디지털시장법(DMA)과 일반 경쟁법을 근거로 미국 빅테크에 반독점 제재를 가해왔으며, 이 벌금들이 미국 기업을 표적 삼은 게 아니라 반경쟁적 행위에 대응한 것이라는 입장이다.",
+        "ja": "トランプ大統領は、EUが独占禁止法上の制裁金を通じて米企業を「略奪」していると主張し、通商法セクション301に基づく調査を開始したと発表、対抗措置としてEUに「相当な関税」を課すと予告した。トゥルース・ソーシャルへの投稿で、トランプ氏はEUの最近の制裁を列挙した。アップルに150億ドル、メタに30億ドル、アマゾンに25億ドル、そして発表されたばかりのグーグルへの追加制裁金10億ドルで、今回の分を含めるとグーグルのEU累積制裁金は180億ドルを超えたと主張した。同氏はこれらの制裁金を「違法で著しく差別的」と呼び、バイデン政権下で始まった慣行が「トランプ政権では続かない」と述べた。通商法301条は、大統領が外国政府の慣行を調査し、不公正と判断すれば新たな立法なしに報復関税を課せる米通商法の規定で、トランプ氏が中国をはじめとする他の貿易相手国に対してすでに何度も使ってきたカードだ。具体的な関税率や実施時期は明らかにせず、米企業に科された制裁金は「全額取り消される」こと、関税は「可能な限り早く」課されることのみを述べた。EUは長年、デジタル市場法(DMA)と一般競争法を根拠に米ビッグテックに独占禁止法上の制裁を科しており、これらの制裁金は米企業を標的にしたものではなく反競争的行為への対応だとの立場を取っている。"
+      },
+      "why": {
+        "en": "A Section 301 probe is the same legal tool Trump used to launch the tariff fights with China, so this isn't just rhetoric, it puts a concrete trade-war mechanism in motion against the EU, with Apple, Meta, Amazon and Google's regulatory costs now tangled up in tariff politics.",
+        "ko": "무역법 301조는 트럼프가 중국과의 관세전쟁을 시작할 때 썼던 것과 같은 법적 도구라서, 이번 발언은 단순한 수사가 아니라 EU를 상대로 실제 관세전쟁 절차를 가동시킨 것이고, 애플·메타·아마존·구글이 낸 규제 벌금이 관세 정치와 뒤엉키게 됐다.",
+        "ja": "通商法301条はトランプ氏が中国との関税戦争を始めた際に使ったのと同じ法的手段であり、今回の発言は単なる修辞ではなく、EUに対して実際の関税戦争の手続きを起動させたことを意味する。アップル・メタ・アマゾン・グーグルが払った規制上の制裁金が、関税政治と絡み合うことになった。"
+      },
+      "ask": {
+        "en": "Trump has threatened EU tariffs before without following through. Does this 301 investigation actually end in new tariffs on European goods, or is it another negotiating card that gets walked back?",
+        "ko": "트럼프는 전에도 EU 관세를 예고했다가 실행하지 않은 적이 있다. 이번 301조 조사는 실제로 유럽산 상품에 대한 새 관세로 이어질까, 아니면 또 다른 협상 카드에 그칠까?",
+        "ja": "トランプ氏は以前にもEUへの関税を予告しながら実行しなかったことがある。今回の301条調査は実際に欧州製品への新たな関税につながるのか、それとも今回もまた交渉カードで終わるのか。"
+      },
+      "ts": "2026-07-24T21:50:00.000+00:00"
+    },
+    {
+      "date": "2026-07-25",
+      "id": "meru-treasury-yield-deficit-not-just-oil",
+      "related": [
+        "kobeissi-10y-yield-breaks-470",
+        "kobeissi-us-debt-financing-cost"
+      ],
+      "source": "메르",
+      "sourceUrl": "https://blog.naver.com/ranto28/224356110315",
+      "sourceLang": "KO",
+      "category": "investor",
+      "avatarImg": "meru.png",
+      "hot": true,
+      "paywall": false,
+      "cover": {
+        "from": "#1E3A8A",
+        "to": "#1E293B",
+        "label": "10Y YIELD 4.7%"
+      },
+      "tags": [
+        "TREASURY YIELD",
+        "US DEFICIT",
+        "AI DEBT"
+      ],
+      "stance": "watch",
+      "title": {
+        "en": "Meru: oil isn't the whole story behind the Treasury yield spike, the US deficit and Big Tech debt are crowding it too",
+        "ko": "메르: 국채금리 폭등, 유가 때문만은 아니다... 재정적자와 빅테크 회사채 발행이 함께 밀어올려",
+        "ja": "メル: 米国債金利急騰、原油だけが理由ではない...財政赤字とビッグテック社債発行が押し上げ"
+      },
+      "gist": {
+        "en": "Rising oil prices explain only part of the Treasury yield spike, Korean investment blogger Meru argues, the bigger driver is a structural mismatch between how much debt Washington needs to sell and how much the market wants to buy. The 10-year yield broke above 4.7% intraday, and most coverage blames it on crude, since the Strait of Hormuz is blocked again and Houthi attacks threaten the Red Sea. Oil does feed into inflation broadly, through gasoline, plastics, fertilizer and power generation costs, but breakeven inflation, the rate implied by inflation-protected Treasuries, has barely moved, sitting around 2.3% for both 10 and 30-year debt. Instead, the 30-year real yield has climbed to its highest since the 2008 financial crisis, meaning borrowing itself has simply gotten more expensive. Meru traces that to Treasury supply and demand: the market has grown from $4.5 trillion in 2007 to $31 trillion today, China has flipped from buyer to net seller in favor of gold, Japanese investors sold $29.6 billion of Treasuries net in Q1 2026, and the Fed keeps shrinking its balance sheet. Washington's annual interest bill has topped $1.2 trillion, the FY2026 deficit is projected near $2.07 trillion, and a Supreme Court ruling against IEEPA tariffs forced billions in refunds that analysts say adds roughly $180 billion a year to the deficit through 2036. Big Tech is competing for the same buyers too: global corporate bond issuance hit a record $3.68 trillion in the first half of 2026, led by Amazon's $54 billion, forcing the Treasury to offer richer yields to compete for pension and insurance money.",
+        "ko": "국채금리 폭등의 원인으로 유가 상승을 꼽는 기사가 많지만, 그건 절반만 맞는 설명이라고 투자 블로거 메르가 짚는다. 더 큰 원인은 미국 정부가 팔아야 할 국채 물량과 시장이 사고 싶어하는 물량 사이의 구조적 불균형이라는 것이다. 미국 10년물 국채금리는 장중 4.7%를 돌파했고, 많은 기사가 호르무즈해협 봉쇄와 후티반군의 홍해 위협에 따른 유가 상승을 원인으로 든다. 유가가 휘발유·플라스틱·비료·발전원가를 통해 물가 전반에 영향을 주는 건 사실이지만, 물가연동국채로 계산한 기대인플레이션은 10년물·30년물 모두 2.3%대로 거의 움직이지 않았다. 대신 30년물 실질금리가 2008년 금융위기 이후 최고 수준까지 올랐는데, 이는 돈을 빌리는 값 자체가 비싸졌다는 뜻이지 인플레이션 기대가 커졌다는 뜻이 아니다. 메르는 그 원인을 국채 수급에서 찾는다. 국채시장 규모는 2007년 4.5조 달러에서 현재 31조 달러로 커졌고, 중국은 국채를 사기는커녕 팔면서 금을 사들이는 쪽으로 돌아섰다. 일본 투자자는 2026년 1분기에만 국채를 296억 달러어치 순매도했고, 연준은 대차대조표 축소를 이어가고 있다. 여기에 미국 정부의 연간 이자비용이 1조2000억 달러를 넘어섰고, 2026회계연도 재정적자는 2조700억 달러로 추정되며, 대법원의 IEEPA 관세 위법 판결로 관세 환급까지 겹쳐 2036년까지 매년 재정적자를 약 1800억 달러씩 늘리는 효과가 있다는 분석이 나온다. 빅테크도 같은 매수자들을 두고 국채와 경쟁한다. 2026년 상반기 글로벌 회사채 발행액은 3조6800억 달러로 사상 최대를 기록했는데, 아마존이 540억 달러로 가장 많이 찍었고, 이렇게 연기금·보험사 자금을 빅테크 채권이 흡수할수록 재무부는 더 높은 금리를 얹어줘야 한다.",
+        "ja": "国債金利急騰の理由として原油高を挙げる報道が多いが、それは半分しか説明していないと投資ブロガーのメルは指摘する。より大きな要因は、米政府が売らなければならない国債の量と、市場が買いたい量との間の構造的な不均衡だという。米10年債利回りは取引時間中に4.7%を突破し、多くの報道はホルムズ海峡の再封鎖とフーシ派による紅海への脅威による原油高を原因に挙げる。原油がガソリン・プラスチック・肥料・発電コストを通じて物価全体に影響するのは事実だが、物価連動国債から算出される期待インフレ率は10年債・30年債とも2.3%前後でほとんど動いていない。代わりに30年債の実質金利が2008年の金融危機以降で最高水準まで上昇しており、これは資金調達そのものが単に高くついているだけで、インフレ期待が高まったわけではないことを意味する。メルはその原因を国債の需給に求める。国債市場の規模は2007年の4.5兆ドルから現在31兆ドルへと拡大し、中国は国債を買うどころか売って金を買う側に転じた。日本の投資家は2026年第1四半期だけで296億ドルの国債を純売却し、FRBはバランスシート縮小を続けている。さらに米政府の年間利払い費は1兆2000億ドルを超え、2026会計年度の財政赤字は2兆700億ドルと見込まれ、最高裁のIEEPA関税違法判決による関税還付も重なり、2036年まで毎年財政赤字を約1800億ドル押し上げる効果があるとの分析もある。ビッグテックも同じ買い手を巡って国債と競合している。2026年上半期の世界の社債発行額は3兆6800億ドルと過去最高を記録し、アマゾンが540億ドルで最多となった。年金基金や保険会社の資金がビッグテック債に吸収されるほど、財務省はより高い金利を提示せざるを得なくなる。"
+      },
+      "why": {
+        "en": "A yield spike blamed on a temporary oil shock would fade once the Strait of Hormuz reopens, but a yield spike driven by structural deficits and Big Tech debt competing for the same buyers doesn't go away on its own, and it raises the discount rate on every future profit AI stocks are priced on.",
+        "ko": "일시적 유가 충격 때문이라면 호르무즈해협이 다시 열리면 금리도 가라앉겠지만, 구조적 재정적자와 빅테크 회사채가 같은 매수자를 두고 경쟁해서 생긴 금리 상승이라면 저절로 가라앉지 않고, AI 관련주 밸류에이션을 떠받치는 미래 이익의 할인율을 계속 끌어올린다.",
+        "ja": "一時的な原油ショックが原因なら、ホルムズ海峡が再び開けば金利も落ち着くはずだが、構造的な財政赤字とビッグテック債が同じ買い手を奪い合って生じた金利上昇なら自然には収まらず、AI関連株の評価を支える将来利益の割引率を押し上げ続ける。"
+      },
+      "ask": {
+        "en": "Meru points to August 5th's Treasury quarterly refunding announcement as the next tell: if the phrase guaranteeing \"at least\" stable issuance sizes for coming quarters gets dropped, it signals more Treasury supply is coming in 2027. Is the yield spike mostly an oil story that fades, or a deficit story that doesn't?",
+        "ko": "메르는 8월5일 미국 재무부의 분기 자금조달 계획 발표를 다음 관전 포인트로 짚는다. 향후 입찰 규모를 '최소한(at least)' 안정적으로 유지하겠다는 문구가 빠지면 2027년에 국채 발행을 더 늘리겠다는 신호로 읽힌다. 이번 금리 급등은 시간이 지나면 가라앉을 유가발 충격일까, 아니면 쉽게 가라앉지 않을 재정적자발 구조적 흐름일까?",
+        "ja": "メルは8月5日の米財務省による四半期資金調達計画の発表を次の注目点として挙げる。今後の入札規模を「少なくとも(at least)」安定的に維持するという文言が消えれば、2027年に国債発行をさらに増やすシグナルと読める。今回の金利急騰は時間とともに収まる原油ショックなのか、それとも簡単には収まらない財政赤字由来の構造的な流れなのか。"
+      },
+      "outcome": {
+        "status": "pending",
+        "note": {
+          "en": "Check whether the August 5, 2026 US Treasury quarterly refunding statement drops the \"at least\" language guaranteeing stable auction sizes, which would signal more Treasury issuance ahead.",
+          "ko": "2026년 8월5일 미국 재무부 분기 자금조달 계획 발표에서 입찰 규모를 '최소한' 안정적으로 유지하겠다는 문구가 빠지는지 확인, 빠지면 국채 발행 확대 신호로 해석.",
+          "ja": "2026年8月5日の米財務省四半期資金調達計画発表で、入札規模を「少なくとも」安定的に維持するという文言が消えるかどうかを確認する。消えれば国債発行拡大のシグナルとなる。"
+        },
+        "due": "2026-08-06"
+      },
+      "ts": "2026-07-24T21:50:00.000+00:00"
+    },
+    {
+      "date": "2026-07-24",
       "id": "jensen-open-models-letter",
       "related": [
         "meru-kimi-moment"
@@ -7204,6 +7357,23 @@
         "ja": "ジェネリック医薬品関税、100%への引き上げ予定",
         "ko": "제네릭 의약품 관세 100% 인상 예정"
       }
+    },
+    {
+      "id": "ev-us-treasury-qra-aug2026",
+      "date": "2026-08-05",
+      "label": {
+        "en": "US Treasury quarterly refunding announcement (9:30pm KST)",
+        "ko": "미국 재무부 분기 자금조달 계획 발표 (한국시간 밤 9시30분)",
+        "ja": "米財務省四半期資金調達計画発表 (韓国時間21時30分)"
+      },
+      "title": {
+        "en": "US Treasury quarterly refunding announcement (9:30pm KST)",
+        "ko": "미국 재무부 분기 자금조달 계획 발표 (한국시간 밤 9시30분)",
+        "ja": "米財務省四半期資金調達計画発表 (韓国時間21時30分)"
+      },
+      "kind": "macro",
+      "entity": null,
+      "itemId": "meru-treasury-yield-deficit-not-just-oil"
     }
   ],
   "entities": {
@@ -12358,6 +12528,36 @@
         "secondary tender offer",
         "セカンダリー・テンダーオファー"
       ]
+    },
+    "SECTION 301": {
+      "kind": "term",
+      "sector": {
+        "en": "Glossary",
+        "ko": "용어",
+        "ja": "用語"
+      },
+      "desc": {
+        "ko": "불공정 무역 관행에 대해 미국 대통령이 별도 입법 없이 보복관세를 매길 수 있게 하는 미국 통상법 조항.",
+        "en": "A US trade law provision letting the president investigate and impose retaliatory tariffs on unfair foreign trade practices without new legislation.",
+        "ja": "不公正な貿易慣行に対し米大統領が新たな立法なしに報復関税を課せる米通商法の規定。"
+      },
+      "longDesc": {
+        "ko": "1974년 통상법 301조. 미국무역대표부(USTR)가 외국의 무역 관행을 조사해 불공정하다고 판단하면, 의회 승인 없이 관세나 수입 제한 등 보복 조치를 취할 수 있게 한다. 트럼프 행정부가 중국을 비롯한 여러 교역국과의 관세 분쟁에서 반복적으로 사용해온 핵심 무기로, 조사 개시 자체가 향후 관세 부과의 신호로 읽힌다.",
+        "en": "Section 301 of the Trade Act of 1974 lets the US Trade Representative investigate a foreign country's trade practices and, if found unfair, impose tariffs or other retaliatory measures without congressional approval. It's the tool the Trump administration has repeatedly used to open tariff fights with China and other trading partners, so launching an investigation is itself read as a signal that tariffs may follow.",
+        "ja": "1974年通商法301条。米通商代表部(USTR)が外国の貿易慣行を調査し不公正と判断すれば、議会の承認なしに関税などの報復措置を取れる。トランプ政権が中国など複数の貿易相手国との関税紛争で繰り返し使ってきた主要な手段であり、調査開始自体が今後の関税賦課のシグナルと受け止められる。"
+      },
+      "aliases": [
+        "Section 301",
+        "301조",
+        "301調査",
+        "무역법 301조",
+        "通商法301条"
+      ],
+      "name": {
+        "ko": "무역법 301조",
+        "en": "Section 301",
+        "ja": "通商法301条"
+      }
     }
   }
 }
