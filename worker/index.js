@@ -139,17 +139,17 @@ const WELCOME_COPY = {
     unsub: "구독 해지"
   },
   en: {
-    subj: "You\u2019re subscribed to Stacks \u2014 see you Sunday",
+    subj: "🎉 You\u2019re subscribed to Stacks! See you Sunday",
     hi: "Thanks for subscribing!",
-    body: "Every Sunday morning we\u2019ll send this inbox the week\u2019s most important investing reads, summarized with a take.",
+    body: "Every Sunday morning,<br>we\u2019ll send this inbox the week\u2019s most important investing reads, summarized with a take.",
     note: "Want a head start? The archive is open now.",
     cta: "Explore Stacks",
     unsub: "Unsubscribe"
   },
   ja: {
-    subj: "Stacksの購読完了 — 毎週日曜にお届けします",
+    subj: "🎉 Stacksの購読完了！毎週日曜にお届けします",
     hi: "ご購読ありがとうございます！",
-    body: "毎週日曜の朝、今週最も重要な投資の読みものを、要約と視点付きでこのメールボックスにお届けします。",
+    body: "毎週日曜の朝、<br>今週最も重要な投資の読みものを、要約と視点付きでこのメールボックスにお届けします。",
     note: "これまでの記事は今すぐご覧いただけます。",
     cta: "Stacksを見る",
     unsub: "購読解除"
