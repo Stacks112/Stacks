@@ -8115,6 +8115,7 @@ async function nlSubmit(ev){
     if (r.ok && j.ok){
       if (msg){ msg.className = "nl-msg"; msg.textContent = S.nlSent; }
       if (emailEl) emailEl.value = "";
+      try { store.set("stk_nl_email", email); store.set("stk_nl_lang", LANG); } catch (e){}
       track("newsletter/subscribe");
     } else {
       if (msg){ msg.className = "nl-msg err"; msg.textContent = tr(NL_T.err); }
@@ -9387,7 +9388,9 @@ bootData();
       h += '<button class="v82-nset v82-evrow" data-evt="'+esc(ev.id)+'"><span class="v82-nset-l">'+esc(ev.label[LANG])+' <i>'+d+'</i></span><span class="v82-sw on"></span></button>';
     });
     h += '</div></div>';
-    return h + '<div class="v82-nset-div"></div><div class="v82-nset-h">'+esc(t.nsRecent)+'</div>';
+    return h + '<div class="v82-nset-div"></div>'
+      + (window.stkNlHtml ? window.stkNlHtml() : "")
+      + '<div class="v82-nset-div"></div><div class="v82-nset-h">'+esc(t.nsRecent)+'</div>';
   }
   function renderNotif(){
     var nt = $("v82notif"); if (!nt) return;
@@ -9428,6 +9431,7 @@ bootData();
     inner.querySelectorAll("[data-np]").forEach(function(b){
       b.onclick = function(){ var sw = b.querySelector(".v82-sw"); var on = !sw.classList.contains("on"); sw.classList.toggle("on", on); setNotifPref(b.getAttribute("data-np"), on); };
     });
+    if (window.stkNlWire) window.stkNlWire(inner);
     /* events master toggle (does not expand) */
     var mrow = inner.querySelector("[data-evexpand]");
     if (mrow){
@@ -10031,6 +10035,20 @@ html[data-theme="dark"] .v83-toast{background:#2A2C33;}
 /* push ON: white (theme-text) 2px border so the state is visible at a glance */
 .v83np-push.on{border:2px solid var(--text);padding:10px;background:var(--bg);}
 .v83np-blocked{margin-top:8px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5;}
+/* --- newsletter (weekly email) language, inside notification settings --- */
+.stk-nl-set{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:left;}
+.stk-nl-h{font-size:12.5px;font-weight:800;color:var(--muted);margin-bottom:6px;font-family:var(--ui-font);}
+.stk-nl-d{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px;font-family:var(--ui-font);}
+.stk-nl-set input{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;
+  background:var(--bg);color:var(--text);font-size:16px;font-family:var(--ui-font);margin-bottom:8px;}
+.stk-nl-langs{display:flex;gap:6px;margin-bottom:8px;}
+.stk-nl-langs button{flex:1;padding:8px 0;border-radius:999px;border:1px solid var(--line);background:var(--bg-soft);
+  color:var(--text);font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--ui-font);}
+.stk-nl-langs button.on{border:2px solid var(--text);background:var(--bg);padding:7px 0;}
+.stk-nl-save{width:100%;padding:10px;border-radius:999px;border:1px solid var(--text);background:var(--text);
+  color:var(--bg);font-weight:800;font-size:13px;cursor:pointer;font-family:var(--ui-font);}
+.stk-nl-msg{margin-top:8px;font-size:11.5px;text-align:center;color:var(--muted);line-height:1.5;font-family:var(--ui-font);}
+.stk-nl-msg.err{color:#e5484d;}
 /* --- 라운드10 (2026-07-23 june feedback) --- */
 /* ④ '왜 중요한가' 라벨 확대 + 본문 크기·행간을 핵심(gist)과 동일하게 */
 /* 라운드11: 라벨도 본문과 같은 Pretendard로 (기존 모노스페이스 코드체 탈피) */
@@ -10142,6 +10160,71 @@ html.v83 #v83fsw button{padding:0 0 1px;}
    store as the mobile drawer, so preferences stay in sync across layouts). */
 (function(){
 "use strict";
+/* --- weekly-email (newsletter) receive-language setting ---
+   Shared by the desktop notification-settings modal (v83AlertsPanel) and the
+   mobile notifications screen (notifSettingsHtml). No accounts: the D1 list
+   is keyed by email, so changing the language is just an upsert through the
+   same worker /subscribe route the signup form uses. The last email/language
+   saved on this device are remembered for prefill. */
+var STK_NL_S = {
+  ko: { h:"주간 베스트 이메일", d:"매주 일요일 '이번 주 베스트' 메일을 받을 언어예요. 구독한 이메일을 입력하고 저장하면 수신 언어가 바뀌어요. 처음 입력하는 이메일이면 새로 구독돼요.",
+        ph:"이메일 주소", save:"저장", saving:"저장 중…", saved:"저장됐어요! 선택한 언어로 발송돼요.",
+        err:"문제가 생겼어요. 잠시 후 다시 시도해 주세요.", bad:"이메일 주소를 확인해 주세요.",
+        lko:"한국어", len:"English", lja:"日本語" },
+  en: { h:"Weekly email", d:"The language of your Sunday weekly-best email. Enter the email you subscribed with and save to change it. A new email subscribes fresh.",
+        ph:"Email address", save:"Save", saving:"Saving…", saved:"Saved! Your weekly email will arrive in this language.",
+        err:"Something went wrong. Please try again.", bad:"Please enter a valid email address.",
+        lko:"한국어", len:"English", lja:"日本語" },
+  ja: { h:"週間ベストメール", d:"毎週日曜『今週のベスト』メールの受信言語です。購読中のメールアドレスを入力して保存すると変更されます。新しいアドレスなら新規購読になります。",
+        ph:"メールアドレス", save:"保存", saving:"保存中…", saved:"保存しました！選択した言語でお届けします。",
+        err:"エラーが発生しました。もう一度お試しください。", bad:"メールアドレスを確認してください。",
+        lko:"한국어", len:"English", lja:"日本語" }
+};
+function stkNlT(){ return STK_NL_S[(typeof LANG !== "undefined" && STK_NL_S[LANG]) ? LANG : "ko"]; }
+window.stkNlHtml = function(){
+  var t = stkNlT(), em = "", lg = (typeof LANG !== "undefined") ? LANG : "ko";
+  try { em = store.get("stk_nl_email", "") || ""; lg = store.get("stk_nl_lang", null) || lg; } catch (e){}
+  var chip = function(code, label){ return '<button type="button" data-nll="'+code+'" class="'+(lg===code?"on":"")+'">'+label+'</button>'; };
+  return '<div class="stk-nl-set">'
+    + '<div class="stk-nl-h">'+t.h+'</div>'
+    + '<div class="stk-nl-d">'+t.d+'</div>'
+    + '<input type="email" data-nle placeholder="'+t.ph+'" value="'+em.replace(/"/g,"&quot;")+'">'
+    + '<div class="stk-nl-langs">'+chip("ko",t.lko)+chip("en",t.len)+chip("ja",t.lja)+'</div>'
+    + '<button type="button" class="stk-nl-save" data-nlsave>'+t.save+'</button>'
+    + '<div class="stk-nl-msg" data-nlmsg hidden></div>'
+    + '</div>';
+};
+window.stkNlWire = function(root){
+  var box = root.querySelector(".stk-nl-set"); if (!box) return;
+  var t = stkNlT();
+  var input = box.querySelector("[data-nle]"), msg = box.querySelector("[data-nlmsg]");
+  var lang = null;
+  try { lang = store.get("stk_nl_lang", null); } catch (e){}
+  if (!lang) lang = (typeof LANG !== "undefined") ? LANG : "ko";
+  box.querySelectorAll("[data-nll]").forEach(function(b){
+    b.addEventListener("click", function(){
+      lang = b.getAttribute("data-nll");
+      box.querySelectorAll("[data-nll]").forEach(function(x){ x.classList.toggle("on", x === b); });
+    });
+  });
+  box.querySelector("[data-nlsave]").addEventListener("click", function(){
+    var email = (input.value || "").trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.hidden = false; msg.className = "stk-nl-msg err"; msg.textContent = t.bad; return; }
+    msg.hidden = false; msg.className = "stk-nl-msg"; msg.textContent = t.saving;
+    fetch(SUBSCRIBE_URL, { method:"POST", headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({ email: email, lang: lang }) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return r.ok && j.ok; }); })
+      .then(function(ok){
+        if (ok){
+          msg.className = "stk-nl-msg"; msg.textContent = t.saved;
+          try { store.set("stk_nl_email", email); store.set("stk_nl_lang", lang); } catch (e){}
+          try { track("newsletter/lang-change"); } catch (e){}
+        } else { msg.className = "stk-nl-msg err"; msg.textContent = t.err; }
+      })
+      .catch(function(){ msg.className = "stk-nl-msg err"; msg.textContent = t.err; });
+  });
+};
+
 var NPS = {
   ko: { title:"알림 설정", newpost:"새 글 알림", debate:"오늘의 토론 알림",
         follow:"팔로우 새 글 알림", events:"이벤트 알림", push:"브라우저 푸시 알림 켜기",
@@ -10190,6 +10273,7 @@ window.v83AlertsPanel = function(){
     + row("eventsMaster", t.events, p.eventsMaster)
     + '<button class="v83np-push">' + t.push + '</button>'
     + '<div class="v83np-blocked" hidden></div>'
+    + (window.stkNlHtml ? window.stkNlHtml() : '')
     + '</div>';
   document.body.appendChild(ov);
   ov.addEventListener("click", function(e){ if (e.target === ov) ov.remove(); });
@@ -10202,6 +10286,7 @@ window.v83AlertsPanel = function(){
       npSet(b.getAttribute("data-np"), on);
     });
   });
+  if (window.stkNlWire) window.stkNlWire(ov);
   var pushBtn = ov.querySelector(".v83np-push");
   var blockedNote = ov.querySelector(".v83np-blocked");
   var pushIsOn = false; /* last known subscription state */
