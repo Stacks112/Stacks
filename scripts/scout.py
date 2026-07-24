@@ -168,6 +168,14 @@ Rules:
 - ko and ja must carry the same meaning as en, natural in each language.
 - Never fabricate numbers. Prefer the writer's own figures.
 - PLAIN LANGUAGE — this is the top style rule. Write so a busy non-expert reads it once and gets it. Use common, everyday words. Do NOT use literary metaphors, analogies, or figures of speech: no "weather vane / bellwether / barometer / litmus test / canary / double-edged sword"-style images, and in Korean specifically avoid 풍향계·바로미터·신호탄·불쏘시개·시금석·양날의 검 and similar. Say the thing directly and concretely instead (e.g. not "AI 투자를 가늠하는 풍향계" but "AI 투자가 계속 늘지 보여주는 대표 사례"). Keep sentences short. When a technical term is truly needed, keep it but phrase the rest plainly.
+- NO AI-SLOP (all three languages):
+  * No binary-contrast framing: never "not just X, it's Y" / "isn't just X, but Y" / KO "단순한 X가 아니라 Y다" / JA "単なるXではなくYだ". State the claim directly. (Factual scope like "applies to Korean AND overseas products" is fine; the ban is on rhetorical false dichotomies.)
+  * No trailing-participle pseudo-analysis: never end a sentence with ", highlighting / underscoring / signaling / cementing ..." / KO "...을 부각시키며/시사하며" 꼬리절 / JA "...を浮き彫りにしており/示唆しており". Write the actual mechanism or consequence as its own sentence.
+  * No importance puffery or news-cliché kickers: EN "pivotal moment / vital role"; KO "귀추가 주목된다 / 눈길을 끈다 / 관심이 쏠린다 / ~라고 해도 과언이 아니다"; JA "注目が集まっている / 目が離せない / ~と言えるでしょう". State the fact; the why field carries the stakes.
+  * Cut hedging filler unless it changes meaning: EN really, truly, actually, fundamentally, importantly, crucially; KO 매우, 상당히, 실로, 그야말로; JA まさに, 非常に, 極めて.
+  * EN banned words (AI-slop register): delve, foster, utilize, facilitate, empower, streamline, robust, seamless, cutting-edge, paradigm shift, game changer, tapestry, realm, beacon, pivotal, multifaceted, meticulous, paramount, transformative, embark, supercharge, harness, ever-evolving, elevate. EXCEPTION: "leverage/leveraged" as the finance term (leveraged ETF, margin leverage, bargaining leverage) is correct vocabulary and stays; only the slop-verb usage ("leverages AI to...") is banned. KO/JA: avoid 게임체인저·패러다임 전환 / ゲームチェンジャー・パラダイムシフト; use plain words.
+  * Front-load: the first sentence of gist is the news/claim itself, not setup ("here's the thing" style openers banned in all languages). End gist on the strongest concrete point, never a summary recap or aphorism.
+  * No em dashes (— – ―) in any language: use commas or split the sentence.
 - Return JSON only.
 
 SOURCE LANGUAGE: {lang}

@@ -46,6 +46,7 @@ FEEDS = [
     {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "naver": False},
     {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "naver": False},
     {"id": "pichai", "url": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml", "naver": False},
+    {"id": "jensen", "url": "https://rss.app/feeds/tLWYaMsky2fJ8tkW.xml", "naver": False},
 ]
 
 

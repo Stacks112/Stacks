@@ -490,7 +490,7 @@ footer a{{color:#8E93A0}}
   {ent_html}
   {related}
   <footer>
-    요약·해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아닙니다.<br>
+    요약·해설은 The Infrastructure Thesis의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
     <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
   </footer>
 </div>
@@ -630,7 +630,7 @@ footer a{{color:#8E93A0}}
 <h2>관련 글 {len(ent_items)}건</h2>
 <ul>{rows}</ul>
 <footer>
-  요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
+  요약·해설은 The Infrastructure Thesis의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
 </body>
@@ -791,7 +791,7 @@ footer a{{color:#8E93A0}}
 {stance_html}
 <a class="cta" href="../">Stacks에서 더 읽기 →</a>
 <footer>
-  요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
+  요약·해설은 The Infrastructure Thesis의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
 </body>
@@ -964,7 +964,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
 {body_html}
 <a class="cta" href="{E(app_url)}">Stacks 앱에서 라이브로 보기 →</a>
 <footer>
-  요약·해설은 The Infrastructure Thesis의 창작물이며 투자 자문이 아닙니다.<br>
+  요약·해설은 The Infrastructure Thesis의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
 </body>
