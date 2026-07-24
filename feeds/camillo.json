@@ -1,6 +1,6 @@
 {
  "source": "camillo",
- "fetched_at": "2026-07-23T23:30:38.633943+00:00",
+ "fetched_at": "2026-07-24T03:55:29.809223+00:00",
  "items": [
   {
    "title": "Added to $AMZN on leverage. If I’m wrong, I’ll pay for it.",
@@ -61,12 +61,6 @@
    "link": "https://x.com/ChrisCamillo/status/2078110818692894922",
    "published": "2026-07-17T13:33:00+00:00",
    "content": "A lot of families are wondering what happened to Vacation Dad. 📉\n— Chris Camillo (@ChrisCamillo) Jul 17, 2026"
-  },
-  {
-   "title": "TL;DR: Kimi K3 is bullish for inference compute demand.",
-   "link": "https://x.com/ChrisCamillo/status/2077928685022089453",
-   "published": "2026-07-17T01:29:00+00:00",
-   "content": "TL;DR: Kimi K3 is bullish for inference compute demand.Jim Liu (@jiahanjimliu)Neoclouds: The Kimi K3 Scare\n\nKimi K3 caused a large scare in the AI trade as this Chinese open source model matched frontier models on benchmarks. Let me unpack what's actually going on.\n\nChinese Labs have much less GPUs than American Labs and yet are able to train \"just as good\" of a model. This implies that Chinese Labs have huge efficiencies that allow them to use much less GPUs in training. This is would imply less HBM, less datacenters, less cloud bills - the whole capex heavy buildout that the AI trade is predicated upon.\n\nNow here's the big hole in all this logic. MoonshotAI, the Lab that made Kimi K3, is supposedly a magnitude more efficient in training than American Labs yet their inference compute consumption is the same or less efficient! Kimi K3 cost exactly the same as GPT 5.5 and slightly less than Claude 4.8 Opus High. \n\nSome people are misunderstanding what expensive tokens mean. Yes the cost of the open source weights/topology is 0 but the amount of the compute/GPUs that you need to run the model is a metric of a efficient your inference is. Compute/GPU time is very expensive and cost of open source inference is very not free.\n\nNow, it makes absolutely zero sense that MoonshotAI Kimi is so much more efficient in training but slightly less efficient in inference. Why? Training is a the forward pass plus backward pass and inference is the forward pass. This means that training efficiency improvements lead to inference efficiency improvements.\n\nYou know why MoonshotAI training and inference efficiencies are asymmetric? Because their \"training efficiencies\" come from distilling American models. If MoonshotAI had true training efficiencies they would also show inference efficiencies but they have no advantage in inference efficiencies!\n\nAI Capex will still continue because:\n1. If American Labs stop training capex, then Chinese models will also stop improving. AI progress will have stopped. American companies have never given up just because Chinese are trying to copy them. \n2. Chinese model still consume alot of compute/GPUs for inference. Inference demand will outstrip training demand anyways.—  https://x.com/jiahanjimliu/status/2077893023208472916 \n— Chris Camillo (@ChrisCamillo) Jul 17, 2026"
   }
  ]
 }
