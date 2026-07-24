@@ -24,7 +24,7 @@ from datetime import datetime, timedelta, timezone
 
 KST = timezone(timedelta(hours=9))
 WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
-SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "")
+SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
 SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 OUT_DIR = os.environ.get("OUT_DIR", "weekly")

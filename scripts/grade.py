@@ -47,7 +47,7 @@ MAX_GRADE = int(os.environ.get("MAX_GRADE", "12"))
 WS_USES = int(os.environ.get("WEB_SEARCH_USES", "4"))
 GRADE_PUSH = os.environ.get("GRADE_PUSH", "0") == "1"
 WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
-SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "")
+SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 
 API_URL = "https://api.anthropic.com/v1/messages"

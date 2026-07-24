@@ -33,7 +33,7 @@ from datetime import datetime, timedelta, timezone
 
 KST = timezone(timedelta(hours=9))
 WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
-SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "")
+SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 LLM_MODEL = os.environ.get("STATS_LLM_MODEL", "claude-3-5-sonnet-latest")
 ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
