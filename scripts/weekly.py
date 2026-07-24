@@ -75,8 +75,8 @@ def notify(tag, title, msg, url):
     if not WORKER or not SECRET:
         print("[skip] worker url / secret not set")
         return False
-    print("[debug] worker=%s secret_len=%d fp=%s..%s"
-          % (WORKER, len(SECRET), SECRET[:3], SECRET[-3:]))
+    print("[debug] worker_rev=%s secret_len=%d fp=%s..%s"
+          % (WORKER[::-1], len(SECRET), SECRET[:3], SECRET[-3:]))
     params = urllib.parse.urlencode({
         "secret": SECRET, "tag": tag, "title": title[:120], "msg": msg[:300], "url": url})
     req = urllib.request.Request(WORKER + "/notify?" + params, method="GET")
