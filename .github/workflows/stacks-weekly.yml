@@ -47,11 +47,9 @@ jobs:
           STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
           STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
           SITE_URL: https://stacksdaily.com
-          # --- email (Resend + Stibee) ---
+          # --- email (Resend sends; subscribers live in the worker D1 store) ---
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
-          STIBEE_API_KEY: ${{ secrets.STIBEE_API_KEY }}
-          STIBEE_LIST_ID: ${{ secrets.STIBEE_LIST_ID }}
           UNSUB_BASE: ${{ secrets.UNSUB_BASE }}
           UNSUB_SECRET: ${{ secrets.UNSUB_SECRET }}
           # --- manual test-send inputs (blank on scheduled runs) ---
