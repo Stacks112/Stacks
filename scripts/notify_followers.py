@@ -23,6 +23,18 @@ import urllib.request
 ENDPOINT = "https://stacks-comments.wnrakrhdn128.workers.dev/notify"
 
 
+def _no_recipients(body):
+    """OneSignal은 태그에 구독자가 하나도 없으면 non-2xx(예: "All included
+    players are not subscribed")를 반환하고, 워커는 이를 sent:false + HTTP 502로
+    돌려준다. 이는 앱에 아직 그 태그 팔로워가 없다는 정상 상태(no-op)이지
+    릴레이 실패가 아니므로 run을 Failure로 만들지 않는다."""
+    b = (body or "").lower().replace(" ", "")
+    return ("allincludedplayersarenotsubscribed" in b
+            or '"recipients":0' in b
+            or "noneofthemapped" in b        # OneSignal 변형 문구 방어
+            or "nosubscribers" in b)
+
+
 def _summary(line):
     """Append a line to the GitHub Actions job summary (visible on the run
     page without needing to open raw logs — those require sign-in for a
@@ -99,6 +111,10 @@ def send(tag, title, msg, url, dry=False):
     except urllib.error.HTTPError as e:
         body = e.read().decode(errors="replace")
         print(f"{tag} -> HTTP {e.code}: {body}")
+        if _no_recipients(body):
+            print(f"{tag} -> no subscribers yet; treating as no-op")
+            _summary(f"- ⏭️ `{tag}`: 구독자 0명(아직 팔로워 없음) — 발송 없음, 정상.")
+            return
         _summary(f"- ❌ `{tag}`: HTTP {e.code} — `{body[:300]}`")
         sys.exit(f"push failed for {tag}: HTTP {e.code}: {body}")
     except urllib.error.URLError as e:
@@ -107,6 +123,10 @@ def send(tag, title, msg, url, dry=False):
         sys.exit(f"push failed for {tag}: connection error: {e}")
     print(f"{tag} -> {body}")
     if '"sent":true' not in body.replace(" ", ""):
+        if _no_recipients(body):
+            print(f"{tag} -> no subscribers yet; treating as no-op")
+            _summary(f"- ⏭️ `{tag}`: 구독자 0명(아직 팔로워 없음) — 발송 없음, 정상.")
+            return
         _summary(f"- ❌ `{tag}`: worker responded but did not confirm send — `{body[:300]}`")
         sys.exit(f"push not confirmed by worker: {body}")
     _summary(f"- ✅ `{tag}`: sent — {title}")
