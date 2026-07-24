@@ -83,6 +83,14 @@ async function ensureTables(db) {
   /* migrate v4 comments table: add parent_id once, ignore if it exists */
   try { await db.exec("ALTER TABLE comments ADD COLUMN parent_id INTEGER"); }
   catch (e) {}
+  /* newsletter subscribers: one row per email, language + opt-out flag */
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS subscribers (" +
+    "email TEXT PRIMARY KEY, " +
+    "lang TEXT NOT NULL DEFAULT 'ko', " +
+    "unsubscribed INTEGER NOT NULL DEFAULT 0, " +
+    "created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')))"
+  );
 }
 
 /* atomic +delta (clamped at 0), returns the new value */
@@ -105,6 +113,17 @@ async function allCounts(db, kind) {
 }
 
 const PAGE_ID_RE = /^[a-z0-9_-]{1,64}$/i;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/* first 24 hex chars of HMAC-SHA256(secret, msg) — must match the Python
+   unsub_link() in scripts/weekly_send.py exactly. */
+async function hmac24(secret, msg) {
+  const key = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(msg));
+  return [...new Uint8Array(sig)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 24);
+}
 
 /* build a OneSignal language map ({en, ko, ja, ...}) for a heading or body,
    from an object {en,ko,ja}, flat title_en/title_ko/..., or a plain string.
@@ -453,6 +472,83 @@ export default {
       });
       const out = await res.json().catch(() => ({}));
       return json({ sent: res.ok, onesignal: out }, res.ok ? 200 : 502, origin);
+    }
+
+    /* ---------- subscribe: add/refresh a newsletter subscriber (D1) ----------
+       The site signup form (all languages) POSTs {email, lang} here. Idempotent:
+       re-subscribing a previously unsubscribed address re-activates it and
+       updates its language. */
+    if (url.pathname === "/subscribe" && (request.method === "POST" || request.method === "GET")) {
+      const p = request.method === "POST"
+        ? await request.json().catch(() => ({}))
+        : Object.fromEntries(url.searchParams);
+      if (p.website) return json({ ok: true }, 200, origin);  // honeypot
+      const email = String(p.email || "").trim().toLowerCase();
+      let lang = String(p.lang || "ko").toLowerCase();
+      if (!["ko", "en", "ja"].includes(lang)) lang = "ko";
+      if (!EMAIL_RE.test(email) || email.length > 200) {
+        return json({ ok: false, error: "invalid email" }, 400, origin);
+      }
+      await ensureTables(env.DB);
+      await env.DB.prepare(
+        "INSERT INTO subscribers (email, lang, unsubscribed) VALUES (?1, ?2, 0) " +
+        "ON CONFLICT(email) DO UPDATE SET lang = ?2, unsubscribed = 0"
+      ).bind(email, lang).run();
+      return json({ ok: true }, 200, origin);
+    }
+
+    /* ---------- subscribers: active list for a language (secret-guarded) ----------
+       Read by scripts/weekly_send.py at send time. Secret travels in the
+       Authorization: Bearer header (or ?secret= as a fallback), never exposed
+       to the browser. */
+    if (url.pathname === "/subscribers" && request.method === "GET") {
+      const auth = request.headers.get("Authorization") || "";
+      const secret = auth.startsWith("Bearer ")
+        ? auth.slice(7) : (url.searchParams.get("secret") || "");
+      if (!env.NOTIFY_SECRET || secret !== env.NOTIFY_SECRET) {
+        return json({ error: "forbidden" }, 403, origin);
+      }
+      let lang = String(url.searchParams.get("lang") || "").toLowerCase();
+      await ensureTables(env.DB);
+      let stmt;
+      if (["ko", "en", "ja"].includes(lang)) {
+        stmt = env.DB.prepare(
+          "SELECT email FROM subscribers WHERE unsubscribed = 0 AND lang = ?1 ORDER BY email")
+          .bind(lang);
+      } else {
+        stmt = env.DB.prepare(
+          "SELECT email FROM subscribers WHERE unsubscribed = 0 ORDER BY email");
+      }
+      const { results } = await stmt.all();
+      return json({ data: results.map(r => r.email) }, 200, origin);
+    }
+
+    /* ---------- unsub: one-click unsubscribe from the weekly email ----------
+       Link carries e=email & t=hmac24(UNSUB_SECRET, email). Flips unsubscribed=1
+       in D1. Supports GET (browser click, returns a small page) and POST
+       (RFC 8058 List-Unsubscribe-Post). */
+    if (url.pathname === "/unsub") {
+      const email = String(url.searchParams.get("e") || "").trim().toLowerCase();
+      const t = String(url.searchParams.get("t") || "");
+      const page = (title, body) => new Response(
+        "<!DOCTYPE html><meta charset=utf-8>"
+        + "<meta name=viewport content='width=device-width,initial-scale=1'>"
+        + "<div style='font-family:system-ui,-apple-system,sans-serif;max-width:420px;"
+        + "margin:64px auto;padding:0 20px;text-align:center'>"
+        + "<h2 style='font-size:18px;margin:0 0 8px'>" + title + "</h2>"
+        + "<p style='color:#666;font-size:14px;line-height:1.5'>" + body + "</p>"
+        + "<p style='margin-top:20px'><a href='https://stacksdaily.com' "
+        + "style='color:#2563eb;text-decoration:none'>stacksdaily.com</a></p></div>",
+        { status: 200, headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+      if (!EMAIL_RE.test(email)) return page("Invalid link", "This unsubscribe link is malformed.");
+      if (!env.UNSUB_SECRET) return page("Not available", "Unsubscribe isn’t configured yet.");
+      const expect = await hmac24(env.UNSUB_SECRET, email);
+      if (t !== expect) return page("Invalid link", "This unsubscribe link is invalid or expired.");
+      await ensureTables(env.DB);
+      await env.DB.prepare("UPDATE subscribers SET unsubscribed = 1 WHERE email = ?1")
+        .bind(email).run();
+      if (request.method === "POST") return json({ ok: true }, 200, origin);
+      return page("You’re unsubscribed", "You won’t receive the Stacks weekly email anymore.");
     }
 
     /* ---------- views & likes: batch reads ---------- */
