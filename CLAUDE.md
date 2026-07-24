@@ -17,6 +17,17 @@
 
 마지막 확인: 2026-07-21.
 
+## ★ 시리즈 기능 폐지 (2026-07-24, june 지시)
+시리즈(hynix-premium·oil-geopolitics·ai-power 등 "이야기 묶음" 태그) 기능을 **은퇴**한다.
+- 프론트(index.html): items.json 로드 시 `SERIES = {}`로 고정(j.series 무시) → 카드 시리즈 알약·
+  시리즈 뷰(openSeries)·시리즈 팔로우·"팔로우 중인 이야기에 새 글" 알림이 전부 렌더 안 됨. 카드
+  알약 렌더 라인도 명시적으로 비움. 모든 `SERIES[...]` 접근은 가드돼 있어 빈 값이어도 에러 없음.
+  시리즈 관련 JS/CSS(.series-tag 등)는 inert dead code로 남김(제거 시 공유 CSS 클래스 파손 위험).
+- 발행기(v4.3 프롬프트): **새 카드에 series 필드를 넣지 않는다.** [4. 항목 작성]의 series 지시 삭제,
+  [7. 팔로워 푸시] 시리즈 로직 비활성(series 없으면 notify_followers가 자동 no-op). ← june 수동 반영 대상.
+- 데이터(items.json): 기존 47개 카드의 series 필드·top-level series 정의는 **그대로 둔다**(무해·되돌리기
+  여지). 프론트가 무시하므로 화면엔 안 보임. 되살리려면 index.html 3줄 revert.
+
 ## ★ 발행 규칙 (가장 중요 — 꼬임 방지의 핵심)
 
 카드 발행자는 **오직 하나: 예약 루틴 "Stacks 자동 발행 파이프라인 v4.3"**

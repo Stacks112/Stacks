@@ -7762,7 +7762,7 @@ function cardEl(item, S, idx){
       <div class="card-body">
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
       ${coverThumbHtml(item)}
-      ${item.series && SERIES[item.series] ? `<button class="series-tag" onclick="openSeries('${item.series}')">${SERIES[item.series].name[LANG]} · ${S.ep.replace("{n}", epNum(item))}</button>` : ""}
+      ${"" /* series feature retired: no series tag on cards */}
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
         <p class="gist">${paraGist(item.gist[LANG])}</p>
@@ -8175,7 +8175,7 @@ async function bootData(){
     if (!res.ok) throw new Error("http " + res.status);
     const j = await res.json();
     ITEMS = j.items || [];
-    SERIES = j.series || {};
+    SERIES = {};   /* series feature retired: ignore j.series so no series tag/view/follow renders */
     EVENTS = j.events || [];
     ENTITIES = j.entities || {};
   } catch (e) {
@@ -8183,7 +8183,7 @@ async function bootData(){
     try {
       const res2 = await fetch("items.json");
       const j2 = await res2.json();
-      ITEMS = j2.items || []; SERIES = j2.series || {};
+      ITEMS = j2.items || []; SERIES = {};   /* series feature retired */
       EVENTS = j2.events || []; ENTITIES = j2.entities || {};
     } catch (e2) {}
   }
