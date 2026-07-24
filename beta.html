@@ -81,18 +81,11 @@ const GOATCOUNTER_SITE = "stacks";
    Also upload OneSignalSDKWorker.js to the repo root. */
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
-/* Newsletter signup.
-   Korean visitors get a native form styled like the app; it submits
-   straight to June's Stibee list (STIBEE_FORM_ACTION is the action URL
-   from Stibee's [구독 화면 > 코드로 설치하기] embed code). If it's ever
-   empty, the ugly-but-working Stibee page iframe is used as fallback.
-   EN/JA visitors get the Substack embed (global free list). */
-const STIBEE_FORM_ACTION = "https://stibee.com/api/v1.0/lists/mK4zRfYXD3P_8shW-ErZAF-hNA_XYQ==/public/subscribers";
-const STIBEE_PAGE = "https://page.stibee.com/subscriptions/505211";
-const NEWSLETTER_EMBEDS = {
-  en: "https://infrathesis.substack.com/embed",
-  ja: "https://infrathesis.substack.com/embed"
-};
+/* Newsletter signup — one native, on-brand form for every language.
+   The form POSTs {email, lang} to the Cloudflare worker /subscribe route,
+   which stores the address (with its language) in the worker's D1 list. The
+   weekly sender reads that list; nothing secret ships in this file. */
+const SUBSCRIBE_URL = "https://stacks-comments.wnrakrhdn128.workers.dev/subscribe";
 
 /* Support/donate button (Buy Me a Coffee, Toss, etc). Empty = hidden. */
 const SUPPORT_URL = "";
@@ -326,7 +319,7 @@ const STRINGS = {
     nlPh: "Your email address",
     nlAgree: "I agree to the collection and use of my email address (required)",
     nlBtn: "Subscribe",
-    nlSent: "Almost done! Check your inbox and click the confirmation link.",
+    nlSent: "You\u2019re in! The weekly best lands in your inbox every Sunday.",
     nlNeedAgree: "Please tick the consent box first.",
     nlPolicyLink: "details",
     support: "Support Stacks",
@@ -474,7 +467,7 @@ const STRINGS = {
     nlPh: "이메일 주소",
     nlAgree: "(필수) 개인정보 수집 및 이용에 동의합니다",
     nlBtn: "구독하기",
-    nlSent: "거의 다 됐어요! 메일함에서 확인 메일의 링크를 눌러주세요.",
+    nlSent: "구독 완료! 매주 일요일에 이번 주 베스트를 보내드려요.",
     nlNeedAgree: "개인정보 동의에 체크해주세요.",
     nlPolicyLink: "내용 보기",
     support: "스택스 후원하기",
@@ -622,7 +615,7 @@ const STRINGS = {
     nlPh: "メールアドレス",
     nlAgree: "(必須) 個人情報の収集・利用に同意します",
     nlBtn: "購読する",
-    nlSent: "あと少し!メールの確認リンクを押してください。",
+    nlSent: "登録完了! 毎週日曜に今週のベストをお届けします。",
     nlNeedAgree: "同意にチェックしてください。",
     nlPolicyLink: "詳細を見る",
     support: "Stacksを応援する",
@@ -2796,7 +2789,7 @@ footer a{color:var(--muted);}
     <div class="nl-box">
       <div class="nl-title" id="nlTitle"></div>
       <p class="nl-sub" id="nlSub"></p>
-      <form class="nl-form" id="nlForm" method="POST" target="_blank" hidden onsubmit="return nlSubmit(event)">
+      <form class="nl-form" id="nlForm" hidden onsubmit="nlSubmit(event);return false;">
         <div class="nl-row">
           <input type="email" id="nlEmail" name="email" autocomplete="email" required>
           <button type="submit" class="nl-btn" id="nlBtn"></button>
@@ -7990,52 +7983,80 @@ function renderNewsletter(){
   const S = STRINGS[LANG];
   const form = document.getElementById("nlForm");
   const f = document.getElementById("nlFrame");
-  /* one native, on-brand form for every language -> Stibee list.
-     (No third-party Substack iframe; the box looks the same in EN/JA/KO.) */
-  const useForm = !!STIBEE_FORM_ACTION;
-  const src = useForm ? "" : STIBEE_PAGE;   /* fallback iframe only if no action URL */
-  if (!useForm && !src && !SUPPORT_URL){ sec.hidden = true; return; }
+  /* one native, on-brand form for every language -> worker /subscribe -> D1.
+     (No third-party iframe; the box looks identical in EN/JA/KO.) */
+  const useForm = !!SUBSCRIBE_URL;
+  if (!useForm && !SUPPORT_URL){ sec.hidden = true; return; }
   sec.hidden = false;
   document.getElementById("nlTitle").textContent = S.nlTitle;
   document.getElementById("nlSub").textContent = S.nlSub;
   if (form){
     form.hidden = !useForm;
     if (useForm){
-      form.setAttribute("action", STIBEE_FORM_ACTION);
       document.getElementById("nlEmail").placeholder = S.nlPh;
       document.getElementById("nlBtn").textContent = S.nlBtn;
       document.getElementById("nlAgreeText").innerHTML =
         esc(S.nlAgree) + ' · <a href="privacy.html" target="_blank" rel="noopener">' + esc(S.nlPolicyLink) + "</a>";
     }
   }
-  if (f){
-    if (src){
-      /* only touch src when it actually changes, so re-renders don't reload the form */
-      if (f.getAttribute("src") !== src) f.setAttribute("src", src);
-      f.height = src.indexOf("stibee") !== -1 ? 520 : 150; /* Stibee page is taller (consent + captcha) */
-      f.hidden = false;
-    } else f.hidden = true;
-  }
+  if (f) f.hidden = true;   /* legacy iframe no longer used */
   const sb = document.getElementById("supportBtn");
   if (sb){
     if (SUPPORT_URL){ sb.hidden = false; sb.href = SUPPORT_URL; sb.textContent = "\u2615 " + S.support; }
     else sb.hidden = true;
   }
 }
-/* native form submit: require consent, then let the browser POST to
-   Stibee in a new tab (their confirmation page takes over there). */
-function nlSubmit(ev){
+/* AJAX submit: require consent, then POST {email, lang} to the worker
+   /subscribe route (which stores the address in the D1 subscriber list).
+   Stays on the page and shows an inline result. */
+async function nlSubmit(ev){
+  if (ev && ev.preventDefault) ev.preventDefault();
   const S = STRINGS[LANG];
+  const NL_T = {
+    sending: { ko: "보내는 중…", en: "Subscribing…", ja: "登録中…" },
+    err: { ko: "문제가 생겼어요. 잠시 후 다시 시도해 주세요.",
+           en: "Something went wrong. Please try again.",
+           ja: "エラーが発生しました。もう一度お試しください。" },
+    bad: { ko: "이메일 주소를 확인해 주세요.",
+           en: "Please enter a valid email address.",
+           ja: "メールアドレスを確認してください。" }
+  };
+  const tr = (o) => o[LANG] || o.en;
   const agree = document.getElementById("nlAgree");
+  const emailEl = document.getElementById("nlEmail");
+  const btn = document.getElementById("nlBtn");
   const msg = document.getElementById("nlMsg");
+  const email = ((emailEl && emailEl.value) || "").trim();
   if (!agree || !agree.checked){
-    if (ev && ev.preventDefault) ev.preventDefault();
     if (msg){ msg.hidden = false; msg.className = "nl-msg err"; msg.textContent = S.nlNeedAgree; }
     return false;
   }
-  if (msg){ msg.hidden = false; msg.className = "nl-msg"; msg.textContent = S.nlSent; }
-  track("newsletter/subscribe");
-  return true; /* real POST proceeds in a new tab */
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    if (msg){ msg.hidden = false; msg.className = "nl-msg err"; msg.textContent = tr(NL_T.bad); }
+    return false;
+  }
+  if (btn) btn.disabled = true;
+  if (msg){ msg.hidden = false; msg.className = "nl-msg"; msg.textContent = tr(NL_T.sending); }
+  try {
+    const r = await fetch(SUBSCRIBE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, lang: LANG })
+    });
+    const j = await r.json().catch(() => ({}));
+    if (r.ok && j.ok){
+      if (msg){ msg.className = "nl-msg"; msg.textContent = S.nlSent; }
+      if (emailEl) emailEl.value = "";
+      track("newsletter/subscribe");
+    } else {
+      if (msg){ msg.className = "nl-msg err"; msg.textContent = tr(NL_T.err); }
+    }
+  } catch (e){
+    if (msg){ msg.className = "nl-msg err"; msg.textContent = tr(NL_T.err); }
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+  return false;
 }
 
 /* ---------------- onboarding ---------------- */
