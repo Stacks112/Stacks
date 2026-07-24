@@ -1,25 +1,31 @@
-"""Stacks weekly — subscriber fetch (Stibee) + email send (Resend).
+"""Stacks weekly — subscriber fetch (worker D1) + email send (Resend).
 
-Design (chosen with June, 2026-07):
-  - Subscribers are collected & consent-managed in Stibee (the signup form).
+Design (chosen with June, 2026-07 — all-country broadcast, one sender):
+  - Subscribers (email + language) live in the Cloudflare worker's D1 store.
+    The site signup form (all languages) POSTs to the worker /subscribe route;
+    the worker /unsub route flips unsubscribed=1. Resend's Audiences product is
+    deprecated, so we keep the list in infra we fully control and use Resend
+    purely as the transactional sender.
   - The weekly digest is rendered as HTML (weekly_email.render_email) and sent
-    through Resend (full HTML control, easy to test), one message per
-    subscriber with a personalized one-click unsubscribe.
+    through Resend, one message per subscriber with a personalized one-click
+    unsubscribe (worker /unsub). weekly.py calls send_weekly() once per lang;
+    each call fetches that language's active subscribers from the worker.
 
 Env:
-  RESEND_API_KEY      Resend API key (required to send)
-  RESEND_FROM         e.g. "Stacks Weekly <weekly@stacksdaily.com>"
-  STIBEE_API_KEY      Stibee API AccessToken (required to fetch subscribers)
-  STIBEE_LIST_ID      Stibee list id (default = the site's signup list)
-  SITE_URL            https://stacksdaily.com
-  UNSUB_BASE          worker unsubscribe URL, e.g. https://.../unsub  (optional)
-  UNSUB_SECRET        HMAC secret shared with the worker /unsub route  (optional)
-  WEEKLY_LANG         email language: ko|en|ja  (default ko)
-  WEEKLY_TEST_TO      if set, send ONLY to this address (test mode)
-  DRY_RUN=1           build messages + print, do not call Resend
+  RESEND_API_KEY        Resend API key (required to send)
+  RESEND_FROM           e.g. "Stacks Weekly <weekly@stacksdaily.com>"
+  STACKS_WORKER_URL     worker base, e.g. https://stacks-comments...workers.dev
+  STACKS_NOTIFY_SECRET  shared secret that guards the worker /subscribers read
+  SITE_URL              https://stacksdaily.com
+  UNSUB_BASE            worker unsubscribe URL, e.g. https://.../unsub  (optional)
+  UNSUB_SECRET          HMAC secret shared with the worker /unsub route  (optional)
+  WEEKLY_LANG           email language: ko|en|ja  (default ko)
+  WEEKLY_TEST_TO        if set, send ONLY to this address (test mode)
+  DRY_RUN=1             build messages + print, do not call Resend
 
 Usage:
-  STIBEE_API_KEY=... RESEND_API_KEY=... RESEND_FROM=... python scripts/weekly_send.py
+  RESEND_API_KEY=... RESEND_FROM=... STACKS_WORKER_URL=... STACKS_NOTIFY_SECRET=... \\
+    python scripts/weekly_send.py
   WEEKLY_TEST_TO=you@example.com RESEND_API_KEY=... python scripts/weekly_send.py
 """
 import hashlib
@@ -41,9 +47,9 @@ from weekly_email import (  # noqa: E402
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 
-STIBEE_KEY = os.environ.get("STIBEE_API_KEY", "")
-STIBEE_LIST = os.environ.get("STIBEE_LIST_ID", "mK4zRfYXD3P_8shW-ErZAF-hNA_XYQ==")
 RESEND_KEY = os.environ.get("RESEND_API_KEY", "")
+# secret that guards the worker's /subscribers read (same value as /notify)
+NOTIFY_SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 RESEND_FROM = os.environ.get("RESEND_FROM", "Stacks Weekly <weekly@stacksdaily.com>")
 SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 UNSUB_BASE = os.environ.get("UNSUB_BASE", "").rstrip("/")
@@ -102,64 +108,33 @@ def fetch_quote(ticker):
     _QUOTE_CACHE[ticker] = out
     return out
 
-_EMAIL_RE_KEYS = ("email", "Email", "emailAddress", "subscriber")
-
-
-def _walk_emails(obj, out):
-    """Robustly pull every email + unsub status out of Stibee's JSON,
-    regardless of the exact envelope shape."""
-    if isinstance(obj, dict):
-        email = None
-        for k in _EMAIL_RE_KEYS:
-            v = obj.get(k)
-            if isinstance(v, str) and "@" in v:
-                email = v.strip().lower()
-                break
-        if email:
-            status = str(obj.get("status") or obj.get("subscribeStatus")
-                         or obj.get("subscribed") or "").lower()
-            # treat explicit unsubscribe/bounce as excluded; everything else = active
-            bad = any(s in status for s in ("unsub", "delete", "bounce", "false", "n"))
-            out[email] = out.get(email, True) and not bad
-        for v in obj.values():
-            _walk_emails(v, out)
-    elif isinstance(obj, list):
-        for v in obj:
-            _walk_emails(v, out)
-
-
-def fetch_subscribers():
-    """Return a de-duplicated list of active subscriber emails from Stibee.
-    Tries the known v1 list-subscribers endpoints; raises if none respond."""
-    if not STIBEE_KEY:
-        raise RuntimeError("STIBEE_API_KEY not set")
-    headers = {"AccessToken": STIBEE_KEY, "Content-Type": "application/json",
-               "User-Agent": UA, "Accept": "application/json"}
-    candidates = [
-        "https://api.stibee.com/v1/lists/%s/subscribers?page=%d&size=500",
-        "https://api.stibee.com/v1/lists/%s/subscribers/all?page=%d&size=500",
-    ]
-    last_err = None
-    for tmpl in candidates:
-        try:
-            active = {}
-            for page in range(0, 40):  # up to 20k subscribers
-                url = tmpl % (STIBEE_LIST, page)
-                req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req, timeout=30) as r:
-                    data = json.loads(r.read().decode("utf-8"))
-                before = len(active)
-                _walk_emails(data, active)
-                if len(active) == before:
-                    break  # no new emails on this page → done
-            emails = sorted(e for e, ok in active.items() if ok)
-            if emails:
-                return emails
-        except urllib.error.HTTPError as e:
-            last_err = "HTTP %s on %s: %s" % (e.code, tmpl, e.read()[:200])
-        except Exception as e:  # noqa: BLE001
-            last_err = "%s on %s" % (e, tmpl)
-    raise RuntimeError("could not fetch Stibee subscribers. last: %s" % last_err)
+def fetch_subscribers(lang):
+    """Return a de-duplicated list of active (not unsubscribed) subscriber
+    emails for `lang` from the worker's D1 store. The secret is sent as a
+    Bearer header (never in the URL). Raises on missing config or a hard error."""
+    if not WORKER:
+        raise RuntimeError("STACKS_WORKER_URL not set")
+    if not NOTIFY_SECRET:
+        raise RuntimeError("STACKS_NOTIFY_SECRET not set")
+    url = WORKER + "/subscribers?lang=" + urllib.parse.quote(lang)
+    req = urllib.request.Request(
+        url, headers={"Authorization": "Bearer " + NOTIFY_SECRET,
+                      "User-Agent": UA, "Accept": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        raise RuntimeError("subscriber fetch failed for %s: HTTP %s %s"
+                           % (lang, e.code, e.read()[:200]))
+    rows = data.get("data") if isinstance(data, dict) else None
+    if not isinstance(rows, list):
+        raise RuntimeError("unexpected /subscribers payload for %s" % lang)
+    active = {}
+    for e in rows:
+        e = str(e or "").strip().lower()
+        if e and "@" in e:
+            active[e] = True
+    return sorted(active)
 
 
 def unsub_link(email):
@@ -167,8 +142,8 @@ def unsub_link(email):
         sig = hmac.new(UNSUB_SECRET.encode(), email.lower().encode(),
                        hashlib.sha256).hexdigest()[:24]
         return "%s?e=%s&t=%s" % (UNSUB_BASE, urllib.parse.quote(email), sig)
-    # fallback: Stibee-hosted list unsubscribe page (until the worker route is live)
-    return "https://page.stibee.com/subscriptions/505211"
+    # fallback if the worker /unsub route isn't configured yet: the site itself
+    return SITE
 
 
 def build_messages(recipients, html_by_email, subject):
@@ -236,8 +211,8 @@ def send_weekly(hot=None, lang=None):
         recipients = [TEST_TO.lower()]
         print("TEST MODE → sending only to %s" % TEST_TO)
     else:
-        recipients = fetch_subscribers()
-        print("fetched %d Stibee subscribers" % len(recipients))
+        recipients = fetch_subscribers(lang)
+        print("fetched %d subscribers (%s)" % (len(recipients), lang))
     if not recipients:
         print("no recipients; skipping")
         return 0, []

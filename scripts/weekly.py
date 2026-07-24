@@ -93,18 +93,32 @@ def notify(tag, title, msg, url):
 
 
 def send_newsletter(hot):
-    """Send the weekly digest as an HTML email via Resend to the Stibee
-    subscriber list (see scripts/weekly_send.py). No-op if keys are absent,
-    so the workflow stays green until the secrets are configured.
-    Returns True if a send actually happened."""
-    if not (os.environ.get("RESEND_API_KEY") and
-            (os.environ.get("STIBEE_API_KEY") or os.environ.get("WEEKLY_TEST_TO"))):
-        print("email send skipped: RESEND_API_KEY / STIBEE_API_KEY not set")
+    """Send the weekly digest as an HTML email via Resend to each language's
+    Resend audience (see scripts/weekly_send.py). Sends ko/en/ja on a real
+    broadcast; in test mode (WEEKLY_TEST_TO) sends only WEEKLY_LANG to that one
+    address. No-op if keys are absent, so the workflow stays green until the
+    secrets are configured. Returns True if a send actually happened."""
+    if not os.environ.get("RESEND_API_KEY"):
+        print("email send skipped: RESEND_API_KEY not set")
         return False
+    test_to = os.environ.get("WEEKLY_TEST_TO", "").strip()
+    if test_to:
+        langs = [(os.environ.get("WEEKLY_LANG") or "ko").strip()]
+    else:
+        if not (os.environ.get("STACKS_WORKER_URL") and
+                os.environ.get("STACKS_NOTIFY_SECRET")):
+            print("email send skipped: worker url / notify secret not set")
+            return False
+        langs = ["ko", "en", "ja"]
     try:
         import weekly_send
-        sent, errors = weekly_send.send_weekly(hot)
-        return sent > 0 and not errors
+        total_sent, total_err = 0, 0
+        for lang in langs:
+            sent, errors = weekly_send.send_weekly(hot, lang=lang)
+            total_sent += sent
+            total_err += len(errors)
+            print("  [%s] sent=%d errors=%d" % (lang, sent, len(errors)))
+        return total_sent > 0 and total_err == 0
     except Exception as e:  # noqa: BLE001
         print("email send failed: %s" % e)
         return False
