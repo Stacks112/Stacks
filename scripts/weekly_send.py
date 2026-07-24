@@ -33,7 +33,8 @@ import urllib.parse
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from weekly_email import render_email, select_hot  # noqa: E402
+from weekly_email import (  # noqa: E402
+    render_email, select_hot, enrich, subject_line)
 
 # A real browser-ish User-Agent: Cloudflare (in front of api.resend.com /
 # api.stibee.com) 403s the default "Python-urllib/x" signature (error 1010).
@@ -50,12 +51,56 @@ UNSUB_SECRET = os.environ.get("UNSUB_SECRET", "")
 LANG = os.environ.get("WEEKLY_LANG", "ko")
 TEST_TO = os.environ.get("WEEKLY_TEST_TO", "").strip()
 DRY_RUN = os.environ.get("DRY_RUN", "") == "1"
+ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
+GLOSSARY_PATH = os.environ.get("GLOSSARY_PATH", "glossary.json")
+# worker base for /views (ranking) and /quote (the "since this post" badge)
+WORKER = os.environ.get(
+    "STACKS_WORKER_URL",
+    "https://stacks-comments.wnrakrhdn128.workers.dev").rstrip("/")
 
-SUBJECT = {
-    "ko": "📈 이번 주 Stacks 베스트",
-    "en": "📈 This week on Stacks",
-    "ja": "📈 今週のStacksベスト",
+# Fallback subject if there are no items to name.
+SUBJECT_FALLBACK = {
+    "ko": "이번 주 Stacks 베스트",
+    "en": "This week on Stacks",
+    "ja": "今週のStacksベスト",
 }
+
+
+def _get_json(url):
+    """Best-effort GET -> parsed JSON, or None. Uses a real UA so Cloudflare
+    (in front of the worker) doesn't 403 the request."""
+    try:
+        req = urllib.request.Request(
+            url, headers={"User-Agent": UA, "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=25) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except Exception as e:  # noqa: BLE001
+        print("[warn] GET %s failed: %s" % (url, e))
+        return None
+
+
+def fetch_views():
+    """Article view counts {id: n} from the worker, for ranking. {} on failure."""
+    if not WORKER:
+        return {}
+    j = _get_json(WORKER + "/views")
+    data = (j or {}).get("data") or {}
+    return data if isinstance(data, dict) else {}
+
+
+_QUOTE_CACHE = {}
+
+
+def fetch_quote(ticker):
+    """Worker /quote?r=1y payload for a ticker (cached). {'error':True} on fail."""
+    if not ticker or not WORKER:
+        return {"error": True}
+    if ticker in _QUOTE_CACHE:
+        return _QUOTE_CACHE[ticker]
+    j = _get_json(WORKER + "/quote?s=" + urllib.parse.quote(str(ticker)) + "&r=1y")
+    out = j if (j and j.get("closes")) else {"error": True}
+    _QUOTE_CACHE[ticker] = out
+    return out
 
 _EMAIL_RE_KEYS = ("email", "Email", "emailAddress", "subscriber")
 
@@ -156,10 +201,36 @@ def resend_batch(messages):
         return json.loads(r.read().decode("utf-8"))
 
 
-def send_weekly(hot, lang=None):
-    """Render + send the weekly digest. Returns (sent_count, errors)."""
+def _load_corpus():
+    data = json.load(open(ITEMS_PATH, encoding="utf-8"))
+    glossary = {}
+    try:
+        glossary = json.load(open(GLOSSARY_PATH, encoding="utf-8"))
+    except Exception as e:  # noqa: BLE001
+        print("[warn] glossary load failed: %s" % e)
+    return data.get("items", []), data.get("entities", {}), glossary
+
+
+def send_weekly(hot=None, lang=None):
+    """Render + send the weekly digest. Returns (sent_count, errors).
+
+    Selects the last 7 days' top-3 hot items by view count, enriches them with
+    OG images, the 'since this post' stock badge, indexed terms and a weekly
+    attention-shift note, and names the subject after the most-read piece."""
     lang = lang or LANG
-    subject = SUBJECT.get(lang, SUBJECT["ko"])
+
+    items, entities, glossary = _load_corpus()
+    views = fetch_views()
+    print("ranking by views: %d counted" % len(views))
+    ctx = enrich(items, entities, glossary, views, fetch_quote,
+                 days=7, limit=3, lang=lang)
+    top = ctx.get("items", [])
+    if not top:
+        print("no hot items in the last 7 days; skipping")
+        return 0, []
+    subject = subject_line(lang, top[0]) or SUBJECT_FALLBACK.get(lang, SUBJECT_FALLBACK["ko"])
+    print("top-3: %s | since-badges: %d | subject=%r"
+          % ([i.get("id") for i in top], len(ctx.get("since", {})), subject))
 
     if TEST_TO:
         recipients = [TEST_TO.lower()]
@@ -171,8 +242,8 @@ def send_weekly(hot, lang=None):
         print("no recipients; skipping")
         return 0, []
 
-    # one personalized HTML per recipient (unsub link differs)
-    html_by_email = {e: render_email(lang, hot, SITE, unsub=unsub_link(e))
+    # one personalized HTML per recipient (only the unsub link differs)
+    html_by_email = {e: render_email(lang, ctx, SITE, unsub=unsub_link(e))
                      for e in recipients}
     messages = build_messages(recipients, html_by_email, subject)
 
