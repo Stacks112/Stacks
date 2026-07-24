@@ -329,7 +329,8 @@ def attention(items, entities, ent_rx, ent_a2k, today=None, top=3):
     def rank(c):
         return [k for k, _ in sorted(c.items(), key=lambda kv: (-kv[1], kv[0]))]
 
-    return {"this": rank(cthis)[:top], "last": rank(clast)[:top]}
+    return {"this": rank(cthis)[:top], "last": rank(clast)[:top],
+            "cthis": cthis, "clast": clast}
 
 
 # ---------------------------------------------------------------- subject
@@ -501,67 +502,102 @@ def _card_html(lang, ctx, site, it):
 
 
 _ATTN_LABELS = {
-    "ko": {"last": "지난주", "this": "이번주", "cap": "🔥 %s가 이번 주 새로 떠올랐어요"},
-    "en": {"last": "Last week", "this": "This week", "cap": "🔥 %s newly surged this week"},
-    "ja": {"last": "先週", "this": "今週", "cap": "🔥 %s が今週新たに浮上"},
+    "ko": {"last": "지난주", "this": "이번주", "unit": "%d건",
+           "cap": "🔥 %s가 이번 주 새로 떠올랐어요", "sub": "언급된 기사 수 기준"},
+    "en": {"last": "Last wk", "this": "This wk", "unit": "%d",
+           "cap": "🔥 %s newly surged this week", "sub": "by number of articles"},
+    "ja": {"last": "先週", "this": "今週", "unit": "%d件",
+           "cap": "🔥 %s が今週新たに浮上", "sub": "記事数ベース"},
 }
 
 
-def _attn_chip(name, mode):
-    """mode: 'last' (muted), 'carry' (in both weeks), 'new' (newcomer)."""
-    style = {
-        "last":  "background:#EEF0F3;color:#6B7280;",
-        "carry": "background:#EAF0FF;color:#2E5BFF;",
-        "new":   "background:#111318;color:#ffffff;",
-    }.get(mode, "background:#EEF0F3;color:#6B7280;")
-    tag = ('<span style="font-size:9px;font-weight:800;letter-spacing:.08em;'
-           'margin-left:7px;opacity:.8;">NEW</span>') if mode == "new" else ""
-    return ('<div style="margin:0 0 8px;"><span style="display:inline-block;%s'
-            'font-size:13px;font-weight:700;padding:7px 12px;border-radius:8px;'
-            'white-space:nowrap;">%s%s</span></div>' % (style, _esc(name), tag))
+def _attn_bar(color, pct):
+    pct = max(0, min(100, int(round(pct))))
+    fill = ('<div style="background:%s;height:9px;border-radius:5px;width:%d%%;'
+            'font-size:0;line-height:9px;">&nbsp;</div>' % (color, pct)) if pct > 0 else ""
+    return ('<div style="background:#ECEEF2;border-radius:5px;height:9px;width:100%%;">'
+            '%s</div>' % fill)
+
+
+def _attn_delta(lb, last_n, this_n):
+    if last_n == 0 and this_n > 0:
+        return ('<span style="font-size:9px;font-weight:800;letter-spacing:.06em;'
+                'color:#ffffff;background:#111318;padding:2px 6px;border-radius:5px;'
+                'margin-left:7px;">NEW</span>')
+    d = this_n - last_n
+    if d > 0:
+        return ('<span style="font-size:11px;font-weight:800;color:#12B76A;'
+                'margin-left:7px;">▲%d</span>' % d)
+    if d < 0:
+        return ('<span style="font-size:11px;font-weight:800;color:#F04438;'
+                'margin-left:7px;">▼%d</span>' % (-d))
+    return '<span style="font-size:11px;color:#B6BBC4;margin-left:7px;">=</span>'
+
+
+def _attn_row(lang, ctx, key, last_n, this_n, maxn):
+    lb = _ATTN_LABELS[_lang(lang)]
+    ent = (ctx.get("entities") or {}).get(key, {})
+    sector = _t(ent.get("sector"), lang)
+    sector_pill = ""
+    if sector:
+        sector_pill = ('<span style="font-size:11px;font-weight:600;color:#6B7280;'
+                       'background:#F1F2F4;padding:3px 9px;border-radius:6px;'
+                       'white-space:nowrap;">%s</span>' % _esc(sector))
+    cell = 'style="font-size:11px;color:#9AA0A6;font-weight:700;white-space:nowrap;padding:0 8px 0 0;"'
+    numc = 'style="font-size:12px;color:#3B3F46;font-weight:700;white-space:nowrap;padding:0 0 0 10px;" align="right"'
+    return (
+        '<div style="margin:0 0 16px;">'
+        # name + sector
+        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0"><tr>'
+        '<td style="font-size:15px;font-weight:800;color:#111318;">%s</td>'
+        '<td align="right">%s</td></tr></table>'
+        # bars
+        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" style="margin-top:8px;">'
+        '<tr><td width="46" %s>%s</td><td>%s</td><td width="58" %s>%s</td></tr>'
+        '<tr><td colspan="3" style="height:6px;line-height:6px;font-size:0;">&nbsp;</td></tr>'
+        '<tr><td %s>%s</td><td>%s</td><td %s>%s%s</td></tr>'
+        '</table>'
+        '</div>'
+        % (_esc(key), sector_pill,
+           cell, _esc(lb["last"]), _attn_bar("#C7CDD6", (last_n / maxn) * 100), numc, _esc(lb["unit"] % last_n),
+           cell, _esc(lb["this"]), _attn_bar(BRAND, (this_n / maxn) * 100), numc,
+           _esc(lb["unit"] % this_n), _attn_delta(lb, last_n, this_n))
+    )
 
 
 def _attn_html(lang, ctx):
     T = L[_lang(lang)]
     lb = _ATTN_LABELS[_lang(lang)]
     attn = ctx.get("attn") or {}
-    this = (attn.get("this") or [])[:3]
-    last = (attn.get("last") or [])[:3]
-    if not this and not last:
+    cthis = attn.get("cthis") or {}
+    clast = attn.get("clast") or {}
+    this_top = (attn.get("this") or [])[:3]
+    last_top = (attn.get("last") or [])[:3]
+    if not this_top and not last_top:
         return ""
-    lastset = set(last)
-    empty = '<div style="color:#B6BBC4;font-size:13px;padding:7px 0;">—</div>'
-    left = "".join(_attn_chip(k, "last") for k in last) or empty
-    right = "".join(_attn_chip(k, "new" if k not in lastset else "carry")
-                    for k in this) or empty
-    newcomers = [k for k in this if k not in lastset]
+    fallers = [k for k in last_top if k not in this_top][:2]
+    rows_keys = (this_top + fallers)[:4]
+    maxn = max([cthis.get(k, 0) for k in rows_keys]
+               + [clast.get(k, 0) for k in rows_keys] + [1])
+    rows = "".join(_attn_row(lang, ctx, k, clast.get(k, 0), cthis.get(k, 0), maxn)
+                   for k in rows_keys)
+    newcomers = [k for k in this_top if clast.get(k, 0) == 0]
     caption = ""
     if newcomers:
-        caption = ('<div style="font-size:12.5px;color:#8B93A1;margin:16px 0 0;'
+        caption = ('<div style="font-size:12.5px;color:#8B93A1;margin:4px 0 0;'
                    'padding:12px 0 0;border-top:1px solid #EEF0F3;">%s</div>'
                    % (lb["cap"] % "·".join(newcomers[:2])))
-    lbl = ('<div style="font-size:11px;font-weight:700;color:#9AA0A6;'
-           'letter-spacing:.04em;margin:0 0 10px;">%s</div>')
     return (
         '<tr><td style="padding:2px 0 16px;">'
         '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
         'style="border:1px solid #E5E7EB;border-radius:14px;background:#FBFCFE;">'
         '<tr><td style="padding:18px 20px 20px;">'
         '<div style="font-size:11px;font-weight:700;color:%s;letter-spacing:.08em;'
-        'text-transform:uppercase;margin:0 0 14px;">%s</div>'
-        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0"><tr>'
-        '<td width="43%%" valign="top">%s%s</td>'
-        '<td width="14%%" align="center" valign="middle" '
-        'style="font-size:28px;font-weight:800;color:%s;">&rarr;</td>'
-        '<td width="43%%" valign="top">%s%s</td>'
-        '</tr></table>'
-        '%s'
+        'text-transform:uppercase;margin:0 0 3px;">%s</div>'
+        '<div style="font-size:11.5px;color:#9AA0A6;margin:0 0 16px;">%s</div>'
+        '%s%s'
         '</td></tr></table></td></tr>'
-        % (BRAND, _esc(T["attn"]),
-           lbl % _esc(lb["last"]), left,
-           BRAND,
-           lbl % _esc(lb["this"]), right,
-           caption)
+        % (BRAND, _esc(T["attn"]), _esc(lb["sub"]), rows, caption)
     )
 
 
