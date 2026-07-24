@@ -7267,9 +7267,36 @@ function collapseHide(el, done){
     }, 340);
   } catch (e){ el.hidden = true; el.__collapsing = false; if (done) done(); }
 }
+/* 오늘의 토론을 하루 동안 그만 노출하도록 dismiss 플래그를 찍는다. */
+function markTodayDismissed(){ try { store.set("stk_today_dismiss", todayStr()); } catch (e) {} }
+function todayDismissed(){ try { return store.get("stk_today_dismiss", "") === todayStr(); } catch (e) { return false; } }
+/* 오늘의 토론 박스를 스크롤로 지나치면(한 번 보였다가 화면 위로 벗어나면) 그날 하루
+   dismiss 처리. 레이아웃 점프를 막기 위해 즉시 제거하진 않고 플래그만 찍는다 —
+   다음 렌더/재방문부터 안 뜬다. */
+function watchTodayPast(el){
+  if (!el || el.__todayObs || typeof IntersectionObserver === "undefined") return;
+  try {
+    var seen = false;
+    var obs = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++){
+        var e = entries[i];
+        if (e.isIntersecting){ seen = true; }
+        else if (seen && e.boundingClientRect.top < 0){
+          try { obs.disconnect(); } catch (_){}
+          el.__todayObs = null;
+          markTodayDismissed();
+          if (typeof track === "function") track("today/scrollpast");
+          return;
+        }
+      }
+    }, { threshold: 0 });
+    obs.observe(el);
+    el.__todayObs = obs;
+  } catch (e) {}
+}
 function dismissToday(ev){
   if (ev){ ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
-  store.set("stk_today_dismiss", todayStr());
+  markTodayDismissed();
   const sec = document.getElementById("todaySec");
   if (sec) collapseHide(sec);
   track("today/dismiss");
@@ -7283,20 +7310,9 @@ function renderToday(){
      column, so it should only appear on the actual home feed (전체 tab) —
      not above the 기업/정치인 directories or other category tabs. */
   if (typeof V83 !== "undefined" && V83 && V83.mounted && (TAB !== "all" || (typeof V83ITEM !== "undefined" && V83ITEM))) homeView = false;
-  /* v83.4 (전 셸 공통, june 지시): 하루에 한 번, 그날 "첫 방문"의 세션에서만
-     노출. 첫 방문 세션 안에서는 홈으로 돌아올 때마다 계속 보이지만, 같은 날
-     새로 접속하면 더 이상 보이지 않는다. */
-  let firstVisitToday = false;
-  try {
-    if (sessionStorage.getItem("stk_today_sess") === todayStr()) firstVisitToday = true;
-    else if (store.get("stk_today_seen", "") !== todayStr()){
-      firstVisitToday = true;
-      sessionStorage.setItem("stk_today_sess", todayStr());
-      store.set("stk_today_seen", todayStr());
-    }
-  } catch (e) { firstVisitToday = true; }
-  if (!firstVisitToday) homeView = false;
-  const dismissed = store.get("stk_today_dismiss", "") === todayStr();
+  /* 하루에 한 번만: 그날 dismiss(엑스 · 스크롤로 지나침 · 열어봄) 되었으면 다시 안 뜬다.
+     (june 지시 — 기존 '첫 방문 세션' 게이트를 하루 단위 dismiss로 대체) */
+  const dismissed = todayDismissed();
   const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
   if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
   pool.sort((a, b) => (a.date < b.date ? 1 : -1)); const _cRecent = pool.filter(i => (Date.now() - new Date(i.date).getTime()) < 45*86400000); const _cUse = _cRecent.length >= 3 ? _cRecent : pool.slice(0, 12); const item = _cUse[Math.floor(Date.now()/86400000) % _cUse.length];
@@ -7304,7 +7320,9 @@ function renderToday(){
   const S = STRINGS[LANG];
   const n = COMMENT_COUNTS[item.id] || 0;
   sec.hidden = false;
+  watchTodayPast(sec); /* 스크롤로 지나치면 그날 하루 숨김 */
   main.onclick = () => {
+    markTodayDismissed(); /* 열어서 봤으면 그날은 그만 노출 */
     /* v83.3: open as its own page instead of deep-scrolling the feed */
     if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83OpenItem === "function"){ v83OpenItem(item.id, true); }
     else { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); }
@@ -9909,7 +9927,7 @@ bootData();
     if (!mq.matches) return;
     var list = $("feedList"); if (!list) return;
     var olds = list.querySelectorAll(".v82mod");
-    for (var i = 0; i < olds.length; i++) olds[i].remove();
+    for (var i = 0; i < olds.length; i++){ if (olds[i].__todayObs){ try { olds[i].__todayObs.disconnect(); } catch (_){} olds[i].__todayObs = null; } olds[i].remove(); }
     if (!plainFeed()) return;
     var cards = list.querySelectorAll(".card");
     if (cards.length < 3) return;
@@ -9919,7 +9937,7 @@ bootData();
       if (typeof TODAY_ID !== "undefined" && TODAY_ID){
         var titem = null;
         for (var j = 0; j < ITEMS.length; j++) if (ITEMS[j].id === TODAY_ID){ titem = ITEMS[j]; break; }
-        if (titem && titem.ask && window.__v82todayHid !== TODAY_ID){
+        if (titem && titem.ask && window.__v82todayHid !== TODAY_ID && !(typeof todayDismissed === "function" && todayDismissed())){
           /* bordered card + "왜 화두인가" context so readers know what's up for debate */
           var ctx = "";
           try {
@@ -9935,8 +9953,9 @@ bootData();
             (ctx ? '<div class="v82today-ctx">' + esc(ctx) + '</div>' : "") +
             '<div class="v82today-src">' + esc(dispName(titem.source)) + ' · ' + esc(titem.title[LANG] || "") + '</div>' +
             '<div class="v82today-cta">' + (S.todayJoin || T().ntDebate) + ' →</div>';
-          tc.querySelector(".v82today-x").addEventListener("click", function(ev){ ev.stopPropagation(); window.__v82todayHid = TODAY_ID; if (typeof collapseHide === "function") collapseHide(tc, function(){ tc.remove(); }); else tc.remove(); });
-          tc.addEventListener("click", function(){ openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); });
+          tc.querySelector(".v82today-x").addEventListener("click", function(ev){ ev.stopPropagation(); window.__v82todayHid = TODAY_ID; if (typeof markTodayDismissed === "function") markTodayDismissed(); if (typeof collapseHide === "function") collapseHide(tc, function(){ tc.remove(); }); else tc.remove(); });
+          tc.addEventListener("click", function(){ if (typeof markTodayDismissed === "function") markTodayDismissed(); openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); });
+          if (typeof watchTodayPast === "function") watchTodayPast(tc); /* 스크롤로 지나치면 그날 하루 숨김 */
           mods.push({ top: true, node: tc });
         }
       }
