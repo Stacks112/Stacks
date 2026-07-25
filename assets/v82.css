@@ -18,6 +18,11 @@
     display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;padding:0;}
   /* entity tip-sheet must clear the bottom nav (was clipped by it) */
   #tipSheet{bottom:calc(72px + env(safe-area-inset-bottom)) !important;}
+  /* 2026-07-25 (june): 상세에서 색인 단어를 눌러도 아무 반응이 없었다. 시트는 정상적으로
+     열리고 있었지만(z-index 75) 상세 오버레이 #v82detail(13600)이 통째로 덮고 있었다.
+     피드에서는 오버레이가 없어 잘 보였기 때문에 눈에 안 띄었다.
+     스크림(13700)·드로어(13800)보다는 아래여야 그것들이 열렸을 때 가리지 않는다. */
+  #tipSheet{z-index:13650 !important;}
 
   /* --- community-slide top tabs (inside sticky header, hides with it) --- */
   .v82-tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 14px 9px;scrollbar-width:none;
@@ -257,3 +262,30 @@
 #v82recentQ .v82rq-x{flex:0 0 auto;background:none;border:0;color:var(--muted);
   font-size:13px;padding:10px 14px;cursor:pointer;}
 #v82recentQ .v82rq-row:active{background:var(--bg-soft);}
+
+/* 2026-07-25 (june): "데스크톱과 동일하게 원문 제목·왜 중요한가·긍정부정 패널 위치 조정".
+   데스크톱(html.v83)은 card-body를 flex column으로 만들고 order로만 재배치한다(DOM은 그대로).
+   모바일에는 그 규칙이 없어 DOM 순서 그대로였고, 특히 원문 제목이 본문 맨 위에 있었다.
+   같은 번호 체계를 그대로 가져온다 — 데스크톱 규칙은 index.html의 html.v83 블록에 있다.
+
+   딱 하나 다르게 둔 것: 커버 이미지. v82.js가 이미 "본문 뒤, 액션바 앞"으로 옮겨 두었고
+   (트위터식 미디어 배치) 그건 모바일에서 의도한 결정이라 그 자리를 지키도록 68을 준다. */
+@media (max-width:1023px){
+  .card .card-body{display:flex;flex-direction:column;}
+  .card .card-body > *{order:90;}
+  .card .card-body > .gist-fold{order:20;}
+  .card .card-body > .why{order:30;}
+  .card .card-body > .opp{order:35;}          /* 반대편 — 바로 '왜 중요한가' 밑 */
+  .card .card-body > .oc,
+  .card .card-body > .since,
+  .card .card-body > .ask-block{order:50;}    /* 긍정/부정 투표 패널 */
+  .card .card-body > .cta-row{order:60;}      /* 원문 보기 */
+  .card .card-body > .title-orig{order:65;margin:2px 0 0;}   /* 원문 제목 — 원문 보기 아래 */
+  .card .card-body > .card-thumb,
+  .card .card-body > .card-thumb-img{order:68;}
+  .card .card-body > .engage{order:70;}
+  .card .card-body > .twin,
+  .card .card-body > .twin-list,
+  .card .card-body > .comment-box,
+  .card .card-body > .related{order:80;}
+}
