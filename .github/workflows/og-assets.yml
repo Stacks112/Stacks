@@ -14,6 +14,7 @@ on:
       - "items.json"
       - "scripts/build_pages.py"
       - "scripts/fetch_og_assets.py"
+      - "scripts/fetch_cover_assets.py"
 
 permissions:
   contents: write
@@ -35,9 +36,15 @@ jobs:
       - name: Install CJK font for share cards
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
 
-      - name: Fetch subject images + rebuild cards
+      - name: Install poppler (PDF -> PNG for document covers)
+        run: sudo apt-get install -y -qq poppler-utils
+
+      - name: Fetch subject images + article covers + rebuild cards
+        env:
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
         run: |
           pip install requests pillow --quiet
+          python scripts/fetch_cover_assets.py
           python scripts/fetch_og_assets.py
           rm -f og/*.png
           python scripts/build_pages.py
@@ -51,7 +58,7 @@ jobs:
             echo "no changes"
             exit 0
           fi
-          git commit -m "chore: refresh OG card images"
+          git commit -m "chore: refresh OG cards + article covers"
           for i in 1 2 3 4 5; do
             if git pull --rebase --autostash origin main && git push origin main; then
               exit 0
