@@ -7557,9 +7557,16 @@ function renderFeed(animate){
   list.classList.toggle("no-anim", !animate);
   list.innerHTML = "";
   if (feedIO){ feedIO.disconnect(); feedIO = null; }
-  const inTab = TAB === "mine"
-    ? ITEMS.filter(isMine)
-    : ITEMS.filter(i => TAB === "all" || i.category === TAB);
+  /* 2026-07-25 (june 신고): 엔티티(인물·기업) 피드는 카테고리를 가로지른다.
+     탭 필터를 그대로 걸면 "골라보기"처럼 카테고리가 아닌 의사 탭(browse/skew/cal)에
+     머문 상태에서 카드를 누를 때 i.category와 맞는 항목이 하나도 없어 전부 빈 화면이 됐다.
+     엔티티 헤더의 글 수는 원래부터 탭과 무관하게 세므로, 헤더 숫자와 실제 목록이
+     어긋나던 문제도 함께 사라진다. */
+  const inTab = ENTITY_VIEW
+    ? ITEMS.slice()
+    : (TAB === "mine"
+        ? ITEMS.filter(isMine)
+        : ITEMS.filter(i => TAB === "all" || i.category === TAB));
   FEED_MINE = TAB === "mine";
   /* v83.5: feed switcher (최신/팔로잉) visibility + active state */
   try {
