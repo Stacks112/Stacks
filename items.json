@@ -2,6 +2,150 @@
  "items": [
   {
    "date": "2026-07-25",
+   "id": "jukan-cxmt-3d-ic-niche-strategy",
+   "related": [
+    "jukan-korea-memory-mega-mou-950b",
+    "jukan-cxmt-huawei-premium",
+    "jukan-hynix-3d-stacked-dram-ondevice"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2080881951909826930",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1E293B",
+    "to": "#7C2D12",
+    "label": "3D IC NICHE RACE"
+   },
+   "tags": [
+    "SAMSUNG",
+    "SK HYNIX",
+    "CXMT"
+   ],
+   "stance": "watch",
+   "title": {
+    "en": "Samsung and SK hynix stay cautious on 3D chip stacking as China's CXMT chases the niche",
+    "ko": "3D 적층 메모리, 삼성·SK하이닉스는 신중한데 중국 CXMT는 니치 시장을 노린다",
+    "ja": "3Dスタッキングメモリー、サムスン・SKハイニックスは慎重も中国CXMTはニッチ市場を狙う"
+   },
+   "gist": {
+    "ko": "반도체 업계에서 AI 칩 성능을 높이는 방법이 미세공정 경쟁에서 로직과 메모리를 한 패키지에 쌓는 3D 적층 기술로 옮겨가고 있는데, 삼성전자와 SK하이닉스는 이 신기술 상용화에 신중한 태도를 보이는 반면 중국 창신메모리(CXMT)는 오히려 이 틈새시장을 선점하려 움직이고 있다고 반도체 애널리스트 주칸이 전했다. 삼성전자 파운드리 사업부에는 최근 3D IC 관련 문의가 쏟아지고 있으며, 엔비디아 중심의 범용 AI 칩뿐 아니라 고객 맞춤형 ASIC·추론 칩 수요가 늘면서 관심이 빠르게 커지는 중이다. 다만 업계 관계자들은 3D IC 기반 커스텀 D램이 삼성전자·SK하이닉스의 핵심 사업모델인 표준 D램 대량생산과는 근본적으로 다른 사업 구조라고 지적한다. 고객마다 다른 메모리 구성과 적층 방식을 요구하는 만큼 대량생산 체제로는 수익을 내기 어렵다는 것이다. 이 때문에 삼성전자와 SK하이닉스는 연구개발 수준에 머물 가능성이 크고, 대신 미국 규제로 HBM 시장 진입이 막힌 중국 CXMT나 대만 윈본드처럼 니치 시장을 노리는 후발주자가 3D IC 상용화에 먼저 나설 것이라는 전망이 나온다. CXMT는 이미 세계에서 가장 앞서 3D D램 샘플칩을 여러 종 만들어냈다고 알려졌다.",
+    "en": "The chip industry's race to boost AI performance is shifting from process shrinks to 3D stacking, which fuses logic and memory in one package, and Samsung Electronics and SK hynix are staying cautious about commercializing it while China's ChangXin Memory Technologies (CXMT) moves to claim the niche, semiconductor analyst Jukan reports. Samsung's foundry division is reportedly fielding a steady stream of inquiries about 3D ICs as demand grows for custom AI chips like ASICs and inference chips alongside Nvidia's general-purpose GPUs. Industry officials say custom, 3D-stacked DRAM is a fundamentally different business from the standardized, mass-produced DRAM that Samsung and SK hynix are built around, since every customer wants a different memory configuration and stacking method, making it hard to run profitably at scale. That is why the two Korean giants are expected to keep 3D IC work at the research stage rather than mobilizing full business units, while later entrants chasing niche demand move first. CXMT, blocked from the high-bandwidth memory market by US export controls, is reportedly building 3D IC capability instead, and Taiwan's Winbond is named alongside it as another niche player. CXMT has reportedly already produced several 3D DRAM sample chips ahead of rivals worldwide.",
+    "ja": "半導体業界でAI性能を高める手段が微細化競争から、ロジックとメモリーを一つのパッケージに積層する3Dスタッキング技術へと移りつつある中、サムスン電子とSKハイニックスはこの技術の商用化に慎重な姿勢を見せる一方、中国の長鑫存儲(CXMT)はこのニッチ市場を狙って動いていると半導体アナリストのJukan氏が伝えた。サムスン電子のファウンドリ事業には最近、3D ICに関する問い合わせが相次いでいるという。エヌビディアの汎用AIチップだけでなく、顧客ごとのASICや推論チップの需要が増え、関心が急速に高まっている。ただ業界関係者は、3D IC型のカスタムDRAMはサムスン電子・SKハイニックスの中核事業である標準DRAMの大量生産とは根本的に事業構造が異なると指摘する。顧客ごとにメモリー構成や積層方式が違うため、大量生産体制では採算が取りにくいという。このため両社は研究開発段階にとどまる可能性が高く、代わりに米国の規制でHBM市場への参入が難しい中国CXMTや台湾のウィンボンドのような後発企業がニッチ市場から3D IC商用化に先に乗り出すとの見方が出ている。CXMTはすでに世界に先駆けて複数の3D DRAMサンプルチップを試作したと伝えられる。"
+   },
+   "why": {
+    "ko": "삼성전자·SK하이닉스가 표준 D램 대량생산에 집중하는 사이 중국 CXMT가 차세대 메모리 기술의 틈새를 먼저 차지할 수 있다는 경쟁 구도 변화를 보여준다.",
+    "en": "It signals a possible shift in competitive positioning, where Korea's memory giants stick to standardized mass production while China's CXMT could claim next-generation niche memory technology first.",
+    "ja": "サムスン電子・SKハイニックスが標準DRAMの大量生産に注力する間に、中国CXMTが次世代メモリー技術のニッチ市場を先に押さえる可能性を示している。"
+   },
+   "ask": {
+    "ko": "니치 3D IC 시장, 삼성·SK하이닉스가 놓치는 기회일까 신중한 선택일까?",
+    "en": "Is skipping the niche 3D IC market a missed opportunity for Samsung and SK hynix, or the smart call?",
+    "ja": "ニッチな3D IC市場、サムスン・SKハイニックスは機会を逃しているのか、それとも賢明な判断なのか?"
+   },
+   "ts": "2026-07-25T09:48:15.904606+00:00"
+  },
+  {
+   "date": "2026-07-25",
+   "id": "kobeissi-margin-debt-net-credit-record",
+   "related": [
+    "kobeissi-china-margin-unwind",
+    "kobeissi-equity-etf-record-880b",
+    "kobeissi-sp500-implied-correlation-low"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2080808424468550055",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#7F1D1D",
+    "to": "#1F2937",
+    "label": "MARGIN DEBT $1.5T"
+   },
+   "tags": [
+    "MARGIN DEBT",
+    "NET CREDIT BALANCE",
+    "S&P 500"
+   ],
+   "stance": "bear",
+   "title": {
+    "en": "US net credit balances hit a record negative $1.06 trillion as margin debt surges to $1.5 trillion",
+    "ko": "미 순신용잔고 마이너스 1조600억달러 사상 최저, 마진 부채는 1조5000억달러로 사상 최대",
+    "ja": "米純信用残高がマイナス1兆600億ドルで過去最低、マージン負債は1兆5000億ドルで過去最高"
+   },
+   "gist": {
+    "ko": "미국 개인·기관 투자자들이 현금보다 빚을 훨씬 많이 낀 채로 주식을 사들이고 있다는 신호가 나왔다. 투자매체 코베이시 레터에 따르면 6월 한 달 동안 순신용잔고(투자자가 증권사 계좌에 맡긴 현금에서 마진 부채, 즉 주식을 담보로 빌린 돈을 뺀 값)가 700억달러 줄어 마이너스 1조600억달러로 사상 최저치를 기록했다. 이 수치가 마이너스라는 것은 투자자들이 보유 현금보다 빌린 돈이 더 많다는 뜻이다. 2022년 약세장 이후 이 적자 규모는 네 배 넘게 불어났고, 같은 기간 마진 부채 자체는 8950억달러 늘어 1조5000억달러로 역시 사상 최대를 기록했다. 코베이시는 2008년 금융위기 때와 비교하며 흐름의 이례성을 짚었다. 당시에는 투자자들이 오히려 현금을 더 많이 쥐고 있어 순신용잔고가 플러스였고, 이는 시장 전반이 위험자산에서 발을 빼고 안전자산으로 몰리던 디레버리징 국면이었다는 설명이다. 지금은 정반대로 투자자들의 위험 선호가 사상 최고 수준이라는 것이 코베이시의 진단이다.",
+    "en": "A fresh sign of investors piling into stocks with borrowed money rather than cash has emerged. According to The Kobeissi Letter, net credit balances, the cash investors hold in brokerage accounts minus margin debt (money borrowed against stock holdings), fell $70 billion in June to a record negative $1.06 trillion. A negative reading means investors collectively owe more than they hold in cash. That deficit has more than quadrupled since the 2022 bear market, over which time margin debt itself climbed $895 billion to a record $1.50 trillion. Kobeissi contrasts this with the 2008 financial crisis, when net credit balances stayed positive, meaning investors held more cash than debt amid a broad flight from risk into safety. The current numbers point the opposite way, with Kobeissi describing investor risk appetite as being at unprecedented levels.",
+    "ja": "米国の投資家が現金よりもはるかに多くの借金を抱えて株式を買い進めているという新たなサインが出た。投資情報媒体The Kobeissi Letterによると、6月の1カ月間で純信用残高(投資家が証券口座に預ける現金から、株式を担保に借りたマージン負債を差し引いた値)が700億ドル減少し、マイナス1兆600億ドルと過去最低を更新した。マイナスということは、投資家が保有する現金より借金の方が多いことを意味する。この赤字幅は2022年の弱気相場以降4倍以上に膨らみ、同期間にマージン負債自体も895億ドル増え、1兆5000億ドルと過去最高を記録した。Kobeissiは2008年の金融危機と対比する。当時は投資家がより多くの現金を保有し純信用残高はプラスで、市場全体がリスク資産から安全資産へ資金を移すデレバレッジ局面だったという。現在は逆に、投資家のリスク選好が過去最高水準にあるとKobeissiは指摘する。"
+   },
+   "why": {
+    "ko": "투자자들이 현금보다 빚을 더 많이 지고 주식을 사들이는 정도가 사상 최고치라, 시장이 조정을 받을 경우 강제 매도로 하락이 증폭될 위험이 커졌다는 뜻이다.",
+    "en": "Investors are carrying more borrowed money against stocks than ever, which means a market pullback could trigger forced selling that amplifies the decline.",
+    "ja": "投資家が現金より多くの借金を抱えて株を買う度合いが過去最高であり、相場が調整局面に入れば強制売却が下落を増幅させるリスクが高まっている。"
+   },
+   "ask": {
+    "ko": "순신용잔고가 사상 최저라는 건 위험 신호일까, 강세장에서 흔한 현상일까?",
+    "en": "Is a record-low net credit balance a warning sign, or just normal behavior in a strong bull market?",
+    "ja": "純信用残高が過去最低というのは警告サインなのか、それとも強気相場ではよくあることなのか?"
+   },
+   "ts": "2026-07-25T09:48:15.904606+00:00"
+  },
+  {
+   "date": "2026-07-24",
+   "id": "kobeissi-m2-outpaces-gdp-g7",
+   "related": [
+    "kobeissi-us-home-price-record",
+    "meru-treasury-yield-deficit-not-just-oil",
+    "kobeissi-10y-yield-breaks-470"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2080750931084202051",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1E3A8A",
+    "to": "#78350F",
+    "label": "M2 OUTPACES GDP"
+   },
+   "tags": [
+    "M2",
+    "MONEY SUPPLY",
+    "G7"
+   ],
+   "stance": "watch",
+   "title": {
+    "en": "Money supply keeps growing faster than the economy across the G7, Kobeissi data shows",
+    "ko": "G7 전역서 통화량 증가 속도가 경제 성장률 계속 앞질러, 코베이시 데이터",
+    "ja": "G7全域で通貨供給の伸びが経済成長を上回り続ける、Kobeissiデータ"
+   },
+   "gist": {
+    "ko": "주요 7개국(G7)에서 돈이 풀리는 속도가 실물경제 성장 속도를 계속 앞지르고 있다는 지적이 나왔다. 코베이시 레터에 따르면 캐나다의 M2 통화량(현금과 요구불예금에 저축성예금 등을 더한 통화 지표)은 2004년 1월 이후 368% 늘어 G7 국가 중 증가폭이 가장 컸는데, 같은 기간 캐나다 경제(명목 GDP)는 159% 성장하는 데 그쳤다. 미국도 M2가 279% 늘어난 반면 명목 GDP는 171% 증가해 비슷한 격차를 보였다. 프랑스는 M2가 258%, 유로존 전체는 211% 늘었는데 같은 기간 명목 성장률은 각각 84%, 102%에 그쳐 격차가 더 컸다. 반대로 일본은 M2가 2004년 이후 90% 늘어나는 데 그쳤지만 경제 성장은 25%로 G7 중 가장 느려, 통화 증가와 성장 모두 저조했다. 코베이시는 돈이 풀리는 속도와 경제가 실제로 커지는 속도 사이의 격차가 계속 벌어지고 있다고 짚었다.",
+    "en": "Money creation keeps outpacing real economic growth across the G7, a fresh set of figures shows. According to The Kobeissi Letter, Canada's M2 money supply (a measure of cash, checking deposits and savings-type accounts) has grown 368% since January 2004, the largest increase among G7 economies, while the Canadian economy expanded just 159% in nominal terms over the same period. The US shows a similar gap, with M2 up 279% against 171% nominal GDP growth. France's M2 has surged 258% and the eurozone's 211%, both far outpacing nominal growth of 84% and 102% respectively. Japan is the outlier in the other direction, with M2 up only 90% since 2004, but its economy grew just 25% over that span, the slowest pace in the G7. Kobeissi frames this as a widening gap between how fast money is being created and how fast economies are actually growing.",
+    "ja": "G7各国で通貨供給の伸びが実体経済の成長を上回り続けているとの指摘が出た。The Kobeissi Letterによると、カナダのM2マネーサプライ(現金や当座預金に貯蓄性預金などを加えた通貨指標)は2004年1月以降368%増加し、G7で最大の伸びとなった一方、同期間のカナダの経済成長(名目GDP)は159%にとどまった。米国も同様の格差があり、M2が279%増加したのに対し名目GDP成長率は171%だった。フランスのM2は258%、ユーロ圏全体では211%増加し、それぞれ名目成長率84%、102%を大きく上回った。逆に日本はM2の伸びが2004年以降90%にとどまったが、経済成長率も25%とG7で最も低い水準だった。Kobeissiは、通貨創出のペースと実際の経済成長のペースの差が広がり続けていると指摘する。"
+   },
+   "why": {
+    "ko": "돈이 경제 성장보다 훨씬 빠르게 풀리고 있다는 것은 그만큼 화폐 가치가 희석돼 장기적으로 인플레이션·자산가격 상승 압력이 쌓이고 있다는 뜻이다.",
+    "en": "Money supply growing far faster than the economy means currency is being diluted, building long-run pressure toward inflation and rising asset prices.",
+    "ja": "通貨供給が経済成長よりはるかに速く増えているということは、それだけ通貨価値が薄まり、長期的にインフレや資産価格上昇の圧力が積み上がっていることを意味する。"
+   },
+   "ask": {
+    "ko": "통화량이 성장보다 빨리 느는 흐름, 결국 자산 인플레이션으로 이어질까?",
+    "en": "Does money supply growing faster than the economy eventually show up as asset-price inflation?",
+    "ja": "経済成長より速い通貨供給の増加は、いずれ資産インフレとして表れるのか?"
+   },
+   "ts": "2026-07-24T12:00:00+00:00"
+  },
+  {
+   "date": "2026-07-25",
    "id": "jukan-korea-memory-mega-mou-950b",
    "related": [
     "jukan-samsung-hynix-silicon-valley-deal",
@@ -13191,6 +13335,91 @@
     "CoWoS",
     "코와스",
     "코보스"
+   ]
+  },
+  "WINBOND": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "en": "Taiwanese memory chipmaker specializing in niche DRAM and NOR flash for automotive, industrial and consumer electronics.",
+    "ko": "자동차·산업용·소비자 가전용 니치 D램과 노어 플래시를 전문으로 하는 대만 메모리 반도체 업체.",
+    "ja": "自動車・産業用・民生機器向けのニッチDRAMとNORフラッシュを専門とする台湾のメモリー半導体メーカー。"
+   },
+   "aliases": [
+    "Winbond",
+    "윈본드",
+    "華邦電子",
+    "ウィンボンド",
+    "Winbond Electronics"
+   ],
+   "ticker": "2344",
+   "logo": "winbond.com",
+   "exchange": "타이완증권거래소",
+   "founded": "1987",
+   "hq": {
+    "en": "Hsinchu, Taiwan",
+    "ko": "대만 신주",
+    "ja": "台湾・新竹"
+   },
+   "website": "https://www.winbond.com",
+   "longDesc": {
+    "en": "Winbond Electronics, founded in 1987 and based in Hsinchu, Taiwan, makes specialty memory chips including NOR flash and niche DRAM used in automotive, industrial and consumer electronics rather than commodity DRAM for PCs and servers. It has been named as a potential early mover into 3D IC packaging for custom memory.",
+    "ko": "1987년 설립된 대만 신주 소재 반도체업체 윈본드는 PC·서버용 범용 D램이 아닌 자동차·산업용·가전용 노어 플래시와 니치 D램을 주로 만든다. 최근에는 맞춤형 메모리를 위한 3D IC 패키징 시장에 일찍 진출할 후보로 거론된다.",
+    "ja": "1987年設立、台湾新竹に本社を置く半導体メーカーのウィンボンドは、PC・サーバー向け汎用DRAMではなく、自動車・産業用・民生機器向けのNORフラッシュやニッチDRAMを主に手がける。最近ではカスタムメモリー向け3D ICパッケージング市場への早期参入候補として挙げられている。"
+   }
+  },
+  "MARGIN DEBT": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Money borrowed against stock holdings to buy more securities.",
+    "ko": "주식을 담보로 빌려 증권을 더 사는 데 쓰는 돈.",
+    "ja": "株式を担保に借りて証券をさらに買うための資金。"
+   },
+   "longDesc": {
+    "en": "Margin debt is cash an investor borrows from a broker, using existing securities as collateral, to buy more stock. Net credit balance nets this against the cash investors actually hold in their accounts; when it turns negative, investors collectively owe more than they hold in cash, a sign of elevated leverage and risk appetite. A market drop can force brokers to issue margin calls, triggering sales that amplify the decline.",
+    "ko": "마진 부채는 투자자가 보유한 증권을 담보로 증권사에서 빌려 주식을 추가로 매수하는 데 쓰는 돈이다. 순신용잔고는 여기서 투자자가 실제로 계좌에 보유한 현금을 뺀 값으로, 마이너스로 돌아서면 투자자 전체가 보유 현금보다 빚이 더 많다는 뜻이라 레버리지와 위험 선호가 높아졌다는 신호로 읽힌다. 시장이 하락하면 증권사가 마진콜을 걸어 강제 매도가 나오면서 하락폭을 키울 수 있다.",
+    "ja": "マージン負債とは、投資家が保有証券を担保に証券会社から借りて追加で株式を買うための資金を指す。純信用残高はここから投資家が実際に口座に保有する現金を差し引いた値で、マイナスに転じると投資家全体が保有現金より借金の方が多いことを意味し、レバレッジとリスク選好の高まりを示すサインとされる。相場が下落すると証券会社がマージンコールを出し、強制売却が下落を増幅させることがある。"
+   },
+   "aliases": [
+    "margin debt",
+    "net credit balance",
+    "순신용잔고",
+    "마진 부채",
+    "マージン負債",
+    "純信用残高"
+   ]
+  },
+  "M2": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A broad measure of money supply: cash plus checking and savings-type deposits.",
+    "ko": "현금에 요구불예금·저축성예금 등을 더한 넓은 의미의 통화량 지표.",
+    "ja": "現金に当座預金・貯蓄性預金などを加えた広義の通貨供給量指標。"
+   },
+   "longDesc": {
+    "en": "M2 is a standard measure of a country's money supply, including physical cash, checking account deposits, and easily accessible savings-type deposits. Economists watch M2 growth relative to GDP growth as a rough gauge of currency dilution; when M2 grows much faster than the real economy, it points to more money chasing a similar amount of goods and assets, a long-run driver of inflation and asset price gains.",
+    "ko": "M2는 현금과 요구불예금, 그리고 비교적 쉽게 인출 가능한 저축성예금 등을 포함하는 대표적인 통화량 지표다. 경제학자들은 M2 증가율을 GDP 성장률과 비교해 화폐 가치 희석 정도를 가늠하는데, M2가 실물경제보다 훨씬 빨리 늘면 비슷한 양의 재화·자산을 놓고 돈만 늘어나는 셈이라 장기적으로 인플레이션과 자산가격 상승의 배경이 된다.",
+    "ja": "M2は現金や当座預金、比較的容易に引き出せる貯蓄性預金などを含む代表的な通貨供給量の指標だ。エコノミストはM2の伸び率をGDP成長率と比較して通貨価値の希薄化の度合いを測る。M2が実体経済よりはるかに速く増えると、同程度の財・資産に対してお金だけが増えることになり、長期的にインフレや資産価格上昇の背景となる。"
+   },
+   "aliases": [
+    "M2",
+    "M2 money supply",
+    "M2 통화량",
+    "M2マネーサプライ"
    ]
   }
  }
