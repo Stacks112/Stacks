@@ -237,3 +237,7 @@
     border-bottom:1px solid var(--line);padding:14px 2px;text-align:left;cursor:pointer;
     font-family:inherit;color:var(--text);font-size:15px;font-weight:600;}
 }
+
+/* 2026-07-25 (june): 모바일 탐색 탭의 "내 브리핑" 행 — 무엇에 대한 강세/약세인지 */
+.v82-brief-subj{margin-top:4px;font-size:12px;line-height:1.35;color:var(--muted);text-align:left;}
+.v82-brief-row .v82-skew-lean{font-size:11.5px;font-weight:800;}

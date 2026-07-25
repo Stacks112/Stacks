@@ -411,7 +411,43 @@
     var hub = $("v82hub"); if (!hub) return;
     var t = T(), S = (typeof STRINGS!=="undefined"&&STRINGS[LANG])?STRINGS[LANG]:{};
     var rows = skewData();
-    var html = '<div class="v82-skew-h">' + t.skewTitle + '</div><div class="v82-skew-sub">' + t.skewSub + '</div>';
+    /* 2026-07-25 (june): 모바일에도 "내 브리핑"이 필요하다. 탐색 탭은 이미 전체 쏠림을
+       보여주므로, 같은 성격의 개인 버전을 그 위에 둔다. 팔로우가 없으면 통째로 생략한다.
+       판정 로직(watchWeekSignal/watchWeekSubjects)은 데스크톱과 완전히 공유한다. */
+    var html = "";
+    try {
+      if (typeof WATCH !== "undefined" && typeof watchWeekSignal === "function"){
+        /* WATCH는 Set이다 — slice.call 은 빈 배열을 돌려준다 */
+        var mine = Array.from(WATCH).filter(function(k){ return ENTITIES[k]; })
+          .map(function(k){ return { k: k, sig: watchWeekSignal(k) }; })
+          .sort(function(a, b){
+            return (a.sig.rank - b.sig.rank)
+              || ((b.sig.bull + b.sig.bear) - (a.sig.bull + a.sig.bear))
+              || a.k.localeCompare(b.k);
+          });
+        if (mine.length){
+          html += '<div class="v82-skew-h">' + esc(S.briefTitle || "") + '</div>'
+                + '<div class="v82-skew-sub">' + esc(S.briefSub || "") + '</div>';
+          mine.forEach(function(o){
+            var sig = o.sig;
+            var verdict = sig.kind === "split" ? S.briefSplit
+              : sig.kind === "bull" ? S.briefLeanBull
+              : sig.kind === "bear" ? S.briefLeanBear
+              : (S.briefThin || "").replace("{n}", sig.n);
+            var subs = sig.kind === "thin" ? [] : (typeof watchWeekSubjects === "function" ? watchWeekSubjects(o.k) : []);
+            var dir = sig.bull + sig.bear, bp = dir ? Math.round(sig.bull / dir * 100) : 0;
+            html += '<button class="v82-skew-row v82-brief-row" data-brief="' + esc(o.k) + '">'
+              + '<div class="v82-skew-top"><span class="v82-skew-name">' + esc(typeof entName === "function" ? entName(o.k) : o.k) + '</span>'
+              + '<span class="v82-skew-lean ' + (sig.kind === "bear" ? "bear" : "bull") + '">' + esc(verdict) + '</span></div>'
+              + (dir ? '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + (100 - bp) + '%"></i></div>' : "")
+              + (subs.length ? '<div class="v82-brief-subj">' + esc((S.briefAbout || "{s}").replace("{s}", subs.join(" · "))) + '</div>' : "")
+              + (dir ? '<div class="v82-skew-cts"><span>' + t.bull + ' ' + sig.bull + '</span><span>' + t.bear + ' ' + sig.bear + '</span></div>' : "")
+              + '</button>';
+          });
+        }
+      }
+    } catch (e){}
+    html += '<div class="v82-skew-h">' + t.skewTitle + '</div><div class="v82-skew-sub">' + t.skewSub + '</div>';
     if (!rows.length){
       html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';
     } else {
@@ -440,6 +476,13 @@
       srows[i].onclick = function(){
         var o = data[+this.dataset.i]; if (!o) return;
         hubOpenView(function(){ if (o.kind==="theme" && typeof openTheme==="function") openTheme(o.key); else if (typeof entityFeedView==="function") entityFeedView(o.key); });
+      };
+    }
+    var brows = head.querySelectorAll("[data-brief]");
+    for (var bi = 0; bi < brows.length; bi++){
+      brows[bi].onclick = function(){
+        var k = this.dataset.brief;
+        hubOpenView(function(){ if (typeof entityFeedView === "function") entityFeedView(k); });
       };
     }
     var opens = head.querySelectorAll("[data-open]");
