@@ -291,6 +291,12 @@ const STRINGS = {
     sbEmpty: "Not enough calls to score yet.",
     briefTitle: "My briefing",
     briefLine: "{c} companies you follow · {n} new this week",
+    briefSub: "How opinion split this week where you follow",
+    briefSplit: "Opinion is split",
+    briefLeanBull: "Leaning bullish",
+    briefLeanBear: "Leaning bearish",
+    briefThin: "{n} new this week",
+    briefCounts: "Bull {b} · Bear {r}",
     myFeed: "For you",
     myFeedEmpty: "You're not following anything yet. Follow companies and stories and they'll gather here.",
     myFeedReason: "Following",
@@ -450,6 +456,12 @@ const STRINGS = {
     sbEmpty: "아직 집계할 콜이 부족해요.",
     briefTitle: "내 브리핑",
     briefLine: "팔로우한 기업 {c}곳 · 이번 주 새 글 {n}건",
+    briefSub: "이번 주 팔로우한 곳의 의견 분포",
+    briefSplit: "의견이 갈렸습니다",
+    briefLeanBull: "강세로 쏠렸습니다",
+    briefLeanBear: "약세로 쏠렸습니다",
+    briefThin: "이번 주 새 글 {n}건",
+    briefCounts: "강세 {b} · 약세 {r}",
     myFeed: "내 피드",
     myFeedEmpty: "아직 팔로우한 게 없어요. 관심 회사와 시리즈를 팔로우하면 여기 모아 보여드려요.",
     myFeedReason: "팔로우",
@@ -609,6 +621,12 @@ const STRINGS = {
     sbEmpty: "まだ集計できるコールが足りません。",
     briefTitle: "マイ・ブリーフィング",
     briefLine: "フォロー中の企業{c}社 · 今週の新着{n}件",
+    briefSub: "今週フォロー先の意見の分かれ方",
+    briefSplit: "意見が割れています",
+    briefLeanBull: "強気に傾いています",
+    briefLeanBear: "弱気に傾いています",
+    briefThin: "今週の新着{n}件",
+    briefCounts: "強気{b} · 弱気{r}",
     myFeed: "マイフィード",
     myFeedEmpty: "まだ何もフォローしていません。企業やストーリーをフォローするとここにまとまります。",
     myFeedReason: "フォロー",
@@ -1872,7 +1890,14 @@ html[data-lang="ko"] #toast{font-family:var(--ui-font);}
   font-size:12.5px;font-weight:600;color:var(--muted);margin:2px 0 12px;
 }
 html[data-lang="ko"] .brief-line{font-family:var(--ui-font);}
-.w-stance{margin-top:5px;display:flex;gap:8px;font-family:var(--mono-font);font-size:10px;font-weight:700;}
+/* 2026-07-25 (june): 브리핑 판정 문구 — 숫자보다 문장이 먼저 읽히게 */
+.w-verdict{margin-top:6px;font-size:12.5px;font-weight:800;line-height:1.35;letter-spacing:-.01em;}
+.w-v-split{color:#B45309;} .w-v-bull{color:#0E9F5E;} .w-v-bear{color:#E04438;}
+.w-v-thin{color:var(--muted);font-weight:600;}
+html[data-theme="dark"] .w-v-split{color:#FBBF24;}
+html[data-theme="dark"] .w-v-bull{color:#34D399;}
+html[data-theme="dark"] .w-v-bear{color:#FDA29B;}
+.w-stance{margin-top:3px;display:flex;gap:8px;font-family:var(--mono-font);font-size:10px;font-weight:700;}
 .w-stance .ws{letter-spacing:.02em;}
 /* For-you tab + reason chips */
 .tab-mine{border-color:var(--accent);color:var(--accent);font-weight:800;}
@@ -6039,6 +6064,30 @@ function watchItems(key){
 function watchUnreadCount(key){
   return watchItems(key).filter(i => !READ.has(i.id)).length;
 }
+
+/* 2026-07-25 (june): "내 브리핑"을 팔로우 목록 + 누적 카운터에서
+   "이번 주 의견이 갈렸는가 / 쏠렸는가"로 바꾼다. 조회수 기반 '핫한 읽을거리'가
+   못 하는 신호만 남긴다.
+
+   표본이 얇으면 아무 말도 하지 않는다 — 강세 1 : 약세 0 을 "쏠렸다"고 부르면
+   브리핑이 거짓말을 하게 된다.
+     · 이번 주 글 4건 미만            → 판단 보류
+     · 강세+약세가 3건 미만           → 판단 보류
+     · 한쪽이 75% 이상               → 쏠림
+     · 그 외                        → 갈림                                  */
+var BRIEF_MIN_ITEMS = 4, BRIEF_MIN_DIR = 3, BRIEF_LEAN = 0.75;
+function watchWeekSignal(key){
+  var cut = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
+  var xs = watchItems(key).filter(function(i){ return i.date >= cut; });
+  var b = 0, r = 0;
+  xs.forEach(function(i){ var st = itemStance(i); if (st === "bull") b++; else if (st === "bear") r++; });
+  var dir = b + r;
+  if (xs.length < BRIEF_MIN_ITEMS || dir < BRIEF_MIN_DIR)
+    return { rank: 2, kind: "thin", n: xs.length, bull: b, bear: r };
+  if (Math.max(b, r) / dir >= BRIEF_LEAN)
+    return { rank: 1, kind: b > r ? "bull" : "bear", n: xs.length, bull: b, bear: r };
+  return { rank: 0, kind: "split", n: xs.length, bull: b, bear: r };
+}
 function renderWatch(){
   const sec = document.getElementById("watchSec");
   const rail = document.getElementById("watchRail");
@@ -6063,20 +6112,25 @@ function renderWatch(){
     bl.className = "brief-line";
     rail.parentNode.insertBefore(bl, rail);
   }
-  bl.textContent = S.briefLine.replace("{c}", keys.length).replace("{n}", fresh);
-  rail.innerHTML = keys.map(k => {
+  bl.textContent = S.briefSub || S.briefLine.replace("{c}", keys.length).replace("{n}", fresh);
+  /* 갈린 것 → 쏠린 것 → 표본이 얇은 것 순. 갈린 쪽이 제일 읽을 값어치가 있다. */
+  const ranked = keys.map(k => ({ k: k, sig: watchWeekSignal(k) }))
+    .sort((a, b) => (a.sig.rank - b.sig.rank)
+      || ((b.sig.bull + b.sig.bear) - (a.sig.bull + a.sig.bear))
+      || a.k.localeCompare(b.k));
+  rail.innerHTML = ranked.map(({ k, sig }) => {
     const safe = k.replace(/'/g, "\\'");
     const unread = watchUnreadCount(k);
-    const its = watchItems(k);
-    const sc = { bull: 0, bear: 0, watch: 0 };
-    its.forEach(i => { sc[itemStance(i) || "watch"]++; });
-    const stanceRow = (sc.bull + sc.bear + sc.watch)
-      ? '<div class="w-stance" title="' + esc(S.debateTitle) + '">'
-        + (sc.bull ? '<span class="ws ws-bull">▲' + sc.bull + "</span>" : "")
-        + (sc.bear ? '<span class="ws ws-bear">▼' + sc.bear + "</span>" : "")
-        + (sc.watch ? '<span class="ws ws-ctx">•' + sc.watch + "</span>" : "")
-        + "</div>"
-      : "";
+    const verdict = sig.kind === "split" ? S.briefSplit
+      : sig.kind === "bull" ? S.briefLeanBull
+      : sig.kind === "bear" ? S.briefLeanBear
+      : S.briefThin.replace("{n}", sig.n);
+    const stanceRow = '<div class="w-verdict w-v-' + sig.kind + '">' + esc(verdict) + "</div>"
+      + (sig.kind === "thin" ? "" :
+         '<div class="w-stance">'
+         + '<span class="ws ws-bull">▲' + sig.bull + "</span>"
+         + '<span class="ws ws-bear">▼' + sig.bear + "</span>"
+         + "</div>");
     return '<div class="watch-card" onclick="tagTap(\'' + safe + '\')">'
       + '<button class="w-x" onclick="toggleWatch(\'' + safe + '\', event)" aria-label="unfollow">&times;</button>'
       + '<div class="w-name">' + esc(k) + "</div>"
