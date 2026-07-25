@@ -296,7 +296,7 @@ const STRINGS = {
     briefLeanBull: "Last 7 days · mostly bullish",
     briefLeanBear: "Last 7 days · mostly bearish",
     briefThin: "Last 7 days · {n} new",
-    briefAbout: "mostly {s}",
+    briefTopics: "Most covered · {s}",
     briefCounts: "Bull {b} · Bear {r}",
     myFeed: "For you",
     myFeedEmpty: "You're not following anything yet. Follow companies and stories and they'll gather here.",
@@ -462,7 +462,7 @@ const STRINGS = {
     briefLeanBull: "최근 7일 · 강세 우세",
     briefLeanBear: "최근 7일 · 약세 우세",
     briefThin: "최근 7일 · 새 글 {n}건",
-    briefAbout: "주로 {s}",
+    briefTopics: "많이 다룬 주제 · {s}",
     briefCounts: "강세 {b} · 약세 {r}",
     myFeed: "내 피드",
     myFeedEmpty: "아직 팔로우한 게 없어요. 관심 회사와 시리즈를 팔로우하면 여기 모아 보여드려요.",
@@ -628,7 +628,7 @@ const STRINGS = {
     briefLeanBull: "直近7日 · 強気優勢",
     briefLeanBear: "直近7日 · 弱気優勢",
     briefThin: "直近7日 · 新着{n}件",
-    briefAbout: "主に {s}",
+    briefTopics: "よく扱った話題 · {s}",
     briefCounts: "強気{b} · 弱気{r}",
     myFeed: "マイフィード",
     myFeedEmpty: "まだ何もフォローしていません。企業やストーリーをフォローするとここにまとまります。",
@@ -6097,43 +6097,26 @@ function watchWeekSignal(key){
   return { rank: 0, kind: "split", n: xs.length, bull: b, bear: r };
 }
 
-/* 2026-07-25 (june): 기업을 팔로우하면 "강세 우세"가 무엇에 대한 것인지 자명하지만,
-   인물·매체를 팔로우하면 "무엇에 대해" 강세인지 알 수 없다. 그래서 다수 편(강세 또는
-   약세) 글들이 실제로 다룬 대상을 최대 2개까지 붙인다.
+/* 2026-07-25 (june 2차 지적): 인물에게 강세/약세 판정을 붙이면 안 된다.
+   stance는 발행 규칙상 "그 글이 주 종목·자산에 대해 기우는 방향"이라 자산에 붙는 값인데,
+   인물이 쓴 글들의 stance를 모아 "OIL·IRAN WAR에 대해 팽팽"이라고 하면 소재에 강세/약세를
+   얹는 카테고리 오류가 된다. 이란 전쟁에 강세란 말은 성립하지 않는다.
 
-   반도체 애널리스트는 기업이, 매크로 필자는 태그가 주제를 더 잘 나타낸다.
-   그래서 기업을 먼저 보고, 기업이 얇으면 태그로 넘어간다.
-   어느 쪽도 다수 편의 25%에 못 미치면 아무것도 붙이지 않는다 — 1건짜리를 "주로"라고
-   부르면 틀린 말이 된다. */
+   그래서 인물·매체는 판정을 걷어내고 최근 7일에 자주 다룬 소재만 보여준다.
+   ★ "많아졌다"가 아니라 "많이 다룬"이다 — 지난주 대비가 아니라 최근 7일 안에서의 빈도다.
+     (코베이시·주칸은 소스 추가가 최근이라 지난주 기록이 0건이다.) */
 function watchWeekSubjects(key){
   var e0 = ENTITIES[key];
   if (!e0 || e0.kind === "company") return [];   /* 기업은 주제가 곧 자기 자신 */
   var cut = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
   var xs = watchItems(key).filter(function(i){ return i.date >= cut; });
-  var bull = xs.filter(function(i){ return itemStance(i) === "bull"; });
-  var bear = xs.filter(function(i){ return itemStance(i) === "bear"; });
-  var major = bull.length >= bear.length ? bull : bear;
-  if (major.length < 2) return [];
-  var ent = {}, tag = {};
-  major.forEach(function(i){
-    itemEntities(i).forEach(function(k2){
-      if (k2 === key) return;
-      var E = ENTITIES[k2];
-      if (E && E.kind === "company") ent[k2] = (ent[k2] || 0) + 1;
-    });
-    (i.tags || []).forEach(function(t){ tag[t] = (tag[t] || 0) + 1; });
-  });
-  var floor = Math.max(2, Math.ceil(major.length * 0.25));
-  function pick(map, label){
-    return Object.keys(map)
-      .filter(function(k2){ return map[k2] >= floor; })
-      .sort(function(a, b){ return map[b] - map[a]; })
-      .slice(0, 2)
-      .map(label);
-  }
-  var out = pick(ent, function(k2){ return (typeof entName === "function") ? entName(k2) : k2; });
-  if (out.length) return out;
-  return pick(tag, function(t){ return t; });
+  if (xs.length < 2) return [];
+  var tag = {};
+  xs.forEach(function(i){ (i.tags || []).forEach(function(t){ tag[t] = (tag[t] || 0) + 1; }); });
+  return Object.keys(tag)
+    .filter(function(t){ return tag[t] >= 2; })   /* 1건짜리는 "많이 다룬"이 아니다 */
+    .sort(function(a, b){ return tag[b] - tag[a]; })
+    .slice(0, 3);
 }
 function renderWatch(){
   const sec = document.getElementById("watchSec");
@@ -6161,21 +6144,26 @@ function renderWatch(){
   }
   bl.textContent = S.briefSub || S.briefLine.replace("{c}", keys.length).replace("{n}", fresh);
   /* 갈린 것 → 쏠린 것 → 표본이 얇은 것 순. 갈린 쪽이 제일 읽을 값어치가 있다. */
-  const ranked = keys.map(k => ({ k: k, sig: watchWeekSignal(k) }))
-    .sort((a, b) => (a.sig.rank - b.sig.rank)
-      || ((b.sig.bull + b.sig.bear) - (a.sig.bull + a.sig.bear))
-      || a.k.localeCompare(b.k));
-  rail.innerHTML = ranked.map(({ k, sig }) => {
+  /* 기업은 강세/약세 판정(그 기업에 대한 것), 인물은 판정 없이 다룬 소재만.
+     정렬: 판정이 붙는 기업 먼저(갈림→우세), 그다음 인물을 글 수 순으로. */
+  const ranked = keys.map(k => {
+    const isCo = !!(ENTITIES[k] && ENTITIES[k].kind === "company");
+    const sig = watchWeekSignal(k);
+    return { k: k, sig: sig, isCo: isCo, ord: isCo ? sig.rank : 1.5 };
+  }).sort((a, b) => (a.ord - b.ord) || (b.sig.n - a.sig.n) || a.k.localeCompare(b.k));
+  rail.innerHTML = ranked.map(({ k, sig, isCo }) => {
     const safe = k.replace(/'/g, "\\'");
     const unread = watchUnreadCount(k);
-    const verdict = sig.kind === "split" ? S.briefSplit
+    const topics = isCo ? [] : watchWeekSubjects(k);
+    const verdict = !isCo ? S.briefThin.replace("{n}", sig.n)
+      : sig.kind === "split" ? S.briefSplit
       : sig.kind === "bull" ? S.briefLeanBull
       : sig.kind === "bear" ? S.briefLeanBear
       : S.briefThin.replace("{n}", sig.n);
-    const subs = sig.kind === "thin" ? [] : watchWeekSubjects(k);
-    const stanceRow = '<div class="w-verdict w-v-' + sig.kind + '">' + esc(verdict) + "</div>"
-      + (subs.length ? '<div class="w-subj">' + esc((S.briefAbout || "{s}").replace("{s}", subs.join(" · "))) + "</div>" : "")
-      + (sig.kind === "thin" ? "" :
+    const kindCls = isCo ? sig.kind : "thin";
+    const stanceRow = '<div class="w-verdict w-v-' + kindCls + '">' + esc(verdict) + "</div>"
+      + (topics.length ? '<div class="w-subj">' + esc((S.briefTopics || "{s}").replace("{s}", topics.join(" · "))) + "</div>" : "")
+      + ((!isCo || sig.kind === "thin") ? "" :
          '<div class="w-stance">'
          + '<span class="ws ws-bull">▲' + sig.bull + "</span>"
          + '<span class="ws ws-bear">▼' + sig.bear + "</span>"
