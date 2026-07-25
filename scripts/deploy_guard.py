@@ -29,6 +29,13 @@ Two modes, run in this order:
          present in your working copy. A clean rebase is not proof: the
          whole-file upload is what ships, so verify the bytes you are shipping.
 
+A line you deliberately REWROTE is not a lost line (added 2026-07-25, after
+verify flagged three honest edits in one afternoon). When a line is not found
+verbatim, verify looks for a near-identical one; if the file still holds an
+obvious rewrite of it, that is reported as a rewrite to eyeball, not a loss,
+and does not fail the run. Only lines with nothing resembling them left - the
+signature of uploading a stale copy - stop the deploy.
+
 With no file arguments, both modes use the files you have actually changed
 relative to the merge-base.
 
@@ -36,6 +43,7 @@ Exit codes:  0 safe   2 collision / lost lines   3 git problem
 No external dependencies. Read-only: never writes to the repo or the remote.
 """
 
+import difflib
 import os
 import re
 import subprocess
@@ -133,6 +141,44 @@ def fetch():
         print(red("원격을 못 읽었습니다 — 검사를 건너뛰지 말고 원인을 먼저 해결하세요."))
         print("  " + str(e))
         sys.exit(3)
+
+
+SURVIVED = 0.75    # share of a line that must reappear in its own spot
+
+
+def survival(line, blob):
+    """How much of `line` reappears inside `blob`, 0..1.
+
+    Not difflib's ratio(): ratio punishes length difference, so splitting one
+    line into six scores low even though every character survived."""
+    sm = difflib.SequenceMatcher(None, line, blob, autojunk=False)
+    return sum(b.size for b in sm.get_matching_blocks()) / max(1, len(line))
+
+
+def rewritten_in_place(old_text, new_text):
+    """Lines of old_text that new_text replaced with a rewrite of themselves.
+
+    Position is the whole point, so this diffs the two versions rather than
+    asking "does something similar exist anywhere in the file". Anywhere is
+    far too generous in source code: `function mine(){ return "x"; }` looks a
+    lot like `function other(){ return "y"; }`, so a real stale upload would
+    find a look-alike for every line it dropped and clear itself.
+
+    Only a `replace` block counts - lines swapped for other lines at the same
+    spot. A `delete` block is the stale-upload signature: gone, nothing put
+    in their place."""
+    o = old_text.splitlines()
+    n = new_text.splitlines()
+    forgiven = set()
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(
+            None, o, n, autojunk=False).get_opcodes():
+        if tag != "replace":
+            continue
+        blob = "\n".join(n[j1:j2])
+        for line in o[i1:i2]:
+            if survival(line, blob) >= SURVIVED:
+                forgiven.add(line)
+    return forgiven
 
 
 def added_lines(sha, path):
@@ -286,8 +332,15 @@ def mode_verify(targets, base, remote_head, hours):
             current = f.read()
         for r in rows:
             wanted = [ln for ln in added_lines(r["sha"], path) if substantive(ln)]
-            missing = [ln for ln in wanted if ln not in current]
+            absent = [ln for ln in wanted if ln not in current]
             total_checked += len(wanted)
+            if absent:
+                theirs = git("show", "%s:%s" % (r["sha"], path), check=False)
+                forgiven = rewritten_in_place(theirs, current) if theirs else set()
+            else:
+                forgiven = set()
+            rewritten = [ln for ln in absent if ln in forgiven]
+            missing = [ln for ln in absent if ln not in forgiven]
             tag = "%s %s" % (r["sha"][:7], r["subject"][:44])
             if missing:
                 lost_any = True
@@ -298,6 +351,14 @@ def mode_verify(targets, base, remote_head, hours):
                     print("        %s" % ln.strip()[:88])
                 if len(missing) > 5:
                     print("        ... 외 %d줄" % (len(missing) - 5))
+            elif rewritten:
+                print(yellow("  ✎ %s  (%s, %d줄 중 %d줄은 제자리에서 고쳐 씀 — "
+                             "사라진 줄은 없습니다. 의도한 수정인지만 확인하세요)"
+                             % (tag, path, len(wanted), len(rewritten))))
+                for ln in rewritten[:3]:
+                    print("        %s" % ln.strip()[:88])
+                if len(rewritten) > 3:
+                    print("        ... 외 %d줄" % (len(rewritten) - 3))
             else:
                 print(green("  ✅ %s  (%s, %d줄 보존)" % (tag, path, len(wanted))))
 
