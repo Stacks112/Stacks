@@ -68,6 +68,117 @@ def dispname(x):
     return NAME_ALIAS.get(x, x)
 
 
+# ---- gist markers (see claude/prompts/publish-v4.3.md [4-E]) ----
+# The publishing routine writes structure into the gist as line-leading
+# markers so a new block type never needs a schema change. The app renders
+# them in gistRich(); these pages have to do the same, or the raw markers show
+# up as literal text on every SEO page and in every meta description.
+
+# Emitted per page only when the body actually contains one of these blocks.
+# Article pages inline their CSS, so an unconditional 1.3 KB would land in all
+# 462 of them for the handful of cards that use a check or compare panel.
+BLOCK_CSS = """.gist+.gist{margin-top:1em}
+h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}"""
+
+
+def block_css_for(body):
+    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"')):
+        return ""
+    return BLOCK_CSS
+
+
+def strip_markers(text):
+    """Plain prose. Subheadings keep their text (they are real sentences);
+    the data rows of a check/compare block are dropped, since a description
+    made of "4.71%|2.28%" reads as noise in a search result."""
+    out = []
+    for line in str(text or "").split("\n"):
+        if line.startswith("## "):
+            out.append(line[3:].strip())
+        elif line.startswith("@@CHK@@") or line.startswith("@@CMP@@"):
+            continue
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
+def gist_blocks(gist):
+    """Marked-up gist -> page HTML. Same three markers as the app."""
+    html, buf = [], []
+
+    def flush():
+        t = "\n".join(buf).strip("\n")
+        del buf[:]
+        if t:
+            html.append('<p class="gist">%s</p>' % E(t))
+
+    for line in str(gist or "").split("\n"):
+        if line.startswith("## "):
+            flush()
+            html.append("<h2 class=\"gsub\">%s</h2>" % E(line[3:].strip()))
+        elif line.startswith("@@CHK@@"):
+            flush()
+            parts = line[7:].split("@@")
+            cells = (parts[0] or "").split("|")
+            rows = "".join(
+                "<div class=\"chk-c\"><i>%s</i><b>%s</b></div>" % (E(cells[j]), E(cells[j + 1]))
+                for j in range(0, len(cells) - 1, 2)
+            )
+            html.append(
+                '<div class="chk"><div class="chk-g">%s</div>%s%s</div>' % (
+                    rows,
+                    ('<p class="chk-n">%s</p>' % E(parts[1])) if len(parts) > 1 and parts[1] else "",
+                    ('<p class="chk-s">%s</p>' % E(parts[2])) if len(parts) > 2 and parts[2] else "",
+                )
+            )
+        elif line.startswith("@@CMP@@"):
+            flush()
+            c = (line[7:].split("|") + ["", "", "", ""])[:4]
+            html.append(
+                '<div class="cmp"><div class="cmp-c"><i>%s</i><p>%s</p></div>'
+                '<div class="cmp-c cmp-b"><i>%s</i><p>%s</p></div></div>'
+                % (E(c[0]), E(c[1]), E(c[2]), E(c[3]))
+            )
+        else:
+            buf.append(line)
+    flush()
+    return "".join(html)
+
+
+def quote_block(item, lang):
+    """The author's own words, above our reading. Only on the Korean page for
+    now: `quote` is written once, in the source language, and translating a
+    quotation would defeat the point of showing it."""
+    q = item.get("quote") or {}
+    lines = [l for l in (q.get("lines") or []) if l]
+    if not lines or lang != "ko":
+        return ""
+    cite = q.get("cite") or item.get("source") or ""
+    href = safe_href(item.get("sourceUrl"), "")
+    body = "".join("<p>%s</p>" % E(l) for l in lines)
+    tail = ('<div class="srcq-c"><a href="%s" rel="nofollow noopener" target="_blank">%s</a></div>'
+            % (E(href), E(cite))) if href else ('<div class="srcq-c">%s</div>' % E(cite))
+    return '<blockquote class="srcq">%s%s</blockquote>' % (body, tail)
+
+
 def clip(text, n):
     t = re.sub(r"\s+", " ", text or "").strip()
     return t[: n - 1].rstrip() + "…" if len(t) > n else t
@@ -610,7 +721,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     gist = (item.get("gist") or {}).get(lang) or ""
     why = (item.get("why") or {}).get(lang) or ""
     ask = (item.get("ask") or {}).get(lang) or ""
-    desc = clip(gist, 160)
+    desc = clip(strip_markers(gist), 160)
     kw = ", ".join(item.get("tags", []) + [item.get("source", "")])
 
     ld = {
@@ -628,7 +739,9 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         "url": url,
     }
 
-    body_blocks = f'<p class="gist">{E(gist)}</p>'
+    body_blocks = quote_block(item, lang) + gist_blocks(gist)
+    block_css = block_css_for(body_blocks)
+    block_css = (block_css + "\n") if block_css else ""
     if why:
         body_blocks += f'<p class="why"><b>{E(U["why"])}</b> · {E(why)}</p>'
     if ask:
@@ -726,7 +839,7 @@ body{{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo"
 h1{{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}}
 .gist{{color:#3E414B;white-space:pre-line;font-size:16px}}
 @media(prefers-color-scheme:dark){{.gist{{color:#C9CDD6}}}}
-.why,.ask{{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}}
+{block_css}.why,.ask{{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}}
 .ask{{margin-top:10px}}
 @media(prefers-color-scheme:dark){{.why,.ask{{background:#1A1B21}}}}
 .otherlang{{margin:22px 0 0;font-size:13px;color:#8E93A0;border-top:1px solid #ECEDF1;padding-top:16px}}
@@ -1136,7 +1249,7 @@ def feed(items, lang="ko"):
             continue
         link = page_url(i["id"], lang)
         title = i["title"].get(lang) or i["title"].get("ko") or i["title"]["en"]
-        desc = clip(i["gist"][lang], 400)
+        desc = clip(strip_markers(i["gist"][lang]), 400)
         entries.append(
             "<item>"
             f"<title>{E(title)}</title>"

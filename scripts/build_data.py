@@ -334,8 +334,31 @@ def pick_opposites(items, entities, stance_map, alias2key):
     return out
 
 
+# Line-leading markers the app turns into subheadings, verification panels and
+# two-column comparisons. The 150-character preview that ships in core.json is
+# painted before the full text arrives, so it has to come out as plain prose:
+# a preview cut in the middle of "@@CHK@@10년물 금리|4.71%|..." would sit on the
+# card as visible garbage for the first few seconds of every visit.
+MARKER_RE = re.compile(r"^(?:##\s+|@@CHK@@.*|@@CMP@@.*)$", re.M)
+
+
+def strip_markers(text):
+    """Plain-prose form of a gist, for previews and for anything that measures
+    length. Subheading text is kept (it is a real sentence); the data rows of a
+    check or compare block are dropped, since they only read as a table."""
+    out = []
+    for line in str(text or "").split("\n"):
+        if line.startswith("## "):
+            out.append(line[3:].strip())
+        elif line.startswith("@@CHK@@") or line.startswith("@@CMP@@"):
+            continue
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
 def truncate(text, n=GIST_PREVIEW):
-    text = str(text or "")
+    text = strip_markers(text)
     if len(text) <= n:
         return text
     cut = text[:n].rstrip()
@@ -399,6 +422,17 @@ def main():
     # and switching language would need a blocking refetch. Not worth the blast
     # radius for a file that is already small enough. Only the FULL summaries
     # are language-split, because only one language's text is ever displayed.
+    embeds = {}
+    ep = os.path.join(ROOT, "embeds.json")
+    if os.path.exists(ep):
+        try:
+            with open(ep, encoding="utf-8") as fh:
+                embeds = json.load(fh) or {}
+        except Exception as e:
+            print("  embeds.json unreadable (%s) — cards will fall back to the "
+                  "plain quote block" % e)
+    print("  embeds: %d X posts" % len(embeds))
+
     core = []
     for it in ordered:
         c = {}
@@ -419,6 +453,11 @@ def main():
         c["_mk"] = mk_of[it["id"]]
         if it["id"] in opp:
             c["opp"] = opp[it["id"]]
+        # The X post itself, fetched by scripts/fetch_embeds.py on a runner.
+        # items.json never carries it: the publishing sandbox has no route to
+        # X, and re-fetching on every build would rate-limit us.
+        if it["id"] in embeds:
+            c["embed"] = embeds[it["id"]]
         core.append(c)
 
     ents_lite = {k: {kk: vv for kk, vv in e.items() if kk != "longDesc"}
