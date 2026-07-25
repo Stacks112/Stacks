@@ -3127,7 +3127,9 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     var _sc = document.getElementById("searchClear"); if (_sc) _sc.hidden = true;
     var _sb = document.getElementById("searchBox"); if (_sb) _sb.classList.remove("active");
   }
-  if (t === "mine" && TAB !== "mine") pushView(); TAB = t; render(); }
+  /* 2026-07-25: 예전엔 "mine" 탭에서만 히스토리를 쌓아 골라보기·쏠림·캘린더에서
+     뒤로가기가 사이트 이탈로 이어졌다. 탭이 실제로 바뀌면 항상 쌓는다. */
+  if (t !== TAB) pushView(); TAB = t; render(); }
 
 
 
@@ -4278,6 +4280,12 @@ function railStanceTap(key, k){
 }
 function goHome(ev){
   if (ev && ev.preventDefault) ev.preventDefault();
+  /* 2026-07-25: 홈도 화면 전환이므로 히스토리에 남긴다(이미 홈이면 생략) */
+  try {
+    if (TAB !== "all" || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || READ_VIEW
+        || (typeof THEME_VIEW !== "undefined" && THEME_VIEW)
+        || (typeof V83ITEM !== "undefined" && V83ITEM)) pushView();
+  } catch (e) {}
   SERIES_VIEW = null; ENTITY_VIEW = null; TAB = "all";
   QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
   STANCE_FILTER = null; SB_VIEW = false;
@@ -4932,6 +4940,7 @@ function v83T(k){
 }
 function v83Bookmarks(){
   try {
+    if (!BM_ONLY) pushView();   /* 2026-07-25: 히스토리 미등록이라 뒤로가기가 사이트를 벗어났다 */
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
     QUERY = ""; BM_ONLY = true; READ_VIEW = false;
@@ -4999,7 +5008,12 @@ function mountV83(){
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
     ["bm", V83ICONS.bm, v83Bookmarks],
     /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel */
-    ["alerts", V83ICONS.alerts, function(){ if (typeof v83AlertsPanel === "function") v83AlertsPanel(); }],
+    ["alerts", V83ICONS.alerts, function(){
+      /* 2026-07-25: 모달도 뒤로가기로 닫히게 — 열 때만 엔트리를 쌓는다 */
+      if (!document.getElementById("v83npOv") && typeof pushView === "function") pushView();
+      if (typeof v83AlertsPanel === "function") v83AlertsPanel();
+      if (typeof noteView === "function") noteView();
+    }],
     ["appearance", V83ICONS.appearance, function(){ if (typeof toggleTheme === "function") toggleTheme(); }]
   ];
   var html = '';
@@ -6454,6 +6468,10 @@ let QUERY = "";
 let EVENT_FILTER = null; /* Set<id> | null: filter feed to one event's articles */
 function onSearch(v){
   EVENT_FILTER = null;
+  /* 2026-07-25: 검색도 화면 전환이다. 히스토리에 안 남겨서 검색 중 뒤로가기를 누르면
+     사이트를 벗어났다(좌측 패널 전수조사에서 같은 결함으로 확인). 검색을 "시작"할 때만
+     한 번 쌓는다 — 글자마다 쌓으면 뒤로가기가 한 글자씩 지워지는 꼴이 된다. */
+  if (!APPLYING_VIEW && !QUERY && (v || "").trim()) pushView();
   if (v){ SERIES_VIEW = null; ENTITY_VIEW = null; }
   QUERY = (v || "").trim().toLowerCase();
   const clear = document.getElementById("searchClear");
@@ -7188,8 +7206,84 @@ async function shareSince(id){
    instead of leaving the site. Only when nothing is open does Back
    actually leave. */
 let VIEW_PUSHED = 0;
-function pushView(){ try { history.pushState({ stk: ++VIEW_PUSHED }, ""); } catch (e) {} }
-window.addEventListener("popstate", function(){
+/* 2026-07-25 (june 전수조사): 좌측 패널 9개 중 6개가 뒤로가기에서 사이트를 벗어났고,
+   앞으로가기는 9개 전부 동작하지 않았다.
+
+   원인 두 가지:
+     ① pushView를 부르지 않는 진입점이 많아 히스토리 엔트리가 아예 안 생겼다.
+     ② pushState에 일련번호만 담고 popstate에서는 "열린 걸 닫는다"로만 처리해,
+        어떤 화면이었는지 복원할 정보가 없었다(= 앞으로가기 원천 불가).
+
+   그래서 히스토리 엔트리마다 화면 스냅샷을 담는다.
+     · captureView() 현재 화면을 값으로 뜬다
+     · noteView()    렌더가 일어날 때마다 현재 엔트리에 스냅샷을 채운다
+     · pushView()    "떠나는 화면"을 현재 엔트리에 확정하고 빈 엔트리를 하나 민다
+                     (새 화면 스냅샷은 곧 이어질 렌더의 noteView가 채운다)
+     · applyView()   popstate가 준 스냅샷을 그대로 복원한다 → 뒤로·앞으로 모두 동작
+
+   pushView 호출 시점이 상태 변경 전(setTab)일 수도 후(entityFeedView)일 수도 있어서,
+   "떠나는 화면"은 라이브 변수가 아니라 마지막 렌더 시점의 CUR_VIEW에서 가져온다. */
+function captureView(){
+  var g = function(n, d){ try { return eval(n); } catch (e) { return d; } };
+  return {
+    tab: g("TAB", "all"), ent: g("ENTITY_VIEW", null), ser: g("SERIES_VIEW", null),
+    sb: g("SB_VIEW", false), theme: g("THEME_VIEW", null), rec: g("RECORD_SRC", null),
+    item: g("V83ITEM", null), bm: g("BM_ONLY", false), unread: g("UNREAD_ONLY", false),
+    readv: g("READ_VIEW", false), q: g("QUERY", ""),
+    alerts: !!document.getElementById("v83npOv")
+  };
+}
+var CUR_VIEW = null, PENDING_PUSH = false, APPLYING_VIEW = false;
+function noteView(){
+  if (APPLYING_VIEW) return;
+  var v = captureView();
+  CUR_VIEW = v;
+  try {
+    if (PENDING_PUSH){
+      PENDING_PUSH = false;
+      history.replaceState({ stk: VIEW_PUSHED, view: v }, "");
+    } else if (!history.state || !history.state.view){
+      history.replaceState({ stk: (history.state && history.state.stk) || 0, view: v }, "");
+    }
+  } catch (e) {}
+}
+function pushView(){
+  if (APPLYING_VIEW) return;
+  try {
+    if (CUR_VIEW) history.replaceState({ stk: VIEW_PUSHED, view: CUR_VIEW }, "");
+    history.pushState({ stk: ++VIEW_PUSHED, view: null }, "");
+    PENDING_PUSH = true;
+  } catch (e) {}
+}
+function applyView(v){
+  if (!v) return false;
+  APPLYING_VIEW = true;
+  try {
+    var wasEnt = (typeof ENTITY_VIEW !== "undefined") ? ENTITY_VIEW : null;
+    TAB = v.tab; ENTITY_VIEW = v.ent; SERIES_VIEW = v.ser; SB_VIEW = v.sb;
+    if (typeof THEME_VIEW !== "undefined") THEME_VIEW = v.theme;
+    if (typeof RECORD_SRC !== "undefined") RECORD_SRC = v.rec;
+    if (typeof V83ITEM !== "undefined") V83ITEM = v.item;
+    BM_ONLY = v.bm; UNREAD_ONLY = v.unread; READ_VIEW = v.readv; QUERY = v.q || "";
+    if (typeof STANCE_FILTER !== "undefined" && !v.ent) STANCE_FILTER = null;
+    var inp = document.getElementById("searchInput"); if (inp) inp.value = QUERY;
+    /* 알림 설정은 상태 변수가 아니라 DOM 오버레이라 따로 맞춘다 */
+    var ov = document.getElementById("v83npOv");
+    if (v.alerts && !ov && typeof v83AlertsPanel === "function") v83AlertsPanel();
+    else if (!v.alerts && ov) ov.remove();
+    if (typeof render === "function") render();
+    /* 엔티티 피드에서 빠져나오는 경우 읽던 위치로 되돌린다 */
+    if (wasEnt && !v.ent && typeof FEED_RETURN !== "undefined" && FEED_RETURN){
+      var r = FEED_RETURN; FEED_RETURN = null; var guard = 0;
+      while (typeof SHOWN === "number" && SHOWN < r.shown && SHOWN < CUR_ITEMS.length && guard++ < 500) appendFeedPage();
+      requestAnimationFrame(function(){ window.scrollTo(0, r.y); });
+    }
+  } catch (e) {}
+  APPLYING_VIEW = false;
+  CUR_VIEW = v;
+  return true;
+}
+window.addEventListener("popstate", function(ev){
   /* v82 mobile shell (drawer / explore / card detail) gets first pick */
   if (typeof window.v82Pop === "function" && window.v82Pop()) return;
   const cfs = document.getElementById("chartFS");
@@ -7198,6 +7292,9 @@ window.addEventListener("popstate", function(){
     const me = document.getElementById("meSheet");
   if (me && !me.hidden){ closeMe(); return; }
   if (document.getElementById("entityRailPanel")){ closeEntityRail(); return; }
+  /* 스냅샷이 있는 엔트리면 그대로 복원한다 (뒤로·앞으로 공통) */
+  if (ev && ev.state && ev.state.view && applyView(ev.state.view)) return;
+  /* 스냅샷 없는 옛 엔트리 → 예전처럼 열린 것을 하나씩 닫는다 */
   if (typeof V83ITEM !== "undefined" && V83ITEM){ v83CloseItem(); return; }
   if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
   if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return; }
@@ -7296,6 +7393,7 @@ function goToFirstNew(){
 }
 
 function render(){
+  noteView();
   openCommentId = null; /* cards are rebuilt; no thread is open anymore */
   const S = STRINGS[LANG];
   document.documentElement.setAttribute("data-lang", LANG);
@@ -7647,6 +7745,7 @@ function appendFeedPage(S){
 }
 
 function renderFeed(animate){
+  noteView();
   if (typeof ttsStop === "function") ttsStop();
   const S = STRINGS[LANG];
   const list = document.getElementById("feedList");
