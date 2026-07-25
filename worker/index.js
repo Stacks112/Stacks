@@ -1004,11 +1004,11 @@ export default {
       if (!["ko", "en", "ja"].includes(lang)) lang = "ko";
       const C = {
         ko: { ok: ["구독이 확정됐어요", "매주 일요일 아침에 만나요."],
-              bad: ["링크가 올바르지 않아요", "확인 링크가 만료됐거나 잘못된 주소예요."] },
+              bad: ["링크가 올바르지 않아요", "주소가 잘린 것 같아요. 메일의 확인 버튼을 다시 눌러주세요."] },
         en: { ok: ["You are subscribed", "See you Sunday morning."],
-              bad: ["Invalid link", "This confirmation link is invalid or expired."] },
+              bad: ["Invalid link", "This confirmation link is not valid. Please tap the confirm button in the email again."] },
         ja: { ok: ["購読が確定しました", "毎週日曜の朝にお届けします。"],
-              bad: ["リンクが無効です", "確認リンクの有効期限が切れているか、正しくありません。"] }
+              bad: ["リンクが無効です", "確認リンクが正しくありません。メールの確認ボタンをもう一度押してください。"] }
       }[lang];
       const page = (title, body) => new Response(
         "<!DOCTYPE html><meta charset=utf-8>"
@@ -1089,7 +1089,7 @@ export default {
       if (!EMAIL_RE.test(email)) return page("Invalid link", "This unsubscribe link is malformed.");
       if (!env.UNSUB_SECRET) return page("Not available", "Unsubscribe isn’t configured yet.");
       const expect = await hmac24(env.UNSUB_SECRET, email);
-      if (t !== expect) return page("Invalid link", "This unsubscribe link is invalid or expired.");
+      if (t !== expect) return page("Invalid link", "This unsubscribe link is not valid.");
       await ensureTables(env.DB);
       await env.DB.prepare("UPDATE subscribers SET unsubscribed = 1 WHERE email = ?1")
         .bind(email).run();
