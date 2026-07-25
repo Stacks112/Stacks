@@ -1,3 +1,46 @@
+/* Stacks comments worker (v9.0 = v8.2 + security hardening)
+   v9.0 CHANGES (2026-07-25 security pass, no feature removed):
+     * /subscribe is POST-only, double opt-in (/confirm), per-IP send cap,
+       gmail alias/dot normalisation before the dedupe check.
+     * /cron/surge-dryrun is memoised for 10 minutes, so it can no longer be
+       used to fan out a Yahoo request per followed company on demand. It
+       stays readable without a secret because the 08:20 KST monitor polls
+       it over a plain GET; only a secret-holder can force a recompute.
+     * secrets split: PUSH_SECRET (push/surge) and SUBSCRIBERS_SECRET
+       (subscriber list) with NOTIFY_SECRET kept as a fallback so the
+       existing GitHub Actions secret keeps working. Query-string ?secret=
+       and GET on privileged routes are gone; Bearer header or POST body only.
+       Constant-time comparison.
+     * push `url` is whitelisted to stacksdaily.com.
+     * shared per-IP throttle on /view /like /vote /clike /comments (D1-backed
+       rate_limits table; there is no KV binding on this worker).
+     * pageId must exist in items.json before a counter can be created.
+     * /vote is server-authoritative (votes table keyed on ip+device), the
+       caller-supplied `prev` is ignored.
+     * allCounts is capped; comments got the missing indexes.
+     * IP hash salt moved to the IP_SALT secret (old salt kept as fallback).
+   FIXES FOUND IN REVIEW, same pass:
+     * the items.json id set is memoised in isolate memory with a cf.cacheTtl
+       hint, and skipped entirely for any pageId that already owns a counter
+       row. caches.default is a no-op on workers.dev, so the first draft would
+       have re-downloaded 1.3 MB on every single /view.
+     * sendConfirm returns Resend's actual result, so a rejected send falls
+       back to confirmed = 1 + welcome instead of stranding the subscriber.
+     * /confirm no longer clears `unsubscribed` (an old link could re-add an
+       opted-out reader), and the confirm token is separated by "\n" rather
+       than ":" (which EMAIL_RE allows inside a local part).
+     * /clike canonicalises the comment id, so "07" cannot split a comment's
+       hearts into an invisible second counter row.
+     * a JSON body of literal `null` no longer 500s eight routes.
+     * ensureTables runs once per isolate, not nine round trips per request.
+     * /vote honours the browser's `prev` once per (IP, article) so pre-v9.0
+       votes migrate instead of double-counting, and caps distinct new voters
+       per (IP, article) per day so rotating `did` cannot stack votes.
+     * push url check compares parsed origin, so a bare https://stacksdaily.com
+       passes and https://stacksdaily.com.evil.tld/ does not.
+     * the subscribe throttle fails CLOSED; counter throttles still fail open.
+   ORIGINAL v8.2 / v8.1 HEADERS BELOW.
+*/
 /* Stacks comments worker (v8.2 = v8.1 + surge alerts cron)
    v8.2 ADDS ONLY: a scheduled() cron + /cron/surge[-dryrun] routes that price
    every followed company from items.json and push the day's biggest movers
@@ -37,6 +80,23 @@ const ITEMS_URL = "https://raw.githubusercontent.com/Stacks112/Stacks/main/items
 const SURGE_ABS_MIN = 4;   // push only |daily % change| >= this
 const SURGE_TOP_N = 3;     // at most this many movers per day
 
+/* ---- security config (v9.0) ---- */
+/* every push/notification link must live on one of these origins */
+const PUSH_ORIGINS = [
+  "https://stacksdaily.com",
+  "https://www.stacksdaily.com"
+];
+/* counter writes: per IP, per 60s window, shared across /view /like /vote /clike.
+   Sized for CGNAT/office egress, where hundreds of readers share one IP. */
+const COUNTER_RATE_PER_MIN = 300;
+/* distinct new voters one IP may register on one article per day. Stops a
+   script from minting a fresh device id per request to stack votes. */
+const VOTE_NEW_PER_IP_DAY = 8;
+/* newsletter: welcome/confirm mails one IP can trigger per hour */
+const SUBSCRIBE_RATE_PER_HOUR = 5;
+/* hard ceiling on the /views /likes /votes batch payloads */
+const COUNTS_MAX_ROWS = 5000;
+
 function cors(origin) {
   const ok = ALLOWED_ORIGINS.includes(origin);
   return {
@@ -54,15 +114,68 @@ function json(data, status, origin) {
   });
 }
 
-async function ipHash(request) {
+/* Pseudonymous per-IP id. The salt used to be a literal in this file, which
+   GitHub Pages serves publicly — anyone could rebuild the table and reverse a
+   hash back to an IP. Set the IP_SALT worker secret to rotate it; the old
+   literal stays as the fallback so existing rows keep matching until then. */
+async function ipHash(request, env) {
   const ip = request.headers.get("CF-Connecting-IP") || "0.0.0.0";
+  const salt = (env && env.IP_SALT) || "stacks-salt-2026::";
   const buf = await crypto.subtle.digest("SHA-256",
-    new TextEncoder().encode("stacks-salt-2026::" + ip));
+    new TextEncoder().encode(salt + ip));
   return [...new Uint8Array(buf)].slice(0, 12)
     .map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
+/* length-independent constant-time string compare (no early return on
+   the first differing byte, so response timing does not leak the prefix) */
+function safeEq(a, b) {
+  a = String(a == null ? "" : a);
+  b = String(b == null ? "" : b);
+  let diff = a.length ^ b.length;
+  const n = Math.max(a.length, b.length);
+  for (let i = 0; i < n; i++) diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  return diff === 0;
+}
+
+/* Privileged-route auth. The secret may travel in the Authorization: Bearer
+   header or, for POST, in the JSON body — never in the query string (query
+   strings land in access logs, browser history and Referer headers).
+   `names` is tried in order, so a route can prefer its own narrow secret and
+   still accept the legacy NOTIFY_SECRET that GitHub Actions already holds. */
+function authorized(request, env, bodySecret, names) {
+  const auth = request.headers.get("Authorization") || "";
+  const given = auth.startsWith("Bearer ") ? auth.slice(7)
+    : (request.method === "POST" ? String(bodySecret || "") : "");
+  if (!given) return false;
+  let ok = false;
+  for (const n of names) {
+    const want = env[n];
+    if (want && safeEq(given, want)) ok = true;   // no early exit: constant work
+  }
+  return ok;
+}
+
+/* A push/notification link must point at our own site. Without this, anyone
+   holding the push secret (or a future bug that leaks it) could blast every
+   subscriber a notification that opens an attacker-controlled page. */
+function safePushUrl(raw) {
+  const s = String(raw || "").slice(0, 500).trim();
+  if (!s) return undefined;
+  /* compared on parsed origin, not string prefix: a prefix test either
+     rejects the bare "https://stacksdaily.com" (no trailing slash) or, if
+     the slash is dropped, accepts "https://stacksdaily.com.evil.tld/". */
+  try {
+    return PUSH_ORIGINS.includes(new URL(s).origin) ? s : undefined;
+  } catch (e) { return undefined; }
+}
+
+/* v9.0 migrations are idempotent but not free: nine serial D1 round trips on
+   every counter write is real latency. One isolate only needs to do it once. */
+let TABLES_READY = false;
+
 async function ensureTables(db) {
+  if (TABLES_READY) return;
   await db.exec(
     "CREATE TABLE IF NOT EXISTS comments (" +
     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -91,6 +204,141 @@ async function ensureTables(db) {
     "unsubscribed INTEGER NOT NULL DEFAULT 0, " +
     "created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')))"
   );
+  /* v9.0 double opt-in. DEFAULT 1 on purpose: every address that signed up
+     under the old single opt-in flow stays confirmed, so the existing list
+     keeps receiving the weekly mail. Only new signups start at 0. */
+  try { await db.exec("ALTER TABLE subscribers ADD COLUMN confirmed INTEGER NOT NULL DEFAULT 1"); }
+  catch (e) {}
+  /* v9.0 the comment rate-limit query used to full-scan the table */
+  try { await db.exec("CREATE INDEX IF NOT EXISTS idx_comments_ip ON comments(ip_hash, created_at)"); }
+  catch (e) {}
+  try { await db.exec("CREATE INDEX IF NOT EXISTS idx_comments_page ON comments(page_id, id)"); }
+  catch (e) {}
+  /* v9.0 generic throttle buckets (this worker has no KV binding, so the
+     counter has to live in D1). One row per (key, time window). */
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS rate_limits (" +
+    "bucket TEXT PRIMARY KEY, " +
+    "n INTEGER NOT NULL DEFAULT 0, " +
+    "exp INTEGER NOT NULL)"
+  );
+  /* v9.0 server-side record of who voted what, so /vote no longer has to
+     believe the `prev` value the browser sends it. */
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS votes (" +
+    "page_id TEXT NOT NULL, " +
+    "voter TEXT NOT NULL, " +
+    "dir TEXT NOT NULL, " +
+    "updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')), " +
+    "PRIMARY KEY (page_id, voter))"
+  );
+  TABLES_READY = true;
+}
+
+/* Fixed-window counter in D1. Returns true while the caller is under `limit`.
+   Expired buckets are swept opportunistically (~2% of first hits) so the
+   table cannot grow without bound. Fails OPEN: a D1 hiccup must not take
+   likes and views down with it. */
+async function rateOk(db, key, limit, windowSec, failOpen) {
+  if (failOpen === undefined) failOpen = true;
+  try {
+    const now = Math.floor(Date.now() / 1000);
+    const slot = Math.floor(now / windowSec);
+    const row = await db.prepare(
+      "INSERT INTO rate_limits (bucket, n, exp) VALUES (?1, 1, ?2) " +
+      "ON CONFLICT(bucket) DO UPDATE SET n = n + 1 RETURNING n"
+    ).bind(key + ":" + slot, (slot + 2) * windowSec).first();
+    const n = row ? row.n : 1;
+    if (n === 1 && Math.random() < 0.02) {
+      try { await db.prepare("DELETE FROM rate_limits WHERE exp < ?1").bind(now).run(); }
+      catch (e) {}
+    }
+    return n <= limit;
+  } catch (e) { return !!failOpen; }   // mail paths pass false: fail CLOSED
+}
+
+/* The set of item ids that actually exist, straight from the published
+   items.json, cached at the edge for 5 minutes. Without this any stranger can
+   POST /view with a made-up pageId and grow the counters table forever.
+   Fails OPEN (returns null = "cannot tell") if items.json is unreachable. */
+/* surge dry-run memo: the diagnostic endpoint is public, so it must not be
+   able to fan out one Yahoo request per followed company on demand. */
+let DRY = null;
+let DRY_AT = 0;
+let DRY_INFLIGHT = null;
+const DRY_TTL = 600;
+
+let PAGEIDS = null;        // Set, memoised in isolate memory
+let PAGEIDS_AT = 0;        // epoch seconds of the last successful load
+let PAGEIDS_INFLIGHT = null;
+const PAGEIDS_TTL = 300;
+
+async function knownPageIds() {
+  const now = Math.floor(Date.now() / 1000);
+  if (PAGEIDS && now - PAGEIDS_AT < PAGEIDS_TTL) return PAGEIDS;
+  if (PAGEIDS_INFLIGHT) return PAGEIDS_INFLIGHT;   // collapse a thundering herd
+  PAGEIDS_INFLIGHT = (async () => {
+    try {
+      /* cf.cacheTtl works on workers.dev; caches.default does not, which is
+         why this is a subrequest cache hint and not a Cache API round trip.
+         items.json is ~1.3 MB, so this must not run per request. */
+      const r = await fetch(ITEMS_URL, {
+        headers: { "User-Agent": "StacksWorker/9.0" },
+        cf: { cacheTtl: PAGEIDS_TTL, cacheEverything: true }
+      });
+      if (!r.ok) return null;
+      const j = await r.json();
+      const arr = (j && j.items) || [];
+      const ids = arr.map(x => String((x && x.id) || "")).filter(Boolean);
+      if (!ids.length) return null;
+      PAGEIDS = new Set(ids);
+      PAGEIDS_AT = Math.floor(Date.now() / 1000);
+      return PAGEIDS;
+    } catch (e) {
+      return null;
+    } finally {
+      PAGEIDS_INFLIGHT = null;
+    }
+  })();
+  return PAGEIDS_INFLIGHT;
+}
+
+/* Fast path: an id that already owns a counter row was validated once before,
+   so it never needs the items.json lookup again. In steady state this makes
+   the existence check free for every real article. */
+async function pageIdSeen(db, pageId) {
+  try {
+    const row = await db.prepare(
+      "SELECT 1 AS x FROM counters WHERE page_id = ?1 LIMIT 1").bind(pageId).first();
+    return !!row;
+  } catch (e) { return false; }
+}
+
+/* shape check + existence check. `kind` lets comment-hearts (numeric comment
+   ids) skip the items.json lookup, which does not apply to them. */
+async function validPageId(db, pageId, checkExists) {
+  if (!PAGE_ID_RE.test(pageId)) return false;
+  if (!checkExists) return true;
+  if (await pageIdSeen(db, pageId)) return true;
+  const known = await knownPageIds();
+  return known ? known.has(pageId) : true;   // unknown = allow, never 500 the site
+}
+
+/* Stable-ish voter identity: the IP hash alone would let one office network
+   overwrite a colleague's vote, and a device id alone is trivially forged, so
+   the key is both. Forging device ids still costs an IP, and the IP is what
+   the throttle counts. */
+function deviceKey(ipH, rawDid) {
+  const did = String(rawDid || "").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 32);
+  return ipH + ":" + (did || "-");
+}
+
+/* One shared budget for every counter write (/view /like /vote /clike), so a
+   script cannot dodge the limit by rotating between endpoints. Sized well
+   above what a fast reader scrolling a full feed produces. */
+async function counterOk(request, env) {
+  const ipH = await ipHash(request, env);
+  return rateOk(env.DB, "cnt:" + ipH, COUNTER_RATE_PER_MIN, 60);
 }
 
 /* atomic +delta (clamped at 0), returns the new value */
@@ -105,7 +353,8 @@ async function bump(db, kind, id, delta) {
 
 async function allCounts(db, kind) {
   const { results } = await db
-    .prepare("SELECT page_id, n FROM counters WHERE kind = ?1 AND n > 0")
+    .prepare("SELECT page_id, n FROM counters WHERE kind = ?1 AND n > 0 " +
+             "ORDER BY n DESC LIMIT " + COUNTS_MAX_ROWS)
     .bind(kind).all();
   const data = {};
   for (const r of results) data[r.page_id] = r.n;
@@ -155,6 +404,110 @@ const WELCOME_COPY = {
     unsub: "購読解除"
   }
 };
+
+/* ---------- confirmation email (v9.0 double opt-in) ----------
+   Nobody joins the list until they click this. Without it anyone could POST a
+   stranger's address (or a thousand of them) and we would mail people who
+   never asked, from our own sending domain. */
+const CONFIRM_COPY = {
+  ko: {
+    subj: "Stacks 구독 확인만 해주세요",
+    hi: "한 번만 눌러주세요",
+    body: "이 주소로 Stacks 주간 메일 구독 요청이 들어왔어요.<br>본인이 맞다면 아래 버튼을 눌러 구독을 확정해주세요.",
+    note: "요청한 적이 없다면 이 메일을 무시하시면 됩니다. 아무 일도 일어나지 않아요.",
+    cta: "구독 확정하기",
+    unsub: "무시하기"
+  },
+  en: {
+    subj: "Confirm your Stacks subscription",
+    hi: "One click to finish",
+    body: "Someone asked to subscribe this address to the Stacks weekly email.<br>If that was you, confirm with the button below.",
+    note: "If you did not request this, just ignore this email. Nothing will happen.",
+    cta: "Confirm subscription",
+    unsub: "Ignore"
+  },
+  ja: {
+    subj: "Stacksの購読確認をお願いします",
+    hi: "あと1クリックです",
+    body: "このアドレスでStacksの週刊メール購読リクエストがありました。<br>ご本人であれば下のボタンで確定してください。",
+    note: "心当たりがない場合は、このメールを無視してください。何も起こりません。",
+    cta: "購読を確定する",
+    unsub: "無視する"
+  }
+};
+
+/* token for the opt-in link. Distinct message prefix from the unsubscribe
+   token, so a leaked unsubscribe link can never be replayed as a confirm. */
+function confirmToken(env, email) {
+  /* "\n" cannot appear in an address, so no address can ever hash to another
+     address's confirm message. A ":" separator could: EMAIL_RE admits a ":"
+     in the local part, so subscribing "confirm:victim@x.tld" would hand the
+     attacker victim@x.tld's confirm token in their own welcome mail. */
+  return hmac24(env.UNSUB_SECRET, "confirm\n" + email);
+}
+
+async function sendConfirm(env, workerOrigin, email, lang) {
+  if (!env.RESEND_API_KEY || !env.UNSUB_SECRET) return false;
+  const T = CONFIRM_COPY[lang] || CONFIRM_COPY.ko;
+  const t = await confirmToken(env, email);
+  const ctaUrl = workerOrigin + "/confirm?e=" + encodeURIComponent(email)
+    + "&t=" + t + "&l=" + encodeURIComponent(lang);
+  const html =
+    "<!DOCTYPE html><html><body style=\"margin:0;padding:0;background:#f4f5f7\">"
+    + "<div style=\"max-width:520px;margin:0 auto;padding:32px 20px;"
+    + "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans KR',sans-serif\">"
+    + "<div style=\"background:#ffffff;border-radius:16px;padding:36px 32px;text-align:center;"
+    + "border:1px solid #e5e7eb\">"
+    + "<img src=\"https://stacksdaily.com/apple-touch-icon.png\" width=\"56\" height=\"56\" alt=\"Stacks\" "
+    + "style=\"border-radius:14px;display:block;margin:0 auto 20px\">"
+    + "<h1 style=\"font-size:20px;margin:0 0 12px;color:#111827\">" + T.hi + "</h1>"
+    + "<p style=\"font-size:15px;line-height:1.65;color:#4b5563;margin:0 0 8px\">" + T.body + "</p>"
+    + "<p style=\"font-size:14px;line-height:1.6;color:#6b7280;margin:0 0 24px\">" + T.note + "</p>"
+    + "<a href=\"" + ctaUrl + "\" style=\"display:inline-block;background:#111827;color:#ffffff;"
+    + "text-decoration:none;font-size:14px;font-weight:600;padding:12px 28px;border-radius:999px\">"
+    + T.cta + "</a>"
+    + "</div>"
+    + "<p style=\"text-align:center;font-size:12px;color:#9ca3af;margin:20px 0 0\">"
+    + "Stacks · <a href=\"https://stacksdaily.com\" style=\"color:#9ca3af\">" + T.unsub + "</a></p>"
+    + "</div></body></html>";
+  /* the result matters: a discarded response means a Resend 4xx (bad key,
+     unverified domain, quota, suppression) leaves the row confirmed = 0 with
+     no mail ever sent, i.e. a subscriber stuck pending forever. */
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + env.RESEND_API_KEY
+    },
+    body: JSON.stringify({
+      from: env.RESEND_FROM || "Stacks Weekly <weekly@stacksdaily.com>",
+      to: [email],
+      subject: T.subj,
+      html: html
+    })
+  });
+  return r.ok;
+}
+
+/* Canonical form used for the duplicate check only. "a.b+news@gmail.com",
+   "ab@gmail.com" and "a.b@googlemail.com" are one mailbox, so without this a
+   single person (or a script) can sign the same inbox up an unlimited number
+   of times and walk straight past every per-address guard below. */
+const SUBADDR_HOSTS = ["gmail.com", "googlemail.com", "outlook.com", "hotmail.com",
+                       "live.com", "icloud.com", "me.com", "fastmail.com", "proton.me"];
+function canonEmail(raw) {
+  const e = String(raw || "").trim().toLowerCase();
+  const at = e.lastIndexOf("@");
+  if (at < 1) return e;
+  let local = e.slice(0, at);
+  const host = e.slice(at + 1);
+  if (!SUBADDR_HOSTS.includes(host)) return e;
+  local = local.split("+")[0];
+  if (host === "gmail.com" || host === "googlemail.com") {
+    return local.replace(/\./g, "") + "@gmail.com";
+  }
+  return local + "@" + host;
+}
 
 async function sendWelcome(env, workerOrigin, email, lang) {
   if (!env.RESEND_API_KEY) return;  // welcome mail not configured — fine
@@ -281,7 +634,7 @@ async function osPushTag(env, tag, headings, contents, link) {
     app_id: ONESIGNAL_APP_ID,
     headings,
     contents,
-    url: link ? String(link).slice(0, 500) : undefined,
+    url: safePushUrl(link),
     filters: [{ field: "tag", key: String(tag).slice(0, 80), relation: "=", value: "1" }]
   };
   try {
@@ -379,20 +732,43 @@ export default {
       return new Response(null, { status: 204, headers: cors(origin) });
     }
 
-    /* ---------- surge alerts: read-only diagnostic (no secret) ----------
-       returns today's computed movers without pushing or writing to D1.
-       This is what the 08:20 KST monitor task polls. */
+    /* ---------- surge alerts: read-only diagnostic (cached) ----------
+       Returns today's computed movers without pushing or writing to D1.
+       This is what the 08:20 KST monitor task polls, over a plain GET with no
+       credentials, so a secret gate here would just break the monitor.
+       v9.0: the problem was never that the numbers are public, it was that
+       every call fanned out one Yahoo Finance request per followed company,
+       i.e. a free amplifier for anyone who found the URL. A 10 minute memo
+       fixes that: an unauthenticated caller gets the last computed answer,
+       and only a caller holding the push secret can force a recompute. */
     if (url.pathname === "/cron/surge-dryrun") {
+      const bp = request.method === "POST" ? (await request.json().catch(() => null)) || {} : {};
+      const priv = authorized(request, env, bp.secret, ["PUSH_SECRET", "NOTIFY_SECRET"]);
+      const nowS = Math.floor(Date.now() / 1000);
+      if (!priv) {
+        if (DRY && nowS - DRY_AT < DRY_TTL) {
+          return json({ ...DRY, cached: true, ageSec: nowS - DRY_AT }, 200, origin);
+        }
+        if (DRY_INFLIGHT) return json({ ...(await DRY_INFLIGHT), cached: true }, 200, origin);
+        DRY_INFLIGHT = (async () => {
+          try {
+            const out = await runSurgeAlerts(env, { dryRun: true });
+            DRY = out; DRY_AT = Math.floor(Date.now() / 1000);
+            return out;
+          } finally { DRY_INFLIGHT = null; }
+        })();
+        return json({ ...(await DRY_INFLIGHT), cached: false }, 200, origin);
+      }
       const r = await runSurgeAlerts(env, { dryRun: true });
+      DRY = r; DRY_AT = Math.floor(Date.now() / 1000);
       return json(r, 200, origin);
     }
     /* ---------- surge alerts: force a real send (June only) ----------
-       same NOTIFY_SECRET as /notify. Deduped per company per day. */
+       POST + Bearer (or a secret in the JSON body). Deduped per company/day. */
     if (url.pathname === "/cron/surge") {
-      const p = request.method === "POST"
-        ? await request.json().catch(() => ({}))
-        : Object.fromEntries(url.searchParams);
-      if (!env.NOTIFY_SECRET || p.secret !== env.NOTIFY_SECRET) {
+      if (request.method !== "POST") return json({ error: "method not allowed" }, 405, origin);
+      const p = (await request.json().catch(() => null)) || {};
+      if (!authorized(request, env, p.secret, ["PUSH_SECRET", "NOTIFY_SECRET"])) {
         return json({ error: "forbidden" }, 403, origin);
       }
       const r = await runSurgeAlerts(env, { dryRun: false });
@@ -507,10 +883,11 @@ export default {
        title_en/…), and optional per-timezone delivery (deliver_at="7:30AM"
        sends at each subscriber's local time; the "daily" tag defaults to it). */
     if (url.pathname === "/notify") {
-      const p = request.method === "POST"
-        ? await request.json().catch(() => ({}))
-        : Object.fromEntries(url.searchParams);
-      if (!env.NOTIFY_SECRET || p.secret !== env.NOTIFY_SECRET) {
+      /* v9.0: POST only. The old GET form put the push secret in the query
+         string, where it ends up in edge logs and browser history. */
+      if (request.method !== "POST") return json({ error: "method not allowed" }, 405, origin);
+      const p = (await request.json().catch(() => null)) || {};
+      if (!authorized(request, env, p.secret, ["PUSH_SECRET", "NOTIFY_SECRET"])) {
         return json({ error: "forbidden" }, 403, origin);
       }
       if (!env.ONESIGNAL_REST_KEY) {
@@ -520,6 +897,7 @@ export default {
         return json({ error: "need tag, title, msg" }, 400, origin);
       }
       const headings = langMap(p, "title", 120);
+      if (p.msg === undefined && p.body !== undefined) p.msg = p.body;  // caller alias
       const contents = langMap(p, "msg", 300);
       if (!headings.en || !contents.en) {
         return json({ error: "need tag, title, msg" }, 400, origin);
@@ -528,7 +906,7 @@ export default {
         app_id: ONESIGNAL_APP_ID,
         headings,
         contents,
-        url: p.url ? String(p.url).slice(0, 500) : undefined,
+        url: safePushUrl(p.url),          // v9.0: stacksdaily.com links only
         filters: [{ field: "tag", key: String(p.tag).slice(0, 80), relation: "=", value: "1" }]
       };
       /* per-timezone delivery for the worldwide morning briefing */
@@ -554,32 +932,114 @@ export default {
        The site signup form (all languages) POSTs {email, lang} here. Idempotent:
        re-subscribing a previously unsubscribed address re-activates it and
        updates its language. */
-    if (url.pathname === "/subscribe" && (request.method === "POST" || request.method === "GET")) {
-      const p = request.method === "POST"
-        ? await request.json().catch(() => ({}))
-        : Object.fromEntries(url.searchParams);
+    if (url.pathname === "/subscribe") {
+      /* v9.0: POST only. GET made this a one-pixel mail cannon: any page on
+         the internet could embed <img src=".../subscribe?email=victim@..."> and
+         our sending domain would deliver the mail. A JSON POST is not a form
+         or image request, so a cross-site page cannot forge one silently. */
+      if (request.method !== "POST") return json({ error: "method not allowed" }, 405, origin);
+      const ct = (request.headers.get("Content-Type") || "").toLowerCase();
+      if (!ct.includes("application/json")) {
+        return json({ error: "content-type must be application/json" }, 415, origin);
+      }
+      const p = (await request.json().catch(() => null)) || {};
       if (p.website) return json({ ok: true }, 200, origin);  // honeypot
-      const email = String(p.email || "").trim().toLowerCase();
+      const typed = String(p.email || "").trim().toLowerCase();
       let lang = String(p.lang || "ko").toLowerCase();
       if (!["ko", "en", "ja"].includes(lang)) lang = "ko";
-      if (!EMAIL_RE.test(email) || email.length > 200) {
+      if (!EMAIL_RE.test(typed) || typed.length > 200) {
         return json({ ok: false, error: "invalid email" }, 400, origin);
       }
+      const email = canonEmail(typed);
       await ensureTables(env.DB);
-      // was this address already an active subscriber? (guards duplicate welcomes)
       const prev = await env.DB.prepare(
-        "SELECT unsubscribed FROM subscribers WHERE email = ?1").bind(email).first();
-      const wasActive = prev && !prev.unsubscribed;
+        "SELECT unsubscribed, confirmed FROM subscribers WHERE email = ?1")
+        .bind(email).first();
+
+      /* Already on the list and confirmed: this is just a language change or a
+         double submit. Update and return, silently, with no mail at all. */
+      if (prev && !prev.unsubscribed && prev.confirmed) {
+        await env.DB.prepare("UPDATE subscribers SET lang = ?2 WHERE email = ?1")
+          .bind(email, lang).run();
+        return json({ ok: true, status: "subscribed" }, 200, origin);
+      }
+
+      /* Anything past here sends mail, so it costs the caller their IP budget.
+         Five confirmation mails per hour per IP is generous for a human and
+         useless as a flooding tool. */
+      const ipH = await ipHash(request, env);
+      if (!await rateOk(env.DB, "sub:" + ipH, SUBSCRIBE_RATE_PER_HOUR, 3600, false)) {
+        return json({ ok: false, error: "rate limited" }, 429, origin);
+      }
+
+      /* Pending row stays unconfirmed and, critically, stays OUT of the
+         /subscribers list the weekly sender reads. */
       await env.DB.prepare(
-        "INSERT INTO subscribers (email, lang, unsubscribed) VALUES (?1, ?2, 0) " +
-        "ON CONFLICT(email) DO UPDATE SET lang = ?2, unsubscribed = 0"
+        "INSERT INTO subscribers (email, lang, unsubscribed, confirmed) VALUES (?1, ?2, 0, 0) " +
+        "ON CONFLICT(email) DO UPDATE SET lang = ?2, unsubscribed = 0, confirmed = 0"
       ).bind(email, lang).run();
-      if (!wasActive) {
-        // fresh (or re-activated) subscriber → send the welcome email.
-        // Never let a mail hiccup break the signup itself.
+
+      let sent = false;
+      try { sent = await sendConfirm(env, url.origin, email, lang); } catch (e) {}
+      if (!sent) {
+        /* Double opt-in needs RESEND_API_KEY + UNSUB_SECRET. If either is
+           missing we fall back to the old single opt-in rather than leaving a
+           signup stuck in limbo the reader can never escape. */
+        await env.DB.prepare("UPDATE subscribers SET confirmed = 1 WHERE email = ?1")
+          .bind(email).run();
+        try { await sendWelcome(env, url.origin, email, lang); } catch (e) {}
+        return json({ ok: true, status: "subscribed" }, 200, origin);
+      }
+      return json({ ok: true, status: "pending" }, 200, origin);
+    }
+
+    /* ---------- confirm: finish a double opt-in signup ----------
+       Link carries e=email & t=hmac24(UNSUB_SECRET, "confirm:"+email). Only
+       the person holding the inbox can have this token, which is the whole
+       point: it proves the address consented. */
+    if (url.pathname === "/confirm") {
+      const email = canonEmail(url.searchParams.get("e") || "");
+      const t = String(url.searchParams.get("t") || "");
+      let lang = String(url.searchParams.get("l") || "ko").toLowerCase();
+      if (!["ko", "en", "ja"].includes(lang)) lang = "ko";
+      const C = {
+        ko: { ok: ["구독이 확정됐어요", "매주 일요일 아침에 만나요."],
+              bad: ["링크가 올바르지 않아요", "확인 링크가 만료됐거나 잘못된 주소예요."] },
+        en: { ok: ["You are subscribed", "See you Sunday morning."],
+              bad: ["Invalid link", "This confirmation link is invalid or expired."] },
+        ja: { ok: ["購読が確定しました", "毎週日曜の朝にお届けします。"],
+              bad: ["リンクが無効です", "確認リンクの有効期限が切れているか、正しくありません。"] }
+      }[lang];
+      const page = (title, body) => new Response(
+        "<!DOCTYPE html><meta charset=utf-8>"
+        + "<meta name=viewport content='width=device-width,initial-scale=1'>"
+        + "<div style='font-family:system-ui,-apple-system,sans-serif;max-width:420px;"
+        + "margin:64px auto;padding:0 20px;text-align:center'>"
+        + "<h2 style='font-size:18px;margin:0 0 8px'>" + title + "</h2>"
+        + "<p style='color:#666;font-size:14px;line-height:1.5'>" + body + "</p>"
+        + "<p style='margin-top:20px'><a href='https://stacksdaily.com' "
+        + "style='color:#2563eb;text-decoration:none'>stacksdaily.com</a></p></div>",
+        { status: 200, headers: { "Content-Type": "text/html; charset=utf-8", ...cors(origin) } });
+      if (!EMAIL_RE.test(email) || !env.UNSUB_SECRET) return page(C.bad[0], C.bad[1]);
+      const expect = await confirmToken(env, email);
+      if (!safeEq(t, expect)) return page(C.bad[0], C.bad[1]);
+      await ensureTables(env.DB);
+      const before = await env.DB.prepare(
+        "SELECT confirmed FROM subscribers WHERE email = ?1").bind(email).first();
+      if (!before) return page(C.bad[0], C.bad[1]);
+      /* confirmed only. `unsubscribed = 0` here would let anyone replaying an
+         old confirm URL (forwarded mail, link scanner, synced history) re-add
+         a reader who opted out. /subscribe already clears the flag on a real
+         re-opt-in, so nothing legitimate needs it. */
+      await env.DB.prepare(
+        "UPDATE subscribers SET confirmed = 1 WHERE email = ?1")
+        .bind(email).run();
+      /* welcome mail once, on the transition only, so re-clicking the link in
+         an old email does not send it again */
+      if (!before.confirmed) {
         try { await sendWelcome(env, url.origin, email, lang); } catch (e) {}
       }
-      return json({ ok: true }, 200, origin);
+      return page(C.ok[0], C.ok[1]);
     }
 
     /* ---------- subscribers: active list for a language (secret-guarded) ----------
@@ -587,10 +1047,11 @@ export default {
        Authorization: Bearer header (or ?secret= as a fallback), never exposed
        to the browser. */
     if (url.pathname === "/subscribers" && request.method === "GET") {
-      const auth = request.headers.get("Authorization") || "";
-      const secret = auth.startsWith("Bearer ")
-        ? auth.slice(7) : (url.searchParams.get("secret") || "");
-      if (!env.NOTIFY_SECRET || secret !== env.NOTIFY_SECRET) {
+      /* v9.0: Bearer header only. The old ?secret= fallback wrote the key that
+         dumps the entire subscriber list into edge logs and Referer headers.
+         SUBSCRIBERS_SECRET is the narrow key for this route; NOTIFY_SECRET is
+         still accepted so the existing Actions secret keeps working. */
+      if (!authorized(request, env, null, ["SUBSCRIBERS_SECRET", "NOTIFY_SECRET"])) {
         return json({ error: "forbidden" }, 403, origin);
       }
       let lang = String(url.searchParams.get("lang") || "").toLowerCase();
@@ -598,11 +1059,11 @@ export default {
       let stmt;
       if (["ko", "en", "ja"].includes(lang)) {
         stmt = env.DB.prepare(
-          "SELECT email FROM subscribers WHERE unsubscribed = 0 AND lang = ?1 ORDER BY email")
-          .bind(lang);
+          "SELECT email FROM subscribers WHERE unsubscribed = 0 AND confirmed = 1 " +
+          "AND lang = ?1 ORDER BY email").bind(lang);
       } else {
         stmt = env.DB.prepare(
-          "SELECT email FROM subscribers WHERE unsubscribed = 0 ORDER BY email");
+          "SELECT email FROM subscribers WHERE unsubscribed = 0 AND confirmed = 1 ORDER BY email");
       }
       const { results } = await stmt.all();
       return json({ data: results.map(r => r.email) }, 200, origin);
@@ -643,22 +1104,31 @@ export default {
       return json({ data: await allCounts(env.DB, kind) }, 200, origin);
     }
 
-    /* ---------- view: +1 per device (frontend dedupes) ---------- */
+    /* ---------- view: +1 per device (frontend dedupes) ----------
+       v9.0: the frontend dedupe is a localStorage flag, i.e. advisory only.
+       The shared per-IP throttle below is what actually bounds this, and the
+       items.json existence check stops made-up ids from creating rows. */
     if (request.method === "POST" && url.pathname === "/view") {
-      const body = await request.json().catch(() => ({}));
+      const body = (await request.json().catch(() => null)) || {};
       const pageId = String(body.pageId || "");
-      if (!PAGE_ID_RE.test(pageId)) return json({ error: "bad pageId" }, 400, origin);
       await ensureTables(env.DB);
+      if (!await counterOk(request, env, "view")) {
+        return json({ error: "rate limited" }, 429, origin);
+      }
+      if (!await validPageId(env.DB, pageId, true)) return json({ error: "bad pageId" }, 400, origin);
       const count = await bump(env.DB, "view", pageId, 1);
       return json({ count }, 200, origin);
     }
 
     /* ---------- like: toggle ---------- */
     if (request.method === "POST" && url.pathname === "/like") {
-      const body = await request.json().catch(() => ({}));
+      const body = (await request.json().catch(() => null)) || {};
       const pageId = String(body.pageId || "");
-      if (!PAGE_ID_RE.test(pageId)) return json({ error: "bad pageId" }, 400, origin);
       await ensureTables(env.DB);
+      if (!await counterOk(request, env, "like")) {
+        return json({ error: "rate limited" }, 429, origin);
+      }
+      if (!await validPageId(env.DB, pageId, true)) return json({ error: "bad pageId" }, 400, origin);
       const count = await bump(env.DB, "like", pageId, body.action === "unlike" ? -1 : 1);
       return json({ count }, 200, origin);
     }
@@ -676,15 +1146,64 @@ export default {
 
     /* ---------- reader poll: cast / change / clear a vote ---------- */
     if (request.method === "POST" && url.pathname === "/vote") {
-      const body = await request.json().catch(() => ({}));
+      const body = (await request.json().catch(() => null)) || {};
       const pageId = String(body.pageId || "");
-      if (!PAGE_ID_RE.test(pageId)) return json({ error: "bad pageId" }, 400, origin);
       await ensureTables(env.DB);
+      if (!await counterOk(request, env)) {
+        return json({ error: "rate limited" }, 429, origin);
+      }
+      if (!await validPageId(env.DB, pageId, true)) return json({ error: "bad pageId" }, 400, origin);
       const kindOf = d => d === "up" ? "vup" : d === "down" ? "vdown" : null;
-      const pk = kindOf(body.prev);   // what they had before (or null)
-      const nk = kindOf(body.dir);    // what they have now  (or null = cleared)
-      if (pk && pk !== nk) await bump(env.DB, pk, pageId, -1);
-      if (nk && nk !== pk) await bump(env.DB, nk, pageId, 1);
+      const nk = kindOf(body.dir);    // what they want now (null = cleared)
+
+      /* v9.0: `body.prev` used to decide the decrement, which meant a caller
+         could send prev:null with dir:"up" forever and add a vote every time.
+         The previous state now comes from the votes table, not the browser. */
+      const ipH = await ipHash(request, env);
+      const voter = deviceKey(ipH, body.did);
+      const row = await env.DB.prepare(
+        "SELECT dir FROM votes WHERE page_id = ?1 AND voter = ?2").bind(pageId, voter).first();
+      let pk = kindOf(row && row.dir);
+
+      /* Migration window. The votes table starts empty, so every reader who
+         voted before v9.0 looks new: flipping up->down would add to vdown
+         without ever removing from vup, and clearing a vote would do nothing
+         at all while the UI showed it drop. So the browser's `prev` is still
+         honoured, but exactly once per (IP, article) and only while no server
+         row exists. That is one possible bogus -1 per IP per article, against
+         the unlimited inflation the old code allowed. */
+      if (!row && kindOf(body.prev)) {
+        const first = await rateOk(env.DB, "vmig:" + ipH + ":" + pageId, 1, 2592000);
+        if (first) pk = kindOf(body.prev);
+      }
+
+      /* A fresh device id is free to mint, so cap how many distinct new voters
+         one IP may register on one article per day. Without this a script can
+         rotate `did` and stack votes up to the counter throttle. */
+      if (!row && nk) {
+        const okNew = await rateOk(
+          env.DB, "vnew:" + ipH + ":" + pageId, VOTE_NEW_PER_IP_DAY, 86400);
+        if (!okNew) {
+          const u = await bump(env.DB, "vup", pageId, 0);
+          const d = await bump(env.DB, "vdown", pageId, 0);
+          return json({ data: { up: u, down: d } }, 200, origin);
+        }
+      }
+
+      if (pk !== nk) {
+        if (pk) await bump(env.DB, pk, pageId, -1);
+        if (nk) await bump(env.DB, nk, pageId, 1);
+        if (nk) {
+          await env.DB.prepare(
+            "INSERT INTO votes (page_id, voter, dir) VALUES (?1, ?2, ?3) " +
+            "ON CONFLICT(page_id, voter) DO UPDATE SET dir = ?3, " +
+            "updated_at = strftime('%Y-%m-%dT%H:%M:%SZ','now')")
+            .bind(pageId, voter, body.dir === "up" ? "up" : "down").run();
+        } else {
+          await env.DB.prepare("DELETE FROM votes WHERE page_id = ?1 AND voter = ?2")
+            .bind(pageId, voter).run();
+        }
+      }
       const up = await bump(env.DB, "vup", pageId, 0);     // delta 0 = read current
       const down = await bump(env.DB, "vdown", pageId, 0);
       return json({ data: { up, down } }, 200, origin);
@@ -692,10 +1211,22 @@ export default {
 
     /* ---------- clike: comment hearts ---------- */
     if (request.method === "POST" && url.pathname === "/clike") {
-      const body = await request.json().catch(() => ({}));
-      const cid = String(body.commentId || "");
-      if (!/^[0-9]{1,12}$/.test(cid)) return json({ error: "bad commentId" }, 400, origin);
+      const body = (await request.json().catch(() => null)) || {};
+      const raw = String(body.commentId || "");
+      if (!/^[0-9]{1,12}$/.test(raw)) return json({ error: "bad commentId" }, 400, origin);
+      /* canonicalised: bump() keys on the string, so "7"/"07"/"007" would
+         otherwise be three counter rows and two of them invisible to the
+         comments JOIN, which CASTs the integer id back to text. */
+      const cid = String(parseInt(raw, 10));
       await ensureTables(env.DB);
+      if (!await counterOk(request, env)) {
+        return json({ error: "rate limited" }, 429, origin);
+      }
+      /* the comment has to exist: without this, hearts can be parked on ids
+         that were never written and the counters table grows on command */
+      const exists = await env.DB.prepare("SELECT 1 AS x FROM comments WHERE id = ?1")
+        .bind(parseInt(cid, 10)).first();
+      if (!exists) return json({ error: "bad commentId" }, 400, origin);
       const likes = await bump(env.DB, "clike", cid, body.action === "unlike" ? -1 : 1);
       return json({ likes }, 200, origin);
     }
@@ -721,6 +1252,7 @@ export default {
     if (request.method === "GET") {
       const pageId = (url.searchParams.get("pageId") || "").slice(0, 100);
       if (!pageId) return json({ error: "pageId required" }, 400, origin);
+      if (!PAGE_ID_RE.test(pageId)) return json({ error: "bad pageId" }, 400, origin);
       const { results } = await env.DB
         .prepare("SELECT c.id, c.nickname, c.content, c.created_at, c.parent_id, " +
                  "COALESCE(k.n, 0) AS likes " +
@@ -745,6 +1277,11 @@ export default {
       let body;
       try { body = await request.json(); }
       catch (e) { return json({ error: "bad json" }, 400, origin); }
+      /* a body of literal `null` parses fine, so the catch never fires and
+         every property read below would throw a 500 instead */
+      if (!body || typeof body !== "object") {
+        return json({ error: "bad json" }, 400, origin);
+      }
 
       /* honeypot: real users never see or fill this field */
       if (body.website) return json({ ok: true }, 200, origin);
@@ -755,6 +1292,9 @@ export default {
       if (!pageId || !nickname || !content) {
         return json({ error: "missing fields" }, 400, origin);
       }
+      /* v9.0: this route never applied PAGE_ID_RE, so any 100-char string
+         could open a brand new comment thread nobody can reach from the site */
+      if (!PAGE_ID_RE.test(pageId)) return json({ error: "bad pageId" }, 400, origin);
 
       /* replies: keep only a valid parent on the same page, one level deep */
       let parentId = parseInt(body.parentId, 10) || null;
@@ -765,7 +1305,7 @@ export default {
         if (!parent || parent.page_id !== pageId || parent.parent_id) parentId = null;
       }
 
-      const hash = await ipHash(request);
+      const hash = await ipHash(request, env);
       const recent = await env.DB
         .prepare("SELECT COUNT(*) AS n FROM comments WHERE ip_hash = ?1 " +
                  "AND created_at > strftime('%Y-%m-%dT%H:%M:%SZ','now','-60 seconds')")
