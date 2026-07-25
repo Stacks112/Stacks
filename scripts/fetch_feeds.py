@@ -43,9 +43,11 @@ FEEDS = [
     {"id": "tesuta", "url": "https://rss.app/feeds/u6twTSFkvGHn7Tlw.xml", "naver": False},
     {"id": "damodaran", "url": "https://aswathdamodaran.blogspot.com/feeds/posts/default?alt=rss",
      "alt": ["https://aswathdamodaran.blogspot.com/feeds/posts/default"], "keep_days": SLOW_DAYS, "naver": False},
-    # The Diff runs on Ghost; the old RSS.app mirror stopped updating 2026-07-21.
-    {"id": "thediff", "url": "https://www.thediff.co/rss/",
-     "alt": ["https://www.thediff.co/rss", "https://rss.app/feeds/MqXEWKxMSRlmKIG5.xml"],
+    # The Diff is paywalled: its own Ghost feed only exposes a handful of old
+    # free posts, so the RSS.app mirror of the archive stays the primary source.
+    # (Mirror replaced 2026-07-25 after the previous one expired on 07-21.)
+    {"id": "thediff", "url": "https://rss.app/feeds/z6fS0HqcbN8wsqBX.xml",
+     "alt": ["https://www.thediff.co/rss/"],
      "keep_days": SLOW_DAYS, "naver": False},
     {"id": "lynalden", "url": "https://www.lynalden.com/feed/",
      "alt": ["https://www.lynalden.com/?feed=rss2", "https://www.lynalden.com/rss"],
