@@ -114,6 +114,8 @@ window.v83AlertsPanel = function(){
   };
   ov.innerHTML = '<div class="v83np">'
     + '<h3>' + t.title + '<button aria-label="close">&#x2715;</button></h3>'
+    /* 2026-07-25 (june): 데스크톱엔 알림 "목록"이 없고 설정만 있었다. 목록을 위에 얹는다. */
+    + (typeof window.v83NotifListHtml === "function" ? window.v83NotifListHtml() : "")
     + row("newpost", t.newpost, p.newpost)
     + row("debate", t.debate, p.debate)
     + row("follow", t.follow, p.follow)
@@ -123,6 +125,7 @@ window.v83AlertsPanel = function(){
     + (window.stkNlHtml ? window.stkNlHtml() : '')
     + '</div>';
   document.body.appendChild(ov);
+  if (typeof window.v83NotifBind === "function") window.v83NotifBind(ov);
   ov.addEventListener("click", function(e){ if (e.target === ov) ov.remove(); });
   ov.querySelector("h3 button").addEventListener("click", function(){ ov.remove(); });
   ov.querySelectorAll("[data-np]").forEach(function(b){
