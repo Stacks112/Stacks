@@ -12,7 +12,9 @@ on:
     branches: [main]
     paths:
       - "items.json"
+      - "index.html"
       - "scripts/build_pages.py"
+      - "scripts/build_data.py"
       - "scripts/fetch_og_assets.py"
       - "scripts/fetch_cover_assets.py"
 
@@ -48,6 +50,7 @@ jobs:
           python scripts/fetch_og_assets.py
           rm -f og/*.png
           python scripts/build_pages.py
+          python scripts/build_data.py
 
       - name: Commit card images (if any)
         run: |
