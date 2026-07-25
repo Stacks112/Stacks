@@ -4927,7 +4927,11 @@ var V83ICONS = {
   skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
   readlist:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>',
   alerts:'<svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
-  appearance:'<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>'
+  appearance:'<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>',
+  /* 2026-07-25 (june): 좌측 패널 아이콘은 "지금 어떤 모드인지"를 보여준다.
+     다크 = 달, 라이트 = 해. (전환 후 모습이 아니라 현재 상태다.) */
+  moon:'<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>',
+  sun:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.6M12 19v2.6M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2.4 12h2.6M19 12h2.6M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/></svg>'
 };
 function v83T(k){
   var s = {
@@ -5083,6 +5087,9 @@ function mountV83(){
 
   document.documentElement.classList.add("v83");
   V83 = { mounted: true, nav: nav, center: center, rail: rail, homes: homes };
+  /* 2026-07-25: nav 가 문서에 삽입된 "뒤"에 불러야 한다 —
+     삽입 전에는 document.querySelector 가 버튼을 못 찾아 아이콘이 안 바뀐다. */
+  if (typeof v83SyncThemeIcon === "function") v83SyncThemeIcon();
   try { if (typeof v83RenderCal === "function") v83RenderCal(); } catch (e) {}
   try { if (typeof renderSkew === "function") renderSkew(); } catch (e) {}
 }
@@ -8442,7 +8449,20 @@ async function bootData(){
 }
 
 /* ---------------- dark mode toggle ---------------- */
+/* 2026-07-25 (june): 좌측 패널 화면 모드 아이콘을 현재 테마에 맞춘다.
+   다크 → 달, 라이트 → 해. 모바일 서랍(v82)은 자체 이모지를 쓰므로 거기서 따로 처리한다. */
+function v83SyncThemeIcon(){
+  try {
+    var b = document.querySelector('#v83nav .v83-link[data-k="appearance"]');
+    if (!b || typeof V83ICONS === "undefined") return;
+    var want = (THEME === "dark") ? V83ICONS.moon : V83ICONS.sun;
+    var svg = b.querySelector("svg");
+    if (svg) svg.outerHTML = want;
+    else b.insertAdjacentHTML("afterbegin", want);
+  } catch (e) {}
+}
 function applyThemeBtn(){
+  v83SyncThemeIcon();
   const b = document.getElementById("themeBtn");
   if (b){
     const S = STRINGS[LANG] || STRINGS.en;
