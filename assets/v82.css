@@ -95,7 +95,10 @@
   .card.v82c{cursor:pointer;}
   .card.v82c .title-orig,.card.v82c .why,.card.v82c .oc,.card.v82c .since,.card.v82c .ask-block,
   .card.v82c .cta-row,.card.v82c .comment-box,.card.v82c .related,.card.v82c .gist-fold summary,
-  .card.v82c .collapse-caret,.card.v82c .mine-why{display:none !important;}
+  .card.v82c .collapse-caret,.card.v82c .mine-why,
+  /* 압축 피드 카드는 본문을 168px로 자른다. 원문 블록을 그 위에 두면
+     우리 해석이 한 줄도 안 보인 채 잘린다. 원문은 상세에서만 보여준다. */
+  .card.v82c .srcq,.card.v82c .xemb,.card.v82c .splitb{display:none !important;}
   .card.v82c .card-thumb{display:none;}
   /* Twitter-style media: full-width image at the bottom of the card body */
   .card.v82c .card-thumb-img{display:flex !important;width:100%;height:auto;margin:12px 0 2px;
@@ -273,7 +276,12 @@
 @media (max-width:1023px){
   .card .card-body{display:flex;flex-direction:column;}
   .card .card-body > *{order:90;}
+  .card .card-body > .srcq,
+  .card .card-body > .xemb{order:10;}        /* 원문 — 우리 해석보다 먼저 */
   .card .card-body > .gist-fold{order:20;}
+  /* 구분 기준은 우리 해석의 마지막 문단이라 '왜 중요한가' 바로 위에 붙인다.
+     반대편(.opp)은 아래에서 92로 내려가 있으므로 그 밑에 두면 멀어진다. */
+  .card .card-body > .splitb{order:25;}
   .card .card-body > .why{order:30;}
   .card .card-body > .opp{order:35;}          /* 반대편 — 바로 '왜 중요한가' 밑 */
   .card .card-body > .oc,

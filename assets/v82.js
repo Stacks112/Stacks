@@ -2,6 +2,13 @@
 (function(){
   "use strict";
   if (window.__V82) return; window.__V82 = true;
+  /* gist 본문에는 소제목·확인블록 마커가 들어 있다(claude/prompts/publish-v4.3.md [4-E]).
+     한 줄 스니펫에 마커가 그대로 나가면 안 되므로 index.html의 plainGist를 쓰되,
+     로드 순서에 의존하지 않도록 없으면 원문을 그대로 돌려준다. */
+  function v82Plain(t){
+    return (typeof plainGist === "function") ? plainGist(t) : String(t || "");
+  }
+
   var mq = window.matchMedia("(max-width:1023px)");
   /* ---- beta gate: opt-in until confirmed on real iOS ----
      ?v82beta enable (persisted) · ?v82off disable · else pre-v82 (v81). */
@@ -401,7 +408,7 @@
     var html = "";
     if (!hits.length){ html = '<div class="v82-empty">' + (S.searchNone || "결과가 없어요.") + '</div>'; }
     else hits.slice(0, 60).forEach(function(it, i){
-      var snip = (it.gist && it.gist[LANG]) ? String(it.gist[LANG]).slice(0, 90) : "";
+      var snip = (it.gist && it.gist[LANG]) ? v82Plain(it.gist[LANG]).slice(0, 90) : "";
       html += '<button class="v82-sr" data-id="' + esc(it.id) + '">'
         + '<div class="v82-sr-t">' + esc(it.title[LANG]) + '</div>'
         + '<div class="v82-sr-m">' + esc(dispName(it.source)) + '</div>'
@@ -973,7 +980,7 @@
           /* bordered card + "왜 화두인가" context so readers know what's up for debate */
           var ctx = "";
           try {
-            var raw = (titem.why && titem.why[LANG]) ? titem.why[LANG] : (titem.gist && titem.gist[LANG] ? String(titem.gist[LANG]) : "");
+            var raw = (titem.why && titem.why[LANG]) ? titem.why[LANG] : (titem.gist && titem.gist[LANG] ? v82Plain(titem.gist[LANG]) : "");
             ctx = raw.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
             if (ctx.length > 180) ctx = ctx.slice(0, 176).replace(/\s+\S*$/, "") + "…";
           } catch(e){ ctx = ""; }
