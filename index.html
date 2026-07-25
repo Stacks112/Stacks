@@ -2659,7 +2659,9 @@ html[data-lang="ko"] .ceo-detail{font-family:var(--ui-font);}
 .ceo-detail-txt{flex:1;min-width:0;}
 /* stage7 */
 .eh-photo.on{flex:0 0 46px;width:46px;height:46px;border-radius:50%;overflow:hidden;background-size:cover;background-position:center 22%;box-shadow:0 1px 5px rgba(0,0,0,.18);}
-.debate-group-head{display:flex;align-items:center;gap:8px;margin:20px 0 12px;font-size:15px;font-weight:800;letter-spacing:-.01em;}
+/* 2026-07-25 (june): 색 동그라미가 컨테이너 왼쪽 경계에 딱 붙어 넘칠 것처럼 보였다.
+   위 프로필 패널의 안쪽 내용과 같은 선(좌 15px 들여쓰기)으로 맞춘다. */
+.debate-group-head{display:flex;align-items:center;gap:8px;margin:20px 0 12px;padding-left:15px;font-size:15px;font-weight:800;letter-spacing:-.01em;}
 .debate-group-head .dg-dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px;}
 .debate-group-head .dg-n{font-family:var(--mono-font);font-size:12px;font-weight:700;color:var(--muted);}
 .dg-bull .dg-dot{background:#12B76A;} .dg-bear .dg-dot{background:#F04438;} .dg-watch .dg-dot{background:#9BA1B0;}
