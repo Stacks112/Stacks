@@ -815,10 +815,25 @@
 
   /* ---------- card detail overlay ---------- */
   var DETAIL_PH = null;
+  /* 2026-07-25 (june): "예측 추적중은 원문보기 오른쪽에 아이콘 형태로. 설명까지 다 보일
+     필요는 없어." .oc는 card-body의 형제라 CSS만으로는 원문 보기 줄에 못 붙인다.
+     상세를 열 때 .cta-row 안으로 옮기고, 아이콘만 남기는 건 CSS가 맡는다.
+     이미 옮겨져 있으면 아무것도 안 한다(다시 열어도 안전). 피드에서는 .oc도 .cta-row도
+     display:none이라 옮겨진 채로 돌아가도 보이는 변화가 없다. */
+  function tuneDetail(card){
+    try {
+      var cta = card.querySelector(".cta-row"), oc = card.querySelector(".oc");
+      if (cta && oc && oc.parentNode !== cta){
+        if (!oc.getAttribute("title")) oc.setAttribute("title", oc.textContent.replace(/\s+/g, " ").trim());
+        cta.appendChild(oc);
+      }
+    } catch (e) {}
+  }
   function openDetail(card){
     if (!mq.matches || !card) return;
     var dt = $("v82detail"), body = $("v82dbody");
     if (dt.classList.contains("on")) return;
+    tuneDetail(card);
     try { var _rid=(card.id||"").replace(/^sig-/,""); if(_rid && typeof setRead==="function") setRead(_rid); } catch(e){}
     try {
       DETAIL_PH = document.createComment("v82ph");
