@@ -1,0 +1,85 @@
+name: Clobber guard
+
+# Deploys reach this repo through GitHub's web "Upload files" page, which
+# replaces a file WHOLE. If the session that uploads has a stale copy, another
+# session's commits vanish with no conflict and no trace in the message.
+#
+# scripts/deploy_guard.py stops that before it happens - but only if the
+# session runs it. This job is the part that needs nobody's cooperation: it
+# looks at every push and asks whether it deleted lines somebody else added in
+# the last day, which is the fingerprint of a stale upload.
+#
+# Failing the run is the alarm. The issue is so it survives being missed.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "sw.js"
+      - "assets/**"
+      - "worker/**"
+      - "scripts/**"
+      - ".github/workflows/**"
+      - "CLAUDE.md"
+      - "sources.json"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: clobber-guard-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The check compares this push against commits from the last 24h, so
+          # a shallow clone would simply find nothing and pass every time.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Look for overwritten work
+        id: check
+        run: |
+          set +e
+          python3 scripts/clobber_check.py "${{ github.sha }}" > report.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat report.md
+
+      - name: Open an issue
+        if: steps.check.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            cat report.md
+            echo
+            echo "커밋: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+            echo "실행: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } > issue.md
+          gh issue create \
+            --title "⚠ 덮어쓰기 의심: ${{ github.sha }}" \
+            --body-file issue.md \
+            --label "clobber" 2>/dev/null \
+          || gh issue create \
+            --title "⚠ 덮어쓰기 의심: ${{ github.sha }}" \
+            --body-file issue.md
+
+      - name: Fail so it is visible
+        if: steps.check.outputs.code == '1'
+        run: |
+          echo "::error::이 푸시가 최근 다른 커밋의 작업을 지웠을 수 있습니다. 위 리포트와 새로 열린 이슈를 확인하세요."
+          exit 1
+
+      - name: Report could not run
+        if: steps.check.outputs.code != '0' && steps.check.outputs.code != '1'
+        run: |
+          echo "::warning::clobber_check 를 실행하지 못했습니다 (코드 ${{ steps.check.outputs.code }}). 검사가 건너뛰어졌습니다."
