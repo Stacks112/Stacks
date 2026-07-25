@@ -979,9 +979,18 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   html.rbeta .v82fd-m{display:block;margin-top:5px;font-size:12px;color:var(--muted);}
   /* remove the top-bar language chip — language lives in the profile drawer now */
   html.rbeta .nav-inner .lang-menu{display:none !important;}
-  html.rbeta #feedList .card{border-bottom:1px solid rgba(255,255,255,.09);padding-bottom:18px;}
+  /* 2026-07-25 (june, 모바일 X 대조): 이 선이 rgba(255,255,255,.09)로 박혀 있었다.
+     다크에선 맞지만 라이트에선 흰 배경 위 흰 선이라 글 사이 구분선이 아예 안 보였다.
+     X는 두 테마 모두 글마다 1px 선이 보인다. 테마를 따라가는 --line으로 바꾼다. */
+  html.rbeta #feedList .card{border-bottom:1px solid var(--line);padding-bottom:18px;}
   /* byline: avatar + full name on one line, date on the line below (name never truncated) */
   html.rbeta .card-top{flex-wrap:nowrap;align-items:flex-start;}
+  /* 2026-07-25 (june): 상세에서 태그 칩이 작성자 줄을 파고들어 이름이 두 줄로 깨졌다
+     (칩이 204px를 가져가고 이름에 90px만 남았다). X의 작성자 줄에는 이름·핸들·시간만
+     온다. 상세에서만 칩을 아랫줄로 내린다 — 피드는 칩을 하나(관점/강세/약세)만 띄우고
+     그건 이름 옆에 잘 들어가므로 건드리지 않는다. */
+  html.rbeta #v82dbody .card-top{flex-wrap:wrap;}
+  html.rbeta #v82dbody .card-top .chips{flex:0 0 100%;order:3;margin:7px 0 0;}
   html.rbeta .src-block{flex:1 1 auto;min-width:0;flex-direction:column;align-items:flex-start;gap:1px;overflow:visible;}
   html.rbeta .src-name{white-space:normal;overflow:visible;text-overflow:clip;word-break:keep-all;min-width:0;}
   html.rbeta .src-date{white-space:nowrap;font-size:11.5px;}
