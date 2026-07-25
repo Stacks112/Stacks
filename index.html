@@ -6297,11 +6297,10 @@ const READ_LOG = store.get("stk_read_log", {});
 function logRead(id){
   if (!READ_LOG[id]){ READ_LOG[id] = todayStr(); store.set("stk_read_log", READ_LOG); }
 }
-/* read = folded: a read card collapses to just its title; tapping the
-   title expands it again. */
-function toggleCollapse(id){
-  const el = document.getElementById("sig-" + id);
-  if (el) el.classList.toggle("collapsed");
+/* 2026-07-25 (june): X처럼 카드를 접지 않는다. 헤드라인을 누르면 본문(요약)을
+   누른 것과 똑같이 상세로 이동한다. 상세 뷰가 없는 화면에서는 아무 일도 하지 않는다. */
+function openFromCard(id){
+  if (typeof v83OpenItem === "function") v83OpenItem(id);
 }
 function setRead(id, keepOpen){
   logRead(id);
@@ -6314,8 +6313,8 @@ function toggleRead(id){
   const nowRead = !READ.has(id);
   if (nowRead){ READ.add(id); logRead(id); } else READ.delete(id);
   store.set("stk_read", [...READ]);
-  const el = document.getElementById("sig-" + id);
-  if (el) el.classList.toggle("collapsed", nowRead);
+  /* 2026-07-25: 접기 UI를 걷어냈으므로 읽음 표시가 카드를 접지 않는다.
+     접으면 다시 펼칠 손잡이가 없다. */
   if (UNREAD_ONLY) render(); else refreshCardRead(id);
 }
 function refreshFilterBtn(){
@@ -7784,7 +7783,7 @@ function cardEl(item, S, idx){
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
-      <h3 class="card-title" onclick="toggleCollapse('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span><span class="collapse-caret" aria-hidden="true">›</span></h3>
+      <h3 class="card-title" onclick="openFromCard('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span></h3>
       <div class="card-body">
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
       ${coverThumbHtml(item)}
@@ -9068,20 +9067,32 @@ bootData();
 
   /* ①: card-body를 flex column으로 만들고 순서만 재배치 (DOM은 그대로) */
   html.v83 #feedList .card-body{ display:flex; flex-direction:column; }
-  html.v83 #feedList .card-body > *{ order:9; }
-  html.v83 #feedList .card-body > .title-orig{ order:1; }
-  html.v83 #feedList .card-body > .gist-fold{ order:2; }
-  html.v83 #feedList .card-body > .why{ order:3; }
-  html.v83 #feedList .card-body > .card-thumb{ order:4; }   /* ← 본문 아래 */
+  /* 2026-07-25 (june): 원문 제목을 맨 위에서 "원문 보기" 링크 아래로 내렸다.
+     10단위 번호라 사이에 끼워 넣을 자리가 남는다. */
+  html.v83 #feedList .card-body > *{ order:90; }
+  html.v83 #feedList .card-body > .gist-fold{ order:20; }
+  html.v83 #feedList .card-body > .why{ order:30; }
+  html.v83 #feedList .card-body > .card-thumb{ order:40; }   /* ← 본문 아래 */
   html.v83 #feedList .card-body > .oc,
   html.v83 #feedList .card-body > .since,
-  html.v83 #feedList .card-body > .ask-block{ order:5; }
-  html.v83 #feedList .card-body > .cta-row{ order:6; }
-  html.v83 #feedList .card-body > .engage{ order:7; }
+  html.v83 #feedList .card-body > .ask-block{ order:50; }
+  html.v83 #feedList .card-body > .cta-row{ order:60; }
+  html.v83 #feedList .card-body > .title-orig{ order:65; }   /* ← 원문 보기 아래 */
+  html.v83 #feedList .card-body > .engage{ order:70; }
   html.v83 #feedList .card-body > .twin,
   html.v83 #feedList .card-body > .twin-list,
   html.v83 #feedList .card-body > .comment-box,
-  html.v83 #feedList .card-body > .related{ order:8; }
+  html.v83 #feedList .card-body > .related{ order:80; }
+
+  /* 2026-07-25 (june): 피드에서 "핵심" 라벨 버튼을 걷어낸다. X는 본문 위에
+     아무 라벨도 두지 않는다. <details open>이라 summary만 숨겨도 본문은 그대로 보인다.
+     (상세 뷰·다른 화면의 핵심 라벨은 건드리지 않는다.) */
+  html.v83 #feedList .card .gist-fold > summary{ display:none !important; }
+  html.v83 #feedList .card .gist-fold{ margin-top:0 !important; }
+  html.v83 #feedList .card .gist-fold .gist{ margin-top:0 !important; }
+
+  /* 원문 제목이 맨 위가 아니라 "원문 보기" 아래로 내려왔으니 여백 방향을 뒤집는다 */
+  html.v83 #feedList .card-body > .title-orig{ margin:2px 0 0 !important; }
 
   /* ②: 고정 높이·풀블리드 폐지. 원본 비율 유지, 높이만 X와 같이 510px로 캡 */
   html.v83 #feedList .card-thumb{
