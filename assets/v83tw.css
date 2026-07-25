@@ -1,0 +1,246 @@
+/* --- card formatting on ALL widths (these rules were mobile-only before) --- */
+html.rbeta .why .label{font-weight:800;}
+html.rbeta .why p{white-space:pre-line;line-height:1.6;font-weight:400;}
+html.rbeta .ask-block .ask-q{white-space:pre-line;line-height:1.55;font-weight:400;}
+html.rbeta .today-q{white-space:pre-line;line-height:1.55;}
+html.rbeta .oc .oc-sep{display:none;}
+html.rbeta .oc .oc-note{display:block;margin-top:2px;}
+/* --- v83 top bar: brand + 최신/팔로잉 tabs only (like X) --- */
+html.v83 #themeBtn,html.v83 #meBtn,html.v83 #notifBtn{display:none !important;}
+html.v83 .nav-inner{position:relative;}
+/* keep the top bar above the sticky side columns (z:20). Without this, at the
+   bottom of a short page the left panel un-sticks, scrolls up, and — same z-index
+   but later in the DOM — paints over the Stacks logo (june 보고).
+   NOTE: the left panel is also a <nav> (#v83nav), so scope this to the top bar
+   only via :not([id]) — otherwise the panel inherits z:50 and the bug persists. */
+html.v83 nav:not([id]){z-index:50;}
+html.v83 #v83fsw{position:absolute;left:50%;top:0;bottom:0;transform:translateX(-50%);
+  width:min(460px,38vw);border-bottom:none;background:transparent;display:flex;z-index:2;}
+html.v83 #v83fsw button{padding:0 0 2px;font-size:14.5px;}
+/* --- newsletter box: bottom of the right rail --- */
+#v83rail #nlSec{margin-top:4px;}
+/* --- left nav: only the ACTIVE menu is bold (X-style) --- */
+html.v83 #v83nav .v83-link{font-weight:500;}
+html.v83 #v83nav .v83-link.on{font-weight:800;}
+/* --- search dropdown (recent searches / guide + today's popular) --- */
+html.v83 .v83-search{position:relative;}
+.v83sd{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:60;
+  background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 12px 40px rgba(0,0,0,.28);padding:6px 0 8px;overflow:hidden;}
+.v83sd-h{display:flex;align-items:center;justify-content:space-between;
+  font-size:13.5px;font-weight:800;padding:10px 16px 6px;}
+.v83sd-h button{background:none;border:0;color:var(--accent);font-size:12px;
+  font-weight:700;cursor:pointer;font-family:var(--ui-font);padding:2px 4px;}
+.v83sd-row{display:flex;align-items:center;gap:11px;width:100%;padding:9px 16px;
+  background:none;border:0;text-align:left;font-family:var(--ui-font);font-size:13.5px;
+  color:var(--text);cursor:pointer;}
+.v83sd-row:hover{background:var(--bg-soft);}
+.v83sd-row .ic{flex:0 0 auto;opacity:.65;font-size:14px;}
+.v83sd-row .lb{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.v83sd-row .sub{flex:0 0 auto;color:var(--muted);font-size:11.5px;}
+.v83sd-row .rm{flex:0 0 auto;color:var(--muted);font-size:13px;padding:0 2px;}
+.v83sd-row .rm:hover{color:var(--text);}
+.v83sd-guide{padding:22px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;}
+.v83sd-div{height:1px;background:var(--line);margin:6px 0;}
+/* --- 라운드9: 왜중요/예측추적/긍정부정은 상세에서만, 핵심 클릭→상세 --- */
+/* Item3: v83 피드 카드에서는 왜 중요한가 / 예측 추적 / 긍정·부정 숨김 (상세에서만 노출) */
+html.v83 #feedList > .card:not(.v83one) .why,
+html.v83 #feedList > .card:not(.v83one) .oc,
+html.v83 #feedList > .card:not(.v83one) .ask-block{display:none;}
+/* Item4: 피드에서 핵심(gist) 클릭 시 커서 */
+html.v83 #feedList > .card:not(.v83one) .gist{cursor:pointer;}
+/* Item5: 상세에서 예측 추적은 원문보기 옆 아이콘으로 접힘 */
+.oc-toggle{background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;color:var(--text);
+  cursor:pointer;font-size:14px;line-height:1;padding:5px 9px;display:inline-flex;align-items:center;gap:5px;}
+.oc-toggle:hover{border-color:var(--text);}
+.oc-toggle.on{border-color:var(--accent);}
+.v83one .oc.oc-collap{display:none;margin-top:10px;}
+.v83one .oc.oc-collap.oc-open{display:block;}
+/* Item6: 긍정/부정이 댓글 입력 바로 위에 오도록 여백 */
+.v83one .ask-block{margin-top:16px;margin-bottom:2px;}
+/* --- 읽음 하이브리드 --- */
+/* "이미 읽은 글" 구분선 */
+.read-div{display:flex;align-items:center;gap:12px;margin:26px 14px 10px;color:var(--muted);
+  font-size:12px;font-weight:700;letter-spacing:.02em;}
+.read-div::before,.read-div::after{content:"";flex:1;height:1px;background:var(--line);}
+/* 피드 카드 3문단 프리뷰 (상세 뷰 .v83one과 접힌 카드는 제외) */
+html.v83 .card.v83clip .gist{max-height:215px;overflow:hidden;position:relative;}
+html.v83 .card.v83clip .gist::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;
+  background:linear-gradient(rgba(0,0,0,0),var(--card));pointer-events:none;}
+.v83-more{display:none;background:none;border:0;color:var(--accent);font-weight:700;
+  font-size:13.5px;cursor:pointer;padding:8px 0 0;font-family:var(--ui-font);}
+html.v83 .card.v83clip .v83-more{display:inline-flex;}
+/* 더 보기로 인라인 펼침(트위터식): 클램프 해제, 페이드/버튼은 v83clip 제거로 사라짐 */
+html.v83 .card.v83expanded .gist{max-height:none !important;overflow:visible !important;}
+html.v83 .card.v83one .card-body{max-height:none !important;opacity:1 !important;}
+/* ✓ 읽음: 좌측 '읽은 글' 메뉴가 받을 때 살짝 반짝 */
+@keyframes v83ReadPulse{0%{background:var(--bg-soft);transform:scale(1)}45%{background:var(--bg-soft);transform:scale(1.06)}100%{transform:scale(1)}}
+#v83nav .v83-link.v83-read-pulse{animation:v83ReadPulse .7s ease;}
+/* 실행 취소 토스트 */
+.v83-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:15100;
+  background:var(--black);color:#fff;border-radius:999px;padding:11px 10px 11px 18px;
+  font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:var(--ui-font);}
+.v83-toast button{background:none;border:0;color:#8FB8FF;font-weight:800;font-size:13px;
+  cursor:pointer;padding:4px 10px;font-family:var(--ui-font);}
+html[data-theme="dark"] .v83-toast{background:#2A2C33;}
+/* --- notification settings panel (left-nav item) --- */
+.v83np-ov{position:fixed;inset:0;z-index:14400;background:rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:center;}
+.v83np{background:var(--bg);border:1px solid var(--line);border-radius:16px;
+  width:min(420px,92vw);padding:18px 20px 16px;box-shadow:0 18px 50px rgba(0,0,0,.25);}
+.v83np h3{font-size:15.5px;font-weight:800;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between;}
+.v83np h3 button{background:none;border:none;font-size:16px;cursor:pointer;color:var(--muted);padding:2px 6px;}
+.v83np-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:11px 2px;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer;
+  background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;
+  font-family:var(--ui-font);color:var(--text);}
+.v83np-row:last-of-type{border-bottom:none;}
+.v83np-sw{flex:0 0 40px;height:23px;border-radius:999px;background:var(--line);position:relative;transition:background .15s;}
+.v83np-sw::after{content:"";position:absolute;top:2.5px;left:3px;width:18px;height:18px;border-radius:50%;
+  background:#fff;transition:left .15s;box-shadow:0 1px 3px rgba(0,0,0,.25);}
+.v83np-sw.on{background:var(--accent);}
+.v83np-sw.on::after{left:19px;}
+.v83np-push{margin-top:12px;width:100%;padding:11px;border-radius:999px;border:1px solid var(--line);
+  background:var(--bg-soft);color:var(--text);font-weight:700;font-size:13.5px;cursor:pointer;font-family:var(--ui-font);
+  transition:border-color .15s,background .15s;}
+.v83np-push:hover{border-color:var(--text);}
+/* push ON: white (theme-text) 2px border so the state is visible at a glance */
+.v83np-push.on{border:2px solid var(--text);padding:10px;background:var(--bg);}
+.v83np-blocked{margin-top:8px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5;}
+/* --- newsletter (weekly email) language, inside notification settings --- */
+.stk-nl-set{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:left;}
+.stk-nl-h{font-size:12.5px;font-weight:800;color:var(--muted);margin-bottom:6px;font-family:var(--ui-font);}
+.stk-nl-d{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:10px;font-family:var(--ui-font);}
+.stk-nl-set input{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;
+  background:var(--bg);color:var(--text);font-size:16px;font-family:var(--ui-font);margin-bottom:8px;}
+.stk-nl-langs{display:flex;gap:6px;margin-bottom:8px;}
+.stk-nl-langs button{flex:1;padding:8px 0;border-radius:999px;border:1px solid var(--line);background:var(--bg-soft);
+  color:var(--text);font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--ui-font);}
+.stk-nl-langs button.on{border:2px solid var(--text);background:var(--bg);padding:7px 0;}
+.stk-nl-save{width:100%;padding:10px;border-radius:999px;border:1px solid var(--text);background:var(--text);
+  color:var(--bg);font-weight:800;font-size:13px;cursor:pointer;font-family:var(--ui-font);}
+.stk-nl-msg{margin-top:8px;font-size:11.5px;text-align:center;color:var(--muted);line-height:1.5;font-family:var(--ui-font);}
+.stk-nl-msg.err{color:#e5484d;}
+/* --- 라운드10 (2026-07-23 june feedback) --- */
+/* ④ '왜 중요한가' 라벨 확대 + 본문 크기·행간을 핵심(gist)과 동일하게 */
+/* 라운드11: 라벨도 본문과 같은 Pretendard로 (기존 모노스페이스 코드체 탈피) */
+.why .label{font-family:var(--ui-font);font-size:13px;letter-spacing:-.01em;text-transform:none;margin-bottom:8px;}
+.why p{font-size:14.5px;}
+html[data-lang="ko"] .why p{line-height:1.75;}
+html[data-lang="ja"] .why p{line-height:1.85;}
+/* ③ 읽음 애니메이션: 서류 아이콘 칩이 '읽은 글' 메뉴로 비행 */
+.rh-chip{position:fixed;z-index:15000;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border-radius:14px;background:var(--bg);
+  border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.3);
+  font-size:24px;line-height:1;
+  transform:translate(-50%,-50%) scale(.2);opacity:0;
+  transition:transform .18s cubic-bezier(.2,.9,.4,1.2),opacity .15s ease;}
+html[data-theme="dark"] .rh-chip{background:#2A2C33;border-color:#3A3D45;}
+/* ⑥→라운드12: hover 시 카드 이미지 + 이미지 위에 한줄요약 오버레이 (잘리지 않게 전체 표시) */
+html.v83 .hotl-cov{display:flex;align-items:flex-end;width:100%;height:0;opacity:0;margin-top:0;border-radius:10px;
+  background-position:center;background-size:cover;background-repeat:no-repeat;overflow:hidden;
+  transition:height .28s cubic-bezier(.4,0,.2,1),opacity .22s ease,margin-top .28s cubic-bezier(.4,0,.2,1);}
+html.v83 .hotl-row:hover .hotl-cov,html.v83 .hotl-row:focus-visible .hotl-cov{height:132px;opacity:1;margin-top:7px;}
+html.v83 .hotl-cov.hotl-cov-logo{background-size:auto 52%;background-position:center 26%;background-color:#EDEFF2;}
+html.v83 .hotl-cov.hotl-cov-plain{background-image:linear-gradient(150deg,#262b38,#12141a) !important;}
+html.v83 .hotl-sum{display:block;width:100%;padding:26px 11px 9px;box-sizing:border-box;
+  font-size:11.5px;line-height:1.55;color:#fff;font-weight:600;white-space:normal;text-align:left;
+  background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.62) 38%,rgba(0,0,0,.8));}
+/* --- 라운드11 --- */
+/* ✓ 수동 읽음 버튼 폐지 (스크롤로 지나침 = 본 글) */
+.engage .eg-read{display:none !important;}
+/* --- 라운드12: 읽은 글 UI 전면 제거 (뒤에서 조용한 강등만 유지) --- */
+#unreadFilter{display:none !important;}
+.read-div{display:none !important;}
+.unread-dot{display:none !important;}
+#feedList .card.is-read h3,#feedList .card.is-read .gist,#feedList .card.is-read .title-orig,
+#feedList .card.is-read .card-thumb,#feedList .card.is-read .engage,#feedList .card.is-read .why{opacity:1 !important;}
+/* --- 라운드13 --- */
+/* (1)→라운드16: 검색창은 상단바 맨 우측 (X처럼). 이동은 v83MoveSearch()가 수행 */
+html.v83 .nav-inner .v83-search{margin-left:auto;width:min(290px,24vw);flex:0 0 auto;}
+html.v83 .nav-inner .v83-search input{width:100%;box-sizing:border-box;padding:9px 16px;
+  border-radius:999px;border:1px solid var(--line);background:var(--bg-soft);color:var(--text);
+  font:inherit;font-size:13.5px;}
+html:not(.v83) .v83-search{display:none;}
+/* 검색창이 상단바 우측을 차지하므로 탭 스위처는 중앙 유지(기존 absolute 그대로) */
+/* (1)→라운드17: 언어선택을 좌측 패널의 다른 메뉴와 똑같은 모양으로 (칩 느낌 제거) */
+#v83nav .v83-lang.lang-menu{margin:0;align-self:stretch;}
+#v83nav .v83-lang .lang-cur{width:100%;justify-content:flex-start;background:none;border:0;
+  gap:19px;padding:11px 14px;border-radius:999px;font-size:19.5px;font-weight:400;letter-spacing:-.01em;
+  font-family:inherit;color:var(--text);}
+#v83nav .v83-lang .lang-cur:hover{background:var(--bg-soft);border:0;}
+#v83nav .v83-lang .lang-flag{width:26px;height:20px;border-radius:3px;flex:0 0 auto;}
+#v83nav .v83-lang .lang-cur .lc-arrow{margin-left:auto;font-size:11px;}
+#v83nav .v83-lang .lang-opts{left:8px;right:8px;top:auto;bottom:calc(100% + 4px);min-width:0;z-index:40;}
+#v83nav .v83-lang .lang-opts button{font-size:15px;padding:10px 14px;gap:11px;}
+/* (2) 함께 읽기: 상세뷰에서만 우측 패널에 노출. 카드 안 원본 related는 숨김 */
+.v83one .related{display:none !important;}
+#v83relSec .hot-rail{display:flex;flex-direction:column;gap:0;overflow:visible;padding:0;}
+/* 긍정/부정이 댓글 아래로 내려갔으니 위 여백으로 구분 */
+.v83one .ask-block{margin-top:18px;margin-bottom:2px;}
+/* --- 라운드14 (모바일) --- */
+@media (max-width:1023px){
+  /* 상단 고정바 Stacks 로고를 화면 정중앙에 (좌 아바타/우 여백 폭을 대칭으로) */
+  .nav-inner{grid-template-columns:1fr auto 1fr !important;}
+  .nav-inner #v82av{justify-self:start;}
+  .nav-inner .brand{justify-self:center;}
+  .nav-inner .lang-menu{justify-self:end;}
+  /* 게시물 상세보기 본문 배경을 페이지 배경(다크=검정/라이트=흰색)과 동일하게 */
+  #v82dbody .card{background:var(--bg) !important;}
+  /* --- 라운드15 (모바일) --- */
+  /* 피드의 회색 배경 제거 → 페이지 배경과 동일 (트위터식: 얇은 구분선만) */
+  #feedList .card{background:var(--bg) !important;}
+  .v82mod.v82today{background:var(--bg) !important;}
+  .mini-install{background:var(--bg) !important;}
+  /* 피드 카드의 인라인 댓글 입력창 제거 — 💬 아이콘으로 댓글 시트(새창) 열림 */
+  .card.v82c .twin,.card.v82c .twin-list{display:none !important;}
+}
+/* --- 라운드16: 데스크톱 X 파리티 --- */
+/* 좌측 패널: X처럼 큰 글씨(20px 일반 굵기, 선택만 볼드) + 큰 아이콘 */
+html.v83 #v83nav .v83-link{font-size:19.5px;font-weight:400;gap:19px;padding:11px 14px;letter-spacing:-.01em;}
+html.v83 #v83nav .v83-link.on{font-weight:800;}
+html.v83 #v83nav .v83-link svg{width:26px;height:26px;stroke-width:1.8;}
+html.v83 #v83nav .v83-cta{padding:15px;font-size:16.5px;margin:16px 8px 6px;}
+html.v83 #v83nav .v83-me{font-size:15px;gap:11px;padding:10px 12px;}
+html.v83 #v83nav .v83-me .v83-ava{width:38px;height:38px;font-size:16px;}
+html.v83 #v83nav .v83-lang .lang-cur{font-size:19.5px;}
+/* 상단바: 최신/팔로잉 탭 글씨를 X 탭 크기로 */
+html.v83 #v83fsw button{font-size:15.5px;}
+/* 우측 패널: X처럼 섹션마다 둥근 테두리 박스 */
+html.v83 #v83rail{padding:8px 10px 24px 18px;}
+html.v83 #v83rail section:not(.nl){border:1px solid var(--line);border-radius:16px;
+  padding:14px 16px 12px;background:var(--bg);}
+html.v83 #v83rail section:not(.nl) > .section-title{font-size:19px;font-weight:800;
+  letter-spacing:-.02em;margin:0 0 12px;}
+html.v83 #v83rail .hotl-row{padding:10px 2px;}
+/* --- 라운드17 --- */
+/* ① 피드 카드에선 댓글창(입력바+미리보기+스레드)과 함께 읽기 숨김 — 상세에서만 */
+html.v83 #feedList > .card:not(.v83one) .twin,
+html.v83 #feedList > .card:not(.v83one) .twin-list,
+html.v83 #feedList > .card:not(.v83one) .comment-box,
+html.v83 #feedList > .card:not(.v83one) .related{display:none !important;}
+/* ② 상단바 위아래 폭 축소 (12px→7px) + 컬럼 고정 오프셋 보정 */
+html.v83 .nav-inner{padding:7px 16px;}
+html.v83 .nav-inner .v83-search input{padding:8px 15px;}
+html.v83 #v83nav{top:52px;height:calc(100vh - 52px);}
+html.v83 #v83rail{top:52px;max-height:calc(100vh - 52px);}
+html.v83 #v83fsw button{padding:0 0 1px;}
+/* 상단 고정바 좌우 정렬 (트위터 모바일 참고, june 지시):
+   nav-inner를 본문 3열 그리드(.wrap)와 완전히 동일하게 만들어 — 브랜드 Stacks는
+   좌측 패널 메뉴(아이콘) 좌측끝에, 검색창은 우측 패널(레일) 좌측끝~우측끝에 정확히 맞춘다. */
+@media (min-width:1024px){
+  html.v83 .nav-inner{
+    display:grid !important;
+    grid-template-columns:minmax(200px,240px) minmax(0,600px) minmax(280px,340px);
+    gap:0; max-width:1240px; padding:7px 8px !important; align-items:center;
+    justify-content:start; justify-items:start;
+  }
+  /* 브랜드: col1 안에서 좌측 내비 아이콘(내비 패딩 8 + 링크 패딩 14 = 22px)과 좌측끝 정렬 */
+  html.v83 .nav-inner .brand{ grid-column:1; justify-self:start; margin-left:22px; }
+  /* 검색창: col3(우측 레일)에 꽉 채우되 레일 패딩(왼18/오10)과 동일하게 → 레일 박스와 좌우 정렬 */
+  html.v83 .nav-inner .v83-search{ grid-column:3; justify-self:stretch; margin:0 !important;
+    width:auto !important; padding:0 10px 0 18px; box-sizing:border-box; }
+  html.v83 .nav-inner .v83-search input{ width:100% !important; }
+}
