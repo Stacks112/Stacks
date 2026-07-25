@@ -430,17 +430,20 @@
                 + '<div class="v82-skew-sub">' + esc(S.briefSub || "") + '</div>';
           mine.forEach(function(o){
             var sig = o.sig;
-            var verdict = sig.kind === "split" ? S.briefSplit
+            var isCo = !!(ENTITIES[o.k] && ENTITIES[o.k].kind === "company");
+            /* 인물은 강세/약세 판정을 붙이지 않는다 — 소재에 방향성을 얹는 카테고리 오류라서 */
+            var verdict = !isCo ? (S.briefThin || "").replace("{n}", sig.n)
+              : sig.kind === "split" ? S.briefSplit
               : sig.kind === "bull" ? S.briefLeanBull
               : sig.kind === "bear" ? S.briefLeanBear
               : (S.briefThin || "").replace("{n}", sig.n);
-            var subs = sig.kind === "thin" ? [] : (typeof watchWeekSubjects === "function" ? watchWeekSubjects(o.k) : []);
-            var dir = sig.bull + sig.bear, bp = dir ? Math.round(sig.bull / dir * 100) : 0;
+            var subs = isCo ? [] : (typeof watchWeekSubjects === "function" ? watchWeekSubjects(o.k) : []);
+            var dir = (isCo && sig.kind !== "thin") ? sig.bull + sig.bear : 0, bp = dir ? Math.round(sig.bull / dir * 100) : 0;
             html += '<button class="v82-skew-row v82-brief-row" data-brief="' + esc(o.k) + '">'
               + '<div class="v82-skew-top"><span class="v82-skew-name">' + esc(typeof entName === "function" ? entName(o.k) : o.k) + '</span>'
               + '<span class="v82-skew-lean ' + (sig.kind === "bear" ? "bear" : "bull") + '">' + esc(verdict) + '</span></div>'
               + (dir ? '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + (100 - bp) + '%"></i></div>' : "")
-              + (subs.length ? '<div class="v82-brief-subj">' + esc((S.briefAbout || "{s}").replace("{s}", subs.join(" · "))) + '</div>' : "")
+              + (subs.length ? '<div class="v82-brief-subj">' + esc((S.briefTopics || "{s}").replace("{s}", subs.join(" · "))) + '</div>' : "")
               + (dir ? '<div class="v82-skew-cts"><span>' + t.bull + ' ' + sig.bull + '</span><span>' + t.bear + ' ' + sig.bear + '</span></div>' : "")
               + '</button>';
           });
