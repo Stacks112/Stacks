@@ -8921,10 +8921,13 @@ bootData();
   html.v83 nav:not([id]){ display:none !important; }
 
   /* ── 1. 셸 기하학 ────────────────────────────────────────────── */
+  /* 2026-07-25 (june): 우측 레일이 화면 오른쪽 끝에 붙어 X처럼 여백이 없었다.
+     원인은 레일 상한(380px)이 남는 폭을 전부 먹어치운 것. 상한을 X와 같은 350으로
+     낮추고 좌우에 같은 크기의 거터를 둬서 어느 폭에서도 대칭이 되게 한다. */
   html.v83 .wrap{
-    grid-template-columns:minmax(88px,275px) 602px minmax(290px,380px) !important;
+    grid-template-columns:minmax(88px,275px) 602px minmax(280px,350px) !important;
     max-width:1257px !important; margin:0 auto !important;
-    padding:0 !important; column-gap:0 !important;
+    padding:0 16px !important; column-gap:0 !important;
   }
   html.v83 #v83nav{ top:0 !important; height:100vh !important; padding:0 4px 20px !important; }
   html.v83 #v83center{ min-height:100vh; }
