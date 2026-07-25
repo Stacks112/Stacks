@@ -208,6 +208,9 @@ const STRINGS = {
     related: "Related",
     oppLabel: "The other side",
     oppNote: "Same company, opposite call",
+    fromSource: "From the source",
+    chkLabel: "📊 We looked it up",
+    splitLabel: "How to tell which",
     langNoteKO: "Original in Korean · auto-translate works well",
     langNoteEN: "Original in English",
     langNoteJA: "Original in Japanese · auto-translate works well",
@@ -376,6 +379,9 @@ const STRINGS = {
     related: "함께 읽기",
     oppLabel: "반대편",
     oppNote: "같은 종목을 반대로 본 글",
+    fromSource: "원문에서",
+    chkLabel: "📊 확인해보면",
+    splitLabel: "구분 기준",
     langNoteKO: "원문: 한국어",
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     langNoteJA: "원문: 일본어 · 브라우저 번역으로도 충분합니다",
@@ -544,6 +550,9 @@ const STRINGS = {
     related: "あわせて読む",
     oppLabel: "反対の見方",
     oppNote: "同じ銘柄への逆の見方",
+    fromSource: "原文から",
+    chkLabel: "📊 確認すると",
+    splitLabel: "見分ける基準",
     langNoteKO: "原文: 韓国語",
     langNoteEN: "原文: 英語",
     langNoteJA: "原文: 日本語",
@@ -2503,6 +2512,104 @@ html[data-lang="ko"] .opp-t{font-family:var(--ui-font);}
 @media (max-width:520px){ .opp-src{display:none;} }
 html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0));}
 
+/* ===== originality format (2026-07-25) =====
+   Four blocks that turn a translated summary into something of ours:
+
+     .srcq / .xemb   the author's own words, verbatim, above our reading.
+                     The reader saw a headline they did not choose; without
+                     the source paragraph our interpretation reads as if it
+                     arrived from nowhere. It also puts attribution and a
+                     link to the author at the top of the card rather than
+                     buried at the bottom.
+     .gsub           a subheading every few paragraphs, phrased as the
+                     question the reader is about to ask.
+     .chk            a number we looked up ourselves (FRED / EDGAR) next to
+                     the claim it verifies. This is the part nobody can copy.
+     .cmp            two readings of the same number, side by side.
+     .splitb         what would have to happen for either reading to be right.
+
+   The markers that produce .chk and .cmp live inside the gist text so the
+   publishing routine can emit them without a schema change; gistRich() below
+   is the only thing that knows about them. */
+.srcq{
+  margin:12px 0 4px;padding:12px 14px;
+  border-left:3px solid var(--accent);
+  border-radius:0 10px 10px 0;
+  background:rgba(127,127,140,.06);
+}
+.srcq-h{display:flex;align-items:center;gap:6px;margin-bottom:8px;
+  font-size:10.5px;font-weight:800;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;}
+.srcq p{margin:0 0 6px;font-size:13.5px;line-height:1.62;color:var(--text);opacity:.92;}
+.srcq p:last-of-type{margin-bottom:8px;}
+.srcq-c{font-size:11.5px;color:var(--muted);}
+.srcq-c a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
+
+/* X posts arrive as oEmbed. We render the fields ourselves instead of
+   dropping in widgets.js: the third-party script costs ~120 KB, blocks on a
+   cross-origin connection the reader did not ask for, and reflows the card
+   after paint. The author name, handle and permalink all still point at X. */
+.xemb{margin:12px 0 4px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;}
+.xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;object-fit:cover;
+  background:linear-gradient(135deg,#4b5563,#1f2937);display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:14px;}
+.xemb-nm{display:flex;flex-direction:column;line-height:1.25;min-width:0;}
+.xemb-nm b{font-size:13.5px;font-weight:800;color:var(--text);}
+.xemb-nm span{font-size:12px;color:var(--muted);}
+.xemb-logo{margin-left:auto;font-size:15px;font-weight:900;color:var(--text);opacity:.7;text-decoration:none;}
+.xemb-body p{margin:0 0 7px;font-size:13.5px;line-height:1.6;color:var(--text);}
+.xemb-body p:last-child{margin-bottom:0;}
+.xemb-q{margin-top:8px;padding:9px 11px;border:1px solid var(--line);border-radius:11px;
+  font-size:12.5px;line-height:1.55;color:var(--muted);}
+.xemb-d{margin-top:9px;font-size:11.5px;color:var(--muted);}
+.xemb-d a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
+
+.gist.rich{white-space:normal;}
+.gist.rich .gp{white-space:pre-line;margin:0 0 14px;}
+.gist.rich .gp:last-child{margin-bottom:0;}
+.gsub{margin:18px 0 8px;font-size:13px;font-weight:800;letter-spacing:.01em;color:var(--text);
+  display:flex;align-items:center;gap:7px;}
+.gsub::before{content:"";width:3px;height:13px;border-radius:2px;background:var(--accent);opacity:.75;flex:0 0 auto;}
+.gist.rich > .gsub:first-child{margin-top:0;}
+
+.chk{margin:14px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.chk-h{display:flex;align-items:center;gap:6px;padding:8px 12px;
+  font-size:10.5px;font-weight:800;letter-spacing:.04em;color:var(--muted);
+  background:rgba(127,127,140,.07);border-bottom:1px solid var(--line);text-transform:uppercase;}
+.chk-g{display:grid;grid-template-columns:repeat(3,1fr);}
+.chk-c{padding:11px 10px;text-align:center;border-right:1px solid var(--line);}
+.chk-c:last-child{border-right:0;}
+.chk-c i{display:block;font-style:normal;font-size:10.5px;color:var(--muted);margin-bottom:4px;line-height:1.3;}
+.chk-c b{display:block;font-size:16.5px;font-weight:800;letter-spacing:-.01em;color:var(--text);font-family:"Inter",sans-serif;}
+.chk-n{padding:10px 12px;font-size:13px;line-height:1.6;color:var(--text);border-top:1px solid var(--line);white-space:pre-line;}
+.chk-s{padding:0 12px 9px;font-size:11px;color:var(--muted);}
+@media (max-width:340px){
+  .chk-g{grid-template-columns:1fr;}
+  .chk-c{border-right:0;border-bottom:1px solid var(--line);}
+  .chk-c:last-child{border-bottom:0;}
+}
+
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.cmp-c{padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(127,127,140,.045);}
+.cmp-c i{display:block;font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.03em;
+  color:var(--muted);margin-bottom:6px;text-transform:uppercase;}
+.cmp-c p{margin:0;font-size:13px;line-height:1.6;color:var(--text);}
+.cmp-c.cmp-b{border-color:var(--accent);background:rgba(59,130,246,.07);}
+/* stacking keeps the left column first, so the "here is the common reading,
+   here is why it is wrong" order survives on a phone */
+@media (max-width:520px){ .cmp{grid-template-columns:1fr;} }
+
+.splitb{margin-top:14px;padding:11px 12px 10px;border:1px dashed var(--line);border-radius:12px;}
+.splitb .label{margin-bottom:6px;}
+.splitb p{margin:0;font-size:13.5px;line-height:1.6;color:var(--text);white-space:pre-line;}
+
+html[data-theme="dark"] .srcq{background:rgba(255,255,255,.05);}
+html[data-theme="dark"] .cmp-c{background:rgba(255,255,255,.04);}
+html[data-lang="ko"] .srcq p,html[data-lang="ko"] .xemb-body p,
+html[data-lang="ko"] .chk-n,html[data-lang="ko"] .cmp-c p,
+html[data-lang="ko"] .splitb p{font-family:var(--ui-font);}
+
+
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -3223,6 +3330,119 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (t !== TAB) pushView(); TAB = t; render(); }
 
 
+
+
+/* ---------------- originality format renderer (2026-07-25) ----------------
+
+   The publishing routine writes structure into the gist as line-leading
+   markers rather than as extra JSON fields, so a new block type never needs a
+   schema migration or a rebuild of every stored item:
+
+     "## "      subheading, phrased as the reader's next question
+     "@@CHK@@"  label|value|label|value|label|value @@ note @@ source
+     "@@CMP@@"  leftLabel|leftText|rightLabel|rightText
+
+   Anything unmarked is prose and keeps its authored line breaks. Everything
+   is escaped before any markup is added; the markers themselves are the only
+   thing allowed to introduce tags. */
+/* Marker-free text, for everywhere a gist is spoken, copied or squeezed into
+   a one-line snippet. Subheading text survives (it is a real sentence); the
+   data rows of a check or compare block do not, since "4.71%|2.28%" read aloud
+   is noise. */
+function plainGist(text){
+  return String(text || "").split("\n").map(L => {
+    if (L.indexOf("## ") === 0) return L.slice(3).trim();
+    if (L.indexOf("@@CHK@@") === 0 || L.indexOf("@@CMP@@") === 0) return "";
+    return L;
+  }).filter((L, i, a2) => L !== "" || (i > 0 && a2[i - 1] !== "")).join("\n");
+}
+
+function gistRich(item){
+  const S = STRINGS[LANG] || STRINGS.en;
+  const raw = (item.gist && item.gist[LANG]) || "";
+  if (!raw) return "";
+  const lines = paraGist(raw).split("\n");
+  const out = [];
+  let buf = [];
+  function flush(){
+    const t = buf.join("\n").replace(/^\n+|\n+$/g, "");
+    buf = [];
+    if (t) out.push('<p class="gp">' + esc(t) + "</p>");
+  }
+  for (let i = 0; i < lines.length; i++){
+    const L = lines[i];
+    if (L.indexOf("## ") === 0){
+      flush();
+      out.push('<h4 class="gsub">' + esc(L.slice(3).trim()) + "</h4>");
+    } else if (L.indexOf("@@CHK@@") === 0){
+      flush();
+      const parts = L.slice(7).split("@@");
+      const cells = (parts[0] || "").split("|");
+      let g = "";
+      for (let j = 0; j + 1 < cells.length; j += 2){
+        g += '<div class="chk-c"><i>' + esc(cells[j]) + "</i><b>" + esc(cells[j + 1]) + "</b></div>";
+      }
+      out.push('<div class="chk"><div class="chk-h">' + esc(S.chkLabel) + "</div>" +
+               '<div class="chk-g">' + g + "</div>" +
+               (parts[1] ? '<div class="chk-n">' + esc(parts[1]) + "</div>" : "") +
+               (parts[2] ? '<div class="chk-s">' + esc(parts[2]) + "</div>" : "") + "</div>");
+    } else if (L.indexOf("@@CMP@@") === 0){
+      flush();
+      const c = L.slice(7).split("|");
+      out.push('<div class="cmp">' +
+        '<div class="cmp-c"><i>' + esc(c[0] || "") + "</i><p>" + esc(c[1] || "") + "</p></div>" +
+        '<div class="cmp-c cmp-b"><i>' + esc(c[2] || "") + "</i><p>" + esc(c[3] || "") + "</p></div>" +
+      "</div>");
+    } else {
+      buf.push(L);
+    }
+  }
+  flush();
+  return out.join("");
+}
+
+/* The author's own words, above our reading of them. Two shapes: an X post
+   (item.embed, filled in by scripts/fetch_embeds.py from X's oEmbed endpoint)
+   and a plain excerpt (item.quote, written by the publishing routine for every
+   other source). Both link back to the author. */
+function srcBlockHtml(item){
+  const S = STRINGS[LANG] || STRINGS.en;
+  const e = item.embed;
+  if (e && (e.lines || []).length){
+    const url = safeUrl(e.url || item.sourceUrl);
+    return '<div class="xemb">' +
+      '<div class="xemb-top">' +
+        '<div class="xemb-av">' + esc(String(e.name || "?").charAt(0)) + "</div>" +
+        '<div class="xemb-nm"><b>' + esc(e.name || "") + "</b><span>" + esc(e.handle || "") + "</span></div>" +
+        '<a class="xemb-logo" href="' + url + '" target="_blank" rel="noopener" aria-label="X">\u{1D54F}</a>' +
+      "</div>" +
+      '<div class="xemb-body">' +
+        e.lines.map(l => "<p>" + esc(l) + "</p>").join("") +
+        (e.quoted ? '<div class="xemb-q">' + esc(e.quoted) + "</div>" : "") +
+      "</div>" +
+      '<div class="xemb-d"><a href="' + url + '" target="_blank" rel="noopener">' + esc(e.date || "") + "</a></div>" +
+    "</div>";
+  }
+  const q = item.quote;
+  if (q && (q.lines || []).length){
+    return '<div class="srcq">' +
+      '<div class="srcq-h">“” ' + esc(S.fromSource) + "</div>" +
+      q.lines.map(l => "<p>" + esc(l) + "</p>").join("") +
+      '<div class="srcq-c"><a href="' + safeUrl(item.sourceUrl) + '" target="_blank" rel="noopener">' +
+        esc(q.cite || dispName(item.source)) + "</a></div>" +
+    "</div>";
+  }
+  return "";
+}
+
+/* What would have to happen for either reading to be right. Deliberately the
+   last thing in the body: it is only useful once the argument has landed. */
+function splitHtml(item){
+  const S = STRINGS[LANG] || STRINGS.en;
+  if (!item.split) return "";
+  return '<div class="splitb"><div class="label">' + esc(S.splitLabel) + "</div><p>" +
+         esc(item.split) + "</p></div>";
+}
 
 /* Break a gist into short paragraphs (every 2 sentences) so long
    summaries stay readable on phones. Conservative splitting: Korean
@@ -6738,7 +6958,7 @@ function toggleListen(id){
   ttsStop();
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
-  const text = item.title[LANG] + ". " + item.gist[LANG] + " " + item.why[LANG];
+  const text = item.title[LANG] + ". " + plainGist(item.gist[LANG]) + " " + item.why[LANG];
   const u = new SpeechSynthesisUtterance(text);
   const v = ttsVoice(LANG);
   if (v) u.voice = v;
@@ -7166,7 +7386,7 @@ async function copyWrapup(){
     parts.push("");
     parts.push(T.why + item.why[LANG]);
     parts.push("");
-    parts.push(item.gist[LANG]);
+    parts.push(plainGist(item.gist[LANG]));
     parts.push("");
     parts.push(T.orig + " (" + item.source + "): " + item.sourceUrl);
     parts.push("Stacks: " + shareUrl(item));
@@ -7968,7 +8188,7 @@ function renderHotRail(){
         } else {
           cv10.className += " hotl-cov-plain";
         }
-        var g11 = String((item.gist && (item.gist[LANG] || item.gist.en)) || "").replace(/\s+/g, " ").trim();
+        var g11 = plainGist((item.gist && (item.gist[LANG] || item.gist.en)) || "").replace(/\s+/g, " ").trim();
         /* 문장 경계까지 취함 (소수점 "1.5%"는 문장 끝으로 안 봄), 너무 짧으면 다음 문장까지 */
         var sum11 = "";
         for (var i11 = 0; i11 < g11.length; i11++){
@@ -8372,10 +8592,12 @@ function cardEl(item, S, idx){
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
       ${coverThumbHtml(item)}
       ${"" /* series feature retired: no series tag on cards */}
+      ${srcBlockHtml(item)}
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
-        <p class="gist">${esc(paraGist(item.gist[LANG]))}</p>
+        <div class="gist rich">${gistRich(item)}</div>
       </details>
+      ${splitHtml(item)}
       <div class="why">
         <div class="label">${S.why}</div>
         <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
@@ -8815,7 +9037,9 @@ async function loadGists(){
       const host = document.getElementById("sig-" + id);
       const node = host && host.querySelector(".gist");
       if (!node) return;
-      node.textContent = paraGist(part[id]);
+      /* the preview came out of gistRich too, so re-run it rather than
+         dropping raw marker text into the card */
+      node.innerHTML = gistRich(it);
       /* v83ClipScan decides once per card whether the summary overflows and
          therefore needs a "read more", then caches that answer. It ran while
          this card still held the short preview, which may not have overflowed.
@@ -9745,7 +9969,10 @@ bootData();
   /* 2026-07-25 (june): 원문 제목을 맨 위에서 "원문 보기" 링크 아래로 내렸다.
      10단위 번호라 사이에 끼워 넣을 자리가 남는다. */
   html.v83 #feedList .card-body > *{ order:90; }
+  html.v83 #feedList .card-body > .srcq,
+  html.v83 #feedList .card-body > .xemb{ order:10; }   /* ← 원문 먼저 */
   html.v83 #feedList .card-body > .gist-fold{ order:20; }
+  html.v83 #feedList .card-body > .splitb{ order:25; }   /* ← 해석의 마지막 문단, '왜 중요한가' 위 */
   html.v83 #feedList .card-body > .why{ order:30; }
   html.v83 #feedList .card-body > .opp{ order:35; }   /* ← 바로 '왜 중요한가' 밑 */
   html.v83 #feedList .card-body > .card-thumb{ order:40; }   /* ← 본문 아래 */

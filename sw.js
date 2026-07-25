@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v21";   /* data/ split: force everyone off the cached index.html that still fetched items.json */
+const CACHE = "stacks-v22";   /* source-post block + gist markers: the cached index.html would show "@@CHK@@" as literal text */
 
 const SHELL = [
   "./",

@@ -171,10 +171,18 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
     · `clip` — 요약이 미리보기보다 길다는 표시. 카드가 첫 프레임부터 클램프 높이를
       확보해서, 나중에 원문이 들어와도 레이아웃이 안 밀린다.
     · `opp` — **반대편 카드**(아래).
+    · `embed` — X 원문(아래 “원문 노출”). 레포 루트 `embeds.json`을 합쳐 넣는다.
+  또 `core.json`에 넣는 150자 미리보기는 `strip_markers()`로 마커를 걷어낸 평문이다.
+  마커 중간에서 잘린 미리보기가 첫 몇 초 동안 카드에 그대로 보이면 안 되기 때문.
   ⚠ 파이썬 정규식으로 옮길 때 `codecs.unicode_escape`를 쓰면 `\b`가 백스페이스 문자로
   변해 단어경계가 전부 죽는다(테마 매칭 40% 소실). `\uXXXX`만 치환할 것. 또 `\b`·`\w`는
   `re.A`(ASCII)로 컴파일해야 JS와 같아진다 — 안 그러면 한글·일본어가 단어문자로 잡혀
   `\bAI\b`가 CJK 문장 안에서 매칭을 멈춘다. (JS와 8/8 테마 완전 일치 검증 완료)
+- `fetch_embeds.py` — X 소스 카드의 원문을 `publish.twitter.com/oembed`로 받아
+  루트 `embeds.json`에 캐시한다. **러너 전용**(발행 샌드박스는 X로 나가는 경로가 없다).
+  회차당 40건까지만 새로 받고, 실패는 무시한다 — 없으면 카드가 `quote`로 폴백한다.
+  oEmbed가 주는 `<script>`(widgets.js)는 쓰지 않는다. 120KB 서드파티 스크립트가
+  카드보다 늦게 그려지며 레이아웃을 다시 민다. 필드만 파싱해 우리 CSS로 그린다.
 - `build_pages.py` — items.json → 정적 SEO 레이어: p/(글)·e/(엔티티)·week/(주간)
   + **t/(테마 논쟁 허브)·r/(저자 적중 기록)** 페이지, OG 카드 PNG(테마/기록 포함,
   avatarImg 원격 URL은 ogsrc/av-*.png로 캐시), sitemap·feed·robots.
@@ -397,6 +405,40 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
 - 현재 153건 중 15건이 반대편을 갖는다. 적게 나오는 게 정상이다.
 - UI: `.opp` 블록, ‘왜 중요한가’ 바로 밑(v83 order:35). 문구는 STRINGS의
   `oppLabel`/`oppNote`(3개국어).
+
+## ★ 원문 노출 · gist 마커 (2026-07-25 신설)
+
+카드 맨 위에 **저자의 문장을 그대로** 두고, 그 밑에 우리 해석이 온다. 이유는 셋 —
+해석이 어디서 출발했는지 보이고, 노출·클릭이 원저자에게 가고, 인용의 주종관계가
+화면에서 확인된다. 규칙 전문은 `claude/prompts/publish-v4.3.md`의 `[4-E]`·`[4-F]`.
+
+| 무엇 | 어디서 오나 | 렌더 |
+|---|---|---|
+| `quote{lines,cite}` | 발행 루틴이 작성 (전 소스) | `.srcq` |
+| `embed{name,handle,date,url,lines}` | `fetch_embeds.py` → `embeds.json` → `build_data.py` (X 전용) | `.xemb` |
+| `split` | 발행 루틴이 작성 (선택) | `.splitb` |
+
+`embed`가 있으면 그것을, 없으면 `quote`를 쓴다. X 카드에도 `quote`를 같이 넣어 두면
+oEmbed 실패·원문 삭제 때 폴백이 된다.
+
+**gist 안의 줄머리 마커** — 새 블록 종류마다 스키마를 바꾸지 않으려고 텍스트에 넣는다.
+
+```
+## 소제목                                        → <h4 class="gsub">
+@@CHK@@라벨|값|라벨|값@@해석@@출처               → .chk (우리가 직접 조회한 수치)
+@@CMP@@왼쪽라벨|왼쪽글|오른쪽라벨|오른쪽글        → .cmp (같은 사실의 두 해석)
+```
+
+- 렌더는 `index.html`의 `gistRich()` **한 곳**만 안다. SEO 페이지는 `build_pages.py`의
+  `gist_blocks()`가 같은 일을 한다(두 곳이 갈리면 검색 결과에 마커가 그대로 나간다).
+- 평문이 필요한 곳은 전부 마커를 걷어내야 한다: 미리보기(`build_data.strip_markers`),
+  meta description(`build_pages.strip_markers`), TTS·공유 텍스트·핫리스트 요약
+  (`index.html`의 `plainGist()`), v82 스니펫.
+- 마커는 **줄 맨 앞**에서 시작하고 한 줄 안에서 끝난다. 줄바꿈이 들어가면 깨진다.
+- 순서: 데스크톱 `html.v83 #feedList .card-body`, 모바일 v82.css —
+  `srcq/xemb 10 · gist-fold 20 · splitb 25 · why 30`.
+  **모바일 압축 피드 카드(`.card.v82c`)에서는 srcq/xemb/splitb를 감춘다** — 본문이
+  168px로 잘리는데 원문을 위에 두면 우리 해석이 한 줄도 안 보인 채 잘린다. 상세에서만 보인다.
 
 ## ★★ 배포 전 필수: 덮어쓰기 검사 (2026-07-25 신설)
 
