@@ -36,6 +36,16 @@
   .v82-tp.mine.on{background:var(--accent);border-color:var(--accent);color:#fff;}
   .v82-tp.pick.act{border-color:var(--accent);color:var(--accent);}
 
+  /* 2026-07-25 (june): 탐색 서브뷰(테마논쟁/적중기록) 헤더 — nav를 ←+제목으로 바꾼다.
+     X 모바일처럼 좌측 상단 뒤로가기 + 그 오른쪽에 메뉴명. 최신/팔로잉 탭은 감춘다. */
+  #v82subbar{display:none;align-items:center;gap:6px;height:48px;padding:0 6px;}
+  #v82subbar .bk{background:none;border:none;color:var(--text);font-size:22px;line-height:1;
+    cursor:pointer;padding:4px 10px;}
+  #v82subbar .ti{font-weight:800;font-size:18px;letter-spacing:-.01em;}
+  nav.nav-sub .nav-inner{display:none !important;}
+  nav.nav-sub #v82tabs{display:none !important;}
+  nav.nav-sub #v82subbar{display:flex;}
+
   /* --- bottom nav (persists over calendar/me sheets; hidden during intro/onboard/detail/drawer) --- */
   body{padding-bottom:calc(58px + env(safe-area-inset-bottom));}
   #v82nav{position:fixed;left:0;right:0;bottom:0;z-index:13500;display:flex;

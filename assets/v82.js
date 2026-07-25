@@ -72,6 +72,11 @@
   function $(id){ return document.getElementById(id); }
   var SILENT = false;
   function silentBack(){ SILENT = true; try { history.back(); } catch(e){ SILENT = false; } }
+  /* 2026-07-25 (june): 탐색의 지금쏠린곳/테마논쟁/적중기록을 X 모바일식 서브뷰로.
+     HUB_SUB   = 허브 화면 안에서 콘텐츠만 바꾼 서브(지금은 "skew").
+     EXPLORE_SUB = 피드에 렌더되는 서브(테마논쟁/적중기록). 이때는 허브 화면을 숨기고
+                   nav를 ←+제목 바로 바꾼다(nav-sub). 뒤로가기는 허브로 되돌린다. */
+  var HUB_SUB = null, EXPLORE_SUB = null;
 
   var ICONS = {
     home:'<svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9h13v-9"/></svg>',
@@ -135,6 +140,21 @@
       var strip = document.createElement("div"); strip.className = "v82-tabs"; strip.id = "v82tabs";
       navEl.appendChild(strip);
     }
+    /* 테마논쟁/적중기록 서브뷰용 ←+제목 헤더. nav 안에 넣어 nav.nav-sub 일 때만 보인다. */
+    if (navEl && !$("v82subbar")){
+      var sb = document.createElement("div"); sb.id = "v82subbar";
+      sb.innerHTML = '<button class="bk" aria-label="back">←</button><span class="ti"></span>';
+      sb.querySelector(".bk").onclick = function(){ if (EXPLORE_SUB) closeExploreSub(false); };
+      navEl.appendChild(sb);
+    }
+    /* 테마/기록 콘텐츠 안의 "피드로 돌아가기" 링크는 THEME_VIEW/SB_VIEW만 끄고 서브 헤더는
+       남긴다. 그걸 눌러 피드로 갔을 때 nav-sub도 같이 걷어낸다(특정 테마의 "전체 테마"는
+       THEME_VIEW가 유지되므로 걸리지 않는다). */
+    document.addEventListener("click", function(e){
+      if (!mq.matches || !EXPLORE_SUB) return;
+      if (!(e.target.closest && e.target.closest(".sb-header .series-close"))) return;
+      setTimeout(function(){ if (EXPLORE_SUB && !THEME_VIEW && !SB_VIEW){ EXPLORE_SUB = null; hideSubbar(); } }, 0);
+    }, true);
     var hr = $("hotRail"); var hs = hr && hr.closest("section");
     if (hs) hs.setAttribute("data-v82hot","");
     relabel();
@@ -520,20 +540,9 @@
         }
       }
     } catch (e){}
-    html += '<div class="v82-skew-h">' + t.skewTitle + '</div><div class="v82-skew-sub">' + t.skewSub + '</div>';
-    if (!rows.length){
-      html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';
-    } else {
-      rows.forEach(function(o, idx){
-        var dir = o.bull + o.bear, bp = dir? Math.round(o.bull/dir*100):0, rp = 100-bp;
-        var leanLb = (o.side==="bull"?t.bull:t.bear) + " " + Math.round(o.pct*100) + "%";
-        html += '<button class="v82-skew-row" data-i="' + idx + '">'
-          + '<div class="v82-skew-top"><span class="v82-skew-name">' + (o.icon?o.icon+" ":"") + esc(o.label) + '</span>'
-          + '<span class="v82-skew-lean ' + o.side + '">' + esc(leanLb) + '</span></div>'
-          + '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + rp + '%"></i></div>'
-          + '<div class="v82-skew-cts"><span>' + t.bull + ' ' + o.bull + '</span><span>' + t.bear + ' ' + o.bear + '</span></div></button>';
-      });
-    }
+    /* 2026-07-25 (june): 지금 쏠린곳도 테마논쟁·적중기록처럼 메뉴 항목으로. 목록은 서브뷰에서 */
+    html += '<div class="v82-hub-sec">' + t.skewTitle + '</div>';
+    html += '<button class="v82-hub-item" data-open="skew"><span class="em">📊</span>' + t.skewTitle + '<span class="ar">›</span></button>';
     html += '<div class="v82-hub-sec">' + t.themesSec + '</div>';
     html += '<button class="v82-hub-item" data-open="themes"><span class="em">◧</span>' + t.openThemes + '<span class="ar">›</span></button>';
     html += '<div class="v82-hub-sec">' + t.recordSec + '</div>';
@@ -544,13 +553,6 @@
     var head = hub.querySelector(".v82-inner");
     if (!head){ head = document.createElement("div"); head.className = "v82-inner"; hub.appendChild(head); }
     head.innerHTML = html;
-    var srows = head.querySelectorAll(".v82-skew-row"), data = rows;
-    for (var i = 0; i < srows.length; i++){
-      srows[i].onclick = function(){
-        var o = data[+this.dataset.i]; if (!o) return;
-        hubOpenView(function(){ if (o.kind==="theme" && typeof openTheme==="function") openTheme(o.key); else if (typeof entityFeedView==="function") entityFeedView(o.key); });
-      };
-    }
     var brows = head.querySelectorAll("[data-brief]");
     for (var bi = 0; bi < brows.length; bi++){
       brows[bi].onclick = function(){
@@ -562,14 +564,125 @@
     for (var j = 0; j < opens.length; j++){
       opens[j].onclick = function(){
         var w = this.dataset.open;
-        hubOpenView(function(){ if (w==="themes" && typeof openThemes==="function") openThemes(); else if (w==="record" && typeof openScoreboard==="function") openScoreboard(); });
+        if (w === "skew") openSkewSub();
+        else if (w === "themes") openThemesSub();
+        else if (w === "record") openRecordSub();
       };
+    }
+  }
+
+  /* ---------- 탐색 서브뷰 (지금쏠린곳 / 테마논쟁 / 적중기록) ---------- */
+  /* 지금 쏠린곳: 허브 화면 안에서 콘텐츠만 스킴 목록으로 바꾼다(같은 화면, 한 스텝). */
+  function skewSubHtml(){
+    var t = T(), rows = skewData(), html = "";
+    html += '<div class="v82-skew-sub" style="margin-top:2px">' + t.skewSub + '</div>';
+    if (!rows.length){
+      html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';
+    } else {
+      rows.forEach(function(o, idx){
+        var dir = o.bull + o.bear, bp = dir ? Math.round(o.bull / dir * 100) : 0, rp = 100 - bp;
+        var leanLb = (o.side === "bull" ? t.bull : t.bear) + " " + Math.round(o.pct * 100) + "%";
+        html += '<button class="v82-skew-row" data-i="' + idx + '">'
+          + '<div class="v82-skew-top"><span class="v82-skew-name">' + (o.icon ? o.icon + " " : "") + esc(o.label) + '</span>'
+          + '<span class="v82-skew-lean ' + o.side + '">' + esc(leanLb) + '</span></div>'
+          + '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + rp + '%"></i></div>'
+          + '<div class="v82-skew-cts"><span>' + t.bull + ' ' + o.bull + '</span><span>' + t.bear + ' ' + o.bear + '</span></div></button>';
+      });
+    }
+    return html;
+  }
+  function renderSkewSub(){
+    var hub = $("v82hub"); if (!hub) return;
+    var head = hub.querySelector(".v82-inner");
+    if (!head){ head = document.createElement("div"); head.className = "v82-inner"; hub.appendChild(head); }
+    var rows = skewData();
+    head.innerHTML = skewSubHtml();
+    var srows = head.querySelectorAll(".v82-skew-row");
+    for (var i = 0; i < srows.length; i++){
+      srows[i].onclick = function(){
+        var o = rows[+this.dataset.i]; if (!o) return;
+        HUB_SUB = null;                       /* 허브를 통째로 떠난다 */
+        closeHub(true); silentBack();
+        try { if (o.kind === "theme" && typeof openTheme === "function") openTheme(o.key);
+              else if (typeof entityFeedView === "function") entityFeedView(o.key); } catch (e) {}
+        setActive();
+      };
+    }
+  }
+  function openSkewSub(){
+    HUB_SUB = "skew";
+    renderSkewSub();
+    setHeadTitle("v82hub", T().skewTitle);
+    var hub = $("v82hub"); if (hub) hub.scrollTop = 0;
+    if (typeof pushView === "function") pushView();
+    setActive();
+  }
+  function closeHubSub(fromPop){
+    HUB_SUB = null;
+    renderHub();
+    setHeadTitle("v82hub", T().explore);
+    var hub = $("v82hub"); if (hub) hub.scrollTop = 0;
+    if (!fromPop) silentBack();
+    setActive();
+  }
+
+  /* 테마논쟁 / 적중기록: 피드에 렌더된다. 허브 화면을 숨기고 nav를 ←+제목으로 바꾼다. */
+  function topNav(){ return document.querySelector("nav"); }
+  function showSubbar(title){
+    var n = topNav(); if (!n) return;
+    var ti = document.querySelector("#v82subbar .ti"); if (ti) ti.textContent = title || "";
+    n.classList.add("nav-sub");
+  }
+  function hideSubbar(){ var n = topNav(); if (n) n.classList.remove("nav-sub"); }
+  function toTop(){
+    try { window.scrollTo(0, 0); } catch (e) {}
+    requestAnimationFrame(function(){ try { window.scrollTo(0, 0); } catch (e) {} });
+  }
+  function openThemesSub(){
+    EXPLORE_SUB = "themes";
+    closeHub(true);                           /* 허브 화면만 숨긴다(히스토리 유지) */
+    try { if (typeof openThemes === "function") openThemes(); } catch (e) {}
+    showSubbar(T().themesSec); toTop(); setActive();
+  }
+  function openRecordSub(){
+    EXPLORE_SUB = "record";
+    closeHub(true);
+    try { if (typeof openScoreboard === "function") openScoreboard(); } catch (e) {}
+    showSubbar(T().recordSec); toTop(); setActive();
+  }
+  function showHubSilent(){
+    var hub = $("v82hub"), h = $("v82hub-h"); if (!hub) return;
+    HUB_SUB = null; renderHub(); setHeadTitle("v82hub", T().explore);
+    hub.classList.add("on"); if (h) h.classList.add("on");
+    hub.scrollTop = 0; document.body.style.overflow = "hidden";
+  }
+  function closeExploreSub(fromPop){
+    var was = EXPLORE_SUB; EXPLORE_SUB = null;
+    try { if (was === "themes" && typeof closeThemes === "function") closeThemes();
+          else if (was === "record" && typeof closeScoreboard === "function") closeScoreboard(); } catch (e) {}
+    hideSubbar();
+    showHubSilent();                          /* 피드 위에 허브를 다시 띄운다(pushView 없음) */
+    if (!fromPop) silentBack();               /* 헤더 ←: 테마/기록 히스토리 엔트리를 걷어낸다 */
+    setActive();
+  }
+  /* 홈/탐색/찾기 등으로 강제 이탈할 때 서브 상태만 정리(히스토리/허브 재오픈 없음) */
+  function clearSubState(){
+    if (EXPLORE_SUB){
+      var was = EXPLORE_SUB; EXPLORE_SUB = null;
+      try { if (was === "themes" && typeof closeThemes === "function") closeThemes();
+            else if (was === "record" && typeof closeScoreboard === "function") closeScoreboard(); } catch (e) {}
+    }
+    hideSubbar();
+    if (HUB_SUB){
+      HUB_SUB = null; setHeadTitle("v82hub", T().explore);
+      if ($("v82hub") && $("v82hub").classList.contains("on")){ renderHub(); $("v82hub").scrollTop = 0; }
     }
   }
   function hubOpenView(fn){ closeHub(true); silentBack(); try { fn(); } catch(e){} setActive(); }
   function openHub(){
     if (!mq.matches) return;
     var hub = $("v82hub"); if (!hub || hub.classList.contains("on")) return;
+    HUB_SUB = null; setHeadTitle("v82hub", T().explore);   /* 항상 메뉴로 열린다 */
     renderHub();
     showScreen("v82hub");
     setActive();
@@ -1045,6 +1158,7 @@
   }
   function goHomeThen(fn){
     /* leave any shell screen / app view, then run */
+    clearSubState();
     if (anyScreenOpen()){ closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeList(true); silentBack(); }
     try { if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && typeof closeThemes==="function") closeThemes(); } catch(e){}
     fn(); setActive();
@@ -1056,6 +1170,7 @@
     try { var me=$("meSheet"); if(me && !me.hidden && typeof closeMe==="function"){ closeMe(); silentBack(); } } catch(e){}
   }
   function navGo(v){
+    clearSubState();          /* 어느 탭을 누르든 탐색 서브뷰 잔재부터 정리 */
     if (v === "home"){
       if (closeDetail(true)) silentBack();
       closeFind(false); closeHub(false); closeNotif(false); closePicker(false); closeList(true);
@@ -1098,6 +1213,9 @@
     var cfs = $("chartFS"); if (cfs && !cfs.hidden) return false;
     var cal = $("calSheet"); if (cal && !cal.hidden) return false;
     var me = $("meSheet"); if (me && !me.hidden) return false;
+    /* 탐색 서브뷰가 최우선: 지금쏠린곳(허브 내부) / 테마논쟁·적중기록(피드) → 뒤로가기는 허브로 */
+    if (HUB_SUB && $("v82hub") && $("v82hub").classList.contains("on")){ closeHubSub(true); return true; }
+    if (EXPLORE_SUB){ closeExploreSub(true); return true; }
     if (closeDrawer(true)) return true;
     if (closeList(true)) return true;
     if (closePicker(true)) { setActive(); return true; }
@@ -1225,6 +1343,9 @@
   });
 
   buildShell();
+  /* 허브 헤더 ←: 지금쏠린곳 서브면 메뉴로, 아니면 홈으로 */
+  var _hubBk = document.querySelector("#v82hub-h .bk");
+  if (_hubBk) _hubBk.onclick = function(){ if (HUB_SUB) closeHubSub(false); else navGo("home"); };
   watchFeed();
   watchSplash();
 })();
