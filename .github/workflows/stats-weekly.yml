@@ -35,12 +35,21 @@ jobs:
 
       - name: Commit the digest
         run: |
-          if [ -n "$(git status --porcelain stats/)" ]; then
-            git config user.name  "stacks-bot"
-            git config user.email "stacks-bot@users.noreply.github.com"
-            git add stats/
-            git commit -m "stats: weekly performance digest [skip ci]"
-            git push
-          else
+          if [ -z "$(git status --porcelain stats/)" ]; then
             echo "nothing to commit"
+            exit 0
           fi
+          git config user.name  "stacks-bot"
+          git config user.email "stacks-bot@users.noreply.github.com"
+          git add stats/
+          git commit -m "stats: weekly performance digest [skip ci]"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push race lost, retry $i"
+            sleep $(( (RANDOM % 8) + 3 ))
+          done
+          echo "::error::push failed after 5 attempts (concurrent commit on main)"
+          exit 1

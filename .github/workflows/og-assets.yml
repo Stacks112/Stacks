@@ -49,8 +49,16 @@ jobs:
           git add -A
           if git diff --cached --quiet; then
             echo "no changes"
-          else
-            git pull --rebase --autostash origin main || true
-            git commit -m "chore: refresh OG card images"
-            git push
+            exit 0
           fi
+          git commit -m "chore: refresh OG card images"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push race lost, retry $i"
+            sleep $(( (RANDOM % 8) + 3 ))
+          done
+          echo "::error::push failed after 5 attempts (concurrent commit on main)"
+          exit 1

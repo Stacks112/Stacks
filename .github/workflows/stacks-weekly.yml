@@ -63,12 +63,21 @@ jobs:
         # but guard anyway so test runs never create commits)
         if: ${{ github.event.inputs.test_to == '' }}
         run: |
-          if [ -n "$(git status --porcelain weekly/)" ]; then
-            git config user.name  "stacks-bot"
-            git config user.email "stacks-bot@users.noreply.github.com"
-            git add weekly/
-            git commit -m "content: weekly best digest [skip ci]"
-            git push
-          else
+          if [ -z "$(git status --porcelain weekly/)" ]; then
             echo "nothing to commit"
+            exit 0
           fi
+          git config user.name  "stacks-bot"
+          git config user.email "stacks-bot@users.noreply.github.com"
+          git add weekly/
+          git commit -m "content: weekly best digest [skip ci]"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin main && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push race lost, retry $i"
+            sleep $(( (RANDOM % 8) + 3 ))
+          done
+          echo "::error::push failed after 5 attempts (concurrent commit on main)"
+          exit 1
