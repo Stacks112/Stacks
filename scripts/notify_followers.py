@@ -62,6 +62,86 @@ THEMES = {
 }
 
 
+MAX_ENT_PER_ITEM = 2   # 한 글이 여러 종목을 언급해도 팔로워당 알림은 최대 2개
+MAX_ENT_PER_RUN = 6    # 한 번의 푸시(커밋)에서 보내는 종목 알림 총량 상한
+
+
+def slug_tag(k):
+    """index.html의 slugTag()와 반드시 같은 결과를 내야 한다.
+
+    앱은 관심 종목을 켤 때 OneSignal 태그 `c_<slugTag(key)>`를 붙인다.
+    여기서 한 글자라도 다르게 만들면 푸시가 아무에게도 안 간다(조용한 실패).
+    JS: String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g,"_").replace(/^_+|_+$/g,"")
+    """
+    return re.sub(r"^_+|_+$", "", re.sub(r"[^a-z0-9가-힣]+", "_", str(k).lower()))
+
+
+def _matcher(entities):
+    """build_pages의 별칭 매처를 재사용한다 (규칙이 갈라지면 사이트에 보이는
+    '관련 종목'과 푸시 대상이 어긋난다)."""
+    import build_pages
+    return build_pages, build_pages.build_matcher(entities)
+
+
+def item_companies(it, entities, cache={}):
+    """이 글의 '주인공'인 팔로우 가능한 엔티티(company/person)를 중요도 순으로.
+
+    본문에 이름이 스쳐 지나가는 것만으로는 알림을 보내지 않는다. 표지 라벨과
+    태그(발행 시 사람이 고른 것), 그리고 필자 본인만 대상으로 한다. 예를 들어
+    S&P 급락 글이 본문에서 인텔을 한 번 언급했다고 인텔 팔로워 폰을 울리면
+    그 사람은 다음 알림을 끈다.
+    """
+    if not entities:
+        return []
+    if "m" not in cache:
+        try:
+            cache["m"] = _matcher(entities)
+        except Exception as e:
+            print(f"[watch-push] matcher unavailable: {e}")
+            cache["m"] = None
+    if not cache["m"]:
+        return []
+    _bp, pats = cache["m"]
+    cover = (it.get("cover") or {}).get("label") or ""
+    tags = it.get("tags") or []
+    hay = cover + " · " + " · ".join(tags)
+    # 태그는 보통 티커로 달린다(INTC, GOOGL). 티커는 별칭 목록에 없으므로
+    # entities[key]["ticker"]("intc.us")의 앞부분을 따로 맞춰본다.
+    up = [t.strip().upper() for t in tags] + [cover.strip().upper()]
+    by_ticker = {}
+    for key, e in entities.items():
+        if (e or {}).get("kind") not in ("company", "person"):
+            continue
+        tk = (e or {}).get("ticker", "").split(".")[0].strip().upper()
+        if len(tk) >= 2:
+            by_ticker.setdefault(tk, []).append(key)
+    hits, seen = {}, set()
+    for tk, keys in by_ticker.items():
+        if tk not in up:
+            continue
+        if len(keys) > 1:  # googl.us를 GOOGLE과 DEEPMIND가 같이 쓰는 식의 충돌
+            keys = [k for k in keys if k.upper().startswith(tk) or tk.startswith(k.upper())]
+        if len(keys) == 1:
+            seen.add(keys[0])
+            # 순위는 별칭 매칭과 같은 자 단위 위치로 매긴다 (섞이면 정렬이 뒤집힌다)
+            pos = hay.upper().find(tk)
+            hits[keys[0]] = pos if pos >= 0 else len(hay)
+    for rx, key in pats:
+        if key in seen or (entities.get(key) or {}).get("kind") not in ("company", "person"):
+            continue
+        m = rx.search(hay)
+        if m:
+            seen.add(key)
+            hits[key] = m.start()
+    # 발행자가 태그를 적은 순서를 그대로 우선순위로 쓴다 (첫 태그가 주인공).
+    picked = sorted(hits, key=lambda k: (hits[k], k))
+    src = it.get("source")
+    if src in entities and src not in seen \
+            and (entities[src] or {}).get("kind") in ("company", "person"):
+        picked.append(src)  # 필자 본인은 항상 맨 뒤 (종목 알림 자리를 뺏지 않게)
+    return picked
+
+
 def item_themes(it):
     g = it.get("gist") or {}
     hay = " ".join([(it.get("title") or {}).get(l, "") or "" for l in ("en", "ko", "ja")]
@@ -175,6 +255,8 @@ def main():
 
     old_ids = {it["id"] for it in json.loads(old_raw).get("items", [])}
     series_meta = new.get("series", {})
+    entities = new.get("entities", {}) or {}
+    sent_ent, ent_budget = set(), MAX_ENT_PER_RUN
     added = [it for it in new.get("items", []) if it["id"] not in old_ids]
     if not added:
         print("no new items in this push; nothing to send")
@@ -211,6 +293,32 @@ def main():
                 raise
             except Exception as e:
                 print(f"[theme-push-skip] {it['id']} t_{key}: {e}")
+        # 관심 종목 언급 푸시 (tag c_<slugTag(key)>).
+        # 같은 종목은 한 번의 run에서 한 번만 — 새 글 3건이 다 NVIDIA를 언급해도
+        # 팔로워 폰이 세 번 울리면 그건 알림이 아니라 소음이다.
+        n_item = 0
+        for key in item_companies(it, entities):
+            if n_item >= MAX_ENT_PER_ITEM:
+                break
+            if ent_budget <= 0:
+                _summary(f"- ⏭️ `{it['id']}`: 종목 알림 상한({MAX_ENT_PER_RUN}) 도달 — 이후 생략.")
+                break
+            tag = "c_" + slug_tag(key)
+            if len(tag) < 3 or tag in sent_ent:
+                continue
+            sent_ent.add(tag)
+            ent_budget -= 1
+            n_item += 1
+            try:
+                # 알림 제목에는 핸들을 뺀 이름만. "The Kobeissi Letter
+                # (@KobeissiLetter) · 새 글"은 잠금화면에서 뒷부분이 잘린다.
+                label = re.sub(r"\s*\(@[^)]+\)\s*$", "", key)
+                send(tag, f"{label} · 새 글", it["title"]["ko"],
+                     f"https://stacksdaily.com/#sig-{it['id']}")
+            except SystemExit:
+                raise
+            except Exception as e:
+                print(f"[watch-push-skip] {it['id']} {tag}: {e}")
 
 
 if __name__ == "__main__":
