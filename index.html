@@ -3150,7 +3150,7 @@ function entityTip(key){
     ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safeKey + '\', event)">'
       + (WATCH.has(key) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>"
     : "";
-  return '<span class="entity-tip"><span class="tip-sector">' + e.sector[LANG] + '</span>' + e.desc[LANG] + quote + follow + hint + '</span>';
+  return '<span class="entity-tip"><span class="tip-sector">' + esc(e.sector[LANG]) + '</span>' + esc(e.desc[LANG]) + quote + follow + hint + '</span>';
 }
 
 /* ---------------- glossary of uncommon terms ----------------
@@ -4411,10 +4411,10 @@ function chipHtml(tag){
   const tip = entityTip(tag);
   if (!tip){
     const safe0 = tag.replace(/'/g, "\\'");
-    return '<span class="chip chip-click" onclick="tagTap(\'' + safe0 + '\')">' + tag + '</span>';
+    return '<span class="chip chip-click" onclick="tagTap(\'' + safe0 + '\')">' + esc(tag) + '</span>';
   }
   const safe = tag.replace(/'/g, "\\'");
-  return '<span class="chip has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="chipTap(this, \'' + safe + '\')">' + tag + tip + '</span>';
+  return '<span class="chip has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="chipTap(this, \'' + safe + '\')">' + esc(tag) + tip + '</span>';
 }
 /* mobile: first tap shows the tooltip, second tap searches the name.
    desktop: hover shows the tooltip, so a click searches immediately. */
@@ -5786,9 +5786,9 @@ function avatarHtml(item, extraClass){
   const cls = extraClass ? extraClass + " avatar" : "avatar";
   const a = item.avatarImg, isUrl = a && /^https?:\/\//.test(a);
   if (a && (isUrl || !item.wiki)){
-    return `<div class="${cls} photo" data-init="${esc(initial(item.source))}" data-lang="${item.sourceLang.toLowerCase()}"><img src="${esc(a)}" alt="${esc(item.source)}" loading="lazy" onerror="avatarFail(this)"></div>`;
+    return `<div class="${cls} photo" data-init="${esc(initial(item.source))}" data-lang="${esc(item.sourceLang.toLowerCase())}"><img src="${esc(a)}" alt="${esc(item.source)}" loading="lazy" onerror="avatarFail(this)"></div>`;
   }
-  return `<div class="${cls} ${item.sourceLang.toLowerCase()}" data-avatar="${item.id}">${initial(item.source)}</div>`;
+  return `<div class="${cls} ${esc(item.sourceLang.toLowerCase())}" data-avatar="${item.id}">${esc(initial(item.source))}</div>`;
 }
 function avatarFail(img){ try{ const p=img.parentNode; p.classList.remove('photo'); p.classList.add(p.getAttribute('data-lang')||'en'); p.textContent=p.getAttribute('data-init')||'?'; }catch(e){} }
 
@@ -6524,6 +6524,21 @@ function loadViewCounts(){ return loadCounts("/views", VIEW_COUNTS); }
    One tap, one vote per device; shows the crowd split as social proof. */
 let VOTE_COUNTS = {};                 /* id -> {up, down} */
 const VOTES = store.get("stk_votes", {}); /* id -> "up" | "down" */
+/* Random per-device id, sent with /vote so the worker can hold the real vote
+   state itself instead of believing whatever "previous vote" the browser
+   claims. Not an account and not a tracker: it never leaves the vote call and
+   nothing on the server maps it back to a person. */
+const DEVID = (function(){
+  try {
+    let d = store.get("stk_devid", "");
+    if (!d || !/^[A-Za-z0-9_-]{8,32}$/.test(d)){
+      d = ([...crypto.getRandomValues(new Uint8Array(9))]
+            .map(b => b.toString(16).padStart(2, "0")).join(""));
+      store.set("stk_devid", d);
+    }
+    return d;
+  } catch (e){ return ""; }
+})();
 function loadVoteCounts(){ return loadCounts("/votes", VOTE_COUNTS); }
 function applyVoteCounts(id){
   const ids = id ? [id] : Object.keys(VOTE_COUNTS);
@@ -6568,7 +6583,7 @@ async function castVote(id, dir){
     const res = await fetch(COMMENTS_API + "/vote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pageId: id, dir: VOTES[id] || null, prev: prev })
+      body: JSON.stringify({ pageId: id, dir: VOTES[id] || null, prev: prev, did: DEVID })
     });
     if (res.ok){
       const j = await res.json();
@@ -6648,6 +6663,14 @@ function esc(s){
   return String(s == null ? "" : s)
     .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+/* Href guard for anything that came out of items.json. Card text is written
+   by an automated publisher reading third-party feeds, so a sourceUrl of
+   "javascript:..." is a plausible accident and would run on click. Only plain
+   http(s) links survive; everything else degrades to a dead anchor. */
+function safeUrl(u){
+  const s = String(u == null ? "" : u).trim();
+  return /^https?:\/\//i.test(s) ? esc(s) : "#";
 }
 function cDate(iso){
   try { const d = new Date(iso); if (isNaN(d)) return "";
@@ -7406,15 +7429,15 @@ function renderHotRail(){
        hydrateThumb still upgrades items that have a thumbWiki photo. */
     const ci = (typeof coverImg === "function") ? coverImg(item) : null;
     const hotBg = (ci && ci.mode === "photo")
-      ? `linear-gradient(180deg, rgba(10,11,13,.12), rgba(10,11,13,.74)), url('${ci.url}') center/cover no-repeat`
+      ? `linear-gradient(180deg, rgba(10,11,13,.12), rgba(10,11,13,.74)), url('${encodeURI(String(ci.url)).replace(/'/g,"%27")}') center/cover no-repeat`
       : `linear-gradient(150deg, #262b38, #12141a)`;
     const coverHtml = `<div class="hot-cover" data-thumb="${item.id}" style="background:${hotBg}">
            ${item.logo ? `<span class="cover-logo" data-logo="${item.id}"></span>` : ""}
            ${item.paywall ? `<span class="cover-paid">$</span>` : ""}
            ${ENTITIES[item.cover.label]
-             ? `<span class="cover-label has-tip tip-below" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="event.preventDefault(); event.stopPropagation(); chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${item.cover.label}${entityTip(item.cover.label)}</span>`
-             : `<span class="cover-label">${item.cover.label}</span>`}
-           <span class="cover-title">${item.title[LANG]}</span>
+             ? `<span class="cover-label has-tip tip-below" onmouseenter="loadQuote('${item.cover.label.replace(/'/g,"\\'")}')" onclick="event.preventDefault(); event.stopPropagation(); chipTap(this, '${item.cover.label.replace(/'/g,"\\'")}')">${esc(item.cover.label)}${entityTip(item.cover.label)}</span>`
+             : `<span class="cover-label">${esc(item.cover.label)}</span>`}
+           <span class="cover-title">${esc(item.title[LANG])}</span>
          </div>`;
     a.innerHTML = `
       ${coverHtml}
@@ -7738,7 +7761,7 @@ function cardEl(item, S, idx){
       <div class="related">
         <div class="label">${S.related}</div>
         <div class="related-links">
-          ${rel.map(r => `<button class="related-link" onclick="goToItem('${r.id}')"><span class="rel-arrow">↳</span><span>${r.title[LANG]}</span></button>`).join("")}
+          ${rel.map(r => `<button class="related-link" onclick="goToItem('${r.id}')"><span class="rel-arrow">↳</span><span>${esc(r.title[LANG])}</span></button>`).join("")}
         </div>
       </div>` : "";
     const el = document.createElement("article");
@@ -7754,22 +7777,22 @@ function cardEl(item, S, idx){
         ${avatarHtml(item)}
         <div class="src-block">
           <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="entityTap(this, '${(item.source||"").replace(/'/g,"")}')"` : ""}>${esc(dispName(item.source))}${entityTip(item.source)}</span>
-          <span class="src-date">${(typeof relDate==="function"?relDate(item):fmt(item.date))} · ${item.sourceLang}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
+          <span class="src-date">${esc(typeof relDate==="function"?relDate(item):fmt(item.date))} · ${esc(item.sourceLang)}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
-      <h3 class="card-title" onclick="toggleCollapse('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${item.title[LANG]}</span><span class="collapse-caret" aria-hidden="true">›</span></h3>
+      <h3 class="card-title" onclick="toggleCollapse('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span><span class="collapse-caret" aria-hidden="true">›</span></h3>
       <div class="card-body">
-      ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${origTitle}</div>` : ""}
+      ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
       ${coverThumbHtml(item)}
       ${"" /* series feature retired: no series tag on cards */}
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
-        <p class="gist">${paraGist(item.gist[LANG])}</p>
+        <p class="gist">${esc(paraGist(item.gist[LANG]))}</p>
       </details>
       <div class="why">
         <div class="label">${S.why}</div>
-        <p>${RBETA ? esc(paraGist(item.why[LANG])) : item.why[LANG]}</p>
+        <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
       </div>
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
@@ -7783,7 +7806,7 @@ function cardEl(item, S, idx){
         <div class="vote-bar" data-vbar="${item.id}" hidden><div class="vote-fill"></div><span class="vote-lbl"></span></div>
       </div>` : ""}
       <div class="cta-row">
-        <a class="original-link" href="${item.sourceUrl}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
+        <a class="original-link" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
         <span class="lang-note">${langNote}</span>
       </div>
@@ -8326,7 +8349,13 @@ async function nlSubmit(ev){
     });
     const j = await r.json().catch(() => ({}));
     if (r.ok && j.ok){
-      if (msg){ msg.className = "nl-msg"; msg.textContent = S.nlSent; }
+      /* double opt-in (worker v9.0): a brand new address gets status "pending"
+         and has to click the link in the confirmation mail before it joins the
+         list, so telling them "you're in" here would be a lie. */
+      const PEND = { ko: "확인 메일을 보냈어요. 메일함에서 버튼을 눌러 구독을 완료해 주세요.",
+                     en: "Check your inbox. Click the button in the confirmation email to finish.",
+                     ja: "確認メールを送りました。メール内のボタンを押して購読を完了してください。" };
+      if (msg){ msg.className = "nl-msg"; msg.textContent = j.status === "pending" ? tr(PEND) : S.nlSent; }
       if (emailEl) emailEl.value = "";
       try { store.set("stk_nl_email", email); store.set("stk_nl_lang", LANG); } catch (e){}
       track("newsletter/subscribe");
@@ -10446,10 +10475,15 @@ window.stkNlWire = function(root){
     msg.hidden = false; msg.className = "stk-nl-msg"; msg.textContent = t.saving;
     fetch(SUBSCRIBE_URL, { method:"POST", headers:{ "Content-Type":"application/json" },
       body: JSON.stringify({ email: email, lang: lang }) })
-      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return r.ok && j.ok; }); })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return (r.ok && j.ok) ? (j.status || "subscribed") : null; }); })
       .then(function(ok){
         if (ok){
-          msg.className = "stk-nl-msg"; msg.textContent = t.saved;
+          /* an address the list has never confirmed comes back "pending" */
+          var PEND = { ko:"확인 메일을 보냈어요. 메일함에서 버튼을 눌러 구독을 완료해 주세요.",
+                       en:"Check your inbox. Click the button in the confirmation email to finish.",
+                       ja:"確認メールを送りました。メール内のボタンを押して購読を完了してください。" };
+          var L = (typeof LANG !== "undefined" && PEND[LANG]) ? LANG : "ko";
+          msg.className = "stk-nl-msg"; msg.textContent = (ok === "pending") ? PEND[L] : t.saved;
           try { store.set("stk_nl_email", email); store.set("stk_nl_lang", lang); } catch (e){}
           try { track("newsletter/lang-change"); } catch (e){}
         } else { msg.className = "stk-nl-msg err"; msg.textContent = t.err; }
