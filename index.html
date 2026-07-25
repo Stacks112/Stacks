@@ -206,6 +206,8 @@ const STRINGS = {
     why: "Why it matters",
     read: "Read the original",
     related: "Related",
+    oppLabel: "The other side",
+    oppNote: "Same company, opposite call",
     langNoteKO: "Original in Korean · auto-translate works well",
     langNoteEN: "Original in English",
     langNoteJA: "Original in Japanese · auto-translate works well",
@@ -372,6 +374,8 @@ const STRINGS = {
     why: "왜 중요한가",
     read: "원문 보기",
     related: "함께 읽기",
+    oppLabel: "반대편",
+    oppNote: "같은 종목을 반대로 본 글",
     langNoteKO: "원문: 한국어",
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     langNoteJA: "원문: 일본어 · 브라우저 번역으로도 충분합니다",
@@ -538,6 +542,8 @@ const STRINGS = {
     why: "なぜ重要か",
     read: "原文を読む",
     related: "あわせて読む",
+    oppLabel: "反対の見方",
+    oppNote: "同じ銘柄への逆の見方",
     langNoteKO: "原文: 韓国語",
     langNoteEN: "原文: 英語",
     langNoteJA: "原文: 日本語",
@@ -2419,6 +2425,49 @@ html[data-theme="dark"] .card-thumb-img.cti-logo{background:#EDEFF2;}
   font-family:var(--mono-font);font-size:11px;font-weight:700;
   display:flex;align-items:center;justify-content:center;
 }
+/* ---------- summary height reservation ----------
+   .gist paints a ~150 character preview and is swapped for the full text once
+   data/gist.*.json arrives. Both clamps below already exist for the "read
+   more" affordance; the min-height is what makes the box the same size before
+   and after the swap, so the swap costs no layout shift and no late LCP. */
+.card.gclip .gist{min-height:168px;}
+html.v83 #feedList .card.gclip .gist{min-height:215px;}
+.card.gclip.v82expanded .gist,
+html.v83 #feedList .card.gclip.v83expanded .gist{min-height:0;}
+
+/* ---------- the other side ----------
+   Sits directly under "why it matters" so the counterargument arrives before
+   the reader has finished agreeing. Deliberately quiet: a hairline block, not
+   a callout, because it appears on roughly one card in ten and should read as
+   part of the article rather than an interruption. */
+.opp{
+  margin-top:14px;padding:11px 12px 9px;
+  border:1px solid var(--line);border-radius:12px;
+  background:linear-gradient(180deg,rgba(127,127,140,.045),rgba(127,127,140,0));
+}
+.opp-h{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;
+  font-size:11.5px;letter-spacing:.01em;color:var(--muted);}
+.opp-h b{color:var(--text);font-weight:800;}
+.opp-ico{font-size:12px;line-height:1;}
+.opp-k{
+  font-family:"Inter",sans-serif;font-size:10px;font-weight:800;letter-spacing:.03em;
+  padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--text);
+}
+.opp-note{color:var(--muted);opacity:.85;}
+.opp-row{
+  display:flex;align-items:flex-start;gap:8px;width:100%;
+  padding:7px 8px;margin-top:2px;text-align:left;
+  background:none;border:0;border-radius:9px;cursor:pointer;color:var(--text);
+  font:inherit;transition:background .15s ease;
+}
+.opp-row:hover{background:rgba(127,127,140,.09);}
+.opp-row .stance-pill{flex:0 0 auto;margin-top:1px;}
+.opp-t{flex:1 1 auto;font-size:13.5px;line-height:1.5;}
+html[data-lang="ko"] .opp-t{font-family:var(--ui-font);}
+.opp-src{flex:0 0 auto;font-size:11px;color:var(--muted);white-space:nowrap;align-self:center;}
+@media (max-width:520px){ .opp-src{display:none;} }
+html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0));}
+
 .related{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .related .label{margin-bottom:8px;}
 .related-links{display:flex;flex-direction:column;gap:6px;}
@@ -3014,7 +3063,14 @@ let LANG = langParam() || lsGet("stk_lang") ||
     : ((l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : "en")((navigator.language || "").toLowerCase())));
 let TAB = "all";
 
-function setLang(l){ if (typeof ttsStop === "function") ttsStop(); LANG = l; lsSet("stk_lang", l); closeLangMenu(); render(); }
+function setLang(l){
+  if (typeof ttsStop === "function") ttsStop();
+  LANG = l; lsSet("stk_lang", l); closeLangMenu(); render();
+  /* core carries every language's preview, so the switch paints immediately;
+     the new language's full summaries stream in behind it. */
+  GISTS_IN = false;
+  if (typeof loadGists === "function") loadGists();
+}
 
 /* v83.7: keep the tab title / meta description / canonical in sync with the
    selected language. document.title also drives the browser tab label. */
@@ -3671,6 +3727,34 @@ function itemStance(item){
   const s = item.stance || STANCE[item.id];
   return (s === "bull" || s === "bear") ? s : (s ? "watch" : null);
 }
+/* ---------------- the other side ----------------
+   Every card that takes a side gets shown, on the card itself, the nearest
+   post that took the opposite side on the same company. A reader who only
+   ever meets the bull case leaves holding the bull case.
+
+   The pairing is decided at publish time by scripts/build_data.py
+   (pick_opposites) using data already on the page - declared ticker, stance,
+   date - and is deliberately strict, so most cards carry nothing. Rendering
+   only reads what the build wrote; it never guesses. */
+function oppHtml(item, S){
+  const o = item.opp;
+  if (!o || !o.ids || !o.ids.length) return "";
+  const rows = o.ids
+    .map(id => ITEMS.find(x => x.id === id))
+    .filter(Boolean)
+    .map(r => {
+      const st = itemStance(r), m = st ? stanceMeta(st) : null;
+      return '<button class="opp-row" onclick="goToItem(\'' + r.id + '\')">'
+        + (m ? '<span class="stance-pill sp-' + m.key + '">' + m.label + "</span>" : "")
+        + '<span class="opp-t">' + esc(r.title[LANG]) + "</span>"
+        + '<span class="opp-src">' + esc(dispName(r.source)) + "</span></button>";
+    }).join("");
+  if (!rows) return "";
+  return '<div class="opp"><div class="opp-h">'
+    + '<span class="opp-ico">⚖️</span><b>' + S.oppLabel + "</b>"
+    + (ENTITIES[o.k] ? '<span class="opp-k">' + esc(entName(o.k)) + "</span>" : "")
+    + '<span class="opp-note">' + S.oppNote + "</span></div>" + rows + "</div>";
+}
 function stancePillHtml(item){
   /* rbeta: geopolitical/macro posts (oil-geopolitics) don't get a bull/bear tag —
      macro news doesn't call a single company or sector up or down. */
@@ -4017,7 +4101,16 @@ function themeHay(i){
   var g=i.gist||{};
   return [i.title&&i.title.en||"", i.title&&i.title.ko||"", i.title&&i.title.ja||"", g.en||"", (i.tags||[]).join(" ")].join(" ");
 }
-function themeItems(k){ var th=THEMES[k]; if(!th) return []; return ITEMS.filter(function(i){ return th.kw.test(themeHay(i)); }); }
+/* build_data.py runs these same regexes over the FULL summaries at publish
+   time and ships the answer as item.themes. Matching here against the
+   truncated preview instead would quietly drop about a third of the hits.
+   The regex path stays as the fallback for a stale core.json. */
+function themeItems(k){
+  var th=THEMES[k]; if(!th) return [];
+  return ITEMS.filter(function(i){
+    return i.themes ? i.themes.indexOf(k) >= 0 : th.kw.test(themeHay(i));
+  });
+}
 function openThemes(){
   THEME_VIEW="index"; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
   pushView(); try{ if(location.hash.indexOf("#theme-")===0||location.hash.indexOf("#record-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
@@ -4568,6 +4661,10 @@ function buildEntityMatcher(){
 }
 function itemEntities(item){
   if (item._entset) return item._entset;
+  /* Same story as themes: the alias scan below needs the full three-language
+     text, which no longer ships to the browser. build_data.py runs the
+     identical matcher at publish time and ships item.ents. */
+  if (item.ents) return (item._entset = new Set(item.ents));
   const set = new Set();
   if (item.cover && ENTITIES[item.cover.label]) set.add(item.cover.label);
   (item.tags || []).forEach(t => { if (ENTITIES[t]) set.add(t); });
@@ -4686,6 +4783,14 @@ function entityHeadEl(key, S, count, mode){
       + (e.url && !isCo ? '<a class="eh-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + (S.profile || "Profile ↗") + "</a>" : "")
       + railLink
     + "</div>";
+  /* The long profile blurbs are 180 KB across 182 entities and only ever show
+     on an entity page, so they ship separately. The short desc paints now and
+     the long one replaces it when data/elong.json lands. */
+  if (!ELONG_IN) ensureElong().then(() => {
+    const p = h.querySelector(".eh-desc"), e2 = ENTITIES[key];
+    const long = e2 && e2.longDesc && (e2.longDesc[LANG] || e2.longDesc.en);
+    if (p && long) p.textContent = long;
+  });
   return h;
 }
 /* mobile bottom sheet: the tapped tooltip's content is copied into a
@@ -7980,7 +8085,10 @@ function cardEl(item, S, idx){
         </div>
       </div>` : "";
     const el = document.createElement("article");
-    el.className = "card"; /* round12: 읽음 상태로 접거나 흐리게 하지 않음 */
+    /* gclip: build_data flagged this summary as longer than the preview the
+       card is painting right now. Wearing the clamp from the first frame means
+       the full text drops in later without moving anything. */
+    el.className = "card" + (item.clip ? " gclip v82clip v83clip" : ""); /* round12: 읽음 상태로 접거나 흐리게 하지 않음 */
     el.id = "sig-" + item.id;
     el.style.animationDelay = (idx * 0.04) + "s";
     const mineWhy = FEED_MINE ? mineReasons(item) : [];
@@ -8009,6 +8117,7 @@ function cardEl(item, S, idx){
         <div class="label">${S.why}</div>
         <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
       </div>
+      ${oppHtml(item, S)}
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
       ${item.ask && COMMENTS_API ? `<div class="ask-block">
@@ -8405,25 +8514,77 @@ if (window.matchMedia && window.matchMedia("(hover: hover)").matches){
 }
 
 /* ---------------- boot ----------------
-   Content lives in items.json next to this file. Fetch it, then start.
-   To publish new items June edits items.json only. */
-async function bootData(){
+   Content is published to items.json (1.3 MB, every summary in three
+   languages). The app used to block its first paint on all of it. It now
+   loads data/core.json, which is the same content with the summaries cut to a
+   preview - enough to fill the clamped card - and pulls the full text in
+   chunks after the first paint. scripts/build_data.py derives both from
+   items.json on every publish; items.json itself is untouched and remains the
+   publisher's single source of truth. */
+const DATA_DIR = "data/";
+let GIST_CHUNKS = 0;
+let GISTS_IN = false;
+
+async function getJSON(url, fresh){
   try {
-    const res = await fetch("items.json", { cache: "no-cache" });
+    const res = await fetch(url, fresh ? { cache: "no-cache" } : undefined);
     if (!res.ok) throw new Error("http " + res.status);
-    const j = await res.json();
+    return await res.json();
+  } catch (e) {
+    if (!fresh) return null;
+    /* offline or fetch blocked: try the HTTP cache before giving up */
+    try { return await (await fetch(url)).json(); } catch (e2) { return null; }
+  }
+}
+
+/* The full summaries land after the card is already on screen. Nothing is
+   re-rendered: the preview is swapped for the full text inside the existing
+   <p class="gist">, and .gist is height-clamped by CSS, so the swap moves no
+   layout. Oldest-last, so what the reader is looking at fills in first. */
+async function loadGists(){
+  for (let c = 0; c < GIST_CHUNKS; c++){
+    const part = await getJSON(DATA_DIR + "gist." + LANG + "." + c + ".json");
+    if (!part) continue;
+    Object.keys(part).forEach(id => {
+      const it = ITEMS.find(x => x.id === id);
+      if (!it || !part[id]) return;
+      it.gist[LANG] = part[id];
+      const host = document.getElementById("sig-" + id);
+      const node = host && host.querySelector(".gist");
+      if (!node) return;
+      node.textContent = paraGist(part[id]);
+      /* v83ClipScan decides once per card whether the summary overflows and
+         therefore needs a "read more", then caches that answer. It ran while
+         this card still held the short preview, which may not have overflowed.
+         Clearing the flag lets the next scan (it runs on a 1s interval) see
+         the real text. Without this the full summary arrives and is silently
+         cut off with no way to open it. */
+      host.__v83clip = false;
+    });
+  }
+  GISTS_IN = true;
+  if (typeof v83ClipScan === "function") { try { v83ClipScan(); } catch (e) {} }
+}
+
+let ELONG_IN = false, ELONG_P = null;
+function ensureElong(){
+  if (ELONG_IN) return Promise.resolve();
+  if (!ELONG_P) ELONG_P = getJSON(DATA_DIR + "elong.json").then(m => {
+    if (m) Object.keys(m).forEach(k => { if (ENTITIES[k]) ENTITIES[k].longDesc = m[k]; });
+    ELONG_IN = true;
+  });
+  return ELONG_P;
+}
+
+async function bootData(){
+  const j = await getJSON(DATA_DIR + "core.json", true)
+         || await getJSON("items.json", true);   /* last resort: the raw file */
+  if (j){
     ITEMS = j.items || [];
     SERIES = {};   /* series feature retired: ignore j.series so no series tag/view/follow renders */
     EVENTS = j.events || [];
     ENTITIES = j.entities || {};
-  } catch (e) {
-    /* offline or fetch blocked: try the HTTP cache before giving up */
-    try {
-      const res2 = await fetch("items.json");
-      const j2 = await res2.json();
-      ITEMS = j2.items || []; SERIES = {};   /* series feature retired */
-      EVENTS = j2.events || []; ENTITIES = j2.entities || {};
-    } catch (e2) {}
+    GIST_CHUNKS = j.chunks || 0;
   }
   /* newest first; same-day entries keep file order */
   ITEMS.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
@@ -8443,6 +8604,7 @@ async function bootData(){
   applyDash();
   window.matchMedia("(min-width:1024px)").addEventListener("change", applyDash);
   handleDeepLink();
+  loadGists();   /* full summaries, after the paint - deliberately not awaited */
   Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts(), loadVoteCounts()])
     .then(() => { renderHotRail(); renderToday(); applyVoteCounts(); }); /* re-rank with real stats */
   if (!showIntro()) maybeOnboard();
@@ -9322,6 +9484,7 @@ bootData();
   html.v83 #feedList .card-body > *{ order:90; }
   html.v83 #feedList .card-body > .gist-fold{ order:20; }
   html.v83 #feedList .card-body > .why{ order:30; }
+  html.v83 #feedList .card-body > .opp{ order:35; }   /* ← 바로 '왜 중요한가' 밑 */
   html.v83 #feedList .card-body > .card-thumb{ order:40; }   /* ← 본문 아래 */
   html.v83 #feedList .card-body > .oc,
   html.v83 #feedList .card-body > .since,
