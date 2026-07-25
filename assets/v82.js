@@ -168,7 +168,9 @@
       '<div class="v82dw-brand"><span style="font-size:20px">👤</span> Stacks</div>' +
       _dwItem("home", "🏠") + _dwItem("browse", "🧭") + _dwItem("skew", "📈") +
       _dwItem("themes", "💬") + _dwItem("record", "🎯") + _dwItem("cal", "📅") +
-      _dwItem("bm", "🔖") + _dwItem("alerts", "🔔") + _dwItem("appearance", "🌗") +
+      _dwItem("bm", "🔖") + _dwItem("alerts", "🔔") +
+      /* 2026-07-25 (june): 지금 모드를 보여준다 — 다크는 달, 라이트는 해 */
+      _dwItem("appearance", (typeof THEME !== "undefined" && THEME === "dark") ? "🌙" : "☀️") +
       '<button class="v82dw-item v82dw-join" data-act="join"><span class="ic">🗳️</span>' + _dwT("join") + '</button>' +
       _dwItem("me", "👤") +
       '<div class="v82dw-nl" id="v82dwNl"><div class="v82dw-nlh"><span>📧</span>' + t.nlLabel + '</div></div>' +
