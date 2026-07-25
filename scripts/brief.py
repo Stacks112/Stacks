@@ -53,13 +53,14 @@ def notify(tag, title, msg, url):
     if not WORKER or not SECRET:
         print("[skip] worker url / secret not set")
         return False
-    params = urllib.parse.urlencode({
-        "secret": SECRET, "tag": tag,
-        "title": title[:120], "msg": msg[:300], "url": url,
-    })
-    req = urllib.request.Request(WORKER + "/notify?" + params, method="GET",
+    body = json.dumps({
+        "tag": tag, "title": title[:120], "msg": msg[:300], "url": url,
+    }).encode("utf-8")
+    req = urllib.request.Request(WORKER + "/notify", data=body, method="POST",
                                  headers={"User-Agent": UA,
-                                          "Accept": "application/json"})
+                                          "Accept": "application/json",
+                                          "Content-Type": "application/json",
+                                          "Authorization": "Bearer " + SECRET})
     try:
         with urllib.request.urlopen(req, timeout=25) as r:
             out = json.loads(r.read().decode("utf-8"))

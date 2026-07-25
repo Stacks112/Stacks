@@ -29,6 +29,40 @@ TAGLINE = {
 }
 LANG_LABEL = {"ko": "한국어", "en": "English", "ja": "日本語"}
 E = html.escape
+
+
+def LD(obj):
+    """Serialise a JSON-LD object for an inline <script> block.
+
+    json.dumps escapes quotes and backslashes but never "<", so a title
+    containing "</script>" closes the block early and everything after it is
+    parsed as live HTML. Card text is produced by an automated publisher that
+    reads third-party feeds, which is exactly the path an injected payload
+    would take. Escaping the three characters as \\uXXXX keeps the JSON
+    byte-identical to a parser while making it inert to the HTML tokenizer.
+    """
+    return (json.dumps(obj, ensure_ascii=False)
+            .replace("<", "\\u003c").replace(">", "\\u003e")
+            .replace("&", "\\u0026"))
+
+
+HEX_RE = re.compile(r"^#[0-9A-Fa-f]{3,8}$")
+
+
+def hexcolor(v, fallback):
+    """A cover colour goes straight into a <style> block, so anything that is
+    not a plain hex literal could close the declaration and add rules of its
+    own (or a url() that phones home)."""
+    v = str(v or "").strip()
+    return v if HEX_RE.match(v) else fallback
+
+
+def safe_href(u, fallback="#"):
+    """Only plain http(s) links survive; javascript:/data: become dead."""
+    s = str(u or "").strip()
+    return s if re.match(r"^https?://", s, re.I) else fallback
+
+
 NAME_ALIAS = {"메르": "메르 (ranto28)"}
 def dispname(x):
     return NAME_ALIAS.get(x, x)
@@ -571,7 +605,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     url = page_url(iid, lang)
     app_url = (BASE + "#sig-" + iid) if lang == "ko" else (BASE + "?c=" + iid + "&l=" + lang)
     cov = item.get("cover", {}) or {}
-    grad = f"linear-gradient(135deg,{cov.get('from', '#111')},{cov.get('to', '#333')})"
+    grad = f"linear-gradient(135deg,{hexcolor(cov.get('from'), '#111')},{hexcolor(cov.get('to'), '#333')})"
     title = item["title"].get(lang) or item["title"].get("ko") or item["title"]["en"]
     gist = (item.get("gist") or {}).get(lang) or ""
     why = (item.get("why") or {}).get(lang) or ""
@@ -590,7 +624,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         "author": {"@type": "Person", "name": item.get("source", "Stacks")},
         "publisher": publisher_ld(),
         "mainEntityOfPage": url,
-        "isBasedOn": item.get("sourceUrl", ""),
+        "isBasedOn": safe_href(item.get("sourceUrl"), ""),
         "url": url,
     }
 
@@ -677,7 +711,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="icon" href="{REL}favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="{feed_rel}">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{LD(ld)}</script>
 <style>
 :root{{color-scheme:light dark}}
 *{{box-sizing:border-box}}
@@ -725,7 +759,7 @@ footer a{{color:#8E93A0}}
   <h1>{E(title)}</h1>
   <div class="actions">
     <a class="btn app" href="{E(app_url)}">{E(U['app'])}</a>
-    <a class="btn src" href="{E(item.get('sourceUrl','#'))}" target="_blank" rel="noopener nofollow">{E(U['src'])}</a>
+    <a class="btn src" href="{E(safe_href(item.get('sourceUrl')))}" target="_blank" rel="noopener nofollow">{E(U['src'])}</a>
     {paywall}
   </div>
   {body_blocks}
@@ -829,7 +863,7 @@ def entity_page(key, e, ent_items):
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{LD(ld)}</script>
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
@@ -999,7 +1033,7 @@ def week_page(items, entities, item_ents, canonical_slug):
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{LD(ld)}</script>
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
@@ -1203,11 +1237,11 @@ footer a{color:#8E93A0}
 
 def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=None):
     import os
-    hub_ld = json.dumps({
+    hub_ld = LD({
         "@context": "https://schema.org", "@type": "CollectionPage",
         "name": title, "description": metadesc, "url": url, "inLanguage": "ko",
         "publisher": publisher_ld(), "isPartOf": {"@id": BASE + "#website"},
-    }, ensure_ascii=False)
+    })
     og_tags = ""
     tw = "summary"
     if og_id and os.path.exists(f"og/{og_id}.png"):

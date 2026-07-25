@@ -263,6 +263,10 @@ def valid(gen):
         return False
     if not all(x in gen["cover"] for x in ("from", "to", "label")):
         return False
+    # cover from/to land in a CSS gradient verbatim, so they must be plain hex.
+    for x in ("from", "to"):
+        if not re.fullmatch(r"#[0-9A-Fa-f]{3,8}", str(gen["cover"][x] or "").strip()):
+            return False
     return True
 
 
