@@ -17,6 +17,7 @@ on:
       - "scripts/build_data.py"
       - "scripts/fetch_og_assets.py"
       - "scripts/fetch_cover_assets.py"
+      - "scripts/fetch_embeds.py"
 
 permissions:
   contents: write
@@ -48,6 +49,7 @@ jobs:
           pip install requests pillow --quiet
           python scripts/fetch_cover_assets.py
           python scripts/fetch_og_assets.py
+          python scripts/fetch_embeds.py
           rm -f og/*.png
           python scripts/build_pages.py
           python scripts/build_data.py
