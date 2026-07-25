@@ -160,9 +160,25 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
   소스별 상한(PER_SOURCE_CAP)으로 특정 소스 편중 방지.
 - `build_pages.py` — items.json → 정적 SEO 레이어: p/(글)·e/(엔티티)·week/(주간)
   + **t/(테마 논쟁 허브)·r/(저자 적중 기록)** 페이지, OG 카드 PNG(테마/기록 포함,
-  avatarImg 원격 URL은 ogsrc/av-*.png로 캐시), sitemap·feed·robots. ⚠️ THEMES 정의는
+  avatarImg 원격 URL은 ogsrc/av-*.png로 캐시), sitemap·feed·robots.
+  **다국어 URL 분리(v84)**: 글 페이지는 언어별 URL — ko `p/{id}.html`(기존 경로 유지,
+  백링크·색인 보존)·en `p/en/{id}.html`·ja `p/ja/{id}.html`. 상호 hreflang + x-default,
+  sitemap에 xhtml:link 대체 링크, 피드도 언어별(feed.xml·feed-en.xml·feed-ja.xml).
+  gist가 있는 언어만 생성(`item_langs`). 엔티티 칩 라벨은 `ent_label()`이 aliases에서
+  언어에 맞는 표기를 고른다(ko는 색인 안정성 때문에 키 그대로).
+  **publisher_ld()** — 모든 JSON-LD의 publisher를 `@id: {BASE}#org`(index.html의
+  Organization 노드와 동일 @id) 하나로 통일. 바꿀 때 두 곳을 같이 바꿔야 엔티티가 갈라지지 않음.
+  **make_scoreboard()** — 주간 필진 스코어보드 카드 `og/scoreboard.png`(this-week.html의
+  og:image, 매 빌드 덮어씀). 채점 표본 `MIN_RATE_N`(5)건 미만이면 적중률 대신 '채점 대기'를
+  표시 — 1건으로 만든 100%는 신뢰를 깎는다.
+  ⚠️ 생성기 f-string 템플릿에는 em/en dash 금지(자가치유 `_sanitize_dashes`는 items.json만 훑는다). ⚠️ THEMES 정의는
   index.html·build_pages.py·notify_followers.py **3곳 동기화 필수**(키·키워드).
-- `notify_followers.py` — 새 카드 → OneSignal 태그 푸시(s_시리즈, t_테마 max 2).
+- `notify_followers.py` — 새 카드 → OneSignal 태그 푸시(s_시리즈, t_테마 max 2,
+  **c_관심종목 max 2/글·6/run**). c_ 태그는 표지 라벨·태그·티커(entities[].ticker 앞부분)에
+  걸린 company/person만 대상 — 본문 스침은 제외(무관한 알림이 구독 해제로 이어짐).
+  같은 종목은 한 run에서 1회만. `slug_tag()`는 index.html의 `slugTag()`와 **문자 단위로
+  동일해야** 하며(다르면 아무에게도 안 가는 조용한 실패), 엔티티 매칭은 build_pages를
+  import해 재사용한다.
 - `fetch_og_assets.py` — 위키 이미지.
 - `apply_v50.py` · `brief.py` · `weekly.py`.
 
