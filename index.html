@@ -219,6 +219,7 @@ const STRINGS = {
     following: "Following ✓",
     seriesNew: "New in a story you follow",
     seriesClose: "Back to feed",
+    postTitle: "Post",
     byCompany: "Companies",
     byPerson: "People",
     bmAdd: "Bookmark",
@@ -377,6 +378,7 @@ const STRINGS = {
     following: "팔로우 중 ✓",
     seriesNew: "팔로우 중인 이야기에 새 글",
     seriesClose: "피드로 돌아가기",
+    postTitle: "게시물",
     byCompany: "회사별",
     byPerson: "인물별",
     bmAdd: "북마크",
@@ -535,6 +537,7 @@ const STRINGS = {
     following: "フォロー中 ✓",
     seriesNew: "フォロー中の物語に新しい記事",
     seriesClose: "フィードに戻る",
+    postTitle: "ポスト",
     byCompany: "企業別",
     byPerson: "人物別",
     bmAdd: "ブックマーク",
@@ -7614,9 +7617,13 @@ function renderFeed(animate){
       && !ENTITY_VIEW && !SERIES_VIEW && !QUERY){
     const _it = ITEMS.find(i => i.id === V83ITEM);
     if (_it){
+      /* 2026-07-25 (june): X와 동일하게 상세에서는 상단 탭바가 사라지고
+         뒤로가기 화살표 + "게시물" 제목만 남는 헤더가 그 자리를 대신한다. */
       const hb = document.createElement("div");
-      hb.className = "series-header";
-      hb.innerHTML = '<button class="series-close" onclick="v83CloseItem()">← ' + S.seriesClose + "</button>";
+      hb.className = "v83post-head";
+      hb.innerHTML = '<button class="v83post-back" onclick="v83CloseItem()" aria-label="' + esc(S.seriesClose) + '" title="' + esc(S.seriesClose) + '">'
+        + '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7.4 12l7.3-7.3-1.4-1.4L4.6 12l8.7 8.7 1.4-1.4z"/></svg>'
+        + '</button><span class="v83post-title">' + esc(S.postTitle || "Post") + '</span>';
       list.appendChild(hb);
       const _ac = cardEl(_it, S, 0);
       _ac.classList.remove("collapsed");
@@ -8985,6 +8992,27 @@ bootData();
     border-bottom:4px solid transparent !important;
   }
   html.v83 #v83center > #v83fsw button.on{ border-bottom-color:var(--accent) !important; }
+  /* 2026-07-25 (june): 상세(게시물) 화면에서는 탭바가 사라져야 한다.
+     hidden 속성을 주고 있었는데 위의 display:flex !important 가 이겨서 계속 보였다. */
+  html.v83 #v83center > #v83fsw[hidden]{ display:none !important; }
+
+  /* X의 상세 헤더: 뒤로가기 화살표 + 제목. 탭바가 있던 자리에 그대로 붙는다. */
+  html.v83 #feedList > .v83post-head{
+    position:sticky; top:0; z-index:6;
+    display:flex; align-items:center; gap:20px;
+    height:53px; margin:0 0 2px; padding:0 4px;
+    background:var(--bg); border-bottom:1px solid var(--line);
+  }
+  html.v83 #feedList > .v83post-head .v83post-back{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; flex:0 0 34px;
+    border:0; border-radius:999px; background:none; cursor:pointer;
+    color:var(--text); padding:0;
+  }
+  html.v83 #feedList > .v83post-head .v83post-back:hover{ background:var(--bg-soft); }
+  html.v83 #feedList > .v83post-head .v83post-title{
+    font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--text);
+  }
   html.v83 #v83center > #todaySec{ margin:12px 16px 4px !important; }
 
   /* ── 4. 우측 레일 : 검색창 sticky + 350px 박스 ─────────────────── */
