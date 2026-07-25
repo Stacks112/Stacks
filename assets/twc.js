@@ -28,7 +28,7 @@ var TWS = {
 };
 function TW(){ return TWS[(typeof LANG !== "undefined" && TWS[LANG]) ? LANG : "ko"]; }
 
-var TWC = { id:null, sort:"top", rows:[], open:{}, replyTo:null };
+var TWC = { id:null, sort:"top", rows:[], open:{}, replyTo:null, hist:false };
 
 /* deterministic hash for avatar color + handle suffix */
 function twHash(s){
@@ -149,8 +149,14 @@ window.toggleComments = function(id){
   var W = TW();
   TWC.id = id; TWC.rows = []; TWC.open = {}; TWC.replyTo = null; TWC.sort = "top";
   var ov = document.getElementById("twcOv");
+  var wasOpen = !ov.hidden;
   ov.hidden = false;
   document.body.style.overflow = "hidden";
+  /* 2026-07-25 (june, 모바일 전수조사): 댓글 시트만 뒤로가기로 안 닫혔다.
+     엔트리를 하나 밀어두고 index.html의 popstate 맨 앞에서 받아 닫는다. */
+  if (!wasOpen && !TWC.hist){
+    try { history.pushState({ stk: (history.state && history.state.stk) || 0, twc: 1 }, ""); TWC.hist = true; } catch (e) {}
+  }
   document.getElementById("twcTitle").innerHTML = esc(W.title) + ' <span id="twcCount"></span>';
   document.getElementById("twcSort").textContent = W.top + " ▾";
   document.getElementById("twcText").placeholder = W.ph;
@@ -171,11 +177,18 @@ window.toggleComments = function(id){
   if (typeof setRead === "function") setRead(id);
   twcLoad();
 };
-window.closeComments = function(){
+window.closeComments = function(fromPop){
   var ov = document.getElementById("twcOv");
   if (ov) ov.hidden = true;
   document.body.style.overflow = "";
   TWC.id = null; TWC.replyTo = null;
+  /* ✕·배경·ESC로 닫았으면 밀어둔 엔트리도 걷어낸다. 그때 오는 popstate가
+     밑에 있는 상세까지 닫아버리지 않게 한 번은 무시하라고 표시해 둔다. */
+  if (TWC.hist && fromPop !== true){
+    TWC.hist = false;
+    window.__twcSilent = true;
+    try { history.back(); } catch (e) { window.__twcSilent = false; }
+  } else if (fromPop === true) TWC.hist = false;
 };
 window.twcToggleSort = function(){
   var W = TW();

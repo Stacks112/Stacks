@@ -30,7 +30,8 @@
         emptyFollows:"아직 팔로우한 논객·회사·시리즈가 없어요.",emptyShares:"아직 공유한 글이 없어요.",
         followsPeople:"논객",followsCompany:"회사",followsSeries:"시리즈",
         nsTitle:"알림 설정",nsNew:"새 글 알림",nsDebate:"오늘의 토론 알림",nsFollow:"팔로우 새 글 알림",
-        nsEvents:"다가오는 이벤트 알림",nsNoEvents:"예정된 이벤트가 없어요.",nsRecent:"최근 알림",nsEvSubEmpty:"알림 신청한 이벤트가 없어요. 이벤트의 종 버튼을 눌러 신청하세요."},
+        nsEvents:"다가오는 이벤트 알림",nsNoEvents:"예정된 이벤트가 없어요.",nsRecent:"최근 알림",nsEvSubEmpty:"알림 신청한 이벤트가 없어요. 이벤트의 종 버튼을 눌러 신청하세요.",
+        recentQ:"최근 검색",recentClear:"전체 지우기",recentDel:"지우기"},
     en:{home:"Home",find:"Find",explore:"Explore",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
         skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
@@ -43,7 +44,8 @@
         emptyFollows:"You aren't following any authors, companies, or series yet.",emptyShares:"You haven't shared anything yet.",
         followsPeople:"Author",followsCompany:"Company",followsSeries:"Series",
         nsTitle:"Notification settings",nsNew:"New posts",nsDebate:"Today's debate",nsFollow:"New posts from who you follow",
-        nsEvents:"Upcoming events",nsNoEvents:"No upcoming events.",nsRecent:"Recent alerts",nsEvSubEmpty:"No events subscribed yet. Tap the bell on an event to get alerts."},
+        nsEvents:"Upcoming events",nsNoEvents:"No upcoming events.",nsRecent:"Recent alerts",nsEvSubEmpty:"No events subscribed yet. Tap the bell on an event to get alerts.",
+        recentQ:"Recent searches",recentClear:"Clear all",recentDel:"Remove"},
     ja:{home:"ホーム",find:"探す",explore:"発見",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
         skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
@@ -56,7 +58,8 @@
         emptyFollows:"まだフォローした論客・企業・シリーズがありません。",emptyShares:"まだ共有した記事がありません。",
         followsPeople:"論客",followsCompany:"企業",followsSeries:"シリーズ",
         nsTitle:"通知設定",nsNew:"新着記事",nsDebate:"今日の論点",nsFollow:"フォロー中の新着",
-        nsEvents:"今後のイベント",nsNoEvents:"予定されたイベントはありません。",nsRecent:"最近の通知",nsEvSubEmpty:"通知を登録したイベントはありません。イベントのベルを押して登録してください。"}
+        nsEvents:"今後のイベント",nsNoEvents:"予定されたイベントはありません。",nsRecent:"最近の通知",nsEvSubEmpty:"通知を登録したイベントはありません。イベントのベルを押して登録してください。",
+        recentQ:"最近の検索",recentClear:"すべて消去",recentDel:"削除"}
   };
   function T(){ var l = (typeof LANG !== "undefined" && V82S[LANG]) ? LANG : "ko"; return V82S[l]; }
   function $(id){ return document.getElementById(id); }
@@ -253,6 +256,52 @@
     /* todaySec now pins to the feed top; nlSec now lives in the profile drawer */
     return [$("searchBox"), $("eventBar"), hs, $("watchSec")].filter(Boolean);
   }
+  /* ---------- 최근 검색 (2026-07-25, june 모바일 전수조사) ----------
+     X는 검색창을 열면 최근 검색어부터 보여준다. 우리는 곧장 추천 목록이라
+     방금 찾던 걸 다시 치려면 처음부터 타이핑해야 했다. 기기 로컬에만 남긴다. */
+  var RQ_KEY = "stk_recentq", RQ_MAX = 8;
+  function rqGet(){
+    try { var v = JSON.parse(localStorage.getItem(RQ_KEY) || "[]"); return Array.isArray(v) ? v.slice(0, RQ_MAX) : []; }
+    catch(e){ return []; }
+  }
+  function rqSave(list){ try { localStorage.setItem(RQ_KEY, JSON.stringify(list.slice(0, RQ_MAX))); } catch(e){} }
+  function rqAdd(q){
+    q = (q || "").trim(); if (q.length < 2) return;
+    var l = rqGet().filter(function(x){ return x.toLowerCase() !== q.toLowerCase(); });
+    l.unshift(q); rqSave(l);
+  }
+  function rqRender(ex){
+    var box = $("v82recentQ");
+    if (!box){ box = document.createElement("div"); box.id = "v82recentQ"; }
+    if (box.parentNode !== ex) ex.appendChild(box);
+    var list = rqGet(), t = T();
+    if (!list.length){ box.innerHTML = ""; box.style.display = "none"; return box; }
+    box.style.display = "";
+    box.innerHTML = '<div class="v82rq-h"><h3>' + esc(t.recentQ) + '</h3>'
+      + '<button type="button" class="v82rq-clr">' + esc(t.recentClear) + '</button></div>'
+      + list.map(function(q){
+          return '<div class="v82rq-row"><button type="button" class="v82rq-q" data-q="' + esc(q) + '">'
+            + '<span class="v82rq-ic">🕘</span><span>' + esc(q) + '</span></button>'
+            + '<button type="button" class="v82rq-x" data-del="' + esc(q) + '" aria-label="' + esc(t.recentDel) + '">&#x2715;</button></div>';
+        }).join("");
+    box.querySelector(".v82rq-clr").onclick = function(){ rqSave([]); rqRender(ex); };
+    box.querySelectorAll(".v82rq-q").forEach(function(b){
+      b.onclick = function(){
+        var si = $("searchInput"); if (!si) return;
+        si.value = this.dataset.q;
+        si.dispatchEvent(new Event("input", { bubbles: true }));
+      };
+    });
+    box.querySelectorAll(".v82rq-x").forEach(function(b){
+      b.onclick = function(){
+        var q = this.dataset.del;
+        rqSave(rqGet().filter(function(x){ return x !== q; }));
+        rqRender(ex);
+      };
+    });
+    return box;
+  }
+
   /* rbeta 찾기: 나를 위한 추천 / 인기 / 이번 주 핫한 읽을거리 (compact Twitter-style lists) */
   function buildFindDisco(ex){
     var dd = $("v82findDisco");
@@ -286,7 +335,10 @@
   }
   function openFind(){
     if (!mq.matches) return;
-    var ex = $("v82explore"); if (!ex || ex.classList.contains("on")) return;
+    var ex = $("v82explore"); if (!ex) return;
+    /* 이미 열려 있으면 최근 검색 목록만 갱신한다 — 결과를 탭해 상세로 갔다가
+       돌아오면 화면은 그대로라서, 방금 친 검색어가 안 보이는 문제가 있었다 */
+    if (ex.classList.contains("on")){ try { rqRender(ex); } catch(e){} return; }
     try {
       /* rbeta: Twitter-style discover — search on top, then 추천/인기/이번 주 핫한 읽을거리 */
       if (typeof RBETA !== "undefined" && RBETA){
@@ -297,6 +349,7 @@
         if (!res0){ res0 = document.createElement("div"); res0.id = "v82findResults"; }
         res0.innerHTML = ""; res0.style.display = "none";
         ex.appendChild(res0);
+        rqRender(ex);
         buildFindDisco(ex);
         var sif = $("searchInput"); if (sif) sif.focus();
         showScreen("v82explore");
@@ -332,11 +385,13 @@
     q = (q || "").trim();
     var discovery = [];
     var ff = $("v82findFilters"); if (ff) discovery.push(ff);
+    var rq = $("v82recentQ"); if (rq) discovery.push(rq);
     var dd = $("v82findDisco"); if (dd) discovery.push(dd);
     if (EX_HOMES) EX_HOMES.forEach(function(h){ if (h.el && h.el.id !== "searchBox") discovery.push(h.el); });
     if (!q){
       res.style.display = "none"; res.innerHTML = "";
       discovery.forEach(function(el){ el.style.display = ""; });
+      rqRender(ex);   /* 목록이 비면 스스로 숨는다 */
       return;
     }
     discovery.forEach(function(el){ el.style.display = "none"; });
@@ -356,7 +411,12 @@
     res.innerHTML = html; res.style.display = "block";
     var btns = res.querySelectorAll(".v82-sr");
     for (var b = 0; b < btns.length; b++){
-      btns[b].onclick = function(){ var id = this.dataset.id; openCardById(id); };
+      btns[b].onclick = function(){
+        var id = this.dataset.id;
+        var si = $("searchInput");                 /* 입력한 그대로(대소문자 보존) 저장 */
+        rqAdd(si && si.value ? si.value : q);
+        openCardById(id);
+      };
     }
   }
   window.v82Search = v82Search;
@@ -368,6 +428,7 @@
     var appFilter = document.querySelector("#feed .filter-row");
     ["sortBtn","bmFilter","freeFilter","unreadFilter"].forEach(function(bid){ var b=$(bid); if(b&&appFilter){ appFilter.appendChild(b); } });
     var ff = $("v82findFilters"); if (ff) ff.remove();
+    try { var _si = $("searchInput"); if (_si) rqAdd(_si.value); } catch(e){}
     var rz = $("v82findResults"); if (rz){ rz.style.display = "none"; rz.innerHTML = ""; }
     if (EX_HOMES){
       EX_HOMES.forEach(function(h){ if (h.el) h.el.style.display = ""; }); /* clear search-mode hiding */
@@ -740,6 +801,8 @@
   }
 
   /* ---------- open a card in detail by id ---------- */
+  /* index.html의 openFromCard(헤드라인 탭)가 모바일에서 쓸 유일한 통로 */
+  window.v82OpenCard = function(id){ openCardById(id); };
   function openCardById(id){
     function tryOpen(n){
       var el = $("sig-" + id);
@@ -1022,6 +1085,58 @@
     if (closeFind(true)) return true;
     return false;
   };
+
+  /* ---------- 좌우 스와이프로 최신 ↔ 팔로잉 (2026-07-25, june 모바일 전수조사) ----------
+     X 모바일의 대표 제스처인데 우리는 상단 탭을 정확히 눌러야만 전환됐다.
+     세로 스크롤을 방해하지 않도록 처음 12px 안에서 축을 한 번만 정하고,
+     가로로 판정된 경우에만 전환한다. 가로 스크롤 영역(핫레일·탭바·차트·표)과
+     왼쪽 가장자리(스탠드얼론 뒤로가기 제스처 자리)는 건드리지 않는다. */
+  (function swipeTabs(){
+    var x0 = 0, y0 = 0, tracking = false, axis = null;
+    var NOSWIPE = ".v82-tabs,#v82tabs,#hotRail,[data-v82hot],.scrollx,.chart,svg,table,input,textarea,select,.twc-ov,.img-fs";
+    function blocked(){
+      if (anyScreenOpen()) return true;
+      var d = $("v82detail"); if (d && d.classList.contains("on")) return true;
+      var ov = document.getElementById("twcOv"); if (ov && !ov.hidden) return true;
+      var fs = document.getElementById("imgFS"); if (fs && !fs.hidden) return true;
+      var cf = $("chartFS"); if (cf && !cf.hidden) return true;
+      var cal = $("calSheet"); if (cal && !cal.hidden) return true;
+      var me = $("meSheet"); if (me && !me.hidden) return true;
+      var dw = $("v82drawer"); if (dw && dw.classList.contains("on")) return true;
+      return false;
+    }
+    document.addEventListener("touchstart", function(e){
+      tracking = false; axis = null;
+      if (!mq.matches || e.touches.length !== 1) return;
+      if (typeof RBETA === "undefined" || !RBETA) return;
+      if (blocked()) return;
+      var t = e.touches[0];
+      if (t.clientX < 26 || t.clientX > innerWidth - 26) return;   /* 가장자리는 브라우저 몫 */
+      if (e.target.closest && e.target.closest(NOSWIPE)) return;
+      x0 = t.clientX; y0 = t.clientY; tracking = true;
+    }, { passive: true });
+    document.addEventListener("touchmove", function(e){
+      if (!tracking || e.touches.length !== 1) return;
+      var t = e.touches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+      if (axis === null && (Math.abs(dx) > 12 || Math.abs(dy) > 12))
+        axis = Math.abs(dx) > Math.abs(dy) * 1.6 ? "x" : "y";
+    }, { passive: true });
+    document.addEventListener("touchend", function(e){
+      if (!tracking) return;
+      tracking = false;
+      if (axis !== "x" || !e.changedTouches || !e.changedTouches.length) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) < 60) return;
+      var strip = $("v82tabs"); if (!strip) return;
+      var bs = strip.querySelectorAll(".v82fsw-t");
+      if (bs.length < 2) return;
+      var cur = 0;
+      for (var i = 0; i < bs.length; i++) if (bs[i].classList.contains("on")) cur = i;
+      var next = dx < 0 ? cur + 1 : cur - 1;
+      if (next < 0 || next >= bs.length) return;
+      bs[next].click();
+    }, { passive: true });
+  })();
 
   /* ---------- auto-hide header ---------- */
   var lastY = 0;

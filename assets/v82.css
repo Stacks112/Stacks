@@ -241,3 +241,19 @@
 /* 2026-07-25 (june): 모바일 탐색 탭의 "내 브리핑" 행 — 무엇에 대한 강세/약세인지 */
 .v82-brief-subj{margin-top:4px;font-size:12px;line-height:1.35;color:var(--muted);text-align:left;}
 .v82-brief-row .v82-skew-lean{font-size:11.5px;font-weight:800;}
+
+/* 2026-07-25 (june, 모바일 전수조사): 검색창을 열면 최근 검색어부터 (X와 동일) */
+#v82recentQ{padding:2px 0 10px;}
+#v82recentQ .v82rq-h{display:flex;align-items:baseline;justify-content:space-between;padding:6px 14px 2px;}
+#v82recentQ .v82rq-h h3{margin:0;font-size:15px;font-weight:800;letter-spacing:-.01em;}
+#v82recentQ .v82rq-clr{background:none;border:0;color:var(--accent);font-family:inherit;
+  font-size:12.5px;font-weight:700;cursor:pointer;padding:2px 0;}
+#v82recentQ .v82rq-row{display:flex;align-items:center;gap:4px;}
+#v82recentQ .v82rq-q{flex:1 1 auto;display:flex;align-items:center;gap:10px;min-width:0;
+  background:none;border:0;color:var(--text);font-family:inherit;font-size:14.5px;
+  text-align:left;padding:10px 4px 10px 14px;cursor:pointer;}
+#v82recentQ .v82rq-q span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#v82recentQ .v82rq-ic{flex:0 0 auto;opacity:.6;font-size:13px;}
+#v82recentQ .v82rq-x{flex:0 0 auto;background:none;border:0;color:var(--muted);
+  font-size:13px;padding:10px 14px;cursor:pointer;}
+#v82recentQ .v82rq-row:active{background:var(--bg-soft);}
