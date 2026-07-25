@@ -46,7 +46,9 @@
     "en": "Is skipping the niche 3D IC market a missed opportunity for Samsung and SK hynix, or the smart call?",
     "ja": "ニッチな3D IC市場、サムスン・SKハイニックスは機会を逃しているのか、それとも賢明な判断なのか?"
    },
-   "ts": "2026-07-25T09:48:15.904606+00:00"
+   "ts": "2026-07-25T09:48:15.904606+00:00",
+   "coverArt": "covers/jukan-cxmt-3d-ic-niche-strategy.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-25",
@@ -190,7 +192,9 @@
     "en": "SK hynix's $750 billion and Samsung's $200 billion memory MOUs landed on the same day, a combined $950 billion tied to a presidential visit. Do you read these as a real signal of order growth ahead, or as headline figures inflated to fit the occasion?",
     "ja": "SKハイニックスの750億ドル、サムスン電子の200億ドル、合わせて950億ドル規模のメモリMOUが同じ日に発表された。大統領訪問に合わせたこの発表を実際の受注拡大のシグナルと見るか、それとも政治イベントに合わせた数字の誇張と見るか。"
    },
-   "ts": "2026-07-25T06:43:50.000+00:00"
+   "ts": "2026-07-25T06:43:50.000+00:00",
+   "coverArt": "covers/jukan-korea-memory-mega-mou-950b.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-25",
@@ -237,7 +241,9 @@
     "en": "Apple says it needs Chinese memory chips to keep inflation in check, but critics note memory costs only added about $50 per unit while iPhone prices rose $250. Is Apple's lobbying really about protecting consumers, or is it cover for defending its own margins?",
     "ja": "アップルはインフレ抑制を理由に中国製メモリの使用を求めているが、メモリ値上がりによる原価増は50ドルなのにiPhone価格は250ドル上がったとの指摘がある。アップルのロビー活動は消費者物価防衛のためか、それとも自社マージンを守るための口実か。"
    },
-   "ts": "2026-07-25T06:43:50.000+00:00"
+   "ts": "2026-07-25T06:43:50.000+00:00",
+   "coverArt": "covers/jukan-apple-micron-china-memory-lobbying.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-25",
@@ -293,7 +299,9 @@
      "ja": "セミアナリシスが10月に後ろ倒しされたとしたAMDのvLLM/SGLang自動テストでのエヌビディアCUDAとのパリティ達成目標が、実際にその時期に実現するか確認する。"
     }
    },
-   "ts": "2026-07-25T06:43:50.000+00:00"
+   "ts": "2026-07-25T06:43:50.000+00:00",
+   "coverArt": "covers/semianalysis-amd-cuda-moat-advancing-ai-2026.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -391,7 +399,9 @@
     "ko": "제프 푸의 노트는 시장 규모 확대, 칩 성능 향상, 마진 개선까지 AMD에 전방위로 긍정적이지만, 셀사이드의 AI 자본지출(capex) 전망치는 올해 내내 별다른 검증 없이 계속 상향돼왔다. AMD의 로드맵이 엔비디아의 우위를 실제로 위협할 수 있다고 보나, 아니면 지금의 AI 붐을 애널리스트들이 또다시 지나치게 낙관적으로 연장한 결과라고 보나?",
     "ja": "ジェフ・プー氏のノートは市場規模の拡大からチップ性能の向上、マージン改善まで、AMDにとって全面的に強気な内容だが、セルサイドによるAI設備投資(capex)予測は今年に入ってから大きな検証もないまま上方修正が続いている。AMDのロードマップがエヌビディアの優位を実際に脅かすと見るか、それとも今のAIブームをアナリストたちがまた行き過ぎて延長した結果だと見るか。"
    },
-   "ts": "2026-07-25T03:45:26.000+00:00"
+   "ts": "2026-07-25T03:45:26.000+00:00",
+   "coverArt": "covers/jukan-amd-mi500-tam-14t.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -592,7 +602,9 @@
     "ko": "웨이모는 우버의 파트너로 출발했지만 이제 가장 큰 위협 중 하나가 될 조짐을 보인다. 이번 결별설은 우버가 로보택시 전략을 잘못 짠 것일까, 아니면 알파벳이 원래 갖고 있던 우위를 이제 현금화하는 것뿐일까?",
     "ja": "Waymoはウーバーのパートナーとして始まったが、今や最大の脅威の一つになりかねない兆しを見せている。今回の提携解消説は、ウーバーがロボタクシー戦略を見誤ったということなのか、それとも Alphabetが元々持っていた優位性を単に現金化しているだけなのか。"
    },
-   "ts": "2026-07-25T00:47:03.000+00:00"
+   "ts": "2026-07-25T00:47:03.000+00:00",
+   "coverArt": "covers/serenity-googl-waymo-uber-split.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -792,7 +804,9 @@
     "en": "Is Jensen Huang's open-models stance a genuine policy position, or a hedge to keep selling chips to both open-source labs and closed frontier players no matter which side wins the argument?",
     "ko": "젠슨 황의 오픈소스 지지는 진짜 정책적 소신일까, 아니면 오픈소스든 폐쇄형이든 어느 쪽이 이기든 양쪽 모두에 칩을 계속 팔기 위한 헤지일까?",
     "ja": "ジェンスン・フアンのオープンモデル支持は本当の政策的立場なのか、それともどちらが勝ってもオープンにも閉鎖型にもチップを売り続けるためのヘッジなのか?"
-   }
+   },
+   "coverArt": "covers/jensen-open-models-letter.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -882,7 +896,9 @@
     "en": "PayPal once had the chance to own Stripe for a fraction of today's price and passed. Is $53 billion a fair price for Stripe to finally close that loop, or is PayPal being bought cheap at the bottom of its own decline?",
     "ko": "페이팔은 한때 지금보다 훨씬 싼 값에 스트라이프를 살 기회가 있었지만 놓쳤다. 530억 달러는 스트라이프가 그 인연을 마무리 짓기에 적정한 값일까, 아니면 페이팔이 쇠락의 바닥에서 헐값에 팔리는 걸까?",
     "ja": "ペイパルはかつて今よりずっと安い値段でストライプを買う機会があったが、逃した。530億ドルはストライプがその因縁に区切りをつけるのに妥当な価格なのか、それともペイパルが自らの凋落の底値で安く買われようとしているのか?"
-   }
+   },
+   "coverArt": "covers/netinterest-stripe-paypal-bid.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -928,7 +944,9 @@
     "en": "Oracle's CDS spread is now pricing in real default risk even as its AI cloud backlog keeps growing. Is this a temporary scare over AI capex debt, or the first crack in the hyperscaler credit story?",
     "ko": "AI 클라우드 수주잔고는 계속 늘어나는데도 오라클의 CDS 스프레드는 실질적인 부도 위험을 반영하고 있다. 이건 AI 캐펙스발 부채에 대한 일시적 불안일까, 하이퍼스케일러 신용 스토리에 생긴 첫 균열일까?",
     "ja": "AIクラウドの受注残高は増え続けているのに、オラクルのCDSスプレッドは実質的なデフォルトリスクを織り込んでいる。これはAIキャペックス由来の負債への一時的な不安なのか、それともハイパースケーラーの信用ストーリーに入った最初のひびなのか。"
-   }
+   },
+   "coverArt": "covers/kobeissi-oracle-cds-record.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -976,7 +994,9 @@
     "en": "If Samsung and SK hynix announce their deals alongside a presidential visit rather than through normal investor relations channels, does that change how much weight markets should put on the news?",
     "ko": "삼성과 SK하이닉스가 통상적인 IR 채널이 아니라 대통령 순방에 맞춰 계약을 발표한다면, 시장이 이 소식에 두는 무게도 달라져야 할까?",
     "ja": "サムスンとSKハイニックスが通常のIRチャネルではなく大統領訪問に合わせて契約を発表するなら、市場がこのニュースに置く重みも変わるべきだろうか。"
-   }
+   },
+   "coverArt": "covers/jukan-samsung-hynix-silicon-valley-deal.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-23",
@@ -1082,7 +1102,9 @@
      "ko": "AMD와 삼성전자가 헬리오스 3분기 말 출하 시점 전후로 실제 HBM4 본계약을 체결하는지 2026년 10월 중순 확인한다.",
      "ja": "AMDとサムスン電子がHelios第3四半期末出荷の時期前後に実際にHBM4本契約を締結するか、2026年10月中旬に確認する。"
     }
-   }
+   },
+   "coverArt": "covers/jukan-amd-samsung-hbm4-deal.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -1331,7 +1353,9 @@
     "ko": "카밀로는 구글 실적발 널뛰기 장세에 대한 패닉이 과잉반응이라고 본다. AI발 변동성은 매수 기회일까, 아니면 투자자들이 무시하고 있는 경고 신호일까?",
     "ja": "カミロはグーグル決算の乱高下をめぐるパニックを過剰反応だと見ている。このAI主導のボラティリティは買いの好機なのか、それとも投資家が無視している警告サインなのか。"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/camillo-googl-earnings-noise.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -1389,7 +1413,9 @@
      "ja": "モルガン・スタンレーのショーン・キム氏が予測した通り、2026年第4四半期のメモリー価格上昇率が実際に前四半期比5%前後まで鈍化するか、それとも予想より強く出て強気論を後押しするかを確認する。"
     }
    },
-   "ts": "2026-07-24T06:50:13.782586+00:00"
+   "ts": "2026-07-24T06:50:13.782586+00:00",
+   "coverArt": "covers/jukan-morgan-stanley-bearish-memory.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-24",
@@ -1438,7 +1464,9 @@
     "ko": "SK하이닉스는 미국 파트너사 이름을 공개하지 않았고, 주칸이 지목한 애플은 아직 확인되지 않았다. 만약 실제로 애플이라면 투자자들이 SK하이닉스의 비HBM 사업을 보는 시각이 크게 바뀔까, 아니면 아직 초기 단계라 주가에 큰 의미가 없을까?",
     "ja": "SKハイニックスは米パートナー企業名を公表しておらず、ジュカンが挙げたアップルもまだ確認されていない。もし実際にアップルだった場合、投資家がSKハイニックスの非HBM事業を見る目は大きく変わるだろうか、それともまだ初期段階で株価にはさほど影響しないだろうか。"
    },
-   "ts": "2026-07-24T06:50:13.782586+00:00"
+   "ts": "2026-07-24T06:50:13.782586+00:00",
+   "coverArt": "covers/jukan-hynix-3d-stacked-dram-ondevice.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-23",
@@ -1775,7 +1803,9 @@
      "ja": "2027年第1四半期頃、エヌビディアの800V HVDCシステムが当初予定通り量産に入るか、セミアナリシスの警告通り2028年にずれ込むかを確認する。"
     }
    },
-   "ts": "2026-07-24T00:47:30.327651+00:00"
+   "ts": "2026-07-24T00:47:30.327651+00:00",
+   "coverArt": "covers/jukan-nvidia-800v-hvdc-delay.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-23",
@@ -1881,7 +1911,9 @@
     "ko": "AMD의 협력사들이 세레니티에게 헬리오스와 업계 전반이 표준 착탈식 트랜시버가 아닌 코패키지드 옵틱스로 향하고 있고, 알려진 지연설도 사실이 아니라고 말하고 있다. 지금이 CPO 공급업체에 미리 올라탈 신호일까, 아니면 비공식 채널 체크가 AMD가 실제로 확정한 것보다 앞서가는 걸까?",
     "ja": "AMDのサプライチェーンはセレニティに対し、Heliosと業界全体が標準的な着脱式トランシーバーではなくコパッケージド・オプティクスに向かっており、報じられた遅延も事実ではないと語っている。これは今CPOサプライヤーに投資すべき早期シグナルなのか、それともAMDが実際に確定させた内容より非公式なチャネルチェックが先走っているだけなのか。"
    },
-   "ts": "2026-07-23T21:52:05.095908+00:00"
+   "ts": "2026-07-23T21:52:05.095908+00:00",
+   "coverArt": "covers/serenity-amd-helios-cpo-networking.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-23",
@@ -2420,7 +2452,9 @@
     },
     "due": "2027-06-30"
    },
-   "ts": "2026-07-23T12:47:20.494056+00:00"
+   "ts": "2026-07-23T12:47:20.494056+00:00",
+   "coverArt": "covers/jukan-deepseek-huawei-cuda-moat.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-23",
@@ -3056,7 +3090,9 @@
     },
     "due": "2027-06-30"
    },
-   "ts": "2026-07-21T12:00:00+00:00"
+   "ts": "2026-07-21T12:00:00+00:00",
+   "coverArt": "covers/jukan-rubin-ultra-reticle-packaging-risk.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-22",
@@ -3171,7 +3207,9 @@
     },
     "due": "2026-08-04"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/kobeissi-amd-anthropic-deal-signed.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-22",
@@ -3464,7 +3502,9 @@
     },
     "due": "2026-10-31"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/meru-kolon-tissuegene-tgc-phase3-miss.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-22",
@@ -3511,7 +3551,9 @@
     "ja": "半導体の巨人がモデル企業の株式まで積み増すのは、AIバリューチェーンを前後で押さえる賢い一手か、それとも本業から離れた資金投入なのか。",
     "ko": "반도체 강자 삼성이 모델 기업 지분까지 쌓는 건, AI 밸류체인을 앞뒤로 잡으려는 영리한 수일까 아니면 본업과 먼 곳에 돈을 묻는 결정일까?"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/jukan-samsung-mistral-investment.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-22",
@@ -3614,7 +3656,9 @@
     },
     "due": "2026-10-29"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/semianalysis-meta-infra-culture-reset.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-21",
@@ -3670,7 +3714,9 @@
     },
     "due": "2027-02-28"
    },
-   "ts": "2026-07-21T12:00:00+00:00"
+   "ts": "2026-07-21T12:00:00+00:00",
+   "coverArt": "covers/jukan-tsmc-foundry-price-hike-2027.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-21",
@@ -3727,7 +3773,9 @@
     },
     "due": "2026-10-22"
    },
-   "ts": "2026-07-21T12:00:00+00:00"
+   "ts": "2026-07-21T12:00:00+00:00",
+   "coverArt": "covers/jukan-china-ai-data-export-curbs.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-22",
@@ -3784,7 +3832,9 @@
     },
     "due": "2026-10-22"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/jukan-hynix-intel-ohio-fab.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-21",
@@ -3996,7 +4046,9 @@
     },
     "due": "2026-10-22"
    },
-   "ts": "2026-07-21T12:00:00+00:00"
+   "ts": "2026-07-21T12:00:00+00:00",
+   "coverArt": "covers/jukan-amd-anthropic-deal-tp640.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-22",
@@ -4040,7 +4092,9 @@
     "ja": "クーパンの在庫、設備損失は2021年と同様に保険でしっかりカバーされそうだが、建物所有者側の賃料損失保険は1年半分程度しかない。営業中断がそれより長引いた場合、その差額は結局誰が負担することになるのだろうか。",
     "ko": "쿠팡의 재고, 설비 손실은 2021년 때처럼 보험으로 잘 커버될 것으로 보이지만, 건물주 쪽 임대료 손실 보험은 1년 반 치 정도밖에 안 된다. 영업중단이 그보다 길어지면 그 차액은 결국 누가 떠안게 될까?"
    },
-   "ts": "2026-07-22T12:00:00+00:00"
+   "ts": "2026-07-22T12:00:00+00:00",
+   "coverArt": "covers/meru-coupang-incheon-fire.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-21",
@@ -4195,7 +4249,9 @@
     "ko": "이번 AI 전반 랠리는 지속 가능한 상승의 시작일까, 아니면 지난주 급락 이후의 데드캣 바운스일까?"
    },
    "stance": "bull",
-   "ts": "2026-07-21T12:00:00+00:00"
+   "ts": "2026-07-21T12:00:00+00:00",
+   "coverArt": "covers/serenity-kioxia-samsung-memory-rally.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-20",
@@ -4817,7 +4873,9 @@
     },
     "due": "2026-11-15"
    },
-   "ts": "2026-07-20T12:00:00+00:00"
+   "ts": "2026-07-20T12:00:00+00:00",
+   "coverArt": "covers/serenity-neocloud-iren-arr.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-20",
@@ -4874,7 +4932,9 @@
     },
     "due": "2027-03-31"
    },
-   "ts": "2026-07-20T12:00:00+00:00"
+   "ts": "2026-07-20T12:00:00+00:00",
+   "coverArt": "covers/jukan-nvidia-cmx-nand-demand.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-20",
@@ -5026,7 +5086,9 @@
     },
     "due": "2026-11-14"
    },
-   "ts": "2026-07-19T12:00:00+00:00"
+   "ts": "2026-07-19T12:00:00+00:00",
+   "coverArt": "covers/jukan-foxconn-spacex-gb300.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-19",
@@ -5283,7 +5345,9 @@
    },
    "stance": "bull",
    "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
-   "ts": "2026-07-20T12:00:00+00:00"
+   "ts": "2026-07-20T12:00:00+00:00",
+   "coverArt": "covers/jukan-samsung-nvidia-nand-v10.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-20",
@@ -5808,7 +5872,9 @@
     },
     "due": "2027-01-15"
    },
-   "ts": "2026-07-09T12:00:00+00:00"
+   "ts": "2026-07-09T12:00:00+00:00",
+   "coverArt": "covers/semianalysis-meta-superintelligence.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-19",
@@ -6002,7 +6068,9 @@
     "ko": "채권은 경고등을, 주식은 여전히 꿈을 켜고 있다. 앞으로 몇 년, 어느 쪽이 맞을까?",
     "ja": "債券は警告灯を、株はまだ夢を灯す。今後数年、どちらが正しいのか?"
    },
-   "ts": "2026-07-20T12:00:00+00:00"
+   "ts": "2026-07-20T12:00:00+00:00",
+   "coverArt": "covers/meru-spacex-bonds.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-18",
@@ -6050,7 +6118,9 @@
     "ja": "7月29日に転換が開いたら、プレミアムは一気に縮むか、それとも粘るか?"
    },
    "stance": "watch",
-   "ts": "2026-07-18T12:00:00+00:00"
+   "ts": "2026-07-18T12:00:00+00:00",
+   "coverArt": "covers/serenity-skhy-arb.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-17",
@@ -6201,7 +6271,9 @@
     "ko": "트럼프 게시물 선점권을 HFT에 판다, 영리한 장사일까, 시장 공정성이 무너지는 분기점일까?"
    },
    "stance": "watch",
-   "ts": "2026-07-19T12:00:00+00:00"
+   "ts": "2026-07-19T12:00:00+00:00",
+   "coverArt": "covers/meru-truth-api-tmtg.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-19",
@@ -6296,7 +6368,9 @@
     "ja": "JPモルガンの巨大さと複雑さは、崩れない堀か、それともいつか噛みつく後継リスクか?"
    },
    "stance": "watch",
-   "ts": "2026-07-17T12:00:00+00:00"
+   "ts": "2026-07-17T12:00:00+00:00",
+   "coverArt": "covers/netinterest-jpm-succession.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-18",
@@ -6353,7 +6427,9 @@
     "due": "2026-07-28"
    },
    "stance": "watch",
-   "ts": "2026-07-18T12:00:00+00:00"
+   "ts": "2026-07-18T12:00:00+00:00",
+   "coverArt": "covers/meru-kimi-moment.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-17",
@@ -6498,7 +6574,9 @@
     "ja": "TSMCの2650億ドル・アリゾナ投資は、リショアリングの勝利か、関税回避の請求書か?"
    },
    "stance": "bull",
-   "ts": "2026-07-17T12:00:00+00:00"
+   "ts": "2026-07-17T12:00:00+00:00",
+   "coverArt": "covers/potus-tsmc-arizona.png",
+   "coverKind": "data"
   },
   {
    "id": "serenity-meritz-memory",
@@ -6554,7 +6632,9 @@
     },
     "due": "2027-01-15"
    },
-   "ts": "2026-07-17T12:00:00+00:00"
+   "ts": "2026-07-17T12:00:00+00:00",
+   "coverArt": "covers/serenity-meritz-memory.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-10",
@@ -6778,7 +6858,9 @@
     "en": "Leverage curbs: protecting retail, or taking away their shot?",
     "ja": "レバレッジ規制は個人保護か、機会の剥奪か?"
    },
-   "ts": "2026-07-16T12:00:00+00:00"
+   "ts": "2026-07-16T12:00:00+00:00",
+   "coverArt": "covers/meru-leverage.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-09",
@@ -6902,7 +6984,9 @@
     "ja": "これはハイニックス・プレミアムの物語の鏡像だ。同じ事実(韓国の指数=半導体2銘柄)が、強気論では燃料になり、弱気論では起爆装置になる。日本で最も引用されるマクロの声が、弱気バージョンを明文化した。",
     "ko": "이건 하이닉스 프리미엄 스토리의 거울상이다. 같은 사실(코스피 = 반도체 두 종목)이 강세론에서는 연료가 되고, 약세론에서는 뇌관이 된다. 일본에서 가장 많이 인용되는 매크로 보이스가 약세 버전을 명문화했다."
    },
-   "ts": "2026-06-05T12:00:00+00:00"
+   "ts": "2026-06-05T12:00:00+00:00",
+   "coverArt": "covers/emin-korea.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-16",
@@ -7006,7 +7090,9 @@
     },
     "due": "2026-08-05"
    },
-   "ts": "2026-07-16T12:00:00+00:00"
+   "ts": "2026-07-16T12:00:00+00:00",
+   "coverArt": "covers/meru-adr-conv.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-16",
@@ -7095,7 +7181,9 @@
     "ja": "あらゆるコンピュート需要モデルは、競争が止まらないという前提の上に立っている。AGIを作る当事者が最初の制度的ブレーキを提案し、その費用は業界が払う。",
     "ko": "모든 컴퓨트 수요 모델은 경쟁이 멈추지 않는다는 가정 위에 서 있다. AGI를 만드는 당사자가 첫 제도적 브레이크를 제안했고, 그 비용은 업계가 댄다."
    },
-   "ts": "2026-07-14T12:00:00+00:00"
+   "ts": "2026-07-14T12:00:00+00:00",
+   "coverArt": "covers/hassabis-framework.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-07",
@@ -7217,7 +7305,9 @@
     "ja": "AI電力のボトルネックが一段上流に上がった。もはやタービンではなく、タービンを代替する装置の中に入る金属がボトルネックだ。",
     "ko": "AI 전력 병목이 한 단계 위로 올라갔다. 이제 터빈이 아니라, 터빈을 대체하는 물건 안에 들어가는 금속이 병목이다."
    },
-   "ts": "2026-07-14T12:00:00+00:00"
+   "ts": "2026-07-14T12:00:00+00:00",
+   "coverArt": "covers/doomberg-bloom.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-03",
@@ -7255,7 +7345,9 @@
     "ja": "AIの建設ラッシュは資本を吸収するだけでなく、どこかから抜き取っている。セイラーがその「どこか」を直接指差した。",
     "ko": "AI 건설은 자본을 흡수하는 데 그치지 않고 어딘가에서 빼오고 있다. 세일러가 그 어딘가를 직접 지목했다."
    },
-   "ts": "2026-07-03T12:00:00+00:00"
+   "ts": "2026-07-03T12:00:00+00:00",
+   "coverArt": "covers/netinterest-stretch.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-04-09",
@@ -7339,7 +7431,9 @@
     "en": "Can neoclouds like Nebius outrun GPU generation risk?",
     "ja": "ネビウスのようなネオクラウドはGPU世代交代リスクに勝てる?"
    },
-   "ts": "2026-07-15T12:00:00+00:00"
+   "ts": "2026-07-15T12:00:00+00:00",
+   "coverArt": "covers/nbis.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-15",
@@ -7383,7 +7477,9 @@
     "en": "The optics rally: early innings or overheated?",
     "ja": "光通信株の上昇はまだ序盤か、過熱か?"
    },
-   "ts": "2026-07-15T12:00:00+00:00"
+   "ts": "2026-07-15T12:00:00+00:00",
+   "coverArt": "covers/optics.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-15",
@@ -7430,7 +7526,9 @@
     "en": "One stock, two prices, which would you buy?",
     "ja": "同じ株に2つの価格、あなたならどちらを買う?"
    },
-   "ts": "2026-07-15T12:00:00+00:00"
+   "ts": "2026-07-15T12:00:00+00:00",
+   "coverArt": "covers/hynix.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-14",
@@ -7595,7 +7693,9 @@
     "ja": "マイクロソフトのCEOが「顧客は自分の学習ループを所有すべきだ」と言った瞬間、AIスタックの次の戦線が引かれた。その線はすべてのモデル会社の利用規約を通る。",
     "ko": "MS CEO가 '고객이 자기 학습 루프를 소유해야 한다'고 말하는 순간 AI 스택의 다음 전선이 그어졌다. 그 선은 모든 모델사의 약관을 지나간다."
    },
-   "ts": "2026-07-13T12:00:00+00:00"
+   "ts": "2026-07-13T12:00:00+00:00",
+   "coverArt": "covers/nadella.png",
+   "coverKind": "data"
   },
   {
    "date": "2026-07-09",
@@ -7638,7 +7738,9 @@
     "ja": "メタが推論を「非常に安く」売るというのは価格戦争の宣言だ。モデル価格戦争の勝者は最も安いコンピュートを持つ側。インフラ増設には好材料、マージンには残酷だ。",
     "ko": "메타가 추론을 '아주 싸게' 팔겠다는 건 가격전쟁 선언이다. 모델 가격전쟁의 승자는 가장 싼 컴퓨트를 가진 쪽이다. 인프라 증설엔 호재, 마진엔 잔혹하다."
    },
-   "ts": "2026-07-09T12:00:00+00:00"
+   "ts": "2026-07-09T12:00:00+00:00",
+   "coverArt": "covers/zuck.png",
+   "coverKind": "data"
   },
   {
    "id": "cook-broadcom",
@@ -7680,7 +7782,9 @@
     "ja": "オンショアリングが政治スローガンから発注書へ移りつつある。国内シリコン・サプライチェーンを財務的に成立させるのはアップルの物量であり、それを受け取るのはブロードコムだ。",
     "ko": "온쇼어링이 정치 구호에서 발주서로 넘어가고 있다. 국내 실리콘 공급망을 재무적으로 성립시키는 건 애플의 물량이고, 그걸 받는 쪽은 브로드컴이다."
    },
-   "ts": "2026-07-08T12:00:00+00:00"
+   "ts": "2026-07-08T12:00:00+00:00",
+   "coverArt": "covers/cook-broadcom.png",
+   "coverKind": "data"
   }
  ],
  "series": {
