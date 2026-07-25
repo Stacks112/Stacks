@@ -63,6 +63,9 @@ FEEDS = [
     # gives us a first-party feed with no RSS.app dependency.
     {"id": "kuo", "url": "https://medium.com/feed/@mingchikuo",
      "alt": ["https://medium.com/@mingchikuo/feed"], "keep_days": SLOW_DAYS, "naver": False},
+    # Kuo's X posts are often standalone survey findings rather than Medium
+    # teasers, so they come in as a second intake for the same author.
+    {"id": "kuo_x", "url": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml", "naver": False},
     {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "naver": False},
     {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "naver": False},
     {"id": "pichai", "url": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml", "naver": False},
