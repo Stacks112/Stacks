@@ -1,13 +1,13 @@
 {
  "source": "macroalf",
  "fetched_at": "2026-07-25T11:43:10.605532+00:00",
- "checked_at": "2026-07-25T11:43:10.605532+00:00",
- "ok": true,
- "url_used": "https://rss.app/feeds/eGT8EYReWt302sdv.xml",
+ "checked_at": "2026-07-25T11:46:05.338449+00:00",
+ "ok": false,
+ "url_used": "https://themacrocompass.substack.com/feed",
  "keep_days": 30,
- "raw_count": 20,
+ "raw_count": 0,
  "kept_count": 1,
- "error": null,
+ "error": "HTTPError: 404 Client Error: Not Found for url: https://rss.app/feeds/eGT8EYReWt302sdv.xml",
  "items": [
   {
    "title": "The Maradona Theory of Interest Rates",
