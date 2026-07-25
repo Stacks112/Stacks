@@ -65,7 +65,8 @@ FEEDS = [
      "alt": ["https://medium.com/@mingchikuo/feed"], "keep_days": SLOW_DAYS, "naver": False},
     # Kuo's X posts are often standalone survey findings rather than Medium
     # teasers, so they come in as a second intake for the same author.
-    {"id": "kuo_x", "url": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml", "naver": False},
+    {"id": "kuo_x", "url": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
+     "keep_days": SLOW_DAYS, "naver": False},
     {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "naver": False},
     {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "naver": False},
     {"id": "pichai", "url": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml", "naver": False},
@@ -196,8 +197,11 @@ def main():
         raw_count = len(entries)
 
         cleaned = []
+        newest = None
         for it in entries[:MAX_ITEMS]:
             dt = parse_date(it["published"])
+            if dt is not None and (newest is None or dt > newest):
+                newest = dt
             if dt is not None and dt < cutoff:
                 continue
             content = strip_tags(it.get("description") or "")[:MAX_CONTENT]
@@ -227,6 +231,9 @@ def main():
             "url_used": url,
             "keep_days": keep_days,
             "raw_count": raw_count,
+            # Newest item the feed offered, whatever the retention window. Without
+            # it a kept_count of 0 cannot tell a quiet author from a stale mirror.
+            "newest_published": newest.isoformat() if newest else prev.get("newest_published"),
             "kept_count": len(cleaned) if ok else len(prev.get("items", [])),
             "error": error,
             "items": cleaned if ok else prev.get("items", []),
@@ -237,7 +244,7 @@ def main():
         if ok:
             note = f"[ok] {feed['id']}: {len(cleaned)} items (of {raw_count} in feed)"
             if not cleaned:
-                note += f" — nothing newer than {keep_days}d"
+                note += f" — nothing newer than {keep_days}d (newest: {newest.date() if newest else '?'})"
                 stale.append(feed["id"])
             print(note)
         else:
