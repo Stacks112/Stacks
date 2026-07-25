@@ -1078,7 +1078,11 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
 .img-fs{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;
   align-items:center;justify-content:center;padding:24px;}
 .img-fs[hidden]{display:none;}
-.img-fs img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;cursor:zoom-out;}
+/* 제스처(아래로 쓸어 닫기·핀치 줌)를 브라우저 스크롤/줌에 뺏기지 않게 */
+.img-fs{touch-action:none;overscroll-behavior:contain;}
+.img-fs img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;cursor:zoom-out;
+  will-change:transform;transform-origin:center center;}
+.img-fs.zoomed img{cursor:grab;}
 .img-fs-x{position:absolute;top:14px;right:16px;width:38px;height:38px;border-radius:999px;
   border:0;background:rgba(255,255,255,.14);color:#fff;font-size:17px;cursor:pointer;}
 .img-fs-x:hover{background:rgba(255,255,255,.26);}
@@ -6543,7 +6547,17 @@ function logRead(id){
 }
 /* 2026-07-25 (june): X처럼 카드를 접지 않는다. 헤드라인을 누르면 본문(요약)을
    누른 것과 똑같이 상세로 이동한다. 상세 뷰가 없는 화면에서는 아무 일도 하지 않는다. */
-function openFromCard(id){
+/* 2026-07-25 (june, 모바일 전수조사): 이 함수는 데스크톱 경로만 갖고 있었다.
+   모바일에서 헤드라인을 누르면 상세가 열리지 않고, 화면에 없는 데스크톱 상태값
+   (V83ITEM)만 바뀌면서 피드가 통째로 다시 그려졌다. 셸을 보고 갈라 보낸다. */
+function openFromCard(id, ev){
+  var mobile = !document.documentElement.classList.contains("v83");
+  if (mobile && typeof window.v82OpenCard === "function"){
+    /* 카드 자체에도 탭 핸들러가 있어서 그대로 두면 상세가 두 번 열린다 */
+    if (ev && ev.stopPropagation) ev.stopPropagation();
+    window.v82OpenCard(id);
+    return;
+  }
   if (typeof v83OpenItem === "function") v83OpenItem(id);
 }
 function setRead(id, keepOpen){
@@ -7418,6 +7432,13 @@ function applyView(v){
   return true;
 }
 window.addEventListener("popstate", function(ev){
+  /* 2026-07-25 (june, 모바일 전수조사): 댓글 시트만 뒤로가기로 안 닫혔다.
+     상세·캘린더·알림·탐색은 다 닫히는데 여기만 히스토리에 없었다. 시트가 제일
+     위에 떠 있으므로 v82Pop보다 먼저 본다 — 상세 위에서 열었을 때 뒤로가기가
+     시트 대신 상세를 닫아버리는 걸 막는다. */
+  if (window.__twcSilent){ window.__twcSilent = false; return; }
+  var _twc = document.getElementById("twcOv");
+  if (_twc && !_twc.hidden && typeof closeComments === "function"){ closeComments(true); return; }
   /* v82 mobile shell (drawer / explore / card detail) gets first pick */
   if (typeof window.v82Pop === "function" && window.v82Pop()) return;
   const cfs = document.getElementById("chartFS");
@@ -7522,9 +7543,32 @@ if (ONESIGNAL_APP_ID){
 /* 2026-07-25 (june, X 대비 전수조사): 카드 이미지를 눌러도 아무 일도 일어나지 않았다.
    X는 이미지를 누르면 전체화면 뷰어가 뜬다. 차트 전체화면(chartFS)은 있었지만 일반
    이미지 뷰어가 없었다. 카드 클릭이 상세로 가는 것과 충돌하지 않게 전파를 끊는다. */
+var IMGFS = { scale: 1, x: 0, y: 0 };
+function imgFSApply(){
+  var ov = document.getElementById("imgFS"); if (!ov) return;
+  var im = ov.querySelector("img"); if (!im) return;
+  /* 확대 상태에서만 이동 범위를 묶는다 — 배율 1에서는 아래로 쓸어 닫기가 y를 쓴다 */
+  if (IMGFS.scale > 1.02){
+    var r = ov.getBoundingClientRect();
+    var mx = (IMGFS.scale - 1) * r.width / 2, my = (IMGFS.scale - 1) * r.height / 2;
+    IMGFS.x = Math.max(-mx, Math.min(mx, IMGFS.x));
+    IMGFS.y = Math.max(-my, Math.min(my, IMGFS.y));
+  }
+  im.style.transform = "translate(" + IMGFS.x + "px," + IMGFS.y + "px) scale(" + IMGFS.scale + ")";
+  ov.classList.toggle("zoomed", IMGFS.scale > 1.02);
+}
+function imgFSReset(anim){
+  var ov = document.getElementById("imgFS"); if (!ov) return;
+  var im = ov.querySelector("img");
+  IMGFS.scale = 1; IMGFS.x = 0; IMGFS.y = 0;
+  if (im) im.style.transition = anim ? "transform .18s ease" : "none";
+  imgFSApply();
+  ov.style.background = "";
+}
 function imgFSClose(){
   var ov = document.getElementById("imgFS");
-  if (ov){ ov.hidden = true; var im = ov.querySelector("img"); if (im) im.src = ""; }
+  if (ov){ ov.hidden = true; var im = ov.querySelector("img"); if (im){ im.style.transition = "none"; im.src = ""; } }
+  imgFSReset(false);
   document.body.style.overflow = "";
 }
 function imgFSOpen(src, alt){
@@ -7534,19 +7578,99 @@ function imgFSOpen(src, alt){
     ov = document.createElement("div");
     ov.id = "imgFS"; ov.className = "img-fs"; ov.hidden = true;
     ov.innerHTML = '<button class="img-fs-x" aria-label="close">&#x2715;</button><img alt="">';
-    ov.addEventListener("click", function(e){ if (e.target === ov || e.target.classList.contains("img-fs-x")) imgFSClose(); });
+    ov.addEventListener("click", function(e){
+      if (IMGFS.moved) return;                       /* 드래그 끝의 클릭으로 닫히지 않게 */
+      if (e.target === ov || e.target.classList.contains("img-fs-x")) imgFSClose();
+    });
+    imgFSBindTouch(ov);
     document.body.appendChild(ov);
   }
   var im = ov.querySelector("img");
   im.src = src; im.alt = alt || "";
+  imgFSReset(false);
   ov.hidden = false;
   document.body.style.overflow = "hidden";
+}
+/* 2026-07-25 (june, 모바일 전수조사): X는 전체화면 사진을 아래로 쓸어내리면 닫히고
+   두 손가락으로 벌리면 확대된다. 모바일에서 우상단 X 버튼은 엄지로 닫기 불편해서
+   체감 차이가 컸다. 확대 중에는 스와이프 닫기 대신 이동(팬)으로 동작한다. */
+function imgFSBindTouch(ov){
+  var sy = 0, sx = 0, dy = 0, dx = 0, baseX = 0, baseY = 0;
+  var mode = null, startDist = 0, startScale = 1, lastTap = 0;
+  var im = function(){ return ov.querySelector("img"); };
+  var dist = function(t){
+    var a = t[0], b = t[1];
+    return Math.sqrt(Math.pow(a.clientX - b.clientX, 2) + Math.pow(a.clientY - b.clientY, 2));
+  };
+  ov.addEventListener("touchstart", function(e){
+    var i = im(); if (i) i.style.transition = "none";
+    IMGFS.moved = false;
+    if (e.touches.length === 2){
+      mode = "pinch"; startDist = dist(e.touches) || 1; startScale = IMGFS.scale;
+      baseX = IMGFS.x; baseY = IMGFS.y;
+      return;
+    }
+    if (e.touches.length !== 1) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; dx = 0; dy = 0;
+    baseX = IMGFS.x; baseY = IMGFS.y;
+    mode = IMGFS.scale > 1.02 ? "pan" : "dismiss";
+  }, { passive: true });
+  ov.addEventListener("touchmove", function(e){
+    if (mode === "pinch" && e.touches.length === 2){
+      var s = startScale * (dist(e.touches) / startDist);
+      IMGFS.scale = Math.min(4, Math.max(1, s));
+      IMGFS.moved = true;
+      imgFSApply();
+      return;
+    }
+    if (mode !== "pan" && mode !== "dismiss") return;
+    if (e.touches.length !== 1) return;
+    dx = e.touches[0].clientX - sx; dy = e.touches[0].clientY - sy;
+    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) IMGFS.moved = true;
+    if (mode === "pan"){
+      IMGFS.x = baseX + dx; IMGFS.y = baseY + dy;
+      imgFSApply();
+      return;
+    }
+    IMGFS.y = dy < 0 ? dy * 0.35 : dy;                /* 위로는 저항을 준다 */
+    IMGFS.x = 0;
+    imgFSApply();
+    ov.style.background = "rgba(0,0,0," + Math.max(0.3, 0.92 - Math.abs(dy) / 520) + ")";
+  }, { passive: true });
+  ov.addEventListener("touchend", function(e){
+    if (mode === "dismiss" && dy > 90){ imgFSClose(); mode = null; return; }
+    if (mode === "dismiss"){ imgFSReset(true); }
+    else if (mode === "pinch" && IMGFS.scale <= 1.02){ imgFSReset(true); }
+    else if (mode === "pan"){ var i2 = im(); if (i2) i2.style.transition = "transform .12s ease"; }
+    /* 더블탭으로 확대/원복 (X와 동일) — 확대 중(pan)에도 받아야 손가락으로 되돌릴 수 있다 */
+    if ((mode === "dismiss" || mode === "pan") && !IMGFS.moved && e.changedTouches && e.changedTouches.length === 1){
+      var now = Date.now();
+      if (now - lastTap < 320){
+        IMGFS.scale = IMGFS.scale > 1.02 ? 1 : 2.4; IMGFS.x = 0; IMGFS.y = 0;
+        var i3 = im(); if (i3) i3.style.transition = "transform .18s ease";
+        imgFSApply();
+        IMGFS.moved = true;                            /* 이 탭이 닫기로 이어지지 않게 */
+        lastTap = 0;
+      } else lastTap = now;
+    }
+    mode = null;
+  }, { passive: true });
 }
 document.addEventListener("click", function(e){
   var im = e.target.closest && e.target.closest(".card-thumb img, .card-thumb-img img");
   if (!im) return;
   e.preventDefault(); e.stopPropagation();
   imgFSOpen(im.currentSrc || im.src, im.alt);
+}, true);
+/* 2026-07-25 (june, 모바일 전수조사): X는 프로필 사진을 누르면 그 계정으로 간다.
+   우리는 이름만 눌러야 했고 아바타는 반응이 없었다. 이름 쪽 핸들러로 넘겨준다. */
+document.addEventListener("click", function(e){
+  var av = e.target.closest && e.target.closest(".card-top .avatar");
+  if (!av) return;
+  var top = av.closest(".card-top"); if (!top) return;
+  var nm = top.querySelector(".src-name[onclick]"); if (!nm) return;
+  e.preventDefault(); e.stopPropagation();
+  nm.click();
 }, true);
 document.addEventListener("keydown", function(e){
   if (e.key === "Escape"){ var ov = document.getElementById("imgFS"); if (ov && !ov.hidden) imgFSClose(); }
@@ -8234,7 +8358,7 @@ function cardEl(item, S, idx){
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
-      <h3 class="card-title" onclick="openFromCard('${item.id}')"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span></h3>
+      <h3 class="card-title" onclick="openFromCard('${item.id}', event)"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span></h3>
       <div class="card-body">
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
       ${coverThumbHtml(item)}
