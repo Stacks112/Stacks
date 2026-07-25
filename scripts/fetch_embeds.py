@@ -49,6 +49,7 @@ PAUSE = 0.7          # be a polite neighbour; ~100 posts is ~70s
 MAX_NEW = 40         # per run, so a cold start spreads over a few runs
 MAX_LINES = 4        # paragraphs kept from the post body
 STATUS_RE = re.compile(r"^https?://(?:www\.)?(?:x|twitter)\.com/[^/]+/status/(\d+)", re.I)
+LINK_RE = re.compile(r"(?:https?://)?(?:t\.co|pic\.(?:twitter|x)\.com)/\w+")
 
 
 def log(msg):
@@ -101,10 +102,13 @@ def parse(payload, url):
         # paragraphs with <br><br>. Split them back apart so the card can
         # space them the way the author wrote them.
         for chunk in re.split(r"\n\s*\n", p):
-            # trailing media / permalink shortlink, in either rendered form
-            chunk = re.sub(
-                r"\s*(?:https?://)?(?:t\.co|pic\.(?:twitter|x)\.com)/\w+\s*$",
-                "", chunk).strip()
+            # X appends its own shortlink for attached media and for the post
+            # being quoted. Anchoring this to the end of the chunk turned out
+            # to be too strict — 9 of the first 204 lines kept theirs — so it
+            # runs unanchored: a t.co link is never part of what the author
+            # actually wrote.
+            chunk = LINK_RE.sub(" ", chunk)
+            chunk = re.sub(r"[ \t]{2,}", " ", chunk).strip()
             if chunk:
                 lines.append(chunk)
 
@@ -139,6 +143,16 @@ def main():
     have = load_json(OUT, {})
     if not isinstance(have, dict):
         have = {}
+
+    # Entries are cached forever, so a parsing bug fixed today would otherwise
+    # live on in whatever it already wrote. Anything still carrying a shortlink
+    # came from the older parse; drop it and let this run fetch it again.
+    stale = [k for k, v in have.items()
+             if any(LINK_RE.search(l) for l in (v.get("lines") or []))]
+    for k in stale:
+        del have[k]
+    if stale:
+        log("%d cached entries predate the current parse — refetching" % len(stale))
 
     targets = []
     for it in items:
