@@ -8595,7 +8595,7 @@ function cardEl(item, S, idx){
     /* gclip: build_data flagged this summary as longer than the preview the
        card is painting right now. Wearing the clamp from the first frame means
        the full text drops in later without moving anything. */
-    el.className = "card" + (item.clip ? " gclip v82clip v83clip" : ""); /* round12: 읽음 상태로 접거나 흐리게 하지 않음 */
+    el.className = "card" + (item.clip ? " gclip v82clip v83clip" : "") + (item.lab ? " card-lab" : ""); /* round12: 읽음 상태로 접거나 흐리게 하지 않음 */
     el.id = "sig-" + item.id;
     el.style.animationDelay = (idx * 0.04) + "s";
     const mineWhy = FEED_MINE ? mineReasons(item) : [];
@@ -8614,7 +8614,7 @@ function cardEl(item, S, idx){
       <h3 class="card-title" onclick="openFromCard('${item.id}', event)"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span></h3>
       <!-- lab(item.lab): 실험 카드 한정. 원문제목·커버·원문보기 줄을 DOM에서 뺀다 -->
       <div class="card-body">
-      ${(showOrig && !item.lab) ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
+      ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
       ${item.lab ? "" : coverThumbHtml(item)}
       ${"" /* series feature retired: no series tag on cards */}
       ${srcBlockHtml(item)}
@@ -10066,6 +10066,7 @@ bootData();
   html.v83 #feedList .card-body > .ask-block{ order:50; }
   html.v83 #feedList .card-body > .cta-row{ order:60; }
   html.v83 #feedList .card-body > .title-orig{ order:65; }   /* ← 원문 보기 아래 */
+  html.v83 #feedList .card.card-lab .card-body > .title-orig{ order:5; margin:0 0 12px !important; }   /* lab: 헤드라인 바로 밑 */
   html.v83 #feedList .card-body > .engage{ order:70; }
   html.v83 #feedList .card-body > .twin,
   html.v83 #feedList .card-body > .twin-list,
