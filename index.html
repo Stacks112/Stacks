@@ -2610,7 +2610,14 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
   .chk-c:last-child{border-bottom:0;}
 }
 
-.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:stretch;margin:14px 0;}
+/* the referee: a small badge between the two readings, so the pair reads as
+   one bout instead of two unrelated cards */
+.cmp-vs{align-self:center;width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Inter",sans-serif;font-weight:900;font-size:12.5px;letter-spacing:.02em;
+  color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6);
+  box-shadow:0 2px 8px rgba(17,18,20,.18);}
 .cmp-c{padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(127,127,140,.045);}
 .cmp-c i{display:block;font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.03em;
   color:var(--muted);margin-bottom:6px;text-transform:uppercase;}
@@ -2618,7 +2625,16 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .cmp-c.cmp-b{border-color:var(--accent);background:rgba(59,130,246,.07);}
 /* stacking keeps the left column first, so the "here is the common reading,
    here is why it is wrong" order survives on a phone */
-@media (max-width:520px){ .cmp{grid-template-columns:1fr;} }
+@media (max-width:520px){ .cmp{grid-template-columns:1fr;} .cmp-vs{justify-self:center;margin:-2px 0;} }
+
+.gimg{margin:14px 0;}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid var(--line);border-radius:12px;background:#fff;}
+.gimg figcaption{margin-top:6px;font-size:11.5px;color:var(--muted);line-height:1.5;}
+.gimg figcaption a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
+
+/* lab: 세 줄 요약 + 왜 중요한가를 한 박스로 */
+.why-lab .sum3{white-space:pre-line;font-weight:400;line-height:1.65;}
+.why-lab .label.why2{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);}
 
 .splitb{margin-top:14px;padding:11px 12px 10px;border:1px dashed var(--line);border-radius:12px;}
 .splitb .label{margin-bottom:6px;}
@@ -2687,6 +2703,13 @@ html[data-lang="ko"] .ev-label{font-family:var(--ui-font);}
 .ev-bell.on svg{fill:#FFD166;stroke:#FFD166;}
 
 /* ---------- watchlist (followed companies) ---------- */
+#watchSec{position:relative;}
+.watch-nav{position:absolute;top:-3px;right:0;display:flex;gap:6px;z-index:2;}
+.watch-nav button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);
+  background:var(--card);color:var(--text);cursor:pointer;font-size:15px;line-height:1;
+  display:flex;align-items:center;justify-content:center;padding:0 0 2px;}
+.watch-nav button:hover:not(:disabled){background:var(--bg-soft);}
+.watch-nav button:disabled{opacity:.3;cursor:default;}
 .watch-rail{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 14px;}
 .watch-rail::-webkit-scrollbar{display:none;}
 .watch-card{
@@ -3373,7 +3396,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
 function plainGist(text){
   return String(text || "").split("\n").map(L => {
     if (L.indexOf("## ") === 0) return L.slice(3).trim();
-    if (L.indexOf("@@CHK@@") === 0 || L.indexOf("@@CMP@@") === 0) return "";
+    if (L.indexOf("@@") === 0) return "";  /* any block marker: CHK, CMP, IMG, future */
     return L;
   }).filter((L, i, a2) => L !== "" || (i > 0 && a2[i - 1] !== "")).join("\n");
 }
@@ -3412,8 +3435,20 @@ function gistRich(item){
       const c = L.slice(7).split("|");
       out.push('<div class="cmp">' +
         '<div class="cmp-c"><i>' + esc(c[0] || "") + "</i><p>" + esc(c[1] || "") + "</p></div>" +
+        '<div class="cmp-vs">VS</div>' +
         '<div class="cmp-c cmp-b"><i>' + esc(c[2] || "") + "</i><p>" + esc(c[3] || "") + "</p></div>" +
       "</div>");
+    } else if (L.indexOf("@@IMG@@") === 0){
+      /* @@IMG@@src|caption|creditLabel|creditHref - a picture where a picture
+         beats a paragraph. Lazy; a dead URL removes the figure instead of
+         leaving a broken-image icon in the article. */
+      flush();
+      const m = L.slice(7).split("|");
+      out.push('<figure class="gimg"><img src="' + esc(m[0] || "") + '" alt="' + esc(m[1] || "") +
+               '" loading="lazy" onerror="this.closest(&quot;figure&quot;).remove()">' +
+               (m[1] ? "<figcaption>" + esc(m[1]) +
+                 (m[2] ? ' · <a href="' + esc(m[3] || "#") + '" target="_blank" rel="noopener">' + esc(m[2]) + "</a>" : "") +
+                 "</figcaption>" : "") + "</figure>");
     } else {
       buf.push(L);
     }
@@ -6488,6 +6523,45 @@ function watchUnreadCount(key){
      · 강세+약세가 3건 미만           → 판단 보류
      · 한쪽이 75% 이상               → 쏠림
      · 그 외                        → 갈림                                  */
+/* 내 브리핑 카드가 옆으로 넘어간다는 표시가 아무것도 없었다(스크롤바도 숨김).
+   가로로 넘칠 때만 좌우 버튼을 제목 줄 오른쪽에 붙인다. 세로 배치에서는 가로
+   넘침이 없으므로 버튼이 스스로 사라진다. */
+function ensureWatchNav(sec, rail){
+  let nav = document.getElementById("watchNav");
+  if (!nav){
+    nav = document.createElement("div");
+    nav.id = "watchNav";
+    nav.className = "watch-nav";
+    nav.innerHTML = '<button type="button" data-d="-1" aria-label="prev">&#8249;</button>' +
+                    '<button type="button" data-d="1" aria-label="next">&#8250;</button>';
+    nav.addEventListener("click", e => {
+      const btn = e.target.closest("button"); if (!btn) return;
+      rail.scrollBy({ left: (+btn.dataset.d) * Math.max(150, rail.clientWidth - 60), behavior: "smooth" });
+    });
+    sec.insertBefore(nav, sec.firstChild);
+    rail.addEventListener("scroll", () => paintWatchNav(rail), { passive: true });
+    window.addEventListener("resize", () => paintWatchNav(rail));
+    /* the section is often still laying out (or hidden) when renderWatch runs,
+       so a same-tick measurement reads 0 and hides the buttons forever */
+    if (window.ResizeObserver){
+      const ro = new ResizeObserver(() => paintWatchNav(rail));
+      ro.observe(rail);
+    }
+  }
+  paintWatchNav(rail);
+  requestAnimationFrame(() => paintWatchNav(rail));
+  setTimeout(() => paintWatchNav(rail), 600);
+}
+function paintWatchNav(rail){
+  const nav = document.getElementById("watchNav"); if (!nav) return;
+  const over = rail.scrollWidth > rail.clientWidth + 8;
+  nav.hidden = !over;
+  if (!over) return;
+  const bs = nav.querySelectorAll("button");
+  bs[0].disabled = rail.scrollLeft <= 2;
+  bs[1].disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
+}
+
 var BRIEF_MIN_ITEMS = 4, BRIEF_MIN_DIR = 3, BRIEF_LEAN = 0.75;
 function watchWeekSignal(key){
   var cut = new Date(Date.now() - 7 * 86400 * 1000).toISOString().slice(0, 10);
@@ -6584,6 +6658,7 @@ function renderWatch(){
           : '<div class="w-unread w-zero">·</div>')
       + "</div>";
   }).join("");
+  ensureWatchNav(sec, rail);
   keys.forEach(k => { loadQuote(k).then(() => paintWatchQuote(k)); });
   /* follow suggestions: companies that co-occur with what you follow */
   let sg = document.getElementById("watchSugg");
@@ -8623,10 +8698,15 @@ function cardEl(item, S, idx){
         <div class="gist rich">${gistRich(item)}</div>
       </details>
       ${splitHtml(item)}
-      <div class="why">
+      ${(item.lab && item.sum3 && LANG === "ko") ? `<div class="why why-lab">
+        <div class="label">세 줄 요약</div>
+        <p class="sum3">${esc(item.sum3)}</p>
+        <div class="label why2">${S.why}</div>
+        <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
+      </div>` : `<div class="why">
         <div class="label">${S.why}</div>
         <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
-      </div>
+      </div>`}
       ${oppHtml(item, S)}
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
@@ -9131,6 +9211,11 @@ async function loadGists(){
          the real text. Without this the full summary arrives and is silently
          cut off with no way to open it. */
       host.__v83clip = false;
+      /* The card was glossary-linked while it held the 150-char preview; the
+         innerHTML swap above threw those links away for the full text. Re-run
+         the pass - already-linked spans are skipped by the walker, so this
+         only links what the preview never contained. */
+      try { linkifyEntities(host); } catch (e) {}
     });
   }
   GISTS_IN = true;
@@ -10067,6 +10152,11 @@ bootData();
   html.v83 #feedList .card-body > .cta-row{ order:60; }
   html.v83 #feedList .card-body > .title-orig{ order:65; }   /* ← 원문 보기 아래 */
   html.v83 #feedList .card.card-lab .card-body > .title-orig{ order:5; margin:0 0 12px !important; }   /* lab: 헤드라인 바로 밑 */
+  html.v83 #feedList .card.card-lab .card-body > .why{ order:12; }   /* lab: 요약+의미 박스, 임베드 밑 본문 위 */
+  /* v83 피드는 .why를 열린 카드(.v83one)에서만 보여주지만, lab 카드는 세 줄
+     요약이 이 박스로 들어갔으므로 피드에서도 항상 보여야 한다 */
+  html.v83 #feedList > .card.card-lab .why{ display:block; }
+  html.v83 #feedList .card.card-lab .card-body > .related{ order:82; }   /* lab: 함께 읽기, 댓글 아래 */
   html.v83 #feedList .card-body > .engage{ order:70; }
   html.v83 #feedList .card-body > .twin,
   html.v83 #feedList .card-body > .twin-list,

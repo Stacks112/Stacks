@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v22";   /* source-post block + gist markers: the cached index.html would show "@@CHK@@" as literal text */
+const CACHE = "stacks-v23";   /* lab round 3: inline figures, VS badge, merged summary box, glossary relink */
 
 const SHELL = [
   "./",
