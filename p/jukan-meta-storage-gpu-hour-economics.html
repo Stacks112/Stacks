@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>/* shared link (?l=xx): bounce a human into the live app in the sharer's language. No ?l = organic/SEO visit, so this stays a normal crawlable page. */
 (function(){try{var l=new URLSearchParams(location.search).get('l');if(!l)return;location.replace('https://stacksdaily.com/?c=jukan-meta-storage-gpu-hour-economics&l='+encodeURIComponent(l));}catch(e){}})();</script>
-<title>AI 데이터센터 저장장치의 새 기준, 테라바이트당 가격 아닌 GPU 가동시간당 비용 · Stacks</title>
-<meta name="description" content="AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트(TB)당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시…">
+<title>저장장치는 쌀수록 좋다는 상식이, AI 데이터센터에서는 왜 뒤집힐까? · Stacks</title>
+<meta name="description" content="AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시간 뒤…">
 <meta name="keywords" content="AI STORAGE, MICRON, META, Jukan (@jukan05)">
 <link rel="canonical" href="https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html">
 <link rel="alternate" hreflang="ko" href="https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html"><link rel="alternate" hreflang="en" href="https://stacksdaily.com/p/en/jukan-meta-storage-gpu-hour-economics.html"><link rel="alternate" hreflang="ja" href="https://stacksdaily.com/p/ja/jukan-meta-storage-gpu-hour-economics.html"><link rel="alternate" hreflang="x-default" href="https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Stacks">
-<meta property="og:title" content="AI 데이터센터 저장장치의 새 기준, 테라바이트당 가격 아닌 GPU 가동시간당 비용">
-<meta property="og:description" content="AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트(TB)당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시…">
+<meta property="og:title" content="저장장치는 쌀수록 좋다는 상식이, AI 데이터센터에서는 왜 뒤집힐까?">
+<meta property="og:description" content="AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시간 뒤…">
 <meta property="og:url" content="https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html">
 <meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP">
 <meta property="article:published_time" content="2026-07-26">
 <meta property="og:image" content="https://stacksdaily.com/og/jukan-meta-storage-gpu-hour-economics.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://stacksdaily.com/og/jukan-meta-storage-gpu-hour-economics.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI 데이터센터 저장장치의 새 기준, 테라바이트당 가격 아닌 GPU 가동시간당 비용">
-<meta name="twitter:description" content="AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트(TB)당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시…">
+<meta name="twitter:title" content="저장장치는 쌀수록 좋다는 상식이, AI 데이터센터에서는 왜 뒤집힐까?">
+<meta name="twitter:description" content="AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시간 뒤…">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "AI 데이터센터 저장장치의 새 기준, 테라바이트당 가격 아닌 GPU 가동시간당 비용", "description": "AI 모델 학습에서 저장장치를 고르는 기준이 '테라바이트(TB)당 가격'에서 'GPU 가동시간당 비용'으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시…", "datePublished": "2026-07-26T00:00:00Z", "dateModified": "2026-07-26T00:00:00Z", "inLanguage": "ko", "author": {"@type": "Person", "name": "Jukan (@jukan05)", "url": "https://x.com/jukan05"}, "publisher": {"@type": "Organization", "@id": "https://stacksdaily.com/#org", "name": "Stacks", "url": "https://stacksdaily.com/", "logo": {"@type": "ImageObject", "url": "https://stacksdaily.com/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://x.com/InfraThesis", "https://infrathesis.substack.com"]}, "mainEntityOfPage": "https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html", "isBasedOn": "https://x.com/jukan05/status/2081176155806380262", "url": "https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html", "image": "https://stacksdaily.com/og/jukan-meta-storage-gpu-hour-economics.png"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "저장장치는 쌀수록 좋다는 상식이, AI 데이터센터에서는 왜 뒤집힐까?", "description": "AI 모델 학습에서 저장장치를 고르는 기준이 '테라바이트당 가격'에서 'GPU 가동시간당 비용'으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다. 메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시간 뒤…", "datePublished": "2026-07-26T00:00:00Z", "dateModified": "2026-07-26T00:00:00Z", "inLanguage": "ko", "author": {"@type": "Person", "name": "Jukan (@jukan05)", "url": "https://x.com/jukan05"}, "publisher": {"@type": "Organization", "@id": "https://stacksdaily.com/#org", "name": "Stacks", "url": "https://stacksdaily.com/", "logo": {"@type": "ImageObject", "url": "https://stacksdaily.com/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://x.com/InfraThesis", "https://infrathesis.substack.com"]}, "mainEntityOfPage": "https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html", "isBasedOn": "https://x.com/jukan05/status/2081176155806380262", "url": "https://stacksdaily.com/p/jukan-meta-storage-gpu-hour-economics.html", "image": "https://stacksdaily.com/og/jukan-meta-storage-gpu-hour-economics.png"}</script>
 <style>
 :root{color-scheme:light dark}
 *{box-sizing:border-box}
@@ -101,31 +101,28 @@ footer a{color:#8E93A0}
   <div class="topbar"><a href="../">◆ Stacks</a></div>
   <div class="cover"><span class="label">$/GPU-HOUR</span></div>
   <div class="meta">Jukan (@jukan05) · 2026-07-26 · 원문: EN</div>
-  <h1>AI 데이터센터 저장장치의 새 기준, 테라바이트당 가격 아닌 GPU 가동시간당 비용</h1>
+  <h1>저장장치는 쌀수록 좋다는 상식이, AI 데이터센터에서는 왜 뒤집힐까?</h1>
   <div class="actions">
     <a class="btn app" href="https://stacksdaily.com/#sig-jukan-meta-storage-gpu-hour-economics">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://x.com/jukan05/status/2081176155806380262" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <blockquote class="srcq"><p>GPUs are getting three times faster every two years, while storage is failing to keep pace.</p><p>The criterion for selecting storage media has expanded from $/TB to $/GPU-hour.</p><div class="srcq-c"><a href="https://x.com/jukan05/status/2081176155806380262" rel="nofollow noopener" target="_blank">Jukan · 2026.07.26</a></div></blockquote><p class="gist">AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트(TB)당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다.
-메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시간 뒤 마이크론도 메타와 관련된 백서를 냈다고 주칸이 뒤이어 전했다.
-
-엔비디아 GPU 같은 AI 연산 칩의 처리 속도는 2년마다 세 배 가까이 빨라지고 있는데,
+  <blockquote class="srcq"><p>GPUs are getting three times faster every two years, while storage is failing to keep pace.</p><p>The criterion for selecting storage media has expanded from $/TB to $/GPU-hour.</p><div class="srcq-c"><a href="https://x.com/jukan05/status/2081176155806380262" rel="nofollow noopener" target="_blank">Jukan · 2026.07.26</a></div></blockquote><p class="gist">AI 모델 학습에서 저장장치를 고르는 기준이 &#x27;테라바이트당 가격&#x27;에서 &#x27;GPU 가동시간당 비용&#x27;으로 바뀌고 있다는 분석을,
+반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다.
+메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고,
+몇 시간 뒤 마이크론도 메타와 관련된 백서를 냈다고 주칸이 뒤이어 전했다.</p><div class="gcardw"><a class="gcard" href="https://engineering.fb.com/2026/07/01/data-infrastructure/metas-ai-storage-blueprint-at-scale/" rel="noopener" target="_blank"><img src="https://engineering.fb.com/wp-content/uploads/2026/06/Metas-AI-Storage-Blueprint-at-Scale-Hero-1.png" alt="" loading="lazy"><span class="gcard-t">메타 엔지니어링 블로그 · AI 스토리지 설계 청사진 공개 (2026-07-01)</span></a><div class="gcard-src">출처: engineering.fb.com</div></div><h2 class="gsub">GPU가 노는 게 왜 문제인가</h2><p class="gist">AI 학습이 이뤄지는 데이터센터에는 계산을 맡는 GPU와, 계산할 데이터를 대주는 저장장치가 함께 들어간다.</p><figure class="gimg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/BalticServers_data_center.jpg/960px-BalticServers_data_center.jpg" alt="데이터센터 내부. 이런 서버 안에 GPU와 저장장치가 같이 산다." loading="lazy"><figcaption>데이터센터 내부. 이런 서버 안에 GPU와 저장장치가 같이 산다. · <a href="https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg" rel="noopener" target="_blank">Wikimedia Commons</a></figcaption></figure><p class="gist">엔비디아 GPU 같은 AI 연산 칩의 처리 속도는 2년마다 세 배 가까이 빨라지고 있는데,
 데이터를 공급하는 저장장치와 통신망의 속도는 그만큼 따라오지 못하고 있다.
 GPU가 계산할 데이터를 제때 받지 못하면 비싼 GPU가 놀게 된다.
-메타는 이 현상이 AI 인프라에서 GPU를 놀리는 가장 큰 원인 중 하나라고 설명했다.</p><h2 class="gsub">저장장치를 고르는 기준이 왜 바뀌나</h2><p class="gist">지금까지 저장장치는 &#x27;1테라바이트를 얼마나 싸게 저장하느냐&#x27;(달러/TB)로 평가받았다.
-그런데 AI 학습에서는 저장장치가 느려 GPU가 노는 시간이 늘면,
-그 손실이 저장장치에서 아낀 돈보다 커질 수 있다.
-그래서 메타 엔지니어링팀은 저장장치의 값어치를 &#x27;얼마나 GPU를 쉬지 않게 해주느냐&#x27;(달러/GPU 가동시간)로 다시 재야 한다고 주장한다.
+메타는 이 현상이 AI 인프라에서 GPU를 놀리는 가장 큰 원인 중 하나라고 설명했다.
 
 공장에 비유하면 쉽다.
 값싼 부품을 아끼려다 조립 라인 전체가 멈추면, 부품값을 아낀 것보다 라인이 멈춘 손해가 훨씬 크다.
-GPU 한 시간 가동 비용이 저장장치를 아껴서 번 돈보다 훨씬 크기 때문에, 계산이 이렇게 뒤집힌다.
-
-이 기준이 업계 표준으로 자리잡으면, 처리 속도가 빠른 고성능 낸드(전원이 꺼져도 데이터가 남는 저장용 반도체) 제조사들이
+GPU 한 시간 가동 비용이 저장장치를 아껴서 번 돈보다 훨씬 크기 때문에, 계산이 이렇게 뒤집힌다.</p><h2 class="gsub">저장장치를 고르는 셈법이 어떻게 바뀌나</h2><div class="cmp"><div class="cmp-c"><i>지금까지의 셈법</i><p>1테라바이트를 얼마나 싸게 저장하느냐(달러/TB). 같은 용량이면 싼 저장장치가 이긴다.</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>메타의 새 셈법</i><p>저장장치가 GPU를 얼마나 쉬지 않게 해주느냐(달러/GPU 가동시간). 몇 푼 아끼려다 GPU를 놀리면 그쪽이 더 큰 손해다.</p></div></div><h2 class="gsub">저장장치 업계에는 무슨 의미인가</h2><p class="gist">이 기준이 업계 표준으로 자리잡으면,
+처리 속도가 빠른 고성능 낸드(전원이 꺼져도 데이터가 남는 저장용 반도체) 제조사들이
 &#x27;더 비싸도 GPU를 덜 놀리는&#x27; 제품으로 가격을 정당화하기 쉬워진다.
 단순 용량 경쟁이 아니라 속도 경쟁으로 무게중심이 옮겨간다는 뜻이다.
-마이크론이 이 논지를 메타와 함께 백서로 냈다는 사실 자체가, 저장장치 업계가 이 프레임을 마케팅에도 쓰기 시작했다는 신호로 읽힌다.</p><p class="why"><b>Why it matters</b> · 이 기준이 굳어지면 저장장치 경쟁의 축이 용량에서 속도로 옮겨가고, 그 수혜는 처리 속도가 앞선 고성능 낸드 제조사에게 갈 수 있다.</p><p class="ask"><b>짚어볼 점</b> · GPU 가동시간당 비용이라는 새 잣대, 저장장치 시장의 승자를 바꿀까?</p>
+마이크론이 이 논지를 메타와 함께 백서로 냈다는 사실 자체가,
+저장장치 업계가 이 프레임을 마케팅에도 쓰기 시작했다는 신호로 읽힌다.</p><p class="why"><b>Why it matters</b> · 이 기준이 굳어지면 저장장치 경쟁의 축이 용량에서 속도로 옮겨가고, 그 수혜는 처리 속도가 앞선 고성능 낸드 제조사에게 갈 수 있다.</p><p class="ask"><b>짚어볼 점</b> · GPU 가동시간당 비용이라는 새 잣대, 저장장치 시장의 승자를 바꿀까?</p>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-meta-storage-gpu-hour-economics.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-meta-storage-gpu-hour-economics.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/meta.html">META</a><a class="ent-chip" href="../e/micron.html">MICRON</a><a class="ent-chip" href="../e/nand.html">NAND</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-ms-memory-shortage-2028.html">모건스탠리, 메모리 부족 2028년까지 완화 조짐 없다</a></li><li><a href="jukan-nvidia-cmx-nand-demand.html">엔비디아 CMX가 낸드를 대량으로 빨아들인다, &#x27;애플 하나&#x27;만 한 새 수요</a></li><li><a href="jukan-samsung-nvidia-nand-v10.html">삼성, 엔비디아 동맹을 낸드로 확장, V10 출하 시작</a></li></ul></nav>
