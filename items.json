@@ -14232,6 +14232,153 @@
     "ko": "1869년 설립된 세계 최대 투자은행 중 하나로 투자은행업, 트레이딩, 자산운용, 리서치를 아우른다. 반도체를 포함한 개별 산업에 대한 애널리스트 노트와 전문가콜 요약이 시장에서 널리 참고된다.",
     "ja": "1869年創業、投資銀行業務、トレーディング、資産運用、リサーチを手がける世界最大級の投資銀行の一つ。半導体を含む個別セクターに関するアナリストノートや専門家コールの要約は市場で広く参照される。"
    }
+  },
+  "QLC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "QLC",
+    "쿼드레벨셀",
+    "쿼드레벨 셀"
+   ],
+   "desc": {
+    "ko": "저장 칸 하나에 4비트를 담는 낸드. 값이 싸지는 대신 수명과 속도를 양보한다.",
+    "en": "NAND that stores 4 bits per cell — cheaper capacity, at the cost of endurance and speed.",
+    "ja": "1つのセルに4ビットを詰め込むNAND。安くなる代わりに寿命と速度を犠牲にする。"
+   },
+   "longDesc": {
+    "ko": "Quad-Level Cell. 같은 칸에 더 많이 욱여넣을수록 같은 웨이퍼에서 더 많은 용량이 나와 원가가 내려간다. 대신 칸이 빨리 닳고 쓰기 속도가 느려서, 자주 고쳐 쓰는 데이터보다 한 번 쌓아 두고 읽는 데이터센터·AI용 대용량 저장에 맞는다.",
+    "en": "Packing more bits into each cell yields more capacity per wafer, cutting cost per gigabyte. The cells wear out faster and write slower, so QLC suits write-once, read-many storage — data-center and AI archives — more than frequently rewritten data.",
+    "ja": "セルに多く詰めるほど同じウェハーから多くの容量が取れ、原価が下がる。その分セルの摩耗が早く書き込みも遅いので、頻繁に書き換えるデータよりデータセンターやAI向けの大容量保存に向く。"
+   }
+  },
+  "TLC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "TLC",
+    "트리플레벨셀",
+    "트리플레벨 셀"
+   ],
+   "desc": {
+    "ko": "저장 칸 하나에 3비트를 담는 낸드. 용량·수명·속도의 균형형으로, 제조사 마진이 좋은 주력 제품이다.",
+    "en": "NAND that stores 3 bits per cell — the balanced mainstream grade, and the better-margin product for makers.",
+    "ja": "1つのセルに3ビットを入れるNAND。容量・寿命・速度のバランス型で、メーカーのマージンが良い主力製品。"
+   }
+  },
+  "SSD": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "SSD",
+    "기업용 SSD",
+    "솔리드 스테이트 드라이브",
+    "solid state drive"
+   ],
+   "desc": {
+    "ko": "낸드 칩 여러 개를 묶어 만든 저장장치. 회전하는 원판(HDD)과 달리 움직이는 부품이 없어 빠르고 튼튼하다.",
+    "en": "A storage drive built from NAND chips. No spinning parts like a hard disk, so it is faster and sturdier.",
+    "ja": "NANDチップを束ねて作る記憶装置。回転円盤(HDD)と違い可動部がなく、速くて壊れにくい。"
+   }
+  },
+  "모듈 업체": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "모듈 업체",
+    "모듈업체",
+    "메모리 모듈 업체"
+   ],
+   "desc": {
+    "ko": "낸드·D램 칩을 사다가 SSD나 메모리 모듈로 조립해 파는 중간 업체. 칩을 직접 만들지는 않는다.",
+    "en": "A middleman that buys NAND or DRAM chips and assembles them into SSDs or memory modules — it does not make the chips itself.",
+    "ja": "NANDやDRAMチップを買い、SSDやメモリモジュールに組み立てて売る中間業者。チップ自体は作らない。"
+   }
+  },
+  "데이터센터": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "데이터센터",
+    "data center",
+    "datacenter",
+    "データセンター"
+   ],
+   "desc": {
+    "ko": "서버 수만 대를 한 건물에 모아 돌리는 시설. 클라우드와 AI가 실제로 돌아가는 곳이다.",
+    "en": "A building packed with tens of thousands of servers — where the cloud and AI actually run.",
+    "ja": "数万台のサーバーを一つの建物に集めて動かす施設。クラウドとAIが実際に動く場所。"
+   }
+  },
+  "마진": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "마진"
+   ],
+   "desc": {
+    "ko": "팔았을 때 남는 이익의 비율. '마진이 좋다'는 같은 매출에서 더 많이 남는다는 뜻이다.",
+    "en": "The share of the sale price kept as profit; a high-margin product leaves more money from the same revenue.",
+    "ja": "売った時に残る利益の割合。「マージンが良い」は同じ売上からより多く残るという意味。"
+   }
+  },
+  "약세론": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "약세론",
+    "약세론자"
+   ],
+   "desc": {
+    "ko": "가격이 내릴 거라고 보는 쪽의 주장. 반대로 오른다고 보면 강세론이다.",
+    "en": "The bearish case — the view that prices are headed down (the opposite of the bullish case).",
+    "ja": "価格が下がると見る側の主張。逆に上がると見るのが強気論。"
+   }
+  },
+  "출하량": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "출하량",
+    "出荷量"
+   ],
+   "desc": {
+    "ko": "공장에서 고객에게 실어 내보낸 제품의 양. 만든 양이 아니라 실제로 팔려 나간 양에 가깝다.",
+    "en": "The volume shipped out of the factory to customers — closer to what was actually sold than what was produced.",
+    "ja": "工場から顧客へ出した製品の量。作った量ではなく実際に売れて出た量に近い。"
+   }
   }
  }
 }
