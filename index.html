@@ -8733,7 +8733,7 @@ function cardEl(item, S, idx){
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
         <div class="gist rich">${gistRich(item)}</div>
       </details>
-      ${splitHtml(item)}
+      ${item.lab ? "" : splitHtml(item)}
       ${(item.lab && item.sum3 && LANG === "ko") ? `<div class="why why-lab">
         <div class="label">세 줄 요약</div>
         <p class="sum3">${esc(item.sum3)}</p>
@@ -8746,7 +8746,7 @@ function cardEl(item, S, idx){
       ${oppHtml(item, S)}
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
-      ${item.ask && COMMENTS_API ? `<div class="ask-block">
+      ${item.ask && COMMENTS_API && !item.lab ? `<div class="ask-block">
         <div class="ask-q">💬 ${RBETA ? esc(paraGist(item.ask[LANG])) : esc(item.ask[LANG])}</div>
         <div class="vote-row" data-vote="${item.id}">
           <button class="vote-btn vote-up" onclick="castVote('${item.id}','up')"><span class="vd">🟢</span><span class="vl">${S.voteOpp}</span><b class="vn vn-up">0</b></button>

@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v26";   /* lab round 6: cta-row back, feed comments/related on lab card, glossary terms */
+const CACHE = "stacks-v27";   /* lab format rolls out to the 3 newest cards */
 
 const SHELL = [
   "./",

@@ -556,5 +556,43 @@
    "en": "The volume shipped out of the factory to customers — closer to what was actually sold than what was produced.",
    "ja": "工場から顧客へ出した製品の量。作った量ではなく実際に売れて出た量に近い。"
   }
+ },
+ "헤지": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "헤지",
+   "헷지",
+   "hedge",
+   "ヘッジ"
+  ],
+  "desc": {
+   "ko": "가격이 반대로 움직일 때의 손실을 미리 막아 두는 대비책. 보험을 들어 두는 것과 같다.",
+   "en": "A position taken to offset potential losses if prices move the wrong way — like buying insurance.",
+   "ja": "価格が逆に動いた時の損失をあらかじめ抑えておく備え。保険をかけるのと同じ。"
+  }
+ },
+ "투자등급": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "투자등급",
+   "investment grade",
+   "IG등급",
+   "投資適格"
+  ],
+  "desc": {
+   "ko": "신용평가사가 '빌려준 돈을 떼일 위험이 낮다'고 매긴 등급. 이 아래 등급은 정크(투기등급)로 불린다.",
+   "en": "A credit rating that marks a borrower as low default risk; anything below is called junk (speculative grade).",
+   "ja": "信用格付け会社が「貸した金を失う危険が低い」と評価した等級。それ未満はジャンク(投機的等級)と呼ばれる。"
+  }
  }
 }
