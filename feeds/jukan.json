@@ -1,15 +1,33 @@
 {
  "source": "jukan",
- "fetched_at": "2026-07-25T23:32:54.211670+00:00",
- "checked_at": "2026-07-25T23:32:54.211670+00:00",
+ "fetched_at": "2026-07-26T04:07:46.029965+00:00",
+ "checked_at": "2026-07-26T04:07:46.029965+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
- "newest_published": "2026-07-25T23:26:00+00:00",
+ "newest_published": "2026-07-26T03:25:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "$INTC X $SKHY ? 👀",
+   "link": "https://x.com/jukan05/status/2081219381296845123",
+   "published": "2026-07-26T03:25:00+00:00",
+   "content": "$INTC X  $SKHY ? 👀Due Calli (@Intellionaire)From the Columbus Dispatch:\n\nSen. Jon Husted confirms  $INTC are in talks with a potential partner to co-invest on the Ohio site. \n\nMy thoughts on this in the next Intellionaire episode, coming soon.—  https://x.com/Intellionaire/status/2081066909424926745 \n— Jukan (@jukan05) Jul 26, 2026"
+  },
+  {
+   "title": "I’ve written up my own interpretation of a Meta Engineering blog post. I hope you find it helpful.",
+   "link": "https://x.com/jukan05/status/2081176155806380262",
+   "published": "2026-07-26T00:33:00+00:00",
+   "content": "I’ve written up my own interpretation of a Meta Engineering blog post. I hope you find it helpful.Jukan (@jukan05)If you push this argument to its logical extreme, you arrive at the following conclusion:\n\nGPUs are getting three times faster every two years, while storage is failing to keep pace.\n\n“The criterion for selecting storage media has expanded from $/TB to $/GPU-hour.”\n\nTraditional high-capacity storage has primarily been evaluated in terms of $/TB—in other words, how cheaply it can store large volumes of data.\n\nBut in AI training infrastructure, where GPU availability, power, and latency are critical constraints, that metric alone is no longer sufficient. If data arrives too slowly from storage and leaves GPUs idle, the cost of wasted GPU time may exceed any savings achieved on storage.\n\nIn simplified terms:\n\nIncremental cost of flash https://x.com/jukan05/status/2081175404396921164 \n— Jukan (@jukan05) Jul 26, 2026"
+  },
+  {
+   "title": "RT by @jukan05: RT by @jukan05: If you push this argument to its logical extreme, you arrive at the following conclusion: GPUs are getting three times faster every two years, while storage is failing to keep pace. “The criterion for selecting storage media has expanded from $/TB to $/GPU-hour.” Traditional high-capacity storage has primarily been evaluated in terms of $/TB—in other words, how cheaply it can store large volumes of data. But in AI training infrastructure, where GPU availability, power, and latency are critical constraints, that metric alone is no longer sufficient. If data arrives too slowly from storage and leaves GPUs idle, the cost of wasted GPU time may exceed any savings",
+   "link": "https://x.com/jukan05/status/2081175404396921164",
+   "published": "2026-07-26T00:30:00+00:00",
+   "content": "If you push this argument to its logical extreme, you arrive at the following conclusion:\n\nGPUs are getting three times faster every two years, while storage is failing to keep pace.\n\n“The criterion for selecting storage media has expanded from $/TB to $/GPU-hour.”\n\nTraditional high-capacity storage has primarily been evaluated in terms of $/TB—in other words, how cheaply it can store large volumes of data.\n\nBut in AI training infrastructure, where GPU availability, power, and latency are critical constraints, that metric alone is no longer sufficient. If data arrives too slowly from storage and leaves GPUs idle, the cost of wasted GPU time may exceed any savings achieved on storage.\n\nIn simplified terms:\n\nIncremental cost of flash Jul 26, 2026"
+  },
   {
    "title": "A few noteworthy takeaways from Goldman Sachs’ expert call with a Chinese DRAM industry expert: - The expert believes Chinese suppliers’ DRAM prices are comparable to those of global leaders, despite their potentially lower yields. - Chinese DRAM makers could make further progress in 3D DRAM product development in 2027. - Capacity expansions underway in Hefei, Shanghai, and Beijing are expected to be fully operational by 2028. - Some fabs reportedly use mostly domestically produced Chinese equipment, except for high-end tools such as lithography systems.",
    "link": "https://x.com/jukan05/status/2081159164982915575",
@@ -81,24 +99,6 @@
    "link": "https://x.com/jukan05/status/2080822662180536721",
    "published": "2026-07-25T01:09:00+00:00",
    "content": "Apple is peddling the bullshit argument that iPhone prices directly affect inflation and that it needs to use Chinese-made memory to keep inflation low. Yet even though the fivefold increase in memory prices raised its costs by only about $50, Apple increased prices by $250. Cut your margins, Apple.Jukan (@jukan05)Just in from The Wall Street Journal: Apple is lobbying the White House to allow the use of Chinese-made memory chips, while Micron is pushing back hard, arguing that it should never be permitted—putting the two companies at odds.—  https://x.com/jukan05/status/2080821984385278397 \n— Jukan (@jukan05) Jul 25, 2026"
-  },
-  {
-   "title": "Just in from The Wall Street Journal: Apple is lobbying the White House to allow the use of Chinese-made memory chips, while Micron is pushing back hard, arguing that it should never be permitted—putting the two companies at odds.",
-   "link": "https://x.com/jukan05/status/2080821984385278397",
-   "published": "2026-07-25T01:06:00+00:00",
-   "content": "Just in from The Wall Street Journal: Apple is lobbying the White House to allow the use of Chinese-made memory chips, while Micron is pushing back hard, arguing that it should never be permitted—putting the two companies at odds.\n— Jukan (@jukan05) Jul 25, 2026"
-  },
-  {
-   "title": "• Anthropic CEO: “We’ve signed supply agreements with Samsung Electronics and SK hynix.”",
-   "link": "https://x.com/jukan05/status/2080816450647003500",
-   "published": "2026-07-25T00:44:00+00:00",
-   "content": "• Anthropic CEO: “We’ve signed supply agreements with Samsung Electronics and SK hynix.”\n— Jukan (@jukan05) Jul 25, 2026"
-  },
-  {
-   "title": "Interesting. According to The Wall Street Journal, Huawei expects to ship around 1.5 million AI chips this year—roughly double its 2025 volume.",
-   "link": "https://x.com/jukan05/status/2080809774107791601",
-   "published": "2026-07-25T00:18:00+00:00",
-   "content": "Interesting. According to The Wall Street Journal, Huawei expects to ship around 1.5 million AI chips this year—roughly double its 2025 volume.\n— Jukan (@jukan05) Jul 25, 2026"
   }
  ]
 }
