@@ -1,6 +1,62 @@
 {
  "items": [
   {
+   "date": "2026-07-26",
+   "id": "jukan-meta-storage-gpu-hour-economics",
+   "related": [
+    "jukan-ms-memory-shortage-2028",
+    "jukan-nvidia-cmx-nand-demand",
+    "jukan-samsung-nvidia-nand-v10"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2081176155806380262",
+   "docUrl": "https://engineering.fb.com/2026/07/01/data-infrastructure/metas-ai-storage-blueprint-at-scale/",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1D3A",
+    "to": "#1D8A6B",
+    "label": "$/GPU-HOUR"
+   },
+   "tags": [
+    "AI STORAGE",
+    "MICRON",
+    "META"
+   ],
+   "stance": "watch",
+   "quote": {
+    "lines": [
+     "GPUs are getting three times faster every two years, while storage is failing to keep pace.",
+     "The criterion for selecting storage media has expanded from $/TB to $/GPU-hour."
+    ],
+    "cite": "Jukan · 2026.07.26"
+   },
+   "title": {
+    "en": "Storage's new yardstick for AI data centers: not $/TB, but $/GPU-hour",
+    "ko": "AI 데이터센터 저장장치의 새 기준, 테라바이트당 가격 아닌 GPU 가동시간당 비용",
+    "ja": "AIデータセンターのストレージ新基準、$/TBではなく$/GPU稼働時間"
+   },
+   "gist": {
+    "ko": "AI 모델 학습에서 저장장치를 고르는 기준이 '테라바이트(TB)당 가격'에서 'GPU 가동시간당 비용'으로 바뀌고 있다는 분석을, 반도체 애널리스트 주칸이 메타 엔지니어링 블로그 글을 풀어 소개했다.\n메타는 자사 엔지니어링 블로그에 AI 인프라용 저장장치 설계 방식을 공개했고, 몇 시간 뒤 마이크론도 메타와 관련된 백서를 냈다고 주칸이 뒤이어 전했다.\n\n엔비디아 GPU 같은 AI 연산 칩의 처리 속도는 2년마다 세 배 가까이 빨라지고 있는데,\n데이터를 공급하는 저장장치와 통신망의 속도는 그만큼 따라오지 못하고 있다.\nGPU가 계산할 데이터를 제때 받지 못하면 비싼 GPU가 놀게 된다.\n메타는 이 현상이 AI 인프라에서 GPU를 놀리는 가장 큰 원인 중 하나라고 설명했다.\n\n## 저장장치를 고르는 기준이 왜 바뀌나\n\n지금까지 저장장치는 '1테라바이트를 얼마나 싸게 저장하느냐'(달러/TB)로 평가받았다.\n그런데 AI 학습에서는 저장장치가 느려 GPU가 노는 시간이 늘면,\n그 손실이 저장장치에서 아낀 돈보다 커질 수 있다.\n그래서 메타 엔지니어링팀은 저장장치의 값어치를 '얼마나 GPU를 쉬지 않게 해주느냐'(달러/GPU 가동시간)로 다시 재야 한다고 주장한다.\n\n공장에 비유하면 쉽다.\n값싼 부품을 아끼려다 조립 라인 전체가 멈추면, 부품값을 아낀 것보다 라인이 멈춘 손해가 훨씬 크다.\nGPU 한 시간 가동 비용이 저장장치를 아껴서 번 돈보다 훨씬 크기 때문에, 계산이 이렇게 뒤집힌다.\n\n이 기준이 업계 표준으로 자리잡으면, 처리 속도가 빠른 고성능 낸드(전원이 꺼져도 데이터가 남는 저장용 반도체) 제조사들이\n'더 비싸도 GPU를 덜 놀리는' 제품으로 가격을 정당화하기 쉬워진다.\n단순 용량 경쟁이 아니라 속도 경쟁으로 무게중심이 옮겨간다는 뜻이다.\n마이크론이 이 논지를 메타와 함께 백서로 냈다는 사실 자체가, 저장장치 업계가 이 프레임을 마케팅에도 쓰기 시작했다는 신호로 읽힌다.",
+    "en": "Chip-industry commentator Jukan relayed his own reading of a Meta Engineering blog post, arguing that the metric for choosing AI data center storage is shifting from dollars-per-terabyte to dollars-per-GPU-hour.\nMeta published the storage design philosophy on its engineering blog, and a few hours later Jukan noted that Micron had also put out a related white paper with Meta.\n\nAI compute chips like Nvidia's GPUs roughly triple in processing speed every two years, but the storage and networking gear that feeds them data hasn't kept pace.\nWhen a GPU can't get its data fast enough, an expensive chip sits idle.\nMeta describes this as one of the biggest single causes of wasted GPU time in AI infrastructure.\n\n## Why the storage yardstick is changing\n\nStorage has traditionally been judged on how cheaply it can hold a terabyte of data, the dollars-per-terabyte metric.\nBut in AI training, if slow storage leaves GPUs idle longer, that lost compute time can cost more than whatever was saved on storage.\nSo Meta's engineering team argues storage should instead be valued by how well it keeps GPUs busy, a dollars-per-GPU-hour metric.\n\nA factory comparison makes this concrete.\nSkimping on a cheap part that ends up stalling the entire assembly line costs far more than the part itself was worth.\nAn hour of GPU time costs far more than whatever gets saved by buying cheaper storage, which is why the math flips.\n\nIf this yardstick becomes an industry standard, makers of fast, high-performance NAND flash, the kind of chip that keeps data even when the power is off, gain an easier case for charging more for storage that keeps GPUs fed.\nThe competitive center of gravity shifts from raw capacity to raw speed.\nThe fact that Micron co-published this framing with Meta itself signals that storage vendors are starting to use it as a marketing argument too.",
+    "ja": "半導体アナリストのJukanが、メタのエンジニアリングブログの内容を自ら読み解いて紹介した。AIデータセンター向けストレージを選ぶ基準が、テラバイト当たりの価格からGPU稼働時間当たりのコストへと変わりつつあるという内容だ。\nメタは自社エンジニアリングブログでAIインフラ向けストレージの設計思想を公開し、その数時間後にはマイクロンもメタと共同で関連する白書を出したとJukanが伝えた。\n\nエヌビディアのGPUのようなAI演算チップの処理速度は2年ごとにほぼ3倍のペースで向上しているが、\nデータを供給するストレージやネットワークの速度はそれに追いついていない。\nGPUが計算すべきデータを間に合って受け取れないと、高価なGPUが遊んでしまう。\nメタはこれをAIインフラでGPUが遊ぶ最大の原因の一つだと説明している。\n\n## なぜストレージの評価基準が変わるのか\n\nこれまでストレージは「1テラバイトをいかに安く保存できるか」（$/TB）で評価されてきた。\nしかしAI学習では、ストレージが遅くGPUが遊ぶ時間が長くなると、\nその損失はストレージで浮いた費用より大きくなりうる。\nそこでメタのエンジニアリングチームは、ストレージの価値を「どれだけGPUを止めずに動かし続けられるか」（$/GPU稼働時間）で測り直すべきだと主張する。\n\n工場に例えるとわかりやすい。\n安い部品を惜しんで組立ラインが止まれば、部品代を浮かせた額よりラインが止まった損失の方がはるかに大きい。\nGPU1時間分の稼働コストはストレージで浮く金額よりはるかに大きいため、この計算は逆転する。\n\nこの基準が業界標準になれば、処理速度の速い高性能NAND（電源を切ってもデータが残る記憶用の半導体）を作るメーカーは、\n「価格は高くてもGPUを遊ばせない」製品として値付けを正当化しやすくなる。\n単なる容量競争ではなく、速度競争へと重心が移ることを意味する。\nマイクロンがこの論旨をメタと共同で白書にまとめたこと自体が、ストレージ業界がこの枠組みをマーケティングにも使い始めた兆しと読める。"
+   },
+   "why": {
+    "ko": "이 기준이 굳어지면 저장장치 경쟁의 축이 용량에서 속도로 옮겨가고, 그 수혜는 처리 속도가 앞선 고성능 낸드 제조사에게 갈 수 있다.",
+    "en": "If this yardstick sticks, storage competition shifts from capacity to speed, and the winners could be makers of the fastest high-performance NAND.",
+    "ja": "この基準が定着すれば、ストレージ競争の軸は容量から速度へ移り、恩恵は処理速度で先行する高性能NANDメーカーに向かう可能性がある。"
+   },
+   "ask": {
+    "ko": "GPU 가동시간당 비용이라는 새 잣대, 저장장치 시장의 승자를 바꿀까?",
+    "en": "Will the dollars-per-GPU-hour yardstick reshuffle who wins in storage?",
+    "ja": "GPU稼働時間当たりコストという新基準は、ストレージ市場の勝者を変えるか？"
+   },
+   "ts": "2026-07-26T09:47:42.346728+00:00"
+  },
+  {
    "date": "2026-07-25",
    "id": "jukan-goldman-china-dram-catchup",
    "related": [
