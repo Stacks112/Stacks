@@ -100,12 +100,14 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
 .gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
 .gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}"""
 
 
 def block_css_for(body):
-    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"')):
+    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"')):
         return ""
     return BLOCK_CSS
 
@@ -164,6 +166,11 @@ def gist_blocks(gist):
                 '<div class="cmp-c cmp-b"><i>%s</i><p>%s</p></div></div>'
                 % (E(c[0]), E(c[1]), E(c[2]), E(c[3]))
             )
+        elif line.startswith("@@REF@@"):
+            flush()
+            r = (line[7:].split("|") + ["", ""])[:2]
+            html.append('<div class="gref"><a href="%s" rel="noopener" target="_blank">%s &#8599;</a></div>'
+                        % (E(r[1] or "#"), E(r[0])))
         elif line.startswith("@@IMG@@"):
             flush()
             m = (line[7:].split("|") + ["", "", "", ""])[:4]
