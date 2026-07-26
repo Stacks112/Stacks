@@ -2564,6 +2564,23 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .xemb-d{margin-top:9px;font-size:11.5px;color:var(--muted);}
 .xemb-d a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
 
+/* --- real X embed (pilot, one card) ---------------------------------------
+   The text block above is built from oEmbed fields and is what every X card
+   normally shows. For a flagged item we additionally hand the tweet id to
+   X's own widget, which renders the post in its own iframe: full text (74% of
+   our stored posts are truncated by oEmbed), images, video, quoted tweets.
+
+   Two things keep this from being a regression. It only mounts when the card
+   is near the viewport, and the text block stays in place as the visible
+   fallback until X actually paints — so a blocked or slow platform.twitter.com
+   costs nothing and leaves no hole. */
+.xreal{margin:12px 0 4px;}
+.xreal.x-on > .xemb{display:none;}
+.xreal-slot{min-height:0;}
+.xreal-slot iframe{max-width:100% !important;}
+.xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
+
+
 .gist.rich{white-space:normal;}
 .gist.rich .gp{white-space:pre-line;margin:0 0 14px;}
 .gist.rich .gp:last-child{margin-bottom:0;}
@@ -3414,7 +3431,10 @@ function srcBlockHtml(item){
   const e = item.embed;
   if (e && (e.lines || []).length){
     const url = safeUrl(e.url || item.sourceUrl);
-    return '<div class="xemb">' +
+    const id = ((e.url || item.sourceUrl || "").match(/status\/(\d+)/) || [])[1];
+    const open = (item.xembed && id) ? '<div class="xreal" data-xid="' + id + '">' : "";
+    const close = open ? "</div>" : "";
+    return open + '<div class="xemb">' +
       '<div class="xemb-top">' +
         '<div class="xemb-av">' + esc(String(e.name || "?").charAt(0)) + "</div>" +
         '<div class="xemb-nm"><b>' + esc(e.name || "") + "</b><span>" + esc(e.handle || "") + "</span></div>" +
@@ -3425,7 +3445,7 @@ function srcBlockHtml(item){
         (e.quoted ? '<div class="xemb-q">' + esc(e.quoted) + "</div>" : "") +
       "</div>" +
       '<div class="xemb-d"><a href="' + url + '" target="_blank" rel="noopener">' + esc(e.date || "") + "</a></div>" +
-    "</div>";
+    "</div>" + close;
   }
   const q = item.quote;
   if (q && (q.lines || []).length){
@@ -8642,6 +8662,65 @@ function cardEl(item, S, idx){
     return el;
   }
 }
+
+
+/* ---------------- real X embed (pilot) ---------------- */
+let XW_P = null;
+function xWidgets(){
+  if (XW_P) return XW_P;
+  XW_P = new Promise((res, rej) => {
+    const sc = document.createElement("script");
+    sc.async = true;
+    sc.src = "https://platform.twitter.com/widgets.js";
+    sc.onload = () => res(window.twttr || null);
+    sc.onerror = () => rej(new Error("widgets.js blocked"));
+    document.head.appendChild(sc);
+  });
+  return XW_P;
+}
+let XOBS = null;
+function xEmbedScan(){
+  const hosts = document.querySelectorAll(".xreal:not([data-xseen])");
+  if (!hosts.length) return;
+  if (!("IntersectionObserver" in window)){
+    hosts.forEach(h => { h.setAttribute("data-xseen", "1"); xEmbedMount(h); });
+    return;
+  }
+  if (!XOBS) XOBS = new IntersectionObserver(ents => {
+    ents.forEach(en => {
+      if (!en.isIntersecting) return;
+      XOBS.unobserve(en.target);
+      xEmbedMount(en.target);
+    });
+  }, { rootMargin: "600px 0px" });
+  hosts.forEach(h => { h.setAttribute("data-xseen", "1"); XOBS.observe(h); });
+}
+async function xEmbedMount(host){
+  if (host.__xdone) return;
+  host.__xdone = true;
+  const id = (host.getAttribute("data-xid") || "").replace(/\D/g, "");
+  if (!id) return;
+  let tw;
+  /* Any failure here is silent on purpose: the text block is already on
+     screen and is a complete card without this. */
+  try { tw = await xWidgets(); } catch (e) { return; }
+  if (!tw || !tw.widgets || typeof tw.widgets.createTweet !== "function") return;
+  const slot = document.createElement("div");
+  slot.className = "xreal-slot";
+  host.appendChild(slot);
+  try {
+    const el = await tw.widgets.createTweet(id, slot, {
+      theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light",
+      dnt: true,
+      conversation: "none",
+      align: "left",
+      lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
+    });
+    if (el) host.classList.add("x-on");
+    else slot.remove();
+  } catch (e) { slot.remove(); }
+}
+setInterval(xEmbedScan, 1200);
 
 /* ---------------- app install ---------------- */
 let deferredPrompt = null;
