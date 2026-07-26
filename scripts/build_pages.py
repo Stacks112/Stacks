@@ -102,12 +102,17 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gimg figcaption a{color:#8E93A0}
 .gref{margin:6px 0 14px;font-size:13px}
 .gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}"""
 
 
 def block_css_for(body):
-    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"')):
+    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"', 'class="gcard')):
         return ""
     return BLOCK_CSS
 
@@ -168,9 +173,21 @@ def gist_blocks(gist):
             )
         elif line.startswith("@@REF@@"):
             flush()
-            r = (line[7:].split("|") + ["", ""])[:2]
-            html.append('<div class="gref"><a href="%s" rel="noopener" target="_blank">%s &#8599;</a></div>'
-                        % (E(r[1] or "#"), E(r[0])))
+            r = (line[7:].split("|") + ["", "", ""])[:3]
+            host = ""
+            m2 = re.match(r"https?://(?:www\.)?([^/]+)", r[1] or "")
+            if m2:
+                host = m2.group(1)
+            if r[2]:
+                html.append(
+                    '<div class="gcardw"><a class="gcard" href="%s" rel="noopener" target="_blank">'
+                    '<img src="%s" alt="" loading="lazy"><span class="gcard-t">%s</span></a>'
+                    '%s</div>'
+                    % (E(r[1] or "#"), E(r[2]), E(r[0]),
+                       ('<div class="gcard-src">출처: %s</div>' % E(host)) if host else ""))
+            else:
+                html.append('<div class="gref"><a href="%s" rel="noopener" target="_blank">%s &#8599;</a></div>'
+                            % (E(r[1] or "#"), E(r[0])))
         elif line.startswith("@@IMG@@"):
             flush()
             m = (line[7:].split("|") + ["", "", "", ""])[:4]
