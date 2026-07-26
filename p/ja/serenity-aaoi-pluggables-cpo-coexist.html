@@ -57,6 +57,11 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .cmp-c.cmp-b{border-color:#3B82F6}
 .cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
 .cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
@@ -98,7 +103,7 @@ footer a{color:#8E93A0}
   <p class="gist">AIデータセンターでコパッケージド・オプティクス(CPO)が既存のプラガブル型(挿して使う)光トランシーバーを近く駆逐するという見方に、今週業界から反論が出た。アナリストのSerenity氏が、あるフォトニクス業界の最高経営責任者(CEO)の発言を伝えた。ポッドキャスト「Market Insights: Photonics &amp; AI」で語られたこの発言は、プラガブル型トランシーバーが今後も少なくとも10年は商業的に意味を持ち続けるという内容だった。
 
 この発言は、ある読者が「CPOが来たらアプライド・オプトエレクトロニクス(AAOI)は困るのでは」と質問したことから始まった。CPOはサーバーの端に挿す方式の代わりに、光モジュールをプロセッサーのチップパッケージのすぐそばに組み込む技術だ。
-Serenity氏の答えは「必ずしもそうではない」。AAOIもCPO技術を開発中で、商用化の段階で一部の競合よりやや後れているだけだという。一つの技術で後れを取ったからといって、市場全体から取り残されるわけではないという意味だ。</p><h2 class="gsub">CPOが登場してもプラガブルがすぐには消えない理由</h2><p class="gist">伝えられたCEOの大きな構図は、業界が単一の勝者に絞られるのではなく、複数の方式が共存する方向に向かっているというものだ。プラガブルとCPOのほかに、チップにより近いが完全な共同パッケージングまでは至らない「近接パッケージ光学(NPO)」という新方式が、今後5年間の主要な機会として挙げられているという。これは光学サプライチェーン全体の投資と研究開発が、CPO一つに集中するのではなく、少なくとも3つの方式に分かれて進むことを意味する。</p><div class="cmp"><div class="cmp-c"><i>よくある見方</i><p>CPOが登場すればAIクラスターが数万基のGPU規模に拡大する過程でプラガブル型トランシーバーは早晩駆逐される</p></div><div class="cmp-c cmp-b"><i>業界関係者の見方</i><p>プラガブル型は今後もおよそ10年は商業的に有効であり、CPO・NPO・プラガブルが単一の勝者なしに共存する可能性が高い</p></div></div><p class="gist">3つの方式すべてに共通する足かせは、どの技術を選ぶかではなく生産能力と原材料確保だと、このCEOは指摘した。光モジュールに使う連続発光(CW)レーザーの供給が引き続き逼迫している既存の問題を指しているとみられる。つまりどの技術が勝つにせよ、光学部品の需要が業界の生産能力を上回っているということだ。
+Serenity氏の答えは「必ずしもそうではない」。AAOIもCPO技術を開発中で、商用化の段階で一部の競合よりやや後れているだけだという。一つの技術で後れを取ったからといって、市場全体から取り残されるわけではないという意味だ。</p><h2 class="gsub">CPOが登場してもプラガブルがすぐには消えない理由</h2><p class="gist">伝えられたCEOの大きな構図は、業界が単一の勝者に絞られるのではなく、複数の方式が共存する方向に向かっているというものだ。プラガブルとCPOのほかに、チップにより近いが完全な共同パッケージングまでは至らない「近接パッケージ光学(NPO)」という新方式が、今後5年間の主要な機会として挙げられているという。これは光学サプライチェーン全体の投資と研究開発が、CPO一つに集中するのではなく、少なくとも3つの方式に分かれて進むことを意味する。</p><div class="cmp"><div class="cmp-c"><i>よくある見方</i><p>CPOが登場すればAIクラスターが数万基のGPU規模に拡大する過程でプラガブル型トランシーバーは早晩駆逐される</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>業界関係者の見方</i><p>プラガブル型は今後もおよそ10年は商業的に有効であり、CPO・NPO・プラガブルが単一の勝者なしに共存する可能性が高い</p></div></div><p class="gist">3つの方式すべてに共通する足かせは、どの技術を選ぶかではなく生産能力と原材料確保だと、このCEOは指摘した。光モジュールに使う連続発光(CW)レーザーの供給が引き続き逼迫している既存の問題を指しているとみられる。つまりどの技術が勝つにせよ、光学部品の需要が業界の生産能力を上回っているということだ。
 
 この内容はポッドキャストでの発言をツイートで伝えた二次情報であり、企業の公式ロードマップや業績ガイダンスではない。AAOIや特定の供給企業について確定した日程ではなく、業界全体の方向性程度に読むのが適切だ。</p><p class="why"><b>Why it matters</b> · CPOがAAOIのようなプラガブル光学サプライヤーを早晩淘汰するという通念に反論し、AIデータセンター増設の本当の隘路が技術選択ではなく光学部品の生産能力にある可能性を示す。</p><p class="ask"><b>考えるべき点</b> · プラガブル・CPO・NPOが10年共存するなら、光学サプライヤーの中で実際に勝つのはどこか?</p>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/serenity-aaoi-pluggables-cpo-coexist.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/serenity-aaoi-pluggables-cpo-coexist.html" hreflang="en" lang="en">English</a></nav>
