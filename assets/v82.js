@@ -1307,6 +1307,18 @@
     OBS.observe(list, { childList: true });
     onFeedMutate();
   }
+  /* 요약 전문 청크는 카드가 그려진 뒤에 도착한다. innerHTML 교체는 feedList의
+     childList 감시에 안 걸려서, 짧은 미리보기 기준으로 내려진 클립 판정이
+     영영 안 뒤집혔다(→ 더 보기 실종). 데스크톱 v83ClipScan처럼 1초마다 다시 잰다. */
+  setInterval(function(){
+    if (!mq.matches) return;
+    var cards = document.querySelectorAll("#feedList .card.v82c");
+    for (var i = 0; i < cards.length; i++){
+      var c = cards[i], g = c.querySelector(".gist");
+      if (g && !c.classList.contains("v82expanded"))
+        c.classList.toggle("v82clip", g.scrollHeight - g.clientHeight > 6);
+    }
+  }, 1000);
   /* watch intro/onboard so the nav hides during the splash */
   function watchSplash(){
     var io = $("intro"), ob = $("onboard");

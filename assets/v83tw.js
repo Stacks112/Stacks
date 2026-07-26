@@ -534,10 +534,10 @@ function v83ClipScan(){
       c.classList.remove("v83clip");
       return;
     }
-    if (c.__v83clip) return;
     var g = c.querySelector(".gist");
     if (!g || !g.clientHeight) return;   /* not laid out yet: retry next tick */
-    c.__v83clip = true;
+    /* 판정을 한 번으로 굳히지 않는다 — 요약 전문이 나중에 도착하면 접힘 여부가
+       바뀐다. 펼친 카드는 아래 v83expanded 검사로 보호된다. */
     var id = (c.id || "").replace(/^sig-/, "");
     if (!c.querySelector(".v83-more")){
       var fold = c.querySelector(".gist-fold") || g.parentElement;

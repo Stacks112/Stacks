@@ -112,6 +112,10 @@
   /* lab: 원문 보기 버튼만 피드 압축 카드에 남긴다. 요약박스·댓글창·함께읽기는
      X와 같이 상세(#v82dbody, .v82c 해제)에서만 보인다 */
   .card.v82c.card-lab .cta-row{display:flex !important;order:-1;margin:0 0 8px;}
+  /* lab: X처럼 원문(임베드/발췌)은 피드에서도 항상 보이고, 그 밑 본문은 몇 줄만 */
+  .card.v82c.card-lab .xreal{display:block !important;}
+  .card.v82c.card-lab .srcq{display:block !important;}
+  .card.v82c.card-lab .gist{max-height:92px;min-height:0;}
   .card.v82c .card-thumb{display:none;}
   /* Twitter-style media: full-width image at the bottom of the card body */
   .card.v82c .card-thumb-img{display:flex !important;width:100%;height:auto;margin:12px 0 2px;
