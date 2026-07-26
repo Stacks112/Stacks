@@ -295,7 +295,9 @@
   /* 구분 기준은 우리 해석의 마지막 문단이라 '왜 중요한가' 바로 위에 붙인다.
      반대편(.opp)은 아래에서 92로 내려가 있으므로 그 밑에 두면 멀어진다. */
   .card .card-body > .splitb{order:25;}
-  .card.card-lab .card-body > .why{order:6;}  /* lab: 요약+의미 박스, 원문제목 밑 */
+  .card.card-lab .card-body > .why{order:22;}  /* lab: 요약+의미 박스, 본문 아래 */
+  .card.card-lab .card-body > .chips-lab{display:flex;flex-wrap:wrap;gap:6px;order:24;margin:8px 0 2px;}
+  .card.card-lab .card-top .chips{display:none;}  /* 칩은 본문 사본으로 이동 */
   .card .card-body > .why{order:30;}
   .card .card-body > .opp{order:35;}          /* 반대편 — 바로 '왜 중요한가' 밑 */
   .card .card-body > .oc,
