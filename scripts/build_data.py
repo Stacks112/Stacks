@@ -350,7 +350,8 @@ def strip_markers(text):
     for line in str(text or "").split("\n"):
         if line.startswith("## "):
             out.append(line[3:].strip())
-        elif line.startswith("@@CHK@@") or line.startswith("@@CMP@@"):
+        elif line.startswith("@@"):
+            # any block marker: CHK, CMP, IMG, future ones
             continue
         else:
             out.append(line)

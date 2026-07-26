@@ -95,12 +95,17 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .cmp-c.cmp-b{border-color:#3B82F6}
 .cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
 .cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}"""
 
 
 def block_css_for(body):
-    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"')):
+    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"')):
         return ""
     return BLOCK_CSS
 
@@ -113,7 +118,8 @@ def strip_markers(text):
     for line in str(text or "").split("\n"):
         if line.startswith("## "):
             out.append(line[3:].strip())
-        elif line.startswith("@@CHK@@") or line.startswith("@@CMP@@"):
+        elif line.startswith("@@"):
+            # any block marker: CHK, CMP, IMG, future ones
             continue
         else:
             out.append(line)
@@ -154,9 +160,20 @@ def gist_blocks(gist):
             c = (line[7:].split("|") + ["", "", "", ""])[:4]
             html.append(
                 '<div class="cmp"><div class="cmp-c"><i>%s</i><p>%s</p></div>'
+                '<div class="cmp-vs">VS</div>'
                 '<div class="cmp-c cmp-b"><i>%s</i><p>%s</p></div></div>'
                 % (E(c[0]), E(c[1]), E(c[2]), E(c[3]))
             )
+        elif line.startswith("@@IMG@@"):
+            flush()
+            m = (line[7:].split("|") + ["", "", "", ""])[:4]
+            cap = ""
+            if m[1]:
+                credit = (' · <a href="%s" rel="noopener" target="_blank">%s</a>'
+                          % (E(m[3] or "#"), E(m[2]))) if m[2] else ""
+                cap = "<figcaption>%s%s</figcaption>" % (E(m[1]), credit)
+            html.append('<figure class="gimg"><img src="%s" alt="%s" loading="lazy">%s</figure>'
+                        % (E(m[0]), E(m[1]), cap))
         else:
             buf.append(line)
     flush()
