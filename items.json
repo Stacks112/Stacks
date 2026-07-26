@@ -1,6 +1,61 @@
 {
  "items": [
   {
+   "date": "2026-07-27",
+   "id": "meru-samsung-skhynix-leverage-etf-decay",
+   "related": [
+    "jukan-cxmt-3d-ic-niche-strategy",
+    "jukan-korea-memory-mega-mou-950b",
+    "kobeissi-margin-debt-net-credit-record"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224358372928",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#B45309",
+    "to": "#7C2D12",
+    "label": "LEVERAGE DECAY"
+   },
+   "tags": [
+    "LEVERAGED ETF",
+    "SAMSUNG",
+    "SK HYNIX"
+   ],
+   "stance": "watch",
+   "quote": {
+    "lines": [
+     "단일종목 레버리지 ETF는 선물 유지비용과 운용보수 같은 기본 비용에, 일일 재조정에서 발생하는 변동성 끌림까지 더해져 장기 보유 시 가치가 빠르게 감소할 수 있는 구조다.",
+     "장기 보유보다는 단기 매매에 적합한 상품이라는 점을 기억할 필요가 있다."
+    ],
+    "cite": "메르 · 2026.07.27"
+   },
+   "title": {
+    "en": "Why 2x Leveraged ETFs on Samsung and SK Hynix Quietly Burn Through Principal",
+    "ko": "삼성전자·SK하이닉스 2배 레버리지 ETF, 원금은 이렇게 녹는다",
+    "ja": "サムスン電子・SKハイニックス2倍レバレッジETF、元本はこうして溶ける"
+   },
+   "gist": {
+    "en": "It moves twice as fast in both directions, but even sideways trading quietly erodes the principal, according to a breakdown by Korean market commentator Meru of the single-stock 2x leveraged ETFs on Samsung Electronics and SK Hynix that listed on May 27, 2026. The headline management fee is a modest 0.29% a year. The real annual cost of holding, once every drag is added up, comes to roughly 14% for the Samsung 2x product and 33% for the SK Hynix 2x product.\n\n## How the principal actually erodes\nA 2x ETF adds exposure equal to the investor's capital. Put in 10 million won, and the fund manager layers on another 10 million won of exposure, mostly through futures, for a combined 20 million won riding on the underlying stock. That's what lets the fund return 2% for every 1% move in the stock.\n\nThat extra exposure isn't free. Take the Bank of Korea's policy rate (2.75%), subtract the stock's dividend yield, add a 0.5 to 1.5 percentage point premium that shows up when futures get expensive from heavy leveraged demand, then add the 0.29% fee. Samsung's 2x product costs about 2% a year to carry this way, SK Hynix's about 3.5%, higher mainly because its dividend yield is lower, leaving less to subtract.\n\nThere's a second, bigger cost: volatility drag. Leveraged ETFs reset to exactly 2x exposure every day after the close. The problem shows up after a loss. Say the underlying falls 10%, from 100 to 90, then rises 11.1% the next day, back to 100, exactly where it started. The 2x product falls 20%, to 80, then rises 22.2% (twice 11.1%), landing at 97.78. The stock is flat. The leveraged version is down 2.2%.\n\n@@CMP@@Common assumption|A leveraged ETF eventually recovers once the underlying moves back to where it started|Meru's math|Daily rebalancing erodes principal continuously even when the underlying just oscillates with no net move\n\nThat drag scales with volatility, roughly as its square, Meru estimates. Samsung's volatility runs around 35%, squaring to about 12%. SK Hynix runs hotter, around 55%, squaring to about 30%. Add those to the base carrying cost and the totals land at roughly 14% a year for Samsung's 2x product, 33% for SK Hynix's.\n\nThe structure resembles a casino: the house profits not from any single bet, but from running the table and collecting a cut. The manager collects its 0.29% fee steadily, while long-term holders risk losing principal to volatility drag regardless of direction. In a steady uptrend, compounding can push 2x returns above 2x the underlying. Meru's point: in a choppy, directionless market, especially for a stock as volatile as SK Hynix, these products can visibly eat into principal within days.",
+    "ko": "두 배로 오르내리는 상품인데, 가만히 오르내리기만 해도 원금이 줄어드는 구조라는 지적이 나왔다. 시장 해설가 메르는 2026년 5월 27일 상장한 삼성전자와 SK하이닉스 단일종목 2배 레버리지 ETF의 실제 유지비용을 계산했는데, 표면적인 운용보수 연 0.29%와는 비교가 안 되는 숫자가 나왔다. 삼성전자 2배는 연 14%, SK하이닉스 2배는 연 33%까지 원금이 매년 깎여나갈 수 있다는 계산이다.\n\n## 원금은 어떻게 녹나\n2배 ETF는 원금 1천만원을 넣으면 운용사가 선물 등으로 노출을 1천만원어치 더 만들어 총 2천만원을 기초자산에 걸어둔다. 그래야 기초자산이 1% 움직일 때 2%의 손익을 돌려줄 수 있다.\n\n이 추가 노출에는 비용이 붙는다. 한국은행 기준금리(2.75%)에서 배당수익률을 뺀 값에, 레버리지 수요가 몰릴 때 붙는 수급 프리미엄 0.5~1.5%p를 더하고, 여기에 운용보수 0.29%까지 얹으면 기본 유지비용이 나온다. 계산하면 삼성전자 2배는 약 2%, SK하이닉스는 약 3.5%다. SK하이닉스가 더 비싼 이유는 배당수익률이 삼성전자보다 낮아서 뺄 게 적기 때문이다.\n\n여기에 더 큰 비용이 하나 남았다. '변동성 끌림(Volatility Drag)'이라는 현상이다. 레버리지 ETF는 매일 장 마감 후 다시 정확히 2배가 되도록 비중을 재조정한다. 문제는 손실을 본 다음 날이다. 예를 들어 기초자산이 100에서 90으로 10% 빠졌다가 다음 날 11.1% 올라 다시 100으로 돌아왔다고 하자. 기초자산은 원금 그대로지만, 2배 상품은 100에서 80으로 떨어진 뒤 22.2%(11.1%의 두 배) 올라 97.78에서 멈춘다. 오르내림이 끝나면 제자리로 돌아와야 할 것 같은데 2.2%가 사라진 것이다.\n\n@@CMP@@흔한 오해|레버리지 ETF도 기초자산이 제자리로 돌아오면 원금이 회복된다|메르의 계산|기초자산이 오르내리기만 반복해도 매일 재조정 때문에 원금이 계속 깎인다\n\n이 손실 폭은 변동성이 클수록 커진다. 메르는 연간 변동성 끌림을 대략 '연율화 변동성의 제곱'으로 어림잡는다. 삼성전자는 변동성이 연 35% 안팎이라 제곱하면 12%, SK하이닉스는 변동성이 55%까지 나와 제곱하면 30%가 나온다. 기본 유지비용에 이 숫자를 더하면 삼성전자 2배는 연 14%, SK하이닉스 2배는 연 33%가 매년 녹아나가는 구조가 된다.\n\n쉽게 말해 카지노와 구조가 같다. 카지노에서 돈을 버는 쪽은 베팅하는 손님이 아니라, 판을 깔아주고 수수료를 받는 카지노 자신이다. 레버리지 ETF도 운용사가 총보수 0.29%를 꾸준히 챙기는 동안, 상품을 오래 들고 있는 투자자는 변동성 끌림 때문에 원금이 갉아 먹힐 가능성이 크다. 물론 한 방향으로 꾸준히 오르는 장에서는 복리 효과로 2배 ETF 수익률이 기초자산의 2배를 넘어서기도 한다. 메르가 짚는 건 방향 없이 오르내리기만 하는 장, 특히 SK하이닉스처럼 하루 등락폭이 큰 종목에서는 단 며칠 만에도 원금이 눈에 띄게 줄어들 수 있다는 점이다.",
+    "ja": "上下どちらにも2倍で動く商品なのに、横ばいの相場でも元本が静かに目減りする構造だと、韓国の市場解説者メル氏が指摘した。2026年5月27日に上場したサムスン電子とSKハイニックスの単一銘柄2倍レバレッジETFを分析したところ、表面上の運用報酬は年0.29%にすぎないが、実際の保有コストを積み上げるとサムスン電子2倍で年14%程度、SKハイニックス2倍で年33%程度にのぼるという。\n\n## 元本はどう溶けるのか\n2倍ETFは、投資家の元本と同額のエクスポージャーを先物などで追加で作る仕組みだ。1000万ウォンを入れると、運用会社がさらに1000万ウォン分のエクスポージャーを積み増し、合計2000万ウォン分を対象銘柄に張る。これで対象銘柄が1%動くたびに2%の損益を返せる。\n\nこの追加エクスポージャーはただではない。韓国銀行の基準金利(2.75%)から配当利回りを引き、レバレッジ需要が集中して先物が割高になるときに乗る需給プレミアム0.5〜1.5ポイントを足し、さらに運用報酬0.29%を加える。計算すると、サムスン電子2倍の維持コストは年2%程度、SKハイニックス2倍は年3.5%程度になる。SKハイニックスの方が高いのは配当利回りが低く、差し引ける分が少ないためだ。\n\nもう一つ、さらに大きなコストが残っている。「ボラティリティ・ドラッグ(Volatility Drag)」だ。レバレッジETFは毎日の取引終了後、比率をちょうど2倍に再調整する。問題は下落した翌日に起きる。例えば対象銘柄が100から90へ10%下落し、翌日11.1%上昇して100に戻ったとする。対象銘柄は元本のままだが、2倍商品は100から80へ20%下落した後、22.2%(11.1%の2倍)上昇して97.78で止まる。対象銘柄は横ばいなのに、2倍商品は2.2%目減りしている。\n\n@@CMP@@よくある誤解|レバレッジETFも対象銘柄が元の水準に戻れば元本も回復する|メル氏の計算|対象銘柄が上下しただけでも、毎日の再調整によって元本は継続的に目減りする\n\nこの目減りはボラティリティが高いほど大きくなる。メル氏は年間のボラティリティ・ドラッグを「年率換算ボラティリティの2乗」で大まかに見積もる。サムスン電子のボラティリティは年35%前後で2乗すると約12%、SKハイニックスは55%まで上がり2乗すると約30%になる。これを基本維持コストに足すと、サムスン電子2倍は年14%、SKハイニックス2倍は年33%が毎年溶けていく計算になる。\n\n分かりやすく言えばカジノと同じ構造だ。カジノで儲かるのは賭ける客ではなく、場を提供し手数料を取るカジノ自身である。レバレッジETFも、運用会社が0.29%の報酬を着実に受け取る一方、長期保有する投資家はボラティリティ・ドラッグによって元本を失うリスクを負う。もっとも、一方向に上昇し続ける相場では複利効果で2倍ETFのリターンが対象銘柄の2倍を超えることもある。メル氏が指摘するのは、方向感のない相場、特にSKハイニックスのように値動きの荒い銘柄では、わずか数日で元本が目に見えて減りうるという点だ。"
+   },
+   "why": {
+    "en": "The advertised 0.29% fee hides a much bigger cost: volatility drag can erode roughly a third of principal per year in the SK Hynix 2x product, a number anyone holding single-stock leveraged ETFs long-term needs to see.",
+    "ko": "표면 운용보수는 연 0.29%뿐이지만, 변동성 끌림까지 더하면 SK하이닉스 2배 ETF는 매년 원금의 3분의 1가량이 사라질 수 있다는 계산이다. 단일종목 레버리지 상품을 장기 보유하기 전에 반드시 알아야 할 숫자다.",
+    "ja": "表向きの運用報酬は年0.29%だが、ボラティリティ・ドラッグまで含めるとSKハイニックス2倍ETFは年間で元本の約3分の1が消える計算になる。単一銘柄レバレッジ商品を長期保有する前に知っておくべき数字だ。"
+   },
+   "ask": {
+    "en": "Are 2x leveraged ETFs strictly short-term trading tools, or can they work as long-term holds?",
+    "ko": "2배 레버리지 ETF, 단기 매매용 도구로만 써야 할까 장기 보유도 가능할까?",
+    "ja": "2倍レバレッジETFは短期売買専用の道具なのか、それとも長期保有もありうるのか?"
+   },
+   "ts": "2026-07-27T12:00:00+00:00"
+  },
+  {
    "date": "2026-07-26",
    "id": "doomberg-natgas-demand-shortage-2028",
    "related": [
@@ -14491,6 +14546,35 @@
     "ko": "신용평가사가 '빌려준 돈을 떼일 위험이 낮다'고 매긴 등급. 이 아래 등급은 정크(투기등급)로 불린다.",
     "en": "A credit rating that marks a borrower as low default risk; anything below is called junk (speculative grade).",
     "ja": "信用格付け会社が「貸した金を失う危険が低い」と評価した等級。それ未満はジャンク(投機的等級)と呼ばれる。"
+   }
+  },
+  "변동성 끌림": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "레버리지 상품이 매일 비중을 재조정하면서, 기초자산이 오르내리기만 해도 원금이 깎이는 현상.",
+    "en": "The value erosion in leveraged products caused by daily rebalancing, even when the underlying just oscillates with no net move.",
+    "ja": "レバレッジ商品が毎日比率を再調整することで、対象資産が上下するだけでも元本が目減りする現象。"
+   },
+   "longDesc": {
+    "ko": "레버리지·인버스 ETF는 매일 장 마감 후 정확히 목표 배율이 되도록 재조정한다. 기초자산이 하락했다가 같은 비율만큼 반등해 제자리로 돌아와도, 레버리지 상품은 이미 줄어든 값을 기준으로 반등분을 계산하기 때문에 원금을 완전히 회복하지 못한다. 변동성이 클수록, 보유 기간이 길수록 이 손실이 누적돼 장기 보유에는 불리하다.",
+    "en": "Leveraged and inverse ETFs reset to their target multiple every trading day. If the underlying falls and then rebounds by the same percentage back to its starting point, the leveraged product doesn't fully recover, because the rebound is applied to a smaller, post-loss base. The higher the volatility and the longer the holding period, the more this erosion compounds, making these products poorly suited to long-term holding.",
+    "ja": "レバレッジ・インバースETFは毎営業日、目標倍率ちょうどになるよう再調整される。対象資産が下落した後、同じ比率で反発して元の水準に戻っても、レバレッジ商品はすでに小さくなった基準額に反発率を掛けるため、完全には元本を回復できない。ボラティリティが高いほど、保有期間が長いほどこの目減りは積み重なり、長期保有には向かない。"
+   },
+   "aliases": [
+    "변동성 끌림",
+    "Volatility Drag",
+    "볼라틸리티 드래그",
+    "ボラティリティ・ドラッグ"
+   ],
+   "name": {
+    "ko": "변동성 끌림",
+    "en": "Volatility Drag",
+    "ja": "ボラティリティ・ドラッグ"
    }
   }
  }
