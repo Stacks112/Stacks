@@ -109,9 +109,13 @@
   /* 압축 피드 카드는 본문을 168px로 자른다. 원문 블록을 그 위에 두면
      우리 해석이 한 줄도 안 보인 채 잘린다. 원문은 상세에서만 보여준다. */
   .card.v82c .srcq,.card.v82c .xemb,.card.v82c .xreal,.card.v82c .splitb{display:none !important;}
-  /* lab: 원문 보기 버튼만 피드 압축 카드에 남긴다. 요약박스·댓글창·함께읽기는
-     X와 같이 상세(#v82dbody, .v82c 해제)에서만 보인다 */
-  .card.v82c.card-lab .cta-row{display:flex !important;order:-1;margin:0 0 8px;}
+  /* lab: 피드에서는 원문 보기가 태그줄 오른쪽 끝으로 갔다. cta-row 줄(언어 안내문
+     포함)은 상세(#v82dbody, .v82c 해제)에서만 보인다 */
+  .card.v82c.card-lab .cta-row{display:none !important;}
+  /* 압축 카드는 칩을 첫 개만 보여주지만, 오른쪽 끝 묶음은 예외로 살린다 */
+  .card.v82c .chips-lab > .chips-end{display:inline-flex !important;}
+  /* 상세에서는 cta-row가 제 역할을 하므로 중복을 없앤다 */
+  #v82dbody .chips-end{display:none !important;}
   /* lab: X처럼 원문(임베드/발췌)은 피드에서도 항상 보이고, 그 밑 본문은 몇 줄만 */
   .card.v82c.card-lab .xreal{display:block !important;}
   .card.v82c.card-lab .srcq{display:block !important;}
