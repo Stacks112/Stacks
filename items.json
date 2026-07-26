@@ -2,6 +2,70 @@
  "items": [
   {
    "date": "2026-07-26",
+   "id": "doomberg-natgas-demand-shortage-2028",
+   "related": [
+    "doomberg-kilby",
+    "kobeissi-datacenter-power-2035",
+    "doomberg-waning-sun"
+   ],
+   "source": "Doomberg",
+   "sourceUrl": "https://newsletter.doomberg.com/p/demand-push",
+   "docUrl": "https://colossus.com/wp-content/uploads/2026/07/letter-III-got-gas.pdf",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/DoombergT?fallback=false",
+   "hot": true,
+   "paywall": true,
+   "cover": {
+    "from": "#1E293B",
+    "to": "#EA580C",
+    "label": "DEMAND PUSH"
+   },
+   "tags": [
+    "NATURAL GAS",
+    "AI DEMAND",
+    "ENERGY"
+   ],
+   "stance": "watch",
+   "quote": {
+    "lines": [
+     "For as long as US shale gas has been a thing, energy pessimists have feared that the country will soon run out, perpetually predicting a supply cliff just around the next bend in the pipeline."
+    ],
+    "cite": "Doomberg · 2026.07.26"
+   },
+   "title": {
+    "en": "A new warning: US natural gas could run short by 2028, and this time it's demand, not supply",
+    "ko": "천연가스가 부족해진다는 경고, 이번엔 원인이 생산이 아니라 수요다",
+    "ja": "天然ガス不足の新たな警告、原因は生産ではなく需要"
+   },
+   "gist": {
+    "en": "The US could face a demand-driven natural gas shortage starting in 2028, with working storage potentially running out by 2030, according to a widely read energy newsletter.\n\nMatthew Smith, who runs investment firm Chronometer Partners, laid out the case in a recent letter, and Doomberg reviewed it and added its own take.\n\nNatural gas is the same fuel that heats stoves and furnaces in millions of homes, and it's also the single largest fuel burned to generate US electricity.\nDomestic shale gas production has more than doubled over the past 15 years, to over 100 billion cubic feet per day (bcf/d), and Smith doesn't dispute that growth.\n\n## Why demand, not supply, is the problem\n\nHis concern lies elsewhere.\nMuch of the power AI data centers consume ultimately comes from gas-fired plants.\nIf data center buildout keeps accelerating faster than gas production can scale, supply eventually falls behind demand.\nSmith puts that turning point at 2028, and says storage could run dry by 2030 if the trend holds.\n\nDoomberg has historically been skeptical of \"the US is about to run out of gas\" narratives, pointing to a long history of ever-rising shale output despite rock-bottom prices.\nEven so, the newsletter said it found much to agree with in Smith's letter, and only a few points worth doubting, though which specific points remain behind its paywall.\n\n## Is storage actually running low right now\n\n@@CHK@@US natural gas storage|3,056 Bcf|vs 5-yr average|+183 Bcf (+6.4%)|vs year-ago|-16 Bcf@@Storage isn't short right now. Smith's warning is about 2028 onward, when demand growth outpaces production, not today's inventory.@@2026-07-23 · EIA Weekly Natural Gas Storage Report (week of July 17)",
+    "ko": "2028년부터 미국이 천연가스 부족을 겪을 수 있다는 경고가 나왔다.\n원인은 생산이 아니라 수요라는 게 핵심이다.\n\n투자사 크로노미터 파트너스를 이끄는 매튜 스미스가 최근 낸 편지에서 이런 전망을 내놓았고,\n에너지 뉴스레터 둠버그가 이 편지를 소개하며 자신의 평가를 붙였다.\n\n천연가스는 집집마다 보일러와 가스레인지에서 태우는 바로 그 연료이고,\n미국 발전소가 전기를 만드는 데 가장 많이 쓰는 연료이기도 하다.\n미국의 셰일가스 생산량은 최근 15년 사이 두 배 넘게 늘어 하루 1000억 세제곱피트(bcf/d)를 넘어섰다.\n스미스도 이 생산 증가 자체는 인정한다.\n\n## 왜 생산이 아니라 수요가 문제인가\n\n그가 주목하는 건 다른 쪽이다.\nAI 데이터센터가 쓰는 전기 상당수는 결국 천연가스를 태우는 발전소에서 나온다.\n데이터센터가 늘어나는 속도가 가스 생산이 따라잡을 수 있는 속도보다 빨라지면,\n공급이 수요를 못 따라가는 시점이 온다는 것이다.\n스미스는 그 시점을 2028년으로 짚었고,\n지금 추세가 이어지면 미국의 가용 저장 물량이 2030년에는 바닥날 수 있다고 봤다.\n\n둠버그는 그동안 천연가스가 곧 바닥난다는 경고에 회의적이었던 매체다.\n값싼 가격에도 셰일가스 생산이 끊임없이 늘어온 지난 역사를 근거로 들어왔다.\n그런 둠버그조차 이번 편지에는 동의할 대목이 많고, 의심스러운 대목은 소수라고 평가했다.\n다만 구체적으로 어느 대목이 의심스러운지는 유료 구독자에게만 공개했다.\n\n## 지금 재고는 정말 부족한가\n\n@@CHK@@미국 천연가스 저장량|3,056Bcf|5년 평균 대비|+183Bcf(+6.4%)|전년 동기 대비|-16Bcf@@지금 당장 재고가 모자란 건 아니다. 스미스의 경고는 오늘의 재고가 아니라 2028년 이후 수요 증가 속도가 생산을 앞지르는 시점을 가리킨다.@@2026-07-23 · EIA 주간 천연가스 재고 보고서(7월17일 기준 발표)",
+    "ja": "米国が2028年から需要主導の天然ガス不足に陥り、2030年までに稼働可能な貯蔵量が枯渇しかねないとの警告が、広く読まれるエネルギーレターから出た。\n\n投資会社クロノミーター・パートナーズを率いるマシュー・スミス氏が最近の書簡でこの見通しを示し、エネルギーニュースレターのドゥームバーグがこれを紹介し、自らの評価を加えた。\n\n天然ガスは各家庭のボイラーやガスコンロで燃やされる、まさにあの燃料であり、米国の発電で最も多く使われる燃料でもある。\n米国のシェールガス生産量はここ15年で2倍以上に増え、日量1000億立方フィート(bcf/d)を超えた。\nスミス氏もこの生産増加自体は否定していない。\n\n## なぜ生産ではなく需要が問題なのか\n\n氏が注目するのは別の点だ。\nAIデータセンターが使う電力の多くは、結局のところガス火力発電所から来る。\nデータセンターの拡大速度がガス生産の拡大速度を上回り続ければ、供給が需要に追いつかなくなる時点が来る。\nスミス氏はその転換点を2028年と見て、この傾向が続けば2030年には貯蔵量が底をつきかねないとした。\n\nドゥームバーグはこれまで「米国はまもなくガス切れになる」という警告に懐疑的だった媒体だ。\n安値が続いても止まらずに増え続けてきたシェールガス生産の歴史を根拠にしてきた。\nそのドゥームバーグでさえ今回の書簡には「同意できる点が多く、疑わしい点は少数」と評価した。\nただし具体的にどの点が疑わしいのかは、有料購読者向けにのみ公開されている。\n\n## 今の在庫は本当に不足しているのか\n\n@@CHK@@米天然ガス在庫|3,056Bcf|5年平均比|+183Bcf(+6.4%)|前年同期比|-16Bcf@@今すぐ在庫が不足しているわけではない。スミス氏の警告は今日の在庫ではなく、2028年以降に需要の伸びが生産を上回る時点を指している。@@2026-07-23・EIA週間天然ガス在庫報告(7月17日時点)"
+   },
+   "why": {
+    "en": "If a demand-driven gas shortage materializes as AI data centers scale up, it adds a new bottleneck, and cost, on top of chips and electricity, one that could favor gas producers and pressure hyperscalers' power bills.",
+    "ko": "AI 데이터센터가 늘어나는 속도에 맞춰 천연가스 부족이 현실화되면, 반도체와 전력에 이어 또 하나의 병목이자 비용 변수가 생기는 셈이라 가스 생산업체에는 기회가, 하이퍼스케일러에게는 부담이 될 수 있다.",
+    "ja": "AIデータセンターの拡大に合わせて需要主導のガス不足が現実になれば、半導体や電力に続く新たなボトルネックとコスト要因が生まれ、ガス生産企業には追い風に、ハイパースケーラーには電力コスト圧迫になりかねない。"
+   },
+   "ask": {
+    "en": "Is a 2028 natural gas shortage a real new bottleneck for the AI buildout, or just the latest version of a supply-cliff warning that's been wrong before?",
+    "ko": "2028년 천연가스 부족, AI 설비투자의 새로운 병목이 될까 아니면 번번이 틀려온 '곧 바닥난다'는 경고의 최신판일까?",
+    "ja": "2028年の天然ガス不足は、AI設備投資の新たなボトルネックになるのか、それともこれまで何度も外れてきた「もうすぐ枯渇する」警告の最新版に過ぎないのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Grade in mid-2028: is US natural gas supply starting to fall short of demand as Smith predicted, with storage tracking toward depletion by 2030?",
+     "ko": "2028년 중반에 채점: 스미스의 예측대로 미국 천연가스 공급이 수요를 못 따라가기 시작했는지, 저장량이 2030년 고갈 쪽으로 가고 있는지 확인.",
+     "ja": "2028年中頃に採点：スミス氏の予測通り、米天然ガス供給が需要に追いつかなくなり始めたか、貯蔵量が2030年の枯渇に向かっているかを確認。"
+    },
+    "due": "2028-06-30"
+   },
+   "ts": "2026-07-26T12:57:00+00:00"
+  },
+  {
+   "date": "2026-07-26",
    "id": "jukan-meta-storage-gpu-hour-economics",
    "related": [
     "jukan-ms-memory-shortage-2028",
@@ -14247,12 +14311,12 @@
    ],
    "desc": {
     "ko": "저장 칸 하나에 4비트를 담는 낸드. 값이 싸지는 대신 수명과 속도를 양보한다.",
-    "en": "NAND that stores 4 bits per cell — cheaper capacity, at the cost of endurance and speed.",
+    "en": "NAND that stores 4 bits per cell, cheaper capacity, at the cost of endurance and speed.",
     "ja": "1つのセルに4ビットを詰め込むNAND。安くなる代わりに寿命と速度を犠牲にする。"
    },
    "longDesc": {
     "ko": "Quad-Level Cell. 같은 칸에 더 많이 욱여넣을수록 같은 웨이퍼에서 더 많은 용량이 나와 원가가 내려간다. 대신 칸이 빨리 닳고 쓰기 속도가 느려서, 자주 고쳐 쓰는 데이터보다 한 번 쌓아 두고 읽는 데이터센터·AI용 대용량 저장에 맞는다.",
-    "en": "Packing more bits into each cell yields more capacity per wafer, cutting cost per gigabyte. The cells wear out faster and write slower, so QLC suits write-once, read-many storage — data-center and AI archives — more than frequently rewritten data.",
+    "en": "Packing more bits into each cell yields more capacity per wafer, cutting cost per gigabyte. The cells wear out faster and write slower, so QLC suits write-once, read-many storage, data-center and AI archives, more than frequently rewritten data.",
     "ja": "セルに多く詰めるほど同じウェハーから多くの容量が取れ、原価が下がる。その分セルの摩耗が早く書き込みも遅いので、頻繁に書き換えるデータよりデータセンターやAI向けの大容量保存に向く。"
    }
   },
@@ -14270,7 +14334,7 @@
    ],
    "desc": {
     "ko": "저장 칸 하나에 3비트를 담는 낸드. 용량·수명·속도의 균형형으로, 제조사 마진이 좋은 주력 제품이다.",
-    "en": "NAND that stores 3 bits per cell — the balanced mainstream grade, and the better-margin product for makers.",
+    "en": "NAND that stores 3 bits per cell, the balanced mainstream grade, and the better-margin product for makers.",
     "ja": "1つのセルに3ビットを入れるNAND。容量・寿命・速度のバランス型で、メーカーのマージンが良い主力製品。"
    }
   },
@@ -14307,7 +14371,7 @@
    ],
    "desc": {
     "ko": "낸드·D램 칩을 사다가 SSD나 메모리 모듈로 조립해 파는 중간 업체. 칩을 직접 만들지는 않는다.",
-    "en": "A middleman that buys NAND or DRAM chips and assembles them into SSDs or memory modules — it does not make the chips itself.",
+    "en": "A middleman that buys NAND or DRAM chips and assembles them into SSDs or memory modules, it does not make the chips itself.",
     "ja": "NANDやDRAMチップを買い、SSDやメモリモジュールに組み立てて売る中間業者。チップ自体は作らない。"
    }
   },
@@ -14326,7 +14390,7 @@
    ],
    "desc": {
     "ko": "서버 수만 대를 한 건물에 모아 돌리는 시설. 클라우드와 AI가 실제로 돌아가는 곳이다.",
-    "en": "A building packed with tens of thousands of servers — where the cloud and AI actually run.",
+    "en": "A building packed with tens of thousands of servers, where the cloud and AI actually run.",
     "ja": "数万台のサーバーを一つの建物に集めて動かす施設。クラウドとAIが実際に動く場所。"
    }
   },
@@ -14359,7 +14423,7 @@
    ],
    "desc": {
     "ko": "가격이 내릴 거라고 보는 쪽의 주장. 반대로 오른다고 보면 강세론이다.",
-    "en": "The bearish case — the view that prices are headed down (the opposite of the bullish case).",
+    "en": "The bearish case, the view that prices are headed down (the opposite of the bullish case).",
     "ja": "価格が下がると見る側の主張。逆に上がると見るのが強気論。"
    }
   },
@@ -14376,7 +14440,7 @@
    ],
    "desc": {
     "ko": "공장에서 고객에게 실어 내보낸 제품의 양. 만든 양이 아니라 실제로 팔려 나간 양에 가깝다.",
-    "en": "The volume shipped out of the factory to customers — closer to what was actually sold than what was produced.",
+    "en": "The volume shipped out of the factory to customers, closer to what was actually sold than what was produced.",
     "ja": "工場から顧客へ出した製品の量。作った量ではなく実際に売れて出た量に近い。"
    }
   }
