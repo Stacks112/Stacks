@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v29";   /* lab feed: embed always visible, short body, reliable read-more */
+const CACHE = "stacks-v30";   /* lab feed: read-original moves onto the tag row, language note dropped */
 
 const SHELL = [
   "./",
