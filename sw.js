@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v23";   /* lab round 3: inline figures, VS badge, merged summary box, glossary relink */
+const CACHE = "stacks-v24";   /* lab round 4: summary box above the embed, chips in body, @@REF@@ */
 
 const SHELL = [
   "./",

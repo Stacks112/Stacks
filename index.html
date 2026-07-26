@@ -2627,6 +2627,12 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
    here is why it is wrong" order survives on a phone */
 @media (max-width:520px){ .cmp{grid-template-columns:1fr;} .cmp-vs{justify-self:center;margin:-2px 0;} }
 
+.gref{margin:6px 0 12px;font-size:12px;}
+.gref a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
+.gref a:hover{color:var(--text);}
+/* 강세·태그 칩의 본문 사본. lab 데스크톱 피드에서만 켠다(아래 v83 규칙). */
+.chips-lab{display:none;}
+
 .gimg{margin:14px 0;}
 .gimg img{display:block;width:100%;max-width:520px;border:1px solid var(--line);border-radius:12px;background:#fff;}
 .gimg figcaption{margin-top:6px;font-size:11.5px;color:var(--muted);line-height:1.5;}
@@ -3438,6 +3444,13 @@ function gistRich(item){
         '<div class="cmp-vs">VS</div>' +
         '<div class="cmp-c cmp-b"><i>' + esc(c[2] || "") + "</i><p>" + esc(c[3] || "") + "</p></div>" +
       "</div>");
+    } else if (L.indexOf("@@REF@@") === 0){
+      /* @@REF@@label|url - one related-coverage line under a claim, so a
+         reader can jump to the reporting without us pasting a bare URL. */
+      flush();
+      const r = L.slice(7).split("|");
+      out.push('<div class="gref"><a href="' + esc(r[1] || "#") + '" target="_blank" rel="noopener">' +
+               esc(r[0] || "") + ' &#8599;</a></div>');
     } else if (L.indexOf("@@IMG@@") === 0){
       /* @@IMG@@src|caption|creditLabel|creditHref - a picture where a picture
          beats a paragraph. Lazy; a dead URL removes the figure instead of
@@ -8690,6 +8703,7 @@ function cardEl(item, S, idx){
       <!-- lab(item.lab): 실험 카드 한정. 원문제목·커버·원문보기 줄을 DOM에서 뺀다 -->
       <div class="card-body">
       ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
+      ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>` : ""}
       ${item.lab ? "" : coverThumbHtml(item)}
       ${"" /* series feature retired: no series tag on cards */}
       ${srcBlockHtml(item)}
@@ -10152,7 +10166,9 @@ bootData();
   html.v83 #feedList .card-body > .cta-row{ order:60; }
   html.v83 #feedList .card-body > .title-orig{ order:65; }   /* ← 원문 보기 아래 */
   html.v83 #feedList .card.card-lab .card-body > .title-orig{ order:5; margin:0 0 12px !important; }   /* lab: 헤드라인 바로 밑 */
-  html.v83 #feedList .card.card-lab .card-body > .why{ order:12; }   /* lab: 요약+의미 박스, 임베드 밑 본문 위 */
+  html.v83 #feedList .card.card-lab .card-body > .why{ order:6; }   /* lab: 요약+의미 박스, 원문제목 바로 밑 */
+  html.v83 #feedList .card.card-lab .card-body > .chips-lab{ display:flex; flex-wrap:wrap; gap:6px; order:8; margin:2px 0 4px; }
+  html.v83 #feedList .card.card-lab .card-top .chips{ display:none; }   /* 칩은 본문 사본으로 이동 */
   /* v83 피드는 .why를 열린 카드(.v83one)에서만 보여주지만, lab 카드는 세 줄
      요약이 이 박스로 들어갔으므로 피드에서도 항상 보여야 한다 */
   html.v83 #feedList > .card.card-lab .why{ display:block; }
