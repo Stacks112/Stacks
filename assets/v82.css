@@ -109,6 +109,8 @@
   /* 압축 피드 카드는 본문을 168px로 자른다. 원문 블록을 그 위에 두면
      우리 해석이 한 줄도 안 보인 채 잘린다. 원문은 상세에서만 보여준다. */
   .card.v82c .srcq,.card.v82c .xemb,.card.v82c .xreal,.card.v82c .splitb{display:none !important;}
+  /* lab 카드는 세줄요약이 why 박스로 들어갔으므로 압축 카드에서도 보여준다 */
+  .card.v82c.card-lab .why{display:block !important;}
   .card.v82c .card-thumb{display:none;}
   /* Twitter-style media: full-width image at the bottom of the card body */
   .card.v82c .card-thumb-img{display:flex !important;width:100%;height:auto;margin:12px 0 2px;
@@ -293,6 +295,7 @@
   /* 구분 기준은 우리 해석의 마지막 문단이라 '왜 중요한가' 바로 위에 붙인다.
      반대편(.opp)은 아래에서 92로 내려가 있으므로 그 밑에 두면 멀어진다. */
   .card .card-body > .splitb{order:25;}
+  .card.card-lab .card-body > .why{order:12;}  /* lab: 요약+의미 박스, 임베드 밑 */
   .card .card-body > .why{order:30;}
   .card .card-body > .opp{order:35;}          /* 반대편 — 바로 '왜 중요한가' 밑 */
   .card .card-body > .oc,
