@@ -2567,9 +2567,13 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .gist.rich{white-space:normal;}
 .gist.rich .gp{white-space:pre-line;margin:0 0 14px;}
 .gist.rich .gp:last-child{margin-bottom:0;}
-.gsub{margin:18px 0 8px;font-size:13px;font-weight:800;letter-spacing:.01em;color:var(--text);
-  display:flex;align-items:center;gap:7px;}
-.gsub::before{content:"";width:3px;height:13px;border-radius:2px;background:var(--accent);opacity:.75;flex:0 0 auto;}
+/* NOT flex. The glossary linkifier walks .gist and wraps indexed terms in a
+   <span>, which under display:flex becomes a separate flex item — every
+   subheading containing a registered term got a gap either side of it
+   ("빅테크 회사채 가 왜 여기 끼나"). The rule lives on the border instead. */
+.gsub{margin:18px 0 8px;padding-left:10px;font-size:13px;font-weight:800;
+  letter-spacing:.01em;line-height:1.45;color:var(--text);
+  border-left:3px solid var(--accent);}
 .gist.rich > .gsub:first-child{margin-top:0;}
 
 .chk{margin:14px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;}

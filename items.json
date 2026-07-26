@@ -296,12 +296,12 @@
    "stance": "bull",
    "title": {
     "en": "Chip analyst Jukan pushes back on NAND bear case, says SanDisk's below-quote Meta deal doesn't signal weak demand",
-    "ko": "낸드 약세론에 반박한 애널리스트 주칸, 샌디스크의 저가 메타 계약도 수요 약화 신호 아니다",
+    "ko": "낸드값이 싸게 계약됐다는데, 수요가 죽은 걸까?",
     "ja": "NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない"
    },
    "gist": {
     "en": "Bearish rumors about NAND flash memory have been circulating this week, especially out of China, centered on weak QLC (a lower-cost, higher-density flash type) pricing negotiations. Chip-industry analyst Jukan pushed back on X, arguing the pessimism reads too much into normal contract dynamics. The trigger was reports that SanDisk signed a long-term agreement (LTA) with Meta at roughly $0.38 per unit. SanDisk's opening quote was near $0.50, which is expensive for QLC and close to the price of TLC, a higher-margin flash type. The $0.38 settlement came down from there. Jukan said this is not surprising: SanDisk is the most aggressive NAND maker in locking in LTAs and plans to commit more than half its total volume to them, so it is naturally willing to price below the prevailing quarterly contract rate to secure that volume. He added that Chinese module makers were turned away when they tried to sell more enterprise SSDs to Chinese cloud providers, but that is because those providers already buy directly from YMTC, not because demand is weak. Reports that hyperscalers are pushing back on QLC drive pricing also do not worry him, since he believes neoclouds have enough demand to absorb any leftover volume. With memory stocks selling off, he said the bearish headlines are gaining more traction than they deserve, and he remains bullish on memory.",
-    "ko": "이번 주 중국발로 낸드플래시 약세 루머가 확산됐다. 원가는 낮고 저장 밀도는 높은 QLC 낸드의 가격 협상이 부진하다는 내용이 핵심이었다. 반도체 애널리스트 주칸은 X에서 이런 비관론이 통상적인 계약 구조를 과잉 해석한 것이라고 반박했다. 발단은 샌디스크가 메타와 장기공급계약(LTA)을 개당 약 0.38달러에 체결했다는 소식이다. 샌디스크가 처음 부른 값은 약 0.50달러로, 이건 QLC치고 비싼 값이었다. 마진이 더 좋은 TLC 가격에 가까운 수준이다. 최종 낙착가 0.38달러는 거기서 내려온 값이다. 주칸은 이것이 놀랍지 않다고 말했다. 샌디스크는 낸드 제조사 중 LTA 체결에 가장 적극적이며 전체 출하량의 절반 이상을 이런 장기계약으로 채울 계획이라, 물량을 확보하기 위해 분기 계약가보다 낮은 가격도 기꺼이 받아들인다는 것이다. 중국 모듈 업체들이 중국 클라우드 업체에 기업용 SSD를 더 팔려다 거절당한 것도, 이들 업체가 이미 YMTC와 직거래하고 있어서지 수요가 약해서가 아니라고 짚었다. 빅테크 클라우드 업체들이 QLC 드라이브 가격에 저항한다는 보도 역시, 신생 클라우드 업체들의 수요가 남는 물량을 충분히 흡수할 것이라 걱정하지 않는다고 밝혔다. 메모리주가 부진한 가운데 약세 헤드라인이 실제보다 과도하게 주목받고 있다며, 자신은 여전히 메모리에 강세 입장이라고 말했다.",
+    "ko": "## 한 줄로\n낸드값이 싸게 계약된 건 수요가 죽어서가 아니라,\n샌디스크가 물량을 미리 묶는 쪽을 택했기 때문이라는 반박이다.\n\n## 먼저 QLC와 TLC부터\n낸드는 메모리 셀 하나에 정보를 몇 칸 담느냐로 종류가 갈린다.\nTLC는 셀 하나에 3비트, QLC는 4비트를 담는다.\n\n칸을 더 욱여넣으면 같은 면적에 더 많이 저장되니 값이 싸진다.\n대신 셀이 더 빨리 닳고 속도도 떨어진다.\n\n그래서 QLC는 싸고 헤픈 쪽, TLC는 비싸고 튼튼한 쪽이다.\n제조사 입장에서는 TLC가 마진이 좋다.\n\n## 그리고 LTA\n'LTA'는 장기공급계약이다.\n분기마다 값을 새로 매기는 대신 몇 년치 물량과 가격을 미리 못박는다.\n\n사는 쪽은 공급이 끊길 걱정을 덜고,\n파는 쪽은 공장을 놀리지 않는 대신 값을 깎아준다.\n\n그래서 LTA 가격이 그때그때 시세보다 낮은 건 원래 정상이다.\n샌디스크는 출하량 절반 이상을 LTA로 채울 계획이라 더 그렇다.\n\n## 숫자를 다시 보면\n샌디스크가 메타에 처음 부른 값은 개당 약 0.5달러였다.\n이건 QLC치고 비싼 값으로, 마진 좋은 TLC 가격에 가까운 수준이었다.\n최종 낙착가는 약 0.38달러다.\n\n@@CMP@@약세론의 읽기|0.5 → 0.38로 24% 깎였다. 사는 쪽 힘이 세졌다는 뜻이고, 수요가 식고 있다는 신호다.|주칸의 읽기|애초에 부른 0.5가 TLC급으로 비쌌다. 0.38은 QLC 제값에 가깝고, LTA라 더 깎인 것뿐이다.\n\n같은 숫자를 두고 기준점을 어디에 두느냐가 갈린다.\n\n## 중국 쪽 소식은 왜 신호가 아닌가\n중국 모듈 업체들이 자국 클라우드 업체에 기업용 SSD를 더 팔려다 거절당했다는 이야기도 돌았다.\n'모듈 업체'는 낸드 칩을 사다가 SSD로 조립해 파는 중간 업체다.\n\n주칸은 이유가 다른 데 있다고 짚는다.\nYMTC는 중국의 낸드 제조사인데, 그 클라우드 업체들은 이미 YMTC와 직접 거래하고 있다.\n중간에 낀 모듈 업체를 통할 이유가 없는 것이지, 살 물건이 없어서가 아니다.\n\n거래를 거절당한 것과 수요가 없는 것은 다르다.\n\n## 남은 이야기\n대형 클라우드 업체가 QLC 드라이브 가격에 저항한다는 보도도 있었다.\n주칸은 신생 클라우드 업체 수요가 그 물량을 흡수한다고 보고, 메모리에 대해 강세 입장을 유지했다.",
     "ja": "今週、中国発でNANDフラッシュの弱気な噂が広がった。原価が低く記憶密度が高いQLC型NANDの価格交渉が振るわないという内容が中心だった。半導体アナリストのJukan氏はXで、こうした悲観論は通常の契約構造を過剰に解釈したものだと反論した。発端は、サンディスクがメタと長期供給契約(LTA)を1個あたり約0.38ドルで結んだという報道だ。サンディスクの当初提示額は約0.50ドルで、これはQLCとしては高く、利益率の高いTLC型NANDの価格に近い水準だった。最終的な0.38ドルはそこから下がった値である。Jukan氏はこれは驚くことではないと述べる。サンディスクはNANDメーカーの中で最もLTA締結に積極的で、全出荷量の半分以上をこうした長期契約で埋める計画のため、数量を確保するために四半期契約価格を下回る価格も受け入れるというわけだ。中国のモジュールメーカーが中国クラウド事業者にエンタープライズSSDをもっと売ろうとして断られたのも、これらの事業者がすでにYMTCと直接取引しているためで、需要が弱いからではないと指摘した。大手クラウド事業者がQLCドライブの価格に抵抗しているとの報道についても、新興クラウド事業者の需要が余剰分を十分吸収すると見て懸念していないと述べた。メモリー株が振るわない中、弱気な見出しが実態以上に注目を集めていると述べ、自身はメモリーに対して強気の立場を維持するとした。"
    },
    "why": {
@@ -317,7 +317,15 @@
    "ts": "2026-07-25T15:50:00+00:00",
    "coverArt": "covers/jukan-nand-sandisk-lta-bearish-pushback.png",
    "coverGen": 2,
-   "coverKind": "data0"
+   "coverKind": "data0",
+   "quote": {
+    "lines": [
+     "It should come as no surprise that SanDisk would sign an LTA with Meta at a price below the quarterly contract price.",
+     "SanDisk is the most aggressive among NAND makers in signing LTAs, planning to fill more than half of its shipments with them."
+    ],
+    "cite": "Jukan (@jukan05) · 2026.07.25"
+   },
+   "split": "수요가 약해서인지 계약 형태 때문인지는 분기 현물가에서 갈린다.\n장기계약가만 낮고 현물가는 버티면 계약 형태 문제,\n현물가까지 같이 내려가면 그때는 수요 문제다."
   },
   {
    "date": "2026-07-25",
@@ -1055,12 +1063,12 @@
    "stance": "watch",
    "title": {
     "en": "Meru: oil isn't the whole story behind the Treasury yield spike, the US deficit and Big Tech debt are crowding it too",
-    "ko": "메르: 국채금리 폭등, 유가 때문만은 아니다... 재정적자와 빅테크 회사채 발행이 함께 밀어올려",
+    "ko": "국채금리 4.7%, 정말 유가 때문일까?",
     "ja": "メル: 米国債金利急騰、原油だけが理由ではない...財政赤字とビッグテック社債発行が押し上げ"
    },
    "gist": {
     "en": "Rising oil prices explain only part of the Treasury yield spike, Korean investment blogger Meru argues, the bigger driver is a structural mismatch between how much debt Washington needs to sell and how much the market wants to buy. The 10-year yield broke above 4.7% intraday, and most coverage blames it on crude, since the Strait of Hormuz is blocked again and Houthi attacks threaten the Red Sea. Oil does feed into inflation broadly, through gasoline, plastics, fertilizer and power generation costs, but breakeven inflation, the rate implied by inflation-protected Treasuries, has barely moved, sitting around 2.3% for both 10 and 30-year debt. Instead, the 30-year real yield has climbed to its highest since the 2008 financial crisis, meaning borrowing itself has simply gotten more expensive. Meru traces that to Treasury supply and demand: the market has grown from $4.5 trillion in 2007 to $31 trillion today, China has flipped from buyer to net seller in favor of gold, Japanese investors sold $29.6 billion of Treasuries net in Q1 2026, and the Fed keeps shrinking its balance sheet. Washington's annual interest bill has topped $1.2 trillion, the FY2026 deficit is projected near $2.07 trillion, and a Supreme Court ruling against IEEPA tariffs forced billions in refunds that analysts say adds roughly $180 billion a year to the deficit through 2036. Big Tech is competing for the same buyers too: global corporate bond issuance hit a record $3.68 trillion in the first half of 2026, led by Amazon's $54 billion, forcing the Treasury to offer richer yields to compete for pension and insurance money.",
-    "ko": "국채금리 폭등의 원인으로 유가 상승을 꼽는 기사가 많지만, 그건 절반만 맞는 설명이라고 투자 블로거 메르가 짚는다. 더 큰 원인은 미국 정부가 팔아야 할 국채 물량과 시장이 사고 싶어하는 물량 사이의 구조적 불균형이라는 것이다. 미국 10년물 국채금리는 장중 4.7%를 돌파했고, 많은 기사가 호르무즈해협 봉쇄와 후티반군의 홍해 위협에 따른 유가 상승을 원인으로 든다. 유가가 휘발유·플라스틱·비료·발전원가를 통해 물가 전반에 영향을 주는 건 사실이지만, 물가연동국채로 계산한 기대인플레이션은 10년물·30년물 모두 2.3%대로 거의 움직이지 않았다. 대신 30년물 실질금리가 2008년 금융위기 이후 최고 수준까지 올랐는데, 이는 돈을 빌리는 값 자체가 비싸졌다는 뜻이지 인플레이션 기대가 커졌다는 뜻이 아니다. 메르는 그 원인을 국채 수급에서 찾는다. 국채시장 규모는 2007년 4.5조 달러에서 현재 31조 달러로 커졌고, 중국은 국채를 사기는커녕 팔면서 금을 사들이는 쪽으로 돌아섰다. 일본 투자자는 2026년 1분기에만 국채를 296억 달러어치 순매도했고, 연준은 대차대조표 축소를 이어가고 있다. 여기에 미국 정부의 연간 이자비용이 1조2000억 달러를 넘어섰고, 2026회계연도 재정적자는 2조700억 달러로 추정되며, 대법원의 IEEPA 관세 위법 판결로 관세 환급까지 겹쳐 2036년까지 매년 재정적자를 약 1800억 달러씩 늘리는 효과가 있다는 분석이 나온다. 빅테크도 같은 매수자들을 두고 국채와 경쟁한다. 2026년 상반기 글로벌 회사채 발행액은 3조6800억 달러로 사상 최대를 기록했는데, 아마존이 540억 달러로 가장 많이 찍었고, 이렇게 연기금·보험사 자금을 빅테크 채권이 흡수할수록 재무부는 더 높은 금리를 얹어줘야 한다.",
+    "ko": "미국 10년물 국채금리가 장중 4.7%를 넘었다.\n2025년 1월 이후 1년 6개월 만에 가장 높은 수준이다.\n\n이 숫자가 왜 중요하냐면, 국채금리는 세상의 거의 모든 자산 가격을 재는 자이기 때문이다.\n가장 안전한 미국 국채가 가만히 앉아서 4.7%를 준다면,\n위험을 지고 사는 주식은 그보다 더 벌어야 할 이유가 생긴다.\n\n## 왜 금리 이야기에 유가가 나오나\n금리는 앞으로 물가가 얼마나 오를지를 미리 반영해서 정해진다.\n돈을 빌려주는 쪽에서 보면 물가가 오를수록 나중에 돌려받을 돈의 가치가 깎이니,\n그만큼 이자를 더 얹어달라고 요구하기 때문이다.\n\n그래서 물가를 밀어올릴 만한 일이 생기면 금리도 따라 오른다.\n지금 그 후보로 지목되는 것이 유가다.\n호르무즈해협이 막혀 유가가 올랐으니 물가도 따라 오른다는 설명이다.\n\n## 그런데 이건 확인할 수 있다\n'기대인플레이션'은 앞으로 물가가 얼마나 오를지\n시장이 채권 가격에 미리 매겨둔 숫자다.\n물가연동국채(TIPS) 금리를 일반 국채 금리에서 빼면 나온다.\n\n유가 때문에 물가가 오를 거라고 시장이 정말 믿었다면,\n금리보다 이 숫자가 먼저 움직였어야 한다.\n\n@@CHK@@10년물 금리|4.71%|기대인플레이션|2.28%|30년물 실질금리|2.95%@@금리는 오르는데 기대인플레이션은 이달 내내 2.22~2.28% 사이에 머물렀다. 움직인 건 실질금리 쪽이다. 유가만으로는 설명이 안 된다는 저자의 전제는 데이터로 맞다.@@2026-07-23 · FRED (DGS10 · T10YIE · DFII30)\n\n## 그럼 실질금리가 뭔가\n'실질금리'는 명목금리에서 기대인플레이션을 뺀 값이다.\n물가로 오른 몫을 걷어내고 남는, 돈을 빌리는 순수한 값이라고 보면 된다.\n이게 오르면 물가와 상관없이 돈 자체가 비싸졌다는 뜻이다.\n\n30년물 실질금리 2.95%는 이 지표를 집계하기 시작한 2010년 이후 가장 높다.\n직전 최고는 2025년 5월의 2.75%였다.\n\n## 돈값은 왜 올랐나\n저자가 든 비유가 이 대목을 잘 설명한다.\n'흔싸귀비'는 흔하면 싸고 귀하면 비싸다는 말이다.\n국채도 물건이라 파는 쪽 물량이 늘었는데 사는 쪽이 줄면 값을 더 쳐줘야 팔린다.\n그리고 국채에서 '값을 깎는다'는 말은 곧 '금리를 올린다'는 뜻이다.\n\n파는 쪽부터 보면, 미 국채시장은 2007년 4.5조 달러에서 31조 달러가 됐다.\n사줘야 할 물량이 7배가 된 것이다.\n정부가 한 해 무는 이자만 1조2000억 달러를 넘었고,\n2026회계연도 재정적자는 2조700억 달러로 추정된다.\n\n사는 쪽은 반대로 빠졌다.\n중국은 새로 사기는커녕 갖고 있던 것을 팔면서 금을 사고,\n일본 투자자는 2026년 1분기에만 296억 달러를 순매도했고,\n연준은 대차대조표를 줄이는 중이라 아예 사지 않는다.\n\n## 빅테크 회사채가 왜 여기 끼나\n연기금과 보험사가 채권에 넣을 수 있는 돈은 정해져 있다.\n그 돈을 두고 빌리겠다는 쪽이 늘면 재무부도 금리를 더 얹어야 팔린다.\n2026년 상반기 글로벌 회사채 발행액은 3조6800억 달러로 사상 최대였고,\n아마존 한 곳이 540억 달러를 찍었다.\n\nAI 데이터센터를 짓는 돈과 미국 정부의 빚이 같은 지갑을 놓고 경쟁하는 셈이다.\n\n## 그래서 무엇이 달라지나\n원인이 유가라면 호르무즈해협이 열리는 순간 금리도 가라앉는다. 몇 주짜리 문제다.\n원인이 수급이라면 국채 발행이 줄거나 사줄 사람이 돌아와야 내려간다.\n재정적자와 각국 중앙은행의 방침이 걸린 문제라 몇 년 단위다.\n\n같은 4.7%라도 어느 쪽이냐에 따라 기다리는 시간이 다르다.",
     "ja": "国債金利急騰の理由として原油高を挙げる報道が多いが、それは半分しか説明していないと投資ブロガーのメルは指摘する。より大きな要因は、米政府が売らなければならない国債の量と、市場が買いたい量との間の構造的な不均衡だという。米10年債利回りは取引時間中に4.7%を突破し、多くの報道はホルムズ海峡の再封鎖とフーシ派による紅海への脅威による原油高を原因に挙げる。原油がガソリン・プラスチック・肥料・発電コストを通じて物価全体に影響するのは事実だが、物価連動国債から算出される期待インフレ率は10年債・30年債とも2.3%前後でほとんど動いていない。代わりに30年債の実質金利が2008年の金融危機以降で最高水準まで上昇しており、これは資金調達そのものが単に高くついているだけで、インフレ期待が高まったわけではないことを意味する。メルはその原因を国債の需給に求める。国債市場の規模は2007年の4.5兆ドルから現在31兆ドルへと拡大し、中国は国債を買うどころか売って金を買う側に転じた。日本の投資家は2026年第1四半期だけで296億ドルの国債を純売却し、FRBはバランスシート縮小を続けている。さらに米政府の年間利払い費は1兆2000億ドルを超え、2026会計年度の財政赤字は2兆700億ドルと見込まれ、最高裁のIEEPA関税違法判決による関税還付も重なり、2036年まで毎年財政赤字を約1800億ドル押し上げる効果があるとの分析もある。ビッグテックも同じ買い手を巡って国債と競合している。2026年上半期の世界の社債発行額は3兆6800億ドルと過去最高を記録し、アマゾンが540億ドルで最多となった。年金基金や保険会社の資金がビッグテック債に吸収されるほど、財務省はより高い金利を提示せざるを得なくなる。"
    },
    "why": {
@@ -1082,7 +1090,21 @@
     },
     "due": "2026-08-06"
    },
-   "ts": "2026-07-24T21:50:00.000+00:00"
+   "ts": "2026-07-24T21:50:00.000+00:00",
+   "quote": {
+    "lines": [
+     "다만, 이번 금리급등의 이유를 유가 폭등만으로 해석할 수 없는 흐름이 있다.",
+     "유가가 급등할때의 충격은 기대인플레이션에 포함되어야 하고, 실질금리는 건드리지 않는게 정상이다.",
+     "국채도 결국 흔싸귀비가 적용되는 상품이다."
+    ],
+    "cite": "메르 · 2026.07.25"
+   },
+   "split": "물가 문제와 수급 문제는 기대인플레이션에서 갈린다.\n금리와 같이 오르면 물가 문제, 금리만 오르고 이 숫자가 가만히 있으면 수급 문제다.",
+   "refFred": [
+    "DGS10",
+    "T10YIE",
+    "DFII30"
+   ]
   },
   {
    "date": "2026-07-24",
