@@ -111,6 +111,12 @@
   .card.v82c .srcq,.card.v82c .xemb,.card.v82c .xreal,.card.v82c .splitb{display:none !important;}
   /* lab 카드는 세줄요약이 why 박스로 들어갔으므로 압축 카드에서도 보여준다 */
   .card.v82c.card-lab .why{display:block !important;}
+  /* lab: 원문 보기 버튼(본문 위)과 댓글창·함께 읽기(맨 아래)를 압축 카드에서도 노출 */
+  .card.v82c.card-lab .cta-row{display:flex !important;order:-1;margin:0 0 8px;}
+  .card.v82c.card-lab .twin{display:flex !important;}
+  .card.v82c.card-lab .twin-list{display:block !important;}
+  .card.v82c.card-lab .comment-box:not([hidden]){display:block !important;}
+  .card.v82c.card-lab .related{display:block !important;}
   .card.v82c .card-thumb{display:none;}
   /* Twitter-style media: full-width image at the bottom of the card body */
   .card.v82c .card-thumb-img{display:flex !important;width:100%;height:auto;margin:12px 0 2px;
