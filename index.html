@@ -2627,6 +2627,17 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
    here is why it is wrong" order survives on a phone */
 @media (max-width:520px){ .cmp{grid-template-columns:1fr;} .cmp-vs{justify-self:center;margin:-2px 0;} }
 
+.gcardw{margin:12px 0 14px;max-width:520px;}
+.gcard{position:relative;display:block;border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;text-decoration:none;background:var(--bg-soft);}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover;}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;
+  background:rgba(0,0,0,.65);color:#fff;font-size:12.5px;line-height:1.4;font-weight:600;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.gcard.noimg .gcard-t{position:static;display:block;background:none;color:var(--text);padding:11px 12px;}
+.gcard:hover{border-color:var(--muted);}
+.gcard-src{margin-top:6px;font-size:11.5px;color:var(--muted);}
+
 .gref{margin:6px 0 12px;font-size:12px;}
 .gref a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
 .gref a:hover{color:var(--text);}
@@ -3445,12 +3456,23 @@ function gistRich(item){
         '<div class="cmp-c cmp-b"><i>' + esc(c[2] || "") + "</i><p>" + esc(c[3] || "") + "</p></div>" +
       "</div>");
     } else if (L.indexOf("@@REF@@") === 0){
-      /* @@REF@@label|url - one related-coverage line under a claim, so a
-         reader can jump to the reporting without us pasting a bare URL. */
+      /* @@REF@@title|url|image - related coverage as a Twitter-style link
+         card: picture, headline strip over its bottom edge, source domain
+         underneath. Without an image part it degrades to a plain text link. */
       flush();
       const r = L.slice(7).split("|");
-      out.push('<div class="gref"><a href="' + esc(r[1] || "#") + '" target="_blank" rel="noopener">' +
-               esc(r[0] || "") + ' &#8599;</a></div>');
+      let host = "";
+      try { host = new URL(r[1]).hostname.replace(/^www\./, ""); } catch (e) {}
+      const srcLbl = LANG === "ko" ? "\ucd9c\ucc98: " : LANG === "ja" ? "\u51fa\u5178: " : "Source: ";
+      if (r[2]){
+        out.push('<div class="gcardw"><a class="gcard" href="' + esc(r[1] || "#") + '" target="_blank" rel="noopener">' +
+          '<img src="' + esc(r[2]) + '" alt="" loading="lazy" onerror="this.closest(&quot;.gcard&quot;).classList.add(&quot;noimg&quot;);this.remove()">' +
+          '<span class="gcard-t">' + esc(r[0] || "") + "</span></a>" +
+          (host ? '<div class="gcard-src">' + srcLbl + esc(host) + "</div>" : "") + "</div>");
+      } else {
+        out.push('<div class="gref"><a href="' + esc(r[1] || "#") + '" target="_blank" rel="noopener">' +
+                 esc(r[0] || "") + ' &#8599;</a></div>');
+      }
     } else if (L.indexOf("@@IMG@@") === 0){
       /* @@IMG@@src|caption|creditLabel|creditHref - a picture where a picture
          beats a paragraph. Lazy; a dead URL removes the figure instead of
@@ -10166,8 +10188,8 @@ bootData();
   html.v83 #feedList .card-body > .cta-row{ order:60; }
   html.v83 #feedList .card-body > .title-orig{ order:65; }   /* ← 원문 보기 아래 */
   html.v83 #feedList .card.card-lab .card-body > .title-orig{ order:5; margin:0 0 12px !important; }   /* lab: 헤드라인 바로 밑 */
-  html.v83 #feedList .card.card-lab .card-body > .why{ order:6; }   /* lab: 요약+의미 박스, 원문제목 바로 밑 */
-  html.v83 #feedList .card.card-lab .card-body > .chips-lab{ display:flex; flex-wrap:wrap; gap:6px; order:8; margin:2px 0 4px; }
+  html.v83 #feedList .card.card-lab .card-body > .why{ order:22; }   /* lab: 요약+의미 박스, 본문 바로 아래 */
+  html.v83 #feedList .card.card-lab .card-body > .chips-lab{ display:flex; flex-wrap:wrap; gap:6px; order:24; margin:8px 0 2px; }
   html.v83 #feedList .card.card-lab .card-top .chips{ display:none; }   /* 칩은 본문 사본으로 이동 */
   /* v83 피드는 .why를 열린 카드(.v83one)에서만 보여주지만, lab 카드는 세 줄
      요약이 이 박스로 들어갔으므로 피드에서도 항상 보여야 한다 */
