@@ -221,11 +221,6 @@ html.v83 #feedList > .card:not(.v83one) .twin,
 html.v83 #feedList > .card:not(.v83one) .twin-list,
 html.v83 #feedList > .card:not(.v83one) .comment-box,
 html.v83 #feedList > .card:not(.v83one) .related{display:none !important;}
-/* lab 실험 카드: 피드에서도 답글 입력·댓글 미리보기·함께 읽기를 그대로 보여준다 */
-html.v83 #feedList > .card.card-lab .twin{display:flex !important;}
-html.v83 #feedList > .card.card-lab .twin-list{display:block !important;}
-html.v83 #feedList > .card.card-lab .comment-box:not([hidden]){display:block !important;}
-html.v83 #feedList > .card.card-lab .related{display:block !important;}
 /* ② 상단바 위아래 폭 축소 (12px→7px) + 컬럼 고정 오프셋 보정 */
 html.v83 .nav-inner{padding:7px 16px;}
 html.v83 .nav-inner .v83-search input{padding:8px 15px;}
