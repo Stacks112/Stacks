@@ -296,23 +296,18 @@
    "stance": "bull",
    "title": {
     "en": "Chip analyst Jukan pushes back on NAND bear case, says SanDisk's below-quote Meta deal doesn't signal weak demand",
-    "ko": "낸드값이 싸게 계약됐다는데, 수요가 죽은 걸까?",
+    "ko": "낸드값이 싸게 계약됐다는 건, 낸드 수요가 죽은 걸 의미하는 걸까?",
     "ja": "NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない"
    },
    "gist": {
     "en": "Bearish rumors about NAND flash memory have been circulating this week, especially out of China, centered on weak QLC (a lower-cost, higher-density flash type) pricing negotiations. Chip-industry analyst Jukan pushed back on X, arguing the pessimism reads too much into normal contract dynamics. The trigger was reports that SanDisk signed a long-term agreement (LTA) with Meta at roughly $0.38 per unit. SanDisk's opening quote was near $0.50, which is expensive for QLC and close to the price of TLC, a higher-margin flash type. The $0.38 settlement came down from there. Jukan said this is not surprising: SanDisk is the most aggressive NAND maker in locking in LTAs and plans to commit more than half its total volume to them, so it is naturally willing to price below the prevailing quarterly contract rate to secure that volume. He added that Chinese module makers were turned away when they tried to sell more enterprise SSDs to Chinese cloud providers, but that is because those providers already buy directly from YMTC, not because demand is weak. Reports that hyperscalers are pushing back on QLC drive pricing also do not worry him, since he believes neoclouds have enough demand to absorb any leftover volume. With memory stocks selling off, he said the bearish headlines are gaining more traction than they deserve, and he remains bullish on memory.",
-    "ko": "## 한 줄로\n낸드값이 싸게 계약된 건 수요가 죽어서가 아니라,\n샌디스크가 물량을 미리 묶는 쪽을 택했기 때문이라는 반박이다.\n\n## 먼저 QLC와 TLC부터\n낸드는 메모리 셀 하나에 정보를 몇 칸 담느냐로 종류가 갈린다.\nTLC는 셀 하나에 3비트, QLC는 4비트를 담는다.\n\n칸을 더 욱여넣으면 같은 면적에 더 많이 저장되니 값이 싸진다.\n대신 셀이 더 빨리 닳고 속도도 떨어진다.\n\n그래서 QLC는 싸고 헤픈 쪽, TLC는 비싸고 튼튼한 쪽이다.\n제조사 입장에서는 TLC가 마진이 좋다.\n\n## 그리고 LTA\n'LTA'는 장기공급계약이다.\n분기마다 값을 새로 매기는 대신 몇 년치 물량과 가격을 미리 못박는다.\n\n사는 쪽은 공급이 끊길 걱정을 덜고,\n파는 쪽은 공장을 놀리지 않는 대신 값을 깎아준다.\n\n그래서 LTA 가격이 그때그때 시세보다 낮은 건 원래 정상이다.\n샌디스크는 출하량 절반 이상을 LTA로 채울 계획이라 더 그렇다.\n\n## 숫자를 다시 보면\n샌디스크가 메타에 처음 부른 값은 개당 약 0.5달러였다.\n이건 QLC치고 비싼 값으로, 마진 좋은 TLC 가격에 가까운 수준이었다.\n최종 낙착가는 약 0.38달러다.\n\n@@CMP@@약세론의 읽기|0.5 → 0.38로 24% 깎였다. 사는 쪽 힘이 세졌다는 뜻이고, 수요가 식고 있다는 신호다.|주칸의 읽기|애초에 부른 0.5가 TLC급으로 비쌌다. 0.38은 QLC 제값에 가깝고, LTA라 더 깎인 것뿐이다.\n\n같은 숫자를 두고 기준점을 어디에 두느냐가 갈린다.\n\n## 중국 쪽 소식은 왜 신호가 아닌가\n중국 모듈 업체들이 자국 클라우드 업체에 기업용 SSD를 더 팔려다 거절당했다는 이야기도 돌았다.\n'모듈 업체'는 낸드 칩을 사다가 SSD로 조립해 파는 중간 업체다.\n\n주칸은 이유가 다른 데 있다고 짚는다.\nYMTC는 중국의 낸드 제조사인데, 그 클라우드 업체들은 이미 YMTC와 직접 거래하고 있다.\n중간에 낀 모듈 업체를 통할 이유가 없는 것이지, 살 물건이 없어서가 아니다.\n\n거래를 거절당한 것과 수요가 없는 것은 다르다.\n\n## 남은 이야기\n대형 클라우드 업체가 QLC 드라이브 가격에 저항한다는 보도도 있었다.\n주칸은 신생 클라우드 업체 수요가 그 물량을 흡수한다고 보고, 메모리에 대해 강세 입장을 유지했다.",
+    "ko": "## 세 줄 요약\n낸드 약세론이 돈다. 근거는 샌디스크가 메타에 낸드를 개당 0.38달러, 시세보다 싸게 넘겼다는 소식이다.\n반도체 애널리스트 주칸은 이걸 수요가 죽은 신호가 아니라 장기공급계약(LTA) 구조 때문이라고 반박한다.\n애초에 부른 값 0.5가 비쌌던 것이고, 물량을 미리 묶는 계약이라 값을 깎은 것뿐이라는 논리다.\n\n## 먼저 QLC와 TLC부터\n낸드는 메모리 셀 하나에 정보를 몇 칸 담느냐로 종류가 갈린다.\nTLC는 셀 하나에 3비트, QLC는 4비트를 담는다.\n\n칸을 더 욱여넣으면 같은 면적에 더 많이 저장되니 값이 싸진다.\n대신 셀이 더 빨리 닳고 속도도 떨어진다.\n\n그래서 QLC는 싸고 헤픈 쪽, TLC는 비싸고 튼튼한 쪽이다.\n제조사 입장에서는 TLC가 마진이 좋다.\n\n## 그리고 LTA\n'LTA'는 장기공급계약이다.\n분기마다 값을 새로 매기는 대신 몇 년치 물량과 가격을 미리 못박는다.\n\n사는 쪽은 공급이 끊길 걱정을 덜고,\n파는 쪽은 공장을 놀리지 않는 대신 값을 깎아준다.\n\n그래서 LTA 가격이 그때그때 시세보다 낮은 건 원래 정상이다.\n샌디스크는 출하량 절반 이상을 LTA로 채울 계획이라 더 그렇다.\n\n## 숫자를 다시 보면\n샌디스크가 메타에 처음 부른 값은 개당 약 0.5달러였다.\n이건 QLC치고 비싼 값으로, 마진 좋은 TLC 가격에 가까운 수준이었다.\n최종 낙착가는 약 0.38달러다.\n\n@@CMP@@약세론의 읽기|0.5 → 0.38로 24% 깎였다. 사는 쪽 힘이 세졌다는 뜻이고, 수요가 식고 있다는 신호다.|주칸의 읽기|애초에 부른 0.5가 TLC급으로 비쌌다. 0.38은 QLC 제값에 가깝고, LTA라 더 깎인 것뿐이다.\n\n같은 숫자를 두고 기준점을 어디에 두느냐가 갈린다.\n\n## 중국 쪽 소식은 왜 신호가 아닌가\n중국 모듈 업체들이 자국 클라우드 업체에 기업용 SSD를 더 팔려다 거절당했다는 이야기도 돌았다.\n'모듈 업체'는 낸드 칩을 사다가 SSD로 조립해 파는 중간 업체다.\n\n주칸은 이유가 다른 데 있다고 짚는다.\nYMTC는 중국의 낸드 제조사인데, 그 클라우드 업체들은 이미 YMTC와 직접 거래하고 있다.\n중간에 낀 모듈 업체를 통할 이유가 없는 것이지, 살 물건이 없어서가 아니다.\n\n거래를 거절당한 것과 수요가 없는 것은 다르다.\n\n## 남은 이야기\n대형 클라우드 업체가 QLC 드라이브 가격에 저항한다는 보도도 있었다.\n주칸은 신생 클라우드 업체 수요가 그 물량을 흡수한다고 보고, 메모리에 대해 강세 입장을 유지했다.",
     "ja": "今週、中国発でNANDフラッシュの弱気な噂が広がった。原価が低く記憶密度が高いQLC型NANDの価格交渉が振るわないという内容が中心だった。半導体アナリストのJukan氏はXで、こうした悲観論は通常の契約構造を過剰に解釈したものだと反論した。発端は、サンディスクがメタと長期供給契約(LTA)を1個あたり約0.38ドルで結んだという報道だ。サンディスクの当初提示額は約0.50ドルで、これはQLCとしては高く、利益率の高いTLC型NANDの価格に近い水準だった。最終的な0.38ドルはそこから下がった値である。Jukan氏はこれは驚くことではないと述べる。サンディスクはNANDメーカーの中で最もLTA締結に積極的で、全出荷量の半分以上をこうした長期契約で埋める計画のため、数量を確保するために四半期契約価格を下回る価格も受け入れるというわけだ。中国のモジュールメーカーが中国クラウド事業者にエンタープライズSSDをもっと売ろうとして断られたのも、これらの事業者がすでにYMTCと直接取引しているためで、需要が弱いからではないと指摘した。大手クラウド事業者がQLCドライブの価格に抵抗しているとの報道についても、新興クラウド事業者の需要が余剰分を十分吸収すると見て懸念していないと述べた。メモリー株が振るわない中、弱気な見出しが実態以上に注目を集めていると述べ、自身はメモリーに対して強気の立場を維持するとした。"
    },
    "why": {
     "en": "It's a data-backed rebuttal to spreading NAND bear-case rumors, arguing pricing dynamics reflect deliberate LTA strategy rather than weakening AI-driven memory demand.",
     "ko": "확산 중인 낸드 약세론에 대해 가격 흐름이 수요 약화가 아니라 의도된 장기계약 전략의 결과라는 데이터 기반 반박을 제시한다.",
     "ja": "広がるNAND弱気論に対し、価格動向は需要低迷ではなく意図的な長期契約戦略の結果だとするデータに基づく反論を示す。"
-   },
-   "ask": {
-    "en": "Is the NAND pricing dip just LTA strategy, or an early sign AI-driven memory demand is cooling?",
-    "ko": "낸드 가격 하락, 장기계약 전략일 뿐일까 AI발 메모리 수요 둔화의 초기 신호일까?",
-    "ja": "NAND価格の下落は長期契約戦略にすぎないのか、それともAI主導のメモリー需要鈍化の初期サインなのか?"
    },
    "ts": "2026-07-25T15:50:00+00:00",
    "coverArt": "covers/jukan-nand-sandisk-lta-bearish-pushback.png",
@@ -325,8 +320,8 @@
     ],
     "cite": "Jukan (@jukan05) · 2026.07.25"
    },
-   "split": "수요가 약해서인지 계약 형태 때문인지는 분기 현물가에서 갈린다.\n장기계약가만 낮고 현물가는 버티면 계약 형태 문제,\n현물가까지 같이 내려가면 그때는 수요 문제다.",
-   "xembed": true
+   "xembed": true,
+   "lab": true
   },
   {
    "date": "2026-07-25",

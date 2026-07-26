@@ -8612,9 +8612,10 @@ function cardEl(item, S, idx){
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
       </div>
       <h3 class="card-title" onclick="openFromCard('${item.id}', event)"><span class="unread-dot"${READ.has(item.id) ? ' style="display:none"' : ''}></span><span class="ct-text">${esc(item.title[LANG])}</span></h3>
+      <!-- lab(item.lab): 실험 카드 한정. 원문제목·커버·원문보기 줄을 DOM에서 뺀다 -->
       <div class="card-body">
-      ${showOrig ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
-      ${coverThumbHtml(item)}
+      ${(showOrig && !item.lab) ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
+      ${item.lab ? "" : coverThumbHtml(item)}
       ${"" /* series feature retired: no series tag on cards */}
       ${srcBlockHtml(item)}
       <details class="gist-fold" open>
@@ -8638,11 +8639,11 @@ function cardEl(item, S, idx){
         </div>
         <div class="vote-bar" data-vbar="${item.id}" hidden><div class="vote-fill"></div><span class="vote-lbl"></span></div>
       </div>` : ""}
-      <div class="cta-row">
+      ${item.lab ? "" : `<div class="cta-row">
         <a class="original-link" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}
         <span class="lang-note">${langNote}</span>
-      </div>
+      </div>`}
       <div class="engage" data-eg="${item.id}">
         ${COMMENTS_API ? `<button class="eg eg-comment" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')" aria-label="${S.comments}" title="${S.comments}">${svgIcon("comment")}<span class="eg-n" id="cn-${item.id}">${COMMENT_COUNTS[item.id] ? fmtCount(COMMENT_COUNTS[item.id]) : ""}</span></button>` : ""}
         <button class="eg eg-like${LIKES.has(item.id) ? " on" : ""}" id="lk-${item.id}" onclick="toggleLike('${item.id}')" aria-label="${S.like}" title="${S.like}">${svgIcon("like")}<span class="eg-n" id="ln-${item.id}">${LIKE_COUNTS[item.id] ? fmtCount(LIKE_COUNTS[item.id]) : ""}</span></button>
