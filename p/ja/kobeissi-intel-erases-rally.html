@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">インテル株が決算後の急騰分を一日で全て失った。木曜日の株価は4%下落し、決算発表翌日に一時15%まで上昇していた分が消え、上昇局面のピーク比で時価総額約900億ドルが蒸発したとコベイシ・レターが伝えた。インテルは火曜日に発表した2四半期決算で15年ぶりの最大四半期売上成長を記録した。データセンター・AI部門の売上高は前年比59%増の63億ドルとなり、発表直後に株価は二桁の上昇を見せた。しかしその上昇は長くは続かなかった。木曜日はイラン戦争が激化しS&amp;P500指数全体も上昇分を失い、ハイテク株全般が下落するなど市場全体でリスク回避心理が強まった日でもあり、今回の調整がインテルの決算内容そのものへの見直しなのか、市場全体のリスク回避の流れによるものなのかはまだ明確ではない。インテルは調整後ベースでは黒字転換したものの、一般会計基準(GAAP)では126億ドルの一時費用により110億ドルの純損失を計上しており、初期の熱狂が落ち着いた今、一部の投資家はこの点を改めて注視している可能性がある。株価は依然として今週の始値より高い水準にあるが、たった一日で上昇分がまるごと消えた速さは、決算一つに支えられたラリーが市場が詳細を吟味し始めるとどれほど早くしぼみうるかを示している。</p><p class="why"><b>Why it matters</b> · たった一回の決算サプライズで作られたラリーが一日で消えたことは、決算がどれほど良くても市場全体がリスク回避に転じればその確信は長続きしないことを示す。今期の他のAI関連決算の急騰も同様に脆いのではという問いを残す。</p><p class="ask"><b>考えるべき点</b> · インテルのラリーは現れた時と同じくらい速く消え、しかもイラン戦争への懸念で市場全体が揺れた日と重なった。今回の下落はインテルの決算の質に対する市場の見直しなのか、それとも市場全体のリスク回避の波にインテルが巻き込まれただけなのか。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>44</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">米純信用残高がマイナス1兆600億ドルで過去最低、マージン負債は1兆5000億ドルで過去最高</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETF、今年8800億ドル流入、2025年の記録を上回るペース</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-oracle-cds-record.html">オラクルの信用不履行保険料が過去最高、S&amp;Pの格付けはジャンク直前まで低下</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html">記録をすべて見る →</a></section><section class="opp"><h3>同じ話題、別の見方</h3><ul><li><i class="bl">強気</i><a href="jukan-intel-14a-2028-ramp.html">インテル、2Q決算コールで「14A量産2028年」を正式表明...市場想定より1年前倒し</a><time>07-23</time></li><li><i class="bl">強気</i><a href="kobeissi-intel-q2-earnings-surge.html">インテル、2Q売上高25%増で15年ぶりの最大四半期成長、AIデータセンター需要で株価11%超急騰</a><time>07-23</time></li></ul></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-intel-erases-rally.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-intel-erases-rally.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/intel.html">INTEL</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/conviction.html">コンビクション</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="kobeissi-intel-q2-earnings-surge.html">インテル、2Q売上高25%増で15年ぶりの最大四半期成長、AIデータセンター需要で株価11%超急騰</a></li><li><a href="kobeissi-ai-capex-sox-correlation-collapse.html">AI半導体株とAI投資企業、一体で動いていた30日相関がほぼゼロに崩壊</a></li><li><a href="jukan-intel-amd-china-cpu-lta.html">ロイター: インテルとAMD、価格急騰でリードタイムが半年に伸びる中、中国顧客と複数年CPU供給契約を協議</a></li></ul></nav>

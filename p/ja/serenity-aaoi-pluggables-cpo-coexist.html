@@ -71,6 +71,27 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -113,6 +134,7 @@ footer a{color:#8E93A0}
 Serenity氏の答えは「必ずしもそうではない」。AAOIもCPO技術を開発中で、商用化の段階で一部の競合よりやや後れているだけだという。一つの技術で後れを取ったからといって、市場全体から取り残されるわけではないという意味だ。</p><h2 class="gsub">CPOが登場してもプラガブルがすぐには消えない理由</h2><p class="gist">伝えられたCEOの大きな構図は、業界が単一の勝者に絞られるのではなく、複数の方式が共存する方向に向かっているというものだ。プラガブルとCPOのほかに、チップにより近いが完全な共同パッケージングまでは至らない「近接パッケージ光学(NPO)」という新方式が、今後5年間の主要な機会として挙げられているという。これは光学サプライチェーン全体の投資と研究開発が、CPO一つに集中するのではなく、少なくとも3つの方式に分かれて進むことを意味する。</p><div class="cmp"><div class="cmp-c"><i>よくある見方</i><p>CPOが登場すればAIクラスターが数万基のGPU規模に拡大する過程でプラガブル型トランシーバーは早晩駆逐される</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>業界関係者の見方</i><p>プラガブル型は今後もおよそ10年は商業的に有効であり、CPO・NPO・プラガブルが単一の勝者なしに共存する可能性が高い</p></div></div><p class="gist">3つの方式すべてに共通する足かせは、どの技術を選ぶかではなく生産能力と原材料確保だと、このCEOは指摘した。光モジュールに使う連続発光(CW)レーザーの供給が引き続き逼迫している既存の問題を指しているとみられる。つまりどの技術が勝つにせよ、光学部品の需要が業界の生産能力を上回っているということだ。
 
 この内容はポッドキャストでの発言をツイートで伝えた二次情報であり、企業の公式ロードマップや業績ガイダンスではない。AAOIや特定の供給企業について確定した日程ではなく、業界全体の方向性程度に読むのが適切だ。</p><p class="why"><b>Why it matters</b> · CPOがAAOIのようなプラガブル光学サプライヤーを早晩淘汰するという通念に反論し、AIデータセンター増設の本当の隘路が技術選択ではなく光学部品の生産能力にある可能性を示す。</p><p class="ask"><b>考えるべき点</b> · プラガブル・CPO・NPOが10年共存するなら、光学サプライヤーの中で実際に勝つのはどこか?</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>19</b>記事</span><span><b>10</b>方向性コール</span><span class="bl"><b>10</b>強気</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="serenity-tesla-optimus-earnings-notes.html">マスク氏、2Q決算コールでも「オプティマスはテスラ史上最大の製品」と再確認、マイクロンのメモリ配分と新規サプライチェーン構築にも言及</a><time>07-23</time></li><li><i class="bl">強気</i><a href="serenity-googl-q2-cloud-beat.html">アルファベット第2四半期決算が予想を大幅超過、2026年設備投資ガイダンスを1,950億~2,050億ドルに上方修正</a><time>07-22</time></li><li><i class="bl">強気</i><a href="serenity-kioxia-samsung-memory-rally.html">キオクシア17%急騰、サムスンも6%高、メモリ・光通信・ネオクラウドまでAIラリー拡大</a><time>07-21</time></li></ul><a class="rec-m" href="../../r/serenity.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/serenity-aaoi-pluggables-cpo-coexist.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/serenity-aaoi-pluggables-cpo-coexist.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/aaoi.html">AAOI</a><a class="ent-chip" href="../../e/applied-opto.html">APPLIED OPTO</a><a class="ent-chip" href="../../e/cpo.html">CPO</a><a class="ent-chip" href="../../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/multiple.html">マルチプル</a><a class="ent-chip" href="../../e/optical-transceiver.html">トランシーバー</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="serenity-amd-helios-cpo-networking.html">AMDのHeliosネットワーキング提携先、次世代AIラックへのコパッケージド・オプティクス採用を予想、供給網遅延報道は否定</a></li><li><a href="serenity-innolight-gs.html">ゴールドマンのInnolight 163%アップサイド判断は光通信チェーン全体のシグナル</a></li><li><a href="optics.html">日本とテキサスが光通信レイヤーに資金を入れ始めた</a></li></ul></nav>

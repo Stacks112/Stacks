@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">코베이시가 오늘날 시장 전체를 조용히 요약하는 숫자 하나를 꺼낸다. S&amp;P500의 6개월 내재 상관계수가 0.15로 사상 최저까지 떨어졌다. 내재 상관계수는 지수를 이루는 종목들이 얼마나 같이 움직일 것으로 기대되는지를 재는 값인데, 이렇게 낮다는 건 종목들이 발맞춰 행진하기보다 점점 제각각 움직인다는 뜻이다. 이 지표는 넉 달 만에 절반 넘게 줄었다. 봄철 조정 때 0.35였던 것이 지금은 장기 평균(약 0.43)의 3분의 1 남짓에 불과하다. 감을 잡자면, 2020년 팬데믹 폭락 때는 모든 게 함께 떨어지며 0.82까지 치솟았었다. 코베이시의 해석은 이렇다. 이 역사적 분산은 소수의 초대형주가 끌고 가는 시장의 통계적 지문이며, 나머지 종목들은 하나의 거시 파도가 아니라 각자의 펀더멘털로 거래된다는 것이다. 달리 말하면, 지수 차원의 고요함이 그 밑의 거대한 분산을 감출 수 있다. 어떤 종목은 치솟고 어떤 종목은 가라앉는데, 평균이 둘 다를 가린다. 이는 종목 고르는 사람에겐 꿈이고 지수 투자자에겐 사각지대다. S&amp;P는 평온해 보여도 그 아래의 실제 체감은 극도로 들쭉날쭉해질 수 있고, 이 정도로 극단적인 쏠림은 좀처럼, 어쩌면 한 번도 없던 일이다.</p><p class="why"><b>투자 포인트</b> · 사상 최저 상관계수는 평온한 지수가 사실 소수 초대형주의 위장일 수 있다는 뜻이라, 패시브 투자자는 숨은 쏠림 위험을 안고 가고 분산은 종목 고르기를 보상한다.</p><p class="ask"><b>짚어볼 점</b> · 사상 최저의 종목 간 상관계수, 펀더멘털을 보상하는 건강한 &#x27;종목 장세&#x27;일까, 소수 초대형주가 취약한 지수를 가리는 위험한 쏠림일까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>44</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">미 순신용잔고 마이너스 1조600억달러 사상 최저, 마진 부채는 1조5000억달러로 사상 최대</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF, 올해 8800억달러 유입... 2025년 기록 넘어설 페이스</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔, 실적 발표 후 급등분 하루 만에 반납... 시가총액 900억 달러 증발</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-sp500-implied-correlation-low.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-sp500-implied-correlation-low.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/implied-correlation.html">내재 상관계수</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-hedge-funds-tech-exit.html">헤지펀드, 10년 만에 가장 빠른 속도로 미국 기술주 처분 중</a></li><li><a href="bilello-earnings-bubble-charts.html">빌렐로가 묻는다: 지금은 &#x27;이익 버블&#x27;인가?</a></li><li><a href="kobeissi-semi-etf-leverage-unwind.html">반도체 ETF에서 630억 달러 규모의 레버리지 청산이 진행 중</a></li></ul></nav>

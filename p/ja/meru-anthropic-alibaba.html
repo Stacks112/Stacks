@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">AIモデルには二種類ある。クロードやChatGPTはレストランだ。注文すれば料理は出るが、厨房(レシピ=頭脳)には入れない。これを閉鎖型モデルと呼ぶ。逆にメタのラマやアリババのQwenは、レシピごと公開する料理人だ。モデルの頭脳(ウェイト)をファイルで公開し、誰でもダウンロードして自分のサーバーで動かせる。これがオープンウェイトモデルで、ダウンロード数がそのまま人気になる。かつての王者はメタのラマだったが、アリババのQwenが小型から大型まで無料で放出し、2025年に首位、2026年4月には10億ダウンロードで圧倒的1位を固めた。争点は「やり方」だ。アンソロピックは2026年6月、Qwenに連なる勢力がクロードに大規模な『蒸留(ディスティレーション)攻撃』を仕掛けたとして、米上院に告発文書を提出した。蒸留とは強いモデルに質問を浴びせ、その答えを集めて能力を真似る手法だ。アンソロピックは2.5万個の偽アカウントが4月22日~6月5日に2,880万件超を吸い上げ、盗んだカードでクロード・コード・マックスを契約し推論過程まで奪ったと主張する。アリババも反撃し、『中国ユーザーを密かに追跡する裏口』を理由に7月10日から社内でのクロード利用を禁止した。出力物の著作権が曖昧なため、アンソロピックは訴訟ではなく政治戦を選んだ。</p><p class="why"><b>Why it matters</b> · オープンウェイト首位が実力か、安上がりな近道かが争点だ。標的が米上場のアリババだけに、判定はQwenの正当性だけでなく、アリババ株のセンチメントにも跳ね返る。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>27</b>記事</span><span><b>10</b>方向性コール</span><span class="bl"><b>8</b>強気</span><span class="be"><b>2</b>弱気</span><span class="bl"><b>1</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="meru-saudi-tanker-strike-fallout.html">メル：フーシ派、サウジ国籍タンカー2隻を攻撃、サウジ産原油を積む船は標的という警告、外国船はすでに引き返す</a><time>07-24</time></li><li><i class="bl">強気</i><a href="meru-googl-q2-results-korea-impact.html">メル：アルファベットが設備投資を1,950億~2,050億ドルに上方修正、フリーキャッシュフローは赤字転換もサムスン・SKハイニックスには好材料</a><time>07-23</time></li><li><i class="be">弱気</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">コーロン・ティシュジーンのTG-C（インボッサ）、米国第3相試験で主要目標未達。プラセボの方が痛み改善</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/meru-anthropic-alibaba.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/meru-anthropic-alibaba.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/alibaba.html">ALIBABA</a><a class="ent-chip" href="../../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../../e/meta.html">META</a><a class="ent-chip" href="../../e/meru.html">메르</a><a class="ent-chip" href="../../e/open-weight.html">オープンウェイト</a><a class="ent-chip" href="../../e/inference.html">推論</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="meru-china-ai.html">米国人の半分が中国AIを使う: オープンルーターが暴いた実使用量</a></li><li><a href="hassabis-framework.html">ハサビス、AGIは数年内と宣言し「全員を減速させられる機関」を要求</a></li><li><a href="zuck.html">ザッカーバーグ、メタのモデルAPIを開放: エージェント性能を「安く」売る</a></li></ul></nav>

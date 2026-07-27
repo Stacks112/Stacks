@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">세레니티가 전한 채널 체크에 따르면 AMD 차세대 AI 서버랙 &#x27;헬리오스&#x27;의 네트워킹 협력사들은 AMD가 코패키지드 옵틱스(CPO), 즉 별도의 착탈식 광모듈 대신 광섬유 연결을 칩 패키지에 직접 결합하는 방식을 채택할 것으로 보고 있다. 이 협력사들은 AMD뿐 아니라 하이퍼스케일러 업계 전반이 향후 스케일업 네트워킹에서 같은 방향으로 갈 것으로 예상한다고도 밝혔다. 별도로 한 하이퍼스케일러의 CPO 공급망에 관여하는 익명의 AI 인프라 임원은 세레니티에게 최근 일부 외부 보도가 제기한 지연 조짐이 전혀 보이지 않는다며 기술 준비 상태에 대한 우려에 선을 그었다. 헬리오스는 AMD의 첫 랙 단위 AI 시스템으로, 폭이 일반 랙의 두 배에 무게는 약 3.2톤에 달하며 최신 인스팅트 MI455X GPU 72개와 베니스 CPU를 함께 담아 엔비디아의 NVL72 랙과 정면으로 경쟁하도록 설계됐다. CPO가 중요한 이유는 AI 클러스터가 수만 개 칩 규모로 커지면서 현재 쓰이는 구리 배선과 착탈식 광모듈이 전력과 대역폭 양쪽에서 병목이 되기 때문이다. 광학 부품을 칩 패키지 자체로 옮기는 것은 전력 소모를 비례해서 늘리지 않고도 계속 확장할 수 있는 업계의 가장 확실한 방법 중 하나로 꼽힌다. 세레니티는 이 내용이 AMD나 협력사의 공식 가이던스가 아닌 비공식 발언이라고 밝혀, 확정된 로드맵이 아니라 초기 신호로 받아들이는 게 맞다.</p><p class="why"><b>투자 포인트</b> · AMD가 헬리오스에 코패키지드 옵틱스를 채택한다면 광학 부품 공급업체들의 수요를 몇 년치 앞서 확보하는 셈이고, AMD가 단순 칩 성능이 아니라 전력과 대역폭이 엔비디아와의 다음 AI 인프라 경쟁을 가를 것으로 본다는 신호이기도 하다.</p><p class="ask"><b>짚어볼 점</b> · AMD의 협력사들이 세레니티에게 헬리오스와 업계 전반이 표준 착탈식 트랜시버가 아닌 코패키지드 옵틱스로 향하고 있고, 알려진 지연설도 사실이 아니라고 말하고 있다. 지금이 CPO 공급업체에 미리 올라탈 신호일까, 아니면 비공식 채널 체크가 AMD가 실제로 확정한 것보다 앞서가는 걸까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>19</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>10</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="serenity-aaoi-pluggables-cpo-coexist.html">어플라이드옵토일렉트로닉스, CPO에 밀리지 않는다, 업계 인사이더 &quot;플러거블 트랜시버 앞으로 10년&quot;</a><time>07-24</time></li><li><i class="bl">강세</i><a href="serenity-tesla-optimus-earnings-notes.html">머스크, 2분기 콜에서도 &#x27;옵티머스가 테슬라 역대 최대 제품&#x27; 재확인, 마이크론 메모리 배정과 신규 공급망 구축도 언급</a><time>07-23</time></li><li><i class="bl">강세</i><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a><time>07-22</time></li></ul><a class="rec-m" href="../r/serenity.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/serenity-amd-helios-cpo-networking.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/serenity-amd-helios-cpo-networking.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amd.html">AMD</a><a class="ent-chip" href="../e/cpo.html">CPO</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-amd-anthropic-deal-signed.html">AMD-앤스로픽, 수백억 달러 규모 칩 공급 계약 체결, AMD는 앤스로픽에 최대 50억 달러 역투자</a></li><li><a href="jukan-amd-anthropic-deal-tp640.html">애널리스트, AMD 목표주가 640달러로 상향, 앤스로픽과의 거래가 메타·오픈AI보다 클 수도</a></li><li><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a></li></ul></nav>

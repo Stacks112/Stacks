@@ -71,6 +71,27 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -108,6 +129,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">韓国のメリッツ証券は、SKハイニックスの2Q26（4〜6月期）税前利益を約100兆ウォンと推定した。そのうち41兆6000億ウォンは半導体販売ではなく営業外利益によるものだという。半導体アナリストJukanが7月27日にこの推定値を伝えた。</p><h2 class="gsub">これほど大きな金額はどこから来るのか</h2><p class="gist">SKハイニックスは2018年、ベインキャピタルによる東芝メモリ（現キオクシア）買収に合わせ、特別目的会社（SPC）を通じて計3兆9000億ウォンを投資した。今回ベインキャピタルがキオクシア株を全て売却したことに伴い、SKハイニックスのSPC1持分も同時に処分されたとメリッツはみている。8年間寝かせた投資が一気に現金化された形だ。</p><h2 class="gsub">実際どれだけ膨らんだのか</h2><div class="chk"><div class="chk-g"><div class="chk-c"><i>1Q純利益</i><b>40兆3500億ウォン</b></div><div class="chk-c"><i>1Q営業利益</i><b>37兆6100億ウォン</b></div><div class="chk-c"><i>キオクシア関連利益（1Q）</i><b>約14兆ウォン</b></div></div><p class="chk-n">1Q決算の時点で、純利益が営業利益を上回った理由がキオクシア関連の利益だったことはすでに確認できる。2Qに反映される最終処分益の規模はまだ推定値だ</p><p class="chk-s">2026年7月9日 マネートゥデイ等韓国メディア報道</p></div><p class="gist">1Qにはすでに長期投資資産の処分で4兆1000億ウォン超の現金を確保しており、別途保有する転換社債（株式14%に転換可能）でも評価益が計上された。メリッツは、2Qにベインキャピタル・コンソーシアムの最終清算分が反映されれば、営業外利益が41兆6000億ウォンまで膨らみ得るとみている。</p><h2 class="gsub">なぜこの数字をそのまま読んではいけないのか</h2><p class="gist">2018年にベインキャピタルが東芝メモリを買収した当時、同社は会計不正スキャンダルの渦中で安値で売りに出されていた。SKハイニックスがそのとき投じた資金が、DRAMスーパーサイクルに乗って数十倍に膨らんだ。ただし、これはメモリーをより良く作ったり高く売ったりして稼いだ金ではない。8年前の一つの投資判断が、一四半期の決算を丸ごと変えるほど大きくなっただけだ。半導体事業そのものが本当に改善したかを見るには、営業利益の行を別途確認する必要がある。</p><div class="cmp"><div class="cmp-c"><i>見出しだけを見る見方</i><p>税前利益100兆ウォン、過去最高益という見出しだけを見て半導体事業がそれだけ好調になったと読む</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>一歩踏み込む見方</i><p>営業利益は別途確認すべきで、41兆ウォンは8年前に仕込んだ持分が売れてできた一時的な金だ</p></div></div><p class="why"><b>Why it matters</b> · 決算の見出し数字と半導体本業の稼ぎが乖離する好例で、次の四半期決算をどう読むべきか先に示している。</p><p class="ask"><b>考えるべき点</b> · 一時的な持分売却益が作った過去最高益、半導体好況の証拠と読んでいいのか?</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-skhynix-kioxia-stake-windfall-q2.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-skhynix-kioxia-stake-windfall-q2.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/bain-capital.html">BAIN CAPITAL</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/kioxia.html">KIOXIA</a><a class="ent-chip" href="../../e/meritz-securities.html">MERITZ SECURITIES</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/spc.html">SPC</a><a class="ent-chip" href="../../e/valuation.html">バリュエーション</a><a class="ent-chip" href="../../e/cb.html">転換社債</a><a class="ent-chip" href="../../e/corporate-bond.html">投資適格債</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="meru-samsung-skhynix-leverage-etf-decay.html">サムスン電子・SKハイニックス2倍レバレッジETF、元本はこうして溶ける</a></li><li><a href="kobeissi-sp500-margin-record-q2-2026.html">S&amp;P500純利益率が過去最高15.7%に、AI決算シーズンが牽引</a></li><li><a href="serenity-kioxia-samsung-memory-rally.html">キオクシア17%急騰、サムスンも6%高、メモリ・光通信・ネオクラウドまでAIラリー拡大</a></li></ul></nav>

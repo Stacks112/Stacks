@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">세레니티가 디지타임스의 리드타임(납기) 데이터를 공급망 지도로 바꿔, AI 하드웨어 각 병목마다 뒤에 있는 상장 기업들을 짚는다. 가장 긴 대기는 약 1년이 걸리는 ABF 기판, 고성능 칩을 떠받치는 수지 필름 기반 층이다. 필름을 대는 아지노모토, 그리고 이비덴·유니마이크론·난야PCB 등이 만든다. HDI 기판과 다층 기판은 6개월 넘게 걸린다(전딩, 빅토리 자이언트, 컴펙, 메이코). 그 아래 동박적층판(CCL)은 6개월 이상에 소재 부족이 &#x27;심각&#x27;한데, 엘리트 머티리얼·성이(生益)부터 소재사인 레조낙, 미쓰이금속(동박), 니토보(유리섬유)까지 공급이 빡빡하다. 수동부품, 즉 MLCC·칩 저항·탄탈·알루미늄 커패시터는 15~20주에서 1년 이상까지 걸리며 무라타·TDK·다이요유덴·야게오·비셰이 등으로 수요가 퍼진다. 세레니티는 단서를 단다. 이들 부품 상당수는 범용과 AI 데이터센터용이 뒤섞여 있어, 모든 부족이 순수 AI 플레이는 아니라는 것. 그래도 이 지도는 칩 헤드라인이 놓치는 지점을 드러낸다. 지금 AI 서버 증설을 가장 옥죄는 제약은 화려하지 않은 층, 즉 기판·보드·수동부품에 있다는 것이다.</p><p class="why"><b>투자 포인트</b> · AI 서버의 가장 큰 제약은 기판·보드·수동부품으로 내려왔다, 화려하진 않지만 납기 1년짜리 이름들이 실제 증설 능력을 가장 깨끗이 보여줄 수 있다.</p><p class="ask"><b>짚어볼 점</b> · 기판·수동부품 업체가 붐비는 칩 종목보다 깨끗한 AI 공급망 베팅일까, 아니면 너무 파편적이고 범용이 섞여 투자하기 어려울까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>19</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>10</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="serenity-aaoi-pluggables-cpo-coexist.html">어플라이드옵토일렉트로닉스, CPO에 밀리지 않는다, 업계 인사이더 &quot;플러거블 트랜시버 앞으로 10년&quot;</a><time>07-24</time></li><li><i class="bl">강세</i><a href="serenity-tesla-optimus-earnings-notes.html">머스크, 2분기 콜에서도 &#x27;옵티머스가 테슬라 역대 최대 제품&#x27; 재확인, 마이크론 메모리 배정과 신규 공급망 구축도 언급</a><time>07-23</time></li><li><i class="bl">강세</i><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a><time>07-22</time></li></ul><a class="rec-m" href="../r/serenity.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/serenity-supply-bottleneck-map.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/serenity-supply-bottleneck-map.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/abf.html">ABF 기판</a><a class="ent-chip" href="../e/ibiden.html">IBIDEN</a><a class="ent-chip" href="../e/micron.html">MICRON</a><a class="ent-chip" href="../e/mlcc.html">MLCC</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="serenity-ai-capex-runway.html">세레니티, &#x27;AI 설비투자가 더 온다&#x27;, 프런티어 모델이 수요에 밀려 용량 부족</a></li><li><a href="serenity-innolight-gs.html">골드만의 이노라이트 163% 업사이드 콜, 광통신 체인 전체를 읽는 신호</a></li><li><a href="optics.html">일본과 텍사스가 광통신 캐파에 돈을 대기 시작했다</a></li></ul></nav>

@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">ハイトン・インターナショナルのアナリスト、ジェフ・プー氏がAMDの目標株価を640ドルに引き上げた。半導体アナリストのジュカン氏が伝えたノートによると、AMDがAI企業アンソロピックと結ぶとみられる契約規模が、既存のメタ・オープンAIとの契約を上回る可能性があるという。ノートは7月20日にマイクロソフトがAMDのラック単位AIサーバー「ヘリオス」を導入したのに続き、アンソロピックがギガワット級の調達を行う三番目の顧客として発表される見通しだとしている。この見通しを踏まえ、プー氏は2026年と2027年の一株当たり利益(EPS)予想をそれぞれ2%、11%引き上げた。同氏はまた、AMDがエヌビディアとの技術差を縮めていると指摘し、まもなく登場するMI450Xで差が縮まり、次世代のMI550X(ダイ4基構成でHBM容量も増加)ではむしろ上回る可能性があるとみる。サーバー用CPUについては、AMDの「ベニス」チップの需要が強く、2027年にはデータセンター向けCPU価格が前年比30〜35%上昇すると予想し、今年第3四半期中に先行した値上げがある可能性にも言及した。AMDの決算発表は8月4日に予定されており、すでに市場に相当織り込まれているため無難な内容になるとプー氏はみている。要点は、AMDのAI向け顧客基盤が初期の大型契約を超えて広がっていることだ。</p><p class="why"><b>Why it matters</b> · メタ・オープンAIに続く三番目のギガワット級AI顧客の登場は、AMDのAIチップ事業が一握りの大型契約への依存を脱しつつあることを示し、投資家が半導体成長ストーリーの持続性を判断する際にまず確認するのが、こうした需要の多様化だ。</p><p class="ask"><b>考えるべき点</b> · アンソロピックが本当にメタ・オープンAIを上回る規模でAMDの三番目のギガワット級顧客になるなら、それはエヌビディアのAIチップ寡占が実際に崩れ始めていることを意味するのか、それともエヌビディアが供給しきれない需要をAMDが肩代わりしているだけなのか。</p>
+  <section class="oc oc-pending"><h3>その後どうなったか</h3><p><i>採点待ち</i>AMDがアンソロピックをギガワット級顧客として正式に確認するか、その後株価が目標株価640ドルに近づくかを追跡する。</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-amd-anthropic-deal-tp640.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-amd-anthropic-deal-tp640.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/amd.html">AMD</a><a class="ent-chip" href="../../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../../e/jeff-pu.html">Jeff Pu</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/meta.html">META</a><a class="ent-chip" href="../../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/openai.html">OPENAI</a><a class="ent-chip" href="../../e/gw.html">ギガワット</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/eps.html">1株当たり利益</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-samsung-hybrid-bonding-besi.html">サムスン電子、次世代HBM向けハイブリッドボンディング量産ラインの建設開始、供給元にオランダのベシを選定</a></li></ul></nav>

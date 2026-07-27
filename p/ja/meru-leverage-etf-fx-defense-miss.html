@@ -71,6 +71,27 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -112,6 +133,7 @@ footer a{color:#8E93A0}
 2025年5月、香港2位のETF運用会社CSOPアセットマネジメントがサムスン電子2倍商品を香港取引所に上場した。韓国大型株一つだけで2倍に連動する世界初の商品だったが、韓国国内には特定銘柄の比率をETF全体の30%以内に制限する規制があり、香港で先に登場するしかなかった。この商品は5カ月で170%のリターンを記録し、続いて登場したSKハイニックス2倍は1305%まで上昇して香港証券取引所最大のETF、単一銘柄レバレッジ商品で世界一になった。サムスン電子2倍は108億ドル、SKハイニックス2倍は168億ドル規模まで膨らんだ。</p><h2 class="gsub">なぜ韓国政府は国内にも同じ商品を作ったのか</h2><p class="gist">ウォン安が続く中、外国為替当局は香港に出ている韓国資金を呼び戻せば為替を安定させられると判断した。国内に単一銘柄2倍商品がないために投資家が香港へ迂回しているという理屈だった。金融委員会は1月に規制緩和策を発表し、4月に資本市場法施行令を改正して国内でも単一銘柄レバレッジ・インバースETFを許可した。
 
 ここに決定的な計算違いがあった。韓国預託決済院の集計によると、香港商品に入った韓国資金はわずか3億2000万ドル(サムスン1億4000万、ハイニックス1億8000万)にすぎず、残りの大半は香港・中国・米国・欧州の資金だった。外国人投資家が、韓国に同じ商品ができたからといって慣れ親しんだ香港を離れてウォンに乗り換える理由はなかった。実際、国内での制度開始後に戻ってきた資金は5000億ウォン程度にとどまり、香港の残高41兆ウォンはほぼそのまま残った。国内で新たに集まった14兆ウォンも、香港資金が戻ってきたのではなく、韓国株を売って乗り換えた資金が大半だった。</p><div class="cmp"><div class="cmp-c"><i>金融監督院長の反省</i><p>還流効果は乏しく副作用ばかり大きかった</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>金融委員長の反論</i><p>香港残高が3兆ウォン減り為替安定に役立った</p></div></div><p class="gist">最近は新規資金の流入も目に見えて減っている。6月25日に16兆ウォンを超えていた国内2倍商品の時価総額は最近6兆ウォン以上目減りし、週に兆単位で入っていた資金は先週わずか534億ウォンにとどまった。この流れを見た金融当局は、8月5日に予定していた最低預託金3000万ウォンの規制を7月31日に前倒しして実施することにした。DB証券はこの規制で単一銘柄レバレッジETFの資産が2カ月以内に5兆5000億ウォン前後まで減ると見ている。2倍商品のため、実際にはその2倍にあたる13兆ウォン相当の売りが出る可能性があるという計算だ。</p><p class="why"><b>Why it matters</b> · 為替防衛を理由に作られた政策だが、実際の資金フローデータを見るとその論理は成り立たないという状況が明らかになった。効果があったかどうかで金融当局内でも公然と意見が割れている。</p><p class="ask"><b>考えるべき点</b> · 政府が作った単一銘柄レバレッジETFは為替防衛には失敗したが、国内投資家にとって別の意味はあるのだろうか?</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>27</b>記事</span><span><b>10</b>方向性コール</span><span class="bl"><b>8</b>強気</span><span class="be"><b>2</b>弱気</span><span class="bl"><b>1</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="meru-saudi-tanker-strike-fallout.html">メル：フーシ派、サウジ国籍タンカー2隻を攻撃、サウジ産原油を積む船は標的という警告、外国船はすでに引き返す</a><time>07-24</time></li><li><i class="bl">強気</i><a href="meru-googl-q2-results-korea-impact.html">メル：アルファベットが設備投資を1,950億~2,050億ドルに上方修正、フリーキャッシュフローは赤字転換もサムスン・SKハイニックスには好材料</a><time>07-23</time></li><li><i class="be">弱気</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">コーロン・ティシュジーンのTG-C（インボッサ）、米国第3相試験で主要目標未達。プラセボの方が痛み改善</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/meru-leverage-etf-fx-defense-miss.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/meru-leverage-etf-fx-defense-miss.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/leverage.html">レバレッジ</a><a class="ent-chip" href="../../e/meru.html">메르</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="meru-samsung-skhynix-leverage-etf-decay.html">サムスン電子・SKハイニックス2倍レバレッジETF、元本はこうして溶ける</a></li><li><a href="kobeissi-margin-debt-net-credit-record.html">米純信用残高がマイナス1兆600億ドルで過去最低、マージン負債は1兆5000億ドルで過去最高</a></li></ul></nav>

@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">미국 물가가 6년 만에 가장 큰 폭으로 떨어졌다는 뉴스가 나왔는데, 메르는 여기에 함정이 있다고 짚는다. 물가 조사 기간이 끝난 직후에 중동 상황이 다시 악화되면서 유가가 2주 만에 20% 넘게 반등했다는 것. 즉 좋아 보이는 물가 숫자는 이미 지나간 얘기일 수 있다. 그리고 본론. 뉴욕에 갓 상장된 SK하이닉스 ADR이 목표주가 상향 하나에 하루 27% 폭등하면서, 같은 주식이 서울보다 뉴욕에서 49% 비싸지는 기현상이 벌어졌다. 교과서대로면 비싼 쪽을 팔고 싼 쪽을 사는 차익거래로 금방 좁혀져야 하는데, 상장 직후라 전환이 막혀 있고 공매도할 물량도 없어서 그게 안 된다. 메르의 결론: 이 간격은 좁혀지는 게 아니라, 서울이 다음 날 아침 뉴욕을 따라 올라가는 식으로 유지된다.</p><p class="why"><b>투자 포인트</b> · 이 프리미엄은 글로벌 자금이 한국 메모리를 원하는데 서울을 통해서는 살 수 없다는 사실의 실시간 계기판이다.</p><p class="ask"><b>짚어볼 점</b> · 같은 주식에 두 가격, 당신이라면 어느 쪽을 살까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>27</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>1</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">메르: 후티, 사우디 국적 유조선 2척 공격, 사우디 기름 싣는 배는 다 노린다는 경고, 외국 유조선들 이미 유턴</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html">전체 기록 보기 →</a></section><section class="opp"><h3>같은 사안, 다른 관점</h3><ul><li><i class="be">약세</i><a href="emin-korea.html">에민 유루마즈: AI 버블 한복판의 한국이 붕괴의 방아쇠를 당길 것인가</a><time>06-05</time></li></ul></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/hynix.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/hynix.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/adr.html">ADR</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/arbitrage.html">차익거래</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="hormuz-meru.html">봉쇄 먼저, 통행료는 나중에: 트럼프의 호르무즈 플레이 읽기</a></li></ul></nav>

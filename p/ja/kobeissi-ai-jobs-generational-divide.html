@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">ChatGPT登場後、米国の新卒ソフトウェア求人は23%減り、シニア職はむしろ増えたという労働データが出た。 コベイシが、これまでほとんど逸話でしか語られてこなかった問い、すなわちAIは実際に若手従業員を代替しているのかという議論に、具体的な数字を突きつける労働データをまとめた。米国のソフトウェア開発者の雇用は、ChatGPTが登場した2022年11月以降、22〜25歳層で23%減少した。26〜30歳層も、幅は小さいが5%減と実質的な減少を示す。同じ期間に41〜49歳の開発者の雇用は18%増加しており、同じ職種内で最も若い層と最も経験豊富な層の間に41ポイントもの差が生まれている。この傾向は企業固有のショックを調整した後でも変わらない。AIの影響を最も受けやすい若手職では、影響の少ない同僚や経験豊富な同僚と比べて雇用が16%減少した一方、AIの影響が少ない分野やシニア層は増加を続けた。投資家にとってこれは二面性を持つ。大規模言語モデルがすでに若手エンジニアが担っていた定型的なコーディング業務を代替しているという実世界のデータであり、セクター全体のバリュエーションを押し上げているAI生産性ストーリーを裏付ける強気材料だ。だが同時に、消費・マクロ面への警告でもある。学歴を持つ若い世代がまるごと最初の職から締め出されるというのは、後になって消費支出や延滞率、そしてその技術への政治的反発として表面化する類の労働市場の傷だ。</p><p class="why"><b>Why it matters</b> · 逸話ではなく実際の労働市場データが、AIが新卒エンジニアを代替していることを示している。これはAI生産性ストーリーの最も明確な証拠かもしれないし、消費支出と政治的反発への早期警告かもしれない。</p><p class="ask"><b>考えるべき点</b> · ChatGPT登場後、新卒コーディング求人が23%減少したのは、AIがすでに生産性の約束を果たしている証拠なのか、それとも次世代の労働者への警告なのか?</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>44</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">米純信用残高がマイナス1兆600億ドルで過去最低、マージン負債は1兆5000億ドルで過去最高</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETF、今年8800億ドル流入、2025年の記録を上回るペース</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-intel-erases-rally.html">インテル、決算後の急騰分が一日で消失、時価総額900億ドルが蒸発</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-ai-jobs-generational-divide.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-ai-jobs-generational-divide.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/valuation.html">バリュエーション</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="kobeissi-hedge-funds-tech-exit.html">ヘッジファンド、この10年で最速ペースで米テック株を投げ売り</a></li></ul></nav>

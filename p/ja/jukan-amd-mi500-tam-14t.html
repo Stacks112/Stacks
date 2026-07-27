@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">半導体アナリストのジェフ・プー氏が、AIアクセラレータ市場の予測を2030年時点で1兆4000億ドルに上方修正した。従来予測の1兆ドルから引き上げたもので、2028年には市場規模がすでに1兆ドルに達すると見込む。半導体業界を扱うXアカウント、Jukan氏が伝えた内容だ。AMDのAIロードマップに焦点を当てたこのノートでプー氏は、サーバーCPU市場の総有効市場規模(TAM)予測も2030年時点で2200億ドル超に引き上げた。エージェント型AIワークロードがこの需要の半分ほどを占め、データセンター内のCPU対GPU比率も1対1に近づくとみる。AMD自社のハードウェアについては、MI455Xアクセラレータを前世代のMI355Xから大きく進化したと評価した。処理能力は34倍、トークン1個あたりの生成コストは18分の1になったという。一部の大規模言語モデル推論作業では、すでにエヌビディアのB200チップを上回っているとした。さらに先を見ると、AMDの次世代チップMI500には光インターコネクト、電気信号の代わりに光でチップ同士をつなぐより高速な方式が搭載される予定だ。これは高帯域幅メモリ(HBM)、4ダイパッケージング、一つのシステムに接続できるチップ数といった主要分野で、エヌビディアの次世代チップRubin Ultraより先行する点だという。また、AMDのサーバーCPU「Venice」がAIワークロードに最も強い製品だとし、競合チップに比べ処理能力が2倍から2.2倍高いと評価した。2027年にはAMD向けのCoWoS先端パッケージング生産量が約30万個に達し、AMDがチップ1個あたりに得られる平均販売価格も上がるとの見方を示した。市場予測は上方修正されたが、目標株価と業績予想はそのまま維持した。</p><p class="why"><b>Why it matters</b> · セルサイドのアナリストがAMDの市場規模予測を40%引き上げ、次の二世代のチップがコストや一部のワークロードですでにエヌビディアと同等か上回ると評価した点が重要だ。AMD株はこれまでエヌビディアに追いつくという期待だけで動いてきたが、今回のノートはその期待により具体的な根拠を加える。</p><p class="ask"><b>考えるべき点</b> · ジェフ・プー氏のノートは市場規模の拡大からチップ性能の向上、マージン改善まで、AMDにとって全面的に強気な内容だが、セルサイドによるAI設備投資(capex)予測は今年に入ってから大きな検証もないまま上方修正が続いている。AMDのロードマップがエヌビディアの優位を実際に脅かすと見るか、それとも今のAIブームをアナリストたちがまた行き過ぎて延長した結果だと見るか。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-amd-mi500-tam-14t.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-amd-mi500-tam-14t.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/amd.html">AMD</a><a class="ent-chip" href="../../e/cowos.html">CoWoS</a><a class="ent-chip" href="../../e/hbm.html">HBM</a><a class="ent-chip" href="../../e/jeff-pu.html">Jeff Pu</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/tam.html">TAM</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/inference.html">推論</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-amd-samsung-hbm4-deal.html">AMD「サムスンとのHBM4本契約はほぼ完成」、サムスンのファウンドリ責任者が直接乗り込み仕上げへ</a></li><li><a href="jukan-hynix-3d-stacked-dram-ondevice.html">SKハイニックス、オンデバイスAI向け「3D積層DRAM」開発に着手...米顧客と提携済み</a></li><li><a href="kobeissi-ai-capex-sox-correlation-collapse.html">AI半導体株とAI投資企業、一体で動いていた30日相関がほぼゼロに崩壊</a></li></ul></nav>

@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">SKハイニックスは今後5年間、エヌビディアなど米大手テック企業向けに750億ドル(約1085兆ウォン)規模の先端メモリ半導体を供給することで合意した。李在明大統領のシリコンバレー訪問中に金容範(キム・ヨンボム)大統領室政策室長が明らかにした内容で、半導体業界を扱うXアカウント、Jukan氏が伝えた。同じ日、サムスン電子もブロードコムと5年間で200億ドル(約290兆ウォン)規模のメモリ供給およびAIチップ生産向けファウンドリ協力のMOUを結んだと明らかになった。SKハイニックスの契約はエヌビディアを含む複数のグローバル企業を対象とする長期供給協力で、サムスン電子・ブロードコムのMOUにはメモリ供給に加え、AIチップ生産のためのファウンドリ協力も含まれる。ブロードコムはグーグルやメタ向けにカスタムAIチップ(ASIC)を設計する企業で、今回の協力がサムスンファウンドリの受注拡大につながるかも注目点だ。同じ時期、アンソロピックの最高経営責任者もサムスン電子・SKハイニックスと供給契約を結んだと明らかにしており、メモリ供給網をめぐる協力が同時多発的に進んでいる。今回の契約はオープンAIやアンソロピックなど、AI企業のメモリ需要が一気に膨らむ中で出てきたもので、サムスン電子とSKハイニックスはそれぞれ異なる大口顧客を確保する形でHBM(広帯域メモリ)競争を進めている。ただ今回の発表はいずれも5年にわたる大型MOUの段階であり、実際の売上としてどこまで確定するかは今後の契約条件と履行状況次第だ。</p><p class="why"><b>Why it matters</b> · 金額だけ見れば半導体史上最大級の供給契約だが、まだ5年間の覚書段階であり、実際の売上としてどこまで実現するかは今後の履行状況を見極める必要がある。</p><p class="ask"><b>考えるべき点</b> · SKハイニックスの750億ドル、サムスン電子の200億ドル、合わせて950億ドル規模のメモリMOUが同じ日に発表された。大統領訪問に合わせたこの発表を実際の受注拡大のシグナルと見るか、それとも政治イベントに合わせた数字の誇張と見るか。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-amd-mi500-tam-14t.html">AMD MI500に光インターコネクト搭載、アナリストAIアクセラレータ市場予測を2030年1.4兆ドルに上方修正</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-korea-memory-mega-mou-950b.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-korea-memory-mega-mou-950b.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../../e/broadcom.html">BROADCOM</a><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/hbm.html">HBM</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/kim-yong-beom.html">Kim Yong-beom</a><a class="ent-chip" href="../../e/lee-jae-myung.html">Lee Jae-myung</a><a class="ent-chip" href="../../e/meta.html">META</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/openai.html">OPENAI</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/foundry.html">ファウンドリ</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-samsung-hynix-silicon-valley-deal.html">韓国大統領府「サムスン電子とSKハイニックス、李在明大統領のシリコンバレー訪問中に米テック企業と『超大型』契約を発表へ」</a></li><li><a href="jukan-amd-samsung-hbm4-deal.html">AMD「サムスンとのHBM4本契約はほぼ完成」、サムスンのファウンドリ責任者が直接乗り込み仕上げへ</a></li><li><a href="jukan-chip-equipment-lead-times-double.html">半導体装置の納期、最近ほぼ倍増、サムスン電子・SKハイニックスは先手を打って早期発注へ</a></li></ul></nav>

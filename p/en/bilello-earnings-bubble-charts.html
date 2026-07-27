@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">In his free Week in Charts, Charlie Bilello poses an uncomfortable question about the market&#x27;s foundation: are we in an earnings bubble? Profits are clearly booming, analysts now expect roughly 24% S&amp;P 500 earnings growth for 2026, a sharp acceleration from +13% in 2025 and +10% in 2024. But Bilello wants investors to ask how durable that is, and he flags two soft spots. First, one-off gains. In the first quarter, just three companies, Google, Nvidia and Amazon, booked huge &#x27;other income&#x27; from their private stakes in firms like SpaceX and Anthropic. That roughly $69 billion of other income was about 10% of the entire S&amp;P 500&#x27;s net income for the quarter; strip it out and Q1 year-over-year earnings growth would have been about 15% rather than the reported 28%. Second, the capex cycle. If corporate capital spending is at or near its peak growth rate, then the enormous earnings boost that semiconductors have delivered will start to fade, just as the hyperscalers begin absorbing the reality of depreciating AI infrastructure on their income statements. Bilello&#x27;s point is not that earnings are fake, but that a chunk of the headline growth leans on investment gains and a spending cycle that may be cresting, which makes the 2026 optimism more fragile than it looks.</p><p class="why"><b>Why it matters</b> · If headline earnings lean on one-off investment gains and a cresting capex cycle, 2026&#x27;s growth optimism is more fragile than it looks.</p><p class="ask"><b>Worth asking</b> · Strip out one-off investment gains and peak capex, and is 24% S&amp;P earnings growth real, or a bubble in the numbers themselves?</p>
+  <section class="oc oc-pending"><h3>What happened next</h3><p><i>Awaiting grading</i>Grade after full-year 2026 results: did S&amp;P 500 realized EPS growth come in near the ~24% expectation, or well below?</p></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/bilello-earnings-bubble-charts.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/bilello-earnings-bubble-charts.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/amazon.html">AMAZON</a><a class="ent-chip" href="../../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../../e/charlie-bilello.html">Charlie Bilello</a><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/spacex.html">SPACEX</a><a class="ent-chip" href="../../e/capex.html">capex</a><a class="ent-chip" href="../../e/hyperscaler.html">hyperscaler</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="meru-alphabet-q2-capex-test.html">Meru: Alphabet&#x27;s Wednesday earnings are the first stress test of the AI capex cycle, watc…</a></li><li><a href="serenity-ai-capex-runway.html">Serenity smells more AI capex coming, frontier models are out of capacity</a></li><li><a href="nadella.html">Nadella&#x27;s &#x27;Reverse Information Paradox&#x27;: you pay for AI twice</a></li></ul></nav>

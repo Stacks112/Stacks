@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">ウォール・ストリート・ジャーナル(WSJ)によると、アップルが自社製品への中国製メモリチップ使用を認めるよう米ホワイトハウスにロビー活動を行っている。iPhoneに使われるメモリ価格が今年急騰する中、割安な中国製チップの使用を認めてほしいという狙いだ。これに対し米メモリ大手マイクロンは、絶対に認めるべきではないと強く反対しているという。半導体業界を扱うXアカウント、Jukan氏はアップルの主張に異を唱えた。アップルはメモリ価格の上昇がインフレ要因でiPhone値上げを余儀なくされていると説明するが、直近で約5倍に跳ね上がったメモリ価格が1台あたりの原価に与えた影響は約50ドルにとどまる一方、アップルはiPhone価格を250ドルも引き上げたと指摘する。Jukan氏はさらに、アップルが2023年にNANDフラッシュメモリをほぼ原価で仕入れ、消費者に90%近い利益率で転売していたと主張し、この行為を悪質と表現した。またマイクロンのサンジェイ・メロトラCEOは、サンディスクの共同創業者だった頃からアップルに遺恨を抱いているとも伝えた。この対立は、中国メモリメーカーのYMTCやCXMTがNAND・DRAMで市場シェアを急速に伸ばす中で表面化したもので、アップルが実際に中国製チップの使用を拡大すれば、マイクロンをはじめとする米メモリメーカーの価格交渉力にも影響しかねない。こうした解釈や逸話はJukan氏個人の見方であり、独立して確認された内容ではない。</p><p class="why"><b>Why it matters</b> · アップルは原価上昇を理由に中国製メモリの承認を求めているが、実際のコスト増と値上げ幅の差が大きく、インフレ対策より利益率防衛が真の狙いという見方も出ている。</p><p class="ask"><b>考えるべき点</b> · アップルはインフレ抑制を理由に中国製メモリの使用を求めているが、メモリ値上がりによる原価増は50ドルなのにiPhone価格は250ドル上がったとの指摘がある。アップルのロビー活動は消費者物価防衛のためか、それとも自社マージンを守るための口実か。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-apple-micron-china-memory-lobbying.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-apple-micron-china-memory-lobbying.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/apple.html">APPLE</a><a class="ent-chip" href="../../e/cxmt.html">CXMT</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/micron.html">MICRON</a><a class="ent-chip" href="../../e/nand.html">NAND</a><a class="ent-chip" href="../../e/sandisk.html">SANDISK</a><a class="ent-chip" href="../../e/ymtc.html">YMTC</a><a class="ent-chip" href="../../e/k-c8dacf93.html">마진</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-cxmt-huawei-premium.html">中国CXMT、ファーウェイにも価格を押し通せるほど強気に、メモリー価格はサムスンより高く</a></li><li><a href="jukan-ymtc-nand-share-surpasses-micron.html">中国YMTC、NANDシェアでマイクロン・サンディスクを追い抜く、キオクシアとの差0.4ポイントに</a></li></ul></nav>

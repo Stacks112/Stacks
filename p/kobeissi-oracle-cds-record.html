@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">오라클의 부도보험 비용이 사상 최고치를 찍었다. 5년 만기 신용부도스와프(CDS) 스프레드가 203bp 안팎까지 올라, 투자자들이 오라클 부채 1000만 달러어치를 1년간 부도로부터 보장받는 데 약 20만3000달러를 내는 상황이라고 코베이시레터가 전한다. 이 수준은 2025년 중반 이후 4배 넘게 뛴 것으로, 2008년 금융위기 정점 때의 CDS 스프레드보다도 높다. 채권시장에서도 부담이 나타난다. 오라클의 2056년 만기 6.7% 채권 스프레드는 이번 주 8bp 확대돼 국채 대비 263bp가 됐고, 2036년 만기 5.7% 채권도 9bp 확대돼 205bp가 됐다. S&amp;P글로벌은 7월 9일 오라클의 신용등급을 정크본드 바로 위 단계인 BBB-로 강등했는데, 급증하는 AI 데이터센터 투자 지출을 이유로 들었다. 오라클은 오픈AI 등 AI 고객사를 위한 클라우드 용량 확충을 위해 이례적인 속도로 부채를 늘려왔고, 투자자들은 이 계약들에서 나오는 매출이 상환 속도를 못 따라갈 위험을 점점 더 가격에 반영하고 있다. 정크 등급으로 추가 강등되면 오라클의 조달비용은 더 오르고, 투자등급 채권만 담는 펀드들의 매도가 촉발될 수 있다.</p><p class="why"><b>투자 포인트</b> · AI 인프라 투자의 중심에 있는 기업조차 신용시장의 신뢰를 얻지 못한다면, 이는 오라클만이 아니라 빚으로 캐펙스를 조달하는 모든 하이퍼스케일러에 대한 경고 신호다.</p><p class="ask"><b>짚어볼 점</b> · AI 클라우드 수주잔고는 계속 늘어나는데도 오라클의 CDS 스프레드는 실질적인 부도 위험을 반영하고 있다. 이건 AI 캐펙스발 부채에 대한 일시적 불안일까, 하이퍼스케일러 신용 스토리에 생긴 첫 균열일까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>44</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">미 순신용잔고 마이너스 1조600억달러 사상 최저, 마진 부채는 1조5000억달러로 사상 최대</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF, 올해 8800억달러 유입... 2025년 기록 넘어설 페이스</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔, 실적 발표 후 급등분 하루 만에 반납... 시가총액 900억 달러 증발</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-oracle-cds-record.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-oracle-cds-record.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/cds.html">CDS</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/oracle.html">ORACLE</a><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a><a class="ent-chip" href="../e/bp.html">베이시스포인트</a><a class="ent-chip" href="../e/backstop.html">지급보증</a><a class="ent-chip" href="../e/capex.html">캐펙스</a><a class="ent-chip" href="../e/investment-grade.html">투자등급</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a><a class="ent-chip" href="../e/corporate-bond.html">회사채</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-us-debt-financing-cost.html">미국의 이자 청구서가 오르고 있다, AI가 그 압력을 더한다</a></li></ul></nav>

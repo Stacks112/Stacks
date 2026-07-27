@@ -71,6 +71,27 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -114,6 +135,7 @@ footer a{color:#8E93A0}
 もう一つ、さらに大きなコストが残っている。「ボラティリティ・ドラッグ(Volatility Drag)」だ。レバレッジETFは毎日の取引終了後、比率をちょうど2倍に再調整する。問題は下落した翌日に起きる。例えば対象銘柄が100から90へ10%下落し、翌日11.1%上昇して100に戻ったとする。対象銘柄は元本のままだが、2倍商品は100から80へ20%下落した後、22.2%(11.1%の2倍)上昇して97.78で止まる。対象銘柄は横ばいなのに、2倍商品は2.2%目減りしている。</p><div class="cmp"><div class="cmp-c"><i>よくある誤解</i><p>レバレッジETFも対象銘柄が元の水準に戻れば元本も回復する</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>メル氏の計算</i><p>対象銘柄が上下しただけでも、毎日の再調整によって元本は継続的に目減りする</p></div></div><p class="gist">この目減りはボラティリティが高いほど大きくなる。メル氏は年間のボラティリティ・ドラッグを「年率換算ボラティリティの2乗」で大まかに見積もる。サムスン電子のボラティリティは年35%前後で2乗すると約12%、SKハイニックスは55%まで上がり2乗すると約30%になる。これを基本維持コストに足すと、サムスン電子2倍は年14%、SKハイニックス2倍は年33%が毎年溶けていく計算になる。
 
 分かりやすく言えばカジノと同じ構造だ。カジノで儲かるのは賭ける客ではなく、場を提供し手数料を取るカジノ自身である。レバレッジETFも、運用会社が0.29%の報酬を着実に受け取る一方、長期保有する投資家はボラティリティ・ドラッグによって元本を失うリスクを負う。もっとも、一方向に上昇し続ける相場では複利効果で2倍ETFのリターンが対象銘柄の2倍を超えることもある。メル氏が指摘するのは、方向感のない相場、特にSKハイニックスのように値動きの荒い銘柄では、わずか数日で元本が目に見えて減りうるという点だ。</p><p class="why"><b>Why it matters</b> · 表向きの運用報酬は年0.29%だが、ボラティリティ・ドラッグまで含めるとSKハイニックス2倍ETFは年間で元本の約3分の1が消える計算になる。単一銘柄レバレッジ商品を長期保有する前に知っておくべき数字だ。</p><p class="ask"><b>考えるべき点</b> · 2倍レバレッジETFは短期売買専用の道具なのか、それとも長期保有もありうるのか?</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>27</b>記事</span><span><b>10</b>方向性コール</span><span class="bl"><b>8</b>強気</span><span class="be"><b>2</b>弱気</span><span class="bl"><b>1</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="meru-saudi-tanker-strike-fallout.html">メル：フーシ派、サウジ国籍タンカー2隻を攻撃、サウジ産原油を積む船は標的という警告、外国船はすでに引き返す</a><time>07-24</time></li><li><i class="bl">強気</i><a href="meru-googl-q2-results-korea-impact.html">メル：アルファベットが設備投資を1,950億~2,050億ドルに上方修正、フリーキャッシュフローは赤字転換もサムスン・SKハイニックスには好材料</a><time>07-23</time></li><li><i class="be">弱気</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">コーロン・ティシュジーンのTG-C（インボッサ）、米国第3相試験で主要目標未達。プラセボの方が痛み改善</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/meru-samsung-skhynix-leverage-etf-decay.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/meru-samsung-skhynix-leverage-etf-decay.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/yield.html">YIELD</a><a class="ent-chip" href="../../e/leverage.html">レバレッジ</a><a class="ent-chip" href="../../e/meru.html">메르</a><a class="ent-chip" href="../../e/volatility-drag.html">ボラティリティ・ドラッグ</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-cxmt-3d-ic-niche-strategy.html">3Dスタッキングメモリー、サムスン・SKハイニックスは慎重も中国CXMTはニッチ市場を狙う</a></li><li><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a></li><li><a href="kobeissi-margin-debt-net-credit-record.html">米純信用残高がマイナス1兆600億ドルで過去最低、マージン負債は1兆5000億ドルで過去最高</a></li></ul></nav>

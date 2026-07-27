@@ -71,6 +71,27 @@ h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -113,6 +134,7 @@ footer a{color:#8E93A0}
 서레니티의 답은 &quot;꼭 그렇지는 않다&quot;였다. AAOI도 CPO 기술을 개발하고 있고, 다만 상용화 단계에서 일부 경쟁사보다 조금 뒤처져 있을 뿐이라는 것이다. 한 기술에서 뒤처졌다고 해서 시장 전체에서 밀려나는 건 아니라는 뜻이다.</p><h2 class="gsub">CPO가 나와도 플러거블이 당장 사라지지 않는 이유</h2><p class="gist">전해진 최고경영자의 큰 그림은, 업계가 하나의 승자로 좁혀지기보다 여러 방식이 함께 살아남는 방향으로 가고 있다는 것이다. 플러거블과 CPO 외에도, 칩에 더 가깝지만 완전한 공동패키징까지는 가지 않는 &#x27;근접패키지 광학(NPO)&#x27;이라는 새 방식이 앞으로 5년간 주요 기회로 꼽힌다고 한다. 이는 광학 공급망 전반의 투자와 연구개발이 CPO 하나에 몰리기보다 최소 세 가지 방식으로 나뉘어 진행된다는 뜻이다.</p><div class="cmp"><div class="cmp-c"><i>흔한 해석</i><p>CPO가 나오면 AI 클러스터가 수만개 GPU 규모로 커지는 과정에서 플러거블 트랜시버는 곧 밀려난다</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>업계 인사이더의 해석</i><p>플러거블은 앞으로도 대략 10년은 상업적으로 유효할 것이고, CPO·NPO·플러거블이 하나의 승자 없이 함께 공존할 가능성이 크다</p></div></div><p class="gist">세 가지 방식 모두에 걸쳐 발목을 잡는 건 어떤 기술을 택하느냐가 아니라 생산능력과 원재료 확보라고 이 최고경영자는 짚었다. 광모듈에 쓰이는 연속발광(CW) 레이저 공급이 빠듯한 기존 문제를 가리키는 것으로 보인다. 즉 어느 기술이 이기든 광학 부품 수요가 업계의 생산 능력을 앞지르고 있다는 뜻이다.
 
 이 내용은 팟캐스트에서 나온 발언을 트윗으로 옮긴 2차 전언이라, 기업의 공식 로드맵이나 실적 가이던스는 아니다. AAOI나 특정 공급사에 대한 확정된 일정이 아니라 업계 전반의 방향성 정도로 읽는 게 맞다.</p><p class="why"><b>투자 포인트</b> · CPO가 AAOI 같은 플러거블 광학 공급사를 곧 밀어낼 것이라는 통념에 반박하며, AI 데이터센터 증설의 진짜 병목이 기술 선택이 아니라 광학 부품 생산능력일 수 있음을 보여준다.</p><p class="ask"><b>짚어볼 점</b> · 플러거블·CPO·NPO가 10년간 공존한다면, 광학 공급사 중 실제로 웃는 곳은 어디일까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>19</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>10</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="serenity-tesla-optimus-earnings-notes.html">머스크, 2분기 콜에서도 &#x27;옵티머스가 테슬라 역대 최대 제품&#x27; 재확인, 마이크론 메모리 배정과 신규 공급망 구축도 언급</a><time>07-23</time></li><li><i class="bl">강세</i><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a><time>07-22</time></li><li><i class="bl">강세</i><a href="serenity-kioxia-samsung-memory-rally.html">키옥시아 17% 급등, 삼성도 6%대... 메모리·광통신·네오클라우드까지 AI 랠리 확산</a><time>07-21</time></li></ul><a class="rec-m" href="../r/serenity.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/serenity-aaoi-pluggables-cpo-coexist.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/serenity-aaoi-pluggables-cpo-coexist.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/aaoi.html">AAOI</a><a class="ent-chip" href="../e/applied-opto.html">APPLIED OPTO</a><a class="ent-chip" href="../e/cpo.html">CPO</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a><a class="ent-chip" href="../e/multiple.html">멀티플</a><a class="ent-chip" href="../e/optical-transceiver.html">트랜시버</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="serenity-amd-helios-cpo-networking.html">AMD 헬리오스 네트워킹 협력사들, 차세대 AI랙에 코패키지드 옵틱스 채택 예상, 공급망 지연설엔 선긋기</a></li><li><a href="serenity-innolight-gs.html">골드만의 이노라이트 163% 업사이드 콜, 광통신 체인 전체를 읽는 신호</a></li><li><a href="optics.html">일본과 텍사스가 광통신 캐파에 돈을 대기 시작했다</a></li></ul></nav>

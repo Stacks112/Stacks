@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">半導体業界でAI性能を高める手段が微細化競争から、ロジックとメモリーを一つのパッケージに積層する3Dスタッキング技術へと移りつつある中、サムスン電子とSKハイニックスはこの技術の商用化に慎重な姿勢を見せる一方、中国の長鑫存儲(CXMT)はこのニッチ市場を狙って動いていると半導体アナリストのJukan氏が伝えた。サムスン電子のファウンドリ事業には最近、3D ICに関する問い合わせが相次いでいるという。エヌビディアの汎用AIチップだけでなく、顧客ごとのASICや推論チップの需要が増え、関心が急速に高まっている。ただ業界関係者は、3D IC型のカスタムDRAMはサムスン電子・SKハイニックスの中核事業である標準DRAMの大量生産とは根本的に事業構造が異なると指摘する。顧客ごとにメモリー構成や積層方式が違うため、大量生産体制では採算が取りにくいという。このため両社は研究開発段階にとどまる可能性が高く、代わりに米国の規制でHBM市場への参入が難しい中国CXMTや台湾のウィンボンドのような後発企業がニッチ市場から3D IC商用化に先に乗り出すとの見方が出ている。CXMTはすでに世界に先駆けて複数の3D DRAMサンプルチップを試作したと伝えられる。</p><p class="why"><b>Why it matters</b> · サムスン電子・SKハイニックスが標準DRAMの大量生産に注力する間に、中国CXMTが次世代メモリー技術のニッチ市場を先に押さえる可能性を示している。</p><p class="ask"><b>考えるべき点</b> · ニッチな3D IC市場、サムスン・SKハイニックスは機会を逃しているのか、それとも賢明な判断なのか?</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-cxmt-3d-ic-niche-strategy.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-cxmt-3d-ic-niche-strategy.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/cxmt.html">CXMT</a><a class="ent-chip" href="../../e/hbm.html">HBM</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/winbond.html">WINBOND</a><a class="ent-chip" href="../../e/inference.html">推論</a><a class="ent-chip" href="../../e/foundry.html">ファウンドリ</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a></li><li><a href="jukan-cxmt-huawei-premium.html">中国CXMT、ファーウェイにも価格を押し通せるほど強気に、メモリー価格はサムスンより高く</a></li><li><a href="jukan-hynix-3d-stacked-dram-ondevice.html">SKハイニックス、オンデバイスAI向け「3D積層DRAM」開発に着手...米顧客と提携済み</a></li></ul></nav>

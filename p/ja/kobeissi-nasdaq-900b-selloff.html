@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">S&amp;P500種株価指数が1日で時価総額約9,000億ドルを失ったと、コベイシ・レターが伝える。ナスダック100指数はこの日、イラン戦争がさらに激化し一部ハイテク株が決算発表後に売られたことで、下落幅を2.5%超に広げた。この1日の損失は、フーシ派によるサウジ石油タンカー攻撃後にブレント原油とWTIがそろって新たな節目を突破した日、そして10年債利回りが2025年1月以来初めて4.70%を突破したまさにその日に発生した。つまり株式、原油、債券という三つの市場が、一方が衝撃を吸収し他方が持ちこたえるのではなく、同時に同じ方向、すなわちリスクオフへ動いたということだ。拡大する戦争、上昇する調達コスト、成長株、ハイテク株に集中する売りという組み合わせは、単発の一日調整というより、より広範なデレバレッジ局面の典型的な兆候とされる。金利が上がると、遠い将来の利益に依存してバリュエーションを付けられているまさにその企業群の割引率が最も大きく上昇するからだ。コベイシが一日を通じて続けたリアルタイムのコメントは、原油、金利、そして今や株式までもが同じ戦争を同時に価格へ織り込み直していることを示している。トレーダーにとっては無視できる単一の指標ではなく、異なる三つの市場が同じシグナルを確認し合っている状況だ。</p><p class="why"><b>Why it matters</b> · 株式、原油、債券が同じ日に同じ方向へ動くということは、そのうちの一つのノイズではなく三つの独立した市場が同じシグナルを確認し合っているということであり、成長株、ハイテク株に集中した1日9,000億ドルの損失は、戦争が割引率を再び価格に織り込むプロセスが実際どのような姿かを示している。</p><p class="ask"><b>考えるべき点</b> · 株式、原油、債券が同じ日に同じイラン戦争リスクを同時に価格へ織り込み直し、株式だけで1日9,000億ドルが消えた。こうした三つの市場の同時確認があれば、今回をより大きな調整の始まりと見るか、それとも戦闘が落ち着けば薄れるだけの戦争ヘッドラインだと見るか。</p>
+  <section class="oc oc-pending"><h3>その後どうなったか</h3><p><i>採点待ち</i>S&amp;P500とナスダック100が1週間以内にこの1日分の損失を取り戻すか、あるいはイラン戦争が続く中で下落が深まるかを確認する。</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>44</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">米純信用残高がマイナス1兆600億ドルで過去最低、マージン負債は1兆5000億ドルで過去最高</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETF、今年8800億ドル流入、2025年の記録を上回るペース</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-intel-erases-rally.html">インテル、決算後の急騰分が一日で消失、時価総額900億ドルが蒸発</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-nasdaq-900b-selloff.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-nasdaq-900b-selloff.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/houthis.html">HOUTHIS</a><a class="ent-chip" href="../../e/treasury-yield.html">TREASURY YIELD</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/yield.html">YIELD</a><a class="ent-chip" href="../../e/leverage.html">レバレッジ</a><a class="ent-chip" href="../../e/valuation.html">バリュエーション</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="kobeissi-houthi-tanker-strike.html">ブレント原油、フーシ派によるサウジ石油タンカー2隻攻撃後に1バレル98ドル突破、WTIも6月11日以来初めて90ドル台に</a></li><li><a href="kobeissi-yields-iran-war-premium.html">米10年債利回り、イラン戦争プレミアム70bp乗せ4.70%に迫る</a></li><li><a href="jukan-deepseek-huawei-cuda-moat.html">半導体アナリストJukan、ディープシーク梁文峰氏の流出発言後にエヌビディアに「非常に弱気」表明、ファーウェイ製チップのCUDAギャップは1年以内に解消の可能性</a></li></ul></nav>

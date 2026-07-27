@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">オープンソースAIモデルが広がるほど、メモリ半導体の需要はむしろ増えるという見方が出ている。バンク・オブ・アメリカ(BofA)の半導体アナリスト、ヴィヴェク・アーリヤが示した論点を、情報発信者Jukanが Xで紹介した。多くの投資家は、安価なオープンウェイトモデルが増えれば高価なメモリハードウェアへの支出も減ると考えがちだ。アーリヤの主張はその逆だ。GPTやGeminiのようなクローズド型モデルは、世界中の需要を少数の大型データセンターにある共有HBMプールに集約して処理するため、利用が増えるほど利用者一人当たりに必要なメモリはむしろ減っていく構造になる。一方オープンソースモデルは逆の方向に動く。同じオープンモデルを自社サーバーに直接載せる、セルフホスティングする企業が1万社あれば、その1万社それぞれがモデルの重み全体を個別に複製し、さらに独自のKVキャッシュ、モデルが回答を生成する間、一時的に保持する「メモ」まで新たに用意する必要がある。2026年には12万8000から最大100万トークンという長い文脈窓が当たり前になりつつあり、このキャッシュだけでセッションあたり40ギガバイトを超えることもある。ここに安価な中国製オープンソースAPIが加わると、大手クラウドを借りるより自前でサーバーを持つ企業がさらに増え、それは個別の導入が増えることを意味し、導入ごとに広帯域メモリ(HBM)が別々に必要になる。一見メモリ使用量を減らしそうなオープンソースの普及が、逆にメモリソケット需要を何倍にも増やす格好であり、SKハイニックスのようなHBM供給企業にとって直接的な追い風となる流れだ。</p><p class="why"><b>Why it matters</b> · この見方が正しければ、安価なオープンモデルがAIインフラ投資を減らすという弱気論は逆転し、モデルコストが下がってもHBMメモリ需要は拡大し続ける可能性があるということになる。</p><p class="ask"><b>考えるべき点</b> · オープンモデルが広がるにつれ、セルフホスティングの計算通りメモリ需要は本当に倍増するのか、それとも推論効率の改善が増えたメモリ負担をいずれ相殺するのか。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-opensource-memory-multiplier.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-opensource-memory-multiplier.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/hbm.html">HBM</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/kv.html">KVキャッシュ</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/vivek-arya.html">VIVEK ARYA</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/k-73cfffcc.html">약세론</a><a class="ent-chip" href="../../e/open-weight.html">オープンウェイト</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-memory-price-pushback.html">シャオミは出荷増、OPPOとvivoはサムスンの次の値上げに反発</a></li><li><a href="serenity-kioxia-samsung-memory-rally.html">キオクシア17%急騰、サムスンも6%高、メモリ・光通信・ネオクラウドまでAIラリー拡大</a></li><li><a href="hynix.html">同じ株、二つの価格: SKハイニックスのニューヨーク・プレミアム49%</a></li></ul></nav>

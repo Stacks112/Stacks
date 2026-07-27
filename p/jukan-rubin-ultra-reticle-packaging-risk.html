@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">엔비디아 차세대 AI 칩의 패키징(여러 반도체 칩을 하나로 묶어 조립하는 공정) 계획이 실제 기술적 난관에 부딪혔다는 이야기가 JPM모간 주최 반도체 세미나에서 나온 전문가 발언을 통해 전해졌다. 반도체 노광 공정에서는 한 번의 노광(리티클)으로 새길 수 있는 면적이 정해져 있어서, 더 큰 AI 칩 패키지를 만들려면 이 리티클 크기의 영역을 여러 개 이어 붙여야 하는데, 이를 &#x27;리티클 크기의 N배&#x27; 패키지라고 부른다. 엔비디아의 차세대 칩인 &#x27;루빈 울트라&#x27;는 리티클 크기의 약 5.5배에 달하는 패키지를 쓰는데, 이미 구현 테스트에서 문제가 발생하고 있고 평가도 순조롭지 않다고 한다. 더 큰 걱정은 그다음이다. 향후 엔비디아 칩에 필요할 것으로 보이는 리티클 크기의 9.5배까지 패키징 기술을 밀어붙이는 건 &#x27;극히 어려울&#x27; 것으로 예상되며, 이 9.5배 방식은 이미 초기 테스트에서 납땜(솔더링) 관련 결함이 나타난 상태다. TSMC의 첨단 패키징 기술인 CoWoS-L이 9.5배 리티클 패키지까지 확장하지 못한다면, 엔비디아가 2029년 무렵으로 예상되는 차차세대 아키텍처 &#x27;파인만&#x27;을 계획대로 만들어내는 데 실질적인 제약이 될 수 있다. 인텔은 대안으로 &#x27;EMIB-T&#x27;라는 패키징 구조를 내세우고 있는데, 하나의 거대한 인터포저 대신 실리콘 브리지에 낸 관통 전극(비아)을 통해 전력과 신호를 전달하는 방식으로, 리티클 크기의 최대 12배까지 지원할 수 있다고 주장한다. 이는 TSMC의 현재 방식보다 여유가 커서, TSMC가 한계에 부딪힐 경우 인텔이 대체 패키징 공급처가 될 가능성을 열어둔다.</p><p class="why"><b>투자 포인트</b> · 엔비디아의 향후 몇 년치 AI 칩 로드맵 전체가 여러 개의 실리콘 다이를 하나의 거대한 칩으로 묶어내는 패키징 기술에 달려 있어서, TSMC의 패키징이 충분히 확장되지 못하면 이는 소프트웨어로 고칠 수 있는 문제가 아니라 엔비디아 미래 칩의 물리적 한계가 되며, 동시에 경쟁 기술을 가진 인텔에게 대체 공급자로 올라설 실질적인 기회를 준다.</p><p class="ask"><b>짚어볼 점</b> · TSMC의 첨단 패키징이 리티클 크기의 약 5.5배를 넘어 확장하지 못한다면, 이는 엔비디아 미래 AI 칩의 크기를 제한하는 물리적 한계가 된다. 이게 인텔의 경쟁 패키징 기술이 진지한 대안으로 떠오르는 계기가 될까, 아니면 TSMC가 실제 지연이 생기기 전에 납땜 문제를 해결해낼까?</p>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2027년 상반기까지 TSMC가 9.5배 리티클 CoWoS-L 패키징의 납땜 문제를 해결했는지, 그리고 2029년까지 엔비디아의 파인만 GPU 아키텍처가 예정대로 출시되는지 아니면 패키징 제약으로 지연되는지를 확인해 채점한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>38</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>18</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="jukan-huawei-ai-chip-shipments-double.html">화웨이 AI 칩 출하량, 올해 약 150만개로 두 배 증가 전망, WSJ 보도</a><time>07-25</time></li><li><i class="bl">강세</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">낸드값이 싸게 계약됐다는 건, 낸드 수요가 죽은 걸 의미하는 걸까?</a><time>07-25</time></li><li><i class="bl">강세</i><a href="jukan-korea-memory-mega-mou-950b.html">SK하이닉스 5년간 750억달러 메모리 공급 합의, 삼성전자는 브로드컴과 200억달러 MOU</a><time>07-25</time></li></ul><a class="rec-m" href="../r/jukan.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-rubin-ultra-reticle-packaging-risk.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-rubin-ultra-reticle-packaging-risk.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/cowos.html">CoWoS</a><a class="ent-chip" href="../e/cowos-l.html">CoWoS-L</a><a class="ent-chip" href="../e/emib-t.html">EMIB-T</a><a class="ent-chip" href="../e/intel.html">INTEL</a><a class="ent-chip" href="../e/jpmorgan.html">JPMORGAN</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/tsmc.html">TSMC</a><a class="ent-chip" href="../e/reticle-size.html">리티클 사이즈</a><a class="ent-chip" href="../e/multiple.html">멀티플</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-tsmc-foundry-price-hike-2027.html">TSMC, 2027년 파운드리 가격 최대 10% 인상, 추가 AI 칩 주문엔 프리미엄 더 얹어</a></li></ul></nav>

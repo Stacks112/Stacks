@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">半導体を作る装置の納期がここ数カ月で1.5倍から2倍に伸び、以前は半年で届いていた装置が今では丸一年近くかかるケースもあると業界関係者が伝える。今回のボトルネックの根っこは、世界中の半導体メーカーがAI需要に対応しようと同時多発的にファブ、つまり生産工場への投資に乗り出し、注文が殺到したことにある。世界市場の約70パーセントを占める5大装置メーカー、アプライドマテリアルズとASML、ラムリサーチ、東京エレクトロン、KLAでさえこの需要をさばき切れていない。問題はこれら大手だけにとどまらない。TSMCやマイクロンに装置を供給する韓国の協力企業の納期も3から4カ月から6から8カ月に伸び、一部は一年以上かかるという。これを受け、複数の新工場を同時に建設中のサムスン電子とSKハイニックスは、順番で後回しにされないよう通常より早めに発注する動きを見せているとされる。パンデミック期の物流混乱が原因だった2021年から2022年の装置不足とは異なり、今回は純粋にファブ投資の規模そのものが原因という点が違う。業界では世界的な増設が続く限り、納期は今後さらに伸びるとみている。問題は必要な装置が期日通りに届かなければ、サムスン電子とSKハイニックスが計画する新工場の稼働が予定より遅れかねない点で、サプライチェーンの些細な問題がメモリーとロジック半導体の生産能力拡張ペースそのものを制約する要因になりかねない。</p><p class="why"><b>Why it matters</b> · ファブ装置の到着が遅れ続ければ、サムスン電子とSKハイニックスの増設計画も後ろ倒しになり、最近の価格・株価上昇を支えてきたメモリー供給不足局面がさらに長引きかねない。</p><p class="ask"><b>考えるべき点</b> · 装置の納期が延びれば新工場の稼働が遅れ、サムスン電子・SKハイニックスの株価を押し上げてきたメモリー不足局面も長引きかねないが、同時にASMLやアプライドマテリアルズのような装置メーカーの受注残高には追い風だ。今はどちらのポジションが有利に見えるだろうか。</p>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>38</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>18</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="jukan-huawei-ai-chip-shipments-double.html">ファーウェイのAIチップ出荷、今年約150万個へ倍増の見通し、WSJ報道</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-nand-sandisk-lta-bearish-pushback.html">NAND弱気論に反論するアナリストJukan、サンディスクの値引きメタ契約も需要低迷のサインではない</a><time>07-25</time></li><li><i class="bl">強気</i><a href="jukan-korea-memory-mega-mou-950b.html">SKハイニックス、5年750億ドルのメモリ供給合意 サムスン電子はブロードコムと200億ドルMOU</a><time>07-25</time></li></ul><a class="rec-m" href="../../r/jukan.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-chip-equipment-lead-times-double.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-chip-equipment-lead-times-double.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/applied-materials.html">APPLIED MATERIALS</a><a class="ent-chip" href="../../e/asml.html">ASML</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/kla.html">KLA</a><a class="ent-chip" href="../../e/lam-research.html">LAM RESEARCH</a><a class="ent-chip" href="../../e/micron.html">MICRON</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/tokyo-electron.html">TOKYO ELECTRON</a><a class="ent-chip" href="../../e/tsmc.html">TSMC</a><a class="ent-chip" href="../../e/multiple.html">マルチプル</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-cxmt-huawei-premium.html">中国CXMT、ファーウェイにも価格を押し通せるほど強気に、メモリー価格はサムスンより高く</a></li><li><a href="jukan-intel-14a-2028-ramp.html">インテル、2Q決算コールで「14A量産2028年」を正式表明...市場想定より1年前倒し</a></li><li><a href="jukan-nvidia-800v-hvdc-delay.html">エヌビディアの次世代AIラック向け800V電源システム、2028年にずれ込む可能性...セミアナリシスの警告に供給網は反論</a></li></ul></nav>

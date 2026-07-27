@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">트럼프 대통령이 EU가 반독점 벌금을 앞세워 미국 기업들을 &#x27;약탈&#x27;하고 있다며 무역법 301조 조사에 착수했다고 밝히고, 이에 맞서 EU에 &#x27;상당한 관세&#x27;를 물리겠다고 예고했다. 그는 트루스소셜 게시물에서 EU의 최근 제재 내역을 나열했다. 애플에 150억 달러, 메타에 30억 달러, 아마존에 25억 달러, 그리고 방금 발표된 구글 추가 벌금 10억 달러까지, 이번 건으로 구글의 EU 누적 벌금이 180억 달러를 넘어섰다고 주장했다. 그는 이 벌금들을 &#x27;불법적이고 심각하게 차별적&#x27;이라 부르며, 바이든 행정부 때 시작된 관행이 &#x27;트럼프 행정부에서는 계속되지 않을 것&#x27;이라고 말했다. 무역법 301조는 대통령이 외국 정부의 관행을 조사해 불공정하다고 판단되면 별도 입법 없이 보복관세를 매길 수 있게 하는 미국 통상법 조항으로, 트럼프가 중국을 비롯한 다른 교역국을 상대로 이미 여러 차례 써온 카드다. 그는 구체적인 관세율이나 시행 시점은 밝히지 않은 채, 미국 기업에 매겨진 벌금은 &#x27;전부 되돌려질 것&#x27;이고 관세는 &#x27;가능한 한 빨리&#x27; 부과될 것이라고만 말했다. EU는 수년간 디지털시장법(DMA)과 일반 경쟁법을 근거로 미국 빅테크에 반독점 제재를 가해왔으며, 이 벌금들이 미국 기업을 표적 삼은 게 아니라 반경쟁적 행위에 대응한 것이라는 입장이다.</p><p class="why"><b>투자 포인트</b> · 무역법 301조는 트럼프가 중국과의 관세전쟁을 시작할 때 썼던 것과 같은 법적 도구라서, 이번 발언은 단순한 수사가 아니라 EU를 상대로 실제 관세전쟁 절차를 가동시킨 것이고, 애플·메타·아마존·구글이 낸 규제 벌금이 관세 정치와 뒤엉키게 됐다.</p><p class="ask"><b>짚어볼 점</b> · 트럼프는 전에도 EU 관세를 예고했다가 실행하지 않은 적이 있다. 이번 301조 조사는 실제로 유럽산 상품에 대한 새 관세로 이어질까, 아니면 또 다른 협상 카드에 그칠까?</p>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>11</b>글</span><span><b>4</b>방향성 콜</span><span class="bl"><b>4</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="trump-hormuz-bomb-threat.html">트럼프, 호르무즈 해협서 이란이 쏠 때마다 다리·발전소 폭격하겠다고 경고</a><time>07-22</time></li><li><i class="bl">강세</i><a href="potus-cpi-june.html">트럼프, 6월 CPI로 승리 세리머니, &#x27;6년 만의 최대 월간 물가 하락&#x27;</a><time>07-17</time></li><li><i class="bl">강세</i><a href="potus-tsmc-arizona.html">트럼프, TSMC 애리조나 2650억 달러(역대 최대) 자랑, &#x27;여기서 지으면 관세 없다&#x27;</a><time>07-17</time></li></ul><a class="rec-m" href="../r/trump.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/trump-eu-301-investigation-bigtech-fines.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/trump-eu-301-investigation-bigtech-fines.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/apple.html">APPLE</a><a class="ent-chip" href="../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/meta.html">META</a><a class="ent-chip" href="../e/section-301.html">SECTION 301</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-canada-tariff.html">트럼프, 캐나다산 제품에 추가 관세 50% 서명, 30일 뒤 발효</a></li><li><a href="meru-forced-labor-tariff-korea.html">미국, 오늘부터 한국에 &#x27;강제노동 관세&#x27; 12.5% 부과... 대만·EU보다 불리한 대우</a></li><li><a href="trump-generic-drug-tariff-reshoring.html">트럼프, 제네릭 의약품에 2년 무관세 유예 뒤 100%, 3년째부터 200% 관세</a></li></ul></nav>

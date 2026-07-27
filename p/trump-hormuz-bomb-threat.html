@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">트럼프 대통령이 호르무즈 해협에 대한 새로운 자동 보복 규칙을 내놨다. 앞으로 이란이 해협을 지나는 선박에 미사일, 로켓, 드론 등 어떤 무기로든 사격할 때마다, 미국이 이란 내 다리나 발전소 한 곳을 파괴하겠다는 것이다. 테헤란 인근이나 테헤란 시내에 있는 시설도 대상에 포함된다. 트럼프는 7월 22일 트루스소셜에 이 경고를 올렸는데, 그동안 산발적 타격과 오락가락하던 휴전 논의를 하나의 고정된 맞대응 규칙으로 바꿔놓은 셈이다. 이 글이 올라온 날 유가는 이미 이란전쟁 우려로 오르고 있었다. 워싱턴이 이란이 평화협상에 &#x27;진지하지 않다&#x27;는 신호를 보낸 뒤 브렌트유는 배럴당 95달러를 넘었고, 미국산 원유도 6월 중순 이후 처음으로 85달러를 돌파했다. 중재자들은 휴전을 추진해왔지만 호르무즈 통행량은 극히 적은 수준으로 줄었다는 보도가 나왔고, 이란은 이번 주 바레인의 아마존 데이터센터를 타격했다고 주장하기도 했다. 전 세계 해상 원유 수송량의 약 5분의 1, 액화천연가스의 상당 부분이 호르무즈를 지나기 때문에, 선박에 대한 단 한 번의 사격에 미국의 자동 보복을 연결시키는 이번 방침은 다음 사건이 협상으로 가라앉기보다 빠르게 격화될 가능성을 키운다.</p><p class="why"><b>투자 포인트</b> · 고정된 보복 규칙이 생기면 호르무즈에서 아무리 작은 사격이라도 다음번엔 협상 대신 미국의 이란 본토 타격으로 이어질 수 있어, 유가의 전쟁 프리미엄이 계속 유지되고 해운·에너지 시장의 꼬리위험이 커진다.</p><p class="ask"><b>짚어볼 점</b> · 트럼프가 호르무즈 보복을 자동 규칙으로 만들었다. 사격 한 번마다 다리나 발전소 하나씩. 이게 정말 이란을 억제할까, 아니면 다음 사건을 예전보다 더 빨리 격화시키는 장치가 될까?</p>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>앞으로 몇 주 안에 이란이 호르무즈에서 다시 선박에 사격을 가하는지, 그리고 그럴 경우 트럼프의 경고대로 미국이 실제로 이란의 다리나 발전소를 타격하는지 확인한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>11</b>글</span><span><b>4</b>방향성 콜</span><span class="bl"><b>4</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="potus-cpi-june.html">트럼프, 6월 CPI로 승리 세리머니, &#x27;6년 만의 최대 월간 물가 하락&#x27;</a><time>07-17</time></li><li><i class="bl">강세</i><a href="potus-tsmc-arizona.html">트럼프, TSMC 애리조나 2650억 달러(역대 최대) 자랑, &#x27;여기서 지으면 관세 없다&#x27;</a><time>07-17</time></li><li><i class="bl">강세</i><a href="potus-datacenters.html">트럼프, 데이터센터를 &#x27;액체 금&#x27;이라 부르며 이를 막은 뉴욕주를 정조준</a><time>07-16</time></li></ul><a class="rec-m" href="../r/trump.html">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/trump-hormuz-bomb-threat.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/trump-hormuz-bomb-threat.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../e/strait-of-hormuz.html">STRAIT OF HORMUZ</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-iran-amzn-bahrain-strike.html">이란이 바레인의 아마존 데이터센터를 타격했다고 발표, 유가는 다시 배럴당 90달러를 넘었다</a></li><li><a href="potus-hormuz-demining-call.html">트럼프, 영국 신임 총리와 첫 통화서 북해 원유와 호르무즈 해협 지뢰 제거 논의</a></li><li><a href="kobeissi-iran-ceasefire-mediation.html">호르무즈 통행 하루 10척으로 붕괴, 중재자들 미-이란 휴전 추진</a></li></ul></nav>

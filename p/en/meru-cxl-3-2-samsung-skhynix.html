@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">Meru walks through CXL, the technology suddenly on everyone&#x27;s lips, using a road-and-warehouse picture. A CPU has a fixed number of DRAM slots because only so many dedicated lanes run across the motherboard. CXL sidesteps that limit by hanging extra &#x27;memory warehouses&#x27; off the general-purpose PCIe road that is already there, so you can add as much memory as you want. The trade-off is speed: reading local DRAM takes 80-100 nanoseconds, while a trip out to CXL memory takes 170-250. That sounds bad until you remember not all data is equal. Hot data you touch constantly stays in fast local DRAM; data you rarely open lives in the cheap CXL warehouse, and the system barely slows down. Samsung packages this as CMM-D and SK Hynix as CMM-DDR5, the same idea under two names. Each CXL version adds tricks: 1.1 (2019) just expanded capacity, 2.0 added &#x27;pooling&#x27; so several servers share one memory pool through a switch, like delivery firms sharing a warehouse instead of each over-building for peak season, and 3.x removes the partitions for fully shared memory. The version now arriving, CXL 3.2, moves the job of sorting hot from cold data out of software and bakes it into the hardware itself. For the memory makers, CXL is a new way to sell more DRAM.</p><p class="why"><b>Why it matters</b> · CXL turns memory from a fixed slot count into an expandable warehouse, opening a fresh lane of DRAM demand for Samsung and SK Hynix.</p><p class="ask"><b>Worth asking</b> · Is CXL a genuine new growth lane for the memory makers, or a niche that AI&#x27;s appetite for fast local HBM will overshadow?</p>
+  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>27</b>posts</span><span><b>10</b>directional calls</span><span class="bl"><b>8</b>Bull</span><span class="be"><b>2</b>Bear</span><span class="bl"><b>1</b>Hit</span><span class="be"><b>0</b>Miss</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="meru-saudi-tanker-strike-fallout.html">Meru: Houthi strike on two Saudi-flagged tankers signals blockade may widen to…</a><time>07-24</time></li><li><i class="bl">Bull</i><a href="meru-googl-q2-results-korea-impact.html">Meru: Alphabet raises 2026 capex to $195-205B even as free cash flow turns nega…</a><time>07-23</time></li><li><i class="be">Bear</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">Kolon TissueGene&#x27;s TG-C fails US Phase 3 trial, placebo outperforms on pain rel…</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/meru-cxl-3-2-samsung-skhynix.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/meru-cxl-3-2-samsung-skhynix.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/cxl.html">CXL</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/meru.html">메르</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="jukan-memory-cxl-controller-exit.html">The memory Big Three quietly walk away from their own CXL chips</a></li><li><a href="jukan-ms-memory-shortage-2028.html">Morgan Stanley: the memory shortage shows no signs of easing into 2028</a></li><li><a href="jukan-server-dram-spot-surge.html">Server DRAM spot prices blow out to a 146% premium</a></li></ul></nav>

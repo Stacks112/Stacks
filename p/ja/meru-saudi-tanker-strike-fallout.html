@@ -39,6 +39,27 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -76,6 +97,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">イエメンのフーシ派が紅海でサウジ国籍の石油タンカー2隻を攻撃したと、韓国の投資ブロガー、メルが伝える。今回の攻撃は対象の選び方が攻撃そのものより重要だ。サウジ産原油を運ぶ外国船ではなく、サウジ所有の船舶が狙われたからだ。これは数日前にフーシ派が出した警告を実行に移したとみられる。フーシ派は7月20日、世界の海運会社にメールを送り、サウジの港で貨物を積み下ろしする船舶は国籍を問わず攻撃対象になると通告していた。メルは、今回攻撃を受けた石油製品運搬船エンセラと超大型タンカー(VLCC)ライラがいずれも、サウジ国富ファンドとアラムコが大株主の国営海運会社バーリ(Bahri)所属だと指摘する。外国のタンカーは脅威が自分たちにも及ぶかを見届けようとはしていない。ロイターはすでに少なくとも7隻が紅海で引き返したと報じており、EUもイスラエル、米国、サウジに関連する船舶に対し、脅威水準が下がるまで紅海とアデン湾を避けるよう勧告している。メルは、フーシ派が過去の米軍の空爆を無力化してきた地形的優位を持っていると指摘する。山岳地帯に地下トンネルや掩体壕を張り巡らせ、2025年に52日間続いた米軍の爆撃作戦で約1000の標的を攻撃してもなお完全には破壊できなかったという。メルの結論は、サウジ寄港船の戦争リスク保険料はすでに上昇し始めており、これは封鎖がこれ以上拡大しなくても中東産原油の実質的な調達コストを静かに押し上げるというものだ。</p><p class="why"><b>Why it matters</b> · サウジ所有船から先に攻撃し、サウジの港に触れる船はすべて標的だと警告したのは、封鎖が一気にではなく段階的に拡大する典型であり、外国タンカーが一隻も攻撃を受けていない段階から湾岸海運の戦争リスク保険料が上がるだけで原油の実質調達コストは静かに上昇する。</p><p class="ask"><b>考えるべき点</b> · フーシ派は今回サウジ所有船を先に攻撃したが、サウジの港に触れる船はすべて標的にすると既に警告している。もし次に外国籍タンカーが攻撃されたら、原油や海運関連のポジションを見直すべき話だろうか、それとも数週間続く激化にすでに織り込まれている話だろうか。</p>
+  <section class="oc oc-pending"><h3>その後どうなったか</h3><p><i>採点待ち</i>その後3週間以内にフーシ派がサウジ産原油を積んだ外国籍タンカーを実際に攻撃するか、紅海、アデン湾の通航量が減り続けるかを確認する。</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>27</b>記事</span><span><b>10</b>方向性コール</span><span class="bl"><b>8</b>強気</span><span class="be"><b>2</b>弱気</span><span class="bl"><b>1</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="meru-googl-q2-results-korea-impact.html">メル：アルファベットが設備投資を1,950億~2,050億ドルに上方修正、フリーキャッシュフローは赤字転換もサムスン・SKハイニックスには好材料</a><time>07-23</time></li><li><i class="be">弱気</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">コーロン・ティシュジーンのTG-C（インボッサ）、米国第3相試験で主要目標未達。プラセボの方が痛み改善</a><time>07-22</time></li><li><i class="bl">強気</i><a href="meru-houthi-blockade.html">フーシ派、サウジ海上封鎖を宣言、ホルムズに続き原油の最後の迂回路も脅かす</a><time>07-21</time></li></ul><a class="rec-m" href="../../r/meru.html">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/meru-saudi-tanker-strike-fallout.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/meru-saudi-tanker-strike-fallout.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/houthis.html">HOUTHIS</a><a class="ent-chip" href="../../e/meru.html">메르</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="kobeissi-houthi-tanker-strike.html">ブレント原油、フーシ派によるサウジ石油タンカー2隻攻撃後に1バレル98ドル突破、WTIも6月11日以来初めて90ドル台に</a></li><li><a href="meru-houthi-blockade.html">フーシ派、サウジ海上封鎖を宣言、ホルムズに続き原油の最後の迂回路も脅かす</a></li><li><a href="kobeissi-iran-energy-sites-threat.html">イラン、米国が発電所を爆撃すればエネルギー施設を狙うと警告</a></li></ul></nav>
