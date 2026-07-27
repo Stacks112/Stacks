@@ -39,7 +39,7 @@ STANCE = {
 
 L = {
     "ko": {"best": "이번 주 Stacks 베스트", "sub": "이번 주 가장 많이 읽힌 글 3편을 전문으로 담았어요.",
-           "why": "왜 중요한가", "orig": "원문 보기", "read": "Stacks에서 읽기",
+           "why": "투자 포인트", "orig": "원문 보기", "read": "Stacks에서 읽기",
            "more": "Stacks에서 전체 보기", "tail": "매일 업데이트는 Stacks에서 확인하세요.",
            "unsub": "수신거부", "range": "기간", "since": "이 글 이후",
            "attn": "이번 주 쏠린 곳"},

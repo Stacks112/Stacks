@@ -32,7 +32,7 @@ SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 OUT_DIR = os.environ.get("OUT_DIR", "weekly")
 
 L = {
-    "ko": {"head": "이번 주 Stacks 베스트", "why": "왜 중요한가: ", "orig": "원문",
+    "ko": {"head": "이번 주 Stacks 베스트", "why": "투자 포인트: ", "orig": "원문",
            "tail": "매일 업데이트는 Stacks에서: "},
     "en": {"head": "This week on Stacks", "why": "Why it matters: ", "orig": "Original",
            "tail": "Daily updates on Stacks: "},
