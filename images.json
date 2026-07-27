@@ -1,0 +1,140 @@
+{
+ "_readme": [
+  "카드 본문 @@IMG@@ 마커에 쓰는 이미지 레지스트리. sources.json·glossary.json과 같은 방식으로,",
+  "늘어나는 데이터는 프롬프트가 아니라 이 파일에 둔다.",
+  "",
+  "★ 발행 루틴은 URL을 지어내지 않는다. 아래 key만 고르고, build_pages가 URL을 채운다.",
+  "  gist 안에는 이렇게 쓴다:  @@IMG@@key|그 카드에 맞는 캡션 한 줄",
+  "  (옛 4칸 형식 @@IMG@@url|캡션|출처|출처링크 도 계속 동작한다)",
+  "",
+  "★ 여기 있는 URL은 전부 실제 로드를 확인한 것이다. 확인 없이 추가하지 않는다.",
+  "  추가 절차: 브라우저에서 new Image()로 onload 확인 → 크기 기록 → 이 파일에 추가.",
+  "  2026-07-27 최초 등록분은 15개 후보 중 10개만 통과했다. 추측한 URL은 대부분 죽는다.",
+  "",
+  "★ caption은 예시다. 그대로 쓰지 말고 그 카드의 맥락에 맞게 새로 쓴다.",
+  "  규칙은 publish-v4.3.md [4-E]⑤ — 이미지는 장식이 아니라 설명이어야 한다."
+ ],
+ "_verified": "2026-07-27",
+ "images": {
+  "nand-usb": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/USB_flash_drive.JPG/500px-USB_flash_drive.JPG",
+   "page": "https://commons.wikimedia.org/wiki/File:USB_flash_drive.JPG",
+   "credit": "Wikimedia Commons",
+   "size": "500x375",
+   "use": "낸드·플래시 저장장치를 처음 설명할 때. 독자가 손으로 만져 본 물건에서 출발한다.",
+   "caption": {
+    "ko": "늘 쓰는 USB 메모리. 이 안의 저장 칩이 낸드다.",
+    "en": "An everyday USB stick. The storage chip inside it is NAND.",
+    "ja": "いつも使うUSBメモリ。この中の記憶チップがNANDだ。"
+   }
+  },
+  "nand-cell-types": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cell_types_SLC-PLC_in_comparison_20211102.svg/1280px-Cell_types_SLC-PLC_in_comparison_20211102.svg.png",
+   "page": "https://commons.wikimedia.org/wiki/File:Cell_types_SLC-PLC_in_comparison_20211102.svg",
+   "credit": "Wikimedia Commons",
+   "size": "1280x702",
+   "use": "SLC/MLC/TLC/QLC 구분을 설명할 때. 도해라서 말로 푸는 것보다 빠르다.",
+   "caption": {
+    "ko": "저장 칸 하나에 담는 비트 수 비교. 왼쪽에서 셋째가 TLC, 넷째가 QLC다.",
+    "en": "Bits stored per cell. Third from the left is TLC, fourth is QLC.",
+    "ja": "1セルに入れるビット数の比較。左から三番目がTLC、四番目がQLCだ。"
+   }
+  },
+  "dram-module": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/DDR5_SDRAM_%28with_scale%29_IMGP6298_smial_wp.jpg/960px-DDR5_SDRAM_%28with_scale%29_IMGP6298_smial_wp.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:DDR5_SDRAM_(with_scale)_IMGP6298_smial_wp.jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x477",
+   "use": "D램·메모리 모듈·서버 메모리 슬롯 이야기.",
+   "caption": {
+    "ko": "서버에 꽂는 D램 막대.",
+    "en": "A DRAM stick of the kind that goes into a server.",
+    "ja": "サーバーに挿すDRAM。"
+   }
+  },
+  "datacenter-inside": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/BalticServers_data_center.jpg/960px-BalticServers_data_center.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x637",
+   "use": "데이터센터 내부·설비투자·전력 수요. 돈이 어디로 나갔는지 보여줄 때.",
+   "caption": {
+    "ko": "데이터센터 내부. 이런 서버 안에 GPU와 저장장치가 같이 산다.",
+    "en": "Inside a data center. GPUs and storage live together in racks like these.",
+    "ja": "データセンターの内部。こうしたサーバーの中にGPUと記憶装置が同居する。"
+   }
+  },
+  "datacenter-racks": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Datacenter_Server_Racks_%2822370909788%29.jpg/960px-Datacenter_Server_Racks_%2822370909788%29.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Datacenter_Server_Racks_(22370909788).jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x640",
+   "use": "데이터센터 랙 열. datacenter-inside와 골라 쓴다(같은 카드에 둘 다 쓰지 않는다).",
+   "caption": {
+    "ko": "줄지어 선 서버 랙.",
+    "en": "Rows of server racks.",
+    "ja": "並んだサーバーラック。"
+   }
+  },
+  "gpu-board": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/NVIDIA_GPU.jpg/960px-NVIDIA_GPU.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:NVIDIA_GPU.jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x640",
+   "use": "GPU 한 장을 실물로 보여줄 때. 가속기·쿠다·칩 스펙 이야기.",
+   "caption": {
+    "ko": "GPU 보드 한 장.",
+    "en": "A single GPU board.",
+    "ja": "GPUボード1枚。"
+   }
+  },
+  "gpu-cluster": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Tesla-NVIDIA_GPU_cluster_%283706444821%29.jpg/960px-Tesla-NVIDIA_GPU_cluster_%283706444821%29.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Tesla-NVIDIA_GPU_cluster_(3706444821).jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x1280",
+   "use": "GPU 여러 장을 묶은 클러스터·랙 단위 시스템. 세로 사진이라 본문에서 크게 잡힌다.",
+   "caption": {
+    "ko": "GPU를 여러 장 묶어 세운 클러스터.",
+    "en": "A cluster built from many GPUs stacked together.",
+    "ja": "GPUを何枚も束ねて立てたクラスター。"
+   }
+  },
+  "exchange-floor": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg/960px-NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x636",
+   "use": "미국 증시·상장·거래 구조 이야기.",
+   "caption": {
+    "ko": "미국 증권거래소 객장.",
+    "en": "A US exchange floor.",
+    "ja": "米国の証券取引所の立会場。"
+   }
+  },
+  "gold-bars": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Gold_bullion_bars.jpg/960px-Gold_bullion_bars.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gold_bullion_bars.jpg",
+   "credit": "Wikimedia Commons",
+   "size": "960x720",
+   "use": "금·안전자산·중앙은행 매입.",
+   "caption": {
+    "ko": "금괴. 불안할 때 정부와 투자자가 먼저 찾는 자산이다.",
+    "en": "Gold bars, what governments and investors reach for first when they are nervous.",
+    "ja": "金塊。不安なとき政府と投資家がまず求める資産だ。"
+   }
+  },
+  "natgas-flame": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Gas_stove_blue_flames.jpg/500px-Gas_stove_blue_flames.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Gas_stove_blue_flames.jpg",
+   "credit": "Wikimedia Commons",
+   "size": "500x439",
+   "use": "천연가스·발전 연료.",
+   "caption": {
+    "ko": "늘 쓰는 가스레인지의 파란 불꽃. 이게 천연가스다.",
+    "en": "The blue flame on a kitchen stove. That is natural gas.",
+    "ja": "いつものガスコンロの青い炎。これが天然ガスだ。"
+   }
+  }
+ }
+}
