@@ -718,6 +718,27 @@ UI = {
                     "出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は"
                     "利用者本人にあります。"),
 }
+
+# ---- record blocks (author track record / graded outcome / opposing cards) ----
+# The app already owns all three; until now they lived only behind the SPA, so
+# the pages Google actually indexes carried the summary and nothing else. These
+# put the record on the crawlable page. They borrow no prose from the source
+# post: every line is our own aggregate over items.json, which is the point
+# (claude/strategy-originality-2026-07-25.md - "요약은 미끼고 기록이 제품이다").
+REC_UI = {
+    "ko": dict(rec="이 필진의 기록", posts="글", calls="방향성 콜",
+               bull="강세", bear="약세", watch="관점", hit="적중", miss="빗나감",
+               more="전체 기록 보기 →", oc="그 후 어떻게 됐나",
+               pending="채점 대기", opp="같은 사안, 다른 관점"),
+    "en": dict(rec="This author's record", posts="posts", calls="directional calls",
+               bull="Bull", bear="Bear", watch="Watch", hit="Hit", miss="Miss",
+               more="See the full record →", oc="What happened next",
+               pending="Awaiting grading", opp="Same story, other views"),
+    "ja": dict(rec="この筆者の記録", posts="記事", calls="方向性コール",
+               bull="強気", bear="弱気", watch="観点", hit="的中", miss="外れ",
+               more="記録をすべて見る →", oc="その後どうなったか",
+               pending="採点待ち", opp="同じ話題、別の見方"),
+}
 LANGS = ("ko", "en", "ja")
 LANG_DIR = {"ko": "p", "en": "p/en", "ja": "p/ja"}
 LANG_REL = {"ko": "../", "en": "../../", "ja": "../../"}
@@ -747,6 +768,199 @@ def hreflang_tags(iid, langs):
     )
     dflt = "ko" if "ko" in langs else langs[0]
     return tags + '<link rel="alternate" hreflang="x-default" href="%s">' % E(page_url(iid, dflt))
+
+
+# Filled once by main(); read by the record blocks below. Module state for the
+# same reason AV_CACHE is: threading four more parameters through page_html()
+# for data that is identical on every page buys nothing.
+TITLES = {}      # id -> {"ko":..., "en":..., "ja":...}
+ITEM_META = {}   # id -> {"stance":..., "date":..., "source":...}
+REC_OF = {}      # author display name -> aggregate dict (see build_records)
+OPP_OF = {}      # id -> {"k": ticker key, "ids": [...]} from build_data
+
+
+def title_of(iid, lang):
+    """Headline in `lang`, falling back to any language we do have. Opposing and
+    related cards may not exist in all three languages, and a blank link label
+    is worse than a Korean headline on an English page."""
+    t = TITLES.get(iid) or {}
+    return t.get(lang) or t.get("ko") or t.get("en") or t.get("ja") or ""
+
+
+def stance_tag(st, R):
+    if st == "bull":
+        return '<i class="bl">%s</i>' % E(R["bull"])
+    if st == "bear":
+        return '<i class="be">%s</i>' % E(R["bear"])
+    return '<i class="wa">%s</i>' % E(R["watch"])
+
+
+def _card_rows(ids, lang, R, limit=3):
+    rows = ""
+    for iid in ids[:limit]:
+        t = title_of(iid, lang)
+        if not t:
+            continue
+        m = ITEM_META.get(iid, {})
+        rows += ('<li>%s<a href="%s.html">%s</a><time>%s</time></li>'
+                 % (stance_tag(m.get("stance"), R), E(iid), E(clip(t, 80)),
+                    E((m.get("date") or "")[5:])))
+    return rows
+
+
+def record_block(item, lang, R, REL):
+    """Author track record: how many calls this writer has made, which way they
+    lean, how the graded ones landed. None of this is in the source post."""
+    rec = REC_OF.get(item.get("source") or "")
+    if not rec or rec["total"] < 3:
+        return ""
+    chips = ('<span><b>%d</b>%s</span><span><b>%d</b>%s</span>'
+             % (rec["total"], E(R["posts"]), len(rec["calls"]), E(R["calls"])))
+    if rec["bull"]:
+        chips += '<span class="bl"><b>%d</b>%s</span>' % (rec["bull"], E(R["bull"]))
+    if rec["bear"]:
+        chips += '<span class="be"><b>%d</b>%s</span>' % (rec["bear"], E(R["bear"]))
+    if rec["hits"] or rec["miss"]:
+        chips += ('<span class="bl"><b>%d</b>%s</span><span class="be"><b>%d</b>%s</span>'
+                  % (rec["hits"], E(R["hit"]), rec["miss"], E(R["miss"])))
+    rows = _card_rows([i for i in rec["calls"] if i != item["id"]], lang, R)
+    lst = '<ul class="rec-l">%s</ul>' % rows if rows else ""
+    more = '<a class="rec-m" href="%sr/%s.html">%s</a>' % (REL, E(rec["slug"]), E(R["more"]))
+    return ('<section class="rec"><h3>%s</h3><div class="rec-s">%s</div>%s%s</section>'
+            % (E(R["rec"]), chips, lst, more))
+
+
+def outcome_block(item, lang, R):
+    """This card's own prediction and, once the weekly grader has run, whether
+    it landed. `outcome` is written by the publishing routine, graded later."""
+    oc = item.get("outcome") or {}
+    note = (oc.get("note") or {}).get(lang) or (oc.get("note") or {}).get("ko") or ""
+    if not note:
+        return ""
+    st = oc.get("status") or "pending"
+    label = {"hit": R["hit"], "miss": R["miss"]}.get(st, R["pending"])
+    return ('<section class="oc oc-%s"><h3>%s</h3><p><i>%s</i>%s</p></section>'
+            % (E(st), E(R["oc"]), E(label), E(note)))
+
+
+def opp_block(item, lang, R):
+    """Cards that took the other side on the same company. The debate is the
+    product, so a reader arriving from search should land on both sides."""
+    ids = (OPP_OF.get(item["id"]) or {}).get("ids") or []
+    rows = _card_rows(ids, lang, R, limit=2)
+    if not rows:
+        return ""
+    return '<section class="opp"><h3>%s</h3><ul>%s</ul></section>' % (E(R["opp"]), rows)
+
+
+def _build_data():
+    """build_data.py owns the canonical opposite-card pairing and the
+    back-catalogue stance map. Import it rather than reimplement either."""
+    import os as _os, sys as _sys
+    here = _os.path.dirname(_os.path.abspath(__file__))
+    if here not in _sys.path:
+        _sys.path.insert(0, here)
+    try:
+        import build_data
+        return build_data
+    except Exception as e:
+        print("[rec] build_data unavailable: " + str(e))
+        return None
+
+
+def author_slug_map():
+    """Feed id per display name, so a record link points at r/serenity.html and
+    not at a slugified display name. Mirrors build_extra_pages()."""
+    try:
+        srcmeta = json.load(open("sources.json", encoding="utf-8"))
+    except Exception:
+        srcmeta = {}
+    out = {}
+    for k, v in srcmeta.items():
+        if isinstance(v, dict) and v.get("source"):
+            out.setdefault(v["source"], k)  # first feed wins (serenity, not serenity_substack)
+    return out
+
+
+def build_records(items, entities=None):
+    """Populate TITLES / ITEM_META / REC_OF / OPP_OF once for the whole build."""
+    TITLES.clear(); ITEM_META.clear(); REC_OF.clear(); OPP_OF.clear()
+    entities = entities or {}
+    name2slug = author_slug_map()
+
+    # Back-catalogue cards predate the `stance` field; index.html carries a map
+    # that fills them in and build_data reads it. Resolve stance the same way
+    # here, or the badges disagree with the pairing that put a card in the block.
+    bd, stance_map = _build_data(), {}
+    if bd:
+        try:
+            stance_map = bd.load_stance_map(open("index.html", encoding="utf-8").read())
+        except Exception as e:
+            print("[rec] stance map unavailable: " + str(e))
+
+    def _stance(i):
+        return i.get("stance") or stance_map.get(i["id"])
+
+    for i in items:
+        TITLES[i["id"]] = i.get("title") or {}
+        ITEM_META[i["id"]] = {"stance": _stance(i), "date": i.get("date", ""),
+                              "source": i.get("source", "")}
+
+    by_author = {}
+    for i in items:  # items arrive newest-first, so call lists stay newest-first
+        by_author.setdefault(i.get("source", ""), []).append(i)
+    for name, its in by_author.items():
+        if not name:
+            continue
+        calls = [i for i in its if _stance(i) in ("bull", "bear")]
+        REC_OF[name] = {
+            "slug": name2slug.get(name) or slugify(name),
+            "total": len(its),
+            "calls": [i["id"] for i in calls],
+            "bull": sum(1 for i in its if _stance(i) == "bull"),
+            "bear": sum(1 for i in its if _stance(i) == "bear"),
+            "hits": sum(1 for i in its if (i.get("outcome") or {}).get("status") == "hit"),
+            "miss": sum(1 for i in its if (i.get("outcome") or {}).get("status") == "miss"),
+        }
+
+    # Opposing cards are NOT recomputed here. build_data.pick_opposites() is the
+    # single source of truth for the pairing (CLAUDE.md "반대편") and it is
+    # deliberately strict: both sides must DECLARE the same company in a cover
+    # label or tag, both must take a real side, within 45 days, and one post may
+    # serve as at most three foils. Matching on merely-mentioned entities - the
+    # obvious shortcut - pairs a macro ETF-flows card with an Intel analysis
+    # because Intel got named once, and a card that claims two authors disagree
+    # when they don't is worse than a card that stays quiet. Reusing it also
+    # keeps this page and the app showing the SAME two cards.
+    if bd:
+        try:
+            _rx, alias2key = bd.build_entity_matcher(entities)
+            OPP_OF.update(bd.pick_opposites(items, entities, stance_map, alias2key))
+        except Exception as e:
+            print("[rec] opposites unavailable: " + str(e))
+
+
+REC_CSS = """.rec,.oc,.opp{margin-top:26px}
+.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child{border-top:0}
+.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover{text-decoration:underline}
+.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}"""
 
 
 def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titles=None):
@@ -787,6 +1001,15 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         body_blocks += f'<p class="why"><b>{E(U["why"])}</b> · {E(why)}</p>'
     if ask:
         body_blocks += f'<p class="ask"><b>{E(U["ask"])}</b> · {E(ask)}</p>'
+
+    # record blocks: our own aggregate, not a retelling of the source post. The
+    # CSS rides along only when at least one of them rendered, for the same
+    # reason BLOCK_CSS is conditional (this is inlined into ~500 pages).
+    R = REC_UI[lang]
+    rec_html = (outcome_block(item, lang, R) + record_block(item, lang, R, REL)
+                + opp_block(item, lang, R))
+    if rec_html:
+        block_css += REC_CSS + "\n"
 
     # other languages of the same article (user value + a crawl path between
     # the three URLs that does not depend on the sitemap alone)
@@ -917,6 +1140,7 @@ footer a{{color:#8E93A0}}
     {paywall}
   </div>
   {body_blocks}
+  {rec_html}
   {other_html}
   {ent_html}
   {related}
@@ -1657,6 +1881,9 @@ def main():
     for i in items:
         for key in item_ents[i["id"]]:
             ent_items.setdefault(key, []).append(i)
+
+    # aggregates behind the record blocks on every article page
+    build_records(items, entities)
 
     ids = {i["id"] for i in items}
     # social share images (best-effort: skipped if Pillow/fonts unavailable)
