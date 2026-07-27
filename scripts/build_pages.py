@@ -698,7 +698,7 @@ UI = {
     "ko": dict(app="Stacks 앱에서 보기 →", src="원문 보기 ↗", paid="$ 원문은 유료 구독",
                origlang="원문", ents="관련 종목·인물", related="관련 글",
                other="다른 언어로 읽기", why="투자 포인트", ask="짚어볼 점",
-               home=SITE + " 홈", allp="전체 글",
+               home=SITE + " 홈", allp="전체 글", about="소개",
                disc="요약·해설은 " + SITE + "의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, "
                     "각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, "
                     "투자 판단과 그 책임은 이용자 본인에게 있습니다."),
@@ -706,14 +706,14 @@ UI = {
                paid="$ Original is paywalled", origlang="original",
                ents="Companies & people", related="Related",
                other="Read this in another language", why="Why it matters",
-               ask="Worth asking", home=SITE + " home", allp="All articles",
+               ask="Worth asking", home=SITE + " home", allp="All articles", about="About",
                disc="Summaries and commentary are original work by " + SITE + ". Copyright in the "
                     "source material remains with its author; every item credits the source and "
                     "links to the original. This is information and commentary, not investment advice."),
     "ja": dict(app="Stacksアプリで見る →", src="元記事を読む ↗", paid="$ 元記事は有料購読",
                origlang="原文", ents="関連銘柄・人物", related="関連記事",
                other="他の言語で読む", why="Why it matters", ask="考えるべき点",
-               home=SITE + " ホーム", allp="記事一覧",
+               home=SITE + " ホーム", allp="記事一覧", about="Stacksについて",
                disc="要約・解説は" + SITE + "の著作物です。元記事の著作権は原著者に帰属し、各項目は"
                     "出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は"
                     "利用者本人にあります。"),
@@ -1146,7 +1146,7 @@ footer a{{color:#8E93A0}}
   {related}
   <footer>
     {E(U['disc'])}<br>
-    <a href="{REL}">{E(U['home'])}</a> · <a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{feed_rel}">RSS</a>
+    <a href="{REL}">{E(U['home'])}</a> · <a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a> · <a href="{feed_rel}">RSS</a>
   </footer>
 </div>
 </body>
@@ -1466,8 +1466,14 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     than as near-duplicate orphans."""
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     # (url, lastmod, priority, alternates) — alternates only for article pages
+    # Hand-written static pages belong in here too. about.html and privacy.html
+    # are not generated, so nothing else would ever list them, and an AdSense or
+    # policy reviewer landing on a single /p/ page has no other route to the
+    # site-level context.
     urls = [(BASE, now, "1.0", None), (BASE + "this-week.html", now, "0.7", None),
-            (BASE + "articles.html", now, "0.6", None)]
+            (BASE + "articles.html", now, "0.6", None),
+            (BASE + "about.html", now, "0.6", None),
+            (BASE + "privacy.html", now, "0.3", None)]
     for i in items:
         lgs = item_langs(i)
         alts = lgs if len(lgs) > 1 else None
