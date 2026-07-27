@@ -2,6 +2,69 @@
  "items": [
   {
    "date": "2026-07-27",
+   "id": "jukan-samsung-chinese-dram-mx-bet",
+   "related": [
+    "jukan-apple-micron-china-memory-lobbying",
+    "jukan-goldman-china-dram-catchup",
+    "jukan-memory-price-pushback"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2081623190649115020",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#7C2D12",
+    "to": "#1E3A8A",
+    "label": "CONTRARIAN BET"
+   },
+   "tags": [
+    "SAMSUNG",
+    "CHIPFLATION",
+    "CHINA DRAM"
+   ],
+   "stance": "watch",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Check when Samsung reports Q2 2026 earnings whether the Mobile eXperience division actually swung to an operating loss, as several brokerages estimated.",
+     "ko": "삼성전자 2026년 2분기 실적 발표 시 여러 증권사가 예상한 대로 MX 사업부가 실제 영업적자로 전환했는지 확인.",
+     "ja": "サムスン電子の2026年第2四半期決算発表時、複数の証券会社が予想した通りMX事業部が実際に営業赤字に転落したか確認する。"
+    }
+   },
+   "quote": {
+    "lines": [
+     "SAMSUNG’S CONTRARIAN BET: USING “CHINESE CHIPS” TO BREAK INTO CHINA’S MOBILE MARKET",
+     "A Samsung Electronics official said the matter “could not be confirmed.”"
+    ],
+    "cite": "Jukan · 2026.07.27"
+   },
+   "title": {
+    "en": "Samsung Weighs Using Cheap Chinese DRAM to Win Back Share in China's Phone Market",
+    "ko": "삼성전자, 중국 스마트폰 공략에 '중국산 저가 D램' 쓰는 방안 검토",
+    "ja": "サムスン電子、中国スマホ市場攻略へ「中国製の安いDRAM」採用を検討"
+   },
+   "gist": {
+    "ko": "삼성전자가 중국 중저가 스마트폰 시장을 공략하기 위해 값싼 중국산 D램을 쓰는 방안을 검토하고 있다고, 반도체 애널리스트 주칸이 한국 업계 소식통을 인용해 27일 전했다. 아이폰이 아니라 갤럭시A 시리즈 같은 보급형 모델 이야기다.\n\n## 왜 하필 지금 중국산 D램인가\nAI 데이터센터 건설 붐으로 엔비디아 같은 회사들이 메모리를 쓸어담으면서, D램 가격이 스마트폰 제조사 몫까지 밀어올리고 있다. 반도체 값이 뛰어 완제품 가격까지 밀려 올라가는 현상을 '칩플레이션'이라 부른다.\n\n이 여파로 애플은 6월 맥북·아이패드 가격을 100달러가량 올렸고, 올가을 아이폰 신제품도 인상이 예상된다. 반면 샤오미·오포·비보·아너처럼 애플만한 브랜드 힘이 없는 중국 제조사들은 원가 인상분을 소비자에게 넘기기 어렵다. 팔수록 손해라는 판단에 출하량을 15~20%가량 스스로 줄이고 있다.\n\n## 삼성전자에게는 왜 기회로 보이나\n경쟁사들이 움츠러든 자리가 비어 있다. 삼성전자의 중국 스마트폰 점유율은 현재 0.6%에 불과하다. 중국산 저가 D램을 써서 갤럭시A 시리즈 원가를 낮추면, 가격 경쟁력으로 이 빈자리를 파고들어 점유율과 매출을 함께 늘릴 수 있다는 계산이다. 한국산업경제연구원 심우정 연구위원은 \"샤오미 등 중국 제조사들이 출하량을 크게 줄인 상황에서, 삼성전자가 갤럭시A 같은 저가 모델 공급을 늘리면 의미 있는 점유율 확대가 가능하다\"고 말했다.\n\n## 그런데 우려는 어디서 나오나\n같은 칩플레이션이 삼성전자 스마트폰 사업부(MX)의 발목도 잡고 있다. 증권사들의 2분기 전망 낙폭이 크다. 하나증권은 2000억원, 삼성증권은 5841억원, 유진투자증권은 1조원, iM증권은 8000억원의 적자를 각각 추정했다. 특히 삼성증권은 올해 연간 영업이익 3조4100억원을 예상했다가 영업손실 5조8410억원으로 전망을 뒤집었다. 흑자에서 적자로, 그것도 조 단위로 바뀐 셈이다.\n\n@@CMP@@일반적으로 보면|저가 정책은 이익을 깎아 먹는 손해다.|심우정 연구위원의 읽기|경쟁사가 물러난 지금이야말로 점유율을 뺏을 수 있는 기회다.\n\n삼성전자 측은 이 사안에 대해 \"확인해줄 수 없다\"고 답했다.",
+    "en": "Samsung Electronics is weighing whether to use cheap Chinese-made DRAM to chase market share in China's budget smartphone segment, semiconductor analyst Jukan reported on July 27, citing Korean industry sources. The idea centers on Galaxy A-series budget phones, not the flagship line.\n\n## Why Chinese DRAM, and why now\nThe AI data-center buildout has companies like Nvidia buying up so much memory that prices are spilling over into phone makers' costs too. When rising chip prices push up the price of finished devices, the industry calls it \"chipflation.\"\n\nApple already raised MacBook and iPad prices by about $100 in June, and is expected to raise iPhone prices this fall. Chinese makers like Xiaomi, Oppo, Vivo and Honor don't have Apple's brand pricing power, so they can't pass the cost increase to buyers. Several have voluntarily cut shipments by 15-20%, reasoning that selling more would only widen losses.\n\n## Why this looks like an opening for Samsung\nSamsung currently holds just 0.6% of China's smartphone market. If cheaper Chinese DRAM lowers the cost of Galaxy A-series phones, Samsung could use that price edge to grab the share its rivals are voluntarily giving up. Shim Woo-jung, a research fellow at the Korea Institute for Industrial Economics and Trade, said Samsung \"could meaningfully increase share by expanding supply of lower-priced models like the Galaxy A series, given that major Chinese rivals have sharply cut production.\"\n\n## Where the worry comes in\nThe same chipflation is squeezing Samsung's own Mobile eXperience (MX) division. Brokerages have slashed second-quarter estimates: Hana Securities projects a 200 billion won loss, Samsung Securities 584.1 billion won, Eugene Investment & Securities 1 trillion won, and iM Securities 800 billion won. Samsung Securities' swing is the starkest, going from a 3.41 trillion won full-year profit forecast to a 5.841 trillion won loss forecast, a multi-trillion-won reversal from black to red.\n\n@@CMP@@The obvious read|Selling cheap eats into margins, plain and simple.|Shim's read|The moment rivals retreat is exactly when there's share to take.\n\nA Samsung Electronics official said the matter \"could not be confirmed.\"",
+    "ja": "サムスン電子が中国の中低価格帯スマホ市場を攻略するため、安価な中国製DRAMを採用する案を検討していると、半導体アナリストのジュカン氏が韓国業界筋を引用し7月27日に伝えた。話の中心はギャラクシーAシリーズのような普及価格帯モデルであり、フラッグシップ機ではない。\n\n## なぜ今、中国製DRAMなのか\nAIデータセンター建設ブームでエヌビディアなどがメモリを大量に買い占め、DRAM価格がスマホメーカーのコストにまで波及している。半導体価格の上昇が完成品価格まで押し上げる現象を「チップフレーション」と呼ぶ。\n\nこの影響でアップルは6月にMacBookとiPadを約100ドル値上げし、今秋の新型iPhoneも値上げが見込まれている。一方、シャオミ・OPPO・vivo・Honorなどアップルほどのブランド力を持たない中国メーカーは、コスト増を消費者に転嫁しにくい。売るほど損をするとの判断から、出荷台数を自主的に15~20%程度減らしている。\n\n## サムスンにとってなぜ好機に見えるのか\n競合が縮小した分、市場に空白ができている。サムスン電子の中国スマホシェアは現在わずか0.6%にとどまる。中国製の安価なDRAMでギャラクシーAシリーズの原価を下げられれば、その価格競争力でこの空白に食い込み、シェアと売上を同時に伸ばせるとの計算だ。韓国産業経済研究院のシム・ウジョン研究委員は「シャオミなど中国メーカーが出荷を大きく減らしている今、ギャラクシーAのような低価格モデルの供給を増やせば意味あるシェア拡大が可能」と述べた。\n\n## それでも懸念が出る理由\n同じチップフレーションが、サムスン自身のスマホ事業部門(MX)の足も引っ張っている。証券各社は第2四半期予想を大きく下方修正した。ハナ証券は2000億ウォン、サムスン証券は5841億ウォン、ユジン投資証券は1兆ウォン、iM証券は8000億ウォンの赤字をそれぞれ見込む。中でもサムスン証券の変化が最も大きく、年間営業利益3兆4100億ウォンの予想から、営業損失5兆8410億ウォンへと真逆に転じた。\n\n@@CMP@@一般的な見方|安売りは利益を削るだけの損だ。|シム研究委員の見方|競合が退いた今こそシェアを奪う好機だ。\n\nサムスン電子の関係者はこの件について「確認できない」と答えた。"
+   },
+   "why": {
+    "ko": "삼성전자 스마트폰 사업이 메모리값 상승분을 그대로 뒤집어쓸지, 경쟁사의 후퇴를 틈타 점유율을 넓힐지 갈리는 분수령이다. 2분기 실적이 그 답의 첫 단서가 된다.",
+    "en": "This is a fork in the road for Samsung's phone business: absorb the memory-cost hit, or use rivals' retreat to grab share. Q2 earnings will be the first clue.",
+    "ja": "サムスンのスマホ事業がメモリ高騰をそのまま被るのか、競合の後退を突いてシェアを広げるのかの分かれ道であり、第2四半期決算がその最初の手がかりになる。"
+   },
+   "ask": {
+    "ko": "저가 D램으로 점유율을 사고 MX 적자를 감수하는 이 도박, 삼성전자에게 남는 장사일까?",
+    "en": "Is trading a Chinese-DRAM discount for an MX-division loss actually a good bet for Samsung?",
+    "ja": "中国製安値DRAMでシェアを買い、MX事業部の赤字を甘受するこの賭けは、サムスンにとって得な取引か?"
+   },
+   "ts": "2026-07-27T09:48:16.173405+00:00"
+  },
+  {
+   "date": "2026-07-27",
    "id": "meru-leverage-etf-fx-defense-miss",
    "related": [
     "meru-samsung-skhynix-leverage-etf-decay",
@@ -15520,6 +15583,62 @@
     "en": "STAR Market",
     "ja": "科創板（スターマーケット）"
    }
+  },
+  "HONOR": {
+   "kind": "company",
+   "sector": {
+    "en": "Consumer Electronics",
+    "ko": "가전·스마트폰",
+    "ja": "家電・スマートフォン"
+   },
+   "desc": {
+    "en": "Chinese smartphone maker spun off from Huawei in 2020, now competing in the budget-to-mid segment.",
+    "ko": "2020년 화웨이에서 분사한 중국 스마트폰 제조사. 중저가 시장에서 경쟁한다.",
+    "ja": "2020年にファーウェイから独立した中国のスマートフォンメーカー。中低価格帯で競争する。"
+   },
+   "aliases": [
+    "Honor",
+    "아너",
+    "Honor Device",
+    "オナー"
+   ],
+   "logo": "hihonor.com",
+   "exchange": "비상장",
+   "founded": "2020",
+   "hq": {
+    "en": "Shenzhen, China",
+    "ko": "중국 선전",
+    "ja": "中国・深圳"
+   },
+   "website": "https://www.hihonor.com",
+   "longDesc": {
+    "ko": "화웨이가 미국 제재를 피하려 2020년 매각한 스마트폰 브랜드로, 중저가 라인업을 앞세워 중국 내수 시장에서 빠르게 점유율을 회복했다. 아너의 생산 조정은 메모리 가격 상승기에 중국 스마트폰 공급망 전체의 체감 온도를 보여주는 지표로 종종 언급된다.",
+    "en": "Smartphone brand Huawei sold off in 2020 to sidestep US sanctions, which has since rebuilt share in China with budget-to-mid lineups. Its production decisions are often cited as a bellwether for how the broader Chinese phone supply chain is feeling memory-price pressure.",
+    "ja": "ファーウェイが米制裁を回避するため2020年に売却したスマホブランドで、中低価格帯ラインアップを武器に中国内でシェアを回復してきた。その生産判断は、メモリ価格上昇局面における中国スマホサプライチェーン全体の体温を示す指標としてしばしば引用される。"
+   }
+  },
+  "칩플레이션": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Chip prices rising fast enough to push up the price of the finished devices that use them.",
+    "ko": "반도체 값이 뛰어 그 칩이 들어가는 완제품 가격까지 밀어올리는 현상.",
+    "ja": "半導体価格の上昇がその部品を使う完成品の価格まで押し上げる現象。"
+   },
+   "longDesc": {
+    "en": "Coined during the 2026 AI memory shortage: DRAM and NAND prices climbed so fast that PC, phone and appliance makers began passing the cost straight to consumers, or cutting production instead. Investors watch it because it flags which device makers can defend margins with brand pricing power, and which can't.",
+    "ko": "2026년 AI발 메모리 품귀 국면에서 나온 말로, D램·낸드 가격이 급등하며 PC·스마트폰·가전 제조사들이 인상분을 소비자가에 그대로 얹거나 아예 생산을 줄이는 상황을 가리킨다. 브랜드 힘으로 가격을 지킬 수 있는 제조사와 그렇지 못한 제조사를 가르는 신호라 투자자들이 주시한다.",
+    "ja": "2026年のAI主導メモリ不足局面で生まれた言葉で、DRAM・NAND価格の急騰を受け、PC・スマホ・家電メーカーが値上げ分をそのまま消費者価格に乗せるか、生産を減らすかの判断を迫られる状況を指す。ブランド力で価格を守れるメーカーとそうでないメーカーを分ける兆候として投資家が注視する。"
+   },
+   "aliases": [
+    "chipflation",
+    "칩플레이션",
+    "チップフレーション"
+   ]
   }
  }
 }
