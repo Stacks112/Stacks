@@ -80,6 +80,7 @@ def dispname(x):
 BLOCK_CSS = """.gist+.gist{margin-top:1em}
 h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
 .srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
@@ -205,19 +206,33 @@ def gist_blocks(gist):
 
 
 def quote_block(item, lang):
-    """The author's own words, above our reading. Only on the Korean page for
-    now: `quote` is written once, in the source language, and translating a
-    quotation would defeat the point of showing it."""
+    """The author's own words, above our reading.
+
+    Shown on ALL three language pages, always in the source language. `quote`
+    is written once and never translated: translating it would defeat the point
+    of showing it, and an English reader arriving at /p/en/ has the same right
+    to see what the take is based on as a Korean one. (Until 2026-07-27 this
+    returned "" for en/ja, so 30 pages carried the reading with no evidence.)
+
+    Marked up as figure + blockquote + figcaption so the caption is bound to
+    the quotation rather than merely sitting next to it, with the source URL in
+    the `cite` attribute. `lang` on the blockquote matters here specifically
+    because the quote is often NOT in the page's language."""
     q = item.get("quote") or {}
     lines = [l for l in (q.get("lines") or []) if l]
-    if not lines or lang != "ko":
+    if not lines:
         return ""
     cite = q.get("cite") or item.get("source") or ""
     href = safe_href(item.get("sourceUrl"), "")
+    slang = (item.get("sourceLang") or "").lower()
+    lattr = ' lang="%s"' % E(slang) if slang in ("ko", "en", "ja") else ""
+    cattr = ' cite="%s"' % E(href) if href else ""
     body = "".join("<p>%s</p>" % E(l) for l in lines)
-    tail = ('<div class="srcq-c"><a href="%s" rel="nofollow noopener" target="_blank">%s</a></div>'
-            % (E(href), E(cite))) if href else ('<div class="srcq-c">%s</div>' % E(cite))
-    return '<blockquote class="srcq">%s%s</blockquote>' % (body, tail)
+    tail = ('<a href="%s" rel="nofollow noopener" target="_blank">%s</a>'
+            % (E(href), E(cite))) if href else E(cite)
+    return ('<figure class="srcq"><blockquote%s%s>%s</blockquote>'
+            '<figcaption class="srcq-c">%s</figcaption></figure>'
+            % (cattr, lattr, body, tail))
 
 
 def clip(text, n):
@@ -993,6 +1008,20 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         "isBasedOn": safe_href(item.get("sourceUrl"), ""),
         "url": url,
     }
+    # isBasedOn carries the bare URL. `citation` says what that URL IS and who
+    # wrote it, so "this article quotes an X post by The Kobeissi Letter" is one
+    # statement a machine can read, rather than something a human has to infer
+    # from the page. Matters for attribution when an AI summary reuses us.
+    _src = safe_href(item.get("sourceUrl"), "")
+    if _src:
+        _cit = {"@type": ("SocialMediaPosting"
+                          if re.search(r"//(x\.com|twitter\.com|truthsocial\.com)/", _src)
+                          else "Article"),
+                "url": _src}
+        _name = dispname(item.get("source", ""))
+        if _name:
+            _cit["author"] = {"@type": "Person", "name": _name}
+        ld["citation"] = _cit
 
     body_blocks = quote_block(item, lang) + gist_blocks(gist)
     block_css = block_css_for(body_blocks)
