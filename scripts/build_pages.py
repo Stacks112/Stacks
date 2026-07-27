@@ -134,6 +134,57 @@ def strip_markers(text):
     return "\n".join(out)
 
 
+def lang_text(v, lang):
+    """sum3 and split were Korean-only when introduced, so older cards store a
+    bare string. A string still means Korean (hidden in en/ja, as the app does);
+    an {en,ko,ja} dict gives each language its own text. No migration needed.
+    Mirrors langText() in index.html -- if one changes, change both."""
+    if not v:
+        return ""
+    if isinstance(v, str):
+        return v if lang == "ko" else ""
+    return (v.get(lang) or "") if isinstance(v, dict) else ""
+
+
+def sum3_block(item, lang, U):
+    """The three-line standing of the story. The app shows this above 'why' on
+    lab cards; the indexed page had nothing, which is where it is worth the most
+    -- it is the part a search result can actually use."""
+    if not item.get("lab"):
+        return ""
+    txt = lang_text(item.get("sum3"), lang)
+    lines = [l.strip() for l in txt.split("\n") if l.strip()]
+    if not lines:
+        return ""
+    return ('<div class="sum3"><b>%s</b><ul>%s</ul></div>'
+            % (E(U["sum3"]), "".join("<li>%s</li>" % E(l) for l in lines)))
+
+
+def split_block(item, lang, U):
+    """What would have to happen for either reading to be right. Only on cards
+    that do not resolve the argument, and never on lab cards -- the app hides it
+    there too, so the two renderers agree."""
+    if item.get("lab"):
+        return ""
+    txt = lang_text(item.get("split"), lang)
+    if not txt:
+        return ""
+    body = "".join("<p>%s</p>" % E(l) for l in txt.split("\n") if l.strip())
+    return '<div class="splitb"><b>%s</b>%s</div>' % (E(U["split"]), body)
+
+
+SUM3_CSS = """.sum3,.splitb{margin:20px 0 0;padding:13px 15px;border-radius:12px}
+.sum3{background:#F6F7F9;border:1px solid #ECEDF1}
+.splitb{border:1px dashed #D7DAE0}
+.sum3>b,.splitb>b{display:block;font-size:12px;letter-spacing:.02em;color:#5B6070;margin-bottom:7px}
+.sum3 ul{list-style:none;margin:0;padding:0}
+.sum3 li{position:relative;padding-left:15px;margin:0 0 7px;font-size:15px;line-height:1.62}
+.sum3 li:last-child{margin-bottom:0}
+.sum3 li:before{content:"\u00B7";position:absolute;left:3px;color:#8E93A0;font-weight:700}
+.splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
+.splitb p:last-child{margin-bottom:0}"""
+
+
 def gist_blocks(gist):
     """Marked-up gist -> page HTML. Same three markers as the app."""
     html, buf = [], []
@@ -719,6 +770,7 @@ UI = {
     "ko": dict(app="Stacks 앱에서 보기 →", src="원문 보기 ↗", paid="$ 원문은 유료 구독",
                origlang="원문", ents="관련 종목·인물", related="관련 글",
                other="다른 언어로 읽기", why="투자 포인트", ask="짚어볼 점",
+               sum3="세 줄 요약", split="구분 기준",
                home=SITE + " 홈", allp="전체 글", about="소개",
                disc="요약·해설은 " + SITE + "의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, "
                     "각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, "
@@ -727,6 +779,7 @@ UI = {
                paid="$ Original is paywalled", origlang="original",
                ents="Companies & people", related="Related",
                other="Read this in another language", why="Why it matters",
+               sum3="In three lines", split="How to tell which",
                ask="Worth asking", home=SITE + " home", allp="All articles", about="About",
                disc="Summaries and commentary are original work by " + SITE + ". Copyright in the "
                     "source material remains with its author; every item credits the source and "
@@ -734,6 +787,7 @@ UI = {
     "ja": dict(app="Stacksアプリで見る →", src="元記事を読む ↗", paid="$ 元記事は有料購読",
                origlang="原文", ents="関連銘柄・人物", related="関連記事",
                other="他の言語で読む", why="Why it matters", ask="考えるべき点",
+               sum3="3行まとめ", split="見分ける基準",
                home=SITE + " ホーム", allp="記事一覧", about="Stacksについて",
                disc="要約・解説は" + SITE + "の著作物です。元記事の著作権は原著者に帰属し、各項目は"
                     "出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は"
@@ -1032,6 +1086,10 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     body_blocks = quote_block(item, lang) + gist_blocks(gist)
     block_css = block_css_for(body_blocks)
     block_css = (block_css + "\n") if block_css else ""
+    _extra = split_block(item, lang, U) + sum3_block(item, lang, U)
+    if _extra:
+        body_blocks += _extra
+        block_css += SUM3_CSS + "\n"
     if why:
         body_blocks += f'<p class="why"><b>{E(U["why"])}</b> · {E(why)}</p>'
     if ask:
