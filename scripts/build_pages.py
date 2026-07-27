@@ -697,7 +697,7 @@ def publisher_ld():
 UI = {
     "ko": dict(app="Stacks 앱에서 보기 →", src="원문 보기 ↗", paid="$ 원문은 유료 구독",
                origlang="원문", ents="관련 종목·인물", related="관련 글",
-               other="다른 언어로 읽기", why="Why it matters", ask="짚어볼 점",
+               other="다른 언어로 읽기", why="투자 포인트", ask="짚어볼 점",
                home=SITE + " 홈", allp="전체 글",
                disc="요약·해설은 " + SITE + "의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, "
                     "각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, "
