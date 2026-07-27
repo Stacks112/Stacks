@@ -209,6 +209,13 @@ async function ensureTables(db) {
      keeps receiving the weekly mail. Only new signups start at 0. */
   try { await db.exec("ALTER TABLE subscribers ADD COLUMN confirmed INTEGER NOT NULL DEFAULT 1"); }
   catch (e) {}
+  /* own-comment edit/delete: a per-comment secret the browser generates and
+     keeps; we store only its SHA-256. Old rows have NULL and stay read-only. */
+  try { await db.exec("ALTER TABLE comments ADD COLUMN owner_hash TEXT"); }
+  catch (e) {}
+  /* edited comments carry a timestamp so the UI can show "(수정됨)" */
+  try { await db.exec("ALTER TABLE comments ADD COLUMN edited_at TEXT"); }
+  catch (e) {}
   /* v9.0 the comment rate-limit query used to full-scan the table */
   try { await db.exec("CREATE INDEX IF NOT EXISTS idx_comments_ip ON comments(ip_hash, created_at)"); }
   catch (e) {}
@@ -366,6 +373,10 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /* first 24 hex chars of HMAC-SHA256(secret, msg) — must match the Python
    unsub_link() in scripts/weekly_send.py exactly. */
+async function sha256hex(msg) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(msg)));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
 async function hmac24(secret, msg) {
   const key = await crypto.subtle.importKey(
     "raw", new TextEncoder().encode(secret),
@@ -1254,7 +1265,7 @@ export default {
       if (!pageId) return json({ error: "pageId required" }, 400, origin);
       if (!PAGE_ID_RE.test(pageId)) return json({ error: "bad pageId" }, 400, origin);
       const { results } = await env.DB
-        .prepare("SELECT c.id, c.nickname, c.content, c.created_at, c.parent_id, " +
+        .prepare("SELECT c.id, c.nickname, c.content, c.created_at, c.edited_at, c.parent_id, " +
                  "COALESCE(k.n, 0) AS likes " +
                  "FROM comments c " +
                  "LEFT JOIN counters k ON k.kind = 'clike' AND k.page_id = CAST(c.id AS TEXT) " +
@@ -1267,7 +1278,8 @@ export default {
           likes: r.likes || 0,
           nickname: r.nickname,
           content: r.content,
-          createdAt: r.created_at
+          createdAt: r.created_at,
+          editedAt: r.edited_at || undefined
         }))
       }, 200, origin);
     }
@@ -1285,6 +1297,33 @@ export default {
 
       /* honeypot: real users never see or fill this field */
       if (body.website) return json({ ok: true }, 200, origin);
+
+      /* ---------- own-comment edit / delete ----------
+         The browser proves ownership by presenting the raw ownerToken whose
+         SHA-256 was stored when the comment was created. No accounts, no IPs. */
+      if (body.action === "edit" || body.action === "delete") {
+        const cid = parseInt(body.id, 10);
+        const token = String(body.ownerToken || "");
+        if (!cid || !token) return json({ error: "missing fields" }, 400, origin);
+        const row = await env.DB
+          .prepare("SELECT owner_hash FROM comments WHERE id = ?1")
+          .bind(cid).first();
+        if (!row) return json({ error: "not found" }, 404, origin);
+        const ok = row.owner_hash && safeEq(row.owner_hash, await sha256hex(token));
+        if (!ok) return json({ error: "forbidden" }, 403, origin);
+        if (body.action === "delete") {
+          /* one level of replies: lift them to top-level so they stay visible */
+          await env.DB.prepare("UPDATE comments SET parent_id = NULL WHERE parent_id = ?1").bind(cid).run();
+          await env.DB.prepare("DELETE FROM comments WHERE id = ?1").bind(cid).run();
+          return json({ ok: true }, 200, origin);
+        }
+        const content = String(body.content || "").slice(0, MAX_CONTENT).trim();
+        if (!content) return json({ error: "missing fields" }, 400, origin);
+        await env.DB
+          .prepare("UPDATE comments SET content = ?1, edited_at = strftime('%Y-%m-%dT%H:%M:%SZ','now') WHERE id = ?2")
+          .bind(content, cid).run();
+        return json({ ok: true }, 200, origin);
+      }
 
       const pageId = String(body.pageId || "").slice(0, 100).trim();
       const nickname = String(body.nickname || "").slice(0, MAX_NICK).trim();
@@ -1314,11 +1353,13 @@ export default {
         return json({ error: "rate limited" }, 429, origin);
       }
 
-      await env.DB
-        .prepare("INSERT INTO comments (page_id, nickname, content, ip_hash, parent_id) " +
-                 "VALUES (?1, ?2, ?3, ?4, ?5)")
-        .bind(pageId, nickname, content, hash, parentId).run();
-      return json({ ok: true }, 200, origin);
+      const ownerHash = body.ownerToken ? await sha256hex(String(body.ownerToken)) : null;
+      const ins = await env.DB
+        .prepare("INSERT INTO comments (page_id, nickname, content, ip_hash, parent_id, owner_hash) " +
+                 "VALUES (?1, ?2, ?3, ?4, ?5, ?6)")
+        .bind(pageId, nickname, content, hash, parentId, ownerHash).run();
+      const newId = ins && ins.meta && ins.meta.last_row_id;
+      return json({ ok: true, id: newId || undefined }, 200, origin);
     }
 
     /* ---------- delete (admin only) ---------- */
