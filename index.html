@@ -3536,7 +3536,7 @@ function srcBlockHtml(item){
   if (e && (e.lines || []).length){
     const url = safeUrl(e.url || item.sourceUrl);
     const id = ((e.url || item.sourceUrl || "").match(/status\/(\d+)/) || [])[1];
-    const open = (item.xembed && id) ? '<div class="xreal" data-xid="' + id + '">' : "";
+    const open = id ? '<div class="xreal" data-xid="' + id + '">' : ""; /* every X post tries the live embed; the static box below is the fallback until x-on (was gated on item.xembed, which only 5 cards carried) */
     const close = open ? "</div>" : "";
     return open + '<div class="xemb">' +
       '<div class="xemb-top">' +
