@@ -696,6 +696,12 @@ def publisher_ld():
         "@type": "Organization",
         "@id": BASE + "#org",
         "name": SITE,
+        # Every name this site is known by. "Stacks" is a common noun and an
+        # existing brand elsewhere, so Google needs the domain-shaped forms
+        # ("Stacks Daily", "stacksdaily.com") tied to the same entity as the
+        # brand name, or it falls back to showing the bare domain.
+        "alternateName": ["Stacks Daily", "StacksDaily", "stacksdaily.com",
+                          "\uc2a4\ud0dd\uc2a4", "\uc2a4\ud0dd\uc2a4\ub370\uc77c\ub9ac", "\u30b9\u30bf\u30c3\u30af\u30b9"],
         "url": BASE,
         "logo": {"@type": "ImageObject", "url": BASE + "icon-512.png",
                  "width": 512, "height": 512},
