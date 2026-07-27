@@ -10,23 +10,36 @@ var TWS = {
     replyingTo:"Replying to {h}", cancel:"Cancel", reply:"Reply",
     empty:"No comments yet. Start the conversation.", loading:"Loading comments…",
     error:"Couldn't post. Please try again.", rate:"Too fast — try again in a minute.",
-    sent:"Posted.", now:"now", min:"m", hr:"h", day:"d", viewAll:"View all {n} comments" },
+    sent:"Posted.", now:"now", min:"m", hr:"h", day:"d", viewAll:"View all {n} comments", edit:"Edit", del:"Delete", save:"Save", delAsk:"Delete this comment?", edited:"edited" },
   ko: { title:"댓글", top:"인기순", newest:"최신순",
     viewReplies:"답글 {n}개 보기", viewReply:"답글 1개 보기", hideReplies:"답글 접기",
     ph:"댓글을 남겨보세요", nameLabel:"이름", namePh:"댓글에 표시될 이름 (한 번만 설정)",
     replyingTo:"{h}님에게 답글 남기는 중", cancel:"취소", reply:"답글",
     empty:"아직 댓글이 없어요. 첫 대화를 시작해보세요.", loading:"댓글 불러오는 중…",
     error:"등록에 실패했어요. 다시 시도해주세요.", rate:"너무 빨라요. 잠시 후 다시 시도해주세요.",
-    sent:"게시됐어요.", now:"방금", min:"분", hr:"시간", day:"일", viewAll:"댓글 {n}개 모두 보기" },
+    sent:"게시됐어요.", now:"방금", min:"분", hr:"시간", day:"일", viewAll:"댓글 {n}개 모두 보기", edit:"수정", del:"삭제", save:"저장", delAsk:"이 댓글을 삭제할까요?", edited:"수정됨" },
   ja: { title:"コメント", top:"人気順", newest:"新着順",
     viewReplies:"返信{n}件を表示", viewReply:"返信1件を表示", hideReplies:"返信を隠す",
     ph:"返信を投稿", nameLabel:"名前", namePh:"コメントに表示される名前",
     replyingTo:"{h}さんに返信中", cancel:"キャンセル", reply:"返信",
     empty:"まだコメントがありません。最初の会話を始めましょう。", loading:"コメントを読み込み中…",
     error:"投稿できませんでした。もう一度お試しください。", rate:"速すぎます。少し待ってから再試行してください。",
-    sent:"投稿しました。", now:"たった今", min:"分", hr:"時間", day:"日", viewAll:"コメント{n}件をすべて表示" }
+    sent:"投稿しました。", now:"たった今", min:"分", hr:"時間", day:"日", viewAll:"コメント{n}件をすべて表示", edit:"編集", del:"削除", save:"保存", delAsk:"このコメントを削除しますか？", edited:"編集済み" }
 };
 function TW(){ return TWS[(typeof LANG !== "undefined" && TWS[LANG]) ? LANG : "ko"]; }
+/* ---------- own-comment ownership tokens ----------
+   A per-comment random secret this browser generated and kept. We send the
+   raw token to prove ownership; the server stores only its SHA-256. No login,
+   no PII. Map shape: { "<commentId>": "<token>" } in localStorage. */
+function twcTokens(){ try { return JSON.parse((typeof lsGet==="function" && lsGet("stk_ctok")) || "{}") || {}; } catch(e){ return {}; } }
+function twcNewToken(){
+  var a = new Uint8Array(16);
+  try { crypto.getRandomValues(a); } catch(e){ for (var i=0;i<16;i++) a[i]=Math.floor(Math.random()*256); }
+  return [].map.call(a, function(b){ return ("0"+b.toString(16)).slice(-2); }).join("");
+}
+function twcSaveToken(id, tok){ if (id==null || !tok) return; var m=twcTokens(); m[String(id)]=tok; try { lsSet("stk_ctok", JSON.stringify(m)); } catch(e){} }
+function twcTokenFor(id){ return twcTokens()[String(id)]; }
+function twcOwns(id){ return id!=null && !!twcTokens()[String(id)]; }
 
 var TWC = { id:null, sort:"top", rows:[], open:{}, replyTo:null, hist:false };
 
@@ -254,6 +267,10 @@ function twcItemHtml(c, isReply, kidCount, isOpen){
   var likes = Number(c.likes) || 0;
   var liked = cid && typeof CLIKED !== "undefined" && CLIKED.has(cid);
   var admin = !!c.admin;
+  var ownActs = (cid && twcOwns(cid))
+    ? '<button class="twi-edit" onclick="twcEdit(\'' + cid + '\')">' + W.edit + '</button>'
+      + '<button class="twi-del" onclick="twcDelete(\'' + cid + '\')">' + W.del + '</button>'
+    : "";
   var acts = cid
     ? '<div class="twi-a">'
       + '<button onclick="twcReply(\'' + cid + '\')">'
@@ -261,6 +278,7 @@ function twcItemHtml(c, isReply, kidCount, isOpen){
       + (kidCount ? "<span>" + kidCount + "</span>" : "") + "</button>"
       + '<button class="twi-like' + (liked ? " on" : "") + '" onclick="twcLike(\'' + cid + '\', this)">'
       + '<span class="twi-heart">' + (liked ? "♥" : "♡") + '</span><span>' + (likes || "") + "</span></button>"
+      + ownActs
       + "</div>"
     : "";
   var more = (!isReply && kidCount)
@@ -277,7 +295,7 @@ function twcItemHtml(c, isReply, kidCount, isOpen){
     + '<div class="twi-m">'
     + '<div class="twi-h"><b>' + esc(c.nickname) + "</b>"
     + (admin ? '<span class="twi-badge" title="Stacks">✓</span>' : "")
-    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + "</span></div>"
+    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + (c.editedAt ? " · " + TW().edited : "") + "</span></div>"
     + '<div class="twi-t">' + twLinkify(esc(c.content)) + "</div>"
     + (qid ? twQuoteHtml(qid) : "")
     + acts + more
@@ -313,6 +331,81 @@ window.twcToggleKids = function(cid){
   TWC.open[cid] = !TWC.open[cid];
   twcRender();
 };
+
+/* ---------- own-comment edit / delete ---------- */
+window.twcEdit = function(cid){
+  cid = String(cid);
+  var row = TWC.rows.find(function(c){ return String(c.id) === cid; });
+  if (!row || !twcOwns(cid)) return;
+  var W = TW();
+  var tEl = document.querySelector('#twi-' + cid + ' > .twi-m > .twi-t');
+  if (!tEl || tEl.querySelector("textarea")) return;
+  tEl.innerHTML = '<textarea class="twi-editta" id="twiedit-' + cid + '" maxlength="2000"></textarea>'
+    + '<div class="twi-edita">'
+    + '<button class="twi-editcancel" onclick="twcRender()">' + W.cancel + '</button>'
+    + '<button class="twi-editsave" onclick="twcEditSave(\'' + cid + '\')">' + W.save + '</button></div>';
+  var ta = document.getElementById("twiedit-" + cid);
+  if (ta){ ta.value = row.content || ""; ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length);
+    ta.style.height = "auto"; ta.style.height = ta.scrollHeight + "px"; }
+};
+window.twcEditSave = function(cid){
+  cid = String(cid);
+  var ta = document.getElementById("twiedit-" + cid);
+  if (!ta) return;
+  var content = ta.value.trim();
+  var tok = twcTokenFor(cid);
+  if (!content || !tok) return;
+  var btn = document.querySelector('#twi-' + cid + ' .twi-editsave');
+  if (btn) btn.disabled = true;
+  fetch(COMMENTS_API + "/comments", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "edit", id: cid, ownerToken: tok, content: content })
+  }).then(function(r){
+    if (!r.ok) throw "bad";
+    twcLoad();
+    if (typeof twinLoad === "function" && TWC.id) twinLoad(TWC.id, true);
+  }).catch(function(){
+    if (btn) btn.disabled = false;
+    var W = TW(); var st = document.getElementById("twcErr");
+    if (st){ st.hidden = false; st.className = "twc-err"; st.textContent = W.error; }
+  });
+};
+window.twcDelete = function(cid){
+  cid = String(cid);
+  if (!twcOwns(cid)) return;
+  var W = TW();
+  var el = document.getElementById("twi-" + cid);
+  var actRow = el && el.querySelector(".twi-m > .twi-a");
+  var tEl = el && el.querySelector(".twi-m > .twi-t");
+  if (!tEl) return;
+  /* inline confirm — no blocking browser dialog */
+  if (actRow) actRow.style.display = "none";
+  var bar = document.createElement("div");
+  bar.className = "twi-delbar";
+  bar.innerHTML = '<span>' + W.delAsk + '</span>'
+    + '<button class="twi-delcancel">' + W.cancel + '</button>'
+    + '<button class="twi-delyes">' + W.del + '</button>';
+  tEl.parentNode.insertBefore(bar, tEl.nextSibling);
+  bar.querySelector(".twi-delcancel").onclick = function(){ twcRender(); };
+  bar.querySelector(".twi-delyes").onclick = function(){ twcDoDelete(cid); };
+};
+function twcDoDelete(cid){
+  var tok = twcTokenFor(cid);
+  if (!tok) return;
+  fetch(COMMENTS_API + "/comments", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "delete", id: String(cid), ownerToken: tok })
+  }).then(function(r){
+    if (!r.ok) throw "bad";
+    var m = twcTokens(); delete m[String(cid)]; try { lsSet("stk_ctok", JSON.stringify(m)); } catch(e){}
+    if (typeof decCommentCount === "function" && TWC.id) decCommentCount(TWC.id);
+    twcLoad();
+    if (typeof twinLoad === "function" && TWC.id) twinLoad(TWC.id, true);
+  }).catch(function(){
+    var W = TW(); var st = document.getElementById("twcErr");
+    if (st){ st.hidden = false; st.className = "twc-err"; st.textContent = W.error; }
+  });
+}
 
 /* ---------- like ---------- */
 window.twcLike = function(cid, btn){
@@ -386,18 +479,23 @@ window.twcSubmit = function(){
   twcSetIdentity();
   send.disabled = true;
   err.hidden = true;
+  var myTok = twcNewToken();
   fetch(COMMENTS_API + "/comments", {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       pageId: TWC.id, content: content, nickname: nick,
       parentId: TWC.replyTo ? TWC.replyTo.root : undefined,
       website: document.getElementById("twcHp").value || "",
+      ownerToken: myTok,
       /* hidden: operator badge — set localStorage stk_admin_key on your own
          device to post verified ✓ comments (needs worker v10) */
       adminKey: (typeof lsGet === "function" && lsGet("stk_admin_key")) || undefined
     })
   }).then(function(r){
     if (!r.ok) throw (r.status === 429 ? "rate" : "bad");
+    return r.json().catch(function(){ return {}; });
+  }).then(function(res){
+    if (res && res.id != null) twcSaveToken(res.id, myTok);
     ta.value = ""; ta.style.height = "auto";
     if (TWC.replyTo) TWC.open[TWC.replyTo.root] = true;
     twcClearReply();
@@ -436,7 +534,7 @@ function twinItem(c, pageId){
     + '<div class="twin-it-m">'
     + '<div class="twi-h"><b>' + esc(c.nickname) + "</b>"
     + (c.admin ? '<span class="twi-badge" title="Stacks">✓</span>' : "")
-    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + "</span></div>"
+    + '<span class="twi-hd">' + esc(twHandle(c.nickname)) + " · " + twTime(c.createdAt) + (c.editedAt ? " · " + TW().edited : "") + "</span></div>"
     + '<div class="twi-t">' + twLinkify(esc(c.content)) + "</div>"
     + (qid ? twQuoteHtml(qid) : "")
     + "</div></div>";
@@ -528,14 +626,19 @@ window.twInlineSend = function(id){
     return;
   }
   if (btn) btn.disabled = true;
+  var myTok = twcNewToken();
   fetch(COMMENTS_API + "/comments", {
     method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       pageId: id, content: text, nickname: nick, website: "",
+      ownerToken: myTok,
       adminKey: (typeof lsGet === "function" && lsGet("stk_admin_key")) || undefined
     })
   }).then(function(r){
     if (!r.ok) throw (r.status === 429 ? "rate" : "bad");
+    return r.json().catch(function(){ return {}; });
+  }).then(function(res){
+    if (res && res.id != null) twcSaveToken(res.id, myTok);
     inp.value = "";
     inp.placeholder = W.sent + " ✓";
     setTimeout(function(){ inp.placeholder = W.ph; }, 2500);

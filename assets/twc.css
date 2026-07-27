@@ -46,6 +46,23 @@
   font-size:12.5px;display:flex;align-items:center;gap:5px;padding:2px 0;font-family:var(--ui-font);}
 .twi-a button svg{width:16px;height:16px;}
 .twi-a .twi-like.on{color:#f91880;}
+.twi-a .twi-edit,.twi-a .twi-del{margin-left:0;}
+.twi-a .twi-del:hover{color:#f4212e;}
+.twi-editta{width:100%;box-sizing:border-box;min-height:60px;resize:vertical;
+  border:1px solid var(--line);border-radius:12px;background:var(--bg-soft);
+  color:var(--text);font-family:inherit;font-size:14.5px;line-height:1.55;padding:10px 12px;margin-top:2px;}
+.twi-editta:focus{outline:none;border-color:#1d9bf0;background:var(--bg);}
+.twi-edita{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;}
+.twi-edita button{border:none;cursor:pointer;font-family:var(--ui-font);font-size:13px;font-weight:700;
+  border-radius:999px;padding:7px 16px;}
+.twi-editcancel{background:none;color:var(--muted);}
+.twi-editsave{background:#1d9bf0;color:#fff;}
+.twi-editsave:disabled{opacity:.5;cursor:default;}
+.twi-delbar{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:13px;color:var(--muted);}
+.twi-delbar button{border:none;cursor:pointer;font-family:var(--ui-font);font-size:13px;font-weight:700;
+  border-radius:999px;padding:6px 14px;}
+.twi-delcancel{background:var(--bg-soft);color:var(--text);}
+.twi-delyes{background:#f4212e;color:#fff;}
 .twi-a .twi-like.on .twi-heart{animation:twcPop .35s ease;}
 @keyframes twcPop{0%{transform:scale(.6)}55%{transform:scale(1.35)}100%{transform:scale(1)}}
 .twi-more{background:none;border:none;cursor:pointer;color:#1d9bf0;font-size:13px;
