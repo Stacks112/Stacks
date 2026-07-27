@@ -37,6 +37,7 @@ Run by .github/workflows/og-assets.yml whenever items.json changes.
 No external dependencies.
 """
 
+import io
 import json
 import os
 import re
@@ -99,6 +100,54 @@ def load_themes(src):
             die("theme %r regex failed to compile: %s" % (key, e))
     print("  themes: %d (%s)" % (len(out), ", ".join(out)))
     return out
+
+
+IMAGES = os.path.join(ROOT, "images.json")
+_IMG_REG = None
+
+
+def _img_registry():
+    """Curated Wikimedia images, keyed by concept. Same idea as sources.json and
+    glossary.json: data that grows lives in a file, not in the routine prompt."""
+    global _IMG_REG
+    if _IMG_REG is None:
+        try:
+            with io.open(IMAGES, encoding="utf-8") as f:
+                _IMG_REG = (json.load(f) or {}).get("images") or {}
+        except Exception:
+            _IMG_REG = {}
+    return _IMG_REG
+
+
+def expand_img_markers(text, lang="ko"):
+    """@@IMG@@key|caption  ->  @@IMG@@url|caption|credit|creditUrl
+
+    The publishing routine picks a key and never writes a URL, so a card can no
+    longer ship a broken image: an unknown key drops the line instead of leaving
+    a dead <img> on the page. The four-field form still passes through untouched,
+    so the cards written before the registry existed keep working.
+    Resolution happens here, once, for both the app (build_data) and the static
+    pages (build_pages imports this)."""
+    if not text or "@@IMG@@" not in text:
+        return text
+    reg = _img_registry()
+    out = []
+    for line in str(text).split("\n"):
+        if line.startswith("@@IMG@@"):
+            parts = line[7:].split("|")
+            if len(parts) < 3:                       # key form
+                key = (parts[0] or "").strip()
+                rec = reg.get(key)
+                if not rec:
+                    continue                          # unknown key: drop the line
+                cap = (parts[1].strip() if len(parts) > 1 and parts[1].strip()
+                       else (rec.get("caption") or {}).get(lang)
+                       or (rec.get("caption") or {}).get("ko") or "")
+                line = "@@IMG@@%s|%s|%s|%s" % (rec.get("url", ""), cap,
+                                               rec.get("credit", "Wikimedia Commons"),
+                                               rec.get("page", ""))
+        out.append(line)
+    return "\n".join(out)
 
 
 def load_stance_map(src):
@@ -471,7 +520,7 @@ def main():
 
     for lang in LANGS:
         for ci in range(n_chunks):
-            part = {it["id"]: pick(it.get("gist"), lang)
+            part = {it["id"]: expand_img_markers(pick(it.get("gist"), lang), lang)
                     for it in ordered[ci * CHUNK:(ci + 1) * CHUNK]}
             n = write(os.path.join(OUT, "gist.%s.%d.json" % (lang, ci)), part)
             if ci == 0:

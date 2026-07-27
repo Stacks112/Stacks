@@ -1083,6 +1083,11 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
             _cit["author"] = {"@type": "Person", "name": _name}
         ld["citation"] = _cit
 
+    try:
+        import build_data as _bd
+        gist = _bd.expand_img_markers(gist, lang)
+    except Exception:
+        pass
     body_blocks = quote_block(item, lang) + gist_blocks(gist)
     block_css = block_css_for(body_blocks)
     block_css = (block_css + "\n") if block_css else ""
