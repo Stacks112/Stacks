@@ -42,13 +42,23 @@ jobs:
           git config user.email "stacks-bot@users.noreply.github.com"
           git add scripts/.brief_state.json
           git commit -m "chore: brief push state [skip ci]"
-          for i in 1 2 3 4 5; do
-            if git pull --rebase --autostash origin main && git push origin main; then
+          # Why not a plain `git pull --rebase`: every file this job writes is
+          # GENERATED (feeds, sitemap, data/manifest.json, p/, e/, og/). When
+          # another workflow pushes first, both sides have rewritten the same
+          # generated lines, so the rebase hits a content conflict -- and it is
+          # the SAME conflict on every retry, so all 5 attempts died and the
+          # regenerated pages were silently dropped (2026-07-27).
+          # There is nothing to merge in a derived file, so the commit being
+          # replayed wins. During a rebase the replayed commit is "theirs".
+          # Anything stale that leaves behind is corrected by the next build.
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main || true
+            if git rebase --autostash -X theirs FETCH_HEAD && git push origin main; then
               exit 0
             fi
             git rebase --abort 2>/dev/null || true
             echo "push race lost, retry $i"
-            sleep $(( (RANDOM % 8) + 3 ))
+            sleep $(( (RANDOM % 8) + 3 * i ))
           done
-          echo "::error::push failed after 5 attempts (concurrent commit on main)"
+          echo "::error::push failed after 6 attempts (concurrent commit on main)"
           exit 1
