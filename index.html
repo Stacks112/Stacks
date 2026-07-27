@@ -8829,7 +8829,7 @@ function cardEl(item, S, idx){
       <div class="card-body">
       ${(showOrig && !item.lab) ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
       ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}<span class="chips-end">${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="event.stopPropagation(); this.classList.toggle('show')">$<span class="paywall-tip">${S.paywallTip}</span></span>` : ""}<a class="chips-orig" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation(); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a></span></div>` : ""}
-      ${item.lab ? "" : coverThumbHtml(item)}
+      ${"" /* card cover image retired 2026-07-27 — bottom image removed, lab layout for all cards */}
       ${"" /* series feature retired: no series tag on cards */}
       ${srcBlockHtml(item)}
       <details class="gist-fold" open>
