@@ -1,6 +1,180 @@
 {
  "items": [
   {
+   "date": "2026-07-27",
+   "id": "serenity-nvidia-openai-250b-ohio-backstop",
+   "related": [
+    "semianalysis-meta-superintelligence",
+    "jukan-amd-anthropic-deal-tp640",
+    "jukan-korea-memory-mega-mou-950b"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2081548360818004299",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#312E81",
+    "to": "#065F46",
+    "label": "CIRCULAR CAPEX"
+   },
+   "tags": [
+    "NVIDIA",
+    "OPENAI",
+    "AI CAPEX"
+   ],
+   "stance": "watch",
+   "quote": {
+    "lines": [
+     "Nvidia in talks to backstop $250B worth of OpenAI DC financing.",
+     "OpenAI discussing separate agreement to buy up to $350B in Nvidia chips.",
+     "Not quite sure if this circular financing is healthy long term."
+    ],
+    "cite": "Serenity · 2026.07.27"
+   },
+   "title": {
+    "en": "Nvidia Reportedly to Guarantee $250 Billion So OpenAI Can Build a $500 Billion Ohio Data Center",
+    "ko": "오픈AI 5000억달러 오하이오 데이터센터, 엔비디아가 2500억달러 지급보증한다",
+    "ja": "オープンAIの5000億ドル規模オハイオDC、エヌビディアが2500億ドル保証へ"
+   },
+   "gist": {
+    "ko": "엔비디아가 오픈AI의 오하이오 데이터센터 건설 자금 중 2500억달러를 지급보증하는 방안을 논의하고 있다고 월스트리트저널이 26일 보도했다. 사업비 총액이 5000억달러에 달해, 지금까지 발표된 단일 데이터센터 프로젝트 가운데 가장 크다. 이 소식을 세레니티가 정리해 전했다.\n\n## 오하이오에 무슨 시설이 들어서나\n소프트뱅크의 에너지 자회사 SB에너지가 오하이오 남부에 10기가와트 규모 데이터센터 단지를 짓고 있다. 원자력발전소 대여섯 기를 합친 것과 맞먹는 전력량이다. 오픈AI는 이 시설을 장기 임대하기로 했고, 엔비디아는 건설비 조달 중 2500억달러를 보증하기로 했다.\n\n## 지급보증이 왜 이렇게 큰 힘을 갖나\n지급보증은 오픈AI가 빚을 못 갚으면 엔비디아가 대신 갚아주겠다는 약속이다. 은행이나 채권 투자자 입장에서는 아직 흑자를 낸 적 없는 오픈AI 하나만 보고 돈을 빌려주는 것보다, 세계 최대 반도체 기업이 뒤에 서 있는 쪽이 훨씬 안심된다. 그만큼 더 큰 돈을 더 낮은 금리로 끌어올 수 있다.\n\n## 순환금융 논란은 어디서 나오나\n세레니티는 소식을 전하며 동시에 우려했다. 오픈AI가 별도로 엔비디아 칩을 최대 3500억달러어치 사들이는 계약도 논의 중이라는 것이다. 정리하면 엔비디아는 오픈AI의 빚 2500억달러를 보증해주는 동시에, 그 돈으로 지어질 데이터센터에 들어갈 자기 칩을 3500억달러어치 팔려는 셈이다. 투자자 마이클 버리는 이를 두고 \"돌고 돈다, 엔비디아가 챗GPT의 자사 칩 구매 2000억달러를 보증한다\"고 짧게 반응했다. 그는 이 발언 직전 엔비디아 공매도 물량을 늘린 것으로 알려졌다.\n\n@@CMP@@우려하는 쪽|엔비디아가 스스로 만든 수요를 스스로 사들이는 셈이라 매출 성장의 질이 떨어지고, 오픈AI가 흔들리면 보증 부담까지 떠안는다|낙관하는 쪽|AI 데이터센터 수요 자체가 워낙 확실해서, 이 정도 보증은 엔비디아의 현금창출력에 비하면 감당 가능한 리스크다\n\n기술 평론가 에드 지트론은 한발 더 나가 \"이건 여러 층위에서 미친 짓이고, 이보다 더 약세론적인 신호는 없다\"고 썼다. 그는 소프트뱅크가 왜 끼어 있는지, 실제 자금이 어디서 나오는지부터 따져봐야 한다고 지적했다. 다만 이 모든 논의는 아직 협상 중인 단계이고, 양사 모두 공식 확인은 하지 않았다.",
+    "en": "Nvidia is in talks to guarantee $250 billion of the financing for OpenAI's Ohio data center, the Wall Street Journal reported on July 26. The project's total cost could reach $500 billion, making it the largest single data center project announced so far. Serenity, an X account tracking chip and AI markets, summarized the report.\n\n## What's actually being built in Ohio\nSoftBank's energy unit, SB Energy, is developing a 10-gigawatt data center campus in southern Ohio, roughly the output of five or six nuclear reactors combined. OpenAI would sign a long-term lease on the facility, while Nvidia would guarantee $250 billion of the construction financing.\n\n## Why a guarantee carries so much weight\nA backstop means that if OpenAI can't repay, Nvidia steps in instead. For banks and bondholders, lending against OpenAI alone, a company that has never turned a profit, is far riskier than lending with the world's largest chipmaker standing behind it. That backing lets far more money get raised at far lower interest rates.\n\n## Where the circular financing complaint comes from\nSerenity flagged the same report with a caveat: OpenAI is separately discussing a deal to buy up to $350 billion worth of Nvidia chips. Put together, Nvidia would guarantee $250 billion of OpenAI's debt while trying to sell $350 billion of its own chips into the data center that debt builds. Investor Michael Burry reacted with a short line: \"Around and around we go. Nvidia to guarantee $200 billion of ChatGPT's spending on $NVDA chips.\" He had reportedly just added to his Nvidia short position before posting it.\n\n@@CMP@@The skeptical read|Nvidia is financing demand for its own products, which makes the revenue growth look weaker than it seems, and leaves Nvidia holding the guarantee if OpenAI stumbles|The bullish read|AI data center demand is large and certain enough that this guarantee is a manageable risk against Nvidia's own cash generation\n\nTech commentator Ed Zitron went further, calling it \"insane on so many levels\" and \"about as bearish as it gets,\" and questioned why SoftBank is involved at all and where the actual cash is supposed to come from. None of this is confirmed yet; both companies are still described as being in talks.",
+    "ja": "エヌビディアが、オープンAIのオハイオ州データセンター建設資金のうち2500億ドルを保証する方向で協議していると、ウォール・ストリート・ジャーナルが7月26日に報じた。総事業費は5000億ドルに達する見込みで、これまで発表された単一のデータセンタープロジェクトとして最大規模になる。半導体・AI市場を追うXアカウント、セレニティがこの報道をまとめた。\n\n## オハイオに何が建つのか\nソフトバンクのエネルギー子会社SBエナジーが、オハイオ州南部に10ギガワット規模のデータセンター団地を開発している。原子力発電所5、6基分に相当する電力量だ。オープンAIはこの施設を長期リースする契約を結び、エヌビディアは建設資金のうち2500億ドルを保証する。\n\n## 保証がなぜこれほど大きな意味を持つのか\n保証(バックストップ)とは、オープンAIが返済できない場合にエヌビディアが肩代わりするという約束だ。銀行や債券投資家にとって、まだ黒字化していないオープンAI単体に貸すよりも、世界最大の半導体企業が後ろ盾になっている方がはるかに安心できる。その分、より多くの資金をより低い金利で調達できるようになる。\n\n## 循環金融批判はどこから来るのか\nセレニティはこの報道を伝えると同時に懸念も示した。オープンAIは別途、エヌビディアのチップを最大3500億ドル分購入する契約も協議中だという。整理すると、エヌビディアはオープンAIの負債2500億ドルを保証すると同時に、その資金で建つデータセンターに入る自社チップを3500億ドル分売ろうとしていることになる。投資家マイケル・バリーは「堂々巡りだ。エヌビディアがChatGPTの自社チップ購入2000億ドルを保証する」と短く反応した。彼はこの投稿の直前にエヌビディアの空売りポジションを積み増したと伝えられている。\n\n@@CMP@@懐疑的な見方|エヌビディアが自ら作った需要を自ら買い取る形になり、売上成長の質が下がる。オープンAIがつまずけば保証の負担ごと抱え込む|楽観的な見方|AIデータセンター需要自体がそれほど確実なので、この程度の保証はエヌビディアの現金創出力に対して十分に管理可能なリスクだ\n\nテック評論家エド・ジトロンはさらに踏み込み、「これは何重にも狂気じみており、これ以上ないほど弱気なシグナルだ」と書き、なぜソフトバンクが関与しているのか、実際の資金がどこから出るのかから疑うべきだと指摘した。ただしこれらはすべてまだ協議中の段階で、両社とも公式には確認していない。"
+   },
+   "why": {
+    "ko": "AI 데이터센터 자금조달이 갈수록 대형화하면서, 엔비디아의 대차대조표 위험이 어디까지 커지는지 보여주는 사례다.",
+    "en": "Shows how far Nvidia's balance-sheet exposure could stretch as AI data center financing keeps scaling up.",
+    "ja": "AIデータセンター向け資金調達が巨大化する中、エヌビディアのバランスシートリスクがどこまで膨らむかを示す事例だ。"
+   },
+   "ask": {
+    "ko": "엔비디아가 보증한 빚으로 자기 칩을 사게 하는 구조, 성장의 증거일까 위험 신호일까?",
+    "en": "Nvidia guaranteeing the debt that buys its own chips: proof of demand, or a warning sign?",
+    "ja": "エヌビディアが保証した借金で自社チップを買わせる構造、成長の証拠か警告サインか?"
+   },
+   "ts": "2026-07-27T04:59:29.260122+00:00"
+  },
+  {
+   "date": "2026-07-27",
+   "id": "serenity-cxmt-ipo-star-market-surge",
+   "related": [
+    "jukan-cxmt-3d-ic-niche-strategy",
+    "jukan-cxmt-huawei-premium",
+    "jukan-ymtc-nand-share-surpasses-micron"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2081579593815978273",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#B91C1C",
+    "to": "#B45309",
+    "label": "IPO FRENZY"
+   },
+   "tags": [
+    "CXMT",
+    "IPO",
+    "DRAM"
+   ],
+   "stance": "watch",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "en": "Check in ~12 months whether CXMT trades near Nomura's RMB116 target (20x P/E, ~13.4x IPO price).",
+     "ko": "약 1년 뒤 CXMT 주가가 노무라의 목표주가 116위안(PER 20배, 공모가 대비 13.4배) 근처에 도달했는지 확인.",
+     "ja": "約1年後、CXMTの株価が野村の目標株価116元(PER20倍、公開価格の13.4倍)に近づいたか確認する。"
+    }
+   },
+   "quote": {
+    "lines": [
+     "Wow, $CMXT is up a very normal +469.98% after going public today.",
+     "Now valuing it at ~$487.31 billion, up from $85.5 billion."
+    ],
+    "cite": "Serenity · 2026.07.27"
+   },
+   "title": {
+    "en": "China's CXMT Surges 470% on Debut, Becoming a $489 Billion Chipmaker Overnight",
+    "ko": "중국 CXMT, 상장 첫날 470% 폭등... 하루 만에 시총 4890억달러 반도체 기업 됐다",
+    "ja": "中国CXMT、上場初日に470%急騰...一夜にして時価総額4890億ドルの半導体企業に"
+   },
+   "gist": {
+    "ko": "중국 D램 제조사 창신메모리(CXMT)가 27일 상하이 커촹반(STAR Market)에 상장한 첫날 주가가 공모가 대비 472% 급등했다. 시가총액은 하루 만에 855억달러에서 4890억달러(약 685조원)로 불어났다. 올해 아시아 최대 규모 IPO였던 이 공모에 세레니티를 비롯한 시장 참가자들이 놀라움을 표했다.\n\n## 얼마나 이례적인 상장인가\n공모가는 8.66위안이었는데 첫날 종가는 49.50위안까지 뛰었다. 조달 자금은 최대 666억위안(약 12조원)으로, 2020년 SMIC가 커촹반에서 세운 종전 기록(532억위안)을 넘어섰다. CXMT는 이 상장으로 인텔의 시가총액을 넘어서며 중국 상장기업 가운데 시총 1위에 올랐다는 보도도 나왔다.\n\n## 왜 이렇게까지 몰렸나\nAI 서버용 D램 수요가 공급을 크게 웃돌면서, 메모리 제조사라면 어디든 웃돈이 붙는 장세다. 반도체 애널리스트 주칸에 따르면 노무라는 상장 당일 CXMT에 목표주가 116위안, 주가수익비율(PER) 20배를 제시했다. 마이크론의 2배에 달하는 배수다. 이 목표가가 맞는다면 공모가 대비 13.4배, 시가총액은 7조7600억위안까지 커질 수 있다는 계산이다. 주칸은 이 숫자를 두고 \"제정신이 아니다\"라는 반응을 남겼다.\n\n## 이 숫자, 그대로 믿어도 될까\n@@CHK@@IPO 첫날 시총|4890억달러|공모가 대비 상승률|472%|조달금액|최대 666억위안@@중국 반도체 자립 랠리에 올라탄 첫날 수치는 언론 보도로 확인된다. 다만 노무라의 목표주가(116위안)와 20배 PER 전망은 아직 실현되지 않은 애널리스트 예측이며, 실제 주가가 그 수준까지 갈지는 별개 문제다@@2026-07-27 · SCMP·Nikkei Asia·CNBC 보도 종합\n\n일부 규제당국과 시장참가자들은 이렇게 큰 규모의 공모가 다른 중국 기술주의 유동성을 빨아들일 수 있다고 우려했지만, 관영매체는 시장이 충분히 소화할 수 있다며 이런 우려를 일축했다.\n\n@@CMP@@거품이라는 시각|공모가의 13배가 넘는 목표주가와 마이크론 2배 밸류에이션은 D램 업황 정점을 미리 반영한 과열이다|호황이라는 시각|메모리 공급부족이 2028년까지 이어질 것이라는 전망이 이어지는 만큼, 밸류에이션 재평가는 아직 갈 길이 남았다",
+    "en": "China's DRAM maker ChangXin Memory Technologies (CXMT) surged 472% on its trading debut on Shanghai's STAR Market on July 27. Its market cap jumped from $85.5 billion to $489 billion in a single day. Market watchers, including the X account Serenity, reacted with disbelief to what was Asia's biggest IPO of the year.\n\n## How unusual was this listing\nCXMT priced its IPO at 8.66 yuan and closed its first day at 49.50 yuan. It raised up to 66.6 billion yuan, beating the previous STAR Market record set by chipmaker SMIC in 2020 (53.2 billion yuan). Reports say the surge pushed CXMT's market cap past Intel's, making it China's largest listed company by that measure.\n\n## Why did money pile in this hard\nDemand for AI server DRAM is running well ahead of supply, and that's lifted every memory maker's valuation. According to chip analyst Jukan, Nomura initiated coverage on listing day with a price target of 116 yuan and a 20x P/E multiple, twice Micron's valuation. If that target holds, CXMT's stock would be 13.4 times its IPO price and its market cap would reach 7.76 trillion yuan. Jukan's own reaction: \"This is insane.\"\n\n## Should the number be taken at face value\n@@CHK@@Day-one market cap|$489B|Gain over IPO price|+472%|Capital raised|up to CNY 66.6B@@The first-day figures are confirmed across multiple outlets covering China's chip self-sufficiency rally. Nomura's 116-yuan target and 20x multiple, however, are still an analyst forecast, not a settled fact, and whether the stock actually gets there is a separate question@@2026-07-27 · SCMP, Nikkei Asia, CNBC coverage\n\nSome regulators and market participants worried an offering this large would drain liquidity from other Chinese tech stocks, but state media dismissed the concern, arguing the broader market could absorb the capital.\n\n@@CMP@@The bubble read|A price target 13 times the IPO price and double Micron's multiple is pricing in the peak of the DRAM cycle before it even arrives|The boom read|Forecasts still call for a memory shortage through 2028, so there's room left for the re-rating to run",
+    "ja": "中国のDRAMメーカー、長鑫存儲技術(CXMT)は7月27日、上海の科創板(STARマーケット)での上場初日に株価が472%急騰した。時価総額は855億ドルから一日で4890億ドルに膨らんだ。セレニティを含む市場関係者は、今年のアジア最大のIPOとなったこの上場に驚きを示した。\n\n## どれほど異例の上場だったのか\nCXMTの公開価格は8.66元で、初日の終値は49.50元まで上昇した。調達額は最大666億元で、2020年にSMICが科創板で樹立した従来記録(532億元)を上回った。この急騰により、CXMTの時価総額はインテルを上回り、中国上場企業として時価総額1位になったと報じられている。\n\n## なぜここまで資金が殺到したのか\nAIサーバー向けDRAM需要が供給を大きく上回っており、メモリーメーカーであればどこでも評価額が押し上げられる相場になっている。半導体アナリストJukanによれば、野村は上場当日にCXMTのカバレッジを開始し、目標株価116元、PER20倍を提示した。マイクロンの2倍に当たる倍率だ。この目標が実現すれば、公開価格の13.4倍、時価総額は7兆7600億元まで膨らむ計算になる。Jukan自身の反応は「正気ではない」だった。\n\n## この数字はそのまま信じていいのか\n@@CHK@@上場初日の時価総額|4890億ドル|公開価格からの上昇率|+472%|調達額|最大666億元@@初日の数値は中国半導体自給率ラリーを報じる複数メディアで確認できる。ただし野村の目標株価116元とPER20倍はまだアナリストの予測であり、実際にその水準まで到達するかは別の問題だ@@2026-07-27 · SCMP、Nikkei Asia、CNBC報道\n\n一部の規制当局や市場参加者は、これほど大規模な公開が他の中国テック株から流動性を吸い上げかねないと懸念したが、国営メディアはこの懸念を退け、市場全体で十分に吸収できると主張した。\n\n@@CMP@@バブルという見方|公開価格の13倍を超える目標株価とマイクロンの2倍のバリュエーションは、DRAMサイクルのピークを先取りした過熱だ|好況という見方|メモリー不足は2028年まで続くとの予測が根強く、再評価にはまだ余地が残っている"
+   },
+   "why": {
+    "ko": "중국 반도체 자립 랠리가 상장 시장까지 번지며, 메모리 밸류에이션 논쟁에 새로운 기준점이 생겼다.",
+    "en": "China's chip self-sufficiency rally has spread to the IPO market, setting a new reference point in the memory valuation debate.",
+    "ja": "中国の半導体自給ラリーがIPO市場にも広がり、メモリー・バリュエーション論争に新たな基準点ができた。"
+   },
+   "ask": {
+    "ko": "공모가 13배, 마이크론의 2배 밸류에이션, 거품일까 새로운 기준일까?",
+    "en": "13 times the IPO price and double Micron's multiple: a bubble, or the new benchmark?",
+    "ja": "公開価格の13倍、マイクロンの2倍のバリュエーション。バブルか、新しい基準か?"
+   },
+   "ts": "2026-07-27T04:59:29.260122+00:00"
+  },
+  {
+   "date": "2026-07-27",
+   "id": "jukan-skhynix-kioxia-stake-windfall-q2",
+   "related": [
+    "meru-samsung-skhynix-leverage-etf-decay",
+    "kobeissi-sp500-margin-record-q2-2026",
+    "serenity-kioxia-samsung-memory-rally"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2081569881343017208",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#0F766E",
+    "to": "#B45309",
+    "label": "PAPER WINDFALL"
+   },
+   "tags": [
+    "SK HYNIX",
+    "KIOXIA",
+    "EARNINGS"
+   ],
+   "stance": "watch",
+   "quote": {
+    "lines": [
+     "South Korea's Meritz Securities estimates that, as part of Bain Capital's sale of its stake in Kioxia, SK hynix's stake in SPC1 was also disposed of.",
+     "Meritz projects SK hynix's 2Q26 pretax profit at approximately KRW 100tn, including KRW 41.6tn in non-operating income."
+    ],
+    "cite": "Jukan · 2026.07.27"
+   },
+   "title": {
+    "en": "SK Hynix's Q2 Profit Could Hit ₩100 Trillion, but Analysts Say Much of It Isn't From Chips",
+    "ko": "SK하이닉스 2분기 세전이익 100조원 추정, 그런데 절반 가까이가 반도체 장사가 아니다",
+    "ja": "SKハイニックス2Q26税前利益は100兆ウォン超え予想、でも半分近くは半導体事業の稼ぎではない"
+   },
+   "gist": {
+    "ko": "한국 메리츠증권이 SK하이닉스의 2분기(2026년 4~6월) 세전이익을 약 100조원으로 추정했다. 이 중 41조6000억원이 영업이 아닌 투자자산 처분 등에서 나온 비영업이익이라는 게 핵심이다. 반도체 애널리스트 주칸이 이 추정치를 27일 전했다.\n\n## 어디서 이렇게 큰 돈이 나오나\nSK하이닉스는 2018년 베인캐피탈이 도시바메모리(현 키옥시아)를 인수할 때 특수목적법인(SPC)을 통해 총 3조9000억원을 투자했다. 이번에 베인캐피탈이 키옥시아 지분을 전량 정리하면서, SK하이닉스가 함께 투자했던 SPC1 지분도 같이 처분된 것으로 메리츠는 추정했다. 8년을 묵힌 투자금이 한꺼번에 현금화된 셈이다.\n\n## 실제로 얼마나 불었나\n@@CHK@@1분기 순이익|40조3500억원|1분기 영업이익|37조6100억원|키옥시아 관련 이익(1분기)|약 14조원@@순이익이 영업이익보다 컸던 이유가 키옥시아 지분 관련 이익 때문이었다는 점이 1분기 실적에서부터 이미 확인된다. 2분기에 반영될 최종 처분이익 규모는 아직 추정치다@@2026-07-09 머니투데이 등 국내 보도 종합\n\n이미 1분기에 장기투자자산 처분으로 4조1000억원 넘는 현금을 확보했고, 별도로 보유 중인 전환사채(지분 14% 전환 가능분)에서도 평가이익이 잡혔다. 메리츠는 2분기에 베인캐피탈 컨소시엄의 최종 정리분까지 반영되면 비영업이익이 41조6000억원까지 커질 수 있다고 본 것이다.\n\n## 왜 이 숫자를 곧이곧대로 읽으면 안 되나\n2018년 베인캐피탈이 도시바메모리를 인수할 당시 이 회사는 회계 부정 스캔들 와중에 헐값 매물로 나온 상태였다. SK하이닉스가 그때 들어간 돈이 지금 D램 슈퍼사이클을 타고 수십 배로 불어난 것이다. 문제는 이 돈이 메모리를 더 잘 만들거나 더 비싸게 팔아서 번 돈이 아니라는 점이다. 8년 전 투자 결정 하나가 한 분기 실적을 통째로 바꿔놓을 만큼 커진 것뿐이다. 반도체 업황 자체가 좋아졌는지 보려면 영업이익 한 줄을 따로 봐야 한다.\n\n@@CMP@@헤드라인만 보는 쪽|세전이익 100조원, 사상 최대 실적이라는 제목만 보고 반도체 업황이 그만큼 좋아졌다고 읽는다|한 겹 더 들여다보는 쪽|영업이익은 별도로 확인해야 하고, 41조원은 8년 전 사둔 지분이 팔리며 생긴 일회성 돈이다",
+    "en": "Korea's Meritz Securities estimates SK Hynix's Q2 (April-June 2026) pretax profit at around ₩100 trillion, with ₩41.6 trillion of that coming from non-operating gains rather than chip sales. Chip analyst Jukan relayed the estimate on July 27.\n\n## Where does this much money come from\nIn 2018, SK Hynix invested a combined ₩3.9 trillion through a special purpose company (SPC) alongside Bain Capital's acquisition of Toshiba Memory, now Kioxia. Now that Bain Capital has sold out its entire Kioxia stake, Meritz estimates SK Hynix's SPC1 holding was liquidated along with it, cashing out an eight-year-old investment in one shot.\n\n## How much has it actually grown\n@@CHK@@Q1 net income|₩40.35tn|Q1 operating profit|₩37.61tn|Kioxia-related gains (Q1)|~₩14tn@@Q1 earnings already show net income beating operating profit because of Kioxia-related gains. The final Q2 disposal gain is still an estimate@@Jul 9, 2026, per Money Today and other Korean outlets\n\nSK Hynix already booked over ₩4.1 trillion in cash from disposing long-term investment assets in Q1, plus separate valuation gains on the convertible bonds it still holds, convertible into a 14% Kioxia stake. Meritz's model has the final Bain consortium wind-down pushing Q2's non-operating income up to ₩41.6 trillion.\n\n## Why the headline number needs a second look\nWhen Bain Capital acquired Toshiba Memory in 2018, the company was up for sale cheap amid an accounting scandal. The money SK Hynix put in back then has multiplied dozens of times over, riding the DRAM supercycle. But none of that came from making or selling more memory. A single investment decision from eight years ago has simply grown large enough to reshape one quarter's earnings. To see whether the chip business itself actually improved, operating profit is the line to check separately.\n\n@@CMP@@Reading the headline|A record ₩100 trillion pretax profit gets read as proof the chip business is booming|Looking one layer deeper|Operating profit needs to be checked separately, and the ₩41 trillion is a one-off from cashing out an eight-year-old stake",
+    "ja": "韓国のメリッツ証券は、SKハイニックスの2Q26（4〜6月期）税前利益を約100兆ウォンと推定した。そのうち41兆6000億ウォンは半導体販売ではなく営業外利益によるものだという。半導体アナリストJukanが7月27日にこの推定値を伝えた。\n\n## これほど大きな金額はどこから来るのか\nSKハイニックスは2018年、ベインキャピタルによる東芝メモリ（現キオクシア）買収に合わせ、特別目的会社（SPC）を通じて計3兆9000億ウォンを投資した。今回ベインキャピタルがキオクシア株を全て売却したことに伴い、SKハイニックスのSPC1持分も同時に処分されたとメリッツはみている。8年間寝かせた投資が一気に現金化された形だ。\n\n## 実際どれだけ膨らんだのか\n@@CHK@@1Q純利益|40兆3500億ウォン|1Q営業利益|37兆6100億ウォン|キオクシア関連利益（1Q）|約14兆ウォン@@1Q決算の時点で、純利益が営業利益を上回った理由がキオクシア関連の利益だったことはすでに確認できる。2Qに反映される最終処分益の規模はまだ推定値だ@@2026年7月9日 マネートゥデイ等韓国メディア報道\n\n1Qにはすでに長期投資資産の処分で4兆1000億ウォン超の現金を確保しており、別途保有する転換社債（株式14%に転換可能）でも評価益が計上された。メリッツは、2Qにベインキャピタル・コンソーシアムの最終清算分が反映されれば、営業外利益が41兆6000億ウォンまで膨らみ得るとみている。\n\n## なぜこの数字をそのまま読んではいけないのか\n2018年にベインキャピタルが東芝メモリを買収した当時、同社は会計不正スキャンダルの渦中で安値で売りに出されていた。SKハイニックスがそのとき投じた資金が、DRAMスーパーサイクルに乗って数十倍に膨らんだ。ただし、これはメモリーをより良く作ったり高く売ったりして稼いだ金ではない。8年前の一つの投資判断が、一四半期の決算を丸ごと変えるほど大きくなっただけだ。半導体事業そのものが本当に改善したかを見るには、営業利益の行を別途確認する必要がある。\n\n@@CMP@@見出しだけを見る見方|税前利益100兆ウォン、過去最高益という見出しだけを見て半導体事業がそれだけ好調になったと読む|一歩踏み込む見方|営業利益は別途確認すべきで、41兆ウォンは8年前に仕込んだ持分が売れてできた一時的な金だ"
+   },
+   "why": {
+    "ko": "실적 헤드라인 숫자와 반도체 본업 벌이가 갈라지는 대표 사례라, 다음 분기 실적 발표를 어떻게 읽어야 할지 미리 보여준다.",
+    "en": "A clean example of the headline earnings number diverging from the core chip business, previewing how to read the next quarterly report.",
+    "ja": "決算の見出し数字と半導体本業の稼ぎが乖離する好例で、次の四半期決算をどう読むべきか先に示している。"
+   },
+   "ask": {
+    "ko": "일회성 지분매각 차익이 만든 사상 최대 실적, 반도체 호황의 증거로 읽어도 될까?",
+    "en": "A record profit built on a one-off stake sale: proof the chip cycle is booming, or something else?",
+    "ja": "一時的な持分売却益が作った過去最高益、半導体好況の証拠と読んでいいのか?"
+   },
+   "ts": "2026-07-27T04:59:29.260122+00:00"
+  },
+  {
    "date": "2026-07-26",
    "id": "serenity-substrate-ddr5-wf6-squeeze",
    "related": [
@@ -13381,7 +13555,7 @@
     "チャンシン"
    ],
    "logo": "cxmt.com",
-   "exchange": "비상장",
+   "exchange": "상하이 커촹반(STAR Market)",
    "ceo": {
     "en": "Zhu Yiming",
     "ko": "주이밍",
@@ -13398,7 +13572,8 @@
     "en": "Founded in 2016 in Hefei with heavy backing from local Chinese government investment funds, ChangXin Memory Technologies (CXMT) is China's leading DRAM maker and a centerpiece of the country's push for memory-chip self-sufficiency. It has ramped output fast enough that Western analysts now cite it as a key reason global DRAM and NAND supply could outpace demand, pressuring prices for Samsung, SK hynix and Micron.",
     "ko": "2016년 중국 허페이에서 현지 정부 투자기금의 대규모 지원을 받아 설립된 창신메모리(CXMT)는 중국을 대표하는 D램 제조사로, 메모리 반도체 자립을 노리는 중국의 핵심 카드다. 생산 확대 속도가 빨라 서구 애널리스트들이 전 세계 D램·낸드 공급과잉의 주요 원인으로 꼽을 정도이며, 삼성전자·SK하이닉스·마이크론의 가격 결정력을 위협하고 있다.",
     "ja": "2016年に中国・合肥で地元政府系投資ファンドの大規模な支援を受けて設立された長鑫存儲(CXMT)は、中国を代表するDRAMメーカーで、メモリー半導体の自給自足を目指す中国の中核的存在だ。生産拡大のペースが速く、欧米アナリストが世界的なDRAM・NAND供給過剰の主因として挙げるほどで、サムスン電子・SKハイニックス・マイクロンの価格決定力を脅かしている。"
-   }
+   },
+   "listed": "2026.7"
   },
   "ON-DEVICE AI": {
    "kind": "term",
@@ -14978,6 +15153,310 @@
     "en": "Founded in 2005 as Big Hit Entertainment, the company built its early fortune almost entirely on BTS before rebranding to HYBE in 2021 and acquiring labels including Source Music, Pledis Entertainment and Ithaca Holdings (Justin Bieber, Ariana Grande) to diversify beyond a single act. It's now one of Korea's largest entertainment companies by market value.",
     "ko": "2005년 빅히트엔터테인먼트로 출발해 초기 매출 대부분을 BTS 한 팀에 의존했다. 2021년 하이브로 사명을 바꾸고 쏘스뮤직·플레디스엔터테인먼트·이타카 홀딩스(저스틴 비버, 아리아나 그란데 소속) 등을 인수하며 한 팀 의존 리스크를 분산했다. 현재 시가총액 기준 한국 최대 엔터테인먼트 기업 중 하나다.",
     "ja": "2005年にビッグヒットエンターテインメントとして創業し、初期売上の大半をBTS一組に依存していた。2021年にHYBEへ社名変更し、ソースミュージック・プレディスエンターテインメント・イサカホールディングス(ジャスティン・ビーバー、アリアナ・グランデ所属)などを買収してリスクを分散した。現在は時価総額で韓国最大級のエンターテインメント企業。"
+   }
+  },
+  "SOFTBANK": {
+   "kind": "company",
+   "ticker": "9984.t",
+   "sector": {
+    "en": "Telecom & Tech Investment",
+    "ko": "통신·기술투자",
+    "ja": "通信・テック投資"
+   },
+   "desc": {
+    "ko": "손정의가 이끄는 일본의 통신·투자 지주회사. ARM 등 세계 최대 기술기업 투자자 중 하나.",
+    "en": "Japanese telecom-and-investment holding company led by Masayoshi Son, one of the world's biggest tech investors via stakes like Arm.",
+    "ja": "孫正義率いる日本の通信・投資持株会社。Armなど世界有数のテック企業投資家の一つ。"
+   },
+   "aliases": [
+    "소프트뱅크",
+    "SoftBank",
+    "SoftBank Group",
+    "ソフトバンク",
+    "ソフトバンクグループ",
+    "SB에너지",
+    "SB Energy"
+   ],
+   "logo": "softbank.jp",
+   "exchange": "도쿄증권거래소",
+   "ceo": {
+    "ko": "손정의",
+    "en": "Masayoshi Son",
+    "ja": "孫正義"
+   },
+   "founded": "1981",
+   "listed": "1994.7",
+   "hq": {
+    "ko": "일본 도쿄",
+    "en": "Tokyo, Japan",
+    "ja": "日本・東京"
+   },
+   "website": "https://group.softbank",
+   "longDesc": {
+    "ko": "1981년 손정의가 소프트웨어 유통업체로 창업해, 통신사업과 대규모 기술 투자를 오가며 세계 최대 벤처·기술 투자자 중 하나로 성장했다. 비전펀드를 통해 ARM·쿠팡 등에 투자했고, 최근에는 에너지 자회사 SB에너지를 통해 미국 내 대형 AI 데이터센터 개발에도 뛰어들었다.",
+    "en": "Founded in 1981 by Masayoshi Son as a software distributor, SoftBank grew into a telecom operator and one of the world's largest tech investors, backing companies like Arm and Coupang through its Vision Fund. It has recently moved into developing large US AI data centers through its energy subsidiary, SB Energy.",
+    "ja": "1981年に孫正義がソフトウェア流通業として創業し、通信事業と大型テック投資を手掘けながら世界最大級のベンチャー・テック投資家に成長した。ビジョン・ファンドを通じてArmやクーパンなどに投資し、近年はエネルギー子会社SBエナジーを通じて米国内の大型AIデータセンター開発にも進出している。"
+   }
+  },
+  "NOMURA": {
+   "kind": "company",
+   "ticker": "8604.t",
+   "sector": {
+    "en": "Investment Bank & Securities",
+    "ko": "투자은행·증권",
+    "ja": "投資銀行・証券"
+   },
+   "desc": {
+    "ko": "일본 최대 증권사이자 투자은행. 아시아 반도체·기술주 리서치로도 영향력이 크다.",
+    "en": "Japan's largest securities firm and investment bank, with influential equity research on Asian tech and chip stocks.",
+    "ja": "日本最大の証券会社・投資銀行。アジアの半導体・テック株リサーチでも影響力が大きい。"
+   },
+   "aliases": [
+    "노무라",
+    "노무라증권",
+    "Nomura",
+    "Nomura Holdings",
+    "野村",
+    "野村證券",
+    "野村ホールディングス"
+   ],
+   "logo": "nomuraholdings.com",
+   "exchange": "도쿄증권거래소",
+   "ceo": {
+    "ko": "오쿠다 겐타로",
+    "en": "Kentaro Okuda",
+    "ja": "奥田健太郎"
+   },
+   "founded": "1925",
+   "listed": "1961",
+   "hq": {
+    "ko": "일본 도쿄",
+    "en": "Tokyo, Japan",
+    "ja": "日本・東京"
+   },
+   "website": "https://www.nomuraholdings.com",
+   "longDesc": {
+    "ko": "1925년 설립된 일본 최대 증권사로, 아시아 주식 리서치와 인수·자문 부문에서 오랜 영향력을 갖고 있다. 반도체·메모리 업종 애널리스트 리포트가 아시아 시장의 주가 흐름을 좌우하는 경우가 많다.",
+    "en": "Founded in 1925, Nomura is Japan's largest securities firm, with a long track record in Asian equity research and M&A advisory. Its analyst calls on semiconductor and memory stocks often move Asian markets.",
+    "ja": "1925年創業の日本最大の証券会社で、アジア株リサーチとM&Aアドバイザリーで長年の影響力を持つ。半導体・メモリー銘柄に関するアナリストレポートがアジア市場の株価を動かすことも多い。"
+   }
+  },
+  "MERITZ SECURITIES": {
+   "kind": "company",
+   "sector": {
+    "en": "Securities",
+    "ko": "증권",
+    "ja": "証券"
+   },
+   "desc": {
+    "ko": "메리츠금융지주 산하 한국 증권사. 반도체·메모리 업종 리서치로 자주 인용된다.",
+    "en": "South Korean brokerage under Meritz Financial Group, frequently cited for its semiconductor and memory sector research.",
+    "ja": "メリッツ金融グループ傘下の韓国証券会社。半導体・メモリー業種のリサーチでよく引用される。"
+   },
+   "aliases": [
+    "메리츠증권",
+    "Meritz Securities",
+    "メリッツ証券"
+   ],
+   "logo": "imeritz.com",
+   "exchange": "비상장(메리츠금융지주 100% 자회사)",
+   "ceo": {
+    "ko": "장원재",
+    "en": "Jang Won-jae",
+    "ja": "チャン・ウォンジェ"
+   },
+   "founded": "1973",
+   "hq": {
+    "ko": "서울",
+    "en": "Seoul, South Korea",
+    "ja": "韓国・ソウル"
+   },
+   "website": "https://home.imeritz.com",
+   "longDesc": {
+    "ko": "1973년 한일증권으로 출발해 여러 차례 이름을 바꾼 끝에 2000년 메리츠증권이 됐다. 2022~2023년 메리츠금융지주가 완전자회사로 편입하며 상장폐지됐다. 국내 반도체·메모리 업종 실적 추정 리포트로 자주 인용된다.",
+    "en": "Founded in 1973 as Hanil Securities, it went through several name changes before becoming Meritz Securities in 2000. Meritz Financial Group took it fully private in 2022-2023 by delisting it as a wholly owned subsidiary. Its earnings estimates on Korean semiconductor and memory names are widely cited.",
+    "ja": "1973年に韓一証券として創業し、複数回の社名変更を経て2000年にメリッツ証券となった。2022〜2023年にメリッツ金融グループの完全子会社となり上場廃止された。韓国の半導体・メモリー業種の業績推定リポートでよく引用される。"
+   }
+  },
+  "BAIN CAPITAL": {
+   "kind": "company",
+   "sector": {
+    "en": "Private Equity",
+    "ko": "사모펀드",
+    "ja": "プライベートエクイティ"
+   },
+   "desc": {
+    "ko": "미국계 대형 사모펀드. 2018년 도시바메모리(현 키옥시아) 인수를 주도했다.",
+    "en": "Major US private equity firm that led the 2018 acquisition of Toshiba Memory, now Kioxia.",
+    "ja": "米国の大手プライベートエクイティ。2018年の東芝メモリ（現キオクシア）買収を主導した。"
+   },
+   "aliases": [
+    "베인캐피탈",
+    "Bain Capital",
+    "ベインキャピタル"
+   ],
+   "logo": "baincapital.com",
+   "exchange": "비상장",
+   "ceo": {
+    "ko": "데이비드 그로스",
+    "en": "David Gross",
+    "ja": "デイビッド・グロス"
+   },
+   "founded": "1984",
+   "hq": {
+    "ko": "미국 보스턴",
+    "en": "Boston, USA",
+    "ja": "米国・ボストン"
+   },
+   "website": "https://www.baincapital.com",
+   "longDesc": {
+    "ko": "1984년 설립된 미국 사모펀드로, 2018년 SK하이닉스 등과 컨소시엄을 꾸려 회계 부정 스캔들로 매물로 나온 도시바메모리(현 키옥시아)를 인수했다. 이 투자는 이후 AI발 메모리 슈퍼사이클을 타고 사모펀드 업계 최대 성공 사례 중 하나로 꼽히며, 2026년 지분을 전량 정리했다.",
+    "en": "Founded in 1984, Bain Capital led a 2018 consortium with SK Hynix and others to buy Toshiba Memory, now Kioxia, when it was put up for sale amid an accounting scandal. Riding the AI-driven memory supercycle, the deal became one of private equity's biggest wins, and Bain fully exited its stake in 2026.",
+    "ja": "1984年設立の米プライベートエクイティ。2018年にSKハイニックスなどとコンソーシアムを組み、会計不正スキャンダルで売却対象となった東芝メモリ（現キオクシア）を買収した。この投資はAI主導のメモリースーパーサイクルに乗り、プライベートエクイティ業界最大級の成功例とされ、2026年に保有株を全て売却した。"
+   }
+  },
+  "지급보증": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "돈을 빌린 쪽이 못 갚으면 제3자가 대신 갚아주기로 하는 약속.",
+    "en": "A promise that a third party will repay a debt if the original borrower can't.",
+    "ja": "借り手が返済できない場合に第三者が肩代わりして返済する約束。"
+   },
+   "longDesc": {
+    "ko": "은행이나 채권투자자는 빌려주는 대상의 신용도만 보고 돈을 내놓기 어려울 때가 있다. 이때 신용도가 더 높은 제3자가 못 갚으면 내가 대신 갚겠다고 보증을 서면, 훨씬 큰 돈을 훨씬 낮은 금리로 빌릴 수 있게 된다. 다만 보증을 선 쪽은 원래 빌린 곳이 부실해지면 그 빚을 그대로 떠안는 위험을 진다.",
+    "en": "When a borrower's own credit isn't strong enough to raise money cheaply, a financially stronger third party can guarantee the debt, promising to repay it if the borrower can't. That backing lets much larger sums get raised at much lower interest rates, but it also means the guarantor absorbs the debt if the original borrower fails.",
+    "ja": "借り手自身の信用力だけでは低い金利で資金を集めづらい場合、より信用力の高い第三者が返済できなければ自分が代わりに返すと保証することで、はるかに多くの資金をはるかに低い金利で調達できるようになる。ただし借り手が破綻すれば、保証した側がその負債をそのまま抱え込むリスクがある。"
+   },
+   "aliases": [
+    "지급보증",
+    "backstop",
+    "保証",
+    "バックストップ"
+   ],
+   "name": {
+    "ko": "지급보증",
+    "en": "Backstop (guarantee)",
+    "ja": "保証（バックストップ）"
+   }
+  },
+  "순환금융": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "한쪽이 상대에게 돈을 빌려주거나 보증을 서주면서, 그 돈이 결국 자기 매출로 되돌아오게 만드는 거래 구조.",
+    "en": "A deal structure where the money one company lends or guarantees ends up flowing back to it as its own revenue.",
+    "ja": "ある企業が相手に資金を貸したり保証したりした結果、その資金が最終的に自社の売上として戻ってくる取引構造。"
+   },
+   "longDesc": {
+    "ko": "예를 들어 A사가 B사에 자금을 빌려주거나 빚을 보증해주고, B사가 그 돈으로 A사의 제품을 사면, A사 입장에서는 매출과 부채(또는 우발채무)가 동시에 늘어난다. 겉보기엔 거래가 활발해 보이지만, 실제로 외부에서 새로 유입된 돈은 많지 않을 수 있어 매출 성장의 질을 의심받는다.",
+    "en": "If Company A lends money to or guarantees debt for Company B, and B then uses that money to buy A's products, A's revenue and liabilities (or contingent liabilities) rise together. Deal volume looks strong on the surface, but little genuinely new money may have entered the system, which raises questions about the quality of the revenue growth.",
+    "ja": "例えばA社がB社に資金を貸したり負債を保証したりし、B社がその資金でA社の製品を買えば、A社の売上と負債（または偶発債務）は同時に増える。表面上は取引が活発に見えるが、実際に外部から新たに流入した資金は少ない場合があり、売上成長の質が疑われる。"
+   },
+   "aliases": [
+    "순환금융",
+    "circular financing",
+    "循環金融"
+   ],
+   "name": {
+    "ko": "순환금융",
+    "en": "Circular financing",
+    "ja": "循環金融"
+   }
+  },
+  "전환사채": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "정해진 조건에 따라 주식으로 바꿀 수 있는 권리가 붙은 채권.",
+    "en": "A bond that can be converted into a set number of shares under agreed terms.",
+    "ja": "一定の条件で株式に転換できる権利が付いた債券。"
+   },
+   "longDesc": {
+    "ko": "발행 시점에는 이자를 받는 일반 채권이지만, 정해둔 가격에 주식으로 바꿀 권리가 붙어 있다. 주가가 오르면 주식으로 전환해 시세차익을 볼 수 있고, 오르지 않으면 채권으로 남아 원리금을 받을 수 있어 투자자에게 유리하다. 발행 회사 입장에서는 주가가 오를 때 이 잠재 주식 물량이 얼마나 되는지가 지분·실적 해석에 영향을 준다.",
+    "en": "It pays interest like a regular bond, but carries the right to convert into shares at a set price. If the stock rises, the holder can convert for a gain; if not, they can just collect principal and interest, making it attractive to investors. For the issuing company, how many shares this could turn into matters for reading ownership and earnings.",
+    "ja": "発行時は利息を受け取る通常の債券だが、あらかじめ決めた価格で株式に転換できる権利が付いている。株価が上がれば株式に転換して値上がり益を得られ、上がらなければ債券のまま元利金を受け取れるため投資家に有利だ。発行企業にとっては、株価上昇時にこの潜在株式数がどれだけになるかが持分・業績の解釈に影響する。"
+   },
+   "aliases": [
+    "전환사채",
+    "CB",
+    "convertible bond",
+    "転換社債"
+   ],
+   "name": {
+    "ko": "전환사채",
+    "en": "Convertible bond (CB)",
+    "ja": "転換社債"
+   }
+  },
+  "SPC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "특정 거래 하나만을 위해 만든 서류상 회사.",
+    "en": "A paper company set up to handle a single specific transaction.",
+    "ja": "特定の取引一つのためだけに作られる書類上の会社。"
+   },
+   "longDesc": {
+    "ko": "특수목적법인(Special Purpose Company)은 자체 사업 없이 특정 인수·투자 건 하나만 처리하려고 세운 회사다. 여러 투자자가 이 법인을 통해 함께 돈을 넣으면, 각자 지분만큼 손익을 나누면서도 법적 책임은 SPC 안에 가둘 수 있다. 인수·합병이나 사모펀드 투자에서 흔히 쓰인다.",
+    "en": "A special purpose company (SPC) has no business of its own and exists only to handle one acquisition or investment. Multiple investors can pool money through it, sharing gains and losses by their stake while keeping legal liability contained inside the SPC. Common in M&A and private equity deals.",
+    "ja": "特別目的会社（SPC）は独自の事業を持たず、特定の買収・投資案件一つだけを処理するために設立される。複数の投資家がこの法人を通じて資金を出し合い、持分に応じて損益を分け合いながら、法的責任はSPCの中に限定できる。M&Aやプライベートエクイティ投資でよく使われる。"
+   },
+   "aliases": [
+    "SPC",
+    "특수목적법인",
+    "special purpose company",
+    "特別目的会社"
+   ],
+   "name": {
+    "ko": "SPC(특수목적법인)",
+    "en": "SPC (special purpose company)",
+    "ja": "SPC（特別目的会社）"
+   }
+  },
+  "커촹반": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "중국이 첨단기술 기업 상장을 위해 상하이거래소에 만든 별도 시장.",
+    "en": "A Shanghai Stock Exchange board created specifically for Chinese tech and science companies to go public.",
+    "ja": "中国のハイテク企業上場のため上海証券取引所が設けた専用市場。"
+   },
+   "longDesc": {
+    "ko": "커촹반(科创板, STAR Market)은 2019년 상하이증권거래소가 반도체·바이오 등 첨단기술 기업을 위해 만든 시장이다. 미국 나스닥과 비슷한 역할을 하며, 아직 이익을 못 내는 기업도 상장할 수 있는 등 본토의 다른 시장보다 상장 기준이 유연하다. 중국의 반도체 자립 전략과 맞물려 관련 기업들의 주요 상장 창구로 쓰인다.",
+    "en": "The STAR Market is a Shanghai Stock Exchange board launched in 2019 for tech, semiconductor, and biotech companies. It functions much like Nasdaq, with more flexible listing rules than mainland China's other boards, including allowing companies that aren't yet profitable to list. It has become the main venue for companies central to China's semiconductor self-sufficiency push.",
+    "ja": "科創板（STARマーケット）は2019年に上海証券取引所が半導体・バイオなどハイテク企業向けに設けた市場。米ナスダックに近い役割を持ち、まだ黒字化していない企業でも上場できるなど、中国本土の他市場より上場基準が柔軟だ。中国の半導体自給戦略と結びつき、関連企業の主要な上場先となっている。"
+   },
+   "aliases": [
+    "커촹반",
+    "科创板",
+    "STAR Market",
+    "スターマーケット"
+   ],
+   "name": {
+    "ko": "커촹반(과학혁신판)",
+    "en": "STAR Market",
+    "ja": "科創板（スターマーケット）"
    }
   }
  }
