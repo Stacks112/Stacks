@@ -374,7 +374,7 @@ const STRINGS = {
     hot: "이번 주 핫한 읽을거리",
     original: "원문",
     gist: "핵심",
-    why: "왜 중요한가",
+    why: "투자 포인트",
     read: "원문 보기",
     related: "함께 읽기",
     oppLabel: "반대편",
@@ -2660,7 +2660,10 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .gimg figcaption a{color:var(--muted);text-decoration:underline;text-underline-offset:2px;}
 
 /* lab: 세 줄 요약 + 왜 중요한가를 한 박스로 */
-.why-lab .sum3{white-space:pre-line;font-weight:400;line-height:1.65;}
+.why-lab ul.sum3{list-style:none;margin:0;padding:0;font-weight:400;}
+.why-lab ul.sum3 li{position:relative;padding-left:16px;line-height:1.6;margin:0 0 7px;}
+.why-lab ul.sum3 li:last-child{margin-bottom:0;}
+.why-lab ul.sum3 li::before{content:"·";position:absolute;left:3px;top:-.02em;color:var(--muted);font-weight:700;}
 .why-lab .label.why2{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);}
 
 .splitb{margin-top:14px;padding:11px 12px 10px;border:1px dashed var(--line);border-radius:12px;}
@@ -3082,7 +3085,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=11469974">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=5cf95463">
-<link id="twc-css" rel="stylesheet" href="assets/twc.css?v=e69a9459">
+<link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
 <body>
 <nav>
@@ -7232,6 +7235,10 @@ function bumpCommentCount(id){
   COMMENT_COUNTS[id] = (COMMENT_COUNTS[id] || 0) + 1;
   egSet("cn-" + id, COMMENT_COUNTS[id]);
 }
+function decCommentCount(id){
+  COMMENT_COUNTS[id] = Math.max(0, (COMMENT_COUNTS[id] || 0) - 1);
+  egSet("cn-" + id, COMMENT_COUNTS[id]);
+}
 
 /* Like: optimistic toggle + persist locally + tell the worker. */
 async function toggleLike(id){
@@ -8746,7 +8753,7 @@ function cardEl(item, S, idx){
       ${item.lab ? "" : splitHtml(item)}
       ${(item.lab && item.sum3 && LANG === "ko") ? `<div class="why why-lab">
         <div class="label">세 줄 요약</div>
-        <p class="sum3">${esc(item.sum3)}</p>
+        <ul class="sum3">${String(item.sum3).split("\n").map(l=>l.trim()).filter(Boolean).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
         <div class="label why2">${S.why}</div>
         <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
       </div>` : `<div class="why">
@@ -9053,8 +9060,15 @@ if ("serviceWorker" in navigator){
      This is what makes design fixes (like dark mode) actually reach people
      without them having to clear the cache by hand. */
   let swReloaded = false;
+  /* Only an UPDATE (a worker replacing one that already controlled this page)
+     should trigger the reload. On the very first visit the page loads
+     uncontrolled and the freshly installed worker calls clients.claim(),
+     which also fires controllerchange — reloading there throws the visitor
+     out of the intro mid-render and back in (the mobile "flicker"). Capturing
+     the controller at startup lets us skip that first, harmless claim. */
+  const hadController = !!navigator.serviceWorker.controller;
   navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (swReloaded) return;
+    if (swReloaded || !hadController) return;
     swReloaded = true;
     location.reload();
   });
@@ -9978,7 +9992,7 @@ bootData();
 <script src="assets/v83tw.js?v=65e17f0c"></script>
 
 <!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
-<script src="assets/twc.js?v=d2093bb1"></script>
+<script src="assets/twc.js?v=3ca67014"></script>
 
 <!-- ============================================================
      X-PARITY 데스크톱 셸

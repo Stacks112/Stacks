@@ -5,7 +5,7 @@
      - everything else : cache first, refresh in the background
    Bump CACHE below to force everyone onto a clean cache. */
 
-const CACHE = "stacks-v30";   /* lab feed: read-original moves onto the tag row, language note dropped */
+const CACHE = "stacks-v31";   /* 3-line summary as dotted list, invest-point label, intro flicker fix, own-comment edit/delete */
 
 const SHELL = [
   "./",
