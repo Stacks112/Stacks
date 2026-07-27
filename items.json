@@ -3833,7 +3833,15 @@
     "en": "Analyst Jukan has turned very bearish on Nvidia, citing a reportedly leaked call from DeepSeek's Liang Wenfeng.\nHis point: Nvidia's moat is software (CUDA), not silicon. DeepSeek already routed around it with its own tools and open-source TileLang.\nEven if the software moves to Huawei chips, a hardware gap remains. Readings of that gap split between 4x (Wenfeng) and 17x (CFR).",
     "ja": "アナリストのJukanがエヌビディアに「非常に弱気」へ転じた。根拠はディープシーク梁文峰氏の流出したとされる発言だ。\n要点は、エヌビディアの堀はチップではなくソフト(CUDA)だということ。ディープシークは自社ツールとオープンソースのTileLangで既にその壁を迂回した。\nソフトがファーウェイ製チップへ移ってもハード効率の差は残る。その差の読みは4倍(梁氏)と17倍(CFR)に割れる。"
    },
-   "lab": true
+   "lab": true,
+   "xembed": true,
+   "quote": {
+    "lines": [
+     "One reason I’m bullish on AMD: Advances in coding AI will naturally accelerate ROCm’s development and help close the gap with CUDA.",
+     "As part of its recent investment in Anthropic, AMD has already announced that it will actively use Claude Code for chip design and software…"
+    ],
+    "cite": "Jukan · 2026.07.23"
+   }
   },
   {
    "date": "2026-07-23",
@@ -5695,7 +5703,16 @@
     "en": "A CLO bundles corporate loans and sells them in risk layers. Its bottom 'equity' slice, which takes losses first, shook hard in Q1 2026.\nAccording to The Kobeissi Letter, that slice returned minus 15 percent, its worst quarter since the pandemic. That figure is Kobeissi's claim, not independently confirmed.\nWhat is confirmed is the direction: CLO equity payouts fell to their lowest since 2018, driven by an AI-fueled slide in software loans. The bottom slice tends to warn first.",
     "ja": "企業向け融資を束ね、リスク等級ごとに売る商品がCLOだ。その最下層、最初に損失を負う「エクイティ」の部分が2026年1〜3月に大きく揺れた。\nコベイシによれば、この部分は-15%のリターンでパンデミック以降最悪の四半期だった。ただしこの数字はコベイシの主張で、独立には確認されていない。\n確認できるのは方向だ。CLOエクイティの分配金は2018年以来の低水準に落ち、原因はAI発のソフトウェア融資の急落だ。最下層は早期警報になりがちだ。"
    },
-   "lab": true
+   "lab": true,
+   "xembed": true,
+   "quote": {
+    "lines": [
+     "Stress in one of the credit market's riskiest areas is intensifying:",
+     "Collateralized loan obligation (CLO) equity tranches returned -15% in Q1 2026, their worst quarterly performance since the 2020 pandemic crash.",
+     "These tranches represent the highest-risk layer of the $1.3…"
+    ],
+    "cite": "The Kobeissi Letter · 2026.07.20"
+   }
   },
   {
    "date": "2026-07-20",
