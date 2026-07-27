@@ -208,6 +208,7 @@ const STRINGS = {
     related: "Related",
     oppLabel: "The other side",
     oppNote: "Same company, opposite call",
+    adLabel: "Ad",
     fromSource: "From the source",
     chkLabel: "📊 We looked it up",
     splitLabel: "How to tell which",
@@ -379,6 +380,7 @@ const STRINGS = {
     related: "함께 읽기",
     oppLabel: "반대편",
     oppNote: "같은 종목을 반대로 본 글",
+    adLabel: "광고",
     fromSource: "원문에서",
     chkLabel: "📊 확인해보면",
     splitLabel: "구분 기준",
@@ -550,6 +552,7 @@ const STRINGS = {
     related: "あわせて読む",
     oppLabel: "反対の見方",
     oppNote: "同じ銘柄への逆の見方",
+    adLabel: "広告",
     fromSource: "原文から",
     chkLabel: "📊 確認すると",
     splitLabel: "見分ける基準",
@@ -880,6 +883,21 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
   transition:transform .18s ease,box-shadow .18s ease;
 }
 .card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(17,18,20,.09);}
+/* in-feed ad. Deliberately NOT .card: it must not pick up the hover lift, the
+   v82 mobile card compression, or anything else that treats it as an article.
+   No fixed height either, or AdSense renders the unit distorted. The label is
+   ours, above the unit, so the ad is identifiable before it paints. */
+.feedad{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:16px;overflow:hidden;}
+.feedad-l{font-family:var(--mono-font);font-size:10px;letter-spacing:.05em;
+  color:var(--muted);margin-bottom:8px;}
+.feedad ins{display:block;}
+/* mobile: sit flush between cards the way html.rbeta styles .card — no card
+   chrome, transparent so it does not read as a lighter block in dark mode,
+   same 1px separator and same horizontal padding so the label lines up. */
+@media (max-width:1023px){ html.rbeta #feedList .feedad{background:transparent;
+  border-radius:0;border-left:0;border-right:0;border-top:0;
+  border-bottom:1px solid var(--line);margin-bottom:0;padding:18px 20px;} }
 .card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
 .avatar{
   width:36px;height:36px;border-radius:50%;flex:0 0 36px;
@@ -8440,6 +8458,59 @@ var READ_VIEW = false;     /* 좌측 '읽은 글' 보관함 뷰 */
 var READ_DIV_IDX = -1;     /* 피드에서 "이미 읽은 글" 구분선이 들어갈 인덱스 */
 let feedIO = null;
 
+/* ---- in-feed ads --------------------------------------------------------
+   AdSense in-feed unit, placed between cards the way a promoted post sits in a
+   timeline. Both shells share appendFeedPage(), so this one hook covers the
+   desktop 3-column (v83) and the mobile shell (v82) at once.
+
+   ADS_ON stays false until AdSense approves the site: an unapproved slot paints
+   nothing, so switching it on early would only leave labelled holes in the feed.
+   Frequency is deliberately mild (first ad after the 6th card, then every 9) —
+   the first screen stays ad-free, which is both better reading and safer while
+   a reviewer is looking at the site. */
+const ADS_ON         = false;
+const AD_CLIENT      = "ca-pub-1656582515648973";
+const AD_SLOT        = "9834279481";
+const AD_LAYOUT_KEY  = "-fb+5w+4e-db+86";
+const AD_FIRST_AFTER = 6;
+const AD_EVERY       = 9;
+
+/* Ads ride the plain feed only. Search results and bookmarks are short,
+   intent-driven lists where an ad is both worth less and more intrusive. */
+function feedAdsAllowed(){
+  if (!ADS_ON) return false;
+  if (typeof QUERY !== "undefined" && QUERY) return false;
+  if (typeof BM_ONLY !== "undefined" && BM_ONLY) return false;
+  if (typeof SB_VIEW !== "undefined" && SB_VIEW) return false;
+  return CUR_ITEMS && CUR_ITEMS.length >= AD_FIRST_AFTER + 2;
+}
+
+/* idx is 0-based over CUR_ITEMS, so the ad goes AFTER the (idx+1)-th card. */
+function feedAdAfter(idx){
+  const n = idx + 1;
+  return n >= AD_FIRST_AFTER && (n - AD_FIRST_AFTER) % AD_EVERY === 0;
+}
+
+function appendFeedAd(list, S){
+  const wrap = document.createElement("div");
+  wrap.className = "feedad";
+  wrap.setAttribute("role", "complementary");
+  wrap.setAttribute("aria-label", S.adLabel || "Ad");
+  wrap.innerHTML =
+    '<div class="feedad-l">' + esc(S.adLabel || "Ad") + "</div>"
+    + '<ins class="adsbygoogle" style="display:block"'
+    + ' data-ad-format="fluid"'
+    + ' data-ad-layout-key="' + AD_LAYOUT_KEY + '"'
+    + ' data-ad-client="' + AD_CLIENT + '"'
+    + ' data-ad-slot="' + AD_SLOT + '"></ins>';
+  list.appendChild(wrap);
+  /* push AFTER the ins is in the document: adsbygoogle scans the DOM when it
+     is pushed, and a slot pushed while detached is silently skipped. One push
+     per new ins, never a re-push of one already filled. */
+  try { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+  catch (e){ wrap.remove(); }
+}
+
 function appendFeedPage(S){
   S = S || STRINGS[LANG];
   const list = document.getElementById("feedList");
@@ -8457,6 +8528,7 @@ function appendFeedPage(S){
     const el = cardEl(CUR_ITEMS[idx], S, idx - start);
     list.appendChild(el);
     linkifyEntities(el);
+    if (feedAdsAllowed() && feedAdAfter(idx) && idx < CUR_ITEMS.length - 1) appendFeedAd(list, S);
   }
   SHOWN = end;
   hydrateImages();
