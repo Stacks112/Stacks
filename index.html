@@ -212,6 +212,7 @@ const STRINGS = {
     fromSource: "From the source",
     chkLabel: "📊 We looked it up",
     splitLabel: "How to tell which",
+    sum3Label: "In three lines",
     langNoteKO: "Original in Korean · auto-translate works well",
     langNoteEN: "Original in English",
     langNoteJA: "Original in Japanese · auto-translate works well",
@@ -384,6 +385,7 @@ const STRINGS = {
     fromSource: "원문에서",
     chkLabel: "📊 확인해보면",
     splitLabel: "구분 기준",
+    sum3Label: "세 줄 요약",
     langNoteKO: "원문: 한국어",
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     langNoteJA: "원문: 일본어 · 브라우저 번역으로도 충분합니다",
@@ -556,6 +558,7 @@ const STRINGS = {
     fromSource: "原文から",
     chkLabel: "📊 確認すると",
     splitLabel: "見分ける基準",
+    sum3Label: "3行まとめ",
     langNoteKO: "原文: 韓国語",
     langNoteEN: "原文: 英語",
     langNoteJA: "原文: 日本語",
@@ -3562,11 +3565,22 @@ function srcBlockHtml(item){
 
 /* What would have to happen for either reading to be right. Deliberately the
    last thing in the body: it is only useful once the argument has landed. */
+/* sum3 and split were Korean-only when they were introduced, so the value is a
+   bare string on older cards. Accept either shape: a string still means Korean
+   (and stays hidden in en/ja, exactly as before), an {en,ko,ja} object gives
+   each language its own text. No data migration needed. */
+function langText(v, lang){
+  if (!v) return "";
+  if (typeof v === "string") return lang === "ko" ? v : "";
+  return v[lang] || "";
+}
+
 function splitHtml(item){
   const S = STRINGS[LANG] || STRINGS.en;
-  if (!item.split) return "";
+  const t = langText(item.split, LANG);
+  if (!t) return "";
   return '<div class="splitb"><div class="label">' + esc(S.splitLabel) + "</div><p>" +
-         esc(item.split) + "</p></div>";
+         esc(t) + "</p></div>";
 }
 
 /* Break a gist into short paragraphs (every 2 sentences) so long
@@ -8823,9 +8837,9 @@ function cardEl(item, S, idx){
         <div class="gist rich">${gistRich(item)}</div>
       </details>
       ${item.lab ? "" : splitHtml(item)}
-      ${(item.lab && item.sum3 && LANG === "ko") ? `<div class="why why-lab">
-        <div class="label">세 줄 요약</div>
-        <ul class="sum3">${String(item.sum3).split("\n").map(l=>l.trim()).filter(Boolean).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
+      ${(item.lab && langText(item.sum3, LANG)) ? `<div class="why why-lab">
+        <div class="label">${S.sum3Label}</div>
+        <ul class="sum3">${langText(item.sum3, LANG).split("\n").map(l=>l.trim()).filter(Boolean).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
         <div class="label why2">${S.why}</div>
         <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
       </div>` : `<div class="why">
