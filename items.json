@@ -16784,6 +16784,391 @@
     "Philadelphia Semiconductor Index",
     "フィラデルフィア半導体指数"
    ]
+  },
+  "락업": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "상장 직후 일정 기간 동안 대주주 등의 보유 주식을 팔지 못하게 묶어두는 제도.",
+    "en": "A lock-up restricts major shareholders from selling their shares for a set period after listing.",
+    "ja": "上場直後の一定期間、大株主などの保有株の売却を禁じる制度。"
+   },
+   "longDesc": {
+    "ko": "보호예수라고도 한다. 상장 직후 대량 매도로 주가가 급락하는 걸 막기 위해, 창업자·초기 투자자 등의 지분을 일정 기간(보통 수개월~1년 이상) 팔지 못하게 묶는다. 이 기간에는 시장에서 실제로 거래 가능한 물량이 적어, 같은 매수세가 몰려도 주가가 유통주식이 많을 때보다 훨씬 크게 움직인다. 락업이 풀리는 날에는 대기 물량이 쏟아지며 주가가 흔들리는 경우가 많아, 투자자들이 미리 날짜를 챙겨본다.",
+    "en": "Also called a lock-up period. It keeps founders and early investors from selling shares for months to a year or more after an IPO, preventing an immediate flood of selling from crushing the price. During that window, the freely tradable float is small, so the same amount of buying moves the price far more than it would with a normal float. When the lock-up expires and previously restricted shares can trade, the added supply often shakes the stock, so investors track the date closely.",
+    "ja": "保護預りとも呼ばれる。上場直後の大量売却による株価急落を防ぐため、創業者や初期投資家の持分を数カ月から1年以上、売却できないよう縛る制度。この期間は市場で実際に取引可能な株数が少なく、同じ買い需要でも流通株が多い場合よりはるかに株価が動きやすい。ロックアップが解除される日には待機していた売り物が出て株価が揺れることが多く、投資家はその日程を注視する。"
+   },
+   "aliases": [
+    "락업",
+    "lock-up",
+    "lockup",
+    "보호예수",
+    "ロックアップ"
+   ],
+   "name": {
+    "ko": "락업",
+    "en": "Lock-up",
+    "ja": "ロックアップ"
+   }
+  },
+  "PER": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "주가를 주당순이익으로 나눈 값. 이익 대비 주가가 얼마나 비싼지 보여준다.",
+    "en": "Price divided by earnings per share, showing how expensive a stock is relative to its profit.",
+    "ja": "株価を1株当たり利益で割った値。利益に対して株価がどれだけ割高かを示す。"
+   },
+   "longDesc": {
+    "ko": "Price-to-Earnings Ratio(주가수익비율)의 약자다. PER 20배라면 그 회사가 지금 벌어들이는 이익의 20년치를 주가로 쳐준다는 뜻이다. 같은 업종 안에서 PER이 높을수록 시장이 그 회사의 미래 이익 성장을 더 크게 기대한다는 신호로 읽힌다. 다만 아직 실현되지 않은 미래 실적을 전제로 계산한 PER(예상 PER)은 그 전제가 틀리면 통째로 무의미해질 수 있다.",
+    "en": "Short for Price-to-Earnings Ratio. A P/E of 20x means the market is pricing the stock at 20 years of its current earnings. Within the same industry, a higher P/E usually signals the market expects faster future profit growth. A forward P/E built on earnings that haven't happened yet, though, can become meaningless if that growth assumption turns out wrong.",
+    "ja": "Price-to-Earnings Ratio(株価収益率)の略。PER20倍なら、その企業が今稼いでいる利益の20年分を株価として評価していることになる。同業種内でPERが高いほど、市場がその企業の将来の利益成長をより大きく期待しているサインとされる。ただし、まだ実現していない将来の業績を前提に計算した予想PERは、その前提が外れると意味をなさなくなることもある。"
+   },
+   "aliases": [
+    "PER",
+    "주가수익비율",
+    "Price-to-Earnings Ratio",
+    "P/E",
+    "PER倍率",
+    "株価収益率"
+   ],
+   "name": {
+    "ko": "PER",
+    "en": "P/E ratio",
+    "ja": "PER"
+   }
+  },
+  "비영업이익": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "회사의 본업(제품·서비스 판매)이 아니라 투자자산 처분·평가 등에서 생기는 이익.",
+    "en": "Profit from sources outside a company's core business, such as selling or revaluing investment assets.",
+    "ja": "本業（製品・サービス販売）以外、投資資産の処分・評価などから生じる利益。"
+   },
+   "longDesc": {
+    "ko": "영업이익과 반대되는 개념이다. 영업이익은 제품·서비스를 팔아서 남긴 돈이고, 비영업이익(영업외이익)은 보유 주식·지분을 팔거나 그 가치가 올라서 생긴 돈, 이자수익, 환차익 같은 것들이다. 세전이익(영업이익+비영업이익-비용)이 크게 늘었을 때 그 이유가 비영업이익 쪽이라면, 본업이 좋아진 게 아니라 일회성 요인일 가능성이 크다. 실적을 볼 때 세전이익이나 순이익만 보지 않고 영업이익을 따로 확인해야 하는 이유다.",
+    "en": "The counterpart to operating profit. Operating profit comes from selling products or services; non-operating income comes from things like selling or revaluing shares and stakes the company holds, interest income, or currency gains. When pretax profit jumps mainly because of non-operating income rather than operating profit, that growth is more likely a one-off than proof the core business improved, which is why it's worth checking operating profit separately from pretax or net income.",
+    "ja": "営業利益の対概念。営業利益は製品・サービスの販売から得た利益で、営業外利益（非営業利益）は保有株式・持分の売却やその評価額上昇、利息収入、為替差益などから生じる。税前利益（営業利益＋営業外利益－費用）が大きく伸びた理由が営業外利益にある場合、本業が改善したというより一時的な要因である可能性が高い。決算を見る際、税前利益や純利益だけでなく営業利益を別途確認すべき理由はここにある。"
+   },
+   "aliases": [
+    "비영업이익",
+    "영업외이익",
+    "non-operating income",
+    "営業外利益"
+   ],
+   "name": {
+    "ko": "비영업이익",
+    "en": "Non-operating income",
+    "ja": "営業外利益"
+   }
+  },
+  "세전이익": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "세금을 내기 전 단계의 이익. 영업이익에 비영업이익을 더하고 비용을 뺀 값이다.",
+    "en": "Profit before taxes are deducted; operating profit plus non-operating income minus expenses.",
+    "ja": "税金を差し引く前の利益。営業利益に営業外利益を加え、費用を差し引いた値。"
+   },
+   "longDesc": {
+    "ko": "회사가 법인세를 내기 직전 단계의 이익으로, 영어로는 pretax profit이라 한다. 여기서 법인세를 빼면 최종 순이익이 된다. 세전이익 하나만 보면 본업(영업이익)이 잘된 건지 지분 매각 같은 일회성 비영업이익 덕인지 구분이 안 되므로, 헤드라인 실적을 읽을 때는 영업이익과 나란히 봐야 한다.",
+    "en": "The profit a company has just before corporate tax is deducted, also called pretax profit. Subtract tax from this and you get net income. Pretax profit alone doesn't show whether the gain came from the core business (operating profit) or a one-off like a stake sale, so it needs to be read alongside operating profit rather than on its own.",
+    "ja": "法人税を差し引く直前段階の利益で、英語ではpretax profitと呼ぶ。ここから法人税を引くと最終的な純利益になる。税前利益だけを見ても、それが本業（営業利益）の好調によるものか、持分売却のような一時的な営業外利益によるものかは区別できないため、見出しの業績を読む際は営業利益と併せて確認する必要がある。"
+   },
+   "aliases": [
+    "세전이익",
+    "법인세차감전이익",
+    "pretax profit",
+    "pretax income",
+    "税前利益"
+   ],
+   "name": {
+    "ko": "세전이익",
+    "en": "Pretax profit",
+    "ja": "税前利益"
+   }
+  },
+  "FC-BGA": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "고성능 칩과 메인보드를 잇는 첨단 패키지 기판. ABF 기판 기술을 쓴다.",
+    "en": "An advanced package substrate connecting a high-end chip to its board, built on ABF substrate technology.",
+    "ja": "高性能チップとメインボードをつなぐ先端パッケージ基板。ABF基板技術を使う。"
+   },
+   "longDesc": {
+    "ko": "Flip Chip Ball Grid Array의 약자다. 칩을 뒤집어(flip chip) 기판에 붙이고, 기판 아래에 볼(ball) 모양 땜납으로 메인보드와 연결하는 패키지 방식이다. CPU·GPU처럼 핀 수가 많고 발열이 큰 고성능 칩에 주로 쓰인다. AI 서버용 대형 칩일수록 기판 면적도 커야 하는데, 이런 대형 FC-BGA를 만들 수 있는 업체(이비덴·삼성전기·유니마이크론 등)가 몇 안 돼 AI 반도체 공급망의 병목 중 하나로 꼽힌다.",
+    "en": "Short for Flip Chip Ball Grid Array. The chip is flipped onto the substrate face-down, and the substrate connects to the motherboard through an array of solder balls underneath. It's the standard packaging style for high-pin-count, high-heat chips like CPUs and GPUs. Large AI server chips need proportionally large substrates, and only a handful of makers, Ibiden, Samsung Electro-Mechanics and Unimicron among them, can produce them at that size, making FC-BGA one of the recurring bottlenecks in the AI chip supply chain.",
+    "ja": "Flip Chip Ball Grid Arrayの略。チップを反転させて(flip chip)基板に接着し、基板の下面にあるボール状のはんだでメインボードと接続するパッケージ方式。ピン数が多く発熱の大きいCPU・GPUなどの高性能チップに主に使われる。AIサーバー向けの大型チップほど基板面積も大きくする必要があるが、このような大型FC-BGAを製造できる企業(イビデン・サムスン電機・ユニマイクロンなど)は数社しかなく、AI半導体サプライチェーンのボトルネックの一つとされる。"
+   },
+   "aliases": [
+    "FC-BGA",
+    "Flip Chip Ball Grid Array",
+    "ABF 패키지"
+   ],
+   "name": {
+    "ko": "FC-BGA",
+    "en": "FC-BGA",
+    "ja": "FC-BGA"
+   }
+  },
+  "과불화화합물": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "불소를 포함해 잘 분해되지 않는 화합물. 반도체 세정·코팅 공정에도 쓰인다.",
+    "en": "A class of fluorine-based compounds that resist breaking down, also used in chip cleaning and coating steps.",
+    "ja": "フッ素を含み分解されにくい化合物。半導体の洗浄・コーティング工程にも使われる。"
+   },
+   "longDesc": {
+    "ko": "PFAS(Per- and Polyfluoroalkyl Substances)라고 불린다. 물·기름을 튕겨내는 성질이 강해 방수·방오 제품, 반도체 웨이퍼 세정액, 코팅제 등 산업 전반에 쓰여 왔다. 자연에서 거의 분해되지 않고 몸에 축적된다는 우려 때문에 '영원한 화학물질'로도 불리며, 여러 나라가 규제를 강화하고 있다. 반도체 업계 입장에서는 대체 물질을 찾기 전까지 PFAS 생산업체의 사업 철수 자체가 공급 공백으로 이어질 수 있다.",
+    "en": "PFAS, short for per- and polyfluoroalkyl substances. Their strong water- and oil-repelling properties made them common across industries, from waterproofing to semiconductor wafer cleaning fluids and coatings. Because they barely break down in the environment and can build up in the body, they're often called 'forever chemicals,' and regulation is tightening in several countries. For the chip industry, a PFAS producer exiting the business can itself create a supply gap until a substitute material is found.",
+    "ja": "PFAS(有機フッ素化合物、per- and polyfluoroalkyl substances)と呼ばれる。撥水・撥油性が強く、防水・防汚製品や半導体ウェハーの洗浄液、コーティング剤など幅広い産業で使われてきた。自然界でほとんど分解されず体内に蓄積するとの懸念から「永遠の化学物質」とも呼ばれ、各国で規制が強化されている。半導体業界にとっては、代替材料が見つかるまではPFASメーカーの事業撤退自体が供給の空白につながりかねない。"
+   },
+   "aliases": [
+    "과불화화합물",
+    "PFAS",
+    "유기불소화합물",
+    "フッ素化合物"
+   ],
+   "name": {
+    "ko": "과불화화합물(PFAS)",
+    "en": "PFAS",
+    "ja": "PFAS"
+   }
+  },
+  "CENTRAL GLASS": {
+   "kind": "company",
+   "ticker": "4044.t",
+   "sector": {
+    "en": "Specialty Chemicals",
+    "ko": "특수화학",
+    "ja": "特殊化学"
+   },
+   "desc": {
+    "ko": "유리·화학 제품을 함께 만드는 일본 기업. 반도체용 특수가스도 생산한다.",
+    "en": "Japanese maker of both glass and chemical products, including specialty gases used in chipmaking.",
+    "ja": "ガラスと化学製品を手掛ける日本企業。半導体向け特殊ガスも生産する。"
+   },
+   "aliases": [
+    "주오글라스",
+    "Central Glass",
+    "中央硝子",
+    "セントラル硝子"
+   ],
+   "logo": "cgco.co.jp",
+   "exchange": "TSE",
+   "ceo": {
+    "en": "Tadashi Shimizu",
+    "ko": "시미즈 다다시",
+    "ja": "清水匡"
+   },
+   "founded": "1936",
+   "hq": {
+    "en": "Tokyo, Japan",
+    "ko": "일본 도쿄",
+    "ja": "日本・東京"
+   },
+   "website": "https://www.cgco.co.jp",
+   "longDesc": {
+    "ko": "1936년 설립된 일본 기업으로, 건축·자동차용 유리와 냉매·불화수소·정밀화학 제품을 함께 생산하는 화학 회사다. 반도체 배선 공정에 쓰이는 육불화텅스텐(WF6) 같은 특수가스도 만들어, 유리 회사라는 이름과 달리 반도체 소재 공급망에서도 이름이 오르내린다.",
+    "en": "Founded in 1936, Central Glass is a Japanese company that makes architectural and automotive glass alongside refrigerants, hydrofluoric acid and fine chemicals. Despite the name, it also produces specialty gases such as tungsten hexafluoride (WF6) used in chip wiring, which puts it in the semiconductor materials supply chain as well.",
+    "ja": "1936年設立の日本企業で、建築・自動車用ガラスと冷媒・フッ化水素・精密化学品を手掛ける化学メーカーだ。ガラス会社という社名にもかかわらず、半導体の配線工程に使う六フッ化タングステン(WF6)などの特殊ガスも製造しており、半導体材料のサプライチェーンでも名前が挙がる。"
+   }
+  },
+  "KANTO DENKA": {
+   "kind": "company",
+   "ticker": "4047.t",
+   "sector": {
+    "en": "Specialty Chemicals",
+    "ko": "특수화학",
+    "ja": "特殊化学"
+   },
+   "desc": {
+    "ko": "반도체·배터리용 불소화합물을 만드는 일본 화학기업.",
+    "en": "Japanese chemical maker specializing in fluorochemicals for semiconductors and batteries.",
+    "ja": "半導体・電池向けフッ素化合物を手掛ける日本の化学メーカー。"
+   },
+   "aliases": [
+    "간토덴카",
+    "Kanto Denka",
+    "関東電化工業",
+    "関東電化"
+   ],
+   "logo": "kantodenka.co.jp",
+   "exchange": "TSE",
+   "founded": "1938",
+   "hq": {
+    "en": "Tokyo, Japan",
+    "ko": "일본 도쿄",
+    "ja": "日本・東京"
+   },
+   "website": "https://www.kantodenka.co.jp",
+   "longDesc": {
+    "ko": "1938년 설립된 일본 화학기업으로, 크게 기초화학(펄프·세제·의약품·수처리용 화합물)과 파인케미칼(불소·철화합물) 두 사업부를 갖고 있다. 파인케미칼 부문에서 리튬이온 배터리 전해액용 육불화인산리튬, 반도체 식각 공정용 육불화텅스텐(WF6) 같은 특수가스를 만들어, 배터리·반도체 양쪽 공급망에 걸쳐 있다.",
+    "en": "Founded in 1938, Kanto Denka Kogyo runs two main businesses: fundamental chemicals (compounds for pulp, detergents, pharmaceuticals and water treatment) and fine chemicals (fluorine and iron-based compounds). Its fine chemicals unit makes lithium hexafluorophosphate for lithium-ion battery electrolytes and specialty gases such as tungsten hexafluoride (WF6) for semiconductor etching, putting it in both the battery and chip supply chains.",
+    "ja": "1938年設立の日本の化学メーカーで、基礎化学品(パルプ・洗剤・医薬品・水処理向け化合物)とファインケミカル(フッ素・鉄化合物)の2事業を持つ。ファインケミカル部門ではリチウムイオン電池の電解液用六フッ化リン酸リチウムや、半導体エッチング工程向けの六フッ化タングステン(WF6)などの特殊ガスを製造しており、電池と半導体の両サプライチェーンに関わる。"
+   }
+  },
+  "MORNINGSTAR": {
+   "kind": "company",
+   "ticker": "MORN",
+   "sector": {
+    "en": "Investment Research",
+    "ko": "투자리서치",
+    "ja": "投資リサーチ"
+   },
+   "desc": {
+    "ko": "펀드·주식 평가등급으로 유명한 미국 투자리서치 회사.",
+    "en": "US investment research firm best known for its fund and stock ratings.",
+    "ja": "ファンド・株式の評価レーティングで知られる米投資リサーチ会社。"
+   },
+   "aliases": [
+    "모닝스타",
+    "Morningstar",
+    "モーニングスター"
+   ],
+   "logo": "morningstar.com",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "en": "Kunal Kapoor",
+    "ko": "쿠날 카푸르",
+    "ja": "クナル・カプール"
+   },
+   "founded": "1984",
+   "listed": "2005",
+   "hq": {
+    "en": "Chicago, Illinois",
+    "ko": "미국 시카고",
+    "ja": "米国・シカゴ"
+   },
+   "website": "https://www.morningstar.com",
+   "longDesc": {
+    "ko": "1984년 시카고에서 창립된 미국 투자리서치 회사로, 펀드·주식에 별점을 매기는 평가 체계로 개인투자자에게 널리 알려져 있다. 기관투자자용 리서치·데이터 사업도 함께한다. 노무라 같은 투자은행의 목표주가와 견해가 다를 때, 시장은 두 리서치의 근거 차이를 놓고 저울질한다.",
+    "en": "Founded in Chicago in 1984, Morningstar is a US investment research firm best known to retail investors for its star-rating system for funds and stocks. It also runs an institutional research and data business. When its fair-value calls diverge sharply from an investment bank like Nomura, the market weighs the two firms' underlying assumptions against each other.",
+    "ja": "1984年にシカゴで創業した米投資リサーチ会社で、ファンドや株式に星印で格付けする評価システムで個人投資家によく知られる。機関投資家向けのリサーチ・データ事業も手掛ける。野村のような投資銀行と目標株価の見方が大きく食い違うとき、市場は両者の前提の違いを比較して判断材料にする。"
+   }
+  },
+  "3M": {
+   "kind": "company",
+   "ticker": "MMM",
+   "sector": {
+    "en": "Diversified Industrials",
+    "ko": "복합소재·산업재",
+    "ja": "複合素材・産業財"
+   },
+   "desc": {
+    "ko": "포스트잇·스카치테이프로 유명한 미국 산업·소재 대기업.",
+    "en": "US industrial and materials conglomerate known for Post-it Notes and Scotch Tape.",
+    "ja": "ポストイットやスコッチテープで知られる米産業・素材コングロマリット。"
+   },
+   "aliases": [
+    "3M",
+    "쓰리엠",
+    "スリーエム"
+   ],
+   "logo": "3m.com",
+   "exchange": "NYSE",
+   "ceo": {
+    "en": "William M. Brown",
+    "ko": "윌리엄 브라운",
+    "ja": "ウィリアム・ブラウン"
+   },
+   "founded": "1902",
+   "hq": {
+    "en": "Saint Paul, Minnesota",
+    "ko": "미국 세인트폴",
+    "ja": "米国・セントポール"
+   },
+   "website": "https://www.3m.com",
+   "longDesc": {
+    "ko": "1902년 미네소타에서 설립된 미국 대기업으로, 포스트잇·스카치테이프 같은 소비재부터 산업용 접착제·연마재, 과불화화합물(PFAS) 계열 특수소재까지 폭넓게 만든다. 헬스케어 사업(솔벤텀)을 2024년 분사한 뒤 산업·소재 중심으로 재편했다. PFAS 관련 환경 규제·소송 부담 때문에 2025년까지 관련 생산을 단계적으로 정리하겠다고 밝힌 바 있다.",
+    "en": "Founded in Minnesota in 1902, 3M is a diversified US industrial company spanning consumer products like Post-it Notes and Scotch Tape, industrial adhesives and abrasives, and specialty materials including PFAS-based compounds. It spun off its healthcare business as Solventum in 2024 to refocus on industrials and materials. Facing environmental regulation and litigation over PFAS, it had previously said it would wind down related production by the end of 2025.",
+    "ja": "1902年にミネソタ州で設立された米国の複合企業で、ポストイットやスコッチテープなどの消費財から産業用接着剤・研磨材、PFAS系特殊素材まで幅広く手掛ける。2024年にヘルスケア事業をソルベンタムとして分離し、産業・素材中心の体制に再編した。PFASを巡る環境規制や訴訟の負担から、2025年末までに関連生産を段階的に縮小する方針を示していた。"
+   }
+  },
+  "Michael Burry": {
+   "kind": "person",
+   "url": "https://x.com/michaeljburry",
+   "sector": {
+    "en": "Investor",
+    "ko": "투자자",
+    "ja": "投資家"
+   },
+   "desc": {
+    "en": "Scion Asset Management founder who predicted the 2008 subprime crisis, depicted in The Big Short.",
+    "ko": "2008년 서브프라임 위기를 예측해 영화 '빅쇼트'의 실제 모델이 된 사이언 자산운용 창업자.",
+    "ja": "2008年のサブプライム危機を予見し、映画『マネー・ショート』のモデルとなったサイオン・アセット・マネジメント創業者。"
+   },
+   "aliases": [
+    "Michael Burry",
+    "마이클 버리",
+    "마이클 버리",
+    "マイケル・バーリー"
+   ]
+  },
+  "Ed Zitron": {
+   "kind": "person",
+   "url": "https://www.wheresyoured.at",
+   "sector": {
+    "en": "Tech Critic",
+    "ko": "테크 평론가",
+    "ja": "テック評論家"
+   },
+   "desc": {
+    "en": "PR executive turned tech critic, writes 'Where's Your Ed At' and hosts the 'Better Offline' podcast.",
+    "ko": "홍보업계 출신 테크 평론가. 뉴스레터 'Where's Your Ed At', 팟캐스트 'Better Offline' 진행.",
+    "ja": "PR業界出身のテック評論家。ニュースレター『Where's Your Ed At』、ポッドキャスト『Better Offline』を運営。"
+   },
+   "aliases": [
+    "Ed Zitron",
+    "에드 지트론",
+    "エド・ジトロン"
+   ]
+  },
+  "Chey Tae-won": {
+   "kind": "person",
+   "url": "https://www.sk.com",
+   "sector": {
+    "en": "Business Executive",
+    "ko": "기업인",
+    "ja": "経営者"
+   },
+   "desc": {
+    "en": "Chairman of SK Group, South Korea's second-largest conglomerate and SK Hynix's parent group.",
+    "ko": "SK그룹(SK하이닉스 모기업) 회장이자 대한상공회의소 회장.",
+    "ja": "SKグループ(SKハイニックスの親会社)会長。大韓商工会議所会頭も務める。"
+   },
+   "aliases": [
+    "Chey Tae-won",
+    "최태원",
+    "崔泰源"
+   ]
   }
  }
 }
