@@ -765,7 +765,9 @@ def publisher_ld():
         "url": BASE,
         "logo": {"@type": "ImageObject", "url": BASE + "icon-512.png",
                  "width": 512, "height": 512},
-        "sameAs": ["https://x.com/InfraThesis", "https://infrathesis.substack.com"],
+        # Stacks 자신의 프로필만 넣는다. InfraThesis 계정은 만든 사람 것이라
+        # 여기 섞으면 구글이 두 이름을 한 엔티티로 못 묶는다(홈 그래프는 founder로 내렸다).
+        "sameAs": ["https://x.com/Stacks0g"],
     }
 
 
