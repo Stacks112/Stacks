@@ -103,7 +103,7 @@ def main():
         detail = w.get("ko") or w.get("en") or ""
         if detail:
             msg = msg + ": " + detail
-        url = SITE + "/#sig-" + newest.get("id", "")
+        url = SITE + "/#sig-" + (newest.get("id") or "")
         if notify("daily", title, msg, url):
             state["last_item"] = newest.get("id")
             changed = True
@@ -115,14 +115,14 @@ def main():
     for ev in events:
         if ev.get("date") != tomorrow:
             continue
-        key = ev.get("date", "") + "|" + ev.get("itemId", "")
+        key = (ev.get("date") or "") + "|" + (ev.get("itemId") or "")
         if key in pushed_events:
             continue
         label = ev.get("label", {})
         lab = label.get("ko") or label.get("en") or "이벤트"
         title = "⏰ 내일: " + lab  # ⏰ 내일:
         msg = "D-1 · " + lab  # D-1 ·
-        url = SITE + "/#sig-" + ev.get("itemId", "")
+        url = SITE + "/#sig-" + (ev.get("itemId") or "")
         if notify("daily", title, msg, url):
             pushed_events.add(key)
             changed = True
