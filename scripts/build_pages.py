@@ -1084,14 +1084,36 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     # statement a machine can read, rather than something a human has to infer
     # from the page. Matters for attribution when an AI summary reuses us.
     _src = safe_href(item.get("sourceUrl"), "")
+    # Author profile URL, reused below for both the citation's author and the
+    # article's own author (see `_profile_url` further down). Prefer
+    # extracting the handle straight out of the source post URL itself (works
+    # for any X/Twitter/Truth Social citation regardless of avatar), falling
+    # back to the avatar's unavatar.io twitter handle otherwise.
+    _profile_url = ""
+    _mh = re.search(r"^https?://(?:x\.com|twitter\.com)/([A-Za-z0-9_]+)/", _src)
+    if _mh:
+        _profile_url = "https://x.com/" + _mh.group(1)
+    else:
+        _mt = re.search(r"^https?://truthsocial\.com/(@[A-Za-z0-9_]+)/", _src)
+        if _mt:
+            _profile_url = "https://truthsocial.com/" + _mt.group(1)
     if _src:
         _cit = {"@type": ("SocialMediaPosting"
                           if re.search(r"//(x\.com|twitter\.com|truthsocial\.com)/", _src)
                           else "Article"),
-                "url": _src}
+                "url": _src,
+                # GSC's "discussion forum" structured-data check flags
+                # SocialMediaPosting citations missing datePublished/author.url
+                # as errors even though the wrapping NewsArticle already has
+                # both -- the citation is its own schema.org node. We don't
+                # track the source post's own timestamp separately, so reuse
+                # our publish date (same convention as the NewsArticle above).
+                "datePublished": item.get("date", "") + "T00:00:00Z"}
         _name = dispname(item.get("source", ""))
         if _name:
             _cit["author"] = {"@type": "Person", "name": _name}
+            if _profile_url:
+                _cit["author"]["url"] = _profile_url
         ld["citation"] = _cit
 
     try:
@@ -1158,9 +1180,12 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     #   author.url -> the author's X profile, when the avatar is an X-handle avatar
     if img_url:
         ld["image"] = img_url
-    _m = re.search(r"unavatar\.io/twitter/([A-Za-z0-9_]+)", item.get("avatarImg", "") or "")
-    if _m:
-        ld["author"]["url"] = "https://x.com/" + _m.group(1)
+    if not _profile_url:
+        _ma = re.search(r"unavatar\.io/twitter/([A-Za-z0-9_]+)", item.get("avatarImg", "") or "")
+        if _ma:
+            _profile_url = "https://x.com/" + _ma.group(1)
+    if _profile_url:
+        ld["author"]["url"] = _profile_url
     og_img_tags = (
         f'<meta property="og:image" content="{E(img_url)}">'
         f'<meta property="og:image:width" content="1200">'
