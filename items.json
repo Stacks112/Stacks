@@ -1,6 +1,76 @@
 {
  "items": [
   {
+   "date": "2026-07-28",
+   "id": "jukan-mlcc-ai-shortage-taiwan-spillover",
+   "related": [
+    "jukan-samsung-elec-mechanics-mlcc-lta"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2082008044754677987",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "xembed": true,
+   "lab": true,
+   "cover": {
+    "from": "#1E293B",
+    "to": "#92400E",
+    "label": "MLCC SQUEEZE"
+   },
+   "tags": [
+    "MLCC",
+    "AI HARDWARE",
+    "SUPPLY CHAIN"
+   ],
+   "stance": "bull",
+   "quote": {
+    "lines": [
+     "Inventory levels for key products have generally fallen to 30 days or less.",
+     "Distributors that had built inventories in advance have raised prices by an average of 20–25%, while spot-market prices have climbed to two to three times their previous levels."
+    ],
+    "cite": "Jukan (@jukan05) · 2026.07.28"
+   },
+   "title": {
+    "ko": "다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다",
+    "en": "The next AI hardware bottleneck isn't memory. It's a tiny capacitor whose price already tripled.",
+    "ja": "次のボトルネックはメモリーではなくコンデンサだ、価格はもう3倍に跳ね上がった"
+   },
+   "sum3": {
+    "ko": "AI 서버용 MLCC 수요가 급증해, 무라타·삼성전기·다이요유덴의 6월 출하량이 5년 만에 최고치를 찍었다.\n현물가는 최대 3배, 유통가는 20~25% 뛰었고 핵심 제품 재고는 30일치 이하로 줄었다.\n정작 물량이 빠진 자리는 대만의 야게오·월신이 채우며 반사이익을 보고 있다.",
+    "en": "AI server demand pushed June MLCC shipments from Murata, Samsung Electro-Mechanics and Taiyo Yuden to a five-year high.\nSpot prices climbed as much as three times over, distributor prices rose 20-25%, and key inventory fell below 30 days.\nThe consumer-grade orders the big three left behind are now flowing to Taiwan's Yageo and Walsin Technology.",
+    "ja": "AIサーバー需要が押し上げ、村田製作所・サムスン電機・太陽誘電の6月MLCC出荷量は5年ぶりの高水準になった。\n現物価格は最大3倍、流通価格は20〜25%上昇し、主要製品の在庫は30日分を割った。\n大手3社が手放した消費者向け注文は今、台湾の華新科技(Yageo)と華新(Walsin)に流れ込んでいる。"
+   },
+   "gist": {
+    "ko": "## 콘덴서가 왜 반도체 뉴스에 나오나\n손톱보다 작은 이 부품은 콘덴서라고 불린다.\n전자회로에서 전기를 잠깐 저장했다 흘려보내며 전원을 안정시키는 역할을 한다.\n\n서버 보드 하나에도 수천 개가 박혀 있고,\n그중 세라믹을 층층이 쌓아 만든 것을 MLCC라고 부른다.\n\nAI 서버는 전력 소모가 크고 흔들림에 예민해,\n일반 PC보다 훨씬 많고 좋은 MLCC를 요구한다.\n\n## 무슨 일이 일어났나\n주칸이 인용한 TrendForce 조사에 따르면,\n6월 한 달 무라타·삼성전기·다이요유덴의 MLCC 출하량이 5년 만에 최고치를 찍었다.\nAI 수요가 이 세 회사의 생산라인을 밀어붙인 결과다.\n\n@@CHK@@무라타 수주잔고비율|1.30|삼성전기 수주잔고비율|1.31|다이요유덴 수주잔고비율|1.25@@2018년 사상 최악의 MLCC 품귀 때 정점이 1.25였다. 지금 세 회사 모두 그 선을 넘거나 걸쳐 있다. \"5년 만의 최고치\"라는 주장이 데이터로도 확인된다.@@2026-07-06 · TrendForce\n\n@@REF@@AI 고급 MLCC 수요가 일본·한국 공급사 수주잔고비율을 팬데믹 이후 최고치로 밀어올렸다 (TrendForce, 2026-07-06)|https://www.trendforce.com/presscenter/news/20260706-13136.html|https://www.trendforce.com/images/trendforce_og_04.jpg\n\n값도 같이 뛰었다.\n유통업체가 미리 쌓아둔 재고의 판매가는 20~25% 올랐고,\n현물시장 가격은 최대 3배까지 치솟았다.\n핵심 제품의 재고는 30일치 이하로 줄었다.\n\n## 왜 하필 지금 모자라졌나\n원인은 수요 자체가 아니라 배분이다.\n무라타·삼성전기·다이요유덴은 일반 소비자용(X5R) 라인을,\nAI 서버용 고급 규격(X6S·X7R)으로 빠르게 옮기고 있다.\n\n공장 하나가 하루아침에 생산량을 두 배로 늘리지는 못하니,\n한쪽을 늘리면 다른 쪽이 준다.\n\n그 결과 정작 물량이 빠진 건 가전·자동차용 중용량 콘덴서(1~22마이크로패럿) 쪽이다.\n\n## 세 회사가 못 대는 자리는 누가 채우나\n주칸의 글에는 없는 부분이다.\n세 회사가 AI용으로 갈아타며 비운 소비자용 자리를,\n대만의 야게오와 월신 테크놀로지가 대신 채우고 있다.\n\n@@REF@@AI 서버가 촉발한 MLCC 잠식, 대만 업체가 반사이익 (BigGo Finance, 2026-07-06)|https://finance.biggo.com/news/cf5c9f57-9901-4633-ba07-1f9a93d558ac\n\n큰 세 회사의 품귀가 작은 대만 업체들에게는 주문이 몰리는 기회가 된 셈이다.\n2018년 콘덴서 대란 때도 같은 구도로 대만 업체들의 점유율이 늘었다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다.\n이번 MLCC 부족이 AI 서버 붐을 따라 몇 분기 이어질 구조적 병목이냐,\n아니면 재고를 다시 채우면 풀릴 일시적 수급 꼬임이냐.\n\n3분기·4분기에도 무라타·삼성전기·다이요유덴의 수주잔고비율이 1.25 위에 계속 머무르면 앞쪽이 맞고,\n연말 안에 30일 밑으로 떨어졌던 재고가 정상 수준으로 돌아오면 뒤쪽이 맞다.\n\n메모리 반도체 값이 등락하는 동안,\n그보다 훨씬 작고 싼 부품 하나가 AI 하드웨어 생산 속도를 조용히 쥐고 있다는 점은 남는다.",
+    "en": "## Why a capacitor is chip news\nThis part is smaller than a fingernail. It is called a capacitor.\nIt stores a small burst of electricity and releases it to keep power steady inside a circuit.\n\nA single server board holds thousands of them,\nand the ones built by stacking ceramic layers are called MLCCs.\n\nAI servers draw far more power and tolerate far less noise than a regular PC,\nso they need many more MLCCs, and better ones.\n\n## What actually happened\nTrendForce data cited by Jukan shows June shipments from Murata,\nSamsung Electro-Mechanics and Taiyo Yuden hit their highest level in five years.\nAI demand is what pushed their production lines there.\n\n@@CHK@@Murata book-to-bill|1.30|Samsung Electro-Mechanics book-to-bill|1.31|Taiyo Yuden book-to-bill|1.25@@The peak during the worst MLCC shortage on record, in 2018, was 1.25. All three makers are now at or above that line. The \"highest in five years\" claim checks out against the data.@@2026-07-06 · TrendForce\n\n@@REF@@AI demand for high-end MLCCs pushes Japan and Korea suppliers' order backlogs to post-pandemic highs (TrendForce, 2026-07-06)|https://www.trendforce.com/presscenter/news/20260706-13136.html|https://www.trendforce.com/images/trendforce_og_04.jpg\n\nPrices moved with them.\nDistributors who had stocked up ahead of time raised prices 20 to 25%,\nand spot prices climbed as much as three times their earlier level.\nInventory on key parts has fallen to 30 days or less.\n\n## Why the shortage hit now\nThe cause is not demand alone. It is allocation.\nMurata, Samsung Electro-Mechanics and Taiyo Yuden are shifting lines\nthat used to make consumer-grade parts (X5R) toward the higher AI-grade spec (X6S, X7R).\n\nA factory cannot double its output overnight,\nso a line that gains capacity on one side gives it up on the other.\n\nThe parts actually running short are mid-capacity capacitors (1 to 22 microfarads)\nused in ordinary appliances and cars.\n\n## Who fills the gap the big three leave\nThis is the part Jukan's post does not mention.\nAs the big three chase AI orders,\nTaiwan's Yageo and Walsin Technology are stepping into the consumer-grade orders they leave behind.\n\n@@REF@@AI servers trigger an MLCC cannibalization wave, Taiwanese makers stand to benefit (BigGo Finance, 2026-07-06)|https://finance.biggo.com/news/cf5c9f57-9901-4633-ba07-1f9a93d558ac\n\nA shortage at the top three becomes an order surge for the smaller Taiwanese makers.\nThe same pattern played out in the 2018 MLCC crunch, when Taiwanese suppliers gained share.\n\n## What settles this\nThe question comes down to one thing.\nIs this a structural bottleneck that rides the AI server boom for several quarters,\nor a temporary supply knot that unwinds once inventory rebuilds.\n\nIf Murata, Samsung Electro-Mechanics and Taiyo Yuden's book-to-bill ratios\nstay above 1.25 through Q3 and Q4, the structural read holds.\nIf the inventory that fell below 30 days returns to normal by year-end, this was a knot, not a wall.\n\nWhile memory chip prices swing through headlines,\na much smaller and cheaper part is quietly setting the pace of AI hardware production.",
+    "ja": "## なぜコンデンサが半導体ニュースに出てくるのか\n爪より小さいこの部品はコンデンサと呼ばれる。\n回路の中で電気をわずかにため込み、また流し出すことで電源を安定させる。\n\nサーバー基板1枚にも数千個埋め込まれており、\nセラミックを何層にも重ねて作るタイプをMLCCと呼ぶ。\n\nAIサーバーは消費電力が大きくノイズに敏感なため、\n普通のPCよりずっと多く、より良いMLCCを必要とする。\n\n## 何が起きたのか\nJukan氏が引用したTrendForceの調査によると、\n6月の1カ月で村田製作所・サムスン電機・太陽誘電のMLCC出荷量が5年ぶりの最高値をつけた。\nAI需要がこの3社の生産ラインを押し上げた結果だ。\n\n@@CHK@@村田 受注残率|1.30|サムスン電機 受注残率|1.31|太陽誘電 受注残率|1.25@@2018年、史上最悪のMLCC不足が起きたときのピークは1.25だった。今は3社ともその線を超えるか並んでいる。「5年ぶりの最高値」という主張はデータでも裏付けられる。@@2026-07-06・TrendForce\n\n@@REF@@AI向け高性能MLCC需要、日韓サプライヤーの受注残率をコロナ後最高水準に押し上げ (TrendForce、2026-07-06)|https://www.trendforce.com/presscenter/news/20260706-13136.html|https://www.trendforce.com/images/trendforce_og_04.jpg\n\n値段も一緒に跳ねた。\nあらかじめ在庫を積んでいた流通業者は価格を20〜25%引き上げ、\n現物市場価格は最大3倍にまで上がった。\n主要製品の在庫は30日分以下に減った。\n\n## なぜ今になって不足したのか\n原因は需要そのものではなく、配分にある。\n村田製作所・サムスン電機・太陽誘電は、一般消費者向け(X5R)ラインを、\nAIサーバー向けの高スペック品(X6S・X7R)へ急いで切り替えている。\n\n工場は一夜で生産量を倍にはできないので、\n片方を増やせばもう片方が減る。\n\n実際に足りなくなっているのは、家電や自動車向けの中容量コンデンサ(1〜22マイクロファラド)のほうだ。\n\n## 大手3社が埋められない穴は誰が埋めるのか\nJukan氏の投稿には出てこない部分だ。\n3社がAI向けに軸足を移す中、\n空いた消費者向け注文を台湾の華新科技(Yageo)と華新(Walsin Technology)が引き受けている。\n\n@@REF@@AIサーバーがMLCC共食いの波を引き起こす、台湾勢が漁夫の利 (BigGo Finance、2026-07-06)|https://finance.biggo.com/news/cf5c9f57-9901-4633-ba07-1f9a93d558ac\n\n上位3社の品薄が、台湾の小規模メーカーには注文が集中する好機になっている構図だ。\n2018年のMLCC不足でも同じ構図で台湾勢がシェアを伸ばした。\n\n## 何で見分けるか\n問いは結局一つに絞られる。\n今回の不足がAIサーバーブームに乗って数四半期続く構造的なボトルネックなのか、\nそれとも在庫を積み直せば解ける一時的なもつれなのか。\n\n村田製作所・サムスン電機・太陽誘電の受注残率が第3・第4四半期も1.25を上回ったままなら、構造的な読みが残る。\n30日を割った在庫が年内に正常水準へ戻れば、これは壁ではなくもつれだったことになる。\n\nメモリー半導体の値段が上下する裏で、\nはるかに小さく安い部品がAIハードウェアの生産ペースを静かに握っている。"
+   },
+   "why": {
+    "ko": "이번 MLCC 부족이 구조적이면 무라타·삼성전기·다이요유덴의 가격결정력이 몇 분기 더 간다. 재고 재적립으로 풀리는 일시적 꼬임이면 지금의 가격 상승은 되돌아온다. 어느 쪽이든 빈자리를 채우는 대만 업체들의 주문은 늘어난다.",
+    "en": "If this MLCC shortage is structural, Murata, Samsung Electro-Mechanics and Taiyo Yuden keep pricing power for several more quarters. If it's a temporary knot that clears once inventory rebuilds, today's price spike reverses. Either way, the Taiwanese makers filling the gap keep gaining orders.",
+    "ja": "今回のMLCC不足が構造的なら、村田製作所・サムスン電機・太陽誘電の価格決定力は数四半期続く。在庫の積み直しで解ける一時的なもつれなら、今の値上がりは戻る。どちらにせよ、穴を埋める台湾勢の受注は増え続ける。"
+   },
+   "ask": {
+    "ko": "이번 MLCC 부족은 AI 서버 붐이 만든 구조적 병목일까, 재고를 다시 채우면 풀릴 일시적 꼬임일까?",
+    "en": "Is this MLCC shortage a structural bottleneck built by the AI server boom, or a temporary knot that clears once inventory rebuilds?",
+    "ja": "今回のMLCC不足は、AIサーバーブームが生んだ構造的なボトルネックか、それとも在庫を積み直せば解ける一時的なもつれか?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "3분기·4분기에도 무라타·삼성전기·다이요유덴의 수주잔고비율이 1.25 위에 머무는지, 30일 이하로 줄었던 재고가 연말까지 정상 수준으로 돌아오는지로 채점.",
+     "en": "To be scored on whether Murata, Samsung Electro-Mechanics and Taiyo Yuden's book-to-bill ratios stay above 1.25 through Q3-Q4, and whether inventory that fell below 30 days returns to normal by year-end.",
+     "ja": "第3・第4四半期も村田製作所・サムスン電機・太陽誘電の受注残率が1.25を上回るか、30日を割った在庫が年内に正常水準へ戻るかで採点する。"
+    },
+    "due": "2026-12-31"
+   },
+   "ts": "2026-07-28T14:30:00+00:00",
+   "foldWhy": true
+  },
+  {
    "date": "2026-07-27",
    "id": "jukan-asml-selloff-china-duv-pushback",
    "related": [
@@ -20363,6 +20433,211 @@
     "ko": "Yuliangsheng은 2022년 여러 중국 기업의 DUV 연구개발 인력을 모아 설립됐으며 등록자본금은 약 1억 4800만달러다. SMIC가 2025년 9월부터 이 회사의 액침 DUV 장비를 테스트해 왔고, 첫 물량은 SMIC·화홍반도체·CXMT에 인도될 예정이다.",
     "ja": "Shanghai Yuliangshengは2022年、複数の中国企業のDUV研究開発人材を集めて設立され、登録資本金は約1億4800万ドル。SMICが2025年9月からこの液浸DUV装置をテストしており、初回出荷はSMIC・華虹半導体・CXMTに予定されている。"
    }
+  },
+  "MURATA": {
+   "kind": "company",
+   "ticker": "6981.t",
+   "sector": {
+    "en": "Electronic Components",
+    "ko": "전자부품",
+    "ja": "電子部品"
+   },
+   "desc": {
+    "en": "World's largest maker of multilayer ceramic capacitors (MLCCs), based in Kyoto, Japan.",
+    "ko": "세계 최대 MLCC(적층세라믹콘덴서) 제조사. 일본 교토에 있다.",
+    "ja": "世界最大のMLCC(積層セラミックコンデンサ)メーカー。日本の京都に本社を置く。"
+   },
+   "aliases": [
+    "Murata",
+    "무라타",
+    "무라타 제작소",
+    "村田製作所",
+    "Murata Manufacturing"
+   ],
+   "logo": "murata.com",
+   "exchange": "TSE",
+   "ceo": {
+    "en": "Norio Nakajima",
+    "ko": "나카지마 노리오",
+    "ja": "ナカジマ・ノリオ"
+   },
+   "founded": "1944",
+   "hq": {
+    "en": "Nagaokakyo, Kyoto, Japan",
+    "ko": "일본 교토 나가오카쿄",
+    "ja": "日本 京都府長岡京市"
+   },
+   "website": "https://corporate.murata.com",
+   "longDesc": {
+    "en": "Founded in 1944 in Kyoto, Murata Manufacturing is the world's largest maker of multilayer ceramic capacitors (MLCCs), alongside RF components, sensors and power modules. Its parts sit inside most smartphones and, increasingly, AI servers, where demand for high-spec capacitors has driven order backlogs to their highest levels since the 2018 MLCC shortage.",
+    "ko": "1944년 교토에서 설립된 무라타 제작소는 세계 최대의 MLCC(적층세라믹콘덴서) 제조사다. RF부품·센서·전원모듈도 만든다. 스마트폰 대부분에 부품이 들어가며, 최근에는 AI 서버용 고급 콘덴서 수요가 늘면서 수주잔고가 2018년 품귀 이후 최고 수준까지 올랐다.",
+    "ja": "1944年に京都で設立された村田製作所は、世界最大のMLCC(積層セラミックコンデンサ)メーカーだ。RF部品・センサー・電源モジュールも手掛ける。ほとんどのスマートフォンに部品が使われ、近年はAIサーバー向け高性能コンデンサの需要増で受注残高が2018年の品薄以来の高水準に達した。"
+   }
+  },
+  "TAIYO YUDEN": {
+   "kind": "company",
+   "ticker": "6976.t",
+   "sector": {
+    "en": "Electronic Components",
+    "ko": "전자부품",
+    "ja": "電子部品"
+   },
+   "desc": {
+    "en": "Japanese maker of ceramic capacitors and inductors, one of the top three MLCC suppliers.",
+    "ko": "세라믹콘덴서·인덕터를 만드는 일본 기업. MLCC 3대 공급사 중 하나.",
+    "ja": "セラミックコンデンサ・インダクタを手掛ける日本企業。MLCC大手3社の一角。"
+   },
+   "aliases": [
+    "Taiyo Yuden",
+    "다이요유덴",
+    "太陽誘電"
+   ],
+   "logo": "yuden.co.jp",
+   "exchange": "TSE",
+   "ceo": {
+    "en": "Shoichi Tosaka",
+    "ko": "도사카 쇼이치",
+    "ja": "トサカ・ショウイチ"
+   },
+   "founded": "1950",
+   "hq": {
+    "en": "Chuo, Tokyo, Japan",
+    "ko": "일본 도쿄 주오구",
+    "ja": "日本 東京都中央区"
+   },
+   "website": "https://www.yuden.co.jp",
+   "longDesc": {
+    "en": "Founded in 1950, Taiyo Yuden makes multilayer ceramic capacitors, inductors and circuit modules, and once pioneered recordable CD technology before exiting that business. It is one of the three dominant Japanese and Korean MLCC suppliers, alongside Murata and Samsung Electro-Mechanics, now shifting production toward higher-spec parts for AI servers.",
+    "ko": "1950년 설립된 다이요유덴은 적층세라믹콘덴서·인덕터·회로모듈을 만든다. 한때 기록형 CD 기술을 개척했으나 이후 그 사업에서 철수했다. 무라타, 삼성전기와 함께 세계 3대 MLCC 공급사 중 하나로, 최근 생산라인을 AI 서버용 고급 규격으로 옮기고 있다.",
+    "ja": "1950年設立の太陽誘電は積層セラミックコンデンサ・インダクタ・回路モジュールを手掛ける。かつて記録型CD技術を切り開いたが、その後同事業から撤退した。村田製作所、サムスン電機と並ぶ世界3大MLCC供給企業の一つで、近年はAIサーバー向け高スペック品へ生産ラインを移している。"
+   }
+  },
+  "YAGEO": {
+   "kind": "company",
+   "ticker": "2327.tw",
+   "sector": {
+    "en": "Electronic Components",
+    "ko": "전자부품",
+    "ja": "電子部品"
+   },
+   "desc": {
+    "en": "Taiwan's largest passive component maker, a major MLCC and resistor supplier.",
+    "ko": "대만 최대 수동부품 업체. MLCC·저항기 주요 공급사.",
+    "ja": "台湾最大の受動部品メーカー。MLCC・抵抗器の主要供給企業。"
+   },
+   "aliases": [
+    "Yageo",
+    "야게오",
+    "Yageo Corporation",
+    "華新科技",
+    "国巨"
+   ],
+   "logo": "yageo.com",
+   "exchange": "TWSE",
+   "ceo": {
+    "en": "Pierre Chen",
+    "ko": "피에르 첸",
+    "ja": "ピエール・チェン"
+   },
+   "founded": "1977",
+   "hq": {
+    "en": "Kaohsiung, Taiwan",
+    "ko": "대만 가오슝",
+    "ja": "台湾 高雄"
+   },
+   "website": "https://www.yageo.com",
+   "longDesc": {
+    "en": "Founded in 1977 in Taiwan, Yageo is one of the world's largest makers of passive components such as resistors, capacitors and inductors, having grown through acquisitions including Philips' passive components unit and Pulse Electronics. When Japanese and Korean MLCC makers shift capacity toward AI-grade parts, Yageo is a common beneficiary of the consumer-grade order spillover.",
+    "ko": "1977년 대만에서 설립된 야게오는 저항기·콘덴서·인덕터 등 수동부품 분야 세계 최대 업체 중 하나다. 필립스 수동부품 사업부와 펄스일렉트로닉스 등을 인수하며 성장했다. 일본·한국 MLCC 업체들이 AI용 생산으로 전환할 때, 넘치는 소비자용 주문을 흡수하는 대표적 수혜 업체다.",
+    "ja": "1977年に台湾で設立された華新科技(YAGEO)は、抵抗器・コンデンサ・インダクタなど受動部品分野で世界最大級のメーカーだ。フィリップスの受動部品事業やパルスエレクトロニクスの買収などで成長した。日韓のMLCCメーカーがAI向け生産へ移行する際、あふれた消費者向け注文を吸収する代表的な受益企業となる。"
+   }
+  },
+  "WALSIN TECHNOLOGY": {
+   "kind": "company",
+   "ticker": "2492.tw",
+   "sector": {
+    "en": "Electronic Components",
+    "ko": "전자부품",
+    "ja": "電子部品"
+   },
+   "desc": {
+    "en": "Taiwanese passive component maker, a mid-tier MLCC and resistor supplier.",
+    "ko": "대만의 수동부품 업체. 중견 MLCC·저항기 공급사.",
+    "ja": "台湾の受動部品メーカー。中堅のMLCC・抵抗器供給企業。"
+   },
+   "aliases": [
+    "Walsin Technology",
+    "월신",
+    "월신 테크놀로지",
+    "華新精密"
+   ],
+   "logo": "walsin.com",
+   "exchange": "TWSE",
+   "founded": "1992",
+   "hq": {
+    "en": "Taipei, Taiwan",
+    "ko": "대만 타이베이",
+    "ja": "台湾 台北"
+   },
+   "website": "https://www.passivecomponent.com",
+   "longDesc": {
+    "en": "Founded in 1992, Walsin Technology is a Taiwanese maker of MLCCs, resistors and other passive components. It is smaller than Yageo but sits in the same position: when the big Japanese and Korean suppliers redirect capacity toward AI-grade parts, Walsin picks up spillover orders for consumer- and industrial-grade components.",
+    "ko": "1992년 설립된 월신 테크놀로지는 MLCC·저항기 등 수동부품을 만드는 대만 업체다. 야게오보다 규모는 작지만 같은 자리에 있다. 일본·한국 대형 공급사들이 AI용 생산으로 방향을 틀면, 소비자·산업용 주문의 반사이익을 흡수한다.",
+    "ja": "1992年設立の華新(ウォルシン)テクノロジーは、MLCC・抵抗器などの受動部品を手掛ける台湾企業だ。華新科技(Yageo)より規模は小さいが立ち位置は同じで、日韓大手が生産をAI向けへ振り向けると、消費者・産業用注文の反射的な受益を得る。"
+   }
+  },
+  "TRENDFORCE": {
+   "kind": "company",
+   "sector": {
+    "en": "Market Research",
+    "ko": "시장조사",
+    "ja": "市場調査"
+   },
+   "desc": {
+    "en": "Taiwan-based market research firm covering memory, semiconductors and display supply chains.",
+    "ko": "메모리·반도체·디스플레이 공급망을 조사하는 대만 시장조사업체.",
+    "ja": "メモリー・半導体・ディスプレイのサプライチェーンを調査する台湾の市場調査会社。"
+   },
+   "aliases": [
+    "TrendForce",
+    "트렌드포스",
+    "集邦科技"
+   ],
+   "logo": "trendforce.com",
+   "hq": {
+    "en": "Taipei, Taiwan",
+    "ko": "대만 타이베이",
+    "ja": "台湾 台北"
+   },
+   "website": "https://www.trendforce.com",
+   "longDesc": {
+    "en": "TrendForce is a Taiwan-based technology market intelligence firm best known for its DRAMeXchange memory-pricing data and supply chain research across semiconductors, displays and green energy. Its shipment and order-backlog surveys are widely cited by chipmakers, investors and industry press tracking memory and component cycles.",
+    "ko": "트렌드포스는 대만의 기술 시장조사업체다. 메모리 가격 데이터베이스인 D램익스체인지로 잘 알려져 있으며, 반도체·디스플레이·그린에너지 공급망을 조사한다. 출하량·수주잔고 조사 결과는 메모리·부품 사이클을 추적하는 업계와 투자자들에게 자주 인용된다.",
+    "ja": "トレンドフォースは台湾の技術系市場調査会社だ。メモリー価格データベースのDRAMeXchangeで知られ、半導体・ディスプレイ・グリーンエネルギーのサプライチェーンを調査する。出荷量や受注残の調査結果は、メモリーや部品サイクルを追う業界関係者や投資家に頻繁に引用される。"
+   }
+  },
+  "MLCC 온도특성 등급": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "EIA codes (X5R, X7R, X6S...) that grade a ceramic capacitor's stability across temperature.",
+    "ko": "온도에 따라 콘덴서 용량이 얼마나 안정적인지를 나타내는 EIA 등급 코드(X5R, X7R, X6S 등).",
+    "ja": "温度に対するコンデンサ容量の安定度を示すEIA等級コード(X5R、X7R、X6Sなど)。"
+   },
+   "longDesc": {
+    "en": "X5R, X7R and X6S are EIA temperature-characteristic codes stamped on ceramic capacitors. X5R is the common, cheaper consumer-grade class; X6S and X7R hold their capacitance more precisely across a wider temperature range, which is why AI servers, which run hot and cannot tolerate power noise, need the higher grades. When makers shift production from X5R to X6S/X7R, consumer-grade supply tightens even though total output looks unchanged.",
+    "ko": "X5R·X7R·X6S는 세라믹콘덴서에 찍히는 EIA 온도특성 등급 코드다. X5R은 흔하고 저렴한 소비자용 등급이고, X6S·X7R은 더 넓은 온도 범위에서 용량을 더 정밀하게 유지한다. 발열이 크고 전원 노이즈에 민감한 AI 서버가 상위 등급을 필요로 하는 이유다. 제조사가 생산을 X5R에서 X6S·X7R로 옮기면, 전체 생산량은 그대로여도 소비자용 물량은 줄어든다.",
+    "ja": "X5R・X7R・X6Sは、セラミックコンデンサに刻印されるEIA温度特性等級コードだ。X5Rはありふれた低価格の消費者向け等級で、X6S・X7Rはより広い温度範囲で容量をより精密に保つ。発熱が大きく電源ノイズに弱いAIサーバーが上位等級を必要とする理由はここにある。メーカーが生産をX5RからX6S・X7Rへ移すと、総生産量は変わらなくても消費者向けの供給は細る。"
+   },
+   "aliases": [
+    "X5R",
+    "X7R",
+    "X6S"
+   ]
   }
  }
 }
