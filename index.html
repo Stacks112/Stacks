@@ -7875,7 +7875,17 @@ window.addEventListener("popstate", function(ev){
 function handleDeepLink(){
   const c = new URLSearchParams(location.search).get("c");
   if (c){
-    setTimeout(() => { goToItem(c); toggleComments(c); }, 300);
+    /* 2026-07-28 (june): ?c= 링크는 댓글 시트가 아니라 게시물 상세를 연다.
+       /p/ 페이지 리다이렉트와 공유 링크가 전부 이 경로라, 독자는 글을 기대하고 온다.
+       openFromCard가 셸을 판별한다(데스크톱 v83 단일 뷰 / 모바일 v82 상세).
+       모바일에서 v82.js가 아직 로드 전이면 잠깐 기다렸다가 연다. */
+    let cTries = 0;
+    const openDeepCard = () => {
+      const mobile = !document.documentElement.classList.contains("v83");
+      if (mobile && typeof window.v82OpenCard !== "function" && cTries++ < 20){ setTimeout(openDeepCard, 150); return; }
+      try { openFromCard(c); } catch (e) { goToItem(c); }
+    };
+    setTimeout(openDeepCard, 300);
     return;
   }
   if (location.hash === "#calendar"){ setTimeout(openCal,350); return; }
