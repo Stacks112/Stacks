@@ -1,6 +1,69 @@
 {
  "items": [
   {
+   "date": "2026-07-27",
+   "id": "jukan-asml-selloff-china-duv-pushback",
+   "related": [
+    "jukan-china-duv-litho-mass-production",
+    "apple-nvidia-market-cap-crown-chip-selloff",
+    "jukan-selloff-narrative-recycling"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2081887384531357952",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1E3A8A",
+    "to": "#2563EB",
+    "label": "ASML SELLOFF"
+   },
+   "tags": [
+    "ASML",
+    "CHIP EQUIPMENT",
+    "CHINA SEMICONDUCTOR"
+   ],
+   "stance": "bull",
+   "quote": {
+    "lines": [
+     "The news about China’s DUV progress is not particularly surprising.",
+     "The Information’s report merely cites remarks made by a professor at one of China’s Jiaotong universities during an internal meeting in June.",
+     "The sell-off in semiconductor equipment names such as ASML looks overdone."
+    ],
+    "cite": "Jukan · 2026.07.27"
+   },
+   "title": {
+    "ko": "중국 DUV 공포에 ASML은 이틀간 10%가 빠졌다, 정작 근거는 부실했다",
+    "en": "ASML slid nearly 10% in two days on China's DUV scare, but the case behind it was thin",
+    "ja": "中国のDUV懸念でASMLは二日で1割下落したが、その根拠は薄弱だった"
+   },
+   "sum3": {
+    "ko": "ASML 주가가 중국의 국산 DUV 양산 소식에 이틀 새 10%가량 빠졌다.\n겉으로 보면 노광장비 독점에 처음 금이 간 사건처럼 읽힌다.\n그런데 보도는 소식통 두 명에 기댔고, 이 프로그램은 이미 10개월째 진행 중이었다.",
+    "en": "ASML shares fell nearly 10% in two days on news of China's homegrown DUV output.\nOn the surface, it reads like the first crack in ASML's lithography monopoly.\nBut the report leans on two anonymous sources, and the program had already been running for ten months.",
+    "ja": "ASML株が中国の国産DUV量産のニュースで二日でおよそ1割下落した。\n表面的には露光装置独占に最初のひびが入った出来事に見える。\nだが報道は関係者2人の証言に基づき、このプログラムはすでに10カ月動いていた。"
+   },
+   "lab": true,
+   "foldWhy": true,
+   "gist": {
+    "ko": "ASML 주가가 이틀 연속 밀리며 한 달 새 12%가량 빠졌다.\n중국이 국산 DUV 노광장비 양산에 들어갔다는 소식이 이 하락을 촉발했다.\n반도체 애널리스트 주칸과 대형 투자은행 뱅크오브아메리카(BofA)는 이 반응이 과하다고 짚는다.\n\n27일 중국의 국산 DUV 장비 양산 소식이 전해지자 ASML은 하루 만에 6% 넘게 빠졌다.\n28일에도 장 초반 4%가 추가로 밀리며 낙폭을 키웠다.\n\n## 왜 놀랄 일이 아니라고 할까\n\n주칸은 이 소식이 그리 놀랍지 않다고 말한다.\n다들 어렴풋이 알고 있던 이야기라는 것이다.\n\n근거가 있다.\n이번에 이름이 알려진 업체 Yuliangsheng은 2022년, 여러 중국 기업의 DUV 연구개발 인력을 모아 설립됐다.\nSMIC는 이 회사의 노광장비를 2025년 9월부터 테스트해 왔다.\n양산 소식이 뉴스가 된 27일보다 열 달이나 앞서, 이미 검증 단계에 들어가 있었던 셈이다.\n\n@@REF@@중국, 국산 DUV 장비 양산 시작 (Tom's Hardware, 2026-07-28)|https://www.tomshardware.com/tech-industry/semiconductors/china-begins-mass-production-of-domestic-immersion-duv-lithography-machines\n\n## 소식의 근거는 얼마나 단단한가\n\n주칸은 한 걸음 더 나간 주장도 폈다.\n이 보도가 사실은 중국 한 대학 교수가 내부 회의에서 한 발언을 인용한 것에 불과하다는 것이다.\n\n다만 이 부분은 다른 매체로는 그대로 확인되지 않았다.\n톰스하드웨어 등 다른 보도는 소식통 두 명의 진술에 기댔다고만 전한다.\n제조사 이름도 처음엔 공개되지 않았다가 나중에야 Yuliangsheng으로 확인됐다.\nASML은 관련 질의에 답변 자체를 거부했다.\n근거가 익명 취재에 의존한 것은 분명하지만, 정확히 누구의 발언인지는 매체마다 설명이 갈린다.\n\n@@CMP@@ASML의 목줄이 풀린다는 읽기|중국이 자국산 DUV 양산에 들어갔다는 소식 자체가 노광장비 독점에 첫 균열을 낸 사건으로 읽힌다.|주칸과 BofA의 읽기|보도는 소식통 두 명의 진술에 기댔고 ASML은 확인을 거부했다. 양산 물량도 내년까지 20대뿐이라, 이미 알려져 있던 프로그램의 재확인에 가깝다.\n결국 같은 뉴스를 처음 듣는 소식으로 보느냐, 10개월째 진행 중이던 프로그램의 재확인으로 보느냐에서 해석이 갈린다.\n\n## 시장은 지금 어느 쪽에 걸고 있나\n\nBofA는 이번 하락에도 ASML에 대한 매수 의견을 그대로 유지했다.\n이번 낙폭은 실적이 아니라 무역을 둘러싼 우려일 뿐이라는 게 이유다.\nBofA의 2027~2028년 이익 추정치는 시장 평균 전망치보다 6~7% 높다.\nAI 수요를 발판으로 한 웨이퍼 제조장비 지출은 2028년까지 2,500억달러를 넘어설 것으로 내다봤다.\n\n@@REF@@ASML 주가 재하락, BofA는 왜 여전히 강세론을 유지할까 (Invezz, 2026-07-28)|https://invezz.com/news/2026/07/28/asml-stock-slips-again-why-bofa-remains-strongly-bullish/\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다.\n이번 낙폭이 진짜 위협의 재평가냐, 근거가 약한 소식에 대한 과민반응이냐.\n\n소식통 두 명의 진술에 기댄 보도 한 건에 장비주 대장주가 이틀 만에 10% 가까이 빠졌다는 사실 자체가, 지금 시장이 얼마나 예민한 상태인지 보여준다.\n\n가릴 지점은 다음 실적과 물량이다.\nASML의 실적 호조가 다음 분기에도 이어지고 중국의 물량이 내년 20대 계획을 크게 못 벗어나면, 이번 낙폭은 과민반응으로 남는다.\n반대로 물량이 예상보다 빨리 늘거나 중국 고객사들이 실제 주문을 ASML에서 빼가기 시작하면, 이번 낙폭은 재평가의 시작이었던 셈이다.",
+    "en": "ASML shares have slid for two straight days, down roughly 12% over the past month.\nThe trigger was news that China has begun mass-producing its own DUV lithography tools.\nChip analyst Jukan and Bank of America (BofA) both argue the reaction has gone too far.\n\nShares fell more than 6% on the 27th when the China DUV news broke, then slid another 4% at the open on the 28th, deepening the drop.\n\n## Why isn't this a surprise\n\nJukan says the news itself isn't particularly shocking.\nMost people already had a vague sense this was coming, he argues.\n\nThere's a reason for that.\nThe newly named maker, Shanghai Yuliangsheng, was founded in 2022 by pooling DUV R&D teams from several Chinese firms.\nSMIC has been testing its lithography tool since September 2025.\nThat's ten months before the news broke on the 27th, meaning the program was already deep into validation.\n\n@@REF@@China begins mass-producing homegrown DUV tools (Tom's Hardware, 2026-07-28)|https://www.tomshardware.com/tech-industry/semiconductors/china-begins-mass-production-of-domestic-immersion-duv-lithography-machines\n\n## How solid is the sourcing, really\n\nJukan went a step further.\nHe claims the report actually traces back to remarks a professor at a Chinese Jiaotong university made during an internal meeting.\n\nWe couldn't independently confirm that specific detail through other outlets.\nTom's Hardware and other coverage describe the sourcing only as two people familiar with the program.\nThe manufacturer's name wasn't disclosed at first either, and only surfaced later as Yuliangsheng.\nASML itself declined to comment when asked.\nThe reporting clearly leans on anonymous sourcing, but exactly whose words are behind it differs by outlet.\n\n@@CMP@@The threat-is-real read|China starting DUV mass production reads as the first real crack in ASML's lithography monopoly.|Jukan and BofA's read|The report leans on two anonymous sources and ASML wouldn't confirm it. Next year's output still caps at 20 units, more a confirmation of an already-known program than new news.\nWhat it comes down to is whether you treat this as fresh news or as confirmation of a program that's been running for ten months already.\n\n## Where is the market actually placing its bets\n\nBofA kept its Buy rating on ASML through the selloff.\nIts reasoning: this is a trade-related worry, not a sign anything is wrong with the business.\nBofA's 2027-2028 earnings estimates sit 6-7% above Wall Street consensus.\nIt expects AI-driven wafer fab equipment spending to top $250 billion by 2028.\n\n@@REF@@ASML stock slips again, why BofA remains strongly bullish (Invezz, 2026-07-28)|https://invezz.com/news/2026/07/28/asml-stock-slips-again-why-bofa-remains-strongly-bullish/\n\n## What settles it\nThe question comes down to one thing.\nIs this a real reassessment of the threat, or an overreaction to thinly sourced news.\n\nThe fact that a single report leaning on two anonymous sources knocked nearly 10% off the lithography sector's bellwether in two days says something about how jumpy this market already is.\n\nWhat will tell the difference is earnings and volume.\nIf ASML's strong results continue next quarter and China's output doesn't run far ahead of next year's 20-unit plan, this drop goes down as an overreaction.\nIf volume ramps faster than expected, or Chinese customers start actually pulling orders from ASML, this drop was the start of the real repricing.",
+    "ja": "ASMLの株価が二日連続で下落し、この一カ月でおよそ12%下げた。\nきっかけは中国が国産DUV露光装置の量産を始めたというニュースだ。\n半導体アナリストのJukanと大手投資銀行バンク・オブ・アメリカ(BofA)は、この反応は行き過ぎだと指摘する。\n\n27日に中国の国産DUV量産のニュースが伝わると、ASMLは一日で6%以上下げた。\n28日も寄り付きでさらに4%下落し、下げ幅を広げた。\n\n## なぜ驚くようなニュースではないのか\n\nJukanは、このニュース自体はそれほど驚くことではないと言う。\nみんな薄々感じていた話ではないか、というのが彼の見立てだ。\n\n根拠はある。\n今回名前が明らかになったメーカー、Shanghai Yuliangshengは2022年、複数の中国企業のDUV研究開発チームを集めて設立された。\nSMICは2025年9月からこの会社の露光装置をテストしてきた。\nニュースになった27日より10カ月も前から、すでに検証段階に入っていたことになる。\n\n@@REF@@中国、国産DUV装置の量産開始 (Tom's Hardware, 2026-07-28)|https://www.tomshardware.com/tech-industry/semiconductors/china-begins-mass-production-of-domestic-immersion-duv-lithography-machines\n\n## 報道の根拠はどれほど確かか\n\nJukanはさらに踏み込んだ主張もしている。\nこの報道は実は中国のある交通大学の教授が内部会議で語った発言を引用したに過ぎない、というのだ。\n\nただこの部分は、他のメディアでは同じ形では確認できなかった。\nトムズハードウェアなど他の報道は、関係者2人の証言に基づくとだけ伝えている。\nメーカー名も当初は明かされず、後になってYuliangshengだと判明した。\nASMLは問い合わせへの回答自体を拒んだ。\n根拠が匿名取材に頼っているのは確かだが、具体的に誰の発言なのかはメディアによって説明が分かれる。\n\n@@CMP@@ASMLの支配が崩れるという読み|中国が自国産DUVの量産を始めたこと自体が、露光装置独占に入った最初のひびだと読める。|JukanとBofAの読み|報道は関係者2人の証言に基づき、ASMLは確認を拒んだ。来年の量産も20台どまりで、すでに知られていたプログラムの再確認に近い。\n結局、同じニュースを初耳と見るか、10カ月前から進んでいたプログラムの再確認と見るかで解釈が分かれる。\n\n## 市場は今どちらに賭けているか\n\nBofAはこの下落局面でもASMLへの買い推奨を維持した。\n今回の下げは業績ではなく貿易を巡る懸念にすぎない、というのがその理由だ。\nBofAの2027〜2028年利益予想は市場コンセンサスを6〜7%上回る。\nAI需要を追い風にしたウエハー製造装置向け支出は、2028年までに2,500億ドルを超えると見込む。\n\n@@REF@@ASML株再下落、BofAはなぜ強気を崩さないのか (Invezz, 2026-07-28)|https://invezz.com/news/2026/07/28/asml-stock-slips-again-why-bofa-remains-strongly-bullish/\n\n## 何で見分けるか\n問いは結局一つだ。\nこの下落は本当の脅威の再評価か、根拠の薄いニュースへの過剰反応か。\n\n匿名の関係者2人の証言に基づく一本の報道で、露光装置の代表銘柄が二日で1割近く下げたという事実自体が、今の市場がどれほど神経質になっているかを物語る。\n\n見分ける点は次の決算と量産台数だ。\nASMLの好調な業績が次の四半期も続き、中国の量産が来年20台という計画を大きく超えなければ、この下落は過剰反応だったことになる。\n逆に量産が想定より早く増えたり、中国の顧客企業が実際にASMLから注文を引き揚げ始めれば、この下落は再評価の始まりだったことになる。"
+   },
+   "why": {
+    "ko": "노광장비 공급망의 판도가 흔들리는 신호인지, 근거가 얇은 소식에 시장이 과민반응한 것인지에 따라 ASML은 물론 반도체 장비 밸류체인 전체의 재평가 방향이 갈린다.",
+    "en": "Whether this signals a real shift in the lithography supply chain or just an overreaction to thinly sourced news will shape how the whole chip equipment value chain gets repriced, not just ASML.",
+    "ja": "露光装置サプライチェーンの勢力図が揺らぐ兆しなのか、根拠の薄いニュースへの過剰反応なのかによって、ASMLだけでなく半導体装置バリューチェーン全体の再評価の方向が変わる。"
+   },
+   "ask": {
+    "ko": "근거가 얇은 소식에 이틀 만에 10% 빠진 ASML, 지금은 매수 기회일까 아니면 더 지켜봐야 할 경고일까?",
+    "en": "ASML dropped nearly 10% in two days on thinly sourced news, is this a buying opportunity or a warning to wait?",
+    "ja": "根拠の薄いニュースで二日に1割下げたASML、今は買い場か、それともまだ様子見すべき警告か?"
+   },
+   "ts": "2026-07-28T12:50:00.000000+00:00"
+  },
+  {
    "date": "2026-07-28",
    "id": "jukan-jasm-kumamoto-earthquake",
    "related": [
@@ -20228,6 +20291,74 @@
     "ko": "토큰",
     "en": "Token",
     "ja": "トークン"
+   }
+  },
+  "BofA": {
+   "kind": "company",
+   "sector": {
+    "en": "Financial Services",
+    "ko": "금융",
+    "ja": "金融"
+   },
+   "desc": {
+    "en": "US megabank and one of the largest Wall Street banks by assets.",
+    "ko": "미국의 대형 투자은행으로 자산 기준 월가 최대 은행 중 하나다.",
+    "ja": "米国の大手投資銀行で、資産規模ではウォール街最大級の銀行の一つ。"
+   },
+   "aliases": [
+    "BofA",
+    "Bank of America",
+    "뱅크오브아메리카",
+    "バンク・オブ・アメリカ"
+   ],
+   "ticker": "BAC",
+   "logo": "bankofamerica.com",
+   "exchange": "NYSE",
+   "ceo": {
+    "en": "Brian Moynihan",
+    "ko": "브라이언 모이니핸",
+    "ja": "ブライアン・モイニハン"
+   },
+   "founded": "1904",
+   "hq": {
+    "en": "Charlotte, North Carolina, US",
+    "ko": "미국 노스캐롤라이나주 샬럿",
+    "ja": "米国ノースカロライナ州シャーロット"
+   },
+   "website": "https://www.bankofamerica.com",
+   "longDesc": {
+    "en": "Bank of America is one of the largest US financial institutions, spanning consumer banking, wealth management and investment banking. Its equity research arm covers major semiconductor names including ASML.",
+    "ko": "뱅크오브아메리카는 미국을 대표하는 대형 금융기관으로 소비자금융, 자산관리, 투자은행 업무를 두루 한다. 리서치 부문이 ASML을 포함한 주요 반도체 기업을 커버한다.",
+    "ja": "バンク・オブ・アメリカは米国を代表する大手金融機関で、個人向け銀行業務や資産運用、投資銀行業務を手がける。リサーチ部門はASMLを含む主要半導体銘柄をカバーしている。"
+   }
+  },
+  "Yuliangsheng": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductor Equipment",
+    "ko": "반도체 장비",
+    "ja": "半導体装置"
+   },
+   "desc": {
+    "en": "Chinese state-backed startup developing domestic DUV lithography tools.",
+    "ko": "중국의 국산 DUV 노광장비를 개발하는 국가 지원 스타트업.",
+    "ja": "中国国産DUV露光装置を開発する国家支援スタートアップ。"
+   },
+   "aliases": [
+    "Yuliangsheng",
+    "Shanghai Yuliangsheng",
+    "Shanghai Yuliangsheng Technology"
+   ],
+   "founded": "2022",
+   "hq": {
+    "en": "Shanghai, China",
+    "ko": "중국 상하이",
+    "ja": "中国上海"
+   },
+   "longDesc": {
+    "en": "Shanghai Yuliangsheng Technology was founded in 2022 by pooling DUV lithography R&D teams from several Chinese firms, with roughly $148 million in registered capital. SMIC has been testing its immersion DUV tool since September 2025, ahead of first deliveries to SMIC, Hua Hong and CXMT.",
+    "ko": "Yuliangsheng은 2022년 여러 중국 기업의 DUV 연구개발 인력을 모아 설립됐으며 등록자본금은 약 1억 4800만달러다. SMIC가 2025년 9월부터 이 회사의 액침 DUV 장비를 테스트해 왔고, 첫 물량은 SMIC·화홍반도체·CXMT에 인도될 예정이다.",
+    "ja": "Shanghai Yuliangshengは2022年、複数の中国企業のDUV研究開発人材を集めて設立され、登録資本金は約1億4800万ドル。SMICが2025年9月からこの液浸DUV装置をテストしており、初回出荷はSMIC・華虹半導体・CXMTに予定されている。"
    }
   }
  }
