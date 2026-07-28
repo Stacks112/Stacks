@@ -385,14 +385,26 @@ def slugify(key):
 def build_matcher(entities):
     """[(compiled_regex, key)] over every alias. Word boundaries only where
     the adjacent character is ASCII \\w — otherwise \\b can never match
-    (e.g. trailing \\b after 하이닉스 in "SK하이닉스")."""
+    (e.g. trailing \\b after 하이닉스 in "SK하이닉스"). A bare alias with no
+    boundary at all on its Hangul side can also match as a substring of an
+    unrelated longer word ("애플" inside "애플리케이션") — HANGUL_PARTICLES
+    lets a real particle ("하이닉스가") still attach, while rejecting a
+    same-script word that just continues ("애플" + "리케이션"). Mirrors
+    build_entity_matcher() in build_data.py and buildEntityMatcher() in
+    index.html; keep all three in sync."""
+    hangul_particles = ["은", "는", "이", "가", "을", "를", "의", "에", "와", "과",
+                         "도", "만", "로", "께", "이나", "나"]
+    particle_alt = "|".join(hangul_particles)
     pats = []
     for key, e in entities.items():
         for a in e.get("aliases", []) or []:
             if not a:
                 continue
-            head = r"\b" if re.match(r"[A-Za-z0-9]", a) else ""
-            tail = r"\b" if re.search(r"[A-Za-z0-9]$", a) else ""
+            head = r"\b" if re.match(r"[A-Za-z0-9]", a) else r"(?<![가-힣])"
+            if re.search(r"[A-Za-z0-9]$", a):
+                tail = r"\b"
+            else:
+                tail = r"(?=$|[^가-힣]|(?:%s)(?![가-힣]))" % particle_alt
             pats.append((re.compile(head + re.escape(a) + tail, re.I), key))
     return pats
 

@@ -173,7 +173,12 @@ def build_entity_matcher(entities):
 
     Longest alias wins, and a word boundary is only attached on the side where
     it can actually match: "SK하이닉스" must not get a trailing \\b or the full
-    name never matches and only "하이닉스" lights up.
+    name never matches and only "하이닉스" lights up. But a bare alias with no
+    boundary at all on its Hangul side can also match as a substring of an
+    unrelated longer word ("애플" inside "애플리케이션") — HANGUL_PARTICLES lets
+    a real particle ("하이닉스가") still attach, while rejecting a same-script
+    word that just continues ("애플" + "리케이션"). Mirrors buildEntityMatcher()
+    in index.html; keep both in sync.
     """
     alias2key, raw = {}, []
     for key, ent in entities.items():
@@ -185,10 +190,16 @@ def build_entity_matcher(entities):
                 alias2key[low] = key
                 raw.append(a)
     raw.sort(key=len, reverse=True)
+    hangul_particles = ["은", "는", "이", "가", "을", "를", "의", "에", "와", "과",
+                         "도", "만", "로", "께", "이나", "나"]
+    particle_alt = "|".join(hangul_particles)
     pats = []
     for a in raw:
-        head = r"\b" if re.match(r"^[A-Za-z0-9]", a) else ""
-        tail = r"\b" if re.search(r"[A-Za-z0-9]$", a) else ""
+        head = r"\b" if re.match(r"^[A-Za-z0-9]", a) else r"(?<![가-힣])"
+        if re.search(r"[A-Za-z0-9]$", a):
+            tail = r"\b"
+        else:
+            tail = r"(?=$|[^가-힣]|(?:%s)(?![가-힣]))" % particle_alt
         pats.append(head + re_esc(a) + tail)
     rx = re.compile("(" + "|".join(pats) + ")", re.I | re.A) if pats else None
     return rx, alias2key
