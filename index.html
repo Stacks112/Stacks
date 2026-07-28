@@ -3100,6 +3100,13 @@ footer a{color:var(--muted);}
   @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 }
 .no-anim .card{animation:none !important;}
+/* v82 모바일 셸(하단 홈·찾기·탐색·캘린더·알림 탭 등)이 데스크톱에 새어나오지 않도록 하는 인라인 가드.
+   같은 규칙이 외부 assets/v82.css(@media min-width:1024)에도 있지만, 그 파일이 로드 실패하거나
+   로드되기 전이면 JS가 만든 #v82nav가 스타일 없이 페이지 맨 하단에 노출된다(2026-07-28 june 리포트).
+   인라인이라 외부 CSS 로드 여부와 무관하게 항상 적용된다. 모바일(≤1023)엔 영향 없음. */
+@media (min-width:1024px){
+  #v82nav,#v82drawer,#v82scrim,#v82explore,#v82detail,#v82av,#v82hub,#v82notif,#v82picker,.v82-tabs{display:none !important;}
+}
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
