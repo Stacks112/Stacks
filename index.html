@@ -3100,12 +3100,15 @@ footer a{color:var(--muted);}
   @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 }
 .no-anim .card{animation:none !important;}
-/* v82 모바일 셸(하단 홈·찾기·탐색·캘린더·알림 탭 등)이 데스크톱에 새어나오지 않도록 하는 인라인 가드.
-   같은 규칙이 외부 assets/v82.css(@media min-width:1024)에도 있지만, 그 파일이 로드 실패하거나
-   로드되기 전이면 JS가 만든 #v82nav가 스타일 없이 페이지 맨 하단에 노출된다(2026-07-28 june 리포트).
-   인라인이라 외부 CSS 로드 여부와 무관하게 항상 적용된다. 모바일(≤1023)엔 영향 없음. */
+/* v82 모바일 셸이 데스크톱에 새어나오지 않도록 하는 인라인 가드.
+   ★ .v82-sh(화면 헤더 = "←찾기·←탐색·←알림·←·←")가 진범이었다(2026-07-28 june 리포트).
+   v82.css는 .v82-sh를 @media(max-width:1023) 안에서만 정의하고(86행 display:none/.on flex),
+   데스크톱 숨김 목록(v82.css 3행)에는 .v82-sh가 빠져 있다. 그래서 ≥1024에서는 이 헤더들이
+   아무 규칙도 못 받아 div 기본 display:block으로 페이지 맨 하단에 노출됐다.
+   (v82.css 로드 실패와 무관한, 셀렉터 목록 누락 버그. 라이브 DOM에서 확인.)
+   인라인이라 외부 CSS 로드 여부와도 무관하게 적용된다. 모바일(≤1023)엔 영향 없음. */
 @media (min-width:1024px){
-  #v82nav,#v82drawer,#v82scrim,#v82explore,#v82detail,#v82av,#v82hub,#v82notif,#v82picker,.v82-tabs{display:none !important;}
+  #v82nav,#v82drawer,#v82scrim,#v82explore,#v82detail,#v82av,#v82hub,#v82notif,#v82picker,.v82-tabs,.v82-sh{display:none !important;}
 }
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
