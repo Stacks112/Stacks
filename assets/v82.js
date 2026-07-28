@@ -1226,56 +1226,110 @@
     return false;
   };
 
-  /* ---------- 좌우 스와이프로 최신 ↔ 팔로잉 (2026-07-25, june 모바일 전수조사) ----------
-     X 모바일의 대표 제스처인데 우리는 상단 탭을 정확히 눌러야만 전환됐다.
-     세로 스크롤을 방해하지 않도록 처음 12px 안에서 축을 한 번만 정하고,
-     가로로 판정된 경우에만 전환한다. 가로 스크롤 영역(핫레일·탭바·차트·표)과
-     왼쪽 가장자리(스탠드얼론 뒤로가기 제스처 자리)는 건드리지 않는다. */
+  /* ---------- 손가락 추적 좌우 스와이프: 최신 ↔ 팔로잉 (2026-07-28, june) ----------
+     이전엔 스와이프를 감지만 하고 탭을 click()해서 툭 넘어갔다. 이제 X처럼
+     #feed을 손가락 따라 밀고(가로 확정 시), 임계(폭 30%)를 넘기면 나가는 방향으로
+     마저 밀어낸 뒤 setTab으로 전환 → 반대편에서 새 피드가 들어온다. 못 넘기면
+     제자리로 스냅백. 세로 스크롤은 방해하지 않고(가로로 확정된 뒤에만 preventDefault),
+     가로 스크롤 영역(핫레일·탭바·차트·표)·오버레이·좌우 가장자리는 건드리지 않는다. */
   (function swipeTabs(){
-    var x0 = 0, y0 = 0, tracking = false, axis = null;
-    var NOSWIPE = ".v82-tabs,#v82tabs,#hotRail,[data-v82hot],.scrollx,.chart,svg,table,input,textarea,select,.twc-ov,.img-fs";
+    var x0=0,y0=0,tracking=false,axis=null,moved=false,W=360,startTab=0,targetT=null,goNext=false,edge=false,animating=false;
+    var NOSWIPE=".v82-tabs,#v82tabs,#hotRail,[data-v82hot],.scrollx,.chart,svg,table,input,textarea,select,.twc-ov,.img-fs";
     function blocked(){
       if (anyScreenOpen()) return true;
-      var d = $("v82detail"); if (d && d.classList.contains("on")) return true;
-      var ov = document.getElementById("twcOv"); if (ov && !ov.hidden) return true;
-      var fs = document.getElementById("imgFS"); if (fs && !fs.hidden) return true;
-      var cf = $("chartFS"); if (cf && !cf.hidden) return true;
-      var cal = $("calSheet"); if (cal && !cal.hidden) return true;
-      var me = $("meSheet"); if (me && !me.hidden) return true;
-      var dw = $("v82drawer"); if (dw && dw.classList.contains("on")) return true;
+      var d=$("v82detail"); if (d&&d.classList.contains("on")) return true;
+      var ov=document.getElementById("twcOv"); if (ov&&!ov.hidden) return true;
+      var fs=document.getElementById("imgFS"); if (fs&&!fs.hidden) return true;
+      var cf=$("chartFS"); if (cf&&!cf.hidden) return true;
+      var cal=$("calSheet"); if (cal&&!cal.hidden) return true;
+      var me=$("meSheet"); if (me&&!me.hidden) return true;
+      var dw=$("v82drawer"); if (dw&&dw.classList.contains("on")) return true;
       return false;
     }
+    function feedEl(){ return $("feed"); }
+    function wrapEl(){ return document.querySelector(".wrap"); }
+    function tabBtns(){ var s=$("v82tabs"); return s ? s.querySelectorAll(".v82fsw-t") : []; }
+    function cleanup(f){ if(!f) return; f.style.transition=""; f.style.transform=""; f.style.opacity=""; var w=wrapEl(); if(w) w.style.overflowX=""; }
+
     document.addEventListener("touchstart", function(e){
-      tracking = false; axis = null;
-      if (!mq.matches || e.touches.length !== 1) return;
-      if (typeof RBETA === "undefined" || !RBETA) return;
+      tracking=false; axis=null; moved=false;
+      if (animating) return;
+      if (!mq.matches || e.touches.length!==1) return;
+      if (typeof RBETA==="undefined" || !RBETA) return;
       if (blocked()) return;
-      var t = e.touches[0];
-      if (t.clientX < 26 || t.clientX > innerWidth - 26) return;   /* 가장자리는 브라우저 몫 */
+      var bs=tabBtns(); if (bs.length<2) return;                 /* 최신/팔로잉 스위처가 있을 때만(홈) */
+      var t=e.touches[0];
+      if (t.clientX<26 || t.clientX>innerWidth-26) return;       /* 가장자리는 브라우저 몫 */
       if (e.target.closest && e.target.closest(NOSWIPE)) return;
-      x0 = t.clientX; y0 = t.clientY; tracking = true;
-    }, { passive: true });
+      x0=t.clientX; y0=t.clientY; tracking=true; W=innerWidth||360;
+      startTab=0; for (var i=0;i<bs.length;i++) if (bs[i].classList.contains("on")) startTab=i;
+    }, { passive:true });
+
     document.addEventListener("touchmove", function(e){
-      if (!tracking || e.touches.length !== 1) return;
-      var t = e.touches[0], dx = t.clientX - x0, dy = t.clientY - y0;
-      if (axis === null && (Math.abs(dx) > 12 || Math.abs(dy) > 12))
-        axis = Math.abs(dx) > Math.abs(dy) * 1.6 ? "x" : "y";
-    }, { passive: true });
+      if (!tracking || animating || e.touches.length!==1) return;
+      var t=e.touches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+      if (axis===null){
+        if (Math.abs(dx)>10 || Math.abs(dy)>10) axis = Math.abs(dx)>Math.abs(dy)*1.4 ? "x" : "y";
+        else return;
+      }
+      if (axis!=="x") return;                                    /* 세로로 확정되면 스크롤에 맡긴다 */
+      if (e.cancelable) e.preventDefault();                      /* 가로 확정 후에만 스크롤/제스처 억제 */
+      moved=true;
+      var bs=tabBtns();
+      goNext = dx<0;
+      var target = goNext ? startTab+1 : startTab-1;
+      edge = (target<0 || target>=bs.length);
+      targetT = (!edge && bs[target]) ? bs[target].dataset.t : null;
+      var f=feedEl(); if(!f) return;
+      var w=wrapEl(); if (w) w.style.overflowX="clip";           /* 미끄러지는 피드를 뷰포트에서 자름 */
+      var mv = edge ? dx*0.28 : dx;                              /* 가장자리 고무줄 */
+      f.style.transition="none";
+      f.style.transform="translateX("+mv+"px)";
+      f.style.opacity = edge ? "1" : String(1 - Math.min(Math.abs(dx)/W,1)*0.22);
+    }, { passive:false });
+
     document.addEventListener("touchend", function(e){
-      if (!tracking) return;
-      tracking = false;
-      if (axis !== "x" || !e.changedTouches || !e.changedTouches.length) return;
-      var dx = e.changedTouches[0].clientX - x0;
-      if (Math.abs(dx) < 60) return;
-      var strip = $("v82tabs"); if (!strip) return;
-      var bs = strip.querySelectorAll(".v82fsw-t");
-      if (bs.length < 2) return;
-      var cur = 0;
-      for (var i = 0; i < bs.length; i++) if (bs[i].classList.contains("on")) cur = i;
-      var next = dx < 0 ? cur + 1 : cur - 1;
-      if (next < 0 || next >= bs.length) return;
-      bs[next].click();
-    }, { passive: true });
+      if (!tracking || animating){ tracking=false; return; }
+      tracking=false;
+      var f=feedEl();
+      if (axis!=="x" || !moved){ if(f) cleanup(f); return; }
+      var dx = (e.changedTouches&&e.changedTouches.length) ? e.changedTouches[0].clientX-x0 : 0;
+      var pass = Math.abs(dx) > W*0.30;
+      if (edge || !pass || !targetT){                            /* 스냅백 */
+        if (f){ f.style.transition="transform .22s cubic-bezier(.22,.61,.36,1), opacity .22s ease"; f.style.transform=""; f.style.opacity=""; }
+        setTimeout(function(){ cleanup(f); }, 250);
+        return;
+      }
+      /* 커밋: 나가는 방향으로 마저 밀어내고 → 전환 → 반대편에서 들어오게 */
+      animating=true;
+      var out = goNext ? -W : W, inFrom = goNext ? W : -W, tt=targetT;
+      f.style.transition="transform .2s cubic-bezier(.4,0,.2,1), opacity .2s ease";
+      f.style.transform="translateX("+out+"px)";
+      f.style.opacity="0";
+      var done=false;
+      var finish=function(){
+        if (done) return; done=true;
+        try { f.removeEventListener("transitionend", finish); } catch(_){}
+        try { goHomeThen(function(){ if (typeof setTab==="function") setTab(tt); }); } catch(err){}
+        var f2=feedEl() || f;
+        f2.style.transition="none";
+        f2.style.transform="translateX("+inFrom+"px)";
+        f2.style.opacity="0";
+        void f2.offsetWidth;                                     /* 리플로우 */
+        requestAnimationFrame(function(){
+          f2.style.transition="transform .24s cubic-bezier(.22,.61,.36,1), opacity .24s ease";
+          f2.style.transform=""; f2.style.opacity="1";
+          setTimeout(function(){ cleanup(f2); animating=false; }, 300);
+        });
+      };
+      f.addEventListener("transitionend", finish);
+      setTimeout(finish, 260);                                   /* transitionend 폴백 */
+    }, { passive:true });
+
+    document.addEventListener("touchcancel", function(){
+      if (!tracking) return; tracking=false;
+      if (!animating){ var f=feedEl(); if (f){ f.style.transition="transform .22s ease"; f.style.transform=""; f.style.opacity=""; setTimeout(function(){cleanup(f);},250); } }
+    }, { passive:true });
   })();
 
   /* ---------- auto-hide header ---------- */
