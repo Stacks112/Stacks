@@ -2,6 +2,77 @@
  "items": [
   {
    "date": "2026-07-28",
+   "id": "bilello-google-record-profit-negative-fcf-spacex-markup",
+   "related": [
+    "kobeissi-oracle-cds-record",
+    "apple-nvidia-market-cap-crown-chip-selloff",
+    "serenity-nvidia-openai-250b-ohio-backstop"
+   ],
+   "source": "Charlie Bilello",
+   "sourceUrl": "https://bilello.blog/2026/the-week-in-charts-7-27-26",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/charliebilello?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#7C2D12",
+    "to": "#1E3A8A",
+    "label": "PAPER PROFIT"
+   },
+   "tags": [
+    "GOOGLE",
+    "FREE CASH FLOW",
+    "AI CAPEX"
+   ],
+   "stance": "watch",
+   "quote": {
+    "lines": [
+     "Google ($GOOGL) earned a stunning $112 billion in Q2, the highest quarterly net income for any company in history.",
+     "But its stock fell 7% the day after its earnings report. Why? AI spending concerns, with Google's free cash flow turning negative for the first time in company history."
+    ],
+    "cite": "Charlie Bilello · 2026.07.27"
+   },
+   "title": {
+    "ko": "구글이 분기 순이익 사상 최대를 냈다, 그런데 현금은 21년 만에 마이너스였다",
+    "en": "Google Posted a Record Quarterly Profit, and Its First Negative Cash Flow in 21 Years",
+    "ja": "グーグルが四半期純利益で過去最高を記録した、なのに現金は21年ぶりのマイナスだった"
+   },
+   "gist": {
+    "ko": "구글 모회사 알파벳이 2분기 순이익 1121억달러를 냈다. 어느 기업이든 분기 기준으로는 역대 최대 기록이다.\n\n그런데 실적 발표 다음 날 주가는 7% 빠졌다. 순이익이 사상 최대인데 주가는 왜 떨어졌을까.\n\n투자 뉴스레터 '더 위크 인 차트'를 쓰는 찰리 빌렐로가 27일 이 수수께끼를 정리해 짚었다.\n\n## 사상 최대 실적인데 왜 팔렸나\n이유는 현금이다.\n알파벳의 2분기 잉여현금흐름(영업으로 번 현금에서 설비투자를 뺀 값)이 마이너스 58억5500만달러를 기록했다.\n2004년 상장 이후 첫 분기 적자다.\n\n분기 설비투자(캐펙스)가 449억달러로 1년 전보다 두 배로 늘었다.\n알파벳은 올해 전체 캐펙스 전망치도 기존 1800억~1900억달러에서 1950억~2050억달러로 올려 잡았다.\n벌어들이는 돈보다 AI 인프라에 쏟아붓는 돈이 더 빠르게 늘고 있다는 뜻이다.\n\n@@IMG@@datacenter-inside|알파벳이 이번에 두 배로 늘린 449억달러가 향하는 곳도 이런 데이터센터다.\n\n@@REF@@알파벳, AI 인프라 투자 늘리며 잉여현금흐름 21년 만에 적자 전환 (ChainCatcher, 2026-07)|https://www.chaincatcher.com/en/article/2277757\n\n## 순이익 1121억달러, 그런데 정말 다 '번' 돈일까\n빌렐로는 이 순이익의 87%가 스페이스X·앤스로픽 같은 지분 투자의 장부 평가차익이라고 짚었다. 실제로는 조금 다르다.\n\n@@CHK@@세전 평가차익|990억달러|순이익 대비 비중(세전)|약 88%|순이익 대비 비중(세후)|약 69%@@세전 금액(990억달러)을 세후 순이익(1121억달러)으로 나누면 87~88%가 나오지만, 이 평가차익 자체에도 세금이 붙는다. 세후로 따지면 기여분은 771억달러, 순이익의 약 69%다. 지적의 방향은 맞지만 인용된 숫자는 세전·세후를 섞은 값이다@@2026-07-27 · ChainCatcher 보도(알파벳 실적 발표 기준)\n\n어느 쪽으로 계산해도 결론은 같다.\n순이익의 3분의 2 넘는 금액이 제품을 팔아 번 돈이 아니라, 주식으로 들고 있는 스페이스X·앤스로픽 지분 가치가 장부상으로 오른 것뿐이다.\n이 돈은 은행 계좌에 들어오지 않는다.\n\n## 이 평가차익, 지금도 유효할까\n문제는 이 평가차익의 기반이 흔들리고 있다는 점이다.\n스페이스X는 지난달 상장 직후 주당 226달러까지 올랐다가, 27일 기준 113달러대로 떨어졌다. 정점 대비 약 50% 빠진 값이다.\n\n조기 투자자들의 차익 실현, 발사 관련 잡음이 상기시킨 실행 리스크, AI 관련 투자 심리 냉각, 락업 해제와 250억달러 규모 회사채 발행에 따른 물량 증가가 겹친 결과로 풀이된다.\n\n@@REF@@스페이스X, 상장 후 고점 대비 50% 폭락 (모틀리풀, 2026-07-27)|https://www.fool.com/investing/2026/07/27/spacex-stock-plummets-50-below-its-post-ipo-high-h/\n\n알파벳이 스페이스X 지분을 장부에 평가한 시점과 지금 사이에 이만큼 차이가 났다면, 다음 분기 순이익에는 반대 방향의 숫자가 찍힐 수 있다.\n\n@@CMP@@캐펙스 걱정으로 읽는 쪽|잉여현금흐름 적자는 AI 투자가 감당 못 할 속도로 불어나고 있다는 경고다|회계 구조로 읽는 쪽|적자의 절반 이상은 지출이 아니라 평가차익이 순이익에 섞여 만든 착시이고, 진짜 리스크는 그 평가차익의 근거인 스페이스X 주가가 이미 흔들리고 있다는 것이다\n\n애플과 오라클을 나란히 보면 이 구도가 더 또렷해진다.\n애플은 최근 1년 잉여현금흐름 1290억달러를 내며 주가가 56% 올라 사상 최고치를 찍었고, 오라클은 같은 기간 240억달러를 태우며 주가가 52% 빠졌다.\n캐펙스를 아낀 쪽은 보상받고, 쏟아부은 쪽은 벌을 받고 있다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다.\n알파벳의 마이너스 현금흐름이 AI 투자 확대 초기의 일시적 현상인지, 아니면 벌어들이는 돈이 지출 속도를 못 따라가는 구조적 전환인지다.\n\n다음 분기 잉여현금흐름이 다시 플러스로 돌아오고 스페이스X·앤스로픽 지분 가치가 지금 수준을 지키면, 이번 적자는 일시적 현상으로 남는다.\n반대로 캐펙스 전망치가 또 오르고 스페이스X 주가가 더 빠지면, 순이익 1121억달러라는 숫자는 계상된 그 분기부터 근거가 흔들리게 된다.\n\n지금 확실한 건 하나다. 사상 최대 순이익과 사상 첫 현금 적자가 같은 분기, 같은 회사에서 동시에 나왔다는 사실이다.",
+    "en": "Alphabet, Google's parent, posted $112.1 billion in net income for the second quarter, a record for any company in a single quarter.\n\nBut its stock fell 7% the day after the earnings report. Record profit, falling stock: why?\n\nCharlie Bilello, who writes the investing newsletter The Week in Charts, laid out the answer on July 27.\n\n## Why did a record quarter get sold\nThe reason is cash.\nAlphabet's Q2 free cash flow, operating cash minus capital spending, came in at negative $5.855 billion.\nThat's the company's first quarterly cash deficit since its 2004 IPO.\n\nQuarterly capital expenditures hit $44.9 billion, double what they were a year earlier.\nAlphabet also raised its full-year capex guidance to $195-205 billion, up from $180-190 billion last quarter.\nThe money going into AI infrastructure is growing faster than the cash coming in.\n\n@@IMG@@datacenter-inside|The kind of data center that $44.9 billion in doubled spending is actually building.\n\n@@REF@@Alphabet's free cash flow turns negative for the first time in 21 years as AI spending surges (ChainCatcher, 2026-07)|https://www.chaincatcher.com/en/article/2277757\n\n## A record profit, but how much of it was actually earned\nBilello's post says 87% of that net income came from paper markups on equity stakes like SpaceX and Anthropic. The real number is a bit different.\n\n@@CHK@@Pretax markup gain|$99.0B|Share of net income (pretax)|~88%|Share of net income (after-tax)|~69%@@Dividing the pretax gain ($99B) by after-tax net income ($112.1B) gets you 87-88%, but the markup itself gets taxed too. On an after-tax basis its contribution is $77.1B, about 69% of net income. The direction of the original claim holds, but the cited number mixes pretax and after-tax figures@@2026-07-27, ChainCatcher, citing Alphabet's earnings release\n\nEither way you calculate it, the conclusion doesn't change.\nMore than two-thirds of net income didn't come from selling ads or cloud services. It came from the paper value of SpaceX and Anthropic shares Alphabet holds going up.\nNone of that money hit a bank account.\n\n## Is that markup even still good\nThe problem is that the ground under this markup is shifting.\nSpaceX peaked near $226 a share within days of its IPO last month, then fell to around $113 by July 27, roughly a 50% drop from that peak.\n\nEarly investors cashing out quick gains, launch mishaps reminding investors that execution isn't guaranteed, cooling AI sentiment, and new share supply from lock-up expirations and a $25 billion bond sale all played a part.\n\n@@REF@@SpaceX stock plummets 50% below its post-IPO high (The Motley Fool, 2026-07-27)|https://www.fool.com/investing/2026/07/27/spacex-stock-plummets-50-below-its-post-ipo-high-h/\n\nIf SpaceX has fallen this much since Alphabet marked its stake, the next quarter's net income could show the same swing in the opposite direction.\n\n@@CMP@@The capex-worry read|Negative free cash flow is a warning that AI spending is growing faster than the company can afford|The accounting-structure read|More than half of that shortfall isn't spending at all, it's a markup gain distorting net income, and the real risk is that the SpaceX valuation behind that markup is already cracking\n\nPut Apple and Oracle side by side and the pattern gets sharper.\nApple generated $129 billion in free cash flow over the past year and its stock is up 56%, at an all-time high. Oracle burned $24 billion over the same period and its stock is down 52%.\nCapex discipline is being rewarded. Capex excess is being punished.\n\n## What decides this\nThe question comes down to one thing.\nIs Alphabet's negative cash flow a temporary side effect of an early, aggressive AI buildout, or a structural shift where spending is outrunning what the business actually earns.\n\nIf free cash flow turns positive again next quarter and the SpaceX and Anthropic stakes hold their value, this quarter reads as a one-off.\nIf capex guidance rises again and SpaceX keeps falling, the $112.1 billion net income number starts looking shakier from the very quarter it was booked in.\n\nWhat's certain right now is that a record profit and the company's first-ever cash deficit landed in the same quarter, at the same company.",
+    "ja": "グーグルの親会社アルファベットが、2四半期の純利益1121億ドルを計上した。単一四半期としては全企業史上最高額だ。\n\nしかし決算発表の翌日、株価は7%下落した。過去最高益なのに株が売られたのはなぜか。\n\n投資ニュースレター『ザ・ウィーク・イン・チャーツ』を書くチャーリー・ビレロが7月27日、この謎を整理した。\n\n## なぜ過去最高の四半期が売られたのか\n理由は現金だ。\nアルファベットの2Qフリーキャッシュフロー(営業キャッシュから設備投資を引いた値)はマイナス58億5500万ドルだった。\n2004年の上場以来、四半期として初の赤字だ。\n\n四半期の設備投資(キャペックス)は449億ドルで、1年前の2倍に達した。\nアルファベットは通期のキャペックス見通しも1800億〜1900億ドルから1950億〜2050億ドルに引き上げた。\n入ってくる現金より、AIインフラに出ていく金の方が速く増えている。\n\n@@IMG@@datacenter-inside|449億ドルという倍増した支出の行き先も、こうしたデータセンターだ。\n\n@@REF@@アルファベット、AI投資拡大でフリーキャッシュフローが21年ぶりにマイナスに (ChainCatcher、2026-07)|https://www.chaincatcher.com/en/article/2277757\n\n## 過去最高益、でも本当に「稼いだ」金なのか\nビレロの投稿は、この純利益の87%がスペースX・アンソロピックなどへの持分投資の帳簿上の評価益だと指摘する。実際の数字は少し違う。\n\n@@CHK@@税引前評価益|990億ドル|純利益に対する比率(税引前)|約88%|純利益に対する比率(税引後)|約69%@@税引前の990億ドルを税引後の純利益1121億ドルで割ると87〜88%になるが、この評価益自体にも税金がかかる。税引後で見ると寄与分は771億ドル、純利益の約69%だ。指摘の方向性は正しいが、示された数字は税引前と税引後を混ぜたものだ@@2026-07-27、ChainCatcher報道(アルファベット決算発表に基づく)\n\nどちらで計算しても結論は変わらない。\n純利益の3分の2以上は、広告やクラウドを売って稼いだ金ではない。保有するスペースX・アンソロピック株の帳簿価値が上がっただけだ。\nこの金は銀行口座には入ってこない。\n\n## その評価益、今でも有効か\n問題は、この評価益の土台が揺らいでいることだ。\nスペースXは先月の上場直後、株価が226ドル近くまで上昇したが、7月27日時点で113ドル台まで下落した。ピークからおよそ50%の下落だ。\n\n早期投資家による利益確定売り、打ち上げ関連の騒動が思い出させた実行リスク、AI関連の投資心理の冷え込み、ロックアップ解除と250億ドル規模の社債発行による供給増加が重なった結果とみられる。\n\n@@REF@@スペースX、上場後高値から50%急落 (モトリーフール、2026-07-27)|https://www.fool.com/investing/2026/07/27/spacex-stock-plummets-50-below-its-post-ipo-high-h/\n\nアルファベットが持分を評価した時点からこれだけ差が出たなら、次の四半期の純利益には逆方向の数字が出かねない。\n\n@@CMP@@キャペックス懸念として読む見方|フリーキャッシュフローの赤字は、AI投資が身の丈を超えて膨らんでいる警告だ|会計構造として読む見方|赤字の半分以上は支出ではなく評価益が純利益を歪めた結果であり、本当のリスクはその評価益の根拠であるスペースXの株価がすでに崩れ始めていることだ\n\nアップルとオラクルを並べると、この構図はさらにはっきりする。\nアップルは過去1年でフリーキャッシュフロー1290億ドルを生み出し、株価は56%上昇して史上最高値を付けた。オラクルは同期間に240億ドルを溶かし、株価は52%下落した。\nキャペックスを抑えた側は報われ、使いすぎた側は罰せられている。\n\n## 何で見分けるか\n問いは結局一つに絞られる。\nアルファベットのマイナスのキャッシュフローは、初期の積極的なAI投資拡大に伴う一時的な副作用なのか、それとも支出が実際の稼ぎを追い越す構造的な転換なのかだ。\n\n次の四半期にフリーキャッシュフローが再びプラスに転じ、スペースX・アンソロピックの持分価値が今の水準を維持すれば、今回の赤字は一時的な現象として片付く。\n逆にキャペックス見通しがまた引き上げられ、スペースXの株価がさらに下落すれば、1121億ドルという純利益の数字は計上されたその四半期から揺らぎ始める。\n\n今はっきりしているのは一つだけだ。過去最高の利益と、この会社にとって初めての現金赤字が、同じ四半期、同じ会社から同時に出たという事実だ。"
+   },
+   "why": {
+    "ko": "헤드라인 순이익과 실제 현금 흐름이 정반대로 갈리는 대표 사례라, 앞으로 빅테크 실적을 읽을 때 어디를 봐야 하는지 보여준다.",
+    "en": "A clean example of a headline profit number pointing one way while actual cash flow points the other, previewing where to look when reading the next round of Big Tech earnings.",
+    "ja": "見出しの利益と実際のキャッシュフローが正反対を指す好例で、次のビッグテック決算をどこで読むべきかを示している。"
+   },
+   "ask": {
+    "ko": "순이익의 3분의 2가 스페이스X 지분 평가차익이라면, 이 실적을 '사상 최대'라고 불러도 될까?",
+    "en": "If two-thirds of net income is a paper markup on a SpaceX stake, does this quarter still deserve to be called a record?",
+    "ja": "純利益の3分の2がスペースX持分の評価益だとしたら、この四半期を「過去最高」と呼んでいいのか?"
+   },
+   "ts": "2026-07-28T01:02:00+00:00",
+   "lab": true,
+   "foldWhy": true,
+   "sum3": {
+    "ko": "구글이 2분기 순이익 1121억달러로 역대 최대를 냈는데, 주가는 다음날 7% 떨어졌다.\n표면적으로는 AI 캐펙스 부담이 이유로 보인다, 분기 설비투자가 449억달러로 1년 새 2배가 됐다.\n그런데 순이익의 약 69%(세후 기준)는 스페이스X·앤스로픽 지분의 장부 평가차익이었고, 그 스페이스X 주가는 고점 대비 50% 빠진 상태다.",
+    "en": "Alphabet posted a record $112.1 billion in Q2 net income, and its stock fell 7% the next day.\nOn the surface, AI capex looks like the reason, quarterly spending doubled to $44.9 billion.\nBut about 69% of net income (after tax) was a paper markup on Alphabet's SpaceX and Anthropic stakes, and SpaceX itself is now down 50% from its peak.",
+    "ja": "アルファベットは2Q純利益で過去最高の1121億ドルを記録したが、株価は翌日7%下落した。\n表向きはAIキャペックス負担が理由に見える、四半期設備投資は449億ドルと1年で2倍になった。\nだが純利益の約69%(税引後)はスペースX・アンソロピック持分の帳簿評価益であり、そのスペースX株はピークから50%下落している。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "다음 분기(3분기) 알파벳의 잉여현금흐름이 플러스로 돌아오는지, 스페이스X 주가가 현 수준(주당 110달러대)을 지키는지 확인.",
+     "en": "Check whether Alphabet's free cash flow turns positive again in Q3, and whether SpaceX holds its current share price (around $110s).",
+     "ja": "次の四半期(3Q)にアルファベットのフリーキャッシュフローが再びプラスに転じるか、スペースXの株価が現在の110ドル台を維持するかを確認する。"
+    },
+    "due": "2026-11-15"
+   }
+  },
+  {
+   "date": "2026-07-28",
    "id": "jukan-skhynix-lpddr6-xiaomi-cxmt-race",
    "related": [
     "jukan-samsung-chinese-dram-mx-bet",
