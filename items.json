@@ -11094,7 +11094,8 @@
    "aliases": [
     "ADR",
     "미국주식예탁증서",
-    "米国預託証券"
+    "米国預託証券",
+    "예탁증서"
    ],
    "name": {
     "ko": "ADR",
@@ -11150,7 +11151,11 @@
    "aliases": [
     "HBM",
     "고대역폭 메모리",
-    "広帯域メモリ"
+    "広帯域メモリ",
+    "HBM5",
+    "HBM4E",
+    "HBM4",
+    "HBM3E"
    ],
    "name": {
     "ko": "HBM",
@@ -12442,7 +12447,10 @@
     "Kobeissi",
     "KobeissiLetter",
     "코베이시",
-    "コベイシ"
+    "コベイシ",
+    "Kobeissi Letter",
+    "코베이시레터",
+    "コベイシ・レター"
    ]
   },
   "ASTERA LABS": {
@@ -15941,7 +15949,10 @@
     "투자등급",
     "investment grade",
     "IG등급",
-    "投資適格"
+    "投資適格",
+    "신용등급",
+    "투자부적격",
+    "credit rating"
    ],
    "desc": {
     "ko": "신용평가사가 '빌려준 돈을 떼일 위험이 낮다'고 매긴 등급. 이 아래 등급은 정크(투기등급)로 불린다.",
@@ -16787,7 +16798,18 @@
     "미세공정",
     "微細工程",
     "advanced process node",
-    "process node"
+    "process node",
+    "2나노",
+    "3나노",
+    "4나노",
+    "5나노",
+    "7나노",
+    "28나노",
+    "2nm",
+    "3nm",
+    "4nm",
+    "7nm",
+    "1c 공정"
    ]
   },
   "GU JA-HEUM": {
@@ -17243,6 +17265,760 @@
     "최태원",
     "崔泰源"
    ]
+  },
+  "DRAM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "전원이 켜져 있는 동안 데이터를 잠시 담아두는 작업용 메모리 반도체.",
+    "en": "The working memory chip that holds data temporarily while the power is on.",
+    "ja": "電源が入っている間だけデータを一時的に保持する作業用メモリー半導体。"
+   },
+   "longDesc": {
+    "ko": "컴퓨터·스마트폰이 지금 하는 일을 펼쳐놓는 책상 같은 메모리다. 전원을 끄면 내용이 사라지는 점이 저장용인 낸드와 다르다. 삼성전자·SK하이닉스·마이크론 세 회사가 세계 시장 대부분을 나눠 갖고 있어, D램 가격은 이 회사들 실적과 메모리 사이클을 읽는 기준이 된다.",
+    "en": "Think of it as the desk where a computer or phone lays out whatever it's working on right now. Unlike NAND, which is for storage, DRAM loses its contents when the power goes off. Samsung, SK Hynix and Micron split most of the global market, so DRAM pricing is the benchmark for reading their earnings and the memory cycle.",
+    "ja": "コンピューターやスマホが今やっている作業を広げておく机のようなメモリーだ。電源を切ると中身が消える点が、保存用のNANDと異なる。サムスン電子・SKハイニックス・マイクロンの3社が世界市場の大半を分け合っており、DRAM価格はこれらの業績とメモリーサイクルを読む基準になる。"
+   },
+   "aliases": [
+    "DRAM",
+    "D램",
+    "디램"
+   ],
+   "name": {
+    "ko": "D램",
+    "en": "DRAM",
+    "ja": "DRAM"
+   }
+  },
+  "LPDDR": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "스마트폰·태블릿용 저전력 D램 규격. 숫자가 클수록 새 세대다.",
+    "en": "The low-power DRAM standard for phones and tablets; higher numbers mean newer generations.",
+    "ja": "スマホ・タブレット向けの低消費電力DRAM規格。数字が大きいほど新しい世代。"
+   },
+   "longDesc": {
+    "ko": "Low Power DDR의 약자로, 배터리로 움직이는 기기를 위해 전력 소모를 줄인 D램 규격이다. LPDDR5X, LPDDR6처럼 뒤에 붙는 숫자·문자가 세대를 나타내고, 세대가 오를수록 속도가 빨라지고 전력효율이 좋아진다. 온디바이스 AI처럼 기기 안에서 AI를 돌리는 흐름이 커질수록 이 저전력 메모리의 사양 경쟁이 중요해진다.",
+    "en": "Short for Low Power DDR, a DRAM standard designed to sip power in battery-driven devices. The trailing numbers and letters (LPDDR5X, LPDDR6) mark generations, each faster and more power-efficient than the last. As on-device AI grows, the spec race in this low-power memory matters more.",
+    "ja": "Low Power DDRの略で、バッテリー駆動機器向けに消費電力を抑えたDRAM規格。LPDDR5X、LPDDR6のように後ろに付く数字・文字が世代を表し、世代が上がるほど高速・高効率になる。オンデバイスAIの流れが強まるほど、この低電力メモリーの仕様競争が重要になる。"
+   },
+   "aliases": [
+    "LPDDR",
+    "LPDDR6",
+    "LPDDR5X",
+    "LPDDR5",
+    "저전력 D램"
+   ],
+   "name": {
+    "ko": "LPDDR",
+    "en": "LPDDR",
+    "ja": "LPDDR"
+   }
+  },
+  "GPU": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "수천 개 계산을 동시에 처리하는 칩. AI 학습·추론의 표준 장비가 됐다.",
+    "en": "A chip that runs thousands of calculations at once; now the standard engine for AI training and inference.",
+    "ja": "数千の計算を同時に処理するチップ。AIの学習・推論の標準装備になった。"
+   },
+   "longDesc": {
+    "ko": "원래는 게임 그래픽을 그리기 위해 만들어진 칩이다. 그림 한 장을 수많은 점으로 쪼개 동시에 계산하는 구조가 AI 연산과 맞아떨어지면서, 데이터센터의 핵심 장비가 됐다. 엔비디아가 이 시장을 사실상 독점하고 있고, AI 인프라 투자 이야기에서 나오는 '칩'은 대부분 GPU를 가리킨다.",
+    "en": "Originally built to draw game graphics. Its design, splitting an image into countless dots and computing them all at once, turned out to fit AI math, making it the core of the data center buildout. Nvidia effectively monopolizes the market, and when AI infrastructure stories say 'chips,' they usually mean GPUs.",
+    "ja": "もともとはゲームのグラフィックを描くために作られたチップ。画像を無数の点に分けて同時に計算する構造がAI演算と合致し、データセンターの中核装備になった。エヌビディアがこの市場を事実上独占しており、AIインフラ投資の話に出てくる「チップ」はたいていGPUを指す。"
+   },
+   "aliases": [
+    "GPU",
+    "그래픽처리장치",
+    "graphics processing unit"
+   ],
+   "name": {
+    "ko": "GPU",
+    "en": "GPU",
+    "ja": "GPU"
+   }
+  },
+  "웨이퍼": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "반도체 칩을 새겨 넣는 원판 모양의 실리콘 기판.",
+    "en": "The round silicon disc that chips are printed onto.",
+    "ja": "半導体チップを刻み込む円盤状のシリコン基板。"
+   },
+   "longDesc": {
+    "ko": "피자 도우에 조각을 그려 넣듯, 이 원판 위에 같은 칩 수백~수천 개를 한꺼번에 새긴 뒤 잘라낸다. 반도체 생산량을 말할 때 '월 웨이퍼 몇 장'으로 세는 이유다. 원판이 클수록(현재 주력 300mm) 한 번에 나오는 칩이 많아지고, 웨이퍼 투입량은 반도체 업황을 가늠하는 선행 지표로 쓰인다.",
+    "en": "Like slices drawn onto a pizza base, hundreds to thousands of identical chips are printed onto this disc at once and then cut apart. That's why chip output is counted in wafers per month. Bigger discs (300mm is today's standard) yield more chips per run, and wafer starts serve as a leading indicator of the chip cycle.",
+    "ja": "ピザ生地に切り分け線を描くように、この円盤の上に同じチップを数百〜数千個まとめて刻み、切り出す。半導体の生産量を「月産ウェハー何枚」と数えるのはこのためだ。円盤が大きいほど(現在の主力は300mm)一度に取れるチップが増え、ウェハー投入量は半導体景気の先行指標として使われる。"
+   },
+   "aliases": [
+    "웨이퍼",
+    "wafer",
+    "ウェハー",
+    "ウエハー"
+   ],
+   "name": {
+    "ko": "웨이퍼",
+    "en": "Wafer",
+    "ja": "ウェハー"
+   }
+  },
+  "노광장비": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "빛으로 웨이퍼에 회로 패턴을 새기는 장비. 반도체 공정에서 가장 비싸다.",
+    "en": "The machine that uses light to print circuit patterns onto wafers; the most expensive step in chipmaking.",
+    "ja": "光でウェハーに回路パターンを刻む装置。半導体工程で最も高価だ。"
+   },
+   "longDesc": {
+    "ko": "필름 카메라가 빛으로 필름에 상을 새기듯, 회로 도면을 빛으로 웨이퍼에 투사해 새긴다. 리소그래피라고도 부른다. 더 짧은 파장의 빛을 쓸수록 더 가는 회로를 그릴 수 있어, 파장에 따라 DUV(심자외선)·EUV(극자외선) 세대로 나뉜다. 최첨단 EUV는 네덜란드 ASML이 사실상 독점하고 있어, 이 장비의 수출 통제가 반도체 지정학의 핵심 수단이 됐다.",
+    "en": "Like a film camera exposing an image onto film, it projects circuit blueprints onto a wafer with light. Also called lithography. Shorter wavelengths draw finer circuits, which is why generations are named after the light used: DUV (deep ultraviolet) and EUV (extreme ultraviolet). ASML of the Netherlands effectively monopolizes cutting-edge EUV machines, making export controls on them a central tool of chip geopolitics.",
+    "ja": "フィルムカメラが光でフィルムに像を焼き付けるように、回路図を光でウェハーに投影して刻む。リソグラフィーとも呼ばれる。より短い波長の光を使うほど細い回路を描けるため、DUV(深紫外線)・EUV(極端紫外線)と世代が分かれる。最先端のEUVはオランダのASMLが事実上独占しており、この装置の輸出規制が半導体地政学の中心的な手段になっている。"
+   },
+   "aliases": [
+    "노광장비",
+    "리소그래피",
+    "lithography",
+    "露光装置",
+    "다중노광",
+    "노광"
+   ],
+   "name": {
+    "ko": "노광장비",
+    "en": "Lithography",
+    "ja": "露光装置"
+   }
+  },
+  "DUV": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "EUV보다 한 세대 아래인 심자외선 노광 기술. 중국 반도체 자립의 현재 상한선이다.",
+    "en": "Deep-ultraviolet lithography, one generation below EUV; currently the ceiling of China's chip self-sufficiency.",
+    "ja": "EUVより一世代下の深紫外線露光技術。中国の半導体自立の現在の上限だ。"
+   },
+   "longDesc": {
+    "ko": "Deep Ultraviolet(심자외선)의 약자다. 단일 노광으로는 28나노급 회로까지, 같은 자리를 여러 번 겹쳐 찍는 다중노광을 쓰면 7나노급까지 만들 수 있다. EUV 장비 수출이 막힌 중국은 DUV로 얼마나 버티고 따라잡느냐가 반도체 자립의 관건이라, 중국산 DUV 장비 양산 소식이 시장을 흔드는 재료가 된다.",
+    "en": "Short for deep ultraviolet. A single exposure can print down to roughly 28nm-class circuits, and multi-patterning, overlapping exposures on the same spot, stretches that to about 7nm-class. With EUV machines export-blocked, how far China can push DUV defines the limit of its chip self-sufficiency, which is why news of domestically built DUV tools moves markets.",
+    "ja": "Deep Ultraviolet(深紫外線)の略。1回の露光で28ナノ級まで、同じ場所に複数回重ね焼きするマルチパターニングを使えば7ナノ級まで作れる。EUV装置の輸出が封じられた中国にとって、DUVでどこまで粘り追い上げるかが半導体自立の鍵であり、中国産DUV装置の量産のニュースは市場を動かす材料になる。"
+   },
+   "aliases": [
+    "DUV",
+    "심자외선",
+    "深紫外線"
+   ],
+   "name": {
+    "ko": "DUV",
+    "en": "DUV",
+    "ja": "DUV"
+   }
+  },
+  "베이스다이": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "HBM 맨 아래에 깔리는 층. 쌓아 올린 D램과 바깥을 잇는 배선·관제실 역할을 한다.",
+    "en": "The bottom layer of an HBM stack, wiring the stacked DRAM to the outside world and managing traffic.",
+    "ja": "HBMの最下層。積み上げたDRAMと外部をつなぐ配線・管制室の役割を果たす。"
+   },
+   "longDesc": {
+    "ko": "HBM이 D램을 쌓은 창고라면 베이스다이는 그 창고의 1층 물류센터다. 위층 D램들이 주고받는 데이터가 전부 이 층을 지나므로, HBM 세대가 오를수록 베이스다이의 처리 능력과 발열 관리가 병목이 된다. 그래서 메모리 회사가 만들던 이 층을 파운드리의 최선단 로직 공정으로 만드는 방안이 HBM 경쟁의 새 전선이 됐다.",
+    "en": "If HBM is a warehouse of stacked DRAM, the base die is the ground-floor logistics hub. Every bit the upper floors exchange passes through it, so as HBM generations advance, the base die's throughput and heat handling become the bottleneck. That's why building this layer on a foundry's most advanced logic process, rather than a memory process, has become the new front in the HBM race.",
+    "ja": "HBMがDRAMを積み上げた倉庫だとすれば、ベースダイはその1階の物流センターだ。上の階のDRAMがやり取りするデータはすべてこの層を通るため、HBMの世代が上がるほどベースダイの処理能力と発熱管理がボトルネックになる。この層をメモリー工程ではなくファウンドリーの最先端ロジック工程で作る構想が、HBM競争の新たな戦線になっている。"
+   },
+   "aliases": [
+    "베이스다이",
+    "base die",
+    "ベースダイ"
+   ],
+   "name": {
+    "ko": "베이스다이",
+    "en": "Base die",
+    "ja": "ベースダイ"
+   }
+  },
+  "핀펫": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "전류 통로를 3면으로 감싸는 트랜지스터 구조. GAA 이전 세대의 표준이다.",
+    "en": "A transistor design that wraps the current channel on three sides; the standard before GAA.",
+    "ja": "電流の通り道を3面から囲むトランジスタ構造。GAA以前の世代の標準だ。"
+   },
+   "longDesc": {
+    "ko": "FinFET. 전류가 흐르는 통로를 지느러미(fin)처럼 세우고 게이트가 3면을 감싸 누설 전류를 줄인 구조다. 14나노~3나노 시대의 표준이었지만, 회로가 더 가늘어지자 3면으로는 전류 통제가 부족해졌다. 4면을 다 감싸는 GAA(게이트올어라운드)가 그 다음 세대이고, 2나노부터는 GAA로의 전환이 본격화되고 있다.",
+    "en": "FinFET stands the current channel up like a fin and wraps its gate around three sides to curb leakage. It was the standard from roughly 14nm through 3nm, but as circuits shrank further, three-sided control stopped being enough. GAA (gate-all-around), which wraps all four sides, is the successor, with the transition accelerating from 2nm onward.",
+    "ja": "FinFET。電流の通り道をひれ(fin)のように立て、ゲートが3面を囲んで漏れ電流を抑える構造だ。14ナノ〜3ナノ時代の標準だったが、回路がさらに細くなると3面では電流制御が足りなくなった。4面すべてを囲むGAA(ゲートオールアラウンド)が次世代で、2ナノからGAAへの移行が本格化している。"
+   },
+   "aliases": [
+    "핀펫",
+    "FinFET",
+    "フィンFET"
+   ],
+   "name": {
+    "ko": "핀펫",
+    "en": "FinFET",
+    "ja": "FinFET"
+   }
+  },
+  "IDM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "설계부터 생산까지 반도체 전 과정을 한 회사가 다 하는 사업 모델.",
+    "en": "A business model where one company handles the entire chip process, from design to manufacturing.",
+    "ja": "設計から生産まで半導体の全工程を1社で担う事業モデル。"
+   },
+   "longDesc": {
+    "ko": "Integrated Device Manufacturer(종합반도체기업)의 약자다. 설계만 하는 팹리스, 생산만 대행하는 파운드리와 달리 설계·생산·(때로는 패키징까지) 전부를 자체 보유한다. 삼성전자·인텔·마이크론이 대표적이다. 전 공정을 가진 만큼 메모리와 로직 기술을 결합하는 카드를 쓸 수 있지만, 모든 단계에 거액의 투자가 동시에 들어가는 부담도 진다.",
+    "en": "Short for Integrated Device Manufacturer. Unlike fabless firms that only design or foundries that only manufacture, an IDM owns design, production and sometimes packaging under one roof; Samsung, Intel and Micron are the classic examples. Owning the whole chain lets an IDM play cards like combining memory and logic technology, at the cost of funding every stage's heavy investment at once.",
+    "ja": "Integrated Device Manufacturer(垂直統合型半導体メーカー)の略。設計のみのファブレス、生産受託のファウンドリーと異なり、設計・生産・(時にはパッケージングまで)を自社で持つ。サムスン電子・インテル・マイクロンが代表例だ。全工程を持つ分、メモリーとロジック技術を組み合わせるカードを切れるが、全段階に巨額投資が同時に必要になる負担も背負う。"
+   },
+   "aliases": [
+    "IDM",
+    "종합반도체",
+    "종합반도체기업",
+    "垂直統合型半導体"
+   ],
+   "name": {
+    "ko": "IDM(종합반도체)",
+    "en": "IDM",
+    "ja": "IDM"
+   }
+  },
+  "DWDM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "광케이블 한 가닥에 여러 파장의 빛을 실어 용량을 수십 배로 늘리는 기술.",
+    "en": "A technique that multiplies a fiber-optic cable's capacity by carrying many light wavelengths at once.",
+    "ja": "光ケーブル1本に複数波長の光を載せ、容量を数十倍に増やす技術。"
+   },
+   "longDesc": {
+    "ko": "파장분할다중화. 도로를 넓히는 대신 차선 하나에 색깔이 다른 차들을 겹쳐 달리게 하는 셈이다. 2000년 전후 이 기술이 퍼지자 이미 깔린 광케이블만으로 수요를 다 감당하게 됐고, 케이블을 앞다퉈 깔던 통신버블이 꺼지는 방아쇠가 됐다. 신기술 하나가 인프라 과잉투자를 하루아침에 드러낸 사례로, AI 데이터센터 투자 논쟁에서 자주 소환된다.",
+    "en": "Dense wavelength division multiplexing. Instead of widening the road, it runs differently colored cars stacked in one lane. When it spread around 2000, existing fiber suddenly covered all the demand, triggering the collapse of the telecom cable-laying bubble. It's the textbook case of one new technology exposing infrastructure overinvestment overnight, which is why it keeps being cited in the AI data center debate.",
+    "ja": "波長分割多重。道路を広げる代わりに、1つの車線に色の違う車を重ねて走らせるようなものだ。2000年前後にこの技術が普及すると、既設の光ケーブルだけで需要を賄えるようになり、ケーブル敷設バブルが弾ける引き金になった。新技術一つがインフラ過剰投資を一夜にして露呈させた事例として、AIデータセンター投資の議論で繰り返し引き合いに出される。"
+   },
+   "aliases": [
+    "DWDM",
+    "파장분할다중화",
+    "波長分割多重"
+   ],
+   "name": {
+    "ko": "DWDM",
+    "en": "DWDM",
+    "ja": "DWDM"
+   }
+  },
+  "벤더 파이낸싱": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "물건 파는 회사가 사는 회사에 돈까지 빌려주며 매출을 만드는 방식.",
+    "en": "When the seller also lends the buyer the money, creating its own sales.",
+    "ja": "売り手が買い手に資金まで貸して売上を作る方式。"
+   },
+   "longDesc": {
+    "ko": "장비회사가 고객에게 대출·보증을 제공하고, 고객은 그 돈으로 그 회사 장비를 산다. 매출은 늘지만 고객이 무너지면 떼인 돈과 사라진 매출을 동시에 맞는다. 1990년대 말 통신장비 업체들이 이 방식으로 매출을 부풀리다 버블 붕괴 때 함께 무너졌고, 엔비디아의 오픈AI 지원 구조가 이와 닮았다는 논쟁이 순환금융 논란의 핵심이다.",
+    "en": "An equipment maker extends loans or guarantees to customers, who use the money to buy that maker's gear. Revenue grows, but if the customer collapses, the seller loses the loan and the future sales at once. Late-1990s telecom equipment makers inflated revenue this way and fell together when the bubble burst; whether Nvidia's support for OpenAI rhymes with that history is the heart of the circular-financing debate.",
+    "ja": "装備メーカーが顧客に融資・保証を提供し、顧客はその資金で同じメーカーの装備を買う。売上は伸びるが、顧客が倒れれば貸した金と将来の売上を同時に失う。1990年代末の通信機器メーカーはこの方式で売上を膨らませ、バブル崩壊とともに共倒れした。エヌビディアのオープンAI支援構造がこれに似ているかどうかが、循環金融論争の核心だ。"
+   },
+   "aliases": [
+    "벤더 파이낸싱",
+    "vendor financing",
+    "ベンダーファイナンス"
+   ],
+   "name": {
+    "ko": "벤더 파이낸싱",
+    "en": "Vendor financing",
+    "ja": "ベンダーファイナンス"
+   }
+  },
+  "서킷브레이커": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "주가가 급락하면 거래를 강제로 멈추는 안전장치.",
+    "en": "A safety mechanism that forcibly halts trading when prices plunge.",
+    "ja": "株価が急落すると取引を強制的に止める安全装置。"
+   },
+   "longDesc": {
+    "ko": "두꺼비집이 과부하 때 전기를 끊듯, 지수가 정해진 폭 이상 급락하면 시장 전체 거래를 일정 시간 정지시킨다. 한국 코스피는 8% 이상 하락이 1분간 지속되면 1단계가 발동돼 20분간 거래가 멈춘다. 투매가 투매를 부르는 악순환을 끊고 투자자에게 생각할 시간을 주자는 취지로, 발동 자체가 시장 공포의 크기를 보여주는 사건이 된다.",
+    "en": "Like a breaker box cutting power on overload, it halts all trading for a set period when an index falls past a set threshold. On Korea's KOSPI, a drop of 8% or more sustained for a minute triggers a level-one halt of 20 minutes. The point is to break the panic-feeds-panic loop and give investors time to think; the trigger itself becomes an event that measures how scared the market is.",
+    "ja": "ブレーカーが過負荷で電気を遮断するように、指数が所定の幅以上急落すると市場全体の取引を一定時間停止させる。韓国のKOSPIでは8%以上の下落が1分間続くと第1段階が発動し、20分間取引が止まる。投げ売りが投げ売りを呼ぶ悪循環を断ち、投資家に考える時間を与える趣旨で、発動自体が市場の恐怖の大きさを示す出来事になる。"
+   },
+   "aliases": [
+    "서킷브레이커",
+    "circuit breaker",
+    "サーキットブレーカー"
+   ],
+   "name": {
+    "ko": "서킷브레이커",
+    "en": "Circuit breaker",
+    "ja": "サーキットブレーカー"
+   }
+  },
+  "S&P500": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "미국 대표 기업 500곳을 묶은 주가지수. 미국 증시 전체의 기준점이다.",
+    "en": "The index of 500 leading US companies; the benchmark for the American stock market.",
+    "ja": "米国の代表企業500社をまとめた株価指数。米国株式市場全体の基準点だ。"
+   },
+   "longDesc": {
+    "ko": "시가총액 기준으로 미국 상장사 상위 500곳을 담아, 미국 증시가 오늘 올랐는지 내렸는지를 말할 때 사실상 기준이 되는 지수다. 시가총액 가중이라 애플·엔비디아·마이크로소프트 같은 초대형주의 움직임이 지수를 좌우하고, 그래서 'S&P500이 올랐다'가 '대형 기술주가 올랐다'와 비슷한 말이 되는 시기도 있다.",
+    "en": "It holds the 500 largest listed US companies by market value and serves as the de facto answer to whether the US market rose or fell today. Because it's cap-weighted, giants like Apple, Nvidia and Microsoft dominate its moves, and there are stretches when 'the S&P 500 rose' means roughly the same thing as 'big tech rose.'",
+    "ja": "時価総額基準で米国上場企業の上位500社を組み入れ、米国市場が今日上がったか下がったかを語る際の事実上の基準となる指数だ。時価総額加重のため、アップル・エヌビディア・マイクロソフトのような超大型株の動きが指数を左右し、「S&P500が上がった」が「大型テック株が上がった」とほぼ同義になる時期もある。"
+   },
+   "aliases": [
+    "S&P500",
+    "S&P 500",
+    "SP500",
+    "에스앤피500"
+   ],
+   "name": {
+    "ko": "S&P500",
+    "en": "S&P 500",
+    "ja": "S&P500"
+   }
+  },
+  "닷컴버블": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "1990년대 말 인터넷 기업 주가가 폭등했다가 2000년부터 무너진 사건.",
+    "en": "The late-1990s surge and post-2000 collapse of internet company stocks.",
+    "ja": "1990年代末にインターネット企業の株価が急騰し、2000年から崩壊した出来事。"
+   },
+   "longDesc": {
+    "ko": "인터넷이 모든 것을 바꾼다는 기대에 이익이 없는 회사에도 돈이 몰렸고, 나스닥은 2000년 3월 5,048로 정점을 찍은 뒤 2002년까지 78% 폭락했다. 인터넷이 세상을 바꾼다는 예측 자체는 맞았지만, 언제 얼마나 벌리느냐를 앞질러 간 투자는 무너졌다. 기술 전환기마다 '이번이 그때와 같은가'를 재는 기준 사례로 소환되며, AI 투자 논쟁에서도 마찬가지다.",
+    "en": "Money chased profitless companies on the belief that the internet would change everything; the Nasdaq peaked at 5,048 in March 2000 and fell 78% by 2002. The prediction itself proved right, the internet did change the world, but investment that ran ahead of when and how much it would earn collapsed anyway. Every technology transition gets measured against it, and the AI buildout debate is no exception.",
+    "ja": "インターネットがすべてを変えるという期待で利益のない企業にも資金が殺到し、ナスダックは2000年3月に5,048で天井を打った後、2002年までに78%暴落した。予測自体は正しかった、インターネットは世界を変えた。だが、いつ・どれだけ稼げるかを先走った投資は崩れた。技術転換期のたびに「今回はあの時と同じか」を測る基準事例として引き合いに出され、AI投資論争でも同様だ。"
+   },
+   "aliases": [
+    "닷컴버블",
+    "닷컴 버블",
+    "dot-com bubble",
+    "ITバブル",
+    "통신버블"
+   ],
+   "name": {
+    "ko": "닷컴버블",
+    "en": "Dot-com bubble",
+    "ja": "ITバブル"
+   }
+  },
+  "IPO": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "비상장 회사가 주식을 처음 시장에 내놓아 누구나 사고팔 수 있게 되는 것.",
+    "en": "When a private company first offers its shares to the public market.",
+    "ja": "非上場企業が株式を初めて市場に出し、誰でも売買できるようになること。"
+   },
+   "longDesc": {
+    "ko": "기업공개(Initial Public Offering)의 약자다. 상장 전에 기관·개인에게 파는 가격이 공모가이고, 상장 첫날 시장에서 형성되는 가격과의 차이가 그 상장의 성적표처럼 읽힌다. 조달한 돈은 회사의 투자 재원이 되고, 기존 주주에게는 지분을 현금화할 통로가 열린다. 다만 상장 초기에는 유통 물량이 적어 주가가 실제 가치보다 크게 출렁일 수 있다.",
+    "en": "Short for Initial Public Offering. The price sold to institutions and individuals before listing is the offer price, and the gap between it and the first day's market price gets read as the listing's report card. The proceeds fund the company's investments, and existing shareholders gain a path to cash out. Early on, though, the small tradable float can swing the price far beyond what fundamentals justify.",
+    "ja": "新規株式公開(Initial Public Offering)の略。上場前に機関・個人に売る価格が公募価格で、上場初日に市場でつく価格との差がその上場の成績表のように読まれる。調達資金は会社の投資原資となり、既存株主には持分を現金化する道が開かれる。ただし上場初期は流通株数が少なく、株価が実際の価値以上に大きく振れることがある。"
+   },
+   "aliases": [
+    "IPO",
+    "기업공개",
+    "공모가",
+    "신규상장",
+    "新規上場",
+    "公募価格"
+   ],
+   "name": {
+    "ko": "IPO(기업공개)",
+    "en": "IPO",
+    "ja": "IPO"
+   }
+  },
+  "KOSPI": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "한국거래소 유가증권시장의 대표 주가지수. 한국 증시의 기준점이다.",
+    "en": "The benchmark index of the Korea Exchange main board.",
+    "ja": "韓国取引所メイン市場の代表株価指数。韓国株式市場の基準点だ。"
+   },
+   "longDesc": {
+    "ko": "1980년 1월 4일 시가총액을 100으로 놓고 지금까지의 배율을 지수로 쓴다. 삼성전자·SK하이닉스 같은 대형주가 시가총액 가중으로 지수를 좌우해, 반도체 업황이 코스피 방향을 결정하는 날이 많다. 미국의 S&P500에 해당하는 위치다.",
+    "en": "It sets the total market value on January 4, 1980 at 100 and tracks the multiple since. Cap-weighted giants like Samsung Electronics and SK Hynix dominate its moves, so the chip cycle often decides which way the KOSPI goes. It occupies the same place in Korea that the S&P 500 does in the US.",
+    "ja": "1980年1月4日の時価総額を100とし、それ以降の倍率を指数として使う。サムスン電子・SKハイニックスのような大型株が時価総額加重で指数を左右するため、半導体景気がKOSPIの方向を決める日が多い。米国のS&P500に当たる位置づけだ。"
+   },
+   "aliases": [
+    "KOSPI",
+    "코스피",
+    "코스피지수",
+    "韓国総合株価指数"
+   ],
+   "name": {
+    "ko": "코스피",
+    "en": "KOSPI",
+    "ja": "KOSPI"
+   }
+  },
+  "가이던스": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "기업이 스스로 내놓는 다음 분기·연간 실적 전망치.",
+    "en": "A company's own forecast for its coming quarter or year.",
+    "ja": "企業が自ら示す次四半期・通期の業績見通し。"
+   },
+   "longDesc": {
+    "ko": "실적 발표 때 회사가 함께 내놓는 앞으로의 매출·이익·투자 전망이다. 시장은 지난 분기 성적보다 이 숫자에 더 민감하게 반응할 때가 많다. 이미 지난 실적은 주가에 반영돼 있고, 가이던스가 앞으로의 기대를 다시 쓰기 때문이다. 가이던스 상향에 주가가 떨어졌다면, 시장 기대가 그보다도 높았다는 뜻으로 읽힌다.",
+    "en": "The forward revenue, profit or spending outlook a company issues alongside earnings. Markets often react more to this number than to the quarter just reported, because the past is already priced in while guidance rewrites expectations. When a stock falls on raised guidance, it means the market had expected even more.",
+    "ja": "決算発表時に会社が併せて示す今後の売上・利益・投資の見通し。市場は直前の四半期の成績よりこの数字に敏感に反応することが多い。過去の実績はすでに株価に織り込まれており、ガイダンスが今後の期待を書き換えるからだ。ガイダンス引き上げで株価が下がったなら、市場の期待はそれ以上だったと読める。"
+   },
+   "aliases": [
+    "가이던스",
+    "guidance",
+    "ガイダンス",
+    "실적 전망치"
+   ],
+   "name": {
+    "ko": "가이던스",
+    "en": "Guidance",
+    "ja": "ガイダンス"
+   }
+  },
+  "연기금": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "연금 지급을 위해 모아둔 돈을 굴리는 초대형 장기 투자자.",
+    "en": "Giant long-horizon investors that manage money set aside for pensions.",
+    "ja": "年金支給のために積み立てた資金を運用する超大型の長期投資家。"
+   },
+   "longDesc": {
+    "ko": "국민연금처럼 미래의 연금 지급을 위해 걷어둔 돈을 수십 년 시야로 굴리는 기관이다. 운용 규모가 수백조원대라 이들의 자산 배분 변화 하나가 시장 수급을 바꾼다. 단기 등락보다 배분 비율을 지키는 쪽으로 움직여서, 주식이 급등하면 기계적으로 파는(리밸런싱) 쪽에 서는 경우가 많다.",
+    "en": "Institutions like Korea's National Pension Service that invest decades ahead with money collected for future pension payments. Managing hundreds of billions of dollars, a single shift in their asset allocation moves market supply and demand. They defend allocation ratios rather than chase moves, which often puts them on the mechanical-selling side (rebalancing) after sharp rallies.",
+    "ja": "韓国の国民年金のように、将来の年金支給のために集めた資金を数十年の視野で運用する機関。運用規模が数千億ドル級のため、その資産配分の変化一つが市場の需給を変える。短期の騰落よりも配分比率を守る方向で動くので、株が急騰すると機械的に売る(リバランス)側に立つことが多い。"
+   },
+   "aliases": [
+    "연기금",
+    "연금기금",
+    "pension fund",
+    "年金基金"
+   ],
+   "name": {
+    "ko": "연기금",
+    "en": "Pension fund",
+    "ja": "年金基金"
+   }
+  },
+  "캐파": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "공장이 일정 기간에 만들어낼 수 있는 최대 생산량.",
+    "en": "The maximum output a factory can produce in a given period.",
+    "ja": "工場が一定期間に作り出せる最大生産量。"
+   },
+   "longDesc": {
+    "ko": "capacity의 줄임말로 업계에서는 캐파라고 부른다. 반도체에서는 보통 월 웨이퍼 투입량으로 센다. 캐파를 늘리는 데는 공장 건설부터 장비 반입까지 몇 년이 걸려서, 지금의 증설 결정은 몇 년 뒤의 공급량이 된다. 호황 때 늘린 캐파가 불황 때 공급과잉으로 돌아오는 것이 메모리 사이클의 기본 구조다.",
+    "en": "Industry shorthand for capacity, usually counted in wafer starts per month for chipmakers. Adding capacity takes years, from construction to tool move-in, so today's expansion decisions become supply several years out. Capacity added in booms returning as oversupply in busts is the basic mechanics of the memory cycle.",
+    "ja": "capacityの略で、業界ではキャパと呼ぶ。半導体では通常、月間のウェハー投入量で数える。キャパ増強には工場建設から装置搬入まで数年かかるため、今日の増設判断は数年後の供給量になる。好況期に増やしたキャパが不況期に供給過剰として返ってくるのが、メモリーサイクルの基本構造だ。"
+   },
+   "aliases": [
+    "캐파",
+    "생산능력",
+    "CAPA",
+    "生産能力"
+   ],
+   "name": {
+    "ko": "캐파(생산능력)",
+    "en": "Capacity",
+    "ja": "生産能力"
+   }
+  },
+  "HSBC": {
+   "kind": "company",
+   "ticker": "HSBA.l",
+   "sector": {
+    "en": "Bank",
+    "ko": "은행",
+    "ja": "銀行"
+   },
+   "desc": {
+    "ko": "영국에 본사를 둔 유럽 최대급 은행. 아시아 비중이 큰 글로벌 은행이다.",
+    "en": "London-headquartered global bank, one of Europe's largest, with a heavy Asia footprint.",
+    "ja": "ロンドンに本社を置く欧州最大級の銀行。アジア比重の大きいグローバル銀行だ。"
+   },
+   "aliases": [
+    "HSBC",
+    "홍콩상하이은행",
+    "HSBCホールディングス"
+   ],
+   "logo": "hsbc.com",
+   "exchange": "LSE",
+   "founded": "1865",
+   "hq": {
+    "en": "London, UK",
+    "ko": "영국 런던",
+    "ja": "英国・ロンドン"
+   },
+   "website": "https://www.hsbc.com",
+   "longDesc": {
+    "ko": "1865년 홍콩과 상하이에서 출발한 은행으로, 지금은 런던에 본사를 두고 아시아와 유럽을 잇는 글로벌 은행으로 자리잡았다. 리서치 부문이 내는 기업·산업 분석도 자주 인용되며, Stacks 카드에서는 오픈AI의 자금조달 필요액 추정 같은 산업 분석의 출처로 등장한다.",
+    "en": "Founded in Hong Kong and Shanghai in 1865, it's now a London-based global bank bridging Asia and Europe. Its research arm's company and industry analysis is widely cited; in Stacks cards it appears as the source of estimates like how much capital OpenAI needs to raise.",
+    "ja": "1865年に香港と上海で創業した銀行で、現在はロンドンに本社を置き、アジアと欧州をつなぐグローバル銀行として定着している。リサーチ部門の企業・産業分析もよく引用され、StacksのカードではオープンAIの資金調達必要額の推定などの出典として登場する。"
+   }
+  },
+  "ETF": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "주식처럼 사고파는 펀드. 지수·업종·자산을 통째로 담아 거래한다.",
+    "en": "A fund that trades like a stock, holding a whole index, sector or asset in one ticker.",
+    "ja": "株式のように売買できるファンド。指数・業種・資産を丸ごと組み入れて取引する。"
+   },
+   "longDesc": {
+    "ko": "Exchange Traded Fund(상장지수펀드)의 약자다. S&P500이나 반도체 업종 같은 묶음을 한 종목처럼 실시간으로 사고팔 수 있다. 개별 종목을 고르지 않아도 시장 전체에 투자할 수 있어 패시브 자금의 표준 그릇이 됐고, ETF로 들어오는 자금 흐름 자체가 시장 수급을 좌우하는 변수가 됐다.",
+    "en": "Short for Exchange Traded Fund. It lets you buy and sell a whole basket, the S&P 500, a chip-sector index, in real time like a single stock. Because it offers market exposure without stock picking, it became the standard vehicle for passive money, and flows into ETFs are now themselves a force that moves market supply and demand.",
+    "ja": "Exchange Traded Fund(上場投資信託)の略。S&P500や半導体業種のようなまとまりを、1銘柄のようにリアルタイムで売買できる。個別銘柄を選ばなくても市場全体に投資できるためパッシブ資金の標準的な器となり、ETFへの資金流入自体が市場の需給を左右する変数になった。"
+   },
+   "aliases": [
+    "ETF",
+    "상장지수펀드",
+    "上場投資信託"
+   ],
+   "name": {
+    "ko": "ETF",
+    "en": "ETF",
+    "ja": "ETF"
+   }
+  },
+  "레버리지 ETF": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "기초지수 하루 수익률의 2~3배를 추종하는 ETF. 장기 보유하면 수익이 새는 구조다.",
+    "en": "An ETF that tracks 2-3x an index's daily return; holding it long-term leaks value by design.",
+    "ja": "基礎指数の1日の収益率の2〜3倍に連動するETF。長期保有すると収益が漏れる構造だ。"
+   },
+   "longDesc": {
+    "ko": "핵심은 '하루' 수익률의 배수라는 점이다. 매일 배율을 다시 맞추기 때문에, 지수가 오르내리기를 반복하면 제자리로 돌아와도 레버리지 ETF는 손실이 쌓인다. 이를 변동성 끌림이라 부른다. 단기 방향에 거는 도구이지 장기 투자 수단이 아니며, 규제당국이 개인의 과도한 레버리지 ETF 투자에 예탁금 같은 제동을 거는 이유이기도 하다.",
+    "en": "The key word is daily: because leverage resets every day, a market that whipsaws back to where it started still leaves a leveraged ETF with accumulated losses, a effect called volatility drag. It's a tool for short-term directional bets, not long-term holding, which is why regulators put brakes like deposit requirements on retail investors who pile in.",
+    "ja": "核心は「1日」の収益率の倍数だという点だ。毎日倍率を取り直すため、指数が上下を繰り返して元の水準に戻っても、レバレッジETFには損失が積み上がる。これをボラティリティ・ドラッグと呼ぶ。短期の方向に賭ける道具であって長期投資の手段ではなく、規制当局が個人の過度なレバレッジETF投資に預託金などのブレーキをかける理由でもある。"
+   },
+   "aliases": [
+    "레버리지 ETF",
+    "레버리지ETF",
+    "leveraged ETF",
+    "レバレッジETF"
+   ],
+   "name": {
+    "ko": "레버리지 ETF",
+    "en": "Leveraged ETF",
+    "ja": "レバレッジETF"
+   }
+  },
+  "기준금리": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "중앙은행이 정하는 정책 금리. 시중 모든 금리의 출발점이 된다.",
+    "en": "The policy rate set by a central bank; the starting point for every other interest rate.",
+    "ja": "中央銀行が決める政策金利。世の中のあらゆる金利の出発点になる。"
+   },
+   "longDesc": {
+    "ko": "미국 연준, 한국은행 같은 중앙은행이 물가와 경기를 조절하려고 정하는 금리다. 은행 대출금리·예금금리·채권금리가 전부 이 값을 기준으로 움직인다. 기준금리를 올리면 돈값이 비싸져 소비·투자가 눌리고, 내리면 반대다. 그래서 연준의 금리 결정 회의(FOMC) 하나에 전 세계 시장이 촉각을 세운다.",
+    "en": "The rate central banks like the Fed or the Bank of Korea set to steer inflation and the economy. Loan rates, deposit rates and bond yields all move off this anchor. Raising it makes money more expensive, cooling spending and investment; cutting it does the opposite. That's why a single Fed meeting (FOMC) keeps global markets on edge.",
+    "ja": "米FRBや韓国銀行のような中央銀行が、物価と景気を調節するために決める金利だ。銀行の貸出金利・預金金利・債券利回りはすべてこの値を基準に動く。基準金利を上げれば金の値段が高くなり消費・投資が抑えられ、下げればその逆だ。だからFRBの金利決定会合(FOMC)一つに世界中の市場が神経を尖らせる。"
+   },
+   "aliases": [
+    "기준금리",
+    "정책금리",
+    "政策金利",
+    "policy rate"
+   ],
+   "name": {
+    "ko": "기준금리",
+    "en": "Policy rate",
+    "ja": "政策金利"
+   }
+  },
+  "CPU": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "컴퓨터의 범용 두뇌 칩. 순서대로 처리하는 일에 강하다.",
+    "en": "The general-purpose brain chip of a computer, built for sequential work.",
+    "ja": "コンピューターの汎用頭脳チップ。順番に処理する仕事に強い。"
+   },
+   "longDesc": {
+    "ko": "운영체제 구동부터 프로그램 실행까지 컴퓨터의 거의 모든 일을 지휘하는 칩이다. 소수의 강력한 코어로 복잡한 일을 순서대로 처리하는 데 강해, 수천 개 계산을 동시에 쏟아내는 GPU와 역할이 갈린다. AI 서버에서도 GPU를 지휘하고 데이터를 나르는 자리는 여전히 CPU 몫이라, 인텔·AMD의 서버 CPU 가격과 물량은 AI 인프라 기사에 계속 등장한다.",
+    "en": "The chip that directs nearly everything a computer does, from running the operating system to executing programs. Its few powerful cores excel at complex sequential work, which is where it parts ways with the GPU's thousands of parallel calculations. Even in AI servers, marshaling GPUs and moving data remains CPU work, which is why Intel and AMD server CPU prices and volumes keep showing up in AI infrastructure stories.",
+    "ja": "OSの駆動からプログラムの実行まで、コンピューターのほぼすべての仕事を指揮するチップだ。少数の強力なコアで複雑な仕事を順番に処理するのが得意で、数千の計算を同時に走らせるGPUとは役割が分かれる。AIサーバーでもGPUを指揮しデータを運ぶ役割は依然CPUのもので、インテル・AMDのサーバーCPUの価格と数量はAIインフラ記事に登場し続ける。"
+   },
+   "aliases": [
+    "CPU",
+    "중앙처리장치",
+    "中央処理装置"
+   ],
+   "name": {
+    "ko": "CPU",
+    "en": "CPU",
+    "ja": "CPU"
+   }
+  },
+  "DDR": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "PC·서버용 표준 D램 규격. DDR4, DDR5처럼 숫자가 세대를 나타낸다.",
+    "en": "The standard DRAM spec for PCs and servers; the number (DDR4, DDR5) marks the generation.",
+    "ja": "PC・サーバー向け標準DRAM規格。DDR4、DDR5のように数字が世代を表す。"
+   },
+   "longDesc": {
+    "ko": "Double Data Rate의 약자로, PC와 서버 메인보드에 꽂는 표준 D램의 규격 이름이다. 세대가 오를수록(DDR4→DDR5) 속도와 용량 효율이 좋아진다. 스마트폰용 저전력 규격인 LPDDR, GPU 옆에 쌓는 HBM과 함께 D램의 3대 제품군을 이룬다. 서버용 DDR5 모듈 가격은 데이터센터 수요를 읽는 온도계로 자주 인용된다.",
+    "en": "Short for Double Data Rate, the spec family for the standard DRAM that plugs into PC and server boards. Each generation (DDR4 to DDR5) improves speed and density. Together with LPDDR (the low-power mobile spec) and HBM (stacked next to GPUs), it forms one of DRAM's three main product families. Server DDR5 module prices are a widely quoted thermometer for data center demand.",
+    "ja": "Double Data Rateの略で、PCやサーバーのメインボードに挿す標準DRAMの規格名だ。世代が上がるほど(DDR4→DDR5)速度と容量効率が良くなる。スマホ向け低電力規格のLPDDR、GPUの隣に積むHBMとともにDRAMの3大製品群をなす。サーバー向けDDR5モジュール価格は、データセンター需要を読む温度計としてよく引用される。"
+   },
+   "aliases": [
+    "DDR5",
+    "DDR4",
+    "DDR6",
+    "DDR3"
+   ],
+   "name": {
+    "ko": "DDR",
+    "en": "DDR",
+    "ja": "DDR"
+   }
+  },
+  "잉여현금흐름": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "번 돈에서 설비투자까지 빼고 실제로 남은 현금. 회사가 마음대로 쓸 수 있는 돈이다.",
+    "en": "The cash actually left after operating costs and capital spending; money the company is free to use.",
+    "ja": "稼いだ金から設備投資まで差し引いて実際に残った現金。会社が自由に使える金だ。"
+   },
+   "longDesc": {
+    "ko": "영업으로 벌어들인 현금에서 설비투자(캐펙스)를 뺀 값으로, FCF(Free Cash Flow)라고 부른다. 회계상 이익과 달리 실제 통장에 남는 돈이라, 배당·자사주 매입·빚 상환의 재원이 전부 여기서 나온다. 이익은 사상 최대인데 잉여현금흐름이 마이너스라면, AI 데이터센터처럼 버는 것보다 더 큰 돈을 설비에 쏟아붓고 있다는 뜻이다.",
+    "en": "Operating cash flow minus capital expenditure, known as FCF. Unlike accounting profit, it's what actually lands in the bank, and dividends, buybacks and debt repayment are all funded from it. Record profits alongside negative free cash flow means the company is pouring more into facilities, AI data centers being the current case, than it earns.",
+    "ja": "営業で稼いだ現金から設備投資(キャペックス)を差し引いた値で、FCF(フリーキャッシュフロー)と呼ぶ。会計上の利益と違い実際に手元に残る金であり、配当・自社株買い・負債返済の原資はすべてここから出る。利益は過去最高なのにFCFがマイナスなら、AIデータセンターのように稼ぐ以上の金を設備に注ぎ込んでいるという意味だ。"
+   },
+   "aliases": [
+    "잉여현금흐름",
+    "FCF",
+    "free cash flow",
+    "フリーキャッシュフロー"
+   ],
+   "name": {
+    "ko": "잉여현금흐름(FCF)",
+    "en": "Free cash flow",
+    "ja": "FCF"
+   }
   }
  }
 }
