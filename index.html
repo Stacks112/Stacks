@@ -5069,10 +5069,18 @@ function buildEntityMatcher(){
   raw.sort((a, b) => b.length - a.length); /* longest alias wins */
   /* word boundaries only where they can actually match: \b works between
      \w and non-\w, so "SK하이닉스" must NOT get a trailing \b (하이닉스 is
-     not \w) or the full name never matches and only "하이닉스" lights up */
+     not \w) or the full name never matches and only "하이닉스" lights up.
+     But a bare alias with no boundary at all on its Hangul side can also
+     match as a substring of an unrelated longer word ("애플" inside
+     "애플리케이션") — HANGUL_PARTICLES lets a real particle ("하이닉스가")
+     still attach, while rejecting a same-script word that just continues
+     ("애플" + "리케이션"). Mirrors build_entity_matcher() in
+     scripts/build_data.py; keep both in sync. */
+  const HANGUL_PARTICLES = ["은","는","이","가","을","를","의","에","와","과","도","만","로","께","이나","나"];
   const pats = raw.map(a => {
-    const head = /^[A-Za-z0-9]/.test(a) ? "\\b" : "";
-    const tail = /[A-Za-z0-9]$/.test(a) ? "\\b" : "";
+    const head = /^[A-Za-z0-9]/.test(a) ? "\\b" : "(?<![가-힣])";
+    const tail = /[A-Za-z0-9]$/.test(a) ? "\\b" :
+      "(?=$|[^가-힣]|(?:" + HANGUL_PARTICLES.join("|") + ")(?![가-힣]))";
     return head + reEsc(a) + tail;
   });
   if (pats.length) ENT_RE = new RegExp("(" + pats.join("|") + ")", "gi");
