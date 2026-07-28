@@ -619,6 +619,15 @@ def make_og(item, og):
 
 MIN_RATE_N = 5  # 적중률을 공개할 최소 채점 표본
 
+# 색인에 내보낼 엔티티 페이지의 최소 관련 글 수.
+# /e/ 는 기사에 한 번이라도 언급된 엔티티면 무조건 만들어진다. 그래서 관련 글이
+# 1건인 페이지가 104개 생겼고, 본문 중앙값이 565자, 71%가 800자 미만이었다.
+# 사람에게는 쓸모 있는 이동 경로지만(내부 링크로 계속 남긴다), 검색 색인에
+# 내보내면 "자동 생성된 껍데기 페이지 대량 생산"으로 읽힌다 — 2026-07-27
+# 애드센스가 「가치가 별로 없는 콘텐츠」로 사이트를 반려한 근거가 이것이다.
+# 기준 미만은 noindex,follow + 사이트맵 제외. 글이 쌓이면 자동으로 색인에 돌아온다.
+ENTITY_MIN_ARTICLES = 3
+
 
 def week_window(items):
     """(wk_items, label) for the last 7 days, same rule week_page() uses."""
@@ -1323,6 +1332,10 @@ def entity_page(key, e, ent_items):
     }
     tk = f'<span class="tk">{E(ticker)}</span>' if ticker else ""
     prof = f'<a class="prof" href="{E(e["url"])}" target="_blank" rel="noopener nofollow">프로필 ↗</a>' if e.get("url") else ""
+    # follow 를 남기는 이유: 이 페이지가 가리키는 글은 계속 크롤되어야 한다.
+    # 색인에서만 빼고 링크는 그대로 흐르게 둔다.
+    thin_robots = ("" if len(ent_items) >= ENTITY_MIN_ARTICLES
+                   else '\n<meta name="robots" content="noindex,follow">')
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -1330,7 +1343,7 @@ def entity_page(key, e, ent_items):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{E(key)} · 관련 글 {len(ent_items)}건 · {SITE}</title>
 <meta name="description" content="{E(metadesc)}">
-<link rel="canonical" href="{E(url)}">
+<link rel="canonical" href="{E(url)}">{thin_robots}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{SITE}">
 <meta property="og:title" content="{E(key)} · {SITE}">
@@ -1384,7 +1397,7 @@ footer a{{color:#8E93A0}}
 <h2>관련 글 {len(ent_items)}건</h2>
 <ul>{rows}</ul>
 <footer>
-  요약·해설은 The Infrastructure Thesis의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
+  요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
 </body>
@@ -1550,7 +1563,7 @@ footer a{{color:#8E93A0}}
 {stance_html}
 <a class="cta" href="../">Stacks에서 더 읽기 →</a>
 <footer>
-  요약·해설은 The Infrastructure Thesis의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
+  요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
 </body>
@@ -1762,7 +1775,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
 {body_html}
 <a class="cta" href="{E(app_url)}">Stacks 앱에서 라이브로 보기 →</a>
 <footer>
-  요약·해설은 The Infrastructure Thesis의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
+  요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
 </body>
@@ -2042,9 +2055,12 @@ def main():
     # write per-entity pages (only entities that actually have articles)
     os.makedirs("e", exist_ok=True)
     ent_slugs = {}
+    ent_indexable = []      # 사이트맵에 올릴 것 = ENTITY_MIN_ARTICLES 이상
     for key, its in ent_items.items():
         slug = slugify(key)
         ent_slugs[slug] = key
+        if len(its) >= ENTITY_MIN_ARTICLES:
+            ent_indexable.append(slug)
         with open(f"e/{slug}.html", "w", encoding="utf-8") as f:
             f.write(entity_page(key, entities[key], its))
     for fn in os.listdir("e"):
@@ -2076,12 +2092,14 @@ def main():
     week_slugs = sorted(fn[:-5] for fn in os.listdir("week") if fn.endswith(".html"))
 
     open("sitemap.xml", "w", encoding="utf-8").write(
-        sitemap(items, list(ent_slugs.keys()), week_slugs, theme_slugs, record_slugs))
+        sitemap(items, ent_indexable, week_slugs, theme_slugs, record_slugs))
     for _lg in LANGS:
         open(FEED_FILE[_lg], "w", encoding="utf-8").write(feed(items, _lg))
     open("robots.txt", "w", encoding="utf-8").write(robots())
     _ping_indexnow(items)
-    print(f"[ok] {len(items)} article pages + {len(ent_slugs)} entity pages + sitemap + feed + robots")
+    print(f"[ok] {len(items)} article pages + {len(ent_slugs)} entity pages "
+          f"({len(ent_indexable)} indexed, {len(ent_slugs) - len(ent_indexable)} noindex) "
+          f"+ sitemap + feed + robots")
 
 
 if __name__ == "__main__":
