@@ -594,5 +594,371 @@
    "en": "A credit rating that marks a borrower as low default risk; anything below is called junk (speculative grade).",
    "ja": "信用格付け会社が「貸した金を失う危険が低い」と評価した等級。それ未満はジャンク(投機的等級)と呼ばれる。"
   }
+ },
+ "자금조달": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "자금조달",
+   "資金調達",
+   "fundraising"
+  ],
+  "desc": {
+   "en": "Raising capital, whether via equity rounds, debt, or grants.",
+   "ko": "지분투자·대출·보조금 등으로 사업 자금을 마련하는 것.",
+   "ja": "株式・負債・補助金などで事業資金を調達すること。"
+  },
+  "longDesc": {
+   "en": "Covers everything from early seed rounds to late-stage debt financing; the terms and valuation attached to a raise reveal how much leverage the fundraising side actually had.",
+   "ko": "초기 시드 라운드부터 후기 부채 조달까지를 포괄한다. 조달 조건과 밸류에이션에 자금을 구하는 쪽의 협상력이 드러난다.",
+   "ja": "初期のシードラウンドから後期の負債調達までを含む。調達条件とバリュエーションに資金を求める側の交渉力が表れる。"
+  }
+ },
+ "LNG": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "LNG",
+   "액화천연가스",
+   "液化天然ガス"
+  ],
+  "desc": {
+   "en": "Liquefied natural gas, cooled to a liquid so it can be shipped by tanker instead of piped.",
+   "ko": "천연가스를 액체 상태로 냉각해 배관 없이 선박으로 운송할 수 있게 만든 것.",
+   "ja": "天然ガスを液体状態に冷却し、パイプラインなしでタンカー輸送できるようにしたもの。"
+  },
+  "longDesc": {
+   "en": "LNG lets buyers diversify away from pipeline-dependent suppliers, but it costs more to produce and ship than piped gas, so its price sets a rough ceiling on what a pipeline seller can demand.",
+   "ko": "LNG는 배관에 의존하지 않고 공급처를 다변화할 수 있게 해주지만 생산·운송비가 파이프라인 가스보다 비싸, 그 가격이 파이프라인 판매자가 요구할 수 있는 가격의 대략적 상한이 된다.",
+   "ja": "LNGはパイプライン依存から供給先を多様化できるが、生産・輸送コストがパイプラインガスより高く、その価格がパイプライン売り手の要求価格のおおよその上限になる。"
+  }
+ },
+ "NPO": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "NPO",
+   "near-package optics",
+   "니어패키지 옵틱스"
+  ],
+  "desc": {
+   "en": "Near-package optics: optical engines placed just outside the chip package, a middle ground between pluggables and full co-packaged optics.",
+   "ko": "니어패키지 옵틱스. 광엔진을 칩 패키지 바로 바깥에 배치하는, 플러거블과 완전 공동패키지(CPO) 사이의 중간 방식.",
+   "ja": "ニアパッケージ光学。光エンジンをチップパッケージのすぐ外側に配置する、プラガブルと完全共同パッケージ(CPO)の中間方式。"
+  },
+  "longDesc": {
+   "en": "Supplied by component makers like Credo, Marvell, Coherent and Lumentum, NPO is a supplier-driven category rather than a confirmed Nvidia or Broadcom roadmap commitment.",
+   "ko": "Credo·Marvell·Coherent·루멘텀 같은 부품사들이 미는 개념으로, 엔비디아·브로드컴의 확정된 로드맵이라기보다 공급사 주도의 카테고리에 가깝다.",
+   "ja": "Credo・Marvell・Coherent・Lumentumなど部品メーカーが推す概念で、NVIDIAやBroadcomの確定ロードマップというより供給側主導のカテゴリーに近い。"
+  }
+ },
+ "InP": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "InP",
+   "indium phosphide",
+   "인화인듐"
+  ],
+  "desc": {
+   "en": "Indium phosphide, the semiconductor material used to make the laser chips that feed optical transceivers.",
+   "ko": "인화인듐. 광트랜시버에 들어가는 레이저 칩을 만드는 반도체 소재.",
+   "ja": "インジウムリン。光トランシーバーに使うレーザーチップの半導体材料。"
+  },
+  "longDesc": {
+   "en": "InP wafer and epitaxy capacity is limited to a handful of suppliers worldwide, making it a recurring bottleneck whenever AI datacenter buildouts spike demand for optical links.",
+   "ko": "InP 웨이퍼·에피택시 생산능력은 전 세계 소수 업체에 한정돼, AI 데이터센터 증설로 광링크 수요가 튈 때마다 반복되는 병목이 된다.",
+   "ja": "InPウェハー・エピタキシー生産能力は世界でごく少数の企業に限られ、AIデータセンター増設で光リンク需要が跳ねるたびに繰り返しボトルネックとなる。"
+  }
+ },
+ "RDIMM": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "RDIMM",
+   "registered DIMM",
+   "레지스터드 DIMM"
+  ],
+  "desc": {
+   "en": "Registered DIMM: a server memory module with a register chip that buffers signals, standard in datacenter RAM.",
+   "ko": "레지스터드 DIMM. 신호를 버퍼링하는 레지스터 칩을 얹은 서버용 메모리 모듈로, 데이터센터 램의 표준 규격이다.",
+   "ja": "レジスタードDIMM。信号をバッファリングするレジスタチップを搭載したサーバー用メモリモジュールで、データセンターRAMの標準規格。"
+  },
+  "longDesc": {
+   "en": "Because RDIMM is the mainstream, high-volume DRAM format, it's the segment where a new entrant like CXMT can most plausibly compete on price and yield.",
+   "ko": "RDIMM은 DRAM 중 물량이 가장 많은 주류 규격이라, CXMT 같은 신규 진입자가 가격·수율로 경쟁하기 가장 현실적인 구간이다.",
+   "ja": "RDIMMはDRAMの中で最も出荷量の多い主流規格であり、CXMTのような新規参入者が価格・歩留まりで競争しやすい区間だ。"
+  }
+ },
+ "CUDIMM": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "CUDIMM",
+   "clocked unbuffered DIMM"
+  ],
+  "desc": {
+   "en": "Clocked unbuffered DIMM, a premium desktop/workstation memory format with an onboard clock driver for higher speeds.",
+   "ko": "클록드 언버퍼드 DIMM. 온보드 클록 드라이버로 고속을 낸 프리미엄 데스크톱·워크스테이션용 메모리 규격.",
+   "ja": "クロックド・アンバッファードDIMM。オンボードのクロックドライバで高速化した、デスクトップ・ワークステーション向け上位メモリ規格。"
+  },
+  "longDesc": {
+   "en": "CUDIMM sits in the premium tier where CXMT has essentially no presence, unlike mainstream DDR5.",
+   "ko": "CUDIMM은 CXMT가 사실상 존재감이 없는 프리미엄 구간으로, 보급형 DDR5와는 다르다.",
+   "ja": "CUDIMMはCXMTがほぼ存在感を示せていない上位区間で、普及版DDR5とは事情が異なる。"
+  }
+ },
+ "CQDIMM": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "CQDIMM",
+   "clocked quad-rank DIMM"
+  ],
+  "desc": {
+   "en": "A quad-rank premium DIMM format used in high-density server memory, another segment where mainstream Chinese DRAM has no foothold.",
+   "ko": "쿼드랭크 프리미엄 DIMM 규격. 고밀도 서버 메모리에 쓰이며, 보급형 중국산 D램이 발도 못 붙인 구간이다.",
+   "ja": "クアッドランク上位DIMM規格。高密度サーバーメモリに使われ、普及版の中国製DRAMが手を出せていない区間。"
+  },
+  "longDesc": {
+   "en": "Like CUDIMM and MRDIMM, CQDIMM defines the high end of the DDR5 market that mainstream-DDR5 price parity claims don't actually reach.",
+   "ko": "CUDIMM·MRDIMM과 마찬가지로 CQDIMM은 DDR5 시장의 최상위 구간을 이루며, 보급형 DDR5 가격 동등론이 실제로 닿지 않는 영역이다.",
+   "ja": "CUDIMM・MRDIMMと同様、CQDIMMはDDR5市場の最上位区間を成し、普及版DDR5の価格同等論が実際には届かない領域だ。"
+  }
+ },
+ "MRDIMM": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "MRDIMM",
+   "multiplexed rank DIMM"
+  ],
+  "desc": {
+   "en": "Multiplexed rank DIMM, a high-bandwidth server memory format used in the newest AI server platforms.",
+   "ko": "멀티플렉스드 랭크 DIMM. 최신 AI 서버 플랫폼에 쓰이는 고대역폭 서버 메모리 규격.",
+   "ja": "マルチプレックス・ランクDIMM。最新のAIサーバープラットフォームに使われる高帯域サーバーメモリ規格。"
+  },
+  "longDesc": {
+   "en": "MRDIMM is where memory makers command their highest margins, making it the format to watch for whether any DRAM parity story is real or confined to commodity tiers.",
+   "ko": "MRDIMM은 메모리 업체들이 가장 높은 마진을 받는 구간이라, D램 가격 동등론이 실제인지 범용 구간에 국한된 것인지를 가르는 시금석이다.",
+   "ja": "MRDIMMはメモリメーカーが最も高いマージンを得る区間であり、DRAM価格同等論が実際のものか汎用区間に限られるのかを見分ける試金石だ。"
+  }
+ },
+ "ArFi": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "ArFi",
+   "immersion DUV",
+   "ArF immersion",
+   "불화아르곤 이머전"
+  ],
+  "desc": {
+   "en": "Immersion argon-fluoride (ArF) lithography, the workhorse DUV process just below EUV in resolution.",
+   "ko": "불화아르곤(ArF) 이머전 노광. EUV 바로 아래 해상도의 주력 DUV 공정.",
+   "ja": "フッ化アルゴン(ArF)液浸露光。EUVのすぐ下の解像度を担う主力DUV工程。"
+  },
+  "longDesc": {
+   "en": "ASML holds roughly 98.7% of the immersion-DUV market, so ArFi tool access, not EUV alone, is the other real chokepoint in China's push for lithography self-sufficiency.",
+   "ko": "ASML이 이머전 DUV 시장의 약 98.7%를 점유해, EUV뿐 아니라 ArFi 장비 접근성도 중국 노광 자립의 또 다른 실질적 병목이다.",
+   "ja": "ASMLが液浸DUV市場の約98.7%を占め、EUVだけでなくArFi装置へのアクセスも中国のリソグラフィ自立化のもう一つの実質的な隘路だ。"
+  }
+ },
+ "COMPUTEX": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "Computex",
+   "COMPUTEX",
+   "컴퓨텍스",
+   "コンピューテックス"
+  ],
+  "desc": {
+   "en": "Taiwan's annual computing-hardware trade show, where chipmakers preview upcoming memory and platform specs.",
+   "ko": "대만에서 열리는 연례 컴퓨팅 하드웨어 박람회. 반도체 업체들이 신규 메모리·플랫폼 규격을 공개하는 자리다.",
+   "ja": "台湾で開かれる年次コンピューティング・ハードウェア展示会。半導体各社が新メモリ・プラットフォーム規格を披露する場。"
+  }
+ },
+ "IC (집적회로)": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "3D IC",
+   "집적회로"
+  ],
+  "desc": {
+   "en": "Integrated circuit; '3D IC' refers to stacking logic and memory dies directly via hybrid bonding rather than side-by-side on an interposer.",
+   "ko": "집적회로. '3D IC'는 인터포저 위에 나란히 놓는 대신 로직·메모리 다이를 하이브리드본딩으로 직접 쌓는 방식을 뜻한다.",
+   "ja": "集積回路。「3D IC」はインターポーザー上に並べる代わりに、ロジック・メモリダイをハイブリッドボンディングで直接積層する方式を指す。"
+  },
+  "longDesc": {
+   "en": "3D IC promises performance and power gains over HBM's interposer-based stacking, but faces a thermal mismatch between hot logic dies and heat-sensitive DRAM, plus non-standard per-customer design work.",
+   "ko": "3D IC는 인터포저 기반 HBM 적층 대비 성능·전력 이득을 약속하지만, 발열이 큰 로직 다이와 열에 민감한 D램 간 열 부정합, 고객별 비표준 설계 부담이라는 과제가 있다.",
+   "ja": "3D ICはインターポーザー方式のHBM積層に比べ性能・電力面で優位性を持つが、発熱の大きいロジックダイと熱に敏感なDRAM間の熱不整合、顧客ごとの非標準設計という課題を抱える。"
+  }
+ },
+ "인터포저": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "인터포저",
+   "interposer",
+   "インターポーザー"
+  ],
+  "desc": {
+   "en": "A silicon base layer that wires DRAM and logic dies together side by side, the structure HBM is built on.",
+   "ko": "D램과 로직 다이를 나란히 배선으로 연결하는 실리콘 기판층. HBM이 이 구조 위에 만들어진다.",
+   "ja": "DRAMとロジックダイを並べて配線接続するシリコン基板層。HBMはこの構造の上に作られる。"
+  },
+  "longDesc": {
+   "en": "Interposer-based packaging is more standardized and customer-agnostic than direct hybrid-bonded 3D IC, which is part of why HBM scaled faster industry-wide.",
+   "ko": "인터포저 기반 패키징은 직접 하이브리드본딩하는 3D IC보다 표준화돼 있고 고객 무관하게 적용 가능해, HBM이 업계 전반에서 더 빨리 확산된 배경이기도 하다.",
+   "ja": "インターポーザーベースのパッケージングは直接ハイブリッドボンディングする3D ICより標準化されており顧客を選ばないため、HBMが業界全体でより速く普及した背景でもある。"
+  }
+ },
+ "TSV": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "TSV",
+   "through-silicon via",
+   "실리콘관통전극"
+  ],
+  "desc": {
+   "en": "Through-silicon via: a vertical electrical connection drilled through a chip die, the wiring technique that lets memory dies stack.",
+   "ko": "실리콘관통전극(TSV). 칩 다이를 수직으로 관통하는 전기 배선으로, 메모리 다이를 쌓을 수 있게 해주는 기술.",
+   "ja": "シリコン貫通電極(TSV)。チップダイを垂直に貫通する電気配線で、メモリダイの積層を可能にする技術。"
+  }
+ },
+ "NOR": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "NOR flash",
+   "노어플래시",
+   "NORフラッシュ",
+   "NOR"
+  ],
+  "desc": {
+   "en": "NOR flash memory: slower and pricier per bit than NAND, but reads instantly, so it's used for code storage in autos and industrial gear.",
+   "ko": "노어플래시. 비트당 속도는 느리고 값은 비싸지만 즉시 읽기가 가능해, 자동차·산업기기 코드 저장용으로 쓰인다.",
+   "ja": "NORフラッシュ。ビット単価は高く速度も遅いが即時読み出しが可能で、車載・産業機器のコード格納用に使われる。"
+  }
+ },
+ "MOU": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "MOU",
+   "memorandum of understanding",
+   "양해각서"
+  ],
+  "desc": {
+   "en": "Memorandum of understanding: a framework agreement signaling intent, generally non-binding until turned into a definitive contract.",
+   "ko": "양해각서(MOU). 의향을 확인하는 틀 합의로, 대개 확정 계약으로 전환되기 전까지는 구속력이 없다.",
+   "ja": "覚書(MOU)。意向を確認する枠組み合意で、正式契約に転換されるまでは通常拘束力を持たない。"
+  },
+  "longDesc": {
+   "en": "The gap between an MOU's headline number and what actually gets contracted is often where announced mega-deals shrink, or don't.",
+   "ko": "MOU의 발표 금액과 실제 계약으로 이어지는 금액 사이의 간극이야말로 대형 발표성 딜이 실제로 줄어드는지 아닌지가 갈리는 지점이다.",
+   "ja": "MOUの発表金額と実際に契約へ移行する金額との差こそ、発表された大型ディールが実際に縮小するかどうかを分ける点だ。"
+  }
+ },
+ "LETTER OF INTENT": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "Letter of Intent",
+   "Letters of Intent",
+   "LOI",
+   "의향서"
+  ],
+  "desc": {
+   "en": "A written statement of intent to negotiate a deal, one notch less binding than even an MOU in some usages.",
+   "ko": "거래 협상 의사를 문서로 밝힌 것. 쓰임에 따라 MOU보다도 구속력이 약한 단계로 취급되기도 한다.",
+   "ja": "取引交渉の意思を文書で示したもの。用法によってはMOUよりもさらに拘束力の弱い段階として扱われる。"
+  }
+ },
+ "1260H": {
+  "kind": "term",
+  "sector": {
+   "en": "Glossary",
+   "ko": "용어",
+   "ja": "用語"
+  },
+  "aliases": [
+   "1260H",
+   "1260H list",
+   "1260H 리스트"
+  ],
+  "desc": {
+   "en": "The Pentagon's list of companies it designates as Chinese military-linked, which can trigger downstream export and procurement restrictions.",
+   "ko": "미 국방부가 중국군 연계 기업으로 지정하는 명단. 지정되면 수출·조달 제한으로 이어질 수 있다.",
+   "ja": "米国防総省が中国軍関連企業として指定するリスト。指定されると輸出・調達制限につながり得る。"
+  }
  }
 }
