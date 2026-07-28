@@ -1,6 +1,76 @@
 {
  "items": [
   {
+   "date": "2026-07-27",
+   "id": "meru-cxmt-ipo-hefei-state-backing",
+   "related": [
+    "jukan-skhynix-lpddr6-xiaomi-cxmt-race",
+    "jukan-samsung-chinese-dram-mx-bet",
+    "jukan-goldman-china-dram-catchup"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224358943114",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#7C2D12",
+    "to": "#DC2626",
+    "label": "CXMT +466%"
+   },
+   "tags": [
+    "CXMT",
+    "CHINA DRAM",
+    "IPO"
+   ],
+   "stance": "watch",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2028년까지 CXMT의 세계 D램 시장점유율이 15%를 넘는지, EUV 없이 비트당 원가차가 좁혀지는지 확인, 노무라(3배 목표가)와 모닝스타(68% 하락 적정가) 중 어느 쪽이 맞았는지 판가름.",
+     "en": "Check by end-2028 whether CXMT's global DRAM market share clears 15% and whether its cost-per-bit gap narrows without EUV access, settling whether Nomura's tripling target or Morningstar's 68%-below-open fair value was closer to right.",
+     "ja": "2028年末までにCXMTの世界DRAM市場シェアが15%を超えるか、EUVなしでビットあたりコスト差が縮まるかを確認し、ノムラの3倍目標株価とモーニングスターの初日終値比68%安の適正株価のどちらが正しかったかを判定する。"
+    },
+    "due": "2028-12-31"
+   },
+   "ts": "2026-07-28T10:45:00.000+00:00",
+   "quote": {
+    "lines": [
+     "반도체는 제조업의 심장이니, 반도체 기술의 세계 최고봉에 올라서야 한다.",
+     "CXMT는 공식적으로 '민간기업'이지만 지분을 뜯어보면 이야기가 달라짐.",
+     "이번 상장으로 지분이 희석되어도 38% 수준을 유지하게 되니, CXMT의 실체를 국영기업으로 볼 수 있음."
+    ],
+    "cite": "메르 · 2026.07.27"
+   },
+   "title": {
+    "ko": "상장 첫날 466% 급등해 4870억달러 몸값이 된 CXMT를 모닝스타는 왜 68% 고평가라고 볼까?",
+    "en": "CXMT Jumped 466% on Debut to $487 Billion. Why Does Morningstar Call It 68% Overpriced?",
+    "ja": "上場初日に466%急騰し4870億ドルの企業価値となったCXMTを、モーニングスターはなぜ68%割高と見るのか?"
+   },
+   "sum3": {
+    "ko": "중국 D램 회사 CXMT가 상장 첫날 466% 급등해 중국 본토 최고가 기업이 됐다.\n메르는 이 회사가 허페이시가 이미 BOE로 검증한 국가주도 반도체 굴기 각본의 연장이라고 짚는다.\n그런데 같은 첫날 종가를 두고 노무라는 3배 더 간다 하고 모닝스타는 68% 더 빠진다고 본다.",
+    "en": "Chinese DRAM maker CXMT surged 466% on its trading debut, becoming mainland China's most valuable listed company.\nMeru argues this is the same state-driven chip playbook Hefei already proved with BOE.\nBut looking at the same closing price, Nomura sees it tripling while Morningstar sees it 68% too high.",
+    "ja": "中国のDRAMメーカーCXMTが上場初日に466%急騰し、中国本土上場企業で最も高い評価額となった。\nメルは、この会社が合肥市がBOEで既に実証した国家主導の半導体台頭の延長線上にあると指摘する。\nだが同じ初日終値を巡り、ノムラは3倍になると見る一方、モーニングスターは68%割高だと見る。"
+   },
+   "gist": {
+    "ko": "중국 메모리반도체 기업 창신메모리(CXMT)가 7월27일 상하이 커촹반(과학혁신판)에 상장해 첫날 466% 급등했다.\n종가 기준 시가총액은 약 3조3000억위안(약 4870억달러)으로, 중국 본토 상장기업 중 가장 비싼 회사가 됐다.\n공모가는 주당 8.66위안(약 1.27달러)이었고, 이번 상장으로 최소 86억달러를 조달했다.\n\n## CXMT의 뿌리는 정부 프로젝트다\n메르에 따르면 이야기는 2018년 미중 무역전쟁에서 시작한다.\n시진핑 주석이 \"반도체는 제조업의 심장이니 세계 최고봉에 올라서야 한다\"며 반도체 자립을 직접 챙기기 시작했고, 메모리 분야는 안후이성 허페이시가 주도해 키운 CXMT가 맡았다.\n\n@@IMG@@dram-module|CXMT가 만드는 게 이런 D램 모듈이다. 서버·스마트폰·자동차에 들어간다.\n\n메르는 허페이시가 이미 검증된 각본을 썼다고 짚는다.\n2002년 현대전자(현 SK하이닉스)가 부실 LCD 사업부 하이디스를 매각했을 때, 이를 인수한 중국 징둥팡(BOE)에 시 예산 절반에 가까운 22억달러를 베팅해 오늘날 세계 1위 LCD 회사로 키운 전례가 있다는 것이다.\n2016년에는 같은 방식으로 27억달러짜리 CXMT 1기 프로젝트에 자금 대부분을 댔다.\n\n## CXMT는 정말 민간기업인가\n공식적으로 창신메모리는 단일 지배주주가 없다고 알려져 있다. 독립 자료로도 이 표현은 확인된다.\n다만 메르는 지분 구조를 뜯어보면 최대주주부터 3대주주까지가 모두 허페이시 산하 기관이거나 국가반도체산업투자펀드이고, 이번 상장으로 희석돼도 이들의 합산 지분이 38% 안팎을 유지한다고 짚는다.\n\n@@CMP@@공식 지위|단일 지배주주 없음. 법적으로는 어느 한 주체도 CXMT를 지배하지 않는다.|메르의 셈법|국가 관련 주주 3곳의 지분을 더하면 38% 안팎. 개별로는 아니어도 합치면 사실상 국가자본 회사다.\n공식 지위와 실제 지분 구성 중 무엇을 CXMT의 정체성으로 볼지가 갈린다.\n\n## 기술은 어디서 왔나\nCXMT의 D램 기술 출발점은 2009년 파산한 독일 키몬다다.\n지멘스에서 출발해 인피니온의 자회사였던 키몬다는 유럽 최대 D램 업체였고 특허를 많이 쥐고 있었다.\n캐나다 특허회사 폴라리스(윌란 자회사)가 2015년 약 3000만유로에 키몬다 특허 약 7000건을 사들였고, CXMT는 2019년 12월 폴라리스와 특허 라이선스·인수 계약을 맺었다.\n\n@@REF@@Changxin Storage (CXMT): The Making of China's First Homegrown DRAM Manufacturer (Hugdiy, 2026)|https://www.hugdiy.com/news/xmt-how-a-municipal-government-project-became-chinas-dram-champion/\n\n이 기사는 2019년 12월 폴라리스와 CXMT의 특허 계약, 2015년 약 3000만유로 규모의 키몬다 특허 인수까지는 확인해주지만, 메르가 언급한 핵심 엔지니어 영입은 별도로 확인되지 않았다.\n\n## 상장 첫날 숫자를 두고 애널리스트들이 정반대로 갈렸다\n노무라의 도니 텅은 목표가를 116위안으로 잡았다. 공모가 대비 12배, 첫날 종가 대비로도 3배 가까운 수치다.\nAI발 하이퍼스케일러 설비투자가 메모리 수요를 계속 떠받치고, CXMT의 시장점유율이 2028년까지 8%에서 18%로 늘 거라는 전제다.\n모닝스타의 웨이징제는 정반대다. 적정가를 14.90위안으로 잡았는데, 공모가보다는 72% 높지만 첫날 종가보다는 68% 낮다.\n근거는 EUV 노광장비 없이 다중패터닝 DUV로 찍어내는 CXMT의 비트당 원가가 삼성전자·SK하이닉스보다 30% 이상 비싸다는 점이다.\n\n@@REF@@CXMT Surges 466% to $489B: Nomura Sees Tripling, Morningstar Flags 30% Cost Ceiling (Tech Times, 2026-07-27)|https://www.techtimes.com/articles/321720/20260727/cxmt-surges-466-489b-nomura-sees-tripling-morningstar-flags-30-cost-ceiling.htm\n\n## 미국 쪽 변수도 남아 있다\nCNBC 보도로는 반도체 장비 관련 수출규제가 CXMT의 핵심 과제로 남아 있고, 2028년까지 세계 시장에서 경쟁력을 가지려면 점유율이 최소 15%는 필요하다는 분석도 있다. 미국 일부 의원은 CXMT 칩의 미국 내 구매를 막자고 요구하고 있다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. EUV 없이도 CXMT가 비트당 원가차를 좁힐 수 있느냐, 아니면 원가차가 그대로 남아 지금의 밸류에이션이 무너지느냐다.\n수출규제가 풀리지 않은 채로 시장점유율이 15% 근처까지 오르면 노무라 쪽이 맞고, 원가차가 안 좁혀진 채 메모리 가격 사이클이 식으면 모닝스타 쪽이 맞았던 셈이 된다.\n어느 쪽이든 첫날의 466%는 결과가 아니라 질문의 시작이다.",
+    "en": "Chinese memory chipmaker CXMT (ChangXin Memory Technologies) listed on Shanghai's STAR Market on July 27 and surged 466% on debut.\nIts closing market cap hit roughly 3.3 trillion yuan, about $487 billion, the highest of any mainland China-listed company.\nThe IPO priced at 8.66 yuan (about $1.27) a share and raised at least $8.6 billion.\n\n## Where does CXMT actually come from\nPer Meru, the story starts with the 2018 US-China trade war.\nXi Jinping began personally pushing chip self-sufficiency, calling semiconductors \"the heart of manufacturing,\" and Hefei, the capital of Anhui province, took the lead building CXMT into China's memory champion.\n\n@@IMG@@dram-module|This is the kind of DRAM module CXMT makes, the memory that goes into servers, smartphones and cars.\n\nMeru argues Hefei was running a playbook it had already proven.\nIn 2002, when Hyundai Electronics (now SK Hynix) sold off its struggling LCD unit Hydis, buyer BOE got roughly $2.2 billion from Hefei, nearly half the city's annual budget then, and grew into today's largest LCD maker.\nIn 2016, Hefei ran the same play, funding most of CXMT's $2.7 billion first-phase project.\n\n## Is CXMT really a private company\nOfficially, CXMT has no single controlling shareholder, a framing independent sources confirm too.\nBut Meru notes its top three shareholders are all Hefei-linked entities or the state semiconductor fund, and even after this IPO's dilution, their combined stake stays around 38%.\n\n@@CMP@@Official status|No single controlling shareholder. Legally, no one entity controls CXMT.|Meru's math|Add up the three state-linked shareholders and you get roughly 38%. Not controlling individually, but effectively state capital combined.\nWhether to define CXMT by its official status or its actual ownership math depends on that gap.\n\n## Where did the technology come from\nCXMT's DRAM technology traces back to Qimonda, the German memory maker that went bankrupt in 2009.\nSpun out of Siemens and later an Infineon subsidiary, Qimonda was once Europe's largest DRAM maker with a large patent portfolio.\nCanadian patent firm Polaris (a WiLAN subsidiary) bought roughly 7,000 Qimonda patents for about 30 million euros in 2015, and CXMT signed a patent licensing deal with Polaris in December 2019.\n\n@@REF@@Changxin Storage (CXMT): The Making of China's First Homegrown DRAM Manufacturer (Hugdiy, 2026)|https://www.hugdiy.com/news/xmt-how-a-municipal-government-project-became-chinas-dram-champion/\n\nThat piece confirms the December 2019 Polaris-CXMT deal and the roughly 30-million-euro 2015 patent purchase, but doesn't independently confirm the specific engineer hires Meru describes.\n\n## Analysts are split on the same closing price\nNomura's Donnie Teng set a price target of 116 yuan, 12 times the IPO price and nearly triple the first-day close.\nThat rests on AI-driven hyperscaler capex sustaining memory demand and CXMT's share growing from about 8% to 18% by 2028.\nMorningstar's Wei Jingjie takes the opposite view, pricing fair value at 14.90 yuan, 72% above the IPO price but 68% below the first-day close.\nHis case: without EUV lithography, CXMT's multi-patterning DUV process leaves its cost per bit over 30% above Samsung and SK Hynix.\n\n@@REF@@CXMT Surges 466% to $489B: Nomura Sees Tripling, Morningstar Flags 30% Cost Ceiling (Tech Times, 2026-07-27)|https://www.techtimes.com/articles/321720/20260727/cxmt-surges-466-489b-nomura-sees-tripling-morningstar-flags-30-cost-ceiling.htm\n\n## What's the US wildcard here\nPer CNBC, export controls on chipmaking tools remain CXMT's core challenge, and one analysis says it needs at least 15% global share to stay competitive long-term, above its projected 11% by 2028. Some US lawmakers separately want to block American purchases of CXMT chips.\n\n## So what actually settles this\nIt comes down to one question: can CXMT close its cost-per-bit gap without EUV access, or does that gap persist and undercut today's valuation.\nIf export controls hold and CXMT's share still climbs toward 15%, Nomura's case holds up. If the cost gap doesn't close and the price cycle cools, Morningstar's case holds up.\nEither way, day one's 466% is the start of the question, not the answer to it.",
+    "ja": "中国のメモリー半導体メーカー、創新メモリー(CXMT)が7月27日に上海証券取引所の科創板に上場し、初日に466%急騰した。\n終値ベースの時価総額は約3兆3000億元、約4870億ドルとなり、中国本土上場企業で最も評価額の高い会社になった。\n公開価格は1株8.66元(約1.27ドル)で、今回の上場で少なくとも86億ドルを調達した。\n\n## CXMTの出自は政府プロジェクトだ\nメルによれば、話は2018年の米中貿易戦争から始まる。\n習近平国家主席が「半導体は製造業の心臓であり、世界最高峰に上らねばならない」と述べて半導体の自立を自ら主導し始め、メモリー分野は安徽省合肥市が主導して育てたCXMTが担った。\n\n@@IMG@@dram-module|CXMTが作っているのはこうしたDRAMモジュールだ。サーバー・スマートフォン・自動車に使われる。\n\nメルは、合肥市が既に実証済みの脚本をなぞったと指摘する。\n2002年、現代電子(現SK Hynix)が不振だったLCD事業部ハイディスを売却した際、これを買収した中国の京東方(BOE)に市の年間予算の半分近くにあたる22億ドルを賭け、今日の世界最大のLCDメーカーに育てた前例があるという。\n2016年には同じ手法で、27億ドル規模のCXMT第1期プロジェクトの資金の大半を出した。\n\n## CXMTは本当に民間企業なのか\n公式には創新メモリーには単一の支配株主がいないとされている。独立した資料でもこの表現は確認できる。\nだがメルは、株主構成を細かく見ると筆頭株主から第3位株主まで全て合肥市傘下の機関か国家半導体産業投資ファンドで、今回の上場で希薄化されても合算持分は38%前後を維持すると指摘する。\n\n@@CMP@@公式の立場|単一の支配株主なし。法的にはどの主体もCXMTを支配していない。|メルの計算|国家関連株主3社の持分を足すと38%前後。個別には支配的でなくとも、合わせれば実質的に国家資本の会社だ。\n公式の立場と実際の株主構成のどちらをCXMTの正体と見るかが分かれる。\n\n## 技術はどこから来たのか\nCXMTのDRAM技術の出発点は、2009年に破産したドイツのキモンダだ。\nシーメンスから派生しインフィニオンの子会社だったキモンダは、かつて欧州最大のDRAMメーカーで多くの特許を保有していた。\nカナダの特許会社ポラリス(WiLANの子会社)が2015年に約3000万ユーロでキモンダの特許約7000件を買い取り、CXMTは2019年12月にポラリスと特許ライセンス・買収契約を結んだ。\n\n@@REF@@Changxin Storage (CXMT): The Making of China's First Homegrown DRAM Manufacturer (Hugdiy, 2026)|https://www.hugdiy.com/news/xmt-how-a-municipal-government-project-became-chinas-dram-champion/\n\nこの記事は2019年12月のポラリスとCXMTの特許契約、2015年の約3000万ユーロ規模のキモンダ特許買収までは確認できるが、メルが挙げる主要エンジニアの引き抜きについては別途確認できなかった。\n\n## 上場初日の数字を巡りアナリストの見方が正反対に割れた\nノムラのドニー・テン氏は目標株価を116元とした。公開価格の12倍、初日終値比でも3倍近い水準だ。\nAI主導のハイパースケーラー設備投資がメモリー需要を支え続け、CXMTのシェアが2028年までに8%から18%に伸びるという前提に立つ。\nモーニングスターのウェイ・ジンジエ氏は正反対だ。適正株価を14.90元とし、公開価格よりは72%高いが初日終値よりは68%低い。\n根拠は、EUV露光装置なしに多重パターニングDUVで製造するCXMTのビットあたりコストが、サムスン電子・SK Hynixより30%以上高いという点だ。\n\n@@REF@@CXMT Surges 466% to $489B: Nomura Sees Tripling, Morningstar Flags 30% Cost Ceiling (Tech Times, 2026-07-27)|https://www.techtimes.com/articles/321720/20260727/cxmt-surges-466-489b-nomura-sees-tripling-morningstar-flags-30-cost-ceiling.htm\n\n## 米国側の変数も残っている\nCNBCの報道によれば、半導体製造装置に関する輸出規制がCXMTの核心的な課題として残っており、2028年までに世界市場で競争力を持つには、見込まれる11%のシェアを超えて最低15%が必要という分析もある。米国の一部議員は、CXMT製チップの米国内での購入を禁じるよう求めている。\n\n## だから何が決め手になるのか\n結局、問いは一つだ。EUVなしでもCXMTがビットあたりのコスト差を縮められるか、それとも差が残ったまま今の評価額が崩れるかだ。\n輸出規制が解けないままシェアが15%近くまで上がればノムラの見立てが正しかったことになり、コスト差が縮まらないままメモリー価格サイクルが冷え込めばモーニングスターの見立てが正しかったことになる。\nどちらにせよ、初日の466%は結果ではなく、問いの始まりにすぎない。"
+   },
+   "why": {
+    "ko": "CXMT는 공식적으로 단일 지배주주가 없다지만 국가 관련 주주 지분을 합치면 38% 안팎이고, 노무라는 목표가를 3배로 보는 반면 모닝스타는 첫날 종가보다 68% 낮은 게 적정가라고 본다. 이 두 격차가 AI 메모리 슈퍼사이클에서 중국 반도체 굴기를 어떻게 읽을지를 가른다.",
+    "en": "CXMT is officially described as having no controlling shareholder, yet state-linked holders combine for roughly 38%, and Nomura's tripling target sits against Morningstar's fair value 68% below the first-day close. That gap shapes how to read China's chip buildout inside the AI memory supercycle.",
+    "ja": "CXMTは公式には単一の支配株主がいないとされるが、国家関連株主の持分を合わせると38%前後になり、ノムラの3倍目標株価とモーニングスターの初日終値比68%安の適正株価が対立している。この差が、AIメモリー・スーパーサイクルの中で中国の半導体台頭をどう読むかを左右する。"
+   },
+   "ask": {
+    "ko": "허페이시 등 국가 관련 주주 지분을 합치면 38% 안팎인데도 CXMT는 공식적으로 '단일 지배주주 없음'이다. 이 회사를 국영기업으로 봐야 할까, 민간기업으로 봐야 할까? 노무라의 3배 목표가와 모닝스타의 68% 하락 전망 중 어느 쪽에 더 무게를 두나?",
+    "en": "State-linked shareholders combine for roughly 38%, yet CXMT is officially described as having no controlling shareholder. Should this be read as a state enterprise or a private one? And do you put more weight on Nomura's tripling target or Morningstar's 68%-below-open fair value?",
+    "ja": "合肥市など国家関連株主の持分を合わせると38%前後になるにもかかわらず、CXMTは公式には「単一の支配株主なし」だ。この会社は国有企業と見るべきか、民間企業と見るべきか。ノムラの3倍目標株価とモーニングスターの68%安の見通し、どちらに重きを置くか。"
+   }
+  },
+  {
    "date": "2026-07-28",
    "id": "goto-kioxia-viasat-verdict-selloff",
    "related": [
@@ -19583,6 +19653,118 @@
     "en": "A one-time charge, a cost recorded once rather than recurring each period, often used to describe non-operating writedowns.",
     "ko": "매 기간 반복되지 않고 한 번만 반영되는 비용. 흔히 비영업적 평가손실을 설명할 때 쓰인다.",
     "ja": "毎期繰り返されず一度だけ計上される費用。営業外の評価損を説明する際によく使われる。"
+   }
+  },
+  "BOE": {
+   "kind": "company",
+   "sector": {
+    "en": "Display",
+    "ko": "디스플레이",
+    "ja": "ディスプレイ"
+   },
+   "desc": {
+    "en": "Chinese display maker (formerly Jingdongfang), the world's largest LCD panel producer, built with Hefei government backing.",
+    "ko": "중국 디스플레이 제조사(옛 징둥팡). 허페이시 정부 지원으로 성장해 세계 1위 LCD 패널 업체가 됐다.",
+    "ja": "中国のディスプレイメーカー(旧京東方)。合肥市政府の支援で成長し、世界最大のLCDパネルメーカーになった。"
+   },
+   "aliases": [
+    "BOE",
+    "京东方",
+    "징둥팡",
+    "비오이"
+   ]
+  },
+  "WILAN": {
+   "kind": "company",
+   "sector": {
+    "en": "Patent Licensing",
+    "ko": "특허 라이선싱",
+    "ja": "特許ライセンシング"
+   },
+   "desc": {
+    "en": "Canadian patent licensing firm; its Polaris Innovations subsidiary bought Qimonda's DRAM patent portfolio in 2015.",
+    "ko": "캐나다 특허 라이선싱 회사. 자회사 폴라리스이노베이션스가 2015년 키몬다의 D램 특허군을 인수했다.",
+    "ja": "カナダの特許ライセンシング会社。子会社のポラリス・イノベーションズが2015年にキモンダのDRAM特許群を買収した。"
+   },
+   "aliases": [
+    "WiLAN",
+    "Polaris",
+    "Polaris Innovations",
+    "윌란",
+    "폴라리스"
+   ]
+  },
+  "QIMONDA": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "en": "German DRAM maker, spun out of Siemens and later an Infineon subsidiary, that went bankrupt in 2009; its patents later reached CXMT.",
+    "ko": "지멘스에서 분사해 인피니온 자회사가 됐던 독일 D램 업체. 2009년 파산했고, 특허가 훗날 CXMT로 흘러갔다.",
+    "ja": "シーメンスから分社しインフィニオンの子会社となったドイツのDRAMメーカー。2009年に破産し、特許は後にCXMTへ渡った。"
+   },
+   "aliases": [
+    "Qimonda",
+    "키몬다",
+    "キモンダ"
+   ]
+  },
+  "LCD": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "LCD",
+    "액정표시장치",
+    "液晶ディスプレイ"
+   ],
+   "desc": {
+    "en": "Liquid crystal display, the flat-panel display technology used in most screens before OLED became common.",
+    "ko": "액정표시장치(LCD). OLED가 흔해지기 전까지 대부분의 화면에 쓰인 평판 디스플레이 기술.",
+    "ja": "液晶ディスプレイ(LCD)。OLEDが普及する前、多くの画面に使われていた平面ディスプレイ技術。"
+   }
+  },
+  "희석": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "희석",
+    "dilution",
+    "지분 희석"
+   ],
+   "desc": {
+    "en": "Dilution, the drop in an existing shareholder's ownership percentage when a company issues new shares.",
+    "ko": "회사가 새 주식을 발행할 때 기존 주주의 지분율이 낮아지는 것.",
+    "ja": "企業が新株を発行する際、既存株主の持株比率が低下すること。"
+   }
+  },
+  "패터닝": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "패터닝",
+    "multi-patterning",
+    "다중패터닝",
+    "マルチパターニング"
+   ],
+   "desc": {
+    "en": "Multi-patterning, a technique that exposes a chip layer multiple times with older DUV lithography to mimic finer EUV-level detail, at higher cost.",
+    "ko": "다중패터닝. EUV 없이 기존 DUV 노광장비로 같은 층을 여러 번 찍어 미세한 패턴을 흉내 내는 기법으로, 비용이 더 든다.",
+    "ja": "多重パターニング。EUVを使わず従来のDUV露光装置で同じ層を複数回露光し、微細なパターンを模倣する手法で、コストが高くなる。"
    }
   }
  }
