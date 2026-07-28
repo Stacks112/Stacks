@@ -205,6 +205,15 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
   동일해야** 하며(다르면 아무에게도 안 가는 조용한 실패), 엔티티 매칭은 build_pages를
   import해 재사용한다.
 - `fetch_og_assets.py` — 위키 이미지.
+- `fetch_ref_images.py` — **본문 `@@REF@@title|url` 링크에 이미지 채우기.** 발행 루틴은
+  헤드라인·URL은 넣지만 이미지(`|image` 3번째 필드)를 자주 빼먹는다(샌드박스가 뉴스
+  사이트로 못 나감). 이미지가 없으면 카드가 아니라 맨 텍스트 링크(`gref`)로 뜬다.
+  이 스크립트가 링크된 페이지의 og:image를 받아 `@@REF@@title|url|image`로 덮어써
+  `gcard`(사진 있는 링크 카드)로 승격시킨다. og-assets.yml(6h/푸시)에서 실행되며,
+  fetch_cover_assets.py의 `og_image()`·denylist를 그대로 import(단일 진실 출처).
+  멱등 — 이미지 있는 REF는 건드리지 않고, 못 받은 URL은 맨 링크로 두고 다음 회차 재시도.
+  이미지는 발행사 서버에서 핫링크(재호스팅 안 함)하고 카드가 출처 도메인을 표기한다
+  (커버 tier B와 같은 OG 관행). ⚠ x.com/twitter/pbs.twimg 등은 denylist로 제외.
 - `apply_v50.py` · `brief.py` · `weekly.py`.
 
 ## 콘텐츠 데이터
