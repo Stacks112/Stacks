@@ -17,6 +17,7 @@ on:
       - "scripts/build_data.py"
       - "scripts/fetch_og_assets.py"
       - "scripts/fetch_cover_assets.py"
+      - "scripts/fetch_ref_images.py"
       - "scripts/fetch_embeds.py"
 
 permissions:
@@ -42,12 +43,13 @@ jobs:
       - name: Install poppler (PDF -> PNG for document covers)
         run: sudo apt-get install -y -qq poppler-utils
 
-      - name: Fetch subject images + article covers + rebuild cards
+      - name: Fetch subject images + article covers + in-body link images + rebuild cards
         env:
           STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
         run: |
           pip install requests pillow --quiet
           python scripts/fetch_cover_assets.py
+          python scripts/fetch_ref_images.py
           python scripts/fetch_og_assets.py
           python scripts/fetch_embeds.py
           rm -f og/*.png
