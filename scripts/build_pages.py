@@ -1106,9 +1106,13 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     if _extra:
         body_blocks += _extra
         block_css += SUM3_CSS + "\n"
-    if why:
+    # v4.5 [L]: foldWhy cards weave why/ask into the gist's final section, so the
+    # standalone boxes would duplicate them. Fields stay populated for the app's
+    # compressed card views, which don't show the full gist.
+    _fold = bool(item.get("foldWhy"))
+    if why and not _fold:
         body_blocks += f'<p class="why"><b>{E(U["why"])}</b> · {E(why)}</p>'
-    if ask:
+    if ask and not _fold:
         body_blocks += f'<p class="ask"><b>{E(U["ask"])}</b> · {E(ask)}</p>'
 
     # record blocks: our own aggregate, not a retelling of the source post. The
