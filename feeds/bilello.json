@@ -1,14 +1,14 @@
 {
  "source": "bilello",
- "fetched_at": "2026-07-28T15:01:47.994728+00:00",
- "checked_at": "2026-07-28T17:57:50.278378+00:00",
- "ok": false,
+ "fetched_at": "2026-07-28T20:03:05.149198+00:00",
+ "checked_at": "2026-07-28T20:03:05.149198+00:00",
+ "ok": true,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
- "raw_count": 0,
+ "raw_count": 25,
  "newest_published": "2026-07-28T01:02:00+00:00",
  "kept_count": 4,
- "error": "ParseError: not well-formed (invalid token): line 1, column 115",
+ "error": null,
  "items": [
   {
    "title": "The Week in Charts (7/27/26)",
