@@ -3718,13 +3718,25 @@ function glossTip(key){
 }
 function glossTap(el, key){
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
-  if (!hoverable){
+  if (hoverable){ el.classList.toggle("show"); return; }   /* 데스크톱 hover: 토글만(기존 동작) */
+  if (!el.classList.contains("show")){
     document.querySelectorAll(".has-tip.show").forEach(x => { if (x !== el) x.classList.remove("show"); });
-    if (!el.classList.contains("show")){ el.classList.add("show"); showTipSheet(el, null); }
-    else { el.classList.remove("show"); hideTipSheet(); }
+    el.classList.add("show");
+    showTipSheet(el, () => glossTap(el, key));  /* 첫 탭: 하단 시트 · 한 번 더 누르면 아래 상세로 이동 */
     return;
   }
-  el.classList.toggle("show");
+  /* 두 번째 탭: 그 용어를 다룬 글로 이동 (chipTap과 동일 규칙 — 이전엔 그냥 닫혀서 이동이 안 됐다) */
+  el.classList.remove("show");
+  hideTipSheet();
+  if (typeof ENTITIES !== "undefined" && ENTITIES[key]){
+    SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+    const inp1 = document.getElementById("searchInput"); if (inp1) inp1.value = "";
+    ENTITY_VIEW = key; renderFeed(true);
+  } else {
+    const inp = document.getElementById("searchInput"); if (inp) inp.value = key;
+    onSearch(key);
+  }
+  const f = document.getElementById("feed"); if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function makeGlossSpan(text, key){
   const safe = key.replace(/'/g, "\\'");
@@ -5232,7 +5244,7 @@ function wireTipSheet(sheet){
     if (!dragging) return;
     dy = e.touches[0].clientY - sy;
     if (dy > 0){
-      if (dy > 6) moved = true;
+      if (dy > 16) moved = true;   /* 6px는 너무 예민 — 손가락이 살짝 흔들린 정상 탭도 드래그로 오인해 이동을 삼켰다 */
       sheet.style.transform = "translateY(" + dy + "px)";
       sheet.style.opacity = String(Math.max(0, 1 - dy / 170));
     }
