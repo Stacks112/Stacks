@@ -852,7 +852,7 @@ def hreflang_tags(iid, langs):
         '<link rel="alternate" hreflang="%s" href="%s">' % (lg, E(page_url(iid, lg)))
         for lg in langs
     )
-    dflt = "ko" if "ko" in langs else langs[0]
+    dflt = "en" if "en" in langs else ("ko" if "ko" in langs else langs[0])
     return tags + '<link rel="alternate" hreflang="x-default" href="%s">' % E(page_url(iid, dflt))
 
 
@@ -1267,29 +1267,85 @@ footer a{{color:#8E93A0}}
 """
 
 
-def entity_page(key, e, ent_items):
+def ent_url(slug, lang):
+    """Canonical URL of one entity page in one language.
+    Korean keeps e/{slug}.html so existing indexed URLs and backlinks stay valid."""
+    return BASE + ("e/%s.html" % slug if lang == "ko" else "e/%s/%s.html" % (lang, slug))
+
+
+def ent_hreflang(slug, langs):
+    """Reciprocal hreflang for the ko/en/ja versions of one entity page.
+    x-default = English so visitors we can't language-match get English
+    (Korean -> ko, Japanese -> ja, everyone else -> en)."""
+    tags = "".join(
+        '<link rel="alternate" hreflang="%s" href="%s">' % (lg, E(ent_url(slug, lg)))
+        for lg in langs
+    )
+    dflt = "en" if "en" in langs else langs[0]
+    return tags + '<link rel="alternate" hreflang="x-default" href="%s">' % E(ent_url(slug, dflt))
+
+
+# Entity-page labels per language (facts rows, section headers, title/desc).
+# Stance / outcome labels are reused from REC_UI.
+ENT_UI = {
+    "ko": dict(ceo="대표", founded="설립", listed="상장", hq="본사", exchange="거래소",
+               website="웹사이트", profile="프로필 ↗",
+               relatedN="관련 글 {n}건", preds="예측 · 적중 기록 {n}건",
+               metafb="{name} 관련 투자 읽을거리 모음",
+               title="{name} · 관련 글 {n}건 · " + SITE),
+    "en": dict(ceo="CEO", founded="Founded", listed="Listed", hq="HQ", exchange="Exchange",
+               website="Website", profile="Profile ↗",
+               relatedN="{n} related posts", preds="Predictions & track record ({n})",
+               metafb="Investing reads about {name}, curated by " + SITE + ".",
+               title="{name} · {n} related posts · " + SITE),
+    "ja": dict(ceo="代表", founded="設立", listed="上場", hq="本社", exchange="取引所",
+               website="ウェブサイト", profile="プロフィール ↗",
+               relatedN="関連記事 {n}件", preds="予測・的中記録 {n}件",
+               metafb="{name} に関する投資の読み物。",
+               title="{name} · 関連記事 {n}件 · " + SITE),
+}
+
+
+def entity_page(key, e, ent_items, lang="ko"):
+    L = REC_UI[lang]
+    U = ENT_UI[lang]
+    disc = UI[lang]
     slug = slugify(key)
-    url = BASE + "e/" + slug + ".html"
+    name = ent_label(key, e, lang)
+    url = ent_url(slug, lang)
+    pfx = "../" if lang == "ko" else "../../"
+
+    def art_href(iid):
+        return pfx + ("p/%s.html" % iid if lang == "ko" else "p/%s/%s.html" % (lang, iid))
+
+    def _title(i):
+        return i["title"].get(lang) or i["title"].get("ko") or i["title"]["en"]
+
     kind = e.get("kind")
-    sector = (e.get("sector", {}) or {}).get("ko") or (e.get("sector", {}) or {}).get("en", "")
-    desc = ((e.get("longDesc") or {}).get("ko")
-            or (e.get("desc", {}) or {}).get("ko")
-            or (e.get("desc", {}) or {}).get("en", ""))
+    sec = e.get("sector", {}) or {}
+    sector = sec.get(lang) or sec.get("en") or sec.get("ko") or ""
+    dd = e.get("longDesc") or {}
+    de = e.get("desc") or {}
+    desc = (dd.get(lang) or de.get(lang) or dd.get("en") or de.get("en")
+            or dd.get("ko") or de.get("ko") or "")
     ticker = (e.get("ticker") or "").upper()
-    facts = []
+
     def _loc(v):  # field may be a {en,ko,ja} object or a plain string
-        return (v.get("ko") or v.get("en") or "") if isinstance(v, dict) else str(v)
-    for label, k in (("대표", "ceo"), ("설립", "founded"), ("상장", "listed"), ("본사", "hq"), ("거래소", "exchange")):
+        return (v.get(lang) or v.get("en") or v.get("ko") or "") if isinstance(v, dict) else str(v)
+
+    facts = []
+    for lbl, k in ((U["ceo"], "ceo"), (U["founded"], "founded"), (U["listed"], "listed"),
+                   (U["hq"], "hq"), (U["exchange"], "exchange")):
         if e.get(k):
-            facts.append(f"<span><b>{label}</b> {E(_loc(e[k]))}</span>")
+            facts.append(f"<span><b>{E(lbl)}</b> {E(_loc(e[k]))}</span>")
     if e.get("website"):
         w = e["website"]
-        facts.append(f'<span><b>웹사이트</b> <a href="{E(w)}" target="_blank" rel="noopener nofollow">{E(w.replace("https://","").replace("www.",""))}</a></span>')
+        facts.append(f'<span><b>{E(U["website"])}</b> <a href="{E(w)}" target="_blank" rel="noopener nofollow">{E(w.replace("https://","").replace("www.",""))}</a></span>')
     facts_html = f'<p class="facts">{" · ".join(facts)}</p>' if facts else ""
-    metadesc = clip(desc or f"{key} 관련 투자 읽을거리 모음", 160)
+    metadesc = clip(desc or U["metafb"].format(name=name), 160)
     rows = "".join(
-        f'<li>{("<b class=sp-" + i.get("stance") + ">" + STANCE_KO.get(i.get("stance"), "관점") + "</b> ") if i.get("stance") else ""}'
-        f'<a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+        f'<li>{("<b class=sp-" + i.get("stance") + ">" + E(L.get(i.get("stance"), L["watch"])) + "</b> ") if i.get("stance") else ""}'
+        f'<a href="{E(art_href(i["id"]))}">{E(_title(i))}</a>'
         f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
         for i in ent_items
     )
@@ -1300,64 +1356,71 @@ def entity_page(key, e, ent_items):
     tally_html = ""
     if _b or _r or _w:
         tally_html = ('<div class="tally">'
-                      + (f'<b class="bl">강세 {_b}</b>' if _b else "")
-                      + (f'<b class="wa">관점 {_w}</b>' if _w else "")
-                      + (f'<b class="be">약세 {_r}</b>' if _r else "")
+                      + (f'<b class="bl">{E(L["bull"])} {_b}</b>' if _b else "")
+                      + (f'<b class="wa">{E(L["watch"])} {_w}</b>' if _w else "")
+                      + (f'<b class="be">{E(L["bear"])} {_r}</b>' if _r else "")
                       + "</div>")
-    _st_ko = {"pending": "채점 대기", "hit": "적중", "miss": "빗나감"}
+    _oc_lbl = {"pending": L["pending"], "hit": L["hit"], "miss": L["miss"]}
     _preds = [i for i in ent_items if i.get("outcome") and i["outcome"].get("status")]
     preds_html = ""
     if _preds:
         _li = []
         for i in _preds:
-            oc = i["outcome"]; note = oc.get("note") or {}
-            nt = note.get("ko") or note.get("en") or ""
-            _li.append(f'<li><span class="oc oc-{E(oc["status"])}">{_st_ko.get(oc["status"], "채점 대기")}</span> '
-                       f'<a href="../p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+            oc = i["outcome"]
+            note = oc.get("note") or {}
+            nt = note.get(lang) or note.get("en") or note.get("ko") or ""
+            _li.append(f'<li><span class="oc oc-{E(oc["status"])}">{E(_oc_lbl.get(oc["status"], L["pending"]))}</span> '
+                       f'<a href="{E(art_href(i["id"]))}">{E(_title(i))}</a>'
                        f'<span class="d">{E(nt)}</span></li>')
-        preds_html = f'<h2>예측 · 적중 기록 {len(_preds)}건</h2><ul class="preds">{"".join(_li)}</ul>'
+        preds_html = f'<h2>{E(U["preds"].format(n=len(_preds)))}</h2><ul class="preds">{"".join(_li)}</ul>'
 
-    about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": key}
+    about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": name}
     if kind == "company" and ticker:
         about["tickerSymbol"] = ticker.split(".")[0]
     if e.get("url"):
         about["url"] = e["url"]
     ld = {
         "@context": "https://schema.org", "@type": "CollectionPage",
-        "name": key, "description": metadesc, "url": url, "about": about,
-        "publisher": publisher_ld(), "isPartOf": {"@id": BASE + "#website"}, "inLanguage": "ko",
+        "name": name, "description": metadesc, "url": url, "about": about,
+        "publisher": publisher_ld(), "isPartOf": {"@id": BASE + "#website"}, "inLanguage": lang,
         "mainEntity": {
             "@type": "ItemList", "numberOfItems": len(ent_items),
             "itemListElement": [
                 {"@type": "ListItem", "position": n + 1,
-                 "url": BASE + "p/" + i["id"] + ".html",
-                 "name": i["title"].get("ko") or i["title"]["en"]}
+                 "url": page_url(i["id"], lang),
+                 "name": _title(i)}
                 for n, i in enumerate(ent_items)
             ],
         },
     }
     tk = f'<span class="tk">{E(ticker)}</span>' if ticker else ""
-    prof = f'<a class="prof" href="{E(e["url"])}" target="_blank" rel="noopener nofollow">프로필 ↗</a>' if e.get("url") else ""
+    prof = f'<a class="prof" href="{E(e["url"])}" target="_blank" rel="noopener nofollow">{E(U["profile"])}</a>' if e.get("url") else ""
     # follow 를 남기는 이유: 이 페이지가 가리키는 글은 계속 크롤되어야 한다.
-    # 색인에서만 빼고 링크는 그대로 흐르게 둔다.
+    # 색인에서만 빼고 링크는 그대로 흐르게 둔다. (언어 무관 — 글 수가 기준)
     thin_robots = ("" if len(ent_items) >= ENTITY_MIN_ARTICLES
                    else '\n<meta name="robots" content="noindex,follow">')
+    hreflang = ent_hreflang(slug, LANGS)
+    og_locale = (f'<meta property="og:locale" content="{OG_LOCALE[lang]}">'
+                 + "".join(f'<meta property="og:locale:alternate" content="{OG_LOCALE[lg]}">'
+                           for lg in LANGS if lg != lang))
     return f"""<!DOCTYPE html>
-<html lang="ko">
+<html lang="{lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{E(key)} · 관련 글 {len(ent_items)}건 · {SITE}</title>
+<title>{E(U["title"].format(name=name, n=len(ent_items)))}</title>
 <meta name="description" content="{E(metadesc)}">
 <link rel="canonical" href="{E(url)}">{thin_robots}
+{hreflang}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{SITE}">
-<meta property="og:title" content="{E(key)} · {SITE}">
+<meta property="og:title" content="{E(name)} · {SITE}">
 <meta property="og:description" content="{E(metadesc)}">
 <meta property="og:url" content="{E(url)}">
+{og_locale}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
-<link rel="icon" href="../favicon-32.png">
-<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<link rel="icon" href="{pfx}favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="{pfx}{FEED_FILE[lang]}">
 <script type="application/ld+json">{LD(ld)}</script>
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
@@ -1392,19 +1455,19 @@ footer a{{color:#8E93A0}}
 </style>
 </head>
 <body>
-<a class="top" href="../">◆ {SITE}</a>
+<a class="top" href="{pfx}">◆ {SITE}</a>
 <div class="sector">{E(sector)}</div>
-<h1>{E(key)}{tk}</h1>
+<h1>{E(name)}{tk}</h1>
 <p class="desc">{E(desc)}</p>
 {facts_html}
 {prof}
 {tally_html}
 {preds_html}
-<h2>관련 글 {len(ent_items)}건</h2>
+<h2>{E(U["relatedN"].format(n=len(ent_items)))}</h2>
 <ul>{rows}</ul>
 <footer>
-  요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
-  <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
+  {E(disc["disc"])}<br>
+  <a href="{pfx}">{E(disc["home"])}</a> · <a href="{pfx}articles.html">{E(disc["allp"])}</a> · <a href="{pfx}{FEED_FILE[lang]}">RSS</a>
 </footer>
 </body>
 </html>
@@ -1598,7 +1661,8 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
             urls.append((page_url(i["id"], lg), i.get("date", now),
                          "0.8" if lg == "ko" else "0.7", (i["id"], alts) if alts else None))
     for slug in (entity_slugs or []):
-        urls.append((BASE + "e/" + slug + ".html", now, "0.7", None))
+        for lg in LANGS:
+            urls.append((ent_url(slug, lg), now, "0.7" if lg == "ko" else "0.6", ("E", slug)))
     for slug in (week_slugs or []):
         urls.append((BASE + "week/" + slug + ".html", now, "0.6", None))
     for slug in (theme_slugs or []):
@@ -1609,12 +1673,18 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     def _alt(a):
         if not a:
             return ""
+        if a[0] == "E":
+            eslug = a[1]
+            eout = "".join(
+                f'<xhtml:link rel="alternate" hreflang="{lg}" href="{E(ent_url(eslug, lg))}"/>'
+                for lg in LANGS)
+            return eout + f'<xhtml:link rel="alternate" hreflang="x-default" href="{E(ent_url(eslug, "en"))}"/>'
         iid, lgs = a
         out = "".join(
             f'<xhtml:link rel="alternate" hreflang="{lg}" href="{E(page_url(iid, lg))}"/>'
             for lg in lgs
         )
-        dflt = "ko" if "ko" in lgs else lgs[0]
+        dflt = "en" if "en" in lgs else ("ko" if "ko" in lgs else lgs[0])
         return out + f'<xhtml:link rel="alternate" hreflang="x-default" href="{E(page_url(iid, dflt))}"/>'
 
     body = "".join(
@@ -2058,20 +2128,24 @@ def main():
                 os.remove(f"{LANG_DIR[lg]}/{fn}")
     print("[pages] " + " · ".join(f"{lg}:{len(written[lg])}" for lg in LANGS))
 
-    # write per-entity pages (only entities that actually have articles)
-    os.makedirs("e", exist_ok=True)
+    # write per-entity pages in ko/en/ja (only entities that actually have articles)
+    for _ed in ("e", "e/en", "e/ja"):
+        os.makedirs(_ed, exist_ok=True)
     ent_slugs = {}
-    ent_indexable = []      # 사이트맵에 올릴 것 = ENTITY_MIN_ARTICLES 이상
+    ent_indexable = []      # 사이트맵에 올릴 것 = ENTITY_MIN_ARTICLES 이상 (언어 무관)
     for key, its in ent_items.items():
         slug = slugify(key)
         ent_slugs[slug] = key
         if len(its) >= ENTITY_MIN_ARTICLES:
             ent_indexable.append(slug)
-        with open(f"e/{slug}.html", "w", encoding="utf-8") as f:
-            f.write(entity_page(key, entities[key], its))
-    for fn in os.listdir("e"):
-        if fn.endswith(".html") and fn[:-5] not in ent_slugs:
-            os.remove(f"e/{fn}")
+        for _lg in LANGS:
+            _ep = f"e/{slug}.html" if _lg == "ko" else f"e/{_lg}/{slug}.html"
+            with open(_ep, "w", encoding="utf-8") as f:
+                f.write(entity_page(key, entities[key], its, _lg))
+    for _ed in ("e", "e/en", "e/ja"):
+        for fn in os.listdir(_ed):
+            if fn.endswith(".html") and fn[:-5] not in ent_slugs:
+                os.remove(f"{_ed}/{fn}")
 
     open("articles.html", "w", encoding="utf-8").write(articles_index(items))
 
