@@ -374,4 +374,13 @@
      browser lacks :has(), or the mount failed, the quick bar stays and the reader
      can still comment. Feed cards keep it. */
   #v82dbody .card-body:has(> .comment-box:not([hidden])) .twin{display:none;}
+  /* 2026-07-29: on iOS Safari the tail of the article (함께 읽기) could not be
+     scrolled into view. #v82detail is position:fixed with top/bottom:0, which pins
+     it to the LAYOUT viewport; while Safari's bottom bar is showing, the layout
+     viewport is taller than the visible area, so the bottom ~50-90px of the scroll
+     container sits behind that bar permanently. 100dvh tracks the VISIBLE viewport
+     instead. The extra bottom padding clears the home indicator and leaves the last
+     card readable even while the bar is animating. */
+  html.rbeta #v82detail{height:100dvh;bottom:auto;}
+  #v82dbody{padding-bottom:calc(46px + env(safe-area-inset-bottom, 0px) + 24px);}
 }
