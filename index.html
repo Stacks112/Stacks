@@ -8879,15 +8879,18 @@ function cardEl(item, S, idx){
         <div class="gist rich">${gistRich(item)}</div>
       </details>
       ${item.lab ? "" : splitHtml(item)}
-      ${(item.lab && langText(item.sum3, LANG)) ? `<div class="why why-lab">
-        <div class="label">${S.sum3Label}</div>
-        <ul class="sum3">${langText(item.sum3, LANG).split("\n").map(l=>l.trim()).filter(Boolean).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
-        <div class="label why2">${S.why}</div>
-        <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
-      </div>` : `<div class="why">
-        <div class="label">${S.why}</div>
-        <p>${esc(RBETA ? paraGist(item.why[LANG]) : item.why[LANG])}</p>
-      </div>`}
+      ${(function(){
+        var foldW = !!item.foldWhy;
+        var whyTxt = !foldW ? (item.why && item.why[LANG]) : "";
+        var sum3Txt = item.lab ? langText(item.sum3, LANG) : "";
+        if (sum3Txt){
+          return '<div class="why why-lab"><div class="label">' + S.sum3Label + '</div><ul class="sum3">' + sum3Txt.split("\n").map(function(l){return l.trim();}).filter(Boolean).map(function(l){return "<li>" + esc(l) + "</li>";}).join("") + '</ul>' + (whyTxt ? '<div class="label why2">' + S.why + '</div><p>' + esc(RBETA ? paraGist(whyTxt) : whyTxt) + '</p>' : "") + '</div>';
+        }
+        if (whyTxt){
+          return '<div class="why"><div class="label">' + S.why + '</div><p>' + esc(RBETA ? paraGist(whyTxt) : whyTxt) + '</p></div>';
+        }
+        return "";
+      })()}
       ${oppHtml(item, S)}
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
