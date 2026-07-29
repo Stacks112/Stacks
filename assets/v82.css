@@ -385,11 +385,14 @@
   #twcText, #twcName{font-size:16px;}
   html.rbeta .twin-in{font-size:16px;}
   /* the quick one-line comment bar (.twin / twInlineSend) is a second composer for
-     the same thread, so hide it in the detail once the full section is actually
-     mounted (.comment-box no longer [hidden]). Guarded by :has() on purpose — if a
-     browser lacks :has(), or the mount failed, the quick bar stays and the reader
-     can still comment. Feed cards keep it. */
-  #v82dbody .card-body:has(> .comment-box:not([hidden])) .twin{display:none;}
+     the same thread, and .twin-list is a second COPY of the thread itself — with the
+     inline section mounted, june saw every comment twice and read it as "one comment
+     saved twice" (2026-07-29; D1 had a single row). Hide both in the detail once the
+     full section is actually mounted (.comment-box no longer [hidden]). Guarded by
+     :has() on purpose — if a browser lacks :has(), or the mount failed, the quick bar
+     and list stay and the reader can still comment. Feed cards hide both already. */
+  #v82dbody .card-body:has(> .comment-box:not([hidden])) .twin,
+  #v82dbody .card-body:has(> .comment-box:not([hidden])) .twin-list{display:none;}
   /* 2026-07-29: on iOS Safari the tail of the article (함께 읽기) could not be
      scrolled into view. #v82detail is position:fixed with top/bottom:0, which pins
      it to the LAYOUT viewport; while Safari's bottom bar is showing, the layout
