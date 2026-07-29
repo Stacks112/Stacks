@@ -969,6 +969,30 @@
       try { dt.classList.remove("on"); document.body.style.overflow = ""; refreshNav(); } catch(e2){}
     }
   }
+  /* 2026-07-29 fix: on mobile, switching the feed to an entity view while the
+     article detail overlay (#v82detail, z 13600) is open left the new entity
+     page rendered underneath it, so the second tap on a glossary/entity sheet
+     looked dead. Close the detail overlay first. Desktop is unaffected because
+     it routes to showEntityRail instead. */
+  (function(){
+    function armEntityFeedViewGuard(){
+      if (window.__v82EfvGuard) return true;
+      var orig = window.entityFeedView;
+      if (typeof orig !== "function") return false;
+      window.__v82EfvGuard = true;
+      window.entityFeedView = function(){
+        try { closeDetail(false); } catch (e) {}
+        return orig.apply(this, arguments);
+      };
+      return true;
+    }
+    if (!armEntityFeedViewGuard()){
+      var tries = 0;
+      var iv = setInterval(function(){
+        if (armEntityFeedViewGuard() || ++tries > 40) clearInterval(iv);
+      }, 150);
+    }
+  })();
   function closeDetail(fromPop){
     var dt = $("v82detail");
     if (!dt || !dt.classList.contains("on")) return false;
