@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,38 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://blog.naver.com/ranto28/224352751154" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">후티가 사우디아라비아에 대한 전면 해상봉쇄를 선언하면서, 호르무즈에 이어 원유의 마지막 우회로인 홍해까지 위협받게 됐다. 메르가 계속 추적해온 이야기의 후속편이다. 예멘 사나 공항에서 후티 대표단을 태운 비행기가 활주로 공격을 받았고, 후티는 이를 사우디의 소행으로 본다. 7월 20일, 후티는 사우디아라비아에 대한 전면 해상봉쇄를 선언하고 국민총동원령까지 발표했다. 2023년 홍해에서 선박 79척을 공격했던 캠페인의 재현이다. 걸린 판돈은 이렇다. 호르무즈 해협이 막힌 뒤 사우디는 수출 물량의 약 70%, 하루 약 500만 배럴을 홍해 얀부항과 폭 29km짜리 바브엘만데브 해협을 통해 우회시켜왔다. 이 해협 하나로 세계 해상 원유의 10%가 지나간다. 유조선이 해협을 뚫고 가려 해도 비용은 계속 불어난다. 수에즈운하를 쓰려면 초대형 유조선(VLCC)을 가볍게 만들기 위해 원유 일부를 파이프라인으로 빼야 하는데 통행료·파이프라인 비용만 약 100만 달러가 들고, 희망봉 우회는 20일 걸리던 항해를 50일로 늘리며 연료비 150만 달러가 추가된다. 전쟁보험료는 이미 선체가액의 2.5%, 초대형유조선 1척당 약 250만 달러까지 뛰었다. 한편 이란은 호르무즈 인근에서 유조선 2척이 폭발했다고 주장했고, 요르단·쿠웨이트·바레인의 미군기지는 다시 공격받고 있으며, 미국 휘발유값은 일주일 만에 갤런당 3.87달러에서 4.10달러로 올라 중간선거를 앞두고 심리적 마지노선인 4달러를 넘겼다. 미 중부사령부는 오늘 미 증시 마감 후 이란에 대한 작전을 재개할 예정이다. 메르의 해석: 바브엘만데브가 완전히 막히지 않아도, 늘어난 항로와 치솟은 보험료만으로 이미 원유의 실질 수입원가는 오르고 있다는 것.</p><p class="why"><b>투자 포인트</b> · 호르무즈 리스크는 이미 가격에 반영됐다. 그 위에 얹히는 홍해 봉쇄는 원유의 마지막 우회로를 없애는 얘기라, 우회된 물량조차 항로 연장과 전쟁보험료 폭등으로 구조적으로 더 비싸진다.</p><p class="ask"><b>짚어볼 점</b> · 이번 후티의 봉쇄 선언, 또 흐지부지될까 아니면 정말 원유의 마지막 우회로를 닫을까?</p>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>이후 채점: 이후 몇 주간 미국 휘발유 소매가가 갤런당 4달러(경유 5달러) 위를 유지하는지, 바브엘만데브 통행이 보험료만 오르는 데 그치지 않고 실제로 끊기는지 확인.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
+  <figure class="srcq"><blockquote cite="https://blog.naver.com/ranto28/224352751154" lang="ko"><p>후티반군이 홍해의 바브엘만데브해협을 막아도 물류가 막히는 것은 아님.</p><p>한국 기준으로 20일이던 VLCC(초대형유조선) 배송기간이 50일로 늘어나고, 수에즈운하 통과비용과 희망봉을 우회하는 연료 비용등이 반영되어 원유 수입원가가 높아지게 됨.</p></blockquote><figcaption class="srcq-c"><a href="https://blog.naver.com/ranto28/224352751154" rel="nofollow noopener" target="_blank">메르 · 2026.07.21</a></figcaption></figure><p class="gist">후티가 사우디아라비아에 대한 전면 해상봉쇄를 선언하면서, 호르무즈에 이어 원유의 마지막 우회로인 홍해까지 위협받게 됐다.
+메르가 계속 추적해온 이야기의 후속편이다.
+
+예멘 사나 공항에서 후티 대표단을 태운 비행기가 활주로 공격을 받았고, 후티는 이를 사우디의 소행으로 본다.
+
+7월 20일, 후티는 사우디아라비아에 대한 전면 해상봉쇄를 선언하고 국민총동원령까지 발표했다.
+2023년 홍해에서 선박 79척을 공격했던 캠페인의 재현이다.</p><h2 class="gsub">우회로 하나에 뭐가 걸려 있나</h2><p class="gist">걸린 판돈은 이렇다.
+
+호르무즈 해협이 막힌 뒤 사우디는 수출 물량의 약 70%, 하루 약 500만 배럴을 홍해 얀부항과 폭 29km짜리 바브엘만데브 해협을 통해 우회시켜왔다.
+이 해협 하나로 세계 해상 원유의 10%가 지나간다.</p><h2 class="gsub">돌아가면 비용은 얼마나 드나</h2><p class="gist">유조선이 해협을 뚫고 가려 해도 비용은 계속 불어난다.
+
+수에즈운하를 쓰려면 초대형 유조선(VLCC)을 가볍게 만들기 위해 원유 일부를 파이프라인으로 빼야 하는데 통행료·파이프라인 비용만 약 100만 달러가 들고, 희망봉 우회는 20일 걸리던 항해를 50일로 늘리며 연료비 150만 달러가 추가된다.
+
+전쟁보험료는 이미 선체가액의 2.5%, 초대형유조선 1척당 약 250만 달러까지 뛰었다.</p><div class="gcardw"><a class="gcard" href="https://www.aljazeera.com/economy/2026/7/23/how-shipping-insurance-rates-are-rising-as-hormuz-bab-al-mandeb-shut-down" rel="noopener" target="_blank"><img src="https://www.aljazeera.com/wp-content/uploads/2026/07/afp_6a58529e759d-1784173214.jpg?resize=1920%2C1440" alt="" loading="lazy"><span class="gcard-t">호르무즈와 바브엘만데브가 닫히면서 해운 보험료는 어떻게 오르고 있나 (알자지라, 2026-07-23)</span></a><div class="gcard-src">출처: aljazeera.com</div></div><p class="gist">알자지라는 요율을 구간별로 나눠 적는다.
+호르무즈는 전쟁 전 선체가액의 1~3%에서 7.5~10%로 뛴 반면, 바브엘만데브는 0.5%, 사우디 서안 홍해 구간은 0.1% 수준이다.
+같은 기사는 t당 77.96달러 운임을 기준으로 27만t급 유조선 한 척의 보험료가 약 2100만 달러까지 갈 수 있다고 계산한다.
+
+카드가 적은 2.5%와는 시점도, 구간을 자르는 방식도 다른 셈법이다.
+보험료가 불어난다는 방향은 같지만 이 기사 시점에는 홍해 쪽 요율이 호르무즈보다 훨씬 낮게 매겨져 있었고, 그만큼 우회로의 가격 우위는 아직 남아 있었다.</p><h2 class="gsub">이게 왜 휘발유값까지 가나</h2><p class="gist">한편 이란은 호르무즈 인근에서 유조선 2척이 폭발했다고 주장했고, 요르단·쿠웨이트·바레인의 미군기지는 다시 공격받고 있으며, 미국 휘발유값은 일주일 만에 갤런당 3.87달러에서 4.10달러로 올라 중간선거를 앞두고 심리적 마지노선인 4달러를 넘겼다.
+
+미 중부사령부는 오늘 미 증시 마감 후 이란에 대한 작전을 재개할 예정이다.</p><div class="gcardw"><a class="gcard" href="https://www.axios.com/2026/07/20/gas-4-dollars-per-gallon-iran-war" rel="noopener" target="_blank"><img src="https://images.axios.com/YajTgXGxKrGf7c7lbd8MzaDPsXM=/0x0:1280x720/1366x768/2026/07/20/1784540166745.jpg" alt="" loading="lazy"><span class="gcard-t">이란 전투가 이어지며 휘발유값 다시 갤런당 4달러 돌파 (악시오스, 2026-07-20)</span></a><div class="gcard-src">출처: axios.com</div></div><p class="gist">악시오스는 같은 날 미국 전국 평균 휘발유값이 갤런당 4.00달러를 찍었다고 전한다.
+1년 전보다 86센트 높고, 1월 1일의 2.8335달러와 비교하면 반년 만에 벌어진 일이다.
+
+카드가 적은 3.87달러와 4.10달러는 이 전국 평균과 집계 기준이 다르다.
+4달러선을 다시 넘겼다는 사실 자체는 같은 날 기사로 확인되고, 이 기사는 그 원인으로 호르무즈의 유조선 통항 위축을 지목한다.
+
+메르의 해석: 바브엘만데브가 완전히 막히지 않아도, 늘어난 항로와 치솟은 보험료만으로 이미 원유의 실질 수입원가는 오르고 있다는 것.</p><p class="why"><b>투자 포인트</b> · 호르무즈 리스크는 이미 가격에 반영됐다. 그 위에 얹히는 홍해 봉쇄는 원유의 마지막 우회로를 없애는 얘기라, 우회된 물량조차 항로 연장과 전쟁보험료 폭등으로 구조적으로 더 비싸진다.</p><p class="ask"><b>짚어볼 점</b> · 이번 후티의 봉쇄 선언, 또 흐지부지될까 아니면 정말 원유의 마지막 우회로를 닫을까?</p>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>이후 채점: 이후 몇 주간 미국 휘발유 소매가가 갤런당 4달러(경유 5달러) 위를 유지하는지, 바브엘만데브 통행이 보험료만 오르는 데 그치지 않고 실제로 끊기는지 확인.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>30</b>글</span><span><b>9</b>방향성 콜</span><span class="bl"><b>7</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-houthi-blockade.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-houthi-blockade.html" hreflang="ja" lang="ja">日本語</a></nav>
-  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/houthis.html">HOUTHIS</a><a class="ent-chip" href="../e/per.html">PER</a><a class="ent-chip" href="../e/strait-of-hormuz.html">STRAIT OF HORMUZ</a><a class="ent-chip" href="../e/vlcc.html">VLCC</a><a class="ent-chip" href="../e/meru.html">메르</a></div></nav>
+  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/houthis.html">HOUTHIS</a><a class="ent-chip" href="../e/per.html">PER</a><a class="ent-chip" href="../e/strait-of-hormuz.html">STRAIT OF HORMUZ</a><a class="ent-chip" href="../e/vlcc.html">VLCC</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/bab-al-mandeb.html">바브엘만데브 해협</a><a class="ent-chip" href="../e/yanbu.html">얀부항</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="meru-redsea.html">호르무즈 다음은 홍해: 활주로 폭격 하나가 우회로를 닫으려 한다</a></li><li><a href="hormuz-meru.html">봉쇄 먼저, 통행료는 나중에: 트럼프의 호르무즈 플레이 읽기</a></li><li><a href="potus-hormuz.html">트럼프, 호르무즈 통행료를 걸프 자본과 맞바꾸다</a></li></ul></nav>
-  <nav class="latest"><h3>최신 글</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">장기계약 때문에 값을 더 못 받는다던 SK하이닉스, 그 계약에는 가격 상한이 없었다</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AI 인프라·보안 소프트웨어 지수는 22% 올랐는데, 업무용 소프트웨어 지수는 급락한 이유는?</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
+  <nav class="latest"><h3>최신 글</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">장기계약 때문에 값을 더 못 받는다던 SK하이닉스, 그 계약에는 가격 상한이 없었다</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="serenity-chip-selloff-earnings-divergence.html">반도체주가 동반 급락한 날 나온 두 건의 실적, 매출은 165%와 104% 늘었다</a><time>07-28</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
   <footer>
     요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>

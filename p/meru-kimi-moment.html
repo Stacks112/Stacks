@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,34 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://blog.naver.com/ranto28/224349989423" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">메르가 2025년 초 &#x27;딥시크 모먼트&#x27;의 속편 격인 &#x27;키미 모먼트&#x27;를 정리한다. 7월 17일 중국 문샷AI(Moonshot)가 오픈웨이트 모델 Kimi K3를 공개했다. 파라미터가 2.8조 개로 딥시크 V3(6,710억 개)보다 훨씬 크지만, 지금까지 누적 조달금은 약 13억 달러에 불과하다. 코딩·수학·추론 표준 벤치마크에서 Claude나 GPT-5급 미국 최상위 모델과 비슷한 등급에 올랐다. 다만 함정이 둘이다. 이 점수 대부분이 문샷의 자체 측정치라 &#x27;시험지에 맞춰 공부시킨(teaching to the test)&#x27; 부풀리기 위험이 있고, 오픈웨이트라 누구나 전체 모델을 내려받아 직접 돌리거나 튜닝할 수 있다는 점이다. 진짜 시험은 7월 27일이다. 전체 가중치가 풀리면 대학·경쟁 랩·독립 연구자가 성능이 진짜인지 직접 검증한다. 검증을 통과하면 &#x27;최전선을 지키려면 GPU에 수천억 달러를 계속 써야 한다&#x27;는 하이퍼스케일러 투자 논리, 엔비디아의 성장 스토리, 폐쇄형 모델의 높은 구독료가 모두 도마에 오른다. 포춘은 이번 건이 &#x27;컴퓨팅 파워가 곧 우위&#x27;라는 통념을 깰 수 있다고 봤다. 메르의 한 줄: 동네 카센터가 수퍼카급 성능을 냈다며 설계도를 공짜로 뿌리겠다는 상황이고, 주행 테스트는 7월 27일이다.</p><p class="why"><b>투자 포인트</b> · 13억 달러짜리 오픈웨이트가 진짜 최전선급이라면, GPU를 계속 더 사야 한다는 조 단위 베팅과 폐쇄형 미국 모델의 가격 결정력이 한꺼번에 도마에 오른다. 방아쇠는 7월 27일 검증이다.</p><p class="ask"><b>짚어볼 점</b> · 저비용 오픈웨이트 AI, 엔비디아·하이퍼스케일러 논리를 정말 무너뜨릴까?</p>
-  <section class="oc oc-hit"><h3>그 후 어떻게 됐나</h3><p><i>적중</i>2026년 7월 27일 공개된 Kimi K3 전체 가중치에 대해 독립 벤치마크 기관 Artificial Analysis가 인텔리전스 지수 3위(스코어 57)로 평가, GPT-5.5·Claude Opus 4.8과 비슷하거나 앞서는 성능을 확인해 hit으로 채점.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
+  <figure class="srcq"><blockquote cite="https://blog.naver.com/ranto28/224349989423" lang="ko"><p>한마디로 성적표는 잘 나왔는데, 채점을 수험생 본인이 한 상태라는 점이다.</p><p>7월 27일, 제3자 검증의 주행 테스트마저 통과한다면 일이 커질 수 있다.</p><p>미국 하이퍼스케일러들의 엄청난 투자, 엔비디아의 성장 논리, 폐쇄형 AI 모델의 높은 구독료까지 재평가될 가능성이 생기는 것이다.</p></blockquote><figcaption class="srcq-c"><a href="https://blog.naver.com/ranto28/224349989423" rel="nofollow noopener" target="_blank">메르 · 2026.07.18</a></figcaption></figure><p class="gist">메르가 2025년 초 &#x27;딥시크 모먼트&#x27;의 속편 격인 &#x27;키미 모먼트&#x27;를 정리한다.
+7월 17일 중국 문샷AI(Moonshot)가 오픈웨이트 모델 Kimi K3를 공개했다.
+
+파라미터가 2.8조 개로 딥시크 V3(6,710억 개)보다 훨씬 크지만, 지금까지 누적 조달금은 약 13억 달러에 불과하다.
+코딩·수학·추론 표준 벤치마크에서 Claude나 GPT-5급 미국 최상위 모델과 비슷한 등급에 올랐다.</p><h2 class="gsub">점수는 누가 매겼나</h2><p class="gist">다만 함정이 둘이다.
+이 점수 대부분이 문샷의 자체 측정치라 &#x27;시험지에 맞춰 공부시킨(teaching to the test)&#x27; 부풀리기 위험이 있고, 오픈웨이트라 누구나 전체 모델을 내려받아 직접 돌리거나 튜닝할 수 있다는 점이다.
+
+진짜 시험은 7월 27일이다.
+전체 가중치가 풀리면 대학·경쟁 랩·독립 연구자가 성능이 진짜인지 직접 검증한다.
+
+가중치는 그날 실제로 풀렸다.
+쿼츠는 공개 직후의 외부 평가에서 K3가 종합 순위로는 앤스로픽 Claude Fable 5와 오픈AI GPT-5.6 Sol 아래였지만, 코딩과 에이전트 항목에서는 두 회사의 직전 세대 모델을 앞섰다고 전했다.
+
+같은 기사에는 반대 방향의 이야기도 실렸다.
+백악관의 마이클 크라치오스는 문샷이 수출 금지된 엔비디아 칩을 썼고 미국 모델을 대규모로 증류했다고 주장했다.
+사실이라면 13억 달러라는 숫자가 증명하는 것도 달라진다.</p><div class="gref"><a href="https://qz.com/moonshot-ai-kimi-k3-open-weights-download-072726" rel="noopener" target="_blank">중국 문샷AI, 기록적인 오픈웨이트 모델을 무료 내려받기로 공개 (쿼츠, 2026-07-27) &#8599;</a></div><h2 class="gsub">GPU를 덜 사게 되나</h2><p class="gist">검증을 통과하면 &#x27;최전선을 지키려면 GPU에 수천억 달러를 계속 써야 한다&#x27;는 하이퍼스케일러 투자 논리, 엔비디아의 성장 스토리, 폐쇄형 모델의 높은 구독료가 모두 도마에 오른다.
+포춘은 이번 건이 &#x27;컴퓨팅 파워가 곧 우위&#x27;라는 통념을 깰 수 있다고 봤다.
+
+여기서 걸리는 대목이 하나 있다.
+테크타임스는 K3를 직접 돌리려면 MXFP4 정밀도 기준으로 빠른 GPU 메모리 1.4테라바이트와 하나의 고대역 인터커넥트 안에 묶인 가속기 64장 이상이 필요하고, 네이티브로 지원되는 하드웨어는 엔비디아 블랙웰이나 AMD MI400이라고 정리했다.
+
+가중치가 공짜라는 말이 돌리는 비용도 공짜라는 뜻은 아니다.
+자체 호스팅이 퍼질수록 누군가는 같은 급의 가속기를 사야 한다.</p><div class="gref"><a href="https://www.techtimes.com/articles/321551/20260725/kimi-k3-open-weights-arrive-sunday-self-hosting-cuts-china-data-risk-api-never-can.htm" rel="noopener" target="_blank">Kimi K3 오픈웨이트 일요일 공개, 자체 호스팅은 API가 못 없애는 중국 데이터 위험을 줄인다 (테크타임스, 2026-07-25) &#8599;</a></div><p class="gist">메르의 한 줄: 동네 카센터가 수퍼카급 성능을 냈다며 설계도를 공짜로 뿌리겠다는 상황이고, 주행 테스트는 7월 27일이다.</p><p class="why"><b>투자 포인트</b> · 13억 달러짜리 오픈웨이트가 진짜 최전선급이라면, GPU를 계속 더 사야 한다는 조 단위 베팅과 폐쇄형 미국 모델의 가격 결정력이 한꺼번에 도마에 오른다. 방아쇠는 7월 27일 검증이다.</p><p class="ask"><b>짚어볼 점</b> · 저비용 오픈웨이트 AI, 엔비디아·하이퍼스케일러 논리를 정말 무너뜨릴까?</p>
+  <section class="oc oc-hit"><h3>그 후 어떻게 됐나</h3><p><i>적중</i>2026년 7월 27일 공개된 Kimi K3 전체 가중치에 대해 독립 벤치마크 기관 Artificial Analysis가 인텔리전스 지수 3위(스코어 57)로 평가, GPT-5.5·Claude Opus 4.8과 비슷하거나 앞서는 성능을 확인해 hit으로 채점.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>30</b>글</span><span><b>9</b>방향성 콜</span><span class="bl"><b>7</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-kimi-moment.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-kimi-moment.html" hreflang="ja" lang="ja">日本語</a></nav>
-  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/deepseek.html">DEEPSEEK</a><a class="ent-chip" href="../e/moonshot-ai.html">MOONSHOT AI</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/open-weight.html">오픈웨이트</a><a class="ent-chip" href="../e/inference.html">인퍼런스</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a><a class="ent-chip" href="../e/consensus-estimate.html">컨센서스</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>
+  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amd.html">AMD</a><a class="ent-chip" href="../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../e/blackwell.html">BLACKWELL</a><a class="ent-chip" href="../e/deepseek.html">DEEPSEEK</a><a class="ent-chip" href="../e/gpu.html">GPU</a><a class="ent-chip" href="../e/moonshot-ai.html">MOONSHOT AI</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/open-weight.html">오픈웨이트</a><a class="ent-chip" href="../e/inference.html">인퍼런스</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a><a class="ent-chip" href="../e/consensus-estimate.html">컨센서스</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="meru-anthropic-alibaba.html">앤트로픽 대 알리바바: Qwen의 오픈 웨이트 1위는 실력인가, 증류인가</a></li><li><a href="meru-china-ai.html">미국인 절반이 중국 AI를 쓴다: 오픈라우터가 드러낸 진짜 사용량</a></li><li><a href="nadella.html">나델라의 &#x27;역정보 역설&#x27;: 우리는 AI에 두 번 지불한다</a></li></ul></nav>
-  <nav class="latest"><h3>최신 글</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">장기계약 때문에 값을 더 못 받는다던 SK하이닉스, 그 계약에는 가격 상한이 없었다</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AI 인프라·보안 소프트웨어 지수는 22% 올랐는데, 업무용 소프트웨어 지수는 급락한 이유는?</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
+  <nav class="latest"><h3>최신 글</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">장기계약 때문에 값을 더 못 받는다던 SK하이닉스, 그 계약에는 가격 상한이 없었다</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="serenity-chip-selloff-earnings-divergence.html">반도체주가 동반 급락한 날 나온 두 건의 실적, 매출은 165%와 104% 늘었다</a><time>07-28</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
   <footer>
     요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>

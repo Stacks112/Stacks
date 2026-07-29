@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,37 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://blog.naver.com/ranto28/224350725486" target="_blank" rel="noopener nofollow">Read the original ↗</a>
     
   </div>
-  <p class="gist">Meru unpacks a strange new product from Trump Media &amp; Technology Group (TMTG, ticker DJT), the company Trump founded and still owns 41% of. From August 1, 2026, its Truth Social platform will sell &#x27;Truth API&#x27;, a $100,000-a-month subscription ($60,000 on a three-year deal) that delivers posts from the platform&#x27;s ten most influential accounts a thousandth of a second before they reach the public feed, in machine-readable JSON that trading algorithms can act on instantly. Those ten accounts are dominated by Trump himself, his sons Don Jr. and Eric, and close allies. TMTG&#x27;s own pitch deck sells the edge with ten &#x27;market-moving&#x27; Trump posts: an April 2025 &#x27;THIS IS A GREAT TIME TO BUY&#x27; hours before a 90-day tariff pause added $4 trillion to the S&amp;P 500&#x27;s value; an &#x27;Iran blockade&#x27; post that spiked oil more than 9% in a day, and a later &#x27;productive talks&#x27; post that sent it back down. Is it legal? US insider-trading law targets non-public information, and this data becomes public anyway, so TMTG argues it&#x27;s clean, and while executive-branch officials are barred from such conflicts of interest, the President and Vice President are explicitly exempt from that rule (18 U.S.C. §208). The buyers are high-frequency traders, who already place about 60% of US orders and live or die on being first.</p><p class="why"><b>Why it matters</b> · It puts a price tag on proximity to the president&#x27;s market-moving posts, and shows retail is now outgunned on speed, analysis and information all at once.</p><p class="ask"><b>Worth asking</b> · Selling a head start on Trump&#x27;s posts to HFT firms: clever business, or the market&#x27;s playing field tilting for good?</p>
-  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>31</b>posts</span><span><b>10</b>directional calls</span><span class="bl"><b>8</b>Bull</span><span class="be"><b>2</b>Bear</span><span class="bl"><b>2</b>Hit</span><span class="be"><b>0</b>Miss</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="meru-saudi-tanker-strike-fallout.html">Houthis strike two Saudi-owned tankers by name, following through on a five-day…</a><time>07-24</time></li><li><i class="bl">Bull</i><a href="meru-googl-q2-results-korea-impact.html">Meru: Alphabet raises 2026 capex to $195-205B even as free cash flow turns nega…</a><time>07-23</time></li><li><i class="be">Bear</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">Kolon TissueGene&#x27;s TG-C fails US Phase 3 trial, placebo outperforms on pain rel…</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html" data-app="?l=en#record-%EB%A9%94%EB%A5%B4">See the full record →</a></section>
+  <figure class="srcq"><blockquote cite="https://blog.naver.com/ranto28/224350725486" lang="ko"><p>한마디로 트럼프 본인과 가족, 측근의 게시물을 일반인보다 먼저 알려주는 것이다.</p><p>개인 투자자들은 속도에서는 HFT,투자분석에서는 AI, 내부정보에서는 트럼프와 1대 3으로 싸워야 하는 상황이다.</p></blockquote><figcaption class="srcq-c"><a href="https://blog.naver.com/ranto28/224350725486" rel="nofollow noopener" target="_blank">메르 · 2026.07.19</a></figcaption></figure><p class="gist">Meru unpacks a strange new product from Trump Media &amp; Technology Group (TMTG, ticker DJT), the company Trump founded and still owns 41% of.
+From August 1, 2026, its Truth Social platform will sell &#x27;Truth API&#x27;.</p><h2 class="gsub">Why pay for a thousandth of a second?</h2><p class="gist">Truth API is a $100,000-a-month subscription, $60,000 on a three-year deal.
+It delivers posts from the platform&#x27;s ten most influential accounts a thousandth of a second before they reach the public feed, in machine-readable JSON that trading algorithms can act on instantly.
+
+Those ten accounts are dominated by Trump himself, his sons Don Jr. and Eric, and close allies.
+FinanceFeeds reported that the list also carries broadcasters Dan Bongino and Sean Hannity, and counted Trump&#x27;s 41% as 114.75 million shares held through the Donald J. Trump Revocable Trust.
+
+The stake is counted there in shares rather than as a percentage, but it points at the same holding.
+A roster filled with Trump family members and friendly broadcasters backs the claim that these accounts run with him.</p><div class="gref"><a href="https://financefeeds.com/trump-media-seeks-to-sell-faster-access-to-president-posts-for-100000-monthly-fee/" rel="noopener" target="_blank">Trump Media Seeks to Sell Faster Access to President Posts for $100,000 Monthly Fee (FinanceFeeds, 2026-07-19) &#8599;</a></div><h2 class="gsub">Did those posts really move markets?</h2><p class="gist">TMTG&#x27;s own pitch deck sells the edge with ten &#x27;market-moving&#x27; Trump posts.
+An April 2025 &#x27;THIS IS A GREAT TIME TO BUY&#x27; landed hours before a 90-day tariff pause added $4 trillion to the S&amp;P 500&#x27;s value; an &#x27;Iran blockade&#x27; post spiked oil more than 9% in a day, and a later &#x27;productive talks&#x27; post sent it back down.
+
+Those are examples the seller picked itself.
+What carries a price is not the post but the head start on reaching it.</p><h2 class="gsub">Is this insider trading?</h2><p class="gist">Is it legal?
+US insider-trading law targets non-public information, and this data becomes public anyway, so TMTG argues it&#x27;s clean.
+And while executive-branch officials are barred from such conflicts of interest, the President and Vice President are explicitly exempt from that rule (18 U.S.C. §208), so no penalty attaches.
+
+The buyers are high-frequency traders, who already place about 60% of US orders and live or die on being first.
+
+Fortune pushes straight back on that reasoning.
+Renée Jones, a Boston College Law School professor, said material nonpublic information belongs to the US government or the American people, not to Truth Social or President Trump.
+
+Tyler Gellasch of the Healthy Markets Association said milliseconds matter in modern markets and the president&#x27;s social media posts move markets.
+The same piece noted the SEC is weighing a shift from quarterly to semiannual corporate disclosure, and that the two changes together could split the market into two tiers.
+
+The &#x27;it becomes public anyway&#x27; defense does not touch the act of selling the moment of publication.
+The same information still lands on two clocks, one running ahead of the other.</p><div class="gref"><a href="https://fortune.com/2026/07/20/trump-truth-social-api-sec-filings-trust/" rel="noopener" target="_blank">&#x27;Milliseconds matter in modern markets&#x27;: How Trump&#x27;s Truth API, and less frequent SEC filings, could create a &#x27;two-tiered market&#x27; (Fortune, 2026-07-20) &#8599;</a></div><p class="why"><b>Why it matters</b> · It puts a price tag on proximity to the president&#x27;s market-moving posts, and shows retail is now outgunned on speed, analysis and information all at once.</p><p class="ask"><b>Worth asking</b> · Selling a head start on Trump&#x27;s posts to HFT firms: clever business, or the market&#x27;s playing field tilting for good?</p>
+  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>30</b>posts</span><span><b>9</b>directional calls</span><span class="bl"><b>7</b>Bull</span><span class="be"><b>2</b>Bear</span><span class="bl"><b>2</b>Hit</span><span class="be"><b>0</b>Miss</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="meru-saudi-tanker-strike-fallout.html">Houthis strike two Saudi-owned tankers by name, following through on a five-day…</a><time>07-24</time></li><li><i class="bl">Bull</i><a href="meru-googl-q2-results-korea-impact.html">Meru: Alphabet raises 2026 capex to $195-205B even as free cash flow turns nega…</a><time>07-23</time></li><li><i class="be">Bear</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">Kolon TissueGene&#x27;s TG-C fails US Phase 3 trial, placebo outperforms on pain rel…</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html" data-app="?l=en#record-%EB%A9%94%EB%A5%B4">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/meru-truth-api-tmtg.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/meru-truth-api-tmtg.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../../e/hft.html">HFT</a><a class="ent-chip" href="../../e/s-p500.html">S&amp;P500</a><a class="ent-chip" href="../../e/tmtg.html">TMTG</a><a class="ent-chip" href="../../e/meru.html">메르</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="potus-cpi-june.html">Trump spikes the football on June CPI, &#x27;biggest monthly price drop in six years&#x27;</a></li><li><a href="potus-datacenters.html">Trump calls datacenters &#x27;liquid gold&#x27; and puts New York on blast for banning them</a></li></ul></nav>
-  <nav class="latest"><h3>Latest</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">The long-term contracts said to cap SK hynix&#x27;s upside turn out to carry no price ceiling…</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">TSMC&#x27;s Kumamoto fab restarted within a day. So why is it still too early to call this ove…</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">Funds that lend directly to Asian companies just raised the least in 12 years. Where did…</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The reason it gav…</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">SK Hynix&#x27;s operating profit jumped 557% in a year, so why did it still miss consensus?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">Apple just crossed $5 trillion. The real story is how fast it got there</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">The US is banning Chinese robots. The real target wasn&#x27;t just robots</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">The AI infrastructure and security software index is up 22% this year. Why is application…</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">Browse all articles →</a></nav>
+  <nav class="latest"><h3>Latest</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">The long-term contracts said to cap SK hynix&#x27;s upside turn out to carry no price ceiling…</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">TSMC&#x27;s Kumamoto fab restarted within a day. So why is it still too early to call this ove…</a><time>07-29</time></li><li><a href="serenity-chip-selloff-earnings-divergence.html">Two earnings reports landed on the day chip stocks crashed together, revenue up 165% and…</a><time>07-28</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">Funds that lend directly to Asian companies just raised the least in 12 years. Where did…</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The reason it gav…</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">SK Hynix&#x27;s operating profit jumped 557% in a year, so why did it still miss consensus?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">Apple just crossed $5 trillion. The real story is how fast it got there</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">The US is banning Chinese robots. The real target wasn&#x27;t just robots</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">Browse all articles →</a></nav>
   <footer>
     Summaries and commentary are original work by Stacks. Copyright in the source material remains with its author; every item credits the source and links to the original. This is information and commentary, not investment advice.<br>
     <a href="../../">Stacks home</a> · <a href="../../articles.html">All articles</a> · <a href="../../about.html">About</a> · <a href="../../feed-en.xml">RSS</a>

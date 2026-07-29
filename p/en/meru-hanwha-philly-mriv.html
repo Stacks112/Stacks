@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,36 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://blog.naver.com/ranto28/224350379831" target="_blank" rel="noopener nofollow">Read the original ↗</a>
     
   </div>
-  <p class="gist">Meru walks through why a shipyard Hanwha bought for about $100M just got interesting. On July 17, TOTE Services and Hanwha&#x27;s Philly Shipyard were picked to build the US Missile Defense Agency&#x27;s next Missile Range Instrumentation Vessels (MRIVs), ships that track a missile&#x27;s speed, altitude and trajectory and feed the data back. Today&#x27;s fleet is two ancient boats (built 1965 and 1970); the two replacements, reportedly about $2B for the pair, will support Trump&#x27;s &#x27;Golden Dome&#x27; homeland missile shield, with first delivery targeted for 2030. The twist is the structure. TOTE Services, a family-owned outfit run by a 27-year Coast Guard veteran, is the prime contractor managing the program, while Hanwha&#x27;s Philly yard actually builds the hulls. Why the middleman? A US warship must be built in a US yard under US control (the Byrnes-Tollefson amendment); Philly clears that since it sits on US soil, but Hanwha doesn&#x27;t yet hold the facility clearance (FCL) to be prime on a Navy job. Meru notes Philly is now hiring a facility security officer, and Hanwha is weighing a $5B upgrade to turn the commercial yard into a real warship builder. The bigger idea: build hulls in Korea, arm them in the US, a split that could help clear the US Navy&#x27;s shipbuilding backlog, though it needs new law. Meru&#x27;s one-liner: start as a subcontractor, bank the experience, climb to prime, the $100M Philly bet is starting to earn its keep.</p><p class="why"><b>Why it matters</b> · US defense shipbuilding is a supply chain you enter once and keep selling into. This is Korea&#x27;s foot in the door and a fresh growth leg for Hanwha&#x27;s defense story.</p><p class="ask"><b>Worth asking</b> · Korea into US Navy shipbuilding: a real growth leg, or stuck behind security and legal walls?</p>
-  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>31</b>posts</span><span><b>10</b>directional calls</span><span class="bl"><b>8</b>Bull</span><span class="be"><b>2</b>Bear</span><span class="bl"><b>2</b>Hit</span><span class="be"><b>0</b>Miss</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="meru-saudi-tanker-strike-fallout.html">Houthis strike two Saudi-owned tankers by name, following through on a five-day…</a><time>07-24</time></li><li><i class="bl">Bull</i><a href="meru-googl-q2-results-korea-impact.html">Meru: Alphabet raises 2026 capex to $195-205B even as free cash flow turns nega…</a><time>07-23</time></li><li><i class="be">Bear</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">Kolon TissueGene&#x27;s TG-C fails US Phase 3 trial, placebo outperforms on pain rel…</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html" data-app="?l=en#record-%EB%A9%94%EB%A5%B4">See the full record →</a></section>
+  <figure class="srcq"><blockquote cite="https://blog.naver.com/ranto28/224350379831" lang="ko"><p>토트 서비스는 프로그램의 주체로 원청이 되어서 계약을 관리하고, 실제 배를 건조하는 것은 한화의 필리조선소가 되는 구조다.</p><p>하청으로 시작하지만, 경험을 좀 쌓고 원청으로 올라가는 방법도 나쁘지 않아 보인다.</p><p>1억달러에 매수한 필리조선소가 값을 하기 시작하는 것 같다.</p></blockquote><figcaption class="srcq-c"><a href="https://blog.naver.com/ranto28/224350379831" rel="nofollow noopener" target="_blank">메르 · 2026.07.19</a></figcaption></figure><p class="gist">Meru walks through why a shipyard Hanwha bought for about $100M just got interesting.
+On July 17, TOTE Services and Hanwha&#x27;s Philly Shipyard were picked to build the US Missile Defense Agency&#x27;s next Missile Range Instrumentation Vessels (MRIVs).</p><h2 class="gsub">What do these ships do?</h2><p class="gist">MRIVs track a missile&#x27;s speed, altitude and trajectory and feed the data back.
+Today&#x27;s fleet is two ancient boats (built 1965 and 1970); the two replacements are reportedly about $2B for the pair.
+
+They will support Trump&#x27;s &#x27;Golden Dome&#x27; homeland missile shield, with first delivery targeted for 2030.
+Naval News reported that the first ship is named Golden Defender and that the two retiring boats are Pacific Tracker (1965) and Pacific Collector (1970).
+
+The same story said the NSMV program turned Philly from a dormant yard with a few dozen workers into one employing more than 2,000 production workers.
+It labels TOTE&#x27;s role vessel construction manager (VCM) rather than prime contractor, and adds that the approach cuts acquisition costs by at least 50%.
+The build years and the delivery target line up, so the premise holds, but the article explains the middleman as a cost model rather than a legal requirement.</p><div class="gref"><a href="https://www.navalnews.com/naval-news/2026/07/hanwha-philly-shipyard-tote-mda-missile-range-vessel/" rel="noopener" target="_blank">Hanwha Philly Shipyard and TOTE Services Selected to Build New MDA Missile Range Instrumentation Vessels (Naval News, 2026-07-19) &#8599;</a></div><h2 class="gsub">Why is TOTE in the middle?</h2><p class="gist">The twist is the structure.
+TOTE Services, a family-owned outfit run by a 27-year Coast Guard veteran, is the prime contractor managing the program, while Hanwha&#x27;s Philly yard actually builds the hulls.
+
+Why the middleman?
+A US warship must be built in a US yard under US control (the Byrnes-Tollefson amendment).
+Philly clears that since it sits on US soil, but Hanwha doesn&#x27;t yet hold the facility clearance (FCL) to be prime on a Navy job.
+
+Defense News pinned the contract at $2 billion and put first delivery in June 2030.
+That story headlines the $2 billion as awarded to Hanwha Philly Shipyard, which counts the deal differently from the prime-versus-sub split described here.
+
+Follow where the work goes and the two accounts agree.
+Follow who signs the contract and they part.</p><div class="gref"><a href="https://www.defensenews.com/pentagon/2026/07/21/hanwha-philly-shipyard-awarded-2-billion-to-build-2-missile-tracking-vessels/" rel="noopener" target="_blank">Hanwha Philly Shipyard awarded $2 billion to build 2 missile-tracking vessels (Defense News, 2026-07-21) &#8599;</a></div><h2 class="gsub">How far can Hanwha climb?</h2><p class="gist">Meru notes Philly is now hiring a facility security officer, and Hanwha is weighing a $5B upgrade to turn the commercial yard into a real warship builder.
+The bigger idea: build hulls in Korea, arm them in the US.
+
+That split could help clear the US Navy&#x27;s shipbuilding backlog, though it needs new law.
+Meru&#x27;s one-liner: start as a subcontractor, bank the experience, climb to prime, the $100M Philly bet is starting to earn its keep.</p><p class="why"><b>Why it matters</b> · US defense shipbuilding is a supply chain you enter once and keep selling into. This is Korea&#x27;s foot in the door and a fresh growth leg for Hanwha&#x27;s defense story.</p><p class="ask"><b>Worth asking</b> · Korea into US Navy shipbuilding: a real growth leg, or stuck behind security and legal walls?</p>
+  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>30</b>posts</span><span><b>9</b>directional calls</span><span class="bl"><b>7</b>Bull</span><span class="be"><b>2</b>Bear</span><span class="bl"><b>2</b>Hit</span><span class="be"><b>0</b>Miss</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="meru-saudi-tanker-strike-fallout.html">Houthis strike two Saudi-owned tankers by name, following through on a five-day…</a><time>07-24</time></li><li><i class="bl">Bull</i><a href="meru-googl-q2-results-korea-impact.html">Meru: Alphabet raises 2026 capex to $195-205B even as free cash flow turns nega…</a><time>07-23</time></li><li><i class="be">Bear</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">Kolon TissueGene&#x27;s TG-C fails US Phase 3 trial, placebo outperforms on pain rel…</a><time>07-22</time></li></ul><a class="rec-m" href="../../r/meru.html" data-app="?l=en#record-%EB%A9%94%EB%A5%B4">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/meru-hanwha-philly-mriv.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/meru-hanwha-philly-mriv.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../../e/hanwha-ocean.html">HANWHA OCEAN</a><a class="ent-chip" href="../../e/golden-dome.html">Golden Dome</a><a class="ent-chip" href="../../e/meru.html">메르</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="potus-tsmc-arizona.html">Trump touts TSMC&#x27;s record $265B Arizona chip bet, &#x27;build here, and NO TARIFFS&#x27;</a></li><li><a href="meru-taiwan-flashpoint.html">The powder keg off Taiwan: a Japan-Philippines sea-boundary deal China reads as encirclem…</a></li></ul></nav>
-  <nav class="latest"><h3>Latest</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">The long-term contracts said to cap SK hynix&#x27;s upside turn out to carry no price ceiling…</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">TSMC&#x27;s Kumamoto fab restarted within a day. So why is it still too early to call this ove…</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">Funds that lend directly to Asian companies just raised the least in 12 years. Where did…</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The reason it gav…</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">SK Hynix&#x27;s operating profit jumped 557% in a year, so why did it still miss consensus?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">Apple just crossed $5 trillion. The real story is how fast it got there</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">The US is banning Chinese robots. The real target wasn&#x27;t just robots</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">The AI infrastructure and security software index is up 22% this year. Why is application…</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">Browse all articles →</a></nav>
+  <nav class="latest"><h3>Latest</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">The long-term contracts said to cap SK hynix&#x27;s upside turn out to carry no price ceiling…</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">TSMC&#x27;s Kumamoto fab restarted within a day. So why is it still too early to call this ove…</a><time>07-29</time></li><li><a href="serenity-chip-selloff-earnings-divergence.html">Two earnings reports landed on the day chip stocks crashed together, revenue up 165% and…</a><time>07-28</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">Funds that lend directly to Asian companies just raised the least in 12 years. Where did…</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The reason it gav…</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">SK Hynix&#x27;s operating profit jumped 557% in a year, so why did it still miss consensus?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">Apple just crossed $5 trillion. The real story is how fast it got there</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">The US is banning Chinese robots. The real target wasn&#x27;t just robots</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">Browse all articles →</a></nav>
   <footer>
     Summaries and commentary are original work by Stacks. Copyright in the source material remains with its author; every item credits the source and links to the original. This is information and commentary, not investment advice.<br>
     <a href="../../">Stacks home</a> · <a href="../../articles.html">All articles</a> · <a href="../../about.html">About</a> · <a href="../../feed-en.xml">RSS</a>

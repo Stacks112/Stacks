@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,42 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://blog.naver.com/ranto28/224351624413" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">메르가 이번 주 달력에서 진짜 중요한 일정 하나를 짚는다. 22일 미국장 마감 후 나오는 알파벳(구글) 2분기 실적이다(컨퍼런스콜은 한국시간 23일 오전 5시 30분). 그는 이익 숫자는 잊으라고 한다. 시장은 지금 &#x27;하이퍼스케일러들이 현재 수준 이상으로 AI 인프라에 계속 투자할까&#x27;를 의심하기 시작했고, 빅테크 중 가장 먼저 실적을 내는 알파벳이 그 의심의 첫 시험대이기 때문이다. 구글·마이크로소프트·메타·아마존 네 곳은 2025년 AI CAPEX에 약 4,100억 달러를 썼고, 2026년에는 이 숫자가 약 7,250억 달러로 불어날 것으로 예상된다. 이들이 실제로 얼마를 투자하느냐가 삼성전자와 SK하이닉스 주가, 나아가 국장 전체를 좌우한다. 메르가 콜에서 볼 세 가지는 이렇다. 첫째, 알파벳이 2026년 CAPEX 가이던스를 1,800~1,900억 달러(2025년 지출 914억 달러의 약 2배)로 유지하는가. 줄이거나 늘리면 파장이 크다. 둘째, 피차이 CEO가 1분기의 &#x27;컴퓨팅이 부족하다(compute constrained)&#x27; 발언을 되풀이하거나 2027년 추가 확대를 시사하는가. 셋째, 클라우드 수주잔고가 1분기 4,620억 달러에서 더 늘어나는가, 이는 메모리 수요가 계속된다는 신호다. 함정은 잉여현금흐름이다. 1분기에는 영업현금흐름 458억 달러에서 CAPEX 357억 달러를 빼 101억 달러만 남았는데, 1년 전 190억 달러에서 줄어든 것이다. 이 지출을 계속 감당할 수 있을까. 그는 TSMC를 경고 사례로 든다. 7월 16일 매출 402억 달러(+36%), 순이익 220억 달러(+77%), 기록적 매출총이익률 67.7%라는 역대급 실적을 내고도 주가는 하락했다. 3분기 마진 가이던스 65~67%(2나노 양산 초기 수율)가 완벽을 기대한 시장을 실망시켰기 때문이다. 알파벳도 같은 잣대 위에 있다. 웬만한 굿뉴스는 당연한 것이 되고, 작은 착오나 미묘한 발언이 크게 증폭될 수 있다.</p><p class="why"><b>투자 포인트</b> · 알파벳의 이익이 아니라 CAPEX 한 줄이, AI 투자 사이클이 계속될지를 메모리 투자자에게 말해준다.</p><p class="ask"><b>짚어볼 점</b> · 알파벳이 CAPEX 가이던스를 유지하되 잉여현금흐름이 계속 줄어든다면, 이 AI 투자는 강함의 신호일까 무리한 베팅일까?</p>
-  <section class="oc oc-hit"><h3>그 후 어떻게 됐나</h3><p><i>적중</i>알파벳의 2026년 2분기 실적(7월 22일 발표)은 매출과 이익 모두 예상치를 웃돌았지만, 회사는 2026년 CAPEX 가이던스를 기존 1,800~1,900억 달러에서 1,950~2,050억 달러로 상향했고, 실적 호조에도 CAPEX 확대 우려로 주가는 약 5~7% 하락했다. 이는 이익이 아니라 CAPEX 한 줄이 시장 반응을 좌우한다는 메르의 전망을 확인시켰다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
+  <figure class="srcq"><blockquote cite="https://blog.naver.com/ranto28/224351624413" lang="ko"><p>실적발표지만, 봐야할 부분은 알파벳의 CAPEX(설비투자)계획이다.</p><p>시장은 알파벳(구글)의 2분기 실적발표에서, 실적 자체보다 AI 투자 사이클이 얼마나 오래 지속될지를 확인하려 하고 있다.</p><p>가장 먼저 발표되는 알파벳 실적이 첫 번째 시험대가 될 것 같다.</p></blockquote><figcaption class="srcq-c"><a href="https://blog.naver.com/ranto28/224351624413" rel="nofollow noopener" target="_blank">메르 · 2026.07.20</a></figcaption></figure><p class="gist">메르가 이번 주 달력에서 진짜 중요한 일정 하나를 짚는다.
+22일 미국장 마감 후 나오는 알파벳(구글) 2분기 실적이다(컨퍼런스콜은 한국시간 23일 오전 5시 30분).
+
+그는 이익 숫자는 잊으라고 한다.
+시장은 지금 &#x27;하이퍼스케일러들이 현재 수준 이상으로 AI 인프라에 계속 투자할까&#x27;를 의심하기 시작했고, 빅테크 중 가장 먼저 실적을 내는 알파벳이 그 의심의 첫 시험대이기 때문이다.</p><h2 class="gsub">왜 이익이 아니라 CAPEX인가</h2><p class="gist">구글·마이크로소프트·메타·아마존 네 곳은 2025년 AI CAPEX에 약 4,100억 달러를 썼고, 2026년에는 이 숫자가 약 7,250억 달러로 불어날 것으로 예상된다.
+이들이 실제로 얼마를 투자하느냐가 삼성전자와 SK하이닉스 주가, 나아가 국장 전체를 좌우한다.
+
+메르가 콜에서 볼 세 가지는 이렇다.
+
+첫째, 알파벳이 2026년 CAPEX 가이던스를 1,800~1,900억 달러(2025년 지출 914억 달러의 약 2배)로 유지하는가.
+줄이거나 늘리면 파장이 크다.
+
+둘째, 피차이 CEO가 1분기의 &#x27;컴퓨팅이 부족하다(compute constrained)&#x27; 발언을 되풀이하거나 2027년 추가 확대를 시사하는가.
+
+셋째, 클라우드 수주잔고가 1분기 4,620억 달러에서 더 늘어나는가, 이는 메모리 수요가 계속된다는 신호다.</p><div class="gcardw"><a class="gcard" href="https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-beats-q2-2026-estimates-shares-fall-on-capex-surge-93CH-4807140" rel="noopener" target="_blank"><img src="https://i-invdn-com.investing.com/news/fa8a2f803ea2ddf92359d55091dcde0a_L.jpg" alt="" loading="lazy"><span class="gcard-t">실적 콜 전문: 알파벳 2026년 2분기 예상 상회, CAPEX 급증에 주가 하락 (인베스팅닷컴, 2026-07-22)</span></a><div class="gcard-src">출처: investing.com</div></div><p class="gist">세 질문의 답은 22일에 다 나왔다.
+알파벳은 2026년 CAPEX 가이던스를 1,950~2,050억 달러로 올렸고, 메르가 &#x27;유지하는가&#x27;라고 물었던 1,800~1,900억 달러라는 범위는 통째로 위로 밀렸다.
+
+클라우드 수주잔고는 5,140억 달러로 한 분기에 500억 달러 넘게 늘었다.
+회사는 여전히 공급이 달린다고 했고, 2027년 지출은 더 크게 늘린다고 했다.
+메모리 수요를 걱정하던 쪽이 원하던 답은 다 나왔는데, 주가는 그날 떨어졌다.</p><h2 class="gsub">그래서 돈은 남았나</h2><p class="gist">함정은 잉여현금흐름이다.
+1분기에는 영업현금흐름 458억 달러에서 CAPEX 357억 달러를 빼 101억 달러만 남았는데, 1년 전 190억 달러에서 줄어든 것이다.
+이 지출을 계속 감당할 수 있을까.
+
+같은 콜 기록에는 2분기 잉여현금흐름이 마이너스 59억 달러로 적혀 있다.
+카드의 101억 달러는 1분기를 잰 값이고 이쪽은 2분기를 잰 값이라, 부호 자체가 바뀐 자리다.</p><h2 class="gsub">TSMC는 왜 떨어졌나</h2><p class="gist">그는 TSMC를 경고 사례로 든다.
+7월 16일 매출 402억 달러(+36%), 순이익 220억 달러(+77%), 기록적 매출총이익률 67.7%라는 역대급 실적을 내고도 주가는 하락했다.
+3분기 마진 가이던스 65~67%(2나노 양산 초기 수율)가 완벽을 기대한 시장을 실망시켰기 때문이다.</p><div class="gref"><a href="https://pr.tsmc.com/english/news/3326" rel="noopener" target="_blank">TSMC, 2분기 주당순이익 27.25 대만달러 발표 (TSMC, 2026-07-16) &#8599;</a></div><p class="gist">TSMC가 그날 낸 자료에 매출 402억 달러(+36.0%), 매출총이익률 67.7%, 3분기 마진 가이던스 65~67%가 그대로 있다.
+순이익은 이 자료에 달러가 아니라 7,065.6억 대만달러(+77.4%)로 적혀 있어 카드와 단위가 다르다.
+
+알파벳도 같은 잣대 위에 있다.
+웬만한 굿뉴스는 당연한 것이 되고, 작은 착오나 미묘한 발언이 크게 증폭될 수 있다.</p><p class="why"><b>투자 포인트</b> · 알파벳의 이익이 아니라 CAPEX 한 줄이, AI 투자 사이클이 계속될지를 메모리 투자자에게 말해준다.</p><p class="ask"><b>짚어볼 점</b> · 알파벳이 CAPEX 가이던스를 유지하되 잉여현금흐름이 계속 줄어든다면, 이 AI 투자는 강함의 신호일까 무리한 베팅일까?</p>
+  <section class="oc oc-hit"><h3>그 후 어떻게 됐나</h3><p><i>적중</i>알파벳의 2026년 2분기 실적(7월 22일 발표)은 매출과 이익 모두 예상치를 웃돌았지만, 회사는 2026년 CAPEX 가이던스를 기존 1,800~1,900억 달러에서 1,950~2,050억 달러로 상향했고, 실적 호조에도 CAPEX 확대 우려로 주가는 약 5~7% 하락했다. 이는 이익이 아니라 CAPEX 한 줄이 시장 반응을 좌우한다는 메르의 전망을 확인시켰다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>30</b>글</span><span><b>9</b>방향성 콜</span><span class="bl"><b>7</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-alphabet-q2-capex-test.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-alphabet-q2-capex-test.html" hreflang="ja" lang="ja">日本語</a></nav>
-  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/hbm.html">HBM</a><a class="ent-chip" href="../e/meta.html">META</a><a class="ent-chip" href="../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/sundar-pichai-sundarpichai.html">Sundar Pichai (@sundarpichai)</a><a class="ent-chip" href="../e/tsmc.html">TSMC</a><a class="ent-chip" href="../e/yield.html">YIELD</a><a class="ent-chip" href="../e/guidance.html">가이던스</a><a class="ent-chip" href="../e/k-c8dacf93.html">마진</a><a class="ent-chip" href="../e/gross-profit.html">매출총이익</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/advanced-process-node.html">미세공정</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/order-backlog.html">수주잔고</a><a class="ent-chip" href="../e/fcf.html">잉여현금흐름</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>
+  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/hbm.html">HBM</a><a class="ent-chip" href="../e/meta.html">META</a><a class="ent-chip" href="../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/sundar-pichai-sundarpichai.html">Sundar Pichai (@sundarpichai)</a><a class="ent-chip" href="../e/tsmc.html">TSMC</a><a class="ent-chip" href="../e/yield.html">YIELD</a><a class="ent-chip" href="../e/guidance.html">가이던스</a><a class="ent-chip" href="../e/k-c8dacf93.html">마진</a><a class="ent-chip" href="../e/gross-profit.html">매출총이익</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/advanced-process-node.html">미세공정</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/order-backlog.html">수주잔고</a><a class="ent-chip" href="../e/operating-cash-flow.html">영업현금흐름</a><a class="ent-chip" href="../e/fcf.html">잉여현금흐름</a><a class="ent-chip" href="../e/eps.html">주당순이익</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="serenity-ai-capex-runway.html">세레니티, &#x27;AI 설비투자가 더 온다&#x27;, 프런티어 모델이 수요에 밀려 용량 부족</a></li><li><a href="semianalysis-meta-superintelligence.html">세미애널리시스: 메타가 다섯 곳에서 동시에 짓는 기가와트급 데이터센터, OpenAI·앤스로픽 추격전의 실상</a></li><li><a href="serenity-skhy-arb.html">SK하이닉스 ADR 프리미엄 25%, 드디어 차익거래를 만난다: 7월 29일 전환 개시</a></li></ul></nav>
-  <nav class="latest"><h3>최신 글</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">장기계약 때문에 값을 더 못 받는다던 SK하이닉스, 그 계약에는 가격 상한이 없었다</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AI 인프라·보안 소프트웨어 지수는 22% 올랐는데, 업무용 소프트웨어 지수는 급락한 이유는?</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
+  <nav class="latest"><h3>최신 글</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">장기계약 때문에 값을 더 못 받는다던 SK하이닉스, 그 계약에는 가격 상한이 없었다</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="serenity-chip-selloff-earnings-divergence.html">반도체주가 동반 급락한 날 나온 두 건의 실적, 매출은 165%와 104% 늘었다</a><time>07-28</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
   <footer>
     요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>
