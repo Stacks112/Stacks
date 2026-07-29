@@ -6442,6 +6442,7 @@ function computeStreak(){
   let n = store.get("stk_streak_n", 0) || 0;
   const today = todayStr();
   if (last === today){ STREAK = n || 1; return; }
+  measureVisit(last, today);
   const y = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   n = (last === y) ? n + 1 : 1;
   STREAK = n;
@@ -7947,12 +7948,75 @@ function track(path){
   } catch (e) {}
 }
 
+/* ---------------- returning visitors ----------------
+   GoatCounter cannot answer "did this person come back?" by design --
+   its visitor hash rotates, so nothing survives across days. We work it
+   out locally from the visit-streak keys that computeStreak() already
+   keeps, and send only the answer (a bucket name). No id, no timestamp,
+   no new tracking surface; nothing leaves the browser that wasn't
+   already there.
+
+     visit/new          this browser has never been here before
+     visit/return-1d    back within a day of the previous visit
+     visit/return-7d    ... within a week
+     visit/return-30d   ... within a month
+     visit/return-old   back after more than a month (or a pre-existing
+                        visitor whose first visit predates this code)
+     visit/days-1|2|3-5|6-10|11+   distinct days visited, all time
+
+   재방문율 = sum(visit/return-*) / (visit/new + sum(visit/return-*))
+   over whatever period the GoatCounter dashboard is showing.
+
+   measureVisit() runs once per calendar day (computeStreak's own
+   last===today guard) and may fire before count.js has landed, so the
+   events are queued and flushed by whichever of the two finishes last. */
+let VISIT_Q = null;
+
+function measureVisit(last, today){
+  try {
+    const q = [];
+    if (!last){
+      /* No streak key. Either a genuinely new browser, or someone who
+         has been here since before the streak feature -- the intro and
+         onboarding flags tell those two apart. */
+      q.push((store.get("stk_intro_seen", false) || store.get("stk_onboarded", false))
+        ? "visit/return-old" : "visit/new");
+    } else {
+      const gap = Math.round((Date.parse(today) - Date.parse(last)) / 86400000);
+      q.push("visit/return-" + (gap <= 1 ? "1d" : gap <= 7 ? "7d" : gap <= 30 ? "30d" : "old"));
+    }
+    const d = (store.get("stk_days_n", 0) || 0) + 1;
+    store.set("stk_days_n", d);
+    q.push("visit/days-" + (d === 1 ? "1" : d === 2 ? "2" :
+                            d <= 5 ? "3-5" : d <= 10 ? "6-10" : "11+"));
+    VISIT_Q = q;
+    flushVisit();
+  } catch (e) {}
+}
+
+let VISIT_TRIES = 0;
+
+function flushVisit(){
+  if (!VISIT_Q) return;
+  if (window.goatcounter && window.goatcounter.count){
+    const q = VISIT_Q;
+    VISIT_Q = null;
+    q.forEach(track);
+    return;
+  }
+  /* count.js can arrive from the service worker cache rather than from
+     the script tag we watched, so don't rely on its load event alone.
+     Retry for ~10s, then give up quietly (analytics blocked). */
+  if (++VISIT_TRIES <= 20) setTimeout(flushVisit, 500);
+}
+
 /* ---------------- analytics (GoatCounter) ---------------- */
 if (GOATCOUNTER_SITE){
   const gc = document.createElement("script");
   gc.async = true;
   gc.src = "https://gc.zgo.at/count.js";
   gc.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_SITE + ".goatcounter.com/count");
+  gc.addEventListener("load", flushVisit);
   document.head.appendChild(gc);
 }
 
