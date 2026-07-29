@@ -25,7 +25,7 @@ changes between page loads:
   themes  which of the eight browse themes an item belongs to
   ents    which entities an item mentions (drives entity pages)
   _mk     the item's main ticker (share card, cover-logo choice)
-  _mks    up to two tickers, most central first (the "since this post" badge)
+  _mks    up to MAIN_KEYS tickers, most central first ("since this post" badge)
 
 The theme regexes and the back-catalogue stance map are READ OUT OF
 index.html rather than copied here, so index.html stays the single source of
@@ -54,7 +54,7 @@ OUT = os.path.join(ROOT, "data")
 LANGS = ("ko", "en", "ja")
 GIST_PREVIEW = 150      # characters kept in core; enough for the clamped card
 CHUNK = 24              # items per gist chunk
-MAIN_KEYS = 2           # companies the "since this post" badge may price
+MAIN_KEYS = 4           # companies the "since this post" badge may price
 OPP_WINDOW_DAYS = 45    # how far apart two opposing takes may sit
 OPP_MAX = 2
 OPP_USE_CAP = 3         # times one post may serve as somebody else's counterpart
@@ -353,8 +353,9 @@ def main_keys(item, entities, ents, alias2key=None, rx=None, n=MAIN_KEYS):
     reader nothing, whereas a near-miss on an opposite-stance pairing puts
     words in an author's mouth.
 
-    Capped at n because the badge is one line under the card. Two names is
-    the difference between "TSMC, and Sony next door" and a wall of tickers.
+    Capped at n because the badge sits on one line under the card, and past
+    a handful of tickers it stops reading as "who this post is about" and
+    starts reading as a watchlist.
     """
     out = []
     for k in [explicit_key(item, entities, alias2key)] + \
