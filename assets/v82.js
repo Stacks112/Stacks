@@ -1003,8 +1003,6 @@
      Desktop never reaches this code — the v82 IIFE returns early there. */
   var V82_CB_HOST = null;
   var V82_CB_CHECK = null;
-  var V82_CB_RO = null;
-  var V82_CB_VV = false;
   function v82InlineSheet(){
     var host = $("v82dbody");
     return host ? host.querySelector(".twc-sheet.twc-inline") : null;
@@ -1040,7 +1038,6 @@
     host.hidden = false;
     host.appendChild(sheet);
     V82_CB_HOST = host;
-    v82PinCompBar(sheet);
     /* watchdog: if the section somehow lands empty, mount it once more rather
        than leaving the reader with no way to comment. */
     if (V82_CB_CHECK) { clearTimeout(V82_CB_CHECK); V82_CB_CHECK = null; }
@@ -1054,103 +1051,10 @@
     }
     return true;
   }
-  /* X-style: the composer stays pinned to the bottom of the detail while the
-     article scrolls. Both .card and .twc-sheet carry a transform (entry
-     animations), and a transformed ancestor becomes the containing block for
-     position:fixed — so the bar is parked directly on #v82detail and positioned
-     against that instead. */
-  function v82PinnedBar(){
-    var dt = $("v82detail");
-    return dt ? dt.querySelector(".twc-comp.twc-pinned") : null;
-  }
-  function v82SyncCompBar(){
-    var body = $("v82dbody");
-    if (!body) return;
-    var bar = v82PinnedBar();
-    if (!bar) { body.style.paddingBottom = ""; return; }
-    /* the bar is out of flow, so the article needs room to scroll clear of it */
-    body.style.paddingBottom = ((bar.offsetHeight || 56) + 24) + "px";
-    /* iOS anchors fixed/absolute chrome to the LAYOUT viewport, which the software
-       keyboard covers. Lift the bar by however tall the hidden strip is. */
-    var vv = window.visualViewport;
-    if (vv) {
-      var gap = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
-      bar.style.transform = gap ? "translateY(-" + gap + "px)" : "";
-    }
-  }
-  function v82PinCompBar(sheet){
-    var dt = $("v82detail");
-    var bar = sheet && sheet.querySelector(".twc-comp");
-    if (!dt || !bar) return;
-    bar.classList.add("twc-pinned");
-    dt.appendChild(bar);
-    if (window.ResizeObserver) {
-      try {
-        if (!V82_CB_RO) V82_CB_RO = new ResizeObserver(v82SyncCompBar);
-        V82_CB_RO.disconnect();
-        V82_CB_RO.observe(bar);
-      } catch (e) {}
-    }
-    if (window.visualViewport && !V82_CB_VV) {
-      V82_CB_VV = true;
-      window.visualViewport.addEventListener("resize", v82SyncCompBar);
-      window.visualViewport.addEventListener("scroll", v82SyncCompBar);
-    }
-    v82CompWho();
-    var ta = document.getElementById("twcText");
-    if (ta && ta.getAttribute("data-v82focus") !== "1") {
-      ta.setAttribute("data-v82focus", "1");
-      ta.addEventListener("focus", function(){ v82OpenCompBar(true); });
-      ta.addEventListener("blur", function(){ v82OpenCompBar(false); });
-    }
-    v82SyncCompBar();
-  }
-  /* X shows who you are posting as above the box. We have no mentions, so there is
-     no "replying to @someone" line — just the nickname. */
-  function v82CompWho(){
-    var bar = v82PinnedBar();
-    if (!bar) return;
-    var row = bar.querySelector(".twc-who");
-    var nick = "";
-    try { nick = localStorage.getItem("stk_nick") || ""; } catch (e) {}
-    if (!nick) { if (row && row.parentNode) row.parentNode.removeChild(row); return; }
-    if (!row) {
-      row = document.createElement("div");
-      row.className = "twc-who";
-      bar.insertBefore(row, bar.firstChild);
-    }
-    row.textContent = nick;
-  }
-  function v82OpenCompBar(on){
-    var bar = v82PinnedBar();
-    if (!bar) return;
-    if (on) v82CompWho();
-    if (on) bar.classList.add("twc-open"); else bar.classList.remove("twc-open");
-    v82SyncCompBar();
-    /* iOS reports the keyboard-shrunk visual viewport a beat late, so re-measure */
-    setTimeout(v82SyncCompBar, 120);
-    setTimeout(v82SyncCompBar, 380);
-  }
-  function v82UnpinCompBar(sheet){
-    if (V82_CB_RO) { try { V82_CB_RO.disconnect(); } catch (e) {} }
-    var bar = v82PinnedBar() || document.querySelector(".twc-comp.twc-pinned");
-    var home = sheet || document.querySelector("#twcOv .twc-sheet");
-    if (bar) {
-      var who = bar.querySelector(".twc-who");
-      if (who && who.parentNode) who.parentNode.removeChild(who);
-      bar.classList.remove("twc-pinned");
-      bar.classList.remove("twc-open");
-      bar.style.transform = "";
-      if (home) home.appendChild(bar);
-    }
-    var body = $("v82dbody");
-    if (body) body.style.paddingBottom = "";
-  }
   function v82UnmountComments(){
     if (V82_CB_CHECK) { clearTimeout(V82_CB_CHECK); V82_CB_CHECK = null; }
     var sheet = document.querySelector(".twc-sheet.twc-inline");
     if (!sheet) { V82_CB_HOST = null; return false; }
-    v82UnpinCompBar(sheet);
     sheet.classList.remove("twc-inline");
     var ov = document.getElementById("twcOv");
     if (ov) ov.appendChild(sheet);
