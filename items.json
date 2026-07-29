@@ -1,6 +1,148 @@
 {
  "items": [
   {
+   "date": "2026-07-29",
+   "id": "meru-kumamoto-hinagu-fault-week-of-watch",
+   "related": [
+    "jukan-jasm-kumamoto-earthquake",
+    "jukan-mlcc-samsung-electro-30-percent-hike"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224361223087",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#111827",
+    "to": "#B45309",
+    "label": "7 DAYS OF WATCH"
+   },
+   "tags": [
+    "EARTHQUAKE",
+    "JASM",
+    "JAPAN"
+   ],
+   "stance": "watch",
+   "lab": true,
+   "foldWhy": true,
+   "quote": {
+    "lines": [
+     "이번 구마모토(熊本) 지진은 지금까지 설명한 '섭입대 지진'이 아니라 '활성단층 지진'임.",
+     "2016년 구마모토 지진은 첫 번째 강진이 발생하자, 이것을 본진이라고 생각했었음.",
+     "첫 번째 강진이 발생하고 이틀 뒤에 규모가 더 큰 진짜 본진이 덮쳤음."
+    ],
+    "cite": "메르 · 2026.07.29"
+   },
+   "title": {
+    "ko": "하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?",
+    "en": "TSMC's Kumamoto fab restarted within a day. So why is it still too early to call this over?",
+    "ja": "1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?"
+   },
+   "sum3": {
+    "ko": "규모 7.1 지진이 난 다음 날, TSMC의 일본 공장 JASM이 단계적으로 정상 조업에 복귀하기 시작했다.\n겉으로 보면 내진 설계와 대피 절차가 제 몫을 했고, 하루 만에 상황이 정리된 것으로 보인다.\n그런데 일본 기상청은 앞으로 일주일쯤 같은 규모의 지진에 주의하라고 했다. 10년 전 같은 지역에서는 첫 강진 이틀 뒤에 더 큰 본진이 왔다.",
+    "en": "A day after the magnitude 7.1 quake, TSMC's Japan fab, JASM, began returning to normal operation in stages.\nOn the surface the seismic design and the evacuation drill did their job, and the whole thing looks settled within a day.\nBut Japan's Meteorological Agency asked for about a week of caution against a quake of the same size. Ten years ago in this same place, a bigger mainshock arrived two days after the first strong tremor.",
+    "ja": "M7.1の地震の翌日、TSMCの日本工場JASMが段階的に通常操業へ戻り始めた。\n表面的には耐震設計と避難手順が役割を果たし、1日で事態が収まったように見える。\nだが気象庁は今後1週間ほど同程度の地震に注意するよう呼びかけた。10年前の同じ地域では、最初の強い揺れの2日後により大きな本震が襲った。"
+   },
+   "gist": {
+    "ko": "지진 하루 만에 TSMC의 일본 공장 JASM이 단계적으로 정상 조업에 복귀하기 시작했다.\n건물 구조의 안전을 확인한 뒤 순차적으로 가동을 되살리는 중이고,\n설비를 하나씩 들여다보는 정밀 점검과 영향 평가는 아직 진행 중이다.\n옆에서 짓고 있는 2공장은 손상이 없었지만, 여진 때문에 공사 일부를 멈췄다.\n\n@@REF@@TSMC 구마모토 공장, 단계적으로 정상 조업 복귀 (ITmedia NEWS, 2026-07-29)|https://www.itmedia.co.jp/news/article/2607/29/2000000266/|https://www.itmedia.co.jp/news/article/ogp/2607/29/2000000266/10001260/2048\n\n그런데 일본 기상청은 앞으로 일주일쯤 이번과 같은 규모의 지진에 주의하라고 했다.\n지진 활동이 여전히 활발하고, 선반의 물건이 떨어질 만한 흔들림(일본 기준 진도 5약)이 이미 세 차례 더 있었다.\n\n@@REF@@구마모토 진도 7, 이후에도 지진 활동 활발 같은 규모 지진에 1주일 주의 (NHK, 2026-07-29)|https://news.web.nhk/newsweb/na/na-k10015189251000|https://imgu.web.nhk/news/u/news/html/20260729/K10015189251_2607290408_0729040929_01_02.jpg\n\n## 왜 하필 일주일인가\n\n10년 전 같은 구마모토에서도 진도 7의 강진이 먼저 왔다.\n사람들은 그것을 본진이라고 생각했다.\n이틀 뒤에 규모가 더 큰 진짜 본진이 덮쳤다.\n\n먼저 온 흔들림이 본진이 아니라 큰 지진의 앞자락, 그러니까 전진이었던 것이다.\n기상청이 이번 지진을 2016년과 비슷한 유형으로 보고 있다고 밝힌 이유다.\n\n## 이번 지진은 어디서 났나\n\n지진은 대개 지각판이 서로 파고드는 경계에서 난다.\n이 경계를 섭입대라고 부르고, 아주 큰 지진은 주로 여기서 생긴다.\n\n이번 지진은 그 경계가 아니라 규슈 안쪽 땅에 난 금에서 났다.\n앞으로도 다시 움직일 수 있는 이런 금을 활성단층이라고 하고, 이번에 움직인 것은 히나구 단층대로 보인다.\n\n@@REF@@2026년 7월 28일 발생한 구마모토 지진(M7.1) (일본활단층학회, 2026-07-28)|https://jsaf.info/jishin/2026/07/20260728202045.html\n\n필리핀해판이 유라시아판 아래로 해마다 4~6cm씩 파고들면서 이 단층에 수백 년 동안 힘을 쌓아 왔다.\n바람을 계속 넣던 풍선이 어느 순간 터지듯, 버티던 단층이 한 번에 미끄러지면 그것이 지진이 된다.\n\n이번 진앙은 2016년 진앙에서 남쪽으로 20km 떨어진 곳이다.\n10년 전 지진이 단층 북쪽 구간에 쌓인 힘을 풀었다면, 이번에는 남쪽 구간이 터진 것으로 보인다.\n\n## 공장 밖에서는 무슨 일이 있었나\n\n구마모토성은 석벽이 28곳 무너졌다.\n이온몰에서는 가스가 새 10명이 연락 두절 상태다.\n야쓰시로의 제지공장에서는 심정지 2명과 행방불명 9명이 확인됐다.\n\n기쿠요초에는 JASM 두 공장과 함께 소니, 후지필름의 생산시설이 반경 20km 안에 모여 있다.\n공장 한 곳이 버텼다고 이 지역 전체가 버틴 것은 아니다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이번 지진이 끝인가, 2016년처럼 더 큰 지진의 앞자락인가.\n\n앞으로 일주일 안에 더 큰 지진이 오지 않고 여진이 잦아들면, JASM의 단계적 복귀는 그대로 굳는다.\n반대로 같은 규모 이상의 지진이 한 번 더 오면, 끝난 줄 알았던 건물 점검부터 설비 정밀 점검, 재가동 일정까지 처음으로 돌아간다.\n\n공장이 멈췄다 다시 서기를 반복하면, 손실은 멈춰 있던 시간만큼만 늘지 않는다.\n점검과 재가동 절차가 매번 처음부터 다시 붙기 때문이다.",
+    "en": "A day after the quake, TSMC's Japan fab, JASM, began returning to normal operation in stages.\nStructural safety of the buildings was confirmed first, and production is being brought back step by step,\nwhile the detailed equipment inspection and damage assessment are still under way.\nThe second fab going up next door took no damage, though part of the construction work was paused because of aftershocks.\n\n@@REF@@TSMC's Kumamoto fab moving back to normal operation in stages (ITmedia NEWS, 2026-07-29)|https://www.itmedia.co.jp/news/article/2607/29/2000000266/|https://www.itmedia.co.jp/news/article/ogp/2607/29/2000000266/10001260/2048\n\nJapan's Meteorological Agency, meanwhile, asked for about a week of caution against another quake of this size.\nSeismic activity is still elevated, and three more tremors have already been strong enough to shake objects off shelves, a lower 5 on Japan's intensity scale.\n\n@@REF@@Kumamoto hit by intensity 7, activity still elevated, one week of caution urged (NHK, 2026-07-29)|https://news.web.nhk/newsweb/na/na-k10015189251000|https://imgu.web.nhk/news/u/news/html/20260729/K10015189251_2607290408_0729040929_01_02.jpg\n\n## Why one week specifically\n\nTen years ago in this same Kumamoto, a strong quake at intensity 7 came first.\nPeople took it for the mainshock.\nTwo days later a larger one, the real mainshock, hit.\n\nThe first tremor had not been the main event but the leading edge of a bigger one, what seismologists call a foreshock.\nThat is why the agency says this quake looks like the 2016 sequence.\n\n## Where this quake came from\n\nMost earthquakes happen where one slab of the earth's crust grinds under another.\nThat boundary is called a subduction zone, and the very large quakes tend to originate there.\n\nThis one did not. It came from a crack inside Kyushu itself.\nA crack that can move again is called an active fault, and the one that moved here appears to be the Hinagu fault zone.\n\n@@REF@@The Kumamoto earthquake (M7.1) of July 28, 2026 (Japan Society for Active Fault Studies, 2026-07-28)|https://jsaf.info/jishin/2026/07/20260728202045.html\n\nThe Philippine Sea plate slides under the Eurasian plate here at four to six centimeters a year, loading that fault for centuries.\nLike a balloon that keeps taking air until it bursts, a fault that has been holding finally slips all at once, and that slip is the earthquake.\n\nThis epicenter sits about 20 kilometers south of the 2016 epicenter.\nIf the 2016 quake released the stress stored in the northern stretch of the fault, this one appears to have released the southern stretch.\n\n## What happened outside the fab\n\nTwenty-eight sections of stone wall collapsed at Kumamoto Castle.\nTen people are unaccounted for after a gas leak at an Aeon mall.\nAt a paper plant in Yatsushiro, two people were found in cardiac arrest and nine are missing.\n\nKikuyo Town holds JASM's two fabs along with Sony and Fujifilm facilities inside the same 20-kilometer radius.\nOne plant holding up is not the same as the region holding up.\n\n## So what actually settles this\n\nIt comes down to one question.\nWas this the end of it, or the leading edge of something larger the way 2016 was.\n\nIf no bigger quake arrives within the week and the aftershocks fade, JASM's staged restart holds.\nIf another quake of this size or larger hits, everything resets: the building checks that looked finished, the detailed equipment inspection, the restart schedule.\n\nWhen a fab stops and starts repeatedly, the loss does not scale with downtime alone.\nEach restart drags the inspection and requalification steps along with it again.",
+    "ja": "地震から1日で、TSMCの日本工場JASMが段階的に通常操業へ戻り始めた。\n建物の構造安全を確認したうえで順次稼働を戻している最中で、\n設備を一つずつ確かめる精密点検と影響評価はまだ続いている。\n隣で建設中の第2工場に損傷はなかったが、余震を受けて工事の一部を止めた。\n\n@@REF@@TSMC熊本工場、段階的に通常操業へ (ITmedia NEWS, 2026-07-29)|https://www.itmedia.co.jp/news/article/2607/29/2000000266/|https://www.itmedia.co.jp/news/article/ogp/2607/29/2000000266/10001260/2048\n\n一方で気象庁は、今後1週間ほど今回と同程度の地震に注意するよう呼びかけた。\n地震活動は活発なままで、棚の物が落ちる程度の揺れ(震度5弱)はすでに3回起きている。\n\n@@REF@@熊本で震度7 地震活動活発 同程度の地震に1週間ほど注意を (NHK, 2026-07-29)|https://news.web.nhk/newsweb/na/na-k10015189251000|https://imgu.web.nhk/news/u/news/html/20260729/K10015189251_2607290408_0729040929_01_02.jpg\n\n## なぜ1週間なのか\n\n10年前の同じ熊本でも、震度7の強い地震が先に来た。\n人々はそれを本震だと考えた。\n2日後に、より規模の大きい本当の本震が襲った。\n\n先に来た揺れは本震ではなく、大きな地震の前触れ、つまり前震だったということだ。\n気象庁が今回の地震を2016年と似た型とみているのは、そのためだ。\n\n## 今回の地震はどこで起きたのか\n\n地震の多くは、地殻のプレート同士が潜り込む境界で起きる。\nこの境界を沈み込み帯と呼び、とりわけ大きな地震はここで生まれる。\n\n今回の地震はその境界ではなく、九州の内側にある地面の割れ目で起きた。\nこれから先も動きうるこうした割れ目を活断層と呼び、今回動いたのは日奈久断層帯とみられる。\n\n@@REF@@2026年7月28日に発生した熊本地震(M7.1) (日本活断層学会, 2026-07-28)|https://jsaf.info/jishin/2026/07/20260728202045.html\n\nフィリピン海プレートがユーラシアプレートの下へ年4〜6センチずつ潜り込み、この断層に数百年ぶんの力を溜めてきた。\n空気を入れ続けた風船がある瞬間に破れるように、耐えていた断層が一度に滑れば、それが地震になる。\n\n今回の震源は2016年の震源から南へ約20キロの場所だ。\n10年前の地震が断層の北側区間に溜まった力を解いたとすれば、今回は南側区間が解けたとみられる。\n\n## 工場の外では何が起きたか\n\n熊本城では石垣が28カ所崩れた。\nイオンモールではガス漏れが起き、10人と連絡が取れていない。\n八代の製紙工場では心肺停止2人と行方不明9人が確認された。\n\n菊陽町にはJASMの2工場に加え、ソニーと富士フイルムの生産拠点が半径20キロ圏内に集まっている。\n工場が一つ持ちこたえたことと、この地域が持ちこたえたことは同じではない。\n\n## だから何が決め手になるのか\n\n結局、問いは一つだ。\n今回の地震で終わりなのか、2016年のようにより大きな地震の前触れなのか。\n\n今後1週間により大きな地震が来ず余震が収まれば、JASMの段階的な復帰はそのまま固まる。\n逆に同程度以上の地震がもう一度来れば、終わったはずの建物点検から設備の精密点検、再稼働の日程までが振り出しに戻る。\n\n工場が止まって動き出すことを繰り返すと、損失は止まっていた時間の分だけ増えるわけではない。\n点検と再稼働の手順が、そのたびに最初から積み重なるからだ。"
+   },
+   "why": {
+    "ko": "JASM이 하루 만에 조업을 되살렸다는 사실보다 중요한 것은, 기상청이 같은 규모의 지진 가능성을 일주일 열어 뒀다는 점이다. 2016년에는 첫 강진 이틀 뒤에 더 큰 본진이 왔고, 그때도 사람들은 첫 지진을 본진으로 알고 있었다. 반경 20km 안에 TSMC와 소니, 후지필름이 함께 있는 구조에서는 한 번 더 흔들릴 가능성 자체가 재가동 일정의 위험이다.",
+    "en": "The bigger fact is not that JASM restarted within a day but that the weather agency left the door open for another quake of the same size for a week. In 2016 the larger mainshock came two days after the first strong tremor, and people had taken that first one for the main event too. With TSMC, Sony and Fujifilm sharing a 20-kilometer radius, the mere possibility of one more shake is itself a risk to every restart schedule.",
+    "ja": "JASMが1日で操業を戻したことよりも重いのは、気象庁が同程度の地震の可能性を1週間開けたままにしている点だ。2016年には最初の強い揺れの2日後により大きな本震が来ており、そのときも人々は最初の地震を本震だと考えていた。半径20キロ圏内にTSMCとソニー、富士フイルムが同居する構造では、もう一度揺れうるという可能性そのものが再稼働日程のリスクになる。"
+   },
+   "ask": {
+    "ko": "이번 지진은 이것으로 끝난 사건일까, 아니면 2016년처럼 더 큰 지진의 앞자락일까?",
+    "en": "Was this quake the whole event, or the leading edge of a larger one the way 2016 turned out to be?",
+    "ja": "今回の地震はこれで終わった出来事なのか、それとも2016年のようにより大きな地震の前触れなのか?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "8월 4일까지 구마모토에서 이번(M7.1)과 같은 규모 이상의 지진이 다시 발생했는지, JASM이 정상 가동을 유지했는지로 채점.",
+     "en": "To be scored by August 4 on whether Kumamoto saw another quake of magnitude 7.1 or larger, and whether JASM kept running normally.",
+     "ja": "8月4日までに熊本で今回(M7.1)と同程度以上の地震が再び起きたか、JASMが通常稼働を維持したかで採点する。"
+    },
+    "due": "2026-08-04"
+   },
+   "ts": "2026-07-29T03:55:58.669608+00:00"
+  },
+  {
+   "date": "2026-07-28",
+   "id": "jukan-mlcc-samsung-electro-30-percent-hike",
+   "related": [
+    "jukan-mlcc-ai-shortage-taiwan-spillover",
+    "jukan-ai-capex-roi-repricing",
+    "jukan-skhynix-2q26-earnings-consensus-miss"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2082240360085160357",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#0EA5E9",
+    "label": "MLCC +30%"
+   },
+   "tags": [
+    "MLCC",
+    "PRICING",
+    "SUPPLY CHAIN"
+   ],
+   "stance": "bull",
+   "lab": true,
+   "foldWhy": true,
+   "quote": {
+    "lines": [
+     "Samsung Electro-Mechanics has sent customers a notice announcing that it plans to raise prices for certain MLCC products by 30% from August 1, 2026.",
+     "Taiyo Yuden is also moving to raise MLCC prices from September 1."
+    ],
+    "cite": "Jukan · 2026.07.28"
+   },
+   "title": {
+    "ko": "삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다",
+    "en": "Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The reason it gave was not raw materials.",
+    "ja": "サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった"
+   },
+   "sum3": {
+    "ko": "삼성전기가 8월 1일 출하분부터 일부 MLCC 제품 가격을 30% 올리겠다는 통보를 고객사에 보냈다. 태양유전도 9월 1일부터 올린다.\n겉으로 보면 금·은 같은 원자재값 상승분을 부품값에 옮기는, 업계에서 흔히 있는 가격 조정으로 읽힌다.\n그런데 삼성전기가 내세운 이유는 원자재가 아니라 전자산업 수요의 구조적 성장이었고, 태양유전은 값을 올린 뒤에도 납기를 맞추기 어려울 수 있다고 덧붙였다.",
+    "en": "Samsung Electro-Mechanics has notified customers that certain MLCC prices go up 30% for shipments from August 1. Taiyo Yuden follows on September 1.\nOn the surface this reads like an ordinary pass-through, the kind of adjustment component makers announce when gold and silver costs climb.\nBut Samsung Electro-Mechanics pointed to structural growth in electronics demand rather than input costs, and Taiyo Yuden added that it may not be able to meet the delivery dates customers ask for.",
+    "ja": "サムスン電機が、8月1日出荷分から一部MLCC製品の価格を30%引き上げると顧客に通知した。太陽誘電も9月1日から引き上げる。\n表面的には、金や銀といった原材料費の上昇分を部品価格に移す、業界でよくある価格調整に見える。\nだがサムスン電機が挙げた理由は原材料ではなく電子産業の需要の構造的な成長であり、太陽誘電は値上げ後も顧客が求める納期に応えられない可能性があると付け加えた。"
+   },
+   "gist": {
+    "ko": "삼성전기가 2026년 8월 1일 출하분부터 일부 MLCC 제품 가격을 30% 올린다.\n고객사에 보낸 통보서에 담긴 내용이고,\n적용 범위는 삼성전기가 가격표를 묶어 관리하는 코드에 속한 MLCC 제품 전체다.\n\n태양유전도 9월 1일부터 MLCC 가격을 올린다.\n\n@@REF@@MLCC 인상 물결, 태양유전에 이어 삼성전기도 8월부터 30% 인상 (TechNews, 2026-07-28)|https://technews.tw/2026/07/28/samsung-electro-mechanics-taiyo-yuden-mlcc-prices-raised/|https://img.technews.tw/wp-content/uploads/2025/09/21113447/samsung.jpg\n\n## MLCC가 뭐길래 30%가 문제인가\n\n스마트폰을 뜯으면 기판 위에 쌀알보다 작은 부품이 수백 개 붙어 있다.\n그 대부분이 MLCC다.\n\n전기를 잠깐 담았다가 필요할 때 내보내 전압을 고르게 펴 주는 부품이고,\n칩이 순간적으로 전류를 많이 끌어 쓸 때 전압이 출렁이지 않도록 잡아 준다.\n\n그래서 전력을 크게 쓰는 장비일수록 더 많이 붙는다.\n고사양 AI 서버 한 대에 들어가는 MLCC는 스마트폰 한 대의 10배가 넘는다.\n한 개 값은 크지 않지만 수량이 많아, 한 번의 인상이 서버 원가에 그대로 쌓인다.\n\n## 지난번 인상과 무엇이 다른가\n\nMLCC 값이 오른 것은 올해 봄에도 있었다.\n태양유전이 5월 1일부터 일부 제품 값을 올렸고, 그때 든 이유는 금·은 같은 원자재값 상승이었다.\n세계 시장의 약 23%를 쥔 삼성전기는 그때 움직이지 않았다.\n\n@@REF@@[단독] 日 태양유전 MLCC 가격 인상…무라타·삼성전기 줄인상 오나 (데일리안, 2026-04-15)|https://www.dailian.co.kr/news/view/1633952|https://cdnimage.dailian.co.kr/news/202604/news_1776236124_1633952_m_1.jpeg\n\n이 기사는 당시 업계가 1위 업체인 무라타의 실적 발표를 기다리고 있었다고 전한다.\n1위가 가격에 대해 무슨 말을 하느냐에 따라 나머지가 움직인다는 것이었다.\n석 달이 지나 먼저 움직인 쪽은 2위인 삼성전기였고, 폭은 30%다.\n\n이번에 삼성전기가 든 이유도 봄과 다르다.\n원자재값이 아니라 전자산업 수요의 구조적 성장이 회사가 자체적으로 흡수할 수 있는 범위를 넘어 공급망을 압박하고 있다는 설명이다.\n\n원자재가 이유라면 원자재값이 내릴 때 값을 되돌릴 명분이 생긴다.\n수요가 이유라면 되돌릴 명분이 없다.\n\n## 값보다 납기가 먼저 걸린다\n\n태양유전은 값을 올리면서 고객이 요청한 납기를 맞추기 어려울 수 있다고 덧붙였다.\n값을 올린 뒤에도 공급이 수요를 다 채우지 못할 것으로 본다는 뜻이다.\n\n가격은 협상할 수 있지만 납기는 협상이 안 된다.\n서버 한 대를 제때 못 만드는 이유가 GPU가 아니라 손톱보다 작은 부품이 될 수 있다는 말이기도 하다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이 30%가 실제 계약가로 굳는가, 통보로 끝나는가.\n\n8월 출하분부터 값이 그대로 반영되고 1위인 무라타까지 인상 대열에 들어오면,\n협상력이 부품을 사는 쪽에서 만드는 쪽으로 넘어간 것이 된다.\n반대로 고객사가 주문을 미루거나 다른 업체로 물량을 돌려 인상이 일부 제품에 그치면,\n이번 통보는 협상 카드였던 셈이 된다.\n\n값을 올리겠다는 통보보다 무거운 것은 값을 올려도 다 대지 못한다는 말이다.\nAI 투자가 만들어 낸 부족이 GPU와 메모리를 지나 가장 아래층 부품까지 내려온 것으로 보인다.",
+    "en": "Samsung Electro-Mechanics is raising prices on certain MLCC products by 30% for shipments made on or after August 1, 2026.\nThe move came in a notice sent to customers,\nand it applies to every MLCC product under the pricing code the company manages as one group.\n\nTaiyo Yuden is raising MLCC prices from September 1.\n\n@@REF@@MLCC price wave: after Taiyo Yuden, Samsung Electro-Mechanics raises prices 30% from August (TechNews, 2026-07-28)|https://technews.tw/2026/07/28/samsung-electro-mechanics-taiyo-yuden-mlcc-prices-raised/|https://img.technews.tw/wp-content/uploads/2025/09/21113447/samsung.jpg\n\n## What an MLCC is, and why 30% matters\n\nOpen up a phone and you find hundreds of parts smaller than a grain of rice sitting on the board.\nMost of them are MLCCs.\n\nThe part holds a small charge and releases it on demand, smoothing out the voltage,\nso that when a chip suddenly draws a burst of current the supply does not sag or spike.\n\nEquipment that draws more power needs more of them.\nA high-end AI server carries more than ten times the MLCC count of a smartphone.\nEach one is cheap, but the sheer number means a single price step lands directly in the cost of a server.\n\n## How this differs from the last increase\n\nMLCC prices already moved once this spring.\nTaiyo Yuden raised prices on some products from May 1, and the reason it gave then was the rising cost of gold and silver.\nSamsung Electro-Mechanics, which holds roughly 23% of the global market, stayed put.\n\n@@REF@@Exclusive: Japan's Taiyo Yuden raises MLCC prices, will Murata and Samsung Electro-Mechanics follow? (Dailian, 2026-04-15)|https://www.dailian.co.kr/news/view/1633952|https://cdnimage.dailian.co.kr/news/202604/news_1776236124_1633952_m_1.jpeg\n\nThat report described an industry waiting on Murata, the market leader, to speak at its earnings call.\nWhatever the top maker said about pricing would set the direction for everyone else.\nThree months later the one that moved first was the number two, Samsung Electro-Mechanics, and the step was 30%.\n\nThe reason it gave is also different from the spring.\nInstead of input costs, the company pointed to structural growth in electronics demand putting pressure on the supply chain beyond what it can absorb internally.\n\nIf raw materials are the reason, falling input costs eventually give a company grounds to walk the price back.\nIf demand is the reason, no such grounds exist.\n\n## Delivery dates bind before prices do\n\nTaiyo Yuden paired its increase with a warning that it may not be able to meet the delivery schedules customers request.\nThat is the company saying supply will fall short of demand even after the price goes up.\n\nPrices can be negotiated. Delivery dates cannot.\nIt also means the thing keeping a server from shipping on time may not be a GPU but a component smaller than a fingernail.\n\n## So what actually settles this\n\nIt comes down to one question.\nDoes the 30% harden into real contract prices, or does it stay a notice.\n\nIf August shipments bill at the new prices and Murata joins the round of increases,\npricing power has moved from the buyers of these parts to the makers of them.\nIf customers instead delay orders or shift volume elsewhere and the increase sticks only on part of the lineup,\nthe notice will have been a negotiating card.\n\nThe heavier line is not the one about raising prices. It is the one about not being able to supply enough even at the higher price.\nThe shortage the AI buildout created appears to have worked its way past GPUs and memory down to the cheapest layer of the bill of materials.",
+    "ja": "サムスン電機が、2026年8月1日出荷分から一部MLCC製品の価格を30%引き上げる。\n顧客に送った通知に記された内容で、\n適用範囲は、同社が価格表をまとめて管理するコードに属するMLCC製品の全体だ。\n\n太陽誘電も9月1日からMLCC価格を引き上げる。\n\n@@REF@@MLCC値上げの波、太陽誘電に続きサムスン電機も8月から30%引き上げ (TechNews, 2026-07-28)|https://technews.tw/2026/07/28/samsung-electro-mechanics-taiyo-yuden-mlcc-prices-raised/|https://img.technews.tw/wp-content/uploads/2025/09/21113447/samsung.jpg\n\n## MLCCとは何で、なぜ30%が問題になるのか\n\nスマートフォンを開けると、基板の上に米粒より小さな部品が数百個並んでいる。\nその大半がMLCCだ。\n\n電気をいったん溜めて必要なときに放し、電圧をならしてくれる部品で、\nチップが瞬間的に大きな電流を引くときに電圧が揺れないように支える。\n\nだから電力を多く使う機器ほど数多く載る。\n高性能AIサーバー1台に載るMLCCは、スマートフォン1台の10倍を超える。\n1個の値段は小さいが数が多く、一度の値上げがそのままサーバーの原価に積み上がる。\n\n## 前回の値上げと何が違うのか\n\nMLCCの値上げは今年の春にもあった。\n太陽誘電が5月1日から一部製品を値上げし、そのとき挙げた理由は金や銀といった原材料費の上昇だった。\n世界市場の約23%を握るサムスン電機は、そのときは動かなかった。\n\n@@REF@@【独占】日本の太陽誘電がMLCC値上げ、村田・サムスン電機も続くのか (デイリアン, 2026-04-15)|https://www.dailian.co.kr/news/view/1633952|https://cdnimage.dailian.co.kr/news/202604/news_1776236124_1633952_m_1.jpeg\n\nこの記事は、当時の業界が首位の村田製作所の決算発表を待っていたと伝えている。\n首位が価格について何を語るかで、残りが動くという構図だった。\n3カ月が過ぎ、先に動いたのは2位のサムスン電機で、幅は30%だった。\n\n今回サムスン電機が挙げた理由も春とは違う。\n原材料費ではなく、電子産業の需要の構造的な成長が、自社で吸収できる範囲を超えてサプライチェーンを圧迫しているという説明だ。\n\n原材料が理由なら、原材料価格が下がったときに値段を戻す名分が生まれる。\n需要が理由なら、戻す名分はない。\n\n## 価格より先に納期が詰まる\n\n太陽誘電は値上げにあたって、顧客が求める納期に応えられない可能性があると付け加えた。\n値上げをしても供給が需要を満たしきれないと見ている、ということだ。\n\n価格は交渉できるが、納期は交渉できない。\nサーバー1台が予定どおり出荷できない理由が、GPUではなく爪より小さな部品になりうるという話でもある。\n\n## だから何が決め手になるのか\n\n結局、問いは一つだ。\nこの30%が実際の契約価格として固まるのか、通知で終わるのか。\n\n8月出荷分から新価格がそのまま反映され、首位の村田まで値上げに加われば、\n交渉力は部品を買う側から作る側へ移ったことになる。\n逆に顧客が発注を遅らせたり他社へ数量を振り向けたりして、値上げが一部製品にとどまれば、\n今回の通知は交渉カードだったことになる。\n\n値上げの通知より重いのは、値上げをしても全量を出せないという言葉のほうだ。\nAI投資が生んだ不足が、GPUとメモリを越えて最下層の部品まで下りてきたとみられる。"
+   },
+   "why": {
+    "ko": "MLCC는 AI 서버 원가에서 눈에 잘 띄지 않는 부품이지만, 값을 올리고도 납기를 보장하기 어렵다는 말은 부족이 GPU와 메모리를 지나 가장 아래층 부품까지 내려왔다는 뜻이다. 부품업체에는 가격 결정권이 생기고, 서버를 만드는 쪽에는 새로운 원가와 일정 위험이 생긴다.",
+    "en": "MLCCs are an invisible line in an AI server's bill of materials, but a supplier raising prices while warning it still cannot hit delivery dates means the shortage has reached past GPUs and memory into the cheapest layer of parts. That hands pricing power to component makers and hands new cost and schedule risk to whoever is building the servers.",
+    "ja": "MLCCはAIサーバーの原価では目立たない部品だが、値上げをしてなお納期を保証できないという言葉は、不足がGPUとメモリを越えて最下層の部品にまで届いたことを意味する。部品メーカーには価格決定力が生まれ、サーバーを作る側には新たな原価と日程のリスクが生じる。"
+   },
+   "ask": {
+    "ko": "삼성전기의 30% 인상 통보는 부품업체 쪽으로 협상력이 넘어간 신호일까, 아니면 수요가 식으면 되돌아갈 일회성 조정일까?",
+    "en": "Is Samsung Electro-Mechanics' 30% notice a sign that pricing power has moved to component makers, or a one-off adjustment that unwinds as soon as demand cools?",
+    "ja": "サムスン電機の30%値上げ通知は、交渉力が部品メーカー側へ移った合図なのか、それとも需要が冷めれば戻る一時的な調整なのか?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "9월 말까지 무라타가 MLCC 가격 인상에 합류했는지, 삼성전기의 30%가 실제 계약가에 반영됐는지로 채점.",
+     "en": "To be scored by the end of September on whether Murata joined the MLCC price increases and whether Samsung Electro-Mechanics' 30% showed up in actual contract prices.",
+     "ja": "9月末までに村田製作所がMLCC値上げに加わったか、サムスン電機の30%が実際の契約価格に反映されたかで採点する。"
+    },
+    "due": "2026-09-30"
+   },
+   "ts": "2026-07-29T03:55:58.669608+00:00"
+  },
+  {
    "date": "2026-07-28",
    "id": "jukan-skhynix-2q26-earnings-consensus-miss",
    "related": [
@@ -20729,7 +20871,8 @@
     "JASM",
     "Japan Advanced Semiconductor Manufacturing",
     "자스무",
-    "제이에이에스엠"
+    "제이에이에스엠",
+    "ジャスム"
    ],
    "founded": "2021",
    "hq": {
@@ -20975,7 +21118,8 @@
    "aliases": [
     "Taiyo Yuden",
     "다이요유덴",
-    "太陽誘電"
+    "太陽誘電",
+    "태양유전"
    ],
    "logo": "yuden.co.jp",
    "exchange": "TSE",
@@ -21730,6 +21874,76 @@
     "consensus estimate",
     "consensus",
     "コンセンサス"
+   ]
+  },
+  "활성단층": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A crack in the crust that has moved recently and can move again.",
+    "ko": "최근에 움직인 적이 있어 앞으로도 다시 움직일 수 있는 땅속의 금이다.",
+    "ja": "最近動いた実績があり、これからも動きうる地殻の割れ目。"
+   },
+   "longDesc": {
+    "en": "Unlike quakes born at plate boundaries far offshore, an active fault sits inside the land and can rupture directly beneath cities and factories, so the shaking arrives with almost no warning time. Japan maps these faults and assigns long-term rupture probabilities, and their locations matter to investors because Kyushu and Tohoku fabs, ports and power plants were sited on top of that map.",
+    "ko": "먼 바다 밑 판 경계에서 나는 지진과 달리, 활성단층은 육지 안쪽에 있어 도시와 공장 바로 아래에서 끊어질 수 있다. 그래서 흔들림이 경보보다 먼저 도착한다. 일본은 이런 단층의 위치와 장기 발생 확률을 지도로 관리하는데, 규슈와 도호쿠의 반도체 공장·항만·발전소가 그 지도 위에 서 있어 투자자에게도 남의 일이 아니다.",
+    "ja": "沖合のプレート境界で起きる地震と違い、活断層は陸の内側にあり、都市や工場の真下で破壊が起きうる。そのため揺れが警報より先に届く。日本はこれらの断層の位置と長期発生確率を地図で管理しており、九州や東北の半導体工場・港湾・発電所がその地図の上に立っているため、投資家にとっても他人事ではない。"
+   },
+   "aliases": [
+    "활성단층",
+    "활성 단층",
+    "活断層",
+    "active fault"
+   ]
+  },
+  "섭입대": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The boundary where one crustal plate slides beneath another.",
+    "ko": "한 지각판이 다른 판 아래로 파고드는 경계다.",
+    "ja": "一方の地殻プレートが他方の下へ潜り込む境界。"
+   },
+   "longDesc": {
+    "en": "The two plates lock together under enormous friction, load up for decades or centuries, and then snap, which is why the largest earthquakes and tsunamis originate here. Japan sits where four plates meet, and the megaquake scenarios its government plans for, such as a Nankai Trough event, are subduction-zone quakes.",
+    "ko": "두 판이 엄청난 마찰로 맞물려 수십 년에서 수백 년 동안 힘을 쌓다가 한 번에 튕긴다. 가장 큰 지진과 쓰나미가 여기서 나오는 이유다. 일본은 판 네 개가 만나는 자리에 있고, 정부가 대비하는 거대지진 시나리오(난카이 트로프 등)가 모두 이 섭입대 지진이다.",
+    "ja": "二つのプレートが強い摩擦で噛み合い、数十年から数百年かけて力を溜めた末に一気に跳ね返る。最大級の地震と津波がここで生まれる理由だ。日本は四つのプレートが出会う場所にあり、政府が備える巨大地震のシナリオ(南海トラフなど)はいずれもこの沈み込み帯の地震である。"
+   },
+   "aliases": [
+    "섭입대",
+    "沈み込み帯",
+    "subduction zone"
+   ]
+  },
+  "전진(前震)": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A quake that turns out to have been the lead-in to a larger one.",
+    "ko": "뒤에 온 더 큰 지진의 앞자락이었던 것으로 밝혀지는 지진이다.",
+    "ja": "あとから来たより大きな地震の前触れだったと判明する地震。"
+   },
+   "longDesc": {
+    "en": "A foreshock is only identifiable in hindsight: it looks exactly like a mainshock until a bigger one follows. In the 2016 Kumamoto sequence the first intensity-7 quake was treated as the mainshock, and a larger one arrived two days later. That asymmetry is why plants restart in stages instead of all at once after a big quake.",
+    "ko": "전진은 지나고 나서야 알 수 있다. 더 큰 지진이 뒤따르기 전까지는 본진과 똑같아 보인다. 2016년 구마모토에서는 첫 진도 7 지진을 본진으로 여겼는데 이틀 뒤 더 큰 지진이 왔다. 큰 지진 뒤에 공장이 한꺼번에가 아니라 단계적으로 재가동하는 이유가 여기에 있다.",
+    "ja": "前震は事後にしか判別できない。より大きな地震が続くまでは本震とまったく同じに見える。2016年の熊本では最初の震度7を本震とみなしたが、2日後により大きな地震が来た。大地震のあとに工場が一斉ではなく段階的に再稼働する理由はここにある。"
+   },
+   "aliases": [
+    "전진(前震)",
+    "前震",
+    "foreshock"
    ]
   }
  }
