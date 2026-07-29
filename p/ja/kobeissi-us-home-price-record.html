@@ -31,8 +31,13 @@
 body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
 @media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.card{background:#141519!important}.gist{color:#C9CDD6!important}}
 .wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
-.topbar{padding:16px 0;font-weight:800}
+.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}
 .topbar a{color:inherit;text-decoration:none}
+.topbar .brand{font-weight:800;font-size:16px}
+.topbar .sitenav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
+.topbar .sitenav a{font-size:13.5px;font-weight:600;color:#8E93A0}
+.topbar .sitenav a:hover{color:#17181C}
+@media(prefers-color-scheme:dark){.topbar{border-color:#26272E}.topbar .sitenav a:hover{color:#ECEDF1}}
 .cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#92400E,#1F2937);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
 .cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
 .meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
@@ -123,6 +128,15 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .ent-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}
 .ent-chip:hover{border-color:#111214}
 @media(prefers-color-scheme:dark){.ent-chip{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.latest{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}
+.latest h3{font-size:14px;margin:0 0 10px}
+.latest ul{list-style:none;margin:0;padding:0}
+.latest li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}
+.latest li a{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}
+.latest li a:hover{text-decoration:underline}
+.latest time{flex:none;font-size:12px;color:#8E93A0}
+.latest-all{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:700;color:#17181C;text-decoration:none}
+@media(prefers-color-scheme:dark){.latest{border-color:#26272E}.latest li{border-bottom-color:#1E1F25}.latest li a,.latest-all{color:#ECEDF1}}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
@@ -130,7 +144,10 @@ footer a{color:#8E93A0}
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar"><a href="../../">◆ Stacks</a></div>
+  <div class="topbar">
+    <a class="brand" href="../../">◆ Stacks</a>
+    <nav class="sitenav"><a href="../../articles.html">記事一覧</a> · <a href="../../this-week.html">今週</a> · <a href="../../about.html">Stacksについて</a></nav>
+  </div>
   <div class="cover"><span class="label">HOME PRICES HIT RECORD</span></div>
   <div class="meta">The Kobeissi Letter (@KobeissiLetter) · 2026-07-23 · 原文: EN</div>
   <h1>米中古住宅の中央価格は本当に40万8776ドルだったのか?NARの実際の数字は44万600ドルだった</h1>
@@ -144,6 +161,7 @@ footer a{color:#8E93A0}
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-us-home-price-record.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-us-home-price-record.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/nar.html">NAR</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="kobeissi-10y-yield-breaks-470.html">10年債利回り、昨年の関税パニック時の高値を上回った...原因はイラン戦争か、それとも連邦準備制度か</a></li><li><a href="kobeissi-us-debt-financing-cost.html">米国の借入コストが上昇、AIがその圧力を押し上げる</a></li><li><a href="kobeissi-us-job-postings-decline.html">Indeedの求人は減っているのに、最新の公式雇用統計はまさかの2年ぶり高水準だった</a></li></ul></nav>
+  <nav class="latest"><h3>最新記事</h3><ul><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">次のボトルネックはメモリーではなくコンデンサだ、価格はもう3倍に跳ね上がった</a><time>07-28</time></li><li><a href="jukan-jasm-kumamoto-earthquake.html">M7.1地震でTSMC日本工場が避難、同じ半径20キロ圏内にソニー・富士フイルムもあった</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
   <footer>
     要約・解説はStacksの著作物です。元記事の著作権は原著者に帰属し、各項目は出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は利用者本人にあります。<br>
     <a href="../../">Stacks ホーム</a> · <a href="../../articles.html">記事一覧</a> · <a href="../../about.html">Stacksについて</a> · <a href="../../feed-ja.xml">RSS</a>

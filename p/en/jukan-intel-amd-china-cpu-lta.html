@@ -31,8 +31,13 @@
 body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
 @media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.card{background:#141519!important}.gist{color:#C9CDD6!important}}
 .wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
-.topbar{padding:16px 0;font-weight:800}
+.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}
 .topbar a{color:inherit;text-decoration:none}
+.topbar .brand{font-weight:800;font-size:16px}
+.topbar .sitenav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
+.topbar .sitenav a{font-size:13.5px;font-weight:600;color:#8E93A0}
+.topbar .sitenav a:hover{color:#17181C}
+@media(prefers-color-scheme:dark){.topbar{border-color:#26272E}.topbar .sitenav a:hover{color:#ECEDF1}}
 .cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#0F172A,#F59E0B);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
 .cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
 .meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
@@ -123,6 +128,15 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .ent-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}
 .ent-chip:hover{border-color:#111214}
 @media(prefers-color-scheme:dark){.ent-chip{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.latest{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}
+.latest h3{font-size:14px;margin:0 0 10px}
+.latest ul{list-style:none;margin:0;padding:0}
+.latest li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}
+.latest li a{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}
+.latest li a:hover{text-decoration:underline}
+.latest time{flex:none;font-size:12px;color:#8E93A0}
+.latest-all{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:700;color:#17181C;text-decoration:none}
+@media(prefers-color-scheme:dark){.latest{border-color:#26272E}.latest li{border-bottom-color:#1E1F25}.latest li a,.latest-all{color:#ECEDF1}}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
@@ -130,7 +144,10 @@ footer a{color:#8E93A0}
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar"><a href="../../">◆ Stacks</a></div>
+  <div class="topbar">
+    <a class="brand" href="../../">◆ Stacks</a>
+    <nav class="sitenav"><a href="../../articles.html">All articles</a> · <a href="../../this-week.html">This week</a> · <a href="../../about.html">About</a></nav>
+  </div>
   <div class="cover"><span class="label">LTA WAVE</span></div>
   <div class="meta">Jukan (@jukan05) · 2026-07-23 · original: EN</div>
   <h1>Intel and AMD are locking in multi-year CPU deals with China as prices jump 40%, a pattern that started in memory chips</h1>
@@ -144,6 +161,7 @@ footer a{color:#8E93A0}
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/jukan-intel-amd-china-cpu-lta.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/jukan-intel-amd-china-cpu-lta.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/amd.html">AMD</a><a class="ent-chip" href="../../e/cpu.html">CPU</a><a class="ent-chip" href="../../e/dram.html">DRAM</a><a class="ent-chip" href="../../e/intel.html">INTEL</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/lta.html">LTA</a><a class="ent-chip" href="../../e/micron.html">MICRON</a><a class="ent-chip" href="../../e/mlcc.html">MLCC</a><a class="ent-chip" href="../../e/nand.html">NAND</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../../e/backstop.html">backstop</a><a class="ent-chip" href="../../e/capa.html">CAPA</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="jukan-samsung-elec-mechanics-mlcc-lta.html">Samsung Electro-Mechanics signs MLCC supply deal with an unnamed &#x27;large global company&#x27;,…</a></li><li><a href="hynix.html">The same share cost 51% more in New York than in Seoul. Why didn&#x27;t the gap close?</a></li><li><a href="jukan-hynix-intel-ohio-fab.html">SK hynix denies buying Intel&#x27;s Ohio fab, but doesn&#x27;t rule out a joint venture</a></li></ul></nav>
+  <nav class="latest"><h3>Latest</h3><ul><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">TSMC&#x27;s Kumamoto fab restarted within a day. So why is it still too early to call this ove…</a><time>07-29</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The reason it gav…</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">SK Hynix&#x27;s operating profit jumped 557% in a year, so why did it still miss consensus?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">Apple just crossed $5 trillion. The real story is how fast it got there</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">The US is banning Chinese robots. The real target wasn&#x27;t just robots</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">The AI infrastructure and security software index is up 22% this year. Why is application…</a><time>07-28</time></li><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price already t…</a><time>07-28</time></li><li><a href="jukan-jasm-kumamoto-earthquake.html">A 7.1 quake evacuated TSMC&#x27;s Japan fab. Sony and Fujifilm sit within the same 20-kilomete…</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">Browse all articles →</a></nav>
   <footer>
     Summaries and commentary are original work by Stacks. Copyright in the source material remains with its author; every item credits the source and links to the original. This is information and commentary, not investment advice.<br>
     <a href="../../">Stacks home</a> · <a href="../../articles.html">All articles</a> · <a href="../../about.html">About</a> · <a href="../../feed-en.xml">RSS</a>

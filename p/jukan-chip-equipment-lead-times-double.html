@@ -31,8 +31,13 @@
 body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
 @media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.card{background:#141519!important}.gist{color:#C9CDD6!important}}
 .wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
-.topbar{padding:16px 0;font-weight:800}
+.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}
 .topbar a{color:inherit;text-decoration:none}
+.topbar .brand{font-weight:800;font-size:16px}
+.topbar .sitenav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
+.topbar .sitenav a{font-size:13.5px;font-weight:600;color:#8E93A0}
+.topbar .sitenav a:hover{color:#17181C}
+@media(prefers-color-scheme:dark){.topbar{border-color:#26272E}.topbar .sitenav a:hover{color:#ECEDF1}}
 .cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#78350F,#B45309);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
 .cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
 .meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
@@ -123,6 +128,15 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .ent-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}
 .ent-chip:hover{border-color:#111214}
 @media(prefers-color-scheme:dark){.ent-chip{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.latest{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}
+.latest h3{font-size:14px;margin:0 0 10px}
+.latest ul{list-style:none;margin:0;padding:0}
+.latest li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}
+.latest li a{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}
+.latest li a:hover{text-decoration:underline}
+.latest time{flex:none;font-size:12px;color:#8E93A0}
+.latest-all{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:700;color:#17181C;text-decoration:none}
+@media(prefers-color-scheme:dark){.latest{border-color:#26272E}.latest li{border-bottom-color:#1E1F25}.latest li a,.latest-all{color:#ECEDF1}}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
@@ -130,7 +144,10 @@ footer a{color:#8E93A0}
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar"><a href="../">◆ Stacks</a></div>
+  <div class="topbar">
+    <a class="brand" href="../">◆ Stacks</a>
+    <nav class="sitenav"><a href="../articles.html">전체 글</a> · <a href="../this-week.html">이번 주</a> · <a href="../about.html">소개</a></nav>
+  </div>
   <div class="cover"><span class="label">LEAD TIMES DOUBLE</span></div>
   <div class="meta">Jukan (@jukan05) · 2026-07-24 · 원문: EN</div>
   <h1>장비 납기 두 배로 늘었다는 보도, 사실은 한 매체 기사 하나에서 나온 숫자였다</h1>
@@ -144,6 +161,7 @@ footer a{color:#8E93A0}
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-chip-equipment-lead-times-double.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-chip-equipment-lead-times-double.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/applied-materials.html">APPLIED MATERIALS</a><a class="ent-chip" href="../e/asml.html">ASML</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/kla.html">KLA</a><a class="ent-chip" href="../e/lam-research.html">LAM RESEARCH</a><a class="ent-chip" href="../e/micron.html">MICRON</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/tokyo-electron.html">TOKYO ELECTRON</a><a class="ent-chip" href="../e/tsmc.html">TSMC</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-cxmt-huawei-premium.html">중국 CXMT, 이제 삼성보다 비싸게 메모리 판다... 화웨이 협력사 엔지니어까지 내보낸 가격 힘겨루기</a></li><li><a href="jukan-intel-14a-2028-ramp.html">인텔, 2028년 양산 시점 확정... 월가 예상보다 1년 빠르다</a></li><li><a href="jukan-nvidia-800v-hvdc-delay.html">세미애널리시스 &quot;엔비디아 차세대 전력 시스템 1년 밀린다&quot;... 공급망 &quot;로드맵 아닌 검증 지연일 뿐&quot;</a></li></ul></nav>
+  <nav class="latest"><h3>최신 글</h3><ul><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</a><time>07-29</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">애플이 5조달러를 넘은 진짜 이유는 실력보다 속도다</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">미국이 중국산 로봇을 막는다는 소식, 실제 표적은 로봇이 아니었다</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AI 인프라·보안 소프트웨어 지수는 22% 올랐는데, 업무용 소프트웨어 지수는 급락한 이유는?</a><time>07-28</time></li><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><a href="jukan-jasm-kumamoto-earthquake.html">규모 7.1 지진에 대피한 TSMC 일본공장, 반경 20km 안에 소니·후지필름까지 있었다</a><time>07-28</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
   <footer>
     요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>
