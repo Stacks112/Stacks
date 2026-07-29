@@ -266,15 +266,28 @@ def quote_block(item, lang):
     to see what the take is based on as a Korean one. (Until 2026-07-27 this
     returned "" for en/ja, so 30 pages carried the reading with no evidence.)
 
+    Falls back to EMBEDS (embeds.json) when there is no hand-written "quote" --
+    the same oEmbed text the app's live tweet widget uses (2026-07-29: about.html
+    claimed every X post shows its original alongside, but this page never read
+    that file, so 96 of 126 X-sourced articles carried nothing).
+
     Marked up as figure + blockquote + figcaption so the caption is bound to
     the quotation rather than merely sitting next to it, with the source URL in
     the `cite` attribute. `lang` on the blockquote matters here specifically
     because the quote is often NOT in the page's language."""
     q = item.get("quote") or {}
     lines = [l for l in (q.get("lines") or []) if l]
+    cite = q.get("cite")
+    if not lines:
+        lines = [l for l in (EMBEDS.get(item["id"], {}).get("lines") or []) if l]
     if not lines:
         return ""
-    cite = q.get("cite") or item.get("source") or ""
+    if not cite:
+        # Match the hand-written convention ("메르 · 2026.07.29"): author byline
+        # + dotted date, so a reader can't tell which path supplied the quote.
+        src = item.get("source") or ""
+        d = (item.get("date") or "").replace("-", ".")
+        cite = (src + " · " + d) if (src and d) else (src or d)
     href = safe_href(item.get("sourceUrl"), "")
     slang = (item.get("sourceLang") or "").lower()
     lattr = ' lang="%s"' % E(slang) if slang in ("ko", "en", "ja") else ""
@@ -885,6 +898,14 @@ OPP_OF = {}      # id -> {"k": ticker key, "ids": [...]} from build_data
 # "there is more here, and it is current" signal, and it doubles as a crawl path
 # from every deep page back into the newest content.
 LATEST = []
+# id -> {date, handle, lines, name, url}, loaded once by main() from
+# embeds.json (scripts/fetch_embeds.py, X's oEmbed endpoint). This is the SAME
+# data index.html's srcBlockHtml() uses for the live tweet widget -- until now
+# build_pages.py never read the file, so any X post without a hand-written
+# "quote" field showed no original text at all on the crawlable /p/ page (96 of
+# 126 X-sourced articles, 2026-07-29 audit). quote_block() below falls back to
+# it so the static page carries the same evidence the app does.
+EMBEDS = {}
 
 
 def title_of(iid, lang):
@@ -2210,6 +2231,13 @@ def main():
         d["entities"] = entities
         json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print("[glossary] merged " + str(_gadd) + " curated terms into entities")
+    global EMBEDS
+    try:
+        EMBEDS = json.load(open("embeds.json", encoding="utf-8"))
+    except Exception as e:
+        EMBEDS = {}
+        print("[embeds] embeds.json unavailable (" + str(e) + ") -- quote_block falls back to hand-written quotes only")
+
     items = sorted(items, key=lambda x: x.get("date", ""), reverse=True)
     register_slugs_from_aliases(entities)
     pats = build_matcher(entities)
