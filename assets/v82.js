@@ -1096,14 +1096,50 @@
       window.visualViewport.addEventListener("resize", v82SyncCompBar);
       window.visualViewport.addEventListener("scroll", v82SyncCompBar);
     }
+    v82CompWho();
+    var ta = document.getElementById("twcText");
+    if (ta && ta.getAttribute("data-v82focus") !== "1") {
+      ta.setAttribute("data-v82focus", "1");
+      ta.addEventListener("focus", function(){ v82OpenCompBar(true); });
+      ta.addEventListener("blur", function(){ v82OpenCompBar(false); });
+    }
     v82SyncCompBar();
+  }
+  /* X shows who you are posting as above the box. We have no mentions, so there is
+     no "replying to @someone" line — just the nickname. */
+  function v82CompWho(){
+    var bar = v82PinnedBar();
+    if (!bar) return;
+    var row = bar.querySelector(".twc-who");
+    var nick = "";
+    try { nick = localStorage.getItem("stk_nick") || ""; } catch (e) {}
+    if (!nick) { if (row && row.parentNode) row.parentNode.removeChild(row); return; }
+    if (!row) {
+      row = document.createElement("div");
+      row.className = "twc-who";
+      bar.insertBefore(row, bar.firstChild);
+    }
+    row.textContent = nick;
+  }
+  function v82OpenCompBar(on){
+    var bar = v82PinnedBar();
+    if (!bar) return;
+    if (on) v82CompWho();
+    if (on) bar.classList.add("twc-open"); else bar.classList.remove("twc-open");
+    v82SyncCompBar();
+    /* iOS reports the keyboard-shrunk visual viewport a beat late, so re-measure */
+    setTimeout(v82SyncCompBar, 120);
+    setTimeout(v82SyncCompBar, 380);
   }
   function v82UnpinCompBar(sheet){
     if (V82_CB_RO) { try { V82_CB_RO.disconnect(); } catch (e) {} }
     var bar = v82PinnedBar() || document.querySelector(".twc-comp.twc-pinned");
     var home = sheet || document.querySelector("#twcOv .twc-sheet");
     if (bar) {
+      var who = bar.querySelector(".twc-who");
+      if (who && who.parentNode) who.parentNode.removeChild(who);
       bar.classList.remove("twc-pinned");
+      bar.classList.remove("twc-open");
       bar.style.transform = "";
       if (home) home.appendChild(bar);
     }
