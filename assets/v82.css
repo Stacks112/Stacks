@@ -367,7 +367,12 @@
   #v82dbody .twc-sheet.twc-inline .twc-back,
   #v82dbody .twc-sheet.twc-inline .twc-orig{display:none;}
   #v82dbody .twc-sheet.twc-inline .twc-scroll{overflow:visible;max-height:none;height:auto;flex:0 0 auto;}
-  #v82dbody .twc-sheet.twc-inline .twc-comp{background:transparent;padding-left:0;padding-right:0;padding-bottom:10px;}
+  /* 2026-07-29: X-style — the composer is pinned to the bottom of the detail while
+     the article scrolls. assets/v82.js moves the node onto #v82detail itself
+     (.card and .twc-sheet both have transforms, which would capture position:fixed),
+     sets #v82dbody padding-bottom from the bar height, and lifts it above the iOS
+     keyboard via visualViewport. The full-screen sheet keeps its own layout. */
+  #v82detail > .twc-comp.twc-pinned{position:absolute;left:0;right:0;bottom:0;z-index:3;background:var(--bg);border-top:1px solid var(--line);padding:8px 16px calc(8px + env(safe-area-inset-bottom, 0px));}
   /* the quick one-line comment bar (.twin / twInlineSend) is a second composer for
      the same thread, so hide it in the detail once the full section is actually
      mounted (.comment-box no longer [hidden]). Guarded by :has() on purpose — if a
