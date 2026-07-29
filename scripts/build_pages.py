@@ -18,6 +18,7 @@ import html
 import json
 import re
 import hashlib
+import urllib.parse
 from datetime import datetime, timezone
 
 BASE = "https://stacksdaily.com/"
@@ -932,7 +933,9 @@ def record_block(item, lang, R, REL):
                   % (rec["hits"], E(R["hit"]), rec["miss"], E(R["miss"])))
     rows = _card_rows([i for i in rec["calls"] if i != item["id"]], lang, R)
     lst = '<ul class="rec-l">%s</ul>' % rows if rows else ""
-    more = '<a class="rec-m" href="%sr/%s.html">%s</a>' % (REL, E(rec["slug"]), E(R["more"]))
+    more = ('<a class="rec-m" href="%sr/%s.html" data-app="?l=%s#record-%s">%s</a>'
+            % (REL, E(rec["slug"]), lang,
+               E(urllib.parse.quote(item.get("source") or "")), E(R["more"])))
     return ('<section class="rec"><h3>%s</h3><div class="rec-s">%s</div>%s%s</section>'
             % (E(R["rec"]), chips, lst, more))
 
@@ -1073,6 +1076,42 @@ REC_CSS = """.rec,.oc,.opp{margin-top:26px}
   .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}"""
 
 
+# One app, not a pile of leaves. Every generated page here is a dead end for a
+# human: the reader arrives from Search, and until now every link out of it led
+# to ANOTHER static page. So a plain left-click on anything that has a live
+# equivalent is rerouted into the app instead.
+#
+# The href is deliberately left alone. Crawlers, copied links, middle-click and
+# JS-off browsers all still get the real static URL, which is what keeps the
+# internal link graph (the thing that gets deep pages indexed) intact and keeps
+# the pages substantial enough for AdSense. Only the click is intercepted.
+#
+# The target language is read from the LINK's own path, not the page's, so the
+# "English / 日本語" links open the app in that language rather than this one.
+APP_LINK_JS = """<script>
+(function(){var B="__BASE__",L="__LANG__";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\\/+/,""),m;
+if((m=p.match(/^p\\/(en|ja)\\/([^\\/]+)\\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\\/([^\\/]+)\\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+"""
+
+
+def app_link_js(lang="ko"):
+    return APP_LINK_JS.replace("__BASE__", BASE).replace("__LANG__", lang)
+
+
 def latest_block(cur_id, lang, U, skip=(), limit=8):
     """Newest articles in this language, excluding the current one and anything
     already linked above (related / opposing), so the block never repeats a
@@ -1102,7 +1141,10 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     U = UI[lang]
     REL = LANG_REL[lang]
     url = page_url(iid, lang)
-    app_url = (BASE + "#sig-" + iid) if lang == "ko" else (BASE + "?c=" + iid + "&l=" + lang)
+    # Every language now opens the POST. Korean used to get "#sig-<id>", which
+    # only scrolls the home feed to the card; a reader who clicked through from
+    # an article expects the article.
+    app_url = BASE + "?c=" + iid + "&l=" + lang
     cov = item.get("cover", {}) or {}
     grad = f"linear-gradient(135deg,{hexcolor(cov.get('from'), '#111')},{hexcolor(cov.get('to'), '#333')})"
     title = item["title"].get(lang) or item["title"].get("ko") or item["title"]["en"]
@@ -1251,6 +1293,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
                  + "".join(f'<meta property="og:locale:alternate" content="{OG_LOCALE[lg]}">'
                            for lg in others))
     feed_rel = REL + FEED_FILE[lang]
+    applink = app_link_js(lang)
 
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -1331,6 +1374,7 @@ footer{{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:
 @media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
 footer a{{color:#8E93A0}}
 </style>
+{applink}
 </head>
 <body>
 <div class="wrap">
@@ -1498,6 +1542,7 @@ def entity_page(key, e, ent_items, lang="ko"):
     og_locale = (f'<meta property="og:locale" content="{OG_LOCALE[lang]}">'
                  + "".join(f'<meta property="og:locale:alternate" content="{OG_LOCALE[lg]}">'
                            for lg in LANGS if lg != lang))
+    applink = app_link_js(lang)
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -1548,6 +1593,7 @@ footer{{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:
 @media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
 footer a{{color:#8E93A0}}
 </style>
+{applink}
 </head>
 <body>
 <a class="top" href="{pfx}">◆ {SITE}</a>
@@ -1575,6 +1621,7 @@ def articles_index(items):
         f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
         for i in items
     )
+    applink = app_link_js("ko")
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -1595,6 +1642,7 @@ li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
 @media(prefers-color-scheme:dark){{li{{border-color:#26272E}}}}
 .d{{display:block;font-size:12px;color:#8E93A0;margin-top:3px}}
 </style>
+{applink}
 </head>
 <body>
 <h1><a href="./" style="text-decoration:none">◆ {SITE}</a> 전체 글</h1>
@@ -1665,6 +1713,7 @@ def week_page(items, entities, item_ents, canonical_slug):
             ],
         },
     }
+    applink = app_link_js("ko")
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -1715,6 +1764,7 @@ footer{{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:
 @media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
 footer a{{color:#8E93A0}}
 </style>
+{applink}
 </head>
 <body>
 <a class="top" href="../">◆ {SITE}</a>
@@ -1917,6 +1967,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
                    f'<meta property="og:image:height" content="630">'
                    f'<meta name="twitter:image" content="{E(img)}">')
         tw = "summary_large_image"
+    applink = app_link_js("ko")
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -1937,6 +1988,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{hub_ld}</script>
 <style>{_HUB_CSS}</style>
+{applink}
 </head>
 <body>
 <a class="top" href="../">◆ {SITE}</a>
