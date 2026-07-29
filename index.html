@@ -4381,8 +4381,15 @@ function queueSince(item){
       .then(q => ({ k: k, r: sinceCalc(q, item.date) }))
       .catch(() => ({ k: k, r: null }))
   )).then(rows => {
+    /* The lead company is the claim the badge makes: this is who the post is
+       about. If its quote will not resolve - a market that has not printed a
+       close since the article date, a ticker the worker cannot serve - the
+       honest move is to show nothing, not to promote whoever is next in line.
+       The Kumamoto post is exactly that case on its publication day: TSMC and
+       Sony have no close yet, and rendering third-placed Fujifilm on its own
+       would put back the very name this whole fix was about. */
+    if (!rows.length || !rows[0].r) return;
     const ok = rows.filter(x => x.r);
-    if (!ok.length) return;
     const S = STRINGS[LANG], lead = ok[0];
     SINCE_CACHE[item.id] = { pct: lead.r.pct, k: lead.k, up: lead.r.pct >= 0, cur: lead.r.cur };
     document.querySelectorAll('.since[data-since="' + item.id + '"]').forEach(el => {
