@@ -257,6 +257,30 @@ def gist_blocks(gist):
     return "".join(html)
 
 
+QUOTE_EXCERPT_LIMIT = 110
+
+
+def _excerpt_lines(lines, limit=QUOTE_EXCERPT_LIMIT):
+    """Cap an EMBEDS-sourced quote to a genuine short excerpt.
+
+    embeds.json stores the oEmbed text verbatim for the app's live tweet
+    widget, which for most posts runs close to X's 280-character limit --
+    2026-07-29 data: 99 of 122 entries are 200+ chars, i.e. effectively the
+    whole tweet. That's fine for the widget (X's own embed, author's own
+    surface) but not for a quoted excerpt on a static page, which about.html
+    promises is kept to "the minimum needed to show the argument." Only
+    called for the EMBEDS fallback -- hand-written quote.lines are already
+    curated short and pass through untouched."""
+    joined = " ".join(l.strip() for l in lines if l.strip())
+    if len(joined) <= limit:
+        return lines
+    cut = joined[:limit]
+    sp = cut.rfind(" ")
+    if sp > limit * 0.6:
+        cut = cut[:sp]
+    return [cut.rstrip(" ,.;:\u3001\u3002") + "\u2026"]
+
+
 def quote_block(item, lang):
     """The author's own words, above our reading.
 
@@ -269,7 +293,10 @@ def quote_block(item, lang):
     Falls back to EMBEDS (embeds.json) when there is no hand-written "quote" --
     the same oEmbed text the app's live tweet widget uses (2026-07-29: about.html
     claimed every X post shows its original alongside, but this page never read
-    that file, so 96 of 126 X-sourced articles carried nothing).
+    that file, so 96 of 126 X-sourced articles carried nothing). The fallback
+    text is trimmed to a short excerpt via _excerpt_lines() (2026-07-29): the
+    raw oEmbed text runs near the full tweet, which about.html's "minimum
+    needed" wording doesn't cover.
 
     Marked up as figure + blockquote + figcaption so the caption is bound to
     the quotation rather than merely sitting next to it, with the source URL in
@@ -279,7 +306,8 @@ def quote_block(item, lang):
     lines = [l for l in (q.get("lines") or []) if l]
     cite = q.get("cite")
     if not lines:
-        lines = [l for l in (EMBEDS.get(item["id"], {}).get("lines") or []) if l]
+        raw = [l for l in (EMBEDS.get(item["id"], {}).get("lines") or []) if l]
+        lines = _excerpt_lines(raw) if raw else []
     if not lines:
         return ""
     if not cite:
