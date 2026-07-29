@@ -965,6 +965,7 @@
       document.body.style.overflow = "hidden";
       refreshNav();
       if (typeof pushView === "function") pushView();
+      try { v82MountComments(card); } catch (e) {}
     } catch(err){
       try { dt.classList.remove("on"); document.body.style.overflow = ""; refreshNav(); } catch(e2){}
     }
@@ -993,9 +994,80 @@
       }, 150);
     }
   })();
+  /* 2026-07-29 (2): the mobile article detail shows the comment thread inline at
+     the bottom of the post, instead of only behind the comment icon. There is
+     still exactly ONE comment implementation (assets/twc.js): we relocate its
+     sheet node (#twcOv > .twc-sheet) into this card's .comment-box while the
+     detail is open and put it back on close, so an inline copy can never drift
+     out of sync with the sheet. Feed cards are unchanged (count badge only).
+     Desktop never reaches this code — the v82 IIFE returns early there. */
+  var V82_CB_HOST = null;
+  var V82_CB_CHECK = null;
+  function v82InlineSheet(){
+    var host = $("v82dbody");
+    return host ? host.querySelector(".twc-sheet.twc-inline") : null;
+  }
+  function v82MountComments(card, isRetry){
+    if (!card || typeof toggleComments !== "function") return false;
+    var host = card.querySelector(".comment-box");
+    var id = (card.id || "").replace(/^sig-/, "");
+    var ov = document.getElementById("twcOv");
+    if (!host || !id || !ov) return false;
+    v82UnmountComments();
+    /* toggleComments pushes a history entry so the back gesture can close the
+       full-screen sheet. Inline there is nothing to close and that entry would
+       eat one back tap, so we pre-open the overlay: toggleComments then sees
+       wasOpen === true and skips the push entirely (TWC.hist stays false). */
+    ov.hidden = false;
+    try { toggleComments(id); } catch (e) { ov.hidden = true; return false; }
+    ov.hidden = true;
+    document.body.style.overflow = "hidden";   /* the detail overlay owns the lock */
+    var sheet = ov.querySelector(".twc-sheet");
+    if (!sheet) return false;
+    sheet.classList.add("twc-inline");
+    host.hidden = false;
+    host.appendChild(sheet);
+    V82_CB_HOST = host;
+    /* watchdog: if the section somehow lands empty, mount it once more rather
+       than leaving the reader with no way to comment. */
+    if (V82_CB_CHECK) { clearTimeout(V82_CB_CHECK); V82_CB_CHECK = null; }
+    if (!isRetry) {
+      V82_CB_CHECK = setTimeout(function(){
+        V82_CB_CHECK = null;
+        var dt = $("v82detail");
+        var s = v82InlineSheet();
+        if (dt && dt.classList.contains("on") && (!s || s.offsetHeight < 20)) v82MountComments(card, true);
+      }, 600);
+    }
+    return true;
+  }
+  function v82UnmountComments(){
+    if (V82_CB_CHECK) { clearTimeout(V82_CB_CHECK); V82_CB_CHECK = null; }
+    var sheet = document.querySelector(".twc-sheet.twc-inline");
+    if (!sheet) { V82_CB_HOST = null; return false; }
+    sheet.classList.remove("twc-inline");
+    var ov = document.getElementById("twcOv");
+    if (ov) ov.appendChild(sheet);
+    if (V82_CB_HOST) V82_CB_HOST.hidden = true;
+    V82_CB_HOST = null;
+    /* fromPop = true: clear twc state without touching history */
+    try { if (typeof closeComments === "function") closeComments(true); } catch (e) {}
+    return true;
+  }
+  function v82ScrollToInlineComments(card){
+    if (!card || !card.closest || !card.closest("#v82dbody")) return false;
+    var sheet = v82InlineSheet();
+    if (!sheet) return false;
+    try { sheet.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    catch (e) { sheet.scrollIntoView(); }
+    var box = document.getElementById("twcText");
+    if (box) setTimeout(function(){ try { box.focus({ preventScroll: true }); } catch (e) {} }, 320);
+    return true;
+  }
   function closeDetail(fromPop){
     var dt = $("v82detail");
     if (!dt || !dt.classList.contains("on")) return false;
+    try { v82UnmountComments(); } catch (e) {}
     dt.classList.remove("on");
     document.body.style.overflow = "";
     var body = $("v82dbody");
@@ -1038,6 +1110,7 @@
     if (e.target.closest(".eg-comment,.ask-comment")){
       var cid = (card.id || "").replace(/^sig-/, "");
       /* 라운드15: 댓글 아이콘은 상세를 열지 않고 댓글 시트(새창)만 연다 (트위터 모바일식) */
+      if (v82ScrollToInlineComments(card)) return;
       e.preventDefault(); e.stopPropagation();
       if (typeof toggleComments === "function") toggleComments(cid);
       return;
