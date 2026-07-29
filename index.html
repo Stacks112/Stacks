@@ -1898,10 +1898,15 @@ html[data-lang="ko"] .why p{font-family:var(--ui-font);}
 /* "since this post" price receipt */
 .since{
   margin-top:10px;display:inline-flex;align-items:center;gap:7px;
+  flex-wrap:wrap;row-gap:3px;
   font-family:var(--mono-font);font-size:11px;font-weight:600;
   padding:5px 10px;border-radius:8px;border:1px dashed var(--line);
   color:var(--muted);cursor:help;
 }
+/* the badge prices up to two companies; a hairline keeps the pairs apart
+   so "TSMC +4.1% SONY -0.6%" never reads as one four-part number */
+.since .since-one{display:inline-flex;align-items:center;gap:6px;}
+.since .since-one + .since-one{padding-left:8px;border-left:1px solid var(--line);}
 .since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
 .since .since-k-link{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
 .since .since-k-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
@@ -4235,15 +4240,67 @@ function stancePillHtml(item){
    from the article date's close to now, computed from the worker's
    1-year quote. Reference info, clearly labeled as such - not a
    verdict on the author. */
+/* Up to MAIN_KEYS companies, the one the post is most about first.
+   build_data.py computes this on the full three-language text and ships it as
+   _mks; everything below is the fallback for a plain items.json load.
+
+   The fallback used to end at "first company in itemEntities()", and that set
+   is alphabetical: on the Kumamoto earthquake post - headline TSMC, body about
+   its JASM fab, Sony and Fujifilm named once each as neighbouring plants - the
+   badge came out FUJIFILM, because F sorts before S and T. Alphabetical order
+   says nothing about a post. Rank by prominence instead: named in the headline,
+   then how often the body names it, then who is named first. */
+const MAIN_KEYS = 2;
+function itemMainKeys(item){
+  if (item._mks) return item._mks;
+  if (item._mk !== undefined) return item._mk ? [item._mk] : [];
+  const co = k => !!(k && ENTITIES[k] && ENTITIES[k].kind === "company" && ENTITIES[k].ticker);
+  /* an unlisted company still has a price if it has a listed parent:
+     JASM is TSMC's Kumamoto joint venture and is not traded on its own */
+  const listed = (k, seen) => {
+    if (co(k)) return k;
+    const e = ENTITIES[k];
+    if (!e || e.kind !== "company" || (seen = seen || new Set()).has(k)) return null;
+    seen.add(k);
+    return e.parent ? listed(e.parent, seen) : null;
+  };
+  const out = [];
+  const add = k => { if (k && out.indexOf(k) < 0) out.push(k); };
+  if (item.cover) add(listed(item.cover.label));
+  (item.tags || []).forEach(t => add(listed(t)));
+  const rest = [...itemEntities(item)].filter(co).sort();
+  if (rest.length > 1){
+    const tally = text => {
+      const hits = {}, at = {};
+      if (ENT_RE){
+        ENT_RE.lastIndex = 0; let m;
+        while ((m = ENT_RE.exec(text))){
+          const k = ALIAS2KEY[m[0].toLowerCase()];
+          if (!k) continue;
+          hits[k] = (hits[k] || 0) + 1;
+          if (at[k] === undefined) at[k] = m.index;
+        }
+      }
+      return { hits: hits, at: at };
+    };
+    const t = item.title || {}, lang = ["ko", "en", "ja"];
+    const head = tally(lang.map(l => t[l] || "").join("  ")).hits;
+    const body = tally([t, item.gist || {}, item.why || {}]
+      .map(d => lang.map(l => d[l] || "").join("  ")).join("  "));
+    const rank = k => [-(head[k] || 0), -(body.hits[k] || 0),
+                       body.at[k] === undefined ? Infinity : body.at[k]];
+    rest.sort((a, b) => { /* sorted alphabetically first, and sort is stable */
+      const x = rank(a), y = rank(b);
+      return x[0] - y[0] || x[1] - y[1] || x[2] - y[2];
+    });
+  }
+  rest.forEach(add);
+  return (item._mks = out.slice(0, MAIN_KEYS));
+}
 function itemMainKey(item){
   if (item._mk !== undefined) return item._mk;
-  const co = k => k && ENTITIES[k] && ENTITIES[k].kind === "company" && ENTITIES[k].ticker;
-  let k = null;
-  if (item.cover && co(item.cover.label)) k = item.cover.label;
-  if (!k) k = (item.tags || []).find(co) || null;
-  if (!k){ for (const e of itemEntities(item)){ if (co(e)){ k = e; break; } } }
-  item._mk = k;
-  return k;
+  const ks = itemMainKeys(item);
+  return (item._mk = ks.length ? ks[0] : null);
 }
 const Q1Y = {}; /* ticker -> promise of the 1y quote (shared with QR) */
 function quote1y(t){
@@ -4297,21 +4354,36 @@ function tvPillHtml(item, r){
     + ' <b style="color:' + col + '">' + (gap > 0 ? "+" : "") + gap.toFixed(1) + "%</b></span>";
 }
 const SINCE_CACHE = {};
+/* one company's slice of the badge: name + its move since the article date */
+function sinceOneHtml(k, r){
+  const up = r.pct >= 0, safe = k.replace(/'/g, "\\'");
+  return '<span class="since-one">'
+    + '<b class="since-k since-k-link has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + safe + '\')">' + esc(k) + entityTip(k) + '</b>'
+    + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
+    + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b></span>";
+}
 function queueSince(item){
-  const k = itemMainKey(item);
-  if (!k || !COMMENTS_API) return;
-  sinceItem(item).then(r => {
-    if (!r) return;
-    const up = r.pct >= 0, S = STRINGS[LANG];
-    SINCE_CACHE[item.id] = { pct: r.pct, k: k, up: up, cur: r.cur };
+  const keys = itemMainKeys(item);
+  if (!keys.length || !COMMENTS_API) return;
+  /* A post is rarely about exactly one company. Price the two it is most
+     about, so the earthquake post reads "TSMC … Sony" instead of picking one
+     of them and looking like a verdict on that one. A ticker whose quote the
+     worker cannot serve simply drops out; the rest still render. */
+  Promise.all(keys.map(k =>
+    quote1y(ENTITIES[k].ticker)
+      .then(q => ({ k: k, r: sinceCalc(q, item.date) }))
+      .catch(() => ({ k: k, r: null }))
+  )).then(rows => {
+    const ok = rows.filter(x => x.r);
+    if (!ok.length) return;
+    const S = STRINGS[LANG], lead = ok[0];
+    SINCE_CACHE[item.id] = { pct: lead.r.pct, k: lead.k, up: lead.r.pct >= 0, cur: lead.r.cur };
     document.querySelectorAll('.since[data-since="' + item.id + '"]').forEach(el => {
       el.hidden = false;
       el.title = S.sinceTip;
       el.innerHTML = '<span class="since-lb">' + S.sincePost + '</span>'
-        + '<b class="since-k since-k-link has-tip" onmouseenter="loadQuote(\'' + k.replace(/'/g, "\\'") + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + k.replace(/'/g, "\\'") + '\')">' + esc(k) + entityTip(k) + '</b>'
-        + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
-        + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b>"
-        + tvPillHtml(item, r)
+        + ok.map(x => sinceOneHtml(x.k, x.r)).join("")
+        + tvPillHtml(item, lead.r)
         + '<button class="since-share" onclick="event.stopPropagation(); shareSince(\'' + item.id + '\')" aria-label="' + esc(S.share) + '" title="' + esc(S.share) + '"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>';
     });
   });
