@@ -2764,12 +2764,52 @@ html[data-lang="ko"] .ev-label{font-family:var(--ui-font);}
 
 /* ---------- watchlist (followed companies) ---------- */
 #watchSec{position:relative;}
-.watch-nav{position:absolute;top:-3px;right:0;display:flex;gap:6px;z-index:2;}
-.watch-nav button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);
-  background:var(--card);color:var(--text);cursor:pointer;font-size:15px;line-height:1;
-  display:flex;align-items:center;justify-content:center;padding:0 0 2px;}
-.watch-nav button:hover:not(:disabled){background:var(--bg-soft);}
-.watch-nav button:disabled{opacity:.3;cursor:default;}
+/* 2026-07-29 (june): 가로 캐러셀 좌우 이동 버튼(인트로 폰 목업 · 내 브리핑).
+   레일을 .rail-wrap으로 감싸고 버튼을 양쪽 끝 세로 중앙에 띄운다.
+   끝에 닿으면 그쪽 버튼이 비활성화되고, 가로 넘침이 없으면 둘 다 숨는다.
+   데스크톱 전용 — 모바일은 손가락 스와이프가 있으니 화면을 가리지 않는다. */
+.rail-wrap{position:relative;width:100%;}
+.rail-nav{--rn:38px;
+  position:absolute;top:50%;transform:translateY(-50%);z-index:6;
+  width:var(--rn);height:var(--rn);border-radius:50%;padding:0;cursor:pointer;
+  border:1px solid var(--line);background:var(--card);color:var(--text);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(17,18,20,.16);
+  transition:background .15s ease,opacity .15s ease;}
+.rail-nav svg{width:calc(var(--rn) * .45);height:calc(var(--rn) * .45);display:block;
+  fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;}
+.rail-nav:hover:not(:disabled){background:var(--bg-soft);}
+.rail-nav:disabled{opacity:.3;cursor:default;box-shadow:none;}
+.rail-nav[hidden]{display:none;}
+.rail-nav.rn-prev{left:2px;}
+.rail-nav.rn-next{right:2px;}
+/* 내 브리핑 레일은 폭이 좁아(≈300px) 버튼이 카드 글자 위에 얹힌다(june 지적). 여기서만
+   배경을 38%로 낮춰 아래 글자가 그대로 읽히게 하고, 화살표에 드롭섀도를 줘 묻히지 않게 한다.
+   blur는 쓰지 않는다 — 글자가 비치긴 해도 못 읽게 된다. hover 96% / 비활성 24%.
+   인트로 폰 목업은 좌우 여백이 넉넉해 글자를 안 가리므로 불투명 유지. */
+#watchSec .rail-nav{--rn:30px;
+  background:rgba(255,255,255,.38);border-color:rgba(17,18,20,.12);box-shadow:none;}
+#watchSec .rail-nav svg{filter:drop-shadow(0 0 2px rgba(255,255,255,.9));}
+#watchSec .rail-nav:hover:not(:disabled){background:rgba(255,255,255,.96);
+  box-shadow:0 3px 10px rgba(17,18,20,.14);}
+#watchSec .rail-nav:disabled{opacity:.3;background:rgba(255,255,255,.24);}
+html[data-theme="dark"] #watchSec .rail-nav{background:rgba(20,21,25,.38);
+  border-color:rgba(255,255,255,.14);}
+html[data-theme="dark"] #watchSec .rail-nav svg{filter:drop-shadow(0 0 2px rgba(0,0,0,.9));}
+html[data-theme="dark"] #watchSec .rail-nav:hover:not(:disabled){background:rgba(20,21,25,.96);
+  box-shadow:0 3px 10px rgba(0,0,0,.45);}
+html[data-theme="dark"] #watchSec .rail-nav:disabled{opacity:.3;background:rgba(20,21,25,.24);}
+.icards-wrap .rail-nav{--rn:46px;}
+/* 래퍼는 flex 아이템이라 자식의 margin-top이 상쇄되지 않는다 — 그대로 두면 래퍼가
+   40px 더 커져서 버튼의 세로 중앙이 폰 목업 중앙보다 20px 위로 뜬다. 여백을 래퍼로 옮긴다. */
+.icards-wrap{margin-top:40px;}
+.icards-wrap > .intro-cards{margin-top:0;}
+@media (max-height:720px){ .icards-wrap{margin-top:26px;} }
+/* 레일 하단 패딩이 상단보다 크다 → 카드/폰 중앙이 스크롤 박스 중앙보다 그만큼 위에 있다 */
+#watchSec .rail-nav{top:calc(50% - 6px);}
+.icards-wrap .rail-nav{top:calc(50% - 5px);}
+html[data-theme="dark"] .rail-nav{box-shadow:0 6px 18px rgba(0,0,0,.5);}
+@media (max-width:1023px){ .rail-nav{display:none !important;} }
 .watch-rail{display:flex;gap:12px;overflow-x:auto;padding:2px 2px 14px;}
 .watch-rail::-webkit-scrollbar{display:none;}
 .watch-card{
@@ -6644,42 +6684,65 @@ function watchUnreadCount(key){
      · 한쪽이 75% 이상               → 쏠림
      · 그 외                        → 갈림                                  */
 /* 내 브리핑 카드가 옆으로 넘어간다는 표시가 아무것도 없었다(스크롤바도 숨김).
-   가로로 넘칠 때만 좌우 버튼을 제목 줄 오른쪽에 붙인다. 세로 배치에서는 가로
-   넘침이 없으므로 버튼이 스스로 사라진다. */
-function ensureWatchNav(sec, rail){
-  let nav = document.getElementById("watchNav");
-  if (!nav){
-    nav = document.createElement("div");
-    nav.id = "watchNav";
-    nav.className = "watch-nav";
-    nav.innerHTML = '<button type="button" data-d="-1" aria-label="prev">&#8249;</button>' +
-                    '<button type="button" data-d="1" aria-label="next">&#8250;</button>';
-    nav.addEventListener("click", e => {
-      const btn = e.target.closest("button"); if (!btn) return;
-      rail.scrollBy({ left: (+btn.dataset.d) * Math.max(150, rail.clientWidth - 60), behavior: "smooth" });
-    });
-    sec.insertBefore(nav, sec.firstChild);
-    rail.addEventListener("scroll", () => paintWatchNav(rail), { passive: true });
-    window.addEventListener("resize", () => paintWatchNav(rail));
-    /* the section is often still laying out (or hidden) when renderWatch runs,
-       so a same-tick measurement reads 0 and hides the buttons forever */
-    if (window.ResizeObserver){
-      const ro = new ResizeObserver(() => paintWatchNav(rail));
-      ro.observe(rail);
-    }
+   2026-07-29 (june): 제목 줄 오른쪽에 붙어 있던 작은 버튼을 걷어내고, 레일 양쪽 끝
+   세로 중앙에 뜨는 원형 버튼으로 바꾼다. 인트로 폰 목업 캐러셀과 같은 장치를 쓴다.
+   가로 넘침이 없으면(세로 배치 등) 버튼이 스스로 사라진다. */
+var RAIL_SVG_PREV = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4.5 7.5 12 15 19.5"/></svg>';
+var RAIL_SVG_NEXT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5 16.5 12 9 19.5"/></svg>';
+/* 레일을 position:relative 래퍼로 감싼다(이미 감싸져 있으면 그대로 쓴다).
+   버튼은 스크롤러 '밖'에 있어야 한다 — 안에 넣으면 내용과 같이 스크롤된다. */
+function railWrap(rail){
+  var w = rail.parentNode;
+  if (!w || !w.classList || !w.classList.contains("rail-wrap")){
+    w = document.createElement("div");
+    w.className = "rail-wrap";
+    rail.parentNode.insertBefore(w, rail);
+    w.appendChild(rail);
   }
-  paintWatchNav(rail);
-  requestAnimationFrame(() => paintWatchNav(rail));
-  setTimeout(() => paintWatchNav(rail), 600);
+  return w;
 }
-function paintWatchNav(rail){
-  const nav = document.getElementById("watchNav"); if (!nav) return;
-  const over = rail.scrollWidth > rail.clientWidth + 8;
-  nav.hidden = !over;
-  if (!over) return;
-  const bs = nav.querySelectorAll("button");
-  bs[0].disabled = rail.scrollLeft <= 2;
-  bs[1].disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
+function attachRailNav(rail, step){
+  if (!rail) return;
+  if (rail._railPaint){ rail._railPaint(); return; }
+  var wrap = railWrap(rail);
+  function mk(dir){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "rail-nav " + (dir < 0 ? "rn-prev" : "rn-next");
+    b.setAttribute("aria-label", dir < 0 ? "prev" : "next");
+    b.innerHTML = dir < 0 ? RAIL_SVG_PREV : RAIL_SVG_NEXT;
+    b.addEventListener("click", function(e){
+      e.preventDefault(); e.stopPropagation();
+      rail.scrollBy({ left: dir * Math.max(120, step()), behavior: "smooth" });
+    });
+    wrap.appendChild(b);
+    return b;
+  }
+  var prev = mk(-1), next = mk(1);
+  function paint(){
+    var over = rail.scrollWidth > rail.clientWidth + 8;
+    prev.hidden = !over; next.hidden = !over;
+    if (!over) return;
+    prev.disabled = rail.scrollLeft <= 2;
+    next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
+  }
+  rail.addEventListener("scroll", paint, { passive: true });
+  window.addEventListener("resize", paint);
+  /* 레일이 아직 레이아웃 전(또는 숨김)일 때 재면 0이 나와 버튼이 영영 숨는다 */
+  if (window.ResizeObserver){ new ResizeObserver(paint).observe(rail); }
+  rail._railPaint = paint;
+  paint();
+  requestAnimationFrame(paint);
+  setTimeout(paint, 600);
+}
+function ensureWatchNav(sec, rail){
+  attachRailNav(rail, function(){
+    var c = rail.querySelector(".watch-card");
+    var one = c ? c.getBoundingClientRect().width + 12 : 162;
+    return Math.max(one, rail.clientWidth - 60);
+  });
+  var paint = rail._railPaint;
+  if (paint){ paint(); requestAnimationFrame(paint); setTimeout(paint, 600); }
 }
 
 var BRIEF_MIN_ITEMS = 4, BRIEF_MIN_DIR = 3, BRIEF_LEAN = 0.75;
@@ -6739,7 +6802,9 @@ function renderWatch(){
     bl = document.createElement("div");
     bl.id = "briefLine";
     bl.className = "brief-line";
-    rail.parentNode.insertBefore(bl, rail);
+    /* 레일이 .rail-wrap으로 감싸진 뒤에도 이 두 줄은 섹션 직속이어야 한다 —
+       래퍼 안에 들어가면 좌우 버튼의 세로 중앙이 카드가 아니라 이 텍스트까지 포함해 어긋난다. */
+    sec.insertBefore(bl, rail.parentNode === sec ? rail : rail.parentNode);
   }
   bl.textContent = S.briefSub || S.briefLine.replace("{c}", keys.length).replace("{n}", fresh);
   /* 갈린 것 → 쏠린 것 → 표본이 얇은 것 순. 갈린 쪽이 제일 읽을 값어치가 있다. */
@@ -6786,7 +6851,7 @@ function renderWatch(){
     sg = document.createElement("div");
     sg.id = "watchSugg";
     sg.className = "watch-sugg";
-    rail.parentNode.appendChild(sg);
+    sec.appendChild(sg);
   }
   const sug = followSuggestions(4);
   if (sug.length){
@@ -9891,6 +9956,14 @@ function buildIntroCards(){
   box.innerHTML = '<div class="intro-track">' + phones.map(function(html, idx){
     return '<div class="intro-ph" style="animation-delay:' + (0.09 * idx + 0.12).toFixed(2) + 's">' + html + '</div>';
   }).join("") + '</div>';
+  /* 2026-07-29 (june): 좌우로 넘길 수 있다는 표시가 없었다 → 양쪽 끝 중앙에 원형 버튼.
+     한 번에 폰 한 대(+간격)씩 이동한다. box는 aria-hidden이라 버튼은 래퍼(밖)에 붙는다. */
+  attachRailNav(box, function(){
+    var ps = box.querySelectorAll(".intro-ph");
+    if (ps.length > 1) return ps[1].offsetLeft - ps[0].offsetLeft;
+    return box.clientWidth * 0.7;
+  });
+  if (box.parentNode && box.parentNode.classList) box.parentNode.classList.add("icards-wrap");
 }
 /* leave the intro and open the tapped item */
 function introGo(id){ try { closeIntro(); } catch (e) {} try { goToItem(id); } catch (e) {}
