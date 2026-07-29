@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,12 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://newsletter.doomberg.com/p/old-tapes" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     <span class="paid">$ 元記事は有料購読</span>
   </div>
-  <p class="gist">中国の自動車輸出が象徴的な節目を越え、Doombergはこれを今後AI分野で起きることの予告編として読み解く。中国税関のデータによると、6月の月間自動車輸出台数は初めて100万台を突破し、海外向け出荷全体は27%増加。トランプ関税戦争が続く中でも、昨年記録した約1兆ドルの貿易黒字に匹敵、あるいは上回るペースを維持している。BYDやJaecooといったブランドが、特に欧州で既存の自動車メーカーのシェアを侵食している。一方、国内事情はその逆だ。北京がEV購入補助金を縮小したことで、サウスチャイナ・モーニング・ポストが取材した30代のシェフのような消費者は購入を先送りしており、輸出は好調なのに国内販売はむしろ鈍化している。Doombergが指摘する核心は、この食い違いが偶然ではないという点だ。国内産業を補助金で育てて世界競争力を持たせた後、国内市場を優先事項ではなく調整弁として扱いながら輸出市場を押し進め、海外の競合を締め出す、中国がすでに使ってきたおなじみの産業戦略だという。Doombergが本当に伝えたい警告は、まったく同じ流れが半導体とフロンティアAIモデルでさらに速いペースで再現されつつあるのに、欧米の政策担当者がそれを十分に把握できていないという点だ。ただし、その主張を裏付けるより深い論理はDoombergの有料会員限定部分にある。</p><p class="why"><b>Why it matters</b> · Doombergの言う通り中国がEV輸出の戦略をAI・半導体にも同じように使っているなら（国内補助で育てて輸出で押し込み競合を締め出す）、欧米のAI・半導体における主導権は政策担当者の想定より速く揺らぐ可能性があり、米欧の半導体企業に賭ける投資家にとって見過ごせない点だ。</p><p class="ask"><b>考えるべき点</b> · EV輸出で中国が見せた圧倒は、本当にAI半導体やモデル市場でもそのまま再現されるのか、それとも補助金、関税、ブランドロイヤルティが異なる自動車市場とは違って同じ戦略は通用しないのか。</p>
+  <figure class="srcq"><blockquote cite="https://newsletter.doomberg.com/p/old-tapes" lang="en"><p>First up are reports that the country will soon be exporting cars at a pace greater than America’s entire capacity to make them.</p><p>China’s monthly car ‌exports topped 1m for the first time in June as overall overseas shipments from the world’s second biggest economy rose 27%.</p></blockquote><figcaption class="srcq-c"><a href="https://newsletter.doomberg.com/p/old-tapes" rel="nofollow noopener" target="_blank">Doomberg · 2026.07.22</a></figcaption></figure><p class="gist">中国の自動車輸出が象徴的な節目を越え、Doombergはこれを今後AI分野で起きることの予告編として読み解く。中国税関のデータによると、6月の月間自動車輸出台数は初めて100万台を突破し、海外向け出荷全体は27%増加。トランプ関税戦争が続く中でも、昨年記録した約1兆ドルの貿易黒字に匹敵、あるいは上回るペースを維持している。BYDやJaecooといったブランドが、特に欧州で既存の自動車メーカーのシェアを侵食している。一方、国内事情はその逆だ。北京がEV購入補助金を縮小したことで、サウスチャイナ・モーニング・ポストが取材した30代のシェフのような消費者は購入を先送りしており、輸出は好調なのに国内販売はむしろ鈍化している。Doombergが指摘する核心は、この食い違いが偶然ではないという点だ。国内産業を補助金で育てて世界競争力を持たせた後、国内市場を優先事項ではなく調整弁として扱いながら輸出市場を押し進め、海外の競合を締め出す、中国がすでに使ってきたおなじみの産業戦略だという。Doombergが本当に伝えたい警告は、まったく同じ流れが半導体とフロンティアAIモデルでさらに速いペースで再現されつつあるのに、欧米の政策担当者がそれを十分に把握できていないという点だ。ただし、その主張を裏付けるより深い論理はDoombergの有料会員限定部分にある。</p><p class="why"><b>Why it matters</b> · Doombergの言う通り中国がEV輸出の戦略をAI・半導体にも同じように使っているなら（国内補助で育てて輸出で押し込み競合を締め出す）、欧米のAI・半導体における主導権は政策担当者の想定より速く揺らぐ可能性があり、米欧の半導体企業に賭ける投資家にとって見過ごせない点だ。</p><p class="ask"><b>考えるべき点</b> · EV輸出で中国が見せた圧倒は、本当にAI半導体やモデル市場でもそのまま再現されるのか、それとも補助金、関税、ブランドロイヤルティが異なる自動車市場とは違って同じ戦略は通用しないのか。</p>
   <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>6</b>記事</span><span><b>2</b>方向性コール</span><span class="bl"><b>1</b>強気</span><span class="be"><b>1</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="doomberg-bloom.html">スカンジウムという急所: 空売りレポートがブルームエナジーの「脱中国」を撃った</a><time>07-14</time></li><li><i class="bl">強気</i><a href="doomberg-kilby.html">ガスが入り、データが出る: ついに成立するオフグリッド・プロジェクト</a><time>07-07</time></li></ul><a class="rec-m" href="../../r/doomberg.html" data-app="?l=ja#record-Doomberg">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/doomberg-china-auto-export-ai-playbook.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/doomberg-china-auto-export-ai-playbook.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/byd.html">BYD</a><a class="ent-chip" href="../../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../../e/doomberg.html">Doomberg</a><a class="ent-chip" href="../../e/ev-term.html">EV_TERM</a><a class="ent-chip" href="../../e/k-39ae5a36.html">出荷量</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="doomberg-bloom.html">スカンジウムという急所: 空売りレポートがブルームエナジーの「脱中国」を撃った</a></li></ul></nav>
-  <nav class="latest"><h3>最新記事</h3><ul><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">次のボトルネックはメモリーではなくコンデンサだ、価格はもう3倍に跳ね上がった</a><time>07-28</time></li><li><a href="jukan-jasm-kumamoto-earthquake.html">M7.1地震でTSMC日本工場が避難、同じ半径20キロ圏内にソニー・富士フイルムもあった</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
+  <nav class="latest"><h3>最新記事</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">長期契約のせいで値上がり分を取れないと言われたSKハイニックス、その契約に価格の上限はなかった</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">アジア企業に直接お金を貸すファンドの調達額が12年ぶりの少なさになった。その資金はどこへ行ったのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
   <footer>
     要約・解説はStacksの著作物です。元記事の著作権は原著者に帰属し、各項目は出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は利用者本人にあります。<br>
     <a href="../../">Stacks ホーム</a> · <a href="../../articles.html">記事一覧</a> · <a href="../../about.html">Stacksについて</a> · <a href="../../feed-ja.xml">RSS</a>

@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,12 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://www.netinterest.co/p/too-big-to-succeed" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     <span class="paid">$ 元記事は有料購読</span>
   </div>
-  <p class="gist">マーク・ルビンスタインが、まだ誰にも渡されていない銀行界で最も難しい仕事、すなわちジェイミー・ダイモンの「次」を論じる。ダイモンは70歳で、20年以上JPモルガンを率いてきた。その間に銀行は、誰かに引き継ぐには大きすぎる機械へと静かに育った。彼が来た頃の総資産は約1.2兆ドル、それが今や5兆ドルを突破した。年次報告書は144ページから364ページに膨らみ、従業員は168,847人から320,560人に増えた。銀行が抱えるデリバティブ契約は想定元本でおよそ63.7兆ドル、トレーディング・売却可能証券は5,490億ドル、そして市場価格が存在せず自前でモデル評価するしかない極端に流動性の低いレベル3資産が290億ドルある。国際決済銀行(BIS)はJPモルガンを世界で最も複雑な銀行に格付けする。ダイモンは後任に求める資質、柔軟性、分析力、対人スキル、文化的感度、好奇心、粘り強さ、そして果てしない出張に耐える体力を並べてみせたが、それは職務記述というより、この役職が一人の人間の器を超えてしまったという告白に近い。ルビンスタインの指摘はこうだ。JPモルガンを手強くしている巨大さと複雑さは、そのまま後継が形式ではなく本物のリスクである理由でもある。</p><p class="why"><b>Why it matters</b> · JPモルガンは世界最大・最も複雑な銀行で、その機械を作った男は70歳だ。次のCEOが5兆ドルをまとめられるかは、株や金融セクターを持つ者にとって本物の問いだ。</p><p class="ask"><b>考えるべき点</b> · JPモルガンの巨大さと複雑さは、崩れない堀か、それともいつか噛みつく後継リスクか?</p>
+  <figure class="srcq"><blockquote cite="https://www.netinterest.co/p/too-big-to-succeed" lang="en"><p>Jamie Dimon is 70 years old.</p><p>Yet despite surviving both a heart scare and throat cancer, Dimon is not immortal: he won’t lead the bank forever.</p><p>This month, the board lined up two possible successors and Dimon followed up with a list of qualities they would need to do the job.</p></blockquote><figcaption class="srcq-c"><a href="https://www.netinterest.co/p/too-big-to-succeed" rel="nofollow noopener" target="_blank">Marc Rubinstein · 2026.07.17</a></figcaption></figure><p class="gist">マーク・ルビンスタインが、まだ誰にも渡されていない銀行界で最も難しい仕事、すなわちジェイミー・ダイモンの「次」を論じる。ダイモンは70歳で、20年以上JPモルガンを率いてきた。その間に銀行は、誰かに引き継ぐには大きすぎる機械へと静かに育った。彼が来た頃の総資産は約1.2兆ドル、それが今や5兆ドルを突破した。年次報告書は144ページから364ページに膨らみ、従業員は168,847人から320,560人に増えた。銀行が抱えるデリバティブ契約は想定元本でおよそ63.7兆ドル、トレーディング・売却可能証券は5,490億ドル、そして市場価格が存在せず自前でモデル評価するしかない極端に流動性の低いレベル3資産が290億ドルある。国際決済銀行(BIS)はJPモルガンを世界で最も複雑な銀行に格付けする。ダイモンは後任に求める資質、柔軟性、分析力、対人スキル、文化的感度、好奇心、粘り強さ、そして果てしない出張に耐える体力を並べてみせたが、それは職務記述というより、この役職が一人の人間の器を超えてしまったという告白に近い。ルビンスタインの指摘はこうだ。JPモルガンを手強くしている巨大さと複雑さは、そのまま後継が形式ではなく本物のリスクである理由でもある。</p><p class="why"><b>Why it matters</b> · JPモルガンは世界最大・最も複雑な銀行で、その機械を作った男は70歳だ。次のCEOが5兆ドルをまとめられるかは、株や金融セクターを持つ者にとって本物の問いだ。</p><p class="ask"><b>考えるべき点</b> · JPモルガンの巨大さと複雑さは、崩れない堀か、それともいつか噛みつく後継リスクか?</p>
   <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>4</b>記事</span><span><b>1</b>方向性コール</span><span class="be"><b>1</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="netinterest-stretch.html">カネはどこへ行ったのか: セイラーがビットコイン下落の犯人にAIを名指し</a><time>07-03</time></li></ul><a class="rec-m" href="../../r/netinterest.html" data-app="?l=ja#record-Marc%20Rubinstein%20%28Net%20Interest%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/netinterest-jpm-succession.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/netinterest-jpm-succession.html" hreflang="en" lang="en">English</a></nav>
-  <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/jpmorgan.html">JPMORGAN</a><a class="ent-chip" href="../../e/marc-rubinstein-net-interest.html">Marc Rubinstein (Net Interest)</a><a class="ent-chip" href="../../e/liquidity.html">流動性</a><a class="ent-chip" href="../../e/jamie-dimon.html">ジェイミー・ダイモン</a></div></nav>
+  <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/bis.html">BIS</a><a class="ent-chip" href="../../e/jpmorgan.html">JPMORGAN</a><a class="ent-chip" href="../../e/marc-rubinstein-net-interest.html">Marc Rubinstein (Net Interest)</a><a class="ent-chip" href="../../e/liquidity.html">流動性</a><a class="ent-chip" href="../../e/jamie-dimon.html">ジェイミー・ダイモン</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="netinterest-nse.html">世界で最も稼ぐ取引所が売る商品: 規制当局が減らしたがっているもの</a></li><li><a href="netinterest-stretch.html">カネはどこへ行ったのか: セイラーがビットコイン下落の犯人にAIを名指し</a></li></ul></nav>
-  <nav class="latest"><h3>最新記事</h3><ul><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">次のボトルネックはメモリーではなくコンデンサだ、価格はもう3倍に跳ね上がった</a><time>07-28</time></li><li><a href="jukan-jasm-kumamoto-earthquake.html">M7.1地震でTSMC日本工場が避難、同じ半径20キロ圏内にソニー・富士フイルムもあった</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
+  <nav class="latest"><h3>最新記事</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">長期契約のせいで値上がり分を取れないと言われたSKハイニックス、その契約に価格の上限はなかった</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">アジア企業に直接お金を貸すファンドの調達額が12年ぶりの少なさになった。その資金はどこへ行ったのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
   <footer>
     要約・解説はStacksの著作物です。元記事の著作権は原著者に帰属し、各項目は出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は利用者本人にあります。<br>
     <a href="../../">Stacks ホーム</a> · <a href="../../articles.html">記事一覧</a> · <a href="../../about.html">Stacksについて</a> · <a href="../../feed-ja.xml">RSS</a>

@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,12 +164,12 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://blog.naver.com/ranto28/224355055064" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     
   </div>
-  <p class="gist">アルファベットが2026年の設備投資(CAPEX)ガイダンスを従来の1,800億~1,900億ドルから1,950億~2,050億ドルに引き上げた。フリーキャッシュフローが初めて赤字に転じたにもかかわらずだ。韓国のブロガー、メルが決算発表当日にカンファレンスコールの内容をまとめた記事で伝えた。彼はこの決算を今週唯一重要な予定と位置づけていた。ハイパースケーラーが現在の水準を超えてAIインフラ投資を続けるかを見極める最初の試金石だったからだ。結果は明確だった。投資は減るどころか増えた。上半期のCAPEXは第1四半期357億ドルに第2四半期449億ドルを加えて806億ドルに達し、新しいガイダンスを満たすには下半期に四半期あたり572億~622億ドルを支出する必要がある。上半期より多く使うということだ。カンファレンスコールでGoogleの最高財務責任者は、自社データセンターを建設する間の橋渡し戦略として第3四半期にサードパーティの計算能力の利用を増やす計画を明らかにし、依然として計算資源が不足している状態でAI需要が非常に強いことも改めて確認した。クラウドの受注残高は第1四半期の4,620億ドルから第2四半期には5,140億ドルへ11.3%増加し、メルはこれをメモリ需要が続いている根拠と見る。ただ、強気派は過去最高の受注残高に注目する一方、弱気派は第1四半期のほぼ倍増に比べ11%は減速と見る余地もあると指摘する。問題は現金だ。営業活動によるキャッシュフロー391億ドルからCAPEX449億ドルを差し引くと、フリーキャッシュフローはマイナス58億ドルとなり、1年前より112億ドル減った。メルの一言コメントはこうだ。Google株主はこのマイナスの数字に不安を覚えるかもしれないが、サムスン電子とSKハイニックスにとっては、顧客がこれからも支出を続けるということなので悪いニュースではない。</p><p class="why"><b>Why it matters</b> · アルファベットはハイパースケーラーのAI投資が加速し続けるかを測る風見鶏であり、フリーキャッシュフローが赤字に転じてもガイダンスを引き上げたことは、サムスン電子・SKハイニックスへ向かうメモリ需要が鈍る兆しではないという、これまでで最も明確なシグナルだ。</p><p class="ask"><b>考えるべき点</b> · Googleはフリーキャッシュフローが初めて赤字に転じてもAI CAPEXガイダンスを引き上げた。キャッシュフローが悪化しても支出を続けるのは、AI需要への自信の表れなのか、それともハイパースケーラーの支出規律に生じた最初のひびなのか。</p>
+  <figure class="srcq"><blockquote cite="https://blog.naver.com/ranto28/224355055064" lang="ko"><p>시장이 우려하는 투자축소는 없었고, 투자를 늘렸다.</p><p>잉여현금흐름이 마이너스로 전환된 상황에서 CAPEX 투자를 늘리겠다고 하니, 구글 주주는 불안하다는 반응이다.</p><p>하지만, 삼성전자와 SK하이닉스 입장에서는 &#x27; 고갱님이 앞으로도 계속 돈을 쓰시겠다 &#x27;고 하니 나쁜 뉴스는 아니다.</p></blockquote><figcaption class="srcq-c"><a href="https://blog.naver.com/ranto28/224355055064" rel="nofollow noopener" target="_blank">메르 · 2026.07.23</a></figcaption></figure><p class="gist">アルファベットが2026年の設備投資(CAPEX)ガイダンスを従来の1,800億~1,900億ドルから1,950億~2,050億ドルに引き上げた。フリーキャッシュフローが初めて赤字に転じたにもかかわらずだ。韓国のブロガー、メルが決算発表当日にカンファレンスコールの内容をまとめた記事で伝えた。彼はこの決算を今週唯一重要な予定と位置づけていた。ハイパースケーラーが現在の水準を超えてAIインフラ投資を続けるかを見極める最初の試金石だったからだ。結果は明確だった。投資は減るどころか増えた。上半期のCAPEXは第1四半期357億ドルに第2四半期449億ドルを加えて806億ドルに達し、新しいガイダンスを満たすには下半期に四半期あたり572億~622億ドルを支出する必要がある。上半期より多く使うということだ。カンファレンスコールでGoogleの最高財務責任者は、自社データセンターを建設する間の橋渡し戦略として第3四半期にサードパーティの計算能力の利用を増やす計画を明らかにし、依然として計算資源が不足している状態でAI需要が非常に強いことも改めて確認した。クラウドの受注残高は第1四半期の4,620億ドルから第2四半期には5,140億ドルへ11.3%増加し、メルはこれをメモリ需要が続いている根拠と見る。ただ、強気派は過去最高の受注残高に注目する一方、弱気派は第1四半期のほぼ倍増に比べ11%は減速と見る余地もあると指摘する。問題は現金だ。営業活動によるキャッシュフロー391億ドルからCAPEX449億ドルを差し引くと、フリーキャッシュフローはマイナス58億ドルとなり、1年前より112億ドル減った。メルの一言コメントはこうだ。Google株主はこのマイナスの数字に不安を覚えるかもしれないが、サムスン電子とSKハイニックスにとっては、顧客がこれからも支出を続けるということなので悪いニュースではない。</p><p class="why"><b>Why it matters</b> · アルファベットはハイパースケーラーのAI投資が加速し続けるかを測る風見鶏であり、フリーキャッシュフローが赤字に転じてもガイダンスを引き上げたことは、サムスン電子・SKハイニックスへ向かうメモリ需要が鈍る兆しではないという、これまでで最も明確なシグナルだ。</p><p class="ask"><b>考えるべき点</b> · Googleはフリーキャッシュフローが初めて赤字に転じてもAI CAPEXガイダンスを引き上げた。キャッシュフローが悪化しても支出を続けるのは、AI需要への自信の表れなのか、それともハイパースケーラーの支出規律に生じた最初のひびなのか。</p>
   <section class="oc oc-pending"><h3>その後どうなったか</h3><p><i>採点待ち</i>アルファベットの2026年第3四半期決算(10月末頃予定)で、フリーキャッシュフローがプラスに戻るか、クラウド受注残高が第2四半期の5,140億ドルを超えて増え続けるかを確認する。</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>31</b>記事</span><span><b>10</b>方向性コール</span><span class="bl"><b>8</b>強気</span><span class="be"><b>2</b>弱気</span><span class="bl"><b>2</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="meru-saudi-tanker-strike-fallout.html">フーシ派、サウジ所有タンカー2隻を名指しで攻撃...5日前の封鎖警告を実行に移す</a><time>07-24</time></li><li><i class="be">弱気</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">コーロン・ティシュジーンのTG-C（インボッサ）、米国第3相試験で主要目標未達。プラセボの方が痛み改善</a><time>07-22</time></li><li><i class="bl">強気</i><a href="meru-houthi-blockade.html">フーシ派、サウジ海上封鎖を宣言、ホルムズに続き原油の最後の迂回路も脅かす</a><time>07-21</time></li></ul><a class="rec-m" href="../../r/meru.html" data-app="?l=ja#record-%EB%A9%94%EB%A5%B4">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/meru-googl-q2-results-korea-impact.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/meru-googl-q2-results-korea-impact.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/per.html">PER</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/guidance.html">ガイダンス</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/meru.html">메르</a><a class="ent-chip" href="../../e/capex.html">設備投資</a><a class="ent-chip" href="../../e/order-backlog.html">受注残高</a><a class="ent-chip" href="../../e/fcf.html">フリーキャッシュフロー</a><a class="ent-chip" href="../../e/capex-b1b4ec.html">設備投資</a><a class="ent-chip" href="../../e/hyperscaler.html">ハイパースケーラー</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="meru-alphabet-q2-capex-test.html">メル：今週のアルファベット決算がAI設備投資サイクルの最初の試金石、利益より「CAPEX」の一行を見よ</a></li><li><a href="serenity-googl-q2-cloud-beat.html">アルファベット第2四半期決算が予想を大幅超過、2026年設備投資ガイダンスを1,950億~2,050億ドルに上方修正</a></li><li><a href="serenity-skhy-arb.html">SKハイニックスADRプレミアム25%、ついに裁定取引と対面: 7月29日に転換開始</a></li></ul></nav>
-  <nav class="latest"><h3>最新記事</h3><ul><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">次のボトルネックはメモリーではなくコンデンサだ、価格はもう3倍に跳ね上がった</a><time>07-28</time></li><li><a href="jukan-jasm-kumamoto-earthquake.html">M7.1地震でTSMC日本工場が避難、同じ半径20キロ圏内にソニー・富士フイルムもあった</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
+  <nav class="latest"><h3>最新記事</h3><ul><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">長期契約のせいで値上がり分を取れないと言われたSKハイニックス、その契約に価格の上限はなかった</a><time>07-29</time></li><li><a href="meru-kumamoto-hinagu-fault-week-of-watch.html">1日で操業を再開したTSMC熊本工場を、まだ安心して見られない理由は?</a><time>07-29</time></li><li><a href="kobeissi-asia-private-credit-12y-low.html">アジア企業に直接お金を貸すファンドの調達額が12年ぶりの少なさになった。その資金はどこへ行ったのか?</a><time>07-28</time></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">営業利益が1年で557%増えたのに、SKハイニックスがコンセンサスを下回った理由は?</a><time>07-28</time></li><li><a href="apple-5-trillion-market-cap-milestone.html">アップルが5兆ドルを超えた本当の理由は、実力より速度だ</a><time>07-28</time></li><li><a href="fcc-china-humanoid-robot-import-ban.html">米国が中国製ロボットを禁じるというニュース、実際の標的はロボットだけではなかった</a><time>07-28</time></li><li><a href="kobeissi-ai-software-index-divergence.html">AIインフラ・セキュリティのソフトウェア指数は今年22%上昇した。業務用ソフトウェア指数はなぜ急落したのか?</a><time>07-28</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
   <footer>
     要約・解説はStacksの著作物です。元記事の著作権は原著者に帰属し、各項目は出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は利用者本人にあります。<br>
     <a href="../../">Stacks ホーム</a> · <a href="../../articles.html">記事一覧</a> · <a href="../../about.html">Stacksについて</a> · <a href="../../feed-ja.xml">RSS</a>
