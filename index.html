@@ -1903,10 +1903,17 @@ html[data-lang="ko"] .why p{font-family:var(--ui-font);}
   padding:5px 10px;border-radius:8px;border:1px dashed var(--line);
   color:var(--muted);cursor:help;
 }
-/* the badge prices up to two companies; a hairline keeps the pairs apart
-   so "TSMC +4.1% SONY -0.6%" never reads as one four-part number */
-.since .since-one{display:inline-flex;align-items:center;gap:6px;}
-.since .since-one + .since-one{padding-left:8px;border-left:1px solid var(--line);}
+/* The badge prices up to MAIN_KEYS companies, so on a narrow card it becomes
+   a wrapping list rather than one line. Each name+move gets its own soft chip:
+   a divider rule would have stranded a hairline at the start of every wrapped
+   row, and without any grouping "TSMC +4.1% SONY -0.6%" reads as one
+   four-part number. The share button takes the free space on its row so it
+   never sits orphaned at the left margin. */
+.since .since-one{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:1px 7px;border-radius:6px;background:rgba(127,127,127,.12);
+}
+.since .since-share{margin-left:auto;}
 .since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
 .since .since-k-link{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
 .since .since-k-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
@@ -4250,7 +4257,7 @@ function stancePillHtml(item){
    badge came out FUJIFILM, because F sorts before S and T. Alphabetical order
    says nothing about a post. Rank by prominence instead: named in the headline,
    then how often the body names it, then who is named first. */
-const MAIN_KEYS = 2;
+const MAIN_KEYS = 4;
 function itemMainKeys(item){
   if (item._mks) return item._mks;
   if (item._mk !== undefined) return item._mk ? [item._mk] : [];
@@ -4365,7 +4372,7 @@ function sinceOneHtml(k, r){
 function queueSince(item){
   const keys = itemMainKeys(item);
   if (!keys.length || !COMMENTS_API) return;
-  /* A post is rarely about exactly one company. Price the two it is most
+  /* A post is rarely about exactly one company. Price the few it is most
      about, so the earthquake post reads "TSMC … Sony" instead of picking one
      of them and looking like a verdict on that one. A ticker whose quote the
      worker cannot serve simply drops out; the rest still render. */
