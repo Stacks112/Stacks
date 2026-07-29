@@ -1003,6 +1003,8 @@
      Desktop never reaches this code — the v82 IIFE returns early there. */
   var V82_CB_HOST = null;
   var V82_CB_CHECK = null;
+  var V82_CB_RO = null;
+  var V82_CB_VV = false;
   function v82InlineSheet(){
     var host = $("v82dbody");
     return host ? host.querySelector(".twc-sheet.twc-inline") : null;
@@ -1038,6 +1040,7 @@
     host.hidden = false;
     host.appendChild(sheet);
     V82_CB_HOST = host;
+    v82PinCompBar(sheet);
     /* watchdog: if the section somehow lands empty, mount it once more rather
        than leaving the reader with no way to comment. */
     if (V82_CB_CHECK) { clearTimeout(V82_CB_CHECK); V82_CB_CHECK = null; }
@@ -1051,10 +1054,67 @@
     }
     return true;
   }
+  /* X-style: the composer stays pinned to the bottom of the detail while the
+     article scrolls. Both .card and .twc-sheet carry a transform (entry
+     animations), and a transformed ancestor becomes the containing block for
+     position:fixed — so the bar is parked directly on #v82detail and positioned
+     against that instead. */
+  function v82PinnedBar(){
+    var dt = $("v82detail");
+    return dt ? dt.querySelector(".twc-comp.twc-pinned") : null;
+  }
+  function v82SyncCompBar(){
+    var body = $("v82dbody");
+    if (!body) return;
+    var bar = v82PinnedBar();
+    if (!bar) { body.style.paddingBottom = ""; return; }
+    /* the bar is out of flow, so the article needs room to scroll clear of it */
+    body.style.paddingBottom = ((bar.offsetHeight || 56) + 24) + "px";
+    /* iOS anchors fixed/absolute chrome to the LAYOUT viewport, which the software
+       keyboard covers. Lift the bar by however tall the hidden strip is. */
+    var vv = window.visualViewport;
+    if (vv) {
+      var gap = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+      bar.style.transform = gap ? "translateY(-" + gap + "px)" : "";
+    }
+  }
+  function v82PinCompBar(sheet){
+    var dt = $("v82detail");
+    var bar = sheet && sheet.querySelector(".twc-comp");
+    if (!dt || !bar) return;
+    bar.classList.add("twc-pinned");
+    dt.appendChild(bar);
+    if (window.ResizeObserver) {
+      try {
+        if (!V82_CB_RO) V82_CB_RO = new ResizeObserver(v82SyncCompBar);
+        V82_CB_RO.disconnect();
+        V82_CB_RO.observe(bar);
+      } catch (e) {}
+    }
+    if (window.visualViewport && !V82_CB_VV) {
+      V82_CB_VV = true;
+      window.visualViewport.addEventListener("resize", v82SyncCompBar);
+      window.visualViewport.addEventListener("scroll", v82SyncCompBar);
+    }
+    v82SyncCompBar();
+  }
+  function v82UnpinCompBar(sheet){
+    if (V82_CB_RO) { try { V82_CB_RO.disconnect(); } catch (e) {} }
+    var bar = v82PinnedBar() || document.querySelector(".twc-comp.twc-pinned");
+    var home = sheet || document.querySelector("#twcOv .twc-sheet");
+    if (bar) {
+      bar.classList.remove("twc-pinned");
+      bar.style.transform = "";
+      if (home) home.appendChild(bar);
+    }
+    var body = $("v82dbody");
+    if (body) body.style.paddingBottom = "";
+  }
   function v82UnmountComments(){
     if (V82_CB_CHECK) { clearTimeout(V82_CB_CHECK); V82_CB_CHECK = null; }
     var sheet = document.querySelector(".twc-sheet.twc-inline");
     if (!sheet) { V82_CB_HOST = null; return false; }
+    v82UnpinCompBar(sheet);
     sheet.classList.remove("twc-inline");
     var ov = document.getElementById("twcOv");
     if (ov) ov.appendChild(sheet);
