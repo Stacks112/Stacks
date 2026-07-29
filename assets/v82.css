@@ -401,5 +401,15 @@
      instead. The extra bottom padding clears the home indicator and leaves the last
      card readable even while the bar is animating. */
   html.rbeta #v82detail{height:100dvh;bottom:auto;}
+  /* 2026-07-30: the common CSS caps .card-body at max-height:4000px with
+     overflow:hidden — that ceiling is the EXPANDED state of the "읽음 접기" transition
+     (.card.collapsed .card-body{max-height:0}), not a layout choice. On a long article
+     the mobile detail exceeds it and everything past 4000px — the comment section and
+     함께 읽기 — is clipped away with no way to scroll to it (measured 4602px live on
+     serenity-globalfoundries-us-equity-stake-cpo; the reader saw no comment box at all).
+     The detail view is never collapsed, so drop the ceiling here only. overflow:hidden
+     stays, so nothing new can escape sideways, and feed cards keep the ceiling so the
+     fold animation is untouched. */
+  html.rbeta #v82dbody .card-body{max-height:none;}
   #v82dbody{padding-bottom:calc(46px + env(safe-area-inset-bottom, 0px) + 24px);}
 }
