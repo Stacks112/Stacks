@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,9 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/aleabitoreddit/status/2079089592385610023" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">세레니티가 디지타임스의 리드타임(납기) 데이터를 공급망 지도로 바꿔, AI 하드웨어 각 병목마다 뒤에 있는 상장 기업들을 짚는다. 가장 긴 대기는 약 1년이 걸리는 ABF 기판, 고성능 칩을 떠받치는 수지 필름 기반 층이다. 필름을 대는 아지노모토, 그리고 이비덴·유니마이크론·난야PCB 등이 만든다. HDI 기판과 다층 기판은 6개월 넘게 걸린다(전딩, 빅토리 자이언트, 컴펙, 메이코). 그 아래 동박적층판(CCL)은 6개월 이상에 소재 부족이 &#x27;심각&#x27;한데, 엘리트 머티리얼·성이(生益)부터 소재사인 레조낙, 미쓰이금속(동박), 니토보(유리섬유)까지 공급이 빡빡하다. 수동부품, 즉 MLCC·칩 저항·탄탈·알루미늄 커패시터는 15~20주에서 1년 이상까지 걸리며 무라타·TDK·다이요유덴·야게오·비셰이 등으로 수요가 퍼진다. 세레니티는 단서를 단다. 이들 부품 상당수는 범용과 AI 데이터센터용이 뒤섞여 있어, 모든 부족이 순수 AI 플레이는 아니라는 것. 그래도 이 지도는 칩 헤드라인이 놓치는 지점을 드러낸다. 지금 AI 서버 증설을 가장 옥죄는 제약은 화려하지 않은 층, 즉 기판·보드·수동부품에 있다는 것이다.</p><p class="why"><b>투자 포인트</b> · AI 서버의 가장 큰 제약은 기판·보드·수동부품으로 내려왔다, 화려하진 않지만 납기 1년짜리 이름들이 실제 증설 능력을 가장 깨끗이 보여줄 수 있다.</p><p class="ask"><b>짚어볼 점</b> · 기판·수동부품 업체가 붐비는 칩 종목보다 깨끗한 AI 공급망 베팅일까, 아니면 너무 파편적이고 범용이 섞여 투자하기 어려울까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/aleabitoreddit/status/2079089592385610023" lang="en"><p>Some updates on bottleneck timelines:</p><p>- ABF substrates: 1 year 
+/ eg. Ajinomoto (2802) for ABF film, Ibiden, Unimicron, Nan Ya PCB, etc make the substrates</p><p>- HDI Boards: Over 6 months 
+/ Victory Giant (300476), Zhen Ding (4958), Unimicron, Compeq (2313), Meiko (6787)</p><p>-…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/aleabitoreddit/status/2079089592385610023" rel="nofollow noopener" target="_blank">Serenity (@aleabitoreddit) · 2026.07.20</a></figcaption></figure><p class="gist">세레니티가 디지타임스의 리드타임(납기) 데이터를 공급망 지도로 바꿔, AI 하드웨어 각 병목마다 뒤에 있는 상장 기업들을 짚는다. 가장 긴 대기는 약 1년이 걸리는 ABF 기판, 고성능 칩을 떠받치는 수지 필름 기반 층이다. 필름을 대는 아지노모토, 그리고 이비덴·유니마이크론·난야PCB 등이 만든다. HDI 기판과 다층 기판은 6개월 넘게 걸린다(전딩, 빅토리 자이언트, 컴펙, 메이코). 그 아래 동박적층판(CCL)은 6개월 이상에 소재 부족이 &#x27;심각&#x27;한데, 엘리트 머티리얼·성이(生益)부터 소재사인 레조낙, 미쓰이금속(동박), 니토보(유리섬유)까지 공급이 빡빡하다. 수동부품, 즉 MLCC·칩 저항·탄탈·알루미늄 커패시터는 15~20주에서 1년 이상까지 걸리며 무라타·TDK·다이요유덴·야게오·비셰이 등으로 수요가 퍼진다. 세레니티는 단서를 단다. 이들 부품 상당수는 범용과 AI 데이터센터용이 뒤섞여 있어, 모든 부족이 순수 AI 플레이는 아니라는 것. 그래도 이 지도는 칩 헤드라인이 놓치는 지점을 드러낸다. 지금 AI 서버 증설을 가장 옥죄는 제약은 화려하지 않은 층, 즉 기판·보드·수동부품에 있다는 것이다.</p><p class="why"><b>투자 포인트</b> · AI 서버의 가장 큰 제약은 기판·보드·수동부품으로 내려왔다, 화려하진 않지만 납기 1년짜리 이름들이 실제 증설 능력을 가장 깨끗이 보여줄 수 있다.</p><p class="ask"><b>짚어볼 점</b> · 기판·수동부품 업체가 붐비는 칩 종목보다 깨끗한 AI 공급망 베팅일까, 아니면 너무 파편적이고 범용이 섞여 투자하기 어려울까?</p>
   <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>20</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>10</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="serenity-aaoi-pluggables-cpo-coexist.html">&#x27;포토닉스 CEO&#x27;의 정체는 AAOI가 아니라 레이저 공급사 CEO였다</a><time>07-24</time></li><li><i class="bl">강세</i><a href="serenity-tesla-optimus-earnings-notes.html">테슬라 주가 하루 만에 1,400억달러 증발... 머스크는 실적 콜에서 매출 없는 로봇 얘기만 반복했다</a><time>07-23</time></li><li><i class="bl">강세</i><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a><time>07-22</time></li></ul><a class="rec-m" href="../r/serenity.html" data-app="?l=ko#record-Serenity%20%28%40aleabitoreddit%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/serenity-supply-bottleneck-map.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/serenity-supply-bottleneck-map.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/abf.html">ABF 기판</a><a class="ent-chip" href="../e/ibiden.html">IBIDEN</a><a class="ent-chip" href="../e/micron.html">MICRON</a><a class="ent-chip" href="../e/mlcc.html">MLCC</a><a class="ent-chip" href="../e/murata.html">MURATA</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/taiyo-yuden.html">TAIYO YUDEN</a><a class="ent-chip" href="../e/yageo.html">YAGEO</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a></div></nav>

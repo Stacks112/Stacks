@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/aleabitoreddit/status/2080027058063958323" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">알파벳의 2분기 실적이 월가 예상치를 큰 폭으로 웃돌았고, 회사는 이미 막대했던 2026년 설비투자(CAPEX) 계획을 한 번 더 늘려 잡았다. X 계정 세레니티가 정리한 내용에 따르면, 주당순이익(EPS)은 9.11달러로 예상치 2.91달러를 훌쩍 넘었고, 매출은 1,197억달러로 예상치 1,169.8억달러를 웃돌았다. 구글 클라우드 매출은 전년 대비 82% 늘어난 247.7억달러를 기록해, 시장이 예상한 63~65% 성장률을 크게 앞질렀다. 클라우드 영업이익률은 1분기 32.9%에서 35.6%로 올라갔다. 설비투자는 449.2억달러로 예상치(441.5억달러)에 대략 부합했지만, 회사는 2026년 연간 CAPEX 가이던스를 기존 1,800억~1,900억달러에서 1,950억~2,050억달러로 상향했고, 2027년에는 한 번 더 크게 늘리겠다는 신호도 냈다. 세레니티는 이를 두고 하이퍼스케일러발 신호 중 반도체 등 상류 공급업체들에 가장 긍정적인 신호일 수 있다고 평가했다. 월간 제미나이 이용자는 2월 7억 5,000만명에서 9억 5,000만명으로 늘었고, API 토큰 처리량은 분당 220억개에 달한다. 세레니티는 이 성장 속도가 구글이 컴퓨팅 자원 부족으로 메타 등 고객사에 배정 물량을 줄인 이유를 설명해준다고 짚었다. 클라우드 사업이 가속하면서 마진까지 확대되는 그림은 AI 인프라 투자가 둔화될 기미가 전혀 없다는 뜻이고, 세레니티는 이번 실적발표를 앞두고 $LITE 등 광통신·네트워킹 공급업체들에 좋은 소식이라고 짚었다.</p><p class="why"><b>투자 포인트</b> · 빅테크 중 가장 먼저 실적을 낸 알파벳이 CAPEX 가이던스를 올린 것은 다음 주 발표되는 마이크로소프트·메타·아마존 실적의 기준선이 되며, 2027년까지 이어질 반도체·메모리·광통신 수요를 좌우하는 가장 큰 변수다.</p><p class="ask"><b>짚어볼 점</b> · 이미 막대했던 구글의 AI 투자 계획이 한 번 더 늘었고 클라우드 마진까지 확대됐다. 이게 AI 투자 강세론자들이 기다리던 확인일까, 아니면 완벽을 기대하는 시장이 다음 주 마이크로소프트·메타 실적에서 실망할 여지를 키운 걸까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/aleabitoreddit/status/2080027058063958323" lang="en"><p>$GOOGL reported earnings today:</p><p>EPS: $9.11 actual vs $2.91 expected - retail reactions to EPS blowout is kinda just accounting noise, since $SPCX, Anthropic, and others were likely large contributors.</p><p>Revenue: $119.7B actual vs. $116.98B expected</p><p>Google Cloud Revenue: $24.77B…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/aleabitoreddit/status/2080027058063958323" rel="nofollow noopener" target="_blank">Serenity (@aleabitoreddit) · 2026.07.22</a></figcaption></figure><p class="gist">알파벳의 2분기 실적이 월가 예상치를 큰 폭으로 웃돌았고, 회사는 이미 막대했던 2026년 설비투자(CAPEX) 계획을 한 번 더 늘려 잡았다. X 계정 세레니티가 정리한 내용에 따르면, 주당순이익(EPS)은 9.11달러로 예상치 2.91달러를 훌쩍 넘었고, 매출은 1,197억달러로 예상치 1,169.8억달러를 웃돌았다. 구글 클라우드 매출은 전년 대비 82% 늘어난 247.7억달러를 기록해, 시장이 예상한 63~65% 성장률을 크게 앞질렀다. 클라우드 영업이익률은 1분기 32.9%에서 35.6%로 올라갔다. 설비투자는 449.2억달러로 예상치(441.5억달러)에 대략 부합했지만, 회사는 2026년 연간 CAPEX 가이던스를 기존 1,800억~1,900억달러에서 1,950억~2,050억달러로 상향했고, 2027년에는 한 번 더 크게 늘리겠다는 신호도 냈다. 세레니티는 이를 두고 하이퍼스케일러발 신호 중 반도체 등 상류 공급업체들에 가장 긍정적인 신호일 수 있다고 평가했다. 월간 제미나이 이용자는 2월 7억 5,000만명에서 9억 5,000만명으로 늘었고, API 토큰 처리량은 분당 220억개에 달한다. 세레니티는 이 성장 속도가 구글이 컴퓨팅 자원 부족으로 메타 등 고객사에 배정 물량을 줄인 이유를 설명해준다고 짚었다. 클라우드 사업이 가속하면서 마진까지 확대되는 그림은 AI 인프라 투자가 둔화될 기미가 전혀 없다는 뜻이고, 세레니티는 이번 실적발표를 앞두고 $LITE 등 광통신·네트워킹 공급업체들에 좋은 소식이라고 짚었다.</p><p class="why"><b>투자 포인트</b> · 빅테크 중 가장 먼저 실적을 낸 알파벳이 CAPEX 가이던스를 올린 것은 다음 주 발표되는 마이크로소프트·메타·아마존 실적의 기준선이 되며, 2027년까지 이어질 반도체·메모리·광통신 수요를 좌우하는 가장 큰 변수다.</p><p class="ask"><b>짚어볼 점</b> · 이미 막대했던 구글의 AI 투자 계획이 한 번 더 늘었고 클라우드 마진까지 확대됐다. 이게 AI 투자 강세론자들이 기다리던 확인일까, 아니면 완벽을 기대하는 시장이 다음 주 마이크로소프트·메타 실적에서 실망할 여지를 키운 걸까?</p>
   <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>앞으로 몇 주 안에 $LITE 등 광통신·네트워킹 공급업체들이 구글의 CAPEX 상향에 힘입어 오르는지, 다음 주 실적을 발표하는 마이크로소프트·메타도 같은 투자 확대 기조를 보이는지 확인한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>20</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>10</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="serenity-aaoi-pluggables-cpo-coexist.html">&#x27;포토닉스 CEO&#x27;의 정체는 AAOI가 아니라 레이저 공급사 CEO였다</a><time>07-24</time></li><li><i class="bl">강세</i><a href="serenity-tesla-optimus-earnings-notes.html">테슬라 주가 하루 만에 1,400억달러 증발... 머스크는 실적 콜에서 매출 없는 로봇 얘기만 반복했다</a><time>07-23</time></li><li><i class="bl">강세</i><a href="serenity-kioxia-samsung-memory-rally.html">키옥시아 17% 급등, 삼성도 6%대... 메모리·광통신·네오클라우드까지 AI 랠리 확산</a><time>07-21</time></li></ul><a class="rec-m" href="../r/serenity.html" data-app="?l=ko#record-Serenity%20%28%40aleabitoreddit%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/serenity-googl-q2-cloud-beat.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/serenity-googl-q2-cloud-beat.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/meta.html">META</a><a class="ent-chip" href="../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../e/per.html">PER</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/token.html">TOKEN</a><a class="ent-chip" href="../e/guidance.html">가이던스</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/operating-margin.html">영업이익률</a><a class="ent-chip" href="../e/eps.html">주당순이익</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>

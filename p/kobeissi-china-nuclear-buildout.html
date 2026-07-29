@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079690884300296389" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">중국이 신규 원자력발전소 건설에서 나머지 세계를 압도적으로 앞서고 있다. 코베이시에 따르면 현재 중국이 짓고 있는 원자로는 39기로, 그 뒤를 잇는 12개국을 모두 합친 것보다 많다. 2위와 3위인 인도와 러시아는 각각 8기, 7기로 중국의 절반에도 못 미친다. 속도도 압도적이다. 중국의 건설 중인 원자로는 착공 후 평균 약 2.8년이 지났는데, 전세계 평균은 5.8년이나 걸린다. 인도의 22년, 브라질의 16년짜리 장기 지연 프로젝트들이 전세계 평균을 끌어올린 탓이다. 반면 미국은 현재 짓고 있는 대형 상업용 원자로가 단 한 기도 없다. 이런 건설 붐은 베이징이 에너지 인프라를 허가 절차에 오래 매이는 사업이 아니라 빠르게 규모를 키워야 할 전략자산으로 다루는 익숙한 패턴과 맞닿아 있다. 동시에 AI 데이터센터와 전기화 수요가 전세계 전력망을 압박하면서, 각국 전력회사들이 안정적으로 24시간 돌아가는 전원을 찾아 나서는 시점과도 맞물린다. 이 속도가 유지된다면 중국은 앞으로 수년간 우라늄 수요, 원전 기술 수출, 원전 공급망 전반에서 압도적인 영향력을 쥐게 되는 반면 서방은 여전히 자국 원전 재가동 속도를 놓고 논쟁 중이다.</p><p class="why"><b>투자 포인트</b> · 이렇게 압도적인 원전 건설 격차는 앞으로 10년간 우라늄 수요와 원전 수출을 누가 쥐게 될지를 보여주는 지표이자, AI발 전력수요가 계속 늘어나는데도 서방이 기저전원 확보를 얼마나 느리게 다뤄왔는지를 드러낸다.</p><p class="ask"><b>짚어볼 점</b> · 중국이 이 속도로 원전을 계속 짓고 미국은 단 한 기도 짓지 않는 상황이 이어진다면, 서방은 결국 자국 원전 재가동을 서두르게 될까, 아니면 재생에너지와 가스가 그 공백을 메우게 될까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079690884300296389" lang="en"><p>China is leading the global nuclear race:</p><p>China now has 39 nuclear reactors under construction, more than the next 12 countries combined.</p><p>This is followed by India and Russia, at 8 and 7, respectively, less than half of China&#x27;s total combined.</p><p>China also has a much younger…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079690884300296389" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.21</a></figcaption></figure><p class="gist">중국이 신규 원자력발전소 건설에서 나머지 세계를 압도적으로 앞서고 있다. 코베이시에 따르면 현재 중국이 짓고 있는 원자로는 39기로, 그 뒤를 잇는 12개국을 모두 합친 것보다 많다. 2위와 3위인 인도와 러시아는 각각 8기, 7기로 중국의 절반에도 못 미친다. 속도도 압도적이다. 중국의 건설 중인 원자로는 착공 후 평균 약 2.8년이 지났는데, 전세계 평균은 5.8년이나 걸린다. 인도의 22년, 브라질의 16년짜리 장기 지연 프로젝트들이 전세계 평균을 끌어올린 탓이다. 반면 미국은 현재 짓고 있는 대형 상업용 원자로가 단 한 기도 없다. 이런 건설 붐은 베이징이 에너지 인프라를 허가 절차에 오래 매이는 사업이 아니라 빠르게 규모를 키워야 할 전략자산으로 다루는 익숙한 패턴과 맞닿아 있다. 동시에 AI 데이터센터와 전기화 수요가 전세계 전력망을 압박하면서, 각국 전력회사들이 안정적으로 24시간 돌아가는 전원을 찾아 나서는 시점과도 맞물린다. 이 속도가 유지된다면 중국은 앞으로 수년간 우라늄 수요, 원전 기술 수출, 원전 공급망 전반에서 압도적인 영향력을 쥐게 되는 반면 서방은 여전히 자국 원전 재가동 속도를 놓고 논쟁 중이다.</p><p class="why"><b>투자 포인트</b> · 이렇게 압도적인 원전 건설 격차는 앞으로 10년간 우라늄 수요와 원전 수출을 누가 쥐게 될지를 보여주는 지표이자, AI발 전력수요가 계속 늘어나는데도 서방이 기저전원 확보를 얼마나 느리게 다뤄왔는지를 드러낸다.</p><p class="ask"><b>짚어볼 점</b> · 중국이 이 속도로 원전을 계속 짓고 미국은 단 한 기도 짓지 않는 상황이 이어진다면, 서방은 결국 자국 원전 재가동을 서두르게 될까, 아니면 재생에너지와 가스가 그 공백을 메우게 될까?</p>
   <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html" data-app="?l=ko#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-china-nuclear-buildout.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-china-nuclear-buildout.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a></div></nav>

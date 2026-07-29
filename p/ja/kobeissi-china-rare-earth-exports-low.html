@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079746249067245824" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     
   </div>
-  <p class="gist">中国から米国への希土類磁石の輸出が、ここ数年で最も低調な水準に落ち込んでいるとコベイシ・レターがデータを指摘した。2026年上半期の月平均輸出量は479トンで、このペースが続けば2021年以来、年間月平均で最低を記録する見通しだ。これは2022年から2024年の月平均586トンより約22パーセント低い水準となる。希土類磁石は電気自動車のモーター、産業用ロボット、風力タービン、ミサイル誘導装置などの防衛関連機器に使われる、小さいながら不可欠な部品で、中国が世界生産の90パーセント以上を握る。この低調な流れは、昨年10月にトランプ大統領と習近平国家主席が貿易戦争を一時休戦し、中国が希土類磁石の供給を維持すると約束したこととは対照的だ。約束と実際の輸出データの間のこの差は、休戦後も中国が意図的にせよ行政手続き上の摩擦にせよ、輸出規制を依然としててこに使っていることを示唆する。米国の製造業者にとっては、この供給不足が中国以外での代替供給網構築と重要鉱物の備蓄拡大の必要性を後押しする根拠になり続けている。</p><p class="why"><b>Why it matters</b> · 貿易休戦後も希土類の流れが改善しないのは、中国がまだ主導権を握っているというサインだ。防衛・EV・代替希土類サプライチェーン関連銘柄全般に影響する。</p><p class="ask"><b>考えるべき点</b> · 休戦の約束にもかかわらず希土類輸出が改善しないのは、中国の意図的なてこ入れか、それとも単なる行政上の遅れか。</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079746249067245824" lang="en"><p>China&#x27;s rare-earth exports to the US remain critically low:</p><p>China&#x27;s monthly exports of rare-earth magnets to the US averaged 479 tons in H1 2026, on track for the lowest annual monthly average since 2021.</p><p>By comparison, exports averaged 586 tons between 2022 and 2024, ~22%…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079746249067245824" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.22</a></figcaption></figure><p class="gist">中国から米国への希土類磁石の輸出が、ここ数年で最も低調な水準に落ち込んでいるとコベイシ・レターがデータを指摘した。2026年上半期の月平均輸出量は479トンで、このペースが続けば2021年以来、年間月平均で最低を記録する見通しだ。これは2022年から2024年の月平均586トンより約22パーセント低い水準となる。希土類磁石は電気自動車のモーター、産業用ロボット、風力タービン、ミサイル誘導装置などの防衛関連機器に使われる、小さいながら不可欠な部品で、中国が世界生産の90パーセント以上を握る。この低調な流れは、昨年10月にトランプ大統領と習近平国家主席が貿易戦争を一時休戦し、中国が希土類磁石の供給を維持すると約束したこととは対照的だ。約束と実際の輸出データの間のこの差は、休戦後も中国が意図的にせよ行政手続き上の摩擦にせよ、輸出規制を依然としててこに使っていることを示唆する。米国の製造業者にとっては、この供給不足が中国以外での代替供給網構築と重要鉱物の備蓄拡大の必要性を後押しする根拠になり続けている。</p><p class="why"><b>Why it matters</b> · 貿易休戦後も希土類の流れが改善しないのは、中国がまだ主導権を握っているというサインだ。防衛・EV・代替希土類サプライチェーン関連銘柄全般に影響する。</p><p class="ask"><b>考えるべき点</b> · 休戦の約束にもかかわらず希土類輸出が改善しないのは、中国の意図的なてこ入れか、それとも単なる行政上の遅れか。</p>
   <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>46</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">マージン負債1.5兆ドルで過去最高、しかもその多くはAIレバレッジETFに集中している</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETFに8800億ドルが流入したというが、その資金は本当に確信から来ているのか?</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-intel-erases-rally.html">インテルの110億ドル赤字の本当の理由は、自社株価が上がったことだった</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=ja#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-china-rare-earth-exports-low.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-china-rare-earth-exports-low.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../../e/ev-term.html">EV_TERM</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/xi-jinping.html">Xi Jinping</a><a class="ent-chip" href="../../e/guidance.html">ガイダンス</a><a class="ent-chip" href="../../e/leverage.html">レバレッジ</a><a class="ent-chip" href="../../e/rare-earth.html">レアアース</a></div></nav>

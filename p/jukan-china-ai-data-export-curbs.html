@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/jukan05/status/2079424458075279484" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">중국 상무부가 알리바바, 바이트댄스, 즈푸AI(智谱AI) 등 주요 중국 AI 기업들과 AI 모델 학습에 쓰이는 핵심 데이터의 해외 이전을 제한하는 방안을 논의했다고, 반도체 애널리스트 주칸이 전한 파이낸셜타임스 보도가 전한다. 이 논의에는 해외 이용자가 중국 AI 모델의 실제 가중치(weight, 모델을 학습시킨 결과물로, 한번 구하면 누구든 자기 하드웨어에서 똑같은 모델을 돌릴 수 있게 해주는 파라미터 값)를 내려받는 것을 제한하는 방안도 포함된 것으로 전해진다. 다만 보도에 따르면 중국은 해외 고객이 이들 모델과 서비스에 정상적으로 접근하는 것은 계속 허용할 방침이다. 즉 이번 제한은 해외에서의 API 접근이나 상업적 이용 자체를 막는 게 아니라, 학습 데이터와 내려받을 수 있는 모델 파일을 겨냥한다는 뜻이다. 이는 베이징이 자국 AI 산업을 대하는 방식의 변화를 뜻한다. 알리바바의 큐원(Qwen), 즈푸의 GLM 시리즈처럼 자국산 모델을 뒷받침하는 데이터와 가중치를, 이미 시행 중인 민감 기술 수출 제한과 같은 방식으로 보호하겠다는 것이다. 중국 AI 랩들은 그동안 오픈웨이트(누구나 내려받아 쓸 수 있게 공개하는 모델) 모델을 무료로 풀어 전 세계 사용량을 늘려온 터라 이 흐름과는 다소 배치된다. 이 정책이 실제로 시행되면, 딥시크부터 문샷의 Kimi까지 중국 오픈웨이트 모델이 해외 개발자들 사이에서 상당한 인기를 얻고 있는 바로 이 시점에, 중국이 AI 지식재산에 대한 통제를 강화하는 셈이 된다.</p><p class="why"><b>투자 포인트</b> · 중국이 자국 AI 모델을 뒷받침하는 학습 데이터와 다운로드 가능한 가중치를 걸어 잠근다면, 알리바바와 즈푸AI 같은 중국 랩들을 세계적 경쟁자로 만들어준 오픈웨이트 전략이 느려질 수 있다, 동시에 유료 클라우드 서비스 접근 통로는 계속 열어두는 셈이다.</p><p class="ask"><b>짚어볼 점</b> · 중국은 AI 모델 접근은 계속 해외에 팔면서 그 뒤에 있는 데이터와 가중치는 걸어 잠그려 한다. 이건 베이징이 반도체에 이미 해온 것처럼 전략 자산을 보호하는 걸까, 아니면 애초에 중국 AI를 인기 있게 만든 오픈웨이트 전략 자체를 갉아먹는 걸까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2079424458075279484" lang="en"><p>FT: CHINA’S MINISTRY OF COMMERCE HAS DISCUSSED WITH AI COMPANIES, INCLUDING ALIBABA, BYTEDANCE, AND ZHIPU AI, POSSIBLE RESTRICTIONS ON THE OVERSEAS TRANSFER OF KEY DATA USED TO TRAIN AI MODELS, AS WELL AS ON FOREIGN USERS DOWNLOADING MODEL WEIGHTS.</p><p>HOWEVER, CHINA PLANS TO…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2079424458075279484" rel="nofollow noopener" target="_blank">Jukan (@jukan05) · 2026.07.21</a></figcaption></figure><p class="gist">중국 상무부가 알리바바, 바이트댄스, 즈푸AI(智谱AI) 등 주요 중국 AI 기업들과 AI 모델 학습에 쓰이는 핵심 데이터의 해외 이전을 제한하는 방안을 논의했다고, 반도체 애널리스트 주칸이 전한 파이낸셜타임스 보도가 전한다. 이 논의에는 해외 이용자가 중국 AI 모델의 실제 가중치(weight, 모델을 학습시킨 결과물로, 한번 구하면 누구든 자기 하드웨어에서 똑같은 모델을 돌릴 수 있게 해주는 파라미터 값)를 내려받는 것을 제한하는 방안도 포함된 것으로 전해진다. 다만 보도에 따르면 중국은 해외 고객이 이들 모델과 서비스에 정상적으로 접근하는 것은 계속 허용할 방침이다. 즉 이번 제한은 해외에서의 API 접근이나 상업적 이용 자체를 막는 게 아니라, 학습 데이터와 내려받을 수 있는 모델 파일을 겨냥한다는 뜻이다. 이는 베이징이 자국 AI 산업을 대하는 방식의 변화를 뜻한다. 알리바바의 큐원(Qwen), 즈푸의 GLM 시리즈처럼 자국산 모델을 뒷받침하는 데이터와 가중치를, 이미 시행 중인 민감 기술 수출 제한과 같은 방식으로 보호하겠다는 것이다. 중국 AI 랩들은 그동안 오픈웨이트(누구나 내려받아 쓸 수 있게 공개하는 모델) 모델을 무료로 풀어 전 세계 사용량을 늘려온 터라 이 흐름과는 다소 배치된다. 이 정책이 실제로 시행되면, 딥시크부터 문샷의 Kimi까지 중국 오픈웨이트 모델이 해외 개발자들 사이에서 상당한 인기를 얻고 있는 바로 이 시점에, 중국이 AI 지식재산에 대한 통제를 강화하는 셈이 된다.</p><p class="why"><b>투자 포인트</b> · 중국이 자국 AI 모델을 뒷받침하는 학습 데이터와 다운로드 가능한 가중치를 걸어 잠근다면, 알리바바와 즈푸AI 같은 중국 랩들을 세계적 경쟁자로 만들어준 오픈웨이트 전략이 느려질 수 있다, 동시에 유료 클라우드 서비스 접근 통로는 계속 열어두는 셈이다.</p><p class="ask"><b>짚어볼 점</b> · 중국은 AI 모델 접근은 계속 해외에 팔면서 그 뒤에 있는 데이터와 가중치는 걸어 잠그려 한다. 이건 베이징이 반도체에 이미 해온 것처럼 전략 자산을 보호하는 걸까, 아니면 애초에 중국 AI를 인기 있게 만든 오픈웨이트 전략 자체를 갉아먹는 걸까?</p>
   <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>중국 상무부가 앞으로 몇 달 안에 AI 학습 데이터·모델 가중치의 해외 이전 제한을 실제로 공식화하는지, 그리고 이것이 알리바바·바이트댄스·즈푸AI의 향후 오픈웨이트 공개에 영향을 주는지 지켜본다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-china-ai-data-export-curbs.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-china-ai-data-export-curbs.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/alibaba.html">ALIBABA</a><a class="ent-chip" href="../e/bytedance.html">BYTEDANCE</a><a class="ent-chip" href="../e/deepseek.html">DEEPSEEK</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/moonshot-ai.html">MOONSHOT AI</a><a class="ent-chip" href="../e/zhipu-ai.html">ZHIPU AI</a><a class="ent-chip" href="../e/open-weight.html">오픈웨이트</a></div></nav>

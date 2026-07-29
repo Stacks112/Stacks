@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/jukan05/status/2079103447157338422" target="_blank" rel="noopener nofollow">Read the original ↗</a>
     
   </div>
-  <p class="gist">Semiconductor analyst Jukan relays a scoop from Korean industry sources: Samsung, SK hynix and Micron have all pulled back from developing their own controller chips for CXL, or Compute Express Link, a next-generation technology that lets servers pool far more memory. They had invested heavily, so why quit? Jukan points to a cannibalization dilemma. CXL expansion boxes would let data centers add memory more cheaply and flexibly, which risks eating into demand for the commodity DRAM modules (DIMMs) that are the memory makers&#x27; bread and butter. Rather than build the brains of a product that could undercut their core business, the giants are handing that job to specialist fabless designers, Montage Technology, Astera Labs and PrimeMass among them. The retreat is uneven. Micron went first, shutting its in-house effort and adopting a PrimeMass solution that now sits in its own catalog. SK hynix has formally told partners it is stopping, and is redeploying those engineers to processing-in-memory (PIM), a bet it sees as more certain. Samsung is the holdout, keeping an internal controller alive only for research, focused on lower-power LPDDR-based designs. The read-through: the value in CXL controllers may accrue to the fabless names, not the memory titans.</p><p class="why"><b>Why it matters</b> · If controller value shifts to fabless designers, the CXL era may reward names like Astera Labs more than the memory giants themselves.</p><p class="ask"><b>Worth asking</b> · Handing CXL controllers to fabless firms: smart focus, or the memory giants ceding the next platform?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2079103447157338422" lang="en"><p>Memory Big Three Scrap In-House CXL Controller Chip Development</p><p>The world’s three largest memory chipmakers have all halted in-house development of controllers for Compute Express Link (CXL), a next-generation semiconductor technology in which they had invested heavily. The…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2079103447157338422" rel="nofollow noopener" target="_blank">Jukan (@jukan05) · 2026.07.20</a></figcaption></figure><p class="gist">Semiconductor analyst Jukan relays a scoop from Korean industry sources: Samsung, SK hynix and Micron have all pulled back from developing their own controller chips for CXL, or Compute Express Link, a next-generation technology that lets servers pool far more memory. They had invested heavily, so why quit? Jukan points to a cannibalization dilemma. CXL expansion boxes would let data centers add memory more cheaply and flexibly, which risks eating into demand for the commodity DRAM modules (DIMMs) that are the memory makers&#x27; bread and butter. Rather than build the brains of a product that could undercut their core business, the giants are handing that job to specialist fabless designers, Montage Technology, Astera Labs and PrimeMass among them. The retreat is uneven. Micron went first, shutting its in-house effort and adopting a PrimeMass solution that now sits in its own catalog. SK hynix has formally told partners it is stopping, and is redeploying those engineers to processing-in-memory (PIM), a bet it sees as more certain. Samsung is the holdout, keeping an internal controller alive only for research, focused on lower-power LPDDR-based designs. The read-through: the value in CXL controllers may accrue to the fabless names, not the memory titans.</p><p class="why"><b>Why it matters</b> · If controller value shifts to fabless designers, the CXL era may reward names like Astera Labs more than the memory giants themselves.</p><p class="ask"><b>Worth asking</b> · Handing CXL controllers to fabless firms: smart focus, or the memory giants ceding the next platform?</p>
   <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>52</b>posts</span><span><b>28</b>directional calls</span><span class="bl"><b>23</b>Bull</span><span class="be"><b>5</b>Bear</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The rea…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-ai-capex-roi-repricing.html">Why did chip stocks keep falling even after a string of earnings beats?</a><time>07-28</time></li></ul><a class="rec-m" href="../../r/jukan.html" data-app="?l=en#record-Jukan%20%28%40jukan05%29">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/jukan-memory-cxl-controller-exit.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/jukan-memory-cxl-controller-exit.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/astera-labs.html">ASTERA LABS</a><a class="ent-chip" href="../../e/cxl.html">CXL</a><a class="ent-chip" href="../../e/dram.html">DRAM</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/lpddr.html">LPDDR</a><a class="ent-chip" href="../../e/micron.html">MICRON</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/data-center.html">data center</a><a class="ent-chip" href="../../e/fabless.html">fabless</a></div></nav>

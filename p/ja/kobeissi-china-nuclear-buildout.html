@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079690884300296389" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     
   </div>
-  <p class="gist">中国が新規原発建設で世界の他国を圧倒的にリードしている。コベイシによると、現在中国で建設中の原子炉は39基で、これに続く12カ国を合計した数よりも多い。2位のインドと3位のロシアはそれぞれ8基、7基で、中国の半分にも満たない。スピードも際立つ。中国で建設中の原子炉は着工から平均わずか約2.8年しか経っていないのに対し、世界平均は5.8年に達する。インドの22年、ブラジルの16年という長期遅延プロジェクトが世界平均を押し上げている格好だ。一方、米国は現在建設中の大型商業原子炉が一基もない。この建設ラッシュは、北京がエネルギーインフラを許認可に時間のかかる事業ではなく、急いで規模を拡大すべき戦略資産として扱うという、おなじみのパターンと重なる。同時に、AIデータセンターや電化需要が世界の電力網を圧迫する中、各国の電力会社が安定的に稼働し続ける電源を探し求める時期とも一致する。このペースが続けば、中国は今後数年にわたりウラン需要や原発技術の輸出、原発サプライチェーン全体で圧倒的な影響力を握る一方、欧米は自国の原発再稼働のペースを巡っていまだ議論を続けている。</p><p class="why"><b>Why it matters</b> · これほど一方的な原発建設の差は、今後10年間ウラン需要と原発輸出を誰が握るかを示す指標であり、AI由来の電力需要が伸び続ける中で欧米がベースロード電源の確保をいかに後回しにしてきたかを浮き彫りにする。</p><p class="ask"><b>考えるべき点</b> · 中国がこのペースで原発建設を続け、米国が一基も建設していない状況が続けば、欧米は結局自国の原発再稼働を急ぐことになるのか、それとも再生可能エネルギーとガスがその空白を埋めることになるのか。</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079690884300296389" lang="en"><p>China is leading the global nuclear race:</p><p>China now has 39 nuclear reactors under construction, more than the next 12 countries combined.</p><p>This is followed by India and Russia, at 8 and 7, respectively, less than half of China&#x27;s total combined.</p><p>China also has a much younger…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079690884300296389" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.21</a></figcaption></figure><p class="gist">中国が新規原発建設で世界の他国を圧倒的にリードしている。コベイシによると、現在中国で建設中の原子炉は39基で、これに続く12カ国を合計した数よりも多い。2位のインドと3位のロシアはそれぞれ8基、7基で、中国の半分にも満たない。スピードも際立つ。中国で建設中の原子炉は着工から平均わずか約2.8年しか経っていないのに対し、世界平均は5.8年に達する。インドの22年、ブラジルの16年という長期遅延プロジェクトが世界平均を押し上げている格好だ。一方、米国は現在建設中の大型商業原子炉が一基もない。この建設ラッシュは、北京がエネルギーインフラを許認可に時間のかかる事業ではなく、急いで規模を拡大すべき戦略資産として扱うという、おなじみのパターンと重なる。同時に、AIデータセンターや電化需要が世界の電力網を圧迫する中、各国の電力会社が安定的に稼働し続ける電源を探し求める時期とも一致する。このペースが続けば、中国は今後数年にわたりウラン需要や原発技術の輸出、原発サプライチェーン全体で圧倒的な影響力を握る一方、欧米は自国の原発再稼働のペースを巡っていまだ議論を続けている。</p><p class="why"><b>Why it matters</b> · これほど一方的な原発建設の差は、今後10年間ウラン需要と原発輸出を誰が握るかを示す指標であり、AI由来の電力需要が伸び続ける中で欧米がベースロード電源の確保をいかに後回しにしてきたかを浮き彫りにする。</p><p class="ask"><b>考えるべき点</b> · 中国がこのペースで原発建設を続け、米国が一基も建設していない状況が続けば、欧米は結局自国の原発再稼働を急ぐことになるのか、それとも再生可能エネルギーとガスがその空白を埋めることになるのか。</p>
   <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>46</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">マージン負債1.5兆ドルで過去最高、しかもその多くはAIレバレッジETFに集中している</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETFに8800億ドルが流入したというが、その資金は本当に確信から来ているのか?</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-intel-erases-rally.html">インテルの110億ドル赤字の本当の理由は、自社株価が上がったことだった</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=ja#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-china-nuclear-buildout.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-china-nuclear-buildout.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a></div></nav>

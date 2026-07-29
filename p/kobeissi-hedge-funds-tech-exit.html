@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079213251372646426" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">코베이시 레터가 눈에 띄는 포지셔닝 변화를 짚는다. 헤지펀드가 지난 8주 중 6주 동안 미국 정보기술(IT) 주식을 팔았고, 8주 합산 매도 규모는 최소 10년 만에 가장 크다는 것이다. 지난주엔 기술주가 이들 펀드가 가장 많이 판 미국 섹터였다. 그 결과 기술주가 헤지펀드 전체 시장 익스포저에서 차지하는 비중은 2월 이후 최저로 내려갔고, 이 속도라면 이르면 다음 주 5년 만의 최저까지 떨어질 수 있다. 쉽게 말해, 발 빠른 자금이 수년간 시장을 이끌어온 거래에서 발을 빼고 있다. 다만 이것이 방향을 말해주진 않는다. 헤지펀드의 대량 매도는 스마트머니가 AI·기술주 랠리의 열기가 식는다고 본다는 뜻일 수도, 모두가 이미 판 뒤에 반등을 준비하는 &#x27;털린 포지션&#x27;일 수도 있다. 포지셔닝 데이터는 누가 쥐고 있는지를 말할 뿐, 다음에 무슨 일이 벌어질지는 말하지 않는다. 그래도 중요한 이유는 이렇다. 기술주는 지수에서 워낙 큰 비중이라, 가장 활발한 트레이더가 이렇게 강하게 물러서면 그동안 하락 때마다 사주던 매수 주체가 사라지고, 그 지지 없이 밸류에이션을 정당화해야 하는 다가올 대형주 실적의 부담이 커진다.</p><p class="why"><b>투자 포인트</b> · 가장 활발한 트레이더가 시장을 이끌던 거래에서 빠지며, 대형주 실적이 높은 밸류에이션을 증명해야 하는 시점에 믿었던 저가 매수 주체가 사라진다.</p><p class="ask"><b>짚어볼 점</b> · 기록적인 헤지펀드의 기술주 매도, 주도주가 고점을 찍는다는 스마트머니의 경고일까, 아니면 다음 랠리를 부르는 &#x27;털린 포지션&#x27;일까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079213251372646426" lang="en"><p>Hedge funds are dumping US tech stocks at a record pace:</p><p>Hedge funds have sold information technology stocks in 6 of the last 8 weeks.</p><p>This brings total 8-week sales to the largest in at least 10 years.</p><p>Last week alone, technology was the most-sold US sector among hedge funds.…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079213251372646426" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.20</a></figcaption></figure><p class="gist">코베이시 레터가 눈에 띄는 포지셔닝 변화를 짚는다. 헤지펀드가 지난 8주 중 6주 동안 미국 정보기술(IT) 주식을 팔았고, 8주 합산 매도 규모는 최소 10년 만에 가장 크다는 것이다. 지난주엔 기술주가 이들 펀드가 가장 많이 판 미국 섹터였다. 그 결과 기술주가 헤지펀드 전체 시장 익스포저에서 차지하는 비중은 2월 이후 최저로 내려갔고, 이 속도라면 이르면 다음 주 5년 만의 최저까지 떨어질 수 있다. 쉽게 말해, 발 빠른 자금이 수년간 시장을 이끌어온 거래에서 발을 빼고 있다. 다만 이것이 방향을 말해주진 않는다. 헤지펀드의 대량 매도는 스마트머니가 AI·기술주 랠리의 열기가 식는다고 본다는 뜻일 수도, 모두가 이미 판 뒤에 반등을 준비하는 &#x27;털린 포지션&#x27;일 수도 있다. 포지셔닝 데이터는 누가 쥐고 있는지를 말할 뿐, 다음에 무슨 일이 벌어질지는 말하지 않는다. 그래도 중요한 이유는 이렇다. 기술주는 지수에서 워낙 큰 비중이라, 가장 활발한 트레이더가 이렇게 강하게 물러서면 그동안 하락 때마다 사주던 매수 주체가 사라지고, 그 지지 없이 밸류에이션을 정당화해야 하는 다가올 대형주 실적의 부담이 커진다.</p><p class="why"><b>투자 포인트</b> · 가장 활발한 트레이더가 시장을 이끌던 거래에서 빠지며, 대형주 실적이 높은 밸류에이션을 증명해야 하는 시점에 믿었던 저가 매수 주체가 사라진다.</p><p class="ask"><b>짚어볼 점</b> · 기록적인 헤지펀드의 기술주 매도, 주도주가 고점을 찍는다는 스마트머니의 경고일까, 아니면 다음 랠리를 부르는 &#x27;털린 포지션&#x27;일까?</p>
   <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>다음 주 채점: 코베이시가 시사한 속도대로 헤지펀드 기술주 익스포저가 5년 최저로 떨어졌는가?</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html" data-app="?l=ko#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-hedge-funds-tech-exit.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-hedge-funds-tech-exit.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/valuation.html">밸류에이션</a><a class="ent-chip" href="../e/hedge.html">헤지</a></div></nav>

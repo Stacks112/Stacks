@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2078950757421007292" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">코베이시 레터가 장기채 보유자라면 신경 써야 할 숫자를 짚는다. 이번 주 미국 재무부는 30년물 국채를 5.06% 금리에 발행했는데, 이는 2007년 이후 30년물 입찰 중 가장 높은 수준이다. 30년물 금리는 다시 5.00% 위로 올라섰다. 다만 2007년 7월 이후 최고였던 5월 20일의 5.20% 고점보다는 아직 낮다. 규모 감을 잡자면, 같은 만기물이 2022년 초에는 약 2.00%에 발행됐다. 코베이시의 설명은 &#x27;자본을 둘러싼 수급&#x27; 이야기다. 미국의 부채 부담은 계속 커지고, 국채 발행 물량은 많고, 인플레이션 위험은 남아 있으며, 미래 차입 수요에 대한 우려까지 겹쳐 정부가 매수자를 끌어들이려면 더 높은 금리를 줘야 한다. 여기에 새로운 변수가 하나 더 있다. AI 투자 붐이다. 빅테크가 AI 인프라 자금을 대려고 기록적인 규모의 회사채를 찍어내면서, 정부와 &#x27;같은 저축의 풀&#x27;을 놓고 경쟁하고 장기 차입 비용을 모두에게 밀어 올린다. 장기 금리 상승은 주택담보대출, 기업 차환, 주식 밸류에이션으로 번지므로, 건조한 국채 입찰 통계 하나가 채권 데스크 너머로 중요하다. 코베이시의 직설적 정리는 이렇다. 미국의 부채 위기가 심화하고 있다.</p><p class="why"><b>투자 포인트</b> · 정부와 AI에 목마른 빅테크가 같은 저축을 두고 경쟁하면 장기 금리가 모두에게 오르고, 주식 밸류에이션이 그 영향을 받는다.</p><p class="ask"><b>짚어볼 점</b> · 30년물 금리가 2007년 고점에 근접한 지금, 채권시장은 진짜 부채 위기를 반영하는 걸까, 아니면 AI 시대의 차입에 과잉반응하는 걸까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2078950757421007292" lang="en"><p>The cost of financing US debt is rapidly rising:</p><p>On Tuesday, the US sold 30-year Treasury bonds at a 5.06% yield, the highest auction result since 2007.</p><p>At the same time, the 30-year Treasury yield jumped back above 5.00%, though it remains below the May 20th peak of 5.20%, the…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2078950757421007292" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.19</a></figcaption></figure><p class="gist">코베이시 레터가 장기채 보유자라면 신경 써야 할 숫자를 짚는다. 이번 주 미국 재무부는 30년물 국채를 5.06% 금리에 발행했는데, 이는 2007년 이후 30년물 입찰 중 가장 높은 수준이다. 30년물 금리는 다시 5.00% 위로 올라섰다. 다만 2007년 7월 이후 최고였던 5월 20일의 5.20% 고점보다는 아직 낮다. 규모 감을 잡자면, 같은 만기물이 2022년 초에는 약 2.00%에 발행됐다. 코베이시의 설명은 &#x27;자본을 둘러싼 수급&#x27; 이야기다. 미국의 부채 부담은 계속 커지고, 국채 발행 물량은 많고, 인플레이션 위험은 남아 있으며, 미래 차입 수요에 대한 우려까지 겹쳐 정부가 매수자를 끌어들이려면 더 높은 금리를 줘야 한다. 여기에 새로운 변수가 하나 더 있다. AI 투자 붐이다. 빅테크가 AI 인프라 자금을 대려고 기록적인 규모의 회사채를 찍어내면서, 정부와 &#x27;같은 저축의 풀&#x27;을 놓고 경쟁하고 장기 차입 비용을 모두에게 밀어 올린다. 장기 금리 상승은 주택담보대출, 기업 차환, 주식 밸류에이션으로 번지므로, 건조한 국채 입찰 통계 하나가 채권 데스크 너머로 중요하다. 코베이시의 직설적 정리는 이렇다. 미국의 부채 위기가 심화하고 있다.</p><p class="why"><b>투자 포인트</b> · 정부와 AI에 목마른 빅테크가 같은 저축을 두고 경쟁하면 장기 금리가 모두에게 오르고, 주식 밸류에이션이 그 영향을 받는다.</p><p class="ask"><b>짚어볼 점</b> · 30년물 금리가 2007년 고점에 근접한 지금, 채권시장은 진짜 부채 위기를 반영하는 걸까, 아니면 AI 시대의 차입에 과잉반응하는 걸까?</p>
   <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2026년 3분기 말 채점: 미 30년물 국채 금리가 5월 20일 고점 5.20%를 넘어섰는가?</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html" data-app="?l=ko#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-us-debt-financing-cost.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-us-debt-financing-cost.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/yield.html">YIELD</a><a class="ent-chip" href="../e/valuation.html">밸류에이션</a><a class="ent-chip" href="../e/fundraising.html">자금조달</a><a class="ent-chip" href="../e/corporate-bond.html">회사채</a></div></nav>

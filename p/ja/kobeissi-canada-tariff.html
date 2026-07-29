@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079312046923940275" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     
   </div>
-  <p class="gist">トランプ大統領がカナダ産品の一部に50%の追加関税を署名し、30日後に発効する。 コベイシが速報級の通商措置を伝える。トランプ大統領は「貿易上の差別」を理由に、カナダ産品の一部に追加で50%の関税を課す布告に3件署名した。それぞれの布告は、米国が差別的待遇を受けたとする異なるカナダ輸入品群を対象にしている。法的根拠は1930年関税法第338条、近年よく使われる232条や301条ではなく、めったに発動されない古い報復関税条項だ。関税は30日後に発効予定で、8月中旬ごろが実質的な発効日となる。コベイシは対象品目の詳細までは示しておらず、3件の布告が通商関係の異なる部分を切り分けているとするのみで、実際の範囲は布告の全文公開を待つ必要がある。この動きは、TSMCのアリゾナ投資に象徴されるリショアリングと関税を絡めた産業政策がすでに今年のテーマとなっている中、米国の主要な貿易相手国の一つを新たな緊張に巻き込む形となった。関税は対象品目の輸入コストを押し上げるため、中東の供給混乱に由来する原油発インフレ懸念がすでに高まる中で、消費者がガソリン1ガロン4ドル超えを目にしているまさにこのタイミングで、もう一つのコスト圧力が重なることになる。</p><p class="why"><b>Why it matters</b> · めったに使われない1930年代の法律で50%関税を上乗せする措置は、対象カナダ産品の原価を押し上げ、ガソリン価格が4ドルを超えるタイミングで原油発インフレリスクの上に新たな貿易摩擦を積み増す。</p><p class="ask"><b>考えるべき点</b> · 強硬な交渉カードか、原油発インフレ懸念に重なる新たな関税ショックか?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079312046923940275" lang="en"><p>BREAKING: President Trump is imposing an additional 50% tariff on a range of Canadian goods in response to &quot;trade discrimination.&quot;</p><p>Details include:</p><p>1. President Trump signed 3 proclamations today targeting different sets of Canadian imports</p><p>2. The tariffs are targeting…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079312046923940275" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.20</a></figcaption></figure><p class="gist">トランプ大統領がカナダ産品の一部に50%の追加関税を署名し、30日後に発効する。 コベイシが速報級の通商措置を伝える。トランプ大統領は「貿易上の差別」を理由に、カナダ産品の一部に追加で50%の関税を課す布告に3件署名した。それぞれの布告は、米国が差別的待遇を受けたとする異なるカナダ輸入品群を対象にしている。法的根拠は1930年関税法第338条、近年よく使われる232条や301条ではなく、めったに発動されない古い報復関税条項だ。関税は30日後に発効予定で、8月中旬ごろが実質的な発効日となる。コベイシは対象品目の詳細までは示しておらず、3件の布告が通商関係の異なる部分を切り分けているとするのみで、実際の範囲は布告の全文公開を待つ必要がある。この動きは、TSMCのアリゾナ投資に象徴されるリショアリングと関税を絡めた産業政策がすでに今年のテーマとなっている中、米国の主要な貿易相手国の一つを新たな緊張に巻き込む形となった。関税は対象品目の輸入コストを押し上げるため、中東の供給混乱に由来する原油発インフレ懸念がすでに高まる中で、消費者がガソリン1ガロン4ドル超えを目にしているまさにこのタイミングで、もう一つのコスト圧力が重なることになる。</p><p class="why"><b>Why it matters</b> · めったに使われない1930年代の法律で50%関税を上乗せする措置は、対象カナダ産品の原価を押し上げ、ガソリン価格が4ドルを超えるタイミングで原油発インフレリスクの上に新たな貿易摩擦を積み増す。</p><p class="ask"><b>考えるべき点</b> · 強硬な交渉カードか、原油発インフレ懸念に重なる新たな関税ショックか?</p>
   <section class="oc oc-pending"><h3>その後どうなったか</h3><p><i>採点待ち</i>後日採点：この関税が予定通り2026年8月19日頃に実際に発効するか、それとも発効前に交渉で縮小・延期・異議申立てされるかを確認。</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>46</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">マージン負債1.5兆ドルで過去最高、しかもその多くはAIレバレッジETFに集中している</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETFに8800億ドルが流入したというが、その資金は本当に確信から来ているのか?</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-intel-erases-rally.html">インテルの110億ドル赤字の本当の理由は、自社株価が上がったことだった</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=ja#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-canada-tariff.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-canada-tariff.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../../e/section-301.html">SECTION 301</a><a class="ent-chip" href="../../e/tsmc.html">TSMC</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/reshoring.html">リショアリング</a></div></nav>

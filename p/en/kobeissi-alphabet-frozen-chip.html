@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079198142218588589" target="_blank" rel="noopener nofollow">Read the original ↗</a>
     
   </div>
-  <p class="gist">The Kobeissi Letter relays a report from The Information that Alphabet is preparing a new kind of server chip nicknamed a &#x27;frozen&#x27; chip. Instead of loading an AI model onto general-purpose hardware every time, the design bakes the blueprint of its Gemini model directly into the silicon. Freezing the model into the circuits removes a lot of the shuttling of data that normally slows things down, so the same answers come out using far less energy and hardware. Alphabet&#x27;s own engineers reportedly estimate the chip could be six to ten times more efficient than the latest version of its existing AI chip line, the TPU. The catch is flexibility: a frozen chip is fast at running one model but hard to repurpose when the model changes, so it is a bet that Gemini&#x27;s core stays stable long enough to pay back the custom silicon. The bigger picture is that another giant is going deeper into designing its own chips rather than buying more from Nvidia. If Google can serve its AI far cheaper per query, it strengthens the case that the most valuable AI companies will also be chip companies, and it adds one more customer quietly building an alternative to buying every accelerator off the shelf.</p><p class="why"><b>Why it matters</b> · If a frozen chip cuts the cost of serving Gemini six- to tenfold, Alphabet turns model efficiency into a durable cost moat and leans less on Nvidia.</p><p class="ask"><b>Worth asking</b> · Do custom &#x27;frozen&#x27; chips give the model owners a lasting edge, or does baking one model into silicon age badly as models keep changing?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079198142218588589" lang="en"><p>BREAKING: Alphabet, $GOOGL, is planning on launching a new “frozen” chip to run its AI models more efficiently, per The Information.</p><p>Details include:</p><p>1. This new server chip would directly integrate the blueprint of its Gemini AI model</p><p>2. The chip would then enable Alphabet to…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079198142218588589" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.20</a></figcaption></figure><p class="gist">The Kobeissi Letter relays a report from The Information that Alphabet is preparing a new kind of server chip nicknamed a &#x27;frozen&#x27; chip. Instead of loading an AI model onto general-purpose hardware every time, the design bakes the blueprint of its Gemini model directly into the silicon. Freezing the model into the circuits removes a lot of the shuttling of data that normally slows things down, so the same answers come out using far less energy and hardware. Alphabet&#x27;s own engineers reportedly estimate the chip could be six to ten times more efficient than the latest version of its existing AI chip line, the TPU. The catch is flexibility: a frozen chip is fast at running one model but hard to repurpose when the model changes, so it is a bet that Gemini&#x27;s core stays stable long enough to pay back the custom silicon. The bigger picture is that another giant is going deeper into designing its own chips rather than buying more from Nvidia. If Google can serve its AI far cheaper per query, it strengthens the case that the most valuable AI companies will also be chip companies, and it adds one more customer quietly building an alternative to buying every accelerator off the shelf.</p><p class="why"><b>Why it matters</b> · If a frozen chip cuts the cost of serving Gemini six- to tenfold, Alphabet turns model efficiency into a durable cost moat and leans less on Nvidia.</p><p class="ask"><b>Worth asking</b> · Do custom &#x27;frozen&#x27; chips give the model owners a lasting edge, or does baking one model into silicon age badly as models keep changing?</p>
   <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>46</b>posts</span><span><b>23</b>directional calls</span><span class="bl"><b>12</b>Bull</span><span class="be"><b>11</b>Bear</span></div><ul class="rec-l"><li><i class="be">Bear</i><a href="kobeissi-margin-debt-net-credit-record.html">Margin Debt Hit a Record $1.5 Trillion, Much of It Concentrated in AI Leveraged…</a><time>07-25</time></li><li><i class="bl">Bull</i><a href="kobeissi-equity-etf-record-880b.html">US Equity ETFs Just Pulled In a Record $880 Billion. Is That Really Conviction,…</a><time>07-24</time></li><li><i class="be">Bear</i><a href="kobeissi-intel-erases-rally.html">Intel&#x27;s $11 Billion Loss Wasn&#x27;t Restructuring. It Was Intel&#x27;s Own Stock Price G…</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=en#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/kobeissi-alphabet-frozen-chip.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-alphabet-frozen-chip.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/per.html">PER</a><a class="ent-chip" href="../../e/tpu.html">TPU</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/frozen-chip.html">frozen chip</a></div></nav>

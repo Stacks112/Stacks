@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/jukan05/status/2080084993339236358" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     
   </div>
-  <p class="gist">サムスン電機が「大手グローバル企業」とだけ明かした顧客と、MLCC、ほぼすべての電子機器に使われる小さなセラミックコンデンサの長期供給契約を結んだと、半導体アナリストのJukanがXで伝えた。Jukanはこの曖昧な表現が実質的に大手ビッグテックを指すと見て、今回の契約そのものより、それが示す流れに注目する。数年分の数量・価格を事前に約束する長期供給契約(LTA)が、メモリ半導体を超えてMLCCのような受動部品にまで広がっているという点だ。この流れは今年のメモリ市場ですでに顕著だった。SKハイニックスとサムスン電子はLTAを活用し、AI需要が集中する顧客から売上を事前に確保することで、通常の好況・不況の繰り返しから抜け出そうとしてきた。これまで汎用部品として扱われてきたMLCCでも同じ動きが見られるなら、これはビッグテックが部品供給を事前に確保したいという欲求が、最も注目される半導体を超え、サーバーや機器ごとに使われるより地味な部品にまで広がっているサインだとJukanは指摘する。</p><p class="why"><b>Why it matters</b> · ビッグテックがメモリのようにMLCC供給まで事前に固め始めたなら、これはAIハードウェアのサプライチェーン全体で部品不足が広がっているサインだ。これまで汎用サイクルに左右されてきたサムスン電機のような受動部品メーカーにも、より安定した売上が期待できるという意味になる。</p><p class="ask"><b>考えるべき点</b> · MLCCのような汎用部品まで長期契約で固定される流れが続けば、これまでサイクル株として扱われてきた部品メーカーの評価も、メモリのように構造的成長株として見直されるべきだろうか。</p>
+  <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2080084993339236358" lang="en"><p>Samsung Electro-Mechanics announced an MLCC supply agreement today, and what stands out is that it identified the counterparty only as a “large global company.”</p><p>You know what that implies: MLCCs are now becoming subject to LTAs with Big Tech companies as well.</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2080084993339236358" rel="nofollow noopener" target="_blank">Jukan (@jukan05) · 2026.07.23</a></figcaption></figure><p class="gist">サムスン電機が「大手グローバル企業」とだけ明かした顧客と、MLCC、ほぼすべての電子機器に使われる小さなセラミックコンデンサの長期供給契約を結んだと、半導体アナリストのJukanがXで伝えた。Jukanはこの曖昧な表現が実質的に大手ビッグテックを指すと見て、今回の契約そのものより、それが示す流れに注目する。数年分の数量・価格を事前に約束する長期供給契約(LTA)が、メモリ半導体を超えてMLCCのような受動部品にまで広がっているという点だ。この流れは今年のメモリ市場ですでに顕著だった。SKハイニックスとサムスン電子はLTAを活用し、AI需要が集中する顧客から売上を事前に確保することで、通常の好況・不況の繰り返しから抜け出そうとしてきた。これまで汎用部品として扱われてきたMLCCでも同じ動きが見られるなら、これはビッグテックが部品供給を事前に確保したいという欲求が、最も注目される半導体を超え、サーバーや機器ごとに使われるより地味な部品にまで広がっているサインだとJukanは指摘する。</p><p class="why"><b>Why it matters</b> · ビッグテックがメモリのようにMLCC供給まで事前に固め始めたなら、これはAIハードウェアのサプライチェーン全体で部品不足が広がっているサインだ。これまで汎用サイクルに左右されてきたサムスン電機のような受動部品メーカーにも、より安定した売上が期待できるという意味になる。</p><p class="ask"><b>考えるべき点</b> · MLCCのような汎用部品まで長期契約で固定される流れが続けば、これまでサイクル株として扱われてきた部品メーカーの評価も、メモリのように構造的成長株として見直されるべきだろうか。</p>
   <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>52</b>記事</span><span><b>28</b>方向性コール</span><span class="bl"><b>23</b>強気</span><span class="be"><b>5</b>弱気</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">サムスン電機がMLCC価格を30%引き上げると通知した、理由に挙げたのは原材料ではなかった</a><time>07-28</time></li><li><i class="bl">強気</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">次のボトルネックはメモリーではなくコンデンサだ、価格はもう3倍に跳ね上がった</a><time>07-28</time></li><li><i class="bl">強気</i><a href="jukan-ai-capex-roi-repricing.html">決算サプライズが続いたのに、なぜ半導体株はさらに売られたのか?</a><time>07-28</time></li></ul><a class="rec-m" href="../../r/jukan.html" data-app="?l=ja#record-Jukan%20%28%40jukan05%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-samsung-elec-mechanics-mlcc-lta.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-samsung-elec-mechanics-mlcc-lta.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/lta.html">LTA</a><a class="ent-chip" href="../../e/mlcc.html">MLCC</a><a class="ent-chip" href="../../e/samsung-electro-mechanics.html">SAMSUNG ELECTRO-MECHANICS</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a></div></nav>

@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/jukan05/status/2079783992270971262" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">삼성전자가 프랑스 인공지능(AI) 스타트업 미스트랄AI에 최대 10억 유로를 투자하는 방안을 논의 중이라고 파이낸셜타임스(FT)가 보도했다. 이번 라운드에서 미스트랄의 기업가치는 200억 유로로 매겨질 전망인데, 이는 채 1년도 안 된 시점에 네덜란드 반도체 장비업체 ASML이 주도한 라운드에서 매겨진 120억 유로의 약 두 배다. 삼성전자는 이미 자사 벤처투자 부문을 통해 미스트랄에 투자한 이력이 있어, 이번이 첫 베팅은 아니다. 이번 라운드에는 EQT의 스케일업유럽 펀드, 노보홀딩스, 산탄데르 등도 참여하는 것으로 알려졌다. 2023년 설립된 미스트랄은 미국 클라우드 업체에 의존하지 않고도 구동할 수 있는 오픈웨이트 거대언어모델(LLM)을 만들며, 유럽을 대표하는 오픈AI·앤스로픽 대항마로 자리잡았다. 회사는 2026년 말까지 연환산 매출 10억 달러를 넘길 것으로 알려졌다. 이번 투자 논의는 유럽 각국 정부와 기업들이 워싱턴의 통제에서 벗어난 이른바 &#x27;주권 AI&#x27; 구축을 서두르는 가운데 나왔는데, 트럼프 행정부가 앤스로픽의 최신 모델에 대한 해외 접근을 제한한 이후 이런 움직임이 더 급해졌다. 삼성 입장에서는 빠르게 성장하는 모델 기업과 관계를 다지며 기존 반도체·메모리 사업과 함께 유럽 AI 구축 흐름에 발을 걸치는 셈이다.</p><p class="why"><b>투자 포인트</b> · 삼성이 메모리·파운드리를 넘어 유럽 AI 모델 기업 지분까지 쌓으면서, AI 밸류체인의 전방(모델)과 후방(반도체)을 동시에 잡으려는 큰 그림이 드러난다.</p><p class="ask"><b>짚어볼 점</b> · 반도체 강자 삼성이 모델 기업 지분까지 쌓는 건, AI 밸류체인을 앞뒤로 잡으려는 영리한 수일까 아니면 본업과 먼 곳에 돈을 묻는 결정일까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2079783992270971262" lang="en"><p>FT: Samsung in talks to invest in Mistral at a €20 billion valuation</p><p>FT: Samsung, which previously invested in Mistral through its venture capital arm, could invest around €1 billion in this funding round.</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2079783992270971262" rel="nofollow noopener" target="_blank">Jukan (@jukan05) · 2026.07.22</a></figcaption></figure><p class="gist">삼성전자가 프랑스 인공지능(AI) 스타트업 미스트랄AI에 최대 10억 유로를 투자하는 방안을 논의 중이라고 파이낸셜타임스(FT)가 보도했다. 이번 라운드에서 미스트랄의 기업가치는 200억 유로로 매겨질 전망인데, 이는 채 1년도 안 된 시점에 네덜란드 반도체 장비업체 ASML이 주도한 라운드에서 매겨진 120억 유로의 약 두 배다. 삼성전자는 이미 자사 벤처투자 부문을 통해 미스트랄에 투자한 이력이 있어, 이번이 첫 베팅은 아니다. 이번 라운드에는 EQT의 스케일업유럽 펀드, 노보홀딩스, 산탄데르 등도 참여하는 것으로 알려졌다. 2023년 설립된 미스트랄은 미국 클라우드 업체에 의존하지 않고도 구동할 수 있는 오픈웨이트 거대언어모델(LLM)을 만들며, 유럽을 대표하는 오픈AI·앤스로픽 대항마로 자리잡았다. 회사는 2026년 말까지 연환산 매출 10억 달러를 넘길 것으로 알려졌다. 이번 투자 논의는 유럽 각국 정부와 기업들이 워싱턴의 통제에서 벗어난 이른바 &#x27;주권 AI&#x27; 구축을 서두르는 가운데 나왔는데, 트럼프 행정부가 앤스로픽의 최신 모델에 대한 해외 접근을 제한한 이후 이런 움직임이 더 급해졌다. 삼성 입장에서는 빠르게 성장하는 모델 기업과 관계를 다지며 기존 반도체·메모리 사업과 함께 유럽 AI 구축 흐름에 발을 걸치는 셈이다.</p><p class="why"><b>투자 포인트</b> · 삼성이 메모리·파운드리를 넘어 유럽 AI 모델 기업 지분까지 쌓으면서, AI 밸류체인의 전방(모델)과 후방(반도체)을 동시에 잡으려는 큰 그림이 드러난다.</p><p class="ask"><b>짚어볼 점</b> · 반도체 강자 삼성이 모델 기업 지분까지 쌓는 건, AI 밸류체인을 앞뒤로 잡으려는 영리한 수일까 아니면 본업과 먼 곳에 돈을 묻는 결정일까?</p>
   <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-samsung-mistral-investment.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-samsung-mistral-investment.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../e/asml.html">ASML</a><a class="ent-chip" href="../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/mistral.html">MISTRAL</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/valuation.html">밸류에이션</a><a class="ent-chip" href="../e/open-weight.html">오픈웨이트</a><a class="ent-chip" href="../e/foundry.html">파운드리</a></div></nav>

@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/jukan05/status/2079489712071589942" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">TSMC가 2027년 초부터 첨단 공정과 성숙 공정 파운드리 서비스 가격을 모두 최대 10%까지 올릴 계획이라고, 반도체 애널리스트 주칸이 전한 니혼게이자이신문 보도가 전한다. 기본 가격 인상폭은 고객·제품에 따라 5~10% 수준이며, 이번 인상은 최첨단 칩뿐 아니라 TSMC 생산 라인 전반에 걸쳐 적용된다. 고객이 당초 예측치를 넘어서는 고성능컴퓨팅(HPC) 칩 추가 주문을 넣을 경우, 즉 공급을 확보하려는 AI 칩 설계사들 사이에 흔한 막판 물량 요청의 경우, 기본 인상분 위에 10~15%의 추가 프리미엄이 더 붙는다. 가격 협상은 6월에 시작해 7월에 마무리된 것으로 전해져, 새 가격이 아직 논의 중인 단계가 아니라 이미 확정됐다는 뜻이다. TSMC는 원자재, 반도체 제조 장비, 그리고 미국·일본 등 해외 신규 공장 건설 비용 상승을 인상 이유로 들었다. 애플, 엔비디아, AMD의 가장 앞선 칩을 사실상 독점 생산하는 TSMC는 대안이 마땅치 않은 고객들에게 비용 상승분을 꾸준히 전가해 왔고, 이번 인상은 그 가격 결정력이 여전히 커질 여지가 있음을 보여준다.</p><p class="why"><b>투자 포인트</b> · 파운드리 가격 인상은 곧바로 TSMC 마진으로 이어진다, 최첨단 칩을 만들 대안이 마땅치 않은 고객들이 이를 받아들일 수밖에 없기 때문이다. 특히 급한 AI 칩 주문에 붙는 더 가파른 프리미엄은 엔비디아, AMD 등 공급을 다투는 칩 설계사들에 대한 TSMC의 가격 결정력이 얼마나 커졌는지 보여준다.</p><p class="ask"><b>짚어볼 점</b> · TSMC는 기본 5~10% 인상에 더해 급한 AI 칩 주문엔 최대 25%까지 더 받고 있는데도 고객들은 받아들이는 분위기다. 이건 AI 칩 수요가 여전히 비용 상승을 흡수할 만큼 탄탄하다는 신호일까, 아니면 TSMC 고객사들의 마진에 대한 경고 신호일까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2079489712071589942" lang="en"><p>Nikkei: TSMC plans to raise prices for both advanced- and mature-node foundry services by up to 10% in 2027, reflecting higher costs for materials, semiconductor manufacturing equipment, and the construction of new overseas fabs.</p><p>Base price increases will range from 5% to 10%,…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2079489712071589942" rel="nofollow noopener" target="_blank">Jukan (@jukan05) · 2026.07.21</a></figcaption></figure><p class="gist">TSMC가 2027년 초부터 첨단 공정과 성숙 공정 파운드리 서비스 가격을 모두 최대 10%까지 올릴 계획이라고, 반도체 애널리스트 주칸이 전한 니혼게이자이신문 보도가 전한다. 기본 가격 인상폭은 고객·제품에 따라 5~10% 수준이며, 이번 인상은 최첨단 칩뿐 아니라 TSMC 생산 라인 전반에 걸쳐 적용된다. 고객이 당초 예측치를 넘어서는 고성능컴퓨팅(HPC) 칩 추가 주문을 넣을 경우, 즉 공급을 확보하려는 AI 칩 설계사들 사이에 흔한 막판 물량 요청의 경우, 기본 인상분 위에 10~15%의 추가 프리미엄이 더 붙는다. 가격 협상은 6월에 시작해 7월에 마무리된 것으로 전해져, 새 가격이 아직 논의 중인 단계가 아니라 이미 확정됐다는 뜻이다. TSMC는 원자재, 반도체 제조 장비, 그리고 미국·일본 등 해외 신규 공장 건설 비용 상승을 인상 이유로 들었다. 애플, 엔비디아, AMD의 가장 앞선 칩을 사실상 독점 생산하는 TSMC는 대안이 마땅치 않은 고객들에게 비용 상승분을 꾸준히 전가해 왔고, 이번 인상은 그 가격 결정력이 여전히 커질 여지가 있음을 보여준다.</p><p class="why"><b>투자 포인트</b> · 파운드리 가격 인상은 곧바로 TSMC 마진으로 이어진다, 최첨단 칩을 만들 대안이 마땅치 않은 고객들이 이를 받아들일 수밖에 없기 때문이다. 특히 급한 AI 칩 주문에 붙는 더 가파른 프리미엄은 엔비디아, AMD 등 공급을 다투는 칩 설계사들에 대한 TSMC의 가격 결정력이 얼마나 커졌는지 보여준다.</p><p class="ask"><b>짚어볼 점</b> · TSMC는 기본 5~10% 인상에 더해 급한 AI 칩 주문엔 최대 25%까지 더 받고 있는데도 고객들은 받아들이는 분위기다. 이건 AI 칩 수요가 여전히 비용 상승을 흡수할 만큼 탄탄하다는 신호일까, 아니면 TSMC 고객사들의 마진에 대한 경고 신호일까?</p>
   <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2027년 초 TSMC의 새 가격(기본 5~10%, HPC 추가 주문 10~15% 프리미엄)이 보도대로 실제 적용되는지, 고객사들이 어떻게 반응하는지 확인한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-tsmc-foundry-price-hike-2027.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-tsmc-foundry-price-hike-2027.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amd.html">AMD</a><a class="ent-chip" href="../e/apple.html">APPLE</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/tsmc.html">TSMC</a><a class="ent-chip" href="../e/foundry.html">파운드리</a></div></nav>

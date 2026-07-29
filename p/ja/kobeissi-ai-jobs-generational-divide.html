@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079307547610366340" target="_blank" rel="noopener nofollow">元記事を読む ↗</a>
     
   </div>
-  <p class="gist">ChatGPT登場後、米国の新卒ソフトウェア求人は23%減り、シニア職はむしろ増えたという労働データが出た。 コベイシが、これまでほとんど逸話でしか語られてこなかった問い、すなわちAIは実際に若手従業員を代替しているのかという議論に、具体的な数字を突きつける労働データをまとめた。米国のソフトウェア開発者の雇用は、ChatGPTが登場した2022年11月以降、22〜25歳層で23%減少した。26〜30歳層も、幅は小さいが5%減と実質的な減少を示す。同じ期間に41〜49歳の開発者の雇用は18%増加しており、同じ職種内で最も若い層と最も経験豊富な層の間に41ポイントもの差が生まれている。この傾向は企業固有のショックを調整した後でも変わらない。AIの影響を最も受けやすい若手職では、影響の少ない同僚や経験豊富な同僚と比べて雇用が16%減少した一方、AIの影響が少ない分野やシニア層は増加を続けた。投資家にとってこれは二面性を持つ。大規模言語モデルがすでに若手エンジニアが担っていた定型的なコーディング業務を代替しているという実世界のデータであり、セクター全体のバリュエーションを押し上げているAI生産性ストーリーを裏付ける強気材料だ。だが同時に、消費・マクロ面への警告でもある。学歴を持つ若い世代がまるごと最初の職から締め出されるというのは、後になって消費支出や延滞率、そしてその技術への政治的反発として表面化する類の労働市場の傷だ。</p><p class="why"><b>Why it matters</b> · 逸話ではなく実際の労働市場データが、AIが新卒エンジニアを代替していることを示している。これはAI生産性ストーリーの最も明確な証拠かもしれないし、消費支出と政治的反発への早期警告かもしれない。</p><p class="ask"><b>考えるべき点</b> · ChatGPT登場後、新卒コーディング求人が23%減少したのは、AIがすでに生産性の約束を果たしている証拠なのか、それとも次世代の労働者への警告なのか?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2079307547610366340" lang="en"><p>The AI boom is creating a generational divide in software jobs:</p><p>US software developer employment for those aged 22-25 has declined -23% since November 2022, when ChatGPT was launched.</p><p>At the same time, the 26-30 age group has seen a decrease of -5%.</p><p>By comparison, employment…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2079307547610366340" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.07.20</a></figcaption></figure><p class="gist">ChatGPT登場後、米国の新卒ソフトウェア求人は23%減り、シニア職はむしろ増えたという労働データが出た。 コベイシが、これまでほとんど逸話でしか語られてこなかった問い、すなわちAIは実際に若手従業員を代替しているのかという議論に、具体的な数字を突きつける労働データをまとめた。米国のソフトウェア開発者の雇用は、ChatGPTが登場した2022年11月以降、22〜25歳層で23%減少した。26〜30歳層も、幅は小さいが5%減と実質的な減少を示す。同じ期間に41〜49歳の開発者の雇用は18%増加しており、同じ職種内で最も若い層と最も経験豊富な層の間に41ポイントもの差が生まれている。この傾向は企業固有のショックを調整した後でも変わらない。AIの影響を最も受けやすい若手職では、影響の少ない同僚や経験豊富な同僚と比べて雇用が16%減少した一方、AIの影響が少ない分野やシニア層は増加を続けた。投資家にとってこれは二面性を持つ。大規模言語モデルがすでに若手エンジニアが担っていた定型的なコーディング業務を代替しているという実世界のデータであり、セクター全体のバリュエーションを押し上げているAI生産性ストーリーを裏付ける強気材料だ。だが同時に、消費・マクロ面への警告でもある。学歴を持つ若い世代がまるごと最初の職から締め出されるというのは、後になって消費支出や延滞率、そしてその技術への政治的反発として表面化する類の労働市場の傷だ。</p><p class="why"><b>Why it matters</b> · 逸話ではなく実際の労働市場データが、AIが新卒エンジニアを代替していることを示している。これはAI生産性ストーリーの最も明確な証拠かもしれないし、消費支出と政治的反発への早期警告かもしれない。</p><p class="ask"><b>考えるべき点</b> · ChatGPT登場後、新卒コーディング求人が23%減少したのは、AIがすでに生産性の約束を果たしている証拠なのか、それとも次世代の労働者への警告なのか?</p>
   <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>46</b>記事</span><span><b>23</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>11</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">マージン負債1.5兆ドルで過去最高、しかもその多くはAIレバレッジETFに集中している</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETFに8800億ドルが流入したというが、その資金は本当に確信から来ているのか?</a><time>07-24</time></li><li><i class="be">弱気</i><a href="kobeissi-intel-erases-rally.html">インテルの110億ドル赤字の本当の理由は、自社株価が上がったことだった</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=ja#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-ai-jobs-generational-divide.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-ai-jobs-generational-divide.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/valuation.html">バリュエーション</a></div></nav>

@@ -44,6 +44,39 @@ body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo",
 h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
 .gist{color:#3E414B;white-space:pre-line;font-size:16px}
 @media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
 .rec,.oc,.opp{margin-top:26px}
 .rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -131,7 +164,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/aleabitoreddit/status/2078338950150959558" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <p class="gist">AI 인프라 트레이드를 추적하는 X 계정 세레니티가, SK하이닉스 미국 ADR($SKHY)이 같은 회사 한국 주식보다 25% 이상 비싸게 거래되는 현상을 지켜보는 사람들에게 날짜 하나를 짚어준다. 7월 29일부터 ADR과 원주가 서로 전환 가능해진다는 것. 싼 쪽을 사서 전환해 비싼 쪽에 파는 교과서적 차익거래의 문이 열리는 셈이고, 그 과정에서 프리미엄은 좁혀질 가능성이 크다. 한국 주식이 오르거나, 미국 ADR이 눌리거나, 둘 다일 수도 있다. 이 트레이드의 연료가 얼마나 되는지 보여주는 숫자가 하나 있다. 현재 미국 ADR 형태로 존재하는 주식은 전체의 약 2.5%뿐이라, 추가로 22.5%가 전환될 수 있다는 것. 트윗은 또한 한국예탁결제원이 7월 29일부터 원주와 ADR의 상호전환 신청을 받고, 예탁기관인 씨티은행이 발행 한도와 전환을 처리한다는 한국 언론 보도도 인용한다. 요약하면, 하나의 주식이 두 가격에 거래되게 만들던 벽에 드디어 문이 생겼고, 그 문은 2주도 안 남았다.</p><p class="why"><b>투자 포인트</b> · 같은 회사의 두 티커 사이 25% 격차는 막힌 수요의 실시간 계기판이다. 7월 29일은 그 막힘이 뚫리는 날이고, 격차가 얼마나 빨리 닫히는지가 이 차익거래의 실체를 말해준다.</p><p class="ask"><b>짚어볼 점</b> · 7월 29일 전환이 열리면 프리미엄은 빠르게 닫힐까, 의외로 끈질기게 버틸까?</p>
+  <figure class="srcq"><blockquote cite="https://x.com/aleabitoreddit/status/2078338950150959558" lang="en"><p>For anyone watching the 25%+ premium in $SKHY versus SK Hynix&#x27;s Korean shares:</p><p>The ADRs and local shares become convertible on July 29.</p><p>Should open the door for arbitrage and likely compress the ADR premium. Maybe lifting Korean shares or pressuring US shares.</p><p>2.5% currently…</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/aleabitoreddit/status/2078338950150959558" rel="nofollow noopener" target="_blank">Serenity (@aleabitoreddit) · 2026.07.18</a></figcaption></figure><p class="gist">AI 인프라 트레이드를 추적하는 X 계정 세레니티가, SK하이닉스 미국 ADR($SKHY)이 같은 회사 한국 주식보다 25% 이상 비싸게 거래되는 현상을 지켜보는 사람들에게 날짜 하나를 짚어준다. 7월 29일부터 ADR과 원주가 서로 전환 가능해진다는 것. 싼 쪽을 사서 전환해 비싼 쪽에 파는 교과서적 차익거래의 문이 열리는 셈이고, 그 과정에서 프리미엄은 좁혀질 가능성이 크다. 한국 주식이 오르거나, 미국 ADR이 눌리거나, 둘 다일 수도 있다. 이 트레이드의 연료가 얼마나 되는지 보여주는 숫자가 하나 있다. 현재 미국 ADR 형태로 존재하는 주식은 전체의 약 2.5%뿐이라, 추가로 22.5%가 전환될 수 있다는 것. 트윗은 또한 한국예탁결제원이 7월 29일부터 원주와 ADR의 상호전환 신청을 받고, 예탁기관인 씨티은행이 발행 한도와 전환을 처리한다는 한국 언론 보도도 인용한다. 요약하면, 하나의 주식이 두 가격에 거래되게 만들던 벽에 드디어 문이 생겼고, 그 문은 2주도 안 남았다.</p><p class="why"><b>투자 포인트</b> · 같은 회사의 두 티커 사이 25% 격차는 막힌 수요의 실시간 계기판이다. 7월 29일은 그 막힘이 뚫리는 날이고, 격차가 얼마나 빨리 닫히는지가 이 차익거래의 실체를 말해준다.</p><p class="ask"><b>짚어볼 점</b> · 7월 29일 전환이 열리면 프리미엄은 빠르게 닫힐까, 의외로 끈질기게 버틸까?</p>
   <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>20</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>10</b>강세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="serenity-aaoi-pluggables-cpo-coexist.html">&#x27;포토닉스 CEO&#x27;의 정체는 AAOI가 아니라 레이저 공급사 CEO였다</a><time>07-24</time></li><li><i class="bl">강세</i><a href="serenity-tesla-optimus-earnings-notes.html">테슬라 주가 하루 만에 1,400억달러 증발... 머스크는 실적 콜에서 매출 없는 로봇 얘기만 반복했다</a><time>07-23</time></li><li><i class="bl">강세</i><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a><time>07-22</time></li></ul><a class="rec-m" href="../r/serenity.html" data-app="?l=ko#record-Serenity%20%28%40aleabitoreddit%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/serenity-skhy-arb.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/serenity-skhy-arb.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/adr.html">ADR</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/arbitrage.html">차익거래</a></div></nav>
