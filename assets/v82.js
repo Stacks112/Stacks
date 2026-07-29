@@ -1011,9 +1011,19 @@
     if (!card || typeof toggleComments !== "function") return false;
     var host = card.querySelector(".comment-box");
     var id = (card.id || "").replace(/^sig-/, "");
-    var ov = document.getElementById("twcOv");
-    if (!host || !id || !ov) return false;
+    if (!host || !id) return false;
     v82UnmountComments();
+    var ov = document.getElementById("twcOv");
+    if (!ov) {
+      /* twc builds #twcOv lazily on first use, so on the first article opened in
+         a session it does not exist yet. Build it by opening the sheet once and
+         closing it again — closeComments() silentBacks the entry that open just
+         pushed, and __twcSilent keeps that popstate from closing the detail. */
+      try { toggleComments(id); } catch (e) { return false; }
+      try { if (typeof closeComments === "function") closeComments(); } catch (e) {}
+      ov = document.getElementById("twcOv");
+      if (!ov) return false;
+    }
     /* toggleComments pushes a history entry so the back gesture can close the
        full-screen sheet. Inline there is nothing to close and that entry would
        eat one back tap, so we pre-open the overlay: toggleComments then sees
