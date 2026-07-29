@@ -368,4 +368,10 @@
   #v82dbody .twc-sheet.twc-inline .twc-orig{display:none;}
   #v82dbody .twc-sheet.twc-inline .twc-scroll{overflow:visible;max-height:none;height:auto;flex:0 0 auto;}
   #v82dbody .twc-sheet.twc-inline .twc-comp{background:transparent;padding-left:0;padding-right:0;padding-bottom:10px;}
+  /* the quick one-line comment bar (.twin / twInlineSend) is a second composer for
+     the same thread, so hide it in the detail once the full section is actually
+     mounted (.comment-box no longer [hidden]). Guarded by :has() on purpose — if a
+     browser lacks :has(), or the mount failed, the quick bar stays and the reader
+     can still comment. Feed cards keep it. */
+  #v82dbody .card-body:has(> .comment-box:not([hidden])) .twin{display:none;}
 }
