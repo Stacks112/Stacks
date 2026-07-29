@@ -78,7 +78,7 @@ def dispname(x):
 # Article pages inline their CSS, so an unconditional 1.3 KB would land in all
 # 462 of them for the handful of cards that use a check or compare panel.
 BLOCK_CSS = """.gist+.gist{margin-top:1em}
-h2.gsub{font-size:17px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
 .srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
 .srcq blockquote{margin:0;quotes:none}
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
