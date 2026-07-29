@@ -120,6 +120,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -131,7 +149,7 @@ footer a{color:#8E93A0}
   <div class="meta">Howard Marks (Oaktree) · 2026-04-09 · 원문: EN</div>
   <h1>AI가 코드 값을 떨어뜨리자 사모대출이 흔들렸다. 이게 진짜 신용 사고일까?</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-marks-privatecredit">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=marks-privatecredit&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://www.oaktreecapital.com/insights/memo/whats-going-on-in-private-credit" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>

@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="en";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -114,7 +132,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">Trading of tokenized stocks, ordinary company shares represented as blockchain tokens that can be bought and sold outside normal exchange hours, is growing at an unprecedented pace, and a large share of that growth is happening precisely when Wall Street is closed. According to the Kobeissi Letter, more than 670,000 people now hold tokenized equities on-chain, a figure up 73% from a month earlier and up 449% since the start of the year. The Solana blockchain has become the dominant venue for this activity, handling about 85% of all on-chain tokenized equity trading volume. Jupiter, a Solana based exchange that routes trades to the best available price, has seen its tokenized asset volume rise 300% year to date, driven largely by demand for trading outside standard market hours. Over the past 30 days, roughly 68% of Jupiter&#x27;s tokenized equity volume happened on weekends or after hours, when the New York Stock Exchange and Nasdaq are shut. That pattern points to a structural shift already underway: tokenized shares are starting to give retail investors a way to react to news and reposition around the clock, rather than waiting for Monday&#x27;s opening bell, and it is happening well before traditional exchanges have moved to genuine 24/7 trading.</p><p class="why"><b>Why it matters</b> · If a meaningful chunk of retail trading has already migrated to always on tokenized markets before Wall Street even opens for 24 hour trading, it suggests exchanges and brokers may be racing to catch up with a shift in investor behavior that&#x27;s already happening on-chain, with Solana positioned as the default rails for it.</p><p class="ask"><b>Worth asking</b> · Weekend and after hours trading now makes up more than two thirds of tokenized stock volume on platforms like Jupiter. Is this a preview of markets truly going 24/7, or a sign that a niche crypto trend is being read as bigger than it really is?</p>
-  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>46</b>posts</span><span><b>23</b>directional calls</span><span class="bl"><b>12</b>Bull</span><span class="be"><b>11</b>Bear</span></div><ul class="rec-l"><li><i class="be">Bear</i><a href="kobeissi-margin-debt-net-credit-record.html">Margin Debt Hit a Record $1.5 Trillion, Much of It Concentrated in AI Leveraged…</a><time>07-25</time></li><li><i class="bl">Bull</i><a href="kobeissi-equity-etf-record-880b.html">US Equity ETFs Just Pulled In a Record $880 Billion. Is That Really Conviction,…</a><time>07-24</time></li><li><i class="be">Bear</i><a href="kobeissi-intel-erases-rally.html">Intel&#x27;s $11 Billion Loss Wasn&#x27;t Restructuring. It Was Intel&#x27;s Own Stock Price G…</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html">See the full record →</a></section>
+  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>46</b>posts</span><span><b>23</b>directional calls</span><span class="bl"><b>12</b>Bull</span><span class="be"><b>11</b>Bear</span></div><ul class="rec-l"><li><i class="be">Bear</i><a href="kobeissi-margin-debt-net-credit-record.html">Margin Debt Hit a Record $1.5 Trillion, Much of It Concentrated in AI Leveraged…</a><time>07-25</time></li><li><i class="bl">Bull</i><a href="kobeissi-equity-etf-record-880b.html">US Equity ETFs Just Pulled In a Record $880 Billion. Is That Really Conviction,…</a><time>07-24</time></li><li><i class="be">Bear</i><a href="kobeissi-intel-erases-rally.html">Intel&#x27;s $11 Billion Loss Wasn&#x27;t Restructuring. It Was Intel&#x27;s Own Stock Price G…</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=en#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/kobeissi-tokenized-equity-surge.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-tokenized-equity-surge.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/token.html">TOKEN</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/tokenized-equity.html">tokenized equity</a></div></nav>
   

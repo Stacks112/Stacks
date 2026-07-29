@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -152,7 +170,7 @@ footer a{color:#8E93A0}
   <div class="meta">Jukan (@jukan05) · 2026-07-25 · 원문: EN</div>
   <h1>애플이 중국산 메모리를 원하는 진짜 이유는 가격이 아니라 물량이다</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-jukan-apple-micron-china-memory-lobbying">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=jukan-apple-micron-china-memory-lobbying&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://x.com/jukan05/status/2080821984385278397" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
@@ -186,7 +204,7 @@ footer a{color:#8E93A0}
 애플이 실제로 CXMT·YMTC 승인을 받아내고도 아이폰 가격을 내리거나 동결한다면 물량
 확보가 진짜 목적이었던 것이고, 승인 이후 가격이 그대로 오른다면 &#x27;인플레이션 방어&#x27;라는
 명분 자체가 무색해진다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>애플이 백악관에 중국산 메모리 칩(CXMT·YMTC) 사용 허용을 요청 중이라고 WSJ가 보도했다.</li><li>그런데 실제 CXMT DDR5 가격은 삼성·SK하이닉스보다 2%가량 낮은 수준이라 &#x27;싸다&#x27;는 통념과 다르다.</li><li>진짜 이유는 CXMT가 HBM 쪽으로 캐파를 안 돌려서 상대적으로 물량이 남아 있다는 공급 문제다.</li></ul></div>
-  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html">전체 기록 보기 →</a></section>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-apple-micron-china-memory-lobbying.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-apple-micron-china-memory-lobbying.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/1260h.html">1260H</a><a class="ent-chip" href="../e/apple.html">APPLE</a><a class="ent-chip" href="../e/computex.html">COMPUTEX</a><a class="ent-chip" href="../e/cxmt.html">CXMT</a><a class="ent-chip" href="../e/ddr.html">DDR</a><a class="ent-chip" href="../e/dram.html">DRAM</a><a class="ent-chip" href="../e/hbm.html">HBM</a><a class="ent-chip" href="../e/idc.html">IDC</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/micron.html">MICRON</a><a class="ent-chip" href="../e/nand.html">NAND</a><a class="ent-chip" href="../e/per.html">PER</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/sandisk.html">SANDISK</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/yield.html">YIELD</a><a class="ent-chip" href="../e/ymtc.html">YMTC</a><a class="ent-chip" href="../e/entity-list.html">엔티티 리스트</a><a class="ent-chip" href="../e/capa.html">캐파</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-cxmt-huawei-premium.html">중국 CXMT, 이제 삼성보다 비싸게 메모리 판다... 화웨이 협력사 엔지니어까지 내보낸 가격 힘겨루기</a></li><li><a href="jukan-ymtc-nand-share-surpasses-micron.html">YMTC, 낸드 점유율에서 마이크론 추월 아니라 &#x27;동률&#x27;... 오히려 이게 더 큰 얘기일 수 있다</a></li></ul></nav>

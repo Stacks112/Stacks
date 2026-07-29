@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -109,12 +127,12 @@ footer a{color:#8E93A0}
   <div class="meta">Marc Rubinstein (Net Interest) · 2026-07-03 · 원문: EN</div>
   <h1>돈은 어디로 갔나: 세일러가 비트코인 하락의 범인으로 AI를 지목하다</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-netinterest-stretch">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=netinterest-stretch&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://www.netinterest.co/p/stretch-marks" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     <span class="paid">$ 원문은 유료 구독</span>
   </div>
   <p class="gist">이상한 일이 벌어지고 있다. 주식시장은 오르는데 비트코인만 올해 30% 빠졌고, 고점 대비로는 반토막이다. 더 재밌는 건 비트코인에 회사 전체를 베팅한 마이클 세일러 본인의 해명이다. 그는 범인으로 AI를 지목했다. 구글, 스페이스X 같은 초대형 딜들이 수천억 달러를 빨아들이면서, 원래 크립토로 왔을 돈이 AI로 갔다는 것. 크립토가 식은 게 아니라 더 뜨거운 게 나타났다는 얘기다. 루빈스타인은 여기서 한 발 더 들어간다. 세일러의 회사 스트래티지는 빚과 특수 증권을 찍어 비트코인을 사 모으는 구조인데, 그 핵심 상품이 &#x27;주가 100달러를 유지하도록 배당을 계속 조절해주는&#x27; Stretch라는 증권이다. 이걸로만 105억 달러를 조달했다. 비트코인이 계속 빠지는 상황에서 이 정교한 자금 조달 탑이 버틸 수 있는 구조인지가 이 글의 질문이다.</p><p class="why"><b>투자 포인트</b> · AI 건설은 자본을 흡수하는 데 그치지 않고 어딘가에서 빼오고 있다. 세일러가 그 어딘가를 직접 지목했다.</p>
-  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>4</b>글</span><span><b>1</b>방향성 콜</span><span class="be"><b>1</b>약세</span></div><a class="rec-m" href="../r/netinterest.html">전체 기록 보기 →</a></section>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>4</b>글</span><span><b>1</b>방향성 콜</span><span class="be"><b>1</b>약세</span></div><a class="rec-m" href="../r/netinterest.html" data-app="?l=ko#record-Marc%20Rubinstein%20%28Net%20Interest%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/netinterest-stretch.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/netinterest-stretch.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/marc-rubinstein-net-interest.html">Marc Rubinstein (Net Interest)</a><a class="ent-chip" href="../e/spacex.html">SPACEX</a><a class="ent-chip" href="../e/strategy.html">STRATEGY</a><a class="ent-chip" href="../e/fundraising.html">자금조달</a></div></nav>
   

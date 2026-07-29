@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -152,7 +170,7 @@ footer a{color:#8E93A0}
   <div class="meta">메르 (ranto28) · 2026-07-25 · 원문: KO</div>
   <h1>국채금리 4.7%가 유가 때문이라는데, 그럼 기대인플레이션은 왜 안 움직였을까?</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-meru-treasury-yield-deficit-not-just-oil">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=meru-treasury-yield-deficit-not-just-oil&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://blog.naver.com/ranto28/224356110315" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
@@ -161,7 +179,7 @@ footer a{color:#8E93A0}
 2036년까지라는 기간이 붙는 숫자는 따로 있다. 책임연방예산위원회(CRFB)는 이 판결로 2036년까지 누적 1조7000억에서 1조9000억달러의 세수 손실(이자 포함 부채 영향은 2조2000억에서 2조4000억달러)이 생길 수 있다고 추산했는데, 이를 연평균으로 환산하면 대략 1500억에서 1900억달러가 나온다. 서로 다른 두 기관의 서로 다른 숫자가 하나로 섞인 것으로 보인다.</p><div class="gref"><a href="https://www.cnbc.com/2026/02/20/" rel="noopener" target="_blank">Supreme Court tariffs ruling could put U.S. on hook for $175 billion in refunds (CNBC, 2026-02-20) &#8599;</a></div><h2 class="gsub">나머지 근거들은 어떤가</h2><p class="gist">중국이 국채를 팔고 금을 사들이는 흐름, 일본 투자자가 2026년 1분기 296억달러를 순매도한 것, 2026년 상반기 세계 회사채 발행이 3조6800억달러로 사상 최대를 기록하고 아마존이 540억달러를 찍은 것까지는 니혼게이자이와 CNBC 등에서 각각 독립적으로 확인된다.
 다만 아마존은 이 채권 발행 이후 2026년에는 추가로 채권을 발행하지 않겠다고 밝혀(CNBC, 7월7일), 빅테크 회사채 발행 러시가 계속 같은 속도로 이어질지는 조금 더 지켜볼 대목이다.</p><h2 class="gsub">그래서 무엇을 보게 되나</h2><p class="gist">원인이 유가라면 호르무즈해협이 열리는 순간 금리도 가라앉는, 몇 주짜리 문제다. 원인이 수급이라면 재정적자와 회사채 발행이 줄어야 풀리는, 몇 년짜리 문제다.
 IEEPA 숫자 하나는 정정이 필요하지만, 기대인플레이션이 멈춰 있고 실질금리만 올랐다는 핵심 진단 자체는 데이터로 확인된다. 메르가 짚은 8월5일 재무부 분기 자금조달 계획 발표에서 입찰 규모 관련 문구가 바뀌는지가 다음 확인 지점이다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>메르는 국채금리 4.7% 급등이 유가 때문만은 아니라며 재정적자와 빅테크 회사채가 국채 수급을 누른다고 주장했다.</li><li>그 근거 중 하나로 IEEPA 관세 환급이 매년 1800억달러씩 2036년까지 재정적자를 늘린다고 언급했다.</li><li>그런데 실제 워튼예산모형 추정치는 연간이 아니라 1750억에서 1820억달러의 일회성 환급이고, 별도로 CRFB가 추산한 2036년까지 누적 1조7000억에서 1조9000억달러 손실과 섞인 숫자로 보인다. 나머지 구조적 근거는 독립 자료로 대부분 확인된다.</li></ul></div><p class="why"><b>투자 포인트</b> · 메르가 국채금리 급등을 유가가 아닌 재정적자와 수급 문제로 짚은 핵심 진단은 데이터로 확인되지만, IEEPA 관세 환급을 연 1800억달러로 든 근거 하나는 서로 다른 두 기관의 숫자가 섞인 오류다. 근거 하나가 틀렸다고 전체 진단까지 틀린 건 아니라는 걸 보여준다.</p><p class="ask"><b>짚어볼 점</b> · IEEPA 환급 수치는 정정이 필요하지만 기대인플레이션 정체와 실질금리 상승이라는 핵심 데이터는 그대로다. 이 정도면 금리 급등을 유가보다 구조적 수급 문제로 보는 메르의 진단을 여전히 신뢰할 만하다고 보나?</p>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2026년 8월5일 미국 재무부 분기 자금조달 계획 발표에서 입찰 규모를 &#x27;최소한&#x27; 안정적으로 유지하겠다는 문구가 빠지는지 확인, 빠지면 국채 발행 확대 신호로 해석.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html">전체 기록 보기 →</a></section>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2026년 8월5일 미국 재무부 분기 자금조달 계획 발표에서 입찰 규모를 &#x27;최소한&#x27; 안정적으로 유지하겠다는 문구가 빠지는지 확인, 빠지면 국채 발행 확대 신호로 해석.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-treasury-yield-deficit-not-just-oil.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-treasury-yield-deficit-not-just-oil.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/crfb.html">CRFB</a><a class="ent-chip" href="../e/ieepa.html">IEEPA</a><a class="ent-chip" href="../e/strait-of-hormuz.html">STRAIT OF HORMUZ</a><a class="ent-chip" href="../e/treasury-yield.html">TREASURY YIELD</a><a class="ent-chip" href="../e/yield.html">YIELD</a><a class="ent-chip" href="../e/treasury-yield-99a6c1.html">국채금리</a><a class="ent-chip" href="../e/breakeven-inflation.html">기대인플레이션</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/real-interest-rate.html">실질금리</a><a class="ent-chip" href="../e/fundraising.html">자금조달</a><a class="ent-chip" href="../e/fiscal-deficit.html">재정적자</a><a class="ent-chip" href="../e/backstop.html">지급보증</a><a class="ent-chip" href="../e/corporate-bond.html">회사채</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-10y-yield-breaks-470.html">10년물 금리, 지난해 관세공포 고점 넘었다... 원인은 이란전쟁일까, 연준일까</a></li><li><a href="kobeissi-us-debt-financing-cost.html">미국의 이자 청구서가 오르고 있다, AI가 그 압력을 더한다</a></li></ul></nav>

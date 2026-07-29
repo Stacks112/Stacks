@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="en";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -179,7 +197,7 @@ is itself a sign Samsung does not expect this squeeze to be short.
 Year-end commodity DRAM prices are the tell.
 If prices hold even after the new supply lands, demand runs that deep.
 If they roll over, the peak of the squeeze has passed.</p><div class="sum3"><b>In three lines</b><ul><li>Samsung is consolidating DRAM production at Hwaseong to lift capacity about 15% by year-end versus January.</li><li>Instead of new fabs it is refitting cleanrooms freed by retiring old lines, saving both capex and construction time.</li><li>With DDR4 up more than 80% in the first half alone, how much this extra supply eases the squeeze is the thing to watch.</li></ul></div>
-  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>52</b>posts</span><span><b>28</b>directional calls</span><span class="bl"><b>23</b>Bull</span><span class="be"><b>5</b>Bear</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The rea…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-ai-capex-roi-repricing.html">Why did chip stocks keep falling even after a string of earnings beats?</a><time>07-28</time></li></ul><a class="rec-m" href="../../r/jukan.html">See the full record →</a></section>
+  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>52</b>posts</span><span><b>28</b>directional calls</span><span class="bl"><b>23</b>Bull</span><span class="be"><b>5</b>Bear</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">Samsung Electro-Mechanics told customers it will raise MLCC prices 30%. The rea…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-ai-capex-roi-repricing.html">Why did chip stocks keep falling even after a string of earnings beats?</a><time>07-28</time></li></ul><a class="rec-m" href="../../r/jukan.html" data-app="?l=en#record-Jukan%20%28%40jukan05%29">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/jukan-samsung-hwaseong-dram-endfab.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/jukan-samsung-hwaseong-dram-endfab.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/apple.html">APPLE</a><a class="ent-chip" href="../../e/ddr.html">DDR</a><a class="ent-chip" href="../../e/dram.html">DRAM</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/end-fab.html">end-fab</a><a class="ent-chip" href="../../e/wafer.html">wafer</a><a class="ent-chip" href="../../e/capa.html">CAPA</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="jukan-samsung-chinese-dram-mx-bet.html">With 0.6% share in China, why is Samsung weighing Chinese DRAM for its phones?</a></li><li><a href="jukan-goldman-china-dram-catchup.html">China&#x27;s DRAM Prices Match Samsung&#x27;s, But Only for Mainstream DDR5</a></li><li><a href="meru-samsung-skhynix-leverage-etf-decay.html">Why do the 2x Samsung and SK Hynix ETFs bleed principal even in a flat market?</a></li></ul></nav>

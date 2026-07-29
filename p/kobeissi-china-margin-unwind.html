@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -109,12 +127,12 @@ footer a{color:#8E93A0}
   <div class="meta">The Kobeissi Letter (@KobeissiLetter) · 2026-07-20 · 원문: EN</div>
   <h1>중국, 나흘 새 마진 370억달러 청산, 메모리 반도체주가 낙폭 주도</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-kobeissi-china-margin-unwind">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=kobeissi-china-margin-unwind&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2079277296507322750" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
   <p class="gist">중국 증시에서 나흘 만에 대규모 레버리지가 청산됐고, 그 중심엔 메모리 반도체주가 있었다. 코베이시가 중국발 디레버리징, 즉 빌린 돈을 줄이는 흐름을 빠르게 포착했다. 금요일 상하이·선전 거래소의 신용융자 잔고가 2.8%, 117억달러 줄어든 4,050억달러로 마감했는데 이는 2016년 1월 이후 최대 일일 낙폭이다. 이걸로 나흘 연속 감소가 이어졌고, 한 주 동안 청산된 레버리지 베팅만 369억달러에 달한다. 방아쇠는 메모리 반도체주의 급락이었다. 올해 AI발 랠리 기간 동안 가장 많은 신용융자를 끌어모은 섹터가 바로 반도체였기 때문이다. 중국 기술주 지수인 STAR50은 금요일 하루 만에 7.1% 급락해 올해 두 번째로 나쁜 하루를 기록했고, 더 넓은 CSI300도 3.6% 빠졌다. 반도체주가 무너지자 마진콜이 레버리지 투자자들의 매도를 강제했고, 그 매도가 다시 전체 시장의 하락을 가속시켰다. 빌린 돈이 상승과 하락을 둘 다 증폭시키는 전형적인 되먹임 구조다. 이는 한국이든 미국이든 중국이든, 올해 메모리·AI반도체 슈퍼사이클에 대한 열기의 상당 부분이 현금이 아니라 레버리지로 조달됐다는 걸 보여주는 신호이며, 레버리지는 양쪽 방향 모두로 작동한다는 걸 다시 일깨운다. HBM(고대역폭 메모리)과 낸드 종목들을 몇 년 치 품귀 기반 가격결정력으로 밸류에이션해온 시장 입장에서, 이번 디레버리징 충격은 이 랠리가 진짜 수요였는지 빌린 확신이었는지를 가르는 실제 시험대다.</p><p class="why"><b>투자 포인트</b> · 중국 AI 반도체 랠리를 부풀렸던 레버리지는 그만큼 빠르게 풀릴 수 있고, 마진콜은 투자 논리를 봐주지 않는다.</p><p class="ask"><b>짚어볼 점</b> · 과도한 레버리지를 씻어내는 건강한 조정일까, 아니면 올해 AI 반도체 슈퍼사이클 서사의 첫 균열일까?</p>
-  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html">전체 기록 보기 →</a></section>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html" data-app="?l=ko#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-china-margin-unwind.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-china-margin-unwind.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/hbm.html">HBM</a><a class="ent-chip" href="../e/margin-debt.html">MARGIN DEBT</a><a class="ent-chip" href="../e/nand.html">NAND</a><a class="ent-chip" href="../e/star-50.html">STAR 50</a><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/leverage.html">레버리지</a><a class="ent-chip" href="../e/k-c8dacf93.html">마진</a><a class="ent-chip" href="../e/margin-call.html">마진콜</a><a class="ent-chip" href="../e/conviction.html">컨빅션</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="hynix.html">서울보다 뉴욕이 51% 비쌌던 같은 주식, 왜 그 차이가 안 좁혀질까?</a></li><li><a href="jukan-nvidia-cmx-nand-demand.html">엔비디아 CMX가 낸드를 대량으로 빨아들인다, &#x27;애플 하나&#x27;만 한 새 수요</a></li></ul></nav>

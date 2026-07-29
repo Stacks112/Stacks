@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -152,7 +170,7 @@ footer a{color:#8E93A0}
   <div class="meta">메르 (ranto28) · 2026-07-29 · 원문: KO</div>
   <h1>하루 만에 조업을 재개한 TSMC 구마모토 공장을 아직 안심하고 볼 수 없는 이유는?</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-meru-kumamoto-hinagu-fault-week-of-watch">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=meru-kumamoto-hinagu-fault-week-of-watch&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://blog.naver.com/ranto28/224361223087" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
@@ -186,7 +204,7 @@ footer a{color:#8E93A0}
 
 공장이 멈췄다 다시 서기를 반복하면, 손실은 멈춰 있던 시간만큼만 늘지 않는다.
 점검과 재가동 절차가 매번 처음부터 다시 붙기 때문이다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>규모 7.1 지진이 난 다음 날, TSMC의 일본 공장 JASM이 단계적으로 정상 조업에 복귀하기 시작했다.</li><li>겉으로 보면 내진 설계와 대피 절차가 제 몫을 했고, 하루 만에 상황이 정리된 것으로 보인다.</li><li>그런데 일본 기상청은 앞으로 일주일쯤 같은 규모의 지진에 주의하라고 했다. 10년 전 같은 지역에서는 첫 강진 이틀 뒤에 더 큰 본진이 왔다.</li></ul></div>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>8월 4일까지 구마모토에서 이번(M7.1)과 같은 규모 이상의 지진이 다시 발생했는지, JASM이 정상 가동을 유지했는지로 채점.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html">전체 기록 보기 →</a></section>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>8월 4일까지 구마모토에서 이번(M7.1)과 같은 규모 이상의 지진이 다시 발생했는지, JASM이 정상 가동을 유지했는지로 채점.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-kumamoto-hinagu-fault-week-of-watch.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-kumamoto-hinagu-fault-week-of-watch.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/fujifilm.html">FUJIFILM</a><a class="ent-chip" href="../e/jasm.html">JASM</a><a class="ent-chip" href="../e/sony.html">SONY</a><a class="ent-chip" href="../e/tsmc.html">TSMC</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/subduction-zone.html">섭입대</a><a class="ent-chip" href="../e/foreshock.html">전진(前震)</a><a class="ent-chip" href="../e/active-fault.html">활성단층</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-jasm-kumamoto-earthquake.html">규모 7.1 지진에 대피한 TSMC 일본공장, 반경 20km 안에 소니·후지필름까지 있었다</a></li><li><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a></li></ul></nav>

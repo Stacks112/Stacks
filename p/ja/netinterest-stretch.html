@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ja";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -114,7 +132,7 @@ footer a{color:#8E93A0}
     <span class="paid">$ 元記事は有料購読</span>
   </div>
   <p class="gist">奇妙なことが起きている。株式市場は上がるのにビットコインだけ今年30%下げ、高値からはほぼ半値だ。さらに面白いのは、ビットコインに会社ごと賭けたマイケル・セイラー本人の釈明である。彼は犯人としてAIを名指しした。グーグルやスペースXのような超大型案件が数千億ドルを吸い込み、本来クリプトに来たはずの金がAIへ行ったというのだ。クリプトが冷めたのではなく、もっと熱いものが現れたという話だ。ルビンスタインはここから一歩踏み込む。セイラーの会社ストラテジーは借金と特殊な証券を発行してビットコインを買い集める構造で、その中核商品が「株価100ドルを維持するよう配当を調整し続ける」Stretchという証券だ。これだけで105億ドルを調達した。ビットコインが下がり続ける中、この精巧な資金調達の塔が持ちこたえられる構造なのかが本稿の問いだ。</p><p class="why"><b>Why it matters</b> · AIの建設ラッシュは資本を吸収するだけでなく、どこかから抜き取っている。セイラーがその「どこか」を直接指差した。</p>
-  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>4</b>記事</span><span><b>1</b>方向性コール</span><span class="be"><b>1</b>弱気</span></div><a class="rec-m" href="../../r/netinterest.html">記録をすべて見る →</a></section>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>4</b>記事</span><span><b>1</b>方向性コール</span><span class="be"><b>1</b>弱気</span></div><a class="rec-m" href="../../r/netinterest.html" data-app="?l=ja#record-Marc%20Rubinstein%20%28Net%20Interest%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/netinterest-stretch.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/netinterest-stretch.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/marc-rubinstein-net-interest.html">Marc Rubinstein (Net Interest)</a><a class="ent-chip" href="../../e/spacex.html">SPACEX</a><a class="ent-chip" href="../../e/strategy.html">STRATEGY</a><a class="ent-chip" href="../../e/fundraising.html">資金調達</a></div></nav>
   

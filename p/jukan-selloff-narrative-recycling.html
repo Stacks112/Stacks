@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -152,7 +170,7 @@ footer a{color:#8E93A0}
   <div class="meta">Jukan (@jukan05) · 2026-07-27 · 원문: EN</div>
   <h1>반도체 악재 목록은 몇 달째 그대로인데, 왜 하필 지금 팔릴까?</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-jukan-selloff-narrative-recycling">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=jukan-selloff-narrative-recycling&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://x.com/jukan05/status/2081751561769013574" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
@@ -183,7 +201,7 @@ S&amp;P500 순이익률이 10분기 연속 올라 15.7%로 사상 최고를 향�
 이번 매도가 새 악재 때문이냐, 더 살 여력이 없어진 잔고 문제냐.
 심리라면 하락은 되돌려질 수 있지만,
 배분 한계라면 반등에 쓸 돈 자체가 부족하다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>주칸이 27일, 지금 증시를 누르는 악재 중 새로운 것은 없고 사람들이 그저 이익을 확정하고 싶을 뿐이라고 적었다.</li><li>실제로 사이클 정점론과 설비투자 과잉, 중국 자립은 몇 달째 같은 목록이고, S&amp;P500 순이익률은 10분기 연속 올라 15.7%를 향하고 있다.</li><li>그런데 같은 날 나온 다른 숫자가 있다. 글로벌 주식 배분 비중이 사상 최고인 65%다. 팔고 싶은 마음보다 더 얹을 자리가 없는 상태일 수 있다.</li></ul></div>
-  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html">전체 기록 보기 →</a></section>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-selloff-narrative-recycling.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-selloff-narrative-recycling.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/s-p500.html">S&amp;P500</a><a class="ent-chip" href="../e/serenity-aleabitoreddit.html">Serenity (@aleabitoreddit)</a><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/net-profit-margin.html">순이익률</a><a class="ent-chip" href="../e/pension-fund.html">연기금</a><a class="ent-chip" href="../e/backstop.html">지급보증</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-sp500-margin-record-q2-2026.html">S&amp;P500 마진 15.7%는 사상 최고, 그런데 알파벳 하나를 빼면 14.4%다</a></li><li><a href="jukan-morgan-stanley-bearish-memory.html">공개용이 아니었던 모건스탠리 노트, 올해 최악의 한국 반도체주 급락 뒤에 있었다</a></li><li><a href="jukan-samsung-hwaseong-dram-endfab.html">삼성전자가 새 공장 없이 화성 재배치만으로 D램 15%를 늘리는 속사정</a></li></ul></nav>

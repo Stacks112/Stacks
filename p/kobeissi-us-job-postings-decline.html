@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -152,12 +170,12 @@ footer a{color:#8E93A0}
   <div class="meta">The Kobeissi Letter (@KobeissiLetter) · 2026-07-23 · 원문: EN</div>
   <h1>인디드 구인공고는 줄었는데, 정작 최신 노동통계국 데이터는 2년 만에 최고였다</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-kobeissi-us-job-postings-decline">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=kobeissi-us-job-postings-decline&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://x.com/KobeissiLetter/status/2080338566643671113" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
   <p class="gist">미국 구인구직 사이트 인디드 기준으로 7월10일에 끝난 주간의 구인공고가 전년 대비 3.5% 줄어 올해 들어 최저 수준에 가까워졌다고 코베이시레터가 전한다. 신규 구인공고는 더 부진해서 전년 대비 10.9% 줄어 1월 초 이후 최저치를 기록했다.</p><div class="gref"><a href="https://x.com/KobeissiLetter/status/2080338566643671113" rel="noopener" target="_blank">The Kobeissi Letter, X 게시글 (2026-07-23) &#8599;</a></div><h2 class="gsub">그런데 정작 공식 통계는 반대 방향이었다</h2><p class="gist">코베이시는 이 하락세가 노동통계국(BLS)의 6~7월 공식 구인 통계에도 반영될 거라고 내다봤다. 하지만 가장 최근 발표된 BLS 구인·이직동향조사(JOLTS)는 5월분(6월30일 발표)이고, 여기서 구인 건수는 760만 건(4.6%)으로 전달과 거의 같았을 뿐 아니라 시장 예상치(약 730만 건)를 웃돌아 2년 만에 최고 수준이었다.</p><div class="gcardw"><a class="gcard" href="https://www.bls.gov/news.release/jolts.htm" rel="noopener" target="_blank"><img src="https://www.bls.gov/images/bls_emblem_2016.png" alt="" loading="lazy"><span class="gcard-t">Job Openings and Labor Turnover Summary (미국 노동통계국, 2026-06-30)</span></a><div class="gcard-src">출처: bls.gov</div></div><p class="gist">이 발표 시점에서 6월·7월분 JOLTS는 아직 나오지 않았다. 즉 &#x27;더 약해질 것&#x27;이라는 코베이시의 전망은 아직 존재하지 않는 데이터에 대한 추측일 뿐, 실제 최신 데이터는 오히려 반대를 가리켰다.</p><div class="cmp"><div class="cmp-c"><i>인디드 실시간 지표</i><p>7월10일 주간 구인공고 -3.5%, 신규공고 -10.9%(전년비)</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>BLS 공식 통계(5월)</i><p>구인 760만 건, 예상치 상회, 2년 만에 최고</p></div></div><h2 class="gsub">인디드가 정말 BLS를 선행할까</h2><p class="gist">인디드 데이터가 통상 공식 통계보다 먼저 움직인다는 주장을 뒷받침하는 엄밀한 분석은 찾기 어렵고, 이번 사례는 오히려 그 반대다. 인디드가 하락하는 동안 가장 최근 확정된 BLS 수치는 상승했다.</p><h2 class="gsub">그래서 이 신호를 어떻게 받아들여야 하나</h2><p class="gist">인디드 수치 자체는 실재하는 데이터이지만, 이를 근거로 &#x27;공식 통계도 곧 약해질 것&#x27;이라고 단정하는 건 아직 나오지도 않은 데이터에 대한 예측이다. 8월과 9월에 나올 6월·7월분 JOLTS가 실제로 인디드의 하락을 따라가는지, 아니면 5월처럼 견조함을 이어가는지가 진짜 판가름이 될 것이다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>인디드 기준 미국 구인공고가 7월10일 주간 전년 대비 3.5% 줄었다고 코베이시레터가 전했다.</li><li>그런데 실제로 나온 가장 최근 노동통계국(BLS) 구인·이직 통계(5월분)는 오히려 760만 건에 예상치를 웃돌아 2년 만에 최고였다.</li><li>인디드 데이터가 공식 통계를 선행한다는 근거는 약하고, 이번엔 오히려 반대 방향을 가리켰다.</li></ul></div>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2026년 6월과 7월분 노동통계국 구인·이직 통계, 각각 8월과 9월 발표 예정이 인디드의 실시간 데이터가 먼저 보여준 둔화를 실제로 확인해주는지 살펴본다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html">전체 기록 보기 →</a></section>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>2026년 6월과 7월분 노동통계국 구인·이직 통계, 각각 8월과 9월 발표 예정이 인디드의 실시간 데이터가 먼저 보여준 둔화를 실제로 확인해주는지 살펴본다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>46</b>글</span><span><b>23</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>11</b>약세</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li><li><i class="bl">강세</i><a href="kobeissi-equity-etf-record-880b.html">美 주식 ETF에 8800억달러 몰렸다는데, 그 돈이 정말 확신에서 나온 걸까?</a><time>07-24</time></li><li><i class="be">약세</i><a href="kobeissi-intel-erases-rally.html">인텔이 113억달러 손실 낸 진짜 이유, 주가가 올라서였다</a><time>07-24</time></li></ul><a class="rec-m" href="../r/kobeissi.html" data-app="?l=ko#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-us-job-postings-decline.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-us-job-postings-decline.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/bls.html">BLS</a><a class="ent-chip" href="../e/indeed.html">INDEED</a><a class="ent-chip" href="../e/jolts.html">JOLTS</a><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/job-postings.html">구인공고</a><a class="ent-chip" href="../e/consensus-estimate.html">컨센서스</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-10y-yield-breaks-470.html">10년물 금리, 지난해 관세공포 고점 넘었다... 원인은 이란전쟁일까, 연준일까</a></li></ul></nav>

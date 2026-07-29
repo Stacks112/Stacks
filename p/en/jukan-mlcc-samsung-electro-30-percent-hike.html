@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="en";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -192,7 +210,7 @@ the notice will have been a negotiating card.
 
 The heavier line is not the one about raising prices. It is the one about not being able to supply enough even at the higher price.
 The shortage the AI buildout created appears to have worked its way past GPUs and memory down to the cheapest layer of the bill of materials.</p><div class="sum3"><b>In three lines</b><ul><li>Samsung Electro-Mechanics has notified customers that certain MLCC prices go up 30% for shipments from August 1. Taiyo Yuden follows on September 1.</li><li>On the surface this reads like an ordinary pass-through, the kind of adjustment component makers announce when gold and silver costs climb.</li><li>But Samsung Electro-Mechanics pointed to structural growth in electronics demand rather than input costs, and Taiyo Yuden added that it may not be able to meet the delivery dates customers ask for.</li></ul></div>
-  <section class="oc oc-pending"><h3>What happened next</h3><p><i>Awaiting grading</i>To be scored by the end of September on whether Murata joined the MLCC price increases and whether Samsung Electro-Mechanics&#x27; 30% showed up in actual contract prices.</p></section><section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>52</b>posts</span><span><b>28</b>directional calls</span><span class="bl"><b>23</b>Bull</span><span class="be"><b>5</b>Bear</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-ai-capex-roi-repricing.html">Why did chip stocks keep falling even after a string of earnings beats?</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-asml-selloff-china-duv-pushback.html">ASML slid nearly 10% in two days on China&#x27;s DUV scare, but the case behind it w…</a><time>07-27</time></li></ul><a class="rec-m" href="../../r/jukan.html">See the full record →</a></section>
+  <section class="oc oc-pending"><h3>What happened next</h3><p><i>Awaiting grading</i>To be scored by the end of September on whether Murata joined the MLCC price increases and whether Samsung Electro-Mechanics&#x27; 30% showed up in actual contract prices.</p></section><section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>52</b>posts</span><span><b>28</b>directional calls</span><span class="bl"><b>23</b>Bull</span><span class="be"><b>5</b>Bear</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price…</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-ai-capex-roi-repricing.html">Why did chip stocks keep falling even after a string of earnings beats?</a><time>07-28</time></li><li><i class="bl">Bull</i><a href="jukan-asml-selloff-china-duv-pushback.html">ASML slid nearly 10% in two days on China&#x27;s DUV scare, but the case behind it w…</a><time>07-27</time></li></ul><a class="rec-m" href="../../r/jukan.html" data-app="?l=en#record-Jukan%20%28%40jukan05%29">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/jukan-mlcc-samsung-electro-30-percent-hike.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/jukan-mlcc-samsung-electro-30-percent-hike.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/gpu.html">GPU</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/mlcc.html">MLCC</a><a class="ent-chip" href="../../e/murata.html">MURATA</a><a class="ent-chip" href="../../e/samsung-electro-mechanics.html">SAMSUNG ELECTRO-MECHANICS</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/taiyo-yuden.html">TAIYO YUDEN</a><a class="ent-chip" href="../../e/backstop.html">backstop</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">The next AI hardware bottleneck isn&#x27;t memory. It&#x27;s a tiny capacitor whose price already t…</a></li><li><a href="jukan-ai-capex-roi-repricing.html">Why did chip stocks keep falling even after a string of earnings beats?</a></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">SK Hynix&#x27;s operating profit jumped 557% in a year, so why did it still miss consensus?</a></li></ul></nav>

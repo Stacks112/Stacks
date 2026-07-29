@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ja";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -114,7 +132,7 @@ footer a{color:#8E93A0}
     <span class="paid">$ 元記事は有料購読</span>
   </div>
   <p class="gist">日経を離れて以降、日本で最も読まれる市場解説者の一人・後藤達也が、タイトルからして率直な「コアコラム」を出した。株価が激しく揺れるとき、どう心を落ち着けるか。記事はnote.comの有料エリアにあり、公開されているのは見出しと導入の枠組みだけだが、タイミングがすべてを物語る。7月はメモリ・半導体株に容赦なかった。SKハイニックスやサムスンが乱高下し、米半導体株は大きく売られ、昨年上場した日本のメモリメーカー・キオクシアは、中国勢のIPO観測と『今回は違う』というメモリサイクル論争の中で二桁の急変動を見せた。この騒がしさの真ん中で後藤が投げるメッセージは、見出しから直ちに読めるように、売買テクニックではなく姿勢についてだ。変動に備える心の枠組みをあらかじめ用意し、板ではなく自分の計画に反応せよ、と。目標株価も予想もない。赤い画面ばかりだった一週間に対する、投資心理のカウンターウェイトだ。メモリ急落に振り回された読者にとって本当に有用な問いは、次のローソク足の向きではなく、10%安寄りでも自分のルールが生き残るかどうかである。</p><p class="why"><b>Why it matters</b> · 変動相場は、間違った投資家より反射的に反応する投資家を罰する。あらかじめ用意した心構えこそ、10%安寄りを生き延びるエッジだ。</p><p class="ask"><b>考えるべき点</b> · メモリ株が昼前に10%動くとき、あなたは計画を信じるか、直感を信じるか?</p>
-  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>3</b>記事</span><span><b>0</b>方向性コール</span></div><a class="rec-m" href="../../r/goto.html">記録をすべて見る →</a></section>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>3</b>記事</span><span><b>0</b>方向性コール</span></div><a class="rec-m" href="../../r/goto.html" data-app="?l=ja#record-%E5%BE%8C%E8%97%A4%E9%81%94%E4%B9%9F%20%28Tatsuya%20Goto%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/goto-volatility-mindset.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/goto-volatility-mindset.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/ipo.html">IPO</a><a class="ent-chip" href="../../e/kioxia.html">KIOXIA</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../../e/tatsuya-goto.html">後藤達也</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="serenity-meritz-memory.html">メリッツ「サムスン・SKハイニックスは今売る時ではない」: 2027年のDRAM充足率は6割</a></li><li><a href="meru-kimi-moment.html">「Kimiモーメント」: 米AIトレード全体を問い直しかねない13億ドルのオープンウェイトモデル</a></li><li><a href="serenity-skhy-arb.html">SKハイニックスADRプレミアム25%、ついに裁定取引と対面: 7月29日に転換開始</a></li></ul></nav>

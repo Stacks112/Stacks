@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -109,12 +127,12 @@ footer a{color:#8E93A0}
   <div class="meta">메르 (ranto28) · 2026-07-14 · 원문: KO</div>
   <h1>미국의 중국규제 3종세트, ESS를 한국에 넘기다</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-ess">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=ess&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://blog.naver.com/ranto28/224345852124" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
   <p class="gist">AI 데이터센터는 전기를 어마어마하게 먹는데, 미국 전력망은 낡았다. 대형 변압기의 70%가 25년을 넘겼고 새로 주문하면 3년을 기다린다. 그래서 빅테크들은 전력망을 기다리는 대신 현장에 발전기와 대형 배터리(ESS)를 놓는 쪽으로 움직이는 중이다. 문제는 그 배터리의 90% 이상이 중국산이었다는 것. 메르가 정리한 건 미국이 이 판을 뒤집으려고 꺼낸 3종 세트다. 첫째, 세금 혜택을 받으려면 중국산 비중을 매년 줄이도록 규정을 걸었다. 둘째, 중국산 배터리에 관세를 얹어 원가를 올렸다. 셋째, 미국에서 만들면 보조금을 줘서 한국산 가격을 중국산보다 싸게 만들었다. 결과 전망이 극적이다. 미국 ESS 배터리에서 한국산 점유율이 내년 61%, 내후년 85%까지 간다는 것. 다만 메르는 단서도 단다. 한국 배터리 3사는 여전히 공장을 너무 많이 지어놨고, 배터리 원료의 90% 이상은 여전히 중국에서 온다.</p><p class="why"><b>투자 포인트</b> · AI 데이터센터가 저장장치 수요를 만들었고, 미국 산업정책이 공급자를 정했다. 컴퓨트 트레이드 뒤에 있는 전력 인프라 트레이드다.</p>
-  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html">전체 기록 보기 →</a></section>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/ess.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/ess.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/data-center.html">데이터센터</a><a class="ent-chip" href="../e/meru.html">메르</a></div></nav>
   

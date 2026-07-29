@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -109,12 +127,12 @@ footer a{color:#8E93A0}
   <div class="meta">메르 (ranto28) · 2026-07-23 · 원문: KO</div>
   <h1>메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-meru-googl-q2-results-korea-impact">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=meru-googl-q2-results-korea-impact&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://blog.naver.com/ranto28/224355055064" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
   <p class="gist">알파벳이 2026년 설비투자(CAPEX) 가이던스를 기존 1,800억~1,900억달러에서 1,950억~2,050억달러로 올려 잡았다. 잉여현금흐름은 사상 처음 적자로 돌아섰는데도 그렇다. 메르가 실적발표 당일 컨퍼런스콜 내용을 정리해 올린 글이다. 그는 이번 실적을 이번 주 유일하게 중요한 일정으로 짚었었는데, 하이퍼스케일러들이 현재 수준 이상으로 AI 인프라 투자를 계속할지 가늠하는 첫 시험대였기 때문이다. 결과는 명확했다. 투자를 줄이기는커녕 늘렸다. 상반기 CAPEX는 1분기 357억달러에 2분기 449억달러를 더해 806억달러에 달하는데, 새 가이던스를 채우려면 하반기에 분기당 572억~622억달러를 써야 한다. 상반기보다 더 많이 쓰겠다는 뜻이다. 컨퍼런스콜에서 구글 최고재무책임자는 자체 데이터센터를 짓는 동안 3분기에 서드파티 컴퓨팅 용량 사용을 늘리는 가교 전략을 쓰겠다고 밝혔고, 여전히 컴퓨팅 자원이 부족하며 AI 수요가 매우 강하다고도 재확인했다. 클라우드 수주잔고는 1분기 4,620억달러에서 2분기 5,140억달러로 11.3% 늘었는데, 메르는 이를 메모리 수요가 계속된다는 근거로 본다. 다만 긍정론자는 사상 최대 수주잔고에 주목하고 부정론자는 1분기 거의 두 배 증가에 비해 11%는 둔화라고 볼 여지가 있다고 짚는다. 문제는 현금이다. 영업활동현금흐름 391억달러에서 CAPEX 449억달러를 빼면 잉여현금흐름은 마이너스 58억달러로, 1년 전보다 112억달러 줄었다. 메르의 한 줄 코멘트는 이렇다. 구글 주주는 이 마이너스 숫자에 불안해할 수 있지만, 삼성전자와 SK하이닉스 입장에서는 고객이 계속 돈을 쓰겠다는 것이니 나쁜 뉴스는 아니다.</p><p class="why"><b>투자 포인트</b> · 알파벳은 하이퍼스케일러들의 AI 투자가 계속 가속할지를 가늠하는 풍향계이며, 잉여현금흐름이 적자로 돌아섰는데도 가이던스를 올렸다는 것은 삼성전자·SK하이닉스로 향하는 메모리 수요가 꺾일 조짐이 아니라는 가장 뚜렷한 신호다.</p><p class="ask"><b>짚어볼 점</b> · 구글이 잉여현금흐름 첫 적자에도 AI CAPEX 가이던스를 올렸다. 현금흐름이 나빠지는데도 계속 쓰는 게 AI 수요에 대한 자신감의 표시일까, 아니면 하이퍼스케일러 지출 규율에 처음 생긴 균열일까?</p>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>알파벳의 2026년 3분기 실적(10월 말경 예상)에서 잉여현금흐름이 플러스로 돌아서는지, 클라우드 수주잔고가 2분기의 5,140억달러를 넘어 계속 느는지 확인한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li><li><i class="bl">강세</i><a href="meru-houthi-blockade.html">후티, 사우디 해상봉쇄 선언, 호르무즈 이어 원유의 마지막 우회로마저 위협</a><time>07-21</time></li></ul><a class="rec-m" href="../r/meru.html">전체 기록 보기 →</a></section>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>알파벳의 2026년 3분기 실적(10월 말경 예상)에서 잉여현금흐름이 플러스로 돌아서는지, 클라우드 수주잔고가 2분기의 5,140억달러를 넘어 계속 느는지 확인한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>31</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>2</b>적중</span><span class="be"><b>0</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="be">약세</i><a href="meru-kolon-tissuegene-tgc-phase3-miss.html">코오롱티슈진 TG-C(인보사) 미국 임상 3상 실패, 위약보다 통증 개선 효과 낮아</a><time>07-22</time></li><li><i class="bl">강세</i><a href="meru-houthi-blockade.html">후티, 사우디 해상봉쇄 선언, 호르무즈 이어 원유의 마지막 우회로마저 위협</a><time>07-21</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-googl-q2-results-korea-impact.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-googl-q2-results-korea-impact.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/per.html">PER</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/guidance.html">가이던스</a><a class="ent-chip" href="../e/data-center.html">데이터센터</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/capex.html">설비투자</a><a class="ent-chip" href="../e/order-backlog.html">수주잔고</a><a class="ent-chip" href="../e/fcf.html">잉여현금흐름</a><a class="ent-chip" href="../e/capex-b1b4ec.html">캐펙스</a><a class="ent-chip" href="../e/hyperscaler.html">하이퍼스케일러</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="meru-alphabet-q2-capex-test.html">메르: 이번 주 알파벳 실적이 AI 투자 사이클의 첫 시험대, 이익보다 CAPEX 한 줄을 보라</a></li><li><a href="serenity-googl-q2-cloud-beat.html">알파벳 2분기 실적 어닝서프라이즈, 2026년 CAPEX 가이던스 1,950억~2,050억달러로 상향</a></li><li><a href="serenity-skhy-arb.html">SK하이닉스 ADR 프리미엄 25%, 드디어 차익거래를 만난다: 7월 29일 전환 개시</a></li></ul></nav>

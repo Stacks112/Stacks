@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ja";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -114,7 +132,7 @@ footer a{color:#8E93A0}
     <span class="paid">$ 元記事は有料購読</span>
   </div>
   <p class="gist">マーク・ルビンスタインが、まだ誰にも渡されていない銀行界で最も難しい仕事、すなわちジェイミー・ダイモンの「次」を論じる。ダイモンは70歳で、20年以上JPモルガンを率いてきた。その間に銀行は、誰かに引き継ぐには大きすぎる機械へと静かに育った。彼が来た頃の総資産は約1.2兆ドル、それが今や5兆ドルを突破した。年次報告書は144ページから364ページに膨らみ、従業員は168,847人から320,560人に増えた。銀行が抱えるデリバティブ契約は想定元本でおよそ63.7兆ドル、トレーディング・売却可能証券は5,490億ドル、そして市場価格が存在せず自前でモデル評価するしかない極端に流動性の低いレベル3資産が290億ドルある。国際決済銀行(BIS)はJPモルガンを世界で最も複雑な銀行に格付けする。ダイモンは後任に求める資質、柔軟性、分析力、対人スキル、文化的感度、好奇心、粘り強さ、そして果てしない出張に耐える体力を並べてみせたが、それは職務記述というより、この役職が一人の人間の器を超えてしまったという告白に近い。ルビンスタインの指摘はこうだ。JPモルガンを手強くしている巨大さと複雑さは、そのまま後継が形式ではなく本物のリスクである理由でもある。</p><p class="why"><b>Why it matters</b> · JPモルガンは世界最大・最も複雑な銀行で、その機械を作った男は70歳だ。次のCEOが5兆ドルをまとめられるかは、株や金融セクターを持つ者にとって本物の問いだ。</p><p class="ask"><b>考えるべき点</b> · JPモルガンの巨大さと複雑さは、崩れない堀か、それともいつか噛みつく後継リスクか?</p>
-  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>4</b>記事</span><span><b>1</b>方向性コール</span><span class="be"><b>1</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="netinterest-stretch.html">カネはどこへ行ったのか: セイラーがビットコイン下落の犯人にAIを名指し</a><time>07-03</time></li></ul><a class="rec-m" href="../../r/netinterest.html">記録をすべて見る →</a></section>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>4</b>記事</span><span><b>1</b>方向性コール</span><span class="be"><b>1</b>弱気</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="netinterest-stretch.html">カネはどこへ行ったのか: セイラーがビットコイン下落の犯人にAIを名指し</a><time>07-03</time></li></ul><a class="rec-m" href="../../r/netinterest.html" data-app="?l=ja#record-Marc%20Rubinstein%20%28Net%20Interest%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/netinterest-jpm-succession.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/netinterest-jpm-succession.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/jpmorgan.html">JPMORGAN</a><a class="ent-chip" href="../../e/marc-rubinstein-net-interest.html">Marc Rubinstein (Net Interest)</a><a class="ent-chip" href="../../e/liquidity.html">流動性</a><a class="ent-chip" href="../../e/jamie-dimon.html">ジェイミー・ダイモン</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="netinterest-nse.html">世界で最も稼ぐ取引所が売る商品: 規制当局が減らしたがっているもの</a></li><li><a href="netinterest-stretch.html">カネはどこへ行ったのか: セイラーがビットコイン下落の犯人にAIを名指し</a></li></ul></nav>

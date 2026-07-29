@@ -141,6 +141,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -152,7 +170,7 @@ footer a{color:#8E93A0}
   <div class="meta">Jukan (@jukan05) · 2026-07-28 · 원문: EN</div>
   <h1>삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</h1>
   <div class="actions">
-    <a class="btn app" href="https://stacksdaily.com/#sig-jukan-mlcc-samsung-electro-30-percent-hike">Stacks 앱에서 보기 →</a>
+    <a class="btn app" href="https://stacksdaily.com/?c=jukan-mlcc-samsung-electro-30-percent-hike&amp;l=ko">Stacks 앱에서 보기 →</a>
     <a class="btn src" href="https://x.com/jukan05/status/2082240360085160357" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
@@ -192,7 +210,7 @@ footer a{color:#8E93A0}
 
 값을 올리겠다는 통보보다 무거운 것은 값을 올려도 다 대지 못한다는 말이다.
 AI 투자가 만들어 낸 부족이 GPU와 메모리를 지나 가장 아래층 부품까지 내려온 것으로 보인다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>삼성전기가 8월 1일 출하분부터 일부 MLCC 제품 가격을 30% 올리겠다는 통보를 고객사에 보냈다. 태양유전도 9월 1일부터 올린다.</li><li>겉으로 보면 금·은 같은 원자재값 상승분을 부품값에 옮기는, 업계에서 흔히 있는 가격 조정으로 읽힌다.</li><li>그런데 삼성전기가 내세운 이유는 원자재가 아니라 전자산업 수요의 구조적 성장이었고, 태양유전은 값을 올린 뒤에도 납기를 맞추기 어려울 수 있다고 덧붙였다.</li></ul></div>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>9월 말까지 무라타가 MLCC 가격 인상에 합류했는지, 삼성전기의 30%가 실제 계약가에 반영됐는지로 채점.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-asml-selloff-china-duv-pushback.html">중국 DUV 공포에 ASML은 이틀간 10%가 빠졌다, 정작 근거는 부실했다</a><time>07-27</time></li></ul><a class="rec-m" href="../r/jukan.html">전체 기록 보기 →</a></section>
+  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>9월 말까지 무라타가 MLCC 가격 인상에 합류했는지, 삼성전기의 30%가 실제 계약가에 반영됐는지로 채점.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>52</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-asml-selloff-china-duv-pushback.html">중국 DUV 공포에 ASML은 이틀간 10%가 빠졌다, 정작 근거는 부실했다</a><time>07-27</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-mlcc-samsung-electro-30-percent-hike.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-mlcc-samsung-electro-30-percent-hike.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/gpu.html">GPU</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/mlcc.html">MLCC</a><a class="ent-chip" href="../e/murata.html">MURATA</a><a class="ent-chip" href="../e/samsung-electro-mechanics.html">SAMSUNG ELECTRO-MECHANICS</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/taiyo-yuden.html">TAIYO YUDEN</a><a class="ent-chip" href="../e/backstop.html">지급보증</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a></li><li><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a></li><li><a href="jukan-skhynix-2q26-earnings-consensus-miss.html">영업이익이 1년 새 557% 늘었는데, SK하이닉스가 컨센서스를 밑돈 이유는?</a></li></ul></nav>

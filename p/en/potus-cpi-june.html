@@ -98,6 +98,24 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:1
 @media(prefers-color-scheme:dark){footer{border-color:#26272E}}
 footer a{color:#8E93A0}
 </style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="en";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -114,7 +132,7 @@ footer a{color:#8E93A0}
     
   </div>
   <p class="gist">Trump takes the June inflation report and turns it into a campaign-style victory lap. His claim: consumer prices fell by the most in a single month in over six years, and the June CPI came in below the forecast of every single economist, all 67, that Bloomberg polled. He runs through the categories where prices dropped: gasoline, electricity, auto insurance, hotels and prescription drugs. Pair that with what he calls strong wage growth, and he says real wages, pay after inflation, jumped a hefty 0.8% in the month. Then he stitches it into the bigger story he likes to tell: investment pouring into the country, factory construction surging, manufacturing jobs rising and prices falling all at once, proof, in his telling, that &#x27;the Golden Age of America is here.&#x27; Strip away the politics and there is a real market signal underneath. A CPI print that undershoots every forecaster is exactly the kind of surprise that pulls forward rate-cut bets, pressures bond yields lower and gives risk assets room to run. Whether June marks a genuine disinflation turn or just a one-month dip in noisy data is what traders will argue over, but the direction of the surprise is unambiguous.</p><p class="why"><b>Why it matters</b> · A CPI that undershoots every economist Bloomberg polled is a rate-cut catalyst: it pulls forward Fed easing bets, pressures yields and gives risk assets room, whatever the political spin wrapped around it.</p><p class="ask"><b>Worth asking</b> · The biggest monthly price drop in six years, a disinflation turn, or a one-month mirage?</p>
-  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>11</b>posts</span><span><b>4</b>directional calls</span><span class="bl"><b>4</b>Bull</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="trump-hormuz-bomb-threat.html">Trump threatens to bomb an Iranian bridge or power plant for every shot fired i…</a><time>07-22</time></li><li><i class="bl">Bull</i><a href="potus-tsmc-arizona.html">Trump touts TSMC&#x27;s record $265B Arizona chip bet, &#x27;build here, and NO TARIFFS&#x27;</a><time>07-17</time></li><li><i class="bl">Bull</i><a href="potus-datacenters.html">Trump calls datacenters &#x27;liquid gold&#x27; and puts New York on blast for banning th…</a><time>07-16</time></li></ul><a class="rec-m" href="../../r/trump.html">See the full record →</a></section>
+  <section class="rec"><h3>This author&#x27;s record</h3><div class="rec-s"><span><b>11</b>posts</span><span><b>4</b>directional calls</span><span class="bl"><b>4</b>Bull</span></div><ul class="rec-l"><li><i class="bl">Bull</i><a href="trump-hormuz-bomb-threat.html">Trump threatens to bomb an Iranian bridge or power plant for every shot fired i…</a><time>07-22</time></li><li><i class="bl">Bull</i><a href="potus-tsmc-arizona.html">Trump touts TSMC&#x27;s record $265B Arizona chip bet, &#x27;build here, and NO TARIFFS&#x27;</a><time>07-17</time></li><li><i class="bl">Bull</i><a href="potus-datacenters.html">Trump calls datacenters &#x27;liquid gold&#x27; and puts New York on blast for banning th…</a><time>07-16</time></li></ul><a class="rec-m" href="../../r/trump.html" data-app="?l=en#record-Donald%20J.%20Trump%20%28%40realDonaldTrump%29">See the full record →</a></section>
   <nav class="otherlang">Read this in another language: <a href="https://stacksdaily.com/p/potus-cpi-june.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/ja/potus-cpi-june.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>Companies &amp; people</h3><div class="ent-chips"><a class="ent-chip" href="../../e/cpi.html">CPI</a><a class="ent-chip" href="../../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a></div></nav>
   <nav class="related"><h3>Related</h3><ul><li><a href="potus-tsmc-arizona.html">Trump touts TSMC&#x27;s record $265B Arizona chip bet, &#x27;build here, and NO TARIFFS&#x27;</a></li><li><a href="potus-datacenters.html">Trump calls datacenters &#x27;liquid gold&#x27; and puts New York on blast for banning them</a></li></ul></nav>
