@@ -355,3 +355,17 @@
   .cta-row .oc.oc-miss::before{content:"\274C";}
   .cta-row .oc .oc-sep,.cta-row .oc .oc-note{display:none !important;}
 }
+
+/* 2026-07-29: inline comment thread at the bottom of the mobile article detail.
+   assets/v82.js relocates the twc sheet node (#twcOv > .twc-sheet) into the open
+   card's .comment-box and tags it .twc-inline; these rules strip the full-screen
+   sheet chrome so it reads as a normal page section. Feed cards are untouched —
+   they still hide .comment-box and show only the count badge. */
+@media (max-width:1023px){
+  #v82dbody .comment-box{margin-top:16px;padding-top:0;border-top:0;}
+  #v82dbody .twc-sheet.twc-inline{height:auto;max-height:none;width:auto;border-radius:0;background:transparent;}
+  #v82dbody .twc-sheet.twc-inline .twc-back,
+  #v82dbody .twc-sheet.twc-inline .twc-orig{display:none;}
+  #v82dbody .twc-sheet.twc-inline .twc-scroll{overflow:visible;max-height:none;height:auto;flex:0 0 auto;}
+  #v82dbody .twc-sheet.twc-inline .twc-comp{background:transparent;padding-left:0;padding-right:0;padding-bottom:10px;}
+}
