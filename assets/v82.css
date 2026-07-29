@@ -367,6 +367,13 @@
   #v82dbody .twc-sheet.twc-inline .twc-back,
   #v82dbody .twc-sheet.twc-inline .twc-orig{display:none;}
   #v82dbody .twc-sheet.twc-inline .twc-scroll{overflow:visible;max-height:none;height:auto;flex:0 0 auto;}
+  /* 2026-07-30 (june): inline comments sat 14-16px right of the article text. The
+     sheet rows carry their own edge padding (.twi 16px, .twc-head 14px) for the
+     full-screen sheet; inline, the card already provides the edges, so the padding
+     reads as a stray left gap. Strip it inline-only — the full-screen sheet keeps it. */
+  #v82dbody .twc-sheet.twc-inline .twc-head,
+  #v82dbody .twc-sheet.twc-inline .twc-status,
+  #v82dbody .twc-sheet.twc-inline .twi{padding-left:0;padding-right:0;}
   /* 2026-07-29: X-style — the composer is pinned to the bottom of the detail while
      the article scrolls. assets/v82.js moves the node onto #v82detail itself
      (.card and .twc-sheet both have transforms, which would capture position:fixed),
