@@ -373,6 +373,11 @@
      sets #v82dbody padding-bottom from the bar height, and lifts it above the iOS
      keyboard via visualViewport. The full-screen sheet keeps its own layout. */
   #v82detail > .twc-comp.twc-pinned{position:absolute;left:0;right:0;bottom:0;z-index:3;background:var(--bg);border-top:1px solid var(--line);padding:8px 16px calc(8px + env(safe-area-inset-bottom, 0px));}
+  /* focused = X-style expanded panel: nickname line above, taller box. No mention
+     line — we do not @-mention anyone. */
+  #v82detail > .twc-comp.twc-pinned .twc-who{display:none;}
+  #v82detail > .twc-comp.twc-pinned.twc-open .twc-who{display:block;font-size:13px;font-weight:800;color:var(--text);padding:2px 2px 8px;}
+  #v82detail > .twc-comp.twc-pinned.twc-open #twcText{min-height:76px;}
   /* the quick one-line comment bar (.twin / twInlineSend) is a second composer for
      the same thread, so hide it in the detail once the full section is actually
      mounted (.comment-box no longer [hidden]). Guarded by :has() on purpose — if a
