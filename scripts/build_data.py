@@ -24,7 +24,8 @@ changes between page loads:
 
   themes  which of the eight browse themes an item belongs to
   ents    which entities an item mentions (drives entity pages)
-  _mk     the item's main ticker (drives the "since this post" badge)
+  _mk     the item's main ticker (share card, cover-logo choice)
+  _mks    up to two tickers, most central first (the "since this post" badge)
 
 The theme regexes and the back-catalogue stance map are READ OUT OF
 index.html rather than copied here, so index.html stays the single source of
@@ -53,6 +54,7 @@ OUT = os.path.join(ROOT, "data")
 LANGS = ("ko", "en", "ja")
 GIST_PREVIEW = 150      # characters kept in core; enough for the clamped card
 CHUNK = 24              # items per gist chunk
+MAIN_KEYS = 2           # companies the "since this post" badge may price
 OPP_WINDOW_DAYS = 45    # how far apart two opposing takes may sit
 OPP_MAX = 2
 OPP_USE_CAP = 3         # times one post may serve as somebody else's counterpart
@@ -279,32 +281,93 @@ def explicit_key(item, entities, alias2key=None):
         if t and is_company(entities, k):
             tick2key.setdefault(t, k)
 
+    def listed(k, seen=None):
+        """A tagged company that has no ticker of its own still has a price:
+        its listed parent's. JASM is TSMC's Kumamoto joint venture and is not
+        traded, so a card tagged JASM used to fall through to the text scan and
+        come back with whichever company sorted first alphabetically."""
+        seen = seen or set()
+        if is_company(entities, k):
+            return k
+        e = entities.get(k)
+        if not e or e.get("kind") != "company" or k in seen:
+            return None
+        seen.add(k)
+        p = e.get("parent")
+        return listed(p, seen) if p else None
+
     def resolve(v):
         if not v:
             return None
-        if is_company(entities, v):
-            return v
+        k = listed(v)
+        if k:
+            return k
         low = str(v).strip().lower()
         k = alias2key.get(low) or tick2key.get(low)
-        return k if is_company(entities, k) else None
+        return listed(k) if k else None
 
     return resolve((item.get("cover") or {}).get("label")) or next(
         (k for k in map(resolve, item.get("tags") or []) if k), None)
 
 
-def main_key(item, entities, ents, alias2key=None):
-    """Mirror of itemMainKey(): the company ticker this post is mainly about.
+def mention_rank(item, entities, ents, rx, alias2key):
+    """The companies a post mentions, ordered by how much the post is about them.
 
-    Looser than explicit_key on purpose - this one drives the "since this post"
-    price badge, where a near-miss costs the reader nothing.
+    The old picker was `sorted(ents)[0]`, i.e. alphabetical order. On the
+    Kumamoto earthquake post - headline TSMC, body about its JASM fab, with
+    Sony and Fujifilm named once each as neighbouring plants - that handed the
+    "since this post" badge to FUJIFILM, because F sorts before S and T.
+
+    Alphabetical order carries no information about the post. Prominence does,
+    so rank by it: named in the headline first, then how often the body names
+    it, then who is named earliest. Alphabetical survives only as the last
+    tie-break, to keep the build deterministic.
     """
-    k = explicit_key(item, entities, alias2key)
-    if k:
-        return k
-    for k in sorted(ents):
-        if is_company(entities, k):
-            return k
-    return None
+    cands = sorted(k for k in ents if is_company(entities, k))
+    if len(cands) < 2 or not rx:
+        return cands
+
+    def tally(text):
+        hits, first = {}, {}
+        for m in rx.finditer(text):
+            k = alias2key.get(m.group(0).lower())
+            if k:
+                hits[k] = hits.get(k, 0) + 1
+                first.setdefault(k, m.start())
+        return hits, first
+
+    head, _ = tally("  ".join(
+        (item.get("title") or {}).get(lang) or "" for lang in LANGS))
+    body, at = tally(item_text(item))
+    # cands is already sorted, and sort() is stable, so a genuine three-way
+    # tie still resolves the same way on every build.
+    return sorted(cands, key=lambda k: (
+        -head.get(k, 0), -body.get(k, 0), at.get(k, 1 << 30)))
+
+
+def main_keys(item, entities, ents, alias2key=None, rx=None, n=MAIN_KEYS):
+    """Mirror of itemMainKeys(): the companies the "since this post" badge
+    prices, most central to the post first.
+
+    Looser than explicit_key on purpose - a near-miss on the badge costs the
+    reader nothing, whereas a near-miss on an opposite-stance pairing puts
+    words in an author's mouth.
+
+    Capped at n because the badge is one line under the card. Two names is
+    the difference between "TSMC, and Sony next door" and a wall of tickers.
+    """
+    out = []
+    for k in [explicit_key(item, entities, alias2key)] + \
+            mention_rank(item, entities, ents, rx, alias2key or {}):
+        if k and k not in out:
+            out.append(k)
+    return out[:n]
+
+
+def main_key(item, entities, ents, alias2key=None, rx=None):
+    """The single most central company - the one the share card names."""
+    ks = main_keys(item, entities, ents, alias2key, rx, 1)
+    return ks[0] if ks else None
 
 
 def stance_of(item, stance_map):
@@ -455,7 +518,7 @@ def main():
     for it in items:
         es = entity_set(it, entities, rx, alias2key)
         ents_of[it["id"]] = sorted(es)
-        mk_of[it["id"]] = main_key(it, entities, es, alias2key)
+        mk_of[it["id"]] = main_keys(it, entities, es, alias2key, rx)
         hay = theme_hay(it)
         themes_of[it["id"]] = [k for k, r in themes.items() if r.search(hay)]
     print("  entities matched: %d items, %.1f keys/item"
@@ -511,7 +574,10 @@ def main():
             c["clip"] = True
         c["themes"] = themes_of[it["id"]]
         c["ents"] = ents_of[it["id"]]
-        c["_mk"] = mk_of[it["id"]]
+        mks = mk_of[it["id"]]
+        c["_mk"] = mks[0] if mks else None
+        if len(mks) > 1:
+            c["_mks"] = mks
         if it["id"] in opp:
             c["opp"] = opp[it["id"]]
         # The X post itself, fetched by scripts/fetch_embeds.py on a runner.

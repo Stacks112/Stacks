@@ -147,7 +147,23 @@ def item_entities(item, entities, ent_rx=None, ent_a2k=None):
 
 
 def item_main_key(item, entities, ent_rx=None, ent_a2k=None):
-    """Primary company (with ticker) for the 'since this post' badge."""
+    """Primary company (with ticker) for the 'since this post' badge.
+
+    Delegates to build_data so the email and the site never name a different
+    company for the same article. The local fallback below is the old
+    cover -> tags -> whatever-sorts-first walk, kept only for the case where
+    build_data cannot be imported.
+    """
+    ents = item_entities(item, entities, ent_rx, ent_a2k)
+    try:
+        import os
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from build_data import main_key as _mk
+        return _mk(item, entities, ents, ent_a2k or {}, ent_rx)
+    except Exception:
+        pass
+
     def co(k):
         e = entities.get(k)
         return bool(e and e.get("kind") == "company" and e.get("ticker"))
@@ -158,7 +174,7 @@ def item_main_key(item, entities, ent_rx=None, ent_a2k=None):
     for t in (item.get("tags") or []):
         if co(t):
             return t
-    for e in item_entities(item, entities, ent_rx, ent_a2k):
+    for e in sorted(ents):
         if co(e):
             return e
     return None
