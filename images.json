@@ -12,129 +12,207 @@
   "  2026-07-27 최초 등록분은 15개 후보 중 10개만 통과했다. 추측한 URL은 대부분 죽는다.",
   "",
   "★ caption은 예시다. 그대로 쓰지 말고 그 카드의 맥락에 맞게 새로 쓴다.",
-  "  규칙은 publish-v4.3.md [4-E]⑤ — 이미지는 장식이 아니라 설명이어야 한다."
+  "  규칙은 publish-v4.3.md [4-E]⑤ — 이미지는 장식이 아니라 설명이어야 한다.",
+  "",
+  "★ credit / author / license (2026-07-29 개정)",
+  "  credit는 화면 캡션에 그대로 찍히는 문자열이다. build_data.expand_img_markers가 이 값을",
+  "  4칸 마커의 3번째 칸으로 넣고, 링크는 page(커먼즈 파일 페이지)로 걸린다.",
+  "  이전에는 credit이 전부 'Wikimedia Commons'였는데, 커먼즈는 사진이 올라와 있는 창고지",
+  "  찍은 사람이 아니다. CC 라이선스는 저작자명과 라이선스명을 요구하므로 조건 미충족이었다.",
+  "  지금은 '저작자 · 라이선스' 형식이다(예: 'Nrbelex · CC BY-SA 3.0').",
+  "  새 이미지를 등록할 때는 커먼즈 파일 페이지의 Author와 License를 그대로 옮겨",
+  "  author / license / licenseUrl 세 필드를 채우고 credit을 '저작자 · 라이선스'로 만든다.",
+  "  퍼블릭 도메인·CC0는 표기 의무가 없지만 같은 형식으로 적어 둔다(출처를 밝히는 편이 낫다)."
  ],
- "_verified": "2026-07-27",
+ "_verified": "2026-07-29",
  "images": {
   "nand-usb": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/USB_flash_drive.JPG/500px-USB_flash_drive.JPG",
    "page": "https://commons.wikimedia.org/wiki/File:USB_flash_drive.JPG",
-   "credit": "Wikimedia Commons",
+   "credit": "Nrbelex · CC BY-SA 3.0",
    "size": "500x375",
    "use": "낸드·플래시 저장장치를 처음 설명할 때. 독자가 손으로 만져 본 물건에서 출발한다.",
    "caption": {
     "ko": "늘 쓰는 USB 메모리. 이 안의 저장 칩이 낸드다.",
     "en": "An everyday USB stick. The storage chip inside it is NAND.",
     "ja": "いつも使うUSBメモリ。この中の記憶チップがNANDだ。"
-   }
+   },
+   "author": "Nrbelex",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
   },
   "nand-cell-types": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Cell_types_SLC-PLC_in_comparison_20211102.svg/1280px-Cell_types_SLC-PLC_in_comparison_20211102.svg.png",
    "page": "https://commons.wikimedia.org/wiki/File:Cell_types_SLC-PLC_in_comparison_20211102.svg",
-   "credit": "Wikimedia Commons",
+   "credit": "PantheraLeo1359531 · CC0",
    "size": "1280x702",
    "use": "SLC/MLC/TLC/QLC 구분을 설명할 때. 도해라서 말로 푸는 것보다 빠르다.",
    "caption": {
     "ko": "저장 칸 하나에 담는 비트 수 비교. 왼쪽에서 셋째가 TLC, 넷째가 QLC다.",
     "en": "Bits stored per cell. Third from the left is TLC, fourth is QLC.",
     "ja": "1セルに入れるビット数の比較。左から三番目がTLC、四番目がQLCだ。"
-   }
+   },
+   "author": "PantheraLeo1359531",
+   "license": "CC0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   "dram-module": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/DDR5_SDRAM_%28with_scale%29_IMGP6298_smial_wp.jpg/960px-DDR5_SDRAM_%28with_scale%29_IMGP6298_smial_wp.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:DDR5_SDRAM_(with_scale)_IMGP6298_smial_wp.jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "Smial · FAL 1.3",
    "size": "960x477",
    "use": "D램·메모리 모듈·서버 메모리 슬롯 이야기.",
    "caption": {
     "ko": "서버에 꽂는 D램 막대.",
     "en": "A DRAM stick of the kind that goes into a server.",
     "ja": "サーバーに挿すDRAM。"
-   }
+   },
+   "author": "Smial",
+   "license": "FAL 1.3",
+   "licenseUrl": "http://artlibre.org/licence/lal/en"
   },
   "datacenter-inside": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/BalticServers_data_center.jpg/960px-BalticServers_data_center.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "BalticServers.com · CC BY-SA 3.0",
    "size": "960x637",
    "use": "데이터센터 내부·설비투자·전력 수요. 돈이 어디로 나갔는지 보여줄 때.",
    "caption": {
     "ko": "데이터센터 내부. 이런 서버 안에 GPU와 저장장치가 같이 산다.",
     "en": "Inside a data center. GPUs and storage live together in racks like these.",
     "ja": "データセンターの内部。こうしたサーバーの中にGPUと記憶装置が同居する。"
-   }
+   },
+   "author": "BalticServers.com",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
   },
   "datacenter-racks": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Datacenter_Server_Racks_%2822370909788%29.jpg/960px-Datacenter_Server_Racks_%2822370909788%29.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Datacenter_Server_Racks_(22370909788).jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "Carl Lender · CC BY 2.0",
    "size": "960x640",
    "use": "데이터센터 랙 열. datacenter-inside와 골라 쓴다(같은 카드에 둘 다 쓰지 않는다).",
    "caption": {
     "ko": "줄지어 선 서버 랙.",
     "en": "Rows of server racks.",
     "ja": "並んだサーバーラック。"
-   }
+   },
+   "author": "Carl Lender",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
   },
   "gpu-board": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/NVIDIA_GPU.jpg/960px-NVIDIA_GPU.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:NVIDIA_GPU.jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "Mickael Courtiade · CC BY 2.0",
    "size": "960x640",
    "use": "GPU 한 장을 실물로 보여줄 때. 가속기·쿠다·칩 스펙 이야기.",
    "caption": {
     "ko": "GPU 보드 한 장.",
     "en": "A single GPU board.",
     "ja": "GPUボード1枚。"
-   }
+   },
+   "author": "Mickael Courtiade",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
   },
   "gpu-cluster": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Tesla-NVIDIA_GPU_cluster_%283706444821%29.jpg/960px-Tesla-NVIDIA_GPU_cluster_%283706444821%29.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Tesla-NVIDIA_GPU_cluster_(3706444821).jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "ChrisDag · CC BY 2.0",
    "size": "960x1280",
    "use": "GPU 여러 장을 묶은 클러스터·랙 단위 시스템. 세로 사진이라 본문에서 크게 잡힌다.",
    "caption": {
     "ko": "GPU를 여러 장 묶어 세운 클러스터.",
     "en": "A cluster built from many GPUs stacked together.",
     "ja": "GPUを何枚も束ねて立てたクラスター。"
-   }
+   },
+   "author": "ChrisDag",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
   },
   "exchange-floor": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg/960px-NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:NY_stock_exchange_traders_floor_LC-U9-10548-6.jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "Thomas J. O'Halloran · Public domain",
    "size": "960x636",
    "use": "미국 증시·상장·거래 구조 이야기.",
    "caption": {
     "ko": "미국 증권거래소 객장.",
     "en": "A US exchange floor.",
     "ja": "米国の証券取引所の立会場。"
-   }
+   },
+   "author": "Thomas J. O'Halloran",
+   "license": "Public domain"
   },
   "gold-bars": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Gold_bullion_bars.jpg/960px-Gold_bullion_bars.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Gold_bullion_bars.jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "Stevebidmead · CC0",
    "size": "960x720",
    "use": "금·안전자산·중앙은행 매입.",
    "caption": {
     "ko": "금괴. 불안할 때 정부와 투자자가 먼저 찾는 자산이다.",
     "en": "Gold bars, what governments and investors reach for first when they are nervous.",
     "ja": "金塊。不安なとき政府と投資家がまず求める資産だ。"
-   }
+   },
+   "author": "Stevebidmead",
+   "license": "CC0",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
   "natgas-flame": {
    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Gas_stove_blue_flames.jpg/500px-Gas_stove_blue_flames.jpg",
    "page": "https://commons.wikimedia.org/wiki/File:Gas_stove_blue_flames.jpg",
-   "credit": "Wikimedia Commons",
+   "credit": "Marina Burity · CC BY-SA 2.0",
    "size": "500x439",
    "use": "천연가스·발전 연료.",
    "caption": {
     "ko": "늘 쓰는 가스레인지의 파란 불꽃. 이게 천연가스다.",
     "en": "The blue flame on a kitchen stove. That is natural gas.",
     "ja": "いつものガスコンロの青い炎。これが天然ガスだ。"
-   }
+   },
+   "author": "Marina Burity",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+  },
+  "nyse-exterior": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/New_York_Stock_Exchange_August_2017_02.jpg/500px-New_York_Stock_Exchange_August_2017_02.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:New_York_Stock_Exchange_August_2017_02.jpg",
+   "size": "500x334",
+   "use": "증시·거래소 전반을 다루는 카드에서 장면을 잡을 때. 특정 종목 이야기에는 쓰지 않는다.",
+   "author": "Arild Vågen",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "credit": "Arild Vågen · CC BY-SA 4.0"
+  },
+  "nyse-floor-modern": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/NYSE127.jpg/500px-NYSE127.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:NYSE127.jpg",
+   "size": "500x375",
+   "use": "거래소 객장 내부. exchange-floor(1960년대 흑백)와 달리 현대 장면이 필요할 때.",
+   "author": "Ryan Lawler",
+   "license": "Public domain",
+   "credit": "Ryan Lawler · Public domain"
+  },
+  "world-map-blank": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/500px-World_map_blank_without_borders.svg.png",
+   "page": "https://commons.wikimedia.org/wiki/File:World_map_blank_without_borders.svg",
+   "size": "500x278",
+   "use": "국가별·지역별 비교를 다루는 카드의 도해 바탕.",
+   "author": "Crates",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "credit": "Crates · CC BY-SA 4.0"
+  },
+  "wall-street-sign": {
+   "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Wall_Street_Sign.jpg/500px-Wall_Street_Sign.jpg",
+   "page": "https://commons.wikimedia.org/wiki/File:Wall_Street_Sign.jpg",
+   "size": "500x375",
+   "use": "월가·미국 금융권 전반을 가리킬 때.",
+   "author": "RMajouji",
+   "license": "CC BY 2.5",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.5/",
+   "credit": "RMajouji · CC BY 2.5"
   }
  }
 }
