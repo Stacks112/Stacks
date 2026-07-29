@@ -378,6 +378,12 @@
   #v82detail > .twc-comp.twc-pinned .twc-who{display:none;}
   #v82detail > .twc-comp.twc-pinned.twc-open .twc-who{display:block;font-size:13px;font-weight:800;color:var(--text);padding:2px 2px 8px;}
   #v82detail > .twc-comp.twc-pinned.twc-open #twcText{min-height:76px;}
+  /* iOS Safari zooms the whole page when a focused field computes under 16px — that
+     is what made the detail suddenly balloon on tap (twcText 14.5px, twcName 13.5px).
+     Every composer field goes to 16px. Do NOT "fix" it with maximum-scale on the
+     viewport meta — that would block pinch-zoom for everyone. */
+  #twcText, #twcName{font-size:16px;}
+  html.rbeta .twin-in{font-size:16px;}
   /* the quick one-line comment bar (.twin / twInlineSend) is a second composer for
      the same thread, so hide it in the detail once the full section is actually
      mounted (.comment-box no longer [hidden]). Guarded by :has() on purpose — if a
