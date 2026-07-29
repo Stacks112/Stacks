@@ -938,6 +938,13 @@ html[data-lang="ko"] .install-hint{font-family:var(--ui-font);}
 .series-close:hover{opacity:1;}
 .series-head-name{font-weight:800;font-size:22px;letter-spacing:-0.02em;}
 .series-head-desc{margin-top:7px;font-size:13.5px;line-height:1.55;opacity:.72;}
+/* 2026-07-29 june: desktop 적중 기록·테마 논쟁 헤더를 골라보기/쏠린 곳과 동일한 plain 스타일로(다크 배너·피드로 돌아가기 버튼 제거). 모바일·시리즈 뷰 무관. */
+@media (min-width:1024px){
+html.v83 .series-header.sb-header{background:transparent!important;color:var(--text)!important;border-radius:0!important;padding:16px 14px 2px!important;margin:0!important;box-shadow:none!important;}
+html.v83 .series-header.sb-header .series-close{display:none!important;}
+html.v83 .series-header.sb-header .series-head-name{font-size:18px!important;font-weight:800!important;color:var(--text)!important;}
+html.v83 .series-header.sb-header .series-head-desc{font-size:12.5px!important;line-height:20px!important;color:var(--muted)!important;margin:4px 0 0!important;opacity:1!important;}
+}
 .series-head-row{display:flex;align-items:center;gap:12px;margin-top:15px;}
 .series-count{font-family:var(--mono-font);font-size:10.5px;letter-spacing:.1em;opacity:.55;}
 .series-follow{
