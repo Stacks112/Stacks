@@ -795,6 +795,7 @@ UI = {
                other="다른 언어로 읽기", why="투자 포인트", ask="짚어볼 점",
                sum3="세 줄 요약", split="구분 기준",
                home=SITE + " 홈", allp="전체 글", about="소개",
+               week="이번 주", latest="최신 글", allmore="전체 글 보기 →",
                disc="요약·해설은 " + SITE + "의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, "
                     "각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, "
                     "투자 판단과 그 책임은 이용자 본인에게 있습니다."),
@@ -804,6 +805,7 @@ UI = {
                other="Read this in another language", why="Why it matters",
                sum3="In three lines", split="How to tell which",
                ask="Worth asking", home=SITE + " home", allp="All articles", about="About",
+               week="This week", latest="Latest", allmore="Browse all articles →",
                disc="Summaries and commentary are original work by " + SITE + ". Copyright in the "
                     "source material remains with its author; every item credits the source and "
                     "links to the original. This is information and commentary, not investment advice."),
@@ -812,6 +814,7 @@ UI = {
                other="他の言語で読む", why="Why it matters", ask="考えるべき点",
                sum3="3行まとめ", split="見分ける基準",
                home=SITE + " ホーム", allp="記事一覧", about="Stacksについて",
+               week="今週", latest="最新記事", allmore="記事一覧を見る →",
                disc="要約・解説は" + SITE + "の著作物です。元記事の著作権は原著者に帰属し、各項目は"
                     "出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は"
                     "利用者本人にあります。"),
@@ -875,6 +878,12 @@ TITLES = {}      # id -> {"ko":..., "en":..., "ja":...}
 ITEM_META = {}   # id -> {"stance":..., "date":..., "source":...}
 REC_OF = {}      # author display name -> aggregate dict (see build_records)
 OPP_OF = {}      # id -> {"k": ticker key, "ids": [...]} from build_data
+# Newest-first [(id, (langs,...)), ...]. An article page reached from Search is
+# an island: the reader has no feed, so without a list of what else exists the
+# only exits are the two or three related links we happened to pick. This is the
+# "there is more here, and it is current" signal, and it doubles as a crawl path
+# from every deep page back into the newest content.
+LATEST = []
 
 
 def title_of(iid, lang):
@@ -983,6 +992,9 @@ def author_slug_map():
 def build_records(items, entities=None):
     """Populate TITLES / ITEM_META / REC_OF / OPP_OF once for the whole build."""
     TITLES.clear(); ITEM_META.clear(); REC_OF.clear(); OPP_OF.clear()
+    # items arrive newest-first; keep the per-item language list so a page never
+    # links to a language edition that was not written.
+    LATEST[:] = [(i["id"], tuple(item_langs(i))) for i in items]
     entities = entities or {}
     name2slug = author_slug_map()
 
@@ -1059,6 +1071,29 @@ REC_CSS = """.rec,.oc,.opp{margin-top:26px}
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
   .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
   .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}"""
+
+
+def latest_block(cur_id, lang, U, skip=(), limit=8):
+    """Newest articles in this language, excluding the current one and anything
+    already linked above (related / opposing), so the block never repeats a
+    headline the reader just saw. Links are siblings in the same directory,
+    exactly like the related list."""
+    rows, n = "", 0
+    for iid, lgs in LATEST:
+        if n >= limit or iid == cur_id or iid in skip or lang not in lgs:
+            continue
+        t = title_of(iid, lang)
+        if not t:
+            continue
+        d = (ITEM_META.get(iid) or {}).get("date", "")
+        rows += ('<li><a href="%s.html">%s</a><time>%s</time></li>'
+                 % (E(iid), E(clip(t, 90)), E(d[5:] if len(d) >= 10 else d)))
+        n += 1
+    if not rows:
+        return ""
+    return ('<nav class="latest"><h3>%s</h3><ul>%s</ul>'
+            '<a class="latest-all" href="%sarticles.html">%s</a></nav>'
+            % (E(U["latest"]), rows, LANG_REL[lang], E(U["allmore"])))
 
 
 def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titles=None):
@@ -1186,6 +1221,11 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         ent_html = (f'<nav class="ent-nav"><h3>{E(U["ents"])}</h3>'
                     f'<div class="ent-chips">{chips}</div></nav>')
 
+    # Feed substitute for search traffic. Skips what "related" and the opposing
+    # block already show so the reader gets eight NEW headlines, not a reprint.
+    _skip = set(rel_ids) | set((OPP_OF.get(iid) or {}).get("ids", []))
+    latest_html = latest_block(iid, lang, U, skip=_skip)
+
     img_url = BASE + "og/" + iid + ".png" if og_img else ""
     # Recommended NewsArticle fields for richer Google results:
     #   image  -> the article's OG card (enables a large thumbnail in Search/News)
@@ -1245,8 +1285,13 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
 body{{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}.card{{background:#141519!important}}.gist{{color:#C9CDD6!important}}}}
 .wrap{{max-width:720px;margin:0 auto;padding:0 20px 60px}}
-.topbar{{padding:16px 0;font-weight:800}}
+.topbar{{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}}
 .topbar a{{color:inherit;text-decoration:none}}
+.topbar .brand{{font-weight:800;font-size:16px}}
+.topbar .sitenav{{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}}
+.topbar .sitenav a{{font-size:13.5px;font-weight:600;color:#8E93A0}}
+.topbar .sitenav a:hover{{color:#17181C}}
+@media(prefers-color-scheme:dark){{.topbar{{border-color:#26272E}}.topbar .sitenav a:hover{{color:#ECEDF1}}}}
 .cover{{height:120px;border-radius:16px;background:{grad};display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}}
 .cover .label{{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}}
 .meta{{font-size:13px;color:#8E93A0;margin-bottom:4px}}
@@ -1273,6 +1318,15 @@ h1{{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}}
 .ent-chip{{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}}
 .ent-chip:hover{{border-color:#111214}}
 @media(prefers-color-scheme:dark){{.ent-chip{{background:#141519;color:#ECEDF1;border-color:#2E3037}}}}
+.latest{{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}}
+.latest h3{{font-size:14px;margin:0 0 10px}}
+.latest ul{{list-style:none;margin:0;padding:0}}
+.latest li{{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}}
+.latest li a{{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}}
+.latest li a:hover{{text-decoration:underline}}
+.latest time{{flex:none;font-size:12px;color:#8E93A0}}
+.latest-all{{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:700;color:#17181C;text-decoration:none}}
+@media(prefers-color-scheme:dark){{.latest{{border-color:#26272E}}.latest li{{border-bottom-color:#1E1F25}}.latest li a,.latest-all{{color:#ECEDF1}}}}
 footer{{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}}
 @media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
 footer a{{color:#8E93A0}}
@@ -1280,7 +1334,10 @@ footer a{{color:#8E93A0}}
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar"><a href="{REL}">◆ {SITE}</a></div>
+  <div class="topbar">
+    <a class="brand" href="{REL}">◆ {SITE}</a>
+    <nav class="sitenav"><a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{REL}this-week.html">{E(U['week'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a></nav>
+  </div>
   <div class="cover"><span class="label">{E(cov.get('label',''))}</span></div>
   <div class="meta">{E(dispname(item.get('source','')))} · {E(item.get('date',''))} · {E(U['origlang'])}: {E(item.get('sourceLang',''))}</div>
   <h1>{E(title)}</h1>
@@ -1294,6 +1351,7 @@ footer a{{color:#8E93A0}}
   {other_html}
   {ent_html}
   {related}
+  {latest_html}
   <footer>
     {E(U['disc'])}<br>
     <a href="{REL}">{E(U['home'])}</a> · <a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a> · <a href="{feed_rel}">RSS</a>
