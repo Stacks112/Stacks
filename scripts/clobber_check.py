@@ -53,8 +53,15 @@ MIN_LINES = 3          # lines from one victim commit before it counts
 MAX_SCAN = 60          # how far back to look for victims
 SURVIVED = 0.75        # share of a removed line that must reappear in its own hunk
 
-WATCH_PREFIXES = ("index.html", "sw.js", "assets/", "worker/", "scripts/",
-                  ".github/workflows/", "CLAUDE.md", "sources.json",
+# items.json was missing here until 2026-07-30, and that is exactly where the
+# damage happened: an interactive session uploaded a whole items.json built 81
+# seconds before the publishing routine had added two cards, and both vanished
+# with a green Clobber guard. The list had been written for code files, but
+# items.json is the file two writers (the routine and interactive sessions)
+# actually contend over, and the only one either can erase from the other.
+# Intentional card deletions now need [clobber-ok] in the commit message.
+WATCH_PREFIXES = ("index.html", "items.json", "sw.js", "assets/", "worker/",
+                  "scripts/", ".github/workflows/", "CLAUDE.md", "sources.json",
                   "manifest.json", "privacy.html")
 
 BOT_AUTHORS = ("stacks-og-bot", "stacks-feed-bot", "github-actions",
