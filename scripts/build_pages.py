@@ -1313,7 +1313,12 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         other_html = f'<nav class="otherlang">{E(U["other"])}: {links}</nav>'
 
     related = ""
-    rel_ids = [r for r in (item.get("related") or []) if (rel_titles or {}).get(r)]
+    # opp/prior blocks already show these cards with stance and date; listing
+    # them again under Related would be pure duplication (june, 2026-07-30).
+    _shown = set(((OPP_OF.get(item["id"]) or {}).get("ids")) or []) \
+           | set(((PRIOR_OF.get(item["id"]) or {}).get("ids")) or [])
+    rel_ids = [r for r in (item.get("related") or [])
+               if (rel_titles or {}).get(r) and r not in _shown]
     if rel_ids:
         links = "".join(
             f'<li><a href="{E(r)}.html">{E(clip(rel_titles[r], 90))}</a></li>' for r in rel_ids
