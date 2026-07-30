@@ -3296,19 +3296,26 @@ function langParam(){
   try { const l = new URLSearchParams(location.search).get("l"); if (l === "ko" || l === "en" || l === "ja") return l; } catch (e) {}
   return null;
 }
-/* default language by country of access (timezone proxy): Korea→ko, Japan→ja, else English */
+/* First language follows where the reader is, on every shell (june, 2026-07-30).
+   Location decides when it is decisive: timezone Seoul→ko, Tokyo→ja. Anywhere
+   else the browser's own language decides, so a Korean or Japanese reader
+   abroad still lands on their language instead of English; everyone else gets
+   English. Desktop used to read navigator.language only, which put a US reader
+   on a Korean-locale machine into Korean, and mobile used the timezone only,
+   which put a Korean reader in New York into English. This is both rules in
+   priority order. A manual pick (stk_lang) and an explicit ?l= still win, so
+   the language switcher keeps working and ?l=ko / ?l=ja stay crawlable as the
+   canonical Korean and Japanese homepages. */
 function geoLang(){
+  var nav = (l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : null)((navigator.language || "").toLowerCase());
   try {
     var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "");
     if (tz.indexOf("Seoul") !== -1) return "ko";
     if (tz.indexOf("Tokyo") !== -1) return "ja";
-    return "en";
-  } catch(e){ return "en"; }
+  } catch(e){}
+  return nav || "en";
 }
-let LANG = langParam() || lsGet("stk_lang") ||
-  ((typeof RBETA !== "undefined" && RBETA)
-    ? geoLang()
-    : ((l => l.startsWith("ko") ? "ko" : l.startsWith("ja") ? "ja" : "en")((navigator.language || "").toLowerCase())));
+let LANG = langParam() || lsGet("stk_lang") || geoLang();
 let TAB = "all";
 
 function setLang(l){
