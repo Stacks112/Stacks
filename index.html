@@ -313,9 +313,6 @@ const STRINGS = {
     myFeedReasonS: "Story",
     myFeedBasis: "Built from what you follow. Tap a chip to open it, × to remove:",
     myFeedManage: "Edit interests",
-    todayLabel: "Today's debate",
-    todayJoin: "Join the discussion",
-    todayComments: "{n} comments",
     suggTitle: "You might also follow",
     meTitle: "My activity",
     meStreak: "day streak",
@@ -488,9 +485,6 @@ const STRINGS = {
     myFeedReasonS: "시리즈",
     myFeedBasis: "내가 팔로우한 아래 항목 기준으로 자동 구성돼요. 칩을 누르면 열리고, ×로 제외:",
     myFeedManage: "관심사 편집",
-    todayLabel: "오늘의 토론",
-    todayJoin: "의견 남기기",
-    todayComments: "댓글 {n}개",
     suggTitle: "이런 종목도 팔로우해보세요",
     meTitle: "내 활동",
     meStreak: "일 연속 방문",
@@ -663,9 +657,6 @@ const STRINGS = {
     myFeedReasonS: "ストーリー",
     myFeedBasis: "フォロー中の項目から自動構成。チップで開く、×で除外:",
     myFeedManage: "興味を編集",
-    todayLabel: "今日の議論",
-    todayJoin: "意見を書く",
-    todayComments: "コメント{n}件",
     suggTitle: "こんな銘柄もフォローしませんか",
     meTitle: "マイ活動",
     meStreak: "日連続アクセス",
@@ -998,7 +989,6 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   html.rbeta .why p{white-space:pre-line;line-height:1.6;font-weight:400;}
   /* opportunity/trap (ask) card: no bold */
   html.rbeta .ask-block .ask-q{white-space:pre-line;line-height:1.55;font-weight:400;}
-  html.rbeta .today-q{white-space:pre-line;line-height:1.55;}
   /* outcome (예측 추적 중): note drops to its own line */
   html.rbeta .oc .oc-sep{display:none;}
   html.rbeta .oc .oc-note{display:block;margin-top:2px;}
@@ -1298,22 +1288,6 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
   padding:10px 0 12px;border-top:1px solid #1a1b1f;}
 .psl-tabs i{width:19px;height:19px;border-radius:6px;background:#26282e;display:block;}
 .psl-tabs i:first-child{background:#fff;}
-/* screen 3: debate */
-.psd{background:#fff;flex:1;display:flex;flex-direction:column;gap:11px;padding:38px 15px 0;}
-.psd-h{display:flex;align-items:center;gap:6px;font-size:8.5px;font-weight:800;letter-spacing:.11em;
-  text-transform:uppercase;color:#d92d20;}
-.psd-h::before{content:"";width:6px;height:6px;border-radius:50%;background:#d92d20;}
-.psd-q{font-size:13.5px;font-weight:800;line-height:1.46;letter-spacing:-.012em;color:#111214;
-  word-break:keep-all;overflow-wrap:break-word;
-  display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
-.psd-split{display:flex;height:32px;border-radius:10px;overflow:hidden;font-size:10.5px;font-weight:800;color:#fff;}
-.psd-split span{display:flex;align-items:center;justify-content:center;gap:4px;}
-.psd-split .dsb{background:#12b76a;flex:1;}.psd-split .dsr{background:#f04438;flex:1;}
-.psd-voices{display:flex;flex-direction:column;gap:10px;margin-top:1px;}
-.psd-v{display:flex;align-items:flex-start;gap:8px;}
-.psd-v img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#e5e7eb;flex:0 0 auto;margin-top:1px;}
-.psd-v span{font-size:10px;color:#475467;line-height:1.52;word-break:keep-all;overflow-wrap:break-word;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 /* screen 4: track record */
 .pst{background:#fff;flex:1;display:flex;flex-direction:column;gap:10px;padding:38px 15px 0;}
 .pst-h{font-size:8.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#98a2b3;}
@@ -1637,7 +1611,6 @@ html{overscroll-behavior-y:contain;}
   }
   .hero{display:none;}
   .mini-install{grid-column:1 / -1;}
-  #todaySec{grid-column:1 / -1;margin:0 0 6px;}
   #skewSec{grid-column:1 / -1;margin:0 0 6px;}
   #feed{grid-column:2;min-width:0;margin:0;}
   #sideLeft{grid-column:1;}
@@ -1710,7 +1683,6 @@ html{overscroll-behavior-y:contain;}
   /* v83.1: today's debate pinned to the top of the center feed */
   html.v83 #eventBar{ display:none !important; }
   html.v83 #skewSec{ display:none !important; } /* v83.4: module retired, now a menu page */
-  html.v83 #v83center > #todaySec{ margin:14px 14px 4px; }
   /* v83.1: skew trend timeline (replaces the horizontal chip rail on desktop beta)
      v83.2: lives in the LEFT nav (above 캘린더) — scoped to html.v83 + nav compact overrides */
   html.v83 .sktl-sub{ font-size:11.5px; color:var(--muted); margin:-2px 0 10px; }
@@ -2004,37 +1976,6 @@ html[data-theme="dark"] .w-v-bear{color:#FDA29B;}
 /* For-you tab + reason chips */
 .tab-mine{border-color:var(--accent);color:var(--accent);font-weight:800;}
 .tab-mine.active{background:var(--accent);border-color:var(--accent);color:#fff;}
-/* today's pinned debate */
-#todaySec{margin-bottom:22px;}
-#todaySec[hidden]{display:none;}
-.today-box{
-  position:relative;display:block;width:100%;text-align:left;color:var(--text);
-  border:1px solid var(--accent);border-radius:16px;
-  background:linear-gradient(135deg,rgba(124,147,255,.1),rgba(124,147,255,.02));
-  box-shadow:0 0 0 1px rgba(124,147,255,.45), 0 0 18px rgba(124,147,255,.32);
-  animation:todayGlow 2.8s ease-in-out infinite;
-}
-@keyframes todayGlow{
-  0%,100%{box-shadow:0 0 0 1px rgba(124,147,255,.40), 0 0 14px rgba(124,147,255,.26);}
-  50%{box-shadow:0 0 0 1px rgba(124,147,255,.75), 0 0 28px rgba(124,147,255,.55);}
-}
-@media (prefers-reduced-motion: reduce){ .today-box{animation:none;} }
-.today-main{cursor:pointer;padding:16px 40px 16px 18px;}
-.today-box:hover{box-shadow:0 0 0 1px rgba(124,147,255,.7), 0 10px 30px rgba(124,147,255,.4);}
-.today-x{
-  position:absolute;top:10px;right:10px;width:26px;height:26px;line-height:1;
-  border:none;background:rgba(124,147,255,.12);color:var(--muted);border-radius:50%;
-  font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;
-}
-.today-x:hover{background:rgba(124,147,255,.24);color:var(--text);}
-.today-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
-.today-tag{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}
-html[data-lang="ko"] .today-tag{font-family:var(--ui-font);letter-spacing:0;text-transform:none;font-size:12px;}
-.today-n{font-size:11px;font-weight:700;color:var(--muted);font-family:var(--mono-font);}
-.today-q{font-size:17px;font-weight:800;line-height:1.4;letter-spacing:-.01em;}
-html[data-lang="ko"] .today-q{font-family:var(--ui-font);}
-.today-src{font-size:12px;color:var(--muted);margin-top:7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.today-cta{margin-top:10px;font-size:13px;font-weight:700;color:var(--accent);}
 .mine-banner{
   font-size:12.5px;font-weight:600;color:var(--muted);
   padding:2px 2px 12px;margin-bottom:4px;
@@ -3181,7 +3122,7 @@ footer a{color:var(--muted);}
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=8a94b150">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=b35e6391">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=5cf95463">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
@@ -3219,13 +3160,6 @@ footer a{color:var(--muted);}
   </div>
 
   <div class="event-bar" id="eventBar" hidden></div>
-
-  <section id="todaySec" hidden>
-    <div class="today-box" id="todayBox">
-      <button class="today-x" id="todayClose" aria-label="close" onclick="dismissToday(event)">&times;</button>
-      <div class="today-main" id="todayMain"></div>
-    </div>
-  </section>
 
   <section id="skewSec" hidden>
     <h2 class="section-title" id="skewTitle"></h2>
@@ -5682,7 +5616,7 @@ function v83JoinDebate(){
 function mountV83(){
   if (V83 && V83.mounted) return;
   var wrap = document.querySelector(".wrap"); if (!wrap) return;
-  var ids = ["tabs", "feed", "todaySec", "skewSec", "eventBar", "watchSec", "nlSec"];
+  var ids = ["tabs", "feed", "skewSec", "eventBar", "watchSec", "nlSec"];
   var nodes = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var hotRail = document.getElementById("hotRail");
   var hotSec = hotRail ? hotRail.closest("section") : null;
@@ -5752,8 +5686,6 @@ function mountV83(){
     var ni0 = document.querySelector(".nav-inner");
     if (ni0) ni0.insertBefore(fsw, ni0.querySelector(".lang-menu"));
     else center.appendChild(fsw);
-    /* v83.1: today's debate pinned to the very top of the feed column */
-    var td0 = document.getElementById("todaySec"); if (td0) center.appendChild(td0);
     center.appendChild(feed);
   } else {
     wrap.appendChild(nav); wrap.appendChild(center); wrap.appendChild(rail);
@@ -8405,10 +8337,6 @@ function v83NotifRows(){
       .slice(0, 4).forEach(function(i){
         rows.push({ em: i.outcome.status === "hit" ? "✅" : "❌", t1:T.nGrade, t2:i.title[L], id:i.id });
       });
-    if (typeof TODAY_ID !== "undefined" && TODAY_ID){
-      var td = ITEMS.find(function(i){ return i.id === TODAY_ID; });
-      if (td && td.ask) rows.push({ em:"💬", t1:T.nDebate, t2:td.ask[L], id:td.id });
-    }
     /* 강한 쏠림: 최근 30일, 기업 엔티티 기준 강세+약세 3건 이상이고 한쪽이 80% 이상 */
     var cut = new Date(Date.now() - 30 * 86400 * 1000).toISOString().slice(0, 10);
     var agg = {};
@@ -8595,38 +8523,11 @@ function dismissToday(ev){
   track("today/dismiss");
 }
 function renderToday(){
-  const sec = document.getElementById("todaySec");
-  const main = document.getElementById("todayMain");
-  if (!sec || !main) return;
-  let homeView = !(typeof THEME_VIEW!=="undefined"&&THEME_VIEW) && !QUERY && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !BM_ONLY && !UNREAD_ONLY && !READ_VIEW && TAB !== "mine";
-  /* v83.2: in the desktop beta the debate is pinned to the top of the feed
-     column, so it should only appear on the actual home feed (전체 tab) —
-     not above the 기업/정치인 directories or other category tabs. */
-  if (typeof V83 !== "undefined" && V83 && V83.mounted && (TAB !== "all" || (typeof V83ITEM !== "undefined" && V83ITEM))) homeView = false;
-  /* 하루에 한 번만: 그날 dismiss(엑스 · 스크롤로 지나침 · 열어봄) 되었으면 다시 안 뜬다.
-     (june 지시 — 기존 '첫 방문 세션' 게이트를 하루 단위 dismiss로 대체) */
-  const dismissed = todayDismissed();
-  const pool = ITEMS.filter(i => i.ask && COMMENTS_API);
-  if (!homeView || dismissed || !pool.length){ sec.hidden = true; return; }
-  pool.sort((a, b) => (a.date < b.date ? 1 : -1)); const _cRecent = pool.filter(i => (Date.now() - new Date(i.date).getTime()) < 45*86400000); const _cUse = _cRecent.length >= 3 ? _cRecent : pool.slice(0, 12); const item = _cUse[Math.floor(Date.now()/86400000) % _cUse.length];
-  TODAY_ID = item.id;
-  const S = STRINGS[LANG];
-  const n = COMMENT_COUNTS[item.id] || 0;
-  sec.hidden = false;
-  watchTodayPast(sec); /* 스크롤로 지나치면 그날 하루 숨김 */
-  main.onclick = () => {
-    markTodayDismissed(); /* 열어서 봤으면 그날은 그만 노출 */
-    /* v83.3: open as its own page instead of deep-scrolling the feed */
-    if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83OpenItem === "function"){ v83OpenItem(item.id, true); }
-    else { goToItem(item.id); setTimeout(() => toggleComments(item.id), 260); }
-    track("today/" + item.id);
-  };
-  main.innerHTML =
-    '<div class="today-top"><span class="today-tag">💬 ' + S.todayLabel + "</span>"
-      + (n ? '<span class="today-n">' + S.todayComments.replace("{n}", n) + "</span>" : "") + "</div>"
-    + '<div class="today-q">' + esc(RBETA ? paraGist(item.ask[LANG]) : item.ask[LANG]) + "</div>"
-    + '<div class="today-src">' + esc(dispName(item.source)) + " · " + esc(item.title[LANG]) + "</div>"
-    + '<div class="today-cta">' + S.todayJoin + " →</div>";
+  /* 2026-07-30 (june): "오늘의 토론" 기능 전면 폐지 — 홈 상단 박스(#todaySec)·모바일 피드
+     모듈(v82today)·알림 행·알림 설정 토글·인트로 목업까지 함께 제거했다. TODAY_ID는 항상
+     null로 남아 혹시 남은 참조도 전부 조용히 건너뛴다. 호출부 3곳이 있어 no-op 스텁만 유지.
+     dismiss 헬퍼(markTodayDismissed/todayDismissed/watchTodayPast/dismissToday)는 미사용
+     dead code로 남아 있다(collapseHide는 설치 미니바가 계속 쓴다). */
 }
 function renderHotRail(){
   const rail = document.getElementById("hotRail");
@@ -9925,8 +9826,6 @@ function buildIntroCards(){
 
   /* --- pick a distinct source item per screen --- */
   var readItem = recent.find(function(i){ return i.cover && i.title && itemStance(i) && tx(i.gist); }) || recent[0];
-  var debateItem = recent.find(function(i){ return i !== readItem && i.ask && tx(i.ask).length > 24; })
-    || recent.find(function(i){ return i !== readItem; }) || recent[0];
 
   /* --- lean aggregation (real counts across the recent feed) --- */
   var cnt = { bull:0, bear:0, watch:0 };
@@ -9956,9 +9855,6 @@ function buildIntroCards(){
   var tracked = ITEMS.filter(function(i){ return i.outcome && i.outcome.status; });
   var trackNum = tracked.length || recent.length;
   var trackList = recent.filter(function(i){ return i.title && i !== readItem; }).slice(0, 4);
-
-  /* debate voices: 2 short takes from other recent items */
-  var voiceItems = recent.filter(function(i){ return i !== debateItem && (tx(i.why) || tx(i.gist)); }).slice(0, 2);
 
   /* profile screen: feature the most-discussed company that has a real portrait
      photo (COMPANY_FACE), headed by its CEO — e.g. NVIDIA → Jensen Huang. */
@@ -10014,22 +9910,6 @@ function buildIntroCards(){
       + '<div class="psl-tabs"><i></i><i></i><i></i></div>'
       + '</div></div>';
   }
-  function scrDebate(it){
-    var voices = voiceItems.map(function(v){
-      var av = v.avatarImg
-        ? '<img src="' + esc(v.avatarImg) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
-        : '<span class="psr-av" style="margin-top:1px"></span>';
-      return '<div class="psd-v">' + av + '<span>' + esc((tx(v.why) || tx(v.gist)).slice(0, 120)) + '</span></div>';
-    }).join("");
-    return '<div class="ph-scr"><div class="psd">' + phStatus(false)
-      + '<div style="height:14px"></div>'
-      + '<div class="psd-h">' + L("debate", "Today’s debate") + '</div>'
-      + '<div class="psd-q">' + esc(tx(it.ask) || tx(it.title)) + '</div>'
-      + '<div class="psd-split"><span class="dsb">&#9650; ' + esc(S.stanceBull) + '</span>'
-      +   '<span class="dsr">' + esc(S.stanceBear) + ' &#9660;</span></div>'
-      + '<div class="psd-voices">' + voices + '</div>'
-      + '</div></div>';
-  }
   function scrTrack(){
     var list = trackList.map(function(it){
       var done = it.outcome && it.outcome.status && it.outcome.status !== "pending";
@@ -10077,7 +9957,7 @@ function buildIntroCards(){
 
   /* ---- assemble a horizontal row (Autopilot hero): Read, Profile, Lean, Debate, Track.
      Profile (person photo) sits 2nd; Lean (dark) center. Nulls filtered. ---- */
-  var phones = [ scrRead(readItem), scrProfile(), scrLean(), scrDebate(debateItem), scrTrack() ].filter(Boolean);
+  var phones = [ scrRead(readItem), scrProfile(), scrLean(), scrTrack() ].filter(Boolean);
   box.innerHTML = '<div class="intro-track">' + phones.map(function(html, idx){
     return '<div class="intro-ph" style="animation-delay:' + (0.09 * idx + 0.12).toFixed(2) + 's">' + html + '</div>';
   }).join("") + '</div>';
@@ -10387,7 +10267,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=91eb3357"></script>
+<script src="assets/v82.js?v=80079ed7"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=65e17f0c"></script>
 
@@ -10504,7 +10384,6 @@ bootData();
   html.v83 #feedList > .v83post-head .v83post-title{
     font-size:19px; font-weight:800; letter-spacing:-.01em; color:var(--text);
   }
-  html.v83 #v83center > #todaySec{ margin:12px 16px 4px !important; }
 
   /* ── 4. 우측 레일 : 검색창 sticky + 350px 박스 ─────────────────── */
   html.v83 #v83rail > .v83-search{
