@@ -58,6 +58,8 @@ MAIN_KEYS = 4           # companies the "since this post" badge may price
 OPP_WINDOW_DAYS = 45    # how far apart two opposing takes may sit
 OPP_MAX = 2
 OPP_USE_CAP = 3         # times one post may serve as somebody else's counterpart
+PRIOR_WINDOW_DAYS = 180  # how far back "what this author said last time" reaches
+PRIOR_MAX = 2
 
 # Fields dropped from core entirely: the full text lives in the gist chunks.
 LANG_FIELDS = ("gist", "why", "ask")
@@ -456,6 +458,43 @@ def pick_opposites(items, entities, stance_map, alias2key):
           "(%d tickers in play, most-cited foil used %dx)"
           % (paired, len(items), len(buckets), max(used.values()) if used else 0))
     return out
+
+
+def pick_priors(items, entities, alias2key):
+    """This author's earlier posts on the same declared company.
+
+    A single card is one frame; the trajectory - what this writer said about
+    this stock last time, and the time before - is the part no source post
+    contains and no source can take away. Pairing mirrors pick_opposites and
+    is deliberately conservative: only the DECLARED company (cover label or
+    tag, via explicit_key) counts, only the same author, only within a window.
+    A wrong "here is what they said before" link is worse than none.
+    """
+    key_of, d_of = {}, {}
+    for it in items:
+        key_of[it["id"]] = explicit_key(it, entities, alias2key)
+        d_of[it["id"]] = parse_date(it.get("date"))
+    buckets = {}
+    for it in items:
+        k = key_of[it["id"]]
+        if k and d_of[it["id"]]:
+            buckets.setdefault((it.get("source") or "", k), []).append(it["id"])
+    res = {}
+    for it in items:
+        iid = it["id"]
+        k, d = key_of[iid], d_of[iid]
+        if not (k and d):
+            continue
+        prevs = [oid for oid in buckets.get((it.get("source") or "", k), [])
+                 if oid != iid and d_of[oid] < d
+                 and (d - d_of[oid]).days <= PRIOR_WINDOW_DAYS]
+        if not prevs:
+            continue
+        prevs.sort(key=lambda oid: d_of[oid], reverse=True)
+        res[iid] = {"k": k, "ids": prevs[:PRIOR_MAX]}
+    print("  priors: %d of %d items carry same-author history on the same ticker"
+          % (len(res), len(items)))
+    return res
 
 
 # Line-leading markers the app turns into subheadings, verification panels and

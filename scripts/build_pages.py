@@ -872,15 +872,18 @@ REC_UI = {
     "ko": dict(rec="이 필진의 기록", posts="글", calls="방향성 콜",
                bull="강세", bear="약세", watch="관점", hit="적중", miss="빗나감",
                more="전체 기록 보기 →", oc="그 후 어떻게 됐나",
-               pending="채점 대기", opp="같은 사안, 다른 관점"),
+               pending="채점 대기", opp="같은 사안, 다른 관점",
+               dlt="같은 종목, 이 필진의 이전 글"),
     "en": dict(rec="This author's record", posts="posts", calls="directional calls",
                bull="Bull", bear="Bear", watch="Watch", hit="Hit", miss="Miss",
                more="See the full record →", oc="What happened next",
-               pending="Awaiting grading", opp="Same story, other views"),
+               pending="Awaiting grading", opp="Same story, other views",
+               dlt="Earlier from this author on this stock"),
     "ja": dict(rec="この筆者の記録", posts="記事", calls="方向性コール",
                bull="強気", bear="弱気", watch="観点", hit="的中", miss="外れ",
                more="記録をすべて見る →", oc="その後どうなったか",
-               pending="採点待ち", opp="同じ話題、別の見方"),
+               pending="採点待ち", opp="同じ話題、別の見方",
+               dlt="同じ銘柄、この筆者の以前の記事"),
 }
 LANGS = ("ko", "en", "ja")
 LANG_DIR = {"ko": "p", "en": "p/en", "ja": "p/ja"}
@@ -920,6 +923,7 @@ TITLES = {}      # id -> {"ko":..., "en":..., "ja":...}
 ITEM_META = {}   # id -> {"stance":..., "date":..., "source":...}
 REC_OF = {}      # author display name -> aggregate dict (see build_records)
 OPP_OF = {}      # id -> {"k": ticker key, "ids": [...]} from build_data
+PRIOR_OF = {}    # id -> {"k": ticker key, "ids": [...]} from build_data.pick_priors
 # Newest-first [(id, (langs,...)), ...]. An article page reached from Search is
 # an island: the reader has no feed, so without a list of what else exists the
 # only exits are the two or three related links we happened to pick. This is the
@@ -1012,6 +1016,18 @@ def opp_block(item, lang, R):
     return '<section class="opp"><h3>%s</h3><ul>%s</ul></section>' % (E(R["opp"]), rows)
 
 
+def prior_block(item, lang, R):
+    """This author's earlier cards on the same declared company - the
+    trajectory. Pairing comes from build_data.pick_priors (same author, same
+    explicit_key, 180-day window); nothing is recomputed here for the same
+    reason opp_block doesn't recompute pairings."""
+    ids = (PRIOR_OF.get(item["id"]) or {}).get("ids") or []
+    rows = _card_rows(ids, lang, R, limit=2)
+    if not rows:
+        return ""
+    return '<section class="dlt"><h3>%s</h3><ul>%s</ul></section>' % (E(R["dlt"]), rows)
+
+
 def _build_data():
     """build_data.py owns the canonical opposite-card pairing and the
     back-catalogue stance map. Import it rather than reimplement either."""
@@ -1043,7 +1059,7 @@ def author_slug_map():
 
 def build_records(items, entities=None):
     """Populate TITLES / ITEM_META / REC_OF / OPP_OF once for the whole build."""
-    TITLES.clear(); ITEM_META.clear(); REC_OF.clear(); OPP_OF.clear()
+    TITLES.clear(); ITEM_META.clear(); REC_OF.clear(); OPP_OF.clear(); PRIOR_OF.clear()
     # items arrive newest-first; keep the per-item language list so a page never
     # links to a language edition that was not written.
     LATEST[:] = [(i["id"], tuple(item_langs(i))) for i in items]
@@ -1098,31 +1114,32 @@ def build_records(items, entities=None):
         try:
             _rx, alias2key = bd.build_entity_matcher(entities)
             OPP_OF.update(bd.pick_opposites(items, entities, stance_map, alias2key))
+            PRIOR_OF.update(bd.pick_priors(items, entities, alias2key))
         except Exception as e:
             print("[rec] opposites unavailable: " + str(e))
 
 
-REC_CSS = """.rec,.oc,.opp{margin-top:26px}
-.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+REC_CSS = """.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
 .rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
 .rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
-.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
-.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
-.rec-l li:first-child,.opp li:first-child{border-top:0}
-.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
 .bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
-.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
-.rec-l a:hover,.opp a:hover{text-decoration:underline}
-.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
 .rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
 .oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
 .oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
 .oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
-  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
-  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}"""
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}"""
 
 
 # One app, not a pile of leaves. Every generated page here is a dead end for a
@@ -1280,7 +1297,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     # reason BLOCK_CSS is conditional (this is inlined into ~500 pages).
     R = REC_UI[lang]
     rec_html = (outcome_block(item, lang, R) + record_block(item, lang, R, REL)
-                + opp_block(item, lang, R))
+                + opp_block(item, lang, R) + prior_block(item, lang, R))
     if rec_html:
         block_css += REC_CSS + "\n"
 
