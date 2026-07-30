@@ -1392,7 +1392,9 @@ html[data-theme="dark"] .icol-chip.on{background:#fff;color:#111214;}
 .irank{display:flex;flex-direction:column;}
 .irank-row{display:flex;align-items:center;gap:13px;width:100%;padding:13px 4px;cursor:pointer;
   text-align:left;font-family:inherit;background:none;border:0;border-top:1px solid var(--line);
-  transition:background .12s;}
+  color:inherit;text-decoration:none;transition:background .12s;}
+/* the Popular rows are <a> (crawlable); match the button/div rows' box */
+a.irank-row{line-height:normal;}
 .irank-row:first-child{border-top:0;}
 .irank-row:hover{background:var(--bg-soft);}
 .irank-rk{width:16px;flex:0 0 auto;font-size:13px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;}
@@ -10014,6 +10016,15 @@ function buildIntroCards(){
 /* leave the intro and open the tapped item */
 function introGo(id){ try { closeIntro(); } catch (e) {} try { goToItem(id); } catch (e) {}
   return false; }
+/* Real, crawlable URL of an item's static article page for the current
+   language. The landing used to link items with "#sig-<id>" (a same-page
+   anchor), which meant the home page handed crawlers no path to any of our
+   own article pages. onclick still returns false, so readers stay in the app
+   and only crawlers / new-tab clicks follow the href. */
+function pUrl(id){
+  var dir = (LANG === "en") ? "p/en/" : (LANG === "ja") ? "p/ja/" : "p/";
+  return dir + encodeURIComponent(String(id)) + ".html";
+}
 /* v83.9d: "Featured" landing section — this week's hot reads as horizontal
    cards (Autopilot Featured-style). Real items flagged hot. */
 function buildIntroFeatured(){
@@ -10034,7 +10045,7 @@ function buildIntroFeatured(){
     var st = itemStance(it), sm = st ? stanceMeta(st) : null;
     var lbl = cov.label ? '<span class="feat-lbl">' + esc(cov.label) + '</span>' : '';
     var idJs = String(it.id).replace(/'/g, "\\'");
-    return '<a class="feat-card" href="#sig-' + esc(it.id) + '" onclick="return introGo(\'' + idJs + '\')"'
+    return '<a class="feat-card" href="' + esc(pUrl(it.id)) + '" onclick="return introGo(\'' + idJs + '\')"'
       + ' style="--cf:' + esc(cov.from || "#1f2937") + ';--ct:' + esc(cov.to || "#0b1220") + '">'
       + img
       + '<span class="feat-pill">' + esc(PH.featPill || "This week") + '</span>' + lbl
@@ -10156,12 +10167,12 @@ function buildIntroPopular(){
     var cov = it.cover || {}, ci = null; try { ci = coverImg(it); } catch (e) {}
     var thumb = (ci && ci.url) ? '<img src="' + esc(ci.url) + '" alt="" onerror="this.remove()">' : "";
     var bg = "background:linear-gradient(150deg," + esc(cov.from || "#1f2937") + "," + esc(cov.to || "#0b1220") + ")";
-    return '<button class="irank-row" onclick="introGo(\'' + String(it.id).replace(/'/g, "\\'") + '\')">'
+    return '<a class="irank-row" href="' + esc(pUrl(it.id)) + '" onclick="return introGo(\'' + String(it.id).replace(/'/g, "\\'") + '\')">'
       + '<span class="irank-rk">' + (idx + 1) + '</span>'
       + '<span class="irank-av sq" style="' + bg + '">' + thumb + '</span>'
       + '<span class="irank-main"><span class="irank-name pop">' + esc(tx(it.title)) + '</span>'
       + '<span class="irank-sub">' + esc(dispName(it.source)) + '</span></span>'
-      + '<span class="irank-chev">&rsaquo;</span></button>';
+      + '<span class="irank-chev">&rsaquo;</span></a>';
   }).join("");
 }
 /* v83.9f: "How it works" — 3 steps, Stacks-flavoured (follow → sectors →
