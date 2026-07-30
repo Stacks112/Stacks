@@ -564,6 +564,7 @@ def main():
     print("  entities matched: %d items, %.1f keys/item"
           % (len(items), sum(len(v) for v in ents_of.values()) / max(len(items), 1)))
     opp = pick_opposites(items, entities, stance_map, alias2key)
+    prior = pick_priors(items, entities, alias2key)
 
     # newest first, so chunk 0 is what the reader sees first
     ordered = sorted(items, key=lambda i: str(i.get("date") or ""), reverse=True)
@@ -620,6 +621,8 @@ def main():
             c["_mks"] = mks
         if it["id"] in opp:
             c["opp"] = opp[it["id"]]
+        if it["id"] in prior:
+            c["prior"] = prior[it["id"]]
         # The X post itself, fetched by scripts/fetch_embeds.py on a runner.
         # items.json never carries it: the publishing sandbox has no route to
         # X, and re-fetching on every build would rate-limit us.
