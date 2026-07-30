@@ -1,6 +1,147 @@
 {
  "items": [
   {
+   "date": "2026-07-29",
+   "id": "jukan-microsoft-capex-175b-lease-reclass",
+   "related": [
+    "semianalysis-modular-datacenter-labor-bottleneck",
+    "serenity-googl-q2-cloud-beat",
+    "damodaran-semiannual-reporting-fed-guidance"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2082597264770699770",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "docUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1D4ED8",
+    "label": "$41B vs $35.8B"
+   },
+   "tags": [
+    "MICROSOFT",
+    "CAPEX",
+    "LEASE"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "마이크로소프트의 설비투자 전망이 1,750억달러로 내려왔다, 쓸 돈이 줄어서가 아니다",
+    "en": "Microsoft's capex outlook came down to $175 billion, and not because it plans to spend less",
+    "ja": "マイクロソフトの設備投資見通しが1,750億ドルに下がった、使う金が減ったからではない"
+   },
+   "quote": {
+    "lines": [
+     "Did Microsoft actually lower its CAPEX guidance to $175 billion, or is this just an accounting issue?"
+    ],
+    "cite": "Jukan (@jukan05) · 2026.07.29"
+   },
+   "sum3": {
+    "ko": "마이크로소프트가 밝힌 2026년 설비투자 전망이 약 1,750억달러로, 이전에 들고 있던 금액보다 낮아졌다.\n겉으로 보면 하이퍼스케일러가 지출을 줄이는 첫 신호로 읽힌다. 실적은 좋았고 주가는 시간외에서 8% 넘게 올랐다.\n그런데 숫자가 내려온 이유는 데이터센터 추정 내용연수를 15년에서 25년으로 늘려, 앞으로의 임대가 설비투자에 안 잡히는 운영리스로 넘어가기 때문이다.",
+    "en": "Microsoft's calendar 2026 capital spending outlook came in at about $175 billion, below the figure it had been carrying.\nOn the surface that reads as the first sign of a hyperscaler trimming its spend. The quarter was strong and the stock rose more than 8% after hours.\nThe number came down because the company extended the assumed life of its data centers from 15 to 25 years, which pushes future leases into the operating lease box that capex does not count.",
+    "ja": "マイクロソフトが示した2026年の設備投資見通しは約1,750億ドルで、これまで示していた金額より下がった。\n表向きはハイパースケーラーが支出を絞る最初の合図に見える。決算は良く、株価は時間外で8%以上上がった。\nしかし数字が下がった理由は、データセンターの見積耐用年数を15年から25年に延ばし、今後の賃貸が設備投資に計上されないオペレーティングリースへ移るからだ。"
+   },
+   "gist": {
+    "ko": "마이크로소프트가 이번 실적 발표에서 밝힌 2026년 설비투자 전망은 약 1,750억달러다.\n이전에 회사가 들고 있던 금액보다 낮아졌는데, 쓸 돈을 줄여서 내려온 숫자가 아니다.\n지출 계획은 그대로 두고, 그 돈을 회계상 어느 칸에 적을지가 바뀌었다.\n\n@@REF@@마이크로소프트, 데이터센터 수명을 늘려 AI 건설 비용 부담을 낮추다 (PYMNTS, 2026-07-29)|https://www.pymnts.com/earnings/2026/microsoft-extends-data-center-lifespans-to-soften-ai-buildout-costs/\n\n## 한 분기에 숫자가 두 개인 이유\n회사가 실적 설명에서 말한 4~6월 설비투자는 410억달러다.\n그런데 같은 분기 현금흐름표에 찍힌 유형자산 취득액은 358억달러다.\n같은 분기를 두고 숫자가 둘로 갈리는 곳은 빌려 쓰는 설비를 어떻게 세느냐다.\n\n@@CHK@@실적 설명의 설비투자|410억달러|현금흐름표 유형자산 취득|358억달러|차이|52억달러@@한 분기에만 52억달러가 어느 칸에 넣느냐로 갈린다. 이 차이는 금융리스로 잡힌 몫으로 보이며, 회사도 금융리스는 설비투자에 포함되고 운영리스는 포함되지 않는다고 설명했다. 저자가 던진 질문의 전제가 데이터로 확인된다.@@2026-07-29 · 마이크로소프트 FY26 4분기 실적 발표 및 현금흐름표\n\n이번 분기 지출의 약 3분의 2는 서버용 중앙처리장치와 그래픽처리장치처럼 몇 년 안에 갈아 끼우는 부품이었다.\n건물보다 그 안에 꽂는 칩에 돈이 더 들어간다.\n\n@@IMG@@gpu-board|지출의 3분의 2를 차지하는 쪽. 건물은 25년을 쓰지만 이 판은 몇 년마다 갈아 낀다.\n\n## 금융리스와 운영리스가 뭐길래\n데이터센터를 남에게서 빌려 쓸 때, 계약 조건에 따라 둘 중 하나로 분류된다.\n할부로 사 오는 것에 가까운 계약이 금융리스, 월세로 빌리는 것에 가까운 계약이 운영리스다.\n금융리스는 설비투자로 집계되고, 운영리스는 집계되지 않는다.\n\n마이크로소프트는 데이터센터와 사무용 건물의 추정 내용연수를 15년에서 25년으로 늘렸다.\n2027 회계연도부터 적용된다.\n자산이 25년을 버틴다고 보면 같은 임대 계약도 자산 수명의 일부만 쓰는 계약이 되어, 할부보다 월세 쪽으로 분류된다.\n\n그래서 앞으로 맺는 데이터센터 임대가 운영리스로 넘어가고, 설비투자로 집계되는 금액이 줄어든다.\n회사 최고재무책임자는 더 큰 영향은 설비투자 쪽이라고 말했다.\n\n@@IMG@@datacenter-inside|1,750억달러가 들어가는 곳. 이 건물을 사서 짓느냐 빌려 쓰느냐에 따라 같은 지출이 설비투자에 잡히기도 하고 안 잡히기도 한다.\n\n## 이익이 부풀려진 것은 아닌가\n수명을 길게 잡으면 해마다 잡는 감가상각비가 줄어 이익이 커 보이는 효과도 있다.\n회사는 이 변경이 미래 감가상각의 시점만 바꾸며 2027 회계연도 영업이익에는 미미한 도움이 될 것이라고 설명했다.\n이익보다 설비투자 숫자가 더 크게 흔들린다는 뜻이다.\n\n실적 자체는 좋았다. 매출은 900억달러로 18% 늘었고, 애저 매출이 처음으로 연 1,000억달러를 넘었다.\n주가는 시간외 거래에서 8% 넘게 올랐다.\n\n## 같은 날 메타의 숫자는 반대로 갔다\n메타는 올해 설비투자 범위의 아래쪽을 1,250억달러에서 1,300억달러로 올렸다. 위쪽은 1,450억달러 그대로다.\n2분기 매출은 608억달러로 28% 늘었지만 영업이익률은 43%에서 31%로 내려왔고, 잉여현금흐름은 7억 8,400만달러까지 줄었다.\n마이크로소프트의 같은 분기 잉여현금흐름은 196억달러다.\n\n@@REF@@메타 2분기 실적 혼조, 설비투자 하한 상향에 주가는 하락 (벤징가, 2026-07-29)|https://www.benzinga.com/markets/earnings/26/07/60781217/meta-reports-mixed-q2-results-raises-low-end-of-capex-guidance-range-shares-move-lower|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/29/Low-Angle-Image-Of-Meta-Logo-On-Glass-Of.jpg\n\n벤징가 집계로 메타의 조정 주당순이익 6.18달러는 시장 예상 7.13달러를 밑돌았다.\n두 회사를 나란히 놓으면 설비투자라는 같은 단어가 회사마다 다른 것을 센다는 점이 드러난다.\n메타는 금융리스 원금 상환까지 넣어 설비투자를 세고, 마이크로소프트의 현금흐름표 숫자는 그것을 빼고 센다.\n\n@@CMP@@낮아진 숫자만 본 읽기|1,750억달러로 내려왔으니 하이퍼스케일러가 드디어 AI 투자를 줄이기 시작했다는 신호다.|회사의 설명|쓸 돈은 그대로다. 리스 분류가 바뀌어 설비투자로 집계되는 몫만 줄어든다.\n주가가 8% 오른 것을 보면 시장은 뒤쪽으로 읽었다. 어느 쪽으로 읽어도, 앞으로 보고되는 설비투자 숫자가 실제 지출보다 작아진다는 사실은 남는다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 발표되는 설비투자 숫자를 AI 투자 규모를 가늠하는 자료로 계속 쓸 수 있는가.\n\n운영리스 임대료가 비용 쪽에서 늘어나는데 설비투자 숫자는 제자리라면, 그 숫자는 지출의 크기를 재는 자가 아니게 된다.\n반대로 두 숫자가 같이 늘면 이번 분류 변경의 영향은 크지 않았던 것이 된다.\n\n메모리와 장비를 파는 쪽에서 하이퍼스케일러의 설비투자 숫자는 수요를 가늠하는 첫 번째 자료다.\n그 자를 만드는 규칙이 조용히 바뀌었다는 것이, 이번 발표에서 이익 숫자보다 오래 남을 부분이다.",
+    "en": "Microsoft now expects to spend about $175 billion on capital projects in calendar 2026.\nThat is below the figure the company had been carrying, and it did not get there by planning to spend less.\nThe spending plan stayed where it was. What changed is which accounting bucket the money lands in.\n\n@@REF@@Microsoft extends data center lifespans to soften AI buildout costs (PYMNTS, 2026-07-29)|https://www.pymnts.com/earnings/2026/microsoft-extends-data-center-lifespans-to-soften-ai-buildout-costs/\n\n## Why one quarter has two numbers\nOn the earnings call the company put capital expenditures for the April to June quarter at $41 billion.\nThe cash flow statement for the same quarter shows $35.8 billion of additions to property and equipment.\nThe two numbers part company over how leased facilities get counted.\n\n@@CHK@@Capex on the call|$41.0B|Property and equipment in cash flow|$35.8B|Gap|$5.2B@@In a single quarter, $5.2 billion turns on which column it sits in. The gap appears to be the finance lease portion, and the company itself said finance leases are included in capital expenditures while operating leases are not. The premise behind the question checks out.@@2026-07-29 · Microsoft FY26 Q4 earnings release and cash flow statement\n\nRoughly two-thirds of the quarter's spending went to short lived assets, mainly server CPUs and GPUs.\nMore money goes into the chips than into the shell that holds them.\n\n@@IMG@@gpu-board|The two-thirds. The building is now assumed to last 25 years, these boards get swapped out every few.\n\n## Finance lease, operating lease\nWhen a data center is rented rather than owned, the contract falls into one of two boxes.\nA contract that works like buying on installments is a finance lease. One that works like paying rent is an operating lease.\nFinance leases count as capital expenditure. Operating leases do not.\n\nMicrosoft has extended the estimated useful life of its data centers and office buildings from 15 years to 25 years, effective with fiscal 2027.\nOnce the asset is assumed to last 25 years, the same lease covers a smaller slice of that life, which pushes it toward the rent side.\n\nSo future data center leases move into the operating lease box, and the reported capex number gets smaller.\nThe chief financial officer said the greater impact is on capital expenditures.\n\n@@IMG@@datacenter-inside|Where the $175 billion goes. Whether the building is bought or rented decides whether the same outlay shows up as capex at all.\n\n## Is profit being flattered\nA longer life also means a smaller depreciation charge each year, which makes profit look bigger.\nThe company said the change affects only the timing of future depreciation and should be a minimal benefit to fiscal 2027 operating income.\nThe capex line moves more than the profit line does.\n\nThe quarter itself was strong. Revenue was $90.0 billion, up 18%, and Azure passed $100 billion in annual revenue for the first time.\nThe stock rose more than 8% after hours.\n\n## Meta went the other way that day\nMeta lifted the floor of its 2026 capital spending range from $125 billion to $130 billion and left the ceiling at $145 billion.\nSecond quarter revenue grew 28% to $60.8 billion, but operating margin fell from 43% to 31% and free cash flow came down to $784 million.\nMicrosoft's free cash flow in the same quarter was $19.6 billion.\n\n@@REF@@Meta reports mixed Q2 results, raises low end of capex guidance range, shares move lower (Benzinga, 2026-07-29)|https://www.benzinga.com/markets/earnings/26/07/60781217/meta-reports-mixed-q2-results-raises-low-end-of-capex-guidance-range-shares-move-lower|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/29/Low-Angle-Image-Of-Meta-Logo-On-Glass-Of.jpg\n\nBenzinga put Meta's adjusted earnings at $6.18 a share against a $7.13 estimate.\nLine the two companies up and the word capex turns out to count different things at each of them.\nMeta folds principal payments on finance leases into its capex figure. Microsoft's cash flow line leaves them out.\n\n@@CMP@@Reading the lower number|$175 billion is under the old figure, so the hyperscalers are finally starting to trim AI spending.|The company's account|The spending plan is unchanged. Only the share of it counted as capex falls, because leases are being reclassified.\nThe stock rose 8%, so the market took the second reading. Either way, reported capex will now understate what is actually being spent.\n\n## What settles it\nThe question comes down to one thing. Can the reported capex line still stand in for how much is being spent on AI.\n\nIf operating lease payments swell inside operating costs while capex stays flat, that line has stopped measuring the size of the spend.\nIf both rise together, the reclassification did not matter much.\n\nFor anyone selling memory or equipment, the hyperscaler capex line is the first place they look for demand.\nThe rule that produces that number changed quietly this week, and that will outlast the earnings beat.",
+    "ja": "マイクロソフトが今回の決算で示した2026年の設備投資見通しは約1,750億ドルだ。\nこれまで会社が示していた金額より下がったが、使う金を減らして下がった数字ではない。\n支出計画はそのままで、その金を会計上どの欄に書くかが変わった。\n\n@@REF@@マイクロソフト、データセンターの耐用年数を延ばしAI建設コストの負担を軽くする (PYMNTS, 2026-07-29)|https://www.pymnts.com/earnings/2026/microsoft-extends-data-center-lifespans-to-soften-ai-buildout-costs/\n\n## 同じ四半期に数字が二つある理由\n会社が決算説明で示した4〜6月の設備投資は410億ドルだ。\nところが同じ四半期のキャッシュフロー計算書に載る有形資産の取得額は358億ドルだ。\n数字が二つに分かれる場所は、借りて使う設備をどう数えるかにある。\n\n@@CHK@@決算説明の設備投資|410億ドル|キャッシュフロー計算書の有形資産取得|358億ドル|差|52億ドル@@一四半期だけで52億ドルが、どの欄に入れるかで分かれる。この差はファイナンスリースとして計上された分とみられ、会社自身もファイナンスリースは設備投資に含まれ、オペレーティングリースは含まれないと説明した。著者が投げた問いの前提はデータで確認できる。@@2026-07-29 · マイクロソフトFY26第4四半期決算発表およびキャッシュフロー計算書\n\n今期の支出の約3分の2は、サーバー用の中央処理装置やグラフィック処理装置のように数年で入れ替える部品だった。\n建物より、その中に差す半導体に金がかかる。\n\n@@IMG@@gpu-board|支出の3分の2を占める側。建物は25年使う前提になったが、この基板は数年ごとに入れ替える。\n\n## 二つのリースは何が違うのか\nデータセンターを他社から借りて使うとき、契約条件によって二つのどちらかに分類される。\n分割払いで買うのに近い契約がファイナンスリース、家賃を払って借りるのに近い契約がオペレーティングリースだ。\nファイナンスリースは設備投資に集計され、オペレーティングリースは集計されない。\n\nマイクロソフトはデータセンターとオフィスビルの見積耐用年数を15年から25年に延ばした。\n2027会計年度から適用される。\n資産が25年もつと見れば、同じ賃貸契約も資産寿命の一部しか使わない契約になり、分割払いより家賃の側に分類される。\n\nそのため今後結ぶデータセンターの賃貸がオペレーティングリースに移り、設備投資として集計される金額が減る。\n最高財務責任者は、より大きな影響は設備投資の側だと述べた。\n\n@@IMG@@datacenter-inside|1,750億ドルが入る先。この建物を買って建てるか借りて使うかで、同じ支出が設備投資に載るかどうかが変わる。\n\n## 利益が膨らんだのではないか\n寿命を長く見れば毎年計上する減価償却費が減り、利益が大きく見える効果もある。\n会社はこの変更が将来の減価償却の時期だけを変えるもので、2027会計年度の営業利益への寄与はわずかだと説明した。\n利益より設備投資の数字のほうが大きく動くという意味だ。\n\n決算そのものは良かった。売上高は900億ドルで18%増え、アジュールの売上高が初めて年1,000億ドルを超えた。\n株価は時間外取引で8%以上上がった。\n\n## 同じ日、メタの数字は逆に動いた\nメタは今年の設備投資レンジの下限を1,250億ドルから1,300億ドルに上げた。上限は1,450億ドルのままだ。\n第2四半期の売上高は608億ドルで28%増えたが、営業利益率は43%から31%に下がり、フリーキャッシュフローは7億8,400万ドルまで減った。\nマイクロソフトの同じ四半期のフリーキャッシュフローは196億ドルだ。\n\n@@REF@@メタ第2四半期は明暗混在、設備投資の下限引き上げで株価は下落 (Benzinga, 2026-07-29)|https://www.benzinga.com/markets/earnings/26/07/60781217/meta-reports-mixed-q2-results-raises-low-end-of-capex-guidance-range-shares-move-lower|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/07/29/Low-Angle-Image-Of-Meta-Logo-On-Glass-Of.jpg\n\nBenzingaの集計では、メタの調整後一株利益6.18ドルは市場予想の7.13ドルを下回った。\n二社を並べると、設備投資という同じ言葉が会社ごとに違うものを数えていることが見えてくる。\nメタはファイナンスリースの元本返済まで入れて設備投資を数え、マイクロソフトのキャッシュフロー計算書の数字はそれを除いて数える。\n\n@@CMP@@下がった数字だけを見る読み|1,750億ドルまで下がったのだから、ハイパースケーラーがついにAI投資を絞り始めた合図だ。|会社の説明|使う金はそのままだ。リースの分類が変わり、設備投資として集計される分だけが減る。\n株価が8%上がったことを見ると、市場は後者で読んだ。どちらで読んでも、これから報告される設備投資の数字が実際の支出より小さくなるという事実は残る。\n\n## では何で見分けるか\n結局、問いは一つだ。発表される設備投資の数字を、AI投資の規模の代わりとして使い続けられるのか。\n\nオペレーティングリースの賃料が費用の側で膨らむのに設備投資の数字が横ばいなら、その数字は支出の大きさを測る物差しではなくなる。\n逆に二つの数字がそろって増えれば、今回の分類変更の影響は大きくなかったことになる。\n\nメモリや装置を売る側にとって、ハイパースケーラーの設備投資の数字は需要を測る最初の資料だ。\nその物差しを作る規則が静かに変わったことが、今回の決算で利益の数字より長く残る部分だ。"
+   },
+   "why": {
+    "ko": "하이퍼스케일러의 설비투자 숫자는 메모리와 장비 수요를 가늠하는 첫 번째 자료다. 그 숫자를 만드는 회계 규칙이 바뀌면, 지출이 줄지 않았는데도 수요가 꺾인 것처럼 읽히는 구간이 생긴다.",
+    "en": "The hyperscaler capex line is the first place memory and equipment sellers look for demand. When the accounting rule behind that line changes, there is a stretch where demand looks like it is cracking even though nothing has been cut.",
+    "ja": "ハイパースケーラーの設備投資の数字は、メモリや装置の需要を測る最初の資料だ。その数字を作る会計規則が変われば、支出は減っていないのに需要が折れたように読める区間が生まれる。"
+   },
+   "ask": {
+    "ko": "설비투자 숫자에서 리스가 빠지기 시작하면 AI 투자 규모는 무엇으로 재야 할까? 발표되는 숫자를 그대로 믿어도 될까?",
+    "en": "If leases start dropping out of the capex line, what should we measure AI spending with? Can the reported number still be taken at face value?",
+    "ja": "設備投資の数字からリースが抜け始めたら、AI投資の規模は何で測るべきか。発表される数字をそのまま信じてよいのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 1월, 마이크로소프트의 2026년 설비투자 합계가 1,750억달러 안팎이었는지와 운영리스 전환으로 보고 설비투자가 실제 지출 증가보다 작게 잡혔는지를 채점한다.",
+     "en": "In January 2027, score whether Microsoft's calendar 2026 capital spending landed near $175 billion and whether the reclassification left reported capex below the actual increase in spending.",
+     "ja": "2027年1月に、マイクロソフトの2026年の設備投資合計が1,750億ドル前後だったか、オペレーティングリースへの移行で報告上の設備投資が実際の支出増より小さく出たかを採点する。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-07-30T03:58:25.340572+00:00"
+  },
+  {
+   "date": "2026-07-29",
+   "id": "damodaran-semiannual-reporting-fed-guidance",
+   "related": [
+    "kobeissi-fed-hold-three-hike-dissents",
+    "damodaran-country-risk-2026",
+    "jukan-microsoft-capex-175b-lease-reclass"
+   ],
+   "source": "Aswath Damodaran (Musings on Markets)",
+   "sourceUrl": "https://aswathdamodaran.blogspot.com/2026/07/information-timing-and-release-gaming.html",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/AswathDamodaran?fallback=false",
+   "wiki": "Aswath_Damodaran",
+   "docUrl": "https://www.sec.gov/files/rules/proposed/2026/33-11414.pdf",
+   "hot": false,
+   "paywall": false,
+   "cover": {
+    "from": "#0E1526",
+    "to": "#3F3F46",
+    "label": "10-Q -> 10-S"
+   },
+   "tags": [
+    "DISCLOSURE",
+    "FED",
+    "VALUATION"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "분기 실적과 연준의 예고가 함께 줄어들면, 시장은 무엇을 보고 값을 매길까?",
+    "en": "If quarterly earnings and Fed guidance both get cut back, what will the market price on?",
+    "ja": "四半期決算と連銀の予告が同時に減ったら、市場は何を見て値をつけるのか?"
+   },
+   "quote": {
+    "lines": [
+     "Put simply, Fed funds rates tend to be increased (cut) after short term treasury rates have gone up (down), suggesting that the Fed is mimicking the market."
+    ],
+    "cite": "Aswath Damodaran · 2026.07.29"
+   },
+   "sum3": {
+    "ko": "미국 증권거래위원회가 상장사에 반년 보고 선택지를 주는 개정안을 냈고, 새 연준 의장은 회의 성명에서 금리 예고 문구를 빼 버렸다.\n겉으로 보면 정보를 줄여 눈앞의 성과와 회의 눈치보기를 없애자는, 방향이 같은 두 조치다.\n다모다란은 두 사안을 갈라 봤다. 재무제표는 남기고 가이던스를 빼자는 쪽이며, 연준의 예고는 줄여도 된다는 쪽이다. 금리를 실제로 움직인 것이 연준이 아니었다는 계산이 근거다.",
+    "en": "The SEC has proposed letting public companies report twice a year, and the new Fed chair has removed forward guidance from the FOMC statement.\nOn the surface these are two moves in the same direction: strip out information that feeds short horizons and Fed watching.\nDamodaran splits them. He would keep the financial statements and cut company guidance, and he would accept less Fed guidance, on the reading that the Fed has been following market rates rather than setting them.",
+    "ja": "米国証券取引委員会は上場企業に半年報告の選択肢を与える改正案を出し、新しい連銀議長は会合声明から金利の予告文言を外した。\n表向きは、目先の成果と会合の顔色うかがいを生む情報を減らすという、方向が同じ二つの措置だ。\nダモダランは二つを分けて見た。財務諸表は残しガイダンスを外す側であり、連銀の予告は減らしてよいという側だ。金利を実際に動かしてきたのが連銀ではなかったという計算が根拠だ。"
+   },
+   "gist": {
+    "ko": "미국 증권거래위원회가 5월 5일, 상장사가 분기보고서 대신 반년에 한 번만 보고할 수 있게 하는 규정 개정안을 냈다.\n새 연준 의장 케빈 워시는 취임 뒤 회의 성명에서 앞으로의 금리 방향을 알려주는 문구를 아예 빼 버렸다.\n기업 쪽과 중앙은행 쪽에서, 시장이 값을 매길 때 정해진 날짜에 받아 오던 소식이 동시에 줄어들고 있다.\n\n@@REF@@SEC, 상장사의 선택적 반년 보고를 허용하는 개정안 제안 (미국 증권거래위원회, 2026-05-05)|https://www.sec.gov/newsroom/press-releases/2026-42-sec-proposes-amendments-permit-optional-semiannual-reporting-public-companies\n\n@@CHK@@개정안 제안일|2026-05-05|의견 수렴 기간|60일|분기보고서|그대로 유지@@개정안은 분기보고서를 없애는 것이 아니다. 원하는 회사에 반년 보고를 선택지로 열어 주고 분기보고서는 그대로 남긴다. 이 글이 전제로 삼은 \"분기보고를 반년보고로 대체\"보다 실제 범위가 좁다.@@2026-05-05 · 미국 증권거래위원회 보도자료 2026-42\n\n@@IMG@@exchange-floor|공시가 줄면 값을 매기는 자리가 먼저 흔들린다.\n\n## 왜 이 두 이야기가 한자리에 오나\n둘 다 시장이 정해진 날짜에 받아 오던 정보를 없앤다.\n없애자는 쪽의 논리도 닮았다. 분기 실적은 회사를 눈앞의 성과에 매달리게 하고, 연준의 예고는 투자자를 금리 회의 눈치보기로 몰아 정작 기업의 실체를 안 보게 만든다는 것이다.\n반대쪽 논리도 닮았다. 값을 매길 재료를 뺏으면 가격이 더 출렁이고 정보를 덜 담는다는 것이다.\n\n## 다모다란이 두 사안을 갈라 본 지점\n그는 같은 답을 두 번 내놓지 않았다. 분기 실적은 남기는 쪽이고, 연준의 예고는 줄이는 쪽이다.\n\n분기보고서에서 그가 빼자고 한 것은 재무제표가 아니라 위험 고지 항목과 회사가 스스로 내놓는 실적 가이던스다.\n가이던스를 내는 미국 상장사 비중은 2003년에 절반을 넘었다가 지금은 20% 안팎으로 줄었다.\n보고서 분량은 1980년에 2,000~5,000단어였다가 2000년대 초에 세네 배로 불었다.\n\n재무제표의 숫자는 그대로인데 그 옆에 붙는 말이 늘어난 것이다.\n\n단기 매매가 시장을 망친다는 주장도 그는 받지 않는다.\n짧게 보고 들어오는 거래가 오히려 사고팔 상대를 만들어 주고, 그 수많은 거래가 모여 긴 눈으로 봐도 말이 되는 가격을 만든다는 쪽이다.\n\n## 분기보고를 없애 본 나라들\n유럽연합은 2007년에 분기보고를 의무화했다가 2013년에 거뒀다.\n영국과 싱가포르도 넣었다가 물러섰고, 일본은 2024년에 분기보고서 제도를 없앴다.\n같은 실험이 여러 곳에서 반복됐고 대체로 되돌아왔다.\n\n## 연준 쪽은 왜 반대로 봤나\n그가 연준의 예고를 줄이는 데 찬성하는 근거는, 금리의 방향을 실제로 정하는 것이 연준이 아니라는 그의 계산이다.\n1962년 1월부터 올해 6월까지를 놓고 보면 연준의 기준금리는 단기 국채금리가 먼저 움직인 뒤에 따라 올라가거나 내려갔다.\n장기금리의 변동도 물가와 실질 성장률로 대부분 설명된다는 것이 그의 정리다.\n\n그렇다면 연준이 미리 알려주기를 줄여도 없어지는 정보는 생각만큼 크지 않다.\n\n@@REF@@연준, 금리 동결... 정책위원 3명은 인상을 요구하며 반대표 (폭스비즈니스, 2026-07-29)|https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-july-29-2026|https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2026/06/0/0/fed-chair-kevin-warsh-first-press-conference.jpg?ve=1&tl=1\n\n이 글이 올라온 7월 29일이 마침 그 실험의 첫 시험대였다.\n연준은 기준금리를 3.50~3.75%로 묶었고 표결은 9 대 3이었다. 반대표 세 장은 모두 0.25%포인트 인상 쪽이었다.\n\n성명에서 앞으로의 방향을 알려주는 문구는 빠져 있었다.\n예고가 사라진 자리에 위원들의 의견 차이만 그대로 드러난 셈이다.\n\n## 그래서 무엇을 보게 되나\n결국 질문은 하나다. 공시와 예고가 줄어든 자리를 무엇이 대신 채우는가.\n\n빈자리를 재무제표와 물가·성장 지표가 채우면 다모다란의 정리가 맞았던 것이 된다.\n반년을 기다리지 못한 투자자들이 사설 데이터와 회의 발언 해석으로 그 자리를 채우면, 정보가 줄어든 것이 아니라 값비싼 쪽으로 옮겨간 것이 된다.\n\n개인 투자자에게는 이 차이가 크다.\n공개 공시는 누구에게나 같은 날 같은 값으로 오지만, 그 자리를 대신하는 자료는 값을 치른 쪽에 먼저 간다.",
+    "en": "On 5 May the US Securities and Exchange Commission proposed a rule change that would let public companies report twice a year instead of filing quarterly reports.\nKevin Warsh, the new Fed chair, has taken the language that signals the next move on rates out of the FOMC statement altogether.\nOn the corporate side and the central bank side at once, the dated deliveries of news that markets price against are being cut back.\n\n@@REF@@SEC proposes amendments to permit optional semiannual reporting by public companies (SEC, 2026-05-05)|https://www.sec.gov/newsroom/press-releases/2026-42-sec-proposes-amendments-permit-optional-semiannual-reporting-public-companies\n\n@@CHK@@Proposal date|2026-05-05|Comment period|60 days|Quarterly reports|Still available@@The proposal does not abolish quarterly reporting. It opens a semiannual option for companies that want it and leaves the quarterly report in place, a narrower change than the replacement of quarterly with semiannual reporting the post takes as its premise.@@2026-05-05 · SEC press release 2026-42\n\n@@IMG@@exchange-floor|Cut the disclosure and the place where prices get set is the first thing to wobble.\n\n## Why these two stories sit together\nBoth remove information that markets had been receiving on a schedule.\nThe case for removal rhymes too. Quarterly reports are said to chain companies to the next three months, and Fed guidance is said to push investors into reading the committee instead of the businesses they own.\nThe case against rhymes as well. Take away the material prices are set on and those prices swing more and carry less information.\n\n## Where Damodaran splits the two\nHe does not give the same answer twice. He would keep the quarterly report and cut the Fed's guidance.\n\nWhat he would strip out of the quarterly filing is not the financial statements but the risk disclosure section and the earnings guidance companies volunteer.\nThe share of US listed companies issuing guidance topped half in 2003 and is now around 20%.\nReports ran 2,000 to 5,000 words in 1980 and tripled or quadrupled in size by the early 2000s.\n\nThe statements stayed the same size. The words piled up around them.\n\nHe also declines the short-termism argument. Traders with short horizons are the people standing on the other side of your order, and the mass of those trades still produces a price that holds up over a long horizon.\n\n## Countries that dropped quarterly reports\nThe European Union made quarterly reporting mandatory in 2007 and withdrew it in 2013.\nBritain and Singapore added it and then backed away, and Japan ended its quarterly filing requirement in 2024.\nThe same experiment has run in several places and has mostly been reversed.\n\n## Why he lands the other way on the Fed\nHis reason for backing less Fed guidance is his own reading that the Fed is not what sets the direction of rates.\nMeasured from January 1962 through June of this year, the Fed funds rate goes up or down after short term Treasury rates have already moved.\nMost of the variation in long rates, he adds, is explained by inflation and real growth.\n\nIf that holds, cutting back on advance signals removes less information than it appears to.\n\n@@REF@@Fed policymakers leave rates unchanged, three officials dissent in favour of a hike (Fox Business, 2026-07-29)|https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-july-29-2026|https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2026/06/0/0/fed-chair-kevin-warsh-first-press-conference.jpg?ve=1&tl=1\n\nThe day the post went up, 29 July, happened to be the first test of that experiment.\nThe Fed held its policy rate at 3.50% to 3.75% on a 9 to 3 vote, and all three dissents were for a quarter point increase.\n\nThe statement carried no line about where rates go next.\nWith the signal gone, what showed through was the spread of views inside the committee.\n\n## What we will be watching\nThe question comes down to one thing. What fills the space that disclosure and guidance leave behind.\n\nIf financial statements and inflation and growth data fill it, Damodaran's reading was right.\nIf investors who cannot wait six months fill it with private data sets and readings of central bank remarks, the information did not shrink. It moved somewhere more expensive.\n\nFor an individual investor that difference matters.\nA public filing reaches everyone on the same day at the same price. What replaces it reaches whoever paid for it first.",
+    "ja": "米国証券取引委員会が5月5日、上場企業が四半期報告書の代わりに半年に一度だけ報告できるようにする規則改正案を出した。\n新しい連邦準備制度理事会議長のケビン・ウォーシュは、就任後の会合声明から今後の金利の方向を示す文言を丸ごと外している。\n企業の側と中央銀行の側で、市場が値をつけるときに決まった日付で受け取ってきた知らせが同時に減っている。\n\n@@REF@@SEC、上場企業に任意の半年報告を認める改正案を提案 (米国証券取引委員会, 2026-05-05)|https://www.sec.gov/newsroom/press-releases/2026-42-sec-proposes-amendments-permit-optional-semiannual-reporting-public-companies\n\n@@CHK@@改正案の提案日|2026-05-05|意見募集期間|60日|四半期報告書|そのまま維持@@改正案は四半期報告書を廃止するものではない。望む企業に半年報告という選択肢を開き、四半期報告書は残す。この記事が前提にした「四半期報告を半年報告に置き換える」より実際の範囲は狭い。@@2026-05-05 · 米国証券取引委員会プレスリリース2026-42\n\n@@IMG@@exchange-floor|開示が減れば、値をつける場所が先に揺れる。\n\n## なぜこの二つの話が同じ席に来るのか\nどちらも、市場が決まった日付で受け取ってきた情報をなくす。\nなくす側の論理も似ている。四半期決算は企業を目先の成果に縛りつけ、連銀の予告は投資家を金利会合の顔色うかがいに追い込み、肝心の企業の中身を見なくさせるというものだ。\n反対側の論理も似ている。値をつける材料を取り上げれば価格はより揺れ、情報を含まなくなるというものだ。\n\n## ダモダランが二つを分けた地点\n彼は同じ答えを二度出さない。四半期決算は残す側で、連銀の予告は減らす側だ。\n\n四半期報告書から彼が外そうと言うのは財務諸表ではなく、リスク開示の項目と、企業が自ら出す業績ガイダンスだ。\nガイダンスを出す米国上場企業の割合は2003年に半分を超えたが、今は20%前後まで減っている。\n報告書の分量は1980年に2,000〜5,000語だったが、2000年代初めに三〜四倍に膨れた。\n\n財務諸表の数字はそのままで、その周りに付く言葉が増えたということだ。\n\n短期売買が市場を壊すという主張も彼は受け取らない。\n短く見て入ってくる取引がむしろ売り買いの相手を作り、その無数の取引が集まって長い目で見ても筋の通る価格を作るという側だ。\n\n## 四半期報告をやめてみた国々\n欧州連合は2007年に四半期報告を義務化し、2013年に取り下げた。\n英国とシンガポールも入れてから退き、日本は2024年に四半期報告書の制度をなくした。\n同じ実験が複数の場所で繰り返され、おおむね元に戻っている。\n\n## 連銀では逆に見た理由\n彼が連銀の予告を減らすことに賛成する根拠は、金利の方向を実際に決めているのは連銀ではないという自らの計算だ。\n1962年1月から今年6月までで見ると、連銀の政策金利は短期国債金利が先に動いた後で上げ下げされてきた。\n長期金利の変動も物価と実質成長率で大半が説明できるというのが彼の整理だ。\n\nそうであれば、前もって知らせることを減らしても失われる情報は思うほど大きくない。\n\n@@REF@@連銀、金利を据え置き…政策委員3人が引き上げを求めて反対票 (Fox Business, 2026-07-29)|https://www.foxbusiness.com/economy/federal-reserve-interest-rate-decision-july-29-2026|https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2026/06/0/0/fed-chair-kevin-warsh-first-press-conference.jpg?ve=1&tl=1\n\nこの記事が出た7月29日が、ちょうどその実験の最初の試験台だった。\n連銀は政策金利を3.50〜3.75%に据え置き、票は9対3だった。反対票3枚はすべて0.25%ポイントの引き上げ側だった。\n\n声明に今後の方向を示す文言はなかった。\n予告が消えた場所に、委員の意見の差だけがそのまま現れた形だ。\n\n## では何を見ることになるのか\n結局、問いは一つだ。開示と予告が減った場所を何が代わりに埋めるのか。\n\n空いた場所を財務諸表と物価・成長の指標が埋めれば、ダモダランの整理が当たっていたことになる。\n半年を待てない投資家が民間のデータや会合発言の解釈で埋めるなら、情報は減ったのではなく、より高くつく側へ移ったことになる。\n\n個人投資家にとってこの差は大きい。\n公開された開示は誰にでも同じ日に同じ値段で届くが、その代わりになる資料は代金を払った側に先に届く。"
+   },
+   "why": {
+    "ko": "개인 투자자가 기업을 판단하는 재료는 대부분 정기 공시다. 분기 공시와 중앙은행 예고가 함께 줄면 정보가 사라지는 것이 아니라, 돈을 낸 쪽에 먼저 가는 구간이 넓어진다.",
+    "en": "Most of what an individual investor judges a company on arrives through scheduled disclosure. Cut back quarterly filings and central bank signals together and the information does not vanish, it moves behind a price.",
+    "ja": "個人投資家が企業を判断する材料の大半は定期開示だ。四半期開示と中央銀行の予告が同時に減れば、情報は消えるのではなく、代金を払った側に先に届く区間が広がる。"
+   },
+   "ask": {
+    "ko": "분기 실적 공개를 반년에 한 번으로 줄이면 주가는 더 안정될까, 아니면 반년마다 한꺼번에 출렁일까?",
+    "en": "If quarterly reporting becomes semiannual, do prices settle down, or do they lurch once every six months instead?",
+    "ja": "四半期開示を半年に一度に減らせば株価は落ち着くのか、それとも半年ごとに一度に大きく振れるのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 상반기에 미국 증권거래위원회가 반년 보고 규정을 최종 채택했는지, 채택 뒤 실제로 반년 보고를 고른 상장사가 나왔는지를 채점한다.",
+     "en": "In the first half of 2027, score whether the SEC adopted the semiannual reporting rule and whether any listed company actually elected it.",
+     "ja": "2027年前半に、米国証券取引委員会が半年報告の規則を最終採択したか、採択後に実際に半年報告を選んだ上場企業が出たかを採点する。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-07-30T03:58:25.340572+00:00"
+  },
+  {
    "date": "2026-07-30",
    "id": "meru-nps-circuit-breaker-buying-power",
    "related": [
@@ -25180,6 +25321,147 @@
     "반대매매",
     "forced selling",
     "強制売却"
+   ]
+  },
+  "금융리스": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "설비를 빌려 쓰지만 사실상 할부로 사 오는 것에 가까운 임대 계약. 설비투자로 집계된다.",
+    "en": "A lease that works like buying the asset on installments. It is counted inside capital expenditure.",
+    "ja": "設備を借りて使うが、実質的に分割払いで買うのに近い賃貸契約。設備投資として集計される。"
+   },
+   "longDesc": {
+    "ko": "빌려 쓰는 기간이 자산 수명의 대부분을 덮거나, 계약이 끝난 뒤 사실상 그 자산을 갖게 되는 임대가 금융리스로 분류된다. 회계에서는 이걸 자산을 산 것으로 보아 설비투자에 넣고, 낼 돈은 빚으로 잡는다. AI 데이터센터처럼 빌려 쓰는 설비가 많은 회사는 금융리스가 얼마나 되는지에 따라 발표되는 설비투자 금액이 크게 달라진다.",
+    "en": "A lease counts as a finance lease when the term covers most of the asset's life or the user effectively ends up owning it. Accounting treats it as a purchase: the amount goes into capital expenditure and the payments sit on the balance sheet as debt. For companies that rent much of their AI data centre capacity, how much of it is a finance lease swings the capex figure they report.",
+    "ja": "借りて使う期間が資産寿命の大部分を覆うか、契約終了後に実質的にその資産を得る賃貸がファイナンスリースに分類される。会計では資産を買ったものとみて設備投資に入れ、支払う金額は負債として計上する。AIデータセンターのように借りる設備が多い会社は、ファイナンスリースの多寡で発表される設備投資額が大きく変わる。"
+   },
+   "aliases": [
+    "금융리스",
+    "finance lease",
+    "ファイナンスリース"
+   ]
+  },
+  "운영리스": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "월세처럼 빌려 쓰고 사용료만 내는 임대 계약. 설비투자에 집계되지 않는다.",
+    "en": "A lease that works like paying rent. It does not show up inside capital expenditure.",
+    "ja": "家賃のように借りて使用料だけを払う賃貸契約。設備投資には集計されない。"
+   },
+   "longDesc": {
+    "ko": "자산을 갖게 되는 것이 아니라 쓴 만큼 사용료를 내는 임대다. 회계에서는 물건을 산 것으로 보지 않으므로 설비투자에 넣지 않고, 해마다 비용으로 처리한다. 같은 데이터센터를 쓰더라도 계약이 운영리스로 분류되면 설비투자 숫자가 줄어들기 때문에, 회사가 실제로 얼마를 쓰는지와 발표되는 설비투자 금액이 벌어질 수 있다.",
+    "en": "The user pays for the use of the asset rather than ending up owning it. Accounting does not treat it as a purchase, so it stays out of capital expenditure and lands in operating costs year by year. Two companies can occupy the same data centre and report very different capex, which is why the reported number can drift away from what is actually being spent.",
+    "ja": "資産を得るのではなく、使った分の使用料を払う賃貸だ。会計では物を買ったとみなさないため設備投資に入れず、毎年費用として処理する。同じデータセンターを使ってもオペレーティングリースに分類されれば設備投資の数字は減るので、実際の支出額と発表される設備投資額が離れることがある。"
+   },
+   "aliases": [
+    "운영리스",
+    "operating lease",
+    "オペレーティングリース"
+   ]
+  },
+  "내용연수": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "설비나 건물을 몇 년 동안 쓸 것으로 보는지 정한 햇수. 감가상각을 나누는 기준이 된다.",
+    "en": "The number of years an asset is assumed to be in use, which sets how depreciation is spread.",
+    "ja": "設備や建物を何年使うとみるかを定めた年数。減価償却を分ける基準になる。"
+   },
+   "longDesc": {
+    "ko": "회사가 자산을 몇 해에 걸쳐 쓸 것으로 보는지 정하는 값이다. 이 햇수를 늘리면 해마다 잡는 감가상각비가 줄어 이익이 커 보이고, 리스 계약의 분류도 달라질 수 있다. 실제 설비가 더 오래 버티게 됐다면 타당한 변경이지만, 같은 지출을 두고 보고되는 이익과 설비투자가 함께 움직이므로 변경 시점과 이유를 함께 봐야 한다.",
+    "en": "The estimate of how many years a company expects to use an asset. Stretching it lowers the annual depreciation charge, which lifts reported profit, and it can change how leases are classified. A longer life can be perfectly justified by operating history, but because both profit and capex move with it, the timing and the reason are worth reading together.",
+    "ja": "会社が資産を何年にわたって使うとみるかを定める値だ。この年数を延ばせば毎年計上する減価償却費が減って利益が大きく見え、リース契約の分類も変わりうる。実際に設備がより長くもつようになったのなら妥当な変更だが、同じ支出をめぐって報告される利益と設備投資がともに動くため、変更の時期と理由を併せて見る必要がある。"
+   },
+   "aliases": [
+    "내용연수",
+    "추정 내용연수",
+    "useful life",
+    "耐用年数",
+    "見積耐用年数"
+   ]
+  },
+  "유형자산": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "건물·기계·서버처럼 손으로 만질 수 있는 오래 쓰는 재산.",
+    "en": "Long-lived assets you can touch: buildings, machines, servers.",
+    "ja": "建物・機械・サーバーのように手で触れる長く使う財産。"
+   },
+   "longDesc": {
+    "ko": "현금흐름표의 '유형자산 취득'은 그 기간에 이런 자산을 사는 데 실제로 나간 현금이다. 회사가 실적 설명에서 말하는 설비투자 금액과 이 줄의 숫자가 다를 수 있는데, 리스로 확보한 설비를 포함하는지에 따라 갈린다. 두 숫자를 같이 보는 습관이 필요하다.",
+    "en": "The cash flow statement line 'additions to property and equipment' is the cash that actually went out to buy these assets in the period. It can differ from the capex figure a company cites on its earnings call, depending on whether leased capacity is included, so the two are worth reading side by side.",
+    "ja": "キャッシュフロー計算書の「有形資産の取得」は、その期間にこうした資産を買うために実際に出た現金だ。会社が決算説明で述べる設備投資額とこの行の数字が違うことがあり、リースで確保した設備を含むかどうかで分かれる。二つの数字を併せて見る習慣が必要だ。"
+   },
+   "aliases": [
+    "유형자산",
+    "property and equipment",
+    "有形資産"
+   ]
+  },
+  "분기보고서": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "상장사가 세 달마다 내는 실적·재무 보고서. 미국에서는 10-Q라고 부른다.",
+    "en": "The financial report a listed company files every three months, called the 10-Q in the US.",
+    "ja": "上場企業が3か月ごとに出す業績・財務報告書。米国では10-Qと呼ぶ。"
+   },
+   "longDesc": {
+    "ko": "미국은 1970년부터 분기보고서를 의무화했다. 투자자가 회사 상태를 세 달마다 확인할 수 있는 통로이지만, 회사를 단기 성과에 매달리게 한다는 비판도 오래됐다. 유럽연합·영국·싱가포르·일본이 도입했다가 되돌린 이력이 있고, 미국에서도 반년 보고를 선택지로 주는 개정안이 2026년에 제안됐다.",
+    "en": "The US has required quarterly reports since 1970. They let investors check on a company every three months, though the complaint that they tie management to the next quarter is just as old. The EU, Britain, Singapore and Japan each adopted and then reversed a quarterly requirement, and in 2026 the SEC proposed letting US companies choose semiannual reporting instead.",
+    "ja": "米国は1970年から四半期報告書を義務化した。投資家が3か月ごとに会社の状態を確認できる通路だが、経営を目先の成果に縛るという批判も古い。欧州連合・英国・シンガポール・日本は導入してから元に戻した経緯があり、米国でも2026年に半年報告を選択肢とする改正案が提案された。"
+   },
+   "aliases": [
+    "분기보고서",
+    "10-Q",
+    "quarterly report",
+    "四半期報告書"
+   ]
+  },
+  "애저": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "마이크로소프트의 클라우드 서비스. 남의 서버와 인공지능 연산을 빌려 쓰는 곳이다.",
+    "en": "Microsoft's cloud service, where customers rent servers and AI compute.",
+    "ja": "マイクロソフトのクラウドサービス。他社のサーバーやAI演算を借りて使う場所だ。"
+   },
+   "longDesc": {
+    "ko": "기업이 자기 서버실을 두는 대신 마이크로소프트의 데이터센터를 빌려 쓰는 서비스다. AI 모델을 학습시키고 돌리는 연산도 여기서 판다. 아마존의 AWS, 구글 클라우드와 경쟁하며, 매출 증가율이 AI 수요를 재는 대표 지표로 쓰인다. 2026 회계연도에 연 매출 1,000억달러를 처음 넘었다.",
+    "en": "Instead of running its own server room, a company rents Microsoft's data centres. The compute used to train and run AI models is sold here too. It competes with Amazon's AWS and Google Cloud, and its growth rate is one of the standard gauges of AI demand. Annual revenue passed $100 billion for the first time in fiscal 2026.",
+    "ja": "企業が自社のサーバー室を持つ代わりに、マイクロソフトのデータセンターを借りて使うサービスだ。AIモデルの学習や実行に使う演算もここで売る。アマゾンのAWSやグーグルクラウドと競合し、売上成長率がAI需要を測る代表的な指標として使われる。2026会計年度に年間売上高が初めて1,000億ドルを超えた。"
+   },
+   "aliases": [
+    "애저",
+    "Azure",
+    "アジュール"
    ]
   }
  }
