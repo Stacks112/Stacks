@@ -120,6 +120,19 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   JS 렌더링하므로 `?l=ko`/`?l=ja` 크롤 시 각각 한/일 제목을 본다.
 - **국제 타깃팅**: `<head>`에 hreflang 대체 링크(x-default·en=root, ko=?l=ko, ja=?l=ja).
   canonical은 ?l=ko/ja면 자기참조, 영어/무파라미터면 root — hreflang 유효 조건 충족.
+- **★ 첫 언어 결정 순서 (2026-07-30, june 지시로 「접속 위치 기반」 확정)**:
+  `LANG = langParam() || lsGet("stk_lang") || geoLang()` — 셸 구분 없이 동일하다
+  (예전엔 모바일만 위치, 데스크톱은 `navigator.language`였다).
+  `geoLang()`은 **타임존이 결정적일 때 위치가 이기고**(Asia/Seoul→ko, Asia/Tokyo→ja),
+  그 밖이면 **브라우저 언어가 보조로 결정**한다(뉴욕+ko브라우저=교민→ko, 런던+fr→en).
+  ⚠ **앞의 두 조건을 지우지 말 것**: `?l=`이 최우선이라야 Googlebot이 `?l=ko`/`?l=ja`를
+  한/일로 렌더해 hreflang·언어별 title이 유효하고(위 두 항목), `stk_lang`이 지오보다
+  앞서야 언어 버튼(수동 선택)이 재방문에도 유지된다.
+  ⚠ `/p/` 정적 페이지의 링크 가로채기(`APP_LINK_JS`)와 `?l=` 공유 링크 리다이렉트는
+  **의도적으로 URL의 언어를 강제**한다(그래서 "English/日本語" 링크가 동작한다). 즉
+  `p/<id>.html` 링크를 누르면 위치와 무관하게 ko로 열린다 — 영어권에 글을 공유할 때는
+  `p/en/<id>.html`을 써야 한다. 홈(`stacksdaily.com`, 파라미터 없음)은 위치 기반으로 뜬다.
+  검증: Playwright에서 timezone×locale 9조합 + 수동선택 유지까지 통과(`af6211a`).
 - **파비콘(구글 검색결과 아이콘)**: 루트 `favicon.ico`(16/32/48) + `favicon-96.png`(rel=icon,
   구글 권장 >48px). URL 안정 유지(구글 요건). 재크롤링에 수일~수주 소요, GSC URL 검사로 촉진.
   ⚠️ 개별 글 페이지(build_pages.py 템플릿)는 아직 옛 32px만 참조 — 홈 우선, 필요 시 후속 반영.
