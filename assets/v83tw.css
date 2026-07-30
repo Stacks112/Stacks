@@ -108,6 +108,9 @@ html[data-theme="dark"] .v83-toast{background:#2A2C33;}
 /* push ON: white (theme-text) 2px border so the state is visible at a glance */
 .v83np-push.on{border:2px solid var(--text);padding:10px;background:var(--bg);}
 .v83np-blocked{margin-top:8px;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.5;}
+/* 2026-07-30: 알림 설정이 모달에서 페이지가 됐다 — 중앙 컬럼 안 카드형 박스 */
+.v83np-page{width:auto;max-width:560px;margin:10px 14px 28px;box-shadow:none;}
+.v83np-page .v83nt-list{max-height:none;overflow:visible;}
 /* --- newsletter (weekly email) language, inside notification settings --- */
 .stk-nl-set{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);text-align:left;}
 .stk-nl-h{font-size:12.5px;font-weight:800;color:var(--muted);margin-bottom:6px;font-family:var(--ui-font);}

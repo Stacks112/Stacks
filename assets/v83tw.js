@@ -102,33 +102,28 @@ function npSet(key, on){
     store.set("stk_notif", p);
   } catch (e){}
 }
-window.v83AlertsPanel = function(){
-  var old = document.getElementById("v83npOv");
-  if (old){ old.remove(); return; }
+/* 2026-07-30 (june): 알림 설정도 적중 기록·테마 논쟁처럼 팝업이 아니라 페이지다.
+   본문 HTML과 배선을 페이지 렌더러(index.html의 renderV83AlertsPage)가 쓸 수 있게
+   빌더/와이어 함수로 분리했다. '오늘의 토론' 토글은 기능 폐지(6e73c06)에 맞춰 뺐다. */
+window.v83AlertsBodyHtml = function(){
   var t = npT(), p = npGet();
-  var ov = document.createElement("div");
-  ov.id = "v83npOv"; ov.className = "v83np-ov";
   var row = function(key, label, on){
     return '<button class="v83np-row" data-np="' + key + '"><span>' + label
       + '</span><span class="v83np-sw' + (on ? " on" : "") + '"></span></button>';
   };
-  ov.innerHTML = '<div class="v83np">'
-    + '<h3>' + t.title + '<button aria-label="close">&#x2715;</button></h3>'
-    /* 2026-07-25 (june): 데스크톱엔 알림 "목록"이 없고 설정만 있었다. 목록을 위에 얹는다. */
-    + (typeof window.v83NotifListHtml === "function" ? window.v83NotifListHtml() : "")
+  /* 2026-07-25 (june): 데스크톱엔 알림 "목록"이 없고 설정만 있었다. 목록을 위에 얹는다. */
+  return (typeof window.v83NotifListHtml === "function" ? window.v83NotifListHtml() : "")
     + row("newpost", t.newpost, p.newpost)
-    + row("debate", t.debate, p.debate)
     + row("follow", t.follow, p.follow)
     + row("eventsMaster", t.events, p.eventsMaster)
     + '<button class="v83np-push">' + t.push + '</button>'
     + '<div class="v83np-blocked" hidden></div>'
-    + (window.stkNlHtml ? window.stkNlHtml() : '')
-    + '</div>';
-  document.body.appendChild(ov);
-  if (typeof window.v83NotifBind === "function") window.v83NotifBind(ov);
-  ov.addEventListener("click", function(e){ if (e.target === ov) ov.remove(); });
-  ov.querySelector("h3 button").addEventListener("click", function(){ ov.remove(); });
-  ov.querySelectorAll("[data-np]").forEach(function(b){
+    + (window.stkNlHtml ? window.stkNlHtml() : '');
+};
+window.v83AlertsWire = function(root){
+  var t = npT();
+  if (typeof window.v83NotifBind === "function") window.v83NotifBind(root);
+  root.querySelectorAll("[data-np]").forEach(function(b){
     b.addEventListener("click", function(){
       var sw = b.querySelector(".v83np-sw");
       var on = !sw.classList.contains("on");
@@ -136,9 +131,10 @@ window.v83AlertsPanel = function(){
       npSet(b.getAttribute("data-np"), on);
     });
   });
-  if (window.stkNlWire) window.stkNlWire(ov);
-  var pushBtn = ov.querySelector(".v83np-push");
-  var blockedNote = ov.querySelector(".v83np-blocked");
+  if (window.stkNlWire) window.stkNlWire(root);
+  var pushBtn = root.querySelector(".v83np-push");
+  var blockedNote = root.querySelector(".v83np-blocked");
+  if (!pushBtn) return;
   var pushIsOn = false; /* last known subscription state */
   /* reflect the live push state on the button: white border + "켜짐 ✓" when on,
      a small note when the browser has blocked notifications. */
@@ -195,6 +191,13 @@ window.v83AlertsPanel = function(){
     if (nb && typeof nb.onclick === "function") nb.onclick();
     setTimeout(reflectPush, 1500);
   });
+};
+/* legacy shim: 옛 히스토리 스냅샷(applyView의 v.alerts)이나 외부 호출부가 아직
+   모달 함수를 부른다 — 전부 페이지 뷰로 보낸다. 남아 있던 모달이 있으면 걷어낸다. */
+window.v83AlertsPanel = function(){
+  var old = document.getElementById("v83npOv");
+  if (old) old.remove();
+  if (typeof setTab === "function") setTab("alerts");
 };
 
 /* ---- 최신/팔로잉 tabs: match the center column's width exactly (X-style) ---- */
