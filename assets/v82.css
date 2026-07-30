@@ -93,7 +93,7 @@
   #v82explore .filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;}
 
   /* home top modules hidden on mobile home (they live in find/explore) */
-  .wrap > #eventBar,.wrap > #todaySec,.wrap > #skewSec,.wrap > [data-v82hot],.wrap > #watchSec,.wrap > #nlSec{display:none;}
+  .wrap > #eventBar,.wrap > #skewSec,.wrap > [data-v82hot],.wrap > #watchSec,.wrap > #nlSec{display:none;}
   #tabs .tab-th{display:none;}
   /* app's own tabs + filter row replaced by .v82-tabs slide */
   #feed .tabs,#feed .filter-row{display:none;}
@@ -178,18 +178,6 @@
     font-size:12.5px;font-weight:700;cursor:pointer;padding:0;}
   .v82mod .today-q2{font-size:15px;font-weight:700;line-height:1.6;margin-bottom:8px;}
   .v82mod .today-src2{font-size:12.5px;color:var(--muted);line-height:1.5;}
-  /* today's debate: bordered card (restored design) with context */
-  .v82mod.v82today{position:relative;margin:14px 0 6px;padding:16px 18px;border:1px solid var(--line);
-    border-bottom:1px solid var(--line);border-radius:16px;background:var(--card);cursor:pointer;
-    box-shadow:0 2px 10px rgba(17,18,20,.04);}
-  .v82today-x{position:absolute;top:9px;right:9px;width:28px;height:28px;border:none;background:none;
-    color:var(--muted);font-size:19px;line-height:1;cursor:pointer;border-radius:50%;padding:0;}
-  .v82today-x:hover{background:var(--bg-soft);}
-  .v82today-tag{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:9px;}
-  .v82today-q{font-size:16px;font-weight:800;line-height:1.45;margin-bottom:8px;padding-right:22px;letter-spacing:-0.01em;}
-  .v82today-ctx{font-size:13.5px;line-height:1.66;color:var(--muted);margin-bottom:10px;}
-  .v82today-src{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:11px;}
-  .v82today-cta{font-size:13px;font-weight:800;color:var(--accent);}
 
   /* --- skew diagram (지금 쏠린 곳) --- */
   .v82-skew-h{font-size:16px;font-weight:800;margin:2px 0 4px;}

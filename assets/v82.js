@@ -29,42 +29,42 @@
         me:"내 정보",record:"적중 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
         skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
         themesSec:"테마 논쟁",recordSec:"적중 기록",people:"논객",company:"회사",
-        ntNew:"새 글",ntGrade:"채점",ntDebate:"오늘의 토론",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
+        ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
         bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 적중 기록 보기",
         bm:"북마크",follows:"팔로우 내역",shares:"공유 내역",nlLabel:"이번 주 베스트 메일",
         community:"커뮤니티",communitySec:"커뮤니티",communitySoon:"준비 중",
         communityDesc:"특정 논객이나 회사를 함께 쫓는 커뮤니티를 만들거나 팔로우하고, 인용해서 덧글을 남기고, 직접 글도 쓰며 서로 소통하는 공간이에요. 곧 찾아옵니다.",
         emptyFollows:"아직 팔로우한 논객·회사·시리즈가 없어요.",emptyShares:"아직 공유한 글이 없어요.",
         followsPeople:"논객",followsCompany:"회사",followsSeries:"시리즈",
-        nsTitle:"알림 설정",nsNew:"새 글 알림",nsDebate:"오늘의 토론 알림",nsFollow:"팔로우 새 글 알림",
+        nsTitle:"알림 설정",nsNew:"새 글 알림",nsFollow:"팔로우 새 글 알림",
         nsEvents:"다가오는 이벤트 알림",nsNoEvents:"예정된 이벤트가 없어요.",nsRecent:"최근 알림",nsEvSubEmpty:"알림 신청한 이벤트가 없어요. 이벤트의 종 버튼을 눌러 신청하세요.",
         recentQ:"최근 검색",recentClear:"전체 지우기",recentDel:"지우기"},
     en:{home:"Home",find:"Find",explore:"Explore",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
         skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
-        ntNew:"New",ntGrade:"Graded",ntDebate:"Today's debate",ntSkew:"Skew alert",noAlerts:"No new alerts.",
+        ntNew:"New",ntGrade:"Graded",ntSkew:"Skew alert",noAlerts:"No new alerts.",
         bull:"Bull",bear:"Bear",openThemes:"Open theme debates",openRecord:"Open author track record",
         bm:"Bookmarks",follows:"Following",shares:"Share history",nlLabel:"Weekly best by email",
         community:"Community",communitySec:"Community",communitySoon:"Coming soon",
         communityDesc:"A space to create or follow communities around a given author or company, quote-and-comment, post your own takes, and talk with others. Coming soon.",
         emptyFollows:"You aren't following any authors, companies, or series yet.",emptyShares:"You haven't shared anything yet.",
         followsPeople:"Author",followsCompany:"Company",followsSeries:"Series",
-        nsTitle:"Notification settings",nsNew:"New posts",nsDebate:"Today's debate",nsFollow:"New posts from who you follow",
+        nsTitle:"Notification settings",nsNew:"New posts",nsFollow:"New posts from who you follow",
         nsEvents:"Upcoming events",nsNoEvents:"No upcoming events.",nsRecent:"Recent alerts",nsEvSubEmpty:"No events subscribed yet. Tap the bell on an event to get alerts.",
         recentQ:"Recent searches",recentClear:"Clear all",recentDel:"Remove"},
     ja:{home:"ホーム",find:"探す",explore:"発見",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
         skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
-        ntNew:"新着",ntGrade:"採点",ntDebate:"今日の論点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
+        ntNew:"新着",ntGrade:"採点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
         bull:"強気",bear:"弱気",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
         bm:"ブックマーク",follows:"フォロー履歴",shares:"共有履歴",nlLabel:"今週のベストをメール",
         community:"コミュニティ",communitySec:"コミュニティ",communitySoon:"準備中",
         communityDesc:"特定の論客や企業を一緒に追うコミュニティを作ったりフォローし、引用してコメントを残し、自分でも投稿して交流できる場です。近日公開。",
         emptyFollows:"まだフォローした論客・企業・シリーズがありません。",emptyShares:"まだ共有した記事がありません。",
         followsPeople:"論客",followsCompany:"企業",followsSeries:"シリーズ",
-        nsTitle:"通知設定",nsNew:"新着記事",nsDebate:"今日の論点",nsFollow:"フォロー中の新着",
+        nsTitle:"通知設定",nsNew:"新着記事",nsFollow:"フォロー中の新着",
         nsEvents:"今後のイベント",nsNoEvents:"予定されたイベントはありません。",nsRecent:"最近の通知",nsEvSubEmpty:"通知を登録したイベントはありません。イベントのベルを押して登録してください。",
         recentQ:"最近の検索",recentClear:"すべて消去",recentDel:"削除"}
   };
@@ -201,7 +201,7 @@
       _dwItem("bm", "🔖") + _dwItem("alerts", "🔔") +
       /* 2026-07-25 (june): 지금 모드를 보여준다 — 다크는 달, 라이트는 해 */
       _dwItem("appearance", (typeof THEME !== "undefined" && THEME === "dark") ? "🌙" : "☀️") +
-      '<button class="v82dw-item v82dw-join" data-act="join"><span class="ic">🗳️</span>' + _dwT("join") + '</button>' +
+      '<button class="v82dw-item v82dw-join" data-act="join"><span class="ic">📰</span>' + _dwT("join") + '</button>' +
       _dwItem("me", "👤") +
       '<div class="v82dw-nl" id="v82dwNl"><div class="v82dw-nlh"><span>📧</span>' + t.nlLabel + '</div></div>' +
       '<div class="v82dw-langs">' +
@@ -234,7 +234,7 @@
     else if (act === "cal"){ closeDrawer(true); navGo("cal"); }
     else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
     else if (act === "appearance"){ closeDrawer(true); if (typeof toggleTheme === "function") toggleTheme(); }
-    else if (act === "join"){ closeDrawer(true); if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof openCardById === "function") openCardById(TODAY_ID); else navGo("home"); }
+    else if (act === "join"){ closeDrawer(true); var hj = (typeof v83TopHotId === "function") ? v83TopHotId() : null; if (hj && typeof openCardById === "function") openCardById(hj); else navGo("home"); }
     else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ try { SERIES_VIEW=null; ENTITY_VIEW=null; QUERY=""; BM_ONLY=true; renderFeed(false); } catch(e){} }); }
     else if (act === "follows"){ closeDrawer(true); openList("follows"); }
     else if (act === "shares"){ closeDrawer(true); openList("shares"); }
@@ -722,7 +722,6 @@
     var sw = function(key, label, on){ return '<button class="v82-nset" data-np="'+key+'"><span class="v82-nset-l">'+esc(label)+'</span><span class="v82-sw'+(on?' on':'')+'"></span></button>'; };
     var h = '<div class="v82-nset-h">'+esc(t.nsTitle)+'</div>'
       + sw("newpost", t.nsNew, np.newpost)
-      + sw("debate", t.nsDebate, np.debate)
       + sw("follow", t.nsFollow, np.follow);
     /* events: a master row you tap to expand your subscribed events (opt in via the bell on each event) */
     var subs = upcomingEvents().filter(function(ev){ return np.events && np.events[ev.id]; });
@@ -753,11 +752,6 @@
       ITEMS.filter(function(i){ return i.outcome && (i.outcome.status==="hit"||i.outcome.status==="miss"); }).slice(0,4).forEach(function(i){
         rows.push({ em: i.outcome.status==="hit"?"✅":"❌", t1:t.ntGrade, t2:i.title[LANG], id:i.id });
       });
-      /* today's debate */
-      if (typeof TODAY_ID !== "undefined" && TODAY_ID){
-        var td = null; for (var k=0;k<ITEMS.length;k++) if (ITEMS[k].id===TODAY_ID){ td=ITEMS[k]; break; }
-        if (td && td.ask) rows.push({ em:"💬", t1:t.ntDebate, t2:td.ask[LANG], id:td.id });
-      }
       /* strong skews */
       skewData().filter(function(o){ return o.pct>=0.8 && (o.bull+o.bear)>=3; }).slice(0,4).forEach(function(o){
         rows.push({ em:"⚠️", t1:t.ntSkew, t2:(o.icon?o.icon+" ":"")+o.label+" · "+(o.side==="bull"?t.bull:t.bear)+" "+Math.round(o.pct*100)+"%",
@@ -1306,31 +1300,6 @@
     var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : {};
     var mods = [];
     try {
-      if (typeof TODAY_ID !== "undefined" && TODAY_ID){
-        var titem = null;
-        for (var j = 0; j < ITEMS.length; j++) if (ITEMS[j].id === TODAY_ID){ titem = ITEMS[j]; break; }
-        if (titem && titem.ask && window.__v82todayHid !== TODAY_ID && !(typeof todayDismissed === "function" && todayDismissed())){
-          /* bordered card + "왜 화두인가" context so readers know what's up for debate */
-          var ctx = "";
-          try {
-            var raw = (titem.why && titem.why[LANG]) ? titem.why[LANG] : (titem.gist && titem.gist[LANG] ? v82Plain(titem.gist[LANG]) : "");
-            ctx = raw.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-            if (ctx.length > 180) ctx = ctx.slice(0, 176).replace(/\s+\S*$/, "") + "…";
-          } catch(e){ ctx = ""; }
-          var tc = document.createElement("div"); tc.className = "v82mod v82today";
-          tc.innerHTML =
-            '<button class="v82today-x" aria-label="close">×</button>' +
-            '<div class="v82today-tag">💬 ' + (S.todayLabel || T().ntDebate) + '</div>' +
-            '<div class="v82today-q">' + esc(titem.ask[LANG] || titem.title[LANG] || "") + '</div>' +
-            (ctx ? '<div class="v82today-ctx">' + esc(ctx) + '</div>' : "") +
-            '<div class="v82today-src">' + esc(dispName(titem.source)) + ' · ' + esc(titem.title[LANG] || "") + '</div>' +
-            '<div class="v82today-cta">' + (S.todayJoin || T().ntDebate) + ' →</div>';
-          tc.querySelector(".v82today-x").addEventListener("click", function(ev){ ev.stopPropagation(); window.__v82todayHid = TODAY_ID; if (typeof markTodayDismissed === "function") markTodayDismissed(); if (typeof collapseHide === "function") collapseHide(tc, function(){ tc.remove(); }); else tc.remove(); });
-          tc.addEventListener("click", function(){ if (typeof markTodayDismissed === "function") markTodayDismissed(); openCardById(TODAY_ID); setTimeout(function(){ if (typeof toggleComments === "function") toggleComments(TODAY_ID); }, 320); });
-          if (typeof watchTodayPast === "function") watchTodayPast(tc); /* 스크롤로 지나치면 그날 하루 숨김 */
-          mods.push({ top: true, node: tc });
-        }
-      }
     } catch(e){}
     mods.forEach(function(mm){
       if (mm.top){ var first = list.querySelector(".card"); if (first) first.before(mm.node); else list.appendChild(mm.node); }
