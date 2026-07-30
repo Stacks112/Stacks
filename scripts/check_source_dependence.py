@@ -148,7 +148,14 @@ def check(item, feed_idx):
     body, chk, ref, markers = gist_parts(item)
     src = source_text(item, feed_idx)
 
-    quoted = " ".join((item.get("quote") or {}).get("lines") or [])
+    # quote.lines is a bare list on older cards and an {en,ko,ja} object on
+    # cards written after 2026-07-30 (the quote is translated per reader
+    # language now). Either way what we want here is every number the quote
+    # carries, in any language, so flatten the object rather than picking one.
+    qlines = (item.get("quote") or {}).get("lines") or []
+    if isinstance(qlines, dict):
+        qlines = [l for v in qlines.values() for l in (v or [])]
+    quoted = " ".join(qlines)
     card_nums = (numbers(body) | numbers(markers)) - numbers(quoted)
 
     if src is None:

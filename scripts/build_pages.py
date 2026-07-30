@@ -281,14 +281,52 @@ def _excerpt_lines(lines, limit=QUOTE_EXCERPT_LIMIT):
     return [cut.rstrip(" ,.;:\u3001\u3002") + "\u2026"]
 
 
+# 인용문을 독자 언어로 옮겼을 때 캡션에 붙는 표기 (2026-07-30).
+# 바깥 키는 페이지 언어, 안쪽 키는 원문 언어다. 원문 언어와 페이지 언어가 같으면
+# 붙이지 않는다 -- 그때 화면에 있는 것은 번역이 아니라 원문이기 때문이다.
+TRANSLATED_NOTE = {
+    "ko": {"ko": "한국어 원문 옮김", "en": "영어 원문 옮김", "ja": "일본어 원문 옮김"},
+    "en": {"ko": "translated from the Korean",
+           "en": "translated from the English",
+           "ja": "translated from the Japanese"},
+    "ja": {"ko": "韓国語の原文より翻訳", "en": "英語の原文より翻訳",
+           "ja": "日本語の原文より翻訳"},
+}
+
+
+def pick_quote_lines(raw, lang, slang):
+    """어느 언어의 인용문을 보여줄지 고른다.
+
+    `quote.lines`에는 두 가지 모양이 있다. 그냥 배열이면 옛 형태 -- 원문 언어
+    문장 한 벌을 세 언어 페이지에 똑같이 실었다. `{en,ko,ja}` 객체면 언어별
+    번역이 들어 있고, 2026-07-30 이후 카드는 전부 이쪽이다(발행 규칙 [4-F]).
+
+    (문장 목록, 그 문장의 언어)를 돌려준다. 두 번째 값이 `lang` 속성과 "옮김"
+    표기를 함께 결정하므로, 번역이 비어 있는 언어는 아무것도 안 보여주는 대신
+    원문으로 내려앉되 그것을 번역이라고 말하지 않는다."""
+    if isinstance(raw, dict):
+        for cand in (lang, slang, "en", "ko", "ja"):
+            got = [l for l in (raw.get(cand) or []) if l]
+            if got:
+                return got, cand
+        return [], ""
+    return [l for l in (raw or []) if l], slang
+
+
 def quote_block(item, lang):
     """The author's own words, above our reading.
 
-    Shown on ALL three language pages, always in the source language. `quote`
-    is written once and never translated: translating it would defeat the point
-    of showing it, and an English reader arriving at /p/en/ has the same right
-    to see what the take is based on as a Korean one. (Until 2026-07-27 this
-    returned "" for en/ja, so 30 pages carried the reading with no evidence.)
+    Shown on ALL three language pages. Until 2026-07-30 it was shown in the
+    source language on every one of them, on the reasoning that translating a
+    quotation defeats the point of quoting it. That reasoning traded one
+    reader's problem for another's: a Japanese reader landing on /p/ja/ met a
+    block of Korean above the take and simply could not read the evidence the
+    take rests on. Untranslated evidence is not evidence to someone who cannot
+    read it. So the quote now carries a per-language translation and each page
+    shows its own, with the caption saying it was translated and the source URL
+    one click away for anyone who wants the original wording.
+    (Until 2026-07-27 this returned "" for en/ja, so 30 pages carried the
+    reading with no evidence at all.)
 
     Falls back to EMBEDS (embeds.json) when there is no hand-written "quote" --
     the same oEmbed text the app's live tweet widget uses (2026-07-29: about.html
@@ -303,11 +341,18 @@ def quote_block(item, lang):
     the `cite` attribute. `lang` on the blockquote matters here specifically
     because the quote is often NOT in the page's language."""
     q = item.get("quote") or {}
-    lines = [l for l in (q.get("lines") or []) if l]
+    slang = (item.get("sourceLang") or "").lower()
+    if slang not in ("ko", "en", "ja"):
+        slang = ""
+    lines, llang = pick_quote_lines(q.get("lines"), lang, slang)
     cite = q.get("cite")
     if not lines:
+        # The EMBEDS fallback is X's own oEmbed text, collected automatically,
+        # so there is no translation to pick from -- it stays in the source
+        # language by design (2026-07-30 decision).
         raw = [l for l in (EMBEDS.get(item["id"], {}).get("lines") or []) if l]
         lines = _excerpt_lines(raw) if raw else []
+        llang = slang
     if not lines:
         return ""
     if not cite:
@@ -317,12 +362,15 @@ def quote_block(item, lang):
         d = (item.get("date") or "").replace("-", ".")
         cite = (src + " · " + d) if (src and d) else (src or d)
     href = safe_href(item.get("sourceUrl"), "")
-    slang = (item.get("sourceLang") or "").lower()
-    lattr = ' lang="%s"' % E(slang) if slang in ("ko", "en", "ja") else ""
+    lattr = ' lang="%s"' % E(llang) if llang in ("ko", "en", "ja") else ""
     cattr = ' cite="%s"' % E(href) if href else ""
     body = "".join("<p>%s</p>" % E(l) for l in lines)
     tail = ('<a href="%s" rel="nofollow noopener" target="_blank">%s</a>'
             % (E(href), E(cite))) if href else E(cite)
+    if llang and slang and llang != slang:
+        note = TRANSLATED_NOTE.get(lang, TRANSLATED_NOTE["en"]).get(slang)
+        if note:
+            tail += " · " + E(note)
     return ('<figure class="srcq"><blockquote%s%s>%s</blockquote>'
             '<figcaption class="srcq-c">%s</figcaption></figure>'
             % (cattr, lattr, body, tail))
