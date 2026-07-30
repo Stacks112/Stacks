@@ -208,6 +208,8 @@ const STRINGS = {
     related: "Related",
     oppLabel: "The other side",
     oppNote: "Same company, opposite call",
+    dltLabel: "Earlier takes",
+    dltNote: "Same stock, this author before",
     adLabel: "Ad",
     fromSource: "From the source",
     chkLabel: "📊 We looked it up",
@@ -381,6 +383,8 @@ const STRINGS = {
     related: "함께 읽기",
     oppLabel: "반대편",
     oppNote: "같은 종목을 반대로 본 글",
+    dltLabel: "이전 판단",
+    dltNote: "같은 종목, 이 필진의 이전 글",
     adLabel: "광고",
     fromSource: "원문에서",
     chkLabel: "📊 확인해보면",
@@ -554,6 +558,8 @@ const STRINGS = {
     related: "あわせて読む",
     oppLabel: "反対の見方",
     oppNote: "同じ銘柄への逆の見方",
+    dltLabel: "以前の見方",
+    dltNote: "同じ銘柄、この筆者の以前の記事",
     adLabel: "広告",
     fromSource: "原文から",
     chkLabel: "📊 確認すると",
@@ -4231,6 +4237,31 @@ function oppHtml(item, S){
     + '<span class="opp-ico">⚖️</span><b>' + S.oppLabel + "</b>"
     + (ENTITIES[o.k] ? '<span class="opp-k">' + esc(entName(o.k)) + "</span>" : "")
     + '<span class="opp-note">' + S.oppNote + "</span></div>" + rows + "</div>";
+}
+/* ---------------- earlier takes (priors) ----------------
+   Same idea as oppHtml, other axis: this author's earlier cards on the same
+   declared company - the trajectory. Pairing is decided at publish time by
+   scripts/build_data.py (pick_priors); rendering only reads what the build
+   wrote. Reuses the .opp styles wholesale (extra .dlt class only marks it),
+   so desktop/mobile order rules and dark mode come for free. */
+function dltHtml(item, S){
+  const o = item.prior;
+  if (!o || !o.ids || !o.ids.length) return "";
+  const rows = o.ids
+    .map(id => ITEMS.find(x => x.id === id))
+    .filter(Boolean)
+    .map(r => {
+      const st = itemStance(r), m = st ? stanceMeta(st) : null;
+      return '<button class="opp-row" onclick="goToItem(\'' + r.id + '\')">'
+        + (m ? '<span class="stance-pill sp-' + m.key + '">' + m.label + "</span>" : "")
+        + '<span class="opp-t">' + esc(r.title[LANG]) + "</span>"
+        + '<span class="opp-src">' + esc((r.date || "").slice(5)) + "</span></button>";
+    }).join("");
+  if (!rows) return "";
+  return '<div class="opp dlt"><div class="opp-h">'
+    + '<span class="opp-ico">⏳</span><b>' + S.dltLabel + "</b>"
+    + (ENTITIES[o.k] ? '<span class="opp-k">' + esc(entName(o.k)) + "</span>" : "")
+    + '<span class="opp-note">' + S.dltNote + "</span></div>" + rows + "</div>";
 }
 function stancePillHtml(item){
   /* rbeta: geopolitical/macro posts (oil-geopolitics) don't get a bull/bear tag —
@@ -9114,6 +9145,7 @@ function cardEl(item, S, idx){
         return "";
       })()}
       ${oppHtml(item, S)}
+      ${dltHtml(item, S)}
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
       ${itemMainKey(item) ? `<div class="since" data-since="${item.id}" hidden></div>` : ""}
       ${item.ask && COMMENTS_API && !item.lab ? `<div class="ask-block">
