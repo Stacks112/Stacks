@@ -9089,7 +9089,14 @@ function cardEl(item, S, idx){
     const langNote = item.sourceLang === "KO" ? S.langNoteKO
                    : item.sourceLang === "JA" ? S.langNoteJA
                    : S.langNoteEN;
+    /* opp (the other side) and prior (earlier takes) are structured blocks that
+       carry stance and date; if a card sits in one of those, listing it again
+       under Related is pure duplication. Filter it out here. */
+    const relShown = {};
+    ((item.opp || {}).ids || []).forEach(id => { relShown[id] = 1; });
+    ((item.prior || {}).ids || []).forEach(id => { relShown[id] = 1; });
     const rel = (item.related || [])
+      .filter(rid => !relShown[rid])
       .map(rid => ITEMS.find(x => x.id === rid))
       .filter(Boolean);
     const relHtml = rel.length ? `
