@@ -1070,10 +1070,20 @@
     if (!bar) { body.style.paddingBottom = ""; return; }
     /* the bar is out of flow, so the article needs room to scroll clear of it */
     body.style.paddingBottom = ((bar.offsetHeight || 56) + 24) + "px";
-    /* No visualViewport lift here. #v82detail is height:100dvh, which iOS already
-       shrinks by the keyboard, so a translateY on top of that double-corrects and
-       opens a gap between the bar and the keyboard (measured 2026-07-29).
-       Padding sync above is all this needs. */
+    /* Pin the bar's bottom edge to the visible viewport bottom by MEASURING where
+       the bar actually is, instead of assuming what iOS moved. Depending on the
+       WebKit build the keyboard may shrink 100dvh, pan the layout viewport, both,
+       or neither - assuming any one of them either double-corrects (2026-07-29:
+       gap ABOVE the keyboard) or leaves the bar floating with the feed showing
+       through BELOW it (2026-07-30 june screenshot). The measured delta is 0 when
+       there is no keyboard, so desktop shells and tests are untouched. */
+    var vv = window.visualViewport;
+    if (vv) {
+      bar.style.transform = "";
+      var rb = bar.getBoundingClientRect();
+      var delta = Math.round(rb.bottom - (vv.offsetTop + vv.height));
+      if (delta > 1 || delta < -1) bar.style.transform = "translateY(" + (-delta) + "px)";
+    }
   }
   function v82PinCompBar(sheet){
     var dt = $("v82detail");
