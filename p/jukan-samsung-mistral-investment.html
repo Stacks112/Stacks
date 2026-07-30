@@ -77,27 +77,27 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
   .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}
-.rec,.oc,.opp{margin-top:26px}
-.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
 .rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
 .rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
-.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
-.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
-.rec-l li:first-child,.opp li:first-child{border-top:0}
-.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
 .bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
-.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
-.rec-l a:hover,.opp a:hover{text-decoration:underline}
-.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
 .rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
 .oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
 .oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
 .oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
-  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
-  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -165,7 +165,7 @@ e.preventDefault();location.href=B+d;},false);})();
     
   </div>
   <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2079783992270971262" lang="en"><p>FT: Samsung in talks to invest in Mistral at a €20 billion valuation</p><p>FT: Samsung, which previously invested in Mistral through its venture capital arm, could invest around €1 billion in this funding round.</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2079783992270971262" rel="nofollow noopener" target="_blank">Jukan · 2026.07.22</a></figcaption></figure><p class="gist">삼성전자가 프랑스 인공지능(AI) 스타트업 미스트랄AI에 최대 10억 유로를 투자하는 방안을 논의 중이라고 파이낸셜타임스(FT)가 보도했다. 이번 라운드에서 미스트랄의 기업가치는 200억 유로로 매겨질 전망인데, 이는 채 1년도 안 된 시점에 네덜란드 반도체 장비업체 ASML이 주도한 라운드에서 매겨진 120억 유로의 약 두 배다. 삼성전자는 이미 자사 벤처투자 부문을 통해 미스트랄에 투자한 이력이 있어, 이번이 첫 베팅은 아니다. 이번 라운드에는 EQT의 스케일업유럽 펀드, 노보홀딩스, 산탄데르 등도 참여하는 것으로 알려졌다. 2023년 설립된 미스트랄은 미국 클라우드 업체에 의존하지 않고도 구동할 수 있는 오픈웨이트 거대언어모델(LLM)을 만들며, 유럽을 대표하는 오픈AI·앤스로픽 대항마로 자리잡았다. 회사는 2026년 말까지 연환산 매출 10억 달러를 넘길 것으로 알려졌다. 이번 투자 논의는 유럽 각국 정부와 기업들이 워싱턴의 통제에서 벗어난 이른바 &#x27;주권 AI&#x27; 구축을 서두르는 가운데 나왔는데, 트럼프 행정부가 앤스로픽의 최신 모델에 대한 해외 접근을 제한한 이후 이런 움직임이 더 급해졌다. 삼성 입장에서는 빠르게 성장하는 모델 기업과 관계를 다지며 기존 반도체·메모리 사업과 함께 유럽 AI 구축 흐름에 발을 걸치는 셈이다.</p><p class="why"><b>투자 포인트</b> · 삼성이 메모리·파운드리를 넘어 유럽 AI 모델 기업 지분까지 쌓으면서, AI 밸류체인의 전방(모델)과 후방(반도체)을 동시에 잡으려는 큰 그림이 드러난다.</p><p class="ask"><b>짚어볼 점</b> · 반도체 강자 삼성이 모델 기업 지분까지 쌓는 건, AI 밸류체인을 앞뒤로 잡으려는 영리한 수일까 아니면 본업과 먼 곳에 돈을 묻는 결정일까?</p>
-  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>57</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section>
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>57</b>글</span><span><b>28</b>방향성 콜</span><span class="bl"><b>23</b>강세</span><span class="be"><b>5</b>약세</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="jukan-mlcc-samsung-electro-30-percent-hike.html">삼성전기가 MLCC 값을 30% 올리겠다고 통보했다, 이유로 든 것은 원자재가 아니었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-mlcc-ai-shortage-taiwan-spillover.html">다음 병목은 메모리가 아니라 콘덴서다, MLCC 값이 벌써 세 배 뛰었다</a><time>07-28</time></li><li><i class="bl">강세</i><a href="jukan-ai-capex-roi-repricing.html">이어진 실적 서프라이즈에도 더 떨어진 반도체주, 그 이유는 뭘까?</a><time>07-28</time></li></ul><a class="rec-m" href="../r/jukan.html" data-app="?l=ko#record-Jukan%20%28%40jukan05%29">전체 기록 보기 →</a></section><section class="dlt"><h3>같은 종목, 이 필진의 이전 글</h3><ul><li><i class="bl">강세</i><a href="jukan-samsung-nvidia-nand-v10.html">삼성, 엔비디아 동맹을 낸드로 확장, V10 출하 시작</a><time>07-20</time></li></ul></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jukan-samsung-mistral-investment.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jukan-samsung-mistral-investment.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../e/asml.html">ASML</a><a class="ent-chip" href="../e/donald-j-trump-realdonaldtrump.html">Donald J. Trump (@realDonaldTrump)</a><a class="ent-chip" href="../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../e/mistral.html">MISTRAL</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../e/valuation.html">밸류에이션</a><a class="ent-chip" href="../e/open-weight.html">오픈웨이트</a><a class="ent-chip" href="../e/foundry.html">파운드리</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="jukan-samsung-hybrid-bonding-besi.html">삼성전자, 차세대 HBM용 하이브리드 본딩 양산 라인 착공, 공급사로 네덜란드 베시 선택</a></li><li><a href="jukan-samsung-nvidia-nand-v10.html">삼성, 엔비디아 동맹을 낸드로 확장, V10 출하 시작</a></li></ul></nav>

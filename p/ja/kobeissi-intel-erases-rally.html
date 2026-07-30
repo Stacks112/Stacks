@@ -87,27 +87,27 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
 .splitb p:last-child{margin-bottom:0}
-.rec,.oc,.opp{margin-top:26px}
-.rec h3,.oc h3,.opp h3{font-size:14px;margin:0 0 10px}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
 .rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
 .rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
 .rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
-.rec-l,.opp ul{list-style:none;margin:0;padding:0;font-size:14px}
-.rec-l li,.opp li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
-.rec-l li:first-child,.opp li:first-child{border-top:0}
-.rec-l i,.opp i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
 .bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
-.rec-l a,.opp a{color:#17181C;text-decoration:none;flex:1}
-.rec-l a:hover,.opp a:hover{text-decoration:underline}
-.rec-l time,.opp time{flex:none;font-size:12px;color:#8E93A0}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
 .rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
 .oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
 .oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
 .oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
-  .rec-s b,.rec-l a,.opp a,.rec-m{color:#ECEDF1}
-  .rec-l li,.opp li{border-color:#26272E}.oc p{background:#1A1B21}}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -179,7 +179,7 @@ e.preventDefault();location.href=B+d;},false);})();
 インテル株価が年初来約170%上昇した(36.90ドル前後から100ドル前後へ)ため、この債務の評価額もそれに伴って膨らんだ。調整後ベースでは黒字だった。
 tradesandgainsは、これは一時的な項目ではなく株価が変わるたびに毎四半期再評価されると明言する。一方、既に引き渡し済みの政府保有株2億7460万株については、逆に約218億ドルの評価益が生じている。</p><div class="cmp"><div class="cmp-c"><i>記事原文の説明</i><p>110億ドルの損失は一時費用によるもので、調整後ベースでの黒字転換こそが本当の姿だ。</p></div><div class="cmp-vs">VS</div><div class="cmp-c cmp-b"><i>実際の仕組み</i><p>この損失は政府の持ち分を時価評価する毎四半期再評価される費用で、インテル株価が上がるほど膨らむ。逆に政府は同じ株式で約218億ドルの利益を得た。</p></div></div><p class="gist">同じ数字でも一時費用と株価連動型の会計構造のどちらで読むかによって、インテルの本当の財務状態は違って見える。</p><div class="gref"><a href="https://xenospectrum.com/" rel="noopener" target="_blank">Intel Posts 25% Revenue Growth Yet Reports $11 Billion Net Loss (XenoSpectrum, 2026-07-25) &#8599;</a></div><h2 class="gsub">だから何を見ればいいのか</h2><p class="gist">このエスクロー株式の時価評価が大きく表面化したのは今回が初めてだ。つまり今後もインテル株が動くたびにGAAP純利益に反映され続ける構造だということになる。
 インテルの本当の実績を見るには、この会計上の変動を調整後利益やファウンドリ部門の実際の営業損益と切り離して見る必要がある。イランはその週の市場心理を悪化させただけで、インテル自身の反落の直接の原因ではなかった。</p><div class="sum3"><b>3行まとめ</b><ul><li>インテルが決算後の急騰分を反落で失い、時価総額900億ドルが蒸発したとコベイシ・レターが伝えた。</li><li>113億ドルの純損失が一時費用によるものという説明は、決算そのものへの不安のように読める。</li><li>だがこの損失は一時的なものではなく、米政府に預託した株式を時価評価する仕組みによるもので、インテル株価が上がるほど損失が膨らむ。急騰分が消えた本当の理由も、イランよりファウンドリと設備投資への懸念だった。</li></ul></div><p class="why"><b>Why it matters</b> · インテルの110億ドルの損失は一時的なものではなく、政府の持ち分を時価評価する仕組みによるもので、株価が上がるほど膨らむ。ラリー反転の本当の原因もイランではなくファウンドリと設備投資への懸念だった点が、インテルの実際の財務状態を読むうえで重要だ。</p><p class="ask"><b>考えるべき点</b> · インテルの損失は一時的なものではなく、株価が上がるほど膨らむ会計上の仕組みであり、ラリー反転の実際の原因もイランよりファウンドリへの懸念だった。この会計方式は今後もインテルの決算を歪んで見せ続けると思うか、それとも市場はすぐに慣れると思うか。</p>
-  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>49</b>記事</span><span><b>24</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>12</b>弱気</span><span class="bl"><b>1</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-asia-private-credit-12y-low.html">アジア企業に直接お金を貸すファンドの調達額が12年ぶりの少なさになった。その資金はどこへ行ったのか?</a><time>07-28</time></li><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">マージン負債1.5兆ドルで過去最高、しかもその多くはAIレバレッジETFに集中している</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETFに8800億ドルが流入したというが、その資金は本当に確信から来ているのか?</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=ja#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">記録をすべて見る →</a></section><section class="opp"><h3>同じ話題、別の見方</h3><ul><li><i class="bl">強気</i><a href="jukan-intel-14a-2028-ramp.html">インテル、2028年量産を確定...ウォール街の想定より1年早い</a><time>07-23</time></li><li><i class="bl">強気</i><a href="kobeissi-intel-q2-earnings-surge.html">インテル、15年ぶりの最大四半期成長とともに110億ドルの損失も計上...これは一時的な費用ではない</a><time>07-23</time></li></ul></section>
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>49</b>記事</span><span><b>24</b>方向性コール</span><span class="bl"><b>12</b>強気</span><span class="be"><b>12</b>弱気</span><span class="bl"><b>1</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="be">弱気</i><a href="kobeissi-asia-private-credit-12y-low.html">アジア企業に直接お金を貸すファンドの調達額が12年ぶりの少なさになった。その資金はどこへ行ったのか?</a><time>07-28</time></li><li><i class="be">弱気</i><a href="kobeissi-margin-debt-net-credit-record.html">マージン負債1.5兆ドルで過去最高、しかもその多くはAIレバレッジETFに集中している</a><time>07-25</time></li><li><i class="bl">強気</i><a href="kobeissi-equity-etf-record-880b.html">米国株ETFに8800億ドルが流入したというが、その資金は本当に確信から来ているのか?</a><time>07-24</time></li></ul><a class="rec-m" href="../../r/kobeissi.html" data-app="?l=ja#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">記録をすべて見る →</a></section><section class="opp"><h3>同じ話題、別の見方</h3><ul><li><i class="bl">強気</i><a href="jukan-intel-14a-2028-ramp.html">インテル、2028年量産を確定...ウォール街の想定より1年早い</a><time>07-23</time></li><li><i class="bl">強気</i><a href="kobeissi-intel-q2-earnings-surge.html">インテル、15年ぶりの最大四半期成長とともに110億ドルの損失も計上...これは一時的な費用ではない</a><time>07-23</time></li></ul></section><section class="dlt"><h3>同じ銘柄、この筆者の以前の記事</h3><ul><li><i class="bl">強気</i><a href="kobeissi-intel-q2-earnings-surge.html">インテル、15年ぶりの最大四半期成長とともに110億ドルの損失も計上...これは一時的な費用ではない</a><time>07-23</time></li></ul></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/kobeissi-intel-erases-rally.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/kobeissi-intel-erases-rally.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/chips-act.html">CHIPS ACT</a><a class="ent-chip" href="../../e/gaap.html">GAAP</a><a class="ent-chip" href="../../e/intel.html">INTEL</a><a class="ent-chip" href="../../e/per.html">PER</a><a class="ent-chip" href="../../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/capex.html">設備投資</a><a class="ent-chip" href="../../e/one-time-charge.html">one-time charge</a><a class="ent-chip" href="../../e/fundraising.html">資金調達</a><a class="ent-chip" href="../../e/capex-b1b4ec.html">設備投資</a><a class="ent-chip" href="../../e/foundry.html">ファウンドリ</a><a class="ent-chip" href="../../e/unrealized-gain.html">評価益</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="kobeissi-intel-q2-earnings-surge.html">インテル、15年ぶりの最大四半期成長とともに110億ドルの損失も計上...これは一時的な費用ではない</a></li><li><a href="kobeissi-ai-capex-sox-correlation-collapse.html">AI半導体株と投資企業の相関崩壊、実は出所はコベイシではなくチャールズ・シュワブのアナリストだった</a></li><li><a href="jukan-intel-amd-china-cpu-lta.html">インテルとAMD、価格40%急騰の中国と複数年CPU契約...メモリーから始まったパターンがCPUにも波及</a></li></ul></nav>

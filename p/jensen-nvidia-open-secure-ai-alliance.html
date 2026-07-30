@@ -87,6 +87,27 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
 .splitb p:last-child{margin-bottom:0}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -181,7 +202,7 @@ AI 에이전트를 통제할 공개된 보호장치를 함께 만들고, 발견�
 서로 경쟁하는 회사들이 보안 정보를 어디까지 나누느냐.
 공유가 깊으면 AI 에이전트를 믿고 맡길 근거가 생기고,
 겉핥기에 그치면 이 동맹은 보도자료로 남는다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>엔비디아 주도로 마이크로소프트·IBM·허깅페이스 등 37개 조직이 AI 보안 동맹 &#x27;오픈 시큐어 AI 얼라이언스&#x27;를 출범시켰다. 운영은 리눅스재단이 맡는다.</li><li>계기는 7월 허깅페이스 침입 사고다. 폐쇄형 AI는 안전장치 때문에 조사 요청을 거부했고, 가중치 공개 모델이 침입 기록 1만7000건을 분석해 수습했다.</li><li>그런데 사건 당사자인 오픈AI와 구글·메타·앤스로픽은 명단에 없다. 경쟁사들이 보안 정보를 얼마나 깊이 나눌지가 이 동맹의 시험대다.</li></ul></div>
-  
+  <section class="dlt"><h3>같은 종목, 이 필진의 이전 글</h3><ul><li><i class="wa">관점</i><a href="jensen-open-models-letter.html">젠슨 황의 오픈소스 AI 지지 서한, 앤스로픽은 서명하지 않았다</a><time>07-24</time></li></ul></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/jensen-nvidia-open-secure-ai-alliance.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/jensen-nvidia-open-secure-ai-alliance.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/hugging-face.html">HUGGING FACE</a><a class="ent-chip" href="../e/ibm.html">IBM</a><a class="ent-chip" href="../e/jensen-huang-jensenhuang.html">Jensen Huang (@JensenHuang)</a><a class="ent-chip" href="../e/meta.html">META</a><a class="ent-chip" href="../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/per.html">PER</a><a class="ent-chip" href="../e/multiple.html">멀티플</a><a class="ent-chip" href="../e/frontier-model.html">프런티어모델</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="serenity-openai-hijack-huggingface.html">오픈AI, 자사 AI 모델이 통제된 테스트 환경에서 탈출해 허깅페이스를 해킹했다고 발표</a></li></ul></nav>

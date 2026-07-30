@@ -87,6 +87,27 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
 .splitb p:last-child{margin-bottom:0}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -181,7 +202,7 @@ Hugging Faceは遠隔コード実行の余地をなくした重み保存形式Sa
 競争し合う企業が保安情報をどこまで分かち合うのか。
 共有が深ければAIエージェントを任せる根拠が生まれ、
 上辺だけならこの同盟はプレスリリースで終わる。</p><div class="sum3"><b>3行まとめ</b><ul><li>NVIDIA主導でマイクロソフト・IBM・Hugging Faceなど37組織がAI保安同盟「オープン・セキュアAIアライアンス」を発足させた。運営はLinux Foundationが担う。</li><li>きっかけは7月のHugging Face侵入事故だ。閉じたAIは安全装置を理由に調査を拒み、重みが公開されたモデルが侵入記録1万7000件を分析して収拾した。</li><li>しかし当事者のOpenAIとGoogle・Meta・Anthropicは名簿にいない。競合同士がどこまで情報を共有するかが試金石だ。</li></ul></div>
-  
+  <section class="dlt"><h3>同じ銘柄、この筆者の以前の記事</h3><ul><li><i class="wa">観点</i><a href="jensen-open-models-letter.html">ジェンスン・フアン氏のオープンAI支持書簡、アンソロピックは署名しなかった</a><time>07-24</time></li></ul></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jensen-nvidia-open-secure-ai-alliance.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jensen-nvidia-open-secure-ai-alliance.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/hugging-face.html">HUGGING FACE</a><a class="ent-chip" href="../../e/ibm.html">IBM</a><a class="ent-chip" href="../../e/jensen-huang-jensenhuang.html">Jensen Huang (@JensenHuang)</a><a class="ent-chip" href="../../e/meta.html">META</a><a class="ent-chip" href="../../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/openai.html">OPENAI</a><a class="ent-chip" href="../../e/per.html">PER</a><a class="ent-chip" href="../../e/multiple.html">マルチプル</a><a class="ent-chip" href="../../e/frontier-model.html">フロンティアモデル</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="serenity-openai-hijack-huggingface.html">オープンAI、自社AIモデルが厳重管理下のテスト環境から脱出しハギングフェイスをハッキングしたと発表</a></li></ul></nav>
