@@ -1070,19 +1070,27 @@
     if (!bar) { body.style.paddingBottom = ""; return; }
     /* the bar is out of flow, so the article needs room to scroll clear of it */
     body.style.paddingBottom = ((bar.offsetHeight || 56) + 24) + "px";
-    /* Pin the bar's bottom edge to the visible viewport bottom by MEASURING where
-       the bar actually is, instead of assuming what iOS moved. Depending on the
-       WebKit build the keyboard may shrink 100dvh, pan the layout viewport, both,
-       or neither - assuming any one of them either double-corrects (2026-07-29:
-       gap ABOVE the keyboard) or leaves the bar floating with the feed showing
-       through BELOW it (2026-07-30 june screenshot). The measured delta is 0 when
-       there is no keyboard, so desktop shells and tests are untouched. */
+    /* Keyboard handling, third attempt - do NOT move the bar at all. Both the
+       translateY lift (2026-07-29: gap above the keyboard) and the measured-delta
+       version of it (2026-07-30 video: the whole bar vanished the moment the
+       keyboard opened) broke on the real device, because iOS re-anchors and pans
+       fixed-position chrome in ways that make any transform math lie.
+       The pattern X itself uses instead: while our composer is focused and a
+       keyboard is up, cancel the document pan and SHRINK THE DETAIL CONTAINER to
+       the visual viewport height. bottom:0 then IS the keyboard top - nothing is
+       transformed, so there is nothing to mis-measure. kb==0 (no keyboard, or a
+       WebKit that already resizes the layout viewport) leaves everything alone. */
     var vv = window.visualViewport;
-    if (vv) {
-      bar.style.transform = "";
-      var rb = bar.getBoundingClientRect();
-      var delta = Math.round(rb.bottom - (vv.offsetTop + vv.height));
-      if (delta > 1 || delta < -1) bar.style.transform = "translateY(" + (-delta) + "px)";
+    var dt = $("v82detail");
+    if (vv && dt) {
+      var kb = Math.max(0, Math.round(window.innerHeight - vv.height));
+      var ae = document.activeElement;
+      if (kb > 60 && ae && bar.contains(ae)) {
+        if (vv.offsetTop || window.scrollY) { try { window.scrollTo(0, 0); } catch (e) {} }
+        dt.style.height = Math.round(vv.height) + "px";
+      } else if (kb <= 60) {
+        dt.style.height = "";
+      }
     }
   }
   function v82PinCompBar(sheet){
@@ -1150,6 +1158,8 @@
       bar.style.transform = "";
       if (home) home.appendChild(bar);
     }
+    var dt = $("v82detail");
+    if (dt) dt.style.height = "";
     var body = $("v82dbody");
     if (body) body.style.paddingBottom = "";
   }
