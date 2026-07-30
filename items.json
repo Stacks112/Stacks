@@ -1,6 +1,168 @@
 {
  "items": [
   {
+   "id": "jukan-samsung-foundry-2nm-taylor-fab2",
+   "date": "2026-07-30",
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2082649620216451205",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "docUrl": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A8A",
+    "label": "TAYLOR FAB 2"
+   },
+   "tags": [
+    "SAMSUNG",
+    "FOUNDRY",
+    "2NM"
+   ],
+   "stance": "watch",
+   "related": [
+    "jukan-samsung-2q26-lta-60-70-capacity",
+    "jukan-samsung-chinese-dram-mx-bet",
+    "serenity-globalfoundries-us-equity-stake-cpo"
+   ],
+   "title": {
+    "ko": "삼성 파운드리 실적을 끌어올린 것은 2나노 수주가 아니었다",
+    "en": "What lifted Samsung's foundry results was not its 2nm order book",
+    "ja": "サムスンのファウンドリー業績を押し上げたのは2ナノの受注ではなかった"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Utilization rates have improved across all process nodes. At advanced nodes of 8nm and below, we have maximized sales on strong demand from high-growth applications, and utilization has reached peak levels.",
+      "The pace of advanced-node capacity expansion has not been sufficient to keep up with demand."
+     ],
+     "ko": [
+      "모든 공정 노드에서 가동률이 개선됐습니다. 8나노 이하 선단 공정에서는 고성장 응용처의 강한 수요에 맞춰 판매를 최대화했고, 가동률은 최고 수준에 도달했습니다.",
+      "선단 공정 생산능력 확대 속도는 수요를 따라가기에 충분하지 않았습니다."
+     ],
+     "ja": [
+      "すべての工程ノードで稼働率が改善しました。8ナノ以下の先端工程では高成長アプリケーションの強い需要に合わせて販売を最大化し、稼働率は最高水準に達しました。",
+      "先端工程の生産能力拡大のペースは、需要に追いつくには十分ではありませんでした。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.07.30"
+   },
+   "sum3": {
+    "ko": "삼성전자가 2분기 실적 설명회에서 파운드리 흑자 전환이 머지않았다고 밝혔다. 8나노 이하 공정의 가동률은 최고 수준이다.\n겉으로 보면 2나노 수주가 늘어난 결과다. 회사는 올해 2나노 프로젝트 수가 지난해의 두 배를 넘을 것이라고 했다.\n그런데 회사가 이번 분기 파운드리 매출 증가 요인으로 꼽은 것은 HBM 베이스 다이 수요와 북미 고객 물량이다. 메모리 호황이 파운드리 실적까지 끌어올린 셈이다.",
+    "en": "On its second quarter earnings call, Samsung said a foundry turnaround is not far off, with utilization at 8nm and below at peak levels.\nOn the surface that looks like the payoff from 2nm wins, and the company expects this year's 2nm project count to more than double.\nBut the reasons it gave for higher foundry revenue this quarter were demand for HBM base dies and volume from a North American customer. The memory boom lifted the foundry numbers too.",
+    "ja": "サムスン電子は第2四半期の説明会で、ファウンドリーの黒字転換が近いと述べた。8ナノ以下の稼働率は最高水準だ。\n表向きは2ナノ受注が増えた結果に見える。会社は今年の2ナノ案件数が昨年の2倍を超えるとした。\nだが今期のファウンドリー売上増加の要因として挙げたのは、HBMベースダイの需要と北米顧客の数量だった。メモリの好況がファウンドリー業績まで押し上げた形だ。"
+   },
+   "why": {
+    "ko": "파운드리 회복의 상당 부분이 자사 메모리 수요에서 나왔다면, 메모리 값이 꺾일 때 두 부문의 이익이 함께 줄어든다. 흑자 전환 시점보다 그 회복이 무엇으로 만들어졌는지가 중요한 이유다.",
+    "en": "If much of the foundry recovery came from Samsung's own memory demand, then profit in both divisions shrinks together once memory prices turn. That is why what built the recovery matters more than when it turns profitable.",
+    "ja": "ファウンドリー回復の相当部分が自社メモリの需要から来ているなら、メモリ価格が転じたとき二つの部門の利益が同時に減る。黒字転換の時期より、その回復が何で作られたかが重要な理由だ。"
+   },
+   "ask": {
+    "ko": "삼성 파운드리의 회복은 외부 고객이 돌아온 신호일까, 메모리 호황이 잠시 얹어 준 것일까?",
+    "en": "Is Samsung's foundry recovery a sign that outside customers are back, or something the memory boom is lending it for now?",
+    "ja": "サムスンのファウンドリーの回復は外部顧客が戻ったサインなのか、それともメモリ好況が一時的に上乗せしているだけなのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 1월, 삼성전자가 2026년에 확보한 2나노 프로젝트 수가 실제로 2025년의 두 배를 넘었는지, 브로드컴 물량이 계약으로 확인됐는지를 채점한다.",
+     "en": "In January 2027, score whether Samsung's 2nm project wins for 2026 really more than doubled from 2025 and whether Broadcom volume was confirmed as a contract.",
+     "ja": "2027年1月に、サムスン電子が2026年に獲得した2ナノ案件数が実際に2025年の2倍を超えたか、ブロードコムの数量が契約として確認されたかを採点する。"
+    }
+   },
+   "gist": {
+    "ko": "삼성전자 파운드리의 수익성이 1년 전보다 크게 좋아졌고, 회사는 흑자 전환이 머지않았다고 밝혔다.\n8나노 이하 선단 공정의 가동률이 최고 수준까지 올라왔고, 여기에 수율 개선과 가격 인상이 겹쳤다.\n\n@@REF@@삼성전자, 2026년 2분기 실적 발표 (삼성전자 뉴스룸, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\n같은 날 공개된 이 발표 자료에는 파운드리 흑자 전환 이야기가 없다.\n반도체를 담당하는 DS부문의 매출 127조 5,000억원, 영업이익 89조 2,000억원까지가 자료에 실린 숫자고, 파운드리 이야기는 그 뒤에 열린 설명회에서 나왔다.\n\n## 그런데 무엇이 매출을 늘렸나\n회사가 파운드리 매출 증가 요인으로 꼽은 것은 두 가지다.\nHBM 베이스 다이 수요가 늘었고, 북미 고객의 제품 물량이 들어왔다.\n\n@@REF@@삼성전자, 연내 테일러 2공장 착공 (코리아타임스, 2026-07-30)|https://www.koreatimes.co.kr/business/companies/20260730/samsung-electronics-to-break-ground-on-2nd-fab-in-taylor-within-this-year|https://newsimg.koreatimes.co.kr/2026/07/30/db274b33-ff4a-4858-830e-09cf557a9bc7.jpg\n\n베이스 다이는 HBM 더미의 맨 아래에 깔리는 칩이다.\n쌓아 올린 D램과 바깥의 GPU 사이에서 신호를 정리해 주는 층이고, 메모리 공정이 아니라 파운드리 공정에서 만든다.\n\n@@IMG@@dram-module|서버에 꽂는 D램. HBM은 이 D램을 여러 장 쌓아 올린 것이고, 그 맨 아래에는 파운드리가 만든 칩이 한 장 깔린다.\n\n그래서 메모리가 잘 팔리면 파운드리 매출도 같이 늘어난다.\n외부 고객이 돌아와서 좋아진 부분과 자사 메모리가 끌어준 부분이 한 숫자 안에 섞여 있다는 뜻이다.\n\n## 2나노는 어디까지 왔나\n1세대 2나노 양산 경험을 바탕으로 하반기에 2세대 2나노의 본격 양산을 시작한다고 회사는 밝혔다.\n2분기에는 대형 클라우드 업체 한 곳과 고성능 컴퓨팅 고객에게서 2나노 물량을 받았고, 브로드컴을 포함한 대형 고객과의 논의도 넓어지고 있다고 했다.\n올해 확보할 2나노 프로젝트 수는 지난해의 두 배를 넘을 것으로 본다.\n\n## 지금 짓는 공장의 물건은 언제 나오나\n테일러 1공장은 올해 가동을 준비하고 있고, 2공장은 연내 착공해 2030년 양산이 목표다.\n1.4나노 문의가 늘어 공장을 하나 더 확보하는 것도 검토하고 있다.\n\n@@REF@@삼성, 연내 텍사스 2공장 착공해 2030년 양산 목표 (서울경제 영문판, 2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-to-break-ground-on-texas-fab-2-by-year-end-target|https://wimg.sedaily.com/news/cms/2026/07/30/news-p.v1.20260730.bbcf0b54510b45098aad5c199c891530_P1.jpg\n\n이 기사는 첫 테일러 공장이 올해 가동에 들어갔다는 사실을 함께 적었다.\n착공에서 양산까지 4년이 걸린다는 뜻이고, 선단 공정 증설이 수요를 따라가지 못했다고 회사가 인정한 말의 실체가 이 시차다.\n\n메모리에서 새 공장의 웨이퍼가 나오기까지 3년 반이 걸린다고 했던 것과 같은 구조다.\n지금 결정하는 증설은 지금의 부족을 풀지 못한다.\n\n## 오래된 공정은 어디로 가나\n성숙 공정은 물량 경쟁 대신 값을 더 받을 수 있는 제품으로 옮긴다.\n8나노와 17나노, 이미지센서, 칩 안에 넣는 비휘발성 메모리의 생산능력을 늘리고 있다고 밝혔다.\n실리콘 커패시터와 실리콘 포토닉스도 키우는 분야로 꼽았다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 파운드리의 회복이 외부 고객이 돌아온 결과인가, 자사 메모리가 끌어준 결과인가.\n\n올해 2나노 프로젝트 수가 실제로 두 배를 넘고 브로드컴 물량이 계약으로 확인되면 앞쪽이 맞다.\n숫자는 좋아지는데 고객 이름이 늘지 않으면, 메모리 호황이 식는 구간에서 파운드리도 같이 식는다.\n\n메모리와 파운드리를 한 회사가 같이 하는 구조는 오래 약점으로 불렸다.\n이번 분기에는 그 구조가 파운드리를 떠받쳤다. 같은 구조는 반대 방향으로도 작동한다.",
+    "en": "Profitability at Samsung's foundry business improved sharply from a year ago, and the company said a turnaround is not far off.\nUtilization at advanced nodes of 8nm and below has reached peak levels, and better yields and price increases came on top of that.\n\n@@REF@@Samsung Electronics Announces Second Quarter 2026 Results (Samsung Newsroom, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\nThe release published that same day says nothing about a foundry turnaround.\nIt stops at the Device Solutions division, the chip arm, with revenue of 127.5 trillion won and operating profit of 89.2 trillion won. The foundry detail came out afterwards, on the earnings call.\n\n## So what actually lifted the revenue\nThe company named two reasons for higher foundry revenue.\nDemand for HBM base dies grew, and volume arrived from a North American customer's products.\n\n@@REF@@Samsung Electronics to break ground on 2nd fab in Taylor within this year (The Korea Times, 2026-07-30)|https://www.koreatimes.co.kr/business/companies/20260730/samsung-electronics-to-break-ground-on-2nd-fab-in-taylor-within-this-year|https://newsimg.koreatimes.co.kr/2026/07/30/db274b33-ff4a-4858-830e-09cf557a9bc7.jpg\n\nA base die is the chip that sits at the bottom of an HBM stack.\nIt is the layer that organizes signals between the stacked DRAM above it and the GPU outside, and it is built on a foundry line, not on a memory line.\n\n@@IMG@@dram-module|Server DRAM. HBM is this kind of DRAM stacked several layers high, with one foundry made chip laid underneath.\n\nSo when memory sells well, foundry revenue rises with it.\nThe part that improved because outside customers came back and the part that improved because Samsung's own memory sold well are mixed inside one number.\n\n## How far along is 2nm\nBased on production experience with its first generation 2nm process, the company said it will begin the full ramp of second generation 2nm in the second half.\nIn the second quarter it took 2nm work from one large cloud provider and from high performance computing customers, and it said talks with major customers including Broadcom are widening.\nIt expects the number of 2nm projects won this year to more than double from last year.\n\n## When does output from today's construction arrive\nThe first Taylor fab is preparing to operate this year, and groundbreaking on the second is planned by year end with mass production targeted for 2030.\nWith more inquiries about 1.4nm, the company is also reviewing securing one more fab.\n\n@@REF@@Samsung to Break Ground on Texas Fab 2 by Year-End, Target 2030 Output (Seoul Economic Daily, 2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-to-break-ground-on-texas-fab-2-by-year-end-target|https://wimg.sedaily.com/news/cms/2026/07/30/news-p.v1.20260730.bbcf0b54510b45098aad5c199c891530_P1.jpg\n\nThat article adds that the first Taylor fab began operating this year.\nSo the gap from groundbreaking to output is four years, and that gap is the substance of the company's admission that advanced node expansion has not kept up with demand.\n\nIt is the same structure as memory, where the company has said wafers from a new plant take more than three and a half years to appear.\nCapacity decided today does not solve today's shortage.\n\n## Where do the older processes go\nMature nodes are shifting away from volume competition toward products that can command a higher price.\nThe company said it is adding capacity for 8nm and 17nm, image sensors, and the nonvolatile memory embedded inside chips.\nIt also named silicon capacitors and silicon photonics as areas it is growing.\n\n## So what will settle it\nThe question comes down to one thing. Is the foundry recovery outside customers returning, or Samsung's own memory pulling it along.\n\nIf 2nm project wins really do more than double this year and Broadcom volume shows up as a contract, the first reading holds.\nIf the numbers keep improving while the customer list does not lengthen, the foundry cools together with memory once the memory boom cools.\n\nRunning memory and foundry inside one company was called a weakness for years.\nThis quarter that structure held the foundry up. The same structure works in the other direction too.",
+    "ja": "サムスン電子のファウンドリーの収益性が1年前より大きく改善し、会社は黒字転換が近いと述べた。\n8ナノ以下の先端工程の稼働率が最高水準まで上がり、そこに歩留まりの改善と値上げが重なった。\n\n@@REF@@サムスン電子、2026年第2四半期の業績発表 (サムスン電子ニュースルーム、2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\n同じ日に公開されたこの発表資料には、ファウンドリーの黒字転換の話はない。\n半導体を担うDS部門の売上127兆5000億ウォン、営業利益89兆2000億ウォンまでが資料に載った数字で、ファウンドリーの話はその後に開かれた説明会で出てきた。\n\n## では何が売上を伸ばしたのか\n会社がファウンドリーの売上増加の要因として挙げたのは二つだ。\nHBMのベースダイの需要が増え、北米顧客の製品数量が入ってきた。\n\n@@REF@@サムスン電子、年内にテイラー第2工場を着工 (コリア・タイムズ、2026-07-30)|https://www.koreatimes.co.kr/business/companies/20260730/samsung-electronics-to-break-ground-on-2nd-fab-in-taylor-within-this-year|https://newsimg.koreatimes.co.kr/2026/07/30/db274b33-ff4a-4858-830e-09cf557a9bc7.jpg\n\nベースダイはHBMの積み重ねの最下層に敷かれるチップだ。\n積み上げたDRAMと外のGPUの間で信号を整理する層であり、メモリ工程ではなくファウンドリー工程で作られる。\n\n@@IMG@@dram-module|サーバーに差すDRAM。HBMはこのDRAMを何枚も積み上げたもので、その最下層にはファウンドリーが作ったチップが1枚敷かれる。\n\nだからメモリが売れればファウンドリーの売上も一緒に増える。\n外部顧客が戻って良くなった部分と、自社メモリが引っ張った部分が一つの数字の中に混ざっているということだ。\n\n## 2ナノはどこまで来たか\n第1世代2ナノの量産経験をもとに、下半期に第2世代2ナノの本格量産を始めると会社は述べた。\n第2四半期には大手クラウド事業者1社と高性能コンピューティング顧客から2ナノの案件を受け、ブロードコムを含む大手顧客との協議も広がっているとした。\n今年獲得する2ナノ案件の数は昨年の2倍を超えると見ている。\n\n## いま建てる工場の製品はいつ出るのか\nテイラー第1工場は今年の稼働を準備しており、第2工場は年内に着工して2030年の量産が目標だ。\n1.4ナノの引き合いが増え、工場をもう一つ確保することも検討している。\n\n@@REF@@サムスン、年内にテキサス第2工場を着工し2030年量産を目標 (ソウル経済英字版、2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-to-break-ground-on-texas-fab-2-by-year-end-target|https://wimg.sedaily.com/news/cms/2026/07/30/news-p.v1.20260730.bbcf0b54510b45098aad5c199c891530_P1.jpg\n\nこの記事は、最初のテイラー工場が今年稼働に入ったことも併せて記している。\n着工から量産まで4年かかるという意味であり、先端工程の増設が需要に追いつかなかったと会社が認めた言葉の実体がこの時差だ。\n\nメモリで新工場のウェハーが出るまで3年半かかると述べていたのと同じ構造だ。\nいま決める増設は、いまの不足を解かない。\n\n## 古い工程はどこへ向かうのか\n成熟工程は数量競争ではなく、より高い値を取れる製品へ移す。\n8ナノと17ナノ、イメージセンサー、チップの中に組み込む不揮発性メモリの生産能力を増やしているとした。\nシリコンキャパシターとシリコンフォトニクスも伸ばす分野として挙げた。\n\n## では何で見分けるのか\n結局、問いは一つだ。ファウンドリーの回復は外部顧客が戻った結果なのか、自社メモリが引っ張った結果なのか。\n\n今年の2ナノ案件が実際に2倍を超え、ブロードコムの数量が契約として確認されれば前者が正しい。\n数字は良くなるのに顧客名が増えないなら、メモリの好況が冷える局面でファウンドリーも一緒に冷える。\n\nメモリとファウンドリーを一社で併せ持つ構造は、長く弱点と呼ばれてきた。\n今期はその構造がファウンドリーを支えた。同じ構造は逆方向にも働く。"
+   },
+   "ts": "2026-07-30T08:15:11.931183+00:00"
+  },
+  {
+   "id": "serenity-formfactor-cpo-outlook-raise",
+   "date": "2026-07-30",
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2082720873908494456",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "docUrl": "https://investors.formfactor.com/news-releases/news-release-details/formfactor-inc-reports-2026-second-quarter-results",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#134E4A",
+    "label": "CPO $20M+"
+   },
+   "tags": [
+    "CPO",
+    "PHOTONICS",
+    "FORMFACTOR"
+   ],
+   "stance": "watch",
+   "related": [
+    "serenity-axt-lumentum-inp-capacity-deposit",
+    "serenity-amd-helios-cpo-networking",
+    "serenity-aaoi-pluggables-cpo-coexist"
+   ],
+   "title": {
+    "ko": "연 매출의 2%도 안 되는 사업의 전망을 올린 것이 왜 광통신 전환의 신호로 읽힐까?",
+    "en": "Why is a raise in a business worth under 2% of revenue read as a signal for the shift to optics?",
+    "ja": "年間売上の2%にも満たない事業の見通し引き上げが、なぜ光通信への移行のサインと読まれるのか。"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Fundamentally, CPO as a theme is very early, and should start to go brrr soon since it's starting to show up in earnings now (equipment/test players usually appear up first before optical engines / laser volumes ramp).",
+      "So now, test is ramping given management cited growing volumes of CPO chips."
+     ],
+     "ko": [
+      "기본적으로 CPO는 테마로서 아주 초기이고, 이제 실적에 나타나기 시작했으니 곧 본격적으로 움직일 것이다(장비·검사 업체가 보통 광엔진과 레이저 물량이 늘기 전에 먼저 올라온다).",
+      "그래서 지금은 검사가 늘고 있다. 경영진이 CPO 칩 물량이 늘어난다고 언급했으니 말이다."
+     ],
+     "ja": [
+      "基本的にCPOはテーマとしてまだ非常に早く、いま業績に現れ始めたのだから、そろそろ本格的に動き出すはずだ(装置・検査の企業は通常、光エンジンやレーザーの数量が立ち上がる前に先に上がってくる)。",
+      "だから今は検査が増えている。経営陣がCPOチップの数量が増えていると述べたのだから。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.07.30"
+   },
+   "sum3": {
+    "ko": "반도체 검사 회사 폼팩터가 올해 코패키지드 옵틱스 매출 전망을 2,000만달러를 크게 넘길 것으로 올렸다. 3분기 안에 기존 구간을 넘어선다고 했다.\n겉으로 보면 작은 숫자다. 2분기 전사 매출 2억5,820만달러에 비하면 연간으로도 2%가 되지 않는다.\n그런데 이 회사가 파는 것은 검사 장비다. 검사 장비는 양산 물량보다 먼저 팔리므로, 광부품 회사의 매출보다 앞서 움직인다.",
+    "en": "FormFactor, a semiconductor test company, raised its 2026 co-packaged optics outlook to significantly above $20 million, and said it will pass the old range inside the third quarter.\nOn the surface it is a small number. Against second quarter revenue of $258.2 million, a full year of it is under 2%.\nBut what this company sells is test equipment, and test equipment is bought ahead of volume production, so it moves before revenue at the optical component makers.",
+    "ja": "半導体検査会社のフォームファクターが、2026年のコパッケージド・オプティクス売上見通しを2000万ドルを大きく上回る水準へ引き上げた。第3四半期中に従来のレンジを超えるとした。\n表向きは小さな数字だ。第2四半期の全社売上2億5820万ドルに比べれば、通年でも2%に満たない。\nだがこの会社が売るのは検査装置だ。検査装置は量産数量より先に売れるため、光部品会社の売上より先に動く。"
+   },
+   "why": {
+    "ko": "광통신으로의 전환은 몇 년째 예고만 이어졌다. 검사 장비 매출은 그 전환이 실제 생산 일정으로 들어왔는지를 가장 먼저 보여주는 자리이고, 금액이 작을 때가 오히려 그 순서를 확인하기 좋은 구간이다.",
+    "en": "The shift to optics has been announced for years without landing. Test equipment revenue is the first place to see whether that shift has entered real production schedules, and the moment the dollars are still small is the best time to check the sequence.",
+    "ja": "光通信への移行は何年も予告が続いてきた。検査装置の売上はその移行が実際の生産日程に入ったかを最初に示す場所であり、金額が小さいうちこそ順序を確かめやすい局面だ。"
+   },
+   "ask": {
+    "ko": "검사 장비에 먼저 잡힌 CPO 수요는 실제 물량으로 이어질까, 아니면 라인만 미리 깔리고 마는 걸까?",
+    "en": "Will CPO demand that showed up first in test equipment turn into real volume, or will only the line be laid early?",
+    "ja": "検査装置に先に現れたCPO需要は実際の数量につながるのか、それともラインだけが先に敷かれて終わるのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 4분기, 폼팩터의 3분기 실적에서 CPO 매출이 1,000만~2,000만달러 구간을 넘어섰는지, 연간 전망 2,000만달러 초과가 유지되는지를 채점한다.",
+     "en": "In the fourth quarter of 2026, score whether FormFactor's third quarter results show CPO revenue past the $10 million to $20 million range and whether the above $20 million full year outlook holds.",
+     "ja": "2026年第4四半期に、フォームファクターの第3四半期業績でCPO売上が1000万~2000万ドルのレンジを超えたか、通年見通しの2000万ドル超が維持されているかを採点する。"
+    }
+   },
+   "gist": {
+    "ko": "반도체 검사 회사 폼팩터가 올해 코패키지드 옵틱스(CPO) 매출 전망을 올렸다.\n연초에 제시한 1,000만~2,000만달러 구간을 3분기 안에 넘어서고, 연간으로는 2,000만달러를 크게 웃돌 것이라고 밝혔다.\n\n@@REF@@폼팩터, 2026년 2분기 실적 발표 (글로브뉴스와이어, 2026-07-29)|https://www.globenewswire.com/news-release/2026/07/29/3335545/0/en/formfactor-inc-reports-2026-second-quarter-results.html\n\n이 발표 자료는 2분기 매출을 2억5,820만달러로 적었다. 1년 전보다 31.9% 늘어난 사상 최대다.\n회사는 HBM과 CPO 수요가 프로브 카드 부문과 시스템 부문의 매출을 함께 밀어올렸다고 설명했다.\n\n## 이 회사는 무엇을 파는가\n폼팩터가 파는 물건은 칩이 아니라 칩을 검사하는 장비다.\n갓 만든 칩이 웨이퍼에서 잘려 나가기 전에 전기 신호를 넣어 불량을 걸러내는데, 그때 칩 표면의 미세한 접점에 바늘을 대는 판이 프로브 카드다.\n칩 하나하나에 도장을 찍어 보는 검사대라고 보면 된다.\n\n## 왜 검사 회사에서 먼저 보이나\n검사 장비는 양산 물량이 나오기 전에 팔린다.\n만들 칩이 정해지면 먼저 검사 라인을 깔아야 하니, 광부품 회사의 매출보다 장비 회사의 매출이 앞서 움직인다.\n\n@@REF@@폼팩터 2026년 2분기 실적설명회 전문 (인베스팅닷컴, 2026-07-29)|https://www.investing.com/news/transcripts/earnings-call-transcript-formfactor-beats-q2-2026-estimates-shares-jump-after-hours-93CH-4821881\n\n설명회에서 마이크 슬레서 최고경영자는 가속의 이유를 두 가지로 들었다.\n올해 후반에 예정된 CPO 칩 물량, 그리고 첫 검사 단계에서 회사가 쥔 주도권이다.\n같은 자리에서 세계 최대 파운드리가 이번에도 매출의 10% 이상을 차지한 고객이었다고 밝혔다.\n\n@@IMG@@datacenter-racks|데이터센터 랙 열. CPO가 바꾸려는 것은 이 안에서 칩과 칩, 랙과 랙을 잇는 방식이다.\n\n## 숫자는 아직 작다\n장비 매출은 늘었지만, 그 안에서 CPO가 차지하는 몫은 아직 작다.\n\n@@CHK@@2분기 전사 매출|2억5,820만달러|시스템 부문 매출|4,850만달러|2026년 CPO 매출 전망|2,000만달러 초과@@시스템 부문은 한 분기에 74% 늘어 사상 최대가 됐지만, 그 안에 든 CPO는 연간으로도 2,000만달러대다. 2분기 매출을 네 배로 늘려 잡아도 연 10억달러가 넘는 회사에서 2%가 안 되는 규모다. 회사가 말한 가속은 금액이 아니라 방향에서 나타나고 있다.@@2026-07-30 조회 · 폼팩터 2026년 2분기 실적 발표(2026-07-29)와 실적설명회\n\n## 일정이 당겨진 것은 아니다\n그렇다고 채택 시점이 앞당겨진 것은 아니라고 경영진은 말했다.\n단기적으로 가속이 있다고 하면서도, 로드맵 자체가 당겨진 것은 아니라고 선을 그었다.\n\n@@CMP@@시장의 읽기|CPO 매출 전망이 올라갔다. 광통신 채택이 앞당겨지고 있다는 신호다.|경영진의 읽기|단기 가속은 있지만 일정이 당겨진 것은 아니다. 올해 나올 칩 물량과 검사 준비가 먼저 움직인 것이다.\n\n같은 가속을 두고 한쪽은 채택 시점이 당겨졌다고 읽고, 다른 쪽은 준비 단계가 먼저 움직였다고 읽는다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 검사 장비에 먼저 잡힌 이 수요가 실제 물량으로 이어지는가.\n\n3분기 안에 CPO 매출이 2,000만달러 구간을 넘어서면 예정된 칩 물량이 실제로 나온 것이다.\n넘지 못하면 검사 라인만 미리 깔린 것이고, 광부품 회사들의 매출은 더 기다려야 한다.\n\n구리선으로 신호를 보내는 방식은 속도와 열, 전력에서 물리적 한계에 닿아 있다.\n그 한계를 빛으로 넘으려는 시도가 이제 검사 장비 회사의 실적에 숫자로 찍히기 시작했다. 규모가 아니라 순서를 보는 것이 이 카드의 요점이다.",
+    "en": "FormFactor, a semiconductor test company, raised its outlook for co-packaged optics (CPO) revenue this year.\nIt said it will pass the $10 million to $20 million range it set out at the start of the year by the end of the third quarter, and significantly exceed $20 million for the year as a whole.\n\n@@REF@@FormFactor, Inc. Reports 2026 Second Quarter Results (GlobeNewswire, 2026-07-29)|https://www.globenewswire.com/news-release/2026/07/29/3335545/0/en/formfactor-inc-reports-2026-second-quarter-results.html\n\nThat release put second quarter revenue at $258.2 million, a record and 31.9% higher than a year ago.\nThe company said demand for HBM and CPO pushed up revenue in both the Probe Cards and the Systems segments.\n\n## What this company actually sells\nFormFactor does not sell chips. It sells the equipment that tests them.\nBefore a freshly made chip is cut out of the wafer, electrical signals are pushed through it to catch defects, and the plate that lands needles on the tiny contact pads to do that is a probe card.\nThink of it as a stamping bench that checks each chip one at a time.\n\n## Why it shows up at a test company first\nTest equipment is bought before volume production arrives.\nOnce the chip to be built is settled, the test line has to be laid first, so revenue at the equipment company moves ahead of revenue at the optical component makers.\n\n@@REF@@FormFactor Q2 2026 earnings call transcript (Investing.com, 2026-07-29)|https://www.investing.com/news/transcripts/earnings-call-transcript-formfactor-beats-q2-2026-estimates-shares-jump-after-hours-93CH-4821881\n\nOn the call, chief executive Mike Slessor gave two reasons for the acceleration.\nThe volumes of CPO chips planned for later this year, and the company's lead in the first test insertion.\nIn the same session he said the world's leading foundry was again a customer worth more than 10% of revenue.\n\n@@IMG@@datacenter-racks|Rows of data center racks. What CPO changes is how chips talk to chips, and racks to racks, inside here.\n\n## The number is still small\nEquipment revenue rose, but the CPO share inside it is still small.\n\n@@CHK@@Q2 total revenue|$258.2M|Systems segment revenue|$48.5M|2026 CPO revenue outlook|above $20M@@The Systems segment jumped 74% in a single quarter to a record, yet the CPO piece inside it is in the tens of millions for a full year. Even taking second quarter revenue times four, that is under 2% of a company running past $1 billion a year. The acceleration management describes is showing up in direction, not in dollars.@@Checked 2026-07-30 · FormFactor 2026 second quarter results (2026-07-29) and earnings call\n\n## The timeline has not been pulled in\nManagement was clear that adoption itself has not moved earlier.\nIt described acceleration in the very short term while saying there is no significant pull-in of the roadmap.\n\n@@CMP@@The market's reading|The CPO outlook went up. Optical adoption is arriving earlier than planned.|Management's reading|There is short term acceleration but no pull-in. Chip volumes for later this year and test preparation moved first.\n\nFacing the same acceleration, one side reads an earlier adoption date, the other reads a preparation stage moving first.\n\n## So what will settle it\nThe question comes down to one thing. Does demand that appeared first in test equipment turn into real volume.\n\nIf CPO revenue clears the $20 million range inside the third quarter, the planned chip volumes actually arrived.\nIf it does not, only the test line was laid early, and revenue at the optical component makers has to wait longer.\n\nSending signals down copper is running into physical limits in speed, heat and power.\nThe attempt to get past those limits with light is now printing as a number in a test equipment company's results. The point of this card is the order of events, not the size.",
+    "ja": "半導体検査会社のフォームファクターが、今年のコパッケージド・オプティクス(CPO)売上見通しを引き上げた。\n年初に示した1000万~2000万ドルのレンジを第3四半期中に超え、通年では2000万ドルを大きく上回るとした。\n\n@@REF@@フォームファクター、2026年第2四半期決算 (グローブニュースワイヤー、2026-07-29)|https://www.globenewswire.com/news-release/2026/07/29/3335545/0/en/formfactor-inc-reports-2026-second-quarter-results.html\n\nこの発表資料は第2四半期の売上を2億5820万ドルと記した。1年前より31.9%増の過去最高だ。\n会社はHBMとCPOの需要が、プローブカード部門とシステム部門の売上を同時に押し上げたと説明した。\n\n## この会社は何を売っているのか\nフォームファクターが売るのはチップではなく、チップを検査する装置だ。\nできたばかりのチップがウェハーから切り出される前に電気信号を通して不良をはじくのだが、そのときチップ表面の微細な接点に針を当てる板がプローブカードである。\nチップを1個ずつ判子で確かめる検査台だと考えればよい。\n\n## なぜ検査会社に先に現れるのか\n検査装置は量産数量が出る前に売れる。\n作るチップが決まればまず検査ラインを敷く必要があるため、光部品会社の売上より装置会社の売上が先に動く。\n\n@@REF@@フォームファクター2026年第2四半期決算説明会の全文 (インベスティング・ドット・コム、2026-07-29)|https://www.investing.com/news/transcripts/earnings-call-transcript-formfactor-beats-q2-2026-estimates-shares-jump-after-hours-93CH-4821881\n\n説明会でマイク・スレッサー最高経営責任者は、加速の理由を二つ挙げた。\n今年後半に予定されるCPOチップの数量と、最初の検査工程で会社が握る主導権だ。\n同じ場で、世界最大のファウンドリーが今回も売上の10%以上を占める顧客だったと述べた。\n\n@@IMG@@datacenter-racks|データセンターのラックの列。CPOが変えようとしているのは、この中でチップとチップ、ラックとラックをつなぐ方法だ。\n\n## 数字はまだ小さい\n装置の売上は増えたが、その中でCPOが占める割合はまだ小さい。\n\n@@CHK@@第2四半期の全社売上|2億5820万ドル|システム部門売上|4850万ドル|2026年のCPO売上見通し|2000万ドル超@@システム部門は1四半期で74%増え過去最高になったが、その中のCPOは通年でも数千万ドル台だ。第2四半期の売上を4倍にしても年10億ドルを超える会社で、2%に満たない規模である。会社が語る加速は金額ではなく方向に現れている。@@2026-07-30閲覧 · フォームファクター2026年第2四半期決算(2026-07-29)と決算説明会\n\n## 日程が前倒しされたわけではない\nとはいえ採用時期が前倒しされたわけではないと経営陣は述べた。\n短期的には加速があるとしつつ、ロードマップ自体が前倒しされたのではないと線を引いた。\n\n@@CMP@@市場の読み|CPOの見通しが上がった。光通信の採用が前倒しされているサインだ。|経営陣の読み|短期の加速はあるが日程は前倒しされていない。今年後半に出るチップ数量と検査の準備が先に動いた。\n\n同じ加速をめぐって、一方は採用時期が前倒しされたと読み、もう一方は準備段階が先に動いたと読む。\n\n## では何で見分けるのか\n結局、問いは一つだ。検査装置に先に現れたこの需要は、実際の数量につながるのか。\n\n第3四半期中にCPO売上が2000万ドルのレンジを超えれば、予定されたチップ数量が実際に出たことになる。\n超えなければ検査ラインだけが先に敷かれたことになり、光部品会社の売上はもっと待つことになる。\n\n銅の配線で信号を送る方式は、速度と熱、電力で物理的な限界に触れている。\nその限界を光で越えようとする試みが、いま検査装置会社の業績に数字として刻まれ始めた。規模ではなく順序を見るのが、このカードの要点だ。"
+   },
+   "ts": "2026-07-30T08:15:11.931183+00:00"
+  },
+  {
    "id": "jukan-samsung-2q26-lta-60-70-capacity",
    "date": "2026-07-30",
    "source": "Jukan (@jukan05)",
@@ -35,10 +197,20 @@
     "ja": "過去最高の決算を出したサムスン電子が、メモリー生産能力の60~70%を5年契約に固定する理由は?"
    },
    "quote": {
-    "lines": [
-     "With virtually every customer seeking an LTA, it is difficult to accommodate all supply requests within our available capacity.",
-     "We have already completed agreements with five major global data center customers and are in the final stages of negotiations with five additional large customers."
-    ],
+    "lines": {
+     "en": [
+      "With virtually every customer seeking an LTA, it is difficult to accommodate all supply requests within our available capacity.",
+      "We have already completed agreements with five major global data center customers and are in the final stages of negotiations with five additional large customers."
+     ],
+     "ko": [
+      "사실상 모든 고객이 장기공급계약을 원하고 있어, 저희가 가진 생산능력 안에서 모든 공급 요청을 수용하기는 어렵습니다.",
+      "이미 글로벌 대형 데이터센터 고객 5곳과는 계약을 완료했고, 다른 대형 고객 5곳과는 협상 마무리 단계에 있습니다."
+     ],
+     "ja": [
+      "事実上すべての顧客がLTAを求めており、当社が持つ生産能力の中ですべての供給要請に応じることは困難です。",
+      "すでにグローバルの大手データセンター顧客5社とは契約を完了し、ほかの大手顧客5社とは交渉の最終段階にあります。"
+     ]
+    },
     "cite": "Jukan (@jukan05) · 2026.07.30"
    },
    "sum3": {
@@ -106,10 +278,20 @@
     "ja": "AI光通信のルーメンタムがウェハー供給元に4,350万ドルを先に払った、物の代金として払った金ではない"
    },
    "quote": {
-    "lines": [
-     "$AXTI enters long term agreement with $LITE for InP substrates.",
-     "Lumentum has agreed to pay a deposit of $43.5M as a reservation for capacity."
-    ],
+    "lines": {
+     "en": [
+      "$AXTI enters long term agreement with $LITE for InP substrates.",
+      "Lumentum has agreed to pay a deposit of $43.5M as a reservation for capacity."
+     ],
+     "ko": [
+      "$AXTI가 $LITE와 인화인듐 기판 장기공급계약을 맺는다.",
+      "루멘텀은 생산능력을 예약하는 선수금으로 4,350만달러를 내기로 합의했다."
+     ],
+     "ja": [
+      "$AXTIが$LITEとインジウムリン基板の長期供給契約を締結する。",
+      "ルーメンタムは生産能力を予約するデポジットとして4,350万ドルを支払うことで合意した。"
+     ]
+    },
     "cite": "Serenity (@aleabitoreddit) · 2026.07.29"
    },
    "sum3": {
@@ -178,9 +360,17 @@
     "ja": "マイクロソフトの設備投資見通しが1,750億ドルに下がった、使う金が減ったからではない"
    },
    "quote": {
-    "lines": [
-     "Did Microsoft actually lower its CAPEX guidance to $175 billion, or is this just an accounting issue?"
-    ],
+    "lines": {
+     "en": [
+      "Did Microsoft actually lower its CAPEX guidance to $175 billion, or is this just an accounting issue?"
+     ],
+     "ko": [
+      "마이크로소프트가 실제로 설비투자 가이던스를 1,750억달러로 낮춘 것인가, 아니면 이건 그냥 회계 문제인가?"
+     ],
+     "ja": [
+      "マイクロソフトは実際にCAPEXガイダンスを1,750億ドルへ引き下げたのか、それとも単なる会計上の問題なのか。"
+     ]
+    },
     "cite": "Jukan (@jukan05) · 2026.07.29"
    },
    "sum3": {
@@ -251,9 +441,17 @@
     "ja": "四半期決算と連銀の予告が同時に減ったら、市場は何を見て値をつけるのか?"
    },
    "quote": {
-    "lines": [
-     "Put simply, Fed funds rates tend to be increased (cut) after short term treasury rates have gone up (down), suggesting that the Fed is mimicking the market."
-    ],
+    "lines": {
+     "en": [
+      "Put simply, Fed funds rates tend to be increased (cut) after short term treasury rates have gone up (down), suggesting that the Fed is mimicking the market."
+     ],
+     "ko": [
+      "간단히 말해, 연방기금금리는 단기 국채금리가 오른(내린) 뒤에 올라가는(내려가는) 경향이 있고, 이는 연준이 시장을 따라 하고 있음을 시사한다."
+     ],
+     "ja": [
+      "端的に言えば、フェデラルファンド金利は短期国債金利が上がった(下がった)後に引き上げられる(引き下げられる)傾向があり、これはFRBが市場を真似ていることを示唆する。"
+     ]
+    },
     "cite": "Aswath Damodaran · 2026.07.29"
    },
    "sum3": {
@@ -406,10 +604,20 @@
     "ja": "データセンターをレゴのように組み立て始めた理由は、建設費の節約ではなく電気技術者の不足だ"
    },
    "quote": {
-    "lines": [
-     "Some of the largest datacenters in the world are increasingly assembled the same way you assemble your new Spider-Man LEGO set, only that the bricks weigh 50,000 pounds and are a tiny bit more complex.",
-     "This is the world of modular construction."
-    ],
+    "lines": {
+     "en": [
+      "Some of the largest datacenters in the world are increasingly assembled the same way you assemble your new Spider-Man LEGO set, only that the bricks weigh 50,000 pounds and are a tiny bit more complex.",
+      "This is the world of modular construction."
+     ],
+     "ko": [
+      "세계에서 가장 큰 데이터센터 몇 곳은 점점 새로 산 스파이더맨 레고 세트를 조립하는 것과 같은 방식으로 조립되고 있다. 다만 블록 하나가 5만 파운드이고 조금 더 복잡할 뿐이다.",
+      "이것이 모듈러 건설의 세계다."
+     ],
+     "ja": [
+      "世界最大級のデータセンターのいくつかは、新しいスパイダーマンのレゴセットを組み立てるのと同じやり方でますます組み立てられている。ただしブロック1個が5万ポンドで、ほんの少しだけ複雑なだけだ。",
+      "これがモジュラー建設の世界だ。"
+     ]
+    },
     "cite": "SemiAnalysis · 2026.07.29"
    },
    "sum3": {
@@ -625,11 +833,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "6월 23일, 중국 증권감독국이 한 조치는 신규 TRS계약을 금지하고, 기존 계약의 한도 증액도 막았음.",
-     "신규가 같이 막혔기때문에,한번 나가면 다시는 못들어오는 구조임.",
-     "중국이 해외 TRS를 끊었고, 6월23일부터 수개월간 TRS 자금이 순차적으로 청산되어 중국으로 돌아가고 있다는 정도임."
-    ],
+    "lines": {
+     "en": [
+      "On June 23, what China's securities regulator did was ban new TRS contracts and also block any increase in the limits of existing contracts.",
+      "Because new contracts were blocked at the same time, it is a structure where once the money leaves it can never come back in.",
+      "China cut off overseas TRS, and from June 23 onward, over several months, TRS money is being unwound in sequence and returning to China. That is about the extent of it."
+     ],
+     "ko": [
+      "6월 23일, 중국 증권감독국이 한 조치는 신규 TRS계약을 금지하고, 기존 계약의 한도 증액도 막았음.",
+      "신규가 같이 막혔기때문에,한번 나가면 다시는 못들어오는 구조임.",
+      "중국이 해외 TRS를 끊었고, 6월23일부터 수개월간 TRS 자금이 순차적으로 청산되어 중국으로 돌아가고 있다는 정도임."
+     ],
+     "ja": [
+      "6月23日、中国の証券監督当局が取った措置は、新規のTRS契約を禁止し、既存契約の限度額の増額も止めるものだった。",
+      "新規も同時に止められたため、一度出ていくと二度と戻れない構造である。",
+      "中国が海外TRSを断ち、6月23日から数カ月にわたってTRS資金が順次清算され中国へ戻っている、という程度である。"
+     ]
+    },
     "cite": "메르 · 2026.07.30"
    },
    "title": {
@@ -25768,6 +25988,95 @@
     "디바이스솔루션",
     "Device Solutions",
     "DS部門"
+   ]
+  },
+  "FORMFACTOR": {
+   "kind": "company",
+   "ticker": "FORM",
+   "logo": "formfactor.com",
+   "exchange": "NASDAQ",
+   "founded": "1993",
+   "sector": {
+    "en": "Semiconductor test equipment",
+    "ko": "반도체 검사장비",
+    "ja": "半導体テスト装置"
+   },
+   "desc": {
+    "ko": "칩을 웨이퍼에서 잘라내기 전에 불량을 걸러내는 프로브 카드를 만드는 미국 회사.",
+    "en": "US company that makes the probe cards used to screen out defective chips before they are cut from the wafer.",
+    "ja": "チップをウェハーから切り出す前に不良をはじくプローブカードを作る米国企業。"
+   },
+   "longDesc": {
+    "ko": "반도체 검사 단계에 쓰이는 장비를 만든다. 주력은 웨이퍼 위의 칩에 바늘을 대어 전기 신호를 넣는 프로브 카드이고, 검사 장비와 계측 시스템도 함께 판다. HBM처럼 여러 칩을 쌓는 제품과 코패키지드 옵틱스처럼 광부품을 칩과 함께 붙이는 제품은 검사 단계가 늘어나기 때문에, 이런 기술이 퍼질 때 매출이 먼저 움직이는 자리에 있다.",
+    "en": "It makes the equipment used in semiconductor test. Its main product is the probe card that lands needles on chips while they are still on the wafer, and it also sells test systems and metrology. Products that stack several chips, like HBM, and products that package optics next to the die, like co-packaged optics, add test steps, which puts the company where revenue moves early when those technologies spread.",
+    "ja": "半導体の検査工程で使う装置を作る。主力はウェハー上のチップに針を当てて電気信号を通すプローブカードで、検査装置や計測システムも扱う。HBMのように複数のチップを積む製品や、コパッケージド・オプティクスのように光部品をダイの隣に実装する製品は検査工程が増えるため、こうした技術が広がるときに売上が先に動く位置にいる。"
+   },
+   "ceo": {
+    "ko": "마이크 슬레서",
+    "en": "Mike Slessor",
+    "ja": "マイク・スレッサー"
+   },
+   "hq": {
+    "ko": "미국 캘리포니아 리버모어",
+    "en": "Livermore, California, USA",
+    "ja": "米国カリフォルニア州リバモア"
+   },
+   "website": "https://www.formfactor.com",
+   "aliases": [
+    "FormFactor",
+    "FORMFACTOR",
+    "폼팩터",
+    "FORM",
+    "フォームファクター"
+   ]
+  },
+  "프로브 카드": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "웨이퍼 위의 칩에 바늘을 대어 전기 신호를 넣는 검사용 판.",
+    "en": "The test plate that lands needles on chips while they are still on the wafer.",
+    "ja": "ウェハー上のチップに針を当てて電気信号を通す検査用の板。"
+   },
+   "longDesc": {
+    "ko": "칩은 웨이퍼에서 잘려 나가기 전에 한 번 검사를 받는다. 이때 칩 표면의 미세한 접점에 바늘을 대어 전기 신호를 넣고 반응을 보는 판이 프로브 카드다. 칩 설계가 바뀌면 카드도 새로 만들어야 하므로, 새 제품의 양산 물량이 나오기 전에 먼저 팔린다. HBM처럼 칩을 쌓는 제품은 쌓기 전에 각 층을 확인해야 해서 검사 횟수가 늘어난다.",
+    "en": "A chip is tested once before it is cut out of the wafer. The probe card is the plate that lands needles on the tiny contact pads to push signals in and read the response. A new chip design needs a new card, so the cards sell before volume production of that product arrives. Stacked products like HBM add test steps, because each layer has to be checked as a known good die before stacking.",
+    "ja": "チップはウェハーから切り出される前に一度検査を受ける。そのときチップ表面の微細な接点に針を当てて信号を通し、反応を読む板がプローブカードだ。設計が変わればカードも作り直すため、新製品の量産数量が出る前に売れる。HBMのように積む製品は積む前に各層を確認する必要があり、検査回数が増える。"
+   },
+   "aliases": [
+    "프로브 카드",
+    "프로브카드",
+    "probe card",
+    "probe cards",
+    "プローブカード"
+   ]
+  },
+  "가동률": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "공장이 가진 생산능력 가운데 실제로 돌리고 있는 비율.",
+    "en": "The share of a plant's capacity that is actually running.",
+    "ja": "工場が持つ生産能力のうち実際に動かしている比率。"
+   },
+   "longDesc": {
+    "ko": "반도체 공장은 물건을 얼마나 만들든 감가상각과 인건비 같은 고정비가 거의 그대로 나간다. 그래서 가동률이 오르면 같은 고정비를 더 많은 물량이 나눠 지게 되고, 매출이 조금 늘어도 이익률은 빠르게 좋아진다. 반대로 주문이 줄어 라인을 세우면 파는 값과 상관없이 적자가 난다. 파운드리 실적을 볼 때 가격보다 먼저 확인하는 숫자다.",
+    "en": "A chip plant carries most of its costs, depreciation and staff, whether it runs full or half empty. So when utilization rises, the same fixed cost is spread over more units and margins improve faster than revenue does. When orders fall and lines idle, the plant loses money regardless of the price it charges, which is why utilization is checked before price when reading foundry results.",
+    "ja": "半導体工場は生産量にかかわらず減価償却費や人件費といった固定費がほぼそのままかかる。そのため稼働率が上がると同じ固定費をより多くの数量が分担し、売上の伸び以上に利益率が改善する。逆に受注が減ってラインを止めれば、販売価格に関係なく赤字になる。ファウンドリーの業績を見るとき、価格より先に確認する数字だ。"
+   },
+   "aliases": [
+    "가동률",
+    "稼働率",
+    "utilization rate",
+    "utilization"
    ]
   }
  }
