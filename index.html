@@ -3123,7 +3123,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=b35e6391">
-<link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=5cf95463">
+<link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=9d213ff5">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
 <body>
@@ -3429,7 +3429,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
      가드에 막혀 아무 것도 안 바뀌는 것처럼 보였다 — 페이지 탭 진입 시 해제. */
-  if (t === "browse" || t === "skew" || t === "cal"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
+  if (t === "browse" || t === "skew" || t === "cal" || t === "alerts"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
     /* v83 버그픽스: evGo가 이벤트 라벨을 QUERY/검색창에 남겨, 캘린더 등 페이지 탭 재진입 시
        v83DirTab()이 QUERY 때문에 null을 반환 → 라벨 검색결과(0건) "결과가 없어요"가 떴다.
        페이지 탭 진입 시 검색 상태를 초기화해 정상적으로 페이지가 다시 뜨게 한다. */
@@ -5647,13 +5647,9 @@ function mountV83(){
     /* v83.5: 캘린더도 모달이 아니라 페이지 전환 (june 지시) */
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
     ["bm", V83ICONS.bm, v83Bookmarks],
-    /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel */
-    ["alerts", V83ICONS.alerts, function(){
-      /* 2026-07-25: 모달도 뒤로가기로 닫히게 — 열 때만 엔트리를 쌓는다 */
-      if (!document.getElementById("v83npOv") && typeof pushView === "function") pushView();
-      if (typeof v83AlertsPanel === "function") v83AlertsPanel();
-      if (typeof noteView === "function") noteView();
-    }],
+    /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel
+       2026-07-30 june: 모달이 아니라 적중 기록·테마 논쟁 같은 페이지 전환 */
+    ["alerts", V83ICONS.alerts, function(){ if (typeof setTab === "function") setTab("alerts"); }],
     ["appearance", V83ICONS.appearance, function(){ if (typeof toggleTheme === "function") toggleTheme(); }]
   ];
   var html = '';
@@ -5664,8 +5660,9 @@ function mountV83(){
   nav.innerHTML = html;
   links.forEach(function(x, i){ var b = nav.querySelector('.v83-link[data-i="' + i + '"]'); if (!b) return;
     b.addEventListener("click", function(){
-      /* 2026-07-23 june: only the selected menu is bold (alerts/theme are actions, not pages) */
-      if (x[0] !== "alerts" && x[0] !== "appearance"){
+      /* 2026-07-23 june: only the selected menu is bold (appearance is an action, not a page)
+         2026-07-30: alerts는 이제 페이지라 굵게 표시 대상에 포함 */
+      if (x[0] !== "appearance"){
         nav.querySelectorAll(".v83-link.on").forEach(function(o){ o.classList.remove("on"); });
         b.classList.add("on");
       }
@@ -6112,7 +6109,7 @@ function v83CloseItem(){ V83ITEM = null; render(); }
 /* ---- (3) entity directory: 기업/투자 고수/정치인 land on visual cards ---- */
 function v83DirTab(){
   if (!(typeof V83 !== "undefined" && V83 && V83.mounted)) return null;
-  if (TAB !== "company" && TAB !== "investor" && TAB !== "ceo" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal") return null;
+  if (TAB !== "company" && TAB !== "investor" && TAB !== "ceo" && TAB !== "politician" && TAB !== "browse" && TAB !== "skew" && TAB !== "cal" && TAB !== "alerts") return null;
   if (QUERY || ENTITY_VIEW || SERIES_VIEW || SB_VIEW || BM_ONLY || UNREAD_ONLY || READ_VIEW) return null;
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) return null;
   if (typeof EVENT_FILTER !== "undefined" && EVENT_FILTER) return null;
@@ -8393,6 +8390,34 @@ function v83NotifBind(root){
   });
 }
 
+/* 2026-07-30 (june): 알림 설정을 모달(v83AlertsPanel)에서 적중 기록·테마 논쟁과 같은
+   중앙 컬럼 페이지로 전환. TAB="alerts" 의사 탭 — setTab이 히스토리를 쌓고
+   뒤로가기는 스냅샷(applyView)으로 자연 복귀한다. 본문·배선은 v83tw.js의
+   v83AlertsBodyHtml/v83AlertsWire(옛 모달과 동일한 stk_notif 저장소·뉴스레터 섹션). */
+function renderV83AlertsPage(list, S){
+  var sub = {
+    ko: "새 글·채점·쏠림 알림과 주간 이메일 수신을 여기서 관리해요.",
+    en: "Manage new-post, grading and skew alerts, plus your weekly email.",
+    ja: "新着・採点・偏りの通知と週間メールの受信をここで管理します。"
+  };
+  var head = document.createElement("div");
+  head.className = "v83dir-head";
+  head.innerHTML = "<b>" + esc(v83T("alerts")) + "</b><p>" + esc(sub[LANG] || sub.ko) + "</p>";
+  list.appendChild(head);
+  var box = document.createElement("div");
+  box.className = "v83np v83np-page";
+  if (typeof window.v83AlertsBodyHtml === "function"){
+    box.innerHTML = window.v83AlertsBodyHtml();
+    list.appendChild(box);
+    if (typeof window.v83AlertsWire === "function") window.v83AlertsWire(box);
+  } else {
+    /* v83tw.js가 아직/못 로드된 경우: 죽은 화면 대신 알림 목록만이라도 */
+    box.innerHTML = (typeof v83NotifListHtml === "function") ? v83NotifListHtml() : "";
+    list.appendChild(box);
+    if (typeof v83NotifBind === "function") v83NotifBind(box);
+  }
+}
+
 function goToFirstNew(){
   const first = ITEMS.find(i => NEW_IDS.has(i.id));
   if (!first) return;
@@ -8832,6 +8857,7 @@ function renderFeed(animate){
   if (typeof v83DirTab === "function" && v83DirTab()){
     if (v83DirTab() === "skew") renderV83SkewPage(list, S);
     else if (v83DirTab() === "cal") renderV83CalPage(list, S);
+    else if (v83DirTab() === "alerts") renderV83AlertsPage(list, S);
     else renderV83Dir(list, S, v83DirTab());
     if (typeof hydrateImages === "function") hydrateImages();
     return;
@@ -10276,7 +10302,7 @@ bootData();
 <!-- ============ v82: Twitter-style mobile shell ============ -->
 <script src="assets/v82.js?v=80079ed7"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
-<script src="assets/v83tw.js?v=65e17f0c"></script>
+<script src="assets/v83tw.js?v=6d7387ad"></script>
 
 <!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
 <script src="assets/twc.js?v=3ca67014"></script>
