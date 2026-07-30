@@ -418,5 +418,12 @@
      stays, so nothing new can escape sideways, and feed cards keep the ceiling so the
      fold animation is untouched. */
   html.rbeta #v82dbody .card-body{max-height:none;}
+  /* 2026-07-30: when iOS pans the page for the software keyboard, the strip it
+     reveals under the 100dvh detail showed the FEED behind the overlay (june
+     screenshot - a stray X embed peeking between the composer and the keyboard).
+     Paint the area below the detail with the page background so a pan shows
+     background, never the feed. #v82detail has overflow:visible, so this
+     pseudo-element is not clipped. Offscreen in every no-keyboard state. */
+  html.rbeta #v82detail::after{content:"";position:absolute;top:100%;left:0;right:0;height:70vh;background:inherit;}
   #v82dbody{padding-bottom:calc(46px + env(safe-area-inset-bottom, 0px) + 24px);}
 }
