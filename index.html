@@ -218,6 +218,9 @@ const STRINGS = {
     langNoteKO: "Original in Korean · auto-translate works well",
     langNoteEN: "Original in English",
     langNoteJA: "Original in Japanese · auto-translate works well",
+    trFromKO: "translated from the Korean",
+    trFromEN: "translated from the English",
+    trFromJA: "translated from the Japanese",
     newSince: "{n} new since your last visit",
     unreadOnly: "Unread only",
     bmOnly: "Bookmarks",
@@ -390,6 +393,9 @@ const STRINGS = {
     langNoteKO: "원문: 한국어",
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     langNoteJA: "원문: 일본어 · 브라우저 번역으로도 충분합니다",
+    trFromKO: "한국어 원문 옮김",
+    trFromEN: "영어 원문 옮김",
+    trFromJA: "일본어 원문 옮김",
     newSince: "지난 방문 이후 새 글 {n}개",
     unreadOnly: "안 읽은 것만",
     bmOnly: "북마크",
@@ -562,6 +568,9 @@ const STRINGS = {
     langNoteKO: "原文: 韓国語",
     langNoteEN: "原文: 英語",
     langNoteJA: "原文: 日本語",
+    trFromKO: "韓国語の原文より翻訳",
+    trFromEN: "英語の原文より翻訳",
+    trFromJA: "日本語の原文より翻訳",
     newSince: "前回の訪問から新着{n}件",
     unreadOnly: "未読のみ",
     bmOnly: "ブックマーク",
@@ -3580,15 +3589,44 @@ function srcBlockHtml(item){
     "</div>" + close;
   }
   const q = item.quote;
-  if (q && (q.lines || []).length){
+  const slang = String(item.sourceLang || "").toLowerCase();
+  const picked = q && quoteLines(q.lines, LANG, slang);
+  if (picked){
+    /* Only say "translated" when what is on screen actually is one. A card
+       whose translation for this language is missing falls back to the
+       original, and then the caption must not claim otherwise. */
+    const note = (picked.lang && slang && picked.lang !== slang)
+      ? (S["trFrom" + slang.toUpperCase()] || "") : "";
     return '<div class="srcq">' +
       '<div class="srcq-h">“” ' + esc(S.fromSource) + "</div>" +
-      q.lines.map(l => "<p>" + esc(l) + "</p>").join("") +
+      picked.lines.map(l => "<p>" + esc(l) + "</p>").join("") +
       '<div class="srcq-c"><a href="' + safeUrl(item.sourceUrl) + '" target="_blank" rel="noopener">' +
-        esc(q.cite || dispName(item.source)) + "</a></div>" +
+        esc(q.cite || dispName(item.source)) + "</a>" +
+        (note ? " · " + esc(note) : "") + "</div>" +
     "</div>";
   }
   return "";
+}
+
+/* quote.lines has two shapes. A bare array is the older one: a single copy of
+   the author's own words in the source language, shown on all three language
+   pages -- which left, say, a Japanese reader staring at untranslated Korean
+   above a Japanese take. An {en,ko,ja} object carries a translation per
+   language and is what every card written after 2026-07-30 has.
+
+   Returns the chosen lines together with the language they are in, so the
+   caller can label a translation as one. A language with no translation falls
+   back to the original rather than to an empty block: evidence in the wrong
+   language still beats no evidence. */
+function quoteLines(raw, lang, slang){
+  if (!raw) return null;
+  if (Array.isArray(raw)) return raw.length ? {lines: raw, lang: slang} : null;
+  const order = [lang, slang, "en", "ko", "ja"];
+  for (let i = 0; i < order.length; i++){
+    const v = order[i] && raw[order[i]];
+    if (v && v.length) return {lines: v, lang: order[i]};
+  }
+  return null;
 }
 
 /* What would have to happen for either reading to be right. Deliberately the
