@@ -1,14 +1,14 @@
 {
  "source": "meru",
  "fetched_at": "2026-07-31T11:07:53.073506+00:00",
- "checked_at": "2026-07-31T11:07:53.073506+00:00",
- "ok": true,
+ "checked_at": "2026-07-31T15:01:16.333997+00:00",
+ "ok": false,
  "url_used": "https://rss.blog.naver.com/ranto28.xml",
  "keep_days": 7,
- "raw_count": 50,
+ "raw_count": 0,
  "newest_published": "2026-07-31T07:48:13+09:00",
  "kept_count": 15,
- "error": null,
+ "error": "ConnectTimeout: HTTPSConnectionPool(host='rss.blog.naver.com', port=443): Max retries exceeded with url: /ranto28.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='rss.blog.naver.com', port=443) at 0x7fd4e50ce690>, 'Connection to rss.blog.naver.com timed out. (connect timeout=25)'))",
  "items": [
   {
    "title": "오늘 우리 국장은? (feat PCE)",
