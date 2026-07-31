@@ -136,7 +136,8 @@ async function requireAdmin(request, env) {
   }
 
   const header = request.headers.get("authorization") || "";
-  const token = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
+  const bearer = header.startsWith("Bearer ") ? header.slice(7).trim() : "";
+  const token = request.headers.get("x-stacks-admin-token") || bearer;
   if (token !== expected) {
     return json({ ok: false, error: "Unauthorized" }, 401, request, env);
   }

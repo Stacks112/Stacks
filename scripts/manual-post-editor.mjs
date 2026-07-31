@@ -113,6 +113,7 @@ async function saveArticle(body) {
 async function publishArticle(body) {
   const endpoint = cleanText(body.endpoint, 500).replace(/\/+$/, "");
   const token = String(body.token || "").trim();
+  const siteAccessToken = String(body.siteAccessToken || "").trim();
   const draft = normalizeDraft(body.draft || body);
 
   if (!endpoint.startsWith("https://") && !endpoint.startsWith("http://127.0.0.1")) {
@@ -125,7 +126,8 @@ async function publishArticle(body) {
   const response = await fetch(`${endpoint}/api/manual-post`, {
     method: "POST",
     headers: {
-      "authorization": `Bearer ${token}`,
+      ...(siteAccessToken ? { "authorization": `Bearer ${siteAccessToken}` } : { "authorization": `Bearer ${token}` }),
+      "x-stacks-admin-token": token,
       "content-type": "application/json; charset=utf-8",
       "user-agent": "Mozilla/5.0 StacksManualEditor/1.0",
     },
@@ -225,6 +227,8 @@ function editorHtml() {
     <input id="endpoint" value="https://stacksdaily.com">
     <label for="token">Admin token</label>
     <input id="token" type="password" autocomplete="off">
+    <label for="siteAccessToken">Sites access token</label>
+    <input id="siteAccessToken" type="password" autocomplete="off">
     <div class="buttons">
       <button id="load">불러오기</button>
       <button id="save">저장</button>
@@ -282,6 +286,7 @@ async function publishArticle() {
     body: JSON.stringify({
       endpoint: el("endpoint").value,
       token: el("token").value,
+      siteAccessToken: el("siteAccessToken").value,
       draft: currentDraft()
     })
   });
