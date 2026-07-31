@@ -712,21 +712,29 @@ function v83ItemNeedleText(item){
   } catch (e) { return ""; }
 }
 
+function v83PostRecGroupRx(group){
+  return {
+    nvidia: /(nvidia|nvda|엔비디아|젠슨|jensen|blackwell|rubin)/i,
+    amd: /(\bamd\b|advanced micro devices|mi300|mi325|mi500|cuda)/i,
+    ai: /(ai infrastructure|ai infra|데이터센터|인프라|hbm|cpo|gpu|광통신|co-packaged|datacenter|data center)/i
+  }[group] || /a^/;
+}
+
 function v83PostRecPickGroup(item){
   var groups = ["nvidia", "amd", "ai"];
+  var text = v83ItemNeedleText(item);
+  var matches = groups.filter(function(group){ return v83PostRecGroupRx(group).test(text); });
+  if (!matches.length) return null;
+  if (matches.length === 1) return matches[0];
   var seed = String((item && item.id) || (typeof V83ITEM !== "undefined" ? V83ITEM : "") || "stacks");
   var n = 0;
   for (var i = 0; i < seed.length; i++) n = (n * 31 + seed.charCodeAt(i)) % 9973;
-  return groups[n % groups.length];
+  return matches[n % matches.length];
 }
 
 function v83PostRecCandidates(group, currentId){
   var all = (typeof ITEMS !== "undefined" && ITEMS) ? ITEMS : [];
-  var rx = {
-    nvidia: /(nvidia|nvda|엔비디아|젠슨|jensen|blackwell|rubin)/i,
-    amd: /(\bamd\b|advanced micro devices|mi300|mi325|mi500|cuda)/i,
-    ai: /(ai infrastructure|ai infra|데이터센터|인프라|hbm|cpo|gpu|광통신|co-packaged|datacenter|data center)/i
-  }[group];
+  var rx = v83PostRecGroupRx(group);
   return all.filter(function(x){
     if (!x || x.id === currentId) return false;
     return rx.test(v83ItemNeedleText(x));
@@ -753,9 +761,13 @@ function v83PostRecRail(){
       if (hotSec) hotSec.hidden = false;
       return;
     }
-    if (hotSec) hotSec.hidden = true;
     var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === V83ITEM; }) : null;
     var group = v83PostRecPickGroup(it);
+    if (!group){
+      if (existing) existing.remove();
+      if (hotSec) hotSec.hidden = false;
+      return;
+    }
     var labels = v83PostRecLabels();
     var rows = v83PostRecCandidates(group, V83ITEM).slice(0, 3);
     if (!rows.length){
@@ -763,6 +775,7 @@ function v83PostRecRail(){
       if (hotSec) hotSec.hidden = false;
       return;
     }
+    if (hotSec) hotSec.hidden = true;
     var key = V83ITEM + ":" + group + ":" + ((typeof LANG !== "undefined") ? LANG : "ko");
     if (existing && existing.getAttribute("data-key") === key) return;
     if (existing) existing.remove();
