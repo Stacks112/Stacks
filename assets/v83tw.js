@@ -698,7 +698,7 @@ function v83HotlRow(item){
 function v83PostRecLabels(){
   var lang = (typeof LANG !== "undefined") ? LANG : "ko";
   var map = {
-    ko: { samsung: "삼성전자 최신 글", broadcom: "브로드컴 최신 글", nvidia: "NVIDIA 최신 글", amd: "AMD 최신 글" },
+    ko: { samsung: "NVIDIA 관련 최신 글", broadcom: "브로드컴 최신 글", nvidia: "NVIDIA 최신 글", amd: "AMD 최신 글" },
     en: { samsung: "Latest Samsung Electronics reads", broadcom: "Latest Broadcom reads", nvidia: "Latest NVIDIA reads", amd: "Latest AMD reads" },
     ja: { samsung: "サムスン電子の最新記事", broadcom: "ブロードコムの最新記事", nvidia: "NVIDIAの最新記事", amd: "AMDの最新記事" }
   };
