@@ -1532,9 +1532,6 @@ html{overscroll-behavior-y:contain;}
   #v83nav .v83-link:hover{ background:var(--bg-soft); }
   #v83nav .v83-link svg{ width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.9;
     stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto; }
-  #v83nav .v83-cta{ margin:14px 8px 4px; padding:13px; border-radius:999px; background:var(--accent);
-    color:#fff; font-weight:800; font-size:15px; border:0; cursor:pointer; font-family:inherit; }
-  #v83nav .v83-cta:hover{ filter:brightness(1.06); }
   #v83nav .v83-spacer{ flex:1 1 auto; }
   #v83nav .v83-me{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:999px;
     cursor:pointer; background:none; border:0; width:100%; text-align:left; font-family:inherit;
@@ -4816,13 +4813,6 @@ function v83ReadList(){
     if (typeof render === "function") render();
   } catch (e) {}
 }
-function v83JoinDebate(){
-  try {
-    if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof v83OpenItem === "function"){
-      v83OpenItem(TODAY_ID, true); /* v83.3: page swap, not deep scroll */
-    } else if (typeof goHome === "function") goHome();
-  } catch (e) {}
-}
 function mountV83(){
   if (V83 && V83.mounted) return;
   var wrap = document.querySelector(".wrap"); if (!wrap) return;
@@ -4857,7 +4847,6 @@ function mountV83(){
   ];
   var html = '';
   links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '" data-k="' + x[0] + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
-  html += '<button class="v83-cta" id="v83cta">' + v83T("join") + '</button>';
   html += '<div class="v83-spacer"></div>';
   html += '<button class="v83-me" id="v83me"><span class="v83-ava">J</span><span>' + v83T("me") + '</span></button>';
   nav.innerHTML = html;
@@ -4872,7 +4861,6 @@ function mountV83(){
     });
   });
   var hb0 = nav.querySelector('.v83-link[data-k="home"]'); if (hb0) hb0.classList.add("on");
-  var ctaB = nav.querySelector("#v83cta"); if (ctaB) ctaB.addEventListener("click", v83JoinDebate);
   var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
 
   if (feed){

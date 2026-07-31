@@ -1551,9 +1551,6 @@ html{overscroll-behavior-y:contain;}
   #v83nav .v83-link:hover{ background:var(--bg-soft); }
   #v83nav .v83-link svg{ width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.9;
     stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto; }
-  #v83nav .v83-cta{ margin:14px 8px 4px; padding:13px; border-radius:999px; background:var(--accent);
-    color:#fff; font-weight:800; font-size:15px; border:0; cursor:pointer; font-family:inherit; }
-  #v83nav .v83-cta:hover{ filter:brightness(1.06); }
   #v83nav .v83-spacer{ flex:1 1 auto; }
   #v83nav .v83-me{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:999px;
     cursor:pointer; background:none; border:0; width:100%; text-align:left; font-family:inherit;
@@ -4856,13 +4853,6 @@ function v83ReadList(){
     if (typeof render === "function") render();
   } catch (e) {}
 }
-function v83JoinDebate(){
-  try {
-    if (typeof TODAY_ID !== "undefined" && TODAY_ID && typeof v83OpenItem === "function"){
-      v83OpenItem(TODAY_ID, true); /* v83.3: page swap, not deep scroll */
-    } else if (typeof goHome === "function") goHome();
-  } catch (e) {}
-}
 function mountV83(){
   if (V83 && V83.mounted) return;
   var wrap = document.querySelector(".wrap"); if (!wrap) return;
@@ -4896,7 +4886,6 @@ function mountV83(){
   ];
   var html = '';
   links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '" data-k="' + x[0] + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
-  html += '<button class="v83-cta" id="v83cta">' + v83T("join") + '</button>';
   html += '<div class="v83-spacer"></div>';
   html += '<button class="v83-me" id="v83me"><span class="v83-ava">J</span><span>' + v83T("me") + '</span></button>';
   nav.innerHTML = html;
@@ -4911,7 +4900,6 @@ function mountV83(){
     });
   });
   var hb0 = nav.querySelector('.v83-link[data-k="home"]'); if (hb0) hb0.classList.add("on");
-  var ctaB = nav.querySelector("#v83cta"); if (ctaB) ctaB.addEventListener("click", v83JoinDebate);
   var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
 
   if (feed){
@@ -10090,7 +10078,6 @@ html:not(.v83) .v83-search{display:none;}
 html.v83 #v83nav .v83-link{font-size:19.5px;font-weight:400;gap:19px;padding:11px 14px;letter-spacing:-.01em;}
 html.v83 #v83nav .v83-link.on{font-weight:800;}
 html.v83 #v83nav .v83-link svg{width:26px;height:26px;stroke-width:1.8;}
-html.v83 #v83nav .v83-cta{padding:15px;font-size:16.5px;margin:16px 8px 6px;}
 html.v83 #v83nav .v83-me{font-size:15px;gap:11px;padding:10px 12px;}
 html.v83 #v83nav .v83-me .v83-ava{width:38px;height:38px;font-size:16px;}
 html.v83 #v83nav .v83-lang .lang-cur{font-size:19.5px;}
@@ -10609,9 +10596,13 @@ function v83MoveLang(){
     if (!nav || !lm) return;
     if (nav.contains(lm)) return;
     lm.classList.add("v83-lang");
-    var cta = document.getElementById("v83cta");
-    if (cta && cta.parentNode === nav) nav.insertBefore(lm, cta);
-    else nav.appendChild(lm);
+    var spacer = nav.querySelector(".v83-spacer");
+    if (spacer && spacer.parentNode === nav) nav.insertBefore(lm, spacer);
+    else {
+      var me = document.getElementById("v83me");
+      if (me && me.parentNode === nav) nav.insertBefore(lm, me);
+      else nav.appendChild(lm);
+    }
   } catch (e){}
 }
 
@@ -10636,8 +10627,6 @@ function v83Relabel(){
       var sp = b.querySelector("span");
       if (sp && typeof v83T === "function") sp.textContent = v83T(k);
     });
-    var cta = document.getElementById("v83cta");
-    if (cta && typeof v83T === "function") cta.textContent = v83T("join");
     var me = document.getElementById("v83me");
     if (me){ var ms = me.querySelector("span:not(.v83-ava)"); if (ms && typeof v83T === "function") ms.textContent = v83T("me"); }
     var si = document.querySelector(".v83-search input");
