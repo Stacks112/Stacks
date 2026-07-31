@@ -1,4 +1,4 @@
-/* v83 desktop: notification settings panel (reads/writes the same stk_notif
+﻿/* v83 desktop: notification settings panel (reads/writes the same stk_notif
    store as the mobile drawer, so preferences stay in sync across layouts). */
 (function(){
 "use strict";
@@ -9,18 +9,18 @@
    same worker /subscribe route the signup form uses. The last email/language
    saved on this device are remembered for prefill. */
 var STK_NL_S = {
-  ko: { h:"주간 베스트 이메일", d:"매주 일요일 '이번 주 베스트' 메일을 받을 언어예요. 구독한 이메일을 입력하고 저장하면 수신 언어가 바뀌어요. 처음 입력하는 이메일이면 새로 구독돼요.",
-        ph:"이메일 주소", save:"저장", saving:"저장 중…", saved:"저장됐어요! 선택한 언어로 발송돼요.",
-        err:"문제가 생겼어요. 잠시 후 다시 시도해 주세요.", bad:"이메일 주소를 확인해 주세요.",
-        lko:"한국어", len:"English", lja:"日本語" },
+  ko: { h:"二쇨컙 踰좎뒪???대찓??, d:"留ㅼ＜ ?쇱슂??'?대쾲 二?踰좎뒪?? 硫붿씪??諛쏆쓣 ?몄뼱?덉슂. 援щ룆???대찓?쇱쓣 ?낅젰?섍퀬 ??ν븯硫??섏떊 ?몄뼱媛 諛붾뚯뼱?? 泥섏쓬 ?낅젰?섎뒗 ?대찓?쇱씠硫??덈줈 援щ룆?쇱슂.",
+        ph:"?대찓??二쇱냼", save:"???, saving:"???以묅?, saved:"??λ릱?댁슂! ?좏깮???몄뼱濡?諛쒖넚?쇱슂.",
+        err:"臾몄젣媛 ?앷꼈?댁슂. ?좎떆 ???ㅼ떆 ?쒕룄??二쇱꽭??", bad:"?대찓??二쇱냼瑜??뺤씤??二쇱꽭??",
+        lko:"?쒓뎅??, len:"English", lja:"?ζ쑍沃? },
   en: { h:"Weekly email", d:"The language of your Sunday weekly-best email. Enter the email you subscribed with and save to change it. A new email subscribes fresh.",
-        ph:"Email address", save:"Save", saving:"Saving…", saved:"Saved! Your weekly email will arrive in this language.",
+        ph:"Email address", save:"Save", saving:"Saving??, saved:"Saved! Your weekly email will arrive in this language.",
         err:"Something went wrong. Please try again.", bad:"Please enter a valid email address.",
-        lko:"한국어", len:"English", lja:"日本語" },
-  ja: { h:"週間ベストメール", d:"毎週日曜『今週のベスト』メールの受信言語です。購読中のメールアドレスを入力して保存すると変更されます。新しいアドレスなら新規購読になります。",
-        ph:"メールアドレス", save:"保存", saving:"保存中…", saved:"保存しました！選択した言語でお届けします。",
-        err:"エラーが発生しました。もう一度お試しください。", bad:"メールアドレスを確認してください。",
-        lko:"한국어", len:"English", lja:"日本語" }
+        lko:"?쒓뎅??, len:"English", lja:"?ζ쑍沃? },
+  ja: { h:"?깁뼋?쇻궧?덀깳?쇈꺂", d:"驪롩길뿥?쒌롣퍓?긱겗?쇻궧?덀뤵깳?쇈꺂??룛岳↑?沃욁겎?쇻귟낵沃?릎??깳?쇈꺂?㏂깋?с궧?믣뀯?쎼걮?╊퓷耶섅걲?뗣겏鸚됪쎍?뺛굦?얇걲?귝뼭?쀣걚?㏂깋?с궧?ゃ굢?계쫸蘊쇠き?ャ겒?듽겲?쇻?,
+        ph:"?▲꺖?ャ궋?됥꺃??, save:"岳앭춼", saving:"岳앭춼訝??, saved:"岳앭춼?쀣겲?쀣걼竊곲겦?욁걮?잒?沃욁겎?듿콎?묆걮?얇걲??,
+        err:"?ⓦ꺀?쇈걣?븀뵟?쀣겲?쀣걼?귙굚?녵?佯╉걡屋╉걮?뤵걽?뺛걚??, bad:"?▲꺖?ャ궋?됥꺃?밤굮閻븃첀?쀣겍?뤵걽?뺛걚??,
+        lko:"?쒓뎅??, len:"English", lja:"?ζ쑍沃? }
 };
 function stkNlT(){ return STK_NL_S[(typeof LANG !== "undefined" && STK_NL_S[LANG]) ? LANG : "ko"]; }
 window.stkNlHtml = function(){
@@ -59,9 +59,9 @@ window.stkNlWire = function(root){
       .then(function(ok){
         if (ok){
           /* an address the list has never confirmed comes back "pending" */
-          var PEND = { ko:"확인 메일을 보냈어요. 메일함에서 버튼을 눌러 구독을 완료해 주세요.",
+          var PEND = { ko:"?뺤씤 硫붿씪??蹂대깉?댁슂. 硫붿씪?⑥뿉??踰꾪듉???뚮윭 援щ룆???꾨즺??二쇱꽭??",
                        en:"Check your inbox. Click the button in the confirmation email to finish.",
-                       ja:"確認メールを送りました。メール内のボタンを押して購読を完了してください。" };
+                       ja:"閻븃첀?▲꺖?ャ굮?곥굤?얇걮?잆귙깳?쇈꺂?끹겗?쒌궭?녈굮?쇈걮??낵沃?굮若뚥틙?쀣겍?뤵걽?뺛걚?? };
           var L = (typeof LANG !== "undefined" && PEND[LANG]) ? LANG : "ko";
           msg.className = "stk-nl-msg"; msg.textContent = (ok === "pending") ? PEND[L] : t.saved;
           try { store.set("stk_nl_email", email); store.set("stk_nl_lang", lang); } catch (e){}
@@ -73,15 +73,15 @@ window.stkNlWire = function(root){
 };
 
 var NPS = {
-  ko: { title:"알림 설정", newpost:"새 글 알림", debate:"오늘의 토론 알림",
-        follow:"팔로우 새 글 알림", events:"이벤트 알림", push:"브라우저 푸시 알림 켜기",
-        pushOn:"브라우저 푸시 알림 켜짐 ✓", pushBlocked:"브라우저에서 알림이 차단돼 있어요. 주소창의 사이트 설정에서 허용해 주세요." },
+  ko: { title:"?뚮┝ ?ㅼ젙", newpost:"??湲 ?뚮┝", debate:"?ㅻ뒛???좊줎 ?뚮┝",
+        follow:"?붾줈????湲 ?뚮┝", events:"?대깽???뚮┝", push:"釉뚮씪?곗? ?몄떆 ?뚮┝ 耳쒓린",
+        pushOn:"釉뚮씪?곗? ?몄떆 ?뚮┝ 耳쒖쭚 ??, pushBlocked:"釉뚮씪?곗??먯꽌 ?뚮┝??李⑤떒???덉뼱?? 二쇱냼李쎌쓽 ?ъ씠???ㅼ젙?먯꽌 ?덉슜??二쇱꽭??" },
   en: { title:"Notification settings", newpost:"New posts", debate:"Today's debate",
         follow:"New posts from who you follow", events:"Event alerts", push:"Enable browser push",
-        pushOn:"Browser push is on ✓", pushBlocked:"Notifications are blocked by the browser. Allow them in the site settings." },
-  ja: { title:"通知設定", newpost:"新着記事", debate:"今日の論点",
-        follow:"フォロー中の新着", events:"イベント通知", push:"ブラウザ通知をオンにする",
-        pushOn:"ブラウザ通知はオン ✓", pushBlocked:"ブラウザで通知がブロックされています。サイト設定で許可してください。" }
+        pushOn:"Browser push is on ??, pushBlocked:"Notifications are blocked by the browser. Allow them in the site settings." },
+  ja: { title:"?싩윥鼇?츣", newpost:"?곁?鼇섆틟", debate:"餓딀뿥??쳳??,
+        follow:"?뺛궔??꺖訝?겗?곁?", events:"?ㅳ깧?녈깉?싩윥", push:"?뽧꺀?╉궣?싩윥?믡궕?녈겓?쇻굥",
+        pushOn:"?뽧꺀?╉궣?싩윥??궕????, pushBlocked:"?뽧꺀?╉궣?㏝싩윥?뚣깣??긿??걬?뚣겍?꾠겲?쇻귙궢?ㅳ깉鼇?츣?㎬㉠??걮?╉걦?졼걬?꾠? }
 };
 function npT(){ return NPS[(typeof LANG !== "undefined" && NPS[LANG]) ? LANG : "ko"]; }
 function npGet(){
@@ -102,16 +102,16 @@ function npSet(key, on){
     store.set("stk_notif", p);
   } catch (e){}
 }
-/* 2026-07-30 (june): 알림 설정도 적중 기록·테마 논쟁처럼 팝업이 아니라 페이지다.
-   본문 HTML과 배선을 페이지 렌더러(index.html의 renderV83AlertsPage)가 쓸 수 있게
-   빌더/와이어 함수로 분리했다. '오늘의 토론' 토글은 기능 폐지(6e73c06)에 맞춰 뺐다. */
+/* 2026-07-30 (june): ?뚮┝ ?ㅼ젙???곸쨷 湲곕줉쨌?뚮쭏 ?쇱웳泥섎읆 ?앹뾽???꾨땲???섏씠吏??
+   蹂몃Ц HTML怨?諛곗꽑???섏씠吏 ?뚮뜑??index.html??renderV83AlertsPage)媛 ?????덇쾶
+   鍮뚮뜑/??댁뼱 ?⑥닔濡?遺꾨━?덈떎. '?ㅻ뒛???좊줎' ?좉?? 湲곕뒫 ?먯?(6e73c06)??留욎떠 類먮떎. */
 window.v83AlertsBodyHtml = function(){
   var t = npT(), p = npGet();
   var row = function(key, label, on){
     return '<button class="v83np-row" data-np="' + key + '"><span>' + label
       + '</span><span class="v83np-sw' + (on ? " on" : "") + '"></span></button>';
   };
-  /* 2026-07-25 (june): 데스크톱엔 알림 "목록"이 없고 설정만 있었다. 목록을 위에 얹는다. */
+  /* 2026-07-25 (june): ?곗뒪?ы넲???뚮┝ "紐⑸줉"???녾퀬 ?ㅼ젙留??덉뿀?? 紐⑸줉???꾩뿉 ?밸뒗?? */
   return (typeof window.v83NotifListHtml === "function" ? window.v83NotifListHtml() : "")
     + row("newpost", t.newpost, p.newpost)
     + row("follow", t.follow, p.follow)
@@ -136,7 +136,7 @@ window.v83AlertsWire = function(root){
   var blockedNote = root.querySelector(".v83np-blocked");
   if (!pushBtn) return;
   var pushIsOn = false; /* last known subscription state */
-  /* reflect the live push state on the button: white border + "켜짐 ✓" when on,
+  /* reflect the live push state on the button: white border + "耳쒖쭚 ?? when on,
      a small note when the browser has blocked notifications. */
   function apply(opted){
     var perm = (typeof Notification !== "undefined") ? Notification.permission : "default";
@@ -162,7 +162,7 @@ window.v83AlertsWire = function(root){
           try { opted = !!(os2.User && os2.User.PushSubscription && os2.User.PushSubscription.optedIn); } catch (e){}
           resolved = true; apply(opted);
         });
-        /* only guess "on" if the SDK never answered — never override a real opt-out */
+        /* only guess "on" if the SDK never answered ??never override a real opt-out */
         setTimeout(function(){ if (!resolved) apply(true); }, 1500);
       } else {
         apply(false);
@@ -185,22 +185,22 @@ window.v83AlertsWire = function(root){
       setTimeout(reflectPush, 1500);
       return;
     }
-    /* turn ON: delegate to the (hidden) top-bar push button — it owns the
+    /* turn ON: delegate to the (hidden) top-bar push button ??it owns the
        OneSignal opt-in prompt + blocked-permission feedback */
     var nb = document.getElementById("notifBtn");
     if (nb && typeof nb.onclick === "function") nb.onclick();
     setTimeout(reflectPush, 1500);
   });
 };
-/* legacy shim: 옛 히스토리 스냅샷(applyView의 v.alerts)이나 외부 호출부가 아직
-   모달 함수를 부른다 — 전부 페이지 뷰로 보낸다. 남아 있던 모달이 있으면 걷어낸다. */
+/* legacy shim: ???덉뒪?좊━ ?ㅻ깄??applyView??v.alerts)?대굹 ?몃? ?몄텧遺媛 ?꾩쭅
+   紐⑤떖 ?⑥닔瑜?遺瑜몃떎 ???꾨? ?섏씠吏 酉곕줈 蹂대궦?? ?⑥븘 ?덈뜕 紐⑤떖???덉쑝硫?嫄룹뼱?몃떎. */
 window.v83AlertsPanel = function(){
   var old = document.getElementById("v83npOv");
   if (old) old.remove();
   if (typeof setTab === "function") setTab("alerts");
 };
 
-/* ---- 최신/팔로잉 tabs: match the center column's width exactly (X-style) ---- */
+/* ---- 理쒖떊/?붾줈??tabs: match the center column's width exactly (X-style) ---- */
 function alignFsw(){
   try {
     var f = document.getElementById("v83fsw");
@@ -225,12 +225,12 @@ try {
 
 /* ---- search dropdown: recent searches / guide + today's popular (3) ---- */
 var SDS = {
-  ko: { recent:"최근 검색", clear:"모두 지우기", trend:"오늘의 인기",
-        guide:"사람, 기업, 키워드로 검색해보세요", posts:"글 {n}개" },
+  ko: { recent:"理쒓렐 寃??, clear:"紐⑤몢 吏?곌린", trend:"?ㅻ뒛???멸린",
+        guide:"?щ엺, 湲곗뾽, ?ㅼ썙?쒕줈 寃?됲빐蹂댁꽭??, posts:"湲 {n}媛? },
   en: { recent:"Recent", clear:"Clear all", trend:"Popular today",
         guide:"Try searching for people, companies, or keywords", posts:"{n} posts" },
-  ja: { recent:"最近の検索", clear:"すべて消去", trend:"今日の人気",
-        guide:"人物、企業、キーワードで検索してみましょう", posts:"{n}件" }
+  ja: { recent:"?瓦묆겗濾쒐뇨", clear:"?쇻겧??텋??, trend:"餓딀뿥??볶麗?,
+        guide:"雅븀돥?곦펯璵?곥궘?쇈꺈?쇈깋?㎪쩂榮㏂걮?╉겳?얇걮?뉎걝", posts:"{n}餓? }
 };
 function sdT(){ return SDS[(typeof LANG !== "undefined" && SDS[LANG]) ? LANG : "ko"]; }
 function sdRecent(){ try { var r = store.get("stk_recent_q", []); return Array.isArray(r) ? r : []; } catch(e){ return []; } }
@@ -329,16 +329,16 @@ document.addEventListener("keydown", function(e){
   if (e.key === "Escape") sdHide();
 });
 
-/* ==== 읽음 하이브리드 → 라운드11 개편 (2026-07-23 june 결정) ==================
-   - ✓ 수동 읽음 버튼 폐지 (CSS로 숨김). 트위터처럼 스크롤로 지나친 글이 곧 '본 글'.
-   - 스크롤로 카드를 완전히 지나치면 stk_seen_pending에 기록만 하고,
-     다음 방문 시작 시 READ로 합류 → 하단 '이미 읽은 글' 그룹으로 강등.
-     (이번 세션 화면은 절대 건드리지 않음: 스크롤 중 카드가 접히거나 움직이지 않게)
-   - READ_BASE: 세션 시작 시점의 읽음 스냅샷 (코어 강등 파티션이 참조 —
-     이번 세션에 열어본 글은 제자리 유지, 다음 방문부터 하단으로) */
+/* ==== ?쎌쓬 ?섏씠釉뚮━?????쇱슫??1 媛쒗렪 (2026-07-23 june 寃곗젙) ==================
+   - ???섎룞 ?쎌쓬 踰꾪듉 ?먯? (CSS濡??④?). ?몄쐞?곗쿂???ㅽ겕濡ㅻ줈 吏?섏튇 湲??怨?'蹂?湲'.
+   - ?ㅽ겕濡ㅻ줈 移대뱶瑜??꾩쟾??吏?섏튂硫?stk_seen_pending??湲곕줉留??섍퀬,
+     ?ㅼ쓬 諛⑸Ц ?쒖옉 ??READ濡??⑸쪟 ???섎떒 '?대? ?쎌? 湲' 洹몃９?쇰줈 媛뺣벑.
+     (?대쾲 ?몄뀡 ?붾㈃? ?덈? 嫄대뱶由ъ? ?딆쓬: ?ㅽ겕濡?以?移대뱶媛 ?묓엳嫄곕굹 ?吏곸씠吏 ?딄쾶)
+   - READ_BASE: ?몄뀡 ?쒖옉 ?쒖젏???쎌쓬 ?ㅻ깄??(肄붿뼱 媛뺣벑 ?뚰떚?섏씠 李몄“ ??
+     ?대쾲 ?몄뀡???댁뼱蹂?湲? ?쒖옄由??좎?, ?ㅼ쓬 諛⑸Ц遺???섎떒?쇰줈) */
 var SEEN_PEND = (function(){ try { return new Set(JSON.parse(localStorage.getItem("stk_seen_pending") || "[]")); } catch (e){ return new Set(); } })();
 function seenSave(){ try { localStorage.setItem("stk_seen_pending", JSON.stringify(Array.from(SEEN_PEND))); } catch (e){} }
-/* 지난 방문에 스크롤로 지나친 글 합류 (READ_BASE 스냅샷 전에!) */
+/* 吏??諛⑸Ц???ㅽ겕濡ㅻ줈 吏?섏튇 湲 ?⑸쪟 (READ_BASE ?ㅻ깄???꾩뿉!) */
 try {
   if (SEEN_PEND.size && typeof READ !== "undefined"){
     var _sn = 0;
@@ -352,8 +352,8 @@ try {
 window.READ_BASE = new Set(typeof READ !== "undefined" ? READ : []);
 window.READ_SWEPT = new Set();
 
-/* 스크롤 추적: 일반 피드(최신/팔로잉)에서만, 카드 하단이 화면 위로 40px 이상
-   지나가면 '본 글' 후보로 기록. rAF 대신 setTimeout (백그라운드 탭 함정 회피) */
+/* ?ㅽ겕濡?異붿쟻: ?쇰컲 ?쇰뱶(理쒖떊/?붾줈???먯꽌留? 移대뱶 ?섎떒???붾㈃ ?꾨줈 40px ?댁긽
+   吏?섍?硫?'蹂?湲' ?꾨낫濡?湲곕줉. rAF ???setTimeout (諛깃렇?쇱슫?????⑥젙 ?뚰뵾) */
 var seenTick = null;
 window.addEventListener("scroll", function(){
   if (seenTick) return;
@@ -383,9 +383,9 @@ window.addEventListener("scroll", function(){
   }, 350);
 }, { passive: true });
 
-/* ==== 라운드11: 북마크 비행 애니메이션 (읽음 애니메이션에서 이관) ============
-   북마크 버튼 클릭 → 버튼 자리에서 🔖 칩이 톡 등장 → 좌측 '북마크' 메뉴로
-   슝~ 날아가 아이콘 속으로 쏙 들어가고 → 메뉴가 반짝 */
+/* ==== ?쇱슫??1: 遺곷쭏??鍮꾪뻾 ?좊땲硫붿씠??(?쎌쓬 ?좊땲硫붿씠?섏뿉???닿?) ============
+   遺곷쭏??踰꾪듉 ?대┃ ??踰꾪듉 ?먮━?먯꽌 ?뵔 移⑹씠 ???깆옣 ??醫뚯륫 '遺곷쭏?? 硫붾돱濡?
+   ?? ?좎븘媛 ?꾩씠肄??띿쑝濡????ㅼ뼱媛怨???硫붾돱媛 諛섏쭩 */
 function bmFly(fromEl){
   try {
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -393,14 +393,14 @@ function bmFly(fromEl){
     if (!target || !fromEl) return;
     var r1 = fromEl.getBoundingClientRect(), r2 = target.getBoundingClientRect();
     var cx = r1.left + r1.width / 2, cy = Math.max(60, Math.min(r1.top + r1.height / 2, window.innerHeight - 60));
-    /* 타깃은 메뉴의 아이콘(첫 svg) 중심 — '북마크 모양까지 들어가게' */
+    /* ?源껋? 硫붾돱???꾩씠肄?泥?svg) 以묒떖 ??'遺곷쭏??紐⑥뼇源뚯? ?ㅼ뼱媛寃? */
     var ticon = target.querySelector("svg") || target;
     var rt = ticon.getBoundingClientRect();
     var tx = rt.left + rt.width / 2, ty = rt.top + rt.height / 2;
-    /* 1) 버튼 자리에서 🔖 칩 등장 */
+    /* 1) 踰꾪듉 ?먮━?먯꽌 ?뵔 移??깆옣 */
     var chip = document.createElement("div");
     chip.className = "rh-chip bm-chip";
-    chip.textContent = "🔖";
+    chip.textContent = "?뵔";
     chip.style.left = cx + "px";
     chip.style.top = cy + "px";
     document.body.appendChild(chip);
@@ -408,19 +408,19 @@ function bmFly(fromEl){
       chip.style.transform = "translate(-50%,-50%) scale(1)";
       chip.style.opacity = "1";
     }, 30);
-    /* 2) 북마크 아이콘까지 슝~ (끝까지 잘 보이게 날아간 뒤) */
+    /* 2) 遺곷쭏???꾩씠肄섍퉴吏 ?? (?앷퉴吏 ??蹂댁씠寃??좎븘媛??? */
     setTimeout(function(){
       chip.style.transition = "transform .6s cubic-bezier(.45,-0.05,.55,.5)";
       chip.style.transform = "translate(calc(-50% + " + (tx - cx) + "px), calc(-50% + " + (ty - cy) + "px)) scale(.55) rotate(-10deg)";
     }, 300);
-    /* 3) 도착하면 아이콘 속으로 쏙 (여기서만 축소·페이드) */
+    /* 3) ?꾩갑?섎㈃ ?꾩씠肄??띿쑝濡???(?ш린?쒕쭔 異뺤냼쨌?섏씠?? */
     setTimeout(function(){
       chip.style.transition = "transform .22s ease-in, opacity .22s ease-in";
       chip.style.transform = "translate(calc(-50% + " + (tx - cx) + "px), calc(-50% + " + (ty - cy) + "px)) scale(.1)";
       chip.style.opacity = "0";
     }, 910);
     setTimeout(function(){ chip.remove(); }, 1180);
-    /* 4) 메뉴가 받으면서 반짝 */
+    /* 4) 硫붾돱媛 諛쏆쑝硫댁꽌 諛섏쭩 */
     setTimeout(function(){
       target.classList.add("v83-read-pulse");
       setTimeout(function(){ target.classList.remove("v83-read-pulse"); }, 750);
@@ -428,7 +428,7 @@ function bmFly(fromEl){
   } catch (e){}
 }
 
-/* 북마크 오버라이드: 추가할 때만 비행 (해제는 조용히) */
+/* 遺곷쭏???ㅻ쾭?쇱씠?? 異붽????뚮쭔 鍮꾪뻾 (?댁젣??議곗슜?? */
 if (typeof toggleBookmark === "function"){
   var _origToggleBookmark = toggleBookmark;
   window.toggleBookmark = function(id){
@@ -441,7 +441,7 @@ if (typeof toggleBookmark === "function"){
   };
 }
 
-/* ==== 라운드9: 상대 시간 표기 (ts 있으면 정확, 없으면 클라 first-seen 근사) ==== */
+/* ==== ?쇱슫??: ?곷? ?쒓컙 ?쒓린 (ts ?덉쑝硫??뺥솗, ?놁쑝硫??대씪 first-seen 洹쇱궗) ==== */
 var FIRST_SEEN = (function(){ try { return JSON.parse(localStorage.getItem("stk_first_seen") || "{}"); } catch(e){ return {}; } })();
 function fsSave(){ try { localStorage.setItem("stk_first_seen", JSON.stringify(FIRST_SEEN)); } catch(e){} }
 function isTodayISO(d){
@@ -455,7 +455,7 @@ function isTodayISO(d){
 }
 window.relDate = function(item){
   var L = (typeof LANG !== "undefined") ? LANG : "ko";
-  var W = ({ ko:{now:"방금",min:"분 전",hr:"시간 전"}, en:{now:"just now",min:"m ago",hr:"h ago"}, ja:{now:"たった今",min:"分前",hr:"時間前"} })[L] || { now:"방금",min:"분 전",hr:"시간 전" };
+  var W = ({ ko:{now:"諛⑷툑",min:"遺???,hr:"?쒓컙 ??}, en:{now:"just now",min:"m ago",hr:"h ago"}, ja:{now:"?잆겂?잋퍓",min:"?녶뎺",hr:"?귡뼋??} })[L] || { now:"諛⑷툑",min:"遺???,hr:"?쒓컙 ?? };
   var pub = null;
   if (item.ts){ var t = Date.parse(item.ts); if (isFinite(t)) pub = t; }
   if (pub == null && isTodayISO(item.date)){
@@ -475,13 +475,13 @@ window.relDate = function(item){
   return (typeof fmt === "function") ? fmt(item.date) : String(item.date || "");
 };
 
-/* ==== 라운드9: 상세뷰 재배치(예측추적 아이콘·긍정부정 댓글 위) + 피드 핵심 클릭→상세 ==== */
+/* ==== ?쇱슫??: ?곸꽭酉??щ같移??덉륫異붿쟻 ?꾩씠肄샕룰툖?뺣????볤? ?? + ?쇰뱶 ?듭떖 ?대┃?믪긽??==== */
 function v83CardFix(card){
   var id = (card.id || "").replace(/^sig-/, "");
   if (card.classList.contains("v83one")){
     if (card.__v83fix) return; card.__v83fix = true;
-    /* 라운드13: 긍정/부정(ask)을 댓글 영역 맨 아래(옛 '함께 읽기' 자리)로 이동 +
-       "댓글로 의견" 제거. '함께 읽기'는 우측 패널로 빠졌다(v83RelatedRail). */
+    /* ?쇱슫??3: 湲띿젙/遺??ask)???볤? ?곸뿭 留??꾨옒(??'?④퍡 ?쎄린' ?먮━)濡??대룞 +
+       "?볤?濡??섍껄" ?쒓굅. '?④퍡 ?쎄린'???곗륫 ?⑤꼸濡?鍮좎죱??v83RelatedRail). */
     var ask = card.querySelector(".ask-block");
     if (ask){
       var ac = ask.querySelector(".ask-comment"); if (ac) ac.remove();
@@ -494,7 +494,7 @@ function v83CardFix(card){
         body.appendChild(ask);
       }
     }
-    /* Item5: 예측 추적(oc)을 원문보기 옆 아이콘으로 접기 */
+    /* Item5: ?덉륫 異붿쟻(oc)???먮Ц蹂닿린 ???꾩씠肄섏쑝濡??묎린 */
     var oc = card.querySelector(".oc");
     var cta = card.querySelector(".cta-row");
     if (oc && cta && !cta.querySelector(".oc-toggle")){
@@ -503,9 +503,9 @@ function v83CardFix(card){
       else cta.parentNode.appendChild(oc);
       var btn = document.createElement("button");
       btn.type = "button"; btn.className = "oc-toggle";
-      btn.innerHTML = "🎯";   /* 아이콘만: 텍스트 라벨 제거, 클릭 시 접힌 예측 내용이 펼쳐짐 */
+      btn.innerHTML = "?렞";   /* ?꾩씠肄섎쭔: ?띿뒪???쇰꺼 ?쒓굅, ?대┃ ???묓엺 ?덉륫 ?댁슜???쇱퀜吏?*/
       btn.title = (oc.textContent || "").trim();
-      btn.setAttribute("aria-label", (oc.textContent || "").trim() || "예측 추적");
+      btn.setAttribute("aria-label", (oc.textContent || "").trim() || "?덉륫 異붿쟻");
       btn.addEventListener("click", function(e){
         e.stopPropagation();
         var open = oc.classList.toggle("oc-open");
@@ -516,7 +516,7 @@ function v83CardFix(card){
       else cta.appendChild(btn);
     }
   } else {
-    /* Item4: 피드 핵심(gist) 클릭 → 상세 페이지 (모바일 트위터식) */
+    /* Item4: ?쇰뱶 ?듭떖(gist) ?대┃ ???곸꽭 ?섏씠吏 (紐⑤컮???몄쐞?곗떇) */
     var g = card.querySelector(".gist");
     if (g && !g.__v83open){
       g.__v83open = true;
@@ -528,7 +528,7 @@ function v83CardFix(card){
   }
 }
 
-/* ---- 피드 카드 3문단 프리뷰: 넘치는 카드만 클램프 + "더 보기 →" (상세로) ---- */
+/* ---- ?쇰뱶 移대뱶 3臾몃떒 ?꾨━酉? ?섏튂??移대뱶留??대옩??+ "??蹂닿린 ?? (?곸꽭濡? ---- */
 function v83ClipScan(){
   if (!document.documentElement.classList.contains("v83")) return;
   document.querySelectorAll("#feedList > .card").forEach(function(c){
@@ -539,16 +539,16 @@ function v83ClipScan(){
     }
     var g = c.querySelector(".gist");
     if (!g || !g.clientHeight) return;   /* not laid out yet: retry next tick */
-    /* 판정을 한 번으로 굳히지 않는다 — 요약 전문이 나중에 도착하면 접힘 여부가
-       바뀐다. 펼친 카드는 아래 v83expanded 검사로 보호된다. */
+    /* ?먯젙????踰덉쑝濡?援논엳吏 ?딅뒗?????붿빟 ?꾨Ц???섏쨷???꾩갑?섎㈃ ?묓옒 ?щ?媛
+       諛붾먮떎. ?쇱튇 移대뱶???꾨옒 v83expanded 寃?щ줈 蹂댄샇?쒕떎. */
     var id = (c.id || "").replace(/^sig-/, "");
     if (!c.querySelector(".v83-more")){
       var fold = c.querySelector(".gist-fold") || g.parentElement;
       var b = document.createElement("button");
       b.className = "v83-more"; b.type = "button";
-      b.textContent = (((typeof STRINGS !== "undefined" && STRINGS[LANG]) || {}).loadMore || "더 보기") + " →";
+      b.textContent = (((typeof STRINGS !== "undefined" && STRINGS[LANG]) || {}).loadMore || "??蹂닿린") + " ??;
       b.addEventListener("click", function(e){
-        /* 모바일과 동일: 더 보기 → 상세로 이동하지 않고 그 자리에서 본문을 펼침 */
+        /* 紐⑤컮?쇨낵 ?숈씪: ??蹂닿린 ???곸꽭濡??대룞?섏? ?딄퀬 洹??먮━?먯꽌 蹂몃Ц???쇱묠 */
         e.stopPropagation();
         c.classList.add("v83expanded");
         c.classList.remove("v83clip");
@@ -561,8 +561,8 @@ function v83ClipScan(){
 setInterval(v83ClipScan, 1000);
 v83ClipScan();
 
-/* ==== 라운드13: 언어선택 좌측 이동 + 즉시 반영 + 검색 상단고정 + 함께읽기 우측 ==== */
-/* (1) 우측 상단 언어선택을 좌측 패널(#v83nav)로 이동 (CTA 위) */
+/* ==== ?쇱슫??3: ?몄뼱?좏깮 醫뚯륫 ?대룞 + 利됱떆 諛섏쁺 + 寃???곷떒怨좎젙 + ?④퍡?쎄린 ?곗륫 ==== */
+/* (1) ?곗륫 ?곷떒 ?몄뼱?좏깮??醫뚯륫 ?⑤꼸(#v83nav)濡??대룞 (CTA ?? */
 function v83MoveLang(){
   try {
     var nav = document.getElementById("v83nav");
@@ -570,13 +570,10 @@ function v83MoveLang(){
     if (!nav || !lm) return;
     if (nav.contains(lm)) return;
     lm.classList.add("v83-lang");
-    var cta = document.getElementById("v83cta");
-    if (cta && cta.parentNode === nav) nav.insertBefore(lm, cta);
-    else nav.appendChild(lm);
   } catch (e){}
 }
 
-/* 라운드16: 검색창을 우측 패널 최상단 → 상단바 맨 우측으로 이동 (X처럼) */
+/* ?쇱슫??6: 寃?됱갹???곗륫 ?⑤꼸 理쒖긽?????곷떒諛?留??곗륫?쇰줈 ?대룞 (X泥섎읆) */
 function v83MoveSearch(){
   try {
     var ni = document.querySelector(".nav-inner");
@@ -587,7 +584,7 @@ function v83MoveSearch(){
   } catch (e){}
 }
 
-/* (3) 언어 변경 시 좌측 패널이 새로고침 없이 즉시 바뀌도록 라벨 다시 세팅 */
+/* (3) ?몄뼱 蹂寃???醫뚯륫 ?⑤꼸???덈줈怨좎묠 ?놁씠 利됱떆 諛붾뚮룄濡??쇰꺼 ?ㅼ떆 ?명똿 */
 function v83Relabel(){
   try {
     var nav = document.getElementById("v83nav");
@@ -597,20 +594,18 @@ function v83Relabel(){
       var sp = b.querySelector("span");
       if (sp && typeof v83T === "function") sp.textContent = v83T(k);
     });
-    var cta = document.getElementById("v83cta");
-    if (cta && typeof v83T === "function") cta.textContent = v83T("join");
     var me = document.getElementById("v83me");
     if (me){ var ms = me.querySelector("span:not(.v83-ava)"); if (ms && typeof v83T === "function") ms.textContent = v83T("me"); }
     var si = document.querySelector(".v83-search input");
     if (si && typeof v83T === "function") si.placeholder = v83T("search");
     var fsw = document.getElementById("v83fsw");
     if (fsw){
-      var fl = ({ ko:["최신","팔로잉"], en:["New","Following"], ja:["最新","フォロー中"] })[(typeof LANG!=="undefined")?LANG:"ko"] || ["최신","팔로잉"];
+      var fl = ({ ko:["理쒖떊","?붾줈??], en:["New","Following"], ja:["???,"?뺛궔??꺖訝?] })[(typeof LANG!=="undefined")?LANG:"ko"] || ["理쒖떊","?붾줈??];
       var ba = fsw.querySelector('button[data-f="all"]'); if (ba) ba.textContent = fl[0];
       var bm = fsw.querySelector('button[data-f="mine"]'); if (bm) bm.textContent = fl[1];
     }
-    /* 라운드17: 좌측 패널의 언어 항목은 코드(KO) 대신 풀네임(한국어)으로 — 메뉴답게 */
-    var LNAMES = { KO:"한국어", EN:"English", JA:"日本語" };
+    /* ?쇱슫??7: 醫뚯륫 ?⑤꼸???몄뼱 ??ぉ? 肄붾뱶(KO) ?????ㅼ엫(?쒓뎅???쇰줈 ??硫붾돱?듦쾶 */
+    var LNAMES = { KO:"?쒓뎅??, EN:"English", JA:"?ζ쑍沃? };
     document.querySelectorAll("#v83nav .v83-lang span").forEach(function(sp){
       if (sp.classList.contains("lc-arrow")) return;
       var full = LNAMES[(sp.textContent || "").trim()];
@@ -619,7 +614,7 @@ function v83Relabel(){
   } catch (e){}
 }
 
-/* (2) '함께 읽기'를 우측 패널 상세뷰에 — 다가오는 이벤트와 핫 리스트 사이, 3개, hover */
+/* (2) '?④퍡 ?쎄린'瑜??곗륫 ?⑤꼸 ?곸꽭酉곗뿉 ???ㅺ??ㅻ뒗 ?대깽?몄? ??由ъ뒪???ъ씠, 3媛? hover */
 function v83RelatedRail(){
   try {
     var rail = document.getElementById("v83rail");
@@ -634,14 +629,14 @@ function v83RelatedRail(){
       .map(function(rid){ return (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === rid; }) : null; })
       .filter(Boolean).slice(0, 3);
     if (!rel.length){ if (existing) existing.remove(); return; }
-    /* 이미 같은 글로 그려져 있으면 재생성 생략 */
+    /* ?대? 媛숈? 湲濡?洹몃젮???덉쑝硫??ъ깮???앸왂 */
     if (existing && existing.getAttribute("data-for") === V83ITEM) return;
     if (existing) existing.remove();
     var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : null;
     var sec = document.createElement("section");
     sec.id = "v83relSec";
     sec.setAttribute("data-for", V83ITEM);
-    var title = (S && S.related) ? S.related : "함께 읽기";
+    var title = (S && S.related) ? S.related : "?④퍡 ?쎄린";
     var h = document.createElement("h2"); h.className = "section-title"; h.textContent = title;
     sec.appendChild(h);
     var wrap = document.createElement("div"); wrap.className = "hot-rail";
@@ -656,7 +651,7 @@ function v83RelatedRail(){
   } catch (e){}
 }
 
-/* 핫 리스트와 동일한 hover(카드 이미지 + 한줄요약) 행 생성 */
+/* ??由ъ뒪?몄? ?숈씪??hover(移대뱶 ?대?吏 + ?쒖쨪?붿빟) ???앹꽦 */
 function v83HotlRow(item){
   var b = document.createElement("button");
   b.className = "hotl-row";
@@ -666,8 +661,8 @@ function v83HotlRow(item){
   var c = (typeof COMMENT_COUNTS !== "undefined" && COMMENT_COUNTS[item.id]) || 0;
   var S2 = (typeof STRINGS !== "undefined" && STRINGS[LANG2]) ? STRINGS[LANG2] : {};
   var meta = ((typeof dispName === "function") ? dispName(item.source) : (item.source || ""))
-    + " · " + ((typeof fmt === "function") ? fmt(item.date) : (item.date || ""))
-    + (v ? " · " + (S2.views || "") + " " + v : "") + (c ? " · 💬 " + c : "");
+    + " 쨌 " + ((typeof fmt === "function") ? fmt(item.date) : (item.date || ""))
+    + (v ? " 쨌 " + (S2.views || "") + " " + v : "") + (c ? " 쨌 ?뮠 " + c : "");
   b.innerHTML = '<span class="hotl-t"></span><span class="hotl-m"></span>';
   b.querySelector(".hotl-t").textContent = (item.title[LANG2] || item.title.en || "");
   b.querySelector(".hotl-m").textContent = meta;
@@ -687,14 +682,14 @@ function v83HotlRow(item){
       sum += g[i]; var ch = g[i];
       if ((ch === "." || ch === "!" || ch === "?") && (i + 1 >= g.length || g[i + 1] === " ") && sum.length >= 40) break;
     }
-    if (sum.length > 110) sum = sum.slice(0, 108) + "…";
+    if (sum.length > 110) sum = sum.slice(0, 108) + "??;
     if (sum){ var sm = document.createElement("span"); sm.className = "hotl-sum"; sm.textContent = sum; cv.appendChild(sm); }
     b.appendChild(cv);
   } catch (e){}
   return b;
 }
 
-/* render()를 감싸 언어 라벨/함께읽기 패널을 매 렌더마다 동기화 */
+/* render()瑜?媛먯떥 ?몄뼱 ?쇰꺼/?④퍡?쎄린 ?⑤꼸??留??뚮뜑留덈떎 ?숆린??*/
 if (typeof render === "function"){
   var _v83origRender = render;
   window.render = function(){
@@ -707,8 +702,8 @@ if (typeof render === "function"){
     return r;
   };
 }
-/* 마운트가 비동기(데이터 로드 후)라 render 래퍼만으론 초기 이동이 늦을 수 있어,
-   #v83nav가 생기는 즉시 언어선택을 옮기도록 짧게 폴링 */
+/* 留덉슫?멸? 鍮꾨룞湲??곗씠??濡쒕뱶 ????render ?섑띁留뚯쑝濡?珥덇린 ?대룞????쓣 ???덉뼱,
+   #v83nav媛 ?앷린??利됱떆 ?몄뼱?좏깮????린?꾨줉 吏㏐쾶 ?대쭅 */
 var _v83initN = 0;
 var _v83initTimer = setInterval(function(){
   _v83initN++;
