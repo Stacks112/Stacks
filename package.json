@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "node scripts/build-site.mjs"
+    "build": "node scripts/build-site.mjs",
+    "edit:post": "node scripts/manual-post-editor.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
