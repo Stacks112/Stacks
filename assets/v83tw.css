@@ -181,6 +181,9 @@ html:not(.v83) .v83-search{display:none;}
 /* (2) 함께 읽기: 상세뷰에서만 우측 패널에 노출. 카드 안 원본 related는 숨김 */
 .v83one .related{display:none !important;}
 #v83relSec .hot-rail{display:flex;flex-direction:column;gap:0;overflow:visible;padding:0;}
+.v83-mobile-recs{display:none;}
+.v83-mobile-rec-group{border-top:1px solid var(--line);margin-top:18px;padding-top:16px;}
+.v83-mobile-rec-group:first-child{border-top:0;margin-top:0;padding-top:0;}
 /* 긍정/부정이 댓글 아래로 내려갔으니 위 여백으로 구분 */
 .v83one .ask-block{margin-top:18px;margin-bottom:2px;}
 /* --- 라운드14 (모바일) --- */
@@ -199,6 +202,11 @@ html:not(.v83) .v83-search{display:none;}
   .mini-install{background:var(--bg) !important;}
   /* 피드 카드의 인라인 댓글 입력창 제거 — 💬 아이콘으로 댓글 시트(새창) 열림 */
   .card.v82c .twin,.card.v82c .twin-list{display:none !important;}
+  .v83-mobile-recs{display:block;order:82;border-top:1px solid var(--line);margin-top:20px;padding-top:20px;}
+  .v83-mobile-recs .hot-rail{display:flex;flex-direction:column;gap:0;overflow:visible;padding:0;margin:0;}
+  .v83-mobile-recs .hotl-row{padding:10px 2px;text-align:left;}
+  .v83-mobile-recs .section-title{font-size:19px;font-weight:800;letter-spacing:-.02em;margin:0 0 10px;}
+  #feedList .card:not(.collapsed) .related{display:block !important;}
 }
 /* --- 라운드16: 데스크톱 X 파리티 --- */
 /* 좌측 패널: X처럼 큰 글씨(20px 일반 굵기, 선택만 볼드) + 큰 아이콘 */

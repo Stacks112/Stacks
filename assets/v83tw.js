@@ -811,6 +811,64 @@ function v83PostRecRail(){
   } catch (e){}
 }
 
+function v83MobilePostRecs(){
+  try {
+    var existing = document.getElementById("v83mobileRecs");
+    var active = (typeof V83ITEM !== "undefined" && V83ITEM)
+      && !(typeof QUERY !== "undefined" && QUERY)
+      && !(typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW)
+      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW);
+    var one = document.querySelector("#feedList > .card.v83one");
+    var body = one ? one.querySelector(".card-body") : null;
+    if (!active || !body){ if (existing) existing.remove(); return; }
+
+    var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === V83ITEM; }) : null;
+    if (!it){ if (existing) existing.remove(); return; }
+
+    var langKey = (typeof LANG !== "undefined") ? LANG : "ko";
+    var S = (typeof STRINGS !== "undefined" && STRINGS[langKey]) ? STRINGS[langKey] : {};
+    var groups = [];
+
+    var rel = (it.related ? it.related : [])
+      .map(function(rid){ return (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === rid; }) : null; })
+      .filter(Boolean).slice(0, 3);
+    if (rel.length) groups.push({ title:(S.related || "함께 읽기"), rows:rel });
+
+    var group = v83PostRecPickGroup(it);
+    if (group){
+      var labels = v83PostRecLabels();
+      var rows = v83PostRecCandidates(group, V83ITEM).slice(0, 3);
+      if (rows.length) groups.push({ title:(labels[group] || labels.ai), rows:rows });
+    }
+
+    if (!groups.length){ if (existing) existing.remove(); return; }
+    var key = V83ITEM + ":" + langKey + ":" + groups.map(function(g){
+      return g.title + "/" + g.rows.map(function(r){ return r.id; }).join(",");
+    }).join("|");
+    if (existing && existing.getAttribute("data-key") === key) return;
+    if (existing) existing.remove();
+
+    var sec = document.createElement("section");
+    sec.id = "v83mobileRecs";
+    sec.className = "v83-mobile-recs";
+    sec.setAttribute("data-key", key);
+    groups.forEach(function(g){
+      var block = document.createElement("div");
+      block.className = "v83-mobile-rec-group";
+      var h = document.createElement("h2");
+      h.className = "section-title";
+      h.textContent = g.title;
+      block.appendChild(h);
+      var wrap = document.createElement("div");
+      wrap.className = "hot-rail";
+      g.rows.forEach(function(item){ wrap.appendChild(v83HotlRow(item)); });
+      block.appendChild(wrap);
+      sec.appendChild(block);
+    });
+    body.appendChild(sec);
+  } catch (e){}
+}
+
 /* render()를 감싸 언어 라벨/함께읽기 패널을 매 렌더마다 동기화 */
 if (typeof render === "function"){
   var _v83origRender = render;
@@ -823,6 +881,7 @@ if (typeof render === "function"){
     try { if (typeof v83RenderCal === "function") v83RenderCal(); } catch (e){}
     try { v83RelatedRail(); } catch (e){}
     try { v83PostRecRail(); } catch (e){}
+    try { v83MobilePostRecs(); } catch (e){}
     return r;
   };
 }
@@ -839,5 +898,5 @@ var _v83initTimer = setInterval(function(){
   if (langOk && searchOk) { clearInterval(_v83initTimer); }
   else if (_v83initN > 40) { clearInterval(_v83initTimer); }
 }, 150);
-v83MoveLang(); v83MoveSearch(); v83Relabel(); if (typeof v83RenderCal === "function") v83RenderCal(); v83RelatedRail(); v83PostRecRail();
+v83MoveLang(); v83MoveSearch(); v83Relabel(); if (typeof v83RenderCal === "function") v83RenderCal(); v83RelatedRail(); v83PostRecRail(); v83MobilePostRecs();
 })();
