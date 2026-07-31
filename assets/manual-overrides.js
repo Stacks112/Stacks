@@ -2,13 +2,15 @@
   const slug = getSlug();
   if (!slug) return;
 
-  fetch(`/api/manual-post?slug=${encodeURIComponent(slug)}`, {
+  fetch(`/assets/manual-overrides/${encodeURIComponent(slug)}.json`, {
+    cache: "no-store",
     headers: { "accept": "application/json" },
   })
     .then((response) => response.ok ? response.json() : null)
     .then((data) => {
-      if (!data || !data.ok || !data.found || !data.post) return;
-      applyOverride(data.post);
+      const post = data && (data.post || data);
+      if (!post || post.status === "archived") return;
+      applyOverride(post);
     })
     .catch(() => {
       // Manual edits should never block article reading.

@@ -1,10 +1,11 @@
 import { createServer } from "node:http";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const runtimeProcess = typeof process !== "undefined" ? process : null;
 const port = Number(runtimeProcess?.env?.PORT || 4177);
-const root = typeof nodeRepl !== "undefined" ? nodeRepl.cwd : runtimeProcess.cwd();
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const defaultUrl = "https://stacksdaily.com/p/meru-pce-cpi-switch-june-first-drop.html";
 
 createServer(async (request, response) => {
@@ -27,12 +28,6 @@ createServer(async (request, response) => {
       return sendJson(response, saved);
     }
 
-    if (request.method === "POST" && url.pathname === "/api/publish") {
-      const body = await readJson(request);
-      const published = await publishArticle(body);
-      return sendJson(response, published);
-    }
-
     response.writeHead(404);
     response.end("Not found");
   } catch (error) {
@@ -44,13 +39,9 @@ createServer(async (request, response) => {
 
 async function loadArticle(targetUrl) {
   const response = await fetch(targetUrl, {
-    headers: {
-      "user-agent": "Mozilla/5.0 StacksManualEditor/1.0",
-    },
+    headers: { "user-agent": "Mozilla/5.0 StacksManualEditor/1.0" },
   });
-  if (!response.ok) {
-    throw new Error(`Failed to load article: ${response.status}`);
-  }
+  if (!response.ok) throw new Error(`Failed to load article: ${response.status}`);
 
   const html = await response.text();
   const title = extractFirst(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i) || "";
@@ -77,6 +68,9 @@ function extractEditableBody(html) {
     '<figure class="srcq"',
     '<p class="gist"',
     '<h2 class="gsub"',
+    '<div class="gcardw"',
+    '<div class="gref"',
+    '<section class="gimg"',
   ]);
   if (bodyStart < 0) return "";
 
@@ -102,47 +96,18 @@ function findAfter(text, fromIndex, needles) {
 
 async function saveArticle(body) {
   const draft = normalizeDraft(body);
-  const outDir = path.join(root, "manual-edits", "drafts");
-  const outPath = path.join(outDir, `${draft.slug}.json`);
+  const draftDir = path.join(root, "manual-edits", "drafts");
+  const overrideDir = path.join(root, "assets", "manual-overrides");
+  const draftPath = path.join(draftDir, `${draft.slug}.json`);
+  const overridePath = path.join(overrideDir, `${draft.slug}.json`);
+  const payload = `${JSON.stringify(draft, null, 2)}\n`;
 
-  await mkdir(outDir, { recursive: true });
-  await writeFile(outPath, `${JSON.stringify(draft, null, 2)}\n`, "utf8");
-  return { ok: true, path: outPath };
-}
+  await mkdir(draftDir, { recursive: true });
+  await mkdir(overrideDir, { recursive: true });
+  await writeFile(draftPath, payload, "utf8");
+  await writeFile(overridePath, payload, "utf8");
 
-async function publishArticle(body) {
-  const endpoint = cleanText(body.endpoint, 500).replace(/\/+$/, "");
-  const token = String(body.token || "").trim();
-  const draft = normalizeDraft(body.draft || body);
-
-  if (!endpoint.startsWith("https://") && !endpoint.startsWith("http://127.0.0.1")) {
-    throw new Error("endpoint must be https:// or local test URL");
-  }
-  if (!token) {
-    throw new Error("admin token is required");
-  }
-
-  const response = await fetch(`${endpoint}/api/manual-post`, {
-    method: "POST",
-    headers: {
-      "authorization": `Bearer ${token}`,
-      "content-type": "application/json; charset=utf-8",
-      "user-agent": "Mozilla/5.0 StacksManualEditor/1.0",
-    },
-    body: JSON.stringify(draft),
-  });
-
-  const text = await response.text();
-  let data;
-  try {
-    data = JSON.parse(text);
-  } catch {
-    data = { ok: false, error: text };
-  }
-  if (!response.ok || !data.ok) {
-    throw new Error(data.error || `publish failed: ${response.status}`);
-  }
-  return { ok: true, result: data };
+  return { ok: true, draftPath, overridePath };
 }
 
 function normalizeDraft(body) {
@@ -153,7 +118,7 @@ function normalizeDraft(body) {
   const bodyHtml = String(body.bodyHtml || "").trim();
 
   if (!title || !slug || !bodyHtml) {
-    throw new Error("title, slug, and bodyHtml are required");
+    throw new Error("title, slug, bodyHtml required");
   }
 
   return {
@@ -173,12 +138,12 @@ function editorHtml() {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stacks 수동 글 편집기</title>
+<title>Stacks 수동 편집기</title>
 <style>
   :root { color-scheme: light; --line:#e7e7ea; --ink:#18181b; --muted:#72727a; --bg:#f6f6f4; --paper:#fff; --accent:#2563eb; }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
-  .shell { display: grid; grid-template-columns: 360px minmax(0, 1fr); min-height: 100vh; }
+  .shell { display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: 100vh; }
   .side { position: sticky; top: 0; height: 100vh; padding: 22px; border-right: 1px solid var(--line); background: #fbfbfa; }
   .side h1 { margin: 0 0 18px; font-size: 20px; }
   label { display: block; margin: 14px 0 6px; font-size: 12px; font-weight: 700; color: #55545c; }
@@ -198,7 +163,7 @@ function editorHtml() {
   #body blockquote { margin: 0 0 22px; padding: 14px 18px; border-left: 4px solid #c8cad2; background: #f7f7f8; color: #44444d; }
   #body img { max-width: 100%; height: auto; border-radius: 6px; }
   #body a { color: #1d4ed8; }
-  .gcardw, .gref, .chk, .srcq { margin: 20px 0; }
+  .gcardw, .gref, .chk, .srcq, .gimg { margin: 20px 0; }
   .chk-g { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .chk-c { padding: 10px; border: 1px solid var(--line); border-radius: 6px; }
   .chk-c i, .chk-c b { display: block; font-style: normal; }
@@ -214,24 +179,19 @@ function editorHtml() {
 <body>
 <div class="shell">
   <aside class="side">
-    <h1>Stacks 수동 글 편집기</h1>
+    <h1>Stacks 수동 편집기</h1>
     <label for="url">글 URL</label>
     <input id="url" value="${defaultUrl}">
     <label for="slug">파일 이름</label>
     <input id="slug">
     <label for="date">날짜</label>
     <input id="date">
-    <label for="endpoint">Worker API</label>
-    <input id="endpoint" value="https://stacksdaily.com">
-    <label for="token">Admin token</label>
-    <input id="token" type="password" autocomplete="off">
     <div class="buttons">
       <button id="load">불러오기</button>
-      <button id="save">저장</button>
-      <button id="publish" class="primary">운영 반영</button>
+      <button id="save" class="primary">저장</button>
     </div>
     <div id="status" class="status"></div>
-    <p class="hint">오른쪽 글 화면에서 제목과 본문을 직접 클릭해 수정하세요. 저장은 로컬 draft, 운영 반영은 Worker/D1 override에 적용합니다.</p>
+    <p class="hint">오른쪽 글 화면에서 제목과 본문을 직접 수정한 뒤 저장하세요. 저장하면 repo에 반영용 JSON이 만들어지고, 그 다음 commit/push하면 stacksdaily.com에 적용됩니다.</p>
   </aside>
   <main class="canvas">
     <article class="paper">
@@ -253,7 +213,7 @@ async function loadArticle() {
   el("slug").value = data.slug;
   el("date").value = data.date;
   el("body").innerHTML = data.bodyHtml;
-  status("불러옴. 오른쪽 글을 클릭해서 수정하세요.");
+  status("불러옴. 오른쪽 글을 직접 수정하세요.");
 }
 
 async function saveArticle() {
@@ -271,38 +231,11 @@ async function saveArticle() {
   });
   const data = await response.json();
   if (!data.ok) throw new Error(data.error || "save failed");
-  status("저장 완료: " + data.path);
-}
-
-async function publishArticle() {
-  status("운영 반영 중...");
-  const response = await fetch("/api/publish", {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-      endpoint: el("endpoint").value,
-      token: el("token").value,
-      draft: currentDraft()
-    })
-  });
-  const data = await response.json();
-  if (!data.ok) throw new Error(data.error || "publish failed");
-  status("운영 반영 완료. 사이트에서 새로고침해 확인하세요.");
-}
-
-function currentDraft() {
-  return {
-    sourceUrl: el("url").value,
-    title: el("title").value,
-    slug: el("slug").value,
-    date: el("date").value,
-    bodyHtml: el("body").innerHTML
-  };
+  status("저장 완료. 이제 Codex에게 커밋해달라고 하면 됩니다: " + data.overridePath);
 }
 
 el("load").addEventListener("click", () => loadArticle().catch((error) => status(error.message)));
 el("save").addEventListener("click", () => saveArticle().catch((error) => status(error.message)));
-el("publish").addEventListener("click", () => publishArticle().catch((error) => status(error.message)));
 loadArticle().catch((error) => status(error.message));
 </script>
 </body>
