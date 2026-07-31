@@ -1,20 +1,33 @@
-(function () {
+(async function () {
   const slug = getSlug();
   if (!slug) return;
 
-  fetch(`/assets/manual-overrides/${encodeURIComponent(slug)}.json`, {
-    cache: "no-store",
-    headers: { "accept": "application/json" },
-  })
-    .then((response) => response.ok ? response.json() : null)
-    .then((data) => {
-      const post = data && (data.post || data);
-      if (!post || post.status === "archived") return;
-      applyOverride(post);
-    })
-    .catch(() => {
-      // Manual edits should never block article reading.
+  const live = await fetchJson(
+    `https://api.stacksdaily.com/api/manual-post?slug=${encodeURIComponent(slug)}`
+  ).catch(() => null);
+  const livePost = live && live.found && live.post;
+  if (livePost && livePost.status !== "archived") {
+    applyOverride(livePost);
+    return;
+  }
+
+  try {
+    const fallback = await fetchJson(
+      `/assets/manual-overrides/${encodeURIComponent(slug)}.json`
+    );
+    const fallbackPost = fallback && (fallback.post || fallback);
+    if (fallbackPost && fallbackPost.status !== "archived") applyOverride(fallbackPost);
+  } catch {
+    // Manual edits should never block article reading.
+  }
+
+  async function fetchJson(url) {
+    const response = await fetch(url, {
+      cache: "no-store",
+      headers: { "accept": "application/json" },
     });
+    return response.ok ? response.json() : null;
+  }
 
   function applyOverride(post) {
     const title = document.querySelector("h1");

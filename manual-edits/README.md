@@ -6,10 +6,10 @@ Current live site path:
 
 1. Run the local editor.
 1. Edit the article in the browser.
+1. Enter the manual editor token.
 1. Click `저장`.
-1. Commit and push the generated file under `assets/manual-overrides/`.
 
-The article page loads `/assets/manual-overrides/<slug>.json`. If the file exists and `status` is `active`, the browser replaces the title and article body after load.
+The editor saves a local backup, then writes the override to Cloudflare D1 through `https://api.stacksdaily.com/api/manual-post`. Article pages read that API with `cache: no-store`, so a refresh shows the edit without a Git commit or GitHub Pages deployment.
 
 ## Local Editor
 
@@ -23,15 +23,14 @@ Open:
 http://127.0.0.1:4177
 ```
 
-The editor writes two files:
+The editor writes one ignored local backup:
 
 - `manual-edits/drafts/<slug>.json`: ignored local draft
-- `assets/manual-overrides/<slug>.json`: deployable live override
 
 ## Rollback
 
-Delete the matching file under `assets/manual-overrides/`, then commit and push.
+Send `DELETE https://api.stacksdaily.com/api/manual-post?slug=<slug>` with the manual editor token. The Worker archives the D1 override.
 
 ## Notes
 
-`worker/index.js` also contains a D1-backed `/api/manual-post` implementation for a future Cloudflare-proxied setup. Today, `stacksdaily.com` resolves directly to GitHub Pages, so the live path uses static JSON overrides.
+`stacksdaily.com` remains on GitHub Pages. Only `api.stacksdaily.com` is a Cloudflare Worker custom domain. Existing files under `assets/manual-overrides/` remain as a read fallback if the API has no record.

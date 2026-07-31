@@ -14,8 +14,7 @@ compatibility_date = "2024-11-01"
 account_id = "898876c2b7fe1652e72736e182ad610b"
 
 routes = [
-  { pattern = "stacksdaily.com/api/*", zone_name = "stacksdaily.com" },
-  { pattern = "www.stacksdaily.com/api/*", zone_name = "stacksdaily.com" }
+  { pattern = "api.stacksdaily.com", custom_domain = true }
 ]
 
 # D1 binding must match the binding the worker already uses (env.DB).

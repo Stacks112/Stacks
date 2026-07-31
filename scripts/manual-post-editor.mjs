@@ -7,6 +7,7 @@ const runtimeProcess = typeof process !== "undefined" ? process : null;
 const port = Number(runtimeProcess?.env?.PORT || 4177);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const defaultUrl = "https://stacksdaily.com/p/meru-pce-cpi-switch-june-first-drop.html";
+const manualApi = "https://api.stacksdaily.com/api/manual-post";
 
 createServer(async (request, response) => {
   try {
@@ -96,18 +97,35 @@ function findAfter(text, fromIndex, needles) {
 
 async function saveArticle(body) {
   const draft = normalizeDraft(body);
+  const token = String(body.token || "").trim();
+  if (!token) throw new Error("편집 비밀번호를 입력하세요.");
+
   const draftDir = path.join(root, "manual-edits", "drafts");
-  const overrideDir = path.join(root, "assets", "manual-overrides");
   const draftPath = path.join(draftDir, `${draft.slug}.json`);
-  const overridePath = path.join(overrideDir, `${draft.slug}.json`);
   const payload = `${JSON.stringify(draft, null, 2)}\n`;
 
   await mkdir(draftDir, { recursive: true });
-  await mkdir(overrideDir, { recursive: true });
   await writeFile(draftPath, payload, "utf8");
-  await writeFile(overridePath, payload, "utf8");
+  await publishArticle(draft, token);
 
-  return { ok: true, draftPath, overridePath };
+  return { ok: true, draftPath, published: true };
+}
+
+async function publishArticle(draft, token) {
+  const response = await fetch(manualApi, {
+    method: "POST",
+    headers: {
+      "authorization": `Bearer ${token}`,
+      "content-type": "application/json; charset=utf-8",
+      "user-agent": "Mozilla/5.0 StacksManualEditor/1.0",
+    },
+    body: JSON.stringify(draft),
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok || !data.ok) {
+    const detail = data.error || `HTTP ${response.status}`;
+    throw new Error(`운영 반영 실패: ${detail}. 로컬 초안은 보관됐습니다.`);
+  }
 }
 
 function normalizeDraft(body) {
@@ -186,12 +204,14 @@ function editorHtml() {
     <input id="slug">
     <label for="date">날짜</label>
     <input id="date">
+    <label for="token">편집 비밀번호</label>
+    <input id="token" type="password" autocomplete="off">
     <div class="buttons">
       <button id="load">불러오기</button>
       <button id="save" class="primary">저장</button>
     </div>
     <div id="status" class="status"></div>
-    <p class="hint">오른쪽 글 화면에서 제목과 본문을 직접 수정한 뒤 저장하세요. 저장하면 repo에 반영용 JSON이 만들어지고, 그 다음 commit/push하면 stacksdaily.com에 적용됩니다.</p>
+    <p class="hint">오른쪽 글 화면에서 제목과 본문을 직접 수정한 뒤 저장하세요. 저장 성공 즉시 stacksdaily.com에 반영됩니다. 편집 비밀번호는 현재 탭을 닫을 때까지 기억합니다.</p>
   </aside>
   <main class="canvas">
     <article class="paper">
@@ -203,6 +223,7 @@ function editorHtml() {
 <script>
 const el = (id) => document.getElementById(id);
 const status = (text) => el("status").textContent = text;
+el("token").value = sessionStorage.getItem("stacksManualEditorToken") || "";
 
 async function loadArticle() {
   status("불러오는 중...");
@@ -226,12 +247,14 @@ async function saveArticle() {
       title: el("title").value,
       slug: el("slug").value,
       date: el("date").value,
-      bodyHtml: el("body").innerHTML
+      bodyHtml: el("body").innerHTML,
+      token: el("token").value
     })
   });
   const data = await response.json();
   if (!data.ok) throw new Error(data.error || "save failed");
-  status("저장 완료. 이제 Codex에게 커밋해달라고 하면 됩니다: " + data.overridePath);
+  sessionStorage.setItem("stacksManualEditorToken", el("token").value);
+  status("저장 완료. stacksdaily.com에 즉시 반영됐습니다.");
 }
 
 el("load").addEventListener("click", () => loadArticle().catch((error) => status(error.message)));
