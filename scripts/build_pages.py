@@ -1441,6 +1441,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
 <link rel="icon" href="{REL}favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="{feed_rel}">
 <script type="application/ld+json">{LD(ld)}</script>
+<script src="{REL}assets/manual-overrides.js" defer></script>
 <style>
 :root{{color-scheme:light dark}}
 *{{box-sizing:border-box}}

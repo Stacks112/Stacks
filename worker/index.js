@@ -67,7 +67,8 @@
 const ALLOWED_ORIGINS = [
   "https://stacksdaily.com",
   "https://www.stacksdaily.com",
-  "https://stacks112.github.io"
+  "https://stacks112.github.io",
+  "http://127.0.0.1:4177"
 ];
 
 const MAX_NICK = 40;
@@ -102,7 +103,7 @@ function cors(origin) {
   return {
     "Access-Control-Allow-Origin": ok ? origin : ALLOWED_ORIGINS[0],
     "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Stacks-Admin-Token",
     "Access-Control-Max-Age": "86400"
   };
 }
@@ -239,7 +240,26 @@ async function ensureTables(db) {
     "updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')), " +
     "PRIMARY KEY (page_id, voter))"
   );
+  await ensureManualTables(db);
   TABLES_READY = true;
+}
+
+async function ensureManualTables(db) {
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS manual_post_overrides (" +
+    "slug TEXT PRIMARY KEY, " +
+    "title TEXT NOT NULL, " +
+    "body_html TEXT NOT NULL, " +
+    "source_url TEXT, " +
+    "published_at TEXT, " +
+    "status TEXT NOT NULL DEFAULT 'active', " +
+    "created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, " +
+    "updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)"
+  );
+  await db.exec(
+    "CREATE INDEX IF NOT EXISTS idx_manual_post_overrides_status_updated " +
+    "ON manual_post_overrides (status, updated_at DESC)"
+  );
 }
 
 /* Fixed-window counter in D1. Returns true while the caller is under `limit`.
@@ -383,6 +403,63 @@ async function hmac24(secret, msg) {
     { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(msg));
   return [...new Uint8Array(sig)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 24);
+}
+
+function cleanManualSlug(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 120);
+}
+
+function cleanManualText(value, maxLength) {
+  return String(value || "")
+    .replace(/[\u0000-\u001f\u007f]/g, "")
+    .trim()
+    .slice(0, maxLength);
+}
+
+function cleanManualUrl(value) {
+  const text = cleanManualText(value, 500);
+  if (!text.startsWith("/") && !text.startsWith("https://") && !text.startsWith("http://")) {
+    return "";
+  }
+  return text;
+}
+
+function cleanManualHtml(value) {
+  return String(value || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<iframe[\s\S]*?<\/iframe>/gi, "")
+    .replace(/<object[\s\S]*?<\/object>/gi, "")
+    .replace(/<embed[\s\S]*?>/gi, "")
+    .replace(/\son[a-z]+\s*=\s*"[^"]*"/gi, "")
+    .replace(/\son[a-z]+\s*=\s*'[^']*'/gi, "")
+    .replace(/\s(href|src)\s*=\s*(['"])\s*javascript:[\s\S]*?\2/gi, "")
+    .trim()
+    .slice(0, 250000);
+}
+
+function manualAuthorized(request, env) {
+  const auth = request.headers.get("Authorization") || "";
+  const bearer = auth.startsWith("Bearer ") ? auth.slice(7).trim() : "";
+  const given = request.headers.get("X-Stacks-Admin-Token") || bearer;
+  return !!given && (
+    (env.MANUAL_EDITOR_TOKEN && safeEq(given, env.MANUAL_EDITOR_TOKEN)) ||
+    (env.ADMIN_KEY && safeEq(given, env.ADMIN_KEY))
+  );
+}
+
+function normalizeManualPost(body) {
+  return {
+    slug: cleanManualSlug(body.slug || ""),
+    title: cleanManualText(body.title || "", 240),
+    bodyHtml: cleanManualHtml(body.bodyHtml || ""),
+    sourceUrl: cleanManualUrl(body.sourceUrl || body.source_url || ""),
+    publishedAt: cleanManualText(body.publishedAt || body.published_at || body.date || "", 40),
+    status: body.status === "archived" ? "archived" : "active"
+  };
 }
 
 /* ---------- welcome email (sent right after a new /subscribe) ----------
@@ -741,6 +818,65 @@ export default {
 
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: cors(origin) });
+    }
+
+    if (url.pathname === "/api/manual-post") {
+      await ensureManualTables(env.DB);
+
+      if (request.method === "GET") {
+        const slug = cleanManualSlug(url.searchParams.get("slug") || "");
+        if (!slug) return json({ ok: false, error: "slug is required" }, 400, origin);
+        const row = await env.DB.prepare(
+          "SELECT slug, title, body_html, source_url, published_at, status, updated_at " +
+          "FROM manual_post_overrides WHERE slug = ?1 AND status = 'active'"
+        ).bind(slug).first();
+        if (!row) return json({ ok: true, found: false }, 200, origin);
+        return json({
+          ok: true,
+          found: true,
+          post: {
+            slug: row.slug,
+            title: row.title,
+            bodyHtml: row.body_html,
+            sourceUrl: row.source_url,
+            publishedAt: row.published_at,
+            status: row.status,
+            updatedAt: row.updated_at
+          }
+        }, 200, origin);
+      }
+
+      if (request.method === "POST") {
+        if (!manualAuthorized(request, env)) return json({ ok: false, error: "unauthorized" }, 401, origin);
+        const body = (await request.json().catch(() => null)) || {};
+        const post = normalizeManualPost(body);
+        if (!post.slug || !post.title || !post.bodyHtml) {
+          return json({ ok: false, error: "slug, title, and bodyHtml are required" }, 400, origin);
+        }
+        await env.DB.prepare(
+          "INSERT INTO manual_post_overrides " +
+          "(slug, title, body_html, source_url, published_at, status, updated_at) " +
+          "VALUES (?1, ?2, ?3, ?4, ?5, ?6, CURRENT_TIMESTAMP) " +
+          "ON CONFLICT(slug) DO UPDATE SET " +
+          "title = excluded.title, body_html = excluded.body_html, " +
+          "source_url = excluded.source_url, published_at = excluded.published_at, " +
+          "status = excluded.status, updated_at = CURRENT_TIMESTAMP"
+        ).bind(post.slug, post.title, post.bodyHtml, post.sourceUrl || null,
+          post.publishedAt || null, post.status).run();
+        return json({ ok: true, slug: post.slug }, 200, origin);
+      }
+
+      if (request.method === "DELETE") {
+        if (!manualAuthorized(request, env)) return json({ ok: false, error: "unauthorized" }, 401, origin);
+        const slug = cleanManualSlug(url.searchParams.get("slug") || "");
+        if (!slug) return json({ ok: false, error: "slug is required" }, 400, origin);
+        await env.DB.prepare(
+          "UPDATE manual_post_overrides SET status = 'archived', updated_at = CURRENT_TIMESTAMP WHERE slug = ?1"
+        ).bind(slug).run();
+        return json({ ok: true, slug }, 200, origin);
+      }
+
+      return json({ ok: false, error: "method not allowed" }, 405, origin);
     }
 
     /* ---------- surge alerts: read-only diagnostic (cached) ----------
