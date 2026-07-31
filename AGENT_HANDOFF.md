@@ -34,18 +34,23 @@ Changed:
 - `AGENTS.md`
 - `STACKS_CONTEXT.md`
 - `AGENT_HANDOFF.md`
+- `.gitignore`
 
 Verified:
 - `git status --short --branch`
 - `git diff -- STACKS_CONTEXT.md`
 - `git remote -v`
+- `git push github master`
+- `git fetch github main`
+- `git rebase github/main`
+- `git push github HEAD:main`
 
 Risks:
 - ChatGPT/Codex chat history itself is account/workspace-side and is not moved by Git.
-- Local untracked archive `stacks-site-01ae9f9.tar.gz` was left out of the commit.
+- Local generated folders/archive (`dist/`, `node_modules/`, `stacks-site-01ae9f9.tar.gz`) were left out of the commit and ignored.
 
 Next:
-- On another computer, clone or pull `https://github.com/Stacks112/Stacks.git`, then read `AGENTS.md`, `STACKS_CONTEXT.md`, and `AGENT_HANDOFF.md`.
+- On another computer, clone or pull `https://github.com/Stacks112/Stacks.git` on `main`, then read `AGENTS.md`, `STACKS_CONTEXT.md`, and `AGENT_HANDOFF.md`.
 
 ## 2026-07-31 Codex
 Goal:
