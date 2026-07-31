@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@ a{color:inherit;text-decoration:none}
 .nav{display:grid;gap:20px}
 .nav a{display:flex;align-items:center;gap:18px;font-size:20px;color:#1d1f25}
 .nav b{font-weight:800}
-.ico{width:24px;text-align:center;font-size:23px}
+.ico{width:24px;text-align:center;font-size:21px}
 .profile{position:absolute;bottom:24px;left:2px;display:flex;align-items:center;gap:14px;font-weight:800}
 .avatar{border-radius:50%;background:#355cff}
 .post{border-right:1px solid #e8e9ee;min-height:100vh}
@@ -40,12 +40,16 @@ p{font-size:16px;line-height:1.35;margin:0 0 19px;color:#272a31}
 .side-card{border:1px solid #e8e9ee;border-radius:17px;padding:15px 17px;margin-bottom:16px}
 .side-card h2{font-size:21px;line-height:1;margin:0 0 17px;font-weight:900}
 .cal{font-size:14px;color:#6b7280;margin:0 0 22px}.blue{color:#2457ff;font-weight:850;font-size:13px}
+.rec-note{margin:-8px 0 14px;color:#6b7280;font-size:13px;line-height:1.4}
+.rec-group{margin-top:15px;padding-top:14px;border-top:1px solid #edf0f4}
+.rec-group:first-of-type{margin-top:0;padding-top:0;border-top:0}
+.rec-group h3{font-size:13px;margin:0 0 10px;font-weight:900;line-height:1.25}
 .rec-card{display:block;padding:0 0 12px;margin-bottom:12px;border-bottom:1px solid #edf0f4}
 .rec-card:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
 .rec-label{display:inline-block;margin-bottom:7px;border-radius:999px;background:#eef3ff;color:#315cff;font-size:11px;font-weight:900;padding:4px 8px}
 .rec-card b{display:block;font-size:14.5px;line-height:1.28;font-weight:900}
 .rec-card span{display:block;color:#6b7280;font-size:12px;line-height:1.35;margin-top:5px}
-.rec-note{margin:-8px 0 14px;color:#6b7280;font-size:13px;line-height:1.4}
+.rec-more{display:inline-block;color:#2457ff;font-size:12.5px;font-weight:850;margin-top:2px}
 @media(max-width:1100px){.shell{grid-template-columns:82px minmax(520px,604px) 328px}.brand span,.nav a span,.profile b{display:none}.left{padding-left:0;padding-right:20px}.nav a{justify-content:center}.profile{left:2px}}
 @media(max-width:880px){.shell{display:block}.left,.rail{display:none}.post{border-right:0}.post-head{position:sticky;top:0;background:#fff;z-index:2}.article{max-width:640px;margin:auto}}
 </style>
@@ -64,7 +68,7 @@ p{font-size:16px;line-height:1.35;margin:0 0 19px;color:#272a31}
       <a href="#"><span class="ico">▱</span><span>Bookmarks</span></a>
       <a href="#"><span class="ico">♧</span><span>Notifications</span></a>
       <a href="#"><span class="ico">☼</span><span>Appearance</span></a>
-      <a href="#"><span class="ico">🇺🇸</span><span>English</span></a>
+      <a href="#"><span class="ico">US</span><span>English</span></a>
     </nav>
     <div class="profile"><div class="avatar">J</div><b>Profile</b></div>
   </aside>
@@ -76,12 +80,12 @@ p{font-size:16px;line-height:1.35;margin:0 0 19px;color:#272a31}
       <h1>The Fed swapped its inflation yardstick from CPI to PCE, and accuracy was not the only reason</h1>
       <div class="actions">
         <a class="primary" href="#">Read the original ↗</a>
-        <span class="pill">🎯</span>
+        <span class="pill">target</span>
         <span class="mono">Original in Korean · auto-translate works well</span>
       </div>
 
       <div class="quote">
-        <b>“” FROM THE SOURCE</b>
+        <b>FROM THE SOURCE</b>
         If you can prove the CPI is overstating inflation, you can slow the growth of spending without ever having to vote to "cut pensions".<br><br>
         PCE comes in about 0.4 percentage points lower than CPI on average.<br><br>
         From the Fed's point of view PCE 2% is a far easier target to hit than CPI 2%, and it succeeded in lowering the target.
@@ -107,11 +111,24 @@ p{font-size:16px;line-height:1.35;margin:0 0 19px;color:#272a31}
       <a class="rec-card" href="#"><b>If quarterly earnings and Fed guidance both get cut back, what will the market price?</b><span>Aswath Damodaran · 2026.07.29</span></a>
     </section>
     <section class="side-card">
-      <h2>Recommended next</h2>
-      <p class="rec-note">Personalized follow-up reads for this post.</p>
-      <a class="rec-card" href="#"><span class="rec-label">Readers also viewed</span><b>Gold buying, cheap-money carry trades and bond-fund outflows all spiked...</b><span>The Kobeissi Letter · 2026.07.26 · Views 36</span></a>
-      <a class="rec-card" href="#"><span class="rec-label">Same macro thread</span><b>Why is a back door China shut on June 23 turning into selling in Korean chip stocks...</b><span>메르 (ranto28) · 2026.07.30 · Views 29</span></a>
-      <a class="rec-card" href="#"><span class="rec-label">Popular with readers</span><b>SanDisk sold NAND to Meta below its own cost, and the market read it as a signal</b><span>Jukan · 2026.07.28</span></a>
+      <h2>Recommended</h2>
+      <p class="rec-note">Post view replaces the weekly hot list with contextual recommendation groups.</p>
+      <div class="rec-group">
+        <h3>NVIDIA 관련 최신 글 12개</h3>
+        <a class="rec-card" href="#"><b>엔비디아 CMX가 낸드를 대량으로 빨아들인다, '애플 하나'만 한 새 수요</b><span>Jukan · 2026.07.20</span></a>
+        <a class="rec-card" href="#"><b>루빈 랙 메모리 비중이 26%로 뛰었다, 블랙웰 때는 9%였다</b><span>Jukan · 2026.07.28</span></a>
+        <a class="rec-more" href="#">View all 12 →</a>
+      </div>
+      <div class="rec-group">
+        <h3>함께 많이 읽은 AMD 글</h3>
+        <a class="rec-card" href="#"><b>AMD에 박했던 세미애널리시스가 '유력'으로 돌아섰다. 정말 CUDA 해자를 넘을까?</b><span>SemiAnalysis · 2026.07.25</span></a>
+        <a class="rec-card" href="#"><b>AI 반도체 시장 1조4000억달러 전망 상향, 근거는 AMD CEO 본인의 키노트였다</b><span>Jukan · 2026.07.24</span></a>
+      </div>
+      <div class="rec-group">
+        <h3>이 글을 읽은 사람들이 본 AI 인프라 글</h3>
+        <a class="rec-card" href="#"><b>데이터센터를 레고처럼 조립하기 시작한 이유는 공사비 절감이 아니라 전기 기술자 부족이다</b><span>SemiAnalysis · 2026.07.29</span></a>
+        <a class="rec-card" href="#"><b>기판·메모리·특수가스, AI 반도체 공급망이 동시에 조여진다</b><span>Serenity · 2026.07.26</span></a>
+      </div>
     </section>
   </aside>
 </div>
