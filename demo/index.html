@@ -1,57 +1,159 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Stacks 추천 기능 데모</title>
-    <link rel="stylesheet" href="./style.css">
-  </head>
-  <body data-article-id="nvidia-ai-infra-2026-07-31" data-tickers="NVIDIA,NVDA" data-tags="AI 인프라,반도체,데이터센터" data-published-at="2026-07-31">
-    <header class="topbar">
-      <a class="brand" href="./">Stacks</a>
-      <span>추천 기능 임시 데모</span>
-    </header>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엔비디아가 오픈AI 빚 2500억달러를 보증하는 이유 · Stacks 추천 적용 미리보기</title>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.gist{color:#C9CDD6!important}}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
+.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}
+.topbar a{color:inherit;text-decoration:none}
+.topbar .brand{font-weight:800;font-size:16px}
+.topbar .sitenav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
+.topbar .sitenav a{font-size:13.5px;font-weight:600;color:#8E93A0}
+.cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#1E1B4B,#78350F);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
+.cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
+.meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
+h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
+.gist{color:#3E414B;white-space:pre-line;font-size:16px}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.sum3{margin:20px 0 0;padding:13px 15px;border-radius:12px;background:#F6F7F9;border:1px solid #ECEDF1}
+.sum3>b{display:block;font-size:12px;letter-spacing:.02em;color:#5B6070;margin-bottom:7px}
+.sum3 ul{list-style:none;margin:0;padding:0}
+.sum3 li{position:relative;padding-left:15px;margin:0 0 7px;font-size:15px;line-height:1.62}
+.sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.btn{display:inline-block;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px}
+.btn.app{background:#111214;color:#fff}
+.btn.src{background:#F6F7F9;color:#17181C;border:1px solid #ECEDF1}
+.preview-note{margin:18px 0 22px;padding:10px 13px;border:1px dashed #D7DAE0;border-radius:12px;color:#5B6070;font-size:13px;background:#FBFCFE}
+.stack-rec{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}
+.stack-rec h3{font-size:14px;margin:0 0 10px}
+.stack-rec-kicker{font-size:12px;color:#8E93A0;margin:-4px 0 12px}
+.stack-rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.stack-rec-card{display:flex;flex-direction:column;gap:7px;min-height:112px;padding:12px 13px;border:1px solid #ECEDF1;border-radius:12px;text-decoration:none;color:#17181C;background:#fff}
+.stack-rec-card:hover{border-color:#111214}
+.stack-rec-card b{font-size:14.5px;line-height:1.48}
+.stack-rec-card span{margin-top:auto;font-size:12px;color:#8E93A0}
+.stack-rec-list{list-style:none;margin:0;padding:0}
+.stack-rec-list li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}
+.stack-rec-list a{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}
+.stack-rec-list a:hover{text-decoration:underline}
+.stack-rec-list time{flex:none;font-size:12px;color:#8E93A0}
+.stack-rec-chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.stack-rec-chiprow a{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+footer a{color:#8E93A0}
+@media(max-width:620px){.wrap{padding:0 16px 48px}.stack-rec-grid{grid-template-columns:1fr}.topbar .sitenav{margin-left:0}.cover{height:96px}h1{font-size:23px}}
+@media(prefers-color-scheme:dark){
+  .topbar,.stack-rec,.stack-rec-card,footer,.sum3{border-color:#26272E}
+  .srcq,.sum3,.preview-note{background:#1A1B21}
+  .srcq p{color:#C9CDD6}
+  .btn.src,.stack-rec-chiprow a{background:#141519;color:#ECEDF1;border-color:#2E3037}
+  .stack-rec-card{background:#141519;color:#ECEDF1}
+  .stack-rec-card:hover{border-color:#ECEDF1}
+  .stack-rec-list li{border-bottom-color:#1E1F25}
+  .stack-rec-list a{color:#ECEDF1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="#">◆ Stacks</a>
+    <nav class="sitenav"><a href="#">전체 글</a> · <a href="#">이번 주</a> · <a href="#">소개</a></nav>
+  </div>
 
-    <main>
-      <article class="article">
-        <p class="eyebrow">AI Infrastructure</p>
-        <h1>NVIDIA 데이터센터 수요가 다시 투자자의 기준점이 되는 이유</h1>
-        <p class="dek">이 페이지는 운영 사이트가 아니라, 글 하단 추천 영역이 어떻게 보이는지 확인하기 위한 임시 데모입니다.</p>
+  <p class="preview-note">임시 미리보기입니다. 실제 운영 글의 하단에 추천 기능이 붙었을 때의 모습만 보여줍니다.</p>
 
-        <div class="meta">
-          <span>NVIDIA</span>
-          <span>AI 인프라</span>
-          <time datetime="2026-07-31">2026.07.31</time>
-        </div>
+  <div class="cover"><span class="label">DOT-COM ECHO</span></div>
+  <div class="meta">메르 (ranto28) · 2026-07-28 · 원문: KO</div>
+  <h1>엔비디아가 오픈AI 빚 2500억달러를 보증하는 이유, 25년 전 광케이블 버블에도 있었다</h1>
 
-        <section class="article-body">
-          <p>
-            AI 인프라 투자의 핵심은 단일 칩 판매량보다 데이터센터 증설 속도, 전력 병목,
-            네트워크 장비 투자, 그리고 주요 클라우드 사업자의 자본 지출 흐름을 함께 보는 데 있습니다.
-          </p>
-          <p>
-            NVIDIA를 읽은 사용자는 자연스럽게 AMD, TSMC, HBM, 전력 인프라, 데이터센터 리츠 같은 주변 주제로 이동합니다.
-            추천 기능은 이 흐름을 글 하단에서 바로 이어주기 위해 설계했습니다.
-          </p>
-          <p>
-            아래 추천 영역은 실제 구현 목표와 같은 구조입니다. 첫 번째는 같은 종목 최신 글,
-            두 번째는 같은 테마 인기 글, 세 번째는 함께 읽은 글입니다.
-          </p>
-        </section>
+  <div class="actions">
+    <a class="btn app" href="#">Stacks 앱에서 보기 →</a>
+    <a class="btn src" href="#">원문 보기 ↗</a>
+  </div>
 
-        <aside
-          class="recommendations"
-          data-recommendations
-          data-article-id="nvidia-ai-infra-2026-07-31"
-          data-title="NVIDIA 데이터센터 수요가 다시 투자자의 기준점이 되는 이유"
-          data-url="/posts/nvidia-ai-infra-2026-07-31.html"
-          data-tickers="NVIDIA,NVDA"
-          data-tags="AI 인프라,반도체,데이터센터"
-          data-published-at="2026-07-31"
-        ></aside>
-      </article>
-    </main>
+  <figure class="srcq">
+    <blockquote lang="ko">
+      <p>비슷한 점은 닷컴버블 때의 순환금융이 지금도 나타나고 있다는 것임.</p>
+      <p>GPU를 파는쪽이 돈을 대주고, 그 돈이 GPU를 파는쪽의 매출로 다시 돌아오는 구조가 핵심임.</p>
+    </blockquote>
+    <figcaption class="srcq-c"><a href="#">메르 · 2026.07.28</a></figcaption>
+  </figure>
 
-    <script src="./recommendations-demo.js" defer></script>
-  </body>
+  <h2 class="gsub">왜 이 얘기가 다시 나오나</h2>
+  <p class="gist">엔비디아가 오픈AI의 오하이오 데이터센터 부채 2500억달러를 보증하기로 한 데 더해, 오픈AI가 자사 칩을 사들이는 데 쓸 3500억달러까지 지원하는 방안을 논의 중이라는 것이다.
+
+오픈AI는 적자 상태의 비상장사라 신용등급이 투자부적격이다. 데이터센터 시공사가 은행 돈을 낮은 금리로 빌리려면 임차인 신용이 필요한데, 그 신용을 엔비디아가 대신 채워주는 구조다.</p>
+
+  <h2 class="gsub">25년 전에도 같은 구조가 있었다</h2>
+  <p class="gist">1990년대 후반, 인터넷이 데이터 트래픽을 폭발시킬 것이라는 기대 속에 통신회사들이 앞다퉈 광케이블을 깔았다.
+
+현금이 없던 신생 통신사들은 장비회사에서 돈을 빌려 장비를 샀고, 그 대출은 결국 장비회사 자신의 매출로 돌아오는 구조였다.</p>
+
+  <h2 class="gsub">그래서 무엇을 보게 되나</h2>
+  <p class="gist">결국 질문은 세 가지로 좁혀진다. AI가 수천억달러의 인프라 투자를 정당화할 만큼 돈을 벌어들일 것이냐, 오픈AI가 돈을 계속 조달할 수 있느냐, 그리고 지금보다 효율적인 기술이 나와 GPU 자체가 덜 필요해지느냐다.</p>
+
+  <div class="sum3">
+    <b>세 줄 요약</b>
+    <ul>
+      <li>엔비디아 보증과 오픈AI 칩 구매 지원 논의는 AI 인프라 순환금융 구조를 보여준다.</li>
+      <li>25년 전 광케이블 버블에도 장비회사가 고객에게 돈을 대고 매출로 되돌리는 구조가 있었다.</li>
+      <li>핵심 변수는 오픈AI의 조달 능력과 GPU 수요를 바꿀 기술 변화다.</li>
+    </ul>
+  </div>
+
+  <section class="stack-rec" aria-labelledby="rec-ticker">
+    <h3 id="rec-ticker">NVIDIA 관련 최신 글</h3>
+    <p class="stack-rec-kicker">같은 종목을 읽는 사람이 바로 이어서 볼 만한 글</p>
+    <div class="stack-rec-grid">
+      <a class="stack-rec-card" href="#"><b>루빈 랙 메모리 비중이 26%로 뛰었다, 블랙웰 때는 9%였다</b><span>Jukan · 2026-07-28</span></a>
+      <a class="stack-rec-card" href="#"><b>해킹 조사를 가로막은 건 '닫힌 AI'였다. 엔비디아는 왜 보안의 답을 공개에서 찾을까?</b><span>Jensen Huang · 2026-07-27</span></a>
+      <a class="stack-rec-card" href="#"><b>오픈AI 5000억달러 오하이오 데이터센터, 엔비디아가 2500억달러 지급보증한다</b><span>Serenity · 2026-07-27</span></a>
+      <a class="stack-rec-card" href="#"><b>엔비디아 CMX가 낸드를 대량으로 빨아들인다, '애플 하나'만 한 새 수요</b><span>Jukan · 2026-07-20</span></a>
+    </div>
+  </section>
+
+  <section class="stack-rec" aria-labelledby="rec-theme">
+    <h3 id="rec-theme">AI 인프라 글 더 보기</h3>
+    <div class="stack-rec-chiprow">
+      <a href="#">AI 인프라</a>
+      <a href="#">반도체</a>
+      <a href="#">데이터센터</a>
+      <a href="#">HBM</a>
+    </div>
+    <ul class="stack-rec-list">
+      <li><a href="#">데이터센터를 레고처럼 조립하기 시작한 이유는 공사비 절감이 아니라 전기 기술자 부족이다</a><time>7월 29일</time></li>
+      <li><a href="#">AI 인프라·보안 소프트웨어 지수는 22% 올랐는데, 업무용 소프트웨어 지수는 급락한 이유는?</a><time>7월 28일</time></li>
+      <li><a href="#">기판·메모리·특수가스, AI 반도체 공급망이 동시에 조여진다</a><time>7월 26일</time></li>
+      <li><a href="#">AI 반도체 시장 1조4000억달러 전망 상향, 근거는 AMD CEO 본인의 키노트였다</a><time>7월 24일</time></li>
+    </ul>
+  </section>
+
+  <section class="stack-rec" aria-labelledby="rec-coread">
+    <h3 id="rec-coread">이 글을 읽은 사람들이 함께 본 글</h3>
+    <ul class="stack-rec-list">
+      <li><a href="#">AMD에 박했던 세미애널리시스가 '유력'으로 돌아섰다. 정말 CUDA 해자를 넘을까?</a><time>7월 25일</time></li>
+      <li><a href="#">수주잔고는 사상 최대인데, 왜 오라클 부도 보험료는 2008년보다 비쌀까?</a><time>7월 24일</time></li>
+      <li><a href="#">미국의 이자 청구서가 오르고 있다, AI가 그 압력을 더한다</a><time>7월 19일</time></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>STACKS BUILD v81 · 추천 기능 임시 적용 미리보기</p>
+    <p>© 2026 Stacks · stacksdaily.com</p>
+  </footer>
+</div>
+</body>
 </html>
