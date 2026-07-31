@@ -6,6 +6,7 @@
     articleId: root.dataset.articleId || document.body.dataset.articleId || location.pathname,
     title: root.dataset.title || document.title,
     url: root.dataset.url || location.pathname,
+    author: root.dataset.author || root.dataset.authorName || document.body.dataset.author || "",
     tickers: split(root.dataset.tickers || document.body.dataset.tickers || ""),
     tags: split(root.dataset.tags || document.body.dataset.tags || ""),
     publishedAt: root.dataset.publishedAt || document.body.dataset.publishedAt || "",
@@ -35,6 +36,7 @@
       articleId: currentArticle.articleId,
       tickers: currentArticle.tickers.join(","),
       tags: currentArticle.tags.join(","),
+      author: currentArticle.author,
       limit: "12",
     });
 

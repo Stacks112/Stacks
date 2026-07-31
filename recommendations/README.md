@@ -1,10 +1,9 @@
 # Stacks Recommendation Feature
 
-This package adds three article recommendation blocks:
+This package adds per-stock article recommendation blocks:
 
-- Same ticker latest articles
-- Same theme popular articles
-- People who read this also read
+- One latest-articles section per stock in `data-tickers`
+- Korean display labels for known aliases such as `SAMSUNG ELECTRONICS` and `BROADCOM`
 
 It is designed for the current Stacks architecture: static pages on GitHub Pages plus Cloudflare Worker and D1 for dynamic behavior.
 
@@ -21,6 +20,12 @@ Run the schema once against the production D1 database:
 
 ```bash
 wrangler d1 execute <DATABASE_NAME> --file=recommendations/schema.sql
+```
+
+For an existing D1 database created before author tracking, run:
+
+```bash
+wrangler d1 execute <DATABASE_NAME> --file=recommendations/2026-07-31-add-author.sql
 ```
 
 The Worker must expose the D1 binding as `DB`.
@@ -65,6 +70,7 @@ Add this block near the bottom of each article:
   data-article-id="nvidia-ai-infra-2026-07-31"
   data-title="NVIDIA AI infrastructure demand update"
   data-url="/posts/nvidia-ai-infra-2026-07-31.html"
+  data-author="Jukan"
   data-tickers="NVIDIA,NVDA"
   data-tags="AI INFRASTRUCTURE,SEMICONDUCTOR,DATA CENTER"
   data-published-at="2026-07-31"
@@ -73,12 +79,13 @@ Add this block near the bottom of each article:
 ```
 
 For Korean display names, use Korean tags such as `AI 인프라,반도체,데이터센터`. For stock matching, keep ticker-like labels consistent across articles.
+For the same-stock record label, set `data-author` to the display name shown on the article, for example `Jukan`.
 
 ## How It Works
 
 When a reader opens an article, the widget sends a lightweight view event to `/api/article-view`. The Worker stores the article metadata, increments the view count, and updates co-read relationships based on recent articles from the same browser/device signature.
 
-The widget then calls `/api/recommendations` and renders available sections. If the API fails, the article remains readable and the recommendation area stays hidden.
+The widget then calls `/api/recommendations` and renders available stock sections. If the API fails, the article remains readable and the recommendation area stays hidden.
 
 ## First Success Metric
 

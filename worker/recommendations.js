@@ -40,12 +40,13 @@ export async function recordArticleView(request, env) {
   await env.DB.batch([
     env.DB.prepare(`
       INSERT INTO article_metrics (
-        article_id, title, url, published_at, tickers_json, tags_json, view_count, updated_at
+        article_id, title, url, author, published_at, tickers_json, tags_json, view_count, updated_at
       )
-      VALUES (?1, ?2, ?3, ?4, ?5, ?6, 1, CURRENT_TIMESTAMP)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 1, CURRENT_TIMESTAMP)
       ON CONFLICT(article_id) DO UPDATE SET
         title = excluded.title,
         url = excluded.url,
+        author = COALESCE(excluded.author, article_metrics.author),
         published_at = COALESCE(excluded.published_at, article_metrics.published_at),
         tickers_json = excluded.tickers_json,
         tags_json = excluded.tags_json,
@@ -55,6 +56,7 @@ export async function recordArticleView(request, env) {
       article.articleId,
       article.title,
       article.url,
+      article.author || null,
       article.publishedAt,
       JSON.stringify(article.tickers),
       JSON.stringify(article.tags),
@@ -86,34 +88,13 @@ export async function getRecommendations(request, env) {
   const url = new URL(request.url);
   const articleId = cleanText(url.searchParams.get("articleId") || "", 160);
   const tickers = normalizeList(url.searchParams.get("tickers") || "");
-  const tags = normalizeList(url.searchParams.get("tags") || "");
   const limit = Math.min(Math.max(Number(url.searchParams.get("limit") || 12), 1), 24);
 
-  const [sameTicker, sameTheme, coRead] = await Promise.all([
-    findSameTicker(env, articleId, tickers, limit),
-    findSameTheme(env, articleId, tags, limit),
-    findCoRead(env, articleId, limit),
-  ]);
+  const tickerSections = await findTickerSections(env, articleId, tickers, limit);
 
   return json({
     ok: true,
-    sections: [
-      {
-        id: "same-ticker",
-        title: tickers[0] ? `${tickers[0]} 관련 최신 글` : "같은 종목 최신 글",
-        items: sameTicker,
-      },
-      {
-        id: "same-theme",
-        title: tags[0] ? `${tags[0]} 테마에서 많이 읽은 글` : "같은 테마에서 많이 읽은 글",
-        items: sameTheme,
-      },
-      {
-        id: "co-read",
-        title: "이 글을 읽은 사람들이 함께 본 글",
-        items: coRead,
-      },
-    ].filter((section) => section.items.length > 0),
+    sections: tickerSections.filter((section) => section.items.length > 0),
   });
 }
 
@@ -149,48 +130,27 @@ function upsertCoRead(env, sourceId, targetId) {
   `).bind(sourceId, targetId);
 }
 
-async function findSameTicker(env, articleId, tickers, limit) {
-  if (tickers.length === 0) return [];
+async function findTickerSections(env, articleId, tickers, limit) {
+  const groups = groupTickers(tickers);
+  if (groups.length === 0) return [];
 
+  const sectionLimit = Math.min(limit, 4);
+  return Promise.all(groups.map(async (group) => ({
+    id: `ticker-${slugify(group.key)}`,
+    title: `${formatTickerName(group.key)} 최신 글`,
+    items: await findTickerLatest(env, articleId, group.aliases, sectionLimit),
+  })));
+}
+
+async function findTickerLatest(env, articleId, aliases, limit) {
   const rows = await env.DB.prepare(`
-    SELECT article_id, title, url, published_at, view_count
+    SELECT article_id, title, url, published_at, author, view_count
     FROM article_metrics
     WHERE article_id <> ?1
-      AND (${tickers.map((_, index) => `tickers_json LIKE ?${index + 2}`).join(" OR ")})
+      AND (${aliases.map((_, index) => `tickers_json LIKE ?${index + 2}`).join(" OR ")})
     ORDER BY datetime(COALESCE(published_at, updated_at)) DESC, view_count DESC
-    LIMIT ?${tickers.length + 2}
-  `).bind(articleId, ...tickers.map((ticker) => `%\"${ticker}\"%`), limit).all();
-
-  return mapRows(rows.results);
-}
-
-async function findSameTheme(env, articleId, tags, limit) {
-  if (tags.length === 0) return [];
-
-  const rows = await env.DB.prepare(`
-    SELECT article_id, title, url, published_at, view_count
-    FROM article_metrics
-    WHERE article_id <> ?1
-      AND (${tags.map((_, index) => `tags_json LIKE ?${index + 2}`).join(" OR ")})
-    ORDER BY view_count DESC, datetime(COALESCE(published_at, updated_at)) DESC
-    LIMIT ?${tags.length + 2}
-  `).bind(articleId, ...tags.map((tag) => `%\"${tag}\"%`), limit).all();
-
-  return mapRows(rows.results);
-}
-
-async function findCoRead(env, articleId, limit) {
-  if (!articleId) return [];
-
-  const rows = await env.DB.prepare(`
-    SELECT m.article_id, m.title, m.url, m.published_at, m.view_count
-    FROM article_co_reads c
-    JOIN article_metrics m ON m.article_id = c.target_article_id
-    WHERE c.source_article_id = ?1
-      AND c.target_article_id <> ?1
-    ORDER BY c.score DESC, datetime(c.last_seen) DESC
-    LIMIT ?2
-  `).bind(articleId, limit).all();
+    LIMIT ?${aliases.length + 2}
+  `).bind(articleId, ...aliases.map((ticker) => `%\"${ticker}\"%`), limit).all();
 
   return mapRows(rows.results);
 }
@@ -200,6 +160,7 @@ function normalizeArticle(body) {
     articleId: cleanText(body.articleId || body.id || "", 160),
     title: cleanText(body.title || "", 240),
     url: cleanUrl(body.url || ""),
+    author: cleanText(body.author || body.authorName || body.byline || "", 120),
     publishedAt: cleanText(body.publishedAt || body.published_at || "", 40) || null,
     tickers: normalizeList(body.tickers || body.ticker || ""),
     tags: normalizeList(body.tags || body.tag || ""),
@@ -234,9 +195,61 @@ function mapRows(rows = []) {
     articleId: row.article_id,
     title: row.title,
     url: row.url,
+    author: row.author,
     publishedAt: row.published_at,
     viewCount: row.view_count,
   }));
+}
+
+function groupTickers(tickers) {
+  const groups = new Map();
+
+  for (const ticker of tickers) {
+    const key = canonicalTicker(ticker);
+    if (!groups.has(key)) {
+      groups.set(key, new Set(aliasTickers(key)));
+    }
+    groups.get(key).add(ticker);
+  }
+
+  return [...groups.entries()].map(([key, aliases]) => ({
+    key,
+    aliases: [...aliases],
+  }));
+}
+
+function canonicalTicker(ticker) {
+  const value = String(ticker || "").toUpperCase();
+  if (["005930", "005930.KS", "SAMSUNG", "SAMSUNG ELECTRONICS", "삼성전자"].includes(value)) {
+    return "SAMSUNG ELECTRONICS";
+  }
+  if (["AVGO", "BROADCOM", "브로드컴"].includes(value)) {
+    return "BROADCOM";
+  }
+  return value;
+}
+
+function aliasTickers(key) {
+  if (key === "SAMSUNG ELECTRONICS") {
+    return ["SAMSUNG ELECTRONICS", "SAMSUNG", "005930", "005930.KS", "삼성전자"];
+  }
+  if (key === "BROADCOM") {
+    return ["BROADCOM", "AVGO", "브로드컴"];
+  }
+  return [key];
+}
+
+function formatTickerName(key) {
+  if (key === "SAMSUNG ELECTRONICS") return "삼성전자";
+  if (key === "BROADCOM") return "브로드컴";
+  return key;
+}
+
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9가-힣]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "stock";
 }
 
 async function makeSessionHash(request) {

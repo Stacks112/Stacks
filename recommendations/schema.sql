@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS article_metrics (
   article_id TEXT PRIMARY KEY,
   title TEXT NOT NULL,
   url TEXT NOT NULL,
+  author TEXT,
   published_at TEXT,
   tickers_json TEXT NOT NULL DEFAULT '[]',
   tags_json TEXT NOT NULL DEFAULT '[]',
