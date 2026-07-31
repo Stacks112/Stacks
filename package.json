@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "vite build --outDir dist"
+    "build": "node scripts/build-site.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
