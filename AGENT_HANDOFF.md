@@ -28,6 +28,52 @@ Next:
 
 ## 2026-07-31 Codex
 Goal:
+- Restore view/like/comment counters after frontend pointed at retired workers.dev URL.
+
+Changed:
+- `C:\Users\dream\Downloads\Stacks-main\index.html`
+- `AGENT_HANDOFF.md`
+
+Verified:
+- `https://stacks-comments.wnrakrhdn128.workers.dev/views` returns 404.
+- `https://api.stacksdaily.com/views` returns existing D1 data, e.g. `macro-week-2026-07-26 = 36`.
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main diff --check -- index.html`
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main push origin HEAD:main`
+- Production commit: `b4ff0211 fix(api): point comments to custom domain`.
+
+Risks:
+- `scripts/deploy_guard.py` could not run because `python` is a Microsoft Store stub and `py` is not installed.
+- Production worktree remains detached HEAD with existing untracked `_preview_no_today_news/` left untouched.
+
+Next:
+- Verify live `stacksdaily.com` HTML contains `const COMMENTS_API = "https://api.stacksdaily.com";`.
+
+## 2026-07-31 Codex
+Goal:
+- Fix remaining "이전 판단" visibility in mobile feed and deploy.
+
+Changed:
+- `C:\Users\dream\Downloads\Stacks-main\assets\v82.css`
+- `C:\Users\dream\Downloads\Stacks-main\index.html`
+- `AGENT_HANDOFF.md`
+
+Verified:
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main fetch origin main`
+- `rg -n "\.card\.v82c .*\.opp|v82\.css\?v=1a67db08|card:not\(\.v83one\).*\.opp" C:\Users\dream\Downloads\Stacks-main\assets\v82.css C:\Users\dream\Downloads\Stacks-main\assets\v83tw.css C:\Users\dream\Downloads\Stacks-main\index.html -S`
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main diff --check -- assets/v82.css index.html`
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main push origin HEAD:main`
+- Live cache-busted HTML contains `assets/v82.css?v=1a67db08`.
+- Live CSS contains `.card.v82c .opp`.
+
+Risks:
+- `scripts/deploy_guard.py` failed because `python` is a Microsoft Store stub that only printed `Python`.
+- Production worktree remains detached HEAD with existing untracked `_preview_no_today_news/` left untouched.
+
+Next:
+- none.
+
+## 2026-07-31 Codex
+Goal:
 - Make the Stacks working context available from another computer through GitHub.
 
 Changed:
