@@ -695,53 +695,62 @@ function v83HotlRow(item){
   return b;
 }
 
-function v83PostRecLabels(){
+function v83PostRecStockName(key){
   var lang = (typeof LANG !== "undefined") ? LANG : "ko";
-  var map = {
-    ko: { samsung: "삼성전자 관련 최신 글", broadcom: "브로드컴 관련 최신 글", nvidia: "NVIDIA 관련 최신 글", amd: "AMD 관련 최신 글" },
-    en: { samsung: "Latest Samsung Electronics related reads", broadcom: "Latest Broadcom related reads", nvidia: "Latest NVIDIA related reads", amd: "Latest AMD related reads" },
-    ja: { samsung: "サムスン電子関連の最新記事", broadcom: "ブロードコム関連の最新記事", nvidia: "NVIDIA関連の最新記事", amd: "AMD関連の最新記事" }
-  };
-  return map[lang] || map.en;
+  if (lang === "ko"){
+    if (key === "SAMSUNG ELECTRONICS") return "삼성전자";
+    if (key === "BROADCOM") return "브로드컴";
+  }
+  return key;
 }
 
-function v83ItemNeedleText(item){
+function v83PostRecTitle(key){
+  var lang = (typeof LANG !== "undefined") ? LANG : "ko";
+  var name = v83PostRecStockName(key);
+  if (lang === "ja") return name + "関連の最新記事";
+  if (lang === "en") return "Latest " + name + " related reads";
+  return name + " 관련 최신 글";
+}
+
+function v83PostRecIsStock(key){
   try {
-    return [
-      item.id || "", item.source || "", (item.tags || []).join(" "),
-      item.title && (item.title.ko || ""), item.title && (item.title.en || ""), item.title && (item.title.ja || ""),
-      item.gist && (item.gist.ko || ""), item.gist && (item.gist.en || ""), item.gist && (item.gist.ja || "")
-    ].join(" ").toLowerCase();
-  } catch (e) { return ""; }
-}
-
-function v83ItemTagText(item){
-  try {
-    return (item && item.tags ? item.tags : []).join(" ").toLowerCase();
-  } catch (e) { return ""; }
-}
-
-function v83PostRecGroupRx(group){
-  return {
-    samsung: /(samsung electronics|samsung|삼성전자|삼성|005930)/i,
-    broadcom: /(broadcom|avgo|브로드컴)/i,
-    nvidia: /(nvidia|nvda|엔비디아|젠슨|jensen|blackwell|rubin)/i,
-    amd: /(\bamd\b|advanced micro devices|mi300|mi325|mi500|cuda)/i
-  }[group] || /a^/;
+    return !!(key && typeof ENTITIES !== "undefined" && ENTITIES[key] && ENTITIES[key].kind === "company" && ENTITIES[key].ticker);
+  } catch (e){ return false; }
 }
 
 function v83PostRecPickGroups(item){
-  var groups = ["samsung", "broadcom", "nvidia", "amd"];
-  var text = v83ItemNeedleText(item);
-  return groups.filter(function(group){ return v83PostRecGroupRx(group).test(text); });
+  try {
+    var keys = (typeof itemMainKeys === "function") ? itemMainKeys(item) : (item && item.ents ? item.ents : []);
+    return keys.filter(v83PostRecIsStock).slice(0, 4);
+  } catch (e){ return []; }
+}
+
+function v83PostRecAliases(key){
+  try {
+    var e = (typeof ENTITIES !== "undefined") ? ENTITIES[key] : null;
+    return [key].concat((e && e.aliases) || [], (e && e.ticker) ? [e.ticker] : [])
+      .map(function(x){ return String(x || "").toLowerCase(); })
+      .filter(Boolean);
+  } catch (e){ return [String(key || "").toLowerCase()]; }
+}
+
+function v83PostRecItemHasStock(item, key){
+  try {
+    if (!item) return false;
+    if (item._mk === key || (item._mks && item._mks.indexOf(key) >= 0)) return true;
+    if (typeof itemEntities === "function" && itemEntities(item).has(key)) return true;
+    if (item.ents && item.ents.indexOf(key) >= 0) return true;
+    var tags = (item.tags || []).map(function(t){ return String(t || "").toLowerCase(); });
+    var aliases = v83PostRecAliases(key);
+    return tags.some(function(tag){ return aliases.indexOf(tag) >= 0; });
+  } catch (e){ return false; }
 }
 
 function v83PostRecCandidates(group, currentId){
   var all = (typeof ITEMS !== "undefined" && ITEMS) ? ITEMS : [];
-  var rx = v83PostRecGroupRx(group);
   return all.filter(function(x){
     if (!x || x.id === currentId) return false;
-    return rx.test(v83ItemTagText(x));
+    return v83PostRecItemHasStock(x, group);
   }).sort(function(a, b){
     var av = (typeof VIEW_COUNTS !== "undefined" && VIEW_COUNTS[a.id]) || 0;
     var bv = (typeof VIEW_COUNTS !== "undefined" && VIEW_COUNTS[b.id]) || 0;
@@ -771,7 +780,6 @@ function v83PostRecRail(){
       if (hotSec) hotSec.hidden = false;
       return;
     }
-    var labels = v83PostRecLabels();
     var sections = groups.map(function(group){
       return { group: group, rows: v83PostRecCandidates(group, V83ITEM).slice(0, 3) };
     }).filter(function(section){ return section.rows.length; });
@@ -786,12 +794,12 @@ function v83PostRecRail(){
     existing.forEach(function(sec){ sec.remove(); });
     sections.forEach(function(section){
       var sec = document.createElement("section");
-      sec.id = "v83postRecSec-" + section.group;
+      sec.id = "v83postRecSec-" + String(section.group).toLowerCase().replace(/[^a-z0-9가-힣]+/g, "-").replace(/^-+|-+$/g, "");
       sec.className = "v83postRecSec";
       sec.setAttribute("data-key", key);
       var h = document.createElement("h2");
       h.className = "section-title";
-      h.textContent = labels[section.group] || labels.nvidia;
+      h.textContent = v83PostRecTitle(section.group);
       sec.appendChild(h);
       var wrap = document.createElement("div");
       wrap.className = "hot-rail";
