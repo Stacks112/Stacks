@@ -570,8 +570,8 @@ function v83MoveLang(){
     if (!nav || !lm) return;
     if (nav.contains(lm)) return;
     lm.classList.add("v83-lang");
-    var cta = document.getElementById("v83cta");
-    if (cta && cta.parentNode === nav) nav.insertBefore(lm, cta);
+    var spacer = nav.querySelector(".v83-spacer");
+    if (spacer && spacer.parentNode === nav) nav.insertBefore(lm, spacer);
     else nav.appendChild(lm);
   } catch (e){}
 }
@@ -597,8 +597,6 @@ function v83Relabel(){
       var sp = b.querySelector("span");
       if (sp && typeof v83T === "function") sp.textContent = v83T(k);
     });
-    var cta = document.getElementById("v83cta");
-    if (cta && typeof v83T === "function") cta.textContent = v83T("join");
     var me = document.getElementById("v83me");
     if (me){ var ms = me.querySelector("span:not(.v83-ava)"); if (ms && typeof v83T === "function") ms.textContent = v83T("me"); }
     var si = document.querySelector(".v83-search input");

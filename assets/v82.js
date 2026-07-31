@@ -201,7 +201,6 @@
       _dwItem("bm", "🔖") + _dwItem("alerts", "🔔") +
       /* 2026-07-25 (june): 지금 모드를 보여준다 — 다크는 달, 라이트는 해 */
       _dwItem("appearance", (typeof THEME !== "undefined" && THEME === "dark") ? "🌙" : "☀️") +
-      '<button class="v82dw-item v82dw-join" data-act="join"><span class="ic">📰</span>' + _dwT("join") + '</button>' +
       _dwItem("me", "👤") +
       '<div class="v82dw-nl" id="v82dwNl"><div class="v82dw-nlh"><span>📧</span>' + t.nlLabel + '</div></div>' +
       '<div class="v82dw-langs">' +
@@ -234,7 +233,6 @@
     else if (act === "cal"){ closeDrawer(true); navGo("cal"); }
     else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
     else if (act === "appearance"){ closeDrawer(true); if (typeof toggleTheme === "function") toggleTheme(); }
-    else if (act === "join"){ closeDrawer(true); var hj = (typeof v83TopHotId === "function") ? v83TopHotId() : null; if (hj && typeof openCardById === "function") openCardById(hj); else navGo("home"); }
     else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ try { SERIES_VIEW=null; ENTITY_VIEW=null; QUERY=""; BM_ONLY=true; renderFeed(false); } catch(e){} }); }
     else if (act === "follows"){ closeDrawer(true); openList("follows"); }
     else if (act === "shares"){ closeDrawer(true); openList("shares"); }

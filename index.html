@@ -1668,9 +1668,6 @@ html{overscroll-behavior-y:contain;}
   #v83nav .v83-link:hover{ background:var(--bg-soft); }
   #v83nav .v83-link svg{ width:23px; height:23px; fill:none; stroke:currentColor; stroke-width:1.9;
     stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto; }
-  #v83nav .v83-cta{ margin:14px 8px 4px; padding:13px; border-radius:999px; background:var(--accent);
-    color:#fff; font-weight:800; font-size:15px; border:0; cursor:pointer; font-family:inherit; }
-  #v83nav .v83-cta:hover{ filter:brightness(1.06); }
   #v83nav .v83-spacer{ flex:1 1 auto; }
   #v83nav .v83-me{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:999px;
     cursor:pointer; background:none; border:0; width:100%; text-align:left; font-family:inherit;
@@ -5619,9 +5616,9 @@ var V83ICONS = {
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",join:"오늘의 뉴스",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Explore",skew:"Sentiment",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",join:"Today's News",search:"Search",me:"Profile"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",join:"本日のニュース",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"적중 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Explore",skew:"Sentiment",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",search:"Search",me:"Profile"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -5702,7 +5699,6 @@ function mountV83(){
   ];
   var html = '';
   links.forEach(function(x, i){ html += '<button class="v83-link" data-i="' + i + '" data-k="' + x[0] + '">' + x[1] + '<span>' + v83T(x[0]) + '</span></button>'; });
-  html += '<button class="v83-cta" id="v83cta">' + v83T("join") + '</button>';
   html += '<div class="v83-spacer"></div>';
   html += '<button class="v83-me" id="v83me"><span class="v83-ava">J</span><span>' + v83T("me") + '</span></button>';
   nav.innerHTML = html;
@@ -5718,7 +5714,6 @@ function mountV83(){
     });
   });
   var hb0 = nav.querySelector('.v83-link[data-k="home"]'); if (hb0) hb0.classList.add("on");
-  var ctaB = nav.querySelector("#v83cta"); if (ctaB) ctaB.addEventListener("click", v83JoinDebate);
   var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
 
   if (feed){
@@ -5795,7 +5790,7 @@ function unmountV83(){
    (2) skew TREND timeline replacing the horizontal skew chips (renderSkew branches here)
    (3) entity directory cards for the 기업/투자 고수/정치인 tabs (renderFeed branches here) */
 
-/* ---- (1) rail events: v83.5 — 임박한 일정만 (X Today's News처럼 컴팩트).
+/* ---- (1) rail events: v83.5 — 임박한 일정만 컴팩트하게 표시.
    전체 달력은 좌측 메뉴 "캘린더" 페이지가 담당. ---- */
 var V83CAL = { y: null, m: null, sel: null };
 function v83CalShift(d){
@@ -8624,7 +8619,7 @@ function renderHotRail(){
       .sort((a, b) => (a.date < b.date ? 1 : -1))
       .forEach(i => { if (hotList.length < 5){ hotList.push(i); seen.add(i.id); } });
   }
-  /* v83.3: X "Today's News" 스타일 컴팩트 리스트 (헤드라인 + 메타) */
+  /* v83.3: 컴팩트 뉴스 리스트 (헤드라인 + 메타) */
   if (typeof V83 !== "undefined" && V83 && V83.mounted){
     const S2 = STRINGS[LANG];
     rail.innerHTML = "";
@@ -10428,11 +10423,6 @@ bootData();
   }
   html.v83 #v83nav .v83-lang .lang-opts button{ width:100% !important; white-space:nowrap !important; }
   html.v83 #v83nav{ overflow:visible !important; }
-  /* Post 버튼 : X = 폭 234 · 높이 52 · 17px/700 */
-  html.v83 #v83nav .v83-cta{
-    width:234px; height:52px; padding:0 !important; margin:16px 0 0 !important;
-    font-size:17px !important; font-weight:700 !important; border-radius:9999px;
-  }
   html.v83 #v83nav .v83-me{
     font-size:15px !important; line-height:20px !important; gap:12px !important;
     padding:12px !important; margin:0 0 12px !important; width:auto !important;
@@ -10653,8 +10643,6 @@ bootData();
      → 래퍼를 직접 가운데로 (안 하면 국기가 다른 아이콘보다 15px 왼쪽으로 삐져나감) */
   html.v83 #v83nav .v83-lang.lang-menu{ align-self:center !important; }
   html.v83 #v83nav .v83-lang .lang-cur{ justify-content:center !important; }
-  html.v83 #v83nav .v83-cta{ width:52px !important; font-size:0 !important; align-self:center; }
-  html.v83 #v83nav .v83-cta::after{ content:"\270E"; font-size:24px; line-height:1; }
 }
 </style>
 <script id="xparity-js">
