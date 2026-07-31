@@ -104,7 +104,7 @@
   #feedList .card:hover{transform:none;box-shadow:none;}
   .card.v82c{cursor:pointer;}
   .card.v82c .title-orig,.card.v82c .why,.card.v82c .oc,.card.v82c .since,.card.v82c .ask-block,
-  .card.v82c .cta-row,.card.v82c .comment-box,.card.v82c .related,.card.v82c .gist-fold summary,
+  .card.v82c .cta-row,.card.v82c .comment-box,.card.v82c .related,.card.v82c .opp,.card.v82c .gist-fold summary,
   .card.v82c .collapse-caret,.card.v82c .mine-why,
   /* 압축 피드 카드는 본문을 168px로 자른다. 원문 블록을 그 위에 두면
      우리 해석이 한 줄도 안 보인 채 잘린다. 원문은 상세에서만 보여준다. */
