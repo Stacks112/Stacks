@@ -24,7 +24,16 @@
 - If the project grows or multiple agents work at once, a short status note or shared task list will help keep alignment.
 - For now, this file is the quick reference for the current context.
 
+## Deployment Rule
+- When the user says "deploy" or "배포", deploy to the production Stacks repo/site:
+  - repo/worktree: `C:\Users\dream\Downloads\Stacks-main`
+  - remote: `https://github.com/Stacks112/Stacks.git`
+  - site: `https://stacksdaily.com`
+- Do not treat the Sites demo project or `*.chatgpt.site` URL as production unless the user explicitly asks for the demo.
+- Before production deploy: fetch/rebase against `origin/main`, run `scripts/deploy_guard.py` for touched production files, commit, push to `main`, then verify `stacksdaily.com`.
+
 ## Practical Takeaway
 - Use the playbooks as the source of truth.
+- Use `AGENT_HANDOFF.md` for short Codex/Claude status handoffs.
 - Keep changes small and path-specific.
 - Treat Claude and this assistant as collaborating against the same playbook, not separate sources of truth.
