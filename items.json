@@ -1,6 +1,178 @@
 {
  "items": [
   {
+   "date": "2026-07-31",
+   "id": "meru-pce-cpi-switch-june-first-drop",
+   "related": [
+    "kobeissi-fed-hold-three-hike-dissents",
+    "damodaran-semiannual-reporting-fed-guidance"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224363492458",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#3F3A6E",
+    "label": "PCE 2%"
+   },
+   "tags": [
+    "PCE",
+    "CPI",
+    "FED"
+   ],
+   "stance": "watch",
+   "refFred": [
+    "PCEPI",
+    "PCEPILFE",
+    "CPIAUCSL"
+   ],
+   "title": {
+    "ko": "연준이 물가 잣대를 CPI에서 PCE로 바꾼 이유는 통계 정확도만이 아니었다",
+    "en": "The Fed swapped its inflation yardstick from CPI to PCE, and accuracy was not the only reason",
+    "ja": "FRBが物価の物差しをCPIからPCEに替えた理由は、統計の正確さだけではなかった"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "CPI가 과대계상되고 있다는 것을 증명하면, \"연금을 깎자\"고 표결할 필요없이 지출 증가를 늦출수 있기 때문임.",
+      "PCE는 CPI보다 0.4%p정도 평균적으로 낮게 나옴.",
+      "연준 입장에서 CPI 2%보다, PCE 2%가 훨씬 달성하기 쉬운 목표이고, 목표를 낮추는데 성공한 것임."
+     ],
+     "en": [
+      "If you can prove the CPI is overstating inflation, you can slow the growth of spending without ever having to vote to \"cut pensions\".",
+      "PCE comes in about 0.4 percentage points lower than CPI on average.",
+      "From the Fed's point of view PCE 2% is a far easier target to hit than CPI 2%, and it succeeded in lowering the target."
+     ],
+     "ja": [
+      "CPIが過大計上されていると証明できれば、「年金を削ろう」と採決する必要なく支出の伸びを遅らせることができるからだ。",
+      "PCEはCPIより平均して0.4%ポイントほど低く出る。",
+      "FRBの立場ではCPI2%よりPCE2%のほうがはるかに達成しやすい目標であり、目標を下げることに成功したのだ。"
+     ]
+    },
+    "cite": "메르 · 2026.07.31"
+   },
+   "sum3": {
+    "ko": "6월 미국 개인소비지출 물가지수가 한 달 전보다 0.1% 내렸다. 이 지수가 전월 대비로 떨어진 것은 6년 만에 처음이다.\n겉으로 보면 물가가 잡혀 가는 그림이다. 시장은 다음 회의에서 금리를 올릴 가능성이 낮아졌다고 읽고 환호했다.\n그런데 연준이 이 지수를 공식 잣대로 삼게 된 배경에는 1990년대 재정적자 문제가 있었다. CPI가 물가를 부풀린다는 결론 하나가 연금 인상률과 소득세 구간을 동시에 건드렸다.",
+    "en": "The US personal consumption expenditures price index fell 0.1% in June from the month before, its first monthly decline in six years.\nOn the surface that reads as inflation coming under control, and markets cheered it as lowering the odds of a hike at the next meeting.\nBut the reason this index became the Fed's official yardstick runs back to the deficit fight of the 1990s. One finding, that the CPI overstated inflation, moved pension increases and tax brackets at the same time.",
+    "ja": "6月の米個人消費支出物価指数が前月より0.1%下がった。この指数が前月比で下がるのは6年ぶりだ。\n表向きは物価が収まっていく絵に見える。市場は次回会合での利上げの可能性が下がったと読んで沸いた。\nだが、この指数がFRBの公式な物差しになった背景には1990年代の財政赤字の問題があった。CPIが物価を膨らませているという結論一つが、年金の引き上げ率と所得税の区分を同時に動かした。"
+   },
+   "gist": {
+    "ko": "6월 미국 개인소비지출 물가지수가 한 달 전보다 0.1% 내렸다.\n이 지수가 전월 대비로 떨어진 것은 6년 만에 처음이다.\n\n전년 대비로는 3.7%로, 5월의 4.1%에서 내려왔다.\n휘발유를 비롯한 에너지 상품 값이 9.2% 떨어진 것이 가장 크게 작용했다.\n\n@@REF@@6월 물가 0.1% 하락, 6년 만의 첫 감소 (UPI, 2026-07-30)|https://www.upi.com/Top_News/US/2026/07/30/personal-consumption-expenditures-june-2026/4151785423293/|https://cdnph.upi.com/sv/ph/og/upi/4151785423293/2026/1/6002c295230d40502dff7b0b8abb84de/v1.5/Inflation-rate-fell-by-01-in-June-first-decrease-in-six-years.jpg\n\nUPI는 에너지 상품 값의 9.2% 하락이 2022년 8월 이후 가장 큰 낙폭이라고 전했다.\n한 달 만에 지수를 마이너스로 돌려세운 것이 물가 전반이 아니라 에너지였다는 뜻이다.\n\n시장이 이 숫자에 환호한 이유는 이틀 전 연준 회의에 있다.\n금리는 9대 3으로 동결됐는데, 반대표 3장이 인하가 아니라 인상이었다.\n물가가 식었다는 데이터는 인상을 주장하는 쪽의 힘을 뺀다.\n\n## 연준은 왜 CPI를 안 보나\n\n여기서 한 가지가 걸린다.\n우리가 뉴스에서 물가라고 부르는 숫자는 대개 소비자물가지수, CPI다.\n그런데 연준이 2% 목표를 재는 잣대는 CPI가 아니라 개인소비지출 물가지수, PCE다.\n\n두 지수는 만드는 방식이 다르다.\nCPI는 10만 개가 넘는 품목을 고정된 장바구니에 담아 두고 그 장바구니의 값을 잰다.\nPCE는 사람들이 실제로 무엇을 샀는지에 따라 장바구니 구성을 계속 바꾼다.\n\n배추값이 오르면 사람들은 배추김치 대신 깍두기나 총각김치로 갈아탄다.\n고정된 장바구니는 이 이동을 따라가지 못하고, 오른 배추값을 그대로 지수에 얹는다.\n소비자가 싸진 물건으로 갈아타는 것을 못 봐서 물가가 실제보다 높게 잡히는 이 현상을 대체편향이라고 부른다.\n\n## 이 통계가 왜 정치의 문제였나\n\n1995년 미국 의회의 숙제는 재정적자였다.\n연방지출의 절반 이상이 사회보장연금 같은 의무지출이었고, 그 인상률과 소득세 구간이 전부 CPI에 연동돼 있었다.\n\n연동돼 있다는 말은 CPI 숫자 하나가 지출과 세수를 동시에 움직인다는 뜻이다.\n그래서 CPI가 물가를 부풀리고 있다는 결론이 나오면 셈이 달라진다.\n연금을 깎자고 표결하지 않고도 지출이 늘어나는 속도를 늦출 수 있기 때문이다.\n\n의회가 만든 위원회는 1996년 12월 4일에 결론을 냈다.\nCPI가 물가를 연 1.1%포인트 과대계상하고 있고, 대체편향이 그 가장 큰 몫이라는 내용이었다.\n\n@@REF@@소비자물가지수 연구를 위한 자문위원회 최종 보고서 (미 사회보장국 보관본, 1996-12-04)|https://www.ssa.gov/history/reports/boskinrpt.html\n\n보고서 본문에는 이 통계가 왜 돈 문제였는지가 그대로 적혀 있다.\nCPI가 생계비를 연 1%포인트 부풀린 채로 10년이 지나면 2006년까지 적자에 1,350억달러가 쌓이고, 그것만으로 사회보장·의료·국방 다음가는 네 번째로 큰 연방 프로그램이 된다는 계산이다.\n\n연준의 공식 잣대가 CPI에서 PCE로 바뀐 것은 2000년 2월이다.\n\n## 그 잣대는 정말 더 낮게 나오나\n\n@@CHK@@전체 CPI(6월)|3.5%|전체 PCE(6월)|3.7%|차이|PCE가 0.2%p 높음|근원 CPI(6월)|2.6%|근원 PCE(6월)|3.3%|차이|PCE가 0.7%p 높음@@원문은 PCE가 CPI보다 평균 0.4%포인트 낮게 나온다고 본다. 긴 기간의 평균으로는 맞지만 이번 6월은 반대였다. 에너지값이 급락하면서 에너지 비중이 더 큰 CPI 쪽을 더 크게 끌어내렸기 때문이다. 식품과 에너지를 뺀 근원 지표로 보면 차이가 0.7%포인트까지 벌어진다. 이번 달만 놓고 보면 연준이 쓰는 숫자가 더 관대한 것이 아니라 더 팍팍하게 나왔다.@@2026-07-31 조회 · 미 노동통계국 6월 CPI(2026-07-17 발표) · 미 상무부 경제분석국 6월 PCE(2026-07-30 발표)\n\n잣대를 바꾼 효과는 한 달치로 확인되는 종류가 아니다.\n평균이 낮다는 것과 이번 달이 낮다는 것은 다른 말이고, 이번 달은 뒤집혀 있었다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이번 물가 냉각이 추세의 시작인지, 한 달짜리 에너지 효과인지.\n\n가릴 지점은 유가다.\n6월 물가를 끌어내린 것은 이란과의 일시적 휴전이 만든 유가 하락이었는데, 7월 들어 그 휴전이 깨졌고 유가는 다시 오르고 있다.\n7월 물가에서 에너지가 다시 플러스로 돌아서면 6월은 한 달짜리였던 것이 되고, 에너지를 뺀 근원 물가까지 계속 내려오면 추세로 볼 수 있다.\n\n잣대를 바꾼 쪽도, 그 잣대를 요구한 쪽도 각자의 셈이 있었다.\n연준은 달성하기 쉬운 목표를 얻었고, 의회는 표를 잃지 않으면서 적자를 줄이는 길을 얻었다.\n지금 시장이 환호하는 숫자가 어떻게 골라진 숫자인지는 알고 보는 편이 낫다.",
+    "en": "The US personal consumption expenditures price index fell 0.1% in June from the month before.\nThat is the first monthly decline in this index in six years.\n\nAgainst a year earlier it ran 3.7%, down from 4.1% in May.\nThe biggest single mover was energy goods, including gasoline, which fell 9.2%.\n\n@@REF@@Inflation rate fell by 0.1% in June, first decrease in six years (UPI, 2026-07-30)|https://www.upi.com/Top_News/US/2026/07/30/personal-consumption-expenditures-june-2026/4151785423293/|https://cdnph.upi.com/sv/ph/og/upi/4151785423293/2026/1/6002c295230d40502dff7b0b8abb84de/v1.5/Inflation-rate-fell-by-01-in-June-first-decrease-in-six-years.jpg\n\nUPI reports that the 9.2% drop in energy goods was the largest since August 2022.\nWhat pushed the index negative for a month, in other words, was energy rather than prices in general.\n\nThe reason markets cheered the number sits two days earlier, at the Fed meeting.\nRates were held 9 to 3, and all three dissents were for a hike rather than a cut.\nData showing prices cooling takes the wind out of the side arguing for higher rates.\n\n## Why the Fed does not watch the CPI\n\nHere is the part that snags.\nThe number we call inflation in the news is usually the consumer price index, the CPI.\nBut the yardstick the Fed measures its 2% target against is not the CPI. It is the personal consumption expenditures price index, the PCE.\n\nThe two are built differently.\nThe CPI fixes more than a hundred thousand items into a basket and prices that basket.\nThe PCE keeps changing what is in the basket according to what people actually bought.\n\nWhen beef gets expensive, households buy more chicken.\nA fixed basket cannot follow that move, so it charges the full beef increase to the index.\nThat failure to see shoppers switching to whatever got cheaper, which makes measured inflation run high, is called substitution bias.\n\n## Why this statistic was a political problem\n\nThe homework in front of Congress in 1995 was the deficit.\nMore than half of federal spending was mandatory, programs like Social Security, and both those increases and the income tax brackets were indexed to the CPI.\n\nIndexed means one CPI print moves spending and tax revenue at the same time.\nSo a finding that the CPI overstated inflation changed the arithmetic.\nIt would slow the growth of outlays without anyone having to vote to cut pensions.\n\nThe commission Congress set up delivered its verdict on December 4, 1996.\nThe CPI was overstating inflation by about 1.1 percentage points a year, and substitution bias was the largest single piece of it.\n\n@@REF@@Final Report of the Advisory Commission to Study the Consumer Price Index (US Social Security Administration archive, 1996-12-04)|https://www.ssa.gov/history/reports/boskinrpt.html\n\nThe report itself spells out why a statistic was a money question.\nIf the CPI overstated the cost of living by one percentage point a year for a decade, the report calculated, the resulting addition to the deficit would reach roughly $135 billion by 2006, making it the fourth largest federal program behind Social Security, health care and defense.\n\nThe Fed's official yardstick changed from CPI to PCE in February 2000.\n\n## Does that yardstick really read lower\n\n@@CHK@@Headline CPI (June)|3.5%|Headline PCE (June)|3.7%|Gap|PCE higher by 0.2pp|Core CPI (June)|2.6%|Core PCE (June)|3.3%|Gap|PCE higher by 0.7pp@@The original post takes PCE to run about 0.4 percentage points below CPI. That holds as a long-run average, but June ran the other way. Energy prices fell hard, and energy carries more weight in the CPI, so the CPI came down further. Strip out food and energy and the gap widens to 0.7 points in the same direction. For this month alone, the number the Fed uses was the stricter one, not the softer one.@@Retrieved 2026-07-31 · US Bureau of Labor Statistics June CPI (released 2026-07-17) · US Bureau of Economic Analysis June PCE (released 2026-07-30)\n\nThe effect of swapping yardsticks is not the kind of thing a single month confirms.\nAverages running lower and this month running lower are different claims, and this month was inverted.\n\n## How we will know\n\nIn the end there is one question.\nIs this cooling the start of a trend, or a one month energy effect.\n\nThe place it splits is oil.\nWhat pulled June down was the drop in crude that came out of a temporary truce with Iran, and in July that truce broke and crude is rising again.\nIf energy turns positive again in the July print, June was a one month affair. If core prices, with food and energy stripped out, keep coming down alongside it, the trend reading holds.\n\nThe side that changed the yardstick and the side that asked for the change each had their own arithmetic.\nThe Fed got a target that is easier to hit, and Congress got a way to shrink the deficit without losing votes.\nIt is worth knowing how the number markets are cheering today was chosen.",
+    "ja": "6月の米個人消費支出物価指数が前月より0.1%下がった。\nこの指数が前月比で下がるのは6年ぶりだ。\n\n前年比では3.7%で、5月の4.1%から下がった。\nガソリンを含むエネルギー財の価格が9.2%下落したことが最も大きく効いた。\n\n@@REF@@6月の物価が0.1%下落、6年ぶりの初の低下 (UPI、2026-07-30)|https://www.upi.com/Top_News/US/2026/07/30/personal-consumption-expenditures-june-2026/4151785423293/|https://cdnph.upi.com/sv/ph/og/upi/4151785423293/2026/1/6002c295230d40502dff7b0b8abb84de/v1.5/Inflation-rate-fell-by-01-in-June-first-decrease-in-six-years.jpg\n\nUPIは、エネルギー財の9.2%下落が2022年8月以来の大きさだと伝えている。\n一か月で指数をマイナスに振り向けたのは物価全般ではなくエネルギーだった、ということだ。\n\n市場がこの数字に沸いた理由は、二日前のFRB会合にある。\n金利は9対3で据え置かれたが、反対票3票は利下げではなく利上げだった。\n物価が冷えたというデータは、利上げを主張する側の力を削ぐ。\n\n## FRBはなぜCPIを見ないのか\n\nここで一つ引っかかる。\nニュースで物価と呼んでいる数字は、たいてい消費者物価指数、CPIだ。\nところがFRBが2%目標を測る物差しはCPIではなく、個人消費支出物価指数、PCEだ。\n\n二つの指数は作り方が違う。\nCPIは10万を超える品目を固定した買い物かごに入れ、そのかごの値段を測る。\nPCEは人々が実際に何を買ったかに応じて、かごの中身を変え続ける。\n\n牛肉が高くなれば、家庭は鶏肉を多く買う。\n固定されたかごはこの移動を追えず、上がった牛肉の値をそのまま指数に乗せる。\n消費者が安くなった品に乗り換えるのを捉えられず、物価が実際より高く出るこの現象を代替バイアスと呼ぶ。\n\n## この統計はなぜ政治の問題だったのか\n\n1995年の米議会の宿題は財政赤字だった。\n連邦支出の半分以上が社会保障年金のような義務的支出で、その引き上げ率と所得税の区分がすべてCPIに連動していた。\n\n連動しているとは、CPIの数字一つが支出と税収を同時に動かすという意味だ。\nだからCPIが物価を膨らませているという結論が出れば、計算が変わる。\n年金を削ろうと採決しなくても、支出が増える速度を緩められるからだ。\n\n議会が設けた委員会は1996年12月4日に結論を出した。\nCPIが物価を年1.1%ポイント過大計上しており、代替バイアスがその最大の部分だという内容だった。\n\n@@REF@@消費者物価指数研究のための諮問委員会 最終報告書 (米社会保障局アーカイブ、1996-12-04)|https://www.ssa.gov/history/reports/boskinrpt.html\n\n報告書の本文には、この統計がなぜ金の問題だったのかがそのまま書かれている。\nCPIが生計費を年1%ポイント膨らませたまま10年が過ぎれば、2006年までに赤字へ約1,350億ドルが積み上がり、それだけで社会保障・医療・国防に次ぐ4番目に大きい連邦プログラムになるという計算だ。\n\nFRBの公式な物差しがCPIからPCEに変わったのは2000年2月だ。\n\n## その物差しは本当に低く出るのか\n\n@@CHK@@総合CPI(6月)|3.5%|総合PCE(6月)|3.7%|差|PCEが0.2%ポイント高い|コアCPI(6月)|2.6%|コアPCE(6月)|3.3%|差|PCEが0.7%ポイント高い@@原文はPCEがCPIより平均0.4%ポイント低く出ると見ている。長い期間の平均としては正しいが、今回の6月は逆だった。エネルギー価格が急落し、エネルギーの比重がより大きいCPIの側をより強く押し下げたためだ。食品とエネルギーを除いたコア指標で見ると、差は同じ向きに0.7ポイントまで広がる。今月だけを見れば、FRBが使う数字はより甘いのではなく、より厳しく出た。@@2026-07-31取得 · 米労働統計局6月CPI(2026-07-17公表) · 米商務省経済分析局6月PCE(2026-07-30公表)\n\n物差しを替えた効果は、一か月分で確かめられる種類のものではない。\n平均が低いことと今月が低いことは別の話で、今月は逆だった。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\n今回の物価の冷え込みが趨勢の始まりなのか、一か月限りのエネルギー効果なのか。\n\n見分ける地点は原油価格だ。\n6月の物価を押し下げたのはイランとの一時的な停戦が生んだ原油安だが、7月に入ってその停戦は崩れ、原油はまた上がっている。\n7月の物価でエネルギーが再びプラスに転じれば6月は一か月限りだったことになり、食品とエネルギーを除いたコア物価まで下がり続ければ趨勢と見られる。\n\n物差しを替えた側にも、その変更を求めた側にも、それぞれの計算があった。\nFRBは達成しやすい目標を得て、議会は票を失わずに赤字を減らす道を得た。\n今、市場が沸いているその数字がどう選ばれた数字なのかは、知って見るほうがよい。"
+   },
+   "why": {
+    "ko": "연준의 2% 목표는 중립적인 기준처럼 보이지만, 그 기준으로 쓰이는 지수 자체가 재정 문제와 함께 골라진 것이다. 물가 지표 한 줄에 시장이 움직이는 이상, 그 지표가 어떻게 만들어졌는지도 가격의 일부다.",
+    "en": "The Fed's 2% target looks like a neutral benchmark, but the index it is measured against was chosen alongside a fiscal problem. As long as a single inflation print moves markets, how that print is built is part of the price.",
+    "ja": "FRBの2%目標は中立的な基準に見えるが、その基準に使われる指数自体が財政の問題とともに選ばれたものだ。物価指標一つで市場が動く以上、その指標がどう作られたかも価格の一部だ。"
+   },
+   "ask": {
+    "ko": "6월 물가 냉각은 추세의 시작일까, 유가가 만든 한 달짜리 착시일까?",
+    "en": "Is June's cooling the start of a trend, or a one month illusion made by oil?",
+    "ja": "6月の物価の冷え込みは趨勢の始まりか、それとも原油が作った一か月限りの錯覚か?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "8월 말 발표되는 7월 PCE에서 전월 대비가 다시 플러스로 돌아서면 한 달짜리 에너지 효과로, 두 달 연속 하락하거나 근원 PCE가 3.1% 아래로 내려오면 추세로 채점한다.",
+     "en": "Score on the July PCE released in late August: a return to a positive month-over-month reading counts as a one month energy effect, while a second straight decline or core PCE below 3.1% counts as a trend.",
+     "ja": "8月末に公表される7月PCEで前月比が再びプラスに転じれば一か月限りのエネルギー効果、2か月連続の低下またはコアPCEが3.1%を下回れば趨勢と判定する。"
+    },
+    "due": "2026-09-30"
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-07-31T00:44:18.028971+00:00"
+  },
+  {
+   "date": "2026-07-30",
+   "id": "serenity-situational-awareness-citadel-unwind",
+   "related": [
+    "jukan-korea-deleveraging-90-percent-jpmorgan",
+    "serenity-chip-selloff-earnings-divergence",
+    "jukan-korea-leverage-etf-professional-only"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2082896789880119590",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1A0B1B",
+    "to": "#7A2E2E",
+    "label": "FORCED UNWIND"
+   },
+   "tags": [
+    "LEVERAGE",
+    "MARGIN",
+    "AI"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "청산당한 펀드가 들고 있던 종목들이 바로 다음 날 25%씩 오른 이유는 뭘까?",
+    "en": "Why did the stocks a liquidated fund had been holding jump 25% the very next day?",
+    "ja": "清算されたファンドが持っていた銘柄が、その翌日に25%も上げた理由は何だろうか?"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Did Citadel really just liquidate Situational Awareness… Then brought up entire markets the next day?",
+      "$NBIS +26.25% $IREN +25.96% $SHAZ +22.82% $SNDK +23.98% $BE +23.67% $SKHY +16.98% $INTC +12.16%",
+      "This has gotta be one of the wildest liquidations I've seen."
+     ],
+     "ko": [
+      "시타델이 정말로 방금 시추에이셔널 어웨어니스를 청산해 놓고… 그다음 날 시장 전체를 끌어올린 것인가?",
+      "$NBIS +26.25% $IREN +25.96% $SHAZ +22.82% $SNDK +23.98% $BE +23.67% $SKHY +16.98% $INTC +12.16%",
+      "내가 본 청산 중에 손꼽히게 기이한 축에 든다."
+     ],
+     "ja": [
+      "シタデルは本当についさっきシチュエーショナル・アウェアネスを清算して…その翌日に市場全体を押し上げたのか?",
+      "$NBIS +26.25% $IREN +25.96% $SHAZ +22.82% $SNDK +23.98% $BE +23.67% $SKHY +16.98% $INTC +12.16%",
+      "私が見てきた清算の中でも指折りに奇妙な部類だ。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.07.30"
+   },
+   "sum3": {
+    "ko": "AI에 집중 투자하던 헤지펀드 시추에이셔널 어웨어니스의 상장주식 포트폴리오가 시타델로 넘어갔다. 로이터는 그중에서도 브로커에게 빌린 돈으로 사들인 부분이었다고 전했다.\n겉으로 보면 AI 투자에 대한 심판처럼 보인다. 그런데 넘어간 바로 다음 날, 같은 종목들이 12%에서 26%까지 올랐다.\n이 펀드는 상장주식에 약 4배 레버리지를 쓴 것으로 전해진다. 4배에서는 주가가 25%만 빠져도 원금이 사라지는데, 7월에 그 종목들은 35~47% 빠졌다.",
+    "en": "The listed equity book of Situational Awareness, a hedge fund built around AI, went to Citadel. Reuters reports that what changed hands was the part financed with money borrowed from brokers.\nOn the surface it reads as a verdict on AI investing. Yet the very next day the same names rose between 12% and 26%.\nThe fund is reported to have run about four times leverage on its public book. At four times, a 25% fall wipes out the equity, and in July those names fell 35% to 47%.",
+    "ja": "AIに集中投資していたヘッジファンド、シチュエーショナル・アウェアネスの上場株式ポートフォリオがシタデルに移った。ロイターは、そのうちブローカーから借りた資金で買った部分だったと伝えている。\n表向きはAI投資への審判のように見える。だが移った翌日、同じ銘柄が12%から26%まで上げた。\nこのファンドは上場株式に約4倍のレバレッジをかけていたと伝えられる。4倍では株価が25%下がるだけで元本が消えるが、7月にそれらの銘柄は35~47%下げた。"
+   },
+   "gist": {
+    "ko": "AI에 집중 투자하던 헤지펀드 시추에이셔널 어웨어니스가 상장주식 포트폴리오를 통째로 넘겼다.\n받은 쪽은 시타델이다.\n넘어간 종목에는 브로드컴, 인텔, 코어위브가 들어 있었다.\n\n@@REF@@시타델, AI 주가 급락 후 시추에이셔널의 주식 보유분 대부분을 인수 (로이터, 2026-07-30)|https://finance.yahoo.com/markets/stocks/articles/citadel-buys-most-situationals-stock-180422112.html\n\n로이터는 넘어간 것이 공개 포트폴리오 가운데 브로커에게 빌린 돈으로 사들인 부분이었다고 전했다.\n펀드가 값을 보고 판 것이 아니라, 빌린 돈에 걸린 담보가 모자라져 그 부분이 통째로 넘어갔다는 뜻이다.\n\n그리고 다음 날, 같은 종목들이 올랐다.\n원문이 적어 둔 그날 상승률은 12%에서 26% 사이다.\n\n@@IMG@@datacenter-racks|이 펀드가 들고 있던 것은 AI 데이터센터에 물건과 연산을 파는 회사들이었다. 코어위브는 이런 랙에 꽂힌 GPU를 시간 단위로 빌려준다.\n\n## 왜 빌린 돈만 넘어갔나\n\n주식을 살 때 증권사에 담보를 맡기고 돈을 빌리면, 값이 떨어질 때 담보가 모자라진다.\n그러면 증권사가 더 채우라고 요구하고, 못 채우면 증권사가 대신 판다.\n이것이 마진콜이고, 그 담보를 쥐고 있는 쪽이 프라임 브로커다.\n\n시추에이셔널 어웨어니스는 상장주식에 약 4배 레버리지를 쓴 것으로 전해진다.\n4배는 내 돈 1에 빌린 돈 3을 얹어 4만큼 산다는 뜻이다.\n이때 주가가 25% 떨어지면 손실이 1이 되어 내 돈이 정확히 다 사라진다.\n\n7월에 이 펀드가 들고 있던 종목들은 35%에서 47%까지 떨어졌다.\n25%를 한참 넘겼으니, 상장주식 쪽 원금은 계산상 이미 남아 있지 않았다.\n\n@@REF@@4배 레버리지가 1,000% 수익률을 끝냈다 (테크타임스, 2026-07-30)|https://www.techtimes.com/articles/322285/20260730/citadel-buys-situational-awareness-portfolio-4x-leverage-ends-ai-funds-1000-run.htm|https://d.techtimes.com/en/full/470616/citadel-buys-situational-awareness-portfolio-4x-leverage-ends-ai-funds-1000-run.jpg\n\n같은 보도에 따르면 이 펀드는 오픈AI 출신 레오폴드 아셴브레너가 2024년 말 2억 2,500만달러로 출발시켰고, 수수료를 떼고도 누적 1,000%가 넘는 수익을 냈다.\n올해 6월 말까지만 끊어 보면 439% 올라 있었다.\n\n펀드 규모는 보도마다 다르게 전해진다.\n로이터는 약 200억달러를 굴렸고 이번 거래 뒤에는 100억달러 정도가 남을 것이라고 했고, 다른 보도는 7월 정점 기준 450억달러를 든다.\n\n## 살아남은 것은 무엇인가\n\n이 펀드가 계속 들고 있는 자산이 하나 있다.\n앤스로픽 지분이다.\n\n비상장 주식은 증권사에 담보로 잡혀 있지 않아 마진콜의 대상이 되지 않는다.\n좋아서 남긴 것이 아니라, 담보로 잡힌 것부터 순서대로 사라졌다.\n레버리지가 걸린 자리에서는 무엇을 지킬지 고르는 사람이 운용역이 아니다.\n\n## 왜 다음 날 올랐나\n\n@@CMP@@매도가 끝나서라는 읽기|한 달 내내 시장을 누르던 강제 매도자가 사라졌다. 하락이 실적이 아니라 수급 때문이었다는 뜻이다.|같은 날 재료가 나왔다는 읽기|그날은 6월 물가가 6년 만에 처음 전월보다 내렸고, 마이크로소프트가 클라우드 매출로 급등한 날이기도 하다.\n같은 하루를 수급으로 읽느냐 재료로 읽느냐에서 갈린다.\n\n@@REF@@마이크로소프트가 15% 급등하며 기술주를 끌어올렸다 (모틀리풀, 2026-07-30)|https://www.fool.com/coverage/stock-market-today/2026/07/30/stock-market-midday-july-30-microsoft-soars-15-boosting-tech-stocks/\n\n모틀리풀은 이날 나스닥이 마이크로소프트의 애저 매출 급증에 힘입어 6월 이후 가장 큰 하루 상승을 기록했다고 전했다.\n반도체주가 그 흐름에 같이 올라탔다는 점에서, 청산이 끝났다는 사실만으로 그날 상승폭 전부를 설명하기는 어렵다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n7월의 하락이 AI 투자에 대한 시장의 재평가였는지, 빌린 돈이 빠져나가는 과정이었는지.\n\n가릴 지점은 앞으로 몇 주다.\n강제 매도자가 사라진 뒤에도 같은 종목들이 자리를 지키면 7월 하락은 수급이 만든 것이었고, 다시 밀리면 재평가 쪽이 맞았던 것이 된다.\n\n확신이 흔들려서 팔린 것이 아니다.\n값이 25%를 넘게 빠지는 순간 파는 쪽이 자동으로 정해졌을 뿐이고, 그 결정을 내린 것은 펀드가 아니라 돈을 빌려준 쪽이었다.\n레버리지가 걸린 자리에서는 확신이 아니라 담보가 시간표를 정한다.",
+    "en": "Situational Awareness, a hedge fund built around AI, handed over its entire listed equity book.\nThe buyer was Citadel.\nThe positions included Broadcom, Intel and CoreWeave.\n\n@@REF@@Citadel buys most of Situational's stock holdings after AI share rout (Reuters, 2026-07-30)|https://finance.yahoo.com/markets/stocks/articles/citadel-buys-most-situationals-stock-180422112.html\n\nReuters reports that what changed hands was the part of the public portfolio financed with money borrowed from brokers.\nThe fund did not sell because it judged the price. The collateral behind the borrowed money ran short, and that portion went across in one piece.\n\nThen, the next day, the same names went up.\nThe gains the original post recorded run from 12% to 26%.\n\n@@IMG@@datacenter-racks|What the fund held were the companies that sell hardware and compute into AI data centers. CoreWeave rents out the GPUs slotted into racks like these by the hour.\n\n## Why only the borrowed part moved\n\nWhen you post collateral with a broker and borrow to buy stock, a falling price leaves that collateral short.\nThe broker then asks you to top it up, and if you cannot, the broker sells for you.\nThat is a margin call, and the party holding the collateral is the prime broker.\n\nSituational Awareness is reported to have run about four times leverage on its listed book.\nFour times means one part your own money and three parts borrowed, buying four.\nAt that ratio a 25% fall in the stock produces a loss of one, which is exactly all of your own money.\n\nIn July the names the fund held fell between 35% and 47%.\nThat is far past 25%, so on the arithmetic the equity behind the listed book was already gone.\n\n@@REF@@Citadel buys Situational Awareness portfolio as 4x leverage ends AI fund's 1,000% run (Tech Times, 2026-07-30)|https://www.techtimes.com/articles/322285/20260730/citadel-buys-situational-awareness-portfolio-4x-leverage-ends-ai-funds-1000-run.htm|https://d.techtimes.com/en/full/470616/citadel-buys-situational-awareness-portfolio-4x-leverage-ends-ai-funds-1000-run.jpg\n\nThe same report says former OpenAI researcher Leopold Aschenbrenner started the fund in late 2024 with $225 million and compounded it past 1,000% after fees.\nCut the line at the end of June this year and it was up 439%.\n\nThe size of the fund is reported differently in different places.\nReuters puts it near $20 billion under management with roughly $10 billion left after this deal, while other reports cite $45 billion at the July peak.\n\n## What survived\n\nOne asset stayed with the fund.\nIts stake in Anthropic.\n\nPrivate shares are not sitting with a broker as collateral, so they cannot be margin called.\nIt was not kept because anyone preferred it. Whatever was pledged went first, in order.\nWhere leverage is involved, the person choosing what to protect is not the portfolio manager.\n\n## Why it went up the next day\n\n@@CMP@@Reading it as the selling ending|The forced seller that had been pressing the market all month is gone. That says the fall was about flows rather than earnings.|Reading it as the day's news|That same day, June inflation fell month over month for the first time in six years, and Microsoft surged on cloud revenue.\nThe split is whether you read one day as flows or as news.\n\n@@REF@@Microsoft soars 15%, boosting tech stocks (The Motley Fool, 2026-07-30)|https://www.fool.com/coverage/stock-market-today/2026/07/30/stock-market-midday-july-30-microsoft-soars-15-boosting-tech-stocks/\n\nThe Motley Fool reports that the Nasdaq posted its biggest single day gain since June, carried by the jump in Microsoft's Azure revenue.\nSemiconductor names rode that move as well, which makes it hard to credit the whole day's gain to the liquidation finishing.\n\n## How we will know\n\nIn the end there is one question.\nWas July's decline the market repricing AI, or borrowed money leaving the building.\n\nThe place it splits is the next few weeks.\nIf the same names hold their ground now that the forced seller is gone, July was made by flows. If they slide again, the repricing reading was right.\n\nNothing was sold because conviction wavered.\nThe moment the price fell more than 25%, the selling side was set automatically, and the party that made that decision was the lender rather than the fund.\nWhere leverage is involved, collateral sets the timetable, not conviction.",
+    "ja": "AIに集中投資していたヘッジファンド、シチュエーショナル・アウェアネスが上場株式のポートフォリオを丸ごと譲り渡した。\n受け取ったのはシタデルだ。\n移った銘柄にはブロードコム、インテル、コアウィーブが含まれていた。\n\n@@REF@@シタデル、AI株急落後にシチュエーショナルの保有株の大半を取得 (ロイター、2026-07-30)|https://finance.yahoo.com/markets/stocks/articles/citadel-buys-most-situationals-stock-180422112.html\n\nロイターは、移ったのが公開ポートフォリオのうちブローカーから借りた資金で買った部分だったと伝えている。\nファンドが値を見て売ったのではなく、借りた資金に付いた担保が足りなくなり、その部分が丸ごと移ったという意味だ。\n\nそして翌日、同じ銘柄が上げた。\n原文が書き留めたその日の上昇率は12%から26%の間だ。\n\n@@IMG@@datacenter-racks|このファンドが持っていたのは、AIデータセンターに機材と計算能力を売る会社だった。コアウィーブはこうしたラックに挿さったGPUを時間単位で貸し出す。\n\n## なぜ借りた分だけが移ったのか\n\n株を買うときに証券会社へ担保を預けて資金を借りると、値が下がったときに担保が足りなくなる。\nすると証券会社が積み増しを求め、応じられなければ証券会社が代わりに売る。\nこれがマージンコールであり、その担保を握っている側がプライムブローカーだ。\n\nシチュエーショナル・アウェアネスは上場株式に約4倍のレバレッジをかけていたと伝えられる。\n4倍とは、自己資金1に借入3を乗せて4だけ買うという意味だ。\nこのとき株価が25%下がれば損失が1になり、自己資金がちょうど全部消える。\n\n7月にこのファンドが持っていた銘柄は35%から47%まで下げた。\n25%をはるかに超えたので、上場株式側の元本は計算上すでに残っていなかった。\n\n@@REF@@4倍レバレッジが1,000%のリターンを終わらせた (テックタイムズ、2026-07-30)|https://www.techtimes.com/articles/322285/20260730/citadel-buys-situational-awareness-portfolio-4x-leverage-ends-ai-funds-1000-run.htm|https://d.techtimes.com/en/full/470616/citadel-buys-situational-awareness-portfolio-4x-leverage-ends-ai-funds-1000-run.jpg\n\n同じ報道によれば、このファンドはオープンAI出身のレオポルド・アッシェンブレナーが2024年末に2億2,500万ドルで立ち上げ、手数料を差し引いても累計1,000%を超えるリターンを出した。\n今年6月末で区切れば439%上がっていた。\n\nファンドの規模は報道ごとに異なって伝えられる。\nロイターは約200億ドルを運用し、今回の取引後には100億ドル程度が残るとし、別の報道は7月のピーク時点で450億ドルを挙げる。\n\n## 残ったものは何か\n\nこのファンドが持ち続けている資産が一つある。\nアンソロピックの持分だ。\n\n非上場株式は証券会社に担保として預けられていないため、マージンコールの対象にならない。\n好んで残したのではなく、担保に入っていたものから順に消えた。\nレバレッジがかかった場では、何を守るかを選ぶ人は運用担当者ではない。\n\n## なぜ翌日に上げたのか\n\n@@CMP@@売りが終わったという読み方|一か月ずっと市場を押していた強制的な売り手が消えた。下落が業績ではなく需給によるものだったという意味だ。|同じ日に材料が出たという読み方|その日は6月の物価が6年ぶりに前月比で下がり、マイクロソフトがクラウド売上で急騰した日でもある。\n同じ一日を需給で読むか材料で読むかで分かれる。\n\n@@REF@@マイクロソフトが15%急騰し技術株を押し上げた (モトリーフール、2026-07-30)|https://www.fool.com/coverage/stock-market-today/2026/07/30/stock-market-midday-july-30-microsoft-soars-15-boosting-tech-stocks/\n\nモトリーフールは、この日のナスダックがマイクロソフトのアジュール売上急増に支えられ、6月以来最大の一日の上昇を記録したと伝えている。\n半導体株もその流れに乗ったという点で、清算が終わったという事実だけでその日の上げ幅すべてを説明するのは難しい。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\n7月の下落がAI投資に対する市場の評価替えだったのか、借りた資金が抜けていく過程だったのか。\n\n見分ける地点はこの先の数週間だ。\n強制的な売り手が消えた後も同じ銘柄が持ちこたえれば7月の下落は需給が作ったものであり、また押されれば評価替えのほうが正しかったことになる。\n\n確信が揺らいで売られたのではない。\n値が25%を超えて下がった瞬間に売る側が自動的に決まっただけで、その決定を下したのはファンドではなく資金を貸した側だった。\nレバレッジがかかった場では、確信ではなく担保が時間割を決める。"
+   },
+   "why": {
+    "ko": "이번 하락에서 팔린 물량의 상당 부분은 누군가의 판단이 아니라 담보 계산의 결과였다. 그 구분을 못 하면 수급이 만든 하락을 실적 악화로 읽고, 반대로 담보가 다시 쌓이는 구간을 실적 개선으로 읽게 된다.",
+    "en": "A large share of what was sold in this decline came out of a collateral calculation rather than anyone's judgment. Miss that distinction and you read a flow-driven fall as deteriorating earnings, and a collateral rebuild as improving ones.",
+    "ja": "今回の下落で売られた物量のかなりの部分は、誰かの判断ではなく担保計算の結果だった。その区別ができなければ、需給が作った下落を業績悪化と読み、逆に担保が積み直される局面を業績改善と読むことになる。"
+   },
+   "ask": {
+    "ko": "7월의 AI 관련주 급락은 시장의 재평가였을까, 빌린 돈이 빠져나가는 과정이었을까?",
+    "en": "Was July's plunge in AI-linked stocks a repricing by the market, or borrowed money on its way out?",
+    "ja": "7月のAI関連株の急落は市場による評価替えだったのか、借りた資金が抜けていく過程だったのか?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "8월 말 기준으로 브로드컴·인텔·코어위브가 7월 30일 종가 위를 지키면 수급이 만든 하락으로, 7월 저점을 다시 밑돌면 재평가로 채점한다.",
+     "en": "Score at the end of August: Broadcom, Intel and CoreWeave holding above their July 30 closes counts as a flow-driven fall, while a break back below the July lows counts as a repricing.",
+     "ja": "8月末時点でブロードコム・インテル・コアウィーブが7月30日終値を上回っていれば需給による下落、7月の安値を再び下回れば評価替えと判定する。"
+    },
+    "due": "2026-09-15"
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-07-31T00:44:18.028971+00:00"
+  },
+  {
    "id": "jukan-samsung-foundry-2nm-taylor-fab2",
    "date": "2026-07-30",
    "source": "Jukan (@jukan05)",
@@ -694,11 +866,23 @@
     "T10YIE"
    ],
    "quote": {
-    "lines": [
-     "Fed leaves rates unchanged for the 5th straight meeting",
-     "Fed votes 9-3 to hold benchmark rate in 3.50%-3.75% zone",
-     "Hammack, Kashkari, and Logan dissent in favor of rate hike"
-    ],
+    "lines": {
+     "en": [
+      "Fed leaves rates unchanged for the 5th straight meeting",
+      "Fed votes 9-3 to hold benchmark rate in 3.50%-3.75% zone",
+      "Hammack, Kashkari, and Logan dissent in favor of rate hike"
+     ],
+     "ko": [
+      "연준, 5회 연속으로 금리를 동결",
+      "연준, 9대 3으로 기준금리를 3.50~3.75% 구간에 유지하기로 표결",
+      "해맥, 카시카리, 로건은 금리 인상을 주장하며 반대표"
+     ],
+     "ja": [
+      "FRB、5会合連続で金利を据え置き",
+      "FRB、9対3で政策金利を3.50~3.75%のレンジに維持することを決議",
+      "ハマック、カシュカリ、ローガンは利上げを主張して反対票"
+     ]
+    },
     "cite": "The Kobeissi Letter · 2026.07.29"
    },
    "title": {
@@ -768,10 +952,20 @@
    "lab": true,
    "foldWhy": true,
    "quote": {
-    "lines": [
-     "KIS RAISES ITS PRICE TARGET FOR SK HYNIX BY 24% TO KRW 4.7 MILLION (TODAY’S CLOSING PRICE: KRW 1.41 MILLION).",
-     "Not only KIS, but veteran analysts at Citi, Meritz, and elsewhere all lowered their earnings estimates for SK hynix."
-    ],
+    "lines": {
+     "en": [
+      "KIS RAISES ITS PRICE TARGET FOR SK HYNIX BY 24% TO KRW 4.7 MILLION (TODAY’S CLOSING PRICE: KRW 1.41 MILLION).",
+      "Not only KIS, but veteran analysts at Citi, Meritz, and elsewhere all lowered their earnings estimates for SK hynix."
+     ],
+     "ko": [
+      "한국투자증권이 SK하이닉스 목표주가를 24% 올려 470만원으로 제시(오늘 종가: 141만원).",
+      "한국투자증권뿐 아니라 씨티, 메리츠 등의 베테랑 애널리스트들도 모두 SK하이닉스의 실적 추정치를 낮췄다."
+     ],
+     "ja": [
+      "韓国投資証券がSKハイニックスの目標株価を24%引き上げて470万ウォンに設定(本日終値:141万ウォン)。",
+      "韓国投資証券だけでなく、シティやメリッツなどのベテランアナリストも一様にSKハイニックスの業績予想を引き下げた。"
+     ]
+    },
     "cite": "Jukan (@jukan05) · 2026.07.29"
    },
    "title": {
@@ -924,11 +1118,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "US Gov to take 1% stake in $GFS, and award them $300m for the US CHIPS ACT.",
-     "This is actually a strong read through on $SIVE / $LITE, given this CHIPS ACT is specifically aimed at advancing CPO + Silicon Photonics.",
-     "Never thought we'd see the US Gov / $INTC foundry playbook for CPO in specific..."
-    ],
+    "lines": {
+     "en": [
+      "US Gov to take 1% stake in $GFS, and award them $300m for the US CHIPS ACT.",
+      "This is actually a strong read through on $SIVE / $LITE, given this CHIPS ACT is specifically aimed at advancing CPO + Silicon Photonics.",
+      "Never thought we'd see the US Gov / $INTC foundry playbook for CPO in specific..."
+     ],
+     "ko": [
+      "미국 정부가 $GFS 지분 1%를 가져가고, 미국 반도체법 명목으로 3억달러를 지원한다.",
+      "이번 반도체법 지원이 CPO와 실리콘 포토닉스를 밀어주는 데 특정되어 있다는 점에서, 이것은 사실 $SIVE와 $LITE에 강한 함의를 준다.",
+      "미국 정부와 $INTC의 파운드리 각본이 하필 CPO에 적용되는 것을 보게 될 줄은 몰랐다."
+     ],
+     "ja": [
+      "米政府が$GFSの株式1%を取得し、米CHIPS法として3億ドルを支給する。",
+      "今回のCHIPS法の支援がCPOとシリコンフォトニクスの推進に特化している点で、これは実は$SIVEと$LITEに強い含意を与える。",
+      "米政府と$INTCのファウンドリーの筋書きが、よりによってCPOに適用されるのを見ることになるとは思わなかった。"
+     ]
+    },
     "cite": "Serenity (@aleabitoreddit) · 2026.07.29"
    },
    "title": {
@@ -998,11 +1204,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "조직체계는 국방장관>총사령관으로 바꿨는데, 보고체계는 바꾸지 않았음.",
-     "포탄 가격이 16% 낮아진다는 말은 누군가 비공식적으로 가져가던 마진 16%가 사라졌다는 말임.",
-     "반면에 제도가 제대로 작동되지 않는 나라에서 유능한 장관은 위협이고, 합법적으로 견제할수 없으니 제거외에는 방법이 없는 것임."
-    ],
+    "lines": {
+     "en": [
+      "The org chart was changed so the defense minister sits above the commander in chief, but the reporting line was left as it was.",
+      "Saying the shell price comes down 16% means the 16% margin someone was quietly taking has disappeared.",
+      "On the other hand, in a country where the institutions do not work properly a capable minister is a threat, and since he cannot be checked by legal means there is no option other than removal."
+     ],
+     "ko": [
+      "조직체계는 국방장관>총사령관으로 바꿨는데, 보고체계는 바꾸지 않았음.",
+      "포탄 가격이 16% 낮아진다는 말은 누군가 비공식적으로 가져가던 마진 16%가 사라졌다는 말임.",
+      "반면에 제도가 제대로 작동되지 않는 나라에서 유능한 장관은 위협이고, 합법적으로 견제할수 없으니 제거외에는 방법이 없는 것임."
+     ],
+     "ja": [
+      "組織体系は国防相>総司令官に変えたが、報告体系は変えなかった。",
+      "砲弾価格が16%下がるという話は、誰かが非公式に取っていたマージン16%が消えたという話だ。",
+      "一方で、制度がまともに機能しない国では有能な閣僚は脅威であり、合法的に牽制できない以上、排除以外に方法がないのだ。"
+     ]
+    },
     "cite": "메르 · 2026.07.29"
    },
    "title": {
@@ -1061,10 +1279,20 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "Finally, some welcome news.",
-     "In a report published today, JPMorgan said that most leveraged ETFs in the Korean stock market have been liquidated and estimated that hedge funds’ deleveraging is also about 90% complete."
-    ],
+    "lines": {
+     "en": [
+      "Finally, some welcome news.",
+      "In a report published today, JPMorgan said that most leveraged ETFs in the Korean stock market have been liquidated and estimated that hedge funds’ deleveraging is also about 90% complete."
+     ],
+     "ko": [
+      "드디어 반가운 소식이다.",
+      "오늘 낸 보고서에서 JP모건은 한국 증시의 레버리지 ETF가 대부분 청산됐고, 헤지펀드의 디레버리징도 약 90% 진행된 것으로 추정된다고 밝혔다."
+     ],
+     "ja": [
+      "ようやく歓迎すべきニュースだ。",
+      "本日公表したレポートでJPモルガンは、韓国株式市場のレバレッジETFはほぼ清算され、ヘッジファンドのデレバレッジも約90%進んだと推定されると述べた。"
+     ]
+    },
     "cite": "Jukan · 2026.07.29"
    },
    "title": {
@@ -1123,9 +1351,17 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "South Korea's Financial Services Commission chairman: We are considering restricting single-stock leveraged ETFs to professional investors."
-    ],
+    "lines": {
+     "en": [
+      "South Korea's Financial Services Commission chairman: We are considering restricting single-stock leveraged ETFs to professional investors."
+     ],
+     "ko": [
+      "한국 금융위원회 위원장: 단일종목 레버리지 ETF를 전문투자자로 제한하는 방안을 검토하고 있다."
+     ],
+     "ja": [
+      "韓国金融委員長:単一銘柄のレバレッジETFを専門投資家に限定する案を検討している。"
+     ]
+    },
     "cite": "Jukan · 2026.07.29"
    },
    "title": {
@@ -26084,6 +26320,206 @@
     "utilization rate",
     "utilization"
    ]
+  },
+  "PCE": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The inflation gauge the Fed measures its 2% target against, built from what households actually bought.",
+    "ko": "연준이 2% 목표를 재는 물가지수. 가계가 실제로 무엇을 샀는지에 따라 구성이 바뀐다.",
+    "ja": "FRBが2%目標を測る物価指数。家計が実際に何を買ったかに応じて構成が変わる。"
+   },
+   "longDesc": {
+    "en": "Personal Consumption Expenditures price index, published monthly by the Bureau of Economic Analysis. Unlike the CPI, whose basket is fixed, the PCE basket shifts as consumers switch between goods, so it usually reads lower than CPI over long stretches. The Fed made it the official yardstick for its inflation target in February 2000.",
+    "ko": "개인소비지출 물가지수. 미 상무부 경제분석국이 매달 낸다. 장바구니가 고정된 CPI와 달리 소비자가 품목을 갈아타는 것을 반영해 구성이 바뀌기 때문에, 긴 기간으로 보면 대체로 CPI보다 낮게 나온다. 연준은 2000년 2월 이 지수를 물가 목표의 공식 잣대로 삼았다.",
+    "ja": "個人消費支出物価指数。米商務省経済分析局が毎月公表する。買い物かごが固定されたCPIと違い、消費者が品目を乗り換えることを反映して構成が変わるため、長い期間で見ればおおむねCPIより低く出る。FRBは2000年2月にこの指数を物価目標の公式な物差しとした。"
+   },
+   "aliases": [
+    "PCE",
+    "개인소비지출 물가지수",
+    "개인소비지출물가지수",
+    "PCE 물가지수",
+    "個人消費支出物価指数"
+   ]
+  },
+  "근원물가": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Inflation measured with food and energy stripped out, because those two swing too fast to read a trend from.",
+    "ko": "식품과 에너지를 뺀 물가. 이 둘은 너무 빨리 출렁여서 추세를 읽기 어렵기 때문에 따로 뺀다.",
+    "ja": "食品とエネルギーを除いた物価。この二つは動きが速すぎて趨勢が読めないため除く。"
+   },
+   "longDesc": {
+    "en": "Also called core inflation. Both the CPI and the PCE have a core version. Central banks watch it because a single month of oil or crop prices can push the headline number far from where underlying prices are actually heading.",
+    "ko": "근원 인플레이션이라고도 한다. CPI에도 PCE에도 근원 지표가 따로 있다. 유가나 농산물 값 한 달치가 전체 숫자를 실제 물가 흐름과 동떨어진 곳까지 밀어낼 수 있어서 중앙은행이 이 지표를 함께 본다.",
+    "ja": "コアインフレとも呼ぶ。CPIにもPCEにもコア指標が別にある。原油や農産物の一か月分の値動きが全体の数字を実際の物価の流れから引き離すことがあるため、中央銀行はこの指標も併せて見る。"
+   },
+   "aliases": [
+    "근원물가",
+    "근원 물가",
+    "근원 CPI",
+    "근원 PCE",
+    "core CPI",
+    "core PCE",
+    "core inflation",
+    "コアCPI",
+    "コアPCE"
+   ]
+  },
+  "대체편향": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A fixed price basket overstating inflation because it cannot see shoppers switching to whatever got cheaper.",
+    "ko": "장바구니를 고정해 두면, 소비자가 싸진 물건으로 갈아타는 것을 못 봐서 물가가 실제보다 높게 잡히는 현상.",
+    "ja": "買い物かごを固定すると、消費者が安くなった品に乗り換えるのを捉えられず、物価が実際より高く出る現象。"
+   },
+   "longDesc": {
+    "en": "The Boskin Commission named this the single largest source of upward bias in the US CPI in 1996. If cabbage gets expensive and households buy radish instead, a fixed basket still charges the full cabbage increase to the index. The finding mattered because Social Security raises and tax brackets were tied to the CPI.",
+    "ko": "1996년 미국 보스킨 위원회가 CPI를 위로 밀어올리는 가장 큰 원인으로 지목한 항목이다. 배추가 비싸져 사람들이 무를 사도, 고정된 장바구니는 배추값 상승분을 그대로 지수에 얹는다. 사회보장연금 인상률과 소득세 구간이 CPI에 연동돼 있었기 때문에 이 결론이 중요했다.",
+    "ja": "1996年に米ボスキン委員会が、CPIを上方に押し上げる最大の原因として挙げた項目だ。白菜が高くなり人々が大根を買っても、固定された買い物かごは白菜の値上がり分をそのまま指数に乗せる。社会保障年金の引き上げ率と所得税の区分がCPIに連動していたため、この結論は重かった。"
+   },
+   "aliases": [
+    "대체편향",
+    "대체 편향",
+    "substitution bias",
+    "代替バイアス"
+   ]
+  },
+  "프라임 브로커": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The bank that lends a hedge fund the money and shares it trades with, and that can force it to sell.",
+    "ko": "헤지펀드에 매매 자금과 주식을 빌려주는 은행. 담보가 모자라면 펀드 대신 팔아 버릴 수 있는 쪽이다.",
+    "ja": "ヘッジファンドに売買資金や株式を貸す銀行。担保が足りなくなればファンドに代わって売ることができる側だ。"
+   },
+   "longDesc": {
+    "en": "Prime brokers hold a fund's collateral, extend it margin loans and lend it stock to short. Because the collateral sits with them, they decide when a position must be cut. That is why a leveraged fund can lose control of its own timing in a drawdown even when its investors have not asked for their money back.",
+    "ko": "프라임 브로커는 펀드의 담보를 보관하고, 신용을 빌려주며, 공매도에 쓸 주식도 빌려준다. 담보가 그쪽에 있기 때문에 언제 포지션을 줄일지도 그쪽이 정한다. 투자자가 돈을 빼가지 않아도 레버리지를 쓴 펀드가 하락장에서 자기 시간표를 잃는 이유가 여기에 있다.",
+    "ja": "プライムブローカーはファンドの担保を預かり、信用を供与し、空売り用の株式も貸す。担保が向こうにあるため、いつポジションを削るかも向こうが決める。投資家が資金を引き揚げなくても、レバレッジをかけたファンドが下落局面で自らの時間割を失うのはこのためだ。"
+   },
+   "aliases": [
+    "프라임 브로커",
+    "프라임브로커",
+    "prime broker",
+    "プライムブローカー"
+   ]
+  },
+  "CITADEL": {
+   "kind": "company",
+   "sector": {
+    "en": "Hedge Fund",
+    "ko": "헤지펀드",
+    "ja": "ヘッジファンド"
+   },
+   "desc": {
+    "en": "One of the world's largest hedge funds, run by Ken Griffin.",
+    "ko": "켄 그리핀이 이끄는 세계 최대급 헤지펀드.",
+    "ja": "ケン・グリフィンが率いる世界最大級のヘッジファンド。"
+   },
+   "aliases": [
+    "Citadel",
+    "시타델",
+    "씨타델",
+    "シタデル"
+   ],
+   "logo": "citadel.com",
+   "ceo": {
+    "en": "Ken Griffin",
+    "ko": "켄 그리핀",
+    "ja": "ケン・グリフィン"
+   },
+   "hq": {
+    "en": "Miami, Florida, US",
+    "ko": "미국 플로리다 마이애미",
+    "ja": "米国フロリダ州マイアミ"
+   },
+   "website": "https://www.citadel.com",
+   "founded": "1990",
+   "longDesc": {
+    "en": "A multistrategy hedge fund founded by Ken Griffin in 1990 and headquartered in Miami. It runs equities, commodities, fixed income and quantitative strategies side by side, and its scale and balance sheet let it absorb large blocks of stock quickly, which is why distressed funds often end up selling to it. Citadel Securities, the market maker, is a separate firm under the same founder.",
+    "ko": "켄 그리핀이 1990년에 세운 멀티전략 헤지펀드이며 본사는 마이애미다. 주식, 원자재, 채권, 계량 전략을 나란히 굴린다. 규모와 자본이 커서 대량의 주식을 한꺼번에 받아 낼 수 있고, 곤경에 빠진 펀드가 결국 이쪽에 넘기게 되는 이유도 그것이다. 시장조성 회사인 시타델증권은 같은 창업자 밑의 별도 회사다.",
+    "ja": "ケン・グリフィンが1990年に設立したマルチストラテジーのヘッジファンドで、本社はマイアミ。株式、商品、債券、クオンツ戦略を並行して運用する。規模と自己資本が大きく、大量の株式を一度に引き受けられるため、窮地に陥ったファンドが結局ここに譲ることになりやすい。マーケットメイカーのシタデル証券は同じ創業者の下にある別会社だ。"
+   }
+  },
+  "SITUATIONAL AWARENESS": {
+   "kind": "company",
+   "sector": {
+    "en": "Hedge Fund",
+    "ko": "헤지펀드",
+    "ja": "ヘッジファンド"
+   },
+   "desc": {
+    "en": "An AI-focused hedge fund started in late 2024 by former OpenAI researcher Leopold Aschenbrenner.",
+    "ko": "오픈AI 출신 레오폴드 아셴브레너가 2024년 말에 세운 AI 집중 투자 헤지펀드.",
+    "ja": "オープンAI出身のレオポルド・アッシェンブレナーが2024年末に立ち上げたAI集中投資のヘッジファンド。"
+   },
+   "aliases": [
+    "Situational Awareness",
+    "시추에이셔널 어웨어니스",
+    "시추에이셔널",
+    "シチュエーショナル・アウェアネス"
+   ],
+   "ceo": {
+    "en": "Leopold Aschenbrenner",
+    "ko": "레오폴드 아셴브레너",
+    "ja": "レオポルド・アッシェンブレナー"
+   },
+   "hq": {
+    "en": "San Francisco, California, US",
+    "ko": "미국 캘리포니아 샌프란시스코",
+    "ja": "米国カリフォルニア州サンフランシスコ"
+   },
+   "founded": "2024",
+   "longDesc": {
+    "en": "Named after the essay its founder published in 2024, the fund put investor money into the listed companies that build and power AI infrastructure, and used borrowed money to do it. Reports put its leverage on the public book near four times. After AI shares fell hard in July 2026 the leveraged portion was taken over by Citadel, while a private stake in Anthropic stayed with the fund because private holdings cannot be margin called.",
+    "ko": "창업자가 2024년에 낸 같은 이름의 글에서 이름을 땄다. AI 인프라를 짓고 돌리는 상장사들에 투자자 돈을 넣었고, 빌린 돈을 얹어 그렇게 했다. 공개 주식 쪽 레버리지는 4배 안팎으로 전해진다. 2026년 7월 AI 관련 주가가 크게 빠지자 빌린 돈으로 산 부분이 시타델에 넘어갔고, 비상장인 앤스로픽 지분은 담보로 잡히지 않아 펀드에 남았다.",
+    "ja": "創業者が2024年に発表した同名の論考から名前を取った。AIインフラを建設し稼働させる上場企業に投資家の資金を投じ、借入を上乗せしてそれを行った。公開株式側のレバレッジは4倍前後と伝えられる。2026年7月にAI関連株が大きく下げると、借入で買った部分がシタデルに移り、非上場のアンソロピック持分は担保に入っていないためファンドに残った。"
+   }
+  },
+  "LEOPOLD ASCHENBRENNER": {
+   "kind": "person",
+   "sector": {
+    "en": "Hedge Fund",
+    "ko": "헤지펀드",
+    "ja": "ヘッジファンド"
+   },
+   "desc": {
+    "en": "Former OpenAI researcher who founded the AI hedge fund Situational Awareness.",
+    "ko": "오픈AI 출신으로 AI 헤지펀드 시추에이셔널 어웨어니스를 세운 인물.",
+    "ja": "オープンAI出身で、AIヘッジファンドのシチュエーショナル・アウェアネスを設立した人物。"
+   },
+   "aliases": [
+    "Leopold Aschenbrenner",
+    "Aschenbrenner",
+    "레오폴드 아셴브레너",
+    "아셴브레너",
+    "レオポルド・アッシェンブレナー"
+   ],
+   "url": "https://situational-awareness.ai",
+   "longDesc": {
+    "en": "He worked on OpenAI's superalignment team, left in 2024, and published a long essay called Situational Awareness arguing that machine intelligence would arrive faster than almost anyone expected. He turned that thesis into a hedge fund of the same name late that year, seeded with $225 million.",
+    "ko": "오픈AI의 초정렬 팀에서 일하다 2024년에 나왔고, 기계지능이 거의 모두의 예상보다 빨리 온다고 주장한 긴 글 '시추에이셔널 어웨어니스'를 냈다. 그해 말 같은 이름의 헤지펀드로 그 주장을 옮겼고, 출발 자금은 2억 2,500만달러였다.",
+    "ja": "オープンAIのスーパーアラインメント・チームで働いた後2024年に退社し、機械知能がほぼ誰の予想より早く到来すると論じた長文「シチュエーショナル・アウェアネス」を発表した。同年末に同名のヘッジファンドとしてその主張を移し、開始資金は2億2,500万ドルだった。"
+   }
   }
  }
 }
