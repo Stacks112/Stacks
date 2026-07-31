@@ -698,9 +698,9 @@ function v83HotlRow(item){
 function v83PostRecLabels(){
   var lang = (typeof LANG !== "undefined") ? LANG : "ko";
   var map = {
-    ko: { samsung: "NVIDIA 관련 최신 글", broadcom: "브로드컴 최신 글", nvidia: "NVIDIA 최신 글", amd: "AMD 최신 글" },
-    en: { samsung: "Latest Samsung Electronics reads", broadcom: "Latest Broadcom reads", nvidia: "Latest NVIDIA reads", amd: "Latest AMD reads" },
-    ja: { samsung: "サムスン電子の最新記事", broadcom: "ブロードコムの最新記事", nvidia: "NVIDIAの最新記事", amd: "AMDの最新記事" }
+    ko: { samsung: "삼성전자 관련 최신 글", broadcom: "브로드컴 관련 최신 글", nvidia: "NVIDIA 관련 최신 글", amd: "AMD 관련 최신 글" },
+    en: { samsung: "Latest Samsung Electronics related reads", broadcom: "Latest Broadcom related reads", nvidia: "Latest NVIDIA related reads", amd: "Latest AMD related reads" },
+    ja: { samsung: "サムスン電子関連の最新記事", broadcom: "ブロードコム関連の最新記事", nvidia: "NVIDIA関連の最新記事", amd: "AMD関連の最新記事" }
   };
   return map[lang] || map.en;
 }
@@ -752,7 +752,7 @@ function v83PostRecCandidates(group, currentId){
 function v83PostRecRail(){
   try {
     var rail = document.getElementById("v83rail");
-    var existing = document.getElementById("v83postRecSec");
+    var existing = Array.prototype.slice.call(document.querySelectorAll(".v83postRecSec"));
     var hotRail = document.getElementById("hotRail");
     var hotSec = hotRail ? hotRail.closest("section") : null;
     var active = (typeof V83ITEM !== "undefined" && V83ITEM) && rail
@@ -760,14 +760,14 @@ function v83PostRecRail(){
       && !(typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW)
       && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW);
     if (!active){
-      if (existing) existing.remove();
+      existing.forEach(function(sec){ sec.remove(); });
       if (hotSec) hotSec.hidden = false;
       return;
     }
     var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === V83ITEM; }) : null;
     var groups = v83PostRecPickGroups(it);
     if (!groups.length){
-      if (existing) existing.remove();
+      existing.forEach(function(sec){ sec.remove(); });
       if (hotSec) hotSec.hidden = false;
       return;
     }
@@ -776,30 +776,30 @@ function v83PostRecRail(){
       return { group: group, rows: v83PostRecCandidates(group, V83ITEM).slice(0, 3) };
     }).filter(function(section){ return section.rows.length; });
     if (!sections.length){
-      if (existing) existing.remove();
+      existing.forEach(function(sec){ sec.remove(); });
       if (hotSec) hotSec.hidden = false;
       return;
     }
     if (hotSec) hotSec.hidden = true;
     var key = V83ITEM + ":" + sections.map(function(section){ return section.group; }).join(",") + ":" + ((typeof LANG !== "undefined") ? LANG : "ko");
-    if (existing && existing.getAttribute("data-key") === key) return;
-    if (existing) existing.remove();
-    var sec = document.createElement("section");
-    sec.id = "v83postRecSec";
-    sec.setAttribute("data-key", key);
-    sections.forEach(function(section, idx){
+    if (existing.length && existing[0].getAttribute("data-key") === key && existing.length === sections.length) return;
+    existing.forEach(function(sec){ sec.remove(); });
+    sections.forEach(function(section){
+      var sec = document.createElement("section");
+      sec.id = "v83postRecSec-" + section.group;
+      sec.className = "v83postRecSec";
+      sec.setAttribute("data-key", key);
       var h = document.createElement("h2");
       h.className = "section-title";
-      if (idx) h.style.marginTop = "18px";
       h.textContent = labels[section.group] || labels.nvidia;
       sec.appendChild(h);
       var wrap = document.createElement("div");
       wrap.className = "hot-rail";
       section.rows.forEach(function(item){ wrap.appendChild(v83HotlRow(item)); });
       sec.appendChild(wrap);
+      if (hotSec && hotSec.parentNode === rail) rail.insertBefore(sec, hotSec);
+      else rail.appendChild(sec);
     });
-    if (hotSec && hotSec.parentNode === rail) rail.insertBefore(sec, hotSec);
-    else rail.appendChild(sec);
   } catch (e){}
 }
 
