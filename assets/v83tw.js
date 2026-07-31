@@ -698,9 +698,9 @@ function v83HotlRow(item){
 function v83PostRecLabels(){
   var lang = (typeof LANG !== "undefined") ? LANG : "ko";
   var map = {
-    ko: { nvidia: "NVIDIA 관련 최신 글 12개", amd: "함께 많이 읽은 AMD 글", ai: "이 글을 읽은 사람들이 본 AI 인프라 글" },
-    en: { nvidia: "12 latest NVIDIA reads", amd: "Popular AMD reads", ai: "AI infrastructure reads viewed by readers of this post" },
-    ja: { nvidia: "NVIDIA関連の最新記事12本", amd: "よく読まれているAMD記事", ai: "この記事を読んだ人が見たAIインフラ記事" }
+    ko: { samsung: "삼성전자 최신 글", broadcom: "브로드컴 최신 글", nvidia: "NVIDIA 최신 글", amd: "AMD 최신 글" },
+    en: { samsung: "Latest Samsung Electronics reads", broadcom: "Latest Broadcom reads", nvidia: "Latest NVIDIA reads", amd: "Latest AMD reads" },
+    ja: { samsung: "サムスン電子の最新記事", broadcom: "ブロードコムの最新記事", nvidia: "NVIDIAの最新記事", amd: "AMDの最新記事" }
   };
   return map[lang] || map.en;
 }
@@ -715,24 +715,25 @@ function v83ItemNeedleText(item){
   } catch (e) { return ""; }
 }
 
+function v83ItemTagText(item){
+  try {
+    return (item && item.tags ? item.tags : []).join(" ").toLowerCase();
+  } catch (e) { return ""; }
+}
+
 function v83PostRecGroupRx(group){
   return {
+    samsung: /(samsung electronics|samsung|삼성전자|삼성|005930)/i,
+    broadcom: /(broadcom|avgo|브로드컴)/i,
     nvidia: /(nvidia|nvda|엔비디아|젠슨|jensen|blackwell|rubin)/i,
-    amd: /(\bamd\b|advanced micro devices|mi300|mi325|mi500|cuda)/i,
-    ai: /(ai infrastructure|ai infra|데이터센터|인프라|hbm|hbm4|cpo|gpu|광통신|co-packaged|datacenter|data center|samsung|samsung electronics|삼성|삼성전자|foundry|파운드리|2nm|gaa|taylor)/i
+    amd: /(\bamd\b|advanced micro devices|mi300|mi325|mi500|cuda)/i
   }[group] || /a^/;
 }
 
-function v83PostRecPickGroup(item){
-  var groups = ["nvidia", "amd", "ai"];
+function v83PostRecPickGroups(item){
+  var groups = ["samsung", "broadcom", "nvidia", "amd"];
   var text = v83ItemNeedleText(item);
-  var matches = groups.filter(function(group){ return v83PostRecGroupRx(group).test(text); });
-  if (!matches.length) return null;
-  if (matches.length === 1) return matches[0];
-  var seed = String((item && item.id) || (typeof V83ITEM !== "undefined" ? V83ITEM : "") || "stacks");
-  var n = 0;
-  for (var i = 0; i < seed.length; i++) n = (n * 31 + seed.charCodeAt(i)) % 9973;
-  return matches[n % matches.length];
+  return groups.filter(function(group){ return v83PostRecGroupRx(group).test(text); });
 }
 
 function v83PostRecCandidates(group, currentId){
@@ -740,13 +741,12 @@ function v83PostRecCandidates(group, currentId){
   var rx = v83PostRecGroupRx(group);
   return all.filter(function(x){
     if (!x || x.id === currentId) return false;
-    return rx.test(v83ItemNeedleText(x));
+    return rx.test(v83ItemTagText(x));
   }).sort(function(a, b){
     var av = (typeof VIEW_COUNTS !== "undefined" && VIEW_COUNTS[a.id]) || 0;
     var bv = (typeof VIEW_COUNTS !== "undefined" && VIEW_COUNTS[b.id]) || 0;
-    if (group === "amd") return bv - av || (a.date < b.date ? 1 : -1);
     return (a.date < b.date ? 1 : -1) || bv - av;
-  }).slice(0, group === "nvidia" ? 12 : 5);
+  }).slice(0, 5);
 }
 
 function v83PostRecRail(){
@@ -765,34 +765,39 @@ function v83PostRecRail(){
       return;
     }
     var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === V83ITEM; }) : null;
-    var group = v83PostRecPickGroup(it);
-    if (!group){
+    var groups = v83PostRecPickGroups(it);
+    if (!groups.length){
       if (existing) existing.remove();
       if (hotSec) hotSec.hidden = false;
       return;
     }
     var labels = v83PostRecLabels();
-    var rows = v83PostRecCandidates(group, V83ITEM).slice(0, 3);
-    if (!rows.length){
+    var sections = groups.map(function(group){
+      return { group: group, rows: v83PostRecCandidates(group, V83ITEM).slice(0, 3) };
+    }).filter(function(section){ return section.rows.length; });
+    if (!sections.length){
       if (existing) existing.remove();
       if (hotSec) hotSec.hidden = false;
       return;
     }
     if (hotSec) hotSec.hidden = true;
-    var key = V83ITEM + ":" + group + ":" + ((typeof LANG !== "undefined") ? LANG : "ko");
+    var key = V83ITEM + ":" + sections.map(function(section){ return section.group; }).join(",") + ":" + ((typeof LANG !== "undefined") ? LANG : "ko");
     if (existing && existing.getAttribute("data-key") === key) return;
     if (existing) existing.remove();
     var sec = document.createElement("section");
     sec.id = "v83postRecSec";
     sec.setAttribute("data-key", key);
-    var h = document.createElement("h2");
-    h.className = "section-title";
-    h.textContent = labels[group] || labels.ai;
-    sec.appendChild(h);
-    var wrap = document.createElement("div");
-    wrap.className = "hot-rail";
-    rows.forEach(function(item){ wrap.appendChild(v83HotlRow(item)); });
-    sec.appendChild(wrap);
+    sections.forEach(function(section, idx){
+      var h = document.createElement("h2");
+      h.className = "section-title";
+      if (idx) h.style.marginTop = "18px";
+      h.textContent = labels[section.group] || labels.nvidia;
+      sec.appendChild(h);
+      var wrap = document.createElement("div");
+      wrap.className = "hot-rail";
+      section.rows.forEach(function(item){ wrap.appendChild(v83HotlRow(item)); });
+      sec.appendChild(wrap);
+    });
     if (hotSec && hotSec.parentNode === rail) rail.insertBefore(sec, hotSec);
     else rail.appendChild(sec);
   } catch (e){}
