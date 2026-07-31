@@ -28,6 +28,29 @@ Next:
 
 ## 2026-07-31 Codex
 Goal:
+- Fix local Python so `scripts/deploy_guard.py` can run.
+
+Changed:
+- User environment: installed Python 3.12.10 with `winget`.
+- User PATH: prepended `C:\Users\dream\AppData\Local\Programs\Python\Python312` and `...\Scripts`.
+- User env: set `PYTHONUTF8=1`, `PYTHONIOENCODING=utf-8`.
+- Git remote: added `origin=https://github.com/Stacks112/Stacks.git` in `C:\Users\dream\Downloads\Stacks`.
+- `AGENT_HANDOFF.md`
+
+Verified:
+- `C:\Users\dream\AppData\Local\Programs\Python\Python312\python.exe --version` -> `Python 3.12.10`
+- `scripts/deploy_guard.py index.html` runs in `C:\Users\dream\Downloads\Stacks`.
+- `scripts/deploy_guard.py index.html` runs in `C:\Users\dream\Downloads\Stacks-main`.
+
+Risks:
+- Current Codex process still inherits old PATH, so this session may need explicit Python path. New terminals should resolve `python` from Python312 before WindowsApps.
+- Production checkout was rebased to `origin/main` (`0a0cd72`); existing untracked `_preview_no_today_news/` left untouched.
+
+Next:
+- For future deploys, run `python scripts\deploy_guard.py <touched-files>` from a new terminal or use the full Python path in this current Codex session.
+
+## 2026-07-31 Codex
+Goal:
 - Restore view/like/comment counters after frontend pointed at retired workers.dev URL.
 
 Changed:
