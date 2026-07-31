@@ -632,13 +632,16 @@ function v83RelatedRail(){
       .map(function(rid){ return (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === rid; }) : null; })
       .filter(Boolean).slice(0, 3);
     if (!rel.length){ if (existing) existing.remove(); return; }
-    /* 이미 같은 글로 그려져 있으면 재생성 생략 */
-    if (existing && existing.getAttribute("data-for") === V83ITEM) return;
-    if (existing) existing.remove();
     var S = (typeof STRINGS !== "undefined" && STRINGS[LANG]) ? STRINGS[LANG] : null;
+    var langKey = (typeof LANG !== "undefined") ? LANG : "ko";
+    var relKey = V83ITEM + ":" + langKey;
+    /* 이미 같은 글/언어로 그려져 있으면 재생성 생략 */
+    if (existing && existing.getAttribute("data-key") === relKey) return;
+    if (existing) existing.remove();
     var sec = document.createElement("section");
     sec.id = "v83relSec";
     sec.setAttribute("data-for", V83ITEM);
+    sec.setAttribute("data-key", relKey);
     var title = (S && S.related) ? S.related : "함께 읽기";
     var h = document.createElement("h2"); h.className = "section-title"; h.textContent = title;
     sec.appendChild(h);
@@ -716,7 +719,7 @@ function v83PostRecGroupRx(group){
   return {
     nvidia: /(nvidia|nvda|엔비디아|젠슨|jensen|blackwell|rubin)/i,
     amd: /(\bamd\b|advanced micro devices|mi300|mi325|mi500|cuda)/i,
-    ai: /(ai infrastructure|ai infra|데이터센터|인프라|hbm|cpo|gpu|광통신|co-packaged|datacenter|data center)/i
+    ai: /(ai infrastructure|ai infra|데이터센터|인프라|hbm|hbm4|cpo|gpu|광통신|co-packaged|datacenter|data center|samsung|samsung electronics|삼성|삼성전자|foundry|파운드리|2nm|gaa|taylor)/i
   }[group] || /a^/;
 }
 
@@ -804,6 +807,7 @@ if (typeof render === "function"){
     try { v83MoveLang(); } catch (e){}
     try { v83MoveSearch(); } catch (e){}
     try { v83Relabel(); } catch (e){}
+    try { if (typeof v83RenderCal === "function") v83RenderCal(); } catch (e){}
     try { v83RelatedRail(); } catch (e){}
     try { v83PostRecRail(); } catch (e){}
     return r;
@@ -814,7 +818,7 @@ if (typeof render === "function"){
 var _v83initN = 0;
 var _v83initTimer = setInterval(function(){
   _v83initN++;
-  try { v83MoveLang(); v83MoveSearch(); v83Relabel(); } catch (e){}
+  try { v83MoveLang(); v83MoveSearch(); v83Relabel(); if (typeof v83RenderCal === "function") v83RenderCal(); } catch (e){}
   var nav = document.getElementById("v83nav"), lm = document.getElementById("langMenu");
   var ni = document.querySelector(".nav-inner"), sr = document.querySelector(".v83-search");
   var langOk = nav && lm && nav.contains(lm);
@@ -822,5 +826,5 @@ var _v83initTimer = setInterval(function(){
   if (langOk && searchOk) { clearInterval(_v83initTimer); }
   else if (_v83initN > 40) { clearInterval(_v83initTimer); }
 }, 150);
-v83MoveLang(); v83MoveSearch(); v83Relabel(); v83RelatedRail(); v83PostRecRail();
+v83MoveLang(); v83MoveSearch(); v83Relabel(); if (typeof v83RenderCal === "function") v83RenderCal(); v83RelatedRail(); v83PostRecRail();
 })();
