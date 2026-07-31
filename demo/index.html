@@ -1,159 +1,135 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>엔비디아가 오픈AI 빚 2500억달러를 보증하는 이유 · Stacks 추천 적용 미리보기</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stacks Post Recommendation Preview</title>
 <style>
-:root{color-scheme:light dark}
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
-@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.gist{color:#C9CDD6!important}}
-.wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
-.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}
-.topbar a{color:inherit;text-decoration:none}
-.topbar .brand{font-weight:800;font-size:16px}
-.topbar .sitenav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
-.topbar .sitenav a{font-size:13.5px;font-weight:600;color:#8E93A0}
-.cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#1E1B4B,#78350F);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
-.cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
-.meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
-h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
-.gist{color:#3E414B;white-space:pre-line;font-size:16px}
-h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
-.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
-.srcq blockquote{margin:0;quotes:none}
-.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
-.srcq-c{font-size:12.5px;color:#8E93A0}
-.srcq-c a{color:#8E93A0}
-.sum3{margin:20px 0 0;padding:13px 15px;border-radius:12px;background:#F6F7F9;border:1px solid #ECEDF1}
-.sum3>b{display:block;font-size:12px;letter-spacing:.02em;color:#5B6070;margin-bottom:7px}
-.sum3 ul{list-style:none;margin:0;padding:0}
-.sum3 li{position:relative;padding-left:15px;margin:0 0 7px;font-size:15px;line-height:1.62}
-.sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
-.btn{display:inline-block;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px}
-.btn.app{background:#111214;color:#fff}
-.btn.src{background:#F6F7F9;color:#17181C;border:1px solid #ECEDF1}
-.preview-note{margin:18px 0 22px;padding:10px 13px;border:1px dashed #D7DAE0;border-radius:12px;color:#5B6070;font-size:13px;background:#FBFCFE}
-.stack-rec{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}
-.stack-rec h3{font-size:14px;margin:0 0 10px}
-.stack-rec-kicker{font-size:12px;color:#8E93A0;margin:-4px 0 12px}
-.stack-rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.stack-rec-card{display:flex;flex-direction:column;gap:7px;min-height:112px;padding:12px 13px;border:1px solid #ECEDF1;border-radius:12px;text-decoration:none;color:#17181C;background:#fff}
-.stack-rec-card:hover{border-color:#111214}
-.stack-rec-card b{font-size:14.5px;line-height:1.48}
-.stack-rec-card span{margin-top:auto;font-size:12px;color:#8E93A0}
-.stack-rec-list{list-style:none;margin:0;padding:0}
-.stack-rec-list li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}
-.stack-rec-list a{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}
-.stack-rec-list a:hover{text-decoration:underline}
-.stack-rec-list time{flex:none;font-size:12px;color:#8E93A0}
-.stack-rec-chiprow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.stack-rec-chiprow a{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}
-footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
-footer a{color:#8E93A0}
-@media(max-width:620px){.wrap{padding:0 16px 48px}.stack-rec-grid{grid-template-columns:1fr}.topbar .sitenav{margin-left:0}.cover{height:96px}h1{font-size:23px}}
-@media(prefers-color-scheme:dark){
-  .topbar,.stack-rec,.stack-rec-card,footer,.sum3{border-color:#26272E}
-  .srcq,.sum3,.preview-note{background:#1A1B21}
-  .srcq p{color:#C9CDD6}
-  .btn.src,.stack-rec-chiprow a{background:#141519;color:#ECEDF1;border-color:#2E3037}
-  .stack-rec-card{background:#141519;color:#ECEDF1}
-  .stack-rec-card:hover{border-color:#ECEDF1}
-  .stack-rec-list li{border-bottom-color:#1E1F25}
-  .stack-rec-list a{color:#ECEDF1}
-}
+body{margin:0;background:#fff;color:#111214;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif}
+a{color:inherit;text-decoration:none}
+.shell{display:grid;grid-template-columns:260px minmax(520px,604px) 352px;min-height:100vh;justify-content:center}
+.left{border-right:1px solid #e8e9ee;padding:12px 28px 20px 0;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;margin-left:2px;margin-bottom:24px;font-weight:800;font-size:20px}
+.logo,.avatar{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#111214;color:#fff;font-weight:900}
+.nav{display:grid;gap:20px}
+.nav a{display:flex;align-items:center;gap:18px;font-size:20px;color:#1d1f25}
+.nav b{font-weight:800}
+.ico{width:24px;text-align:center;font-size:23px}
+.profile{position:absolute;bottom:24px;left:2px;display:flex;align-items:center;gap:14px;font-weight:800}
+.avatar{border-radius:50%;background:#355cff}
+.post{border-right:1px solid #e8e9ee;min-height:100vh}
+.post-head{height:49px;border-bottom:1px solid #e8e9ee;display:flex;align-items:center;gap:24px;padding:0 16px;font-size:20px;font-weight:800}
+.back{font-size:32px;font-weight:300;line-height:1;transform:translateY(-2px)}
+.article{padding:16px 16px 42px}
+.byline{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.face{width:38px;height:38px;border-radius:50%;border:1px dashed #c9ccd3;background:#fafafa}
+.byline b{font-size:15px}.byline span{color:#6b7280}
+h1{font-size:22px;line-height:1.22;margin:0 0 10px;font-weight:900;letter-spacing:-.02em}
+.actions{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.primary{display:inline-flex;align-items:center;height:39px;border-radius:999px;background:#111214;color:#fff;padding:0 17px;font-weight:850;font-size:14px}
+.pill{display:inline-flex;align-items:center;justify-content:center;height:26px;min-width:40px;border:1px solid #e7e8ed;border-radius:999px;background:#f8f9fb;color:#64748b;font-size:12px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#6b7280}
+.quote{border-left:3px solid #315cff;background:#f4f4f6;border-radius:0 9px 9px 0;padding:13px 16px;margin-bottom:2px;color:#3f4148;font-size:14px;line-height:1.7}
+.quote b{display:block;color:#747987;font-size:11px;margin-bottom:8px;letter-spacing:.05em}
+.quote small{display:block;color:#77808d;margin-top:8px}
+p{font-size:16px;line-height:1.35;margin:0 0 19px;color:#272a31}
+.inline-rec{margin:10px 0 18px;border:1px solid #e8e9ee;border-radius:14px;padding:13px 14px;background:#fff}
+.inline-rec h2{font-size:15px;margin:0 0 9px;font-weight:900}
+.inline-rec-list{display:grid;gap:8px}
+.mini{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid #f0f1f4}
+.mini:first-child{border-top:0;padding-top:0}
+.tag{flex:0 0 auto;border-radius:7px;background:#eef3ff;color:#315cff;font-size:11px;font-weight:900;padding:3px 7px}
+.mini b{display:block;font-size:14px;line-height:1.25}
+.mini span{display:block;color:#717784;font-size:12px;margin-top:3px}
+.photo{width:100%;height:286px;border-radius:10px;object-fit:cover;display:block}
+.rail{padding:2px 0 30px 30px}
+.search{height:44px;border-radius:999px;background:#f5f6f8;color:#6b7280;display:flex;align-items:center;gap:12px;padding:0 18px;margin-bottom:12px;font-size:16px}
+.side-card{border:1px solid #e8e9ee;border-radius:17px;padding:15px 17px;margin-bottom:16px}
+.side-card h2{font-size:21px;line-height:1;margin:0 0 17px;font-weight:900}
+.cal{font-size:14px;color:#6b7280;margin:0 0 22px}.blue{color:#2457ff;font-weight:850;font-size:13px}
+.rec-card{padding:0 0 12px;margin-bottom:12px;border-bottom:1px solid #edf0f4}
+.rec-card:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.rec-label{display:inline-block;margin-bottom:7px;border-radius:999px;background:#eef3ff;color:#315cff;font-size:11px;font-weight:900;padding:4px 8px}
+.rec-card b{display:block;font-size:14.5px;line-height:1.28;font-weight:900}
+.rec-card span{display:block;color:#6b7280;font-size:12px;line-height:1.35;margin-top:5px}
+.hot b{font-size:14px}.hot span{font-size:12px}
+@media(max-width:1100px){.shell{grid-template-columns:82px minmax(520px,604px) 328px}.brand span,.nav a span,.profile b{display:none}.left{padding-left:0;padding-right:20px}.nav a{justify-content:center}.profile{left:2px}}
+@media(max-width:880px){.shell{display:block}.left,.rail{display:none}.post{border-right:0}.post-head{position:sticky;top:0;background:#fff;z-index:2}.article{max-width:640px;margin:auto}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="topbar">
-    <a class="brand" href="#">◆ Stacks</a>
-    <nav class="sitenav"><a href="#">전체 글</a> · <a href="#">이번 주</a> · <a href="#">소개</a></nav>
-  </div>
+<div class="shell">
+  <aside class="left">
+    <div class="brand"><div class="logo">◆</div><span>Stacks</span></div>
+    <nav class="nav">
+      <a href="#"><span class="ico">⌂</span><b>Home</b></a>
+      <a href="#"><span class="ico">⌕</span><span>Explore</span></a>
+      <a href="#"><span class="ico">⌁</span><span>Sentiment</span></a>
+      <a href="#"><span class="ico">☰</span><span>Debates</span></a>
+      <a href="#"><span class="ico">⌙</span><span>Track record</span></a>
+      <a href="#"><span class="ico">▣</span><span>Calendar</span></a>
+      <a href="#"><span class="ico">▱</span><span>Bookmarks</span></a>
+      <a href="#"><span class="ico">♧</span><span>Notifications</span></a>
+      <a href="#"><span class="ico">☼</span><span>Appearance</span></a>
+      <a href="#"><span class="ico">🇺🇸</span><span>English</span></a>
+    </nav>
+    <div class="profile"><div class="avatar">J</div><b>Profile</b></div>
+  </aside>
 
-  <p class="preview-note">임시 미리보기입니다. 실제 운영 글의 하단에 추천 기능이 붙었을 때의 모습만 보여줍니다.</p>
+  <main class="post">
+    <div class="post-head"><span class="back">‹</span><span>Post</span></div>
+    <article class="article">
+      <div class="byline"><div class="face"></div><div><b>메르 (ranto28)</b> · <span>4h ago · KO</span></div></div>
+      <h1>The Fed swapped its inflation yardstick from CPI to PCE, and accuracy was not the only reason</h1>
+      <div class="actions">
+        <a class="primary" href="#">Read the original ↗</a>
+        <span class="pill">🎯</span>
+        <span class="mono">Original in Korean · auto-translate works well</span>
+      </div>
 
-  <div class="cover"><span class="label">DOT-COM ECHO</span></div>
-  <div class="meta">메르 (ranto28) · 2026-07-28 · 원문: KO</div>
-  <h1>엔비디아가 오픈AI 빚 2500억달러를 보증하는 이유, 25년 전 광케이블 버블에도 있었다</h1>
+      <div class="quote">
+        <b>“” FROM THE SOURCE</b>
+        If you can prove the CPI is overstating inflation, you can slow the growth of spending without ever having to vote to "cut pensions".<br><br>
+        PCE comes in about 0.4 percentage points lower than CPI on average.<br><br>
+        From the Fed's point of view PCE 2% is a far easier target to hit than CPI 2%, and it succeeded in lowering the target.
+        <small>메르 · 2026.07.31 · translated from the Korean</small>
+      </div>
 
-  <div class="actions">
-    <a class="btn app" href="#">Stacks 앱에서 보기 →</a>
-    <a class="btn src" href="#">원문 보기 ↗</a>
-  </div>
+      <p>The US personal consumption expenditures price index fell 0.1% in June from the month before.<br>That is the first monthly decline in this index in six years.</p>
 
-  <figure class="srcq">
-    <blockquote lang="ko">
-      <p>비슷한 점은 닷컴버블 때의 순환금융이 지금도 나타나고 있다는 것임.</p>
-      <p>GPU를 파는쪽이 돈을 대주고, 그 돈이 GPU를 파는쪽의 매출로 다시 돌아오는 구조가 핵심임.</p>
-    </blockquote>
-    <figcaption class="srcq-c"><a href="#">메르 · 2026.07.28</a></figcaption>
-  </figure>
+      <section class="inline-rec">
+        <h2>More like this post</h2>
+        <div class="inline-rec-list">
+          <a class="mini" href="#"><span class="tag">PCE</span><span><b>Why all three Fed dissents argued for a hike</b><span>The Kobeissi Letter · 2026.07.29</span></span></a>
+          <a class="mini" href="#"><span class="tag">FED</span><span><b>If quarterly earnings and Fed guidance both get cut back, what will the market price?</b><span>Aswath Damodaran · 2026.07.29</span></span></a>
+        </div>
+      </section>
 
-  <h2 class="gsub">왜 이 얘기가 다시 나오나</h2>
-  <p class="gist">엔비디아가 오픈AI의 오하이오 데이터센터 부채 2500억달러를 보증하기로 한 데 더해, 오픈AI가 자사 칩을 사들이는 데 쓸 3500억달러까지 지원하는 방안을 논의 중이라는 것이다.
+      <p>Against a year earlier it ran 3.7%, down from 4.1% in May.<br>The biggest single mover was energy goods, including gasoline, which fell 9.2%.</p>
+      <img class="photo" alt="Gas price sign" src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?auto=format&fit=crop&w=1000&q=80">
+    </article>
+  </main>
 
-오픈AI는 적자 상태의 비상장사라 신용등급이 투자부적격이다. 데이터센터 시공사가 은행 돈을 낮은 금리로 빌리려면 임차인 신용이 필요한데, 그 신용을 엔비디아가 대신 채워주는 구조다.</p>
-
-  <h2 class="gsub">25년 전에도 같은 구조가 있었다</h2>
-  <p class="gist">1990년대 후반, 인터넷이 데이터 트래픽을 폭발시킬 것이라는 기대 속에 통신회사들이 앞다퉈 광케이블을 깔았다.
-
-현금이 없던 신생 통신사들은 장비회사에서 돈을 빌려 장비를 샀고, 그 대출은 결국 장비회사 자신의 매출로 돌아오는 구조였다.</p>
-
-  <h2 class="gsub">그래서 무엇을 보게 되나</h2>
-  <p class="gist">결국 질문은 세 가지로 좁혀진다. AI가 수천억달러의 인프라 투자를 정당화할 만큼 돈을 벌어들일 것이냐, 오픈AI가 돈을 계속 조달할 수 있느냐, 그리고 지금보다 효율적인 기술이 나와 GPU 자체가 덜 필요해지느냐다.</p>
-
-  <div class="sum3">
-    <b>세 줄 요약</b>
-    <ul>
-      <li>엔비디아 보증과 오픈AI 칩 구매 지원 논의는 AI 인프라 순환금융 구조를 보여준다.</li>
-      <li>25년 전 광케이블 버블에도 장비회사가 고객에게 돈을 대고 매출로 되돌리는 구조가 있었다.</li>
-      <li>핵심 변수는 오픈AI의 조달 능력과 GPU 수요를 바꿀 기술 변화다.</li>
-    </ul>
-  </div>
-
-  <section class="stack-rec" aria-labelledby="rec-ticker">
-    <h3 id="rec-ticker">NVIDIA 관련 최신 글</h3>
-    <p class="stack-rec-kicker">같은 종목을 읽는 사람이 바로 이어서 볼 만한 글</p>
-    <div class="stack-rec-grid">
-      <a class="stack-rec-card" href="#"><b>루빈 랙 메모리 비중이 26%로 뛰었다, 블랙웰 때는 9%였다</b><span>Jukan · 2026-07-28</span></a>
-      <a class="stack-rec-card" href="#"><b>해킹 조사를 가로막은 건 '닫힌 AI'였다. 엔비디아는 왜 보안의 답을 공개에서 찾을까?</b><span>Jensen Huang · 2026-07-27</span></a>
-      <a class="stack-rec-card" href="#"><b>오픈AI 5000억달러 오하이오 데이터센터, 엔비디아가 2500억달러 지급보증한다</b><span>Serenity · 2026-07-27</span></a>
-      <a class="stack-rec-card" href="#"><b>엔비디아 CMX가 낸드를 대량으로 빨아들인다, '애플 하나'만 한 새 수요</b><span>Jukan · 2026-07-20</span></a>
-    </div>
-  </section>
-
-  <section class="stack-rec" aria-labelledby="rec-theme">
-    <h3 id="rec-theme">AI 인프라 글 더 보기</h3>
-    <div class="stack-rec-chiprow">
-      <a href="#">AI 인프라</a>
-      <a href="#">반도체</a>
-      <a href="#">데이터센터</a>
-      <a href="#">HBM</a>
-    </div>
-    <ul class="stack-rec-list">
-      <li><a href="#">데이터센터를 레고처럼 조립하기 시작한 이유는 공사비 절감이 아니라 전기 기술자 부족이다</a><time>7월 29일</time></li>
-      <li><a href="#">AI 인프라·보안 소프트웨어 지수는 22% 올랐는데, 업무용 소프트웨어 지수는 급락한 이유는?</a><time>7월 28일</time></li>
-      <li><a href="#">기판·메모리·특수가스, AI 반도체 공급망이 동시에 조여진다</a><time>7월 26일</time></li>
-      <li><a href="#">AI 반도체 시장 1조4000억달러 전망 상향, 근거는 AMD CEO 본인의 키노트였다</a><time>7월 24일</time></li>
-    </ul>
-  </section>
-
-  <section class="stack-rec" aria-labelledby="rec-coread">
-    <h3 id="rec-coread">이 글을 읽은 사람들이 함께 본 글</h3>
-    <ul class="stack-rec-list">
-      <li><a href="#">AMD에 박했던 세미애널리시스가 '유력'으로 돌아섰다. 정말 CUDA 해자를 넘을까?</a><time>7월 25일</time></li>
-      <li><a href="#">수주잔고는 사상 최대인데, 왜 오라클 부도 보험료는 2008년보다 비쌀까?</a><time>7월 24일</time></li>
-      <li><a href="#">미국의 이자 청구서가 오르고 있다, AI가 그 압력을 더한다</a><time>7월 19일</time></li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>STACKS BUILD v81 · 추천 기능 임시 적용 미리보기</p>
-    <p>© 2026 Stacks · stacksdaily.com</p>
-  </footer>
+  <aside class="rail">
+    <div class="search">⌕ <span>Search</span></div>
+    <section class="side-card">
+      <h2>Coming up</h2>
+      <p class="cal">No events this month.</p>
+      <a class="blue" href="#">Open full calendar →</a>
+    </section>
+    <section class="side-card">
+      <h2>Recommended</h2>
+      <a class="rec-card" href="#"><span class="rec-label">Same topic</span><b>Why did all three dissents at the Fed's fifth straight hold argue for a hike?</b><span>The Kobeissi Letter · 2026.07.29</span></a>
+      <a class="rec-card" href="#"><span class="rec-label">Readers also viewed</span><b>If quarterly earnings and Fed guidance both get cut back, what will the market price?</b><span>Aswath Damodaran · 2026.07.29</span></a>
+      <a class="rec-card" href="#"><span class="rec-label">Latest on inflation</span><b>Gold buying, cheap-money carry trades and bond-fund outflows all spiked...</b><span>The Kobeissi Letter · Views 36</span></a>
+    </section>
+    <section class="side-card hot">
+      <h2>Hot this week</h2>
+      <a class="rec-card" href="#"><b>Gold buying, cheap-money carry trades and bond-fund outflows all spiked...</b><span>The Kobeissi Letter · 2026.07.26 · Views 36</span></a>
+      <a class="rec-card" href="#"><b>Why is a back door China shut on June 23 turning into selling in Korean chip stocks...</b><span>메르 (ranto28) · 2026.07.30 · Views 29</span></a>
+    </section>
+  </aside>
 </div>
 </body>
 </html>
