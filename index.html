@@ -8769,6 +8769,16 @@ function plainHomeView(){
     && !(typeof EVENT_FILTER !== "undefined" && EVENT_FILTER)
     && !(typeof V83ITEM !== "undefined" && V83ITEM);
 }
+function homeTopTodayId(){
+  try {
+    var today = (typeof todayStr === "function") ? todayStr() : new Date().toISOString().slice(0, 10);
+    var score = function(i){ return (VIEW_COUNTS[i.id] || 0) + (LIKE_COUNTS[i.id] || 0) * 3 + (COMMENT_COUNTS[i.id] || 0) * 2; };
+    var list = ITEMS.filter(function(i){ return i.date === today; })
+      .sort(function(a, b){ return score(b) - score(a) || (a.date < b.date ? 1 : -1); });
+    if (list.length) return list[0].id;
+  } catch(e){}
+  return (typeof v83TopHotId === "function") ? v83TopHotId() : null;
+}
 function homeBriefEl(items){
   var lang = (typeof LANG !== "undefined") ? LANG : "ko";
   var copy = {
@@ -8777,7 +8787,7 @@ function homeBriefEl(items){
     ja:{k:"今日の要約",m:"人気記事から読むか、テーマ別に選べます。",hot:"人気記事を見る",browse:"探す"}
   }[lang] || {k:"Today",m:"Start with the most-read item or jump into topics.",hot:"Read top item",browse:"Explore"};
   var top = null;
-  try { var id = (typeof v83TopHotId === "function") ? v83TopHotId() : null; top = id ? ITEMS.find(function(i){ return i.id === id; }) : null; } catch(e){}
+  try { var id = (typeof homeTopTodayId === "function") ? homeTopTodayId() : null; top = id ? ITEMS.find(function(i){ return i.id === id; }) : null; } catch(e){}
   top = top || (items && items[0]) || null;
   var el = document.createElement("div");
   el.className = "home-brief";
@@ -8790,7 +8800,11 @@ function homeBriefEl(items){
   var hot = el.querySelector("[data-home-hot]");
   if (hot) hot.onclick = function(){ if (top && typeof v83OpenItem === "function") v83OpenItem(top.id); else if (top) goToItem(top.id); };
   var browse = el.querySelector("[data-home-browse]");
-  if (browse) browse.onclick = function(){ if (typeof setTab === "function") setTab("browse"); };
+  if (browse) browse.onclick = function(){
+    var b = document.querySelector('#v83nav .v83-link[data-k="browse"]');
+    if (b && typeof b.click === "function"){ b.click(); return; }
+    if (typeof setTab === "function") setTab("browse");
+  };
   return el;
 }
 
