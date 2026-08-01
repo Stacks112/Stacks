@@ -8802,6 +8802,10 @@ function homeBriefEl(items){
   if (hot) hot.onclick = function(){ if (top && typeof v83OpenItem === "function") v83OpenItem(top.id); else if (top) goToItem(top.id); };
   var browse = el.querySelector("[data-home-browse]");
   if (browse) browse.onclick = function(){
+    if (window.matchMedia && window.matchMedia("(max-width:1023px)").matches){
+      var mb = document.querySelector('#v82nav button[data-v="explore"]');
+      if (mb && typeof mb.click === "function"){ mb.click(); return; }
+    }
     var b = document.querySelector('#v83nav .v83-link[data-k="browse"]');
     if (b && typeof b.click === "function"){ b.click(); return; }
     if (typeof setTab === "function") setTab("browse");
