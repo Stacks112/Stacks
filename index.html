@@ -8771,7 +8771,8 @@ function plainHomeView(){
 }
 function homeTopTodayId(){
   try {
-    var today = (typeof todayStr === "function") ? todayStr() : new Date().toISOString().slice(0, 10);
+    var d = new Date(), pad = function(n){ return String(n).padStart(2, "0"); };
+    var today = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
     var score = function(i){ return (VIEW_COUNTS[i.id] || 0) + (LIKE_COUNTS[i.id] || 0) * 3 + (COMMENT_COUNTS[i.id] || 0) * 2; };
     var list = ITEMS.filter(function(i){ return i.date === today; })
       .sort(function(a, b){ return score(b) - score(a) || (a.date < b.date ? 1 : -1); });
