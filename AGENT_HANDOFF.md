@@ -2,6 +2,29 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-01 Codex
+Goal:
+- Deploy temporary intro/onboarding bypass for AdSense review.
+
+Changed:
+- `C:\Users\dream\Downloads\Stacks-main\index.html`
+
+Verified:
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main fetch origin main`
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main rebase origin/main`
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main diff --check origin/main..HEAD -- index.html`
+- `PYTHONUTF8=1 PYTHONIOENCODING=utf-8 C:\Users\dream\AppData\Local\Programs\Python\Python312\python.exe scripts\deploy_guard.py index.html`
+- `git -c safe.directory=C:/Users/dream/Downloads/Stacks-main -C C:\Users\dream\Downloads\Stacks-main push origin HEAD:main`
+- Live `https://stacksdaily.com/?deploycheck=a73a3901-adsense-intro-2` contains `FIRST_RUN_GATES_DISABLED_FOR_ADSENSE = true`.
+- Browser live check: `introHidden=true`, `onboardHidden=true`, `cardCount=10`.
+
+Risks:
+- Intro and onboarding are intentionally disabled until AdSense approval.
+- Restore by setting `FIRST_RUN_GATES_DISABLED_FOR_ADSENSE` to `false` after approval.
+
+Next:
+- Resubmit/recheck AdSense.
+
 ## Rules
 - Before work: read `AGENTS.md`, `STACKS_CONTEXT.md`, this file, then run `git status`.
 - During work: avoid editing the same files at the same time.
