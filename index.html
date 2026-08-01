@@ -1994,6 +1994,25 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
   background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;
   padding:14px 16px;margin-bottom:16px;
 }
+.home-brief{
+  background:var(--bg);border-bottom:1px solid var(--line);padding:13px 14px 12px;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;
+}
+.home-brief-k{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px;}
+.home-brief-t{font-size:16px;font-weight:800;line-height:1.35;letter-spacing:-.01em;color:var(--text);}
+.home-brief-m{font-size:12px;color:var(--muted);line-height:1.45;margin-top:4px;}
+.home-brief-a{display:flex;gap:7px;align-items:center;justify-content:flex-end;flex-wrap:wrap;}
+.home-brief button{
+  font-family:inherit;font-size:12.5px;font-weight:800;cursor:pointer;border-radius:999px;
+  border:1px solid var(--line);background:var(--bg-soft);color:var(--text);padding:7px 12px;
+}
+.home-brief button.primary{background:var(--text);border-color:var(--text);color:var(--bg);}
+.home-brief button:hover{border-color:var(--accent);color:var(--accent);}
+.home-brief button.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+@media (max-width:560px){
+  .home-brief{grid-template-columns:1fr;padding:12px 14px;}
+  .home-brief-a{justify-content:flex-start;}
+}
 .mh-line{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:10px;line-height:1.4;}
 html[data-lang="ko"] .mh-line{font-family:var(--ui-font);}
 .mh-chips{display:flex;flex-wrap:wrap;gap:8px;}
@@ -2160,7 +2179,7 @@ html[data-lang="ko"] .ask-row{font-family:var(--ui-font);}
 .eg svg{width:18px;height:18px;display:block;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
 .eg .eg-n{font-family:var(--mono-font);font-size:11.5px;min-width:0;}
 .eg .eg-n:empty{display:none;}
-.eg-view{cursor:default;}
+.eg-view{cursor:pointer;}
 .eg-comment:hover,.eg-comment.open{color:#0BA5EC;background:rgba(11,165,236,.08);}
 .eg-like:hover{color:#F04438;background:rgba(240,68,56,.08);}
 .eg-like.on{color:#F04438;}
@@ -2174,7 +2193,7 @@ html[data-lang="ko"] .ask-row{font-family:var(--ui-font);}
 .eg-listen:hover{color:#7A4DFF;background:rgba(122,77,255,.08);}
 .eg-listen.on{color:#7A4DFF;}
 .eg-listen.on svg{fill:#7A4DFF;stroke:#7A4DFF;}
-.eg-view:hover{color:var(--muted);background:none;}
+.eg-view:hover{color:var(--text);background:var(--bg-soft);}
 .card.is-read .engage{opacity:.6;}
 @media (max-width:560px){ .eg{padding:6px 6px;} .eg svg{width:17px;height:17px;} }
 
@@ -8743,6 +8762,38 @@ var READ_VIEW = false;     /* 좌측 '읽은 글' 보관함 뷰 */
 var READ_DIV_IDX = -1;     /* 피드에서 "이미 읽은 글" 구분선이 들어갈 인덱스 */
 let feedIO = null;
 
+function plainHomeView(){
+  return !UNREAD_ONLY && !BM_ONLY && !FREE_ONLY && !READ_VIEW && !QUERY
+    && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && TAB === "all"
+    && !(typeof THEME_VIEW !== "undefined" && THEME_VIEW)
+    && !(typeof EVENT_FILTER !== "undefined" && EVENT_FILTER)
+    && !(typeof V83ITEM !== "undefined" && V83ITEM);
+}
+function homeBriefEl(items){
+  var lang = (typeof LANG !== "undefined") ? LANG : "ko";
+  var copy = {
+    ko:{k:"오늘 요약",m:"인기 글부터 보거나, 주제별로 바로 골라보세요.",hot:"인기 글 보기",browse:"골라보기"},
+    en:{k:"Today",m:"Start with the most-read item or jump into topics.",hot:"Read top item",browse:"Explore"},
+    ja:{k:"今日の要約",m:"人気記事から読むか、テーマ別に選べます。",hot:"人気記事を見る",browse:"探す"}
+  }[lang] || {k:"Today",m:"Start with the most-read item or jump into topics.",hot:"Read top item",browse:"Explore"};
+  var top = null;
+  try { var id = (typeof v83TopHotId === "function") ? v83TopHotId() : null; top = id ? ITEMS.find(function(i){ return i.id === id; }) : null; } catch(e){}
+  top = top || (items && items[0]) || null;
+  var el = document.createElement("div");
+  el.className = "home-brief";
+  var title = top ? (top.title[lang] || top.title.en || "") : "Stacks";
+  el.innerHTML = '<div><div class="home-brief-k">' + esc(copy.k) + '</div>'
+    + '<div class="home-brief-t">' + esc(title) + '</div>'
+    + '<div class="home-brief-m">' + esc(copy.m) + '</div></div>'
+    + '<div class="home-brief-a"><button type="button" class="primary" data-home-hot>' + esc(copy.hot) + '</button>'
+    + '<button type="button" data-home-browse>' + esc(copy.browse) + '</button></div>';
+  var hot = el.querySelector("[data-home-hot]");
+  if (hot) hot.onclick = function(){ if (top && typeof v83OpenItem === "function") v83OpenItem(top.id); else if (top) goToItem(top.id); };
+  var browse = el.querySelector("[data-home-browse]");
+  if (browse) browse.onclick = function(){ if (typeof setTab === "function") setTab("browse"); };
+  return el;
+}
+
 /* ---- in-feed ads --------------------------------------------------------
    AdSense in-feed unit, placed between cards the way a promoted post sits in a
    timeline. Both shells share appendFeedPage(), so this one hook covers the
@@ -9053,6 +9104,7 @@ function renderFeed(animate){
   } catch (e){}
   CUR_ITEMS = items;
   SHOWN = 0;
+  if (typeof plainHomeView === "function" && plainHomeView()) list.appendChild(homeBriefEl(items));
   appendFeedPage(S);
 }
 
@@ -9149,7 +9201,7 @@ function cardEl(item, S, idx){
       <div class="engage" data-eg="${item.id}">
         ${COMMENTS_API ? `<button class="eg eg-comment" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')" aria-label="${S.comments}" title="${S.comments}">${svgIcon("comment")}<span class="eg-n" id="cn-${item.id}">${COMMENT_COUNTS[item.id] ? fmtCount(COMMENT_COUNTS[item.id]) : ""}</span></button>` : ""}
         <button class="eg eg-like${LIKES.has(item.id) ? " on" : ""}" id="lk-${item.id}" onclick="toggleLike('${item.id}')" aria-label="${S.like}" title="${S.like}">${svgIcon("like")}<span class="eg-n" id="ln-${item.id}">${LIKE_COUNTS[item.id] ? fmtCount(LIKE_COUNTS[item.id]) : ""}</span></button>
-        <span class="eg eg-view" aria-label="${S.views}" title="${S.views}">${svgIcon("view")}<span class="eg-n" id="vn-${item.id}">${VIEW_COUNTS[item.id] ? fmtCount(VIEW_COUNTS[item.id]) : ""}</span></span>
+        <button class="eg eg-view" onclick="openFromCard('${item.id}', event)" aria-label="${S.views}" title="${S.views}">${svgIcon("view")}<span class="eg-n" id="vn-${item.id}">${VIEW_COUNTS[item.id] ? fmtCount(VIEW_COUNTS[item.id]) : ""}</span></button>
         <span class="eg-spacer"></span>
         ${TTS_OK ? `<button class="eg eg-listen${ttsId === item.id ? " on" : ""}" id="ls-${item.id}" onclick="toggleListen('${item.id}')" aria-label="${S.listen}" title="${S.listen}">${svgIcon(ttsId === item.id ? "stop" : "listen")}</button>` : ""}
         <button class="eg eg-bm${BM.has(item.id) ? " on" : ""}" id="bm-${item.id}" onclick="toggleBookmark('${item.id}')" aria-label="${S.bmAdd}" title="${S.bmAdd}">${svgIcon("bookmark")}</button>
