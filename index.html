@@ -9952,11 +9952,13 @@ async function nlSubmit(ev){
 
 /* ---------------- onboarding ---------------- */
 const OB_SEL = new Set();
+const FIRST_RUN_GATES_DISABLED_FOR_ADSENSE = true;
 /* ---------------- intro (landing) page ----------------
    First thing a visitor sees: the app icon + tagline + a "look around"
    button that drops them into the feed. Skipped for deep links so
    shared cards still land directly on their article. */
 function showIntro(){
+  if (FIRST_RUN_GATES_DISABLED_FOR_ADSENSE) return false;
   if (location.hash && (location.hash.startsWith("#sig-") || location.hash.startsWith("#comments-"))) return false;
   if (store.get("stk_intro_seen", false)) return false; /* only the first visit */
   const el = document.getElementById("intro");
@@ -10371,6 +10373,7 @@ function closeIntro(){
 }
 
 function maybeOnboard(){
+  if (FIRST_RUN_GATES_DISABLED_FOR_ADSENSE) return;
   if (store.get("stk_onboarded", false)) return;
   if (!ITEMS.length) return;
   const el = document.getElementById("onboard");
