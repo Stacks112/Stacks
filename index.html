@@ -23,7 +23,6 @@
 <link id="canonLink" rel="canonical" href="https://stacksdaily.com/">
 <meta name="naver-site-verification" content="7ad141a86215f13ff01bae92bd2c718fb2f564e2" />
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
 <link rel="manifest" href="manifest.json">
 <meta name="robots" content="index,follow">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="feed.xml">
@@ -3147,19 +3146,15 @@ footer a{color:var(--muted);}
 }
 </style>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
+</noscript>
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=1a67db08">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=9f4d4c2a">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window, document, "clarity", "script", "xuecnurmnh");
-</script>
 </head>
 <body>
 <nav>
@@ -8190,14 +8185,30 @@ function flushVisit(){
   if (++VISIT_TRIES <= 20) setTimeout(flushVisit, 500);
 }
 
-/* ---------------- analytics (GoatCounter) ---------------- */
+function afterCritical(fn){
+  const run = () => { try { fn(); } catch (e) {} };
+  if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 3000 });
+  else setTimeout(run, 2200);
+}
+
+/* ---------------- analytics ---------------- */
+afterCritical(() => {
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "xuecnurmnh");
+});
+
 if (GOATCOUNTER_SITE){
-  const gc = document.createElement("script");
-  gc.async = true;
-  gc.src = "https://gc.zgo.at/count.js";
-  gc.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_SITE + ".goatcounter.com/count");
-  gc.addEventListener("load", flushVisit);
-  document.head.appendChild(gc);
+  afterCritical(() => {
+    const gc = document.createElement("script");
+    gc.async = true;
+    gc.src = "https://gc.zgo.at/count.js";
+    gc.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_SITE + ".goatcounter.com/count");
+    gc.addEventListener("load", flushVisit);
+    document.head.appendChild(gc);
+  });
 }
 
 /* ---------------- push notifications (OneSignal) ---------------- */
@@ -8216,10 +8227,12 @@ if (ONESIGNAL_APP_ID){
     /* tag every subscriber so the daily brief can broadcast to all */
     try { OneSignal.User.addTag("daily", "1"); } catch (e) {}
   });
-  const os = document.createElement("script");
-  os.defer = true;
-  os.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
-  document.head.appendChild(os);
+  afterCritical(() => {
+    const os = document.createElement("script");
+    os.defer = true;
+    os.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+    document.head.appendChild(os);
+  });
   const nb = document.getElementById("notifBtn");
   if (nb){
     nb.hidden = false;
@@ -8829,6 +8842,24 @@ const AD_SLOT        = "9834279481";
 const AD_LAYOUT_KEY  = "-fb+5w+4e-db+86";
 const AD_FIRST_AFTER = 6;
 const AD_EVERY       = 9;
+let ADSENSE_P = null;
+
+function ensureAdsense(){
+  if (!ADS_ON) return Promise.resolve(false);
+  if (window.adsbygoogle) return Promise.resolve(true);
+  if (!ADSENSE_P){
+    ADSENSE_P = new Promise(resolve => {
+      const s = document.createElement("script");
+      s.async = true;
+      s.crossOrigin = "anonymous";
+      s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + AD_CLIENT;
+      s.onload = () => resolve(true);
+      s.onerror = () => resolve(false);
+      document.head.appendChild(s);
+    });
+  }
+  return ADSENSE_P;
+}
 
 /* Ads ride the plain feed only. Search results and bookmarks are short,
    intent-driven lists where an ad is both worth less and more intrusive. */
@@ -8862,8 +8893,11 @@ function appendFeedAd(list, S){
   /* push AFTER the ins is in the document: adsbygoogle scans the DOM when it
      is pushed, and a slot pushed while detached is silently skipped. One push
      per new ins, never a re-push of one already filled. */
-  try { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
-  catch (e){ wrap.remove(); }
+  ensureAdsense().then(ok => {
+    if (!ok){ wrap.remove(); return; }
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+    catch (e){ wrap.remove(); }
+  });
 }
 
 function appendFeedPage(S){
