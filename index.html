@@ -3152,7 +3152,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </noscript>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=1a67db08">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=57bce0ff">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=9f4d4c2a">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
@@ -5648,15 +5648,102 @@ function v83Bookmarks(){
   } catch (e) {}
 }
 /* 읽음 하이브리드: 좌측 '읽은 글' 보관함 */
+var READ_QUERY = "";
+var READ_PERSON_FILTER = "";
+var READ_COMPANY_FILTER = "";
+var READ_TAG_FILTER = "";
 function v83ReadList(){
   try {
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
     if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
-    QUERY = ""; BM_ONLY = false; UNREAD_ONLY = false; READ_VIEW = true;
+    QUERY = ""; TAB = "all"; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = true;
+    if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
+    READ_QUERY = ""; READ_PERSON_FILTER = ""; READ_COMPANY_FILTER = ""; READ_TAG_FILTER = "";
     var i = document.getElementById("searchInput"); if (i) i.value = "";
     if (typeof render === "function") render();
   } catch (e) {}
+}
+function readFacetValues(item, kind){
+  if (kind === "tag") return (item.tags || []).slice();
+  var out = [];
+  try {
+    itemEntities(item).forEach(function(key){
+      if (ENTITIES[key] && ENTITIES[key].kind === kind) out.push(key);
+    });
+  } catch (e) {}
+  return out;
+}
+function readLibraryMatch(item){
+  if (READ_PERSON_FILTER && readFacetValues(item, "person").indexOf(READ_PERSON_FILTER) < 0) return false;
+  if (READ_COMPANY_FILTER && readFacetValues(item, "company").indexOf(READ_COMPANY_FILTER) < 0) return false;
+  if (READ_TAG_FILTER && readFacetValues(item, "tag").indexOf(READ_TAG_FILTER) < 0) return false;
+  if (!READ_QUERY) return true;
+  var entities = [];
+  try { itemEntities(item).forEach(function(key){ entities.push(key, entName(key)); }); } catch (e) {}
+  var hay = [
+    item.title && item.title.en, item.title && item.title.ko, item.title && item.title.ja,
+    item.gist && item.gist.en, item.gist && item.gist.ko, item.gist && item.gist.ja,
+    item.source, item.cover && item.cover.label, (item.tags || []).join(" "), entities.join(" ")
+  ].join(" ").toLowerCase();
+  return READ_QUERY.split(/\s+/).every(function(word){ return hay.indexOf(word) >= 0; });
+}
+function renderReadLibraryTools(list, baseItems, resultCount){
+  var copy = LANG === "en"
+    ? { title:"Recently read", search:"Search read posts", person:"By person", company:"By company", tag:"By tag", all:"All", count:"{shown} of {total}" }
+    : (LANG === "ja"
+      ? { title:"最近読んだ記事", search:"読んだ記事を検索", person:"人物別", company:"企業別", tag:"タグ別", all:"すべて", count:"{total}件中{shown}件" }
+      : { title:"최근 읽은 글", search:"읽은 글 검색", person:"인물별", company:"기업별", tag:"태그별", all:"전체", count:"전체 {total}개 · 결과 {shown}개" });
+  var tools = document.createElement("section");
+  tools.className = "read-library-tools";
+  var heading = document.createElement("div");
+  heading.className = "read-library-heading";
+  var title = document.createElement("h2"); title.textContent = copy.title;
+  var count = document.createElement("span");
+  count.textContent = copy.count.replace("{total}", baseItems.length).replace("{shown}", resultCount);
+  heading.appendChild(title); heading.appendChild(count); tools.appendChild(heading);
+  var search = document.createElement("div"); search.className = "read-library-search";
+  search.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>';
+  var input = document.createElement("input"); input.type = "search"; input.placeholder = copy.search; input.value = READ_QUERY;
+  input.setAttribute("aria-label", copy.search);
+  var searchTimer = 0;
+  input.oninput = function(){
+    var value = this.value.toLowerCase().trim();
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function(){
+      READ_QUERY = value; renderFeed(false);
+      requestAnimationFrame(function(){ var next = document.querySelector(".read-library-search input"); if (next){ next.focus(); next.setSelectionRange(next.value.length, next.value.length); } });
+    }, 160);
+  };
+  search.appendChild(input); tools.appendChild(search);
+  var filters = document.createElement("div"); filters.className = "read-library-filters";
+  function addFilter(kind, label, current){
+    var wrap = document.createElement("label"); var caption = document.createElement("span"); caption.textContent = label;
+    var select = document.createElement("select"); select.setAttribute("aria-label", label);
+    var all = document.createElement("option"); all.value = ""; all.textContent = copy.all; select.appendChild(all);
+    var counts = {};
+    baseItems.forEach(function(item){ readFacetValues(item, kind).forEach(function(value){ counts[value] = (counts[value] || 0) + 1; }); });
+    Object.keys(counts).sort(function(a,b){
+      var aa = kind === "tag" ? a : entName(a), bb = kind === "tag" ? b : entName(b);
+      return aa.localeCompare(bb, LANG);
+    }).forEach(function(value){
+      var option = document.createElement("option"); option.value = value;
+      option.textContent = (kind === "tag" ? value : entName(value)) + " (" + counts[value] + ")";
+      select.appendChild(option);
+    });
+    select.value = current;
+    select.onchange = function(){
+      if (kind === "person") READ_PERSON_FILTER = this.value;
+      else if (kind === "company") READ_COMPANY_FILTER = this.value;
+      else READ_TAG_FILTER = this.value;
+      renderFeed(false);
+    };
+    wrap.appendChild(caption); wrap.appendChild(select); filters.appendChild(wrap);
+  }
+  addFilter("person", copy.person, READ_PERSON_FILTER);
+  addFilter("company", copy.company, READ_COMPANY_FILTER);
+  addFilter("tag", copy.tag, READ_TAG_FILTER);
+  tools.appendChild(filters); list.appendChild(tools);
 }
 /* 오늘의 핫글: 최근 7일 조회/좋아요/댓글 스코어 1위 글(없으면 hot 플래그, 그래도
    없으면 최신)을 골라 그 글의 상세 페이지로 이동한다. */
@@ -9112,8 +9199,12 @@ function renderFeed(animate){
   }
 
   let items = UNREAD_ONLY ? inTab.filter(i => !READ.has(i.id)) : inTab;
+  let readLibraryBase = null;
   if (BM_ONLY) items = items.filter(i => BM.has(i.id));
-  if (READ_VIEW) items = items.filter(i => READ.has(i.id));
+  if (READ_VIEW){
+    readLibraryBase = items.filter(i => READ.has(i.id));
+    items = readLibraryBase.filter(readLibraryMatch);
+  }
   if (FREE_ONLY) items = items.filter(i => !i.paywall);
   if (QUERY) items = items.filter(matchesQuery);
   if (ENTITY_VIEW) items = items.filter(i => itemEntities(i).has(ENTITY_VIEW));
@@ -9132,10 +9223,13 @@ function renderFeed(animate){
   if (SORT_HOT) items = items.slice().sort((a, b) =>
     ((VIEW_COUNTS[b.id] || 0) + (LIKE_COUNTS[b.id] || 0) * 3) - ((VIEW_COUNTS[a.id] || 0) + (LIKE_COUNTS[a.id] || 0) * 3)
     || (a.date < b.date ? 1 : -1));
+  if (READ_VIEW) renderReadLibraryTools(list, readLibraryBase || [], items.length);
   if (items.length === 0){
     const e = document.createElement("div");
     e.className = "empty";
-    e.textContent = QUERY ? S.searchNone : (BM_ONLY ? S.bmEmpty : (UNREAD_ONLY ? S.allRead : S.empty));
+    e.textContent = READ_VIEW
+      ? (LANG === "en" ? "No read posts match these filters." : (LANG === "ja" ? "条件に合う記事がありません。" : "조건에 맞는 읽은 글이 없습니다."))
+      : (QUERY ? S.searchNone : (BM_ONLY ? S.bmEmpty : (UNREAD_ONLY ? S.allRead : S.empty)));
     list.appendChild(e);
     hydrateImages();
     return;
@@ -10460,7 +10554,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=80079ed7"></script>
+<script src="assets/v82.js?v=17b51910"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=71011512"></script>
 

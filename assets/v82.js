@@ -27,6 +27,7 @@
   var V82S = {
     ko:{home:"홈",find:"찾기",explore:"탐색",cal:"캘린더",notif:"알림",post:"게시물",more:"더 보기",
         me:"내 정보",record:"적중 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
+        dwProfile:"프로필",dwFollowing:"팔로잉",dwShared:"공유한 글",
         skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
         themesSec:"테마 논쟁",recordSec:"적중 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
@@ -41,6 +42,7 @@
         recentQ:"최근 검색",recentClear:"전체 지우기",recentDel:"지우기"},
     en:{home:"Home",find:"Find",explore:"Explore",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
+        dwProfile:"Profile",dwFollowing:"Following",dwShared:"Shared posts",
         skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
         ntNew:"New",ntGrade:"Graded",ntSkew:"Skew alert",noAlerts:"No new alerts.",
@@ -55,6 +57,7 @@
         recentQ:"Recent searches",recentClear:"Clear all",recentDel:"Remove"},
     ja:{home:"ホーム",find:"探す",explore:"発見",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
+        dwProfile:"プロフィール",dwFollowing:"フォロー中",dwShared:"共有した記事",
         skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
         ntNew:"新着",ntGrade:"採点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
@@ -85,6 +88,22 @@
     cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
     notif:'<svg viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>'
   };
+  var STACKS_MARK = '<svg class="v82-stack-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="currentColor"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="currentColor" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="currentColor" opacity=".45"/></svg>';
+  var DRAWER_ICONS = {
+    me:'<svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>',
+    bm:'<svg viewBox="0 0 24 24"><path d="M6 4.5h12v16l-6-4-6 4z"/></svg>',
+    readlist:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>',
+    follows:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9.5" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M14 15a5 5 0 0 1 7.5 4.3"/></svg>',
+    shares:'<svg viewBox="0 0 24 24"><path d="M12 16V3m0 0L7.5 7.5M12 3l4.5 4.5"/><path d="M5 12v7h14v-7"/></svg>',
+    themes:'<svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>',
+    record:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 8V3m4 5 3.5-3.5"/></svg>',
+    cal:ICONS.cal,
+    home:ICONS.home,
+    alerts:ICONS.notif,
+    moon:'<svg viewBox="0 0 24 24"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5a8.5 8.5 0 1 0 12 12z"/></svg>',
+    sun:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+    close:'<svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>'
+  };
 
   /* ---------- shell DOM ---------- */
   function buildShell(){
@@ -103,7 +122,9 @@
     var scrim = document.createElement("div"); scrim.id = "v82scrim";
     scrim.addEventListener("click", function(){ closeDrawer(); });
     document.body.appendChild(scrim);
-    var dr = document.createElement("div"); dr.id = "v82drawer"; document.body.appendChild(dr);
+    var dr = document.createElement("div"); dr.id = "v82drawer";
+    dr.setAttribute("role", "dialog"); dr.setAttribute("aria-modal", "true"); dr.setAttribute("aria-hidden", "true");
+    document.body.appendChild(dr);
 
     /* find (search + secondary filters + discovery modules) */
     var ex = document.createElement("div"); ex.id = "v82explore"; ex.className = "v82-screen"; document.body.appendChild(ex);
@@ -129,7 +150,7 @@
 
     var ni = document.querySelector(".nav-inner");
     if (ni && !$("v82av")){
-      var av = document.createElement("button"); av.id = "v82av"; av.textContent = "👤";
+      var av = document.createElement("button"); av.id = "v82av"; av.innerHTML = STACKS_MARK;
       av.setAttribute("aria-label","menu"); av.setAttribute("type","button");
       av.onclick = openDrawer;
       ni.insertBefore(av, ni.firstChild);
@@ -191,37 +212,36 @@
   function renderDrawer(){
     var t = T(); var dr = $("v82drawer"); if (!dr) return;
     var curLang = (typeof LANG !== "undefined") ? LANG : "ko";
-    var _dwT = (typeof v83T === "function") ? v83T : function(k){ return (t[k] !== undefined ? t[k] : k); };
-    function _dwItem(k, icon){ return '<button class="v82dw-item" data-act="' + k + '"><span class="ic">' + icon + '</span>' + _dwT(k) + '</button>'; }
+    var _dwT = function(k){ var s = (typeof v83T === "function") ? v83T(k) : null; return s || t[k] || k; };
+    var recentReadLabel = curLang === "en" ? "Recently read" : (curLang === "ja" ? "最近読んだ記事" : "최근 읽은 글");
+    function _dwItem(k, icon, label){ return '<button class="v82dw-item" data-act="' + k + '"><span class="ic">' + icon + '</span><span>' + (label || _dwT(k)) + '</span></button>'; }
     dr.innerHTML =
-      '<button class="v82dw-x" aria-label="close">&times;</button>' +
-      '<div class="v82dw-brand"><span style="font-size:20px">👤</span> Stacks</div>' +
-      _dwItem("home", "🏠") + _dwItem("browse", "🧭") + _dwItem("skew", "📈") +
-      _dwItem("themes", "💬") + _dwItem("record", "🎯") + _dwItem("cal", "📅") +
-      _dwItem("bm", "🔖") + _dwItem("alerts", "🔔") +
-      /* 2026-07-25 (june): 지금 모드를 보여준다 — 다크는 달, 라이트는 해 */
-      _dwItem("appearance", (typeof THEME !== "undefined" && THEME === "dark") ? "🌙" : "☀️") +
-      _dwItem("me", "👤") +
-      '<div class="v82dw-nl" id="v82dwNl"><div class="v82dw-nlh"><span>📧</span>' + t.nlLabel + '</div></div>' +
+      '<div class="v82dw-top"><div class="v82dw-brand"><span class="v82dw-logo">' + STACKS_MARK + '</span><span class="v82dw-name">Stacks</span></div><div class="v82dw-actions">' +
+        '<button class="v82dw-top-action" data-dw-theme aria-label="' + _dwT("appearance") + '">' + ((typeof THEME !== "undefined" && THEME === "dark") ? DRAWER_ICONS.moon : DRAWER_ICONS.sun) + '</button>' +
+        '<button class="v82dw-x" aria-label="close">' + DRAWER_ICONS.close + '</button>' +
+      '</div></div>' +
+      '<div class="v82dw-menu v82dw-primary">' +
+        _dwItem("me", DRAWER_ICONS.me, t.dwProfile) + _dwItem("bm", DRAWER_ICONS.bm) + _dwItem("readlist", DRAWER_ICONS.readlist, recentReadLabel) + _dwItem("follows", DRAWER_ICONS.follows, t.dwFollowing) +
+        _dwItem("shares", DRAWER_ICONS.shares, t.dwShared) + _dwItem("themes", DRAWER_ICONS.themes) +
+        _dwItem("record", DRAWER_ICONS.record) + _dwItem("cal", DRAWER_ICONS.cal) +
+      '</div><div class="v82dw-divider"></div><div class="v82dw-menu v82dw-secondary">' +
+        _dwItem("home", DRAWER_ICONS.home) + _dwItem("alerts", DRAWER_ICONS.alerts) +
+      '</div>' +
       '<div class="v82dw-langs">' +
         '<button data-lang="ko" class="v82dw-lb ' + (curLang === "ko" ? "on" : "") + '">한국어</button>' +
         '<button data-lang="en" class="v82dw-lb ' + (curLang === "en" ? "on" : "") + '">English</button>' +
         '<button data-lang="ja" class="v82dw-lb ' + (curLang === "ja" ? "on" : "") + '">日本語</button>' +
       '</div>';
     dr.querySelector(".v82dw-x").onclick = function(){ closeDrawer(); };
+    var themeButton = dr.querySelector("[data-dw-theme]");
+    if (themeButton) themeButton.onclick = function(){
+      if (typeof toggleTheme === "function") toggleTheme();
+      themeButton.innerHTML = (typeof THEME !== "undefined" && THEME === "dark") ? DRAWER_ICONS.moon : DRAWER_ICONS.sun;
+    };
     var acts = dr.querySelectorAll("[data-act]");
     for (var ai = 0; ai < acts.length; ai++){ acts[ai].onclick = function(){ drawerAct(this.dataset.act); }; }
     var lbs = dr.querySelectorAll(".v82dw-lb");
     for (var li = 0; li < lbs.length; li++){ lbs[li].onclick = function(){ closeDrawer(true); if (typeof setLang === "function") setLang(this.dataset.lang); }; }
-    /* relocate the newsletter subscribe box into the profile drawer */
-    try {
-      var nl = $("nlSec"), holder = $("v82dwNl");
-      if (nl && holder){
-        nl.hidden = false;
-        if (!nl.querySelector("form,iframe,input,button,a") && typeof renderNewsletter === "function") renderNewsletter();
-        holder.appendChild(nl);
-      }
-    } catch(e){}
   }
   function drawerAct(act){
     if (act === "me"){ closeDrawer(true); if (typeof openMe === "function") openMe(); }
@@ -232,8 +252,8 @@
     else if (act === "record"){ closeDrawer(true); if (typeof openScoreboard === "function") openScoreboard(); try { setActive(); } catch(e){} }
     else if (act === "cal"){ closeDrawer(true); navGo("cal"); }
     else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
-    else if (act === "appearance"){ closeDrawer(true); if (typeof toggleTheme === "function") toggleTheme(); }
     else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ try { SERIES_VIEW=null; ENTITY_VIEW=null; QUERY=""; BM_ONLY=true; renderFeed(false); } catch(e){} }); }
+    else if (act === "readlist"){ closeDrawer(true); goHomeThen(function(){ if (typeof v83ReadList === "function") v83ReadList(); }); }
     else if (act === "follows"){ closeDrawer(true); openList("follows"); }
     else if (act === "shares"){ closeDrawer(true); openList("shares"); }
     else closeDrawer();
@@ -242,6 +262,8 @@
     if (!mq.matches) return;
     renderDrawer();
     $("v82drawer").classList.add("on"); $("v82scrim").classList.add("on");
+    $("v82drawer").setAttribute("aria-hidden", "false");
+    document.body.classList.add("v82-drawer-open");
     refreshNav();
     if (typeof pushView === "function") pushView();
   }
@@ -249,10 +271,15 @@
     var dr = $("v82drawer");
     if (!dr || !dr.classList.contains("on")) return false;
     dr.classList.remove("on"); $("v82scrim").classList.remove("on");
+    dr.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("v82-drawer-open");
     refreshNav();
     if (!fromPop) silentBack();
     return true;
   }
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") closeDrawer();
+  });
 
   /* ---------- generic screen show/hide ---------- */
   function showScreen(id){
