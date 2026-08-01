@@ -84,6 +84,7 @@
   .v82dw-top-action:active,.v82dw-x:active{background:var(--bg-soft);transform:scale(.94);}
   .v82dw-top-action svg,.v82dw-x svg{width:19px;height:19px;display:block;fill:none;stroke:currentColor;
     stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+  .v82dw-top-action svg.v82-theme-moon{width:20px;height:20px;fill:currentColor;stroke:none;}
   .v82dw-name{color:var(--text);font-size:21px;font-weight:850;letter-spacing:-.025em;line-height:1.2;}
   .v82dw-menu{display:flex;flex-direction:column;gap:2px;margin:0 -8px;}
   .v82dw-item{display:flex;align-items:center;gap:17px;width:100%;min-height:50px;background:none;border:0;border-radius:12px;
