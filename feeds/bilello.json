@@ -1,14 +1,14 @@
 {
  "source": "bilello",
  "fetched_at": "2026-08-02T10:16:15.881945+00:00",
- "checked_at": "2026-08-02T11:43:14.990010+00:00",
+ "checked_at": "2026-08-02T14:09:52.280784+00:00",
  "ok": false,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
  "raw_count": 0,
  "newest_published": "2026-07-28T01:02:00+00:00",
  "kept_count": 3,
- "error": "ConnectTimeout: HTTPSConnectionPool(host='bilello.blog', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='bilello.blog', port=443) at 0x7f819fbcb980>, 'Connection to bilello.blog timed out. (connect timeout=25)'))",
+ "error": "ParseError: not well-formed (invalid token): line 1, column 115",
  "items": [
   {
    "title": "The Week in Charts (7/27/26)",
