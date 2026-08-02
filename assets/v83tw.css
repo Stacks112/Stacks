@@ -238,6 +238,21 @@ html.v83 .nav-inner .v83-search input{padding:8px 15px;}
 html.v83 #v83nav{top:52px;height:calc(100vh - 52px);}
 html.v83 #v83rail{top:52px;max-height:calc(100vh - 52px);}
 html.v83 #v83fsw button{padding:0 0 1px;}
+/* 최근 읽은 글: 모바일 보관함 기능을 데스크톱 가운데 컬럼에 맞춘다. */
+@media (min-width:1024px){
+  html.v83 #feedList > .read-library-tools{padding:20px;border-bottom:1px solid var(--line);background:var(--bg);}
+  html.v83 .read-library-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px;}
+  html.v83 .read-library-heading h2{margin:0;color:var(--text);font-size:22px;line-height:1.25;letter-spacing:-.03em;}
+  html.v83 .read-library-heading span{color:var(--muted);font-size:12px;font-weight:650;white-space:nowrap;}
+  html.v83 .read-library-search{display:flex;align-items:center;gap:9px;height:44px;padding:0 13px;border:1px solid var(--line);border-radius:14px;background:var(--bg-soft);}
+  html.v83 .read-library-search:focus-within{border-color:var(--text);background:var(--bg);}
+  html.v83 .read-library-search svg{width:19px;height:19px;flex:0 0 19px;fill:none;stroke:var(--muted);stroke-width:1.9;stroke-linecap:round;}
+  html.v83 .read-library-search input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:15px;}
+  html.v83 .read-library-search input::placeholder{color:var(--muted);}
+  html.v83 .read-library-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:11px;}
+  html.v83 .read-library-filters label{display:flex;min-width:0;flex-direction:column;gap:5px;color:var(--muted);font-size:11px;font-weight:750;}
+  html.v83 .read-library-filters select{min-width:0;width:100%;height:38px;padding:0 26px 0 10px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text);font:inherit;font-size:12.5px;font-weight:700;}
+}
 /* 상단 고정바 좌우 정렬 (트위터 모바일 참고, june 지시):
    nav-inner를 본문 3열 그리드(.wrap)와 완전히 동일하게 만들어 — 브랜드 Stacks는
    좌측 패널 메뉴(아이콘) 좌측끝에, 검색창은 우측 패널(레일) 좌측끝~우측끝에 정확히 맞춘다. */

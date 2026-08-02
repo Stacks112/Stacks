@@ -3218,7 +3218,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </noscript>
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=9dab99f6">
-<link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=9f4d4c2a">
+<link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
 <body>
@@ -5727,9 +5727,9 @@ var V83ICONS = {
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"판정 기록",cal:"캘린더",bm:"북마크",readlist:"읽은 글",alerts:"알림 설정",appearance:"화면 테마",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Explore",skew:"Sentiment",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Read",alerts:"Notifications",appearance:"Appearance",search:"Search",me:"Profile"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"既読",alerts:"通知設定",appearance:"テーマ",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"판정 기록",cal:"캘린더",bm:"북마크",readlist:"최근 읽은 글",alerts:"알림 설정",appearance:"화면 테마",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Explore",skew:"Sentiment",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Recently read",alerts:"Notifications",appearance:"Appearance",search:"Search",me:"Profile"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"最近読んだ記事",alerts:"通知設定",appearance:"テーマ",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -5751,15 +5751,30 @@ var READ_COMPANY_FILTER = "";
 var READ_TAG_FILTER = "";
 function v83ReadList(){
   try {
+    if (!READ_VIEW) pushView();
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
     if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+    if (typeof V83ITEM !== "undefined") V83ITEM = null;
     QUERY = ""; TAB = "all"; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = true;
     if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
     READ_QUERY = ""; READ_PERSON_FILTER = ""; READ_COMPANY_FILTER = ""; READ_TAG_FILTER = "";
     var i = document.getElementById("searchInput"); if (i) i.value = "";
     if (typeof render === "function") render();
   } catch (e) {}
+}
+function v83SyncActiveNav(){
+  var nav = document.getElementById("v83nav");
+  if (!nav) return;
+  var key = "home";
+  if (READ_VIEW) key = "readlist";
+  else if (BM_ONLY) key = "bm";
+  else if (SB_VIEW || (typeof RECORD_SRC !== "undefined" && RECORD_SRC)) key = "record";
+  else if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) key = "themes";
+  else if (TAB === "browse" || TAB === "skew" || TAB === "cal" || TAB === "alerts") key = TAB;
+  nav.querySelectorAll(".v83-link.on").forEach(function(button){ button.classList.remove("on"); });
+  var active = nav.querySelector('.v83-link[data-k="' + key + '"]');
+  if (active) active.classList.add("on");
 }
 function readFacetValues(item, kind){
   if (kind === "tag") return (item.tags || []).slice();
@@ -5890,6 +5905,7 @@ function mountV83(){
     /* v83.5: 캘린더도 모달이 아니라 페이지 전환 (june 지시) */
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
     ["bm", V83ICONS.bm, v83Bookmarks],
+    ["readlist", V83ICONS.readlist, v83ReadList],
     /* 2026-07-23 june: top-bar 알림/테마 moved into the left panel
        2026-07-30 june: 모달이 아니라 적중 기록·테마 논쟁 같은 페이지 전환 */
     ["alerts", V83ICONS.alerts, function(){ if (typeof setTab === "function") setTab("alerts"); }],
@@ -5959,6 +5975,7 @@ function mountV83(){
 
   document.documentElement.classList.add("v83");
   V83 = { mounted: true, nav: nav, center: center, rail: rail, homes: homes };
+  v83SyncActiveNav();
   /* 2026-07-25: nav 가 문서에 삽입된 "뒤"에 불러야 한다 —
      삽입 전에는 document.querySelector 가 버튼을 못 찾아 아이콘이 안 바뀐다. */
   if (typeof v83SyncThemeIcon === "function") v83SyncThemeIcon();
@@ -8744,6 +8761,7 @@ function render(){
 
   /* tabs */
   renderAfterHot(S);
+  try { v83SyncActiveNav(); } catch (e) {}
 }
 
 /* "Hot this week": articles from the last 7 days, ranked by real reader
