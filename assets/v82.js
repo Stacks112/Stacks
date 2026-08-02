@@ -26,12 +26,12 @@
 
   var V82S = {
     ko:{home:"홈",find:"찾기",explore:"탐색",cal:"캘린더",notif:"알림",post:"게시물",more:"더 보기",
-        me:"내 정보",record:"적중 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
+        me:"내 정보",record:"판정 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
         dwProfile:"프로필",dwFollowing:"팔로잉",dwShared:"공유한 글",
         skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
-        themesSec:"테마 논쟁",recordSec:"적중 기록",people:"논객",company:"회사",
+        themesSec:"테마 논쟁",recordSec:"판정 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
-        bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 적중 기록 보기",
+        bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
         bm:"북마크",follows:"팔로우 내역",shares:"공유 내역",nlLabel:"이번 주 베스트 메일",
         community:"커뮤니티",communitySec:"커뮤니티",communitySoon:"준비 중",
         communityDesc:"특정 논객이나 회사를 함께 쫓는 커뮤니티를 만들거나 팔로우하고, 인용해서 덧글을 남기고, 직접 글도 쓰며 서로 소통하는 공간이에요. 곧 찾아옵니다.",
