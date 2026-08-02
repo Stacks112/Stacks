@@ -2046,22 +2046,41 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 .home-brief button.primary{background:var(--text);border-color:var(--text);color:var(--bg);}
 .home-brief button:hover{border-color:var(--accent);color:var(--accent);}
 .home-brief button.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
-.daily-forecast-card{padding:16px 14px 14px;border-bottom:8px solid var(--bg-soft);background:var(--bg);}
-.daily-forecast-kicker{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}
-.daily-forecast-kicker b{font-size:11px;letter-spacing:.02em;color:var(--accent);}
-.daily-forecast-kicker span{font-size:10.5px;color:var(--muted);}
-.daily-forecast-author{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .daily-forecast-avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:var(--bg-soft);border:1px solid var(--line);font-size:11px;font-weight:900;color:var(--text);}
-.daily-forecast-person{min-width:0;flex:1;}
-.daily-forecast-person b{display:block;font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.daily-forecast-person small{display:block;margin-top:3px;font-size:10.5px;color:var(--muted);}
-.daily-forecast-dday{flex:0 0 auto;border-radius:999px;padding:5px 8px;background:rgba(255,149,0,.13);color:#d97706;font-size:10px;font-weight:900;}
-.daily-forecast-title{font-size:17px;font-weight:900;line-height:1.43;letter-spacing:-.03em;color:var(--text);margin:0 0 10px;}
-.daily-forecast-rule{border-left:3px solid var(--line);padding:1px 0 1px 10px;margin-bottom:12px;}
-.daily-forecast-rule span{display:block;font-size:10px;font-weight:800;color:var(--muted);margin-bottom:4px;}
-.daily-forecast-rule p{margin:0;font-size:11.5px;line-height:1.52;color:var(--text);}
-.daily-forecast-open{width:100%;border:0;border-radius:11px;background:var(--text);color:var(--bg);padding:10px 13px;font:800 12px/1 var(--ui-font);cursor:pointer;}
-.daily-forecast-note{margin-top:8px;font-size:9.5px;line-height:1.45;color:var(--muted);}
+.stacks-forecast-card{position:relative;padding:15px 14px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg);}
+.stacks-forecast-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.stacks-forecast-avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:var(--text);border:1px solid var(--line);overflow:hidden;}
+.stacks-forecast-avatar img{width:26px;height:26px;object-fit:contain;}
+.stacks-forecast-author{min-width:0;flex:1;}
+.stacks-forecast-author b{display:block;font-size:14px;color:var(--text);}
+.stacks-forecast-author span{display:block;margin-top:2px;font-size:10.5px;color:var(--muted);}
+.stacks-forecast-badge{flex:0 0 auto;border-radius:999px;padding:5px 8px;background:rgba(255,149,0,.13);color:#d97706;font-size:10px;font-weight:900;}
+.stacks-forecast-title{margin:0 0 8px;font-size:19px;font-weight:900;line-height:1.42;letter-spacing:-.035em;color:var(--text);}
+.stacks-forecast-lede{margin:0 0 12px;font-size:12.5px;line-height:1.62;color:var(--muted);}
+.stacks-forecast-brief{border-left:3px solid var(--accent);padding:1px 0 1px 10px;margin-bottom:12px;}
+.stacks-forecast-brief span{display:block;margin-bottom:4px;font-size:10px;font-weight:800;color:var(--accent);}
+.stacks-forecast-brief b{display:block;font-size:12px;line-height:1.52;color:var(--text);}
+.stacks-forecast-source{margin-bottom:12px;font-size:10px;line-height:1.45;color:var(--muted);}
+.stacks-forecast-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px;}
+.stacks-forecast-toggle,.stacks-forecast-record{border:0;background:none;padding:5px 0;font:750 11.5px/1 var(--ui-font);cursor:pointer;}
+.stacks-forecast-toggle{color:var(--text);}
+.stacks-forecast-record{color:var(--muted);}
+.stacks-forecast-toggle:hover,.stacks-forecast-record:hover{color:var(--accent);}
+.stacks-forecast-detail{margin-top:12px;border-top:1px solid var(--line);padding-top:14px;}
+.stacks-forecast-detail[hidden]{display:none;}
+.stacks-forecast-section+.stacks-forecast-section{margin-top:16px;}
+.stacks-forecast-section h4{font-size:13px;color:var(--text);margin:0 0 7px;}
+.stacks-forecast-section p{font-size:12px;line-height:1.68;color:var(--muted);margin:0;}
+.stacks-forecast-rule{border-radius:11px;background:var(--bg-soft);padding:10px 11px;}
+.stacks-forecast-rule span{display:block;font-size:10px;color:var(--muted);margin-bottom:4px;}
+.stacks-forecast-rule b{display:block;font-size:11.5px;line-height:1.5;color:var(--text);}
+.stacks-forecast-timeline{border-left:2px solid var(--line);margin-left:5px;padding-left:13px;}
+.stacks-forecast-timeline div+div{margin-top:12px;}
+.stacks-forecast-timeline time{display:block;font-size:10px;color:var(--accent);margin-bottom:3px;}
+.stacks-forecast-timeline b{display:block;font-size:11.5px;color:var(--text);}
+.stacks-forecast-timeline p{margin-top:2px;}
+.stacks-forecast-original{display:inline-block;margin-top:8px;color:var(--accent);font-size:10.5px;font-weight:700;text-decoration:none;}
+.stacks-forecast-note{margin-top:14px;font-size:10px;line-height:1.5;color:var(--muted);}
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
   .home-brief-a{justify-content:flex-start;}
@@ -8992,28 +9011,39 @@ function dailyForecastPick(){
 }
 function dailyForecastEl(){
   var item=dailyForecastPick();
-  if(!item||READ.has(item.id)) return null;
+  if(!item) return null;
   var now=new Date(); now.setHours(0,0,0,0);
   var due=new Date(item.outcome.due+"T00:00:00");
   var days=Math.max(0,Math.round((due-now)/86400000));
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var copy={
-    ko:{k:"오늘의 전망",track:"검증 중",rule:"판정 기준",open:"오늘의 전망 읽기 →",note:"읽은 뒤에는 홈에서 사라지고 판정 기록에서 계속 추적됩니다."},
-    en:{k:"Today's forecast",track:"Tracking",rule:"Decision rule",open:"Read today's forecast →",note:"After reading, follow it from Track record."},
-    ja:{k:"今日の見通し",track:"検証中",rule:"判定基準",open:"今日の見通しを読む →",note:"読んだ後は判定記録で追跡できます。"}
-  }[lang]||{k:"Today's forecast",track:"Tracking",rule:"Decision rule",open:"Read today's forecast →",note:"Follow it from Track record."};
+    ko:{today:"오늘",badge:"오늘의 전망",pick:"Stacks가 고른 전망",source:"근거가 된 관점",open:"열기",close:"접기",record:"판정 기록에서 추적 →",why:"왜 지금 봐야 하나",whyText:"판정일까지 {n}일 남았습니다. 먼 미래의 이야기가 아니라 곧 실제 데이터로 확인할 수 있는 전망입니다.",rule:"판정 기준",schedule:"확인 일정",published:"근거가 된 글",final:"최종 확인",original:"원문 보기 ↗",note:"실제 전망과 판정 기준만 사용합니다. 결과는 판정 기록에 공개됩니다."},
+    en:{today:"Today",badge:"Today's forecast",pick:"Selected by Stacks",source:"Source view",open:"Open",close:"Close",record:"Track in record →",why:"Why now",whyText:"{n} days remain until judgment. This is a near-term forecast that can soon be checked against real data.",rule:"Decision rule",schedule:"Checkpoints",published:"Source published",final:"Final check",original:"Open source ↗",note:"Only real forecasts and decision rules are used. Results are published in Track record."},
+    ja:{today:"今日",badge:"今日の見通し",pick:"Stacksが選んだ見通し",source:"根拠となる見解",open:"開く",close:"閉じる",record:"判定記録で追跡 →",why:"なぜ今か",whyText:"判定まであと{n}日です。遠い将来ではなく、まもなく実データで確認できる見通しです。",rule:"判定基準",schedule:"確認日程",published:"根拠記事",final:"最終確認",original:"原文を見る ↗",note:"実際の見通しと判定基準だけを使用し、結果は判定記録で公開します。"}
+  }[lang];
   var title=item.title[lang]||item.title.en||"";
   var note=(item.outcome.note&&(item.outcome.note[lang]||item.outcome.note.ko||item.outcome.note.en))||"";
+  var gist=clipStr(plainGist((item.gist&&(item.gist[lang]||item.gist.en))||"").replace(/\s+/g," ").trim(),180);
   var el=document.createElement("article");
-  el.className="daily-forecast-card";
-  el.setAttribute("aria-label",copy.k);
-  el.innerHTML='<div class="daily-forecast-kicker"><b>'+esc(copy.k)+'</b><span>'+esc(fmt(todayStr()))+'</span></div>'
-    +'<div class="daily-forecast-author"><span class="daily-forecast-avatar">'+esc(Array.from(item.source||"S")[0])+'</span><span class="daily-forecast-person"><b>'+esc(item.source)+'</b><small>'+esc(copy.track)+' · '+esc(fmt(item.outcome.due))+'</small></span><span class="daily-forecast-dday">D-'+days+'</span></div>'
-    +'<h3 class="daily-forecast-title">'+esc(title)+'</h3>'
-    +'<div class="daily-forecast-rule"><span>'+esc(copy.rule)+'</span><p>'+esc(note)+'</p></div>'
-    +'<button type="button" class="daily-forecast-open">'+esc(copy.open)+'</button>'
-    +'<div class="daily-forecast-note">'+esc(copy.note)+'</div>';
-  el.querySelector("button").onclick=function(){ openFromCard(item.id); };
+  el.id="stacksDailyForecast";
+  el.className="stacks-forecast-card";
+  el.setAttribute("aria-label","Stacks · "+copy.badge);
+  el.innerHTML='<div class="stacks-forecast-top"><span class="stacks-forecast-avatar"><img src="favicon.ico" alt=""></span><span class="stacks-forecast-author"><b>Stacks</b><span>@Stacks0g · '+esc(copy.today)+' · '+esc(String(lang).toUpperCase())+'</span></span><span class="stacks-forecast-badge">'+esc(copy.badge)+' · D-'+days+'</span></div>'
+    +'<h3 class="stacks-forecast-title">'+esc(title)+'</h3>'
+    +(gist?'<p class="stacks-forecast-lede">'+esc(gist)+'</p>':'')
+    +'<div class="stacks-forecast-brief"><span>'+esc(copy.pick)+'</span><b>'+esc(title)+'</b></div>'
+    +'<div class="stacks-forecast-source">'+esc(copy.source)+' · '+esc(item.source)+'</div>'
+    +'<div class="stacks-forecast-actions"><button type="button" class="stacks-forecast-toggle" data-daily-toggle aria-expanded="false">'+esc(copy.open)+'</button><button type="button" class="stacks-forecast-record" data-daily-record>'+esc(copy.record)+'</button></div>'
+    +'<div class="stacks-forecast-detail" data-daily-detail hidden>'
+      +'<section class="stacks-forecast-section"><h4>'+esc(copy.why)+'</h4><p>'+esc(copy.whyText.replace("{n}",days))+'</p></section>'
+      +'<section class="stacks-forecast-section"><h4>'+esc(copy.rule)+'</h4><div class="stacks-forecast-rule"><span>'+esc(fmt(item.outcome.due))+'</span><b>'+esc(note)+'</b></div></section>'
+      +'<section class="stacks-forecast-section"><h4>'+esc(copy.schedule)+'</h4><div class="stacks-forecast-timeline"><div><time>'+esc(fmt(item.date))+'</time><b>'+esc(copy.published)+'</b><p>'+esc(item.source)+'</p></div><div><time>'+esc(fmt(item.outcome.due))+'</time><b>'+esc(copy.final)+'</b><p>'+esc(note)+'</p></div></div>'
+      +(item.sourceUrl?'<a class="stacks-forecast-original" href="'+safeUrl(item.sourceUrl)+'" target="_blank" rel="noopener">'+esc(copy.original)+'</a>':'')+'</section>'
+      +'<p class="stacks-forecast-note">'+esc(copy.note)+'</p>'
+    +'</div>';
+  var toggle=el.querySelector("[data-daily-toggle]"),detail=el.querySelector("[data-daily-detail]");
+  toggle.onclick=function(){ var open=toggle.getAttribute("aria-expanded")!=="true"; toggle.setAttribute("aria-expanded",open?"true":"false"); detail.hidden=!open; toggle.textContent=open?copy.close:copy.open; };
+  el.querySelector("[data-daily-record]").onclick=function(){ openScoreboard(); };
   return el;
 }
 function homeBriefEl(items){
@@ -9131,6 +9161,10 @@ function appendFeedPage(S){
   const start = SHOWN;
   const end = Math.min(start + FEED_PAGE_SIZE, CUR_ITEMS.length);
   for (let idx = start; idx < end; idx++){
+    if(start===0&&idx===2&&typeof plainHomeView==="function"&&plainHomeView()&&!document.getElementById("stacksDailyForecast")){
+      var dailyForecast=dailyForecastEl();
+      if(dailyForecast) list.appendChild(dailyForecast);
+    }
     if (READ_DIV_IDX >= 0 && idx === READ_DIV_IDX && !document.getElementById("readDivider")){
       const dv = document.createElement("div");
       dv.id = "readDivider"; dv.className = "read-div";
@@ -9387,10 +9421,6 @@ function renderFeed(animate){
   } catch (e){}
   CUR_ITEMS = items;
   SHOWN = 0;
-  if (typeof plainHomeView === "function" && plainHomeView()){
-    var dailyForecast=dailyForecastEl();
-    if(dailyForecast) list.appendChild(dailyForecast);
-  }
   appendFeedPage(S);
 }
 
