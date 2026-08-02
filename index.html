@@ -2059,11 +2059,6 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 .prediction-result-meta{margin-top:16px;display:grid;gap:16px;}
 .prediction-result-meta h4{margin:0 0 7px;font-size:13px;color:var(--text);}
 .prediction-result-rule{padding:10px 11px;border-radius:11px;background:var(--bg-soft);font-size:12px;line-height:1.65;color:var(--text);}
-.prediction-result-timeline{margin-left:5px;padding-left:13px;border-left:2px solid var(--line);}
-.prediction-result-timeline div+div{margin-top:12px;}
-.prediction-result-timeline time{display:block;margin-bottom:3px;font-size:10px;color:var(--accent);}
-.prediction-result-timeline b{display:block;font-size:11.5px;color:var(--text);}
-.prediction-result-timeline p{margin:2px 0 0;font-size:12px;line-height:1.6;color:var(--muted);}
 .prediction-result-card .gist-fold>summary{display:none;}
 .prediction-result-card .card-body{display:flex;flex-direction:column;}
 .prediction-result-card .prediction-result-more{display:inline-flex;}
@@ -9013,9 +9008,9 @@ function dailyPredictionResultEl(item,S,idx){
   if(!item) return null;
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var copy={
-    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준",schedule:"확인 일정",registered:"근거 등록",final:"최종 결과"},
-    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule",schedule:"Checkpoints",registered:"Source registered",final:"Final result"},
-    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準",schedule:"確認日程",registered:"根拠登録",final:"最終結果"}
+    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준"},
+    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule"},
+    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準"}
   }[lang];
   var exactTitle={
     ko:"7월 23일 증시 매도는 이란전쟁 때문이었을까, AI 설비투자 공포 때문이었을까?",
@@ -9081,8 +9076,7 @@ function dailyPredictionResultEl(item,S,idx){
   if(sourceDate) sourceDate.textContent=copy.today+" · "+String(lang).toUpperCase();
   var meta=document.createElement("div");
   meta.className="prediction-result-meta";
-  meta.innerHTML='<section><h4>'+esc(copy.rule)+'</h4><div class="prediction-result-rule">'+esc(criterion)+'</div></section>'
-    +'<section><h4>'+esc(copy.schedule)+'</h4><div class="prediction-result-timeline"><div><time>'+esc(fmt(item.date))+'</time><b>'+esc(copy.registered)+'</b><p>'+esc(item.source)+'</p></div><div><time>'+esc(fmt(graded))+'</time><b>'+esc(copy.final)+'</b><p>'+esc(note)+'</p></div></div></section>';
+  meta.innerHTML='<section><h4>'+esc(copy.rule)+'</h4><div class="prediction-result-rule">'+esc(criterion)+'</div></section>';
   var cta=el.querySelector(".cta-row");
   if(why) why.insertAdjacentElement("beforebegin",meta);
   else if(cta) cta.insertAdjacentElement("beforebegin",meta);
