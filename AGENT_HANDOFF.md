@@ -2,6 +2,28 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-02 Codex
+Goal:
+- Replace the in-feed "오늘의 전망" card with an always-expanded completed prediction result and deploy it to production.
+
+Changed:
+- `C:\Users\dream\Downloads\Stacks-main\index.html`
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Reused the production `cardEl()` renderer, X embed path, and engagement controls.
+- Local browser check: completed `hit` result, question title, result note, `왜 지금 봐야 하나`, X embed, decision rule, schedule, and all six engagement controls rendered.
+- Local browser check: no forecast toggle, no `details`/`summary`, and no duplicate DOM IDs.
+- Inline script syntax and `git diff --check` passed.
+- `scripts/deploy_guard.py index.html` passed before editing.
+
+Risks:
+- The daily result currently prefers `kobeissi-nasdaq-900b-selloff`; fallback is the latest completed graded item.
+- The selected item is omitted from its later normal-feed position to avoid duplicate engagement IDs.
+
+Next:
+- Run final deploy guard, commit, push `main`, and verify the cache-busted production page.
+
 ## 2026-08-01 Codex
 Goal:
 - Deploy temporary intro/onboarding bypass for AdSense review.

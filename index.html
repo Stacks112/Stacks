@@ -2046,41 +2046,26 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 .home-brief button.primary{background:var(--text);border-color:var(--text);color:var(--bg);}
 .home-brief button:hover{border-color:var(--accent);color:var(--accent);}
 .home-brief button.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
-.daily-forecast-avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:var(--bg-soft);border:1px solid var(--line);font-size:11px;font-weight:900;color:var(--text);}
-.stacks-forecast-card{position:relative;padding:15px 14px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg);}
-.stacks-forecast-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.stacks-forecast-avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:var(--text);border:1px solid var(--line);overflow:hidden;}
-.stacks-forecast-avatar img{width:26px;height:26px;object-fit:contain;}
-.stacks-forecast-author{min-width:0;flex:1;}
-.stacks-forecast-author b{display:block;font-size:14px;color:var(--text);}
-.stacks-forecast-author span{display:block;margin-top:2px;font-size:10.5px;color:var(--muted);}
-.stacks-forecast-badge{flex:0 0 auto;border-radius:999px;padding:5px 8px;background:rgba(255,149,0,.13);color:#d97706;font-size:10px;font-weight:900;}
-.stacks-forecast-title{margin:0 0 8px;font-size:19px;font-weight:900;line-height:1.42;letter-spacing:-.035em;color:var(--text);}
-.stacks-forecast-lede{margin:0 0 12px;font-size:12.5px;line-height:1.62;color:var(--muted);}
-.stacks-forecast-brief{border-left:3px solid var(--accent);padding:1px 0 1px 10px;margin-bottom:12px;}
-.stacks-forecast-brief span{display:block;margin-bottom:4px;font-size:10px;font-weight:800;color:var(--accent);}
-.stacks-forecast-brief b{display:block;font-size:12px;line-height:1.52;color:var(--text);}
-.stacks-forecast-source{margin-bottom:12px;font-size:10px;line-height:1.45;color:var(--muted);}
-.stacks-forecast-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:10px;}
-.stacks-forecast-toggle,.stacks-forecast-record{border:0;background:none;padding:5px 0;font:750 11.5px/1 var(--ui-font);cursor:pointer;}
-.stacks-forecast-toggle{color:var(--text);}
-.stacks-forecast-record{color:var(--muted);}
-.stacks-forecast-toggle:hover,.stacks-forecast-record:hover{color:var(--accent);}
-.stacks-forecast-detail{margin-top:12px;border-top:1px solid var(--line);padding-top:14px;}
-.stacks-forecast-detail[hidden]{display:none;}
-.stacks-forecast-section+.stacks-forecast-section{margin-top:16px;}
-.stacks-forecast-section h4{font-size:13px;color:var(--text);margin:0 0 7px;}
-.stacks-forecast-section p{font-size:12px;line-height:1.68;color:var(--muted);margin:0;}
-.stacks-forecast-rule{border-radius:11px;background:var(--bg-soft);padding:10px 11px;}
-.stacks-forecast-rule span{display:block;font-size:10px;color:var(--muted);margin-bottom:4px;}
-.stacks-forecast-rule b{display:block;font-size:11.5px;line-height:1.5;color:var(--text);}
-.stacks-forecast-timeline{border-left:2px solid var(--line);margin-left:5px;padding-left:13px;}
-.stacks-forecast-timeline div+div{margin-top:12px;}
-.stacks-forecast-timeline time{display:block;font-size:10px;color:var(--accent);margin-bottom:3px;}
-.stacks-forecast-timeline b{display:block;font-size:11.5px;color:var(--text);}
-.stacks-forecast-timeline p{margin-top:2px;}
-.stacks-forecast-original{display:inline-block;margin-top:8px;color:var(--accent);font-size:10.5px;font-weight:700;text-decoration:none;}
-.stacks-forecast-note{margin-top:14px;font-size:10px;line-height:1.5;color:var(--muted);}
+.prediction-result-card .avatar.photo{background:var(--text);padding:7px;box-sizing:border-box;}
+.prediction-result-card .avatar.photo img{object-fit:contain;}
+.prediction-result-badge{margin-left:auto;flex:0 0 auto;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900;white-space:nowrap;}
+.prediction-result-badge.hit{background:rgba(18,183,106,.1);color:#0E9F5E;}
+.prediction-result-badge.miss{background:rgba(240,68,56,.09);color:#E04438;}
+.prediction-result-verdict{margin:0 0 12px;padding:11px 13px;border:1px solid;border-radius:12px;font-size:12px;line-height:1.5;}
+.prediction-result-verdict.hit{background:rgba(18,183,106,.09);border-color:rgba(18,183,106,.35);color:#0E9F5E;}
+.prediction-result-verdict.miss{background:rgba(240,68,56,.08);border-color:rgba(240,68,56,.3);color:#E04438;}
+.prediction-result-verdict b{display:block;font-size:15px;}
+.prediction-result-verdict span{font-size:10.5px;opacity:.8;}
+.prediction-result-meta{margin-top:16px;display:grid;gap:16px;}
+.prediction-result-meta h4{margin:0 0 7px;font-size:13px;color:var(--text);}
+.prediction-result-rule{padding:10px 11px;border-radius:11px;background:var(--bg-soft);font-size:12px;line-height:1.65;color:var(--text);}
+.prediction-result-timeline{margin-left:5px;padding-left:13px;border-left:2px solid var(--line);}
+.prediction-result-timeline div+div{margin-top:12px;}
+.prediction-result-timeline time{display:block;margin-bottom:3px;font-size:10px;color:var(--accent);}
+.prediction-result-timeline b{display:block;font-size:11.5px;color:var(--text);}
+.prediction-result-timeline p{margin:2px 0 0;font-size:12px;line-height:1.6;color:var(--muted);}
+.prediction-result-card .gist-fold>summary{display:none;}
+.prediction-result-card .card-body{display:flex;flex-direction:column;}
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
   .home-brief-a{justify-content:flex-start;}
@@ -8987,63 +8972,80 @@ function homeTopTodayId(){
 }
 function dailyForecastPick(){
   try {
-    var now=new Date(); now.setHours(0,0,0,0);
-    var pad=function(n){ return String(n).padStart(2,"0"); };
-    var dayKey=now.getFullYear()+"-"+pad(now.getMonth()+1)+"-"+pad(now.getDate());
-    var cacheKey="stk_daily_forecast_"+dayKey;
-    var cached=lsGet(cacheKey);
     var eligible=ITEMS.filter(function(i){
-      if(!i.outcome||i.outcome.status!=="pending"||!i.outcome.due) return false;
-      var due=new Date(i.outcome.due+"T00:00:00");
-      var days=Math.round((due-now)/86400000);
-      var note=i.outcome.note&&(i.outcome.note[LANG]||i.outcome.note.ko||i.outcome.note.en);
-      return days>=7&&days<=30&&!!note&&!!i.source;
-    }).sort(function(a,b){ return (b.hot?1:0)-(a.hot?1:0)||String(a.outcome.due).localeCompare(String(b.outcome.due))||(a.date<b.date?1:-1); });
-    if(cached){ var found=eligible.find(function(i){ return i.id===cached; }); if(found) return found; }
-    if(!eligible.length) return null;
-    var history=store.get("stk_daily_forecast_history",[]);
-    var pick=eligible.find(function(i){ return history.indexOf(i.id)<0; })||eligible[0];
-    lsSet(cacheKey,pick.id);
-    history=history.filter(function(id){ return id!==pick.id; }); history.push(pick.id);
-    store.set("stk_daily_forecast_history",history.slice(-30));
-    return pick;
+      var o=i.outcome||{};
+      return (o.status==="hit"||o.status==="miss")&&!!(o.gradedOn||o.due)&&!!o.note&&!!i.sourceUrl;
+    }).sort(function(a,b){
+      return String(b.outcome.gradedOn||b.outcome.due).localeCompare(String(a.outcome.gradedOn||a.outcome.due));
+    });
+    return eligible.find(function(i){ return i.id==="kobeissi-nasdaq-900b-selloff"; })||eligible[0]||null;
   } catch(e){ return null; }
 }
-function dailyForecastEl(){
-  var item=dailyForecastPick();
+function dailyPredictionResultEl(item,S,idx){
   if(!item) return null;
-  var now=new Date(); now.setHours(0,0,0,0);
-  var due=new Date(item.outcome.due+"T00:00:00");
-  var days=Math.max(0,Math.round((due-now)/86400000));
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var copy={
-    ko:{today:"오늘",badge:"오늘의 전망",pick:"Stacks가 고른 전망",source:"근거가 된 관점",open:"열기",close:"접기",record:"판정 기록에서 추적 →",why:"왜 지금 봐야 하나",whyText:"판정일까지 {n}일 남았습니다. 먼 미래의 이야기가 아니라 곧 실제 데이터로 확인할 수 있는 전망입니다.",rule:"판정 기준",schedule:"확인 일정",published:"근거가 된 글",final:"최종 확인",original:"원문 보기 ↗",note:"실제 전망과 판정 기준만 사용합니다. 결과는 판정 기록에 공개됩니다."},
-    en:{today:"Today",badge:"Today's forecast",pick:"Selected by Stacks",source:"Source view",open:"Open",close:"Close",record:"Track in record →",why:"Why now",whyText:"{n} days remain until judgment. This is a near-term forecast that can soon be checked against real data.",rule:"Decision rule",schedule:"Checkpoints",published:"Source published",final:"Final check",original:"Open source ↗",note:"Only real forecasts and decision rules are used. Results are published in Track record."},
-    ja:{today:"今日",badge:"今日の見通し",pick:"Stacksが選んだ見通し",source:"根拠となる見解",open:"開く",close:"閉じる",record:"判定記録で追跡 →",why:"なぜ今か",whyText:"判定まであと{n}日です。遠い将来ではなく、まもなく実データで確認できる見通しです。",rule:"判定基準",schedule:"確認日程",published:"根拠記事",final:"最終確認",original:"原文を見る ↗",note:"実際の見通しと判定基準だけを使用し、結果は判定記録で公開します。"}
+    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준",schedule:"확인 일정",registered:"근거 등록",final:"최종 결과"},
+    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule",schedule:"Checkpoints",registered:"Source registered",final:"Final result"},
+    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準",schedule:"確認日程",registered:"根拠登録",final:"最終結果"}
   }[lang];
-  var title=item.title[lang]||item.title.en||"";
+  var exactTitle={
+    ko:"7월 23일 증시 매도는 이란전쟁 때문이었을까, AI 설비투자 공포 때문이었을까?",
+    en:"Was the July 23 selloff driven by the Iran war or fears over AI capital spending?",
+    ja:"7月23日の株安はイラン戦争が原因だったのか、AI設備投資への懸念が原因だったのか?"
+  };
+  var title=item.id==="kobeissi-nasdaq-900b-selloff"?exactTitle:item.title;
   var note=(item.outcome.note&&(item.outcome.note[lang]||item.outcome.note.ko||item.outcome.note.en))||"";
-  var gist=clipStr(plainGist((item.gist&&(item.gist[lang]||item.gist.en))||"").replace(/\s+/g," ").trim(),180);
-  var el=document.createElement("article");
-  el.id="stacksDailyForecast";
-  el.className="stacks-forecast-card";
-  el.setAttribute("aria-label","Stacks · "+copy.badge);
-  el.innerHTML='<div class="stacks-forecast-top"><span class="stacks-forecast-avatar"><img src="favicon.ico" alt=""></span><span class="stacks-forecast-author"><b>Stacks</b><span>@Stacks0g · '+esc(copy.today)+' · '+esc(String(lang).toUpperCase())+'</span></span><span class="stacks-forecast-badge">'+esc(copy.badge)+' · D-'+days+'</span></div>'
-    +'<h3 class="stacks-forecast-title">'+esc(title)+'</h3>'
-    +(gist?'<p class="stacks-forecast-lede">'+esc(gist)+'</p>':'')
-    +'<div class="stacks-forecast-brief"><span>'+esc(copy.pick)+'</span><b>'+esc(title)+'</b></div>'
-    +'<div class="stacks-forecast-source">'+esc(copy.source)+' · '+esc(item.source)+'</div>'
-    +'<div class="stacks-forecast-actions"><button type="button" class="stacks-forecast-toggle" data-daily-toggle aria-expanded="false">'+esc(copy.open)+'</button><button type="button" class="stacks-forecast-record" data-daily-record>'+esc(copy.record)+'</button></div>'
-    +'<div class="stacks-forecast-detail" data-daily-detail hidden>'
-      +'<section class="stacks-forecast-section"><h4>'+esc(copy.why)+'</h4><p>'+esc(copy.whyText.replace("{n}",days))+'</p></section>'
-      +'<section class="stacks-forecast-section"><h4>'+esc(copy.rule)+'</h4><div class="stacks-forecast-rule"><span>'+esc(fmt(item.outcome.due))+'</span><b>'+esc(note)+'</b></div></section>'
-      +'<section class="stacks-forecast-section"><h4>'+esc(copy.schedule)+'</h4><div class="stacks-forecast-timeline"><div><time>'+esc(fmt(item.date))+'</time><b>'+esc(copy.published)+'</b><p>'+esc(item.source)+'</p></div><div><time>'+esc(fmt(item.outcome.due))+'</time><b>'+esc(copy.final)+'</b><p>'+esc(note)+'</p></div></div>'
-      +(item.sourceUrl?'<a class="stacks-forecast-original" href="'+safeUrl(item.sourceUrl)+'" target="_blank" rel="noopener">'+esc(copy.original)+'</a>':'')+'</section>'
-      +'<p class="stacks-forecast-note">'+esc(copy.note)+'</p>'
-    +'</div>';
-  var toggle=el.querySelector("[data-daily-toggle]"),detail=el.querySelector("[data-daily-detail]");
-  toggle.onclick=function(){ var open=toggle.getAttribute("aria-expanded")!=="true"; toggle.setAttribute("aria-expanded",open?"true":"false"); detail.hidden=!open; toggle.textContent=open?copy.close:copy.open; };
-  el.querySelector("[data-daily-record]").onclick=function(){ openScoreboard(); };
+  var criterion=item.id==="kobeissi-nasdaq-900b-selloff"?{
+    ko:"주식 매도세의 주된 원인이 이란전쟁인지, AI 설비투자 우려와 기술주 실적 충격인지 후속 시장 데이터로 확인한다.",
+    en:"Check follow-up market data to determine whether the selloff was driven mainly by the Iran war or by AI-capex concerns and tech earnings.",
+    ja:"株式の売りの主因がイラン戦争だったのか、AI設備投資への懸念とハイテク決算だったのかを、その後の市場データで確認する。"
+  }[lang]:note;
+  var now=new Date(),pad=function(n){ return String(n).padStart(2,"0"); };
+  var today=now.getFullYear()+"-"+pad(now.getMonth()+1)+"-"+pad(now.getDate());
+  var rawLines=(item.quote&&item.quote.lines)||(item.embed&&item.embed.lines)||[""];
+  var sourceLines=Array.isArray(rawLines)?rawLines:(rawLines[lang]||rawLines[String(item.sourceLang||"").toLowerCase()]||rawLines.en||rawLines.ko||rawLines.ja||[""]);
+  var sourceName=(item.embed&&item.embed.name)||item.source.replace(/\s*\(@[^)]+\)\s*$/," ").trim();
+  var sourceHandle=(item.embed&&item.embed.handle)||((item.source.match(/(@[^)]+)/)||[])[1]||"");
+  var view=Object.assign({},item,{
+    source:"Stacks",avatarImg:"favicon.ico",date:today,sourceLang:String(lang).toUpperCase(),
+    title:title,gist:item.outcome.note,why:item.why,lab:true,foldWhy:false,clip:false,
+    tags:[],stance:"",sum3:null,outcome:null,
+    embed:{url:item.sourceUrl,name:sourceName,handle:sourceHandle,date:fmt(item.date),lines:sourceLines}
+  });
+  var el=cardEl(view,S,idx);
+  var status=item.outcome.status,verdict=status==="hit"?copy.hit:copy.miss;
+  var graded=item.outcome.gradedOn||item.outcome.due;
+  el.classList.add("prediction-result-card");
+  el.setAttribute("aria-label","Stacks · "+copy.badge+" · "+verdict);
+  el.querySelectorAll(".chips,.new-pill").forEach(function(node){ node.remove(); });
+  var badge=document.createElement("span");
+  badge.className="prediction-result-badge "+status;
+  badge.textContent=copy.badge+" · "+verdict;
+  el.querySelector(".card-top").appendChild(badge);
+  var panel=document.createElement("div");
+  panel.className="prediction-result-verdict "+status;
+  panel.innerHTML='<span>'+esc(copy.verdict)+' · '+esc(copy.graded)+' '+esc(fmt(graded))+'</span><b>'+esc(verdict)+'</b>';
+  el.querySelector(".card-title").insertAdjacentElement("afterend",panel);
+  var details=el.querySelector(".gist-fold");
+  if(details){
+    var fixedGist=document.createElement("div"),gistNode=details.querySelector(".gist");
+    fixedGist.className="gist-fold prediction-result-gist";
+    if(gistNode) fixedGist.appendChild(gistNode);
+    details.replaceWith(fixedGist);
+  }
+  var gist=el.querySelector(".prediction-result-gist .gist");
+  if(gist) gist.innerHTML='<p>'+esc(note)+'</p>';
+  var whyLabel=el.querySelector(".why .label");
+  if(whyLabel) whyLabel.textContent=copy.why;
+  var sourceDate=el.querySelector(".src-date");
+  if(sourceDate) sourceDate.textContent=copy.today+" · "+String(lang).toUpperCase();
+  var meta=document.createElement("div");
+  meta.className="prediction-result-meta";
+  meta.innerHTML='<section><h4>'+esc(copy.rule)+'</h4><div class="prediction-result-rule">'+esc(criterion)+'</div></section>'
+    +'<section><h4>'+esc(copy.schedule)+'</h4><div class="prediction-result-timeline"><div><time>'+esc(fmt(item.date))+'</time><b>'+esc(copy.registered)+'</b><p>'+esc(item.source)+'</p></div><div><time>'+esc(fmt(graded))+'</time><b>'+esc(copy.final)+'</b><p>'+esc(note)+'</p></div></div></section>';
+  var cta=el.querySelector(".cta-row");
+  if(cta) cta.insertAdjacentElement("beforebegin",meta);
   return el;
 }
 function homeBriefEl(items){
@@ -9160,11 +9162,13 @@ function appendFeedPage(S){
   if (old) old.remove();
   const start = SHOWN;
   const end = Math.min(start + FEED_PAGE_SIZE, CUR_ITEMS.length);
+  const dailyResult = plainHomeView() ? dailyForecastPick() : null;
   for (let idx = start; idx < end; idx++){
-    if(start===0&&idx===2&&typeof plainHomeView==="function"&&plainHomeView()&&!document.getElementById("stacksDailyForecast")){
-      var dailyForecast=dailyForecastEl();
-      if(dailyForecast) list.appendChild(dailyForecast);
+    if(start===0&&idx===2&&dailyResult&&!document.querySelector(".prediction-result-card")){
+      var resultCard=dailyPredictionResultEl(dailyResult,S,idx-start);
+      if(resultCard){ list.appendChild(resultCard); linkifyEntities(resultCard); }
     }
+    if(dailyResult&&CUR_ITEMS[idx].id===dailyResult.id) continue;
     if (READ_DIV_IDX >= 0 && idx === READ_DIV_IDX && !document.getElementById("readDivider")){
       const dv = document.createElement("div");
       dv.id = "readDivider"; dv.className = "read-div";
@@ -9998,6 +10002,7 @@ async function loadGists(){
       const host = document.getElementById("sig-" + id);
       const node = host && host.querySelector(".gist");
       if (!node) return;
+      if (host.classList.contains("prediction-result-card")) return;
       /* the preview came out of gistRich too, so re-run it rather than
          dropping raw marker text into the card */
       node.innerHTML = gistRich(it);
@@ -10939,11 +10944,18 @@ bootData();
   html.v83 #feedList .card-body > .oc,
   html.v83 #feedList .card-body > .since,
   html.v83 #feedList .card-body > .ask-block{ order:50; }
+  html.v83 #feedList .prediction-result-card .card-body > .gist-fold{ order:10; }
+  html.v83 #feedList .prediction-result-card .card-body > .why{ display:block !important; order:20 !important; }
+  html.v83 #feedList .prediction-result-card .card-body > .xreal{ order:30; }
+  html.v83 #feedList .prediction-result-card .card-body > .prediction-result-meta{ order:40; }
   html.v83 #feedList .card-body > .cta-row{ order:60; }
   html.v83 #feedList .card-body > .title-orig{ order:65; }   /* ← 원문 보기 아래 */
   html.v83 #feedList .card.card-lab .card-body > .cta-row{ order:5; margin:0 0 4px; }   /* lab: 상세에서만 — 피드는 아래 규칙으로 숨긴다 */
   /* 피드에서는 원문 보기가 태그줄 오른쪽 끝으로 갔으므로 cta-row 줄(언어 안내문 포함)을 걷어낸다 */
   html.v83 #feedList > .card.card-lab:not(.v83one) .card-body > .cta-row{ display:none; }
+  html.v83 #feedList > .card.card-lab.prediction-result-card .card-body > .cta-row{ display:flex; order:50; margin-top:18px; }
+  html.v83 #feedList > .prediction-result-card .card-body > .engage{ order:60; }
+  html.v83 #feedList > .prediction-result-card .card-body > .comment-box{ order:70; }
   html.v83 #feedList > .card.card-lab.v83one .chips-end{ display:none; }
   html.v83 #feedList .card.card-lab.v83clip .gist{ max-height:130px; }   /* lab: X처럼 임베드 밑 본문은 몇 줄만 */
   html.v83 #feedList .card.gclip.card-lab .gist{ min-height:0; }   /* 자리 예약(215px)이 짧은 클립을 이기지 않게 */
