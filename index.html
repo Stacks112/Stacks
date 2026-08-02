@@ -2073,6 +2073,9 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 #feedList>.prediction-result-card:not(.v83expanded) .srcq,
 #feedList>.prediction-result-card:not(.v83expanded) .prediction-result-meta,
 #feedList>.prediction-result-card:not(.v83expanded) .cta-row{display:none!important;}
+@media (max-width:1023px){
+  .prediction-result-card .card-body>.prediction-result-meta{order:21;}
+}
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
   .home-brief-a{justify-content:flex-start;}
@@ -9081,7 +9084,8 @@ function dailyPredictionResultEl(item,S,idx){
   meta.innerHTML='<section><h4>'+esc(copy.rule)+'</h4><div class="prediction-result-rule">'+esc(criterion)+'</div></section>'
     +'<section><h4>'+esc(copy.schedule)+'</h4><div class="prediction-result-timeline"><div><time>'+esc(fmt(item.date))+'</time><b>'+esc(copy.registered)+'</b><p>'+esc(item.source)+'</p></div><div><time>'+esc(fmt(graded))+'</time><b>'+esc(copy.final)+'</b><p>'+esc(note)+'</p></div></div></section>';
   var cta=el.querySelector(".cta-row");
-  if(cta) cta.insertAdjacentElement("beforebegin",meta);
+  if(why) why.insertAdjacentElement("beforebegin",meta);
+  else if(cta) cta.insertAdjacentElement("beforebegin",meta);
   return el;
 }
 function homeBriefEl(items){
