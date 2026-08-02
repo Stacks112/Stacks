@@ -2066,6 +2066,13 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 .prediction-result-timeline p{margin:2px 0 0;font-size:12px;line-height:1.6;color:var(--muted);}
 .prediction-result-card .gist-fold>summary{display:none;}
 .prediction-result-card .card-body{display:flex;flex-direction:column;}
+.prediction-result-card .prediction-result-more{display:inline-flex;}
+.prediction-result-card.v83expanded .prediction-result-more{display:none;}
+#feedList>.prediction-result-card:not(.v83expanded) .xreal,
+#feedList>.prediction-result-card:not(.v83expanded) .xemb,
+#feedList>.prediction-result-card:not(.v83expanded) .srcq,
+#feedList>.prediction-result-card:not(.v83expanded) .prediction-result-meta,
+#feedList>.prediction-result-card:not(.v83expanded) .cta-row{display:none!important;}
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
   .home-brief-a{justify-content:flex-start;}
@@ -9038,6 +9045,17 @@ function dailyPredictionResultEl(item,S,idx){
   if(gist) gist.innerHTML='<p>'+esc(note)+'</p>';
   var whyLabel=el.querySelector(".why .label");
   if(whyLabel) whyLabel.textContent=copy.why;
+  var more=document.createElement("button");
+  more.className="v83-more prediction-result-more";
+  more.type="button";
+  more.textContent=(S.loadMore||"더 보기")+" →";
+  more.addEventListener("click",function(e){
+    e.stopPropagation();
+    el.classList.add("v83expanded");
+  });
+  var why=el.querySelector(".why"),body=el.querySelector(".card-body");
+  if(why) why.insertAdjacentElement("afterend",more);
+  else if(body) body.appendChild(more);
   var sourceDate=el.querySelector(".src-date");
   if(sourceDate) sourceDate.textContent=copy.today+" · "+String(lang).toUpperCase();
   var meta=document.createElement("div");
@@ -10946,6 +10964,7 @@ bootData();
   html.v83 #feedList .card-body > .ask-block{ order:50; }
   html.v83 #feedList .prediction-result-card .card-body > .gist-fold{ order:10; }
   html.v83 #feedList .prediction-result-card .card-body > .why{ display:block !important; order:20 !important; }
+  html.v83 #feedList .prediction-result-card .card-body > .prediction-result-more{ order:25; }
   html.v83 #feedList .prediction-result-card .card-body > .xreal{ order:30; }
   html.v83 #feedList .prediction-result-card .card-body > .prediction-result-meta{ order:40; }
   html.v83 #feedList .card-body > .cta-row{ order:60; }

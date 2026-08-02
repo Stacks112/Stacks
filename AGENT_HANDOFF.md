@@ -4,6 +4,25 @@ Shared handoff log for Codex and Claude.
 
 ## 2026-08-02 Codex
 Goal:
+- Add the normal feed `More` behavior to the completed prediction-result card.
+
+Changed:
+- `index.html`
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Collapsed state keeps the verdict, result summary, `Why this matters now`, and engagement controls visible.
+- `More` expands the X source, decision rule, schedule, and original link in place.
+- Inline script syntax, `git diff --check`, local browser interaction, and deploy guard passed.
+
+Risks:
+- None.
+
+Next:
+- Commit, push `main`, and verify the cache-busted production page.
+
+## 2026-08-02 Codex
+Goal:
 - Replace the in-feed "오늘의 전망" card with an always-expanded completed prediction result and deploy it to production.
 
 Changed:
