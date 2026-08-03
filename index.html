@@ -10710,7 +10710,16 @@ function closeIntro(){
   maybeOnboard();
 }
 
+/* ★ 온보딩 게이트 은퇴 (2026-08-03, june 지시 — 삭제 아님, 시리즈 은퇴와 같은 방식).
+   근거: 7일간 onboard/shown 26 = onboard/skip 26 (선택 0명), Clarity 레코딩 13건 전수
+   확인 결과 전원이 1-2초 내 반사적으로 닫음 — 개인화 가치 0, 첫인상 마찰만 추가.
+   선택지 4개 중 2개는 은퇴된 시리즈에 묶여 있어 골라도 반쪽 동작이었음.
+   AdSense 승인 후 FIRST_RUN_GATES_DISABLED_FOR_ADSENSE를 false로 되돌려 인트로를
+   복원해도 온보딩은 계속 잠긴다. 관심사 설정은 '내 정보' 시트(me-int)에 그대로 있고,
+   되살리려면 이 플래그만 false로. 아래 함수·마크업·CSS는 전부 inert로 보존. */
+const ONBOARD_RETIRED = true;
 function maybeOnboard(){
+  if (ONBOARD_RETIRED) return;
   if (FIRST_RUN_GATES_DISABLED_FOR_ADSENSE) return;
   if (store.get("stk_onboarded", false)) return;
   if (!ITEMS.length) return;

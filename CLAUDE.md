@@ -28,6 +28,19 @@
 - 데이터(items.json): 기존 47개 카드의 series 필드·top-level series 정의는 **그대로 둔다**(무해·되돌리기
   여지). 프론트가 무시하므로 화면엔 안 보임. 되살리려면 index.html 3줄 revert.
 
+## ★ 온보딩 게이트 은퇴 (2026-08-03, june 지시 — 삭제 아님)
+첫 방문 관심사 선택 팝업(#onboard, "어떤 이야기가 궁금하세요?")을 **은퇴**한다.
+- 근거(실측): 7일간 onboard/shown 26 = onboard/skip 26(선택 0명). Clarity 레코딩 13건
+  전수 확인 — 전원이 인트로→온보딩을 1-2초 내 반사적으로 닫고 지나감(쿠키 배너 취급),
+  팝업을 띄운 채 이탈한 세션은 0. 즉 이탈 유발자는 아니지만 가치 0 + 첫인상 마찰.
+  선택지 4개 중 2개(유가·지정학, AI 전력·인프라)는 은퇴된 시리즈에 묶여 반쪽 동작이었음.
+- 구현: `index.html`의 `maybeOnboard()` 최상단 `ONBOARD_RETIRED = true` 가드 1개.
+  AdSense 임시 플래그(`FIRST_RUN_GATES_DISABLED_FOR_ADSENSE`)와 독립 — 승인 후 그 플래그를
+  false로 되돌려 인트로를 복원해도 온보딩은 계속 잠김. 함수·마크업(#onboard)·CSS·
+  STRINGS(obTitle 등)·OB_INTERESTS는 전부 inert dead code로 보존(시리즈 은퇴와 같은 방식).
+- 관심사 설정 자체는 '내 정보' 시트(me-int, 같은 OB_INTERESTS 사용)에 그대로 살아 있다.
+- 되살리기: `ONBOARD_RETIRED`를 false로 — 1줄 revert.
+
 ## ★ 발행 규칙 (가장 중요 — 꼬임 방지의 핵심)
 
 카드 발행자는 **오직 하나: 예약 루틴 "Stacks 자동 발행 파이프라인 v4.3"**
