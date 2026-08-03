@@ -7,8 +7,19 @@ runner, which CAN reach the Worker) diffs the pushed commit against the
 previous one, finds newly added items that belong to a series, and sends
 one follower push per new item.
 
+The same sandbox limitation applies to PREDICTION GRADING (2026-08-04): the
+scheduled Cowork session grades outcome.status pending -> hit/miss and commits
+items.json, but its `[5]` push step can never work -- the egress proxy 403s
+api.stacksdaily.com at CONNECT, so nothing was ever sent. grade.py's docstring
+already assumed "the workflow that watches items.json notifies", but this
+relay only ever looked for NEW item ids, and grading only EDITS existing ones,
+so every graded run landed on "no new item ids in this push". That gap is now
+closed here (see newly_graded), and grade.yml sets GRADE_PUSH=0 so the two
+paths cannot double-send.
+
 Modes:
-- push event: diff BEFORE_SHA..HEAD items.json, auto-send for new series items.
+- push event: diff BEFORE_SHA..HEAD items.json, auto-send for new series items
+  and for predictions that were just graded.
 - workflow_dispatch: send exactly one push from the provided inputs
   (tag/title/msg/url), with an optional dry-run flag for testing.
 """
@@ -58,6 +69,7 @@ def _summary(line):
     except OSError:
         pass
 
+
 # Theme follower pushes (tag t_<key>). Keys/keywords MUST stay in sync with
 # THEMES in index.html and scripts/build_pages.py.
 THEMES = {
@@ -71,14 +83,12 @@ THEMES = {
     "japan":   ("일본 시장", 0, r"일본|닛케이|엔저|\bJapan(?:ese)?\b|\bNikkei\b|\bBOJ\b|日銀|日本株|東証|日経"),
 }
 
-
 MAX_ENT_PER_ITEM = 2   # 한 글이 여러 종목을 언급해도 팔로워당 알림은 최대 2개
 MAX_ENT_PER_RUN = 6    # 한 번의 푸시(커밋)에서 보내는 종목 알림 총량 상한
 
 
 def slug_tag(k):
     """index.html의 slugTag()와 반드시 같은 결과를 내야 한다.
-
     앱은 관심 종목을 켤 때 OneSignal 태그 `c_<slugTag(key)>`를 붙인다.
     여기서 한 글자라도 다르게 만들면 푸시가 아무에게도 안 간다(조용한 실패).
     JS: String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g,"_").replace(/^_+|_+$/g,"")
@@ -159,6 +169,81 @@ def item_themes(it):
     return [(k, v[0]) for k, v in THEMES.items() if re.search(v[2], hay, v[1])]
 
 
+# --- 예측 채점 푸시 -------------------------------------------------------
+# 태그는 grade.py 의 notify() 와 같은 "daily" 를 쓴다. 채점 결과는 특정 시리즈나
+# 종목이 아니라 "이 사이트가 과거에 한 예측이 맞았나"에 대한 것이라 구독 축이
+# 다르다. 문구도 grade.py 와 같은 형태로 맞춰 둔다 (한쪽만 바뀌면 사용자 눈에는
+# 같은 알림이 두 종류로 보인다).
+GRADE_TAG = "daily"
+GRADE_TITLE = "🎯 예측 채점"
+# 한 커밋에서 보내는 채점 알림 상한. 밀린 due 가 한꺼번에 풀리면 열 건 넘게
+# 확정될 수 있는데, 그걸 다 보내면 알림이 아니라 소음이다. 넘친 건은 조용히
+# 버리지 말고 잡 요약에 남긴다.
+MAX_GRADED_PER_RUN = 3
+
+
+def newly_graded(old_items, new_doc, skip_ids=()):
+    """이번 push 에서 pending -> hit/miss 로 확정된 예측들.
+
+    `outcome.status` 의 전이만 본다. 채점 실행은 확정 말고도 due 연기·due 백필로
+    같은 파일의 수십 개 항목을 건드리는데(2026-08-04 실행은 22건 수정 중 확정은
+    3건뿐이었다), 그건 알림 대상이 아니다. gradedOn 날짜를 보지 않고 전이를 보는
+    이유: 전이는 항목당 한 번뿐이라 재실행·되돌림에도 중복 발송이 안 생긴다.
+
+    miss 를 먼저 돌려준다. 상한에 걸려 잘려나갈 때 남길 가치가 큰 쪽이 빗나감
+    쪽이라서다 — 맞은 것만 알리는 채점은 아무도 안 믿는다.
+    """
+    out = []
+    for it in new_doc.get("items", []):
+        iid = it.get("id")
+        if not iid or iid in skip_ids:
+            continue
+        oc = it.get("outcome")
+        if not isinstance(oc, dict) or oc.get("status") not in ("hit", "miss"):
+            continue
+        prev = old_items.get(iid)
+        if prev is None:
+            continue          # 이번에 새로 추가된 항목은 위쪽 신규 발행 경로 몫
+        prev_oc = prev.get("outcome")
+        if not isinstance(prev_oc, dict):
+            continue
+        if prev_oc.get("status") == oc["status"]:
+            continue          # 이미 전에 확정돼 있던 것
+        out.append((it, oc["status"]))
+    out.sort(key=lambda p: 0 if p[1] == "miss" else 1)
+    return out
+
+
+def send_graded(old_items, new_doc, skip_ids=()):
+    """채점 확정 건에 대한 팔로워 푸시. 실패해도 남은 건은 계속 시도한다."""
+    graded = newly_graded(old_items, new_doc, skip_ids)
+    if not graded:
+        print("no newly graded predictions in this push")
+        _summary("- ⏭️ 이번 push 에 새로 확정된 예측 없음 (due 연기·백필만 있는 실행은 정상).")
+        return []
+    hit = sum(1 for _, st in graded if st == "hit")
+    _summary(f"{len(graded)} newly graded prediction(s): 적중 {hit} · 빗나감 {len(graded) - hit}")
+    if len(graded) > MAX_GRADED_PER_RUN:
+        dropped = ", ".join(it["id"] for it, _ in graded[MAX_GRADED_PER_RUN:])
+        print(f"[grade-push] capped at {MAX_GRADED_PER_RUN}; not sending: {dropped}")
+        _summary(f"- ⏭️ 상한 {MAX_GRADED_PER_RUN}건 초과로 발송 생략: `{dropped}`")
+        graded = graded[:MAX_GRADED_PER_RUN]
+    failures = []
+    for it, st in graded:
+        t = it.get("title") or {}
+        base = t.get("ko") or t.get("en") or ""
+        msg = base + " — " + ("적중 ✓" if st == "hit" else "빗나감 ✕")
+        try:
+            send(GRADE_TAG, GRADE_TITLE, msg,
+                 f"https://stacksdaily.com/#sig-{it['id']}")
+        except SystemExit as e:
+            # send() 는 실패 시 곧바로 종료한다. 채점은 건마다 독립이라 한 건
+            # 때문에 나머지를 못 보내면 손해가 더 크다 — 모아서 마지막에 실패.
+            print(f"[grade-push-fail] {it['id']}: {e}")
+            failures.append(it["id"])
+    return failures
+
+
 def send(tag, title, msg, url, dry=False):
     if dry:
         print(f"[dry-run] would send: {tag} | {title} | {msg} | {url}")
@@ -167,7 +252,7 @@ def send(tag, title, msg, url, dry=False):
     secret = os.environ.get("STACKS_NOTIFY_SECRET") or os.environ.get("PUSH_SECRET", "")
     if not secret:
         _summary(f"- ❌ `{tag}`: **STACKS_NOTIFY_SECRET repo secret is not set** "
-                  f"(Settings > Secrets and variables > Actions).")
+                 f"(Settings > Secrets and variables > Actions).")
         sys.exit(
             "STACKS_NOTIFY_SECRET (or legacy PUSH_SECRET) repo secret is not set. Add it in "
             "Settings > Secrets and variables > Actions > New repository secret."
@@ -254,29 +339,34 @@ def main():
             dry=os.environ.get("IN_DRY", "false").lower() == "true",
         )
         return
-
     new = json.load(open("items.json"))
     old_raw = previous_items_json()
     if old_raw is None:
         print("no previous items.json to diff against; skipping")
         _summary("no previous items.json to diff against (BEFORE_SHA/HEAD~1 both "
-                  "unavailable); skipping. Nothing was sent.")
+                 "unavailable); skipping. Nothing was sent.")
         return
-
-    old_ids = {it["id"] for it in json.loads(old_raw).get("items", [])}
+    old_items = {it["id"]: it for it in json.loads(old_raw).get("items", [])}
+    old_ids = set(old_items)
     series_meta = new.get("series", {})
     entities = new.get("entities", {}) or {}
     sent_ent, ent_budget = set(), MAX_ENT_PER_RUN
     added = [it for it in new.get("items", []) if it["id"] not in old_ids]
+
+    # 채점 확정 푸시를 먼저 처리한다. 신규 발행 경로와는 완전히 독립이고, 아래
+    # 신규 항목 처리는 "새 id 없음"이면 곧장 return 하기 때문에 그 뒤에 두면
+    # 채점만 있는 커밋(=대부분의 채점 실행)에서 영영 실행되지 않는다.
+    grade_failures = send_graded(old_items, new,
+                                 skip_ids={it["id"] for it in added})
+
     if not added:
-        print("no new items in this push; nothing to send")
+        print("no new items in this push; nothing more to send")
         _summary("no new item ids in this push (edits to existing items don't count); "
-                  "nothing to send. This is a normal no-op, not a failure.")
+                 "no series/theme/company push. This is a normal no-op, not a failure.")
+        _finish(grade_failures)
         return
-
     _summary(f"{len(added)} new item(s) in this push: "
-              f"{', '.join(it['id'] for it in added)}")
-
+             f"{', '.join(it['id'] for it in added)}")
     for it in added:
         sid = it.get("series")
         if sid:
@@ -329,6 +419,16 @@ def main():
                 raise
             except Exception as e:
                 print(f"[watch-push-skip] {it['id']} {tag}: {e}")
+    _finish(grade_failures)
+
+
+def _finish(grade_failures):
+    """채점 푸시가 하나라도 실패했으면 run 을 빨갛게 끝낸다.
+
+    건별로 삼키고 끝내면 '초록인데 0건 발송'이 다시 생긴다 — 그게 이 릴레이가
+    2026-07 내내 조용히 죽어 있던 방식이었다."""
+    if grade_failures:
+        sys.exit("graded prediction push failed for: " + ", ".join(grade_failures))
 
 
 if __name__ == "__main__":
