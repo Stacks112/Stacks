@@ -9409,6 +9409,7 @@ function renderFeed(animate){
       const _vis = (typeof V83 !== "undefined" && V83 && V83.mounted)
         && (TAB === "all" || TAB === "mine")
         && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !QUERY && !BM_ONLY
+        && !(typeof READ_VIEW !== "undefined" && READ_VIEW)
         && !(typeof THEME_VIEW !== "undefined" && THEME_VIEW)
         && !(typeof V83ITEM !== "undefined" && V83ITEM);
       _fsw.hidden = !_vis;
