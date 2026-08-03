@@ -165,7 +165,12 @@
     if (navEl && !$("v82subbar")){
       var sb = document.createElement("div"); sb.id = "v82subbar";
       sb.innerHTML = '<button class="bk" aria-label="back">←</button><span class="ti"></span>';
-      sb.querySelector(".bk").onclick = function(){ if (EXPLORE_SUB) closeExploreSub(false); };
+      /* 2026-08-03: 서랍에서 바로 들어온 판정 기록·최근 읽은 글·북마크에도 이 바가 뜬다.
+         그때는 EXPLORE_SUB가 없으므로(허브 경유가 아님) 일반 뒤로가기로 되돌린다. */
+      sb.querySelector(".bk").onclick = function(){
+        if (EXPLORE_SUB){ closeExploreSub(false); return; }
+        try { history.back(); } catch (e) {}
+      };
       navEl.appendChild(sb);
     }
     /* 테마/기록 콘텐츠 안의 "피드로 돌아가기" 링크는 THEME_VIEW/SB_VIEW만 끄고 서브 헤더는
@@ -248,11 +253,13 @@
     else if (act === "home"){ closeDrawer(true); navGo("home"); }
     else if (act === "browse"){ closeDrawer(true); navGo("find"); }
     else if (act === "skew"){ closeDrawer(true); navGo("explore"); }
-    else if (act === "themes"){ closeDrawer(true); if (typeof openThemes === "function") openThemes(); try { setActive(); } catch(e){} }
-    else if (act === "record"){ closeDrawer(true); if (typeof openScoreboard === "function") openScoreboard(); try { setActive(); } catch(e){} }
+    /* openThemes/openScoreboard는 #feed로 smooth scroll을 걸어서, 서랍으로 들어오면
+       상단 ←+제목 바를 지나쳐 내려간 채로 착지한다(nav가 v82hide로 접힘). 맨 위로 되돌린다. */
+    else if (act === "themes"){ closeDrawer(true); if (typeof openThemes === "function") openThemes(); toTop(); try { setActive(); } catch(e){} }
+    else if (act === "record"){ closeDrawer(true); if (typeof openScoreboard === "function") openScoreboard(); toTop(); try { setActive(); } catch(e){} }
     else if (act === "cal"){ closeDrawer(true); navGo("cal"); }
     else if (act === "alerts"){ closeDrawer(true); navGo("notif"); }
-    else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ try { SERIES_VIEW=null; ENTITY_VIEW=null; QUERY=""; BM_ONLY=true; renderFeed(false); } catch(e){} }); }
+    else if (act === "bm"){ closeDrawer(true); goHomeThen(function(){ if (typeof v83Bookmarks === "function") v83Bookmarks(); }); }
     else if (act === "readlist"){ closeDrawer(true); goHomeThen(function(){ if (typeof v83ReadList === "function") v83ReadList(); }); }
     else if (act === "follows"){ closeDrawer(true); openList("follows"); }
     else if (act === "shares"){ closeDrawer(true); openList("shares"); }
@@ -660,8 +667,11 @@
   }
   function hideSubbar(){ var n = topNav(); if (n) n.classList.remove("nav-sub"); }
   function toTop(){
-    try { window.scrollTo(0, 0); } catch (e) {}
-    requestAnimationFrame(function(){ try { window.scrollTo(0, 0); } catch (e) {} });
+    var go = function(){ try { window.scrollTo(0, 0); } catch (e) {} };
+    go();
+    requestAnimationFrame(go);
+    setTimeout(go, 60); setTimeout(go, 220);   /* 진행 중인 smooth scroll을 이긴다 */
+    var nav = document.querySelector("nav"); if (nav) nav.classList.remove("v82hide");
   }
   function openThemesSub(){
     EXPLORE_SUB = "themes";
