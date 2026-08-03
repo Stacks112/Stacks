@@ -84,7 +84,12 @@ const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
    The form POSTs {email, lang} to the Cloudflare worker /subscribe route,
    which adds the address to the matching Resend audience (ko/en/ja). The
    Resend API key stays server-side in the worker; nothing secret ships here. */
-const SUBSCRIBE_URL = "https://stacks-comments.wnrakrhdn128.workers.dev/subscribe";
+/* COMMENTS_API에서 파생시킨다. 따로 적어 두면 또 갈라진다.
+   2026-08-03까지 여기만 옛 stacks-comments.*.workers.dev 주소로 남아 있었고,
+   그 호스트는 커스텀 도메인 전환으로 이미 죽어 있어서(Cloudflare Error 1042)
+   사이트에서 뉴스레터를 신청하면 전부 실패하고 있었다. 댓글·조회수는
+   COMMENTS_API를 쓰기 때문에 멀쩡했고, 그래서 아무도 눈치채지 못했다. */
+const SUBSCRIBE_URL = COMMENTS_API + "/subscribe";
 
 /* Support/donate button (Buy Me a Coffee, Toss, etc). Empty = hidden. */
 const SUPPORT_URL = "";
