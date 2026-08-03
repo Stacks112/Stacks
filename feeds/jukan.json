@@ -1,15 +1,21 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-03T15:26:32.178472+00:00",
- "checked_at": "2026-08-03T15:26:32.178472+00:00",
+ "fetched_at": "2026-08-03T18:18:27.953793+00:00",
+ "checked_at": "2026-08-03T18:18:27.953793+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
- "newest_published": "2026-08-03T12:08:00+00:00",
+ "newest_published": "2026-08-03T15:47:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "[TF Overseas Tech] Why the Rise of Open Source and the Collapse of the Closed Model Monopoly Is Good for Cloud The biggest worry weighing on the cloud industry has been that cloud providers are the ones paying to build the roads of the AI era, yet may end up as nothing more than infrastructure suppliers for closed models. Cloud providers commit enormous capital to buying GPUs and building data centers. But if most workloads have to call a handful of closed models, the demand gateway and pricing power belong to the model companies. Cloud providers carry the capital intensive investment while the incremental profit goes to the model layer. That structure is now starting to change. Open source",
+   "link": "https://x.com/jukan05/status/2084305124252582049",
+   "published": "2026-08-03T15:47:00+00:00",
+   "content": "[TF Overseas Tech] Why the Rise of Open Source and the Collapse of the Closed Model Monopoly Is Good for Cloud\n\nThe biggest worry weighing on the cloud industry has been that cloud providers are the ones paying to build the roads of the AI era, yet may end up as nothing more than infrastructure suppliers for closed models. Cloud providers commit enormous capital to buying GPUs and building data centers. But if most workloads have to call a handful of closed models, the demand gateway and pricing power belong to the model companies. Cloud providers carry the capital intensive investment while the incremental profit goes to the model layer.\n\nThat structure is now starting to change. Open source models keep getting stronger and cheaper. The highest performing closed models will still command a premium on complex reasoning and high value tasks, but they no longer have to be the default choice for every task. The structure of AI calls will shift from solving every problem with one model to tiered routing. The hardest tasks use top tier models, while ordinary tasks use cheap small models or open models. Stable, high volume workloads get deployed by the cloud providers themselves, with in house ASICs pushing inference costs down further.\n\nThis is a very important shift for cloud providers. The more substitutable models become, the more routing authority, customer ownership, and pricing power cloud providers can capture. Closed models used to be a tollbooth sitting on top of the cloud. Future models will look more like a compute resource that the cloud platform can allocate freely. Cloud providers can rent out GPUs while also hosting open models on their own infrastructure and selling tokens. That reduces the profit handed over to outside model vendors.\n\nBetter business logic for cloud does not mean this is bad for hardware. Competition among open source models can push more players to invest in training, and falling token prices can generate far larger call volumes. At the same time, model compression, inference optimization, routing, and in house ASICs reduce the general purpose GPU demand required per token. Final hardware demand therefore depends on demand elasticity. If token counts and compute per task grow faster than algorithmic and chip efficiency improves, total compute demand will keep expanding. Conversely, even if tokens grow rapidly, capex growth rates may peak.\n\nThe most complete bull case is therefore not simply that cheaper models are good for cloud and that cloud making money is good for hardware. Open source models weaken the monopoly rent of the model layer, and cloud providers raise the monetization efficiency of compute through routing and vertical integration. Lower inference prices create additional new demand, and demand growth once again outpaces efficiency gains. As a result, data centers can sustain high utilization and relatively high ROIC, which ultimately drives continued investment in compute by cloud providers. Only if this virtuous cycle holds can a true positive feedback loop form between cloud and hardware.\n— Jukan (@jukan05) Aug 3, 2026"
+  },
   {
    "title": "According to Korean press reports, SK Hynix has been unable to play its shareholder-return card because of disclosure constraints tied to its ADR listing. The U.S. Securities and Exchange Commission (SEC) restricts the disclosure of material information not included in the prospectus for a certain period following an ADR listing. The concern is that if a newly listed company announces material information that differs from the documents filed at the time of listing, it could face legal risk under U.S. securities law. The market understands the restriction to apply for 25 days, weekends included, from the listing date. Given that SK Hynix's ADRs listed in the U.S. on the 10th of last month, t",
    "link": "https://x.com/jukan05/status/2084249930365796638",
@@ -93,12 +99,6 @@
    "link": "https://x.com/jukan05/status/2083403403317973180",
    "published": "2026-08-01T04:04:00+00:00",
    "content": "I’m going to be blunt. Watching everyone on FinTwit pile on and mock Leopold over this latest drawdown, you honestly come across like a bunch of condescending old farts sneering at a talented young guy. Seriously.\n\nIs it because your returns are worse than Leopold’s and you feel inferior to him?\n— Jukan (@jukan05) Aug 1, 2026"
-  },
-  {
-   "title": "Rumor: Micron’s labor union in Taiwan is reportedly considering a strike over bonuses that are less generous than those offered by Samsung and SK hynix.",
-   "link": "https://x.com/jukan05/status/2083391030720868675",
-   "published": "2026-08-01T03:15:00+00:00",
-   "content": "Rumor: Micron’s labor union in Taiwan is reportedly considering a strike over bonuses that are less generous than those offered by Samsung and SK hynix.\n— Jukan (@jukan05) Aug 1, 2026"
   }
  ]
 }
