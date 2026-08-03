@@ -1210,8 +1210,8 @@ html[data-lang="ko"] .itb-name,html[data-lang="ko"] .itb-cta{font-family:var(--u
 .intro-box{max-width:920px;width:100%;}
 .intro-box .app-icon{margin:0 auto 14px;}
 .intro-box .app-name{font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text);margin-bottom:22px;}
-.intro-box h1{font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.045em;line-height:1.05;margin:0 0 18px;word-break:keep-all;}
-html[data-lang="ko"] .intro-box h1,html[data-lang="ja"] .intro-box h1{word-break:keep-all;}
+.intro-box h1,.intro-box h2{font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.045em;line-height:1.05;margin:0 0 18px;word-break:keep-all;}
+html[data-lang="ko"] .intro-box h1,html[data-lang="ja"] .intro-box h1,html[data-lang="ko"] .intro-box h2,html[data-lang="ja"] .intro-box h2{word-break:keep-all;}
 /* responsive hero break: force a clean break on wider screens, natural wrap on narrow */
 .hbr{display:none;}
 @media (min-width:680px){ .hbr{display:inline;} }
@@ -3325,7 +3325,9 @@ footer a{color:var(--muted);}
     <div class="intro-box">
       <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
       <div class="app-name" id="introName"></div>
-      <h1 id="introTitle"></h1>
+      <!-- h1→h2 (2026-08-03): 네이버 사이트 진단이 "H1 요소 2개 이상"을 SEO 이슈로
+           보고. 문서의 대표 h1은 #heroTitle 하나로 유지하고 인트로 제목은 h2로. -->
+      <h2 id="introTitle"></h2>
       <p class="intro-sub" id="introSub"></p>
       <button class="cta intro-cta" id="introCta" onclick="closeIntro()"></button>
     </div>
@@ -3378,7 +3380,7 @@ footer a{color:var(--muted);}
     <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v81</p>
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
-    <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
+    <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
     <p class="foot-copy" style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
   </div>
