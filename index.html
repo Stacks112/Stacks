@@ -8525,7 +8525,13 @@ function afterCritical(fn){
 }
 
 /* ---------------- analytics ---------------- */
-afterCritical(() => {
+/* 2026-08-03: 라이브 도메인에서만 로드. localhost/127.0.0.1/미리보기 도메인의
+   개발 세션이 Clarity 상위 페이지·GoatCounter 통계에 그대로 섞여 있었다
+   (7일 Clarity 상위 페이지에 127.0.0.1·localhost 세션 5건+, GoatCounter에도
+   preview 도메인 유입). IP 차단은 june 본인 IP까지 지워버리니, 호스트명으로
+   원천 차단하는 쪽이 정확하다. */
+const ANALYTICS_LIVE = /(^|\.)stacksdaily\.com$/.test(location.hostname);
+if (ANALYTICS_LIVE) afterCritical(() => {
   (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -8533,7 +8539,7 @@ afterCritical(() => {
   })(window, document, "clarity", "script", "xuecnurmnh");
 });
 
-if (GOATCOUNTER_SITE){
+if (GOATCOUNTER_SITE && ANALYTICS_LIVE){
   afterCritical(() => {
     const gc = document.createElement("script");
     gc.async = true;
