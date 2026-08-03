@@ -2,6 +2,65 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (one back+title top bar for every left-menu page)
+Goal:
+- june, three reports: the Latest/Following strip still shows on 최근 읽은 글 **on mobile**;
+  판정 기록 and 최근 읽은 글 have a different top bar from 지금 쏠린 곳/테마 논쟁/캘린더;
+  make it back-arrow + menu name, unified to the PC structure, and check mobile too.
+
+Changed:
+- `assets/v82.js` (`df9e5b57`), `assets/v82.css` (`a932d6d8`), `index.html` (`9de180a2`) - all deployed live
+- cache hashes: v82.js `70717c16`, v82.css `bdcad175`
+
+Root cause:
+- The `v83navback` IIFE at the bottom of index.html builds that bar from `#feedList`, but
+  `detect()` only knew `.sb-header .series-head-name` and `.v83dir-head > b`. 판정 기록
+  (`renderJudgmentRecord` -> `.jr-page > .jr-head > h2`) and 최근 읽은 글
+  (`renderReadLibraryTools` -> `.read-library-heading > h2`) render neither, so they were the
+  only two menus without a bar. `renderScoreboard` returns early into `renderJudgmentRecord`
+  when `RECORD_SRC` is null, which is why the left-nav entry specifically had none.
+- Mobile was further off: `nav.nav-sub` (which hides `#v82tabs`) was only set by the explore-hub
+  path (`EXPLORE_SUB`). Every drawer-opened menu therefore kept Latest/Following visible
+  (measured display:flex h=44 on themes/record/readlist/bm). The desktop-only bar was also being
+  injected into the mobile feed unstyled (h=30), and themes still showed a dark banner with a
+  second "back to feed" button.
+
+Design:
+- One `detect()`; only the render target branches. Desktop keeps `.v83post-head.v83navback`;
+  mobile writes the same title into `#v82subbar .ti` and sets `nav.nav-sub`, and the desktop bar
+  is actively removed on mobile. `EXPLORE_SUB` still owns nav-sub teardown so the hub back path
+  is untouched.
+- `#v82subbar .bk` falls back to `history.back()` when there is no `EXPLORE_SUB` (it was a dead
+  button for drawer-opened menus). Drawer 북마크 now routes through `v83Bookmarks()` so it pushes a
+  history entry (back used to leave the site). `toTop()` after openThemes/openScoreboard so their
+  smooth scrollIntoView does not land the user past the new bar.
+- Mobile `.sb-header` flattened to match `html.v83 .sb-header` (no dark banner, no duplicate back).
+
+Verified:
+- Desktop, 8 menus: bar present, height 53 identical, correct KO titles, `#v83fsw` hidden, back
+  returns to the 6-card feed. Mobile (Playwright 390px iPhone), 4 drawer menus: nav-sub on,
+  `#v82tabs` display:none, subbar top=0 h=48, scrollY=0, no stray desktop bar, back returns to feed
+  on the same host. Hub path regression: 탐색 -> 테마 논쟁 -> back reopens the hub.
+- Regression both shells: home / search / search-cleared / entity view / post detail all show no bar
+  and no nav-sub; mobile Latest/Following still shows on normal feeds. Zero page errors throughout.
+- `node --check` 5/5 inline blocks + v82.js.
+- deploy_guard **caught a real conflict**: `f703ea6` (static earnings calendar page + footer link +
+  single H1) had landed on index.html 12 min earlier. stash -> rebase -> pop -> re-verify, and
+  `--verify` confirmed all 6 of their lines survived. Clobber guard success on all 3 commits.
+- Post-deploy sha256 match on all three files (`ac907975` / `70717c16` / `bdcad175`).
+- Live checks on stacksdaily.com: desktop 6 menus re-confirmed on screen; mobile re-confirmed in a
+  390px same-origin iframe (all 4 menus, bar at top, tabs hidden, back stays on site).
+  NOTE: index.html is `max-age=600`, so the first live load served the old copy - always re-load
+  with a `?cb=` cache buster before judging a deploy.
+
+Risks:
+- Mobile subbar is 48px while the screen-style headers (`.v82-sh`: 캘린더/찾기/탐색/알림) are 52px.
+  4px apart; match them if it reads as inconsistent.
+- `bmLabel()` now localises the 북마크 title (it was hardcoded Korean for en/ja too).
+
+Next:
+- none. Detail: Claude project doc `claude/status-2026-08-03-menu-topbar-unified.md`.
+
 ## 2026-08-03 Claude (SEO: GSC/Naver diagnosis + earnings calendar page)
 Goal:
 - Analytics item 4 (SEO): Google brings only ~20 clicks/28d and Naver (89% Korean traffic) brings zero.
