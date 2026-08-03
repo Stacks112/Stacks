@@ -2,6 +2,50 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (feed intake: drop dead serenity_substack, widen CEO retention)
+Goal:
+- june: "일단 버그 먼저 잡자. serenity_substack 이건 제거하자" - fix the two real feed bugs found
+  while investigating source concentration, and leave the 48h publishing window alone.
+
+Changed:
+- `scripts/fetch_feeds.py` (`1bcd0563`), `sources.json` (`cec209c3`), `CLAUDE.md` (`2c9011eb`),
+  deleted `feeds/serenity_substack.json` (`37f4e0bb`) - all deployed to main.
+
+Root cause:
+- `jensen` and `pichai` carried no `keep_days`, so the 7-day default applied. CEO accounts post a
+  few times a year, so their feed empties between posts and the author silently drops out of the
+  candidate pool. `jensen` hit `kept_count: 0` on 2026-08-03: its newest post (07-27 11:07) missed
+  that run's cutoff (07-27 11:58) by 51 minutes.
+- `serenity_substack` pointed at a plain `*.substack.com` host, which answers the Actions IP with
+  403. Unlike `macroalf` it had no RSS.app mirror in `alt`, so it never fetched successfully once
+  (`fetched_at` frozen at 2026-07-25, `ok:false` in every run on record). The Substack itself has
+  been quiet since 2026-05-19 and the `serenity` X feed already covers this author.
+
+Not a bug (checked, no action taken):
+- `kuo` / `kuo_x` / `lynalden` / `macroalf` look stale but are healthy. Their files are still
+  committed every 2h, the RSS.app bridges rebuild daily, and `keep_days: SLOW_DAYS` is holding
+  their candidates. The authors simply have not published (Kuo's newest Medium post is 07-17,
+  confirmed on the live page).
+
+Verified:
+- Dispatched `feed-sync.yml` manually after deploy: `jensen` went `kept_count` 0 -> 2 and both
+  items are genuine `x.com/JensenHuang/` links, so widening the window did not let the known
+  impersonator spam back in (the other 16 raw items sit outside the 30-day cutoff). `pichai` went
+  1 -> 15. `feeds/serenity_substack.json` was not recreated.
+- Each file's deployed sha256 was compared against the locally built target before and after the
+  browser commit; all matched. Clobber guard green on all three edit commits.
+- GitHub's web editor appended a trailing newline to `sources.json` (8565 -> 8566 bytes). The JSON
+  is identical: 22 keys, `serenity_substack` gone, `serenity` kept.
+
+Risks / next:
+- The wider source-concentration and bull-skew work is NOT done - only these two bugs are. The
+  publishing window stays at 48h by june's call, which means slow longform sources still rarely
+  clear it. Open proposals (new bear/credit/China writers, source quota as a tie-breaker rather
+  than a hard cap) live in the Claude project docs.
+- This session did not take a `WORK-LOCK.md` lock. deploy_guard passed clean before every commit
+  and clobber guard passed after, but the lock board itself was left untouched.
+- Detail: Claude project doc `claude/status-2026-08-03-feed-intake-bugfix.md`.
+
 ## 2026-08-03 Claude (calendar header joins the shared menu top bar)
 Goal:
 - june: "캘린더도 동일하게" - make the mobile calendar header match every other menu bar.
