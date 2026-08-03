@@ -1,6 +1,166 @@
 {
  "items": [
   {
+   "date": "2026-08-01",
+   "id": "jukan-samsung-lta-asymmetric-cap-vs-micron",
+   "related": [
+    "jukan-samsung-2q26-lta-60-70-capacity",
+    "jukan-nomura-samsung-3yr-profit-vs-market-cap",
+    "jukan-skhynix-hbm-2027-lta-price-cap"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2083480189976375410",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#12202E",
+    "to": "#356B7A",
+    "label": "5% CAP"
+   },
+   "tags": [
+    "SAMSUNG",
+    "LTA",
+    "MEMORY"
+   ],
+   "title": {
+    "ko": "같은 5년 장기계약인데 삼성은 오른 값을 다 받고 마이크론은 못 받는 이유는 뭘까?",
+    "en": "Why does Samsung collect the full price increase on a five-year contract when Micron cannot?",
+    "ja": "同じ5年の長期契約なのに、サムスンは上がった値段を全部受け取りマイクロンは受け取れない理由は何だろうか?"
+   },
+   "sum3": {
+    "ko": "삼성전자의 메모리 장기공급계약은 분기당 하락을 5% 미만으로 막고, 상승은 10~20% 넘게 받을 수 있는 조건이다.\n겉으로 보면 장기계약은 몇 년치 값을 묶어 호황의 이익을 깎는 장치로 읽힌다.\n그런데 같은 시기 마이크론이 맺은 계약에는 2026년 2분기 시장가 수준의 상한이 걸려 있고, 매출의 약 40%가 그 상한에 묶인다.",
+    "en": "Samsung's long-term memory agreements cap quarterly price declines at under 5% while allowing increases of 10% to 20% or more.\nOn the surface, a long-term agreement reads as a device that locks in years of pricing and shaves the profit of a boom.\nBut the contracts Micron signed over the same period carry a ceiling set near Q2 2026 market rates, and about 40% of its revenue is pinned to that ceiling.",
+    "ja": "サムスン電子のメモリー長期供給契約は、四半期の下落を5%未満で塞ぎ、上昇は10~20%超で受け取れる条件だ。\n表向きは、長期契約は数年分の値段を固定して好況の利益を削る装置に読める。\nだが同じ時期にマイクロンが結んだ契約には2026年4-6月期の市場価格水準の上限が付き、売上の約40%がその上限に縛られる。"
+   },
+   "gist": {
+    "ko": "삼성전자가 맺은 메모리 장기공급계약은 값이 내릴 때만 막혀 있다.\n분기당 하락은 5% 미만으로 제한되고, 상승은 10~20% 넘게 받아도 되는 조건이다.\n\n@@REF@@삼성, 생산능력의 60~70%를 장기계약으로 묶는다. 5대 고객에 AWS·마이크로소프트·구글 포함 보도 (트렌드포스, 2026-07-30)|https://www.trendforce.com/news/2026/07/30/news-samsung-targets-60-70-capacity-under-ltas-five-key-customers-reportedly-include-aws-microsoft-google/\n\n트렌드포스는 삼성전자가 이 조건으로 묶는 물량이 메모리 생산능력의 60~70%라고 전했다.\n회사가 2분기 실적 설명회에서 밝힌 숫자와 같다.\n생산능력의 3분의 2에 하락 방어선이 깔려 있고, 그 물량의 상승 여지는 열려 있다는 말이 된다.\n\n@@IMG@@dram-module|서버에 꽂는 D램 막대. 이 물건 값이 어떻게 정해지느냐를 몇 년치 미리 적어 둔 것이 장기공급계약이다.\n\n## 장기계약은 원래 무엇을 막는 장치인가\n\n장기공급계약은 공급사와 고객이 몇 년치 물량과 값의 범위를 미리 약속하는 계약이다.\n보통은 양쪽이 위험을 나눠 가진다.\n값이 내려가도 공급사가 일정선 아래로는 안 받고, 값이 올라가도 고객이 일정선 위로는 안 낸다.\n바닥과 천장을 같이 두는 구조다.\n\n삼성의 조건이 특이한 지점이 여기다.\n바닥은 있는데 천장이 사실상 없다.\n\n## 마이크론은 어떤 조건으로 묶었나\n\n같은 시기에 같은 종류의 계약을 대량으로 맺은 회사가 하나 더 있다.\n\n@@REF@@마이크론 2026 회계 3분기 실적, 1,000억달러 장기계약이 메모리 순환을 끊는다는 신호 (테크타임스, 2026-06-25)|https://www.techtimes.com/articles/319032/20260625/micron-q3-2026-earnings-100b-contracts-signals-ai-memory-cycle-break.htm|https://d.techtimes.com/en/full/467373/micron.jpg\n\n@@CHK@@마이크론 장기계약 보장 최소매출|약 1,000억달러|선수금·재무약정|약 220억달러|가격 상한 기준|2026년 2분기 시장가@@마이크론은 계약 16건에 5년짜리 조건을 걸면서 하한과 함께 상한도 뒀다. 상한선을 2026년 2분기 시장가 수준에 맞췄고, 매출의 약 40%가 고정가나 상한가로 나간다. 값이 그 뒤로 더 올라도 그 40%는 2분기 값에 묶여 있다는 뜻이다. 같은 장기계약이라도 삼성 조건과는 방향이 반대다.@@2026-08-03 조회 · 마이크론 2026 회계연도 3분기 실적 발표 보도 인용\n\n마이크론의 계약은 D램 물량의 약 20%, 낸드 물량의 3분의 1을 덮는다.\n하한선은 과거 어느 호황기보다 높은 매출총이익률을 보장하도록 걸었다.\n값이 무너져도 이익이 남는 구조를 산 대신, 값이 더 오를 때 받을 몫을 일부 내준 것이다.\n\n@@CMP@@장기계약 회의론의 읽기|몇 년치 값을 미리 정하면 호황이 와도 그 값만 받는다. 순환을 없애는 대신 정점의 이익을 깎는 거래다.|삼성 조건을 본 읽기|하락만 분기 5% 미만으로 막고 상승은 열어 뒀다면, 깎이는 것은 정점이 아니라 바닥뿐이다.\n\n같은 이름의 계약인데 어디에 선을 긋느냐가 다르다.\n회의론이 겨눈 것은 천장이고, 삼성이 그은 것은 바닥이다.\n\n## 왜 고객이 이런 조건을 받아들이나\n\n받는 쪽에 급한 것이 값이 아니라 물량이기 때문이다.\n새 공장을 지어 웨이퍼가 나오기까지 3년 반이 넘게 걸리고, 회사는 2027년의 부족이 올해보다 심할 것으로 본다.\n데이터센터를 짓는 쪽에서는 몇 퍼센트 비싸게 사는 것보다 못 사는 쪽이 훨씬 비싸다.\n\n값이 아니라 순서를 사는 계약인 셈이다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이 비대칭이 삼성이 협상에서 이겨서 받아낸 것인지, 지금 수급이 그렇게 만든 것인지.\n\n가릴 지점은 다음 계약이다.\n공급이 풀리기 시작한 뒤에 새로 맺거나 갱신하는 계약에도 하락 5% 상한이 남아 있으면 협상력이 만든 것이고, 그때 천장이 같이 생기면 이번 조건은 품귀가 만든 것이 된다.\n\n메모리에서 값이 오른다는 소식은 늘 몇 년 뒤 공급과잉의 예고이기도 했다.\n이번에는 그 하강 구간에서 이익이 얼마나 덜 빠지는지가 계약의 값어치를 정한다.\n하락 상한 5%는 그 답을 미리 적어 둔 숫자이고, 그것이 지켜지는지는 값이 꺾인 다음에야 확인된다.",
+    "en": "The long-term memory supply agreements Samsung has signed are blocked in one direction only.\nQuarterly price declines are limited to under 5%, while increases of 10% to 20% or more are allowed.\n\n@@REF@@Samsung targets 60-70% of capacity under LTAs, with AWS, Microsoft and Google reportedly among the five key customers (TrendForce, 2026-07-30)|https://www.trendforce.com/news/2026/07/30/news-samsung-targets-60-70-capacity-under-ltas-five-key-customers-reportedly-include-aws-microsoft-google/\n\nTrendForce reports the volume locked under these terms runs to 60% to 70% of Samsung's memory capacity.\nThat matches the figure the company gave on its Q2 earnings call.\nTwo thirds of capacity sits behind a floor, and the upside on that volume stays open.\n\n@@IMG@@dram-module|The DRAM stick that goes into a server. A long-term agreement is years of this product's pricing written down in advance.\n\n## What a long-term agreement is normally there to block\n\nA long-term agreement is a supplier and a customer promising volumes and a price range years ahead.\nUsually both sides give something up.\nIf prices fall the supplier does not take less than a set line, and if prices rise the customer does not pay above one.\nA floor and a ceiling together.\n\nThat is where Samsung's terms stand out.\nThere is a floor and effectively no ceiling.\n\n## What terms Micron locked in\n\nOne more company signed the same kind of contract in volume over the same period.\n\n@@REF@@Micron Q3 2026 earnings: $100B in contracts signals AI memory cycle break (TechTimes, 2026-06-25)|https://www.techtimes.com/articles/319032/20260625/micron-q3-2026-earnings-100b-contracts-signals-ai-memory-cycle-break.htm|https://d.techtimes.com/en/full/467373/micron.jpg\n\n@@CHK@@Micron LTA guaranteed minimum revenue|about $100bn|Deposits and financial commitments|about $22bn|Price ceiling reference|Q2 2026 market rates@@Micron put a ceiling alongside the floor across 16 five-year agreements. The ceiling is set near Q2 2026 market rates, and roughly 40% of revenue goes out at fixed or ceiling prices. If prices climb from here, that 40% stays pinned to Q2 levels. Same instrument, opposite direction from Samsung's terms.@@Retrieved 2026-08-03 · as reported from Micron's fiscal Q3 2026 results\n\nMicron's agreements cover about 20% of its DRAM volume and a third of its NAND volume.\nThe floor was set to guarantee gross margins above anything the company reached in a prior cycle.\nIt bought a structure where profit survives a collapse, and gave up part of the upside to get it.\n\n@@CMP@@The skeptical reading of LTAs|Fix prices years ahead and you collect that price even when a boom arrives. You trade away the peak to remove the cycle.|The reading Samsung's terms invite|If only the downside is capped at under 5% a quarter and the upside is open, what gets shaved is the trough, not the peak.\n\nSame name on the contract, different place to draw the line.\nThe skeptics are aiming at the ceiling. What Samsung drew is the floor.\n\n## Why a customer accepts terms like this\n\nBecause what is urgent on the buying side is volume, not price.\nIt takes more than three and a half years from breaking ground to wafers coming out, and the company expects 2027 to be tighter than this year.\nFor anyone building data centers, paying a few percent more is far cheaper than not getting the parts.\n\nThe contract buys a place in line rather than a price.\n\n## So what settles it\n\nThe question comes down to one thing.\nWhether this asymmetry is something Samsung won at the table, or something today's shortage produced.\n\nThe next round of contracts settles it.\nIf a 5% floor on declines survives in deals signed or renewed after supply loosens, it came from bargaining power, and if a ceiling appears alongside it then, these terms were made by scarcity.\n\nIn memory, news that prices are rising has always doubled as a warning of a glut a few years out.\nThis time the value of the contract is set by how much less profit falls during that downturn.\nThe 5% cap on declines is that answer written down in advance, and whether it holds is only confirmed after prices turn.",
+    "ja": "サムスン電子が結んだメモリーの長期供給契約は、値段が下がるときだけ塞がれている。\n四半期の下落は5%未満に制限され、上昇は10~20%を超えて受け取ってよい条件だ。\n\n@@REF@@サムスン、生産能力の60~70%を長期契約で確保。5大顧客にAWS・マイクロソフト・グーグルとの報道 (TrendForce, 2026-07-30)|https://www.trendforce.com/news/2026/07/30/news-samsung-targets-60-70-capacity-under-ltas-five-key-customers-reportedly-include-aws-microsoft-google/\n\nTrendForceは、サムスンがこの条件で固める数量がメモリー生産能力の60~70%だと伝えた。\n会社が4-6月期の決算説明会で示した数字と同じだ。\n生産能力の3分の2に下落の防衛線が敷かれ、その数量の上昇余地は開いているということになる。\n\n@@IMG@@dram-module|サーバーに挿すDRAMのスティック。この製品の値段の決め方を数年分先に書いておいたものが長期供給契約だ。\n\n## 長期契約はもともと何を塞ぐ装置か\n\n長期供給契約は、供給者と顧客が数年分の数量と値段の範囲を前もって約束する契約だ。\n普通は双方が何かを譲る。\n値段が下がっても供給者は一定の線より下では受け取らず、値段が上がっても顧客は一定の線より上は払わない。\n床と天井を一緒に置く構造だ。\n\nサムスンの条件が変わっているのはここだ。\n床はあるのに天井が事実上ない。\n\n## マイクロンはどんな条件で固めたか\n\n同じ時期に同じ種類の契約を大量に結んだ会社がもう一社ある。\n\n@@REF@@マイクロン2026会計3Q決算、1,000億ドルの長期契約がメモリー循環を断つ兆し (TechTimes, 2026-06-25)|https://www.techtimes.com/articles/319032/20260625/micron-q3-2026-earnings-100b-contracts-signals-ai-memory-cycle-break.htm|https://d.techtimes.com/en/full/467373/micron.jpg\n\n@@CHK@@マイクロンの長期契約の最低保証売上|約1,000億ドル|前受金・財務コミットメント|約220億ドル|価格上限の基準|2026年4-6月期の市場価格@@マイクロンは16件の5年契約で、下限とともに上限も置いた。上限を2026年4-6月期の市場価格の水準に合わせ、売上の約40%が固定価格か上限価格で出ていく。値段がここから上がっても、その40%は4-6月期の水準に留められるという意味だ。同じ長期契約でもサムスンの条件とは向きが逆だ。@@2026-08-03取得 · マイクロン2026会計年度第3四半期決算発表の報道を引用\n\nマイクロンの契約はDRAM数量の約20%、NAND数量の3分の1を覆う。\n下限は、過去のどの好況期よりも高い売上総利益率を保証するように置かれた。\n値段が崩れても利益が残る構造を買った代わりに、もっと上がったときに受け取る分を一部手放したのだ。\n\n@@CMP@@長期契約への懐疑論の読み|数年分の値段を先に決めれば好況が来てもその値段しか受け取れない。循環をなくす代わりに頂点の利益を削る取引だ。|サムスンの条件を見た読み|下落だけを四半期5%未満で塞ぎ上昇を開けているなら、削られるのは頂点ではなく底のほうだ。\n\n同じ名前の契約なのに、どこに線を引くかが違う。\n懐疑論が狙っているのは天井で、サムスンが引いたのは床だ。\n\n## なぜ顧客がこの条件を受け入れるのか\n\n買う側に急ぎなのは値段ではなく数量だからだ。\n新しい工場を建ててウェハーが出るまで3年半以上かかり、会社は2027年の不足が今年より厳しいとみている。\nデータセンターを建てる側にとって、数%高く買うことより買えないことのほうがはるかに高くつく。\n\n値段ではなく順番を買う契約というわけだ。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\nこの非対称がサムスンが交渉で勝ち取ったものなのか、今の需給がそうさせたものなのか。\n\n見分ける点は次の契約だ。\n供給が緩み始めた後に新たに結ぶ契約や更新にも下落5%の上限が残っていれば交渉力が作ったもので、そのとき天井も一緒に付けば今回の条件は品薄が作ったものになる。\n\nメモリーで値段が上がるという知らせは、常に数年後の供給過剰の予告でもあった。\n今回はその下降局面で利益がどれだけ減らずに済むかが契約の値打ちを決める。\n下落上限5%はその答えを先に書いておいた数字であり、それが守られるかは値段が折れた後にしか確かめられない。"
+   },
+   "why": {
+    "ko": "메모리 회사의 값을 눌러 온 것은 실적이 아니라 다음 하강기에 대한 기억이었다. 장기계약이 그 하강기를 막아 준다면 눌림의 근거가 사라지는데, 계약이 상단까지 같이 막으면 호황의 이익도 같이 사라진다. 하단만 막고 상단을 연 조건은 그 둘 중 앞엣것만 가져가겠다는 설계이고, 지금 메모리 주식에 붙은 할인이 정당한지가 여기서 갈린다.",
+    "en": "What has held down the price of memory companies is not their earnings but the memory of the next downturn. If long-term agreements block that downturn the discount loses its basis, but if the contracts block the upside too then the profit of a boom goes with it. Terms that cap only the downside are a design that takes the first without the second, and that is where the discount on memory stocks is settled.",
+    "ja": "メモリー企業の値段を押さえてきたのは業績ではなく次の下降局面の記憶だった。長期契約がその下降局面を塞ぐなら押さえの根拠は消えるが、契約が上側まで一緒に塞げば好況の利益も一緒に消える。下側だけ塞いで上側を開けた条件は、その二つのうち前者だけを取るという設計であり、今メモリー株に付いたディスカウントが正当かどうかはここで決まる。"
+   },
+   "ask": {
+    "ko": "하락만 막고 상승은 열어 둔 장기계약은 삼성의 협상력이 만든 것일까, 지금의 품귀가 만든 한시적 조건일까?",
+    "en": "Is a long-term agreement that caps only the downside a product of Samsung's bargaining power, or a temporary term made by today's shortage?",
+    "ja": "下落だけを塞ぎ上昇を開けた長期契約は、サムスンの交渉力が作ったものだろうか、それとも今の品薄が作った一時的な条件だろうか。"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "BofA's Simon Woo: Samsung's LTAs are structured on supplier-friendly terms, with price declines capped while price increases remain broadly uncapped.",
+      "For example, QoQ price declines are limited to less than 5%, whereas increases of 10-20% or more are allowed."
+     ],
+     "ko": [
+      "뱅크오브아메리카의 사이먼 우: 삼성의 장기공급계약은 공급사에 유리한 조건으로 짜여 있어, 값의 하락은 상한이 걸려 있는 반면 상승은 대체로 상한이 없다.",
+      "예를 들어 전분기 대비 하락은 5% 미만으로 제한되는 반면, 10~20% 이상의 상승은 허용된다."
+     ],
+     "ja": [
+      "バンク・オブ・アメリカのサイモン・ウー: サムスンの長期供給契約は供給者に有利な条件で組まれており、値段の下落には上限が掛かる一方、上昇には概ね上限がない。",
+      "例えば前四半期比の下落は5%未満に制限される一方、10~20%以上の上昇は許される。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.01"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "메모리 현물가가 분기 기준으로 처음 꺾이는 분기에 채점한다. 삼성전자의 메모리 평균판매단가 하락폭이 현물가 하락폭보다 뚜렷하게 작으면 하락 5% 상한이 실제로 작동한 것으로, 비슷하게 빠지면 작동하지 않은 것으로 본다.",
+     "en": "Score in the first quarter that memory spot prices turn down on a quarterly basis. If Samsung's memory ASP falls markedly less than spot, the 5% cap on declines worked, and if it falls in line with spot, it did not.",
+     "ja": "メモリーのスポット価格が四半期ベースで初めて下落する四半期に採点する。サムスン電子のメモリー平均販売単価の下落幅がスポットの下落幅より明確に小さければ下落5%の上限が実際に働いたとし、同程度に下がれば働かなかったとみる。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-08-03T05:35:43.029244+00:00"
+  },
+  {
+   "date": "2026-08-01",
+   "id": "jukan-korea-nand-unit-price-vs-ssd-mix",
+   "related": [
+    "jukan-samsung-lta-asymmetric-cap-vs-micron",
+    "jukan-samsung-2q26-lta-60-70-capacity",
+    "jukan-skhynix-2q26-earnings-consensus-miss"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2083377339761873330",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1B1430",
+    "to": "#4A3A7A",
+    "label": "+404%"
+   },
+   "tags": [
+    "NAND",
+    "KOREA",
+    "EXPORTS"
+   ],
+   "title": {
+    "ko": "낸드 수출단가가 내린 7월, 한국의 컴퓨터 수출은 404% 늘었다",
+    "en": "In the July that NAND export prices fell, Korea's computer exports rose 404%",
+    "ja": "NANDの輸出単価が下がった7月、韓国のコンピューター輸出は404%増えた"
+   },
+   "sum3": {
+    "ko": "한국의 7월 낸드 수출단가는 내렸고, 같은 달 SSD 수출단가는 올랐다.\n겉으로 보면 낸드 값이 꺾이기 시작한 것처럼 읽힌다.\n그런데 한국 통계는 낸드 칩을 반도체 칸에, SSD를 컴퓨터 칸에 넣는다. 그 컴퓨터 칸이 7월에 404% 늘었다.",
+    "en": "Korea's NAND export unit price fell in July while its SSD export unit price rose in the same month.\nOn the surface it reads as NAND prices beginning to turn.\nBut Korea's statistics put NAND chips in the semiconductor column and SSDs in the computer column, and that computer column grew 404% in July.",
+    "ja": "韓国の7月のNAND輸出単価は下がり、同じ月のSSD輸出単価は上がった。\n表向きはNANDの値段が折れ始めたように読める。\nだが韓国の統計はNANDチップを半導体の欄に、SSDをコンピューターの欄に入れる。そのコンピューターの欄が7月に404%増えた。"
+   },
+   "gist": {
+    "ko": "한국의 7월 낸드 수출단가는 내렸는데, 같은 달 SSD가 들어가는 컴퓨터 품목의 수출은 1년 전보다 404% 늘었다.\n낸드 값이 싸진 것이 아니라, 비싼 낸드가 낸드라는 이름으로 안 나가고 있는 것이다.\n\n@@REF@@한국 7월 수출 989억달러, 반도체가 끌어올렸다 (서울경제 영문판, 2026-08-01)|https://en.sedaily.com/finance/2026/08/01/koreas-july-exports-reach-989-billion-on-chip-strength|https://wimg.sedaily.com/news/cms/2026/08/01/news-p.v1.20260731.e10116896d0a4b9f89ad8d3669b70944_P1.jpg\n\n서울경제 영문판은 7월 수출이 989억달러로 1년 전보다 62.8% 늘어 월간 기준 역대 두 번째였다고 전했다.\n반도체만 410억달러로 179% 늘었고, 400억달러를 넘긴 달이 두 달 연속이다.\n\n@@IMG@@nand-usb|USB 메모리 안에 든 그 반도체가 낸드다. 이걸 여러 장 묶어 상자에 담으면 SSD가 된다.\n\n## 왜 같은 물건인데 통계가 갈리나\n\n한국의 수출 통계는 낸드 칩과 SSD를 다른 칸에 넣는다.\n칩 자체는 반도체 품목이고, 그 칩을 여러 장 묶어 컨트롤러를 붙여 만든 SSD는 컴퓨터 품목이다.\n\n그래서 낸드 칩을 그대로 파는 대신 SSD로 조립해 팔면, 그 매출은 반도체 칸에서 빠져나와 컴퓨터 칸으로 옮겨간다.\n반도체 칸에 남는 것은 상대적으로 값이 싼 물량이 되고, 칸 안의 평균 단가는 내려간다.\n\n@@REF@@한국 반도체 수출, 두 달 연속 400억달러 돌파 (테크타임스, 2026-08-01)|https://www.techtimes.com/articles/322611/20260801/south-korea-chip-exports-top-40b-second-straight-month-kospi-stages-record-recovery.htm|https://d.techtimes.com/en/full/470955/currency-dealers-watch-monitors-electronic-screen-shows.jpg\n\n테크타임스는 7월 컴퓨터 품목 수출이 404% 늘었고 그 중심이 AI 서버용 기업 SSD라고 짚었다.\n낸드 단가가 내린 달에 SSD가 들어가는 칸이 네 배가 됐다는 뜻이다.\n\n@@CHK@@7월 총수출|989억달러|전년 대비|+62.8%|반도체 수출|410억달러|반도체 전년 대비|+179%|컴퓨터(기업용 SSD 등) 전년 대비|+404%|모바일 전년 대비|+51%@@반도체가 179% 느는 동안 SSD가 들어가는 컴퓨터 칸은 404% 늘어 두 배 넘게 빨랐다. 낸드에서 만들어진 값이 칩이 아니라 완제품 쪽으로 옮겨가고 있다는 뜻이고, 저자가 짚은 고마진 제품 비중 상승과 방향이 같다.@@2026-08-03 조회 · 산업통상자원부 2026년 7월 수출입 동향(서울경제 영문판·테크타임스 보도 인용)\n\n## 단가가 내렸다는 신호를 잘못 읽으면\n\n수출단가는 무게나 개수로 나눈 평균값이라, 무엇이 그 칸에 남아 있느냐에 따라 움직인다.\n값이 실제로 내리지 않아도 싼 물건의 비중이 늘면 단가는 내려간다.\n\n낸드는 지금 그 반대편에서 값이 옮겨 다니는 중이다.\n데이터센터에 들어가는 기업용 SSD는 서버 한 대에 수십 장씩 들어가고, 삼성전자는 낸드 매출에서 서버용 SSD가 차지하는 비중이 60%를 넘을 것으로 본다.\n1년 전보다 20%포인트 넘게 올라간 수치다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n7월의 낸드 단가 하락이 값이 꺾이기 시작한 신호인지, 값이 다른 칸으로 옮겨간 흔적인지.\n\n가릴 지점은 두 칸의 방향이다.\n반도체 칸의 낸드 단가와 컴퓨터 칸의 SSD 단가가 같이 내려가면 값이 꺾이기 시작한 것이고, 지금처럼 한쪽만 내려가면 옮겨간 것이다.\n\n수출 통계는 나라가 매달 내놓는 자료라 회사 실적보다 두 달 가까이 빠르다.\n그 대신 칸이 어떻게 나뉘어 있는지를 모르면 같은 숫자가 정반대로 읽힌다.\n7월의 낸드 단가는 그 두 읽기가 갈리는 자리에 서 있다.",
+    "en": "Korea's NAND export unit price fell in July, while exports in the computer category that contains SSDs rose 404% from a year earlier in the same month.\nNAND did not get cheaper. Expensive NAND stopped leaving the country under the name NAND.\n\n@@REF@@Korea's July exports reach $98.9 billion on chip strength (Seoul Economic Daily English, 2026-08-01)|https://en.sedaily.com/finance/2026/08/01/koreas-july-exports-reach-989-billion-on-chip-strength|https://wimg.sedaily.com/news/cms/2026/08/01/news-p.v1.20260731.e10116896d0a4b9f89ad8d3669b70944_P1.jpg\n\nSeoul Economic Daily reports July exports at $98.9 billion, up 62.8% from a year earlier and the second-highest monthly figure on record.\nSemiconductors alone came to $41 billion, up 179%, the second straight month above $40 billion.\n\n@@IMG@@nand-usb|The chip inside a USB stick is NAND. Bundle a stack of them into a box with a controller and you have an SSD.\n\n## Why the same product lands in two different columns\n\nKorea's trade statistics put NAND chips and SSDs in separate columns.\nThe chip itself counts as a semiconductor, and an SSD, which is a stack of those chips with a controller attached, counts as a computer product.\n\nSo when a maker assembles chips into SSDs instead of selling the chips raw, that revenue leaves the semiconductor column and moves into the computer column.\nWhat stays behind in the semiconductor column is the relatively cheaper volume, and the average unit price inside that column falls.\n\n@@REF@@South Korea chip exports top $40B for a second straight month (TechTimes, 2026-08-01)|https://www.techtimes.com/articles/322611/20260801/south-korea-chip-exports-top-40b-second-straight-month-kospi-stages-record-recovery.htm|https://d.techtimes.com/en/full/470955/currency-dealers-watch-monitors-electronic-screen-shows.jpg\n\nTechTimes notes that computer-category exports rose 404% in July, driven by enterprise SSDs for AI servers.\nIn the month NAND unit prices fell, the column that holds SSDs grew more than fourfold.\n\n@@CHK@@July total exports|$98.9bn|Year on year|+62.8%|Semiconductor exports|$41bn|Semiconductors year on year|+179%|Computers (enterprise SSDs etc.) year on year|+404%|Mobile year on year|+51%@@While semiconductors grew 179%, the computer column that carries SSDs grew 404%, more than twice as fast. The value created in NAND is moving toward the finished product rather than the chip, which points the same way as the author's claim about a rising share of high-margin product.@@Retrieved 2026-08-03 · Korea Ministry of Trade, Industry and Energy July 2026 trade figures, as reported by Seoul Economic Daily and TechTimes\n\n## What goes wrong when a falling unit price is read straight\n\nAn export unit price is an average divided by weight or count, so it moves with whatever is left in the column.\nEven with no actual price cut, a rising share of cheap goods pulls the average down.\n\nNAND is on the other side of that right now.\nEnterprise SSDs for data centers go into a single server dozens at a time, and Samsung expects server SSDs to account for more than 60% of its NAND revenue.\nThat is more than 20 percentage points higher than a year ago.\n\n## So what settles it\n\nThe question comes down to one thing.\nWhether July's drop in NAND unit prices is the start of a price turn, or the trace of value moving to another column.\n\nThe direction of the two columns settles it.\nIf the NAND unit price in the semiconductor column and the SSD unit price in the computer column fall together, prices have started to turn, and if only one falls as now, the value moved.\n\nTrade statistics come out monthly from the government, which puts them nearly two months ahead of company results.\nThe cost is that the same number reads backwards if you do not know how the columns are drawn.\nJuly's NAND unit price is standing exactly where those two readings part.",
+    "ja": "韓国の7月のNAND輸出単価は下がったが、同じ月にSSDが入るコンピューター品目の輸出は1年前より404%増えた。\nNANDが安くなったのではない。高いNANDがNANDという名前で出ていかなくなっているのだ。\n\n@@REF@@韓国の7月輸出は989億ドル、半導体が押し上げた (ソウル経済新聞英語版, 2026-08-01)|https://en.sedaily.com/finance/2026/08/01/koreas-july-exports-reach-989-billion-on-chip-strength|https://wimg.sedaily.com/news/cms/2026/08/01/news-p.v1.20260731.e10116896d0a4b9f89ad8d3669b70944_P1.jpg\n\nソウル経済新聞英語版は、7月の輸出が989億ドルで1年前より62.8%増え、月間で歴代2番目だったと伝えた。\n半導体だけで410億ドル、179%増で、400億ドルを超えた月が2カ月連続だ。\n\n@@IMG@@nand-usb|USBメモリの中に入っているその半導体がNANDだ。これを何枚も束ねて箱に収めるとSSDになる。\n\n## なぜ同じ物なのに統計が分かれるのか\n\n韓国の貿易統計はNANDチップとSSDを別の欄に入れる。\nチップそのものは半導体品目で、そのチップを束ねてコントローラーを付けたSSDはコンピューター品目だ。\n\nだからNANDチップをそのまま売る代わりにSSDに組み立てて売ると、その売上は半導体の欄から抜けてコンピューターの欄へ移る。\n半導体の欄に残るのは相対的に安い数量になり、欄の中の平均単価は下がる。\n\n@@REF@@韓国の半導体輸出、2カ月連続で400億ドル突破 (TechTimes, 2026-08-01)|https://www.techtimes.com/articles/322611/20260801/south-korea-chip-exports-top-40b-second-straight-month-kospi-stages-record-recovery.htm|https://d.techtimes.com/en/full/470955/currency-dealers-watch-monitors-electronic-screen-shows.jpg\n\nTechTimesは、7月のコンピューター品目の輸出が404%増え、その中心がAIサーバー向けの企業用SSDだと指摘した。\nNAND単価が下がった月に、SSDが入る欄が4倍を超えたということだ。\n\n@@CHK@@7月の総輸出|989億ドル|前年比|+62.8%|半導体の輸出|410億ドル|半導体の前年比|+179%|コンピューター(企業用SSD等)の前年比|+404%|モバイルの前年比|+51%@@半導体が179%伸びる間に、SSDが入るコンピューターの欄は404%伸びて2倍以上速かった。NANDで生まれた価値がチップではなく完成品のほうへ移っているという意味で、著者が指摘した高マージン製品の比率上昇と同じ向きを指す。@@2026-08-03取得 · 韓国産業通商資源部の2026年7月貿易統計(ソウル経済新聞英語版・TechTimes報道の引用)\n\n## 単価が下がったという信号を読み違えると\n\n輸出単価は重さや個数で割った平均値なので、その欄に何が残っているかで動く。\n実際に値下げがなくても、安い物の比率が増えれば単価は下がる。\n\nNANDは今その反対側で値打ちが移っている最中だ。\nデータセンターに入る企業用SSDはサーバー1台に数十枚ずつ入り、サムスン電子はNAND売上に占めるサーバー向けSSDの比率が60%を超えるとみている。\n1年前より20ポイント以上上がった数字だ。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\n7月のNAND単価の下落が値段の折れ始めた信号なのか、値打ちが別の欄へ移った痕跡なのか。\n\n見分ける点は二つの欄の向きだ。\n半導体の欄のNAND単価とコンピューターの欄のSSD単価が一緒に下がれば値段が折れ始めたことになり、今のように片方だけ下がるなら移っただけだ。\n\n貿易統計は国が毎月出す資料なので、企業の決算より2カ月近く早い。\nその代わり欄がどう分かれているかを知らないと、同じ数字が正反対に読める。\n7月のNAND単価は、その二つの読みが分かれる場所に立っている。"
+   },
+   "why": {
+    "ko": "메모리 값이 꺾였다는 신호는 이 업종에서 가장 비싸게 팔리는 정보다. 그런데 수출단가는 값이 아니라 구성이 바뀌어도 움직이는 숫자라, 같은 자료가 정반대로 읽힐 수 있다. 7월 통계는 낸드 단가와 SSD 단가가 서로 반대로 움직인 달이고, 어느 쪽을 보느냐에 따라 메모리 순환이 꺾였다는 결론과 이제 시작이라는 결론이 함께 나온다.",
+    "en": "A signal that memory prices have turned is the most expensive piece of information in this sector. But an export unit price moves when the mix changes, not only when prices do, so the same data can be read backwards. July is a month where NAND and SSD unit prices moved in opposite directions, and depending on which one you look at, you can conclude the memory cycle has turned or that it is only starting.",
+    "ja": "メモリーの値段が折れたという信号は、この業種で最も高く売れる情報だ。だが輸出単価は値段だけでなく構成が変わっても動く数字なので、同じ資料が正反対に読まれうる。7月はNAND単価とSSD単価が逆方向に動いた月であり、どちらを見るかによってメモリー循環が折れたという結論と、まだ始まったばかりだという結論が同時に出てくる。"
+   },
+   "ask": {
+    "ko": "낸드 수출단가 하락은 메모리 값이 꺾이는 신호일까, 값이 SSD 쪽으로 옮겨간 흔적일까?",
+    "en": "Is the fall in NAND export unit prices a signal that memory prices are turning, or the trace of value moving into SSDs?",
+    "ja": "NAND輸出単価の下落はメモリーの値段が折れる信号だろうか、それとも値打ちがSSDのほうへ移った痕跡だろうか。"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Interestingly, Korea's NAND export unit prices declined in July, while SSD export unit prices rose.",
+      "This suggests that high-margin products continue to account for a growing share of the NAND flash revenue mix."
+     ],
+     "ko": [
+      "흥미롭게도 한국의 낸드 수출단가는 7월에 내렸는데, SSD 수출단가는 올랐다.",
+      "이는 고마진 제품이 낸드플래시 매출 구성에서 차지하는 비중이 계속 커지고 있음을 시사한다."
+     ],
+     "ja": [
+      "興味深いことに、韓国のNAND輸出単価は7月に下がった一方、SSDの輸出単価は上がった。",
+      "これは高マージン製品がNANDフラッシュの売上構成に占める比率が拡大し続けていることを示唆する。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.01"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 8월과 9월 수출입 동향으로 채점한다. 컴퓨터 품목이 반도체보다 계속 빠르게 늘면서 낸드 단가만 내려가면 구성 변화로, 두 칸의 단가가 같이 내려가면 값이 꺾인 것으로 본다.",
+     "en": "Score on Korea's August and September 2026 trade figures. If the computer category keeps growing faster than semiconductors while only the NAND unit price falls, it was a mix shift, and if unit prices in both columns fall together, prices turned.",
+     "ja": "2026年8月と9月の貿易統計で採点する。コンピューター品目が半導体より速く伸び続けながらNAND単価だけ下がれば構成の変化とし、二つの欄の単価が一緒に下がれば値段が折れたとみる。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-08-03T05:35:43.029244+00:00"
+  },
+  {
    "date": "2026-08-03",
    "id": "meru-china-duv-ssa800-1950i-class",
    "related": [
@@ -4232,7 +4392,7 @@
     "status": "hit",
     "note": {
      "ko": "삼성전자가 7/29 2분기 실적 발표에서 MX(모바일경험) 사업부가 메모리 원가 급등의 영향으로 2011년 이후 처음으로 분기 영업적자를 기록했다고 확인했다. 여러 증권사의 적자 전환 전망이 실제로 맞아떨어졌다.",
-     "en": "In its 7/29 Q2 2026 earnings, Samsung confirmed the Mobile eXperience (MX) division posted its first quarterly operating loss since 2011, driven by surging memory costs — matching several brokerages' loss-turn forecasts.",
+     "en": "In its 7/29 Q2 2026 earnings, Samsung confirmed the Mobile eXperience (MX) division posted its first quarterly operating loss since 2011, driven by surging memory costs, matching several brokerages' loss-turn forecasts.",
      "ja": "サムスン電子は7/29の2026年第2四半期決算で、メモリ原価急騰の影響によりMX(モバイル経験)事業部が2011年以来初の四半期営業赤字に転落したことを確認した。複数の証券会社が予想した赤字転換が実際に的中した。"
     },
     "due": "2026-07-31",
@@ -10362,7 +10522,7 @@
     "status": "hit",
     "note": {
      "ko": "브렌트유는 7/27 한때 90달러 아래로 밀렸으나(이란-미국 휴전 기대) 7/29 트럼프의 이란 강경 발언 이후 다시 90달러 위로 반등했고, 7/31 기준 배럴당 92.27달러로 마감해 코베이시의 '7월 말까지 90달러 유지' 전망이 맞아떨어졌다.",
-     "en": "Brent briefly dipped below $90 on 7/27 as an Iran-US pause held, but jumped back above $90 on 7/29 after Trump threatened Iran, and closed at $92.27/barrel as of 7/31 — confirming Kobeissi's call that Brent would hold above $90 through end of July.",
+     "en": "Brent briefly dipped below $90 on 7/27 as an Iran-US pause held, but jumped back above $90 on 7/29 after Trump threatened Iran, and closed at $92.27/barrel as of 7/31, confirming Kobeissi's call that Brent would hold above $90 through end of July.",
      "ja": "ブレント原油は7/27に一時90ドルを割ったが(米イラン休戦の思惑)、7/29のトランプ氏の対イラン強硬発言後に90ドル台へ反発、7/31時点で1バレル92.27ドルで着地し、コベイシの「7月末まで90ドル維持」予想が的中した。"
     },
     "due": "2026-07-31",
@@ -11784,7 +11944,7 @@
     "status": "hit",
     "note": {
      "ko": "7월 말 마이크로소프트·메타·아마존의 2분기 실적에서 모두 메모리 비용 급등을 캐펙스 상향 사유로 명시했다(마이크로소프트는 250억달러, 아마존은 2026년 캐펙스를 2,200억달러로, 메타도 125억~145억달러로 상향하며 메모리를 주 원인으로 지목). 트렌드포스도 서버 D램 계약가가 2분기에 약 58~63% 올랐다고 확인해, 7월 현물가 폭등이 계약가 상향으로 이어졌다는 주칸의 판단이 맞아떨어졌다.",
-     "en": "In their late-July Q2 2026 earnings, Microsoft, Meta, and Amazon all cited surging memory costs as a reason for higher capex (Microsoft attributed $25B, Amazon raised 2026 capex to $220B, Meta raised guidance to $12.5-14.5B, both citing memory). TrendForce confirmed server DRAM contract prices rose roughly 58-63% QoQ in Q2 — confirming Jukan's call that July's spot surge would carry through to contract-price hikes.",
+     "en": "In their late-July Q2 2026 earnings, Microsoft, Meta, and Amazon all cited surging memory costs as a reason for higher capex (Microsoft attributed $25B, Amazon raised 2026 capex to $220B, Meta raised guidance to $12.5-14.5B, both citing memory). TrendForce confirmed server DRAM contract prices rose roughly 58-63% QoQ in Q2, confirming Jukan's call that July's spot surge would carry through to contract-price hikes.",
      "ja": "7月末のマイクロソフト・メタ・アマゾンの2026年第2四半期決算はいずれもメモリコスト急騰をキャペックス上方修正の理由に挙げた(MSは250億ドル、アマゾンは2026年キャペックスを2,200億ドルに、メタも125億~145億ドルへ上方修正しメモリを主因とした)。TrendForceもサーバーDRAM契約価格が第2四半期に約58~63%上昇したと確認し、7月の現物価格急騰が契約価格の上方修正につながるというジュカンの判断が的中した。"
     },
     "due": "2026-08-03",
@@ -28044,6 +28204,30 @@
     "우한훙신",
     "武漢弘芯",
     "훙신반도체"
+   ]
+  },
+  "수출단가": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "수출액을 무게나 개수로 나눈 평균 단가. 값이 아니라 구성이 바뀌어도 움직인다.",
+    "en": "Export value divided by weight or count; it moves when the product mix changes, not only when prices do.",
+    "ja": "輸出額を重さや個数で割った平均単価。値段だけでなく構成が変わっても動く。"
+   },
+   "longDesc": {
+    "ko": "나라가 매달 내놓는 무역 통계에서 나오는 숫자라 기업 실적보다 두 달 가까이 빠르다. 다만 평균값이라 같은 품목 안에서 비싼 제품의 비중이 줄기만 해도 내려간다. 값이 실제로 내렸는지 구성이 바뀐 것인지는 품목이 어떻게 나뉘어 있는지, 인접 품목의 단가가 같이 움직였는지를 같이 봐야 알 수 있다.",
+    "en": "It comes out of monthly national trade statistics, which puts it nearly two months ahead of company results. But it is an average, so it falls even if only the share of expensive product inside a category drops. Telling a real price cut from a mix shift takes knowing how the categories are drawn and whether neighbouring categories moved with it.",
+    "ja": "国が毎月出す貿易統計から出る数字なので、企業決算より2カ月近く早い。ただし平均値なので、同じ品目の中で高い製品の比率が下がるだけでも下がる。実際に値下げがあったのか構成が変わったのかは、品目がどう分かれているか、隣の品目の単価が一緒に動いたかを併せて見ないと分からない。"
+   },
+   "aliases": [
+    "수출단가",
+    "export unit price",
+    "輸出単価",
+    "수출 단가"
    ]
   }
  }
