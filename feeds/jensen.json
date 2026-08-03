@@ -1,13 +1,26 @@
 {
  "source": "jensen",
- "fetched_at": "2026-08-03T11:58:20.674597+00:00",
- "checked_at": "2026-08-03T11:58:20.674597+00:00",
+ "fetched_at": "2026-08-03T13:40:26.397109+00:00",
+ "checked_at": "2026-08-03T13:40:26.397109+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/tLWYaMsky2fJ8tkW.xml",
- "keep_days": 7,
+ "keep_days": 30,
  "raw_count": 18,
  "newest_published": "2026-07-27T11:07:00+00:00",
- "kept_count": 0,
+ "kept_count": 2,
  "error": null,
- "items": []
+ "items": [
+  {
+   "title": "Attackers have frontier AI. Defenders need a frontier AI ecosystem—the best open and closed models, force-multiplied by a global community. During the Hugging Face incident, closed AI blocked essential forensics. An open-weight frontier model helped contain the intrusion. That’s why we created the Open Secure AI Alliance.",
+   "link": "https://x.com/JensenHuang/status/2081698060330250294",
+   "published": "2026-07-27T11:07:00+00:00",
+   "content": "Attackers have frontier AI. Defenders need a frontier AI ecosystem—the best open and closed models, force-multiplied by a global community.\n\nDuring the Hugging Face incident, closed AI blocked essential forensics. An open-weight frontier model helped contain the intrusion.\n\nThat’s why we created the Open Secure AI Alliance.NVIDIA (@nvidia)AI security advances when the industry builds in the open, together.\n\nWe're introducing the Open Secure AI Alliance with industry leaders to develop new techniques and tools to safeguard software and agents.\n\nBy sharing models, tooling and research in the open, we can broaden the community of defenders.\n\nLearn more about the founding members’ contributions:  nvda.ws/4pD8Fc5 —  https://x.com/nvidia/status/2081666629264449730 \n— Jensen Huang (@JensenHuang) Jul 27, 2026"
+  },
+  {
+   "title": "For my first post, I’m sharing a letter @NVIDIA signed on why open models matter. AI will transform every industry, power every company, and be built by every country. Open models strengthen safety and cybersecurity, accelerate innovation and diffusion, and enable sovereignty. The world needs both frontier closed models and frontier open models.",
+   "link": "https://x.com/JensenHuang/status/2080643682408321103",
+   "published": "2026-07-24T13:18:00+00:00",
+   "content": "For my first post, I’m sharing a letter  @NVIDIA signed on why open models matter.\n\nAI will transform every industry, power every company, and be built by every country.\n\nOpen models strengthen safety and cybersecurity, accelerate innovation and diffusion, and enable sovereignty.\n\nThe world needs both frontier closed models and frontier open models.\n\n images.nvidia.com/pdf/Open-W… \n— Jensen Huang (@JensenHuang) Jul 24, 2026"
+  }
+ ]
 }
