@@ -20,7 +20,17 @@ import sys
 import urllib.error
 import urllib.request
 
-ENDPOINT = "https://stacks-comments.wnrakrhdn128.workers.dev/notify"
+# The worker's canonical host is the custom domain in worker/wrangler.toml
+# (routes = api.stacksdaily.com). The old *.workers.dev hostname no longer
+# routes: POSTs to it come back as Cloudflare "HTTP 404 - error code: 1042",
+# which is what silently killed every follower push (Notify followers #144,
+# #146, #147 all red; the green runs were no-op pushes with no new items).
+# Probed 2026-08-03 from the live site:
+#   api.stacksdaily.com/notify      -> 403 {"error":"forbidden"}  (worker reached)
+#   stacks-comments.*.workers.dev/  -> connection fails outright
+# Keep this pointing at the custom domain. If the host ever moves again, change
+# it in wrangler.toml first, then here.
+ENDPOINT = "https://api.stacksdaily.com/notify"
 
 
 def _no_recipients(body):
