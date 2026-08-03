@@ -1594,9 +1594,17 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "(In Korea, issuing an outright Sell report is virtually impossible, so a price-target cut effectively amounts to a Sell call.)"
-    ],
+    "lines": {
+     "ko": [
+      "(한국에서는 대놓고 매도 보고서를 내는 것이 사실상 불가능하므로, 목표주가를 내리는 것이 실질적으로는 매도 의견에 해당한다.)"
+     ],
+     "en": [
+      "(In Korea, issuing an outright Sell report is virtually impossible, so a price-target cut effectively amounts to a Sell call.)"
+     ],
+     "ja": [
+      "(韓国では正面から売り推奨のレポートを出すことが事実上不可能なため、目標株価の引き下げが実質的に売り推奨に当たる。)"
+     ]
+    },
     "cite": "Jukan · 2026.07.29"
    },
    "title": {
@@ -1666,11 +1674,23 @@
    "lab": true,
    "foldWhy": true,
    "quote": {
-    "lines": [
-     "I personally see it as extreme short term deleveraging that overshot many individual names.",
-     "Think earnings season tend to remind markets about continued AI acceleration.",
-     "But as a TLDR, looks very positive for the themes I'm tracking."
-    ],
+    "lines": {
+     "ko": [
+      "나는 개인적으로 이것을 여러 개별 종목에서 지나치게 나간 극단적인 단기 디레버리징으로 본다.",
+      "실적 시즌은 AI 가속이 계속되고 있다는 것을 시장에 다시 일깨우는 경향이 있다고 생각한다.",
+      "요약하자면, 내가 보고 있는 테마들에는 매우 긍정적으로 보인다."
+     ],
+     "en": [
+      "I personally see it as extreme short term deleveraging that overshot many individual names.",
+      "Think earnings season tend to remind markets about continued AI acceleration.",
+      "But as a TLDR, looks very positive for the themes I'm tracking."
+     ],
+     "ja": [
+      "私個人としては、これは多くの個別銘柄で行き過ぎた極端な短期のデレバレッジだと見ている。",
+      "決算シーズンは、AIの加速が続いていることを市場に思い出させる傾向があると考えている。",
+      "要するに、私が追っているテーマにとっては非常に前向きに見える。"
+     ]
+    },
     "cite": "Serenity · 2026.07.28"
    },
    "title": {
@@ -1798,10 +1818,20 @@
    ],
    "stance": "bear",
    "quote": {
-    "lines": [
-     "Asian private credit funds raised just $1.2 billion in the first half of 2026, the lowest amount for this period in at least 10 years.",
-     "Investor appetite for private credit is weakening globally."
-    ],
+    "lines": {
+     "ko": [
+      "아시아 프라이빗 크레딧 펀드가 2026년 상반기에 모은 자금은 12억달러에 그쳤고, 이는 최소 10년 사이 같은 기간 기준으로 가장 적은 금액이다.",
+      "프라이빗 크레딧에 대한 투자자의 수요가 전 세계적으로 약해지고 있다."
+     ],
+     "en": [
+      "Asian private credit funds raised just $1.2 billion in the first half of 2026, the lowest amount for this period in at least 10 years.",
+      "Investor appetite for private credit is weakening globally."
+     ],
+     "ja": [
+      "アジアのプライベートクレジット・ファンドが2026年上半期に集めた資金はわずか12億ドルで、少なくとも10年で同期間として最も少ない金額だ。",
+      "プライベートクレジットに対する投資家の意欲は世界的に弱まっている。"
+     ]
+    },
     "cite": "The Kobeissi Letter · 2026.07.28"
    },
    "title": {
@@ -1869,11 +1899,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "Negotiations are proceeding smoothly, supported by robust customer demand.",
-     "Given the recent sharp increase in conventional DRAM prices, these market conditions could also influence HBM price negotiations.",
-     "However, HBM pricing is not determined solely by movements in conventional DRAM prices."
-    ],
+    "lines": {
+     "ko": [
+      "고객 수요가 견조해 협상은 순조롭게 진행되고 있다.",
+      "최근 일반 D램 가격이 크게 오른 것을 감안하면, 이런 시장 상황이 HBM 가격 협상에도 영향을 줄 수 있다.",
+      "다만 HBM 가격이 일반 D램 가격 움직임만으로 정해지는 것은 아니다."
+     ],
+     "en": [
+      "Negotiations are proceeding smoothly, supported by robust customer demand.",
+      "Given the recent sharp increase in conventional DRAM prices, these market conditions could also influence HBM price negotiations.",
+      "However, HBM pricing is not determined solely by movements in conventional DRAM prices."
+     ],
+     "ja": [
+      "顧客需要が堅調で、交渉は順調に進んでいる。",
+      "足元で通常のDRAM価格が大きく上がったことを踏まえると、こうした市況がHBMの価格交渉にも影響しうる。",
+      "ただし、HBMの価格が通常のDRAM価格の動きだけで決まるわけではない。"
+     ]
+    },
     "cite": "Jukan · 2026.07.29"
    },
    "title": {
@@ -1942,11 +1984,23 @@
    "lab": true,
    "foldWhy": true,
    "quote": {
-    "lines": [
-     "이번 구마모토(熊本) 지진은 지금까지 설명한 '섭입대 지진'이 아니라 '활성단층 지진'임.",
-     "2016년 구마모토 지진은 첫 번째 강진이 발생하자, 이것을 본진이라고 생각했었음.",
-     "첫 번째 강진이 발생하고 이틀 뒤에 규모가 더 큰 진짜 본진이 덮쳤음."
-    ],
+    "lines": {
+     "ko": [
+      "이번 구마모토(熊本) 지진은 지금까지 설명한 '섭입대 지진'이 아니라 '활성단층 지진'임.",
+      "2016년 구마모토 지진은 첫 번째 강진이 발생하자, 이것을 본진이라고 생각했었음.",
+      "첫 번째 강진이 발생하고 이틀 뒤에 규모가 더 큰 진짜 본진이 덮쳤음."
+     ],
+     "en": [
+      "This Kumamoto earthquake is not the 'subduction zone earthquake' described so far, but an 'active fault earthquake'.",
+      "In the 2016 Kumamoto earthquake, when the first strong quake hit, it was taken to be the mainshock.",
+      "Two days after that first strong quake, the real mainshock, larger in scale, struck."
+     ],
+     "ja": [
+      "今回の熊本地震は、これまで説明してきた「沈み込み帯の地震」ではなく「活断層の地震」である。",
+      "2016年の熊本地震では、最初の強い揺れが起きたとき、これが本震だと考えられていた。",
+      "最初の強い揺れから2日後に、規模のより大きい本当の本震が襲った。"
+     ]
+    },
     "cite": "메르 · 2026.07.29"
    },
    "title": {
@@ -2014,10 +2068,20 @@
    "lab": true,
    "foldWhy": true,
    "quote": {
-    "lines": [
-     "Samsung Electro-Mechanics has sent customers a notice announcing that it plans to raise prices for certain MLCC products by 30% from August 1, 2026.",
-     "Taiyo Yuden is also moving to raise MLCC prices from September 1."
-    ],
+    "lines": {
+     "ko": [
+      "삼성전기가 2026년 8월 1일부터 일부 MLCC 제품의 가격을 30% 올릴 계획이라는 공지를 고객사에 보냈다.",
+      "다이요유덴도 9월 1일부터 MLCC 가격을 올리는 쪽으로 움직이고 있다."
+     ],
+     "en": [
+      "Samsung Electro-Mechanics has sent customers a notice announcing that it plans to raise prices for certain MLCC products by 30% from August 1, 2026.",
+      "Taiyo Yuden is also moving to raise MLCC prices from September 1."
+     ],
+     "ja": [
+      "サムスン電機が2026年8月1日から一部のMLCC製品の価格を30%引き上げる計画だとする通知を顧客に送った。",
+      "太陽誘電も9月1日からMLCC価格を引き上げる方向で動いている。"
+     ]
+    },
     "cite": "Jukan · 2026.07.28"
    },
    "title": {
