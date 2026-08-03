@@ -17,9 +17,14 @@ Public:
   render_email(lang, ctx, site, unsub="{{unsubscribe}}") -> str  (full HTML doc)
 """
 import html
+import os
 import re
+import sys
 from calendar import timegm
 from datetime import datetime, timedelta, timezone
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_data import expand_img_markers  # noqa: E402
 
 KST = timezone(timedelta(hours=9))
 
@@ -439,6 +444,150 @@ def _since_html(T, badge):
     )
 
 
+# ---- gist 마커 -> 이메일 HTML ---------------------------------------------
+# 카드 본문(gist)에는 사이트와 같은 마커가 섞여 있다:
+#   `## 소제목` · `@@REF@@제목|링크|이미지` · `@@IMG@@키|캡션`
+#   `@@CHK@@라벨|값|라벨|값@@각주@@출처` · `@@CMP@@왼제목|왼본문|오른제목|오른본문`
+# 2026-07-24에 이메일이 `why`만 싣던 것에서 gist 전문을 싣도록 바뀌었는데 마커
+# 변환이 같이 오지 않았다. 그래서 수신함에는
+# `@@REF@@6월 물가 0.1% 하락 …|https://www.upi.com/…|https://cdnph.upi.com/…`
+# 가 문장 한가운데 그대로 찍혔고, 본문 사진은 아예 나오지 않았다(2026-08-03 발견).
+#
+# 렌더링 의미는 `build_pages.gist_blocks()` 및 index.html의 앱 렌더러와 같아야
+# 한다. 셋 중 하나를 고치면 나머지 둘도 같이 본다.
+# 이메일이라 CSS는 인라인, 레이아웃은 표로만 짠다(flex/grid는 아웃룩에서 깨진다).
+
+_GREY = "#8B93A1"
+_LINE = "#E5E7EB"
+_SOFT = "#F6F7F9"
+
+
+def _host_of(u):
+    m = re.match(r"https?://(?:www\.)?([^/]+)", u or "")
+    return m.group(1) if m else ""
+
+
+def _blk_sub(text):
+    return ('<div style="font-size:15.5px;font-weight:800;color:#111318;'
+            'margin:22px 0 8px;">%s</div>' % _esc(text))
+
+
+def _blk_ref(line):
+    """@@REF@@제목|링크|이미지(선택) -> 출처 카드.
+
+    이미지가 있으면 사진 + 제목, 없으면 제목 링크 한 줄. 어느 쪽이든 URL 자체는
+    화면에 쓰지 않는다. 날것의 URL이 본문에 박히는 게 이번 사고의 증상이었다."""
+    r = (line[7:].split("|") + ["", "", ""])[:3]
+    title, href, img = r[0], r[1] or "#", r[2]
+    host = _host_of(href)
+    src = ('<div style="font-size:11.5px;color:%s;margin:6px 0 0;">출처: %s</div>'
+           % (_GREY, _esc(host))) if host else ""
+    if img:
+        return (
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+            'style="margin:16px 0;border:1px solid %s;border-radius:12px;overflow:hidden;">'
+            '<tr><td style="padding:0;"><a href="%s" style="text-decoration:none;">'
+            '<img src="%s" width="560" alt="" style="width:100%%;max-width:560px;display:block;border:0;">'
+            '</a></td></tr>'
+            '<tr><td style="padding:11px 14px;background:%s;">'
+            '<a href="%s" style="text-decoration:none;color:#111318;font-size:13.5px;'
+            'font-weight:700;line-height:1.45;">%s ↗</a>%s'
+            '</td></tr></table>'
+            % (_LINE, _esc(href), _esc(img), _SOFT, _esc(href), _esc(title), src))
+    return (
+        '<div style="margin:14px 0;padding:11px 14px;border-left:3px solid %s;background:%s;">'
+        '<a href="%s" style="text-decoration:none;color:#111318;font-size:13.5px;'
+        'font-weight:700;line-height:1.45;">%s ↗</a>%s</div>'
+        % (BRAND, _SOFT, _esc(href), _esc(title), src))
+
+
+def _blk_img(line):
+    """@@IMG@@URL|캡션|크레딧|크레딧링크. 키 형태는 expand_img_markers가 이미 폈다."""
+    m = (line[7:].split("|") + ["", "", "", ""])[:4]
+    if not m[0]:
+        return ""
+    cap = ""
+    if m[1]:
+        credit = (' · <a href="%s" style="color:%s;text-decoration:none;">%s</a>'
+                  % (_esc(m[3] or "#"), _GREY, _esc(m[2]))) if m[2] else ""
+        cap = ('<div style="font-size:11.5px;color:%s;line-height:1.55;margin:7px 0 0;">%s%s</div>'
+               % (_GREY, _esc(m[1]), credit))
+    return ('<div style="margin:16px 0;">'
+            '<img src="%s" width="560" alt="%s" '
+            'style="width:100%%;max-width:560px;display:block;border:0;border-radius:10px;">'
+            '%s</div>' % (_esc(m[0]), _esc(m[1]), cap))
+
+
+def _blk_chk(line):
+    """@@CHK@@라벨|값|라벨|값…@@각주@@출처 -> 2열 수치 표."""
+    parts = line[7:].split("@@")
+    cells = (parts[0] or "").split("|")
+    rows = "".join(
+        '<tr><td style="padding:8px 12px;border-bottom:1px solid %s;font-size:13px;color:%s;">%s</td>'
+        '<td style="padding:8px 12px;border-bottom:1px solid %s;font-size:13.5px;font-weight:700;'
+        'color:#111318;text-align:right;white-space:nowrap;">%s</td></tr>'
+        % (_LINE, _GREY, _esc(cells[j]), _LINE, _esc(cells[j + 1]))
+        for j in range(0, len(cells) - 1, 2))
+    note = ('<div style="font-size:12.5px;color:#3B3F46;line-height:1.6;margin:9px 0 0;">%s</div>'
+            % _esc(parts[1])) if len(parts) > 1 and parts[1] else ""
+    srcn = ('<div style="font-size:11px;color:%s;line-height:1.5;margin:6px 0 0;">%s</div>'
+            % (_GREY, _esc(parts[2]))) if len(parts) > 2 and parts[2] else ""
+    return ('<div style="margin:16px 0;padding:4px 0 0;border:1px solid %s;border-radius:12px;">'
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">%s</table>'
+            '<div style="padding:0 12px 12px;">%s%s</div></div>' % (_LINE, rows, note, srcn))
+
+
+def _blk_cmp(line):
+    """@@CMP@@왼제목|왼본문|오른제목|오른본문 -> 위아래 두 칸 + VS."""
+    c = (line[7:].split("|") + ["", "", "", ""])[:4]
+
+    def box(t, b):
+        return ('<div style="padding:12px 14px;background:%s;border-radius:10px;">'
+                '<div style="font-size:12px;font-weight:800;color:#111318;margin:0 0 5px;">%s</div>'
+                '<div style="font-size:13px;line-height:1.6;color:#3B3F46;">%s</div></div>'
+                % (_SOFT, _esc(t), _esc(b)))
+    return ('<div style="margin:16px 0;">%s'
+            '<div style="text-align:center;font-size:11px;font-weight:800;color:%s;'
+            'letter-spacing:.08em;padding:7px 0;">VS</div>%s</div>'
+            % (box(c[0], c[1]), _GREY, box(c[2], c[3])))
+
+
+_BLOCKS = (("@@REF@@", _blk_ref), ("@@IMG@@", _blk_img),
+           ("@@CHK@@", _blk_chk), ("@@CMP@@", _blk_cmp))
+
+
+def gist_html(text, lang, ctx, url, used):
+    """마커가 섞인 gist -> 이메일 본문 HTML.
+
+    산문 구간만 paragraphize + linkify 를 태운다. 마커 안의 텍스트는 색인 링크
+    대상이 아니다 — 출처 제목이나 사진 캡션에 용어 링크가 걸리면 그 자체가 노이즈다.
+    `used` 는 글 전체에서 공유해 같은 용어가 한 번만 링크되게 한다."""
+    text = expand_img_markers(str(text or ""), lang)
+    out, buf = [], []
+
+    def flush():
+        t = "\n".join(buf).strip("\n")
+        del buf[:]
+        if not t.strip():
+            return
+        for p in paragraphize(t):
+            out.append('<p style="margin:0 0 13px;">%s</p>' % linkify(p, ctx, url, used))
+
+    for line in text.split("\n"):
+        if line.startswith("## "):
+            flush()
+            out.append(_blk_sub(line[3:].strip()))
+            continue
+        hit = next((fn for pre, fn in _BLOCKS if line.startswith(pre)), None)
+        if hit:
+            flush()
+            out.append(hit(line))
+        else:
+            buf.append(line)
+    flush()
+    return "".join(out)
+
+
 def _card_html(lang, ctx, site, it):
     T = L[_lang(lang)]
     st = STANCE.get(it.get("stance") or "neutral", STANCE["neutral"])
@@ -456,11 +605,7 @@ def _card_html(lang, ctx, site, it):
     # paragraph breaks: split the one-block gist into readable paragraphs, and
     # link each indexed term once across the WHOLE gist (shared `used`).
     used = set()
-    gist_paras = paragraphize(_t(it.get("gist"), lang))
-    gist = "".join(
-        '<p style="margin:0 0 13px;">%s</p>' % linkify(p, ctx, url, used)
-        for p in gist_paras
-    ) or '<p style="margin:0;">%s</p>' % linkify(_t(it.get("gist"), lang), ctx, url, used)
+    gist = gist_html(_t(it.get("gist"), lang), lang, ctx, url, used)
     why = linkify(_t(it.get("why"), lang), ctx, url)
     src = _esc(it.get("source", ""))
     date = _esc(it.get("date", ""))
