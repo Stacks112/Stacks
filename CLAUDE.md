@@ -524,7 +524,11 @@ python3 scripts/deploy_guard.py --verify index.html sw.js
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
 - doomberg/netinterest(EN, 커스텀도메인 Substack) — 브라우저 UA로 정상.
-- serenity(rss.app 브리지, X @aleabitoreddit) · serenity_substack(EN, 403 잔존) — rss.app Basic 결제 완료(2026-07-20), 기한 리스크 없음.
+- serenity(rss.app 브리지, X @aleabitoreddit) — rss.app Basic 결제 완료(2026-07-20), 기한 리스크 없음.
+  ⚠️ **serenity_substack은 2026-08-03에 FEEDS·sources.json에서 제거됐다.** 순정
+  `*.substack.com`이 Actions IP를 403으로 막는데 macroalf와 달리 rss.app 대체 URL이 없어
+  **생긴 이래 한 번도 수집에 성공한 적이 없다**(`fetched_at`이 2026-07-25에 고정돼 있었다).
+  원 Substack도 2026-05-19 이후 새 글이 없다. 되살리려면 rss.app 브리지를 alt로 붙일 것.
 - goto(JA, note.com/goto_finance) — 유료라 미리보기만 → 200자 예외.
 - semianalysis(EN, Substack 커스텀도메인) — 발행 드묾, 비면 건너뜀.
 - tesuta(JA, rss.app X @tesuta001) — 명백한 시장분석일 때만.
@@ -538,7 +542,13 @@ python3 scripts/deploy_guard.py --verify index.html sw.js
 - kobeissi(EN, rss.app X @KobeissiLetter) — 시황 해석. 발행량 많음 → 실행당 최대 2건. (〃)
 - camillo(EN, rss.app X @ChrisCamillo) — 소셜 차익거래 트레이더(Dumb Money/TickerTags 창업자). 잡담·라이브스트림 홍보 다수 → 명백한 종목·시장 콜일 때만. (2026-07-23 추가)
 - pichai(EN, rss.app X @sundarpichai, category ceo) — 구글·알파벳 CEO. RT 다수 섞임 → 본인 발언 중 실적·제품·AI 전략 관련만. (〃)
-- jensen(EN, rss.app X @JensenHuang, category ceo) — 엔비디아 CEO. 계정 자체가 2026-07-24 개설(첫 글부터 추적). ⚠️ rss.app 피드에 사칭 계정(@JensenHuang__ 등) 옛 스팸 섞임 → link가 정확히 x.com/JensenHuang/ 인 항목만 카드화(7일 필터가 옛 스팸은 걸러주지만 핸들 검증 병행). (2026-07-24 추가)
+- jensen(EN, rss.app X @JensenHuang, category ceo) — 엔비디아 CEO. 계정 자체가 2026-07-24 개설(첫 글부터 추적). ⚠️ rss.app 피드에 사칭 계정(@JensenHuang__ 등) 옛 스팸 섞임 → **link가 정확히 x.com/JensenHuang/ 인 항목만 카드화한다. 이 핸들 검증이 이제 유일한 방어다.** (2026-07-24 추가)
+- **★ pichai·jensen은 `keep_days: SLOW_DAYS`(30) 다 (2026-08-03).** CEO 계정은 1년에 몇 번만
+  써서 기본 7일 창으로는 글과 글 사이에 피드가 비고, 저자가 후보 풀에서 조용히 사라진다.
+  jensen이 2026-08-03에 실제로 0건이 됐다 — 최신 글(07-27 11:07)이 그날 컷오프(07-27 11:58)를
+  **51분 차이로** 넘지 못했다. ⚠️ 옛 스팸을 걸러주던 것이 7일 창이었으므로, 창을 넓힌 지금은
+  **위의 핸들 검증이 유일한 방어다**(현 피드 18건 중 2026년 항목은 07-24·07-27 2건뿐이고
+  나머지는 30일 창 밖이라 지금은 안전하다).
 - 소스 추가 절차: fetch_feeds.py FEEDS + sources.json 두 곳만 수정(루틴 프롬프트 수정 불필요). *.substack.com·X 소스는 rss.app 브리지(june 계정, Basic 15피드). **★ 인물 추가 시 프로필 사진(avatarImg) 필수** — X 계정이면 `https://unavatar.io/twitter/<handle>?fallback=false` (june 지시, 2026-07-20).
 - **신규 소스 데뷔 예외(v4.3 루틴 규칙)**: 발행기는 통상 "원문 48시간 이내"만 발행하지만, **feeds에 처음 등장한 소스의 첫 카드 1건은 원문 7일 이내까지 허용**한다(그 이상 오래된 글은 데뷔라도 금지). 이유: 48h 규칙만 있으면 새 소스는 다음 새 글이 올라올 때까지 카드 0개로 보인다(2026-07-20 실측). 데뷔 카드는 피드 정렬(원문일 기준)상 아래에 묻힐 수 있음을 감안하고 1건만.
 
