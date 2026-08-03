@@ -155,12 +155,18 @@ def main():
 
     sent = send_newsletter(hot)
 
-    # announce to readers regardless (the site's Weekly is fresh)
+    # announce to readers regardless (the site's Weekly is fresh) -- but not on a
+    # test send. WEEKLY_TEST_TO means "mail only me, I am checking the layout";
+    # firing the `daily` push there rings every subscriber's phone for a dry run.
+    # 2026-08-03: a layout check did exactly that once before this guard existed.
     n = len(hot)
-    notify("daily",
-           "📰 이번 주 베스트 " + str(n) + "편",
-           "이번 주 가장 중요한 읽을거리 " + str(n) + "편을 정리했어요.",
-           SITE)
+    if os.environ.get("WEEKLY_TEST_TO", "").strip():
+        print("announce push skipped: test send (WEEKLY_TEST_TO set)")
+    else:
+        notify("daily",
+               "📰 이번 주 베스트 " + str(n) + "편",
+               "이번 주 가장 중요한 읽을거리 " + str(n) + "편을 정리했어요.",
+               SITE)
     print("done. esp_sent=%s, items=%d" % (sent, n))
     _summary(sent, n)
 
