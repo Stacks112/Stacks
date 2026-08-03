@@ -2,6 +2,31 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (SEO: GSC/Naver diagnosis + earnings calendar page)
+Goal:
+- Analytics item 4 (SEO): Google brings only ~20 clicks/28d and Naver (89% Korean traffic) brings zero.
+
+Changed:
+- `calendar.html` + `index.html` (commit `f703ea6`), `scripts/build_pages.py` (commit `8192289`) - both deployed and live-verified
+- `AGENT_HANDOFF.md`
+
+Verified:
+- GSC: 149 indexed / 222 not (175 discovered-not-crawled, mostly /e/; report dated 7/24). 28d: 20 clicks, 676 impressions, 27 queries. Korean schedule query "인텔 실적 발표일" appeared at pos 80 - real search demand for a calendar page.
+- Requested indexing for 6 URLs (5 newest /p/ articles + calendar.html), all confirmed "색인 생성 요청됨". The 2 articles requested on 7/30 are now indexed, so manual requests do work.
+- Naver Search Advisor (june drove the UI, screenshots): site registered 7/17, sitemap.xml + feed.xml both submitted 7/17 - but collection is ~zero (one spike of 6 pages on 7/20), 웹 페이지 수집 요청 never used (asked june to submit 8 URLs), site diagnosis shows 색인 1 / 수집제한 1(접근 불가 1건 - identify later once collection data accumulates) / "H1 x2" SEO flag.
+- New `calendar_page()` in build_pages.py renders items.json `events` (the weekly calendar bot's data) as static `calendar.html`: D-day badges, weekday, kind pill, links to /e/ and /p/ (APP_LINK_JS routes them into the app). Regenerated every build; sitemap entry added; home footer links it. One page covers the whole "[회사] 실적 발표일" query family - zero upkeep.
+- H1 duplicate fix: `#introTitle` h1 -> h2 (+ CSS selectors extended) so the document has exactly one h1 (#heroTitle). Live checks: calendar renders (11 rows, 8 entity + 8 article links, single h1), home footer link present, home h1 count = 1.
+- Mid-deploy: deploy_guard caught 2 fresh index.html commits from another window (`000c5d0` fsw readlist, `cce8b5a` newsletter URL); rebased, verified both preserved (guard --verify clean), regenerated the patch spec against the new base. node --check 5 blocks + ast.parse on build_pages.py.
+
+Risks:
+- calendar.html shipped as a generated snapshot; the next og-assets build overwrites it from build_pages (intended). If that build fails, the snapshot just goes stale - no breakage.
+- Naver collection may stay near zero regardless (new-domain trust); the manual 수집 요청 + RSS rediscovery is the lever, re-check 수집 현황 in ~1 week.
+
+Next:
+- june: submit the 8 collection-request URLs in Naver Search Advisor (list in chat / claude/status-2026-08-03-seo-diagnosis-gsc.md).
+- ~1 week: GSC re-check (indexed count, calendar.html status, schedule-query positions) + Naver 수집 현황.
+- Keep requesting indexing for new /p/ articles (quota ~10/day).
+
 ## 2026-08-03 Claude (readlist top tab bar fix)
 Goal:
 - june: "최근 읽은 글 메뉴 들어가면 상단바의 최신/팔로잉 바가 계속 노출되는데 다른 메뉴들처럼 노출되지 않게 해줘."
