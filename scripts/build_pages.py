@@ -514,6 +514,11 @@ def item_entities(item, entities, pats):
         + [item["gist"].get(l, "") or "" for l in ("en", "ko", "ja")]
         + [item["why"].get(l, "") or "" for l in ("en", "ko", "ja")]
     )
+    # 마커 줄(@@REF@@·@@IMG@@)의 URL은 색인 대상이 아니다. URL 안의 단어가
+    # 별칭에 우연히 걸려 엉뚱한 엔티티에 카드가 딸려 붙는다
+    # (예: .../hyperliquid-sk-hynix-perp-oracle-liquidations/ → ORACLE).
+    # 캡션·제목 같은 사람이 읽는 본문은 색인에 남기고 URL만 걷어낸다.
+    text = re.sub(r"https?://\S+", " ", text)
     for rx, key in pats:
         if rx.search(text):
             s.add(key)
