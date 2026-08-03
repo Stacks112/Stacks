@@ -14456,57 +14456,6 @@
  },
  "events": [
   {
-   "id": "ev-centcom-iran-2026-07-21",
-   "date": "2026-07-21",
-   "label": {
-    "en": "US CENTCOM set to resume operations against Iran after US market close",
-    "ko": "미 중부사령부, 미 증시 마감 후 이란에 대한 작전 재개 예정",
-    "ja": "米中央軍、米市場引け後にイランへの作戦再開の見通し"
-   },
-   "title": {
-    "en": "US CENTCOM set to resume operations against Iran after US market close",
-    "ko": "미 중부사령부, 미 증시 마감 후 이란에 대한 작전 재개 예정",
-    "ja": "米中央軍、米市場引け後にイランへの作戦再開の見通し"
-   },
-   "kind": "macro",
-   "entity": null,
-   "itemId": "meru-houthi-blockade"
-  },
-  {
-   "id": "ev-alphabet-q2-2026",
-   "date": "2026-07-22",
-   "label": {
-    "en": "Alphabet Q2 2026 earnings (after US close, Jul 22)",
-    "ko": "알파벳 2026 2분기 실적 (미국장 마감 후, 7/22)",
-    "ja": "アルファベット2026年Q2決算（米国引け後、7/22）"
-   },
-   "title": {
-    "en": "Alphabet Q2 2026 earnings (after US close, Jul 22)",
-    "ko": "알파벳 2026 2분기 실적 (미국장 마감 후, 7/22)",
-    "ja": "アルファベット2026年Q2決算（米国引け後、7/22）"
-   },
-   "kind": "earnings",
-   "entity": "GOOGLE",
-   "itemId": "meru-alphabet-q2-capex-test"
-  },
-  {
-   "id": "ev-tesla-q2-2026",
-   "date": "2026-07-22",
-   "label": {
-    "en": "Tesla Q2 2026 earnings (after US close)",
-    "ko": "테슬라 2026년 2분기 실적 발표 (미 장마감 후)",
-    "ja": "テスラ2026年第2四半期決算 (米市場引け後)"
-   },
-   "title": {
-    "en": "Tesla Q2 2026 earnings (after US close)",
-    "ko": "테슬라 2026년 2분기 실적 발표 (미 장마감 후)",
-    "ja": "テスラ2026年第2四半期決算 (米市場引け後)"
-   },
-   "kind": "earnings",
-   "entity": "TESLA",
-   "itemId": null
-  },
-  {
    "id": "ev-kimi-k3-weights",
    "date": "2026-07-27",
    "label": {
@@ -14658,6 +14607,40 @@
    "kind": "earnings",
    "entity": "SAMSUNG ELECTRONICS",
    "itemId": "serenity-meritz-memory"
+  },
+  {
+   "id": "ev-coupang-q2-2026",
+   "date": "2026-08-04",
+   "label": {
+    "en": "Coupang Q2 2026 earnings (Aug 4)",
+    "ko": "쿠팡 2026년 2분기 실적 발표 (8/4)",
+    "ja": "クーパン2026年第2四半期決算 (8/4)"
+   },
+   "title": {
+    "en": "Coupang Q2 2026 earnings (Aug 4)",
+    "ko": "쿠팡 2026년 2분기 실적 발표 (8/4)",
+    "ja": "クーパン2026年第2四半期決算 (8/4)"
+   },
+   "kind": "earnings",
+   "entity": "COUPANG",
+   "itemId": "meru-coupang-incheon-fire"
+  },
+  {
+   "id": "ev-us-cpi-2026-07data",
+   "date": "2026-08-12",
+   "label": {
+    "en": "US CPI report for July 2026 data (Aug 12)",
+    "ko": "미국 7월 소비자물가지수(CPI) 발표 (8/12)",
+    "ja": "米7月消費者物価指数(CPI)発表 (8/12)"
+   },
+   "title": {
+    "en": "US CPI report for July 2026 data (Aug 12)",
+    "ko": "미국 7월 소비자물가지수(CPI) 발표 (8/12)",
+    "ja": "米7月消費者物価指数(CPI)発表 (8/12)"
+   },
+   "kind": "macro",
+   "entity": null,
+   "itemId": "potus-cpi-june"
   }
  ],
  "entities": {
