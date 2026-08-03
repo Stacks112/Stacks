@@ -2,6 +2,22 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (analytics hygiene + dead-click / today-section findings)
+Goal:
+- Close out the remaining analytics-review items: dev-session pollution, dead clicks 4.85%, today/scrollpast +243%. (Naver collection requests: june decided to skip.)
+
+Changed:
+- `index.html` (commit `90395f1`, deployed) - `ANALYTICS_LIVE` hostname guard: Clarity + GoatCounter loaders now run only on `*.stacksdaily.com`. localhost/127.0.0.1/preview dev sessions were polluting both tools; IP blocking would also erase june's real visits, hostname gating doesn't. Verified with Playwright on localhost: zero analytics requests, no errors. Rebased over `9de180a` (menu top bar, 44 lines preserved, guard --verify clean).
+- `AGENT_HANDOFF.md`
+
+Findings (no code change, by design):
+- Dead clicks (5 sessions/7d, rage clicks 0%): element ranking across the dead-click recordings shows the clicks land on **article body text on desktop** - gist paragraphs (`P.gp[1]` 11, `P.gp[2]` 7), section headings (`H2.section-title` 8), raw paragraph text (7), and card containers (`article#sig-*` 13-18 each). Card *titles* work (open the post view); card *bodies* do nothing. Users show an X-like whole-card-clickable expectation. Possible fix: make the card container open the post view (excluding links/buttons/text-selection) - medium risk (nested interactive elements, selection UX). Left undone pending june's call; harm today is low (0% rage clicks).
+- today/scrollpast +243% is **not** a problem signal: `watchTodayPast()` intentionally auto-dismisses the pinned Today box once the reader scrolls past it and logs `today/scrollpast` at that moment. The spike = the auto-dismiss shipping and firing as designed. Exposure is already limited (1/day first session + X dismiss + scroll-past dismiss). No reposition needed.
+
+Next:
+- Optional (june call): whole-card click-to-open on desktop to convert the dead clicks.
+- ~2026-08-10 batch re-check: Clarity INP + dead-click rate (post-hygiene data will be cleaner), GSC indexing + calendar.html, nudge/* funnel, Naver 수집 현황.
+
 ## 2026-08-03 Claude (one back+title top bar for every left-menu page)
 Goal:
 - june, three reports: the Latest/Following strip still shows on 최근 읽은 글 **on mobile**;
