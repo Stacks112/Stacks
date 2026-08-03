@@ -2,6 +2,29 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (readlist top tab bar fix)
+Goal:
+- june: "최근 읽은 글 메뉴 들어가면 상단바의 최신/팔로잉 바가 계속 노출되는데 다른 메뉴들처럼 노출되지 않게 해줘."
+
+Changed:
+- `index.html` (commit `000c5d0d`, deployed live)
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Root cause: `v83ReadList()` sets `READ_VIEW=true` + `TAB="all"`, but the `#v83fsw` (최신/팔로잉 feed switcher) visibility check in `renderFeed()` only excluded `ENTITY_VIEW/SERIES_VIEW/SB_VIEW/QUERY/BM_ONLY/THEME_VIEW/V83ITEM`, not `READ_VIEW`. Unlike bookmarks/themes/etc, the switcher stayed visible on the "최근 읽은 글" screen.
+- Fix: added `&& !(typeof READ_VIEW !== "undefined" && READ_VIEW)` to the `_vis` condition (1 line).
+- Reproduced the bug pre-fix and confirmed the fix with local Playwright (`?v83beta`, desktop v83 shell): `#v83fsw.hidden` was `false` on the readlist view before the fix, `true` after.
+- node --check on all 5 real inline JS blocks (6th block is JSON-LD, expected to fail check).
+- Deployed via GitHub `edit` page CodeMirror dispatch (sandbox git push blocked with "could not read Username" - proxy MITM session type per `claude/START-HERE.md`). Anchor-based single-occurrence replace, baseSha/targetSha verified before dispatch; post-deploy `git show origin/main:index.html | sha256sum` matched the locally computed target sha exactly.
+- Live check on `stacksdaily.com/?v83beta`: home fsw visible, readlist fsw hidden. Screenshot confirms "최근 읽은 글" page has no 최신/팔로잉 bar under the title, matching other side-nav menus.
+- Clobber guard: success on this commit.
+
+Risks:
+- None functional. Mobile (v82) shell has no equivalent feed switcher, so this is a desktop-only fix by design (the report was about the top bar on desktop).
+
+Next:
+- None.
+
 ## 2026-08-03 Claude (retention nudge)
 Goal:
 - Analytics item 3 (retention): 30d data shows every re-visit channel dead (~0 push subscribers, 5 newsletter signups, 9 follows) while the daily-brief push pipeline (07:00 KST, `daily` tag) sits ready with no one to send to. june picked: engagement-gated push/install nudge only, skip newsletter placement, then move to SEO.
