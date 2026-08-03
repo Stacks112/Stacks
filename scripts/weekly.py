@@ -22,8 +22,10 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import worker_url
+
 KST = timezone(timedelta(hours=9))
-WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
+WORKER = worker_url.worker_base()
 SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
@@ -107,8 +109,11 @@ def send_newsletter(hot):
     if test_to:
         langs = [(os.environ.get("WEEKLY_LANG") or "ko").strip()]
     else:
-        if not (os.environ.get("STACKS_WORKER_URL") and
-                os.environ.get("STACKS_NOTIFY_SECRET")):
+        # WORKER 는 worker_url.worker_base() 가 항상 채워 준다(시크릿이 비어도
+        # 정식 호스트로 폴백). 그래서 여기서는 시크릿 존재가 아니라 실제로
+        # 쓸 주소가 있는지를 본다 — 옛 코드는 STACKS_WORKER_URL 이 비면
+        # 발송을 통째로 건너뛰면서 그 사실을 로그 한 줄로만 남겼다.
+        if not (WORKER and os.environ.get("STACKS_NOTIFY_SECRET")):
             print("email send skipped: worker url / notify secret not set")
             return False
         langs = ["ko", "en", "ja"]
@@ -157,6 +162,26 @@ def main():
            "이번 주 가장 중요한 읽을거리 " + str(n) + "편을 정리했어요.",
            SITE)
     print("done. esp_sent=%s, items=%d" % (sent, n))
+    _summary(sent, n)
+
+
+def _summary(sent, n):
+    """발송 결과를 job summary에 남긴다.
+
+    2026-08-02 회차는 메일이 0통 나갔는데도 run이 초록이었다(send_newsletter가
+    예외를 삼킨다). 로그 마지막 줄을 열어봐야만 알 수 있었다는 게 사고를 키웠다.
+    실패해도 exit 1 로 죽이지는 않는다 — 그러면 다이제스트 커밋 스텝이 통째로
+    건너뛰어져 생성물까지 잃는다. 대신 run 페이지 첫 화면에서 보이게 한다."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    mark = "✅ 발송됨" if sent else "❌ **발송 0통** — 로그의 `email send failed:` 확인"
+    try:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write("## Stacks Weekly Best\n\n%s · 대상 글 %d편 · worker=%s\n"
+                    % (mark, n, WORKER or "(unset)"))
+    except OSError:
+        pass
 
 
 if __name__ == "__main__":

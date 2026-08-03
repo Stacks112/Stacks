@@ -39,6 +39,8 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import worker_url
+
 KST = timezone(timedelta(hours=9))
 API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = os.environ.get("MODEL", "claude-sonnet-5")
@@ -46,7 +48,7 @@ ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
 MAX_GRADE = int(os.environ.get("MAX_GRADE", "12"))
 WS_USES = int(os.environ.get("WEB_SEARCH_USES", "4"))
 GRADE_PUSH = os.environ.get("GRADE_PUSH", "0") == "1"
-WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
+WORKER = worker_url.worker_base()
 SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")

@@ -41,6 +41,7 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from weekly_email import (  # noqa: E402
     render_email, select_hot, enrich, subject_line)
+import worker_url  # noqa: E402
 
 # A real browser-ish User-Agent: Cloudflare (in front of api.resend.com /
 # api.stibee.com) 403s the default "Python-urllib/x" signature (error 1010).
@@ -60,9 +61,7 @@ DRY_RUN = os.environ.get("DRY_RUN", "") == "1"
 ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
 GLOSSARY_PATH = os.environ.get("GLOSSARY_PATH", "glossary.json")
 # worker base for /views (ranking) and /quote (the "since this post" badge)
-WORKER = os.environ.get(
-    "STACKS_WORKER_URL",
-    "https://stacks-comments.wnrakrhdn128.workers.dev").rstrip("/")
+WORKER = worker_url.worker_base()
 
 # Fallback subject if there are no items to name.
 SUBJECT_FALLBACK = {

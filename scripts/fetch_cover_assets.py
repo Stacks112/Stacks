@@ -64,9 +64,10 @@ from urllib.parse import urljoin, urlparse
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
+import worker_url
+
 ITEMS = "items.json"
-WORKER = os.environ.get("STACKS_WORKER_URL",
-                       "https://stacks-comments.wnrakrhdn128.workers.dev")
+WORKER = worker_url.worker_base()
 COVER_DIR = "covers"
 UA = {"User-Agent": "Mozilla/5.0 (compatible; StacksCoverBot/1.0; +https://stacksdaily.com/)"}
 TIMEOUT = 25

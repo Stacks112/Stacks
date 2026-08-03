@@ -24,8 +24,10 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import worker_url
+
 KST = timezone(timedelta(hours=9))
-WORKER = os.environ.get("STACKS_WORKER_URL", "").rstrip("/")
+WORKER = worker_url.worker_base()
 SECRET = os.environ.get("STACKS_NOTIFY_SECRET", "").strip()
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
