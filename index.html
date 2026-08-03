@@ -3220,7 +3220,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </noscript>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=9dab99f6">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=bdcad175">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
@@ -10911,7 +10911,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=1ed87c9f"></script>
+<script src="assets/v82.js?v=70717c16"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=71011512"></script>
 
@@ -11296,40 +11296,77 @@ bootData();
 <script>
 (function(){
   var SVG='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M7.4 12l7.3-7.3-1.4-1.4L4.6 12l8.7 8.7 1.4-1.4z"></path></svg>';
+  /* 2026-08-03 (june): 좌측 메뉴로 들어간 페이지의 상단바를 여기 한 곳에서 만든다.
+     제목 판정(detect)은 하나이고 그리는 곳만 셸에 따라 갈린다 —
+       데스크톱(html.v83): 피드 맨 위 .v83post-head.v83navback (← + 메뉴명)
+       모바일(v82)      : nav 안 #v82subbar (← + 메뉴명). nav.nav-sub가 최신/팔로잉 탭을 감춘다.
+     판정 기록(.jr-page)·최근 읽은 글(.read-library-tools)은 자기 h2만 있고 이 바가 안 붙어서
+     다른 메뉴와 생김새가 달랐다(june 신고). 두 셀렉터를 detect에 넣어 통일한다. */
+  var OLD_TITLE_SEL='.series-header.sb-header .series-head-name, .v83dir-head > b, .jr-page > .jr-head > h2, .read-library-tools .read-library-heading > h2';
   var applying=false;
   function g(n){ try{ return eval(n); }catch(e){ return undefined; } }
   function clean(s){ return (s||'').replace(/^[^0-9A-Za-z\uAC00-\uD7A3]+/, '').trim(); }
+  function isV83(){ return document.documentElement.classList.contains('v83'); }
+  function bmLabel(){ var l=g('LANG'); return l==='en'?'Bookmarks':(l==='ja'?'ブックマーク':'북마크'); }
   function detect(fl){
     if(fl.querySelector(':scope > .v83post-head:not(.v83navback)')) return null; /* post detail */
     var sh=fl.querySelector(':scope > .series-header.sb-header');
     if(sh){ var n=sh.querySelector('.series-head-name'); return n?clean(n.textContent):null; }
     var dh=fl.querySelector(':scope > .v83dir-head');
     if(dh){ var b=dh.querySelector('b'); return b?clean(b.textContent):null; }
-    if(g('BM_ONLY')===true) return '북마크';
+    var jh=fl.querySelector(':scope > .jr-page > .jr-head > h2');                       /* 판정 기록 */
+    if(jh) return clean(jh.textContent);
+    var rh=fl.querySelector(':scope > .read-library-tools .read-library-heading > h2'); /* 최근 읽은 글 */
+    if(rh) return clean(rh.textContent);
+    if(g('BM_ONLY')===true) return bmLabel();
     return null;
+  }
+  function hideOwnTitle(fl){
+    var t=fl.querySelector(OLD_TITLE_SEL);
+    if(t && t.style.display!=='none') t.style.display='none';
+    var sh=fl.querySelector('.series-header.sb-header'); if(sh && sh.style.paddingTop!=='2px') sh.style.padding='2px 14px 2px';
+    var dh=fl.querySelector('.v83dir-head'); if(dh && dh.style.paddingTop!=='6px') dh.style.paddingTop='6px';
+    /* 제목을 뺀 뒤 남는 건 "전체 n개 · 결과 n개"뿐이라 오른쪽에 붙여 둔다 */
+    var rh=fl.querySelector('.read-library-tools .read-library-heading');
+    if(rh && rh.style.justifyContent!=='flex-end') rh.style.justifyContent='flex-end';
+  }
+  function dropBar(fl){
+    var bar=fl.querySelector(':scope > .v83post-head.v83navback');
+    if(bar){ applying=true; bar.remove(); applying=false; }
   }
   function sync(){
     var fl=document.getElementById('feedList'); if(!fl) return;
     var want=detect(fl);
-    var bar=fl.querySelector(':scope > .v83post-head.v83navback');
-    if(!want){ if(bar){ applying=true; bar.remove(); applying=false; } return; }
+    if(!isV83()){ dropBar(fl); syncMobile(fl,want); return; }   /* 모바일엔 데스크톱 바를 두지 않는다 */
+    if(!want){ dropBar(fl); return; }
     applying=true;
     try{
+      var bar=fl.querySelector(':scope > .v83post-head.v83navback');
       if(!bar){
         bar=document.createElement('div'); bar.className='v83post-head v83navback';
         bar.innerHTML='<button class="v83post-back" aria-label="뒤로가기" title="뒤로가기" onclick="history.back()">'+SVG+'</button><span class="v83post-title"></span>';
         fl.insertBefore(bar, fl.firstChild);
       } else if(bar!==fl.firstElementChild){ fl.insertBefore(bar, fl.firstChild); }
       var tt=bar.querySelector('.v83post-title'); if(tt.textContent!==want) tt.textContent=want;
-      var oldTitle=fl.querySelector('.series-header.sb-header .series-head-name, .v83dir-head > b');
-      if(oldTitle && oldTitle.style.display!=='none') oldTitle.style.display='none';
-      var sh=fl.querySelector('.series-header.sb-header'); if(sh && sh.style.paddingTop!=='2px') sh.style.padding='2px 14px 2px';
-      var dh=fl.querySelector('.v83dir-head'); if(dh && dh.style.paddingTop!=='6px') dh.style.paddingTop='6px';
+      hideOwnTitle(fl);
     } finally { applying=false; }
+  }
+  /* 모바일: 같은 제목을 nav 안 ←+제목 바에 넣는다. EXPLORE_SUB(탐색 허브 경유)는
+     v82.js가 소유하므로 그 상태에서는 해제하지 않는다. */
+  function syncMobile(fl,want){
+    var nav=document.querySelector('nav'); if(!nav) return;
+    if(!want){ if(!g('EXPLORE_SUB')) nav.classList.remove('nav-sub'); return; }
+    var sb=document.getElementById('v82subbar'); if(!sb) return;   /* v82.js 초기화 전이면 다음 sync에서 */
+    var ti=sb.querySelector('.ti'); if(ti && ti.textContent!==want) ti.textContent=want;
+    nav.classList.add('nav-sub');
+    hideOwnTitle(fl);
   }
   function boot(){ var fl=document.getElementById('feedList'); if(!fl){ return setTimeout(boot,300); }
     new MutationObserver(function(){ if(!applying) sync(); }).observe(fl,{childList:true});
-    document.addEventListener('click',function(e){ if(e.target.closest && e.target.closest('.v83-link')) setTimeout(sync,60); },true);
+    document.addEventListener('click',function(e){
+      if(!e.target.closest) return;
+      if(e.target.closest('.v83-link')||e.target.closest('.v82dw-item')||e.target.closest('#v82nav button')) setTimeout(sync,80);
+    },true);
     window.addEventListener('popstate',function(){ setTimeout(sync,80); });
     sync();
   }
