@@ -1,0 +1,55 @@
+name: Weekly watch push
+
+# 매주 일요일 19:00 KST (= 10:00 UTC): 최근 7일 새 글에 등장한 회사별로
+# 그 회사를 팔로우한 독자에게 '이번 주 새 글 N건' 알림을 한 통씩 보낸다.
+#
+# 왜 Actions인가: 원래 이 일을 하던 Cowork 예약(주간 통합 파트 C)은 GitHub에는
+# 닿지만 푸시 워커(stacks-comments.*.workers.dev)에는 닿지 못한다 — 2026-07-28,
+# 07-30, 08-03 세 회차 연속으로 0건 발송됐다. 러너는 워커에 닿는다.
+# notify-followers.yml이 발행 푸시를 같은 이유로 릴레이하는 것과 같은 구조다.
+#
+# 시크릿은 이 저장소의 STACKS_NOTIFY_SECRET 하나만 쓴다. 예약 프롬프트에
+# 평문으로 들고 다니지 않아도 된다는 게 이 이전의 두 번째 이득이다.
+
+on:
+  schedule:
+    - cron: "0 10 * * 0"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "1 = 계산만 하고 실제로 보내지 않음"
+        required: false
+        default: "0"
+      week_end:
+        description: "기준일 YYYY-MM-DD (비우면 실행일 UTC). 백필·재현용"
+        required: false
+        default: ""
+      max_companies:
+        description: "상위 몇 개 회사까지 보낼지 (기본 8)"
+        required: false
+        default: "8"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-watch-push
+  cancel-in-progress: false
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Send weekly watch pushes
+        env:
+          STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          WEEK_END: ${{ github.event.inputs.week_end }}
+          MAX_COMPANIES: ${{ github.event.inputs.max_companies }}
+        run: python scripts/weekly_watch_push.py
