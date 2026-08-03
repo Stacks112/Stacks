@@ -2,6 +2,34 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (graded-prediction push: 릴레이 경로로 이관)
+Goal:
+- june: "이것 좀 해줘" - 이전 세션이 푸시하지 못한 채점 알림 수정본을 실제 main 에 반영.
+  (그 세션은 레포가 읽기 전용으로 붙어 커밋 06c8677 이 로컬에만 남았다. 이번엔 GitHub 웹
+  업로드로 같은 내용을 올렸다.)
+
+Changed:
+- `scripts/notify_followers.py` (`ca43db9`) - newly_graded() / send_graded() / _finish() 추가.
+  outcome.status 의 pending -> hit/miss "전이"를 감지해 태그 daily 로 발송한다. gradedOn 날짜가
+  아니라 전이를 보기 때문에 재실행/되돌림에도 중복 발송이 없다. 신규 발행 경로보다 먼저 실행한다
+  (신규 id 가 없으면 그 아래에서 early return 하므로 뒤에 두면 영영 실행되지 않는다).
+  한 run 상한 3건, miss 우선 정렬.
+- `.github/workflows/grade.yml` (`0dda29f`) - GRADE_PUSH "1" -> "0". 이중 발송 방지.
+- `CLAUDE.md` (`11c28b0`) - 위 경로 문서화.
+
+Tests run:
+- py_compile 통과. newly_graded() 스모크 테스트: 이미 확정돼 있던 건 / 이번 push 에 새로 추가된 건 /
+  이전 outcome 이 없던 건은 모두 제외되고, miss 가 hit 보다 먼저 반환되는 것까지 확인.
+- 커밋 후 raw 파일 SHA-256 이 로컬 파일과 완전 일치. Clobber guard #225-227 전부 green.
+
+Remaining risks / next steps:
+- 실제 발송은 아직 미검증. 다음 채점 커밋(items.json 변경) 때 "Notify followers" run 의 job
+  summary 에 "newly graded prediction(s)" 줄이 뜨는지 확인할 것.
+- `Stacks Grade Predictions`(grade.yml) 워크플로는 현재 수동 비활성(0 runs) 상태다. 채점은 예약
+  Cowork 세션이 하고 있으므로 GRADE_PUSH=0 은 지금은 예방 조치다. 이 워크플로를 다시 켤 거면
+  채점자가 둘이 되지 않는지 먼저 확인할 것.
+- 태그 daily 구독자가 0명이면 워커가 502 를 주고 릴레이는 no-op 으로 처리한다(정상, 실패 아님).
+
 ## 2026-08-03 Claude (feed intake: drop dead serenity_substack, widen CEO retention)
 Goal:
 - june: "일단 버그 먼저 잡자. serenity_substack 이건 제거하자" - fix the two real feed bugs found
