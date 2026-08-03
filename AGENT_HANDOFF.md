@@ -2,6 +2,29 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (retention nudge)
+Goal:
+- Analytics item 3 (retention): 30d data shows every re-visit channel dead (~0 push subscribers, 5 newsletter signups, 9 follows) while the daily-brief push pipeline (07:00 KST, `daily` tag) sits ready with no one to send to. june picked: engagement-gated push/install nudge only, skip newsletter placement, then move to SEO.
+
+Changed:
+- `index.html` (commit `6fa67ee`, deployed live)
+- `AGENT_HANDOFF.md`
+
+Verified:
+- New `maybeRetentionNudge()` + `showInstallNudge()` next to `promptPushOnce()`; hooked from `setRead()` only - both shells route through it (v82.js detail open, v83 detail, TTS, comments, original-link click).
+- Gate: 2+ articles read (READ.size), once per session, 7-day cooldown (`stk_nudge_ts`), max 3 lifetime (`stk_nudge_n`), fires 4s after the qualifying open (off the tap task).
+- Branches: iOS browser (web push impossible) -> dismissible bottom card -> existing `openIosGuide()`; everywhere else with `Notification.permission === "default"` -> OneSignal slidedown (`force:true`). Silent when granted/denied - no counter burned.
+- Events: `nudge/push-shown`, `nudge/push-granted` (via OneSignal permissionChange), `nudge/install-shown`, `nudge/install-open`, `nudge/install-dismiss`.
+- node --check (5 blocks). Playwright: iOS sim - no nudge after 1 read, card after 2nd (+4s), cooldown honored after dismiss; desktop with permission=default fires push-shown + queues slidedown; zero page errors. deploy_guard clean; final pre-commit re-check of remote sha; post-deploy sha matches (9089f688); live smoke: functions present, setRead hooked.
+
+Risks:
+- The existing top mini-install bar (`refreshMiniInstall`, `stk_hide_install`) still shows on iOS/Android until dismissed - the bottom nudge can appear alongside it once. Redundant but not conflicting; merge later if june finds it noisy.
+- `nudge/push-granted` only records when permission flips during the session the prompt appeared.
+
+Next:
+- Check nudge funnel events in GoatCounter in ~1 week (shown -> granted / install-open rates).
+- Next analytics item: article-page SEO (Google only ~20 visits/week).
+
 ## 2026-08-03 Claude (surge alerts: sharded cron, Free-plan subrequest cap)
 Goal:
 - june: "급변동 알림, 뭐가 문제인지 체크해줘" then "구현해서 배포해줘". Follower surge pushes had been silently dead since 2026-07-24.
