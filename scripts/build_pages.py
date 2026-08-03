@@ -1910,6 +1910,141 @@ footer a{{color:#8E93A0}}
 """
 
 
+def calendar_page(events, items, ent_indexable):
+    """실적 발표·경제 일정 캘린더 (calendar.html, 매 빌드 덮어씀).
+
+    근거(2026-08-03): GSC에 "인텔 실적 발표일" 같은 일정형 한국어 쿼리가 실제로
+    잡히기 시작했는데(순위 80), 이벤트 데이터는 앱 SPA 안에만 있어 검색봇이 못
+    본다. 같은 데이터(items.json events, 주간 캘린더 봇이 관리)를 정적으로 렌더해
+    "[기업명] 실적 발표일" 쿼리군의 착지 페이지를 만든다. 쿼리마다 페이지를 만드는
+    게 아니라 이 한 페이지가 이벤트 전체를 커버하고, 봇이 events를 갱신할 때마다
+    og-assets 빌드가 자동으로 다시 그린다 — 유지비 0."""
+    from datetime import date as _date
+    today = datetime.now(timezone.utc).date()
+    ids = {i["id"] for i in items}
+    KIND = {"earnings": "실적", "macro": "매크로", "policy": "정책"}
+    WD = ["월", "화", "수", "목", "금", "토", "일"]
+    evs = sorted((e for e in (events or []) if e.get("date")), key=lambda e: e["date"])
+    up = [e for e in evs if e["date"] >= today.isoformat()]
+    past = [e for e in evs if e["date"] < today.isoformat()][::-1]  # 최근 것부터
+
+    def _label(e):
+        return (e.get("label") or {}).get("ko") or (e.get("title") or {}).get("ko") or ""
+
+    def row(e):
+        d = _date.fromisoformat(e["date"])
+        dd = (d - today).days
+        badge = "오늘" if dd == 0 else (f"D-{dd}" if dd > 0 else f"{-dd}일 전")
+        kind = KIND.get(e.get("kind"), "일정")
+        links = ""
+        ent = e.get("entity")
+        if ent and slugify(ent) in ent_indexable:
+            links += f' <a class="lnk" href="e/{E(slugify(ent))}.html">{E(ent)} 관련 글 →</a>'
+        iid = e.get("itemId")
+        if iid and iid in ids:
+            links += f' <a class="lnk" href="p/{E(iid)}.html">해설 읽기 →</a>'
+        return (f'<li><span class="dd{" dd-past" if dd < 0 else ""}">{E(badge)}</span>'
+                f'<span class="dt">{d.month}월 {d.day}일({WD[d.weekday()]})</span>'
+                f'<span class="k">{E(kind)}</span>'
+                f'<span class="lb">{E(_label(e))}</span>{links}</li>')
+
+    up_rows = "".join(row(e) for e in up) or '<li class="none">예정된 일정이 없습니다. 매주 갱신됩니다.</li>'
+    past_html = ""
+    if past:
+        past_html = "<h2>지난 일정</h2><ul>" + "".join(row(e) for e in past) + "</ul>"
+    # 제목 뒤에 붙는 회사명: entity가 있으면 그걸, 없으면 라벨에서 연도 이후를 잘라낸다
+    ern_names = []
+    for e in up:
+        if e.get("kind") != "earnings":
+            continue
+        nm = re.sub(r"\s*20\d\d년.*$", "", _label(e)).strip() or (e.get("entity") or "")
+        if nm:
+            ern_names.append(nm)
+    metadesc = clip("실적 발표일과 주요 경제 일정을 한 페이지에서 확인하세요. "
+                    + ("다가오는 일정: " + ", ".join(
+                        _label(e) if re.search(r"\(\d{1,2}/\d{1,2}\)", _label(e))
+                        else _label(e) + f" ({int(e['date'][5:7])}/{int(e['date'][8:10])})"
+                        for e in up[:5]) + ". " if up else "")
+                    + "매주 자동 갱신, 각 일정의 관련 분석 글 링크 포함.", 160)
+    url = BASE + "calendar.html"
+    ld = {
+        "@context": "https://schema.org", "@type": "CollectionPage",
+        "name": "실적 발표·경제 일정 캘린더", "description": metadesc, "url": url,
+        "publisher": publisher_ld(), "isPartOf": {"@id": BASE + "#website"}, "inLanguage": "ko",
+        "mainEntity": {
+            "@type": "ItemList", "numberOfItems": len(up),
+            "itemListElement": [
+                {"@type": "ListItem", "position": n + 1, "name": _label(e) + " (" + e["date"] + ")"}
+                for n, e in enumerate(up)
+            ],
+        },
+    }
+    applink = app_link_js("ko")
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실적 발표 일정·경제 캘린더{(" · " + ", ".join(ern_names[:3])) if ern_names else ""} | {SITE}</title>
+<meta name="description" content="{E(metadesc)}">
+<link rel="canonical" href="{E(url)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{SITE}">
+<meta property="og:title" content="실적 발표 일정·경제 캘린더 | {SITE}">
+<meta property="og:description" content="{E(metadesc)}">
+<meta property="og:url" content="{E(url)}">
+<meta property="og:image" content="{BASE}og-home.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="feed.xml">
+<script type="application/ld+json">{LD(ld)}</script>
+<style>
+body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
+@media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
+a{{color:inherit}}
+.top{{font-weight:800;text-decoration:none}}
+.kicker{{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8E93A0;margin:18px 0 4px}}
+h1{{font-size:28px;letter-spacing:-.02em;margin:0 0 6px}}
+.lead{{color:#3E414B;font-size:15px;margin:8px 0 4px}}
+@media(prefers-color-scheme:dark){{.lead{{color:#C9CDD6}}}}
+h2{{font-size:16px;margin:28px 0 10px}}
+ul{{list-style:none;padding:0}}
+li{{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:12px 0;border-bottom:1px solid #ECEDF1}}
+@media(prefers-color-scheme:dark){{li{{border-color:#26272E}}}}
+li.none{{color:#8E93A0;font-size:14px}}
+.dd{{flex:none;font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;color:#0E9F5E;min-width:44px}}
+.dd-past{{color:#8E93A0}}
+.dt{{flex:none;font-size:13px;color:#8E93A0}}
+.k{{flex:none;font-size:11px;font-weight:700;border:1px solid #ECEDF1;border-radius:999px;padding:1px 8px;color:#8E93A0}}
+@media(prefers-color-scheme:dark){{.k{{border-color:#26272E}}}}
+.lb{{font-weight:600}}
+.lnk{{font-size:12.5px;font-weight:700;text-decoration:none;color:#4A6CF7}}
+.cta{{display:inline-block;margin-top:24px;font-weight:700;text-decoration:none;background:#111;color:#fff;padding:11px 20px;border-radius:999px}}
+@media(prefers-color-scheme:dark){{.cta{{background:#fff;color:#111}}}}
+footer{{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}}
+@media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
+footer a{{color:#8E93A0}}
+</style>
+{applink}
+</head>
+<body>
+<a class="top" href="./">◆ {SITE}</a>
+<div class="kicker">경제 캘린더 · {today.isoformat()} 갱신</div>
+<h1>실적 발표·경제 일정 캘린더</h1>
+<p class="lead">주요 기업의 실적 발표일과 FOMC·CPI 같은 경제 일정을 한곳에 모았습니다. 매주 자동 갱신되며, 각 일정에는 전 세계 투자 고수들의 관련 분석 글이 연결됩니다.</p>
+<h2>다가오는 일정</h2>
+<ul>{up_rows}</ul>
+{past_html}
+<a class="cta" href="./">Stacks에서 관련 글 읽기 →</a>
+<footer>
+  요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
+  <a href="./">{SITE} 홈</a> · <a href="articles.html">전체 글</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="feed.xml">RSS</a>
+</footer>
+</body>
+</html>
+"""
+
+
 def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_slugs=None):
     """Sitemap with xhtml:link alternates on every article URL. Sitemap-level
     hreflang is what lets Google discover the en/ja pages as translations rather
@@ -1921,6 +2056,7 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     # policy reviewer landing on a single /p/ page has no other route to the
     # site-level context.
     urls = [(BASE, now, "1.0", None), (BASE + "this-week.html", now, "0.7", None),
+            (BASE + "calendar.html", now, "0.7", None),
             (BASE + "articles.html", now, "0.6", None),
             (BASE + "about.html", now, "0.6", None),
             (BASE + "privacy.html", now, "0.3", None)]
@@ -2449,6 +2585,9 @@ def main():
                .replace('href="../feed.xml"', 'href="feed.xml"').replace('href="../favicon-32.png"', 'href="favicon-32.png"')
     )
     week_slugs = sorted(fn[:-5] for fn in os.listdir("week") if fn.endswith(".html"))
+
+    open("calendar.html", "w", encoding="utf-8").write(
+        calendar_page(d.get("events") or [], items, set(ent_indexable)))
 
     open("sitemap.xml", "w", encoding="utf-8").write(
         sitemap(items, ent_indexable, week_slugs, theme_slugs, record_slugs))
