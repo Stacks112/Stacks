@@ -2,6 +2,37 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (surge alerts: sharded cron, Free-plan subrequest cap)
+Goal:
+- june: "급변동 알림, 뭐가 문제인지 체크해줘" then "구현해서 배포해줘". Follower surge pushes had been silently dead since 2026-07-24.
+
+Root cause:
+- `computeSurges()` priced every followed company in one invocation: 1 (items.json) + N Yahoo calls, N = 78. The Workers **Free** plan caps one invocation at **50 subrequests**, so every firing died before reaching the OneSignal calls, and silently, because `fetchDailyChange`/`osPushTag` swallow their errors. Measured with Cloudflare GraphQL `workersInvocationsAdaptive` at 23:00Z: 07-23 = 44 subrequests (pushed 3, the only rows in D1 `surge_alerts`); 07-27/28/29/30 = exactly 50 each (pushed 0). 07-24 and 07-31 had no cron invocation at all.
+
+Changed:
+- `worker/index.js` (`07172da`), `worker/wrangler.toml` (`7a824cf`)
+- Claude project docs: `claude/status-2026-08-03-surge-alert-diagnosis.md`, `claude/prompts/surge-monitor.md`
+
+Design:
+- New D1 table `surge_scan(date, tag, name, ticker, pct, price, currency)`. Cron is now `0,5,10,15 23 * * 1-5` and the role comes from the minute (index = minute/5): :00 :05 :10 each price one shard (companies sorted by name, `i % SURGE_SHARDS == shard`), :15 is a push-only sweeper. Pushes rank globally over `surge_scan` and only fire once the day's scan is complete (or from the last shard / sweeper), capped at `SURGE_TOP_N` per UTC day by `surge_alerts`.
+- `/cron/surge-dryrun` no longer prices anything. It reads `surge_scan` (1 subrequest) and returns `scannedToday` / `total` / `complete` / `sentToday`, so a truncated scan cannot look clean and the monitor can finally see actual sends. The old 10 minute `DRY` memo is deleted, it is what made the 07-27..07-30 monitor runs report a frozen date.
+- `/cron/surge` now takes `{shard, push}`.
+
+Verified:
+- Node harness against the real module (mock D1 + a fetch that throws past 50 subrequests): 78/78 companies scanned across the three firings, max 30 subrequests per invocation, global top 3 pushed rather than per shard local winners (the harness caught that regression before deploy), re-running every firing pushes 0 more. Edge cases: missing last shard, missing first shard, 150 companies (max 42 subrequests, truncation surfaced as `skippedThisRun` + `complete:false`), and a day with no movers.
+- `node --check` on the exact deployed bytes. deploy_guard clean before upload, clobber guard success on both commits, Deploy worker success on both.
+- Post deploy shas match (index.js `582dc0a8`, wrangler.toml `20f4ac39`). Live `GET https://api.stacksdaily.com/cron/surge-dryrun` returns `{"source":"surge_scan","total":78,"scannedToday":0,"complete":false,"sentToday":[]}`. `surge_scan` exists in D1. Cloudflare schedules API confirms `0,5,10,15 23 * * 1-5`.
+
+Risks:
+- The end to end push is unproven until the first real firing (2026-08-04 08:00-08:15 KST). Check `sentToday` in the dryrun and rows in `surge_alerts` for that date.
+- Two cron firings vanished entirely on 07-24 and 07-31, both Fridays. Cause unknown and unrelated to this fix. The :15 sweeper limits the damage of a lost shard but a whole cron outage still sends nothing.
+- `stacks-comments.wnrakrhdn128.workers.dev` is `enabled:false` at the script level. Only `api.stacksdaily.com` is live, the monitor prompt was pointing at the dead one.
+- WORK-LOCK board was not taken for `worker/`: another window was committing to `scripts/` and `.github/workflows/` at the time, deploy_guard confirmed `worker/` untouched, and the deploy was a single 5 minute window.
+
+Next:
+- Confirm `surge_alerts` has rows for 2026-08-04 after the cron.
+- If followed companies grow past ~120, bump `SURGE_SHARDS` and add a cron minute; the sweeper minute must stay last.
+
 ## 2026-08-03 Claude (onboarding gate retired)
 Goal:
 - Item 2 from the analytics review: the interest-picker gate showed to 26 new visitors in 7 days and all 26 skipped it (zero selections). june decided: retire, do not delete.
