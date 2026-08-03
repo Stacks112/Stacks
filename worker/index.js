@@ -76,10 +76,22 @@ const MAX_CONTENT = 2000;
 const RATE_LIMIT_PER_MIN = 3;
 const ONESIGNAL_APP_ID = "88ed92c8-315e-497f-bec1-4f5862f5f45b";
 
-/* ---- surge-alert config (v8.2 additions) ---- */
+/* ---- surge-alert config (v8.2 additions; sharded in v10.0) ---- */
 const ITEMS_URL = "https://raw.githubusercontent.com/Stacks112/Stacks/main/items.json";
 const SURGE_ABS_MIN = 4;   // push only |daily % change| >= this
-const SURGE_TOP_N = 3;     // at most this many movers per day
+const SURGE_TOP_N = 3;     // at most this many pushes per UTC day (ranked globally)
+/* v10.0 — why this is sharded. The Workers Free plan allows 50 subrequests per
+   invocation. Pricing every followed company in one pass needed 1 + N, and N
+   grew to 78 by 2026-08-03, so every cron firing died at exactly 50 — before
+   it ever reached the OneSignal calls, and silently, because fetchDailyChange
+   and osPushTag both swallow their errors. Measured: 2026-07-23 used 44
+   subrequests and pushed fine; 07-27..07-30 each used exactly 50 and pushed
+   nothing. The cron now fires three times (:00 :05 :10) and each firing prices
+   one shard into surge_scan; pushes rank across everything scanned that day,
+   so the day's top movers stay global. */
+const SURGE_SHARDS = 3;     // MUST match the number of cron minutes in wrangler.toml
+const SURGE_SCAN_MAX = 40;  // hard ceiling on price lookups per invocation
+const SURGE_SCAN_KEEP_DAYS = 7;  // surge_scan rows older than this are pruned
 
 /* ---- security config (v9.0) ---- */
 /* every push/notification link must live on one of these origins */
@@ -288,12 +300,10 @@ async function rateOk(db, key, limit, windowSec, failOpen) {
    items.json, cached at the edge for 5 minutes. Without this any stranger can
    POST /view with a made-up pageId and grow the counters table forever.
    Fails OPEN (returns null = "cannot tell") if items.json is unreachable. */
-/* surge dry-run memo: the diagnostic endpoint is public, so it must not be
-   able to fan out one Yahoo request per followed company on demand. */
-let DRY = null;
-let DRY_AT = 0;
-let DRY_INFLIGHT = null;
-const DRY_TTL = 600;
+/* v10.0: the surge dry-run no longer prices anything on demand — it reads the
+   rows the cron already wrote — so the old DRY memo, which existed only to stop
+   a stranger fanning out one Yahoo request per followed company, is gone. That
+   memo is also what made three days of monitor runs report a frozen date. */
 
 let PAGEIDS = null;        // Set, memoised in isolate memory
 let PAGEIDS_AT = 0;        // epoch seconds of the last successful load
@@ -735,61 +745,94 @@ async function osPushTag(env, tag, headings, contents, link) {
   } catch (e) { return false; }
 }
 
-/* read items.json entities, price every followable company, return the
-   top-N movers whose |daily change| >= threshold. read-only, never throws. */
-async function computeSurges() {
+/* items.json -> the full list of followable companies, in a deterministic
+   order. The order MUST be stable across invocations or shard membership
+   drifts between the three firings and some companies are never priced.
+   Costs 1 subrequest. Returns null when items.json is unreachable. */
+async function listCompanies() {
   let entities = {};
   try {
-    const r = await fetch(ITEMS_URL, { cf: { cacheTtl: 60 } });
-    if (!r.ok) return [];
+    const r = await fetch(ITEMS_URL, { cf: { cacheTtl: 300 } });
+    if (!r.ok) return null;
     const data = await r.json();
     entities = (data && data.entities) || {};
-  } catch (e) { return []; }
+  } catch (e) { return null; }
   const companies = [];
   for (const name in entities) {
     const e = entities[name];
     if (e && e.kind === "company" && e.ticker) companies.push({ name, ticker: e.ticker });
   }
-  const moved = [];
-  for (const c of companies) {
-    const q = await fetchDailyChange(c.ticker);
-    if (q && isFinite(q.pct) && Math.abs(q.pct) >= SURGE_ABS_MIN) {
-      moved.push({
-        name: c.name,
-        ticker: c.ticker,
-        pct: Math.round(q.pct * 100) / 100,
-        price: q.price,
-        currency: q.currency,
-        tag: "c_" + surgeSlug(c.name)
-      });
-    }
-  }
-  moved.sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct));
-  return moved.slice(0, SURGE_TOP_N);
+  companies.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+  return companies;
 }
 
-async function ensureSurgeTable(db) {
+async function ensureSurgeTables(db) {
   await db.exec(
     "CREATE TABLE IF NOT EXISTS surge_alerts (" +
     "date TEXT NOT NULL, tag TEXT NOT NULL, PRIMARY KEY (date, tag))"
   );
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS surge_scan (" +
+    "date TEXT NOT NULL, tag TEXT NOT NULL, name TEXT NOT NULL, ticker TEXT NOT NULL, " +
+    "pct REAL NOT NULL, price REAL, currency TEXT, PRIMARY KEY (date, tag))"
+  );
 }
 
-/* compute + (unless dryRun) push, deduping one push per company per UTC day. */
-async function runSurgeAlerts(env, opts) {
-  const dryRun = !!(opts && opts.dryRun);
-  const surges = await computeSurges();
-  const date = new Date().toISOString().slice(0, 10);
-  if (dryRun) {
-    return { date, dryRun: true, threshold: SURGE_ABS_MIN, count: surges.length, surges };
+/* price one shard of the company list into surge_scan for `date`.
+   Subrequests: 1 (items.json) + at most SURGE_SCAN_MAX. Never throws. */
+async function scanShard(env, date, shard) {
+  const companies = await listCompanies();
+  if (!companies) return { total: 0, picked: 0, priced: 0, skipped: 0 };
+  const s = ((shard % SURGE_SHARDS) + SURGE_SHARDS) % SURGE_SHARDS;
+  const mine = companies.filter((_, i) => i % SURGE_SHARDS === s);
+  const take = mine.slice(0, SURGE_SCAN_MAX);
+  let priced = 0;
+  for (const c of take) {
+    const q = await fetchDailyChange(c.ticker);
+    if (!q || !isFinite(q.pct)) continue;
+    priced++;
+    await env.DB.prepare(
+      "INSERT INTO surge_scan (date, tag, name, ticker, pct, price, currency) " +
+      "VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7) ON CONFLICT(date, tag) DO UPDATE SET " +
+      "pct = excluded.pct, price = excluded.price, currency = excluded.currency"
+    ).bind(
+      date, "c_" + surgeSlug(c.name), c.name, c.ticker,
+      Math.round(q.pct * 100) / 100, q.price, q.currency || ""
+    ).run();
   }
+  /* skipped > 0 means this shard is itself too big for one invocation, i.e.
+     SURGE_SHARDS needs to go up. It is reported, never swallowed. */
+  return { total: companies.length, picked: mine.length, priced, skipped: mine.length - take.length };
+}
+
+/* today's movers, ranked across everything scanned so far. D1 reads only. */
+async function scannedSurges(env, date, limit) {
+  const { results } = await env.DB.prepare(
+    "SELECT name, ticker, pct, price, currency, tag FROM surge_scan " +
+    "WHERE date = ?1 AND ABS(pct) >= ?2 ORDER BY ABS(pct) DESC LIMIT ?3"
+  ).bind(date, SURGE_ABS_MIN, limit).all();
+  return results || [];
+}
+
+async function sentTags(env, date) {
+  const { results } = await env.DB.prepare(
+    "SELECT tag FROM surge_alerts WHERE date = ?1"
+  ).bind(date).all();
+  return (results || []).map(r => r.tag);
+}
+
+/* push the biggest movers not yet pushed today, capped at SURGE_TOP_N per UTC
+   day in total (surge_alerts is both the dedupe and the day's budget).
+   Subrequests: at most SURGE_TOP_N. */
+async function pushSurges(env, date) {
+  const already = await sentTags(env, date);
+  let budget = SURGE_TOP_N - already.length;
+  if (budget <= 0) return [];
+  const ranked = await scannedSurges(env, date, SURGE_TOP_N);
   const out = [];
-  await ensureSurgeTable(env.DB);
-  for (const sge of surges) {
-    const dup = await env.DB
-      .prepare("SELECT 1 FROM surge_alerts WHERE date = ?1 AND tag = ?2")
-      .bind(date, sge.tag).first();
-    if (dup) { out.push({ ...sge, sent: false, skipped: "already_sent_today" }); continue; }
+  for (const sge of ranked) {
+    if (budget <= 0) break;
+    if (already.indexOf(sge.tag) !== -1) continue;
     const up = sge.pct >= 0;
     const arrow = up ? "▲" : "▼";
     const abs = Math.abs(sge.pct).toFixed(1);
@@ -804,12 +847,58 @@ async function runSurgeAlerts(env, opts) {
     if (ok) {
       await env.DB.prepare("INSERT OR IGNORE INTO surge_alerts (date, tag) VALUES (?1, ?2)")
         .bind(date, sge.tag).run();
+      budget--;
     }
-    out.push({ ...sge, sent: ok });
+    out.push({ name: sge.name, ticker: sge.ticker, pct: sge.pct, tag: sge.tag, sent: ok });
   }
-  return { date, dryRun: false, threshold: SURGE_ABS_MIN, count: out.length, sent: out };
+  return out;
 }
-/* =================== end surge alerts (v8.2) =================== */
+
+/* one cron firing (or one authorised manual call): scan my shard, then push.
+   Returns the coverage numbers so a truncated scan can never look clean.
+
+   WHY THE PUSH WAITS FOR A COMPLETE SCAN: the daily budget is SURGE_TOP_N
+   pushes, so if an early shard spends it on its own local movers, a bigger
+   mover living in a later shard can never be sent. (Caught in test: +20% was
+   silently beaten by a +4.2% that happened to be scanned first.) So a firing
+   only pushes once the day's scan is complete — which is the last shard in the
+   normal case. `isLast` is kept as a fallback so a day where some shard never
+   fired still sends the best of what was actually scanned rather than nothing.
+   opts.push forces the decision either way for manual calls.
+   opts.sweep = the :15 firing: push only, never scan. It exists so that a day
+   where the last scanning shard was lost still sends something (measured: two
+   cron firings vanished entirely in the nine days before 2026-08-03). Costs at
+   most SURGE_TOP_N subrequests and is a no-op once the budget is spent. */
+async function runSurgeShard(env, opts) {
+  const sweep = !!(opts && opts.sweep);
+  const shard = ((opts && opts.shard) | 0);
+  const s = ((shard % SURGE_SHARDS) + SURGE_SHARDS) % SURGE_SHARDS;
+  const date = new Date().toISOString().slice(0, 10);
+  await ensureSurgeTables(env.DB);
+  const cutoff = new Date(Date.now() - SURGE_SCAN_KEEP_DAYS * 86400000)
+    .toISOString().slice(0, 10);
+  await env.DB.prepare("DELETE FROM surge_scan WHERE date < ?1").bind(cutoff).run();
+  const scan = sweep
+    ? { total: 0, picked: 0, priced: 0, skipped: 0 }
+    : await scanShard(env, date, shard);
+  const row = await env.DB.prepare(
+    "SELECT COUNT(*) AS n FROM surge_scan WHERE date = ?1").bind(date).first();
+  const scannedToday = row ? row.n : 0;
+  const complete = scan.total > 0 && scannedToday >= scan.total;
+  const wantPush = (opts && typeof opts.push === "boolean")
+    ? opts.push
+    : (sweep || complete || s === SURGE_SHARDS - 1);
+  const sent = wantPush ? await pushSurges(env, date) : [];
+  return {
+    date, mode: sweep ? "sweep" : "scan",
+    shard: sweep ? null : s, shards: SURGE_SHARDS, threshold: SURGE_ABS_MIN,
+    total: scan.total, pricedThisRun: scan.priced, skippedThisRun: scan.skipped,
+    scannedToday, complete, pushed: wantPush,
+    sent
+  };
+}
+
+/* ============= end surge alerts (v8.2, sharded v10.0) ============ */
 
 export default {
   async fetch(request, env) {
@@ -879,46 +968,45 @@ export default {
       return json({ ok: false, error: "method not allowed" }, 405, origin);
     }
 
-    /* ---------- surge alerts: read-only diagnostic (cached) ----------
-       Returns today's computed movers without pushing or writing to D1.
-       This is what the 08:20 KST monitor task polls, over a plain GET with no
+    /* ---------- surge alerts: read-only diagnostic ----------
+       What the 08:20 KST monitor task polls, over a plain GET with no
        credentials, so a secret gate here would just break the monitor.
-       v9.0: the problem was never that the numbers are public, it was that
-       every call fanned out one Yahoo Finance request per followed company,
-       i.e. a free amplifier for anyone who found the URL. A 10 minute memo
-       fixes that: an unauthenticated caller gets the last computed answer,
-       and only a caller holding the push secret can force a recompute. */
+       v10.0: this no longer prices anything itself. It reports what the cron
+       already wrote to surge_scan, plus the coverage numbers, so a truncated
+       scan can never look like a clean one — and it costs 1 subrequest
+       instead of 79, which is what made the old version an amplifier and
+       forced the memo that then reported a frozen date for three days.
+       `sentToday` is the field that actually answers "did followers get it". */
     if (url.pathname === "/cron/surge-dryrun") {
-      const bp = request.method === "POST" ? (await request.json().catch(() => null)) || {} : {};
-      const priv = authorized(request, env, bp.secret, ["PUSH_SECRET", "NOTIFY_SECRET"]);
-      const nowS = Math.floor(Date.now() / 1000);
-      if (!priv) {
-        if (DRY && nowS - DRY_AT < DRY_TTL) {
-          return json({ ...DRY, cached: true, ageSec: nowS - DRY_AT }, 200, origin);
-        }
-        if (DRY_INFLIGHT) return json({ ...(await DRY_INFLIGHT), cached: true }, 200, origin);
-        DRY_INFLIGHT = (async () => {
-          try {
-            const out = await runSurgeAlerts(env, { dryRun: true });
-            DRY = out; DRY_AT = Math.floor(Date.now() / 1000);
-            return out;
-          } finally { DRY_INFLIGHT = null; }
-        })();
-        return json({ ...(await DRY_INFLIGHT), cached: false }, 200, origin);
-      }
-      const r = await runSurgeAlerts(env, { dryRun: true });
-      DRY = r; DRY_AT = Math.floor(Date.now() / 1000);
-      return json(r, 200, origin);
+      if (!env.DB) return json({ ok: false, error: "no db" }, 500, origin);
+      await ensureSurgeTables(env.DB);
+      const date = new Date().toISOString().slice(0, 10);
+      const surges = await scannedSurges(env, date, SURGE_TOP_N);
+      const row = await env.DB.prepare(
+        "SELECT COUNT(*) AS n FROM surge_scan WHERE date = ?1").bind(date).first();
+      const companies = await listCompanies();
+      const scannedToday = row ? row.n : 0;
+      const total = companies ? companies.length : null;
+      return json({
+        ok: true, date, dryRun: true, source: "surge_scan",
+        threshold: SURGE_ABS_MIN, shards: SURGE_SHARDS,
+        scannedToday, total,
+        complete: total !== null && scannedToday >= total,
+        count: surges.length, surges,
+        sentToday: await sentTags(env, date)
+      }, 200, origin);
     }
     /* ---------- surge alerts: force a real send (June only) ----------
-       POST + Bearer (or a secret in the JSON body). Deduped per company/day. */
+       POST + Bearer (or a secret in the JSON body). Deduped per company/day.
+       One shard per call — the whole list does not fit in one invocation's
+       subrequest budget. Body: {shard: 0..SURGE_SHARDS-1, push: true|false} */
     if (url.pathname === "/cron/surge") {
       if (request.method !== "POST") return json({ error: "method not allowed" }, 405, origin);
       const p = (await request.json().catch(() => null)) || {};
       if (!authorized(request, env, p.secret, ["PUSH_SECRET", "NOTIFY_SECRET"])) {
         return json({ error: "forbidden" }, 403, origin);
       }
-      const r = await runSurgeAlerts(env, { dryRun: false });
+      const r = await runSurgeShard(env, { shard: p.shard | 0, push: p.push });
       return json(r, 200, origin);
     }
     /* ---------- quote: /quote?s=SYMBOL ----------
@@ -1513,15 +1601,25 @@ export default {
     return json({ error: "method not allowed" }, 405, origin);
   },
 
-  /* ---------- CRON: surge alerts (Cron Trigger: 0 23 * * 1-5 = KST Tue-Sat 08:00) ----------
-     Prices every followed company from items.json and pushes the day's biggest
-     movers (|change| >= 4%) to their c_<slug> follow tags. One push per company
-     per UTC day (D1 surge_alerts dedupe). A cron must never throw. */
+  /* ---------- CRON: surge alerts ----------
+     Cron Trigger: "0,5,10,15 23 * * 1-5", starting KST Tue-Sat 08:00.
+     Each firing prices one shard of the followed companies into surge_scan;
+     the run that completes the day's scan pushes the biggest movers
+     (|change| >= 4%, at most SURGE_TOP_N per UTC day, deduped by surge_alerts)
+     to their c_<slug> follow tags. Split because the Free plan caps one
+     invocation at 50 subrequests while the full list needs 79 — see the
+     SURGE_SHARDS comment for the measurements.
+
+     The role comes from the firing's own minute: index = minute / 5, and an
+     index at or past SURGE_SHARDS is the push-only sweeper. So growing to four
+     shards is "add a minute to the cron and bump SURGE_SHARDS", and the last
+     minute always stays the sweeper. A cron must never throw. */
   async scheduled(event, env, ctx) {
     ctx.waitUntil((async () => {
       try {
         if (!env.DB || !env.ONESIGNAL_REST_KEY) return;
-        await runSurgeAlerts(env, { dryRun: false });
+        const idx = Math.floor(new Date(event.scheduledTime).getUTCMinutes() / 5);
+        await runSurgeShard(env, idx >= SURGE_SHARDS ? { sweep: true } : { shard: idx });
       } catch (e) { /* swallow: cron must never throw */ }
     })());
   }
