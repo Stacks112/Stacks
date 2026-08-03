@@ -5403,11 +5403,32 @@ function linkifyPass(card, RE, A2K, makeSpan){
     });
   });
 }
-function linkifyEntities(card){
+function linkifyEntitiesNow(card){
   /* entities (companies/people) first, then the plain-language glossary of
      uncommon terms. Glossary skips text already inside an entity link. */
   linkifyPass(card, ENT_RE, ALIAS2KEY, makeEntSpan);
   linkifyPass(card, GLOSS_RE, GALIAS2KEY, makeGlossSpan);
+}
+/* INP fix 2026-08-03: on a throttled phone the two linkify passes cost
+   ~18ms per card, and a feed page paints 10 cards in the same task as the
+   tap that asked for it - linkify alone was ~60% of that long task (measured
+   1.36s at 4x CPU throttle on the Latest/Following switch). The links are
+   decoration, not layout: nothing reads them in the same frame, and the
+   walker skips already-linked spans, so re-entry is safe. Queue every call
+   and drain in <=8ms slices on later tasks; cards that left the DOM before
+   their turn are dropped. */
+var LINKIFY_Q = [], LINKIFY_T = null;
+function linkifyEntities(card){
+  LINKIFY_Q.push(card);
+  if (!LINKIFY_T) LINKIFY_T = setTimeout(linkifyDrain, 0);
+}
+function linkifyDrain(){
+  var t0 = performance.now();
+  while (LINKIFY_Q.length && performance.now() - t0 < 8){
+    var c = LINKIFY_Q.shift();
+    if (c && c.isConnected){ try { linkifyEntitiesNow(c); } catch (e) {} }
+  }
+  LINKIFY_T = LINKIFY_Q.length ? setTimeout(linkifyDrain, 0) : null;
 }
 /* shared builder for the entity profile card.
    mode "feed": back button + shown above the filtered article list.
@@ -6707,7 +6728,17 @@ function hydrateThumb(item){
   });
 }
 
+/* INP fix 2026-08-03: this walks every item in ITEMS with document-wide
+   querySelectorAll calls (~25ms at 4x throttle) and render paths call it
+   2-4 times per tap. It only swaps decoration (logos/avatars) into cards
+   that already painted, so it never needs to run inside the tap's own task.
+   Coalesce all calls in one frame into a single run on the next task. */
+var HYDRATE_T = null;
 function hydrateImages(){
+  if (HYDRATE_T) return;
+  HYDRATE_T = setTimeout(function(){ HYDRATE_T = null; hydrateImagesNow(); }, 0);
+}
+function hydrateImagesNow(){
   ITEMS.forEach(item => {
     hydrateThumb(item);
     if (item.logo){
@@ -8968,7 +8999,12 @@ function renderAfterHot(S){
    so typing never repaints the hero, hot rail, or tabs, and cards
    don't replay their entrance animation (the white flicker). */
 /* feed pagination: show a page of cards, load more as the reader scrolls */
-const FEED_PAGE_SIZE = 10;
+/* INP fix 2026-08-03: 10 cards built+laid out in the tap's own task kept
+   the switch/tab interaction at ~570ms on a 4x-throttled phone even after
+   linkify/hydrate moved off the task - style+layout of the cards is the
+   floor. 5 cards halve that; the 800px-rootMargin IntersectionObserver
+   prefetches the next page during scroll, so the reader sees no gap. */
+const FEED_PAGE_SIZE = 5;
 let CUR_ITEMS = [];
 let SHOWN = 0;
 var READ_VIEW = false;     /* 좌측 '읽은 글' 보관함 뷰 */
