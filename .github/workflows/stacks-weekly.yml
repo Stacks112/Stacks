@@ -42,6 +42,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      # 발송 직전 게이트. 잘못 나간 메일은 회수할 수 없으므로, 렌더가 깨졌으면
+      # 여기서 job을 죽여 아래 발송 스텝이 아예 돌지 않게 한다.
+      # 2026-08-03: gist 블록 마커(@@REF@@ 등)가 변환되지 않은 채 수신함에
+      # 그대로 찍히던 것을 열흘 뒤에야 사람이 눈으로 발견했다.
+      - name: Guard — weekly email renders clean
+        run: python scripts/check_email_render.py
+
       - name: Build weekly digest + email + announce
         env:
           STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}

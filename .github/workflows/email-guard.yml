@@ -1,0 +1,47 @@
+name: Email render guard
+
+# 주간 메일 렌더러가 조용히 깨지는 것을 커밋 시점에 잡는다.
+#
+# 배경(2026-08-03): 카드 본문의 블록 마커(`@@REF@@` · `@@IMG@@` · `@@CHK@@` ·
+# `@@CMP@@` · `## 소제목`)를 푸는 렌더러가 세 곳에 따로 있다 —
+# index.html(앱) · build_pages.py(정적 페이지) · weekly_email.py(메일).
+# 2026-07-24에 메일이 gist 전문을 싣도록 바뀌었는데 메일 쪽에만 마커 처리가
+# 없었고, 그 결과 수신함에 마커 원문과 날것 URL이 그대로 찍혔다. 발견은 열흘 뒤,
+# 사람이 메일을 읽고서였다. 그 사이 발송 자체가 죽어 있어 아무도 볼 수 없었다.
+#
+# 같은 검사가 stacks-weekly.yml의 발송 직전에도 돈다. 이 워크플로는 그보다 앞서
+# "커밋한 사람이 바로 안다"를 담당한다.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "scripts/weekly_email.py"
+      - "scripts/weekly.py"
+      - "scripts/weekly_send.py"
+      - "scripts/build_pages.py"
+      - "scripts/build_data.py"
+      - "scripts/check_email_render.py"
+      - "items.json"
+      - "images.json"
+      - "glossary.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: email-guard-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check weekly email render
+        run: python scripts/check_email_render.py
