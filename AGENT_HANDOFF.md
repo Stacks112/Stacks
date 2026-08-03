@@ -2,6 +2,30 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude
+Goal:
+- Fix Clarity INP 530ms (52.9% of views rated bad) — the top item from the 7-day analytics review.
+
+Changed:
+- `index.html` (commit `7ec2437`, deployed live)
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Measured at 4x CPU throttle (Playwright, iPhone viewport): feed-switch tap held the main thread 1.36s. After fixes: 304ms (~78% cut).
+- Fix 1: `linkifyEntities` now queues cards and drains in <=8ms slices off the tap task (`linkifyEntitiesNow` keeps the original logic; two TreeWalker+regex passes per card were ~60% of the long task).
+- Fix 2: `hydrateImages` coalesces same-frame calls into one deferred run (`hydrateImagesNow`); it scans all ITEMS with document-wide querySelectorAll and ran 2-4x per tap.
+- Fix 3: `FEED_PAGE_SIZE` 10 -> 5 (style+layout inside the tap halves; the 800px-rootMargin IntersectionObserver prefetch hides the difference).
+- Inline JS syntax via node --check (5 blocks). Mobile+desktop Playwright smoke: entity links present after deferred drain, avatars hydrated, pagination 5/page, goToItem cross-page jump works, zero page errors.
+- `deploy_guard.py` clean before upload; browser-upload patch spec self-verified (base dfab19ed -> target f26b3ff9); post-deploy remote sha matches; live check on stacksdaily.com: new functions live, 6 cards linked+hydrated, no errors.
+
+Risks:
+- Entity/glossary links now appear one task later than card paint (imperceptible; queue drains in ms).
+- If a future caller needs links synchronously in the same tick, use `linkifyEntitiesNow`/`hydrateImagesNow`.
+
+Next:
+- Watch Clarity INP over the next 7 days (target: <200ms, "bad" share down from 52.9%).
+- Remaining analytics items: onboarding 100% skip rate, article-page SEO, today/scrollpast +243%.
+
 ## 2026-08-02 Codex
 Goal:
 - Add the normal feed `More` behavior to the completed prediction-result card.
