@@ -903,7 +903,9 @@
   function openList(kind){
     if (!mq.matches) return;
     var ls = $("v82list"); if (!ls || ls.classList.contains("on")) return;
-    setHeadTitle("v82list", kind === "shares" ? T().shares : T().follows);
+    /* 2026-08-03: 헤더 제목은 서랍의 메뉴 이름과 같아야 한다(테마 논쟁·판정 기록과 동일
+       규칙). 기존 T().follows/shares는 "팔로우 내역"·"공유 내역"이라 메뉴명과 달랐다. */
+    setHeadTitle("v82list", kind === "shares" ? T().dwShared : T().dwFollowing);
     renderList(kind);
     showScreen("v82list");
     setActive();
