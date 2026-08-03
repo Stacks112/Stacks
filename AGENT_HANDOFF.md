@@ -2,6 +2,25 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (onboarding gate retired)
+Goal:
+- Item 2 from the analytics review: the interest-picker gate showed to 26 new visitors in 7 days and all 26 skipped it (zero selections). june decided: retire, do not delete.
+
+Changed:
+- `index.html`, `CLAUDE.md` (commit `3a3e500`, deployed live)
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Evidence before deciding: all 13 Clarity recordings (07/28-31) of skip-clickers reviewed - every visitor dismissed intro+onboarding reflexively in 1-2s like a cookie banner; 8 of 13 then read for 4-30 min. Zero sessions abandoned while the popup was open, so it wasn't an exit driver - just zero-value friction. 2 of 4 interest options were tied to the retired series feature anyway.
+- Implementation: single `ONBOARD_RETIRED = true` guard at the top of `maybeOnboard()`, independent of `FIRST_RUN_GATES_DISABLED_FOR_ADSENSE` - when that temporary flag is reverted after AdSense approval, the intro comes back but onboarding stays off. All onboarding code/markup/CSS kept inert (same pattern as the series retirement). Interests UI unchanged in the me sheet.
+- node --check (5 blocks); Playwright first-visit simulation local + live: onboard stays hidden after `maybeOnboard()`, no scroll lock, 0 page errors; deploy_guard clean; post-deploy shas match (index.html c929040e, CLAUDE.md b776cfa8).
+
+Risks:
+- None functional. Revert = set `ONBOARD_RETIRED` to false (1 line).
+
+Next:
+- Remaining analytics items: article-page SEO (Google only 20 visits/week), today/scrollpast +243%.
+
 ## 2026-08-03 Claude (project doc cleanup + entity matcher fix)
 Goal:
 - june asked to tidy up the project context: compress old status logs, refresh the entry-point doc, and clear the code items sitting in `claude/fix-queue.md`.
