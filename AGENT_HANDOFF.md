@@ -2,6 +2,26 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (whole-card click opens the post view on desktop)
+Goal:
+- june approved option A for the dead-click finding: make the desktop card body clickable like X.
+
+Changed:
+- `index.html` (commit `aa92cd8`, deployed live)
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Document-level delegated click handler after `openFromCard()`: only fires in the v83 shell (mobile v82 already opens cards on tap), only on `#feedList article.card[id^=sig-]` that are not `.v83one`. Skips: interactive elements (`a,button,summary,input,svg,canvas,iframe,[onclick],.eg,.has-tip,...`), clicks inside a `.gist` that v83tw.js Item4 already bound (`g.__v83open` - avoids double `v83OpenItem`/double render; if the binding hasn't attached yet, this handler opens instead), active text selection (`getSelection().isCollapsed`), and modifier-key clicks. Tracked as `card/bodyopen`. CSS: `cursor:pointer` on feed cards (not `.v83one`).
+- Discovery during testing: v83tw.js:~520 already opens on `.gist` clicks - the remaining dead zones were card padding, `.src-date`/card-top, quote blocks, `.why`, headings; this handler covers those.
+- Playwright: card-padding click opens with exactly 1 `v83OpenItem` call; gist click still exactly 1 call (via existing binding); selection blocks opening; detail view no-op; cursor pointer; zero page errors. node --check 5 blocks. deploy_guard clean, post-deploy sha match (ec62d00d), live check on stacksdaily.com/?v83beta: handler live, padding click opens.
+
+Risks:
+- Double-click-to-select-word opens the post on the first click (X behaves the same).
+- If Item4's gist binding is ever removed from v83tw.js, this handler takes over automatically (guarded by `__v83open`), so behavior stays consistent.
+
+Next:
+- Watch Clarity dead-click rate after ~1 week (now with clean data thanks to the hostname gating).
+
 ## 2026-08-03 Claude (mobile screen headers match the menu top bar)
 Goal:
 - june: give 팔로잉 and 공유한 글 on mobile the same top bar as 테마 논쟁 / 판정 기록.
