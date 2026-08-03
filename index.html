@@ -2557,6 +2557,8 @@ html[data-theme="dark"] .card-thumb-img.cti-logo{background:#EDEFF2;}
    data/gist.*.json arrives. Both clamps below already exist for the "read
    more" affordance; the min-height is what makes the box the same size before
    and after the swap, so the swap costs no layout shift and no late LCP. */
+/* 카드 전체 클릭→상세 (2026-08-03): X처럼 카드가 클릭 대상임을 커서로 알림 */
+html.v83 #feedList article.card:not(.v83one){cursor:pointer;}
 .card.gclip .gist{min-height:168px;}
 html.v83 #feedList .card.gclip .gist{min-height:215px;}
 .card.gclip.v82expanded .gist,
@@ -3220,7 +3222,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </noscript>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=c2194fb8">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=c2125c57">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
@@ -7511,6 +7513,39 @@ function openFromCard(id, ev){
   }
   if (typeof v83OpenItem === "function") v83OpenItem(id);
 }
+/* ---- 카드 전체 클릭 → 상세 (2026-08-03, june 승인 A안) ----
+   Clarity 데드클릭 세션 판독 결과, 데스크톱 데드클릭은 대부분 카드 본문
+   텍스트(P.gp 요약 문단·H2.section-title·카드 컨테이너) 클릭이었다. 제목만
+   클릭되는 현재 구조가 X식 "카드 아무 데나 누르면 열린다" 기대와 어긋난 것.
+   모바일(v82.js)은 이미 카드 탭이 상세를 열므로 데스크톱(v83)만 맞춘다.
+   가드 3종: ① 링크·버튼·차트 등 자체 동작이 있는 요소는 그대로 둔다
+   ② 텍스트를 드래그 선택 중이면(복사) 열지 않는다 ③ 수정키 클릭 제외. */
+(function(){
+  var INTERACTIVE = "a,button,summary,input,textarea,select,label,svg,canvas,iframe,video,audio,[onclick],[contenteditable],.eg,.has-tip,.entity-tip,.paywall-badge";
+  document.addEventListener("click", function(e){
+    try {
+      if (!document.documentElement.classList.contains("v83")) return; /* 데스크톱 v83 셸만 */
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var card = t.closest("#feedList article.card");
+      if (!card || !card.id || card.id.indexOf("sig-") !== 0) return;
+      if (card.classList.contains("v83one")) return; /* 이미 상세 뷰 */
+      if (t.closest(INTERACTIVE)) return;
+      /* v83tw.js(Item4)가 .gist 요소에 같은 동작을 이미 바인딩해 뒀다 —
+         그쪽이 붙어 있으면 이중 호출(render 2회)을 피해 위임한다. 아직 안
+         붙은 타이밍이면 여기서 연다. */
+      var g = t.closest(".gist");
+      if (g && g.__v83open) return;
+      var sel = window.getSelection && window.getSelection();
+      if (sel && !sel.isCollapsed) return; /* 본문 복사 중 */
+      var id = card.id.slice(4);
+      if (!ITEMS.some(function(i){ return i.id === id; })) return;
+      if (typeof track === "function") track("card/bodyopen");
+      if (typeof v83OpenItem === "function") v83OpenItem(id);
+    } catch (err) {}
+  });
+})();
 function setRead(id, keepOpen){
   logRead(id);
   if (READ.has(id)){
