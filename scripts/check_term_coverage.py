@@ -32,7 +32,7 @@ STOPWORDS = {
     # 매체명 — 기사 출처 표기는 색인 대상이 아니다 (REF 마커 밖 본문에 나올 때)
     "Bloomberg", "Reuters", "CNBC", "WSJ", "NYT", "FT", "Axios", "SCMP", "Nikkei",
     "DigiTimes", "Gizmochina", "TradingKey", "Yahoo", "TechTimes", "Tom", "Hardware",
-    "WCCFtech", "Newspim", "Digitimes",
+    "WCCFtech", "Newspim", "Digitimes", "Benzinga", "PYMNTS", "UPI",
 }
 
 # 한국어 전문용어 감시 목록 — 본문에 나오는데 어떤 별칭에도 안 걸리면 후보로 띄운다.
