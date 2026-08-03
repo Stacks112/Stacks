@@ -2,6 +2,29 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (event calendar bot, weekly)
+Goal:
+- Weekly scheduled refresh of `items.json` `events` array per `claude/prompts/event-calendar.md`.
+
+Changed:
+- `items.json` (events array only), `sitemap.xml`, `feed.xml`, `feed-en.xml`, `feed-ja.xml` (rebuild output) — commit `a9ca1f2f`, pushed as `53d7fe13` after rebasing onto `f121aac7`.
+- `AGENT_HANDOFF.md`
+
+Verified:
+- Pruned 3 events >7 days past (`ev-centcom-iran-2026-07-21`, `ev-alphabet-q2-2026`, `ev-tesla-q2-2026`); kept 9 remaining (07-27 ~ 07-30).
+- Added 2 confirmed-date events within scope: Coupang Q2 2026 earnings (Aug 4, company-announced) and US CPI report for July 2026 data (Aug 12, BLS schedule). Total events now 11/12 cap.
+- Skipped as not-yet-in-window (next 3 weeks): NVIDIA Q2 FY27 earnings (Aug 26), BOK 금통위 (Aug 27), FOMC (Sep 15-16), BOJ (Sep 17-18) — all confirmed dates but past the 3-week search window; will pick up next weekly run. Alibaba's Sep 4 date is estimated, not confirmed — skipped per rule.
+- `git diff` confirmed only the `events` array changed in `items.json` (no touch to items/series/entities).
+- `python3 scripts/build_pages.py` ran clean (223 pages, 489 entity pages); IndexNow ping failed with 403 (sandbox network restriction, non-fatal, matches known behavior).
+- No event falls on D-3 (2026-08-06) this run, so no push notification was sent.
+- Push required one rebase: remote had gained `f121aac7` (doc-only handoff commit for the INP fix) between clone and push; rebase was safe since it touched only `AGENT_HANDOFF.md`.
+
+Risks:
+- None. Read-only rules doc (`claude/prompts/event-calendar.md`) unchanged.
+
+Next:
+- Next weekly run (~2026-08-08) should add NVIDIA earnings, BOK 금통위, and prune this run's Coupang/CPI events once >7 days past.
+
 ## 2026-08-03 Claude
 Goal:
 - Fix Clarity INP 530ms (52.9% of views rated bad) — the top item from the 7-day analytics review.
