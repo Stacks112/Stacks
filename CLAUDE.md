@@ -623,6 +623,19 @@ run을 개별로 열어(`/actions/runs/<id>`) Success/Failure를 반드시 확�
 보고 성공이라 단정하지 말 것. 원인 규명은 사람이 브라우저로 로그를 봐줘야 진행 가능
 (`claude/status-2026-07-21-v87-publish-success.md` 참조).
 
+**★ 예측 채점 푸시도 같은 릴레이가 보낸다 (2026-08-04).** 채점 루틴의 `[5]` 단계는
+샌드박스에서 워커를 직접 부르게 돼 있어서 **한 번도 성공한 적이 없다**(CONNECT 403,
+`api.stacksdaily.com`·옛 `workers.dev` 둘 다). `grade.py` 주석은 이미 "items.json 을
+지켜보는 워크플로가 알린다"고 전제하고 있었지만, `notify_followers.py` 는 **새 id** 만
+찾았고 채점은 기존 항목을 **수정**할 뿐이라 매번 "no new item ids" 로 조용히 통과했다
+(2026-08-04 실행: 22건 수정 중 확정 3건, 발송 0건). 이제 `newly_graded()` 가
+`outcome.status` 의 `pending → hit/miss` **전이**를 보고 `daily` 태그로 보낸다
+(gradedOn 날짜가 아니라 전이를 보는 이유 = 전이는 항목당 한 번뿐이라 재실행에도 중복이
+없다). 한 커밋당 상한 3건, 빗나감 우선, 넘친 건은 잡 요약에 남긴다.
+⚠ `grade.yml` 의 `GRADE_PUSH` 는 반드시 `"0"` 이어야 한다 — `"1"` 이면 Actions 채점분만
+두 번 나간다. **채점 루틴 프롬프트(`claude/prompts/grading.md`, 레포 밖)의 `[5]` 는
+이제 불필요하다. 프롬프트 수정은 june만 가능(prompt_update_disabled).**
+
 **★ 해결(2026-07-24, 커밋 `7fabff1`).** exit 1의 근본 원인 규명·수정 완료. 원인은
 릴레이 코드가 "구독자 0명"을 치명적 실패로 오판한 것: 어떤 태그(s_/t_)에 팔로워가
 하나도 없으면 OneSignal이 "All included players are not subscribed"(non-2xx)를 주고,
