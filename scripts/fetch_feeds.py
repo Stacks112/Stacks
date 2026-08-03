@@ -37,7 +37,11 @@ FEEDS = [
     # Serenity's X posts via RSS.app (the real firehose — tweets with full
     # text; item links point at the original x.com posts)
     {"id": "serenity", "url": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml", "naver": False},
-    {"id": "serenity_substack", "url": "https://aleabitoreddit.substack.com/feed", "naver": False},
+    # (serenity_substack removed 2026-08-03. A plain *.substack.com host answers
+    # the Actions IP with 403, and unlike macroalf this entry had no RSS.app
+    # mirror to fall back to, so it never fetched successfully once since it was
+    # added. The Substack itself has also been quiet since 2026-05-19. The X feed
+    # above already covers this author. Do not re-add without a mirror URL.)
     {"id": "goto", "url": "https://note.com/goto_finance/rss", "naver": False},
     {"id": "semianalysis", "url": "https://newsletter.semianalysis.com/feed", "keep_days": SLOW_DAYS, "naver": False},
     {"id": "tesuta", "url": "https://rss.app/feeds/u6twTSFkvGHn7Tlw.xml", "naver": False},
@@ -69,8 +73,17 @@ FEEDS = [
      "keep_days": SLOW_DAYS, "naver": False},
     {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "naver": False},
     {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "naver": False},
-    {"id": "pichai", "url": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml", "naver": False},
-    {"id": "jensen", "url": "https://rss.app/feeds/tLWYaMsky2fJ8tkW.xml", "naver": False},
+    # CEO accounts post a handful of times a year, so the 7-day default empties
+    # their feed between posts and the author silently drops out of the candidate
+    # pool. jensen fell to zero items on 2026-08-03 because its newest post
+    # (07-27 11:07) sat 51 minutes on the wrong side of that day's cutoff.
+    # Handle verification still matters here: the RSS.app mirror carries old spam
+    # from impersonator accounts, so the publishing routine keeps taking only
+    # items whose link is exactly x.com/<handle>/.
+    {"id": "pichai", "url": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml",
+     "keep_days": SLOW_DAYS, "naver": False},
+    {"id": "jensen", "url": "https://rss.app/feeds/tLWYaMsky2fJ8tkW.xml",
+     "keep_days": SLOW_DAYS, "naver": False},
 ]
 
 
