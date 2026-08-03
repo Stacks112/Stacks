@@ -2,6 +2,52 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (mobile screen headers match the menu top bar)
+Goal:
+- june: give 팔로잉 and 공유한 글 on mobile the same top bar as 테마 논쟁 / 판정 기록.
+
+Changed:
+- `assets/v82.css` (`d8b9af91`), `assets/v82.js` (`2bc084b9`), `index.html` (`853f3930`) - deployed live
+- cache hashes: v82.js `cbde1050`, v82.css `c2125c57`
+
+Root cause:
+- 팔로잉/공유한 글 are `.v82-screen` overlays whose header is `.v82-sh`, not the feed `#v82subbar`.
+  `.v82-sh` had `background: rgba(14,15,18,.92)` **hardcoded**, while its text uses `var(--text)`.
+  In light mode that is dark text on a near-black bar - measured bg rgba(14,15,18,.92) against
+  colour rgb(23,24,28), so the title and the back arrow were effectively invisible. It was also
+  52px/17px against the subbar 48px/18px.
+- The header title came from `T().follows` / `T().shares` ("팔로우 내역" / "공유 내역") while the
+  drawer item says "팔로잉" / "공유한 글", so the bar did not show the menu name.
+
+Design:
+- `.v82-sh` now mirrors `#v82subbar` exactly: 48px, `gap:6px`, `padding:0 6px`, nav background
+  `rgba(255,255,255,.86)` + `blur(12px)` with a `html[data-theme="dark"]` override to
+  `rgba(0,0,0,.86)` (same pair `nav` already uses), `.ti` 18px, `.bk` 22px. `.v82-screen`
+  padding-top 60px -> 56px to match the 4px shorter header.
+- `openList()` titles from `T().dwShared` / `T().dwFollowing` - the exact drawer labels.
+- NOTE: 찾기 / 탐색 / 알림 and the entity picker share `.v82-sh`, so they were hit by the same
+  dark-on-dark bug and are fixed by the same rule. That is deliberate - special-casing only the
+  list screen would have left the others unreadable.
+
+Verified:
+- 7 mobile headers now report identical geometry and colour: 팔로잉 / 공유한 글 / 찾기 / 탐색 /
+  알림 (`.v82-sh`) and 테마 논쟁 / 판정 기록 (`#v82subbar`) - all 48px, bg rgba(255,255,255,.86),
+  title 18px, arrow 22px. Titles now read 팔로잉 and 공유한 글.
+- Dark mode: bg flips to rgba(0,0,0,.86) with rgb(242,243,247) text, height 48. Screenshot checked.
+- Desktop untouched: the rules sit inside the `@media (max-width:1023px)` block (verified by brace
+  depth), and the v83 menu pages still show their 53px bar with correct titles. Zero page errors.
+- deploy_guard **caught a second concurrent commit**: `90395f14` (analytics host gating) added 8
+  lines to index.html mid-deploy. Rebased, re-verified, `--verify` confirmed all 8 lines survived.
+- Post-deploy sha256 match on all three files; clobber guard and pages build green.
+- Live re-check on stacksdaily.com in a 390px same-origin iframe: all five menus identical,
+  screenshot of 팔로잉 confirms a readable light bar.
+
+Risks:
+- None known. `.v82-sh` is mobile-only and now theme-aware, which it was not before.
+
+Next:
+- none. Detail: Claude project doc `claude/status-2026-08-03-menu-topbar-unified.md`.
+
 ## 2026-08-03 Claude (analytics hygiene + dead-click / today-section findings)
 Goal:
 - Close out the remaining analytics-review items: dev-session pollution, dead clicks 4.85%, today/scrollpast +243%. (Naver collection requests: june decided to skip.)
