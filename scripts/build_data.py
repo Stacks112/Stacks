@@ -217,7 +217,8 @@ def item_text(item):
         d = item.get(f) or {}
         for lang in LANGS:
             parts.append(d.get(lang) or "")
-    return "  ".join(parts)
+    # build_pages.item_entities()와 같은 규칙: 마커 줄의 URL은 색인 대상이 아니다.
+    return re.sub(r"https?://\S+", " ", "  ".join(parts))
 
 
 def theme_hay(item):
