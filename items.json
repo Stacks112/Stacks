@@ -2,6 +2,169 @@
  "items": [
   {
    "date": "2026-08-01",
+   "id": "jukan-cxmt-lpddr6-duv-speed-ceiling",
+   "related": [
+    "meru-china-duv-ssa800-1950i-class",
+    "jukan-china-duv-litho-mass-production",
+    "jukan-samsung-chinese-dram-mx-bet"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2083389453188678125",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#141C12",
+    "to": "#3E6B34",
+    "label": "12,800"
+   },
+   "tags": [
+    "CXMT",
+    "LPDDR6",
+    "CHINA"
+   ],
+   "title": {
+    "ko": "CXMT가 만든 LPDDR6의 속도 12,800Mbps에 중국 노광기의 한계가 그대로 적혀 있다",
+    "en": "The 12,800Mbps on CXMT's LPDDR6 is China's lithography limit written into a spec sheet",
+    "ja": "CXMTが作ったLPDDR6の速度12,800Mbpsに中国の露光機の限界がそのまま書かれている"
+   },
+   "sum3": {
+    "ko": "중국 CXMT가 첫 LPDDR6의 개발 검증을 마무리하는 단계에 들어갔다. 설계 속도는 초당 12,800메가비트다.\n겉으로 보면 중국이 최신 모바일 D램 규격에 올라선 것처럼 읽힌다.\n그런데 같은 규격을 준비하는 SK하이닉스의 목표는 14,400이고, 그 11% 차이는 극자외선 장비를 못 쓰는 데서 나온다.",
+    "en": "CXMT has entered the final stretch of development validation on its first LPDDR6, with a design rate of 12,800 megabits per second.\nOn the surface it reads as China arriving at the newest mobile DRAM standard.\nBut SK hynix, preparing the same standard, targets 14,400, and that 11% gap comes from not being able to use extreme-ultraviolet tools.",
+    "ja": "中国CXMTが最初のLPDDR6の開発検証を仕上げる段階に入った。設計速度は毎秒12,800メガビットだ。\n表向きは中国が最新のモバイルDRAM規格に到達したように読める。\nだが同じ規格を準備するSKハイニックスの目標は14,400で、その11%の差は極端紫外線装置を使えないことから出ている。"
+   },
+   "gist": {
+    "ko": "중국 CXMT가 만든 첫 LPDDR6의 설계 속도는 초당 12,800메가비트다.\n같은 규격을 준비 중인 SK하이닉스의 목표는 14,400메가비트이고, 그 차이에 중국이 쓸 수 있는 노광장비의 한계가 그대로 들어가 있다.\n\n@@REF@@CXMT, LPDDR6 양산에 근접 (차이나데일리, 2026-08-03)|https://www.chinadaily.com.cn/a/202608/03/WS6a700b29a310986e2b468b39.html|http://img2.chinadaily.com.cn/images/202608/03/6a700b29a310986e101acbeb.jpeg\n\n차이나데일리는 CXMT가 첫 LPDDR6의 개발 검증을 마무리하는 단계이며 16기가비트 다이를 써서 패키지 용량 16기가바이트, 1,295볼 적층 패키지로 만든다고 전했다.\n같은 기사는 공개된 진척으로는 SK하이닉스가 가장 앞서 있고 올해 하반기 양산을 준비 중이라고 덧붙였다.\n\n## LPDDR6의 속도가 왜 중요한가\n\n휴대폰과 노트북의 기판에 직접 붙는 저전력 D램이 LPDDR이고, 그 최신 세대가 LPDDR6다.\n서버에 꽂는 막대 형태와 달리 기기 안에 붙박이로 들어가기 때문에, 나중에 갈아 끼울 수 없고 살 때 정해진 속도가 기기의 수명 동안 그대로 간다.\n\n속도는 초당 몇 메가비트를 주고받느냐로 적는다.\n기기 안에서 인공지능 기능을 돌릴수록 저장된 값을 꺼내 오는 속도가 병목이 되기 때문에, 이 숫자가 어느 급의 제품에 들어갈 수 있는지를 정한다.\n\n@@CHK@@CXMT 설계 속도|12,800Mbps|CXMT SoC 결합 기본 속도|10,667Mbps|SK하이닉스 목표 속도|14,400Mbps|삼성전자 목표 속도|최대 10,700Mbps|CXMT와 SK하이닉스 차이|-1,600Mbps|차이 비율|약 -11%@@CXMT의 12,800은 삼성전자가 CES에서 시연한 10,700보다는 높고 SK하이닉스의 14,400에는 11% 못 미친다. 뒤처졌다고만 보기도, 따라잡았다고 보기도 어려운 자리다. 규격의 상단을 못 채우는 것이 무엇 때문인지가 이 숫자의 핵심이다.@@2026-08-03 조회 · CXMT 수치는 원문, SK하이닉스·삼성 목표치는 TechTimes 보도 인용\n\n## 왜 상단을 못 채우나\n\n@@REF@@CXMT의 LPDDR6, 12.8Gbps와 14.4Gbps의 격차에 DUV의 천장이 드러난다 (테크타임스, 2026-08-02)|https://www.techtimes.com/articles/322700/20260802/cxmt-nears-lpddr6-production-duv-ceiling-shows-128-gbps-vs-144-gbps-gap.htm|https://d.techtimes.com/en/full/471043/photo-shows-view-changxin-memory-technologies-factory.jpg\n\n테크타임스는 이 격차의 원인을 회로를 새기는 방식에서 찾는다.\nSK하이닉스는 파장 13.5나노미터의 극자외선 장비로 한 번에 새기고, CXMT는 그보다 파장이 긴 심자외선 장비로 여러 번 겹쳐 새긴다.\n\n겹쳐 새기면 판을 여러 번 맞춰야 하고, 맞출 때마다 어긋남이 조금씩 쌓인다.\n쌓인 어긋남은 회로 전체가 견딜 수 있는 최고 속도를 깎는다.\n만들어 놓고 속도별로 골라내는 과정에서 상단이 잘려 나가는 것이다.\n\n중국은 극자외선 장비를 한 대도 들여오지 못하고 있다.\n그러니 이 11%는 CXMT의 설계 실력 문제가 아니라 장비 접근권의 문제에 가깝다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이번 진척이 규격을 따라잡는 과정인지, 규격의 상단에서 멈추는 천장인지.\n\n가릴 지점은 다음 세대다.\nLPDDR6 안에서 12,800이 14,400으로 올라가면 다중노광으로도 상단에 닿는다는 뜻이고, 다음 세대에서도 같은 11% 언저리가 남으면 그 자리가 천장이다.\n\n중국의 메모리는 값으로 먼저 들어와 규격으로 올라오는 길을 걸어 왔다.\n이번 숫자는 그 길이 어디까지 뚫려 있는지를 처음으로 소수점까지 보여 준 자료다.\n노광장비가 마지막 병목이라는 말이 제품 규격서에 적히는 방식이기도 하다.",
+    "en": "The design data rate of the first LPDDR6 that China's CXMT has built is 12,800 megabits per second.\nSK hynix, preparing the same standard, is targeting 14,400, and the limit of the lithography China can get its hands on sits inside that difference.\n\n@@REF@@CXMT closes in on LPDDR6 mass production (China Daily, 2026-08-03)|https://www.chinadaily.com.cn/a/202608/03/WS6a700b29a310986e2b468b39.html|http://img2.chinadaily.com.cn/images/202608/03/6a700b29a310986e101acbeb.jpeg\n\nChina Daily reports CXMT is wrapping up development validation on its first LPDDR6, built on 16-gigabit dies for 16 gigabytes of packaged capacity in a 1,295-ball package-on-package design.\nThe same piece adds that SK hynix holds the most advanced publicly disclosed position and is preparing mass production in the second half of this year.\n\n## What LPDDR6 is and why the speed matters\n\nLPDDR is the low-power DRAM soldered directly onto the board of a phone or a laptop, and LPDDR6 is its newest generation.\nUnlike the stick that slots into a server, it is fixed inside the device, so it cannot be swapped later and the speed chosen at purchase stays for the life of the machine.\n\nSpeed is written as how many megabits move per second.\nThe more AI work a device runs locally, the more the bottleneck becomes fetching stored values, so this number decides what class of product a chip can go into.\n\n@@CHK@@CXMT design rate|12,800Mbps|CXMT base rate with an SoC|10,667Mbps|SK hynix target rate|14,400Mbps|Samsung target rate|up to 10,700Mbps|Gap to SK hynix|-1,600Mbps|Gap in percent|about -11%@@CXMT's 12,800 sits above the 10,700 Samsung demonstrated at CES and 11% below SK hynix's 14,400. It is hard to call that either behind or caught up. What matters is why the top of the standard stays out of reach.@@Retrieved 2026-08-03 · CXMT figures from the source post, SK hynix and Samsung targets as reported by TechTimes\n\n## Why the top of the standard stays out of reach\n\n@@REF@@CXMT nears LPDDR6 production: the DUV ceiling shows up in the 12.8 Gbps vs 14.4 Gbps gap (TechTimes, 2026-08-02)|https://www.techtimes.com/articles/322700/20260802/cxmt-nears-lpddr6-production-duv-ceiling-shows-128-gbps-vs-144-gbps-gap.htm|https://d.techtimes.com/en/full/471043/photo-shows-view-changxin-memory-technologies-factory.jpg\n\nTechTimes traces the gap to how the circuits get printed.\nSK hynix prints in a single pass with extreme-ultraviolet tools at a 13.5 nanometer wavelength, while CXMT layers several passes with deep-ultraviolet tools at a longer wavelength.\n\nLayering passes means aligning the plate again each time, and a little misalignment accumulates with every pass.\nThat accumulated error shaves the top speed the finished circuit can hold.\nThe ceiling gets cut off during the sorting step, where finished parts are binned by the speed they actually reach.\n\nChina has not been able to bring in a single extreme-ultraviolet tool.\nSo the 11% is less a question of CXMT's design skill than of access to equipment.\n\n## So what settles it\n\nThe question comes down to one thing.\nWhether this is progress on the way to matching the standard, or a ceiling that stops just below its top.\n\nThe next generation settles it.\nIf 12,800 climbs to 14,400 within LPDDR6, multi-pass printing can reach the top after all, and if roughly the same 11% survives into the next generation, that is where the ceiling is.\n\nChinese memory has taken the route of entering on price and climbing toward the standard.\nThis number is the first time that road has been measured to the decimal.\nIt is also how the phrase \"lithography is the last bottleneck\" ends up written into a product spec sheet.",
+    "ja": "中国CXMTが作った最初のLPDDR6の設計速度は毎秒12,800メガビットだ。\n同じ規格を準備中のSKハイニックスの目標は14,400で、その差の中に中国が使える露光装置の限界がそのまま入っている。\n\n@@REF@@CXMT、LPDDR6の量産に接近 (China Daily, 2026-08-03)|https://www.chinadaily.com.cn/a/202608/03/WS6a700b29a310986e2b468b39.html|http://img2.chinadaily.com.cn/images/202608/03/6a700b29a310986e101acbeb.jpeg\n\nChina Dailyは、CXMTが最初のLPDDR6の開発検証を仕上げる段階にあり、16ギガビットのダイでパッケージ容量16ギガバイト、1,295ボールの積層パッケージで作ると伝えた。\n同じ記事は、公開された進捗ではSKハイニックスが最も先行しており、今年後半の量産を準備中だと付け加えた。\n\n## なぜ速度が重要なのか\n\n携帯電話やノートパソコンの基板に直接付ける低消費電力のDRAMがLPDDRで、その最新世代がLPDDR6だ。\nサーバーに挿すスティック型と違って機器の中に作り付けで入るため、後から差し替えられず、買うときに決まった速度が機器の寿命の間そのまま続く。\n\n速度は毎秒何メガビットやり取りするかで書く。\n機器の中で人工知能の機能を動かすほど、保存された値を取り出す速さがボトルネックになるため、この数字がどの級の製品に入れるかを決める。\n\n@@CHK@@CXMTの設計速度|12,800Mbps|CXMTのSoC結合時の基本速度|10,667Mbps|SKハイニックスの目標速度|14,400Mbps|サムスン電子の目標速度|最大10,700Mbps|SKハイニックスとの差|-1,600Mbps|差の比率|約-11%@@CXMTの12,800はサムスン電子がCESで実演した10,700より高く、SKハイニックスの14,400には11%届かない。遅れているとも追いついたとも言いにくい位置だ。規格の上限を埋められない理由が何かが、この数字の核心だ。@@2026-08-03取得 · CXMTの数値は原文、SKハイニックスとサムスンの目標値はTechTimes報道の引用\n\n## なぜ上限を埋められないのか\n\n@@REF@@CXMTがLPDDR6量産に接近、12.8Gbpsと14.4Gbpsの差にDUVの天井が表れる (TechTimes, 2026-08-02)|https://www.techtimes.com/articles/322700/20260802/cxmt-nears-lpddr6-production-duv-ceiling-shows-128-gbps-vs-144-gbps-gap.htm|https://d.techtimes.com/en/full/471043/photo-shows-view-changxin-memory-technologies-factory.jpg\n\nTechTimesはこの差の原因を回路の刻み方に求める。\nSKハイニックスは波長13.5ナノメートルの極端紫外線装置で一度に刻み、CXMTはそれより波長の長い深紫外線装置で何度も重ねて刻む。\n\n重ねて刻むと版を何度も合わせることになり、合わせるたびにずれが少しずつ積もる。\n積もったずれは回路全体が耐えられる最高速度を削る。\n作った後に速度別に選り分ける工程で、上限が切り落とされるのだ。\n\n中国は極端紫外線装置を1台も持ち込めていない。\nだからこの11%はCXMTの設計力の問題というより、装置へのアクセス権の問題に近い。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\n今回の進捗が規格に追いつく過程なのか、規格の上限の手前で止まる天井なのか。\n\n見分ける点は次の世代だ。\nLPDDR6の中で12,800が14,400まで上がれば多重露光でも上限に届くということで、次の世代でも同じ11%あたりが残れば、そこが天井だ。\n\n中国のメモリーは値段で先に入り、規格で上がっていく道を歩いてきた。\n今回の数字は、その道がどこまで通っているかを初めて小数点まで示した資料だ。\n露光装置が最後のボトルネックだという言葉が、製品の仕様書に書き込まれる形でもある。"
+   },
+   "why": {
+    "ko": "중국 메모리가 어디까지 올라올 수 있는지는 값이 아니라 규격에서 갈린다. 값으로 낮은 자리를 채우는 것과 최신 규격의 상단을 채우는 것은 고객이 다르고, 상단을 못 채우면 국내 휴대폰 밖으로 나가기 어렵다. 이번 11%는 그 한계선이 지금 어디에 그어져 있는지를 처음으로 수치로 보여 준다.",
+    "en": "How far Chinese memory can climb is settled by the standard, not by price. Filling the low end on price and filling the top of the newest standard are different customer bases, and a chip that cannot reach the top has trouble leaving domestic handsets. This 11% is the first numerical read on where that line currently sits.",
+    "ja": "中国のメモリーがどこまで上がれるかは値段ではなく規格で決まる。値段で下の席を埋めることと最新規格の上限を埋めることは顧客が違い、上限を埋められなければ国内の携帯電話の外に出るのは難しい。今回の11%は、その限界線が今どこに引かれているかを初めて数値で示している。"
+   },
+   "ask": {
+    "ko": "극자외선 장비 없이 만든 12,800Mbps는 규격을 따라잡는 과정일까, 규격 상단에서 멈추는 천장일까?",
+    "en": "Is 12,800Mbps built without extreme-ultraviolet tools progress toward the standard, or a ceiling just below its top?",
+    "ja": "極端紫外線装置なしで作った12,800Mbpsは規格に追いつく過程だろうか、それとも規格の上限の手前で止まる天井だろうか。"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "According to a source cited by Chinese media, CXMT has made further progress in developing LPDDR6, with development validation now nearing completion and mass production one step closer.",
+      "It features 16Gb memory dies and a total package capacity of 16GB, using a 1,295-ball PoP package."
+     ],
+     "ko": [
+      "중국 매체가 인용한 소식통에 따르면, CXMT는 LPDDR6 개발에서 진전을 더 이뤄 개발 검증이 마무리 단계에 들어갔고 양산에 한 걸음 더 가까워졌다.",
+      "16Gb 메모리 다이를 쓰고 패키지 전체 용량은 16GB이며, 1,295볼 PoP 패키지를 적용한다."
+     ],
+     "ja": [
+      "中国メディアが引用した関係者によると、CXMTはLPDDR6の開発でさらに進展し、開発検証が仕上げの段階に入って量産に一歩近づいた。",
+      "16Gbのメモリーダイを使い、パッケージ全体の容量は16GBで、1,295ボールのPoPパッケージを採用する。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.01"
+   },
+   "stance": "watch",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "CXMT의 LPDDR6가 실제로 양산에 들어가고 채용 기기가 공개될 때 채점한다. 공개 속도가 12,800Mbps대에 머물면 노광 방식이 상단을 막았다는 판단이 맞은 것으로, 14,400Mbps에 닿으면 틀린 것으로 본다.",
+     "en": "Score when CXMT's LPDDR6 actually enters mass production and a device using it is disclosed. If the published rate stays around 12,800Mbps, the read that the printing method caps the top was right, and if it reaches 14,400Mbps, it was wrong.",
+     "ja": "CXMTのLPDDR6が実際に量産に入り採用機器が公表された時点で採点する。公表速度が12,800Mbps台にとどまれば露光方式が上限を塞いだという判断が当たり、14,400Mbpsに届けば外れたとみる。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-08-03T05:48:48.942616+00:00"
+  },
+  {
+   "date": "2026-07-31",
+   "id": "serenity-axt-2q26-record-inp-capacity-double",
+   "related": [
+    "serenity-axt-lumentum-inp-capacity-deposit",
+    "serenity-formfactor-cpo-outlook-raise",
+    "serenity-hyperscaler-capex-745b-debt-funded"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2083088870942642391",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#1A1226",
+    "to": "#5B3A7A",
+    "label": "+164%"
+   },
+   "tags": [
+    "AXT",
+    "INP",
+    "OPTICS"
+   ],
+   "title": {
+    "ko": "AXT의 분기 매출이 1년 만에 164% 늘었는데도 대기 물량이 안 줄어드는 이유는 뭘까?",
+    "en": "Why does AXT's backlog refuse to shrink after revenue grew 164% in a year?",
+    "ja": "AXTの四半期売上が1年で164%増えたのに、待ち行列が減らない理由は何だろうか?"
+   },
+   "sum3": {
+    "ko": "AXT의 2026년 2분기 매출이 4,760만달러로 사상 최대였다. 1년 전보다 164%, 직전 분기보다 77% 늘었다.\n겉으로 보면 광통신 수요를 탄 부품사의 좋은 분기로 읽힌다.\n그런데 회사는 올해와 내년에 인화인듐 생산능력을 각각 두 배로 늘리면서도, 수주잔고 1억달러가 실제 수요를 다 담지 못한다고 말한다.",
+    "en": "AXT's Q2 2026 revenue hit a record $47.6 million, up 164% from a year earlier and 77% from the prior quarter.\nOn the surface it reads as a good quarter for a component maker riding optical demand.\nBut the company says it will double indium phosphide capacity this year and again next year, and that a backlog above $100 million still does not capture all the demand.",
+    "ja": "AXTの2026年4-6月期の売上高は4,760万ドルで過去最高だった。1年前より164%、直前四半期より77%増えた。\n表向きは光通信の需要に乗った部品会社の好調な四半期に読める。\nだが会社は今年と来年にリン化インジウムの生産能力をそれぞれ2倍にしながら、1億ドルの受注残高が実際の需要を全部は捉えていないと述べている。"
+   },
+   "gist": {
+    "ko": "AXT의 2026년 2분기 매출이 4,760만달러로 회사 역사상 가장 많았다.\n1년 전 같은 분기의 1,800만달러에서 164% 늘었고, 직전 분기 2,690만달러에서는 한 분기 만에 77% 늘었다.\n\n@@REF@@AXT, 2026년 2분기 실적 발표 (AXT 투자자 페이지, 2026-07-30)|https://investors.axt.com/Investors/news/news-details/2026/AXT-Inc--Announces-Second-Quarter-2026-Financial-Results/default.aspx\n\n@@CHK@@2026년 2분기 매출|4,760만달러|직전 분기 매출|2,690만달러|전분기 대비|+77%|1년 전 분기 매출|1,800만달러|전년 대비|+164%|GAAP 매출총이익률|44.9%@@분기 매출이 1년 만에 2.6배가 됐고 매출총이익률은 44.9%다. 이 회사는 원재료에 가까운 기판을 파는 곳이라 이익률이 이 정도로 올라오는 일이 드물다. 물건이 모자라 값을 받고 있다는 뜻이다.@@2026-08-03 조회 · AXT 2026년 2분기 실적 발표(GAAP 기준)\n\n같은 분기 GAAP 순이익은 1,110만달러, 주당 0.17달러다.\n\n## AXT가 파는 게 뭔가\n\n반도체는 웨이퍼라고 부르는 둥근 판 위에 만든다.\n그 판의 재료가 실리콘 하나만 있는 것은 아니다.\n\n빛을 만들고 받는 소자, 그러니까 광통신용 레이저와 수광 소자는 인화인듐이라는 재료로 만든 판 위에서 훨씬 잘 동작한다.\nAXT는 그 인화인듐 판을 만들어 파는 회사다.\n\n데이터센터 안에서 서버와 서버를 잇는 선이 구리에서 빛으로 넘어가는 중이라, 이 판을 찾는 곳이 갑자기 늘었다.\n\n## 왜 대기 물량이 안 줄어드나\n\n@@REF@@AXT 2026년 2분기 실적 설명회 녹취 (모틀리풀, 2026-07-30)|https://www.fool.com/earnings/call-transcripts/2026/07/30/axt-axti-q2-2026-earnings-call-transcript/\n\n회사는 설명회에서 올해 안에 인화인듐 생산능력을 두 배로 늘리고, 2027년에 다시 두 배로 늘리겠다고 밝혔다.\n그렇게 하면 인화인듐 기판을 세계에서 가장 많이 만드는 회사가 된다는 설명이다.\n\n그런데 같은 자리에서 수주잔고가 1억달러를 계속 웃돌고, 그 숫자조차 실제 수요를 다 담지 못한다고 했다.\n증설이 아무리 빨라도 수요가 앞서간다는 것이다.\n\n이 대목이 실적 숫자보다 중요하다.\n공장을 두 배로 키우는 회사에서 대기 물량이 안 줄어들면, 값을 올릴 여지가 생긴다.\n2분기 매출총이익률 44.9%를 회사가 50% 위로 올려 잡고 있는 근거가 여기다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이 실적이 광통신 전환이라는 구조에서 나온 것인지, 한 해에 몰린 주문이 만든 봉우리인지.\n\n가릴 지점은 증설이 끝난 뒤의 이익률이다.\n생산능력이 두 배가 된 뒤에도 매출총이익률이 50% 언저리에 남아 있으면 값을 받는 자리에 선 것이고, 증설과 함께 이익률이 40%대 아래로 내려가면 그동안 받은 값은 품귀가 만든 것이 된다.\n\n기판은 반도체 공급망에서 가장 앞에 있는 자리다.\n앞쪽이 모자라면 뒤쪽은 아무리 설계를 잘해도 물건을 못 만든다.\nAXT의 대기 물량이 줄어드는 시점이 광통신 병목이 풀리는 시점이기도 하다.",
+    "en": "AXT posted second-quarter 2026 revenue of $47.6 million, the highest in the company's history.\nThat is up 164% from $18.0 million in the same quarter a year earlier, and up 77% in a single quarter from $26.9 million.\n\n@@REF@@AXT, Inc. announces second quarter 2026 financial results (AXT investor relations, 2026-07-30)|https://investors.axt.com/Investors/news/news-details/2026/AXT-Inc--Announces-Second-Quarter-2026-Financial-Results/default.aspx\n\n@@CHK@@Q2 2026 revenue|$47.6m|Prior quarter revenue|$26.9m|Quarter on quarter|+77%|Year-ago quarter revenue|$18.0m|Year on year|+164%|GAAP gross margin|44.9%@@Quarterly revenue is 2.6 times what it was a year ago and gross margin is 44.9%. This is a company selling substrates, close to raw material in the chain, where margins rarely climb this far. It means the product is scarce enough to command a price.@@Retrieved 2026-08-03 · AXT Q2 2026 results release, GAAP basis\n\nGAAP net income for the quarter was $11.1 million, or $0.17 per diluted share.\n\n## What AXT actually sells\n\nChips are built on a round plate called a wafer.\nSilicon is not the only material those plates are made of.\n\nDevices that make and receive light, meaning the lasers and detectors used in optical communication, work far better on plates made of indium phosphide.\nAXT makes and sells those indium phosphide plates.\n\nInside data centers the links between servers are moving from copper to light, so demand for these plates rose suddenly.\n\n## Why the queue does not shrink as revenue grows\n\n@@REF@@AXT (AXTI) Q2 2026 earnings call transcript (The Motley Fool, 2026-07-30)|https://www.fool.com/earnings/call-transcripts/2026/07/30/axt-axti-q2-2026-earnings-call-transcript/\n\nOn the call the company said it will double indium phosphide capacity during this year, and double it again in 2027.\nDoing so, it says, would make AXT by far the largest producer of indium phosphide substrates in the world.\n\nYet in the same session it said backlog remains well above $100 million, and that even that figure no longer captures all the demand available.\nHowever fast capacity is added, demand runs ahead of it.\n\nThat passage matters more than the earnings figures.\nWhen the queue does not shrink at a company doubling its plants, room to raise prices appears.\nThat is the basis for the company aiming above 50% against the 44.9% gross margin it posted in the second quarter.\n\n## So what settles it\n\nThe question comes down to one thing.\nWhether these results come from the structural shift to optical links, or are a peak made by orders bunched into one year.\n\nGross margin after the build-out settles it.\nIf margin sits near 50% once capacity has doubled, the company is standing where it can set a price, and if margin slips below the mid-40s as capacity arrives, what it collected until then was made by scarcity.\n\nSubstrates sit at the very front of the chip supply chain.\nWhen the front runs short, nothing behind it ships no matter how good the design is.\nThe moment AXT's queue starts shrinking is also the moment the optical bottleneck loosens.",
+    "ja": "AXTの2026年4-6月期の売上高は4,760万ドルで、同社の歴史上最も多かった。\n1年前の同じ四半期の1,800万ドルから164%増え、直前四半期の2,690万ドルからは1四半期で77%増えた。\n\n@@REF@@AXT、2026年4-6月期決算を発表 (AXT投資家向けページ, 2026-07-30)|https://investors.axt.com/Investors/news/news-details/2026/AXT-Inc--Announces-Second-Quarter-2026-Financial-Results/default.aspx\n\n@@CHK@@2026年4-6月期の売上高|4,760万ドル|直前四半期の売上高|2,690万ドル|前四半期比|+77%|1年前の四半期の売上高|1,800万ドル|前年比|+164%|GAAP売上総利益率|44.9%@@四半期の売上高が1年で2.6倍になり、売上総利益率は44.9%だ。この会社は原材料に近い基板を売るところで、利益率がここまで上がることは珍しい。物が足りず値段を取れているという意味だ。@@2026-08-03取得 · AXT 2026年4-6月期決算発表(GAAPベース)\n\n同じ四半期のGAAP純利益は1,110万ドル、希薄化後1株当たり0.17ドルだ。\n\n## AXTが売っているものは何か\n\n半導体はウェハーと呼ぶ丸い板の上に作る。\nその板の材料はシリコンだけではない。\n\n光を作り、受け取る素子、つまり光通信用のレーザーと受光素子は、リン化インジウムという材料で作った板の上のほうがはるかによく動く。\nAXTはそのリン化インジウムの板を作って売る会社だ。\n\nデータセンターの中でサーバーとサーバーをつなぐ線が銅から光へ移りつつあり、この板を求める先が急に増えた。\n\n## なぜ待ち行列が減らないのか\n\n@@REF@@AXT (AXTI) 2026年4-6月期決算説明会の書き起こし (The Motley Fool, 2026-07-30)|https://www.fool.com/earnings/call-transcripts/2026/07/30/axt-axti-q2-2026-earnings-call-transcript/\n\n会社は説明会で、今年中にリン化インジウムの生産能力を2倍にし、2027年にさらに2倍にすると明らかにした。\nそうすればリン化インジウム基板を世界で最も多く作る会社になるという説明だ。\n\nところが同じ場で、受注残高が1億ドルを超え続けており、その数字ですら実際の需要を全部は捉えていないと述べた。\n増設がどれだけ速くても需要が先を行くということだ。\n\nこの箇所が決算の数字より重要だ。\n工場を2倍にする会社で待ち行列が減らないなら、値段を上げる余地が生まれる。\n4-6月期の売上総利益率44.9%を会社が50%超に置いている根拠がここにある。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\nこの業績が光通信への移行という構造から出たものなのか、1年に集中した注文が作った山なのか。\n\n見分ける点は増設が終わった後の利益率だ。\n生産能力が2倍になった後も売上総利益率が50%あたりに残れば値段を取れる位置に立ったことになり、増設とともに利益率が40%台の半ばを割れば、それまで取れていた値段は品薄が作ったものになる。\n\n基板は半導体サプライチェーンの最も前にある席だ。\n前が足りなければ、後ろはどれだけ設計が良くても物を作れない。\nAXTの待ち行列が減り始める時点は、光通信のボトルネックが緩む時点でもある。"
+   },
+   "why": {
+    "ko": "데이터센터 안의 선이 구리에서 빛으로 넘어가는 이야기는 대개 광모듈 회사의 실적으로 확인된다. 그보다 앞에 있는 기판이 모자라면 그 전환 자체의 속도가 정해진다. AXT의 대기 물량은 광통신 전환이 지금 어느 지점에서 막혀 있는지를 보여 주는 숫자이고, 그것이 줄기 시작할 때가 전환이 실제로 빨라지는 때다.",
+    "en": "The story of data center links moving from copper to light is usually confirmed in the results of optical module makers. If the substrate sitting ahead of them runs short, it sets the pace of the shift itself. AXT's backlog is a read on where that shift is currently blocked, and the point it starts shrinking is the point the shift actually speeds up.",
+    "ja": "データセンターの中の線が銅から光へ移る話は、たいてい光モジュール企業の業績で確認される。その手前にある基板が足りなければ、移行そのものの速さが決まってしまう。AXTの受注残高は光通信への移行が今どこで詰まっているかを示す数字であり、それが減り始める時が移行が実際に速まる時だ。"
+   },
+   "ask": {
+    "ko": "생산능력을 두 해 연속 두 배로 늘리는 AXT의 이익률은 증설이 끝난 뒤에도 50% 위에 남아 있을까?",
+    "en": "Will AXT's margin stay above 50% once the capacity it is doubling two years running actually arrives?",
+    "ja": "生産能力を2年連続で2倍にするAXTの利益率は、増設が終わった後も50%の上に残るだろうか。"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "AXT to double InP capacity during 2026.",
+      "This is expected to make AXT \"by far the largest indium phosphide producer in the world.\"",
+      "Customer demand continues to outpace supply, no matter how fast we add capacity."
+     ],
+     "ko": [
+      "AXT는 2026년 중에 인화인듐 생산능력을 두 배로 늘린다.",
+      "이렇게 되면 AXT는 \"단연 세계 최대의 인화인듐 생산사\"가 될 것으로 예상된다.",
+      "생산능력을 아무리 빨리 늘려도 고객 수요가 공급을 계속 앞지르고 있다."
+     ],
+     "ja": [
+      "AXTは2026年中にリン化インジウムの生産能力を2倍にする。",
+      "そうなればAXTは「群を抜いて世界最大のリン化インジウム生産者」になると見込まれる。",
+      "生産能力をどれだけ速く増やしても、顧客の需要が供給を上回り続けている。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.07.31"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "인화인듐 생산능력이 두 배가 되는 2026년 말 이후의 분기 실적으로 채점한다. GAAP 매출총이익률이 50% 언저리에 남아 있으면 값을 받는 자리에 선 것으로, 40%대 중반 아래로 내려가면 그동안의 이익률은 품귀가 만든 것으로 본다.",
+     "en": "Score on quarterly results after capacity doubles at the end of 2026. If GAAP gross margin stays near 50%, the company is standing where it can set prices, and if it slips below the mid-40s, the margin until then was made by scarcity.",
+     "ja": "リン化インジウムの生産能力が2倍になる2026年末以降の四半期決算で採点する。GAAP売上総利益率が50%あたりに残れば値段を取れる位置に立ったとし、40%台半ばを割れば、それまでの利益率は品薄が作ったものとみる。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-08-03T05:48:48.942616+00:00"
+  },
+  {
+   "date": "2026-08-01",
    "id": "jukan-samsung-lta-asymmetric-cap-vs-micron",
    "related": [
     "jukan-samsung-2q26-lta-60-70-capacity",
@@ -28255,6 +28418,32 @@
     "export unit price",
     "輸出単価",
     "수출 단가"
+   ]
+  },
+  "다중노광": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "회로를 한 번에 못 새길 때 여러 번 나눠 겹쳐 새기는 방식.",
+    "en": "Printing a circuit in several overlapping passes when a single exposure cannot resolve it.",
+    "ja": "回路を一度で刻めないとき、何度かに分けて重ねて刻む方式。"
+   },
+   "longDesc": {
+    "ko": "파장이 긴 장비로 더 가는 회로를 만들 때 쓴다. 다만 겹칠 때마다 판을 다시 맞춰야 하고 그 어긋남이 조금씩 쌓여, 완성된 회로가 견디는 최고 속도와 수율이 함께 깎인다. 극자외선 장비를 쓸 수 없는 쪽이 그 대안으로 택하는 방법이라, 장비 수출 규제가 제품 성능으로 나타나는 통로이기도 하다.",
+    "en": "It is used to draw finer circuits with longer-wavelength tools. Each added pass means realigning the plate, and the small misalignments accumulate, shaving both the top speed the finished circuit can hold and the yield. It is the route chosen by anyone who cannot use extreme-ultraviolet tools, which makes it the channel through which equipment export controls show up as product performance.",
+    "ja": "波長の長い装置でより細い回路を作るときに使う。ただし重ねるたびに版を合わせ直す必要があり、そのずれが少しずつ積もって、完成した回路が耐える最高速度と歩留まりが一緒に削られる。極端紫外線装置を使えない側が代わりに選ぶ方法であり、装置の輸出規制が製品性能として表れる通路でもある。"
+   },
+   "aliases": [
+    "다중노광",
+    "멀티패터닝",
+    "multi-patterning",
+    "multipatterning",
+    "多重露光",
+    "다중 패터닝"
    ]
   }
  }
