@@ -551,6 +551,27 @@ python3 scripts/deploy_guard.py --verify index.html sw.js
   주간 다이제스트/뉴스레터(일),
   이벤트 캘린더(일), 급변동 알림(화-토), 헬스체크(목), 모닝 브리프.
 
+## ★ 급변동 알림은 워커 크론이 3분할로 돈다 (v10.0, 2026-08-03, `07172da`+`7a824cf`)
+
+팔로워 급변동 푸시는 `worker/index.js`의 `scheduled()`가 전부 수행한다(레포 밖 예약 루틴 아님).
+**Workers 무료 플랜은 한 번의 실행에서 subrequest 50개가 상한**인데, 팔로우 회사 78개를
+한 번에 시세 조회하려면 79개가 필요해서 2026-07-24 이후 11일간 푸시가 조용히 0건이었다
+(07-23은 44개라 완주해서 발송됐다 — Cloudflare GraphQL `workersInvocationsAdaptive` 실측).
+
+그래서 크론이 `0,5,10,15 23 * * 1-5`(KST 화~토 08:00~08:15) 4회로 쪼개져 있다.
+역할은 **분(minute) / 5**로 정해진다 — :00 :05 :10은 회사 목록을 이름순 정렬 후
+`i % SURGE_SHARDS`로 나눈 샤드를 각각 시세 조회해 D1 **`surge_scan`** 테이블에 적고,
+:15는 스캔 없이 발송만 하는 sweeper다. 발송은 그날 스캔이 완료된 시점(정상적으로는 마지막
+샤드)에 `surge_scan` 전체를 정렬해 상위 `SURGE_TOP_N`(3)만, `surge_alerts`(date, tag)로
+하루 1회 중복 방지하며 나간다.
+
+⚠ **`wrangler.toml`의 크론 분(minute) 개수와 `index.js`의 `SURGE_SHARDS`는 반드시 같아야
+하고, 마지막 분은 sweeper 몫으로 그 뒤에 남겨 둔다.** 종목이 ~120개를 넘으면 둘 다 늘린다.
+`/cron/surge-dryrun`은 이제 시세를 조회하지 않고 `surge_scan`을 읽어
+`scannedToday`/`total`/`complete`/`sentToday`를 돌려준다(1 subrequest). 옛 10분 메모는 삭제 —
+그게 07-27~07-30 모니터가 날짜가 굳은 값을 보고하던 원인이었다.
+진단 전문: 프로젝트 `claude/status-2026-08-03-surge-alert-diagnosis.md`.
+
 ## 배포 제약 (2026-07-20 원인 규명·조치, 2026-07-21 우회법 확정)
 세션의 GITHUB_TOKEN은 진짜 토큰이 아니라 자리표시자('proxy-injected')이고, 이그레스
 프록시가 **세션 시작 시점에 허용된 레포에 한해** 진짜 자격증명을 주입한다. 403은 랜덤이
