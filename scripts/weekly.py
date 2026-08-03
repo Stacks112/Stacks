@@ -177,21 +177,37 @@ def _summary(sent, n):
     2026-08-02 회차는 메일이 0통 나갔는데도 run이 초록이었다(send_newsletter가
     예외를 삼킨다). 로그 마지막 줄을 열어봐야만 알 수 있었다는 게 사고를 키웠다.
     실패해도 exit 1 로 죽이지는 않는다 — 그러면 다이제스트 커밋 스텝이 통째로
-    건너뛰어져 생성물까지 잃는다. 대신 run 페이지 첫 화면에서 보이게 한다."""
-    if not sent and not os.environ.get("WEEKLY_TEST_TO", "").strip():
-        # 실제 브로드캐스트인데 0통이면 run 페이지에 빨간 주석을 남긴다.
+    건너뛰어져 생성물까지 잃는다. 대신 run 페이지 첫 화면에서 보이게 한다.
+
+    ⚠ 실행 종류를 구분한다. 드라이런과 테스트 발송까지 ❌로 찍으면 경고가 값을
+    잃는다. 매번 빨간 표시를 보는 사람은 진짜 사고 때도 그냥 넘긴다.
+    (2026-08-03 드라이런이 실제로 '발송 0통 ❌'으로 찍혀서 이 구분을 넣었다.)"""
+    dry = str(os.environ.get("DRY_RUN", "")).strip() == "1"
+    test_to = os.environ.get("WEEKLY_TEST_TO", "").strip()
+
+    if dry:
+        mark = "🧪 드라이런 — 메시지만 만들고 발송하지 않음 (정상)"
+    elif test_to:
+        mark = ("✅ 테스트 발송됨 (수신자 1명)" if sent
+                else "⚠️ 테스트 발송 실패 — 로그의 `email send failed:` 확인")
+    elif sent:
+        mark = "✅ 발송됨"
+    else:
+        mark = "❌ **발송 0통** — 로그의 `email send failed:` 확인"
+        # 실제 브로드캐스트가 0통일 때만 빨간 주석을 남긴다.
         # 여기서 exit 1 하지 않는 이유는 위 독스트링에 적었다(생성물 손실).
         # 초록 체크만 보고 "나갔겠지" 하고 넘어간 것이 2026-08-02 사고였다.
         print("::error::주간 뉴스레터가 0통 발송됐습니다. 위 로그의 "
               "'email send failed:' 줄을 확인하세요.")
+
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
-    mark = "✅ 발송됨" if sent else "❌ **발송 0통** — 로그의 `email send failed:` 확인"
+    # 워커 주소는 적지 않는다. 저장소 시크릿과 같은 값이라 GitHub이 `***`로
+    # 가려 버려서 정보가 되지 못한다(2026-08-03 시크릿 교체 후 확인).
     try:
         with open(path, "a", encoding="utf-8") as f:
-            f.write("## Stacks Weekly Best\n\n%s · 대상 글 %d편 · worker=%s\n"
-                    % (mark, n, WORKER or "(unset)"))
+            f.write("## Stacks Weekly Best\n\n%s · 대상 글 %d편\n" % (mark, n))
     except OSError:
         pass
 
