@@ -468,4 +468,17 @@
     font-size:13px !important; line-height:1.55 !important; color:var(--muted) !important;
     margin:0 !important; opacity:1 !important;
   }
+
+  /* 2026-08-03 (june): 팔로잉·공유한 글 등 전체화면(.v82-screen) 헤더를 테마 논쟁·판정
+     기록의 상단바(#v82subbar)와 같은 디자인으로 맞춘다. 배경이 rgba(14,15,18,.92)로
+     하드코딩돼 있어서 라이트 모드에서는 어두운 바에 어두운 글씨가 얹혀 제목도 ←도 거의
+     안 보였다(찾기·탐색·알림도 같은 규칙을 쓰므로 함께 고쳐진다). 값은 #v82subbar와 동일. */
+  .v82-sh{
+    height:48px; gap:6px; padding:0 6px;
+    background:rgba(255,255,255,.86); backdrop-filter:blur(12px);
+  }
+  html[data-theme="dark"] .v82-sh{background:rgba(0,0,0,.86);}
+  .v82-sh .bk{font-size:22px; padding:4px 10px;}
+  .v82-sh .ti{font-size:18px; letter-spacing:-.01em;}
+  .v82-screen{padding-top:56px;}   /* 헤더 48px + 여백 8px (기존 52+8) */
 }
