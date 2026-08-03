@@ -178,6 +178,12 @@ def _summary(sent, n):
     예외를 삼킨다). 로그 마지막 줄을 열어봐야만 알 수 있었다는 게 사고를 키웠다.
     실패해도 exit 1 로 죽이지는 않는다 — 그러면 다이제스트 커밋 스텝이 통째로
     건너뛰어져 생성물까지 잃는다. 대신 run 페이지 첫 화면에서 보이게 한다."""
+    if not sent and not os.environ.get("WEEKLY_TEST_TO", "").strip():
+        # 실제 브로드캐스트인데 0통이면 run 페이지에 빨간 주석을 남긴다.
+        # 여기서 exit 1 하지 않는 이유는 위 독스트링에 적었다(생성물 손실).
+        # 초록 체크만 보고 "나갔겠지" 하고 넘어간 것이 2026-08-02 사고였다.
+        print("::error::주간 뉴스레터가 0통 발송됐습니다. 위 로그의 "
+              "'email send failed:' 줄을 확인하세요.")
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
