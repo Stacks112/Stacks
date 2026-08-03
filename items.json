@@ -630,11 +630,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 말에 채점한다. 국산 액침 노광장비의 인도 물량이 보도된 20대 수준에 머물고 세대도 1950i급에 머물면 저자의 판단이 맞은 것으로, 1980Di급 장비가 국산 부품으로 나오면 틀린 것으로 본다.",
-     "en": "Score at the end of 2027. If deliveries of the domestic immersion scanner stay near the reported 20 units and the generation stays at 1950i class, the author was right, and if a 1980Di-class tool comes out of domestic parts, he was wrong.",
-     "ja": "2027年末に採点する。国産液浸露光装置の納入が報じられた20台ほどにとどまり世代も1950i級のままなら著者の判断が当たり、1980Di級の装置が国産部品で出れば外れたと見る。"
+     "ko": "최종 확인(2027년 말, 국산 액침 노광장비 인도 20대·1950i급 유지)까지는 멀어 중간 신호로 채점한다. 10월 말까지 SMEE 등 중국 노광장비 업체의 신규 출하·세대 관련 보도가 있는지 확인한다. 1980Di급 이상 장비의 국산 부품 출시 조짐이 있으면 note에 반영, 없으면 방향 유지. 최종 대수·세대 판정은 2027년 말에 재확인한다.",
+     "en": "Final confirmation (end-2027, whether domestic immersion litho deliveries stay around 20 units at 1950i-class) is far off, so this checks an interim signal. By end-Oct 2026, check for new shipment or generation news from SMEE and peers. Any sign of a domestically-sourced 1980Di-class tool gets reflected in the note; otherwise direction holds. Final unit-count/generation verdict is re-checked at end-2027.",
+     "ja": "最終確認(2027年末、国産液浸露光装置の納入が20台・1950i級にとどまるか)は先の話のため、中間シグナルで採点する。10月末までにSMEEなど中国露光装置メーカーの新規出荷・世代に関する報道があるか確認する。1980Di級以上の装置が国産部品で登場する兆しがあればノートに反映し、なければ方向を維持する。最終的な台数・世代の判定は2027年末に再確認する。"
     },
-    "due": "2027-12-31"
+    "due": "2026-10-31"
    },
    "lab": true,
    "foldWhy": true,
@@ -968,10 +968,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "CXMT의 LPDDR6가 실제로 양산에 들어가고 채용 기기가 공개될 때 채점한다. 공개 속도가 12,800Mbps대에 머물면 노광 방식이 상단을 막았다는 판단이 맞은 것으로, 14,400Mbps에 닿으면 틀린 것으로 본다.",
-     "en": "Score when CXMT's LPDDR6 actually enters mass production and a device using it is disclosed. If the published rate stays around 12,800Mbps, the read that the printing method caps the top was right, and if it reaches 14,400Mbps, it was wrong.",
-     "ja": "CXMTのLPDDR6が実際に量産に入り採用機器が公表された時点で採点する。公表速度が12,800Mbps台にとどまれば露光方式が上限を塞いだという判断が当たり、14,400Mbpsに届けば外れたとみる。"
-    }
+     "ko": "CXMT의 LPDDR6 양산·탑재 기기 공개 여부와 공개 속도를 2026년 10월 31일까지 확인해 채점한다. 12,800Mbps대에 머물면 노광 방식이 상단을 막았다는 판단이 맞은 것으로, 14,400Mbps에 닿으면 틀린 것으로 본다. 그때까지 공식 발표가 없으면 빗나감으로 본다.",
+     "en": "Score by Oct 31, 2026 whether CXMT's LPDDR6 has entered mass production with a device announced, and at what speed. Staying around 12,800Mbps confirms the lithography-ceiling call; reaching 14,400Mbps refutes it. No announcement by then counts as a miss.",
+     "ja": "2026年10月31日までにCXMTのLPDDR6が量産入りし搭載機器が発表されたか、公開速度が何かを確認して採点する。12,800Mbps台にとどまれば露光方式が上限を作ったとの判断が正しかったことになり、14,400Mbpsに達すれば誤りとなる。それまでに発表がなければ外れと見る。"
+    },
+    "due": "2026-10-31"
    },
    "lab": true,
    "foldWhy": true,
@@ -1048,10 +1049,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "메모리 현물가가 분기 기준으로 처음 꺾이는 분기에 채점한다. 삼성전자의 메모리 평균판매단가 하락폭이 현물가 하락폭보다 뚜렷하게 작으면 하락 5% 상한이 실제로 작동한 것으로, 비슷하게 빠지면 작동하지 않은 것으로 본다.",
-     "en": "Score in the first quarter that memory spot prices turn down on a quarterly basis. If Samsung's memory ASP falls markedly less than spot, the 5% cap on declines worked, and if it falls in line with spot, it did not.",
-     "ja": "メモリーのスポット価格が四半期ベースで初めて下落する四半期に採点する。サムスン電子のメモリー平均販売単価の下落幅がスポットの下落幅より明確に小さければ下落5%の上限が実際に働いたとし、同程度に下がれば働かなかったとみる。"
-    }
+     "ko": "삼성전자 2026년 3분기 실적 발표(2026년 10월 30일경)에서 메모리 평균판매단가 하락폭을 현물가 하락폭과 비교해 채점한다. 하락폭이 뚜렷하게 작으면 5% 상한이 작동한 것으로, 비슷하면 작동하지 않은 것으로 본다. 현물가가 아직 분기 기준으로 꺾이지 않았다면 다음 분기로 넘긴다.",
+     "en": "Score at Samsung's Q3 2026 earnings (around Oct 30, 2026) by comparing the drop in memory ASP to the drop in spot prices. A clearly smaller ASP decline confirms the 5% floor worked; a similar decline means it didn't. If spot prices haven't yet turned down quarterly, carry to next quarter.",
+     "ja": "サムスン電子の2026年第3四半期決算(2026年10月30日頃)で、メモリ平均販売価格の下落幅をスポット価格の下落幅と比較して採点する。下落幅が明確に小さければ5%上限が機能したことになり、同程度なら機能しなかったことになる。まだスポット価格が四半期ベースで下落していなければ次の四半期に持ち越す。"
+    },
+    "due": "2026-10-30"
    },
    "lab": true,
    "foldWhy": true,
@@ -1128,10 +1130,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2026년 8월과 9월 수출입 동향으로 채점한다. 컴퓨터 품목이 반도체보다 계속 빠르게 늘면서 낸드 단가만 내려가면 구성 변화로, 두 칸의 단가가 같이 내려가면 값이 꺾인 것으로 본다.",
-     "en": "Score on Korea's August and September 2026 trade figures. If the computer category keeps growing faster than semiconductors while only the NAND unit price falls, it was a mix shift, and if unit prices in both columns fall together, prices turned.",
-     "ja": "2026年8月と9月の貿易統計で採点する。コンピューター品目が半導体より速く伸び続けながらNAND単価だけ下がれば構成の変化とし、二つの欄の単価が一緒に下がれば値段が折れたとみる。"
-    }
+     "ko": "한국 관세청의 2026년 9월 수출입 통계(10월 초 발표)로 채점한다. 컴퓨터 품목이 반도체보다 계속 빠르게 늘면서 낸드 단가만 내려가면 구성 변화로, 두 항목의 단가가 함께 내려가면 값이 꺾인 것으로 본다.",
+     "en": "Score using Korea Customs Service's September 2026 trade statistics (released early October). If computer exports keep outgrowing semiconductors while only NAND unit prices fall, that's a mix shift; if both categories' prices fall together, prices have actually turned down.",
+     "ja": "韓国関税庁の2026年9月貿易統計(10月初旬発表)で採点する。コンピューター品目が半導体より伸び続けNAND単価だけが下がれば構成変化、両品目の単価が共に下がれば価格が下落し始めたと見る。"
+    },
+    "due": "2026-10-05"
    },
    "lab": true,
    "foldWhy": true,
@@ -1295,10 +1298,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "애플의 2026 회계 4분기와 2027 회계 1분기 매출총이익률로 채점한다. 4분기에 47~48%를 찍은 뒤 다음 분기에 다시 올라오면 지나가는 비용으로, 그 자리에 머물거나 더 내려가면 메모리 값이 완제품의 이익 구조를 바꾼 것으로 본다.",
-     "en": "Score on Apple's fiscal Q4 2026 and fiscal Q1 2027 gross margin. If margin prints 47-48% in Q4 and climbs again the following quarter, it was a passing cost, and if it stays there or falls further, memory prices changed the profit structure of finished goods.",
-     "ja": "アップルの2026会計第4四半期と2027会計第1四半期の売上総利益率で採点する。4Qに47~48%を付けた後、次の四半期に再び上がれば通り過ぎる費用とし、そこにとどまるかさらに下がれば、メモリーの値段が完成品の利益構造を変えたとみる。"
-    }
+     "ko": "애플의 2026 회계연도 4분기 실적(2026년 10월 30일경 발표)의 매출총이익률로 1차 확인한다. 4분기에 47~48%로 낮아지면 메모리 비용 영향이 나타난 것이고, 그렇지 않으면 아직 지나가는 비용이다. 최종 판단(2027 회계 1분기 회복 여부, 2027년 1월 발표)은 그 회차에 재확인한다.",
+     "en": "First check at Apple's FQ4 2026 earnings (around Oct 30, 2026) gross margin. A drop to 47-48% shows the memory cost hit landed; otherwise it hasn't yet. Final confirmation (whether margin rebounds in FQ1 2027, reported Jan 2027) will be re-checked then.",
+     "ja": "アップルの2026会計年度第4四半期決算(2026年10月30日頃発表)の売上総利益率で一次確認する。47~48%まで下がればメモリコストの影響が出たことになり、そうでなければまだコストは表れていない。最終判断(2027会計年度第1四半期での回復有無、2027年1月発表)はその回で再確認する。"
+    },
+    "due": "2026-10-30"
    },
    "lab": true,
    "foldWhy": true,
@@ -1378,10 +1382,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2026년 안에 마이크론이 대만 상여 조건을 바꾸는지로 채점한다. 급여의 200% 상한을 유지하면 한 공장의 분쟁으로, 삼성전자처럼 이익 연동으로 바꾸면 상여 구조 전환의 시작이었던 것으로 본다.",
-     "en": "Score on whether Micron changes its Taiwan bonus terms within 2026. Keeping the 200% of salary cap means it stayed a dispute at one plant, and switching to profit-linked terms as Samsung did means it was the start of a shift in bonus structures.",
-     "ja": "2026年内にマイクロンが台湾の賞与条件を変えるかで採点する。給与の200%上限を維持すれば一工場の紛争にとどまったとし、サムスン電子のように利益連動へ変えれば賞与の仕組み転換の始まりだったとみる。"
-    }
+     "ko": "2026년 10월 말까지 마이크론 대만 노조·상여 조건 관련 뉴스가 있는지로 1차 확인한다. 급여 200% 상한 유지 방침이 재확인되거나 변화 조짐이 없으면 한 공장의 분쟁으로 본다. 변화 협상이 진행 중이면 연말까지 지켜본다(연 단위 최종 확정은 별도 처리).",
+     "en": "First check by end of Oct 2026 for any news on Micron Taiwan's union/bonus terms. If the 200%-of-salary cap is reaffirmed or shows no sign of change, this reads as an isolated single-plant dispute. If negotiations toward change are underway, continue watching through year-end (final year-end confirmation handled separately).",
+     "ja": "2026年10月末までにマイクロン台湾の労組・賞与条件に関する報道があるかを一次確認する。給与200%上限維持方針が再確認されるか変化の兆しがなければ、一工場の紛争と見る。変更交渉が進行中であれば年末まで見守る(年単位の最終確定は別途対応)。"
+    },
+    "due": "2026-10-31"
    },
    "lab": true,
    "foldWhy": true,
@@ -1464,10 +1469,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "인화인듐 생산능력이 두 배가 되는 2026년 말 이후의 분기 실적으로 채점한다. GAAP 매출총이익률이 50% 언저리에 남아 있으면 값을 받는 자리에 선 것으로, 40%대 중반 아래로 내려가면 그동안의 이익률은 품귀가 만든 것으로 본다.",
-     "en": "Score on quarterly results after capacity doubles at the end of 2026. If GAAP gross margin stays near 50%, the company is standing where it can set prices, and if it slips below the mid-40s, the margin until then was made by scarcity.",
-     "ja": "リン化インジウムの生産能力が2倍になる2026年末以降の四半期決算で採点する。GAAP売上総利益率が50%あたりに残れば値段を取れる位置に立ったとし、40%台半ばを割れば、それまでの利益率は品薄が作ったものとみる。"
-    }
+     "ko": "AXT의 2026년 3분기 실적(2026년 11월 초 발표 예정)에서 인화인듐 생산능력 확장 진행 상황과 GAAP 매출총이익률을 1차 확인한다. 마진이 50% 언저리를 유지하면 값을 받는 자리에 선 것이고, 40%대 중반 아래로 내려가면 품귀 효과가 빠지기 시작한 신호다. 생산능력 두 배 달성은 연말 이후 최종 확인한다.",
+     "en": "First check at AXT's Q3 2026 earnings (expected early Nov 2026): indium phosphide capacity-expansion progress and GAAP gross margin. Margin holding around 50% means AXT is capturing pricing power; a drop into the mid-40s signals the shortage premium fading. Full confirmation of the capacity doubling checked after year-end.",
+     "ja": "AXTの2026年第3四半期決算(2026年11月上旬発表予定)でインジウムリン生産能力拡張の進捗とGAAP売上総利益率を一次確認する。マージンが50%前後を維持すれば価格決定力を得ている証拠であり、40%台半ば以下に下がれば品薄プレミアムが薄れ始めた兆候である。生産能力倍増の最終確認は年末以降に行う。"
+    },
+    "due": "2026-11-02"
    },
    "lab": true,
    "foldWhy": true,
@@ -1889,10 +1895,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 분기 실적으로 채점한다. 탄화규소와 데이터센터 설계 수주가 매출 증가로 나타나 전년 대비 성장으로 돌아서면 전환을 건넌 것으로, 2027년에도 매출이 자동차·산업 설비 부진에 묶여 있으면 데이터센터 노출은 실적에 닿지 못한 것으로 본다.",
-     "en": "Score on 2027 quarterly results. If the silicon carbide and data center design wins show up as revenue and growth turns positive year over year, the transition was crossed, and if 2027 revenue is still tied to weak automotive and industrial demand, the data center exposure never reached the results.",
-     "ja": "2027年の四半期決算で採点する。炭化ケイ素とデータセンターの設計受注が売上増として表れ前年比で成長に転じれば移行を渡ったとし、2027年も売上が自動車・産業設備の不振に縛られていれば、データセンターへの露出は業績に届かなかったとみる。"
-    }
+     "ko": "X-FAB의 2026년 3분기 실적(2026년 11월 초 발표 예정)에서 탄화규소·데이터센터 설계 수주 매출 반영 조짐을 1차 확인한다. 매출이 전년 대비 개선 신호를 보이면 전환이 시작된 것이고, 자동차·산업 설비 부진에 계속 묶여 있으면 아직이다. 최종 판단은 2027년 분기 실적에서 재확인한다.",
+     "en": "First check at X-FAB's Q3 2026 earnings (expected early Nov 2026) for early signs of SiC and data-center design-win revenue. Any year-over-year improvement signals the turn has started; continued drag from auto/industrial weakness means it hasn't yet. Final judgment re-checked against 2027 quarterly results.",
+     "ja": "X-FABの2026年第3四半期決算(2026年11月上旬発表予定)で、炭化ケイ素・データセンター向け設計受注の売上への反映兆候を一次確認する。前年比で改善の兆しがあれば転換が始まったこと、自動車・産業機器の低迷に引き続き縛られていればまだである。最終判断は2027年の四半期決算で再確認する。"
+    },
+    "due": "2026-11-02"
    },
    "lab": true,
    "foldWhy": true,
@@ -1951,10 +1958,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "키오시아의 2026 회계연도 2분기(7~9월) 실적으로 채점한다. 영업이익이 회사 전망 1조8,900억엔 선에 닿으면 이번 미달은 기대가 앞선 것으로, 평균판매단가 상승이 꺾이며 전망에 크게 못 미치면 값이 꺾이기 시작한 신호였던 것으로 본다.",
-     "en": "Score on Kioxia's fiscal Q2 2026 results for July to September. If operating profit reaches the 1.89 trillion yen the company guided, this miss was expectations running ahead, and if the average selling price increase flattens and profit falls well short, it was the first sign of prices turning.",
-     "ja": "キオクシアの2026会計年度第2四半期(7-9月)決算で採点する。営業利益が会社見通しの1兆8,900億円の線に届けば今回の未達は期待が先行したものとし、平均販売単価の上昇が折れて見通しを大きく下回れば値段が折れ始めた信号だったとみる。"
-    }
+     "ko": "키오시아의 2026 회계연도 2분기(7~9월) 실적(2026년 11월 초 발표 예정)으로 채점한다. 영업이익이 회사 전망 1조8,900억엔 선에 닿으면 이번 미달은 기대가 앞선 것으로, 평균판매단가 상승이 꺾이며 전망에 크게 못 미치면 값이 꺾이기 시작한 신호였던 것으로 본다.",
+     "en": "Score using Kioxia's FY2026 Q2 (Jul-Sep) earnings, expected early Nov 2026. Hitting the company's ¥189B operating profit guidance means this miss was just expectations running ahead; a sharp miss as ASP gains stall signals prices have started to turn.",
+     "ja": "キオクシアの2026会計年度第2四半期(7~9月)決算(2026年11月上旬発表予定)で採点する。営業利益が会社予想の1,890億円水準に達すれば今回の未達は期待が先行しただけであり、平均販売価格上昇が失速し予想を大きく下回れば価格が下落し始めた兆候と見る。"
+    },
+    "due": "2026-11-02"
    },
    "lab": true,
    "foldWhy": true,
@@ -2036,10 +2044,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "레딧의 2026년 3분기 실적으로 채점한다. 매출이 안내한 8억6,500만달러 선을 지키면 검색 유입 문제가 아직 매출에 닿지 않은 것으로, 매출 증가율이 61%에서 뚜렷하게 꺾이면 유입 경로가 원인이었던 것으로 본다.",
-     "en": "Score on Reddit's Q3 2026 results. If revenue holds the guided $865 million line, the search referral problem has not reached revenue yet, and if the growth rate bends clearly from 61%, the route in was the cause.",
-     "ja": "レディットの2026年7-9月期決算で採点する。売上が示した8億6,500万ドルの線を守れば検索流入の問題はまだ売上に届いていないとし、成長率が61%から明確に折れれば流入経路が原因だったとみる。"
-    }
+     "ko": "레딧의 2026년 3분기 실적(2026년 10월 말 발표 예정)으로 채점한다. 매출이 안내한 8억6,500만달러 선을 지키면 검색 유입 문제가 아직 매출에 닿지 않은 것으로, 매출 증가율이 61%에서 뚜렷하게 꺾이면 유입 경로가 원인이었던 것으로 본다.",
+     "en": "Score using Reddit's Q3 2026 earnings (expected late Oct 2026). Hitting the guided $865M revenue means the search-referral problem hasn't reached revenue yet; a clear slowdown from 61% growth means the referral channel was the cause.",
+     "ja": "レディットの2026年第3四半期決算(2026年10月末発表予定)で採点する。売上高がガイダンスの8億6,500万ドル水準を維持すれば検索流入の問題はまだ売上に及んでいないことになり、成長率が61%から明確に鈍化すれば流入経路が原因だったことになる。"
+    },
+    "due": "2026-10-29"
    },
    "lab": true,
    "foldWhy": true,
@@ -2874,11 +2883,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2028년 말 기준 모듈러 방식이 가동 중 데이터센터 용량의 30%를 넘는지로 원문의 침투율 전망을 채점한다.",
-     "en": "Score the original piece's penetration call by whether modular exceeds 30% of total live datacenter capacity by the end of 2028.",
-     "ja": "2028年末時点でモジュラー方式が稼働中のデータセンター容量の30%を超えるかで、原文の浸透率見通しを判定する。"
+     "ko": "최종 확인(2028년 말, 모듈러 방식 30% 침투)까지는 멀어 중간 신호로 채점한다. 2026년 3분기 하이퍼스케일러 실적 콜(10월 말)에서 모듈러·프리팹 데이터센터 건설 방식 채택이 언급되며 확대되는 흐름이 이어지는지 확인한다. 최종 30% 침투율 판정은 2028년 말에 재확인한다.",
+     "en": "Final confirmation (30% modular penetration by end-2028) is far off, so this checks an interim signal. At Q3 2026 hyperscaler earnings calls (late Oct), check whether modular/prefab datacenter construction keeps getting cited as an expanding approach. The 30%-penetration verdict itself is re-checked at end-2028.",
+     "ja": "最終確認(2028年末、モジュラー方式30%浸透)は先の話のため、中間シグナルで採点する。2026年第3四半期のハイパースケーラー決算コール(10月末)でモジュラー・プレハブ型データセンター建設方式への言及が拡大傾向にあるか確認する。最終的な30%浸透率の判定は2028年末に再確認する。"
     },
-    "due": "2028-12-31"
+    "due": "2026-10-31"
    },
    "lab": true,
    "foldWhy": true,
@@ -3626,13 +3635,28 @@
     "ja": "今回の地震はこれで終わった出来事なのか、それとも2016年のようにより大きな地震の前触れなのか?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "hit",
     "note": {
-     "ko": "8월 4일까지 구마모토에서 이번(M7.1)과 같은 규모 이상의 지진이 다시 발생했는지, JASM이 정상 가동을 유지했는지로 채점.",
-     "en": "To be scored by August 4 on whether Kumamoto saw another quake of magnitude 7.1 or larger, and whether JASM kept running normally.",
-     "ja": "8月4日までに熊本で今回(M7.1)と同程度以上の地震が再び起きたか、JASMが通常稼働を維持したかで採点する。"
+     "ko": "지진 다음 날(7/29) JASM은 직원 안전과 설비 무손상을 확인하고 정상 가동으로 복귀했다. 8월 4일까지 구마모토에서 M7.1급 이상의 추가 지진은 보도되지 않아, 2016년형 '더 큰 본진' 재발 없이 사건이 종결됐다.",
+     "en": "A day after the quake (Jul 29), JASM confirmed staff safety and no facility damage, and returned to normal operation. No quake of M7.1 or larger recurred in Kumamoto through Aug 4, so this closed out without a 2016-style bigger mainshock.",
+     "ja": "地震翌日(7/29)、JASMは従業員の安全と設備の無傷を確認し通常稼働に復帰した。8月4日までに熊本でM7.1以上の地震再発は報じられず、2016年型の「より大きな本震」再来なく事態は収束した。"
     },
-    "due": "2026-08-04"
+    "due": "2026-08-04",
+    "gradedOn": "2026-08-04",
+    "evidence": [
+     {
+      "q": "TSMC JASM Kumamoto fab operations status August 2026",
+      "found": "Focus Taiwan/TrendForce/Investing.com: TSMC confirmed JASM employees safe and facility unaffected, resumed operations within a day"
+     },
+     {
+      "q": "Kumamoto earthquake aftershock magnitude August 2026 Japan Meteorological Agency",
+      "found": "보도는 7/28 M7.1 원 지진 관련 뉴스뿐, 이후 추가 강진 보도 없음"
+     },
+     {
+      "q": "Kumamoto earthquake no aftershock warning lifted normal",
+      "found": "추가 강진 발생 보도 없음 (2016년 사례만 과거 참조로 검색됨)"
+     }
+    ]
    },
    "ts": "2026-07-29T03:55:58.669608+00:00"
   },
@@ -3706,10 +3730,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2026년 8월과 9월 중국 제조업 PMI로 채점한다. 신규주문이 50 위로 올라오고 첨단제조가 50 위에 남아 있으면 7월 위축은 일시적 국내 수요 문제였던 것으로, 첨단제조까지 50 아래로 내려가면 더 깊은 둔화로 본다.",
-     "en": "Score on China's August and September 2026 manufacturing PMI. If new orders climb back above 50 while high-tech manufacturing stays above 50, July's contraction was a temporary domestic demand problem, and if high-tech also falls below 50, it is a deeper slowdown.",
-     "ja": "2026年8月と9月の中国製造業PMIで採点する。新規受注が50を超えて戻りハイテク製造業が50の上に残れば7月の縮小は一時的な国内需要の問題とし、ハイテク製造業まで50を割れば、より深い鈍化とみる。"
-    }
+     "ko": "중국 국가통계국의 2026년 9월 제조업 PMI(10월 1일경 발표)로 채점한다. 신규주문이 50 위로 올라오고 첨단제조가 50 위에 남아 있으면 7월 위축은 일시적 국내 수요 문제였던 것으로, 첨단제조까지 50 아래로 내려가면 더 깊은 둔화로 본다.",
+     "en": "Score using China's official September 2026 manufacturing PMI (released around Oct 1). New orders back above 50 with high-tech manufacturing holding above 50 means July's contraction was a temporary domestic-demand blip; high-tech manufacturing also falling below 50 signals a deeper slowdown.",
+     "ja": "中国国家統計局の2026年9月製造業PMI(10月1日頃発表)で採点する。新規受注が50を上回り、ハイテク製造業が50以上を維持していれば7月の縮小は一時的な国内需要の問題だったことになり、ハイテク製造業も50を割り込めばより深い減速と見る。"
+    },
+    "due": "2026-10-01"
    },
    "lab": true,
    "foldWhy": true,
@@ -4419,13 +4444,28 @@
     "ja": "TSMCの耐震設計は今回も持ちこたえるのか、それとも半径20キロに集中したサプライチェーンがついに問題になるのか?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "hit",
     "note": {
-     "ko": "지진 발생 며칠 안에 JASM 공장 가동이 정상 복귀했는지, 아니면 가동 중단이 길어졌는지 확인해 채점.",
-     "en": "To be scored within days: whether JASM's fabs returned to normal operation quickly, or suffered an extended shutdown.",
-     "ja": "地震発生から数日以内にJASMの工場が正常稼働に戻ったか、それとも稼働停止が長引いたかを確認して採点。"
+     "ko": "TSMC는 7/29 JASM 직원 안전과 설비 무손상을 공식 확인했고, 공장은 지진 발생 하루 만에 정상 가동으로 복귀했다(TrendForce·Focus Taiwan·Taipei Times·Investing.com). 내진 설계와 대피 절차가 실제로 버텼다.",
+     "en": "TSMC officially confirmed on Jul 29 that JASM staff were safe and the facility undamaged, and the fab returned to normal operation within a day of the quake (TrendForce, Focus Taiwan, Taipei Times, Investing.com). The seismic design and evacuation protocol held up.",
+     "ja": "TSMCは7/29、JASMの従業員の安全と設備の無傷を公式確認し、工場は地震発生から1日で通常稼働に復帰した(TrendForce・Focus Taiwan・Taipei Times・Investing.com)。耐震設計と避難手順は実際に機能した。"
     },
-    "due": "2026-08-04"
+    "due": "2026-08-04",
+    "gradedOn": "2026-08-04",
+    "evidence": [
+     {
+      "q": "TSMC JASM Kumamoto fab operations status August 2026",
+      "found": "복수 매체(TrendForce, Focus Taiwan, Taipei Times, Investing.com)가 JASM 무손상·하루 만의 정상 재가동을 확인"
+     },
+     {
+      "q": "Kumamoto earthquake aftershock magnitude August 2026 Japan Meteorological Agency",
+      "found": "추가 대규모 지진 보도 없음"
+     },
+     {
+      "q": "Kumamoto earthquake no aftershock warning lifted normal",
+      "found": "가동 중단 장기화 보도 없음"
+     }
+    ]
    },
    "ts": "2026-07-28T11:20:00.000000+00:00",
    "lab": true,
@@ -5174,11 +5214,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2028년까지 CXMT의 세계 D램 시장점유율이 15%를 넘는지, EUV 없이 비트당 원가차가 좁혀지는지 확인, 노무라(3배 목표가)와 모닝스타(68% 하락 적정가) 중 어느 쪽이 맞았는지 판가름.",
-     "en": "Check by end-2028 whether CXMT's global DRAM market share clears 15% and whether its cost-per-bit gap narrows without EUV access, settling whether Nomura's tripling target or Morningstar's 68%-below-open fair value was closer to right.",
-     "ja": "2028年末までにCXMTの世界DRAM市場シェアが15%を超えるか、EUVなしでビットあたりコスト差が縮まるかを確認し、ノムラの3倍目標株価とモーニングスターの初日終値比68%安の適正株価のどちらが正しかったかを判定する。"
+     "ko": "최종 확인(2028년까지 세계 D램 점유율 15%)까지는 멀어 중간 신호로 채점한다. 10월 말까지 CXMT 주가가 IPO가 대비 노무라의 3배 목표가 쪽으로 가는지, 모닝스타의 68% 고평가 판단 쪽으로 가는지(추가 하락)를 애널리스트 리포트·주가로 확인한다. 점유율 15% 달성 여부는 2028년에 재확인한다.",
+     "en": "Final confirmation (15% global DRAM share by 2028) is far off, so this checks an interim signal. By end-Oct 2026, check whether CXMT's share price trend and analyst updates point toward Nomura's 3x target or Morningstar's 68%-overvalued call (further decline). The 15%-share verdict is re-checked in 2028.",
+     "ja": "最終確認(2028年までに世界DRAMシェア15%)は先の話のため、中間シグナルで採点する。10月末までにCXMTの株価とアナリストの更新が野村の3倍目標株価の方向か、モーニングスターの68%割高判断(さらなる下落)の方向かを確認する。シェア15%達成の判定は2028年に再確認する。"
     },
-    "due": "2028-12-31"
+    "due": "2026-10-31"
    },
    "ts": "2026-07-28T10:45:00.000+00:00",
    "quote": {
@@ -5292,11 +5332,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "HBM5 베이스다이 2나노 GAA 실제 양산과 HBM4E 대비 50%+ 속도 목표 달성 여부를, 업계 전망 시점인 2027~2028년 실제 출하 때 채점.",
-     "en": "To be scored when HBM5 actually ships (industry estimates put this around 2027-2028): whether the 2nm GAA base die reaches mass production and the 50%+ speed target over HBM4E holds up.",
-     "ja": "HBM5の2ナノGAAベースダイが実際に量産され、HBM4E比50%以上の速度目標を達成できたかを、業界予想である2027〜2028年の実出荷時点で採点する。"
+     "ko": "최종 확인(2027~2028년 HBM5 실제 출하, HBM4E 대비 50%+ 속도)까지는 멀어 중간 신호로 채점한다. 삼성전자 2026년 3분기 실적(10월 30일경)에서 HBM5 베이스다이 2나노 GAA 개발·테이프아웃 진행 상황이 구체적으로 언급되는지 확인한다. 실제 양산·속도 목표 달성 여부는 2027~2028년 출하 시점에 재확인한다.",
+     "en": "Final confirmation (actual HBM5 shipments in 2027-2028 with 50%+ speed over HBM4E) is far off, so this checks an interim signal. At Samsung's Q3 2026 earnings (around Oct 30), check whether HBM5 base-die 2nm GAA development/tape-out progress gets a concrete mention. Actual mass production and speed target achievement is re-checked at 2027-2028 shipment.",
+     "ja": "最終確認(2027~2028年のHBM5実出荷、HBM4E比50%+速度)は先の話のため、中間シグナルで採点する。サムスン電子の2026年第3四半期決算(10月30日頃)でHBM5ベースダイの2ナノGAA開発・テープアウトの進捗が具体的に言及されるか確認する。実際の量産・速度目標達成は2027~2028年の出荷時に再確認する。"
     },
-    "due": "2028-12-31"
+    "due": "2026-10-30"
    },
    "ts": "2026-07-28T00:51:45.837266+00:00",
    "lab": true,
@@ -5376,11 +5416,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 말, 이 업체의 DUV 노광장비 실제 출하량이 20대 안팎에 도달했는지 채점.",
-     "en": "To be scored at end of 2027: whether the company's DUV tool shipments actually reached roughly 20 units.",
-     "ja": "2027年末に、同社のDUV露光装置の実際の出荷台数が20台前後に達したかを採点。"
+     "ko": "최종 확인(2027년 말, DUV 노광장비 실제 출하량 20대 안팎)까지는 멀어 중간 신호로 채점한다. 10월 말까지 해당 업체의 출하 대수·수주 관련 최신 보도가 있는지 확인한다. 최종 대수 판정은 2027년 말에 재확인한다.",
+     "en": "Final confirmation (end-2027, actual DUV shipments around 20 units) is far off, so this checks an interim signal. By end-Oct 2026, check for the latest reporting on this maker's shipment count and orders. The final unit-count verdict is re-checked at end-2027.",
+     "ja": "最終確認(2027年末、DUV露光装置の実出荷台数が20台前後)は先の話のため、中間シグナルで採点する。10月末までに当該メーカーの出荷台数・受注に関する最新報道があるか確認する。最終的な台数判定は2027年末に再確認する。"
     },
-    "due": "2027-12-31"
+    "due": "2026-10-31"
    },
    "ts": "2026-07-27T18:51:43.986632+00:00",
    "lab": true,
@@ -6456,11 +6496,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Grade in mid-2028: is US natural gas supply starting to fall short of demand as Smith predicted, with storage tracking toward depletion by 2030?",
-     "ko": "2028년 중반에 채점: 스미스의 예측대로 미국 천연가스 공급이 수요를 못 따라가기 시작했는지, 저장량이 2030년 고갈 쪽으로 가고 있는지 확인.",
-     "ja": "2028年中頃に採点：スミス氏の予測通り、米天然ガス供給が需要に追いつかなくなり始めたか、貯蔵量が2030年の枯渇に向かっているかを確認。"
+     "ko": "최종 확인(2028년 중반, 공급이 수요를 못 따라가는지)까지는 멀어 중간 신호로 채점한다. EIA의 2026년 겨울철 전망(통상 10월 발표)에서 천연가스 저장량 궤적과 생산·수요 전망이 스미스의 예측(공급 부족 심화) 쪽인지 확인한다. 2030년 고갈 여부 등 최종 판단은 2028년 중반에 재확인한다.",
+     "en": "Final confirmation (mid-2028, whether supply fails to keep up with demand) is far off, so this checks an interim signal. In the EIA's 2026 winter outlook (typically released Oct), check whether natgas storage trajectory and production/demand forecasts point toward Smith's call of a worsening shortfall. Final judgment (including the 2030-depletion question) is re-checked mid-2028.",
+     "ja": "最終確認(2028年半ば、供給が需要に追いつかないか)は先の話のため、中間シグナルで採点する。EIAの2026年冬季見通し(通常10月発表)で、天然ガス貯蔵量の推移と生産・需要予測がスミスの予測(不足深刻化)の方向かを確認する。2030年枯渇の是非を含む最終判断は2028年半ばに再確認する。"
     },
-    "due": "2028-06-30"
+    "due": "2026-10-31"
    },
    "ts": "2026-07-26T12:57:00+00:00",
    "coverArt": "covers/doomberg-natgas-demand-shortage-2028.png",
@@ -9009,11 +9049,11 @@
    },
    "outcome": {
     "status": "pending",
-    "due": "2027-12-31",
+    "due": "2026-10-23",
     "note": {
-     "en": "Check whether Intel actually begins 14A risk production for internal products in the second half of 2027 as guided, the first checkpoint toward the stated 2028 high-volume ramp.",
-     "ko": "인텔이 실제로 2027년 하반기에 내부 제품용 14A 리스크 생산을 가이던스대로 시작하는지 확인한다. 2028년 대량양산 목표로 가는 첫 번째 확인 지점이다.",
-     "ja": "インテルが実際に2027年後半、ガイダンス通りに内部製品向け14Aリスク生産を開始するかを確認する。2028年大量量産という目標に向けた最初の確認ポイントとなる。"
+     "ko": "최종 확인(2028년 대량양산)까지는 멀어 중간 신호로 채점한다. 인텔 2026년 3분기 실적(10월 23일경 예정)에서 14A 내부 제품용 리스크 생산 가이던스가 재확인되는지, 2027년 하반기 일정에 변화가 있는지 확인한다. 실제 리스크 생산 개시 여부는 2027년 하반기에 재확인한다.",
+     "en": "Final confirmation (2028 mass production) is far off, so this checks an interim signal. At Intel's Q3 2026 earnings (expected around Oct 23), check whether the 14A internal-product risk-production guidance is reaffirmed, and whether the H2 2027 timeline has shifted. Actual risk-production start is re-checked in H2 2027.",
+     "ja": "最終確認(2028年の大量生産)は先の話のため、中間シグナルで採点する。インテルの2026年第3四半期決算(10月23日頃予定)で14A社内向けリスク生産のガイダンスが再確認されるか、2027年後半の日程に変化があるかを確認する。実際のリスク生産開始は2027年後半に再確認する。"
     }
    },
    "ts": "2026-07-24T03:49:00.000000+00:00",
@@ -10801,11 +10841,18 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Check around AMD's August 4, 2026 earnings call and through 2027 whether the Anthropic deal (2GW of MI450 chips, up to $5B AMD investment) proceeds on the announced schedule.",
-     "ja": "2026年8月4日のAMD決算発表と2027年の進捗を通じて、アンソロピックとの契約(MI450チップ2ギガワット、AMDの出資最大50億ドル)が発表通りのスケジュールで進むか確認する。",
-     "ko": "2026년 8월 4일 AMD 실적발표와 2027년 진행 상황을 통해 앤스로픽과의 계약(MI450 칩 2기가와트, AMD 투자 최대 50억 달러)이 발표된 일정대로 진행되는지 확인한다."
+     "en": "Deferred one day past AMD's Aug 4, 2026 earnings call to confirm whether the Anthropic deal (2GW of MI450 chips, up to $5B AMD investment) was reaffirmed on the call; longer-term follow-through checked through 2027 in later rounds.",
+     "ja": "AMDの2026年8月4日決算発表の翌日まで延期し、アンソロピック契約(MI450チップ2ギガワット、AMD出資最大50億ドル)が決算で再確認されるかを確認する。2027年までの長期的な進捗は今後の回で確認する。",
+     "ko": "AMD의 2026년 8월 4일 실적 발표 하루 뒤로 연기해, 앤스로픽 계약(MI450 칩 2기가와트, AMD 투자 최대 50억달러)이 실적 발표에서 재확인되는지 확인한다. 2027년까지의 장기 이행 여부는 이후 회차에서 확인한다."
     },
-    "due": "2026-08-04"
+    "due": "2026-08-05",
+    "deferrals": [
+     {
+      "from": "2026-08-04",
+      "to": "2026-08-05",
+      "why": "AMD 2026년 2분기 실적 발표 및 컨퍼런스콜이 2026-08-04(미국 장 마감 후) 예정 — 발표 하루 뒤로 미뤄 실제 진행 상황(2GW MI450 계약·최대 50억달러 투자)이 재확인되는지 확인"
+     }
+    ]
    },
    "ts": "2026-07-22T12:00:00+00:00",
    "coverArt": "covers/kobeissi-amd-anthropic-deal-signed.png",
@@ -11817,11 +11864,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Check whether the zero percent tariff on generic drugs actually rises to 100% around August 2028 as scheduled, or whether the policy is delayed or changed before then.",
-     "ja": "2028年8月頃、ジェネリック医薬品の関税が予定通り0%から100%に実際に引き上げられるか、それとも前もって政策が延期・変更されるかを確認する。",
-     "ko": "2028년 8월 무렵 제네릭 의약품 관세가 실제로 0%에서 100%로 예정대로 오르는지, 아니면 그 전에 정책이 연기되거나 바뀌는지 확인."
+     "ko": "최종 확인(2028년 8월, 관세 0%→100%→200% 예정대로 인상)까지는 멀어 중간 신호로 채점한다. 10월 말까지 제네릭 의약품 관세 일정과 관련한 정책 변경·연기·유예 발표가 있는지 확인한다. 예정대로 진행 중이면 방향 유지, 연기·수정 발표가 나오면 note를 다시 쓴다. 실제 세율 인상 이행 여부는 2028년에 재확인한다.",
+     "en": "Final confirmation (tariff rising 0%→100%→200% on schedule by Aug 2028) is far off, so this checks an interim signal. By end-Oct 2026, check for any policy change, delay, or exemption announced on the generic-drug tariff schedule. If still on track, direction holds; if delayed or revised, the note gets rewritten. Actual rate-hike implementation is re-checked in 2028.",
+     "ja": "最終確認(2028年8月、関税0%→100%→200%への予定通りの引き上げ)は先の話のため、中間シグナルで採点する。10月末までにジェネリック医薬品関税スケジュールに関する政策変更・延期・猶予の発表があるか確認する。予定通り進行中なら方向を維持し、延期・修正の発表があればノートを書き直す。実際の税率引き上げ実施は2028年に再確認する。"
     },
-    "due": "2028-08-15"
+    "due": "2026-10-31"
    },
    "ts": "2026-07-21T12:00:00+00:00"
   },
@@ -12239,13 +12286,28 @@
    },
    "stance": "bull",
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "en": "Score later: does US retail gasoline stay above $4/gallon (diesel above $5) in the following weeks, and is Bab-el-Mandeb transit actually disrupted rather than just insured at a premium?",
-     "ko": "이후 채점: 이후 몇 주간 미국 휘발유 소매가가 갤런당 4달러(경유 5달러) 위를 유지하는지, 바브엘만데브 통행이 보험료만 오르는 데 그치지 않고 실제로 끊기는지 확인.",
-     "ja": "後日採点：その後数週間、米国のガソリン小売価格が1ガロン4ドル(軽油5ドル)を上回り続けるか、バブ・エル・マンデブの通航が保険料上昇だけで済まず実際に途絶するかを確認。"
+     "ko": "8월 1일 보도(The National, Al Jazeera) 기준 바브엘만데브 해협은 통행이 실제로 끊기지 않고 선박(약 25척 규모 상품선 등)이 계속 통행 중이며, 후티는 오히려 통항료 부과 계획을 부인했다. 봉쇄는 보험료·항로비용 상승으로 나타났을 뿐 '실제 통행 두절'은 확인되지 않아 원문이 요구한 조건을 충족하지 못했다.",
+     "en": "As of Aug 1 reporting (The National, Al Jazeera), Bab-el-Mandeb transit was not actually cut off — vessels (around 25 commodity ships) kept transiting, and the Houthis denied plans to charge ships. The blockade showed up as higher insurance/route costs, not an actual transit stoppage, so the piece's bar was not met.",
+     "ja": "8月1日の報道(The National、Al Jazeera)時点で、バブ・エル・マンデブ海峡の通航は実際には途絶しておらず、船舶(商品船約25隻など)は通航を続けており、フーシ派はむしろ通航料徴収計画を否定した。封鎖は保険料・航路コストの上昇として表れただけで「実際の通航途絶」は確認されず、原文が求めた条件を満たさなかった。"
     },
-    "due": "2026-08-04"
+    "due": "2026-08-04",
+    "gradedOn": "2026-08-04",
+    "evidence": [
+     {
+      "q": "Houthi Saudi Arabia blockade Red Sea oil August 2026",
+      "found": "NBC/Al Jazeera/The Hill: 후티가 봉쇄 선언, 유가 반응했으나 실제 물리적 통행 차단 여부는 불분명"
+     },
+     {
+      "q": "US gasoline diesel price August 2026 Red Sea Bab-el-Mandeb shipping",
+      "found": "디젤·유조선 운임 상승 보도는 있으나 갤런당 4달러 이상 유지를 확인하는 구체 수치는 확인되지 않음"
+     },
+     {
+      "q": "Bab-el-Mandeb tanker traffic transit continues shipping August 2026",
+      "found": "The National(8/1): 바브엘만데브 통행 지속(약 25척 상품선), Al Jazeera(8/1): 후티가 통항료 부과 계획 부인 — 실제 두절 아님"
+     }
+    ]
    },
    "ts": "2026-07-21T12:00:00+00:00",
    "quote": {
