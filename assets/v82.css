@@ -454,4 +454,18 @@
      pseudo-element is not clipped. Offscreen in every no-keyboard state. */
   html.rbeta #v82detail::after{content:"";position:absolute;top:100%;left:0;right:0;height:70vh;background:inherit;}
   #v82dbody{padding-bottom:calc(46px + env(safe-area-inset-bottom, 0px) + 24px);}
+
+  /* 2026-08-03 (june "PC버전 구조로 동일하게 통일"): 판정 기록·테마 논쟁 헤더를
+     데스크톱(html.v83 .sb-header)과 같은 plain 스타일로. 다크 배너와 "피드로 돌아가기"
+     버튼을 걷어낸다 - 이제 nav의 ←+제목 바(#v82subbar)가 그 역할을 하므로 뒤로가기가
+     한 화면에 두 개 있을 이유가 없다. 시리즈 뷰(.series-header 단독)는 그대로 둔다. */
+  html.rbeta #feedList > .series-header.sb-header{
+    background:transparent !important; color:var(--text) !important; border-radius:0 !important;
+    padding:14px 16px 2px !important; margin:0 !important; box-shadow:none !important;
+  }
+  html.rbeta #feedList > .series-header.sb-header .series-close{display:none !important;}
+  html.rbeta #feedList > .series-header.sb-header .series-head-desc{
+    font-size:13px !important; line-height:1.55 !important; color:var(--muted) !important;
+    margin:0 !important; opacity:1 !important;
+  }
 }
