@@ -34,9 +34,13 @@ jobs:
           MODEL: claude-sonnet-5
           MAX_GRADE: "12"
           WEB_SEARCH_USES: "4"
-          # Pushes are handled by the Cloudflare worker cron; set to "1" to
-          # push freshly graded results from here instead.
-          GRADE_PUSH: "1"
+          # Graded-prediction pushes are relayed by notify-followers.yml, which
+          # fires on any push that touches items.json and now detects
+          # outcome.status pending -> hit/miss (2026-08-04). Keep this at "0":
+          # with "1" every grade done here would send twice, and grading done by
+          # the scheduled Cowork session would still send zero (that session
+          # cannot reach api.stacksdaily.com at all -- egress proxy 403).
+          GRADE_PUSH: "0"
           STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
           STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
           SITE_URL: https://stacksdaily.com
