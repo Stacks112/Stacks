@@ -2,6 +2,52 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-03 Claude (calendar header joins the shared menu top bar)
+Goal:
+- june: "캘린더도 동일하게" - make the mobile calendar header match every other menu bar.
+
+Changed:
+- `assets/v82.css` (`40198b8b`), `index.html` (`33beba1a`, restored in `89374a93`) - deployed live
+- cache hash: v82.css `c2194fb8`
+
+Root cause:
+- `#calSheet` is a `.me-card` modal, not a `.v82-screen`, so neither earlier pass touched it. Its
+  `.me-head` was 52px with the title on the LEFT and a round ✕ on the right - the only remaining
+  layout that did not read as "back arrow then menu name".
+- `.me-card` also carries `padding:20px 22px 24px` + a 1px border. Expanded full-screen on mobile
+  that inset pushed the header 23px in, so even after restyling the arrow started at x=29 while
+  every other bar starts at x=6.
+
+Design:
+- CSS only, no markup or JS change: `order` puts the existing close button to the left of the
+  title and `::before` swaps its glyph to an arrow (`font-size:0` on the button hides the ✕).
+  The close action is untouched, so back still closes the sheet.
+- `.me-head` takes the same values as `#v82subbar` / `.v82-sh`: 48px, gap 6, padding 0 6,
+  nav background with the dark-theme override, title 18px, arrow 22px.
+- `html.rbeta #calSheet .me-card{padding:0;border:0}` so the bar starts at the real edge. Body
+  inset now comes from `#calBody` alone (16px), which also widens the month grid slightly.
+- Scoped to `#calSheet`: `#meSheet` still measures padding 20px 22px 24px / 1px border / 20px
+  radius, i.e. unchanged.
+
+Verified:
+- All 10 mobile menu headers now report identical geometry: 테마 논쟁 / 판정 기록 / 최근 읽은 글 /
+  북마크 (`#v82subbar`), 팔로잉 / 공유한 글 / 찾기 / 탐색 / 알림 (`.v82-sh`), 캘린더 (`.me-head`)
+  - 48px, bg rgba(255,255,255,.86), title 18px, arrow box at x=6.
+- Dark mode bg rgba(0,0,0,.86) with rgb(242,243,247) text; arrow closes the sheet and returns to
+  the feed. Desktop v83 menu pages still 53px with correct titles. Zero page errors.
+- Live re-check in a 390px same-origin iframe on stacksdaily.com plus a screenshot.
+
+Risks / note for whoever wrote `aa92cd8b`:
+- `aa92cd8b` (whole-card click) was authored from a stale `index.html` and reverted the v82.css
+  query string from `c2194fb8` back to `c2125c57`. The file on disk was already the new CSS, but
+  returning visitors would have kept the cached old copy, so the calendar header would not have
+  appeared for them. Restored in `89374a93`; all 35 other lines that commit added were verified
+  still present. **If you edit index.html from a clone, re-check the asset hash lines before
+  committing** - `scripts/deploy_guard.py` catches this.
+
+Next:
+- none. Detail: Claude project doc `claude/status-2026-08-03-mobile-screen-header-restyle.md`.
+
 ## 2026-08-03 Claude (whole-card click opens the post view on desktop)
 Goal:
 - june approved option A for the dead-click finding: make the desktop card body clickable like X.
