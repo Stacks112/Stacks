@@ -1,6 +1,165 @@
 {
  "items": [
   {
+   "id": "jukan-samsung-foundry-100-utilization-2nm-yield-gate",
+   "date": "2026-08-03",
+   "source": "Jukan (@jukan05)",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "sourceUrl": "https://x.com/jukan05/status/2084179469754110380",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#334155",
+    "label": "2NM YIELD GATE"
+   },
+   "tags": [
+    "SAMSUNG",
+    "FOUNDRY",
+    "2NM"
+   ],
+   "stance": "watch",
+   "related": [
+    "jukan-samsung-foundry-2nm-taylor-fab2",
+    "jukan-samsung-2q26-lta-60-70-capacity",
+    "jukan-nomura-samsung-3yr-profit-vs-market-cap"
+   ],
+   "title": {
+    "ko": "연내 가동률 100%를 앞둔 삼성 파운드리, 연간 흑자 시점은 왜 2028년일까?",
+    "en": "Samsung's foundry is closing in on 100% utilization, so why is annual profit set for 2028?",
+    "ja": "年内に稼働率100%が見えたサムスンのファウンドリー、年間黒字の時期はなぜ2028年なのか？"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Samsung Electronics' foundry division is understood to be targeting 100% utilization within the second half of this year.",
+      "Conversely, once utilization returns to a normal track, incremental revenue flows straight through to profit."
+     ],
+     "ko": [
+      "삼성전자 파운드리 부문은 올해 하반기 안에 가동률 100%를 목표로 하고 있는 것으로 파악된다.",
+      "반대로 가동률이 정상 궤도로 돌아오면, 늘어난 매출은 그대로 이익으로 흘러간다."
+     ],
+     "ja": [
+      "サムスン電子のファウンドリー部門は、今年下半期のうちに稼働率100%を目標としているとみられる。",
+      "逆に稼働率が正常な軌道に戻れば、増えた売上はそのまま利益に流れ込む。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.03"
+   },
+   "sum3": {
+    "ko": "삼성전자 파운드리가 올해 하반기 안에 가동률 100%에 닿는 것을 목표로 하고 있다는 업계 보도가 나왔다. 지금은 70~80%로 추정된다.\n겉으로 보면 흑자 전환이 코앞이다. 라인을 세워 둬도 고정비는 그대로 나가는 사업이라, 가동률이 올라가면 늘어난 매출이 거의 그대로 이익이 된다.\n그런데 삼성 파운드리를 맡은 사장은 6월에 연간 흑자 시점을 2028년으로 못박았다. 분기 한 번 흑자를 내는 것과 한 해를 흑자로 마치는 것은 다르다는 이유였다.",
+    "en": "Korean industry reports say Samsung's foundry is aiming for 100% utilization in the second half of this year, up from an estimated 70 to 80% now.\nOn the surface a turnaround looks imminent. Idle lines cost the same, so once utilization climbs, the extra revenue drops almost straight to profit.\nYet in June the head of Samsung's foundry put annual profitability at 2028, on the grounds that one profitable quarter is not the same as a profitable year.",
+    "ja": "サムスン電子のファウンドリーが今年下半期のうちに稼働率100%に達することを目標にしている、と業界報道が伝えた。現在は70~80%と推定される。\n表向きは黒字転換が目前だ。ラインを止めても固定費は同じだけ出ていくため、稼働率が上がれば増えた売上はほぼそのまま利益になる。\nところがサムスンのファウンドリーを率いる社長は6月、年間黒字の時期を2028年と明言した。四半期に一度黒字を出すことと、1年を黒字で終えることは違うという理由だった。"
+   },
+   "why": {
+    "ko": "가동률은 이미 눈에 보이는 숫자지만 수율은 아직 아니다. 파운드리 흑자 전환을 가동률로 미리 계산해 둔 기대에는, 확인되지 않은 문턱이 하나 빠져 있다.",
+    "en": "Utilization is a number you can already see; yield is not. Expectations that price in a foundry turnaround from utilization alone are missing one threshold that has not been cleared.",
+    "ja": "稼働率はすでに見える数字だが、歩留まりはまだそうではない。稼働率だけでファウンドリーの黒字転換を織り込んだ期待には、まだ越えていない敷居が一つ抜けている。"
+   },
+   "ask": {
+    "ko": "삼성 파운드리의 가동률 100%는 흑자의 도착점일까, 2나노 수율이라는 문턱이 남은 중간 지점일까?",
+    "en": "Is 100% utilization at Samsung's foundry the finish line for profitability, or a waypoint with the 2nm yield threshold still ahead?",
+    "ja": "サムスンのファウンドリーの稼働率100%は黒字の到達点なのか、2ナノ歩留まりという敷居が残る中間地点なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 1월, 삼성전자 비메모리 부문이 2026년 3분기나 4분기에 분기 흑자로 돌아섰는지, 2나노 수율이 70%대에 안착했다는 확인이 나왔는지를 채점한다.",
+     "en": "In January 2027, score whether Samsung's non-memory business turned a quarterly profit in Q3 or Q4 2026 and whether 2nm yields were confirmed to have settled in the 70% range.",
+     "ja": "2027年1月に、サムスン電子の非メモリ部門が2026年第3四半期または第4四半期に四半期黒字へ転じたか、2ナノ歩留まりが70%台に定着したとの確認が出たかを採点する。"
+    },
+    "due": "2027-01-31"
+   },
+   "gist": {
+    "ko": "삼성전자 파운드리가 올해 하반기 안에 가동률 100%에 닿는 것을 목표로 하고 있다.\n지금 가동률은 70~80%로 추정되고, 주문 잔량과 계약 협상 상황을 보면 목표 달성이 사실상 확실하다는 분위기라고 업계는 전한다.\n2024년부터 50% 아래에 오래 눌려 있던 라인이 1년쯤 만에 다시 꽉 차는 셈이다.\n\n@@REF@@삼성전자, 2026년 2분기 실적 발표 (삼성전자 뉴스룸, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\n회사가 직접 확인해 준 것은 여기까지다.\n7월 30일 실적 자료에는 HBM 베이스 다이 수요와 미국 고객의 강한 주문으로 파운드리 실적이 크게 좋아졌다는 문장만 있고, 가동률 100%나 흑자 시점 같은 숫자는 없다.\n파운드리 손익은 반도체를 담당하는 DS부문 안에 메모리와 묶여 나오기 때문에, 흑자로 돌아섰는지를 밖에서 숫자로 확인할 방법도 없다.\n\n## 가동률이 왜 그렇게 중요한가\n공장이 가진 생산능력 가운데 실제로 돌리고 있는 비율이 가동률이다.\n식당으로 치면 좌석의 몇 할을 채웠는지에 해당한다. 손님이 절반만 와도 임대료와 인건비는 그대로 나간다.\n\n반도체 위탁생산은 설비에 들어간 돈이 워낙 커서 이 성질이 훨씬 심하다.\n라인을 세워 두든 돌리든 감가상각은 똑같이 빠져나가고, 그래서 지난해 4나노와 5나노 라인의 가동률이 50% 아래로 내려갔을 때 파운드리는 고정비조차 메우지 못했다.\n반대로 가동률이 정상으로 돌아오면 늘어난 매출이 거의 그대로 이익이 된다.\n\n## 그런데 왜 2028년이라고 했나\n파운드리를 맡은 한진만 사장은 6월 브리핑에서 연간 흑자 시점을 2028년으로 잡았다.\n분기 한 번 흑자를 내는 것과 한 해 전체를 흑자로 마치는 것은 다르다는 이유였다.\n\n@@REF@@삼성 파운드리 수장, 연간 흑자 시점을 2028년으로 (테크타임스, 2026-06-14)|https://www.techtimes.com/articles/318311/20260614/samsung-foundry-chief-sets-2028-annual-profit-tempering-talk-2026-rebound.htm|https://d.techtimes.com/en/full/466638/amsung-electronics-factory.jpg\n\n이 기사는 그가 적자의 이유로 든 것들도 함께 적었다.\n구형 사업 정리, 새로 생긴 성과급, 부족한 기술 성숙도, 마진이 얇은 주문, 그리고 늦어진 텍사스 테일러 공장 가동이다.\n가동률이 올라간다고 이 항목들이 같이 사라지지는 않는다.\n\n## 진짜 문턱은 어디에 있나\n업계에서 의견이 갈리는 지점이 여기다.\n가동률 100% 자체가 아니라 2나노 수율이 70%를 넘느냐가 퀄컴이나 AMD 같은 대형 고객의 본격 발주를 가르는 분수령이라는 시각이 있다.\n\n웨이퍼 한 장에서 정상 작동하는 칩이 나오는 비율이 수율이다.\n수율이 낮으면 같은 웨이퍼를 돌려도 버리는 칩이 많아, 라인이 꽉 차 있어도 칩 하나에 드는 원가가 내려가지 않는다.\n가동률이 라인을 얼마나 채웠는지라면, 수율은 채운 라인에서 쓸 물건이 얼마나 나오는지다.\n\n@@CHK@@2025년 말 2나노 수율|약 20%|2026년 4월 보도|약 55%|2026년 1분기 (6월 보도)|60% 초과@@공개된 숫자가 출처마다 55%와 60% 초과로 갈린다. 어느 쪽을 택해도 양산 문턱으로 통하는 70%에는 닿지 않았다. 원문이 수율을 먼저 봐야 한다고 짚은 근거가 숫자로도 확인된다.@@2026-08-03 조회 · TrendForce(2026-04-14)와 Tech Times(2026-06-14) 보도 인용\n\n@@REF@@삼성 2나노 수율 약 55%로 양산 문턱 아래, 퀄컴은 TSMC로 (트렌드포스, 2026-04-14)|https://www.trendforce.com/news/2026/04/14/news-samsung-2nm-yields-reportedly-at-55-below-mass-production-threshold-qualcomm-may-opt-for-tsmc/|https://img.trendforce.com/blog/wp-content/uploads/2026/03/04155736/Samsung-20260304-624x413.jpg\n\n이 기사는 원문에 나온 이름 하나를 뒷받침하고 하나를 흔든다.\n테슬라가 자율주행 칩을 삼성에 맡겼다는 대목은 그대로 확인되지만, 퀄컴은 차세대 주력 칩의 본생산을 TSMC의 2나노 공정에 맡긴 것으로 전해졌다.\n원문이 협상 테이블에 앉기 시작했다고 쓴 것과 실제 발주는 아직 다른 단계라는 뜻이다.\n\n@@CMP@@가동률로 읽기|라인이 꽉 차면 늘어난 매출이 그대로 이익이 된다. 분기 흑자가 눈앞이고, 그래서 지금이 변곡점이다.|수율로 읽기|채운 물량은 대부분 기존 공정이다. 2나노 수율이 70%에 안착해야 대형 고객이 양산으로 넘어온다.\n같은 회사의 같은 분기를 두고, 라인이 얼마나 찼는지를 보느냐 그 라인에서 쓸 칩이 얼마나 나오는지를 보느냐에 따라 결론이 갈린다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 가동률 100%는 흑자의 도착점인가, 문턱이 하나 남은 중간 지점인가.\n\n3분기나 4분기에 비메모리 부문이 흑자로 돌아서고 2나노 수율이 70%대에 안착하면 앞쪽이 맞다.\n가동률만 채워지고 수율이 60%대에 머물면, 퀄컴 사례처럼 대형 고객의 본생산은 계속 다른 회사로 간다.\n\n라인을 채운 물량의 상당 부분은 메모리 호황이 만들어 준 것이다.\n그 호황이 식는 구간에서도 라인이 차 있으려면, 그때는 외부 고객의 이름이 대신 그 자리를 채워야 한다.",
+    "en": "Samsung's foundry division is targeting 100% utilization within the second half of this year.\nUtilization is currently estimated at 70 to 80%, and industry accounts say the order backlog and the state of contract talks make hitting that target all but certain.\nLines that sat below 50% from 2024 would be full again after roughly a year.\n\n@@REF@@Samsung Electronics Announces Second Quarter 2026 Results (Samsung Newsroom, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\nThat release is as far as the company itself has gone.\nIt says only that foundry earnings improved significantly on HBM base-die demand and strong orders from US customers. There is no utilization figure and no date for a return to profit.\nFoundry results are also folded into the DS division alongside memory, so there is no way to check from outside whether the business has crossed into profit.\n\n## Why does utilization matter so much\nUtilization is the share of a plant's capacity that is actually running.\nThink of a restaurant and how many of its seats are filled. Half-empty or full, the rent and the staff cost the same.\n\nContract chipmaking takes this much further because of how much capital sits in the equipment.\nDepreciation runs whether the lines move or not, which is why the foundry could not even cover fixed costs last year when 4nm and 5nm utilization fell below 50%.\nRun the same lines closer to full and the extra revenue drops almost straight to profit.\n\n## So why say 2028\nIn a June briefing, foundry head Han Jin-man put annual profitability at 2028.\nHis reason was that turning one profitable quarter is not the same as finishing a year in the black.\n\n@@REF@@Samsung Foundry Chief Sets 2028 for Annual Profit, Tempering Talk of a 2026 Rebound (Tech Times, 2026-06-14)|https://www.techtimes.com/articles/318311/20260614/samsung-foundry-chief-sets-2028-annual-profit-tempering-talk-2026-rebound.htm|https://d.techtimes.com/en/full/466638/amsung-electronics-factory.jpg\n\nThe same article lists the reasons he gave for the losses.\nLegacy businesses being wound down, newly introduced performance bonuses, technology that is not yet mature enough, low-margin orders, and the delayed ramp of the Taylor fab in Texas.\nHigher utilization does not make those items disappear.\n\n## Where is the real threshold\nThis is where the industry splits.\nSome argue the watershed for full-scale orders from large customers such as Qualcomm and AMD is not 100% utilization but whether 2nm yields clear 70%.\n\nYield is the share of chips on a wafer that come out working.\nWhen yield is low, the same wafer produces more scrap, so the cost of each usable chip stays high even with the lines running flat out.\nUtilization tells you how full the line is; yield tells you how much of what comes off it can be sold.\n\n@@CHK@@2nm yield, late 2025|about 20%|Reported April 2026|about 55%|Q1 2026 (June report)|above 60%@@The published figures diverge by source, at 55% versus above 60%. Either way, neither reaches the roughly 70% treated as the mass-production threshold. The original post's point that yield comes first holds up in the numbers.@@Retrieved 2026-08-03, citing TrendForce (2026-04-14) and Tech Times (2026-06-14) reporting\n\n@@REF@@Samsung 2nm Yields Reportedly at ~55%, Below Mass Production Threshold; Qualcomm May Opt for TSMC (TrendForce, 2026-04-14)|https://www.trendforce.com/news/2026/04/14/news-samsung-2nm-yields-reportedly-at-55-below-mass-production-threshold-qualcomm-may-opt-for-tsmc/|https://img.trendforce.com/blog/wp-content/uploads/2026/03/04155736/Samsung-20260304-624x413.jpg\n\nThat report backs one name in the original post and unsettles another.\nTesla did place autonomous-driving silicon with Samsung. Qualcomm, however, is said to have put full production of its next flagship on TSMC's 2nm process.\nSitting at the negotiating table, which is how the original post described it, is still a different stage from placing the order.\n\n@@CMP@@Reading it through utilization|Fill the lines and incremental revenue turns into profit. A profitable quarter is close, which makes this the inflection point.|Reading it through yield|Most of what fills the lines today is mature-node work. Large customers move to mass production only once 2nm yields settle at 70%.\nThe same company and the same quarter split two ways depending on whether you look at how full the line is or at how much usable silicon comes off it.\n\n## What settles it\nThe question comes down to one thing. Is 100% utilization the finish line for profitability, or a waypoint with one threshold still ahead.\n\nIf the non-memory business turns a quarterly profit in Q3 or Q4 and 2nm yields settle in the 70% range, the first reading is right.\nIf the lines fill while yields stay in the 60s, the Qualcomm case repeats and large customers keep taking full production elsewhere.\n\nMuch of the volume filling those lines was created by the memory boom.\nFor the lines to stay full once that boom cools, outside customer names will have to fill the space instead.",
+    "ja": "サムスン電子のファウンドリーが、今年下半期のうちに稼働率100%へ届くことを目標にしている。\n現在の稼働率は70~80%と推定され、受注残と契約交渉の状況からみて目標達成はほぼ確実という空気だと業界は伝える。\n2024年から50%を下回ったまま長く沈んでいたラインが、1年ほどで再び埋まる計算になる。\n\n@@REF@@サムスン電子、2026年第2四半期業績発表 (Samsung Newsroom, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\n会社自身が認めているのはここまでだ。\n7月30日の資料にあるのは、HBMベースダイの需要と米国顧客の強い受注でファウンドリー業績が大きく改善したという一文だけで、稼働率100%や黒字転換時期のような数字はない。\nファウンドリーの損益は半導体を担当するDS部門の中でメモリと束ねて出るため、黒字に転じたかどうかを外から数字で確かめる方法もない。\n\n## 稼働率はなぜそこまで重要なのか\n工場が持つ生産能力のうち実際に動かしている比率が稼働率だ。\n飲食店でいえば座席の何割が埋まったかにあたる。客が半分でも家賃と人件費はそのまま出ていく。\n\n半導体の受託生産は設備に入れた金額が大きいぶん、この性質がはるかに強い。\nラインを止めても動かしても減価償却は同じだけ抜けていく。昨年4ナノと5ナノのラインの稼働率が50%を割ったとき、ファウンドリーは固定費すら埋められなかった。\n逆に稼働率が正常に戻れば、増えた売上はほぼそのまま利益になる。\n\n## ではなぜ2028年と言ったのか\nファウンドリーを率いるハン・ジンマン社長は6月のブリーフィングで、年間黒字の時期を2028年とした。\n四半期に一度黒字を出すことと、1年を黒字で終えることは違うという理由だった。\n\n@@REF@@サムスンのファウンドリー責任者、年間黒字を2028年と設定 (Tech Times, 2026-06-14)|https://www.techtimes.com/articles/318311/20260614/samsung-foundry-chief-sets-2028-annual-profit-tempering-talk-2026-rebound.htm|https://d.techtimes.com/en/full/466638/amsung-electronics-factory.jpg\n\nこの記事は、彼が赤字の理由として挙げたものも並べている。\n旧来事業の整理、新設された成果給、十分でない技術成熟度、利幅の薄い受注、そして遅れているテキサス・テイラー工場の立ち上げだ。\n稼働率が上がっても、これらの項目が一緒に消えるわけではない。\n\n## 本当の敷居はどこにあるのか\n業界で見方が割れるのがここだ。\n稼働率100%そのものではなく、2ナノの歩留まりが70%を超えるかどうかが、クアルコムやAMDのような大口顧客の本格発注を分ける分水嶺だという見方がある。\n\nウエハー1枚から正常に動くチップが取れる割合が歩留まりだ。\n歩留まりが低いと同じウエハーを回しても捨てるチップが増えるため、ラインが埋まっていてもチップ1個の原価は下がらない。\n稼働率がラインをどれだけ埋めたかなら、歩留まりは埋めたラインからどれだけ使える物が出るかだ。\n\n@@CHK@@2025年末の2ナノ歩留まり|約20%|2026年4月の報道|約55%|2026年第1四半期(6月報道)|60%超@@公開された数字は出典によって55%と60%超に割れている。どちらを取っても、量産の敷居とされる70%には届いていない。歩留まりを先に見るべきだという原文の指摘は、数字でも裏づけられる。@@2026-08-03閲覧・TrendForce(2026-04-14)とTech Times(2026-06-14)の報道引用\n\n@@REF@@サムスンの2ナノ歩留まりは約55%で量産の敷居以下、クアルコムはTSMCの可能性 (TrendForce, 2026-04-14)|https://www.trendforce.com/news/2026/04/14/news-samsung-2nm-yields-reportedly-at-55-below-mass-production-threshold-qualcomm-may-opt-for-tsmc/|https://img.trendforce.com/blog/wp-content/uploads/2026/03/04155736/Samsung-20260304-624x413.jpg\n\nこの記事は原文に出てくる名前の一つを裏づけ、もう一つを揺らす。\nテスラが自動運転チップをサムスンに任せたという部分はそのまま確認できるが、クアルコムは次世代主力チップの本生産をTSMCの2ナノ工程に任せたと伝えられている。\n交渉のテーブルに着き始めたという原文の書き方と、実際の発注はまだ別の段階だという意味だ。\n\n@@CMP@@稼働率で読む|ラインが埋まれば増えた売上がそのまま利益になる。四半期黒字が目前で、だから今が変曲点だ。|歩留まりで読む|埋めた数量の多くは既存工程だ。2ナノの歩留まりが70%に定着して初めて大口顧客が量産へ移る。\n同じ会社の同じ四半期でも、ラインがどれだけ埋まったかを見るか、そのラインからどれだけ使えるチップが出るかを見るかで結論が割れている。\n\n## では何で見分けるか\n結局、問いは一つだ。稼働率100%は黒字の到達点なのか、敷居が一つ残る中間地点なのか。\n\n第3四半期か第4四半期に非メモリ部門が黒字に転じ、2ナノの歩留まりが70%台に定着すれば前者だ。\n稼働率だけ埋まって歩留まりが60%台にとどまれば、クアルコムの例のように大口顧客の本生産は他社へ流れ続ける。\n\nラインを埋めた数量の相当部分は、メモリの好況が作ってくれたものだ。\nその好況が冷える局面でもラインが埋まっているためには、そのときは外部顧客の名前がその場所を代わりに埋めなければならない。"
+   },
+   "ts": "2026-08-03T09:55:47.315090+00:00"
+  },
+  {
+   "id": "jukan-rtx50-korea-price-hike-memory-cost",
+   "date": "2026-08-03",
+   "source": "Jukan (@jukan05)",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "sourceUrl": "https://x.com/jukan05/status/2084178225874473196",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#065F46",
+    "label": "GDDR7 COST"
+   },
+   "tags": [
+    "NVIDIA",
+    "GDDR7",
+    "MEMORY"
+   ],
+   "stance": "watch",
+   "related": [
+    "jukan-korea-nand-unit-price-vs-ssd-mix",
+    "goto-amazon-apple-memory-cost-split",
+    "jukan-skhynix-lpddr6-xiaomi-cxmt-race"
+   ],
+   "title": {
+    "ko": "이번 달 그래픽카드 값이 최대 30% 오른다, 비싸진 부품은 그래픽칩이 아니다",
+    "en": "Graphics card prices rise up to 30% this month, and the part that got expensive is not the graphics chip",
+    "ja": "今月からグラフィックカードの価格が最大30%上がる、値上がりした部品はグラフィックチップではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "ZDNet Korea reports that prices for NVIDIA’s GeForce RTX 50-series graphics cards in South Korea will rise by up to 30% starting this month."
+     ],
+     "ko": [
+      "ZDNet 코리아는 엔비디아 지포스 RTX 50 시리즈 그래픽카드의 한국 내 가격이 이번 달부터 최대 30% 오를 것이라고 보도했다."
+     ],
+     "ja": [
+      "ZDNet Koreaは、NVIDIAのGeForce RTX 50シリーズのグラフィックカードの韓国での価格が今月から最大30%上がると報じた。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.03"
+   },
+   "sum3": {
+    "ko": "엔비디아 지포스 RTX 50 시리즈의 한국 판매가가 이번 달부터 최대 30% 오른다.\n겉으로 보면 카드가 잘 팔려서 값이 오르는 것처럼 보인다.\n그런데 값이 오른 것은 그래픽칩이 아니라 그 옆에 붙는 메모리다. AI 데이터센터가 메모리를 쓸어 담으면서, 게임용 카드에 갈 물량의 값까지 같이 뛰었다.",
+    "en": "NVIDIA's GeForce RTX 50 series will cost up to 30% more in South Korea starting this month.\nOn the surface it looks like prices are rising because the cards are selling well.\nWhat got more expensive is not the graphics chip but the memory sitting next to it. As AI data centres soak up memory, the chips headed for gaming cards were repriced too.",
+    "ja": "NVIDIAのGeForce RTX 50シリーズの韓国での販売価格が、今月から最大30%上がる。\n表向きはカードがよく売れているから値上がりするように見える。\nだが値上がりしたのはグラフィックチップではなく、その隣に載るメモリだ。AIデータセンターがメモリを買い集め、ゲーム用カードに回る分の価格まで一緒に跳ね上がった。"
+   },
+   "why": {
+    "ko": "AI 투자 이야기는 대개 데이터센터와 전력 같은 큰 단위로 오간다. 그 투자가 개인의 지갑에 닿는 가장 이른 지점 하나가 이번 달 그래픽카드 가격표다.",
+    "en": "The AI build-out is usually discussed in units of data centres and power. One of the earliest points where that spending reaches a household budget is this month's graphics card price tag.",
+    "ja": "AI投資の話はたいていデータセンターや電力といった大きな単位で語られる。その投資が個人の財布に届く最も早い地点の一つが、今月のグラフィックカードの値札だ。"
+   },
+   "ask": {
+    "ko": "이번 그래픽카드 인상은 메모리 부족이 풀리면 되돌아갈 값일까, 한동안 눌러앉을 값일까?",
+    "en": "Is this graphics card increase a price that comes back down once the memory crunch eases, or one that settles in for a while?",
+    "ja": "今回のグラフィックカードの値上げは、メモリ不足が解ければ戻る価格なのか、しばらく居座る価格なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 12월, 엔비디아 지포스 RTX 50 시리즈의 한국 판매가가 8월 인상분을 유지했는지 아니면 인상 전 수준으로 되돌아갔는지를 채점한다.",
+     "en": "In December 2026, score whether Korean prices for NVIDIA's GeForce RTX 50 series held the August increase or fell back toward pre-increase levels.",
+     "ja": "2026年12月に、NVIDIA GeForce RTX 50シリーズの韓国での販売価格が8月の値上げを維持したか、値上げ前の水準に戻ったかを採点する。"
+    },
+    "due": "2026-12-31"
+   },
+   "gist": {
+    "ko": "엔비디아 지포스 RTX 50 시리즈의 한국 판매가가 이번 달부터 최대 30% 오른다.\n값을 밀어올린 것은 성능 개선이나 신제품 출시가 아니라 부품 원가다.\n\n@@REF@@메모리 부족이 깊어지며 RTX 50 가격이 30% 더 뛸 수 있다 (씽크컴퓨터스, 2026-07-31)|https://thinkcomputers.org/geforce-rtx-50-prices-could-jump-another-30-as-memory-crunch-deepens|https://thinkcomputers.org/wp-content/uploads/2025/02/rtx-5080-2025-1.webp\n\n이 기사는 한국만의 일이 아니라는 것을 보여준다.\n엔비디아가 2026년 안에 그래픽카드 값을 20~30% 더 올릴 수 있고, 인상은 유통 재고가 소진된 뒤 몇 주에서 몇 달 사이에 반영될 것이라고 전했다.\n한국의 이번 달 인상은 그 일정이 먼저 도착한 쪽에 가깝다.\n\n@@IMG@@gpu-board|그래픽카드 한 장. 가운데 큰 칩이 그래픽칩이고, 그 둘레에 작게 붙은 칩들이 이번에 값이 뛴 메모리다.\n\n## 그래픽카드에 메모리가 왜 들어가나\n그래픽칩은 화면을 그릴 데이터를 아주 빠르게 꺼내 써야 한다.\n그래서 카드 위에는 그래픽칩 둘레에 전용 메모리가 여러 개 붙어 있고, 이 메모리를 GDDR이라고 부른다.\n\n컴퓨터 본체에 꽂는 D램과 뿌리가 같은 물건이다.\n다만 한 번에 많은 데이터를 흘려보내는 쪽으로 설계가 기울어져 있다.\n\n@@IMG@@dram-module|컴퓨터에 꽂는 D램 막대. 그래픽카드에 붙는 GDDR은 이 D램과 같은 공정에서 나오고, 그래서 D램 값이 오르면 같이 오른다.\n\n같은 공정, 같은 공장에서 나온다는 점이 이번 일의 핵심이다.\n메모리 회사가 서버용 물량에 라인을 더 내주면 게임용으로 갈 물량이 줄고, 줄어든 물량의 값이 오른다.\n\n## 얼마나 비싸진 건가\n\n@@CHK@@GDDR7 3GB 모듈|60~70달러|GDDR6 2GB 모듈|약 20달러|1GB당 환산|GDDR7 약 22달러 대 GDDR6 약 10달러@@RTX 50 시리즈가 쓰는 GDDR7은 용량당 값이 이전 세대의 두 배 수준이다. 카드 한 장에 이런 모듈이 여러 장 붙으니, 모듈 값이 두 배가 되면 카드 원가에서 메모리가 차지하는 몫도 그만큼 커진다.@@2026-08-03 조회 · ThinkComputers(2026-07-31) 보도 인용, 원출처 Economic Daily News\n\n여기서 오른 것은 카드 한 장의 값이 아니라 그 안에 들어가는 부품 하나의 값이다.\n같은 모델, 같은 성능인데 가격표만 달라진다는 뜻이기도 하다.\n\n## 값을 올린 쪽은 누구인가\n엔비디아는 그래픽카드 대부분을 직접 팔지 않고, 그래픽칩과 메모리를 묶은 부품 꾸러미를 카드 제조사에 넘긴다.\n이 꾸러미 값을 올리겠다고 제조사들에게 통보한 것으로 전해졌다.\n\n@@REF@@엔비디아, 메모리 값 상승으로 지포스 RTX GPU 가격을 올리는 것으로 전해져 (트윅타운, 2026-07-23)|https://www.tweaktown.com/news/112801/nvidia-is-reportedly-increasing-the-prices-of-its-geforce-rtx-gpus-due-to-rising-memory-costs/index.html|https://static.tweaktown.com/news/1/1/112801_2_nvidia-is-reportedly-increasing-the-prices-of-its-geforce-rtx-gpus-due-to-rising-memory-costs_full.jpg\n\n이 기사는 인상이 GDDR7을 쓰는 RTX 50 시리즈뿐 아니라, 구형 GDDR6를 쓰는 RTX 3060에도 적용된다고 전한다.\n새 제품에만 붙는 값이 아니라 메모리를 쓰는 카드 전체에 붙는 값이라는 뜻이다.\n냉각 장치와 기판 값도 함께 올랐다고 한다.\n\n## 이 값은 결국 누가 정하나\n메모리 회사가 라인을 어디에 배정하느냐가 먼저다.\n서버용 D램과 HBM이 계속 더 비싸게 팔리는 한, 게임용 GDDR에 돌아갈 자리는 뒤로 밀린다.\n\n그래서 그래픽카드 값은 엔비디아의 가격 정책보다 메모리 값의 방향을 따라간다.\n소비자가 보는 것은 카드의 가격표지만, 그 가격표를 움직이는 손은 메모리 계약 협상 자리에 있다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 이번 인상은 메모리 부족이 풀리면 되돌아갈 값인가, 한동안 눌러앉을 값인가.\n\n메모리 회사들이 늘린 생산능력에서 물량이 나오기 시작하고 서버용 수요가 한 박자 쉬면 앞쪽이 맞다.\n증설분이 나와도 서버용이 먼저 가져가는 구간이 이어지면, 게임용 카드값은 올라간 자리에 그대로 머문다.\n\nAI 투자 이야기는 대개 데이터센터와 전력 같은 큰 단위로 오간다.\n그 투자가 개인의 지갑에 닿는 가장 이른 지점 하나가 이번 달 그래픽카드 가격표다.",
+    "en": "Prices for NVIDIA's GeForce RTX 50 series in South Korea rise by up to 30% starting this month.\nWhat pushed them up is not a performance upgrade or a new launch. It is component cost.\n\n@@REF@@GeForce RTX 50 Prices Could Jump Another 30% as Memory Crunch Deepens (ThinkComputers, 2026-07-31)|https://thinkcomputers.org/geforce-rtx-50-prices-could-jump-another-30-as-memory-crunch-deepens|https://thinkcomputers.org/wp-content/uploads/2025/02/rtx-5080-2025-1.webp\n\nThat report shows this is not only a Korean story.\nIt says NVIDIA may raise graphics card prices by a further 20 to 30% during 2026, with the increase landing in the weeks or months after partner inventory sells through.\nKorea's increase this month looks like the same schedule arriving early.\n\n@@IMG@@gpu-board|A graphics card. The large chip in the middle is the graphics processor, and the smaller chips ringing it are the memory that just got more expensive.\n\n## Why is there memory on a graphics card\nA graphics processor has to pull the data it draws with at very high speed.\nSo the board carries several dedicated memory chips around the processor, and that memory is called GDDR.\n\nIt shares its roots with the DRAM you plug into a desktop.\nThe design is simply tilted toward moving a lot of data at once.\n\n@@IMG@@dram-module|A DRAM stick for a desktop. The GDDR on a graphics card comes off the same production lines, which is why it moves with DRAM prices.\n\nSame process, same fabs. That is the heart of what is happening.\nWhen a memory maker gives more of its lines to server parts, the volume headed for gaming parts shrinks, and what is left gets repriced.\n\n## How much more expensive\n\n@@CHK@@GDDR7 3GB module|$60 to $70|GDDR6 2GB module|about $20|Per gigabyte|about $22 for GDDR7 against about $10 for GDDR6@@The GDDR7 used by the RTX 50 series costs roughly twice as much per gigabyte as the previous generation. Several of these modules sit on a single card, so doubling the module price enlarges memory's share of the card's cost by the same order.@@Retrieved 2026-08-03, citing ThinkComputers (2026-07-31), originally sourced to Economic Daily News\n\nWhat rose here is not the price of a finished card but the price of one part inside it.\nSame model, same performance, different price tag.\n\n## Who raised the price\nNVIDIA sells few finished cards itself. It hands board makers a kit that bundles the graphics processor with the memory.\nIt has reportedly told those partners that the kit price is going up.\n\n@@REF@@NVIDIA is reportedly increasing the prices of its GeForce RTX GPUs due to rising memory costs (TweakTown, 2026-07-23)|https://www.tweaktown.com/news/112801/nvidia-is-reportedly-increasing-the-prices-of-its-geforce-rtx-gpus-due-to-rising-memory-costs/index.html|https://static.tweaktown.com/news/1/1/112801_2_nvidia-is-reportedly-increasing-the-prices-of-its-geforce-rtx-gpus-due-to-rising-memory-costs_full.jpg\n\nThat report adds that the increase covers not only the GDDR7-based RTX 50 series but the older GDDR6-based RTX 3060.\nSo this is not a charge attached to new products. It is attached to any card that uses memory.\nCooling parts and boards are said to have become more expensive as well.\n\n## Who really sets this price\nIt starts with where a memory maker points its lines.\nAs long as server DRAM and HBM keep selling for more, gaming GDDR waits its turn.\n\nSo a graphics card's price follows the direction of memory prices more closely than it follows NVIDIA's pricing policy.\nThe shopper sees a price tag on a card, but the hand moving that tag is at a memory supply negotiation.\n\n## What settles it\nThe question comes down to one thing. Is this increase a price that comes back down once the crunch eases, or one that settles in.\n\nIf output from the capacity memory makers have added starts arriving and server demand takes a breather, the first reading is right.\nIf the added output keeps going to server customers first, gaming card prices stay where they have moved to.\n\nThe AI build-out is usually discussed in units of data centres and power.\nOne of the earliest points where that spending reaches a household budget is this month's graphics card price tag.",
+    "ja": "NVIDIAのGeForce RTX 50シリーズの韓国での販売価格が、今月から最大30%上がる。\n価格を押し上げたのは性能改善でも新製品投入でもなく、部品の原価だ。\n\n@@REF@@メモリ不足の深刻化でRTX 50の価格がさらに30%上がる可能性 (ThinkComputers, 2026-07-31)|https://thinkcomputers.org/geforce-rtx-50-prices-could-jump-another-30-as-memory-crunch-deepens|https://thinkcomputers.org/wp-content/uploads/2025/02/rtx-5080-2025-1.webp\n\nこの記事は、韓国だけの話ではないことを示している。\nNVIDIAが2026年のうちにグラフィックカードの価格をさらに20~30%引き上げる可能性があり、値上げは流通在庫が掃けた後、数週間から数か月のうちに反映されるという。\n韓国の今月の値上げは、その日程が先に到着した側に近い。\n\n@@IMG@@gpu-board|グラフィックカード1枚。中央の大きなチップがグラフィックチップで、その周りに小さく並ぶチップが今回値上がりしたメモリだ。\n\n## グラフィックカードになぜメモリが載るのか\nグラフィックチップは画面を描くためのデータを非常に速く取り出して使う必要がある。\nそのためカードの上にはチップの周りに専用メモリが複数並んでおり、このメモリをGDDRと呼ぶ。\n\nパソコン本体に挿すDRAMと出自が同じものだ。\nただ、一度に多くのデータを流すほうへ設計が寄っている。\n\n@@IMG@@dram-module|パソコンに挿すDRAMのモジュール。グラフィックカードに載るGDDRはこのDRAMと同じ工程から出てくるため、DRAMの価格が上がれば一緒に上がる。\n\n同じ工程、同じ工場から出てくること。これが今回の核心だ。\nメモリ会社がサーバー向けにラインを多く割り当てれば、ゲーム向けに回る数量は減り、減った分の価格が上がる。\n\n## どれだけ高くなったのか\n\n@@CHK@@GDDR7 3GBモジュール|60~70ドル|GDDR6 2GBモジュール|約20ドル|1GBあたり換算|GDDR7が約22ドル、GDDR6が約10ドル@@RTX 50シリーズが使うGDDR7は、容量あたりの価格が前世代の2倍ほどだ。カード1枚にこのモジュールが複数載るため、モジュール価格が2倍になればカード原価に占めるメモリの割合もその分だけ大きくなる。@@2026-08-03閲覧・ThinkComputers(2026-07-31)の報道引用、原出典はEconomic Daily News\n\nここで上がったのはカード1枚の値段ではなく、その中に入る部品一つの値段だ。\n同じモデル、同じ性能なのに値札だけが変わるということでもある。\n\n## 値上げを決めたのは誰か\nNVIDIAはグラフィックカードの大半を自ら売らず、グラフィックチップとメモリを束ねた部品一式をカードメーカーに渡す。\nこの一式の価格を引き上げるとメーカー各社に伝えたと報じられている。\n\n@@REF@@NVIDIA、メモリ価格上昇でGeForce RTX GPUを値上げすると伝えられる (TweakTown, 2026-07-23)|https://www.tweaktown.com/news/112801/nvidia-is-reportedly-increasing-the-prices-of-its-geforce-rtx-gpus-due-to-rising-memory-costs/index.html|https://static.tweaktown.com/news/1/1/112801_2_nvidia-is-reportedly-increasing-the-prices-of-its-geforce-rtx-gpus-due-to-rising-memory-costs_full.jpg\n\nこの記事は、値上げがGDDR7を使うRTX 50シリーズだけでなく、旧世代のGDDR6を使うRTX 3060にも及ぶと伝えている。\n新製品にだけ付く値段ではなく、メモリを使うカード全体に付く値段だという意味だ。\n冷却装置と基板の価格も一緒に上がったという。\n\n## この価格は結局誰が決めるのか\nまずはメモリ会社がラインをどこに割り当てるかだ。\nサーバー向けDRAMとHBMがより高く売れ続ける限り、ゲーム向けGDDRに回る場所は後ろに押しやられる。\n\nだからグラフィックカードの価格は、NVIDIAの価格政策よりメモリ価格の方向についていく。\n消費者が見るのはカードの値札だが、その値札を動かす手はメモリの供給交渉の席にある。\n\n## では何で見分けるか\n結局、問いは一つだ。今回の値上げはメモリ不足が解ければ戻る価格なのか、しばらく居座る価格なのか。\n\nメモリ各社が増やした生産能力から数量が出始め、サーバー向け需要が一息つけば前者だ。\n増設分が出てもサーバー向けが先に持っていく局面が続けば、ゲーム用カードの価格は上がった場所にとどまる。\n\nAI投資の話はたいていデータセンターや電力といった大きな単位で語られる。\nその投資が個人の財布に届く最も早い地点の一つが、今月のグラフィックカードの値札だ。"
+   },
+   "ts": "2026-08-03T09:55:47.315090+00:00"
+  },
+  {
    "date": "2026-08-03",
    "id": "macro-week-2026-08-02",
    "related": [
@@ -4716,10 +4875,20 @@
    "lab": true,
    "foldWhy": true,
    "quote": {
-    "lines": [
-     "The East-West pipeline transports Saudi crude 746 miles from the country's eastern oil fields to the Red Sea port of Yanbu, providing an export route that bypasses the Strait of Hormuz.",
-     "In May, China was the largest buyer of crude shipped through Yanbu, importing ~774,000 barrels per day."
-    ],
+    "lines": {
+     "ko": [
+      "동서 송유관은 사우디 원유를 동부 유전에서 홍해의 얀부 항까지 746마일 실어 나르며, 호르무즈 해협을 우회하는 수출 경로를 제공한다.",
+      "5월에 얀부를 거쳐 실린 원유의 최대 구매자는 중국이었고, 하루 약 774,000배럴을 수입했다."
+     ],
+     "ja": [
+      "東西パイプラインはサウジ原油を東部の油田から紅海のヤンブー港まで746マイル輸送し、ホルムズ海峡を迂回する輸出経路を提供している。",
+      "5月、ヤンブー経由で出荷された原油の最大の買い手は中国で、1日あたり約774,000バレルを輸入した。"
+     ],
+     "en": [
+      "The East-West pipeline transports Saudi crude 746 miles from the country's eastern oil fields to the Red Sea port of Yanbu, providing an export route that bypasses the Strait of Hormuz.",
+      "In May, China was the largest buyer of crude shipped through Yanbu, importing ~774,000 barrels per day."
+     ]
+    },
     "cite": "The Kobeissi Letter · 2026.07.27"
    },
    "title": {
@@ -4776,11 +4945,23 @@
    ],
    "stance": "bull",
    "quote": {
-    "lines": [
-     "The news about China’s DUV progress is not particularly surprising.",
-     "The Information’s report merely cites remarks made by a professor at one of China’s Jiaotong universities during an internal meeting in June.",
-     "The sell-off in semiconductor equipment names such as ASML looks overdone."
-    ],
+    "lines": {
+     "ko": [
+      "중국의 DUV 진전에 관한 소식은 특별히 놀랍지 않다.",
+      "디인포메이션의 보도는 6월 내부 회의에서 중국 교통대학 중 한 곳의 교수가 한 발언을 인용한 것에 지나지 않는다.",
+      "ASML 같은 반도체 장비주의 하락은 과도해 보인다."
+     ],
+     "ja": [
+      "中国のDUVの進展に関するニュースは特に驚くべきものではない。",
+      "The Informationの報道は、6月の内部会議で中国の交通大学の一つの教授が述べた発言を引用しているにすぎない。",
+      "ASMLのような半導体装置銘柄の下落は行き過ぎに見える。"
+     ],
+     "en": [
+      "The news about China’s DUV progress is not particularly surprising.",
+      "The Information’s report merely cites remarks made by a professor at one of China’s Jiaotong universities during an internal meeting in June.",
+      "The sell-off in semiconductor equipment names such as ASML looks overdone."
+     ]
+    },
     "cite": "Jukan · 2026.07.27"
    },
    "title": {
@@ -4852,11 +5033,23 @@
    },
    "ts": "2026-07-28T10:45:00.000+00:00",
    "quote": {
-    "lines": [
-     "반도체는 제조업의 심장이니, 반도체 기술의 세계 최고봉에 올라서야 한다.",
-     "CXMT는 공식적으로 '민간기업'이지만 지분을 뜯어보면 이야기가 달라짐.",
-     "이번 상장으로 지분이 희석되어도 38% 수준을 유지하게 되니, CXMT의 실체를 국영기업으로 볼 수 있음."
-    ],
+    "lines": {
+     "en": [
+      "Semiconductors are the heart of manufacturing, so we must reach the very top of the world in chip technology.",
+      "CXMT is officially a 'private company,' but the story changes once you pull apart its shareholding.",
+      "Even with the dilution from this listing, the stake stays around 38%, so CXMT can be seen as a state-owned enterprise in substance."
+     ],
+     "ja": [
+      "半導体は製造業の心臓だから、半導体技術の世界最高峰に立たなければならない。",
+      "CXMTは公式には「民間企業」だが、持ち分を分解すると話が変わる。",
+      "今回の上場で持ち分が希薄化しても38%程度を維持することになるので、CXMTの実体は国有企業と見ることができる。"
+     ],
+     "ko": [
+      "반도체는 제조업의 심장이니, 반도체 기술의 세계 최고봉에 올라서야 한다.",
+      "CXMT는 공식적으로 '민간기업'이지만 지분을 뜯어보면 이야기가 달라짐.",
+      "이번 상장으로 지분이 희석되어도 38% 수준을 유지하게 되니, CXMT의 실체를 국영기업으로 볼 수 있음."
+     ]
+    },
     "cite": "메르 · 2026.07.27"
    },
    "title": {
@@ -4914,9 +5107,17 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "Ja-heum Koo, head of technology development at Samsung's Foundry Business, said in Samsung Newsroom that the company plans to use its 2nm GAA process for HBM5."
-    ],
+    "lines": {
+     "ko": [
+      "삼성전자 파운드리사업부 기술개발실장 구자흠은 삼성 뉴스룸에서 회사가 HBM5에 2나노 GAA 공정을 쓸 계획이라고 말했다."
+     ],
+     "ja": [
+      "サムスン電子ファウンドリー事業部の技術開発室長クー・ジャフム氏はSamsung Newsroomで、同社がHBM5に2ナノGAA工程を使う計画だと述べた。"
+     ],
+     "en": [
+      "Ja-heum Koo, head of technology development at Samsung's Foundry Business, said in Samsung Newsroom that the company plans to use its 2nm GAA process for HBM5."
+     ]
+    },
     "cite": "Jukan (@jukan05) · 2026.07.27"
    },
    "title": {
@@ -4984,11 +5185,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "Its performance is inferior to ASML’s.",
-     "Some components are imported from Japan, but most are made in China.",
-     "Production volume remains far too low. Twenty units next year is nowhere near enough."
-    ],
+    "lines": {
+     "ko": [
+      "성능은 ASML의 것보다 떨어진다.",
+      "일부 부품은 일본에서 수입하지만, 대부분은 중국에서 만든다.",
+      "생산량은 여전히 너무 적다. 내년에 20대는 턱없이 부족하다."
+     ],
+     "ja": [
+      "性能はASMLのものより劣る。",
+      "一部の部品は日本から輸入しているが、大半は中国で作られている。",
+      "生産量は依然として少なすぎる。来年20台では全く足りない。"
+     ],
+     "en": [
+      "Its performance is inferior to ASML’s.",
+      "Some components are imported from Japan, but most are made in China.",
+      "Production volume remains far too low. Twenty units next year is nowhere near enough."
+     ]
+    },
     "cite": "Jukan · 2026.07.27"
    },
    "title": {
@@ -5057,10 +5270,20 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "the factors currently weighing on the market are not new negatives.",
-     "People simply want to take profits."
-    ],
+    "lines": {
+     "ko": [
+      "지금 시장을 누르고 있는 요인들은 새로운 악재가 아니다.",
+      "사람들이 그저 차익을 실현하고 싶어 할 뿐이다."
+     ],
+     "ja": [
+      "いま市場を押し下げている要因は新しい悪材料ではない。",
+      "人々は単に利益を確定したいだけだ。"
+     ],
+     "en": [
+      "the factors currently weighing on the market are not new negatives.",
+      "People simply want to take profits."
+     ]
+    },
     "cite": "Jukan · 2026.07.27"
    },
    "title": {
@@ -16586,7 +16809,12 @@
     "B200",
     "Rubin",
     "Rubin Ultra",
-    "Spectrum-X"
+    "Spectrum-X",
+    "GeForce",
+    "지포스",
+    "RTX",
+    "GeForce RTX",
+    "ジーフォース"
    ],
    "logo": "nvidia.com",
    "exchange": "NASDAQ",
@@ -22680,7 +22908,8 @@
     "3nm",
     "4nm",
     "7nm",
-    "1c 공정"
+    "1c 공정",
+    "2ナノ"
    ]
   },
   "GU JA-HEUM": {
@@ -23215,7 +23444,10 @@
    "aliases": [
     "GPU",
     "그래픽처리장치",
-    "graphics processing unit"
+    "graphics processing unit",
+    "그래픽카드",
+    "グラフィックカード",
+    "graphics card"
    ],
    "name": {
     "ko": "GPU",
@@ -23339,7 +23571,8 @@
    "aliases": [
     "베이스다이",
     "base die",
-    "ベースダイ"
+    "ベースダイ",
+    "베이스 다이"
    ],
    "name": {
     "ko": "베이스다이",
@@ -29538,6 +29771,94 @@
     "Revolutionary Guards",
     "革命防衛隊"
    ]
+  },
+  "고정비": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "생산량이 늘든 줄든 거의 같은 금액이 나가는 비용.",
+    "en": "Cost that stays roughly the same whether output rises or falls.",
+    "ja": "生産量が増えても減ってもほぼ同じ金額が出ていく費用。"
+   },
+   "longDesc": {
+    "ko": "공장 건물과 장비의 감가상각, 정규직 인건비, 유지비처럼 물건을 얼마나 만들든 거의 같은 금액이 나가는 비용이다. 반도체 위탁생산은 장비에 들어간 돈이 커서 고정비 비중이 특히 높고, 그래서 라인을 세워 두면 파는 값과 상관없이 적자가 난다. 반대로 가동률이 손익분기를 넘어서면 늘어난 매출이 거의 그대로 이익으로 남는다. 이익이 갑자기 좋아지거나 나빠지는 회사를 볼 때 먼저 확인하는 구조다.",
+    "en": "Depreciation on buildings and equipment, salaried headcount and upkeep all cost about the same no matter how much a plant produces. Contract chipmaking carries an unusually high share of these fixed costs because of the capital sunk into equipment, so idle lines lose money regardless of selling price. Past the break-even point the reverse holds and incremental revenue converts almost entirely into profit. It is the first structure to check when a company's margins swing sharply in either direction.",
+    "ja": "工場の建物や装置の減価償却、正社員の人件費、維持費のように、生産量にかかわらずほぼ同じ金額が出ていく費用だ。半導体の受託生産は装置に投じた資金が大きく固定費の比重が特に高いため、ラインを止めれば販売価格に関係なく赤字になる。逆に稼働率が損益分岐点を超えると、増えた売上はほぼそのまま利益として残る。利益が急に良くなったり悪くなったりする企業を見るとき、最初に確認する構造だ。"
+   },
+   "aliases": [
+    "고정비",
+    "고정비용",
+    "fixed cost",
+    "fixed costs",
+    "固定費"
+   ]
+  },
+  "GDDR": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "그래픽카드에 붙는 전용 메모리. D램과 같은 공정에서 나온다.",
+    "en": "The dedicated memory that sits on a graphics card, made on the same lines as DRAM.",
+    "ja": "グラフィックカードに載る専用メモリ。DRAMと同じ工程から出てくる。"
+   },
+   "longDesc": {
+    "ko": "그래픽칩이 화면을 그릴 데이터를 빠르게 꺼내 쓰도록 카드 위에 붙이는 메모리다. 컴퓨터에 꽂는 D램과 뿌리가 같지만, 한 번에 많은 데이터를 흘려보내는 쪽으로 설계가 기울어져 있다. 세대가 올라가며 GDDR6, GDDR7로 불린다. 같은 공장에서 서버용 D램과 자리를 다투기 때문에 서버 수요가 강한 구간에는 물량이 밀리고 값이 오른다. 그래픽카드 가격이 성능과 무관하게 움직이는 이유가 대개 여기에 있다.",
+    "en": "The memory bolted onto a graphics board so the graphics processor can pull drawing data at high speed. It shares its roots with desktop DRAM but is tilted toward moving a lot of data at once, and generations are named GDDR6, GDDR7 and so on. Because it competes for the same fab lines as server DRAM, it gets pushed back and repriced whenever server demand runs hot. That is usually why graphics card prices move without any change in performance.",
+    "ja": "グラフィックチップが画面を描くデータを高速に取り出せるよう、カード上に載せるメモリだ。パソコンに挿すDRAMと出自は同じだが、一度に多くのデータを流すほうへ設計が寄っている。世代が上がるにつれGDDR6、GDDR7と呼ばれる。同じ工場でサーバー向けDRAMと場所を奪い合うため、サーバー需要が強い局面では数量が後回しになり価格が上がる。グラフィックカードの価格が性能と無関係に動く理由は、たいていここにある。"
+   },
+   "aliases": [
+    "GDDR",
+    "GDDR6",
+    "GDDR7",
+    "지디디알"
+   ]
+  },
+  "QUALCOMM": {
+   "kind": "company",
+   "ticker": "qcom.us",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "en": "Designer of the Snapdragon mobile chips and a major holder of wireless patents.",
+    "ko": "스마트폰용 스냅드래곤 칩을 설계하는 회사. 무선 통신 특허를 대량으로 보유하고 있다.",
+    "ja": "スマートフォン向けSnapdragonチップを設計する企業。無線通信特許を大量に保有する。"
+   },
+   "aliases": [
+    "Qualcomm",
+    "퀄컴",
+    "クアルコム",
+    "QCOM"
+   ],
+   "logo": "qualcomm.com",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "ko": "크리스티아누 아몬",
+    "en": "Cristiano Amon",
+    "ja": "クリスティアーノ・アモン"
+   },
+   "founded": "1985",
+   "hq": {
+    "ko": "미국 샌디에이고",
+    "en": "San Diego, USA",
+    "ja": "米国・サンディエゴ"
+   },
+   "website": "https://www.qualcomm.com",
+   "longDesc": {
+    "ko": "스마트폰의 두뇌에 해당하는 스냅드래곤 칩을 설계하는 회사다. 직접 공장을 갖지 않고 TSMC나 삼성전자 같은 위탁생산 업체에 제조를 맡기기 때문에, 어느 회사의 어느 공정을 고르느냐가 그 자체로 업계의 큰 뉴스가 된다. 무선 통신 표준에 걸린 특허를 대량으로 보유해 칩을 팔지 않는 기기에서도 로열티를 받는 구조를 갖고 있고, 최근에는 자동차와 PC용 칩으로 영역을 넓히고 있다.",
+    "en": "Qualcomm designs the Snapdragon chips that act as the brains of most Android smartphones. It owns no fabs, so its choice of which foundry and which process node to use is itself major industry news. It also holds a deep portfolio of wireless standards patents and collects royalties even on devices that do not carry its chips, and it has been pushing into automotive and PC silicon.",
+    "ja": "スマートフォンの頭脳にあたるSnapdragonチップを設計する企業だ。自社工場を持たずTSMCやサムスン電子といった受託生産企業に製造を任せるため、どの企業のどの工程を選ぶかがそれ自体で業界の大きなニュースになる。無線通信標準に関わる特許を大量に保有し、自社チップを載せない機器からもロイヤルティを得る構造を持ち、近年は自動車やPC向けチップへ領域を広げている。"
+   }
   }
  }
 }
