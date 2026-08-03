@@ -1,6 +1,169 @@
 {
  "items": [
   {
+   "date": "2026-08-03",
+   "id": "meru-china-duv-ssa800-1950i-class",
+   "related": [
+    "jukan-china-duv-litho-mass-production",
+    "jukan-samsung-chinese-dram-mx-bet",
+    "meru-skhynix-one-share-hyperliquid-liquidation"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224365657673",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#0B1622",
+    "to": "#1E4E6B",
+    "label": "SSA800"
+   },
+   "tags": [
+    "DUV",
+    "ASML",
+    "CHINA"
+   ],
+   "title": {
+    "ko": "ASML의 7나노 노광기를 손에 넣고도 중국이 2008년 모델을 만들어 낸 이유는 뭘까?",
+    "en": "Why did China build a 2008 model when it already held ASML's 7nm scanner?",
+    "ja": "ASMLの7ナノ露光機を手にしながら、中国が2008年モデルを作った理由は何だろうか?"
+   },
+   "sum3": {
+    "ko": "중국이 자국산 액침 노광장비 양산을 시작했다는 소식에 ASML 주가가 하루 만에 5.7% 내렸다.\n겉으로 보면 반도체 공급망의 마지막 병목이 뚫린 것처럼 보인다.\n그런데 이 장비는 ASML이 2008년에 내놓은 1950i와 같은 급이고, 화웨이가 이미 갖고 있던 2015년 모델은 뜯었다가 재조립에 실패했다.",
+    "en": "ASML shares closed down 5.7% on word that China had started volume production of a domestic immersion scanner.\nOn the surface it looks like the last bottleneck in the chip supply chain has been broken open.\nBut the tool sits at the level of the 1950i ASML released in 2008, and the 2015 model Huawei already held was taken apart and never put back together.",
+    "ja": "中国が国産の液浸露光装置の量産を始めたとの報でASML株は1日で5.7%下げた。\n表向きは半導体サプライチェーン最後のボトルネックが破れたように見える。\nだがこの装置はASMLが2008年に出した1950iと同じ級で、ファーウェイがすでに持っていた2015年モデルは分解したまま組み立てに失敗した。"
+   },
+   "gist": {
+    "ko": "중국이 만들었다는 액침 노광장비는 ASML이 2008년에 내놓은 NXT:1950i와 같은 급이다.\n28나노 회로를 한 번에 새기는 수준이고, 그 위 세대인 2015년 모델 1980Di는 아직 만들지 못했다.\n\n7월 27일 상하이의 국가 지원 업체가 이 장비 양산을 시작했다는 보도가 나오자 ASML 주가는 5.7% 내렸고, 장중에는 7%까지 밀렸다.\n\n@@REF@@중국, 국산 액침 노광장비 양산 시작. 올해 SMIC·화홍·CXMT에 첫 인도 (톰스하드웨어, 2026-07-27)|https://www.tomshardware.com/tech-industry/semiconductors/china-begins-mass-production-of-domestic-immersion-duv-lithography-machines|https://cdn.mos.cms.futurecdn.net/7ZotSVaMnrDA7FNSEBa4BN-970-80.jpg\n\n톰스하드웨어는 이 장비가 한 번의 노광으로 28나노급 회로를 새기고, 노광을 여러 번 겹치는 방식을 쓰면 7나노급까지 간다고 전했다.\n올해 인도 물량은 5대 안팎, 내년에도 20대 수준이다.\n\n## 왜 하필 2008년 모델인가\n\n노광장비는 웨이퍼 위에 회로를 빛으로 새기는 기계다.\n반도체를 만드는 전체 시간의 60%, 비용의 35%가 이 한 공정에서 나간다.\n\n빛을 만드는 쪽부터 보면, 커이훙위안이 국산화한 광원은 6kHz에 60W다.\n같은 주파수에서 90W를 내는 ASML 제품에는 미치지 못한다.\n\n렌즈는 마오라이광학이 300mm 대구경 검증을 통과했다고 한다.\n다만 정밀도가 30나노급이라, 10나노 미만인 독일 자이스 렌즈를 결국 수입해 썼다고 전해졌다.\n\n@@REF@@중국의 DUV, ASML에 네 세대 뒤처져 있다 (아시아타임스, 2026-07-31)|https://asiatimes.com/2026/07/chinas-duv-lithography-still-lags-asml-by-four-generations/|https://asiatimes.com/wp-content/uploads/2026/07/SSA800.jpg\n\n아시아타임스는 이 장비의 이름이 SSA800이고, 2023년에 세워진 상하이 아이성나 전자기술그룹이 위량성과 SMEE의 개발 인력을 흡수해 만들었다고 전했다.\n부품의 70%를 국산으로 채웠지만 193나노 엑시머 레이저용 거울, 자이스 렌즈, 진공 챔버, 동기 제어 알고리즘은 여전히 수입한다.\n국산화율 70%를 뒤집으면 30%는 밖에서 사 와야 만들 수 있다는 말이다.\n\n## 1980Di는 왜 못 베꼈나\n\n화웨이는 이미 그 윗세대를 손에 쥐고 있었다.\n우한의 HSMC가 7나노 공장을 짓겠다며 ASML 1980Di를 들여놓고 부도가 났고, 중국 정부가 이 회사를 인수해 화웨이에 넘겼다.\n\n2025년 10월, 중국은 그 장비의 수리를 ASML에 요청했다.\n현장에 간 기사가 본 것은 분해된 뒤 조립에 실패한 상태였다고 한다.\n\n여기에 캘리브레이션이 걸려 있다.\n렌즈와 거울, 웨이퍼 받침대의 위치를 나노미터 단위로 맞춰 놓은 정밀 세팅인데, 공장에서 수백 개의 기준점을 잡아가며 몇 주에 걸쳐 맞춘 것이다.\n뜯는 순간 이 정렬이 어긋나고, 되돌리는 소프트웨어 키는 ASML만 갖고 있다.\n\n완성품을 손에 넣어도 열어 보는 순간 못 쓰게 되는 구조다.\n\n## ASML은 무엇을 잃게 되나\n\n중국이 서두른 이유는 시간이다.\nEUV는 2019년부터 막혔고, 2023년 말에는 NXT:2000i 이상, 2024년 9월에는 1970i와 1980i까지 수출이 막혔다.\n규제 직전 1980i를 90대 사재기했지만 성능을 1% 넘게 올려 주는 서비스까지 금지돼 유지보수가 어려워졌다.\n\n@@CHK@@ASML 2026년 상반기 중국 매출 비중|약 16%|ASML 2026년 2분기 총매출|93억 유로|ASML 2026년 2분기 순이익|29억 유로@@중국이 국산 장비로 되찾으려는 시장은 ASML 매출의 6분의 1 수준까지 이미 줄어 있다. 수출 규제가 먼저 잘라 낸 몫이라, 국산화가 성공해도 ASML이 새로 잃을 몫은 그만큼 적다. 저자가 짚은 \"아직 멀었다\"와 방향이 같은 숫자다.@@2026-08-03 조회 · 매출·순이익은 ASML 2026년 2분기 실적 발표, 중국 비중은 Tech Wire Asia 보도 인용\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n이번 양산이 ASML의 해자에 난 첫 균열인지, 규제가 만든 임시 우회로인지.\n\n가릴 지점은 세대다.\n장비가 1950i급에 머무는 동안은 우회로다.\n2015년 모델인 1980Di급을 국산 부품만으로 내놓는 순간 균열이 된다.\n\nASML은 28나노에서 7나노로 가는 데 7년이 걸렸다.\n같은 길을 국산 광원과 국산 렌즈로 다시 걸어야 하는 쪽에 그보다 짧은 시간이 주어질 이유는 보이지 않는다.\n노광장비는 반도체 공급망에서 대체재가 없는 유일한 자리이고, 그 자리를 누가 쥐고 있느냐가 수출 규제의 지렛대를 만든다.\n이번 장비가 2008년 모델 급이라는 사실은 그 지렛대가 아직 살아 있다는 뜻이다.",
+    "en": "The immersion scanner China says it has built sits at the same level as the NXT:1950i, a tool ASML released in 2008.\nIt prints 28nm circuits in a single exposure, and the generation above it, the 2015 model 1980Di, is still out of reach.\n\nWhen a state-backed firm in Shanghai was reported on July 27 to have started volume production of the tool, ASML shares closed down 5.7% and fell as much as 7% intraday.\n\n@@REF@@China begins mass production of homegrown immersion DUV machines, first units to SMIC, Hua Hong and CXMT this year (Tom's Hardware, 2026-07-27)|https://www.tomshardware.com/tech-industry/semiconductors/china-begins-mass-production-of-domestic-immersion-duv-lithography-machines|https://cdn.mos.cms.futurecdn.net/7ZotSVaMnrDA7FNSEBa4BN-970-80.jpg\n\nTom's Hardware reports the tool prints 28nm-class features in one exposure and reaches 7nm-class when exposures are layered on top of each other.\nDeliveries run to about five units this year and roughly 20 next year.\n\n## Why a 2008 model of all things\n\nA scanner is the machine that writes circuits onto a wafer with light.\nThat single step eats 60% of the time and 35% of the cost of making a chip.\n\nStart with the light itself. The domestic source built by Keyihongyuan runs at 6kHz and 60W.\nASML's part delivers 90W at the same frequency.\n\nFor the optics, Maolai is said to have passed validation on a 300mm large-aperture lens.\nIts precision lands around 30nm, against under 10nm for Germany's ZEISS lenses, so ZEISS lenses were reportedly imported in the end.\n\n@@REF@@China's DUV lithography still lags ASML by four generations (Asia Times, 2026-07-31)|https://asiatimes.com/2026/07/chinas-duv-lithography-still-lags-asml-by-four-generations/|https://asiatimes.com/wp-content/uploads/2026/07/SSA800.jpg\n\nAsia Times names the tool the SSA800 and reports it was built by Shanghai Aishengna Electronic Technology Group, founded in 2023, which absorbed development teams from Yuliangsheng and SMEE.\nRoughly 70% of the parts are domestic, while mirrors for the 193nm excimer laser, ZEISS lenses, vacuum chambers and synchronization control algorithms are still imported.\nTurn that 70% around and it says 30% has to be bought from outside before the machine can be built at all.\n\n## Why the 1980Di could not be copied\n\nHuawei already held the generation above.\nHSMC in Wuhan brought in an ASML 1980Di for a 7nm fab and then went bankrupt, and the Chinese government took over the company and handed it to Huawei.\n\nIn October 2025, China asked ASML to repair that machine.\nThe engineer who went on site reportedly found it taken apart and never put back together.\n\nCalibration is what stands in the way.\nIt is a precision setting that aligns the lenses, mirrors and wafer stage down to the nanometer, fixed at the factory over weeks against hundreds of reference points.\nOpening the machine throws that alignment off, and the software key that restores it sits only with ASML.\n\nEven holding the finished product, you lose it the moment you look inside.\n\n## What ASML actually stands to lose\n\nChina moved fast because of the calendar.\nEUV was blocked from 2019, the NXT:2000i and above from late 2023, and the 1970i and 1980i from September 2024.\nNinety units of the 1980i were stockpiled just before the rules landed, but servicing that lifts performance by more than 1% was banned too, which made upkeep hard.\n\n@@CHK@@ASML China share of sales, H1 2026|about 16%|ASML Q2 2026 net sales|EUR 9.3bn|ASML Q2 2026 net income|EUR 2.9bn@@The market China wants to win back with a domestic tool has already shrunk to about a sixth of ASML's sales. Export controls cut that share first, so what ASML newly loses if localization works is smaller by the same amount. The number points the same way the author does.@@Retrieved 2026-08-03 · sales and net income from ASML's Q2 2026 results release, China share as reported by Tech Wire Asia\n\n## So what settles it\n\nThe question comes down to one thing.\nWhether this is the first crack in ASML's moat, or a detour that export controls forced open.\n\nThe generation is what settles it.\nWhile the tool stays at 1950i class, it is a detour.\nThe moment a 1980Di-class machine comes out of domestic parts alone, it is a crack.\n\nASML took seven years to move from 28nm to 7nm.\nThere is no visible reason the side walking that road again on a domestic light source and domestic lenses gets less time than that.\nA scanner is the one seat in the chip supply chain with no substitute, and whoever holds it is what gives export controls their leverage.\nThat this tool sits at 2008 level says the leverage is still there.",
+    "ja": "中国が作ったという液浸露光装置は、ASMLが2008年に出したNXT:1950iと同じ級だ。\n28ナノの回路を一度で刻む水準で、その上の世代である2015年モデルの1980Diはまだ作れていない。\n\n7月27日、上海の国家支援企業がこの装置の量産を始めたと報じられると、ASML株は5.7%下げ、場中には7%まで下落した。\n\n@@REF@@中国、国産の液浸露光装置の量産を開始。今年SMIC・華虹・CXMTへ初納入 (Tom's Hardware, 2026-07-27)|https://www.tomshardware.com/tech-industry/semiconductors/china-begins-mass-production-of-domestic-immersion-duv-lithography-machines|https://cdn.mos.cms.futurecdn.net/7ZotSVaMnrDA7FNSEBa4BN-970-80.jpg\n\nTom's Hardwareは、この装置が一度の露光で28ナノ級の回路を刻み、露光を何度も重ねる方式なら7ナノ級まで届くと伝えた。\n納入は今年が5台前後、来年も20台ほどだ。\n\n## なぜよりによって2008年モデルか\n\n露光装置はウェハーの上に回路を光で刻む機械だ。\n半導体を作る全体の時間の60%、費用の35%がこの一工程で出ていく。\n\nまず光を作る側から見ると、科益虹源が国産化した光源は6kHzで60Wだ。\n同じ周波数で90Wを出すASML製には届かない。\n\nレンズは茅莱光学が300mmの大口径で検証を通ったという。\nただ精度が30ナノ級で、10ナノ未満のドイツ・ツァイスのレンズを結局は輸入して使ったと伝えられた。\n\n@@REF@@中国のDUV、ASMLに4世代遅れている (Asia Times, 2026-07-31)|https://asiatimes.com/2026/07/chinas-duv-lithography-still-lags-asml-by-four-generations/|https://asiatimes.com/wp-content/uploads/2026/07/SSA800.jpg\n\nAsia Timesは、この装置の名がSSA800で、2023年に設立された上海愛昇娜電子技術グループが宇量昇とSMEEの開発人材を吸収して作ったと伝えた。\n部品の70%を国産で埋めたが、193ナノのエキシマレーザー用ミラー、ツァイスのレンズ、真空チャンバー、同期制御アルゴリズムは今も輸入だ。\n国産化率70%を裏返せば、30%は外から買ってこないと作れないという意味になる。\n\n## 1980Diはなぜ真似できなかったか\n\nファーウェイはすでにその上の世代を手にしていた。\n武漢のHSMCが7ナノ工場を建てるとしてASMLの1980Diを入れたまま倒産し、中国政府がこの会社を買い取ってファーウェイに渡した。\n\n2025年10月、中国はその装置の修理をASMLに求めた。\n現場に行った技師が見たのは、分解されたまま組み立てに失敗した状態だったという。\n\nここでキャリブレーションが立ちはだかる。\nレンズと鏡、ウェハーの台の位置をナノメートル単位で合わせた精密設定で、工場で数百の基準点を取りながら数週間かけて合わせたものだ。\n開けた瞬間にこの整列が狂い、戻すためのソフトウェアキーはASMLだけが持っている。\n\n完成品を手に入れても、中を覗いた瞬間に使えなくなる構造だ。\n\n## ASMLは何を失うのか\n\n中国が急いだ理由は時間だ。\nEUVは2019年から止まり、2023年末にはNXT:2000i以上、2024年9月には1970iと1980iまで輸出が止まった。\n規制の直前に1980iを90台買いだめしたが、性能を1%超引き上げる保守まで禁じられ、維持が難しくなった。\n\n@@CHK@@ASML 2026年上期の中国売上比率|約16%|ASML 2026年4-6月期の売上高|93億ユーロ|ASML 2026年4-6月期の純利益|29億ユーロ@@中国が国産装置で取り戻そうとする市場は、すでにASMLの売上の6分の1ほどまで縮んでいる。輸出規制が先に切り落とした分なので、国産化が成功してもASMLが新たに失う分はその分だけ小さい。著者の「まだ遠い」と同じ向きを指す数字だ。@@2026-08-03取得 · 売上高と純利益はASMLの2026年4-6月期決算発表、中国比率はTech Wire Asia報道の引用\n\n## では何で見分けるか\n\n結局、問いは一つだ。\n今回の量産がASMLの堀に入った最初の亀裂なのか、規制が作った一時の迂回路なのか。\n\n見分ける点は世代だ。\n装置が1950i級にとどまる間は迂回路だ。\n2015年モデルの1980Di級を国産部品だけで出した瞬間に亀裂になる。\n\nASMLは28ナノから7ナノに進むのに7年かかった。\n同じ道を国産の光源と国産のレンズで歩き直す側に、それより短い時間が与えられる理由は見えない。\n露光装置は半導体のサプライチェーンで代替のない唯一の席であり、その席を誰が握るかが輸出規制のてこを作る。\n今回の装置が2008年モデル級だという事実は、そのてこがまだ生きているという意味だ。"
+   },
+   "why": {
+    "ko": "노광장비는 반도체 공급망에서 대체재가 없는 유일한 자리다. 중국이 이 자리를 스스로 채우면 미국의 수출 규제가 쥔 지렛대가 사라지고, 채우지 못하면 규제는 계속 작동한다. 이번 장비가 2008년 모델 급이라는 사실은 그 지렛대가 아직 살아 있다는 뜻이다.",
+    "en": "A lithography scanner is the one seat in the chip supply chain with no substitute. If China fills that seat on its own, the leverage behind US export controls disappears, and if it cannot, the controls keep working. That this tool sits at 2008 level says the leverage is still there.",
+    "ja": "露光装置は半導体のサプライチェーンで代替のない唯一の席だ。中国がこの席を自力で埋めれば米国の輸出規制が握るてこは消え、埋められなければ規制は働き続ける。今回の装置が2008年モデル級だという事実は、そのてこがまだ生きているという意味だ。"
+   },
+   "ask": {
+    "ko": "수출 규제 직전에 사재기한 1980i 90대의 유지보수마저 막힌 상황에서, 한 세대 낮은 국산 장비로 갈아타는 선택은 후퇴일까 우회일까?",
+    "en": "With even the servicing of the 90 stockpiled 1980i units blocked, is switching to a domestic tool one generation behind a retreat or a detour?",
+    "ja": "規制直前に買いだめした1980i 90台の保守まで止まった状況で、一世代下の国産装置に乗り換える選択は後退だろうか、迂回だろうか。"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "1980Di를 분해해서 복제하지 못하고, 구형모델인 1950i를 만든 수준인 것임.",
+      "국산화율 70%를 이뤘다고 하지만, 이것을 뒤집어 보면 30%의 주요부품을 수입해와야 제작이 가능하다는 말이기도 함.",
+      "1980Di를 분해하고 재조립에 실패해서 ASML에게 수리를 요청한 것이 2025년 10월임."
+     ],
+     "en": [
+      "They could not take the 1980Di apart and copy it, and got only as far as building the older model, the 1950i.",
+      "They say they reached 70% localization, but turned around that also means 30% of the key parts have to be imported before it can be built.",
+      "It was October 2025 when they took the 1980Di apart, failed to put it back together, and asked ASML for a repair."
+     ],
+     "ja": [
+      "1980Diを分解して複製できず、旧型モデルである1950iを作った水準ということだ。",
+      "国産化率70%を達成したというが、これを裏返せば30%の主要部品を輸入してこないと製作できないという意味でもある。",
+      "1980Diを分解して再組み立てに失敗し、ASMLに修理を要請したのが2025年10月だ。"
+     ]
+    },
+    "cite": "메르 · 2026.08.03"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 말에 채점한다. 국산 액침 노광장비의 인도 물량이 보도된 20대 수준에 머물고 세대도 1950i급에 머물면 저자의 판단이 맞은 것으로, 1980Di급 장비가 국산 부품으로 나오면 틀린 것으로 본다.",
+     "en": "Score at the end of 2027. If deliveries of the domestic immersion scanner stay near the reported 20 units and the generation stays at 1950i class, the author was right, and if a 1980Di-class tool comes out of domestic parts, he was wrong.",
+     "ja": "2027年末に採点する。国産液浸露光装置の納入が報じられた20台ほどにとどまり世代も1950i級のままなら著者の判断が当たり、1980Di級の装置が国産部品で出れば外れたと見る。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-08-03T04:58:49.247234+00:00"
+  },
+  {
+   "date": "2026-08-02",
+   "id": "jukan-nomura-samsung-3yr-profit-vs-market-cap",
+   "related": [
+    "jukan-samsung-2q26-lta-60-70-capacity",
+    "jukan-skhynix-hbm-2027-lta-price-cap",
+    "jukan-samsung-foundry-2nm-taylor-fab2"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2083915223644397881",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "cover": {
+    "from": "#101A2E",
+    "to": "#2E4A7A",
+    "label": "1,800조"
+   },
+   "tags": [
+    "SAMSUNG",
+    "MEMORY",
+    "VALUATION"
+   ],
+   "title": {
+    "ko": "노무라가 잡은 삼성전자 3년 영업이익 1,800조원, 시가총액보다 131조원 크다",
+    "en": "Nomura's three-year profit forecast for Samsung, 1,800 trillion won, tops its market cap by 131 trillion",
+    "ja": "野村が置いたサムスン電子の3年営業利益1,800兆ウォン、時価総額を131兆ウォン上回る"
+   },
+   "sum3": {
+    "ko": "노무라가 삼성전자의 영업이익 추정치를 3년에 걸쳐 391조원, 635조원, 774조원으로 올려 잡았다. 합치면 1,800조원이다.\n7월 31일 종가 기준 시가총액은 1,669조원이다. 3년치 이익 추정이 회사값보다 131조원 크다.\n이 숫자를 떠받치는 것은 메모리 값 자체가 아니라, 생산능력의 60~70%를 5년 계약으로 묶어 둔 구조다.",
+    "en": "Nomura raised its operating profit forecasts for Samsung to 391 trillion, 635 trillion and 774 trillion won over three years, 1,800 trillion won combined.\nAt the July 31 close the market cap stood at 1,669 trillion won, so three years of forecast profit runs 131 trillion above the company's price.\nWhat holds the figure up is not the price of memory itself but the structure that locks 60% to 70% of capacity into five-year contracts.",
+    "ja": "野村がサムスン電子の営業利益予想を3年で391兆ウォン、635兆ウォン、774兆ウォンに引き上げた。合計で1,800兆ウォンだ。\n7月31日終値時点の時価総額は1,669兆ウォンで、3年分の利益予想が会社の値段より131兆ウォン大きい。\nこの数字を支えているのはメモリーの値段そのものではなく、生産能力の60~70%を5年契約で固定した構造だ。"
+   },
+   "gist": {
+    "ko": "노무라가 삼성전자의 영업이익 추정치를 세 해에 걸쳐 391조원, 635조원, 774조원으로 올려 잡았다.\n세 해를 합치면 1,800조원으로, 7월 31일 종가 기준 시가총액 1,669조원보다 131조원 많다.\n\n같은 자료의 잉여현금흐름 추정은 296조원, 456조원, 563조원이고, 주주환원 수익률은 11.2%, 17.6%, 22.3%로 붙어 있다.\n원문은 세 해를 순서로만 적었다. 첫 해를 올해로 놓고 본다.\n\n@@REF@@삼성전자, 시가총액 1조달러 클럽에 복귀 (서울경제 영문판, 2026-07-31)|https://en.sedaily.com/finance/2026/07/31/samsung-electronics-re-enters-1-trillion-club-as-kospi|https://wimg.sedaily.com/news/cms/2026/07/31/rcv.YNA.20260731.PYH2026073106740001300_P1.jpg\n\n서울경제 영문판은 7월 31일 삼성전자 주가가 장중 20% 넘게 올라 25만원대를 회복했고, 시가총액이 1조 1,580억달러로 1조달러 선 위로 돌아왔다고 전했다.\n그 직전까지는 주가가 연달아 밀리며 시가총액이 1조달러 아래로 내려가 있었다.\n\n@@CHK@@시가총액(7월 31일)|1,669조원|3년 영업이익 추정 합계|1,800조원|차이|+131조원|2026년 2분기 영업이익(실제)|89.5조원|첫 해 영업이익 추정|391조원|2분기를 네 배 한 값|358조원@@3년치 이익 추정이 회사값보다 크다는 말은, 추정대로 벌면 3년 이익으로 회사를 통째로 사고도 남는다는 뜻이다. 다만 첫 해 추정 391조원은 2분기 실적을 단순히 네 배 한 358조원보다 33조원 많다. 하반기에 이익이 더 늘어난다는 전제가 이미 첫 해 숫자에 들어가 있다.@@2026-08-03 조회 · 시가총액은 StockAnalysis(2026-07-31 기준), 2분기 실적은 삼성전자 2026년 2분기 실적 발표, 추정치는 원문\n\n@@IMG@@dram-module|서버에 꽂는 D램 막대. 이번 이익 추정의 거의 전부가 이 물건에서 나온다.\n\n## 이 수익률은 어디서 나오나\n\n잉여현금흐름은 벌어들인 현금에서 공장과 장비에 쓴 돈을 빼고 실제로 손에 남는 현금이다.\n주주환원 수익률은 배당과 자사주 매입으로 주주에게 돌아가는 돈을 시가총액으로 나눈 값이다.\n\n@@REF@@삼성 반도체 부문만 88조원, 초점은 120조원 주주환원으로 (서울경제 영문판, 2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-chip-unit-alone-earns-88-trillion-won-focus-turns|https://wimg.sedaily.com/news/cms/2026/07/30/rcv.YNA.20260707.PYH2026070703230001300_P1.jpg\n\n서울경제 영문판은 2027년부터 2029년까지 3년간 120조원 규모의 주주환원이 논의되고 있고, 잉여현금흐름의 50%를 주주에게 돌려주는 기존 방침이 그 바탕이라고 전했다.\n그러니까 11.2%에서 22.3%로 올라가는 수익률은 노무라가 따로 상상한 숫자가 아니다.\n회사가 밝혀 둔 배분 방침에 잉여현금흐름 추정을 넣으면 기계적으로 나오는 값이다.\n바꿔 말하면 현금흐름 추정이 틀리는 순간 수익률도 같이 틀린다.\n\n## 왜 3년 뒤 숫자를 적을 수 있나\n\n메모리는 다음 분기 값도 맞히기 어려운 산업이었다.\n값이 오르면 모두가 증설했고, 그 증설이 몇 년 뒤 공급과잉으로 돌아왔다.\n\n바뀐 것은 계약이다.\n삼성전자는 2분기 실적 설명회에서 메모리 생산능력의 60~70%를 5년짜리 장기공급계약으로 묶는다고 밝혔다.\n값이 미리 정해진 물량이 3분의 2면, 3년 뒤 이익도 숫자로 적어 볼 수 있게 된다.\n\n3년치 이익 추정이 시가총액을 넘어선 이 그림은 그래서 저평가의 증거로만 읽히지 않는다.\n계약이 실제로 순환을 끊는지가 아직 확인되지 않았고, 시장은 그 미확인분을 값에서 빼 두고 있는 것으로 보인다.\n\n## 그래서 무엇으로 가릴까\n\n결국 질문은 하나다.\n시가총액과 이익 추정 사이의 131조원이 시장의 실수인지, 추정에 붙은 정당한 할인인지.\n\n가릴 지점은 첫 해다.\n하반기 영업이익이 2분기의 네 배 선을 넘어 391조원 쪽으로 붙으면 남은 두 해의 추정도 같은 무게를 갖게 된다.\n못 넘으면 635조원과 774조원은 첫 해에서 이미 어긋난 숫자가 된다.\n\n메모리 회사의 값은 늘 다음 하강기를 얼마나 앞당겨 반영하느냐로 정해졌다.\n장기공급계약이 그 하강기를 실제로 늦춘다면 지금의 할인은 근거를 잃고, 늦추지 못하면 추정 쪽이 무너진다.\n한 달 사이에 주가가 1조달러 아래로 밀렸다가 하루 만에 20% 넘게 되돌린 것도, 시장이 이 전제 하나를 두고 흔들리고 있다는 뜻으로 보인다.",
+    "en": "Nomura has raised its operating profit forecasts for Samsung Electronics to 391 trillion, 635 trillion and 774 trillion won across three years.\nThe three add up to 1,800 trillion won, 131 trillion more than the 1,669 trillion won market cap at the July 31 close.\n\nThe same note puts free cash flow at 296 trillion, 456 trillion and 563 trillion won, with shareholder return yields of 11.2%, 17.6% and 22.3% attached.\nThe source lists the three years in order without naming them. The first is taken here as this year.\n\n@@REF@@Samsung Electronics re-enters the $1 trillion club (Seoul Economic Daily English, 2026-07-31)|https://en.sedaily.com/finance/2026/07/31/samsung-electronics-re-enters-1-trillion-club-as-kospi|https://wimg.sedaily.com/news/cms/2026/07/31/rcv.YNA.20260731.PYH2026073106740001300_P1.jpg\n\nSeoul Economic Daily reports that on July 31 the shares rose more than 20% during the session, back into the 250,000 won range, and the market cap returned above $1 trillion at $1.158 trillion.\nUntil just before that, a run of declines had pushed the market cap below the $1 trillion line.\n\n@@CHK@@Market cap (July 31)|1,669tn won|Three-year operating profit forecast|1,800tn won|Gap|+131tn won|Q2 2026 operating profit (actual)|89.5tn won|First-year operating profit forecast|391tn won|Q2 multiplied by four|358tn won@@A three-year profit forecast larger than the company's price means that, if the forecast lands, three years of profit would buy the whole company with change left over. But the first-year figure of 391 trillion won sits 33 trillion above the 358 trillion you get by simply multiplying Q2 by four. The assumption that profit keeps climbing in the second half is already inside the first-year number.@@Retrieved 2026-08-03 · market cap from StockAnalysis (as of 2026-07-31), Q2 figures from Samsung's Q2 2026 results release, forecasts from the source post\n\n@@IMG@@dram-module|The DRAM stick that goes into a server. Almost all of this profit forecast comes out of this one product.\n\n## Where does that yield come from\n\nFree cash flow is the cash left in hand after the money spent on plants and equipment is taken out of what the business earned.\nA shareholder return yield is the money going back to shareholders through dividends and buybacks, divided by the market cap.\n\n@@REF@@Samsung's chip unit alone earns 88 trillion won, focus turns to a 120 trillion won shareholder return (Seoul Economic Daily English, 2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-chip-unit-alone-earns-88-trillion-won-focus-turns|https://wimg.sedaily.com/news/cms/2026/07/30/rcv.YNA.20260707.PYH2026070703230001300_P1.jpg\n\nSeoul Economic Daily reports that a 120 trillion won shareholder return covering 2027 through 2029 is under discussion, built on the existing policy of returning 50% of free cash flow.\nSo the climb from 11.2% to 22.3% is not a number Nomura imagined on its own.\nPut the cash flow forecast into a payout policy the company has already stated and the yield falls out mechanically.\nWhich also means the yield is wrong the moment the cash flow forecast is wrong.\n\n## Why anyone can write down a number three years out\n\nMemory used to be an industry where even next quarter's price was hard to call.\nPrices rose, everyone added capacity, and that capacity came back as a glut a few years later.\n\nWhat changed is the contract.\nOn its Q2 earnings call Samsung said it is locking 60% to 70% of memory capacity into five-year long-term agreements.\nWhen two thirds of the volume is priced in advance, profit three years out becomes something you can write down.\n\nThat is why a profit forecast above the market cap does not read only as evidence of undervaluation.\nWhether the contracts actually break the cycle is still unconfirmed, and the market appears to be holding that unconfirmed part out of the price.\n\n## So what settles it\n\nThe question comes down to one thing.\nWhether the 131 trillion won between the market cap and the forecast is the market's mistake, or a fair discount on the forecast.\n\nThe first year is what settles it.\nIf second-half operating profit clears four times the Q2 run rate and lands near 391 trillion won, the remaining two years carry the same weight.\nIf it does not, the 635 trillion and 774 trillion figures were already off in year one.\n\nThe price of a memory company has always been set by how early the next downturn is pulled into it.\nIf the long-term agreements really do delay that downturn, today's discount loses its footing, and if they do not, the forecast is what breaks.\nA market cap that slipped under $1 trillion within a month and then recovered more than 20% in a single day says the market is swinging on this one assumption.",
+    "ja": "野村がサムスン電子の営業利益予想を3年にわたり391兆ウォン、635兆ウォン、774兆ウォンへ引き上げた。\n3年を合わせると1,800兆ウォンで、7月31日終値時点の時価総額1,669兆ウォンより131兆ウォン多い。\n\n同じ資料のフリーキャッシュフロー予想は296兆ウォン、456兆ウォン、563兆ウォンで、株主還元利回りは11.2%、17.6%、22.3%が付いている。\n原文は3年を順序でのみ記している。ここでは初年度を今年として見る。\n\n@@REF@@サムスン電子、時価総額1兆ドルクラブに復帰 (ソウル経済新聞英語版, 2026-07-31)|https://en.sedaily.com/finance/2026/07/31/samsung-electronics-re-enters-1-trillion-club-as-kospi|https://wimg.sedaily.com/news/cms/2026/07/31/rcv.YNA.20260731.PYH2026073106740001300_P1.jpg\n\nソウル経済新聞英語版は、7月31日にサムスン電子の株価が場中20%超上げて25万ウォン台を回復し、時価総額が1兆1,580億ドルで1兆ドルの線を上回ったと伝えた。\nその直前までは株価が続落し、時価総額は1兆ドルを割り込んでいた。\n\n@@CHK@@時価総額(7月31日)|1,669兆ウォン|3年分の営業利益予想の合計|1,800兆ウォン|差|+131兆ウォン|2026年4-6月期の営業利益(実績)|89.5兆ウォン|初年度の営業利益予想|391兆ウォン|4-6月期を4倍した値|358兆ウォン@@3年分の利益予想が会社の値段より大きいというのは、予想どおり稼げば3年の利益で会社を丸ごと買ってもお釣りが来るという意味だ。ただし初年度の391兆ウォンは、4-6月期を単純に4倍した358兆ウォンより33兆ウォン多い。下期に利益がさらに伸びるという前提が、すでに初年度の数字に入っている。@@2026-08-03取得 · 時価総額はStockAnalysis(2026-07-31時点)、4-6月期はサムスン電子2026年4-6月期決算発表、予想は原文\n\n@@IMG@@dram-module|サーバーに挿すDRAMのスティック。今回の利益予想のほぼ全部がこの製品から出てくる。\n\n## この利回りはどこから出るのか\n\nフリーキャッシュフローは、稼いだ現金から工場と設備に使った金を引いて実際に手元に残る現金だ。\n株主還元利回りは、配当と自社株買いで株主に戻る金を時価総額で割った値だ。\n\n@@REF@@サムスンの半導体部門だけで88兆ウォン、焦点は120兆ウォンの株主還元へ (ソウル経済新聞英語版, 2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-chip-unit-alone-earns-88-trillion-won-focus-turns|https://wimg.sedaily.com/news/cms/2026/07/30/rcv.YNA.20260707.PYH2026070703230001300_P1.jpg\n\nソウル経済新聞英語版は、2027年から2029年までの3年で120兆ウォン規模の株主還元が議論されており、フリーキャッシュフローの50%を株主に戻す従来方針がその土台だと伝えた。\nつまり11.2%から22.3%へ上がる利回りは、野村が別に想像した数字ではない。\n会社が示してきた配分方針にキャッシュフロー予想を入れれば機械的に出てくる値だ。\n言い換えれば、キャッシュフロー予想が外れた瞬間に利回りも一緒に外れる。\n\n## なぜ3年先の数字を書けるのか\n\nメモリーは次の四半期の値段さえ当てにくい産業だった。\n値段が上がれば皆が増設し、その増設が数年後に供給過剰となって戻ってきた。\n\n変わったのは契約だ。\nサムスン電子は4-6月期の決算説明会で、メモリー生産能力の60~70%を5年の長期供給契約で固定すると明らかにした。\n値段が先に決まった数量が3分の2なら、3年先の利益も数字に書けるようになる。\n\n3年分の利益予想が時価総額を超えたこの絵が、割安の証拠としてだけは読まれない理由がここにある。\n契約が本当に循環を断つのかはまだ確かめられておらず、市場はその未確認分を値段から差し引いているとみられる。\n\n## では何で見分けるか\n\n結局、問いは一つだ。\n時価総額と利益予想の間の131兆ウォンが市場の間違いなのか、予想に付いた正当なディスカウントなのか。\n\n見分ける点は初年度だ。\n下期の営業利益が4-6月期の4倍の線を超えて391兆ウォンに寄れば、残る2年の予想も同じ重みを持つ。\n超えなければ635兆ウォンと774兆ウォンは初年度ですでに狂った数字になる。\n\nメモリー企業の値段は、常に次の下降局面をどれだけ早く織り込むかで決まってきた。\n長期供給契約がその下降局面を実際に遅らせるなら今のディスカウントは根拠を失い、遅らせられなければ予想の側が崩れる。\n1カ月の間に時価総額が1兆ドルを割り込み、1日で20%超戻したことも、市場がこの前提一つを巡って揺れているという意味に見える。"
+   },
+   "why": {
+    "ko": "메모리 회사의 값은 늘 다음 하강기를 얼마나 앞당겨 반영하느냐로 정해졌다. 3년치 이익 추정이 시가총액을 넘는다는 말은, 시장이 그 하강기를 이미 값에 넣어 두었다는 뜻이기도 하다. 장기공급계약이 하강기를 실제로 늦춘다면 이 할인은 근거를 잃고, 늦추지 못하면 추정 쪽이 무너진다.",
+    "en": "The price of a memory company has always been set by how early the next downturn is pulled into it. A three-year profit forecast above the market cap also means the market has already put that downturn into the price. If long-term agreements really delay it, the discount loses its footing, and if they do not, the forecast is what breaks.",
+    "ja": "メモリー企業の値段は、常に次の下降局面をどれだけ早く織り込むかで決まってきた。3年分の利益予想が時価総額を超えるということは、市場がその下降局面をすでに値段に入れているという意味でもある。長期供給契約が下降局面を実際に遅らせるならこのディスカウントは根拠を失い、遅らせられなければ予想の側が崩れる。"
+   },
+   "ask": {
+    "ko": "메모리 3년치 이익 추정이 시가총액을 넘어선 지금, 이 격차는 시장의 저평가일까 추정에 붙은 정당한 할인일까?",
+    "en": "With three years of forecast memory profit now above the market cap, is that gap an undervaluation or a fair discount on the forecast?",
+    "ja": "メモリーの3年分の利益予想が時価総額を超えた今、この差は市場の割安なのか、予想に付いた正当なディスカウントなのか。"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "So... Samsung is expected to generate roughly $1.25 trillion in operating profit over the next three years, right?",
+      "And what was Samsung's market cap again...?"
+     ],
+     "ko": [
+      "그러니까... 삼성은 앞으로 3년 동안 영업이익을 대략 1조 2,500억달러 낼 것으로 예상된다는 거죠?",
+      "그런데 삼성 시가총액이 얼마였더라...?"
+     ],
+     "ja": [
+      "つまり… サムスンは今後3年でおよそ1兆2,500億ドルの営業利益を出すと予想されている、ということですよね?",
+      "ところでサムスンの時価総額はいくらでしたっけ…?"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.02"
+   },
+   "stance": "bull",
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 초 삼성전자의 2026년 연간 실적으로 채점한다. 연간 영업이익이 391조원 선에 닿으면 노무라 추정의 첫 해가 맞은 것으로, 2분기를 네 배 한 358조원에도 못 미치면 틀린 것으로 본다.",
+     "en": "Score on Samsung's full-year 2026 results in early 2027. If annual operating profit reaches around 391 trillion won, the first year of Nomura's forecast held, and if it falls short of the 358 trillion implied by four times Q2, it did not.",
+     "ja": "2027年初のサムスン電子2026年通期決算で採点する。通期営業利益が391兆ウォンの線に届けば野村予想の初年度は当たり、4-6月期を4倍した358兆ウォンにも届かなければ外れたと見る。"
+    }
+   },
+   "lab": true,
+   "foldWhy": true,
+   "ts": "2026-08-03T04:58:49.247234+00:00"
+  },
+  {
    "date": "2026-08-01",
    "id": "meru-korea-won-strength-surplus-vs-cash-outflow",
    "related": [
@@ -2487,11 +2650,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "SK hynix (Market Cap: KRW 1,132.2632 trillion) 2Q26 Earnings Results",
-     "Revenue: KRW 79 trillion (+257% YoY) (Consensus: KRW 84 trillion; 5.5% below consensus)",
-     "Operating profit: KRW 61 trillion (+557% YoY) (Consensus OP: KRW 64 trillion; 5.4% below consensus)"
-    ],
+    "lines": {
+     "en": [
+      "SK hynix (Market Cap: KRW 1,132.2632 trillion) 2Q26 Earnings Results",
+      "Revenue: KRW 79 trillion (+257% YoY) (Consensus: KRW 84 trillion; 5.5% below consensus)",
+      "Operating profit: KRW 61 trillion (+557% YoY) (Consensus OP: KRW 64 trillion; 5.4% below consensus)"
+     ],
+     "ko": [
+      "SK하이닉스(시가총액 1,132.2632조원) 2026년 2분기 실적",
+      "매출: 79조원(전년 대비 +257%) (컨센서스: 84조원, 컨센서스 대비 5.5% 하회)",
+      "영업이익: 61조원(전년 대비 +557%) (컨센서스 영업이익: 64조원, 컨센서스 대비 5.4% 하회)"
+     ],
+     "ja": [
+      "SKハイニックス(時価総額1,132.2632兆ウォン) 2026年4-6月期の実績",
+      "売上高: 79兆ウォン(前年比+257%) (コンセンサス: 84兆ウォン、コンセンサス比5.5%下回る)",
+      "営業利益: 61兆ウォン(前年比+557%) (コンセンサス営業利益: 64兆ウォン、コンセンサス比5.4%下回る)"
+     ]
+    },
     "cite": "Jukan (@jukan05) · 2026.07.28"
    },
    "title": {
@@ -2558,11 +2733,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "It's official: Apple, $AAPL, is now the second company in history to surpass $5 trillion in market cap.",
-     "This makes Apple the largest company in the world, now 6% larger than Nvidia.",
-     "If you invested $10,000 in Apple in 2003, you would have $15.5 million today."
-    ],
+    "lines": {
+     "en": [
+      "It's official: Apple, $AAPL, is now the second company in history to surpass $5 trillion in market cap.",
+      "This makes Apple the largest company in the world, now 6% larger than Nvidia.",
+      "If you invested $10,000 in Apple in 2003, you would have $15.5 million today."
+     ],
+     "ko": [
+      "공식 확인됐다. 애플($AAPL)이 역사상 두 번째로 시가총액 5조달러를 넘어선 기업이 됐다.",
+      "이로써 애플은 세계 최대 기업이 됐고, 지금 엔비디아보다 6% 크다.",
+      "2003년에 애플에 1만달러를 넣었다면 오늘 1,550만달러가 되어 있을 것이다."
+     ],
+     "ja": [
+      "公式に確認された。アップル($AAPL)が史上2社目となる時価総額5兆ドル超えの企業になった。",
+      "これでアップルは世界最大の企業となり、今やエヌビディアより6%大きい。",
+      "2003年にアップルへ1万ドルを入れていたら、今日は1,550万ドルになっている。"
+     ]
+    },
     "cite": "The Kobeissi Letter (@KobeissiLetter) · 2026.07.28"
    },
    "title": {
@@ -2620,10 +2807,20 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "FCC set to ban Chinese imports of humanoid and quadruped robots per Reuters.",
-     "To protect American Humanoid/Robotics programs."
-    ],
+    "lines": {
+     "en": [
+      "FCC set to ban Chinese imports of humanoid and quadruped robots per Reuters.",
+      "To protect American Humanoid/Robotics programs."
+     ],
+     "ko": [
+      "로이터에 따르면 FCC가 중국산 휴머노이드 로봇과 4족 보행 로봇의 수입을 금지할 예정이다.",
+      "미국의 휴머노이드·로보틱스 프로그램을 보호하기 위해서다."
+     ],
+     "ja": [
+      "ロイターによると、FCCが中国製のヒューマノイドロボットと四足歩行ロボットの輸入を禁止する見通しだ。",
+      "米国のヒューマノイド・ロボティクス計画を守るためだ。"
+     ]
+    },
     "cite": "Serenity (@aleabitoreddit) · 2026.07.28"
    },
    "title": {
@@ -2682,10 +2879,20 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "The US Infrastructure Software Index and the US Security Software Index are up +22%, year-to-date, outperforming other parts of the industry.",
-     "At the same time, the US Vertical Software Index and the US Application Software Index are down -28% and -34%, respectively."
-    ],
+    "lines": {
+     "en": [
+      "The US Infrastructure Software Index and the US Security Software Index are up +22%, year-to-date, outperforming other parts of the industry.",
+      "At the same time, the US Vertical Software Index and the US Application Software Index are down -28% and -34%, respectively."
+     ],
+     "ko": [
+      "미국 인프라 소프트웨어 지수와 미국 보안 소프트웨어 지수는 연초 이후 +22%로, 업계의 다른 부분을 앞서고 있다.",
+      "같은 기간 미국 버티컬 소프트웨어 지수와 미국 애플리케이션 소프트웨어 지수는 각각 -28%, -34%다."
+     ],
+     "ja": [
+      "米インフラソフトウェア指数と米セキュリティソフトウェア指数は年初来+22%で、業界の他の部分を上回っている。",
+      "同時に、米バーティカルソフトウェア指数と米アプリケーションソフトウェア指数はそれぞれ-28%、-34%だ。"
+     ]
+    },
     "cite": "The Kobeissi Letter · 2026.07.28"
    },
    "title": {
@@ -2753,10 +2960,20 @@
    ],
    "stance": "bull",
    "quote": {
-    "lines": [
-     "Inventory levels for key products have generally fallen to 30 days or less.",
-     "Distributors that had built inventories in advance have raised prices by an average of 20–25%, while spot-market prices have climbed to two to three times their previous levels."
-    ],
+    "lines": {
+     "en": [
+      "Inventory levels for key products have generally fallen to 30 days or less.",
+      "Distributors that had built inventories in advance have raised prices by an average of 20–25%, while spot-market prices have climbed to two to three times their previous levels."
+     ],
+     "ko": [
+      "주요 제품의 재고 수준이 전반적으로 30일 이하로 떨어졌다.",
+      "미리 재고를 쌓아 둔 유통업체들은 평균 20~25% 값을 올렸고, 현물 시장 가격은 이전 수준의 두세 배까지 올랐다."
+     ],
+     "ja": [
+      "主要製品の在庫水準は総じて30日以下まで下がった。",
+      "あらかじめ在庫を積んでいた流通業者は平均20~25%値上げし、スポット市場価格は従来の2~3倍まで上がった。"
+     ]
+    },
     "cite": "Jukan (@jukan05) · 2026.07.28"
    },
    "title": {
@@ -2889,9 +3106,17 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "A magnitude 7.0 earthquake has struck the area where TSMC’s fab in Japan is located."
-    ],
+    "lines": {
+     "en": [
+      "A magnitude 7.0 earthquake has struck the area where TSMC’s fab in Japan is located."
+     ],
+     "ko": [
+      "TSMC의 일본 공장이 있는 지역에 규모 7.0의 지진이 발생했다."
+     ],
+     "ja": [
+      "TSMCの日本の工場がある地域でマグニチュード7.0の地震が発生した。"
+     ]
+    },
     "cite": "Jukan · 2026.07.28"
    },
    "title": {
@@ -21903,7 +22128,15 @@
     "lithography",
     "露光装置",
     "다중노광",
-    "노광"
+    "노광",
+    "SSA800",
+    "NXT:1950i",
+    "1950i",
+    "1980Di",
+    "NXT:2000i",
+    "2000i",
+    "1970i",
+    "1980i"
    ],
    "name": {
     "ko": "노광장비",
@@ -22943,7 +23176,11 @@
     "ArFi",
     "immersion DUV",
     "ArF immersion",
-    "불화아르곤 이머전"
+    "불화아르곤 이머전",
+    "액침 노광",
+    "침지 노광",
+    "액침 DUV",
+    "液浸露光"
    ],
    "desc": {
     "en": "Immersion argon-fluoride (ArF) lithography, the workhorse DUV process just below EUV in resolution.",
@@ -27629,6 +27866,182 @@
     "en": "Founded in 1889, a German defence and automotive components group whose core businesses are ammunition and armoured vehicles. Order books surged as European governments raised defence budgets after the war in Ukraine, making it the emblem of Europe's rearmament. Scaling production requires specialist optics, electric motors and rare earths, much of which comes from China, so being targeted by export controls puts the expansion plan itself in question.",
     "ja": "1889年創業のドイツの防衛・自動車部品企業で、弾薬と装甲車両が主力だ。ウクライナ戦争後に欧州各国が国防費を増やし受注が急増したことで、欧州再軍備の代表銘柄とされる。増産には特殊な光学部品や電動モーター、レアアースといった材料が要り、その多くが中国から来るため、輸出管理の標的になれば増産計画そのものが揺らぐ。"
    }
+  },
+  "캘리브레이션": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "장비 각 부품의 위치와 값을 극도로 미세한 단위까지 맞춰 놓은 정밀 세팅.",
+    "en": "The precision setting that aligns a machine's parts and values down to extremely fine units.",
+    "ja": "装置の各部品の位置と値を極めて微細な単位まで合わせた精密設定。"
+   },
+   "longDesc": {
+    "ko": "노광장비는 광원과 렌즈, 웨이퍼 받침대가 나노미터 단위로 정렬돼 있어야 회로가 제대로 새겨진다. 이 정렬은 공장에서 수백 개의 기준점을 잡아가며 몇 주에 걸쳐 맞춘 것이라, 장비를 뜯는 순간 어긋나고 제조사의 절차와 소프트웨어 키 없이는 되돌리기 어렵다. 완성 장비를 확보해도 역설계가 쉽지 않은 이유가 여기에 있다.",
+    "en": "In a lithography scanner the light source, lenses and wafer stage must stay aligned to the nanometer for circuits to print correctly. That alignment is fixed at the factory over weeks against hundreds of reference points, so opening the machine throws it off and it is hard to restore without the maker's procedures and software keys. This is why holding a finished tool does not make reverse engineering easy.",
+    "ja": "露光装置は光源とレンズ、ウェハーの台がナノメートル単位で整列していないと回路が正しく刻まれない。この整列は工場で数百の基準点を取りながら数週間かけて合わせたもので、装置を開けた瞬間に狂い、メーカーの手順とソフトウェアキーなしでは戻しにくい。完成した装置を手に入れてもリバースエンジニアリングが容易でない理由がここにある。"
+   },
+   "aliases": [
+    "캘리브레이션",
+    "calibration",
+    "キャリブレーション",
+    "교정"
+   ]
+  },
+  "엑시머 레이저": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "노광장비에서 회로를 새기는 데 쓰는 자외선 빛을 만들어 내는 광원.",
+    "en": "The light source that produces the ultraviolet light a scanner uses to print circuits.",
+    "ja": "露光装置で回路を刻むのに使う紫外線の光を作り出す光源。"
+   },
+   "longDesc": {
+    "ko": "가스를 순간적으로 들뜨게 만들어 파장이 짧은 자외선을 뿜는 장치다. 파장이 짧을수록 더 가는 회로를 새길 수 있어, 파장 193나노미터의 불화아르곤 엑시머 레이저가 DUV 노광장비의 표준 광원으로 쓰인다. 같은 주파수에서 출력이 높을수록 시간당 처리하는 웨이퍼 수가 늘어나기 때문에, 출력은 장비의 생산성을 그대로 좌우한다.",
+    "en": "It excites a gas for an instant to emit short-wavelength ultraviolet light. Shorter wavelengths print finer circuits, so the 193nm argon-fluoride excimer laser is the standard source in DUV scanners. At the same frequency, higher power means more wafers processed per hour, so output power translates directly into a tool's productivity.",
+    "ja": "ガスを瞬間的に励起させ、波長の短い紫外線を放つ装置だ。波長が短いほど細い回路を刻めるため、波長193ナノメートルのフッ化アルゴンエキシマレーザーがDUV露光装置の標準的な光源として使われる。同じ周波数では出力が高いほど1時間あたりの処理枚数が増えるため、出力はそのまま装置の生産性を左右する。"
+   },
+   "aliases": [
+    "엑시머 레이저",
+    "excimer laser",
+    "エキシマレーザー",
+    "ArF 엑시머"
+   ]
+  },
+  "주주환원": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "회사가 번 돈의 일부를 배당과 자사주 매입으로 주주에게 돌려주는 것.",
+    "en": "Returning part of what a company earns to shareholders through dividends and buybacks.",
+    "ja": "会社が稼いだ金の一部を配当と自社株買いで株主に戻すこと。"
+   },
+   "longDesc": {
+    "ko": "배당은 현금을 직접 나눠 주는 것이고, 자사주 매입은 회사가 자기 주식을 사들여 유통 주식 수를 줄이는 방식이다. 돌아가는 금액을 시가총액으로 나눈 값을 주주환원 수익률이라 부르며, 회사가 잉여현금흐름의 몇 퍼센트를 돌려주겠다고 방침을 밝혀 두면 현금흐름 추정만으로 이 수익률을 계산할 수 있다. 그래서 현금흐름 추정이 틀리면 수익률도 같이 틀린다.",
+    "en": "A dividend hands out cash directly, while a buyback has the company purchase its own shares and shrink the count outstanding. The amount returned divided by market cap is the shareholder return yield, and once a company states what share of free cash flow it will return, the yield can be computed from a cash flow forecast alone. That is also why a wrong cash flow forecast makes the yield wrong with it.",
+    "ja": "配当は現金を直接配ることで、自社株買いは会社が自社の株を買い取って流通株数を減らす方式だ。戻る金額を時価総額で割った値を株主還元利回りと呼び、会社がフリーキャッシュフローの何%を戻すと方針を示していれば、キャッシュフロー予想だけでこの利回りを計算できる。だからキャッシュフロー予想が外れれば利回りも一緒に外れる。"
+   },
+   "aliases": [
+    "주주환원",
+    "주주환원 수익률",
+    "shareholder return",
+    "shareholder return yield",
+    "株主還元",
+    "자사주 매입"
+   ]
+  },
+  "시가총액": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "주가에 발행 주식 수를 곱한 값. 시장이 매긴 회사 전체의 값이다.",
+    "en": "Share price times shares outstanding; the price the market puts on the whole company.",
+    "ja": "株価に発行株式数を掛けた値。市場が付けた会社全体の値段だ。"
+   },
+   "longDesc": {
+    "ko": "회사를 통째로 사려면 얼마가 필요한지를 시장 값으로 표현한 숫자다. 이익이나 현금흐름 추정과 나란히 놓으면 시장이 그 회사의 미래를 얼마나 믿고 있는지가 드러난다. 예상 이익의 합이 시가총액을 넘어서면 시장이 그 예상을 그대로 받아들이지 않고 있다는 뜻이 되고, 그 차이가 어디서 오는지가 투자 판단의 출발점이 된다.",
+    "en": "It is what the market says it would cost to buy the whole company. Set beside a profit or cash flow forecast, it shows how much of that future the market actually believes. When forecast profits sum to more than the market cap, the market is not taking the forecast at face value, and where that gap comes from is where an investment judgment starts.",
+    "ja": "会社を丸ごと買うのにいくら必要かを市場の値段で表した数字だ。利益やキャッシュフローの予想と並べると、市場がその会社の将来をどれだけ信じているかが見えてくる。予想利益の合計が時価総額を超えれば、市場がその予想をそのまま受け取っていないという意味になり、その差がどこから来るのかが投資判断の出発点になる。"
+   },
+   "aliases": [
+    "시가총액",
+    "market cap",
+    "market capitalization",
+    "時価総額"
+   ]
+  },
+  "ZEISS": {
+   "kind": "company",
+   "logo": "zeiss.com",
+   "sector": {
+    "en": "Optics & Photonics",
+    "ko": "광학·포토닉스",
+    "ja": "光学・フォトニクス"
+   },
+   "desc": {
+    "ko": "독일 광학기업. ASML 노광장비의 렌즈와 거울을 사실상 단독 공급한다.",
+    "en": "German optics maker that is effectively the sole supplier of lenses and mirrors for ASML's scanners.",
+    "ja": "ドイツの光学企業。ASML露光装置のレンズと鏡を事実上単独で供給する。"
+   },
+   "ceo": {
+    "ko": "안드레아스 페허",
+    "en": "Andreas Pecher",
+    "ja": "アンドレアス・ペッヒャー"
+   },
+   "founded": "1846",
+   "hq": {
+    "ko": "독일 오버코헨",
+    "en": "Oberkochen, Germany",
+    "ja": "ドイツ・オーバーコッヘン"
+   },
+   "website": "https://www.zeiss.com",
+   "longDesc": {
+    "ko": "1846년 예나에서 현미경 공방으로 출발한 광학기업으로, 지금은 칼자이스재단이 지분을 보유하고 있다. 반도체 부문인 자이스 SMT가 ASML 노광장비에 들어가는 투영 렌즈와 반사경을 만들며, 이 광학계의 정밀도가 새길 수 있는 회로의 가늘기를 결정한다. ASML이 만드는 장비의 부품 중 상당수가 외부에서 오는데, 광학은 그중에서도 대체 공급처를 찾기 가장 어려운 부분으로 꼽힌다.",
+    "en": "Founded in Jena in 1846 as a microscope workshop, the company is now held by the Carl Zeiss Foundation. Its semiconductor arm, ZEISS SMT, makes the projection lenses and mirrors inside ASML's scanners, and the precision of that optics decides how fine a circuit can be printed. Much of what goes into an ASML tool comes from outside suppliers, and optics is considered the hardest of those to source anywhere else.",
+    "ja": "1846年にイェーナで顕微鏡工房として出発した光学企業で、現在はカール・ツァイス財団が株式を保有する。半導体部門のツァイスSMTがASML露光装置に入る投影レンズと反射鏡を作っており、この光学系の精度が刻める回路の細さを決める。ASMLの装置に入る部品の多くは外部から来るが、光学はその中でも代わりの供給先を見つけるのが最も難しい部分とされる。"
+   },
+   "aliases": [
+    "ZEISS",
+    "Zeiss",
+    "자이스",
+    "칼자이스",
+    "Carl Zeiss",
+    "ツァイス",
+    "カール・ツァイス"
+   ]
+  },
+  "SMEE": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductor Equipment",
+    "ko": "반도체 장비",
+    "ja": "半導体装置"
+   },
+   "desc": {
+    "ko": "중국 최대 노광장비 업체. 상하이마이크로일렉트로닉스이큅먼트의 약칭이다.",
+    "en": "China's largest lithography equipment maker, short for Shanghai Micro Electronics Equipment.",
+    "ja": "中国最大の露光装置メーカー。上海微電子装備の略称だ。"
+   },
+   "aliases": [
+    "SMEE",
+    "상하이마이크로일렉트로닉스",
+    "上海微電子",
+    "에스엠이이"
+   ]
+  },
+  "HSMC": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductor Foundry",
+    "ko": "반도체 파운드리",
+    "ja": "半導体ファウンドリ"
+   },
+   "desc": {
+    "ko": "7나노 공장을 짓겠다며 ASML 노광장비를 들여놓고 2020년 부도난 우한의 반도체 업체.",
+    "en": "A Wuhan chipmaker that brought in an ASML scanner for a 7nm fab and collapsed in 2020.",
+    "ja": "7ナノ工場を建てるとしてASMLの露光装置を入れ、2020年に破綻した武漢の半導体企業。"
+   },
+   "aliases": [
+    "HSMC",
+    "우한훙신",
+    "武漢弘芯",
+    "훙신반도체"
+   ]
   }
  }
 }
