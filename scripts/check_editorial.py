@@ -182,23 +182,54 @@ def weekly(items, days=7):
 # ── 회차 상한 (v4.6 [X], 2026-08-04) ─────────────────────────────────
 # 후보 10~20건에 칸이 2개뿐이라 품질 순으로 자르면 롱폼 1차 분석이 매번 이겼다.
 # 최근 7일 주칸 38% · 메르 19%. 칸을 늘리고 한 필진에 상한을 건다.
-ROUND_TOTAL   = 6   # 회차당 총 발행
-ROUND_PER_SRC = 2   # 같은 source 한 회차
+#
+# 숫자는 여기가 아니라 sources.json 의 "_CAPS" 가 정한다 — 소스 추가·상한 변경을
+# 레지스트리 한 곳에서 끝내기 위해서다. 아래 값은 sources.json 을 못 읽을 때의 대비책이다.
+FALLBACK_CAPS = {"total": 6, "default_per_source": 2, "per_source": {}, "per_category": {}}
 MACRO_PREFIX  = "macro-week-"   # 주간 매크로 카드는 이 한도 밖 ([3-B])
 
-def round_caps(items_sel):
+def load_caps(path="sources.json"):
+    try:
+        raw = json.load(open(path, encoding="utf-8"))
+        c = raw.get("_CAPS") or {}
+        return {"total": c.get("total", FALLBACK_CAPS["total"]),
+                "default_per_source": c.get("default_per_source",
+                                            FALLBACK_CAPS["default_per_source"]),
+                "per_source": c.get("per_source") or {},
+                "per_category": c.get("per_category") or {},
+                "loaded": bool(c)}
+    except Exception:
+        d = dict(FALLBACK_CAPS); d["loaded"] = False
+        return d
+
+def round_caps(items_sel, caps=None):
+    caps = caps or load_caps()
     out = []
     counted = [i for i in items_sel if not str(i.get("id", "")).startswith(MACRO_PREFIX)]
     per = Counter(i.get("source") or "?" for i in counted)
+    percat = Counter(i.get("category") or "?" for i in counted)
+
+    # 같은 저자를 두 경로로 수집하는 kuo/kuo_x·bilello/bilello_x 는 표시명이 같아
+    # 여기서 자동으로 합산된다. feed_id로 세면 짝이 갈려 상한이 두 배가 된다.
     for name, c in per.most_common():
-        if c > ROUND_PER_SRC:
+        cap = caps["per_source"].get(name, caps["default_per_source"])
+        if c > cap:
             out.append((BLOCK, "R1", "같은 필진 '%s' %d건. 한 회차 최대 %d건 — 남는 칸은 "
-                        "다른 필진에게 준다." % (name, c, ROUND_PER_SRC)))
-    if len(counted) > ROUND_TOTAL:
-        out.append((BLOCK, "R2", "회차 발행 %d건. 최대 %d건." % (len(counted), ROUND_TOTAL)))
+                        "다른 필진에게 준다." % (name, c, cap)))
+    for cat, c in percat.most_common():
+        cap = caps["per_category"].get(cat)
+        if cap is not None and c > cap:
+            out.append((BLOCK, "R3", "'%s' 카테고리 %d건. 카테고리 합계 최대 %d건."
+                        % (cat, c, cap)))
+    if len(counted) > caps["total"]:
+        out.append((BLOCK, "R2", "회차 발행 %d건. 최대 %d건." % (len(counted), caps["total"])))
     if not out:
         out.append(("INFO", "R0", "%d건 · 필진 %s"
                     % (len(counted), " · ".join("%s %d" % (k, v) for k, v in per.most_common()))))
+    if not caps.get("loaded"):
+        out.append((WARN, "R9", "sources.json 의 _CAPS 를 읽지 못해 기본값으로 판정했다. "
+                                "소스별 상한(코베이시 1 · 궈밍치 1 · 빌렐로 1 · politician 1)이 "
+                                "적용되지 않았다."))
     return out
 
 # ── main ─────────────────────────────────────────────────────────────
@@ -209,8 +240,10 @@ def main():
     ap.add_argument("--warn-only", action="store_true")
     ap.add_argument("--weekly", action="store_true")
     ap.add_argument("--round", action="store_true",
-                    help="회차 상한(총 %d건 · 같은 필진 %d건)까지 검사. 신규 발행 회차에는 반드시 붙인다."
-                         % (ROUND_TOTAL, ROUND_PER_SRC))
+                    help="sources.json 의 _CAPS(회차 총량·필진별·카테고리별 상한)까지 검사. "
+                         "신규 발행 회차에는 반드시 붙인다.")
+    ap.add_argument("--sources", default="sources.json",
+                    help="_CAPS 를 읽을 레지스트리 경로 (기본 sources.json)")
     a = ap.parse_args()
 
     if not os.path.exists(a.items):
@@ -243,8 +276,9 @@ def main():
 
     if a.round and ids:
         sel = [by[i] for i in ids if i in by]
-        print("\n■ 회차 상한 (v4.6 [X])")
-        for lv, num, msg in round_caps(sel):
+        caps = load_caps(a.sources)
+        print("\n■ 회차 상한 (v4.6 [X] · sources.json _CAPS)")
+        for lv, num, msg in round_caps(sel, caps):
             print("   [%s] %s %s" % (lv, num, msg))
             if lv == BLOCK: hard += 1
 
