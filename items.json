@@ -1,6 +1,374 @@
 {
  "items": [
   {
+   "date": "2026-08-04",
+   "id": "meru-fima-repo-upsize-bessent-warsh",
+   "related": [
+    "meru-us-japan-joint-yen-intervention-esf-fima",
+    "meru-warsh-fomc-forward-guidance-retired",
+    "meru-leverage-etf-fx-defense-miss"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224366873842",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A8A",
+    "label": "FIMA 60B"
+   },
+   "tags": [
+    "YEN",
+    "FIMA",
+    "FED"
+   ],
+   "stance": "watch",
+   "refFred": [
+    "DEXJPUS",
+    "H41RESPPALGTRFNWW",
+    "WALCL"
+   ],
+   "title": {
+    "ko": "일본이 미국채를 담보로 달러를 빌리겠다고 밝혔다, 한도를 올리자고 먼저 말한 쪽은 미국이다",
+    "en": "Japan says it will borrow dollars against its Treasuries, and it was Washington that asked first for the ceiling to be lifted",
+    "ja": "日本が米国債を担保にドルを借りると表明した、上限を上げようと先に言ったのは米国だ"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "위 글에서 언급한 FIMA(해외 및 국제통화당국)의 레포창구를 활용하겠다는 말이 공식적으로 언급된 것이다.",
+      "FIMA레포는 연준의 대차대조표를 늘리는 장치다.",
+      "대차대조표를 일시적으로 올리는 일이라, 워시가 특별한 저항없이 FIMA한도 확대를 진행할 가능성도 있다."
+     ],
+     "en": [
+      "The plan to use the repo window of FIMA, the foreign and international monetary authorities facility mentioned in the earlier post, has now been stated officially.",
+      "FIMA repo is a device that enlarges the Fed's balance sheet.",
+      "Because it lifts the balance sheet only temporarily, there is a chance Warsh proceeds with raising the FIMA limit without particular resistance."
+     ],
+     "ja": [
+      "前の記事で触れたFIMA(海外・国際通貨当局)のレポ窓口を活用するという話が、公式に言及されたということだ。",
+      "FIMAレポは連銀のバランスシートを増やす装置だ。",
+      "バランスシートを一時的に上げることなので、ウォーシュが特段の抵抗なくFIMA上限の拡大を進める可能性もある。"
+     ]
+    },
+    "cite": "메르 · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "일본이 엔을 지킬 때 여는 지갑이 국채 매각에서 국채 담보 대출로 옮겨 가고 있다.\n이 통로가 열리면 미국 장기 금리는 개입의 충격을 덜 받는다. 대신 개입의 상한을 일본의 준비금이 아니라 워싱턴의 승인이 정한다.\n그런데 그 승인은 재무부가 아니라 연준 몫이다. 대차대조표를 줄이겠다던 의장이 그 반대편 장치를 키워야 하는 자리에 섰다.",
+    "en": "The wallet Japan opens to defend the yen is shifting from selling bonds to borrowing against them.\nIf that route opens, the US long yield absorbs less of the shock, and the ceiling on intervention is set by Washington's approval rather than Japan's reserves.\nBut that approval belongs to the Fed, not the Treasury. A chair who promised to shrink the balance sheet is being asked to enlarge the device that expands it.",
+    "ja": "日本が円を守るときに開く財布が、国債の売却から国債を担保にした借り入れへ移りつつある。\nこの経路が開けば米国の長期金利は介入の衝撃を受けにくくなる。代わりに介入の上限を決めるのは日本の準備金ではなくワシントンの承認になる。\nしかもその承認は財務省ではなく連銀の役目だ。バランスシートを縮めると言ってきた議長が、その反対側の装置を大きくする場に立たされている。"
+   },
+   "why": {
+    "ko": "환율 개입은 보통 얼마를 썼는지로 읽힌다. 이번 국면에서 정작 달라진 것은 그 돈을 만드는 통로다. 국채를 팔지 않고 달러를 구하는 길이 열리면 개입의 상한을 일본이 아니라 미국이 정하게 되고, 엔의 방향을 읽는 자리도 도쿄에서 워싱턴으로 옮겨 간다.",
+    "en": "Interventions are usually read by how much was spent. What changed here is the route the money comes from. If dollars can be raised without selling bonds, the ceiling on intervention is set in Washington rather than Tokyo, and so is the place you have to watch to read the yen.",
+    "ja": "為替介入はふつう「いくら使ったか」で読まれる。今回変わったのは、その資金を作る経路のほうだ。国債を売らずにドルを調達する道が開けば、介入の上限を決めるのは日本ではなく米国になり、円の方向を読む場所も東京からワシントンへ移る。"
+   },
+   "ask": {
+    "ko": "미국이 한도를 열어 주는 방식의 엔 방어는 일본에 든든한 안전판일까, 아니면 결정권을 넘겨준 대가일까?",
+    "en": "Is a yen defence that runs on a ceiling Washington controls a genuine backstop for Japan, or the price of handing over the decision?",
+    "ja": "米国が上限を開ける形の円防衛は、日本にとって頼れる安全弁だろうか、それとも決定権を渡した代償だろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "연준이 FIMA 레포 창구의 국가별 한도를 600억달러 위로 올린다고 발표하면 적중, 연말까지 그대로면 어긋난 것으로 채점한다.",
+     "en": "Score as a hit if the Fed announces a per-country FIMA repo limit above $60 billion, and as a miss if it is unchanged by year end.",
+     "ja": "連銀がFIMAレポ窓口の国別上限を600億ドル超へ引き上げると発表すれば的中、年末までそのままなら外れと採点する。"
+    },
+    "due": "2026-12-31",
+    "card": {
+     "metric": {
+      "ko": "FIMA 레포 창구의 국가별 한도",
+      "en": "Per-country limit of the FIMA repo facility",
+      "ja": "FIMAレポ窓口の国別上限"
+     },
+     "now": {
+      "ko": "600억달러 (2021년 7월 상설화 때 정해진 뒤 그대로)",
+      "en": "$60 billion, unchanged since the facility became standing in July 2021",
+      "ja": "600億ドル (2021年7月の常設化時に決まってから据え置き)"
+     },
+     "when": {
+      "ko": "2026-12-31까지 (남은 FOMC 회의)",
+      "en": "By 2026-12-31, across the remaining FOMC meetings",
+      "ja": "2026-12-31まで (残るFOMC会合)"
+     },
+     "hit": {
+      "ko": "한도가 600억달러 위로 올라간다 → 베센트의 요청이 통했다",
+      "en": "The limit rises above $60 billion → Bessent's request went through",
+      "ja": "上限が600億ドルを超えて引き上げられる → ベッセントの要請が通った"
+     },
+     "miss": {
+      "ko": "한도가 600억달러 그대로다 → 연준이 대차대조표 쪽을 택했다",
+      "en": "The limit stays at $60 billion → the Fed chose its balance sheet",
+      "ja": "上限が600億ドルのまま → 連銀はバランスシートを選んだ"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르(ranto28) · 미국과 일본, 엔화 공동개입 A/S · 2026-08-04",
+      "en": "meru (ranto28) · Follow-up on the US-Japan joint yen intervention · 2026-08-04",
+      "ja": "メル(ranto28) · 米日の円共同介入アフターサービス · 2026-08-04"
+     },
+     "url": "https://blog.naver.com/ranto28/224366873842"
+    },
+    {
+     "name": {
+      "ko": "로이터",
+      "en": "Reuters",
+      "ja": "ロイター"
+     },
+     "desc": {
+      "ko": "베센트, 엔 공동개입 반복할 준비가 됐다며 연준 안전판 확대 촉구 (2026-08-02)",
+      "en": "Bessent ready to repeat joint yen intervention, urges bigger Fed backstop (2026-08-02)",
+      "ja": "ベッセント、円の共同介入を繰り返す用意があるとして連銀の安全弁拡大を促す (2026-08-02)"
+     },
+     "url": "https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html"
+    },
+    {
+     "name": {
+      "ko": "알자지라",
+      "en": "Al Jazeera",
+      "ja": "アルジャジーラ"
+     },
+     "desc": {
+      "ko": "일본과 미국, 엔을 떠받치기 위한 이례적 공동 개입을 확인 (2026-08-03)",
+      "en": "Japan and US confirm rare joint intervention to prop up yen (2026-08-03)",
+      "ja": "日本と米国、円を支えるための異例の共同介入を確認 (2026-08-03)"
+     },
+     "url": "https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen"
+    },
+    {
+     "name": {
+      "ko": "미 연방준비제도",
+      "en": "Federal Reserve",
+      "ja": "米連邦準備制度"
+     },
+     "desc": {
+      "ko": "상설 FIMA 레포 창구 도입 발표, 국가당 한도 600억달러 (2021-07-28)",
+      "en": "Establishment of the standing FIMA repo facility, $60bn per counterparty (2021-07-28)",
+      "ja": "常設FIMAレポ・ファシリティ導入発表、1カウンターパーティ600億ドル (2021-07-28)"
+     },
+     "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm"
+    },
+    {
+     "name": {
+      "ko": "미 재무부 TIC",
+      "en": "US Treasury TIC",
+      "ja": "米財務省TIC"
+     },
+     "desc": {
+      "ko": "일본의 미국 국채 보유액 1조1,400억달러, 5월 말 기준(로이터 인용)",
+      "en": "Japan's US Treasury holdings of $1.14tn as of end-May, as cited by Reuters",
+      "ja": "日本の米国債保有額1兆1,400億ドル、5月末時点(ロイター引用)"
+     },
+     "url": ""
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-04 조회 · FIMA 한도는 2021-07-28 연준 발표 기준 · 엔 환율은 2026-08-03 알자지라 보도 기준",
+    "en": "Retrieved 2026-08-04 · FIMA limit as announced by the Fed on 2021-07-28 · yen levels as reported by Al Jazeera on 2026-08-03",
+    "ja": "2026-08-04 取得 · FIMA上限は2021-07-28の連銀発表基準 · 円相場は2026-08-03のアルジャジーラ報道基準"
+   },
+   "gist": {
+    "ko": "미국 재무장관이 연준을 향해 창구 하나를 키우자고 공개적으로 말했다.\n외국 중앙은행이 자기가 가진 미국 국채를 담보로 맡기고 달러를 빌려 가는 FIMA 레포 창구다.\n\n@@REF@@베센트, 엔 공동개입을 반복할 준비가 됐다며 연준 안전판 확대를 촉구 (로이터, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\n로이터는 스콧 베센트 장관이 8월 2일 엑스에 올린 글을 그대로 전했다.\n\"FIMA 레포 창구는 중요한 안전판이며, 앞으로 몇 달 안에 그 규모를 키울 것을 권한다\"는 문장이 들어 있다.\n같은 글에서 그는 추가 공동 개입에도 주저하지 않겠다고 했다.\n\n돈을 빌리는 쪽이 아니라 빌려주는 쪽이 먼저 한도를 올리자고 말한 것이다.\n\n## 왜 국채를 팔면 안 되나\n\n엔을 강하게 만들려면 달러를 팔고 엔을 사야 한다.\n문제는 그 달러를 어디서 구하느냐다.\n일본이 지금까지 쓴 방법은 가지고 있던 미국 국채를 시장에 내다 파는 것이었다.\n국채를 팔면 국채 값이 내려가고, 값이 내려간 만큼 금리는 올라간다.\n워싱턴이 가장 신경 쓰는 숫자가 바로 그 장기 금리다.\n\n7월 31일의 공동 개입은 그 방법을 쓰지 않았다.\n미 재무부는 외환안정기금에 들어 있던 유로를 팔아 엔을 샀고, 미국 국채는 시장에 나오지 않았다.\n\n@@REF@@일본과 미국, 엔을 떠받치기 위한 이례적 공동 개입을 확인하다 (알자지라, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\n알자지라에 따르면 일본 재무성은 \"최근 엔화의 과도한 변동성과 무질서한 움직임에 대응했다\"며 개입을 공식 인정했고, 추가 공동 개입에도 주저하지 않겠다고 덧붙였다.\n개입 뒤 엔은 달러당 155엔대까지 올라 석 달 만에 가장 강한 수준이 됐다.\n일본이 앞으로 FIMA 창구도 쓰겠다고 밝혔다는 대목은 원문 게시물이 전한 것으로, 영어권 보도에서는 아직 확인되지 않는다.\n\n## 담보는 넘치는데 한도가 막고 있다\n\n@@CHK@@FIMA 레포 국가별 한도|600억달러|일본이 가진 미국 국채|1조1,400억달러@@맡길 담보가 한도의 열아홉 배다. 창구를 넓히자는 말이 나온 자리가 여기다.@@2026-08-04 조회 · 한도는 미 연준 2021-07-28 발표 · 일본 보유액은 미 재무부 국제자본흐름(TIC) 5월 말 기준, 로이터 인용 보도\n\n담보로 쓸 국채는 남아돈다.\n정작 창구에서 빌릴 수 있는 금액은 그 담보의 5%를 조금 넘는 선에서 잘려 있다.\n\n알자지라는 이번 개입에서 도쿄가 590억달러가량을 썼을 수 있다고 전했다.\n그 추정이 맞다면 한 번의 개입이 창구 하나를 거의 다 비우는 규모다.\n\n## 한도를 바꿀 권한은 연준에 있다\n\n@@REF@@상설 FIMA 레포 창구 도입 발표 (미 연방준비제도, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm\n\nFIMA 레포 창구는 2020년 3월에 임시로 열렸다가 2021년 7월에 상설 창구가 됐다.\n연준이 그때 공표한 조건에 국가당 600억달러라는 한도가 적혀 있다.\n이 조건을 바꾸려면 연방공개시장위원회의 승인이 필요하다.\n재무장관이 아무리 권해도 결정은 연준 안에서 난다.\n\n여기서 걸리는 것이 하나 있다.\nFIMA 레포는 연준의 대차대조표를 키우는 장치다.\n일본이 국채를 맡기고 달러를 빌리면 연준의 자산에는 그 국채가, 부채에는 새로 찍어 준 달러가 같이 잡힌다.\n\n케빈 워시 의장은 대차대조표를 줄이는 것을 최우선으로 삼아 온 사람이다.\n다만 빌려준 달러가 돌아오면 그만큼 다시 줄어드는 한시적 팽창이라, 저항이 크지 않을 수 있다는 견해도 있다.\n\n## 워시 의장 앞에 놓인 8월의 선택\n\n이제 갈리는 지점은 일본에 실탄이 남았느냐가 아니라, 연준이 한도를 열어 주느냐다.\n한도가 올라가면 일본은 국채를 팔지 않고도 개입을 이어 갈 수 있고, 엔 방어의 상한은 일본의 준비금이 아니라 워싱턴의 승인이 정한다.\n한도가 그대로면 개입은 다시 국채를 파는 방식으로 돌아가고, 미국 장기 금리가 그 값을 치른다.\n엔을 지키는 일이 두 나라의 공동 사업이 됐다는 것은, 앞으로 엔의 방향을 읽을 때 도쿄만 봐서는 안 된다는 뜻이다.",
+    "en": "The US Treasury Secretary has publicly asked the Federal Reserve to enlarge one of its windows.\nIt is the FIMA repo window, where foreign central banks pledge the US Treasuries they already own and borrow dollars against them.\n\n@@REF@@Bessent ready to repeat joint yen intervention, urges bigger Fed backstop (Reuters, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\nReuters carried the post Scott Bessent put on X on August 2.\nOne line in it reads that the FIMA Repo Facility is an important backstop and that he would encourage it to be upsized in the coming months.\nIn the same post he said Treasury would not hesitate to take part in further joint intervention.\n\nIt was the lender, not the borrower, who asked first for the ceiling to be lifted.\n\n## Why not simply sell the bonds\n\nMaking the yen stronger means selling dollars and buying yen.\nThe question is where those dollars come from.\nUntil now Japan's method was to sell the US Treasuries it holds into the market.\nSelling bonds pushes their price down, and a lower price means a higher yield.\nThat long yield is the number Washington watches most closely.\n\nThe joint intervention of July 31 did not use that method.\nThe Treasury sold euros sitting in its Exchange Stabilization Fund and bought yen with them, so no US government bonds reached the market.\n\n@@REF@@Japan and US confirm rare joint intervention to prop up yen (Al Jazeera, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\nAccording to Al Jazeera, Japan's finance ministry confirmed the operation, saying it had countered excessive volatility and disorderly movements in the yen, and added that it would not hesitate to conduct further joint intervention.\nAfter the operation the yen firmed to around 155 per dollar, its strongest in nearly three months.\nThe part about Japan planning to use the FIMA window comes from the original post, and English language reporting has not confirmed it yet.\n\n## Collateral is abundant, the ceiling is not\n\n@@CHK@@FIMA repo limit per country|$60bn|US Treasuries held by Japan|$1.14tn@@The collateral available is nineteen times the ceiling. That gap is where the call to widen the window comes from.@@Retrieved 2026-08-04 · limit from the Federal Reserve announcement of 2021-07-28 · Japan's holdings from US Treasury TIC data as of end-May, as cited by Reuters\n\nThere is no shortage of bonds to pledge.\nWhat is capped is the amount that can actually be drawn, a little above five percent of that collateral.\n\nAl Jazeera reported that Tokyo may have spent around $59bn in this intervention.\nIf that estimate holds, a single operation nearly empties one country's window.\n\n## The Fed, not the Treasury, holds the switch\n\n@@REF@@Establishment of the standing FIMA repurchase agreement facility (Federal Reserve, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm\n\nThe window opened as a temporary measure in March 2020 and became a standing facility in July 2021.\nThe terms the Fed published then include a limit of $60 billion per counterparty.\nChanging those terms requires approval from the Federal Open Market Committee.\nHowever strongly a Treasury Secretary recommends it, the decision is made inside the central bank.\n\nOne thing sits in the way.\nFIMA repo is a device that enlarges the Fed's balance sheet.\nWhen Japan pledges bonds and draws dollars, those bonds land on the Fed's asset side while the newly created dollars land on the liability side.\n\nChair Kevin Warsh has made shrinking that balance sheet his stated priority.\nThe expansion here is temporary, unwinding as the dollars are repaid, so some argue the resistance may be smaller than it looks.\n\n## The choice in front of Warsh this August\n\nWhat is now at issue is not whether Japan has ammunition left, but whether the Fed opens the ceiling.\nIf the limit rises, Japan can keep intervening without selling bonds, and the ceiling on defending the yen is set by Washington's approval rather than by Japan's reserves.\nIf it stays, intervention goes back to selling Treasuries, and the US long yield pays for it.\nOnce defending a currency becomes a joint enterprise of two governments, reading the yen from Tokyo alone stops being enough.",
+    "ja": "米財務長官が連邦準備制度に向けて、ある窓口を大きくしようと公に述べた。\n外国の中央銀行が自ら保有する米国債を担保に預け、ドルを借りるFIMAレポ窓口だ。\n\n@@REF@@ベッセント、円の共同介入を繰り返す用意があるとして連銀の安全弁拡大を促す (ロイター, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\nロイターは、スコット・ベッセント長官が8月2日にXへ投稿した文をそのまま伝えた。\n「FIMAレポ窓口は重要な安全弁であり、今後数カ月のうちに規模を拡大することを勧める」という一文が入っている。\n同じ投稿で、追加の共同介入にもためらわないと述べた。\n\n借りる側ではなく、貸す側が先に上限を上げようと言ったことになる。\n\n## なぜ国債を売ってはいけないのか\n\n円を強くするにはドルを売って円を買う必要がある。\n問題は、そのドルをどこから調達するかだ。\n日本がこれまで使ってきた方法は、保有する米国債を市場で売ることだった。\n国債を売れば価格が下がり、下がった分だけ利回りは上がる。\nワシントンが最も気にする数字が、その長期金利だ。\n\n7月31日の共同介入は、その方法を使わなかった。\n米財務省は為替安定基金に入っていたユーロを売って円を買い、米国債は市場に出なかった。\n\n@@REF@@日本と米国、円を支えるための異例の共同介入を確認 (アルジャジーラ, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\nアルジャジーラによれば、日本の財務省は「最近の円の過度な変動と無秩序な動きに対応した」として介入を公式に認め、追加の共同介入にもためらわないと付け加えた。\n介入のあと円は1ドル155円台まで戻し、およそ3カ月ぶりの水準になった。\n日本が今後FIMA窓口も使うと明らかにしたという部分は原文の投稿が伝えたもので、英語圏の報道ではまだ確認されていない。\n\n## 担保はあり余り、上限が塞いでいる\n\n@@CHK@@FIMAレポの国別上限|600億ドル|日本が保有する米国債|1兆1,400億ドル@@預けられる担保は上限の19倍だ。窓口を広げようという話が出た場所がここになる。@@2026-08-04 取得 · 上限は米連邦準備制度2021-07-28発表 · 日本の保有額は米財務省TIC 5月末時点、ロイター引用報道\n\n担保に使う国債は余っている。\n実際に窓口から借りられる金額は、その担保の5%を少し超える線で切られている。\n\nアルジャジーラは、今回の介入で東京が590億ドルほどを使った可能性があると伝えた。\nその推計が正しければ、一度の介入で窓口ひとつをほぼ空にする規模だ。\n\n## 上限を変える権限は連銀にある\n\n@@REF@@常設FIMAレポ・ファシリティ導入の発表 (米連邦準備制度, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm\n\nFIMAレポ窓口は2020年3月に臨時で開かれ、2021年7月に常設の窓口になった。\n連銀がそのとき公表した条件に、1カ国あたり600億ドルという上限が書かれている。\nこの条件を変えるには連邦公開市場委員会の承認が必要だ。\n財務長官がいくら勧めても、決めるのは中央銀行の中だ。\n\nここで引っかかるものがひとつある。\nFIMAレポは連銀のバランスシートを膨らませる装置だ。\n日本が国債を預けてドルを借りれば、連銀の資産にその国債が、負債に新しく発行したドルが同時に載る。\n\nケビン・ウォーシュ議長は、そのバランスシートを縮めることを最優先に掲げてきた人物だ。\nただし貸したドルが戻れば同じだけ縮む一時的な膨張なので、抵抗はそれほど大きくないかもしれないという見方もある。\n\n## ウォーシュ議長の前に置かれた8月の選択\n\nいま分かれ目になるのは、日本に弾が残っているかではなく、連銀が上限を開けるかどうかだ。\n上限が上がれば日本は国債を売らずに介入を続けられ、円防衛の上限は日本の準備金ではなくワシントンの承認が決める。\n上限がそのままなら介入は再び国債を売る方式に戻り、米国の長期金利がその代金を払う。\n円を守ることが二国の共同事業になった以上、これからの円の方向を読むのに東京だけを見ていては足りない。"
+   },
+   "ts": "2026-08-04T04:51:31.622767+00:00"
+  },
+  {
+   "date": "2026-08-03",
+   "id": "jukan-rubin-ultra-hbm-despec-supply-side",
+   "related": [
+    "jukan-nvidia-rubin-hbm4-cost-surge",
+    "jukan-rubin-ultra-reticle-packaging-risk",
+    "jukan-skhynix-hbm-2027-lta-price-cap"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2084428931109912642",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#065F46",
+    "label": "HBM 8Hi"
+   },
+   "tags": [
+    "HBM",
+    "NVIDIA",
+    "MEMORY"
+   ],
+   "stance": "bull",
+   "title": {
+    "ko": "엔비디아가 루빈 울트라의 HBM을 절반으로 줄이려 한다, 수요가 식어서가 아니다",
+    "en": "Nvidia looks set to halve the HBM going into Rubin Ultra, and it is not because demand cooled",
+    "ja": "エヌビディアがルービン・ウルトラのHBMを半分に減らそうとしている、需要が冷えたからではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Put simply, the Rubin Ultra HBM despec is a supply issue. Not a demand issue.",
+      "I think as much additional HBM will be produced as the supply headroom freed up by the shift from 12Hi to 8Hi."
+     ],
+     "ko": [
+      "간단히 말해 루빈 울트라의 HBM 사양 하향은 공급의 문제다. 수요의 문제가 아니다.",
+      "12단에서 8단으로 바뀌면서 생긴 공급 여유만큼 HBM이 더 생산될 것으로 본다."
+     ],
+     "ja": [
+      "簡単に言えば、ルービン・ウルトラのHBMスペック引き下げは供給の問題だ。需要の問題ではない。",
+      "12段から8段への移行で空いた供給余力の分だけ、HBMが追加で生産されるとみている。"
+     ]
+    },
+    "cite": "Jukan · 2026.08.03"
+   },
+   "sum3": {
+    "ko": "칩 한 장에 붙는 메모리가 줄어도, 그 몫으로 빠진 D램은 다른 HBM을 만드는 데 그대로 들어간다.\n그래서 이번 사양 하향은 HBM 총 수요가 아니라 한 대에 담을 몫을 조정한 쪽에 가깝다.\n판별은 2027년 총 출하 비트가 한다. 용량과 비트가 같이 줄면 시장이 옳고, 비트만 늘면 원문이 옳다.",
+    "en": "Even if each chip carries less memory, the DRAM freed up goes straight into building other HBM.\nSo the cut looks less like a fall in total HBM demand than a change in how much each machine gets.\nThe 2027 bit shipments settle it. Capacity and bits falling together favours the market, bits rising alone favours the original post.",
+    "ja": "チップ1枚に載る容量が減っても、その分空いたDRAMは別のHBMを作るのにそのまま回る。\nだから今回の引き下げは、HBM全体の需要ではなく1台あたりの取り分を調整した話に近い。\n決着は2027年の総出荷ビットがつける。容量とビットが一緒に減れば市場が、ビットだけ増えれば原文が正しい。"
+   },
+   "why": {
+    "ko": "AI 투자가 꺾이는지를 볼 때 시장은 엔비디아의 주문서를 본다. 이번처럼 사양이 내려가면 그 주문서가 줄어든 것처럼 보인다. 그런데 사양을 내린 이유가 살 물건이 모자라서라면 같은 숫자를 정반대로 읽어야 하고, 메모리 회사의 실적도 반대 방향으로 움직인다.",
+    "en": "To judge whether AI investment is rolling over, the market reads Nvidia's order book. A spec cut looks like that book shrinking. But if the spec came down because the parts were not available, the same number has to be read the other way round, and memory makers' earnings move the other way with it.",
+    "ja": "AI投資が折れるかを見るとき、市場はエヌビディアの注文書を読む。今回のように仕様が下がれば、その注文書が減ったように見える。だが仕様を下げた理由が買う物の不足なら、同じ数字を正反対に読む必要があり、メモリ各社の業績も逆方向に動く。"
+   },
+   "ask": {
+    "ko": "칩 한 장에 붙는 메모리가 줄어든 것은 AI 투자가 식는 신호일까, 메모리가 모자란다는 신호일까?",
+    "en": "Is less memory per chip a signal that AI investment is cooling, or a signal that memory itself has run short?",
+    "ja": "チップ1枚あたりのメモリが減ったのは、AI投資が冷える兆しだろうか、それともメモリが足りない兆しだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "루빈 울트라가 HBM4 8단으로 확정된 뒤 2027년 HBM 총 출하 비트가 늘면 공급 제약이라는 원문 해석이 맞은 것으로, 함께 줄면 수요 둔화 해석이 맞은 것으로 채점한다.",
+     "en": "If Rubin Ultra is fixed at HBM4 8 high and total 2027 HBM bit shipments still rise, score the supply reading as correct; if they fall together, score the demand reading as correct.",
+     "ja": "ルービン・ウルトラがHBM4 8段で確定した後、2027年のHBM総出荷ビットが増えれば供給制約という原文の解釈を的中、一緒に減れば需要鈍化の解釈を的中と採点する。"
+    },
+    "due": "2027-06-30",
+    "card": {
+     "metric": {
+      "ko": "2027년 HBM 총 출하 비트 (업계 집계)",
+      "en": "Total HBM bits shipped in 2027, industry tallies",
+      "ja": "2027年のHBM総出荷ビット(業界集計)"
+     },
+     "now": {
+      "ko": "엔비디아의 2027년 HBM 수요 추정 24.1억 기가비트, 사양 하향 시 21.6억 기가비트",
+      "en": "Nvidia's 2027 HBM demand estimated at 24.1bn Gb, or 21.6bn Gb if the spec comes down",
+      "ja": "エヌビディアの2027年HBM需要は24.1億ギガビット、仕様引き下げなら21.6億ギガビットとの推計"
+     },
+     "when": {
+      "ko": "2027-06-30 (루빈 울트라 사양 확정과 상반기 출하 집계)",
+      "en": "2027-06-30, once the Rubin Ultra spec is fixed and first half shipments are tallied",
+      "ja": "2027-06-30 (ルービン・ウルトラの仕様確定と上期出荷の集計)"
+     },
+     "hit": {
+      "ko": "칩당 용량이 내려간 채로 HBM 총 출하 비트는 늘어난다",
+      "en": "Capacity per chip stays down while total HBM bits shipped rise",
+      "ja": "チップあたり容量が下がったまま、HBM総出荷ビットは増える"
+     },
+     "miss": {
+      "ko": "칩당 용량과 HBM 총 출하 비트가 함께 줄어든다",
+      "en": "Capacity per chip and total HBM bits shipped fall together",
+      "ja": "チップあたり容量とHBM総出荷ビットが一緒に減る"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-03",
+      "en": "Jukan (@jukan05) · 2026-08-03",
+      "ja": "Jukan(@jukan05) · 2026-08-03"
+     },
+     "url": "https://x.com/jukan05/status/2084428931109912642"
+    },
+    {
+     "name": {
+      "ko": "유진투자증권 노트",
+      "en": "Eugene Investment & Securities note",
+      "ja": "ユジン投資証券のノート"
+     },
+     "desc": {
+      "ko": "루빈 울트라 사양 하향 시 2027년 HBM 수요 추정, 원문이 옮긴 것 · 2026-08-03",
+      "en": "2027 HBM demand estimates under a Rubin Ultra despec, as relayed by the original post · 2026-08-03",
+      "ja": "ルービン・ウルトラの仕様引き下げ時の2027年HBM需要推計、原文が転載 · 2026-08-03"
+     },
+     "url": "https://x.com/jukan05/status/2084428229763604899"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "공급이 빠듯해지면서 루빈 울트라의 HBM 사양이 유동적이다 (2026-07-31)",
+      "en": "Rubin Ultra HBM specs in flux as supply tightens (2026-07-31)",
+      "ja": "供給の逼迫でルービン・ウルトラのHBM仕様が流動的に (2026-07-31)"
+     },
+     "url": "https://www.trendforce.com/research/download/RP260731FB3"
+    },
+    {
+     "name": {
+      "ko": "톰스하드웨어",
+      "en": "Tom's Hardware",
+      "ja": "トムズハードウェア"
+     },
+     "desc": {
+      "ko": "2027년 모듈 업체에 갈 D램이 전년 대비 70% 넘게 줄 수 있다, 에이서 대표 (2026-07-29)",
+      "en": "DRAM chip supply to module makers could drop by more than 70% in 2027, says Apacer CEO (2026-07-29)",
+      "ja": "2027年にモジュール業者へ回るDRAMは前年比70%超減る可能性、エイサー社長 (2026-07-29)"
+     },
+     "url": "https://www.tomshardware.com/pc-components/ram/dram-chip-supply-to-module-makers-could-drop-by-more-than-70-percent-year-on-year-in-2027-says-apacer-ceo-demand-for-hbm-and-server-ram-continues-to-devour-manufacturing-capacity"
+    },
+    {
+     "name": {
+      "ko": "톰스하드웨어",
+      "en": "Tom's Hardware",
+      "ja": "トムズハードウェア"
+     },
+     "desc": {
+      "ko": "1TB HBM4E를 얹은 루빈 울트라 트레이 시연 (2026-03-17)",
+      "en": "Nvidia demonstrates the Rubin Ultra tray with 1TB of HBM4E (2026-03-17)",
+      "ja": "1TBのHBM4Eを載せたルービン・ウルトラのトレイ披露 (2026-03-17)"
+     },
+     "url": "https://www.tomshardware.com/pc-components/gpus/nvidia-demonstrates-rubin-ultra-tray-worlds-1st-ai-gpu-with-1tb-of-hbm4e"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-04 조회 · 사양 하향안과 2027년 예약 상황은 증권사 노트와 디지타임스를 원문이 옮긴 전언 · 1TB는 2026-03-17 시연 보도 기준",
+    "en": "Retrieved 2026-08-04 · the despec plan and the 2027 booking picture are relayed by the original post from a brokerage note and DigiTimes · the 1TB figure is from coverage of the 2026-03-17 demonstration",
+    "ja": "2026-08-04 取得 · 仕様引き下げ案と2027年の予約状況は証券会社ノートとデジタイムズを原文が伝えたもの · 1TBは2026-03-17の披露報道基準"
+   },
+   "gist": {
+    "ko": "엔비디아가 2027년에 내놓을 루빈 울트라의 메모리 용량을 절반으로 낮추는 방안이 논의되고 있다고 전해졌다.\n칩 하나에 384GB를 붙이려던 계획을 192GB로 내리는 안이다.\n\n@@REF@@공급이 빠듯해지면서 루빈 울트라의 HBM 사양이 유동적이다 (트렌드포스, 2026-07-31)|https://www.trendforce.com/research/download/RP260731FB3|https://img.trendforce.com.tw/Report/2026/07/20260731_154026_20260731_hbm-special.jpg\n\n트렌드포스도 7월 31일 자 보고서에서 같은 이야기를 했다.\n엔비디아가 아직 네 가지 구성을 놓고 저울질하는 중이고, 최종 사양을 정하는 것은 성능 목표가 아니라 메모리 회사들의 웨이퍼 배분이라는 것이다.\n\n용량을 깎은 쪽이 엔비디아라는 사실 때문에 이 소식은 AI 수요가 식는 신호처럼 읽히기 쉽다.\n\n## 12단과 8단은 무엇이 다른가\n\nHBM은 D램 칩을 여러 층으로 쌓아 올려 GPU 옆에 붙인 메모리다.\n몇 층을 쌓았는지를 12단, 8단이라고 부른다.\n같은 바닥 면적에 열두 장을 쌓으면 여덟 장일 때보다 용량이 1.5배가 되고, 들어가는 D램도 그만큼 늘어난다.\n\n@@IMG@@dram-module|서버에 꽂는 D램 막대. HBM은 이 칩을 옆으로 늘어놓는 대신 위로 쌓아 GPU 바로 옆에 붙인 것이다.\n\n엔비디아가 지난 3월에 시연한 루빈 울트라는 GPU 조각 네 개를 한 패키지에 담고 1TB짜리 메모리를 얹은 물건이었다.\n그 뒤 조각 두 개짜리로 줄었고, 이번에는 남은 메모리의 층수까지 낮추는 안이 나왔다.\n\n@@REF@@엔비디아가 1TB HBM4E를 얹은 세계 첫 AI GPU, 루빈 울트라 트레이를 시연하다 (톰스하드웨어, 2026-03-17)|https://www.tomshardware.com/pc-components/gpus/nvidia-demonstrates-rubin-ultra-tray-worlds-1st-ai-gpu-with-1tb-of-hbm4e|https://cdn.mos.cms.futurecdn.net/bcRvXVP5t4gaWsTBwvytTg-2560-80.jpg\n\n층을 낮추면 칩 한 장에 들어가는 D램이 줄어든다.\n줄어든 D램은 사라지지 않는다. 다른 HBM을 만드는 데 그대로 들어간다.\n\n## 공급이 스펙을 정하는 국면\n\n@@CHK@@3월에 시연한 루빈 울트라 탑재 메모리|1TB|2027년 모듈 업체가 받을 D램 물량 전망|올해의 30% 수준@@엔비디아가 용량을 깎는 사이 D램 자체는 더 귀해지고 있다. 수요가 식어서 사양을 낮췄다는 설명과는 방향이 반대다.@@2026-08-04 조회 · 1TB는 톰스하드웨어 2026-03-17 시연 보도 · 물량 전망은 에이서 대표 발언, 톰스하드웨어 2026-07-29 · 둘 다 보도 인용\n\n@@REF@@2027년 모듈 업체에 갈 D램이 전년 대비 70% 넘게 줄 수 있다, 에이서 대표 (톰스하드웨어, 2026-07-29)|https://www.tomshardware.com/pc-components/ram/dram-chip-supply-to-module-makers-could-drop-by-more-than-70-percent-year-on-year-in-2027-says-apacer-ceo-demand-for-hbm-and-server-ram-continues-to-devour-manufacturing-capacity|https://cdn.mos.cms.futurecdn.net/82L7i84TosbQSQDKVLcj2G-1920-80.jpg\n\n대만 모듈 업체 에이서의 대표는 내년에 모듈 업체가 받을 D램이 올해의 30% 수준까지 내려갈 수 있다고 말했다.\nD램 생산능력의 60%가량이 이미 서버 쪽으로 가 있기 때문이다.\n남은 물량을 놓고 스마트폰과 PC 업체가 먼저 밀린다.\n\n쓸 물건이 모자란 쪽이 사양을 정하고 있다.\n\n@@CMP@@약세론의 읽기|엔비디아가 칩 한 장에 붙일 메모리를 절반으로 깎았다. 가장 큰 손님이 주문을 줄인다는 뜻이고, HBM 값이 꺾이는 출발점이다.|원문의 읽기|깎인 것은 칩 한 장의 몫이지 총량이 아니다. 남는 D램으로 HBM을 더 만들면 팔리는 비트는 그대로다.\n\n같은 결정을 두고 한쪽은 주문서가 줄었다고 읽고, 다른 쪽은 물건이 모자라 나눠 담았다고 읽는다.\n\n## 2027년 라인은 이미 찼다고 한다\n\n원문은 디지타임스를 인용해, 2027년 D램과 HBM 생산능력이 예정보다 일찍 모두 예약됐다고 전한다.\n주문한 만큼 다 받는 것도 아니어서, 처음 요청한 물량의 60~70%만 배정받는다고 한다.\n클라우드 사업자와 AI 대형 고객이 먼저 채워지고 나머지가 뒤로 밀리는 순서다.\n\n라인이 다 찼다는 이야기가 사실이라면, 엔비디아가 층수를 낮춘 것은 물건을 덜 사겠다는 결정이 아니라 같은 물건으로 가속기를 더 만들겠다는 결정에 가깝다.\n\n## 루빈 울트라 2027년 출하가 갈리는 지점\n\n이 결정이 어느 쪽이었는지는 2027년에 팔린 HBM 비트 수가 말해 준다.\n칩 한 장의 용량이 줄었는데도 총 출하 비트가 늘어난다면 모자랐던 것은 물건이었다.\n용량과 비트가 함께 줄어든다면 줄어든 것은 주문이었다.\n그전까지 확인할 수 있는 것은 값이다. 라인이 이미 찼다는 말이 맞다면, 사양을 낮춘 뒤에도 메모리 값은 내려가지 않는다.",
+    "en": "Nvidia is said to be weighing a plan to halve the memory that goes into Rubin Ultra, its 2027 accelerator.\nThe idea is to bring a chip that was to carry 384GB down to 192GB.\n\n@@REF@@Rubin Ultra HBM specs in flux as supply tightens (TrendForce, 2026-07-31)|https://www.trendforce.com/research/download/RP260731FB3|https://img.trendforce.com.tw/Report/2026/07/20260731_154026_20260731_hbm-special.jpg\n\nTrendForce said much the same thing in a report dated July 31.\nNvidia is still weighing four possible configurations, and what settles the final spec is not a performance target but how the memory makers allocate their wafers.\n\nBecause it is Nvidia doing the cutting, the news reads easily as a sign that AI demand is cooling.\n\n## What separates a 12 high stack from an 8 high one\n\nHBM is DRAM stacked in layers and placed right beside the GPU.\nHow many layers are stacked is what 12 high and 8 high refer to.\nTwelve dies on the same footprint hold one and a half times the capacity of eight, and consume proportionally more DRAM.\n\n@@IMG@@dram-module|A DRAM stick of the kind that slots into a server. HBM takes the same chips and stacks them upward next to the GPU instead of lining them up sideways.\n\nThe Rubin Ultra tray Nvidia demonstrated in March held four compute chiplets in one package with 1TB of memory on top.\nIt has since come down to two chiplets, and now the layer count on the remaining memory is on the table too.\n\n@@REF@@Nvidia demonstrates Rubin Ultra tray, the world's first AI GPU with 1TB of HBM4E (Tom's Hardware, 2026-03-17)|https://www.tomshardware.com/pc-components/gpus/nvidia-demonstrates-rubin-ultra-tray-worlds-1st-ai-gpu-with-1tb-of-hbm4e|https://cdn.mos.cms.futurecdn.net/bcRvXVP5t4gaWsTBwvytTg-2560-80.jpg\n\nFewer layers means less DRAM inside each chip.\nThat DRAM does not disappear. It goes straight into building other HBM.\n\n## When supply writes the spec\n\n@@CHK@@Memory on the Rubin Ultra tray shown in March|1TB|DRAM headed to module makers in 2027|about 30% of this year@@DRAM is getting scarcer while Nvidia trims capacity. That runs the opposite way from an explanation built on cooling demand.@@Retrieved 2026-08-04 · 1TB from Tom's Hardware coverage of the 2026-03-17 demonstration · the 2027 figure from Apacer's chief executive, Tom's Hardware 2026-07-29 · both are press citations\n\n@@REF@@DRAM chip supply to module makers could drop by more than 70% year on year in 2027, says Apacer CEO (Tom's Hardware, 2026-07-29)|https://www.tomshardware.com/pc-components/ram/dram-chip-supply-to-module-makers-could-drop-by-more-than-70-percent-year-on-year-in-2027-says-apacer-ceo-demand-for-hbm-and-server-ram-continues-to-devour-manufacturing-capacity|https://cdn.mos.cms.futurecdn.net/82L7i84TosbQSQDKVLcj2G-1920-80.jpg\n\nThe head of the Taiwanese module maker Apacer said the DRAM reaching module makers next year could fall to around 30% of this year's level.\nRoughly 60% of DRAM capacity already goes to server applications.\nPhone and PC makers are the first to be pushed back in the queue for what is left.\n\nThe side that is short of parts is the side writing the spec.\n\n@@CMP@@The bearish reading|Nvidia halved the memory on each chip. The largest customer is cutting its order, and that is where an HBM price break begins.|The original post's reading|What was cut is one chip's share, not the total. Build more HBM from the freed DRAM and the bits sold stay the same.\n\nThe same decision is read by one side as a smaller order book and by the other as rationing a part that is in short supply.\n\n## The 2027 lines are said to be booked out\n\nCiting DigiTimes, the original post says 2027 DRAM and HBM capacity has been fully booked ahead of schedule.\nBuyers are said to be receiving only 60 to 70 percent of the volumes they first requested.\nCloud providers and the large AI buyers are filled first, and everyone else waits.\n\nIf the lines really are full, cutting the layer count looks less like a decision to buy less and more like a decision to build more accelerators out of the same parts.\n\n## Where Rubin Ultra's 2027 shipments settle it\n\nWhich of the two it was will be answered by the HBM bits sold in 2027.\nIf capacity per chip falls and total bits shipped still rise, what was short was the part.\nIf capacity and bits fall together, what shrank was the order.\nUntil then the readable signal is price. If the lines really are booked out, memory does not get cheaper after the spec comes down.",
+    "ja": "エヌビディアが2027年に出すルービン・ウルトラの搭載メモリを半分に下げる案が議論されていると伝えられた。\nチップ1枚に384GBを載せる計画を192GBへ下げるという内容だ。\n\n@@REF@@供給の逼迫でルービン・ウルトラのHBM仕様が流動的に (トレンドフォース, 2026-07-31)|https://www.trendforce.com/research/download/RP260731FB3|https://img.trendforce.com.tw/Report/2026/07/20260731_154026_20260731_hbm-special.jpg\n\nトレンドフォースも7月31日付の報告で同じ話をしている。\nエヌビディアはまだ4つの構成を天秤にかけている最中で、最終仕様を決めるのは性能目標ではなくメモリ各社のウェハー配分だという。\n\n容量を削ったのがエヌビディアだという理由で、この報せはAI需要が冷える兆しのように読まれやすい。\n\n## 12段と8段は何が違うのか\n\nHBMはDRAMを何層にも積み上げてGPUの横に付けたメモリだ。\n何層積んだかを12段、8段と呼ぶ。\n同じ底面積に12枚を積めば8枚のときより容量は1.5倍になり、使うDRAMもその分増える。\n\n@@IMG@@dram-module|サーバーに挿すDRAMの棒。HBMはこのチップを横に並べる代わりに上へ積み、GPUのすぐ隣に置いたものだ。\n\nエヌビディアが3月に披露したルービン・ウルトラは、GPUのかけら4つを1つのパッケージに収め、1TBのメモリを載せたものだった。\nその後かけら2つ構成まで下がり、今度は残ったメモリの段数まで下げる案が出てきた。\n\n@@REF@@エヌビディアが1TBのHBM4Eを載せた世界初のAI GPU、ルービン・ウルトラのトレイを披露 (トムズハードウェア, 2026-03-17)|https://www.tomshardware.com/pc-components/gpus/nvidia-demonstrates-rubin-ultra-tray-worlds-1st-ai-gpu-with-1tb-of-hbm4e|https://cdn.mos.cms.futurecdn.net/bcRvXVP5t4gaWsTBwvytTg-2560-80.jpg\n\n段数を下げればチップ1枚に入るDRAMは減る。\n減ったDRAMは消えない。別のHBMを作るのにそのまま回る。\n\n## 供給が仕様を決める局面\n\n@@CHK@@3月に披露したルービン・ウルトラの搭載メモリ|1TB|2027年にモジュール業者へ回るDRAMの見通し|今年の30%程度@@エヌビディアが容量を削る間に、DRAM自体はより希少になっている。需要が冷えたから仕様を下げたという説明とは向きが逆だ。@@2026-08-04 取得 · 1TBはトムズハードウェア2026-03-17の披露報道 · 数量見通しはエイサー社長の発言、トムズハードウェア2026-07-29 · いずれも報道引用\n\n@@REF@@2027年にモジュール業者へ回るDRAMは前年比70%超減る可能性、エイサー社長 (トムズハードウェア, 2026-07-29)|https://www.tomshardware.com/pc-components/ram/dram-chip-supply-to-module-makers-could-drop-by-more-than-70-percent-year-on-year-in-2027-says-apacer-ceo-demand-for-hbm-and-server-ram-continues-to-devour-manufacturing-capacity|https://cdn.mos.cms.futurecdn.net/82L7i84TosbQSQDKVLcj2G-1920-80.jpg\n\n台湾のモジュール業者エイサーの社長は、来年モジュール業者が受け取るDRAMが今年の30%程度まで下がりうると述べた。\nDRAMの生産能力のうち6割ほどがすでにサーバー向けに回っているためだ。\n残りをめぐって、スマートフォンとPCのメーカーが先に後ろへ押される。\n\n使う物が足りない側が仕様を決めている。\n\n@@CMP@@弱気論の読み|エヌビディアがチップ1枚に載せるメモリを半分に削った。最大の客が注文を減らすということで、HBM価格が折れる出発点だ。|原文の読み|削られたのはチップ1枚の取り分であって総量ではない。余ったDRAMでHBMを増やせば売れるビットは変わらない。\n\n同じ決定を、一方は注文書が減ったと読み、もう一方は物が足りず分け合ったと読んでいる。\n\n## 2027年のラインはすでに埋まっているという\n\n原文はデジタイムズを引用し、2027年のDRAMとHBMの生産能力が予定より早く完売したと伝えている。\n注文どおり受け取れるわけでもなく、当初要求した数量の60〜70%しか割り当てられないという。\nクラウド事業者と大口のAI顧客が先に埋まり、残りが後ろに回る順番だ。\n\nラインが埋まっているという話が本当なら、エヌビディアが段数を下げたのは買う量を減らす決定ではなく、同じ物でアクセラレータを多く作る決定に近い。\n\n## ルービン・ウルトラの2027年出荷が分ける地点\n\nこの決定がどちらだったかは、2027年に売れたHBMのビット数が答える。\nチップ1枚の容量が減ったのに総出荷ビットが増えるなら、足りなかったのは物だ。\n容量とビットが一緒に減るなら、減ったのは注文だ。\nそれまで見えるのは価格になる。ラインが埋まっているという話が正しければ、仕様を下げたあともメモリは安くならない。"
+   },
+   "ts": "2026-08-03T12:00:00+00:00"
+  },
+  {
    "date": "2026-08-03",
    "id": "netinterest-situational-awareness-67-percent-comeback",
    "related": [
@@ -6271,10 +6639,20 @@
     "due": "2027-02-15"
    },
    "quote": {
-    "lines": [
-     "Wow, $CMXT is up a very normal +469.98% after going public today.",
-     "Now valuing it at ~$487.31 billion, up from $85.5 billion."
-    ],
+    "lines": {
+     "en": [
+      "Wow, $CMXT is up a very normal +469.98% after going public today.",
+      "Now valuing it at ~$487.31 billion, up from $85.5 billion."
+     ],
+     "ko": [
+      "와, $CMXT가 오늘 상장하고 아주 정상적으로 +469.98% 올랐다.",
+      "이제 시가총액이 855억달러에서 약 4,873억1,000만달러가 됐다."
+     ],
+     "ja": [
+      "わあ、$CMXTが今日上場して、実に普通に+469.98%上がった。",
+      "これで時価総額は855億ドルから約4,873億1,000万ドルになった。"
+     ]
+    },
     "cite": "Serenity · 2026.07.27"
    },
    "title": {
@@ -6333,10 +6711,20 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "South Korea's Meritz Securities estimates that, as part of Bain Capital's sale of its stake in Kioxia, SK hynix's stake in SPC1 was also disposed of.",
-     "Meritz projects SK hynix's 2Q26 pretax profit at approximately KRW 100tn, including KRW 41.6tn in non-operating income."
-    ],
+    "lines": {
+     "en": [
+      "South Korea's Meritz Securities estimates that, as part of Bain Capital's sale of its stake in Kioxia, SK hynix's stake in SPC1 was also disposed of.",
+      "Meritz projects SK hynix's 2Q26 pretax profit at approximately KRW 100tn, including KRW 41.6tn in non-operating income."
+     ],
+     "ko": [
+      "한국의 메리츠증권은 베인캐피털이 키옥시아 지분을 매각하는 과정에서 SK하이닉스가 가진 SPC1 지분도 함께 처분된 것으로 추정한다.",
+      "메리츠는 SK하이닉스의 2026년 2분기 세전이익을 영업외수익 41조6,000억원을 포함해 약 100조원으로 전망한다."
+     ],
+     "ja": [
+      "韓国のメリッツ証券は、ベインキャピタルによるキオクシア持ち分の売却に伴い、SKハイニックスが保有するSPC1の持ち分も処分されたと推定している。",
+      "メリッツはSKハイニックスの2026年2Qの税引き前利益を、営業外収益41兆6,000億ウォンを含めて約100兆ウォンと予想している。"
+     ]
+    },
     "cite": "Jukan · 2026.07.27"
    },
    "title": {
@@ -6407,10 +6795,20 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "단일종목 레버리지 ETF는 선물 유지비용과 운용보수 같은 기본 비용에, 일일 재조정에서 발생하는 변동성 끌림까지 더해져 장기 보유 시 가치가 빠르게 감소할 수 있는 구조다.",
-     "장기 보유보다는 단기 매매에 적합한 상품이라는 점을 기억할 필요가 있다."
-    ],
+    "lines": {
+     "ko": [
+      "단일종목 레버리지 ETF는 선물 유지비용과 운용보수 같은 기본 비용에, 일일 재조정에서 발생하는 변동성 끌림까지 더해져 장기 보유 시 가치가 빠르게 감소할 수 있는 구조다.",
+      "장기 보유보다는 단기 매매에 적합한 상품이라는 점을 기억할 필요가 있다."
+     ],
+     "en": [
+      "A single stock leveraged ETF carries basic costs such as futures roll costs and management fees, and on top of that the volatility drag from daily rebalancing, so its value can decay quickly when held for a long time.",
+      "It is worth remembering that this is a product suited to short term trading rather than long term holding."
+     ],
+     "ja": [
+      "単一銘柄のレバレッジETFは、先物の維持コストや運用報酬といった基本費用に、日次リバランスで生じるボラティリティ・ドラッグまで加わり、長期保有では価値が急速に目減りしうる仕組みだ。",
+      "長期保有よりも短期売買に向いた商品だという点を覚えておく必要がある。"
+     ]
+    },
     "cite": "메르 · 2026.07.27"
    },
    "title": {
@@ -6472,9 +6870,17 @@
    ],
    "stance": "bull",
    "quote": {
-    "lines": [
-     "There's an interesting detail in Intel's 10-Q. Server CPU ASPs Up 48%"
-    ],
+    "lines": {
+     "en": [
+      "There's an interesting detail in Intel's 10-Q. Server CPU ASPs Up 48%"
+     ],
+     "ko": [
+      "인텔의 10-Q에 흥미로운 대목이 하나 있다. 서버 CPU 평균판매단가 48% 상승."
+     ],
+     "ja": [
+      "インテルの10-Qに興味深い記述がひとつある。サーバーCPUの平均販売単価が48%上昇。"
+     ]
+    },
     "cite": "Jukan · 2026.07.26"
    },
    "title": {
@@ -6535,11 +6941,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "Samsung Electronics reportedly struggling to secure large FC-BGA substrates.",
-     "64GB DDR5 server modules rises 146% versus end-June contract pricing",
-     "Tungsten hexafluoride spot prices surged 2.1-2.5x Y/Y following Japan's Kanto Denka and Chuo Gas announcing permanent production halts."
-    ],
+    "lines": {
+     "en": [
+      "Samsung Electronics reportedly struggling to secure large FC-BGA substrates.",
+      "64GB DDR5 server modules rises 146% versus end-June contract pricing",
+      "Tungsten hexafluoride spot prices surged 2.1-2.5x Y/Y following Japan's Kanto Denka and Chuo Gas announcing permanent production halts."
+     ],
+     "ko": [
+      "삼성전자가 대형 FC-BGA 기판 확보에 어려움을 겪고 있다고 전해진다.",
+      "64GB DDR5 서버 모듈 값이 6월 말 계약가 대비 146% 올랐다.",
+      "일본의 간토덴카와 주오가스가 생산을 영구 중단한다고 밝힌 뒤 육불화텅스텐 현물 가격이 전년 대비 2.1~2.5배로 뛰었다."
+     ],
+     "ja": [
+      "サムスン電子が大型FC-BGA基板の確保に苦戦していると伝えられる。",
+      "64GBのDDR5サーバーモジュールが6月末の契約価格比で146%上昇した。",
+      "日本の関東電化と中央化成が生産の恒久停止を発表した後、六フッ化タングステンのスポット価格が前年比2.1〜2.5倍に急騰した。"
+     ]
+    },
     "cite": "Serenity · 2026.07.26"
    },
    "title": {
@@ -6607,11 +7025,23 @@
    ],
    "stance": "watch",
    "quote": {
-    "lines": [
-     "The S&P 500's net profit margin is on track to surge to 15.7% for Q2 2026, the highest in data going back to 2009.",
-     "Alphabet,  $GOOGL , is the single largest margin contributor after significantly beating earnings estimates.",
-     "AI is driving historic earnings growth."
-    ],
+    "lines": {
+     "en": [
+      "The S&P 500's net profit margin is on track to surge to 15.7% for Q2 2026, the highest in data going back to 2009.",
+      "Alphabet,  $GOOGL , is the single largest margin contributor after significantly beating earnings estimates.",
+      "AI is driving historic earnings growth."
+     ],
+     "ko": [
+      "S&P500의 순이익률이 2026년 2분기에 15.7%까지 뛸 것으로 보인다. 2009년까지 거슬러 올라가는 자료에서 가장 높은 수치다.",
+      "실적이 예상을 크게 웃돈 알파벳($GOOGL)이 이익률에 가장 크게 기여한 단일 종목이다.",
+      "AI가 역사적인 이익 성장을 이끌고 있다."
+     ],
+     "ja": [
+      "S&P500の純利益率が2026年2Qに15.7%まで急上昇する見通しだ。2009年まで遡るデータで最も高い。",
+      "予想を大きく上回る決算を出したアルファベット($GOOGL)が、利益率への寄与が最も大きい単一銘柄だ。",
+      "AIが歴史的な利益成長を牽引している。"
+     ]
+    },
     "cite": "The Kobeissi Letter · 2026.07.26"
    },
    "title": {
@@ -17773,7 +18203,11 @@
     "HBM5",
     "HBM4E",
     "HBM4",
-    "HBM3E"
+    "HBM3E",
+    "12Hi",
+    "8Hi",
+    "12단",
+    "8단"
    ],
    "name": {
     "ko": "HBM",
@@ -30500,6 +30934,55 @@
     "더 칠드런스 인베스트먼트 펀드",
     "The Children's Investment Fund",
     "チルドレンズ・インベストメント・ファンド"
+   ]
+  },
+  "대차대조표": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A ledger of what an institution owns and what it owes; for a central bank, its size is how much money it has put into the system.",
+    "ko": "가진 것과 갚아야 할 것을 나란히 적은 장부. 중앙은행의 경우 그 크기가 시중에 풀어 둔 돈의 양이다.",
+    "ja": "持っているものと返すべきものを並べて書いた帳簿。中央銀行の場合、その大きさは市中に出した資金量にあたる。"
+   },
+   "longDesc": {
+    "en": "When a central bank buys bonds or lends against them, the asset lands on one side and the newly created money on the other, so the sheet grows. Shrinking it pulls money back out, which is why the direction of a central bank's balance sheet is read as a policy stance in its own right, separate from the level of interest rates.",
+    "ko": "중앙은행이 채권을 사거나 채권을 담보로 돈을 빌려주면 한쪽에는 그 자산이, 반대쪽에는 새로 만든 돈이 잡히면서 장부가 커진다. 줄이면 풀린 돈이 회수된다. 그래서 대차대조표의 방향은 금리 수준과는 따로, 그 자체가 하나의 정책 신호로 읽힌다.",
+    "ja": "中央銀行が債券を買ったり債券を担保に貸したりすると、一方に資産が、もう一方に新しく作った資金が載って帳簿が膨らむ。縮めれば出した資金が戻る。だからバランスシートの方向は金利水準とは別に、それ自体が政策の姿勢として読まれる。"
+   },
+   "aliases": [
+    "대차대조표",
+    "밸런스시트",
+    "balance sheet",
+    "バランスシート"
+   ]
+  },
+  "가속기": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A chip built to run AI calculations rather than general computing work; Nvidia's GPUs are the best known kind.",
+    "ko": "일반 계산이 아니라 AI 계산을 빨리 돌리려고 만든 칩. 엔비디아의 GPU가 대표적이다.",
+    "ja": "汎用の計算ではなくAIの計算を速く回すために作られたチップ。エヌビディアのGPUが代表格だ。"
+   },
+   "longDesc": {
+    "en": "An accelerator is judged as much by the memory bolted next to it as by the processor itself, because the calculation stalls when data cannot be fed in fast enough. That is why the amount of HBM per accelerator decides both its performance and the share of memory output a single machine consumes.",
+    "ko": "가속기의 성능은 연산 장치만으로 정해지지 않는다. 데이터를 제때 넣어 주지 못하면 계산이 멈추기 때문에, 옆에 붙는 메모리가 함께 성능을 결정한다. 가속기 한 대에 붙는 HBM 용량이 성능과 메모리 소모량을 동시에 정하는 이유가 여기 있다.",
+    "ja": "アクセラレータの性能は演算装置だけで決まらない。データを間に合わせて送れなければ計算が止まるため、隣に付くメモリが性能を左右する。1台に載るHBM容量が、性能と消費するメモリ量を同時に決める理由がここにある。"
+   },
+   "aliases": [
+    "가속기",
+    "AI 가속기",
+    "accelerator",
+    "AI accelerator",
+    "アクセラレータ"
    ]
   }
  }
