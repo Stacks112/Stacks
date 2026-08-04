@@ -91,6 +91,23 @@ FEEDS = [
     # bridge mixes in - see sources.json for why that matters here.
     {"id": "schiff", "url": "https://rss.app/feeds/lFaHyJT3RN7cIZAE.xml",
      "x_handle": "PeterSchiff", "naver": False},
+    # Fed, inflation and the global macro cycle - the thinnest axis on the roster
+    # since macroalf went dark. Not a relay account: the posts worth publishing pair
+    # a news hook with his own frame. He posts ~6x a day, so MAX_ITEMS=15 covers only
+    # about 2.5 days here - the 48h window still clears, but not by much. Project
+    # Syndicate has no per-columnist feed, so X is the only intake and the monthly
+    # column arrives as a promo link. Football-governance posts and bare chart
+    # reposts are the two things to drop; the rule lives in sources.json.
+    {"id": "elerian", "url": "https://rss.app/feeds/R2n4VxBspO75RHi5.xml",
+     "x_handle": "elerianm", "naver": False},
+    # The roster's monetarist lens: he reads inflation off M2 growth, which nobody
+    # else here does. He also posts ~26 times a day, so MAX_ITEMS=15 holds less
+    # than 15 hours of him and keep_days is meaningless - candidates roll off fast.
+    # Roughly two thirds of the feed is geopolitics and domestic politics that the
+    # site does not cover; the selection rules that keep those out, and the ban on
+    # republishing his country-by-country M2 template, live in sources.json.
+    {"id": "hanke", "url": "https://rss.app/feeds/2DPKz59VfKgILWYp.xml",
+     "x_handle": "steve_hanke", "naver": False},
     {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "x_handle": "ChrisCamillo", "naver": False},
     # CEO accounts post a handful of times a year, so the 7-day default empties
     # their feed between posts and the author silently drops out of the candidate
