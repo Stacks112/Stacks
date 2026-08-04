@@ -139,6 +139,15 @@ def title_form(t):
         if rx.search(t or ""): return name
     return "C/D 단정·장면형"
 
+# 쿼터는 편수가 아니라 비율이다 (2026-08-04 실측 교정).
+# 최초안은 "같은 틀 최대 3편"이었는데, 최근 7일 발행이 63편이라 여섯 틀을 아무리 고르게
+# 돌려도 전부 걸린다. 실측 분포는 C/D 37% · B 30% · F 19% · A 11% · E 3% · 물음표 41%.
+# "두 틀이 100%를 덮는다"가 진단이었으므로 판정선은 편수가 아니라 편중률에 둔다.
+SHARE_CAP  = 0.40   # 한 틀이 이 비율을 넘으면 편중
+SHARE_CD   = 0.55   # C/D는 단정형·장면형 두 틀이 합쳐진 칸이라 따로 본다
+QMARK_CAP  = 0.45   # 물음표 제목 비율 (메르 원문 표본은 50%)
+MIN_N      = 8      # 표본이 이보다 적으면 비율을 보지 않는다
+
 def weekly(items, days=7):
     import datetime as dt
     today = dt.date.today()
@@ -148,18 +157,27 @@ def weekly(items, days=7):
             d = dt.date.fromisoformat(str(i.get("date"))[:10])
         except Exception:
             continue
-        if (today - d).days <= days:
+        if 0 <= (today - d).days <= days:
             recent.append(i)
     out = []
-    if not recent: return out, 0
+    n = len(recent)
+    if n < MIN_N:
+        return out, n
     forms = Counter(title_form(lang_text(i.get("title"))) for i in recent)
-    for name, n in forms.items():
-        if n >= 4:
-            out.append((WARN, "W1", "최근 %d일 같은 제목 틀 '%s' %d편. 최대 3편." % (days, name, n)))
+    for name, c in forms.most_common():
+        cap = SHARE_CD if name.startswith("C/D") else SHARE_CAP
+        if c / n >= cap:
+            out.append((WARN, "W1", "최근 %d일 제목 틀 '%s' %d/%d편(%.0f%%). 상한 %.0f%%. "
+                        "다음 회차는 다른 틀에서 고른다." % (days, name, c, n, 100*c/n, 100*cap)))
     qn = sum(1 for i in recent if lang_text(i.get("title")).rstrip().endswith("?"))
-    if qn >= 4:
-        out.append((WARN, "W2", "최근 %d일 물음표 제목 %d편. 최대 3편." % (days, qn)))
-    return out, len(recent)
+    if qn / n >= QMARK_CAP:
+        out.append((WARN, "W2", "최근 %d일 물음표 제목 %d/%d편(%.0f%%). 상한 %.0f%%."
+                    % (days, qn, n, 100*qn/n, 100*QMARK_CAP)))
+    if not out:
+        top = forms.most_common(3)
+        out.append(("INFO", "W0", "분포 " + " · ".join("%s %.0f%%" % (k, 100*v/n) for k, v in top)
+                    + " · 물음표 %.0f%%" % (100*qn/n)))
+    return out, n
 
 # ── main ─────────────────────────────────────────────────────────────
 def main():
