@@ -219,6 +219,8 @@ const STRINGS = {
     chkLabel: "📊 We looked it up",
     splitLabel: "How to tell which",
     sum3Label: "In three lines",
+    gcTitle: "Scheduled for grading", gcMetric: "Metric", gcNow: "Now", gcWhen: "Grading date",
+    gcHit: "Hit", gcMiss: "Miss", srcsLabel: "Sources",
     langNoteKO: "Original in Korean · auto-translate works well",
     langNoteEN: "Original in English",
     langNoteJA: "Original in Japanese · auto-translate works well",
@@ -394,6 +396,8 @@ const STRINGS = {
     chkLabel: "📊 확인해보면",
     splitLabel: "구분 기준",
     sum3Label: "세 줄 요약",
+    gcTitle: "채점 예정", gcMetric: "지표", gcNow: "현재", gcWhen: "채점일",
+    gcHit: "맞음", gcMiss: "틀림", srcsLabel: "출처",
     langNoteKO: "원문: 한국어",
     langNoteEN: "원문: 영어 · 브라우저 번역으로도 충분합니다",
     langNoteJA: "원문: 일본어 · 브라우저 번역으로도 충분합니다",
@@ -569,6 +573,8 @@ const STRINGS = {
     chkLabel: "📊 確認すると",
     splitLabel: "見分ける基準",
     sum3Label: "3行まとめ",
+    gcTitle: "採点予定", gcMetric: "指標", gcNow: "現在", gcWhen: "採点日",
+    gcHit: "的中", gcMiss: "外れ", srcsLabel: "出典",
     langNoteKO: "原文: 韓国語",
     langNoteEN: "原文: 英語",
     langNoteJA: "原文: 日本語",
@@ -2749,6 +2755,26 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .why-lab ul.sum3 li{position:relative;padding-left:16px;line-height:1.6;margin:0 0 7px;}
 .why-lab ul.sum3 li:last-child{margin-bottom:0;}
 .why-lab ul.sum3 li::before{content:"·";position:absolute;left:3px;top:-.02em;color:var(--muted);font-weight:700;}
+/* 채점 카드 / 출처 목록 — 정적 p/*.html 과 같은 구조를 앱 카드에도 */
+.gradec{margin:14px 0 0;border:1px solid var(--line,#ECEDF1);border-radius:12px;overflow:hidden;background:var(--card,#F6F7F9);}
+.gradec h4{display:flex;align-items:center;gap:9px;margin:0;padding:10px 13px;font-size:12.5px;font-weight:800;letter-spacing:.02em;border-bottom:1px solid var(--line,#ECEDF1);}
+.gradec h4 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207;}
+.gradec.gc-hit h4 i{background:rgba(14,159,94,.14);color:#1C7A42;}
+.gradec.gc-miss h4 i{background:rgba(224,68,56,.14);color:#B02525;}
+.gc-r{display:flex;gap:12px;padding:7px 13px;border-bottom:1px solid var(--line,#ECEDF1);font-size:13.5px;line-height:1.6;}
+.gc-r:last-child{border-bottom:0;}
+.gc-r .k{flex:0 0 60px;font-size:12px;font-weight:700;color:var(--muted,#8E93A0);padding-top:2px;}
+.gc-r .v{flex:1;}
+.gc-r .v .gc-hit{color:#1C7A42;font-weight:700;}
+.gc-r .v .gc-miss{color:#B02525;font-weight:700;}
+.srcs-list{margin:14px 0 0;border:1px solid var(--line,#ECEDF1);border-radius:12px;padding:12px 14px;}
+.srcs-list h4{margin:0 0 9px;font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--muted,#8E93A0);}
+.srcs-list ol{margin:0;padding-left:17px;}
+.srcs-list li{font-size:13px;line-height:1.7;margin-bottom:4px;color:var(--muted,#5B6070);}
+.srcs-list li b{color:var(--fg,#17181C);font-weight:700;}
+.srcs-list a{color:inherit;text-decoration:none;}
+.srcs-list a:hover{text-decoration:underline;}
+.srcs-asof{margin:10px 0 0;font-size:11.5px;color:var(--muted,#8E93A0);}
 .why-lab .label.why2{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);}
 
 .splitb{margin-top:14px;padding:11px 12px 10px;border:1px dashed var(--line);border-radius:12px;}
@@ -4550,6 +4576,41 @@ function skewBadgeHtml(items){
   var S=STRINGS[LANG], sideLb=sk.side==="bull"?S.stanceBull:S.stanceBear, pct=Math.round(sk.pct*100);
   return '<div class="skew-badge sk-'+sk.side+'" title="'+esc(S.skewTip)+'">⚠️ '+esc(S.skewLead)+' · '+esc(sideLb)+' '+pct+'%</div>';
 }
+function gradeCardHtml(item, S){
+  var oc = item.outcome || {}, card = oc.card;
+  if (!card) return "";
+  var st = oc.status || "pending";
+  function row(key, lbl, cls){
+    var v = langText(card[key], LANG);
+    if (!v) return "";
+    var val = cls ? '<span class="' + cls + '">' + esc(v) + '</span>' : esc(v);
+    return '<div class="gc-r"><div class="k">' + esc(lbl) + '</div><div class="v">' + val + '</div></div>';
+  }
+  var rows = row("metric", S.gcMetric) + row("now", S.gcNow) + row("when", S.gcWhen)
+           + row("hit", S.gcHit, "gc-hit") + row("miss", S.gcMiss, "gc-miss");
+  if (!rows) return "";
+  var badge = { hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[st] || "";
+  var title = st === "pending" ? S.gcTitle : (S.ocLabel || S.gcTitle);
+  return '<section class="gradec gc-' + esc(st) + '"><h4>' + esc(title)
+       + (badge ? '<i>' + esc(badge) + '</i>' : "") + '</h4>' + rows + '</section>';
+}
+
+function srcsListHtml(item, S){
+  var list = item.sources || [];
+  if (!list.length) return "";
+  var lis = list.map(function(x){
+    var name = langText(x.name, LANG) || langText(x.name, "ko") || "";
+    var desc = langText(x.desc, LANG) || langText(x.desc, "ko") || "";
+    if (!name && !desc) return "";
+    var inner = (name ? "<b>" + esc(name) + "</b> " : "") + esc(desc);
+    return "<li>" + (x.url ? '<a href="' + esc(x.url) + '" rel="noopener nofollow" target="_blank">' + inner + "</a>" : inner) + "</li>";
+  }).filter(Boolean).join("");
+  if (!lis) return "";
+  var asof = langText(item.sourcesAsOf, LANG);
+  return '<section class="srcs-list"><h4>' + esc(S.srcsLabel) + '</h4><ol>' + lis + '</ol>'
+       + (asof ? '<p class="srcs-asof">' + esc(asof) + '</p>' : "") + '</section>';
+}
+
 function outcomeTally(items){
   var o={pending:0,hit:0,miss:0,total:0};
   (items||[]).forEach(function(i){ var oc=i.outcome; if(oc&&oc.status){ o.total++; if(o[oc.status]!==undefined)o[oc.status]++; else o.pending++; } });
@@ -9715,6 +9776,8 @@ function cardEl(item, S, idx){
         }
         return "";
       })()}
+      ${gradeCardHtml(item, S)}
+      ${srcsListHtml(item, S)}
       ${oppHtml(item, S)}
       ${dltHtml(item, S)}
       ${item.outcome ? `<div class="oc oc-${item.outcome.status}" title="${esc((item.outcome.note || {})[LANG] || "")}">${{ hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[item.outcome.status] || ""}${(item.outcome.note || {})[LANG] ? `<span class="oc-sep"> · </span><span class="oc-note">${esc(item.outcome.note[LANG])}</span>` : ""}</div>` : ""}
