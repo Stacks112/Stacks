@@ -289,6 +289,7 @@ const STRINGS = {
     profile: "Open profile page ↗",
     r1d: "1D", r1w: "1W", r1mo: "1M", r1y: "1Y",
     entArticles: "View {n} related articles →",
+    entRelated: "Related posts",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
     watchUnread: "{n} unread",
     fsChart: "Pro chart",
@@ -467,6 +468,7 @@ const STRINGS = {
     profile: "프로필 페이지로 이동 ↗",
     r1d: "1일", r1w: "1주", r1mo: "1달", r1y: "1년",
     entArticles: "관련 글 {n}개 보기 →",
+    entRelated: "관련 글 보기",
     fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
     watchUnread: "안 읽은 글 {n}",
     fsChart: "전문 차트",
@@ -645,6 +647,7 @@ const STRINGS = {
     profile: "プロフィールページへ ↗",
     r1d: "1日", r1w: "1週", r1mo: "1ヶ月", r1y: "1年",
     entArticles: "関連記事{n}件を見る →",
+    entRelated: "関連記事",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
     watchUnread: "未読{n}件",
     fsChart: "プロチャート",
@@ -1169,6 +1172,10 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
 }
 .entity-head .series-close{margin-bottom:8px;}
 .entity-head .eh-name{font-size:20px;font-weight:800;letter-spacing:-.015em;}
+/* 레일 패널의 이름은 관련 글 보기로 가는 버튼이다 — 버튼 기본 스타일만 지운다
+   (font-size는 .entity-head .eh-name / .in-rail .eh-name 규칙이 그대로 담당) */
+.entity-head .eh-name-go{display:block;width:100%;margin:0;padding:0;border:0;background:none;color:inherit;font-family:inherit;letter-spacing:inherit;line-height:inherit;text-align:left;cursor:pointer;}
+.entity-head .eh-name-go:hover{text-decoration:underline;text-underline-offset:3px;}
 .entity-head .eh-sub{font-size:11px;color:var(--muted);margin-top:2px;font-family:var(--mono-font);text-transform:uppercase;letter-spacing:.06em;}
 /* ---------- intro (landing) page ---------- */
 /* v83.9b: a full scrollable landing (Autopilot-style) with a sticky top bar.
@@ -5620,9 +5627,16 @@ function entityHeadEl(key, S, count, mode){
     : '<button class="series-close" onclick="closeEntity()">← ' + S.seriesClose + "</button>";
   const railLink = mode === "rail"
     ? '<button class="eh-link eh-viewarts" onclick="entityFeedView(\'' + safe + '\')">' + (S.entArticles || "View {n} articles →").replace("{n}", count) + "</button>" : "";
+  /* 2026-08-04 (june): 우측 레일 패널에서 이름을 누르면 그 기업·인물·용어의
+     관련 글 보기로 이동한다. 아래 "관련 글 N개 보기 →" 버튼과 같은 목적지
+     (entityFeedView)라 별도 분기가 없다. 피드 헤더(mode "feed")는 이미 그
+     화면이므로 누를 대상이 아니다. */
+  const nameHtml = mode === "rail"
+    ? '<button type="button" class="eh-name eh-name-go" onclick="entityFeedView(\'' + safe + '\')" title="' + esc(S.entRelated || "Related posts") + '">' + esc(entName(key)) + "</button>"
+    : '<div class="eh-name">' + esc(entName(key)) + "</div>";
   h.innerHTML = topBtn
     + '<div class="eh-top">' + logo
-      + '<div><div class="eh-name">' + esc(entName(key)) + "</div>"
+      + '<div>' + nameHtml
       + '<div class="eh-sub">' + subBits.join(" · ") + "</div></div></div>"
     + ((e.longDesc || e.desc) ? '<p class="eh-desc">' + (e.longDesc ? e.longDesc[LANG] : e.desc[LANG]) + "</p>" : "")
     + chart
@@ -11489,6 +11503,9 @@ bootData();
   function clean(s){ return (s||'').replace(/^[^0-9A-Za-z\uAC00-\uD7A3]+/, '').trim(); }
   function isV83(){ return document.documentElement.classList.contains('v83'); }
   function bmLabel(){ var l=g('LANG'); return l==='en'?'Bookmarks':(l==='ja'?'ブックマーク':'북마크'); }
+  /* 2026-08-04 (june): 기업·인물·용어의 관련 글 보기(ENTITY_VIEW)도 다른 메뉴처럼
+     "← 관련 글 보기" 상단바를 단다. STRINGS가 아직 없을 수 있어 라벨은 여기서 만든다. */
+  function relLabel(){ var l=g('LANG'); return l==='en'?'Related posts':(l==='ja'?'関連記事':'관련 글 보기'); }
   function detect(fl){
     if(fl.querySelector(':scope > .v83post-head:not(.v83navback)')) return null; /* post detail */
     var sh=fl.querySelector(':scope > .series-header.sb-header');
@@ -11499,6 +11516,8 @@ bootData();
     if(jh) return clean(jh.textContent);
     var rh=fl.querySelector(':scope > .read-library-tools .read-library-heading > h2'); /* 최근 읽은 글 */
     if(rh) return clean(rh.textContent);
+    var eh=fl.querySelector(':scope > .entity-head');                                  /* 관련 글 보기 */
+    if(eh) return relLabel();
     if(g('BM_ONLY')===true) return bmLabel();
     return null;
   }
@@ -11507,6 +11526,9 @@ bootData();
     if(t && t.style.display!=='none') t.style.display='none';
     var sh=fl.querySelector('.series-header.sb-header'); if(sh && sh.style.paddingTop!=='2px') sh.style.padding='2px 14px 2px';
     var dh=fl.querySelector('.v83dir-head'); if(dh && dh.style.paddingTop!=='6px') dh.style.paddingTop='6px';
+    /* 관련 글 보기: 상단바가 뒤로가기를 갖고 있으므로 프로필 카드 안의 ← 버튼은 접는다 */
+    var ec=fl.querySelector(':scope > .entity-head > .series-close');
+    if(ec && ec.style.display!=='none') ec.style.display='none';
     /* 제목을 뺀 뒤 남는 건 "전체 n개 · 결과 n개"뿐이라 오른쪽에 붙여 둔다 */
     var rh=fl.querySelector('.read-library-tools .read-library-heading');
     if(rh && rh.style.justifyContent!=='flex-end') rh.style.justifyContent='flex-end';
