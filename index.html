@@ -2123,6 +2123,27 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
   nav .nav-inner button#v82av::after{content:"";position:absolute;left:50%;top:50%;
     width:44px;height:44px;transform:translate(-50%,-50%);}
   nav .nav-inner button#v82av .v82-stack-mark{width:19px;height:19px;}
+  /* 좌측 패널(서랍) — 프로필 원과 글씨를 X 수준으로 (2026-08-04, june).
+     실측 비교(둘 다 393px 뷰포트): X는 아바타 ~38 · 계정명 ~17 · 메뉴 라벨 ~17/700 ·
+     아이콘 ~23이고, 우리는 44 · 21/850 · 18/760 · 25였다. 줄 간격(52 vs 53)은 이미 같아서
+     건드리지 않는다 — 무거워 보이던 건 굵기와 글자 크기 쪽이다.
+     v82.css의 `.v82dw-*`(0,1,0)를 이기려고 `#v82drawer`를 앞에 붙인다(1,1,0).
+     에셋을 안 건드리므로 캐시 해시도 그대로다. */
+  #v82drawer .v82dw-logo{width:38px;height:38px;}
+  #v82drawer .v82dw-logo .v82-stack-mark{width:23px;height:23px;}
+  #v82drawer .v82dw-name{font-size:17.5px;font-weight:800;}
+  #v82drawer .v82dw-item{font-size:16.5px;font-weight:700;gap:16px;min-height:48px;}
+  #v82drawer .v82dw-item .ic,
+  #v82drawer .v82dw-item .ic svg{width:23px;height:23px;flex-basis:23px;}
+  /* 위 `#v82drawer .v82dw-item`(1,1,0)이 v82.css의 `.v82dw-secondary .v82dw-item`(0,2,0)을
+     이겨 버리므로, 보조 줄의 높이·간격도 여기서 같이 되돌려 준다. */
+  #v82drawer .v82dw-secondary .v82dw-item{font-size:14px;font-weight:640;gap:15px;min-height:44px;}
+  #v82drawer .v82dw-secondary .v82dw-item .ic,
+  #v82drawer .v82dw-secondary .v82dw-item .ic svg{width:21px;height:21px;flex-basis:21px;}
+}
+/* 좁은 화면용 v82.css 조정(.v82dw-item 17px)이 위 규칙에 가려지므로 같은 폭에서 다시 준다. */
+@media (max-width:360px){
+  #v82drawer .v82dw-item{font-size:15.5px;min-height:45px;}
 }
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
