@@ -210,23 +210,29 @@ def fetch_entries(feed: dict):
 def own_post(feed, entry):
     """Is this entry actually written by the author whose feed this is?
 
-    RSS.app's X bridges carry retweets, and some of those items keep the
-    ORIGINAL poster's status URL. Publishing one puts another person's words
-    under our author's name and links the reader to a stranger's profile, which
-    is a sourcing error rather than mere noise. Measured 2026-08-04:
-    pichai 6/15 foreign, camillo 3/15, tesuta 2/15, bilello_x 19/30 retweets.
+    RSS.app's X bridges sometimes syndicate posts from OTHER accounts, and the
+    item then keeps the original poster's status URL. Publishing one puts
+    another person's words under our author's name and sends the reader to a
+    stranger's profile, which is a sourcing error rather than mere noise.
+    Measured 2026-08-04 across the live bridges: pichai 8 of 25, jensen 8 of 18,
+    tesuta 4, camillo 3, bilello_x 4.
 
     Leaving this to the publishing routine did not work - the rule existed in
     sources.json for pichai and the feed still filled up with other accounts -
     so the drop happens at intake where it cannot be forgotten.
+
+    Only the LINK is a reliable signal. The title prefix is not, and a first
+    version of this function got that wrong: RSS.app writes "RT by @<owner>" on
+    the owner's OWN reposts too, so 22 of Bilello's 25 items carried that prefix
+    while only 4 pointed elsewhere, and filtering on it threw away 18 of his own
+    posts. Across all ten bridges there was not one "RT by @<someone else>"
+    title, so the prefix carries no information. Do not reintroduce it.
 
     Feeds without "x_handle" (blogs, Substack, Naver) are unaffected.
     """
     handle = feed.get("x_handle")
     if not handle:
         return True
-    if (entry.get("title") or "").lstrip().lower().startswith("rt by"):
-        return False
     link = (entry.get("link") or "").lower()
     return link.startswith(f"https://x.com/{handle.lower()}/")
 
