@@ -2,6 +2,53 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (feed hides the grading/sources folds; one More on the prediction card)
+
+june (from the phone, two screenshots): "피드창에서는 채점 예정, 출처는 노출되지 않게 해줘 /
+오늘의 예측에서 더보기가 2번 보이는데 아래 더보기는 없애줘"
+
+Changed: `index.html` only (`6be9ee5`, +8/-0). **CSS only, no JS.** No asset files, so no
+cache-hash bump.
+
+- **Grading / sources folds are detail-only now.** `gradeCardHtml()` and `srcsListHtml()` render
+  `<details class="gradec-fold">` / `.srcs-fold` into `.card-body` (Codex+Claude, earlier today).
+  In the compressed feed card those two collapsed headers sat right under the clipped summary, so
+  「채점 예정」 and 「출처」 read before the actual text. One selector covers **both shells**:
+  `#feedList > .card:not(.v83one) > .card-body > .gradec-fold, ... > .srcs-fold{display:none}`
+  - Desktop detail is `#feedList > .card.v83one`, hence the `:not(.v83one)`.
+  - Mobile detail lives in `#v82dbody`, outside `#feedList`, so it is untouched by construction.
+  - **DOM is untouched** - only `display`. `v83CardFix` still finds `.gradec-fold` and still drops
+    the duplicate one-line `.oc` badge, exactly as before.
+- **Two "더 보기" on the mobile prediction card.** `dailyPredictionResultEl` appends its own
+  `.v83-more.prediction-result-more` (it toggles `v83expanded`), and on mobile v82 *also* adds
+  `.v82-more` for the clipped summary - so the card showed two, the second one below the
+  engagement bar. On desktop there is only ever one, because `v83ClipScan` skips a card that
+  already has a `.v83-more` and the prediction button carries that class.
+  Fix: `@media (max-width:1023px){ .prediction-result-card .prediction-result-more{display:none} }`
+  - Same specificity as the `display:inline-flex` rule above it and later in the file, so no
+    `!important` needed.
+  - `.v82-more` is the right one to keep: measured, it expands the summary in place
+    (gist height 92px -> 168px) and then hides itself. The prediction card's own button is
+    redundant on mobile anyway - the `#feedList >` scoped rules that `v83expanded` unlocks do not
+    apply inside `#v82dbody`, so the mobile detail already shows everything.
+
+Verified:
+- `node --check` on all 6 inline script blocks (no JS changed, run anyway).
+- Local Playwright, both shells: feed cards 1-4 all `gradec=false srcs=false`, exactly **1** 더 보기
+  each (mobile `.v82-more`, desktop `.v83-more`). Normal-card detail still shows both folds
+  (desktop `.v83one` and mobile `#v82dbody`). Prediction detail unchanged, 「Stacks에서 보기」 intact.
+- Live stacksdaily.com: desktop feed clean, desktop detail still shows both folds, and a 390px
+  same-origin iframe (`resize_window` does not work in june's Chrome) shows the mobile shell with
+  5/5 cards `gradec=false srcs=false` and a single `.v82-more` on each, prediction card included.
+- Actions: Clobber guard ✅ · Email render guard ✅ · pages build ✅.
+
+Notes / next:
+- Deploy needed one rebase mid-flight: `3b3d15b` (new graphic markers, +119 lines) landed 8 minutes
+  before the guard ran. `deploy_guard --verify` confirmed all 119 lines survived.
+- The 「채점 예정」 fold was the feed's only prediction-tracking signal, since `v83CardFix` removes
+  the `.oc` badge when the fold exists. That is intended here - june asked for the feed to be
+  quiet - but if a feed-level signal is ever wanted back, put it on the `.oc` badge, not the fold.
+
 ## 2026-08-04 Claude (그래픽 어휘 확장 — 표와 VS 둘뿐이던 것을 넷 더한다)
 
 june: "우리 글을 보다보면 항상 이 vs랑 이 표가 자주 나오는데 글마다 똑같이 생겨서 다른 글들을
