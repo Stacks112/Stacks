@@ -2,6 +2,58 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (new source: Treasury Secretary Bessent + official-account rules)
+Goal:
+- june proposed adding https://x.com/SecScottBessent and asked that the three caveats raised
+  against it be written down as rules rather than left as advice.
+
+Changed:
+- `scripts/fetch_feeds.py` (`5f852c51`), `sources.json` (`c0d1d165`), `CLAUDE.md` (`fef58927`)
+
+Why this source, when the other proposed writers were held back:
+- The publishing window stays at 48h by june's call. Weekly longform sources (Zitron, Peng,
+  Berman) would be registered and then almost never clear it - the same failure mode that keeps
+  Kuo at zero cards. A sitting official posts most days, so bessent actually clears it.
+- It also fills a real hole: issuance, tariffs, the dollar and the deficit currently reach the
+  site only second hand through Kobeissi. This is the first first-party policy voice.
+
+Official-account rules (category=politician; full text duplicated in the `trump` and `bessent`
+`notes` fields in sources.json, deliberately not behind a pointer):
+1. Market-facing statements only - issuance, tariffs, rates, the dollar, deficits, regulation,
+   sanctions, trade deals. Partisan attacks, personnel, ceremony, elections, rallies, enforcement
+   PR and memes are out. Max 1 card per run across ALL politician sources combined.
+2. No `outcome`, no card. Official statements are usually announcements or victory laps with no
+   falsifiable claim, so they would dilute the grading rate that was just repaired. Publish only
+   if we can derive a question checkable from public data within 90 days and attach
+   `outcome{status:pending,due,note}`. Otherwise hold and log the reason in [9].
+3. `stance` defaults to `watch`, and the card must carry the other side. A Treasury Secretary's
+   optimism is an occupational statement, not a market call - `bull`/`bear` only when market data
+   (not the statement) is the evidence. Every card must include the actual market reaction or a
+   counter-argument via `@@REF@@` or `@@CMP@@`; a card that only relays the statement is a press
+   release.
+
+Verified:
+- Feed URL checked before wiring: 25 items, lastBuildDate live, every `<link>` on
+  `x.com/SecScottBessent` (no impersonator spam, unlike the `jensen` bridge).
+- Dispatched `feed-sync.yml` after deploy: `feeds/bessent.json` is `ok:true`, `raw_count:25`,
+  `kept_count:15`, newest 2026-08-02T23:00, and 0 items fail the handle check.
+- The first five titles are themselves the argument for rule 1: a birthday message to the VP,
+  praise for a deputy AG, and a Founding Fathers riff sit alongside the two market-relevant posts
+  (trade partners, a meeting with BOJ Governor Ueda).
+- Each file's deployed sha256 matched the locally built target before and after the browser
+  commit. deploy_guard clean beforehand (one unrelated remote commit had landed; none of the
+  three files had moved).
+- rss.app usage now 11 of the Basic plan's 15 feeds.
+
+Risks / next:
+- Rule 3 is the one most likely to be skipped under time pressure, and skipping it turns the card
+  into promotion. Worth a checker later, the way `check_source_dependence.py` enforces [5-C].
+- This does NOT help the bull-skew problem - an official's optimism pushes the same way. The bear
+  axis (Ed Zitron, Russell Clark) is still empty and still needs a separate decision.
+- The canonical copy of these rules lives in sources.json `notes`. If `publish-v4.3.md [3]` is
+  ever revised, mirror them there too.
+- Detail: Claude project doc `claude/status-2026-08-04-bessent-source-added.md`.
+
 ## 2026-08-04 Claude (조회수 어뷰징 진단 + /view 서버측 dedup 배포)
 
 Goal:
