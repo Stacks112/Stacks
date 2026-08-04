@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- STACKS BUILD v81 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
-<html lang="en">
+<html lang="en" class="stkboot stkbootr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -3249,7 +3249,55 @@ footer a{color:var(--muted);}
 @media (min-width:1024px){
   #v82nav,#v82drawer,#v82scrim,#v82explore,#v82detail,#v82av,#v82hub,#v82notif,#v82picker,.v82-tabs,.v82-sh{display:none !important;}
 }
+/* ---- CLS: first-paint layout reservation (2026-08-04) ----------------------
+   The desktop shell (mountV83) and the feed are both built by JS after first
+   paint. Before this block the browser painted a near-empty page with the
+   footer inside the viewport, then mountV83 grew .wrap from ~102px to ~800px
+   and pushed everything down: measured CLS 1.68 on desktop (mobile was fine).
+   Reserving a viewport of height and hiding the footer until a shell has
+   mounted removes that shift. `stkboot` is dropped by stkBootRelease() below —
+   applyDash() calls it, and a load/timeout failsafe covers any early return. */
+html.stkboot > body > .wrap{ min-height:100vh; visibility:hidden; }
+html.stkboot > body > footer{ visibility:hidden; }
+/* The right rail is assembled section by section (calendar, hot, watch,
+   newsletter) and the newsletter box only unhides once its data lands, so the
+   rail keeps reflowing for a few hundred ms after the feed is already painted.
+   Hold it until then — it is a sidebar, and it is empty until it is done. */
+html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 </style>
+<script>
+/* CLS: release the first-paint reservation once a shell has mounted (see the
+   .stkboot rules above). Idempotent. The load + timeout failsafes matter:
+   if applyDash() ever throws before calling this, the footer must still show. */
+(function(){
+  var done = false, doneR = false;
+  function relRail(){ if (doneR) return; doneR = true;
+    try { document.documentElement.classList.remove("stkbootr"); } catch(e){} }
+  function rel(){ if (done) return; done = true;
+    try { document.documentElement.classList.remove("stkboot"); } catch(e){}
+    setTimeout(relRail, 700); }
+  function relSoon(){
+    try { requestAnimationFrame(function(){ requestAnimationFrame(rel); }); } catch(e){ rel(); }
+  }
+  window.stkBootRelease = relSoon;
+  /* the reservation must outlive the shell mount and end when the first feed
+     page is actually in the DOM — that is the paint that used to shift. */
+  (function watchFeed(){
+    var fl = document.getElementById("feedList");
+    if (!fl) { setTimeout(watchFeed, 50); return; }
+    if (fl.children.length) { relSoon(); return; }
+    try {
+      var mo = new MutationObserver(function(){
+        if (fl.children.length){ mo.disconnect(); relSoon(); }
+      });
+      mo.observe(fl, { childList: true });
+    } catch(e){ rel(); }
+  })();
+  window.addEventListener("load", function(){ setTimeout(rel, 1500); });
+  setTimeout(rel, 6000);
+  setTimeout(relRail, 6500);
+})();
+</script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -5798,7 +5846,8 @@ function unmountDash(){
 function applyDash(){
   if (V83ON && window.matchMedia("(min-width:1024px)").matches){
     try { if (DASH && DASH.mounted) unmountDash(); } catch(e){}
-    mountV83(); return;
+    mountV83();
+    return;
   }
   try { if (V83 && V83.mounted) unmountV83(); } catch(e){}
   if (window.matchMedia("(min-width:1024px)").matches) mountDash(); else unmountDash();
@@ -11038,7 +11087,7 @@ bootData();
 <!-- ============ v82: Twitter-style mobile shell ============ -->
 <script src="assets/v82.js?v=31bc938a"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
-<script src="assets/v83tw.js?v=cc79e292"></script>
+<script src="assets/v83tw.js?v=94fc844c"></script>
 
 <!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
 <script src="assets/twc.js?v=3ca67014"></script>
