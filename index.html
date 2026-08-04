@@ -3770,12 +3770,21 @@ function plainGist(text){
    `srcq`·`xemb`를 감추는 것과 같은 판단이다). 펼치면 그대로 다시 나온다. */
 var DBK_FEED_CAP = 620;   /* 이 높이를 넘기면서까지 블록을 보여주지는 않는다 */
 var DBK_FADE = 54;        /* 접힘 하단 페이드가 블록 끝을 덮지 않도록 남기는 여백 */
+/* ⚠ 선택자를 `#feedList` 로 좁히지 말 것 (2026-08-04 사고).
+   모바일 상세(v82)는 카드 **노드를 통째로 `#v82detail` 로 옮긴다.** 피드 안만 훑으면
+   옮겨진 노드의 인라인 `max-height` 를 지울 기회가 영영 오지 않는데, 상세에서는
+   `overflow:hidden` 이 풀려 있어서 **본문이 높이 밖으로 흘러 칩·공감줄·댓글창 위에
+   겹쳐 찍혔다.** june 스크린샷 2장이 그 상태다.
+   그래서 두 겹으로 막는다 — ① 문서 전체를 훑어 어디로 옮겨졌든 지운다,
+   ② 늘릴 때 `overflow:hidden` 을 같이 인라인으로 박는다. 혹시 또 남더라도
+   최악이 "글이 잘려 보임"이지 "겹쳐 찍힘"이 아니게 된다. */
 function dbkFold(){
-  document.querySelectorAll("#feedList .card .gist").forEach(function(g){
+  document.querySelectorAll(".card .gist").forEach(function(g){
     var card = g.closest(".card"); if (!card) return;
-    var clipped = card.classList.contains("v83clip") || card.classList.contains("v82clip");
+    var clipped = !!card.closest("#feedList")
+               && (card.classList.contains("v83clip") || card.classList.contains("v82clip"));
     if (!clipped || card.classList.contains("v83expanded") || card.classList.contains("v82expanded")){
-      if (g.style.maxHeight) g.style.maxHeight = "";
+      if (g.style.maxHeight || g.style.overflow){ g.style.maxHeight = ""; g.style.overflow = ""; }
       g.__dbkKey = ""; return;
     }
     var b = g.querySelector(".dbk"); if (!b) return;
@@ -3783,7 +3792,7 @@ function dbkFold(){
        통째로 밀린다. 그때 다시 재지 않으면 접힘이 엉뚱한 자리에 걸린다. */
     var key = card.className + "|" + g.scrollHeight + "|" + g.offsetWidth;
     if (g.__dbkKey === key) return;
-    g.style.maxHeight = "";                       /* CSS 기준값으로 되돌리고 다시 잰다 */
+    g.style.maxHeight = ""; g.style.overflow = ""; /* CSS 기준값으로 되돌리고 다시 잰다 */
     var base = parseFloat(getComputedStyle(g).maxHeight);
     g.__dbkKey = card.className + "|" + g.scrollHeight + "|" + g.offsetWidth;
     if (!isFinite(base)) return;                  /* 접혀 있지 않다 */
@@ -3792,8 +3801,13 @@ function dbkFold(){
     if (bottom <= base) return;                   /* 이미 다 보인다 */
     if (bottom <= DBK_FEED_CAP) g.style.maxHeight = Math.ceil(bottom) + "px";
     else if (top > 48)          g.style.maxHeight = Math.floor(top - 8) + "px";
+    /* 높이를 손댔으면 자르는 것까지 같이 박는다 — 위 주석의 ② */
+    if (g.style.maxHeight) g.style.overflow = "hidden";
   });
 }
+/* 상세를 여는 순간 인라인 값을 즉시 지운다. 1초 간격만으로는 최대 1초 동안
+   겹쳐 찍힌 화면이 그대로 보인다. */
+document.addEventListener("click", function(){ setTimeout(dbkFold, 0); }, true);
 setInterval(dbkFold, 1000);
 
 /* ---------- 데이터 블록 (2026-08-04, 발행 규칙 v4.7) ----------
