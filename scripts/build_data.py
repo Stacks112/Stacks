@@ -60,6 +60,16 @@ OPP_MAX = 2
 OPP_USE_CAP = 3         # times one post may serve as somebody else's counterpart
 PRIOR_WINDOW_DAYS = 180  # how far back "what this author said last time" reaches
 PRIOR_MAX = 2
+# A theme carried by more than about one card in seven is the feed's standing
+# beat, not a subject two particular cards share. Pairing on it hangs "here is
+# what this author said before" off every card and points it at their two most
+# recent posts - noise wearing a trajectory's clothes. Calibrated against the
+# declared-tag distribution (2026-08-04: aicapex 20%, semis 19%, energy 9%,
+# rates 6%, trade 3%, dollar 1%, crypto 1%), which is where the useful pairs
+# and the mechanical ones actually separate: rates and dollar pair Meru's Fed
+# and FX posts to each other, semis pairs three unrelated Jukan chip cards to
+# whatever he happened to post two days earlier.
+PRIOR_THEME_MAX_SHARE = 0.15
 
 # Fields dropped from core entirely: the full text lives in the gist chunks.
 LANG_FIELDS = ("gist", "why", "ask")
@@ -227,6 +237,28 @@ def theme_hay(item):
     g = item.get("gist") or {}
     return " ".join([t.get("en") or "", t.get("ko") or "", t.get("ja") or "",
                      g.get("en") or "", " ".join(item.get("tags") or [])])
+
+
+def declared_theme_hay(item):
+    """Tags and cover label only - not the title, and never the body.
+
+    theme_hay() deliberately reads the gist too, because the browse themes are
+    meant to catch a post that merely discusses rates. Pairing history off that
+    is a different matter, and two earlier attempts got it wrong:
+
+      body scan   a NAND export-price card was paired with an MLCC capacitor
+                  card because both bodies said "power", and a household-wealth
+                  card with an S&P-margins card under "crypto".
+      + titles    Korean headlines quote sums in dollars, so "100억달러" put
+                  half the feed under the dollar theme.
+
+    Tags are three deliberate uppercase keywords and the cover label is chosen
+    by hand, which makes them the only fields that state what a card is about.
+    Same rule explicit_key() applies to companies, same lesson as the entity
+    matcher indexing @@REF@@ URLs (fix-queue item L).
+    """
+    cover = item.get("cover") or {}
+    return " ".join(list(item.get("tags") or []) + [cover.get("label") or ""])
 
 
 def entity_set(item, entities, rx, alias2key):
@@ -461,15 +493,27 @@ def pick_opposites(items, entities, stance_map, alias2key):
     return out
 
 
-def pick_priors(items, entities, alias2key):
-    """This author's earlier posts on the same declared company.
+def pick_priors(items, entities, alias2key, themes=None):
+    """This author's earlier posts on the same subject.
 
     A single card is one frame; the trajectory - what this writer said about
-    this stock last time, and the time before - is the part no source post
-    contains and no source can take away. Pairing mirrors pick_opposites and
-    is deliberately conservative: only the DECLARED company (cover label or
-    tag, via explicit_key) counts, only the same author, only within a window.
-    A wrong "here is what they said before" link is worse than none.
+    this last time, and the time before - is the part no source post contains
+    and no source can take away. Pairing mirrors pick_opposites and is
+    deliberately conservative: only the same author, only within a window, and
+    a wrong "here is what they said before" link is worse than none.
+
+    Two kinds of subject, tried in that order:
+
+      "stock"  the DECLARED company (cover label or tag, via explicit_key).
+      "theme"  a shared browse theme, for the writers a ticker never captures.
+
+    The theme pass exists because a macro card rarely declares a company, so
+    the ticker pass alone leaves every dollar, oil and rates writer with no
+    history at all - which is exactly the readership this site keeps adding
+    sources for. It is fenced two ways: themes matching PRIOR_THEME_MAX_SHARE
+    or more of the feed are excluded (see the constant), and when several
+    themes are shared the RAREST one wins, so "crypto" beats "aicapex" as the
+    thing the two cards are actually both about.
     """
     key_of, d_of = {}, {}
     for it in items:
@@ -492,9 +536,51 @@ def pick_priors(items, entities, alias2key):
         if not prevs:
             continue
         prevs.sort(key=lambda oid: d_of[oid], reverse=True)
-        res[iid] = {"k": k, "ids": prevs[:PRIOR_MAX]}
-    print("  priors: %d of %d items carry same-author history on the same ticker"
-          % (len(res), len(items)))
+        res[iid] = {"k": k, "kind": "stock", "ids": prevs[:PRIOR_MAX]}
+    stock_hits = len(res)
+
+    themes = themes or {}
+    declared = {}
+    for it in items:
+        hay = declared_theme_hay(it)
+        declared[it["id"]] = [k for k, r in themes.items() if r.search(hay)]
+    n = max(1, len(items))
+    seen = {}
+    for tl in declared.values():
+        for k in tl:
+            seen[k] = seen.get(k, 0) + 1
+    share = {k: v / float(n) for k, v in seen.items()}
+    narrow = set(k for k, s in share.items() if s < PRIOR_THEME_MAX_SHARE)
+    tbuckets = {}
+    for it in items:
+        if not d_of[it["id"]]:
+            continue
+        for k in declared.get(it["id"], []):
+            if k in narrow:
+                tbuckets.setdefault((it.get("source") or "", k), []).append(it["id"])
+    for it in items:
+        iid = it["id"]
+        d = d_of[iid]
+        if iid in res or not d:
+            continue
+        src = it.get("source") or ""
+        # rarest shared theme first: the narrower the theme, the more likely it
+        # is the thing both cards are really about
+        for k in sorted(declared.get(iid, []), key=lambda t: share.get(t, 1.0)):
+            if k not in narrow:
+                continue
+            prevs = [oid for oid in tbuckets.get((src, k), [])
+                     if oid != iid and d_of[oid] < d
+                     and (d - d_of[oid]).days <= PRIOR_WINDOW_DAYS]
+            if not prevs:
+                continue
+            prevs.sort(key=lambda oid: d_of[oid], reverse=True)
+            res[iid] = {"k": k, "kind": "theme", "ids": prevs[:PRIOR_MAX]}
+            break
+    print("  priors: %d of %d items carry same-author history (%d by ticker, %d by theme; "
+          "themes eligible: %s)"
+          % (len(res), len(items), stock_hits, len(res) - stock_hits,
+             ", ".join(sorted(narrow)) or "none"))
     return res
 
 
@@ -565,7 +651,7 @@ def main():
     print("  entities matched: %d items, %.1f keys/item"
           % (len(items), sum(len(v) for v in ents_of.values()) / max(len(items), 1)))
     opp = pick_opposites(items, entities, stance_map, alias2key)
-    prior = pick_priors(items, entities, alias2key)
+    prior = pick_priors(items, entities, alias2key, themes)
 
     # newest first, so chunk 0 is what the reader sees first
     ordered = sorted(items, key=lambda i: str(i.get("date") or ""), reverse=True)
