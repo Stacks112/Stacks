@@ -2,6 +2,54 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (bilello_x + retweets and foreign posts dropped at intake)
+Goal:
+- june added an RSS.app bridge for https://x.com/charliebilello and asked to wire it in.
+
+Changed:
+- `scripts/fetch_feeds.py` (`4b027f55`), `sources.json` (`56fa1e9c`), `CLAUDE.md` (`0a4aca82`)
+
+This is a second intake, not a new author:
+- Charlie Bilello was already in the roster via `bilello.blog`. Same shape as `kuo`/`kuo_x`, so
+  the pairing rule matches: max 1 card per run across BOTH paths, and when the same material is
+  on both, take the blog (it carries the full text). Worth having, because the blog is weekly and
+  therefore clears the 48h publishing window only on the day it lands, while the X account posts
+  most days.
+
+The real find - the bridges carry other people's posts:
+- Checking the new feed before wiring it showed 19 of 30 items were retweets, and three carried
+  `x.com/PeterMallouk/` status URLs. Measuring the feeds we already ship found the same thing in
+  production: `pichai` 6 of 15 items were other accounts (demishassabis, chetanp, ChanduThota,
+  joshwoodward), `camillo` 3, `tesuta` 2. Publishing one of those would have put another person's
+  words under our author's name and linked the reader to a stranger's profile.
+- The prose rule for this already existed in `sources.json` for pichai and it still leaked, so
+  the check moved into code: `own_post()` drops an entry when the title starts with `RT by` or
+  the link does not start with `https://x.com/<x_handle>/`. Feeds opt in with an `x_handle` field;
+  blogs, Substack and Naver feeds are unaffected. `feeds/*.json` now reports `foreign_count`.
+- Note this also closes a hole opened yesterday: widening `jensen`/`pichai` to `keep_days: 30`
+  increased their exposure to exactly this. The first run after deploy dropped 8 impersonator
+  items from `jensen`, which until now only the publishing routine's memory was guarding against.
+
+Verified:
+- Dispatched `feed-sync.yml` after deploy. Foreign items dropped in that run: bilello_x 22,
+  jensen 8, pichai 8, tesuta 5, camillo 4; 0 for bessent/jukan/kobeissi/serenity/kuo_x (clean
+  bridges, unaffected). 47 total.
+- `feeds/bilello_x.json` ok:true, kept 3, residual contamination 0. The three survivors are the
+  kind of post this site actually makes cards from: S&P 500 Q2 margins at 16.7%, Q2 earnings on
+  pace for +47% YoY, Amazon Q2 revenue $201bn.
+- Each file's deployed sha256 matched the locally built target before and after the browser
+  commit; the fetch_feeds.py change was reproduced in the browser by re-running the same
+  transformations against the editor document and comparing hashes. deploy_guard clean.
+
+Risks / next:
+- `own_post()` is silent by design. If a bridge ever changes its URL scheme the feed would empty
+  out and only `foreign_count` would show why - worth an alert threshold in feed-sync later.
+- `thediff` is an RSS.app feed with no `x_handle` on purpose (it mirrors a Ghost blog, not an X
+  account). Do not add one.
+- bilello_x posts single figures with no thesis; sources.json requires that we either add context
+  or route them to the weekly macro card, otherwise they are ticker-tape.
+- Detail: Claude project doc `claude/status-2026-08-04-bilello-x-and-intake-filter.md`.
+
 ## 2026-08-04 Claude (new source: Treasury Secretary Bessent + official-account rules)
 Goal:
 - june proposed adding https://x.com/SecScottBessent and asked that the three caveats raised
