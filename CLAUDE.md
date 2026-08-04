@@ -561,11 +561,14 @@ python3 scripts/deploy_guard.py --verify index.html sw.js
   `bilello`(블로그)는 주 1회라 48시간 창을 넘는 날이 드물고, X는 거의 매일 올라온다.
   `kuo`/`kuo_x`와 같은 구조 — **두 경로 합쳐 실행당 최대 1건**, 같은 내용이면 전문이 있는 블로그판.
 - **★ X 피드의 리트윗·타 계정 게시물은 이제 코드가 막는다 (2026-08-04, `own_post()`).**
-  FEEDS 항목에 `x_handle`을 적으면 `fetch_feeds.py`가 수집 단계에서 ① 제목이 `RT by`로
-  시작하거나 ② link가 `x.com/<handle>/`로 시작하지 않는 항목을 버린다. **이걸 발행 루틴의
-  기억에 맡겼더니 실제로 샜다** — 2026-08-04 실측에서 `pichai` 15건 중 6건이 남의 계정
-  게시물(demishassabis·chetanp 등)이었고, `camillo` 3건, `tesuta` 2건, 신규 `bilello_x`는
-  30건 중 19건이 리트윗이었다. 그대로 카드가 됐다면 **남의 말을 그 저자의 말로 실었을 것**이다.
+  FEEDS 항목에 `x_handle`을 적으면 `fetch_feeds.py`가 수집 단계에서 **link가
+  `x.com/<handle>/`로 시작하지 않는 항목**을 버린다. **이걸 발행 루틴의 기억에 맡겼더니 실제로
+  샜다** — 2026-08-04 실측에서 남의 계정 게시물이 `pichai` 25건 중 8건(demishassabis·chetanp 등),
+  `jensen` 18건 중 8건(사칭 계정), `tesuta` 4건, `camillo` 3건, `bilello_x` 4건이었다.
+  그대로 카드가 됐다면 **남의 말을 그 저자의 말로 실었을 것**이다.
+  ⚠️ **판정 근거는 link뿐이다. 제목의 `RT by` 접두사를 쓰지 말 것** — rss.app은 본인 글에도
+  `RT by @<본인>:`을 붙인다(빌렐로는 25건 중 22건). 첫 판 필터가 이걸로 판단해 **본인 글 18건을
+  버렸다.** 10개 브리지 전체에 `RT by @<다른사람>` 형태는 한 건도 없어 접두사는 정보가 없다.
   진단은 `feeds/*.json`의 `foreign_count`로 볼 수 있다(값이 갑자기 뛰면 브리지가 바뀐 것).
   ⚠️ **X 소스를 새로 넣을 때는 `x_handle`을 반드시 같이 적는다.**
 - 소스 추가 절차: fetch_feeds.py FEEDS + sources.json 두 곳만 수정(루틴 프롬프트 수정 불필요). *.substack.com·X 소스는 rss.app 브리지(june 계정, Basic 15피드). **★ 인물 추가 시 프로필 사진(avatarImg) 필수** — X 계정이면 `https://unavatar.io/twitter/<handle>?fallback=false` (june 지시, 2026-07-20).
