@@ -2,6 +2,52 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (new source: Peter Schiff, the roster's first standing bear)
+Goal:
+- june proposed @PeterSchiff and supplied the bridge. The roster had no bear at all: 0 bear
+  cards in the last 30, which also starves pick_opposites().
+
+Changed:
+- `scripts/fetch_feeds.py` (`4a9919fc`), `sources.json` (`c159bfad`), `CLAUDE.md` (`42446fa6`)
+
+Why he passed where the last three candidates did not:
+- Cadence: ~5 posts/day, so he clears the 48h window. Dixon's Substack has been silent since
+  2025-02-14 and the weekly longform bears never clear it.
+- Direction: bear on the dollar, equities and bitcoin; bull on gold. Fills the empty axis.
+  Amit and Dixon would have pushed the bull side further.
+- Gradeable: he states dated numeric targets (gold $11,400, DXY 70). Half the reason to take
+  him is that the scoreboard can actually settle those.
+
+Feed measured before wiring (25 items, Jul 30 - Aug 3):
+- handles: PeterSchiff 18, schiffgold 5, elerianm 1, jacksonaltonh 1. The schiffgold account is
+  his own bullion shop; `x_handle` drops it along with the retweets (8 dropped at intake).
+- Noise to filter when picking: 3 political posts (Trump approval rating etc.), 4 podcast
+  promos, and one near-duplicate pair differing only by a Warsh/Walsh typo.
+- What remains is substantive macro: Q2 GDP 1.5% with a 6.3% deflator, TLT under $82, BoJ on
+  hold at 1%, COMEX gold deliveries, Saylor selling BTC and MSTR.
+
+Rules attached (sources.json `schiff` notes):
+1. Disclosure is mandatory. He runs SchiffGold (a bullion dealer) and an asset manager, so gold
+   and dollar cards must say so in the body and carry a counter-argument or the market's actual
+   reaction via `@@REF@@`/`@@CMP@@`.
+2. `stance` is set honestly - bear on dollar/equities/BTC, bull on gold. Do not blur it to
+   `watch`: the skew badge and the scoreboard both need to see it. That he has been bearish for
+   two decades is not hidden from the reader either.
+3. Attach `outcome{status:pending,due,note}` whenever a claim carries a number and a date.
+
+Verified:
+- feed-sync dispatched after deploy: `feeds/schiff.json` ok:true, raw 25, foreign_count 8,
+  kept 15, residual contamination 0.
+- Deployed sha256 matched the local target for all three files, before and after commit.
+- rss.app usage now 13 of the Basic plan's 15 feeds - two slots left.
+
+Next:
+- Russell Clark is still the missing piece: Schiff is macro/gold/BTC and barely touches the
+  memory and hyperscaler names this site is built on, so pick_opposites() still has little to
+  pair. Clark writes bearish theses on exactly those (2026-07-30: "SHOULD YOU SHORT MEMORY
+  STOCKS?") and publishes near-daily on Substack, so no bridge is needed.
+- Detail: Claude project doc `claude/status-2026-08-04-schiff-first-bear.md`.
+
 ## 2026-08-04 Claude (correction: the RT title prefix was not a signal)
 Goal:
 - june pushed back on the previous entry: "이 계정은 내가 다시보니까 자기가 직접 쓴글도 많은데?"
