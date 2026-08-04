@@ -2,6 +2,55 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (A: theme trajectories · B: weekly skew trend on mobile)
+june's framing, which replaces the one I was working from: concentration - of stance or of
+sector - is not a defect to correct. "요즘 유행하는 섹터가 반도체라면 당연히 유행따라 섹터쏠림도
+나오는거니까." What the site owes the reader is the movement over time: how much more skewed
+this week is than last, and what this author said about the same subject before. Both of the
+correction mechanisms I had built (opposites queue, sector gate) were deleted for this.
+
+### A. Author trajectory now also pairs on a declared theme
+Changed: `scripts/build_data.py` (`38e31a3a`), `scripts/build_pages.py` (`3201c81a`),
+`index.html` (`b2dc029b`)
+
+- `pick_priors()` used to pair only on a shared ticker, so macro writers (메르, Kobeissi,
+  Doomberg) never got a trajectory - they rarely name a ticker twice.
+- New: `PRIOR_THEME_MAX_SHARE = 0.15` + `declared_theme_hay()`. A theme is eligible as a pairing
+  axis only if it covers under 15% of the corpus, and only tags + the cover label count as a
+  declaration. Eligible today: crypto, dollar, energy, rates, trade. semis/aicapex are too broad
+  to mean anything as a pair.
+- Do NOT widen this to the body or the title. Two earlier attempts are why the threshold exists:
+  a body scan put NAND next to MLCC under "energy", and adding titles let "100억달러" pollute
+  `dollar`.
+- Result: priors 40 -> 69 of 242 (40 by ticker, 29 by theme). Rendering says "같은 테마, 이 저자의
+  이전 글" with the theme chip, not the ticker chip - `prior.kind` carries which.
+
+### B. The weekly skew trend is now on mobile
+Changed: `assets/v82.js` (`29b1f375`), `assets/v82.css` (`2e965114`), `index.html` (`b837f60e`)
+
+- v83 is already the default desktop shell, so 지난주→이번 주 was visible there. Mobile only had a
+  current-state bull/bear bar, which is where most readers actually are.
+- New `skewTrendHtml()` at the top of 탐색 → 지금 쏠린 곳: a 지난주→이번 주 hero pair, then a
+  6-row ranking with ▲▼/NEW rank movement. Rows open the theme.
+- It calls `v83ThemeAttention()` from index.html rather than recomputing. If the two shells ever
+  compute the skew separately they will disagree, and the reader sees two different numbers for
+  the same week. Guarded by `typeof` - if the global is missing the block is silently omitted.
+- The list below the card is still all-time, so it now carries a "전체 기간 · 테마와 종목" label.
+  The windows differ; the labels have to say so.
+
+Verified (local server + chromium 390x844, ko/en/light/dark):
+- 0 page errors, hero/ranking/labels render, tapping a ranking row opens the theme view.
+- Numbers cross-checked against data/core.json: last 7 days 8 bull / 0 bear, prior 7 days
+  35 bull / 15 bear. "강세 100%" this week is real, not a bug - the window is genuinely thin.
+- Every commit deployed by sha256: base sha of the editor document compared against
+  `git show origin/main:<file>` before dispatch, target sha compared after. All 6 matched.
+
+Remaining risks / next:
+- Monthly skew is still deferred: 2026-07 has 220 cards but 2026-08 has 17, so a month-over-month
+  view would render one real bar and one stub. Revisit in September.
+- `scripts/__pycache__/` still has 3 tracked `cpython-312` .pyc files and no .gitignore entry.
+  Do not `rm -rf` that directory - the tracked files are why fix-queue has a past incident.
+
 ## 2026-08-04 Claude (new source: Peter Schiff, the roster's first standing bear)
 Goal:
 - june proposed @PeterSchiff and supplied the bridge. The roster had no bear at all: 0 bear
