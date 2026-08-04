@@ -1118,5 +1118,397 @@
       "ko": "매 기간 반복되지 않고 한 번만 반영되는 비용. 흔히 비영업적 평가손실을 설명할 때 쓰인다.",
       "ja": "毎期繰り返されず一度だけ計上される費用。営業外の評価損を説明する際によく使われる。"
     }
+  },
+  "AGI": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "AGI",
+      "범용인공지능",
+      "범용 인공지능",
+      "artificial general intelligence",
+      "汎用人工知能"
+    ],
+    "desc": {
+      "en": "AI that could handle the broad range of intellectual work a person can. It does not exist yet.",
+      "ko": "사람이 하는 지적 작업을 폭넓게 해내는 수준의 인공지능. 아직 도달하지 못한 목표다.",
+      "ja": "人がこなす知的作業を幅広く行えるレベルのAI。まだ到達していない目標。"
+    },
+    "longDesc": {
+      "en": "It is the promise AI companies raise money and build datacenters on. How soon you think it arrives decides whether today's spending looks rational or like a bubble.",
+      "ko": "AI 회사들이 자금을 모으고 데이터센터를 짓는 명분이 여기에 있다. 도달 시점을 언제로 보느냐에 따라 지금의 투자 규모가 합리적으로도, 과열로도 읽힌다.",
+      "ja": "AI企業が資金を集めデータセンターを建てる大義がここにある。到達時期の見方次第で、今の投資規模は合理的にも過熱にも読める。"
+    }
+  },
+  "LLM": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "LLM",
+      "거대언어모델",
+      "대규모 언어모델",
+      "large language model",
+      "大規模言語モデル"
+    ],
+    "desc": {
+      "en": "An AI model trained on huge amounts of text to continue writing language. The core of chatbots and coding tools.",
+      "ko": "방대한 문장을 학습해 말을 이어 쓰는 AI 모델. 챗봇과 코딩 도구의 알맹이다.",
+      "ja": "膨大な文章を学習して言葉を続けて書くAIモデル。チャットボットやコーディングツールの中身。"
+    },
+    "longDesc": {
+      "en": "Training and running these models consumes GPUs and power, so their size and usage translate directly into chip and electricity demand.",
+      "ko": "모델을 키우고 돌리는 데 GPU와 전력이 들어가므로, 이 모델의 크기와 사용량이 반도체·전력 수요를 그대로 끌어올린다.",
+      "ja": "モデルの学習と運用にGPUと電力を要するため、その規模と利用量がそのまま半導体・電力需要を押し上げる。"
+    }
+  },
+  "클린룸": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "클린룸",
+      "cleanroom",
+      "clean room",
+      "クリーンルーム"
+    ],
+    "desc": {
+      "en": "The ultra-filtered space where chips are made. It is the real bottleneck when a fab expands.",
+      "ko": "먼지를 극도로 걸러낸 반도체 생산 공간. 공장 증설의 실제 병목이 되는 곳이다.",
+      "ja": "塵を極限まで除いた半導体製造空間。工場増設の実際のボトルネックになる場所。"
+    },
+    "longDesc": {
+      "en": "Buying tools does not raise output until cleanroom space is ready, which is why an expansion announcement and actual supply are usually one to two years apart.",
+      "ko": "장비를 사 와도 클린룸이 준비되지 않으면 생산이 늘지 않는다. 그래서 증설 발표와 실제 공급 증가 사이에는 보통 1~2년의 시차가 생긴다.",
+      "ja": "装置を買ってもクリーンルームが整わなければ生産は増えない。増設発表と実際の供給増の間に通常1~2年の時差が生じる理由だ。"
+    }
+  },
+  "매그니피센트7": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "매그니피센트7",
+      "매그니피센트 7",
+      "M7",
+      "Magnificent 7",
+      "Magnificent Seven",
+      "マグニフィセント7"
+    ],
+    "desc": {
+      "en": "The shorthand for the seven mega-cap tech stocks that drive the US market.",
+      "ko": "미국 증시를 끌고 가는 초대형 기술주 7종목을 묶어 부르는 말.",
+      "ja": "米国株式市場を牽引する超大型テック7銘柄をまとめて呼ぶ言葉。"
+    },
+    "longDesc": {
+      "en": "Their index weight is so large that when the seven move, the index moves. That is why a rising index does not always mean a broadly rising market.",
+      "ko": "지수 비중이 워낙 커서 이 일곱 종목이 흔들리면 지수 전체가 흔들린다. 지수가 올랐다는 말이 시장 전반의 상승을 뜻하지 않을 수 있는 이유다.",
+      "ja": "指数比重が非常に大きく、この7銘柄が揺れれば指数全体が揺れる。指数上昇が市場全体の上昇を意味しない理由だ。"
+    }
+  },
+  "NISA": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "NISA",
+      "니사",
+      "소액투자비과세제도",
+      "少額投資非課税制度"
+    ],
+    "desc": {
+      "en": "Japan's tax-free investment account, which exempts gains up to a set limit from tax.",
+      "ko": "일본의 소액투자 비과세 제도. 정해진 한도 안의 투자 수익에 세금을 매기지 않는다.",
+      "ja": "日本の少額投資非課税制度。定められた枠内の投資収益に課税されない。"
+    },
+    "longDesc": {
+      "en": "A big expansion in 2024 made it the main channel moving Japanese household savings out of deposits into stocks and funds, so it is worth watching alongside Japanese equity and outbound flows.",
+      "ko": "2024년 제도가 대폭 확대되면서 일본 가계 자금이 예금에서 주식·펀드로 옮겨가는 통로가 됐다. 일본 증시와 해외 주식 자금 흐름을 볼 때 함께 보는 변수다.",
+      "ja": "2024年の大幅拡充で、日本の家計資金が預金から株式・投信へ移る通路になった。日本株や海外株への資金流入を見る際の変数だ。"
+    }
+  },
+  "최종투자결정": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "최종투자결정",
+      "FID",
+      "final investment decision",
+      "最終投資決定"
+    ],
+    "desc": {
+      "en": "The point at which a large project is formally approved to be built and money starts flowing.",
+      "ko": "대형 프로젝트를 실제로 짓기로 확정하는 단계. 여기를 넘어야 돈이 집행된다.",
+      "ja": "大型プロジェクトの建設を正式に決める段階。ここを越えて資金が動く。"
+    },
+    "longDesc": {
+      "en": "For multi-year projects such as LNG terminals or datacenters, an announcement alone changes nothing. Equipment and materials are ordered only after this decision.",
+      "ko": "LNG 터미널이나 데이터센터처럼 몇 년이 걸리는 사업은 발표만으로는 아무 일도 일어나지 않는다. 장비·소재 발주가 실제로 나가는 시점이 이 결정 이후다.",
+      "ja": "LNGターミナルやデータセンターのような数年がかりの事業は発表だけでは何も起きない。装置・素材の発注が出るのはこの決定の後だ。"
+    }
+  },
+  "식각": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "식각",
+      "에칭",
+      "etching",
+      "etch",
+      "エッチング"
+    ],
+    "desc": {
+      "en": "The chip-making step that removes unwanted material from a wafer to leave the circuit pattern.",
+      "ko": "반도체 웨이퍼에서 필요 없는 부분을 깎아 회로 모양을 남기는 공정.",
+      "ja": "半導体ウエハーから不要な部分を削り、回路の形を残す工程。"
+    },
+    "longDesc": {
+      "en": "As circuits shrink, the required depth and precision rise and the number of steps grows, which is why etch-equipment revenue works as a proxy for the move to finer nodes.",
+      "ko": "회로가 미세해질수록 깎아야 하는 깊이와 정밀도가 올라가 공정 횟수가 늘어난다. 식각 장비 회사의 매출이 미세공정 전환의 대리 지표가 되는 이유다.",
+      "ja": "回路が微細になるほど削る深さと精度が上がり工程回数が増える。エッチング装置企業の売上が微細化の代理指標になる理由だ。"
+    }
+  },
+  "본딩": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "본딩",
+      "bonding",
+      "ボンディング"
+    ],
+    "desc": {
+      "en": "The step that joins chips or wafers together into a single package.",
+      "ko": "여러 반도체 칩이나 웨이퍼를 서로 붙여 하나로 잇는 공정.",
+      "ja": "複数の半導体チップやウエハーを貼り合わせて一つにつなぐ工程。"
+    },
+    "longDesc": {
+      "en": "For HBM, which stacks many DRAM layers, the precision of this step is effectively the yield. Each added layer makes joining harder, turning back-end processing into the bottleneck.",
+      "ko": "D램을 여러 층 쌓는 HBM은 이 공정의 정밀도가 곧 수율이다. 층수를 올릴수록 붙이는 난도가 급격히 올라가 후공정이 병목이 된다.",
+      "ja": "DRAMを積層するHBMではこの工程の精度がそのまま歩留まりになる。層数が増えるほど接合の難度が急上昇し、後工程がボトルネックになる。"
+    }
+  },
+  "서브스트레이트": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "서브스트레이트",
+      "기판",
+      "substrate",
+      "サブストレート",
+      "基板"
+    ],
+    "desc": {
+      "en": "The base board a chip sits on, carrying its electrical signals out to the system.",
+      "ko": "반도체 칩을 얹어 전기 신호를 밖으로 이어주는 받침판.",
+      "ja": "半導体チップを載せ、電気信号を外部につなぐ土台の板。"
+    },
+    "longDesc": {
+      "en": "High-performance chips need denser, higher-grade boards that few suppliers can make, and AI accelerator supply has repeatedly been constrained by boards rather than by the chips themselves.",
+      "ko": "고성능 칩일수록 배선이 촘촘한 고급 기판이 필요한데 만들 수 있는 회사가 적다. AI 가속기 공급이 칩이 아니라 기판에서 막히는 일이 실제로 반복됐다.",
+      "ja": "高性能チップほど配線が緻密な高級基板が必要だが、作れる企業は少ない。AIアクセラレータの供給がチップではなく基板で詰まる事態が実際に繰り返された。"
+    }
+  },
+  "장기물": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "장기물",
+      "장기 국채",
+      "long-dated bonds",
+      "long end",
+      "長期債"
+    ],
+    "desc": {
+      "en": "Bonds maturing in ten years or more, whose prices swing hard when rates move.",
+      "ko": "만기가 10년 이상으로 긴 채권. 금리 변화에 가격이 크게 흔들린다.",
+      "ja": "満期が10年以上と長い債券。金利変動で価格が大きく動く。"
+    },
+    "longDesc": {
+      "en": "Long-end yields respond more to deficits and issuance than to the policy rate, so a rise in long yields after a rate cut reads as the market worrying about fiscal policy.",
+      "ko": "장기물 금리는 중앙은행의 정책금리보다 재정적자와 국채 발행량에 더 반응한다. 정책금리를 내렸는데 장기 금리가 오르면 시장이 재정을 걱정한다는 신호로 읽힌다.",
+      "ja": "長期債利回りは政策金利より財政赤字と国債発行量に反応する。利下げ後に長期金利が上がれば、市場が財政を懸念しているシグナルと読まれる。"
+    }
+  },
+  "PCB": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "PCB",
+      "인쇄회로기판",
+      "printed circuit board",
+      "プリント基板"
+    ],
+    "desc": {
+      "en": "The board with printed wiring that holds components and connects them. The skeleton of any electronic product.",
+      "ko": "부품들을 얹고 서로 연결하는 회로가 새겨진 판. 전자제품의 뼈대다.",
+      "ja": "部品を載せ互いにつなぐ配線が刻まれた板。電子製品の骨格。"
+    },
+    "longDesc": {
+      "en": "AI servers need low signal loss, so they use boards with more layers and pricier materials, and the value a board maker captures per server is far higher than before.",
+      "ko": "AI 서버는 신호 손실을 줄여야 해서 층수가 많고 소재가 비싼 기판을 쓴다. 같은 서버 한 대에서 기판 업체가 가져가는 금액이 예전보다 훨씬 커졌다.",
+      "ja": "AIサーバーは信号損失を抑える必要があり、層数が多く素材も高価な基板を使う。同じ1台でも基板メーカーが取る金額は以前よりはるかに大きい。"
+    }
+  },
+  "DIMM": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "DIMM",
+      "메모리 모듈",
+      "memory module",
+      "メモリモジュール"
+    ],
+    "desc": {
+      "en": "A memory module that mounts several DRAM chips on one board for a system to use.",
+      "ko": "D램 칩 여러 개를 하나의 기판에 꽂아 쓰게 만든 메모리 모듈.",
+      "ja": "DRAMチップを複数枚まとめて基板に実装したメモリモジュール。"
+    },
+    "longDesc": {
+      "en": "Servers buy memory by the module, so DRAM chip prices do not pass straight into server cost; the module maker's margin sits in between.",
+      "ko": "서버는 이 모듈 단위로 메모리를 산다. 그래서 D램 칩값이 그대로 서버 원가가 되지 않고, 모듈을 만드는 업체의 몫이 중간에 한 번 더 붙는다.",
+      "ja": "サーバーはこのモジュール単位でメモリを買う。DRAMチップ価格がそのままサーバー原価にならず、モジュール業者の取り分が間に挟まる。"
+    }
+  },
+  "PIM": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "PIM",
+      "프로세싱 인 메모리",
+      "processing in memory",
+      "processing-in-memory"
+    ],
+    "desc": {
+      "en": "Memory that performs part of the computation inside itself, cutting the waste of moving data around.",
+      "ko": "메모리 안에서 연산 일부를 직접 처리하는 반도체. 데이터를 옮기는 낭비를 줄인다.",
+      "ja": "メモリ内部で演算の一部を直接処理する半導体。データ移動の無駄を減らす。"
+    },
+    "longDesc": {
+      "en": "In AI workloads, moving data costs more time and power than the arithmetic itself, so if this approach takes hold, memory makers capture part of the value now sitting with compute.",
+      "ko": "AI 연산에서는 계산보다 데이터를 주고받는 데 시간과 전력이 더 든다. 이 구조가 자리 잡으면 메모리 회사가 연산 영역의 값어치를 일부 가져오게 된다.",
+      "ja": "AI演算では計算よりデータのやり取りに時間と電力がかかる。この構造が定着すればメモリ企業が演算領域の価値を一部取り込むことになる。"
+    }
+  },
+  "SEC": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "SEC",
+      "미국 증권거래위원회",
+      "증권거래위원회",
+      "Securities and Exchange Commission",
+      "米証券取引委員会"
+    ],
+    "desc": {
+      "en": "The US securities regulator, which oversees listed-company disclosure and market rules.",
+      "ko": "미국의 증권 감독기관. 상장사 공시와 시장 규칙을 관장한다.",
+      "ja": "米国の証券監督機関。上場企業の開示と市場ルールを所管する。"
+    },
+    "longDesc": {
+      "en": "Filings here carry legal liability, which makes them more reliable than press releases, and they are the primary source for earnings, ownership changes and litigation.",
+      "ko": "여기에 제출된 서류는 회사가 법적 책임을 지고 낸 숫자라, 보도나 발표보다 신뢰도가 높다. 실적·지분 변동·소송을 확인할 때 1차 자료가 된다.",
+      "ja": "ここに提出された書類は企業が法的責任を負って出した数字であり、報道や発表より信頼度が高い。業績・持分変動・訴訟を確認する際の一次資料になる。"
+    }
+  },
+  "MSCI": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "MSCI",
+      "엠에스씨아이"
+    ],
+    "desc": {
+      "en": "The company behind many global equity indices; inclusion in one moves real money.",
+      "ko": "세계 주요 주가지수를 만드는 회사. 어느 지수에 들어가느냐가 자금 흐름을 바꾼다.",
+      "ja": "世界の主要株価指数を作る会社。どの指数に入るかで資金の流れが変わる。"
+    },
+    "longDesc": {
+      "en": "So much passive money tracks its indices that an addition or deletion triggers mechanical buying or selling in that stock or country, sometimes moving prices for reasons unrelated to earnings.",
+      "ko": "이 회사의 지수를 따라가는 패시브 펀드가 워낙 많아, 편입·제외가 결정되면 해당 종목이나 국가로 기계적인 매수·매도가 들어온다. 실적과 무관하게 주가가 움직이는 이유가 되기도 한다.",
+      "ja": "この会社の指数に連動するパッシブ資金が非常に多く、組入れ・除外が決まると当該銘柄や国に機械的な売買が入る。業績と無関係に株価が動く要因にもなる。"
+    }
+  },
+  "GPT": {
+    "kind": "term",
+    "sector": {
+      "en": "Glossary",
+      "ko": "용어",
+      "ja": "用語"
+    },
+    "aliases": [
+      "GPT",
+      "ChatGPT",
+      "챗GPT",
+      "GPT-5",
+      "GPT-4",
+      "GPT-4o",
+      "チャットGPT"
+    ],
+    "desc": {
+      "en": "OpenAI's family of language models, and the chatbot built on them.",
+      "ko": "오픈AI가 만든 언어 모델 계열과 그 위에 올린 챗봇을 함께 부르는 이름.",
+      "ja": "OpenAIが作った言語モデル群と、その上に載せたチャットボットの総称。"
+    },
+    "longDesc": {
+      "en": "Each new version is trained on far more compute than the last, so a release schedule is also a datacenter and chip order schedule. Usage numbers matter for the same reason: running the model costs GPUs and power every day, not just once at training time.",
+      "ko": "버전이 올라갈 때마다 학습에 쓰는 연산량이 크게 늘어, 출시 일정이 곧 데이터센터·반도체 발주 일정이 된다. 사용량도 같은 이유로 중요하다. 모델을 돌리는 데는 학습 때 한 번이 아니라 매일 GPU와 전력이 들어간다.",
+      "ja": "バージョンが上がるたび学習に使う演算量が大きく増えるため、リリース日程はそのままデータセンター・半導体の発注日程になる。利用量も同じ理由で重要だ。モデルの運用には学習時の一度きりではなく、毎日GPUと電力がかかる。"
+    }
   }
 }
