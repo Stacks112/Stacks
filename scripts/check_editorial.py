@@ -1,0 +1,212 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+편집 규칙 검사 — publish-v4.6-editorial.md 의 게이트.
+
+`items.json` 의 카드를 읽어 에디토리얼 가이드(2026-08-04)가 정한 다섯 층을 검사한다.
+제목 틀 / 섹션 헤딩 / 분량·문단 / 문장 종결 / 반복. 규칙만 있고 지켰는지 확인할 방법이
+없어 매 회차 새던 구조를 종료코드에 맡긴다 — check_term_coverage.py 와 같은 자리다.
+
+사용:
+  python3 scripts/check_editorial.py --ids id1,id2
+  python3 scripts/check_editorial.py --ids id1 --warn-only     # 롤아웃 기간
+  python3 scripts/check_editorial.py --weekly                  # 주간 목록 규칙만
+
+종료코드: BLOCK 이 하나라도 있으면 1, 아니면 0. --warn-only 면 항상 0.
+"""
+import sys, os, re, json, argparse
+from collections import Counter
+
+BLOCK, WARN = "BLOCK", "WARN"
+MARKER = re.compile(r"^@@(REF|IMG|CHK|CMP)@@")
+
+# ── gist 파싱 ─────────────────────────────────────────────────────────
+def parse_gist(g):
+    """마커 줄을 걷어내고 헤딩과 문단만 남긴다."""
+    heads, paras, buf = [], [], []
+    for raw in (g or "").split("\n"):
+        ln = raw.strip()
+        if MARKER.match(ln):
+            if buf: paras.append(" ".join(buf)); buf = []
+            continue
+        if ln.startswith("## "):
+            if buf: paras.append(" ".join(buf)); buf = []
+            heads.append(ln[3:].strip()); continue
+        if not ln:
+            if buf: paras.append(" ".join(buf)); buf = []
+            continue
+        buf.append(ln)
+    if buf: paras.append(" ".join(buf))
+    return heads, paras
+
+def sentences(p):
+    return [x for x in re.split(r"(?<=다)\s+|(?<=[.!?])\s+", p) if x.strip()]
+
+def lang_text(v, lang="ko"):
+    if isinstance(v, str): return v if lang == "ko" else ""
+    if isinstance(v, dict): return v.get(lang) or ""
+    return ""
+
+# ── 개별 규칙 ─────────────────────────────────────────────────────────
+CLICHE = re.compile(r"(결국|남는) 질문은 하나(다|입니다)")
+GEOSI  = re.compile(r"것이 된다|것으로 된다|뜻이 된다|숫자가 된다")
+QHEAD  = re.compile(r"(나|가|까|는가|을까|ㄹ까)\s*\??$")
+GENERIC_LAST = ["그래서 무엇으로 가릴까", "그래서 무엇을 볼까", "무엇으로 가릴까",
+                "무엇을 보게 되나", "남는 질문", "그래서 무엇이 갈리나"]
+NUM = re.compile(r"[0-9][0-9,\.]*\s*(조원|억원|만원|원|조달러|억달러|만달러|달러|%|엔|포인트|배|개|명)")
+
+def check_card(item, corpus_heads=None):
+    out = []
+    gist = lang_text(item.get("gist"))
+    heads, paras = parse_gist(gist)
+    sum3 = lang_text(item.get("sum3"))
+    title = lang_text(item.get("title"))
+    body = " ".join(paras)
+
+    n = len(CLICHE.findall(body))
+    if n:
+        out.append((BLOCK, "1", "「결국 질문은 하나다」 계열 %d회 — 다음 문단이 같은 이분법을 더 구체적으로 말한다. 삭제." % n))
+
+    n = len(GEOSI.findall(body + " " + sum3))
+    if n >= 2:
+        out.append((BLOCK, "2", "「~것이 된다」 계열 종결 %d회. 최대 1회." % n))
+
+    if heads:
+        last = heads[-1]
+        if any(g in last for g in GENERIC_LAST):
+            out.append((BLOCK, "3", "마지막 섹션 헤딩 「%s」은 어느 글에나 붙는다. 이 글 전용으로." % last))
+        elif corpus_heads and last in corpus_heads:
+            out.append((WARN, "3", "마지막 섹션 헤딩 「%s」이 최근 발행분에 이미 쓰였다." % last))
+
+    qs = [h for h in heads if h.endswith("?") or QHEAD.search(h)]
+    if len(qs) >= 2:
+        out.append((BLOCK, "4", "의문형 섹션 헤딩 %d개: %s. 최대 1개." % (len(qs), " · ".join(qs))))
+
+    toks = [m.group(0).replace(" ", "") for m in NUM.finditer(" ".join([title, body, sum3]))]
+    over = [(t, c) for t, c in Counter(toks).items() if c >= 3]
+    if over:
+        s = ", ".join("%s×%d" % (t, c) for t, c in sorted(over, key=lambda x: -x[1])[:5])
+        out.append((WARN, "5", "같은 수치 3회 이상: %s. 리드에서 던졌으면 요약에서 회수하고 중간 재진술은 뺀다." % s))
+
+    if sum3 and paras:
+        lead = " ".join(paras[:2])
+        L = _sh(lead)
+        worst, which = 0.0, ""
+        for li in [x for x in sum3.split("\n") if x.strip()]:
+            S = _sh(li)
+            if not S or not L: continue
+            ov = len(S & L) / len(S)
+            if ov > worst: worst, which = ov, li
+        if worst >= 0.45:
+            out.append((WARN, "6", "세 줄 요약이 리드를 재진술한다(중복 %.0f%%): 「%s…」" % (worst*100, which[:34])))
+
+    ns = [len(sentences(p)) for p in paras if p]
+    if len(ns) >= 6 and all(2 <= x <= 3 for x in ns):
+        out.append((WARN, "7", "문단이 전부 2~3문장(%d문단). 1문장 문단과 5문장 문단을 섞는다." % len(ns)))
+
+    txt = body + " " + sum3
+    msgs = []
+    big = re.findall(r"[0-9]{4,}(?:조원|억원|억달러|조달러)", txt)
+    comma = re.findall(r"[0-9]{1,3}(?:,[0-9]{3})+(?:조원|억원|억달러|조달러)", txt)
+    if big and comma:
+        msgs.append("천 단위 쉼표 혼용(%s vs %s)" % (big[0], comma[0]))
+    pct = re.findall(r"[0-9]+\.[0-9]{2,}%(?!\s*포인트)", txt)
+    if pct:
+        msgs.append("퍼센트 소수 둘째 자리 이상: %s" % ", ".join(pct[:3]))
+    if msgs:
+        out.append((BLOCK, "9", " / ".join(msgs)))
+
+    # 새 필드(2026-08-04): 판별 조건은 본문이 아니라 채점 카드로, 출처는 글 끝 목록으로
+    oc = item.get("outcome") or {}
+    if oc.get("status") and not oc.get("card"):
+        out.append((WARN, "11", "outcome 이 있는데 outcome.card(지표·현재·채점일·맞음·틀림)가 없다."))
+    if not item.get("sources"):
+        out.append((WARN, "12", "sources 목록이 없다. 본문은 문장 안 귀속, 링크는 글 끝 목록으로."))
+
+    return out
+
+def _sh(s, n=6):
+    s = re.sub(r"[^0-9A-Za-z가-힣%]", "", s or "")
+    return {s[i:i+n] for i in range(max(0, len(s)-n+1))}
+
+# ── 주간 목록 규칙 ────────────────────────────────────────────────────
+FORMS = [("B 의문형", re.compile(r"(뭘까|일까|까)\s*\??$")),
+         ("F 부정형", re.compile(r"(아니다|아니었다)\s*$")),
+         ("E 나열형", re.compile(r"^[^,]+,\s*[^,]+,\s*[^,]+$")),
+         ("A 반전형", re.compile(r"^.+[다요],\s*.+"))]
+def title_form(t):
+    for name, rx in FORMS:
+        if rx.search(t or ""): return name
+    return "C/D 단정·장면형"
+
+def weekly(items, days=7):
+    import datetime as dt
+    today = dt.date.today()
+    recent = []
+    for i in items:
+        try:
+            d = dt.date.fromisoformat(str(i.get("date"))[:10])
+        except Exception:
+            continue
+        if (today - d).days <= days:
+            recent.append(i)
+    out = []
+    if not recent: return out, 0
+    forms = Counter(title_form(lang_text(i.get("title"))) for i in recent)
+    for name, n in forms.items():
+        if n >= 4:
+            out.append((WARN, "W1", "최근 %d일 같은 제목 틀 '%s' %d편. 최대 3편." % (days, name, n)))
+    qn = sum(1 for i in recent if lang_text(i.get("title")).rstrip().endswith("?"))
+    if qn >= 4:
+        out.append((WARN, "W2", "최근 %d일 물음표 제목 %d편. 최대 3편." % (days, qn)))
+    return out, len(recent)
+
+# ── main ─────────────────────────────────────────────────────────────
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--ids", default="")
+    ap.add_argument("--items", default="items.json")
+    ap.add_argument("--warn-only", action="store_true")
+    ap.add_argument("--weekly", action="store_true")
+    a = ap.parse_args()
+
+    if not os.path.exists(a.items):
+        print("items.json 을 찾을 수 없습니다: %s" % a.items); sys.exit(2)
+    doc = json.load(open(a.items, encoding="utf-8"))
+    items = doc.get("items") or []
+    by = {i.get("id"): i for i in items}
+
+    # 최근 30편의 마지막 헤딩 사전 — 마지막 절 제목 재사용 감시
+    corpus = set()
+    for i in items[:30]:
+        h, _ = parse_gist(lang_text(i.get("gist")))
+        if h: corpus.add(h[-1])
+
+    ids = [x.strip() for x in a.ids.split(",") if x.strip()]
+    hard = 0
+    for iid in ids:
+        it = by.get(iid)
+        print("\n■ %s" % iid)
+        if not it:
+            print("   [BLOCK] items.json 에 없는 id"); hard += 1; continue
+        h, p = parse_gist(lang_text(it.get("gist")))
+        print("   섹션 %d · 문단 %d" % (len(h), len(p)))
+        res = check_card(it, corpus - ({h[-1]} if h else set()))
+        if not res:
+            print("   ok")
+        for lv, num, msg in res:
+            print("   [%s] #%s %s" % (lv, num, msg))
+            if lv == BLOCK: hard += 1
+
+    if a.weekly or not ids:
+        wr, n = weekly(items)
+        print("\n■ 주간 목록 (최근 7일 %d편)" % n)
+        if not wr: print("   ok")
+        for lv, num, msg in wr:
+            print("   [%s] %s %s" % (lv, num, msg))
+
+    print("\nBLOCK %d 건" % hard)
+    sys.exit(0 if (a.warn_only or hard == 0) else 1)
+
+if __name__ == "__main__":
+    main()
