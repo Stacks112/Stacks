@@ -52,7 +52,7 @@
   "source": "テスタ (@tesuta001)",
   "lang": "JA",
   "category": "investor",
-  "notes": "X 데이트레이더. 대부분 잡담·리트윗 → 명백한 시장·종목 분석 트윗일 때만."
+  "notes": "X 데이트레이더. 대부분 잡담·리트윗 → 명백한 시장·종목 분석 트윗일 때만. (RT·타 계정 게시물은 2026-08-04부터 fetch_feeds.py의 own_post()가 수집 단계에서 걷어낸다 — 발행 세션이 손으로 거를 필요 없음.)"
  },
  "damodaran": {
   "source": "Aswath Damodaran (Musings on Markets)",
@@ -94,8 +94,15 @@
   "source": "Charlie Bilello",
   "lang": "EN",
   "category": "investor",
-  "notes": "The Week in Charts(bilello.blog, 무료). 주간 데이터·차트에서 의미 추출. 수치 많아 outcome 추적 적합.",
+  "notes": "The Week in Charts(bilello.blog, 무료). 주간 데이터·차트에서 의미 추출. 수치 많아 outcome 추적 적합. ★같은 저자의 X 계정(bilello_x)이 두 번째 수집 경로로 붙어 있다. 이 블로그판은 주 1회라 48시간 창을 넘는 날이 드물다 — 두 경로 합쳐 실행당 최대 1건이고, 같은 내용이 양쪽에 있으면 전문이 있는 이 블로그판을 택한다.",
   "avatarImg": "https://unavatar.io/twitter/charliebilello?fallback=false"
+ },
+ "bilello_x": {
+  "source": "Charlie Bilello",
+  "lang": "EN",
+  "category": "investor",
+  "avatarImg": "https://unavatar.io/twitter/charliebilello?fallback=false",
+  "notes": "같은 저자의 X 게시물(RSS.app). bilello(주간 블로그)와 짝을 이루는 두 번째 수집 경로다 — 블로그는 주 1회라 48시간 창을 넘는 날이 드물고, X는 거의 매일 올라온다. ★두 경로(bilello·bilello_x) 합쳐 실행당 최대 1건. 같은 내용이 양쪽에 있으면 전문이 있는 블로그판을 택한다. ★리트윗·타 계정 게시물은 fetch_feeds.py의 own_post()가 수집 단계에서 걷어내므로 발행 세션이 따로 거를 필요가 없다(2026-08-04 실측: 30건 중 19건이 리트윗, 3건은 link가 x.com/PeterMallouk/ 였다). ★단발 수치 트윗(지수·마진·수익률 한 줄)은 그것만으로 카드를 만들지 않는다 — 비교 기준이나 구조 설명을 우리가 붙일 수 있을 때만 내고, 아니면 [3-B] 주간 매크로 카드 재료로 claude/macro-pending.md에 적어 둔다."
  },
  "kuo": {
   "source": "郭明錤 (Ming-Chi Kuo)",
@@ -135,14 +142,14 @@
   "lang": "EN",
   "category": "investor",
   "avatarImg": "https://unavatar.io/twitter/ChrisCamillo?fallback=false",
-  "notes": "X via rss.app. '소셜 차익거래(social arbitrage)' 전략 창시자, Dumb Money/TickerTags 창업자, Laughing at Wall Street 저자. 소비 트렌드·SNS 신호 기반 종목 아이디어. 잡담·라이브스트림 홍보 다수 → 명백한 종목·시장 콜일 때만 카드화."
+  "notes": "X via rss.app. '소셜 차익거래(social arbitrage)' 전략 창시자, Dumb Money/TickerTags 창업자, Laughing at Wall Street 저자. 소비 트렌드·SNS 신호 기반 종목 아이디어. 잡담·라이브스트림 홍보 다수 → 명백한 종목·시장 콜일 때만 카드화. (RT·타 계정 게시물은 2026-08-04부터 fetch_feeds.py의 own_post()가 수집 단계에서 걷어낸다 — 발행 세션이 손으로 거를 필요 없음.)"
  },
  "pichai": {
   "source": "Sundar Pichai (@sundarpichai)",
   "lang": "EN",
   "category": "ceo",
   "avatarImg": "https://unavatar.io/twitter/sundarpichai?fallback=false",
-  "notes": "X via rss.app. 구글·알파벳 CEO 공식 계정. RT(타인 트윗 재게시) 다수 섞임 → 본인 발언 위주로, 실적·제품·AI 전략 관련 발언만 카드화. 의전성·개인 근황 트윗 제외."
+  "notes": "X via rss.app. 구글·알파벳 CEO 공식 계정. RT(타인 트윗 재게시) 다수 섞임 → 본인 발언 위주로, 실적·제품·AI 전략 관련 발언만 카드화. 의전성·개인 근황 트윗 제외. (RT·타 계정 게시물은 2026-08-04부터 fetch_feeds.py의 own_post()가 수집 단계에서 걷어낸다 — 발행 세션이 손으로 거를 필요 없음.)"
  },
  "jensen": {
   "source": "Jensen Huang (@JensenHuang)",
@@ -150,6 +157,6 @@
   "category": "ceo",
   "avatarImg": "https://unavatar.io/twitter/JensenHuang?fallback=false",
   "wiki": "Jensen_Huang",
-  "notes": "X via rss.app. 엔비디아 CEO 공식 계정(2026-07-24 개설, 첫 글부터 추적). ⚠️ rss.app 피드에 동명 사칭 계정(@JensenHuang__, @jensenhuang 소문자 변형)의 옛 스팸이 섞여 있음 → link가 정확히 x.com/JensenHuang/ 인 항목만 카드화, 변형 핸들은 전부 무시. 본인 발언 중 실적·제품·AI/반도체 전략 관련만, 의전성 트윗 제외."
+  "notes": "X via rss.app. 엔비디아 CEO 공식 계정(2026-07-24 개설, 첫 글부터 추적). ⚠️ rss.app 피드에 동명 사칭 계정(@JensenHuang__, @jensenhuang 소문자 변형)의 옛 스팸이 섞여 있음 → link가 정확히 x.com/JensenHuang/ 인 항목만 카드화, 변형 핸들은 전부 무시. 본인 발언 중 실적·제품·AI/반도체 전략 관련만, 의전성 트윗 제외. (RT·타 계정 게시물은 2026-08-04부터 fetch_feeds.py의 own_post()가 수집 단계에서 걷어낸다 — 발행 세션이 손으로 거를 필요 없음.)"
  }
 }
