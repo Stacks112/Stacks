@@ -2100,11 +2100,19 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
   transition:border-color .15s ease,color .15s ease,transform .15s ease;
 }
 .prediction-result-post:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+/* 「채점 예정」·「출처」 접힘 블록은 상세에서만 (2026-08-04, june).
+   피드는 압축 카드라 접힌 제목 두 줄이 요약보다 눈에 먼저 들어왔다. DOM은 그대로 두므로
+   상세(데스크톱 .v83one · 모바일 #v82dbody)에서는 지금처럼 열린다. */
+#feedList > .card:not(.v83one) > .card-body > .gradec-fold,
+#feedList > .card:not(.v83one) > .card-body > .srcs-fold{display:none;}
 @media (max-width:1023px){
   .prediction-result-card .card-body>.prediction-result-meta{order:21;}
   /* v82.css가 .cta-row 자식들에 order를 준다(원문 보기 1 · 유료 3 · 언어안내 4).
      기본 order:0이면 이 버튼이 원문 보기 앞으로 가므로 사이 자리를 명시한다. */
   .prediction-result-card .cta-row .prediction-result-post{order:2;}
+  /* 모바일에는 v82의 클립 「더 보기」(.v82-more)가 이미 붙는다. 예측 카드가 자기 것을
+     하나 더 달아 두 개로 보였다(june 신고). 모바일에서는 v82 쪽만 남긴다. */
+  .prediction-result-card .prediction-result-more{display:none;}
 }
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
