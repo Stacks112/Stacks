@@ -2,6 +2,65 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (Clarity review: desktop CLS 1.68 -> 0.04, alignFsw layout thrash)
+june asked for a read on the Clarity dashboard and then for the top three fixes to be done.
+Clarity (last 7 days): score 49/100, LCP 1.9s good, INP 530ms bad, **CLS 1.2 bad**, dead
+clicks 4.92%, 0 JS errors. Referrers over 7 days: 25 internal, 5 github.io, **4 google, 3 t.co**.
+Bots were 63 of 185 sessions; today 15 of 21.
+
+### A. CLS was desktop-only, and it was the shell mount
+Changed: `index.html` (`ad9e29f4`, then `08ce7ba6`)
+
+- Reproduced with local Playwright: desktop 1.68, mobile 0.002. One shift was 0.99 of it —
+  `.wrap` growing 102px -> 800px with the footer inside the viewport, because both the v83
+  shell (mountV83) and the feed are built by JS after first paint.
+- `html.stkboot` reserves the main `.wrap` at 100vh and holds it hidden, hides the footer;
+  `html.stkbootr` additionally holds the right rail, which keeps reflowing for a few hundred
+  ms after the feed paints (the newsletter box only unhides once its data lands).
+- Released on the **first feed render**, not on applyDash. applyDash runs before the feed data
+  arrives — releasing there measured as no improvement at all (html.stkboot was already gone
+  at 230ms while the shift happens at ~540ms). The rail follows 700ms later.
+- **The live check caught a second bug**: the release waited on two rAFs, and rAF is frozen in
+  a background tab, so a page opened in the background stayed blank until the failsafe — the
+  exact moment a reader switches to it. `relSoon()` now releases immediately when
+  `document.visibilityState === "hidden"`. Do not put a plain timer there instead: a 300ms
+  race fired before the feed landed and CLS went back to 0.35.
+- Failsafes: load + 1500ms, and 6s/6.5s timeouts. Any throw before the release must still end
+  with a visible page.
+
+### B. alignFsw was the largest main-thread cost of a cold load
+Changed: `assets/v83tw.js` (`94fc844c`), cache hash bumped in `index.html`
+
+- CDP profiling (4x CPU): `alignFsw` 677ms of self time, ahead of everything else. It read two
+  bounding rects and wrote three inline styles unconditionally, 12 times at 400ms apart —
+  a read/write/read cycle forcing a full layout of a 660KB document each round.
+- Now it skips the write when the geometry has not moved, and hands off to a `ResizeObserver`
+  on `#v83center` as soon as that element exists. The poll remains as the fallback where
+  ResizeObserver is missing, and stops after 3 consecutive no-ops.
+- 677ms -> 184ms. Total load long-task time 1678ms -> 1468ms.
+
+### Not changed (checked, and deliberately left alone)
+- The Pretendard CDN CSS is **already** async — `preload` + `onload` with a `noscript`
+  fallback. A DOMParser read of the page makes it look render-blocking because it parses
+  inside `<noscript>`; it is not.
+- `linkifyPass` is now the top remaining hotspot (~520ms, the entity-matcher regex). It is the
+  entity index and touching it is out of scope for the September gate.
+
+Verified (local server + chromium 1280x800 and 390x844, ko):
+- desktop CLS 0.042-0.059 across runs, mobile 0.005, LCP 672 -> 644ms local, 0 page errors.
+- After boot: footer, right rail and .wrap all visible; 6 cards in both shells; `#v83fsw`
+  still aligned to `#v83center` (dLeft 1px / dWidth -2px, unchanged from before).
+- Live stacksdaily.com after deploy: same, including in a background tab.
+- Every commit deployed by sha256 — editor base sha compared against `git show origin/main:`
+  before dispatch, target sha compared after. All 3 matched. Clobber guard success.
+
+Remaining risks / next:
+- Clarity needs ~7 days before the field CLS/INP numbers reflect this. Re-check around 8/11,
+  not sooner — the dashboard averages the window.
+- The remaining desktop shift (~0.03) is `#v83fsw` insertion pushing `#feed` down 53px. Cheap
+  to reserve if it ever matters; left alone for now.
+- Growth, not perf, is the real number here: 7 external referrals in 7 days.
+
 ## 2026-08-04 Claude (A: theme trajectories · B: weekly skew trend on mobile)
 june's framing, which replaces the one I was working from: concentration - of stance or of
 sector - is not a defect to correct. "요즘 유행하는 섹터가 반도체라면 당연히 유행따라 섹터쏠림도
