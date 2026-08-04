@@ -125,6 +125,14 @@
   "notes": "X via rss.app. 시장 뉴스의 의미 해석·구체 수치 콜. 발행량 많음 — 시장영향 큰 것만 실행당 최대 2건.",
   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false"
  },
+ "schiff": {
+  "source": "Peter Schiff (@PeterSchiff)",
+  "lang": "EN",
+  "category": "investor",
+  "avatarImg": "https://unavatar.io/twitter/PeterSchiff?fallback=false",
+  "wiki": "Peter_Schiff",
+  "notes": "X via rss.app. 로스터의 첫 상시 약세 소스 — 달러·주식·비트코인에 약세, 금·금광주에 강세. 하루 5건 안팎이라 48시간 창을 넉넉히 통과하고, 금 $11,400·달러지수 70처럼 숫자와 시한이 붙은 주장을 자주 해서 채점에 적합하다. 2026-08-04 실측(25건): 본인 18 · schiffgold(자기 회사 계정) 5 · 타인 리트윗 2 → 뒤 7건은 own_post()가 자동으로 걷어낸다. ★고를 때 거를 것(실측 비율): 트럼프 지지율·정치 논평 3/25, 팟캐스트 회차 홍보 4/25, 오타만 다른 중복 게시물(Warsh/Walsh)이 있어 같은 내용이 둘이면 하나로 묶는다. 남는 것은 실질 매크로 판독이다 — 2분기 GDP 1.5%와 디플레이터 6.3%, TLT 82달러 하회, BoJ 1% 동결, COMEX 금 인도량, 세일러의 BTC·MSTR 매도. ★★이해관계 공시가 필수다: 슈프는 금괴 딜러 SchiffGold와 자산운용사를 운영한다. 금·달러 카드는 본문에 그가 금을 파는 사람이라는 사실을 밝히고, 반대 논거나 시장의 실제 반응을 @@REF@@ 또는 @@CMP@@로 반드시 붙인다. ★stance를 정직하게 붙인다 — 달러·주식·BTC는 bear, 금은 bull. 그가 20년 가까이 상시 약세였다는 점은 카드에서 숨기지 않되, 방향을 watch로 뭉개지도 않는다(쏠림 지표와 채점표에 잡혀야 한다). ★숫자·시한이 붙은 주장이 있으면 outcome{status:pending,due,note}를 반드시 단다. 이 소스를 넣은 이유의 절반이 그것이다."
+ },
  "doomberg": {
   "source": "Doomberg",
   "lang": "EN",
