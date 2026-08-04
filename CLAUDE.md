@@ -86,6 +86,35 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   desc·longDesc 3개국어). 루틴 프롬프트 [4] 용어 규칙도 기준을 낮춰 term을 더 많이
   추가하게 할 것. 자세한 후속 메모: 프로젝트 `claude/house-rules-and-followups-2026-07-19.md`.
 
+- **★★ 색인 매처 규칙 3종 — 세 곳이 같이 움직인다 (2026-08-04, june 지시로 전면 수리).**
+  june 지적: "전문용어나 인물명 기업명 등등 대부분 색인이 하나도 안 되어 있다."
+  라이브 실측 결과 **엔진은 정상이었고 렌더된 링크 수 = 등록된 엔티티 수**였다. 즉 등록
+  누락이 전부였는데, 그것을 잡는 검사기가 **전문용어만 보고 회사·인물은 아예 안 봤다.**
+  아래 세 규칙은 `index.html`(`buildEntityMatcher`/`linkifyPass`) ·
+  `scripts/build_data.py`(`entity_alias_list`·`alias_is_case_sensitive`·`build_entity_matcher`) ·
+  `scripts/build_pages.py`(`build_matcher`)에 **동시에** 들어 있다. 하나만 고치면 앱과
+  SEO 페이지의 색인이 갈린다.
+  1. **엔티티 키도 이름이다.** 예전엔 `aliases`만 읽어서, 사명을 바꾼 `STRATEGY`(별칭이
+     `MicroStrategy`뿐)가 카드가 쓰는 "스트래티지"에 한 번도 안 걸렸다. 이제 키에서 뒤쪽
+     괄호를 뗀 표기(`케빈 워시 (Kevin Warsh)` → `케빈 워시`)를 자동으로 별칭에 넣는다.
+     `_`가 든 합성 키(`SWF_KO`·`EV_TERM`)는 제외한다.
+  2. **전부 대문자인 라틴 별칭은 대소문자를 구분한다.** 용어 `PER`가 영어 본문의 전치사
+     `per`에 걸려 **245장 중 55장의 `ents`를 오염**시키고 있었다(`155 per dollar`).
+     `NOR`↔`nor`, `HYPE`↔`hype`, `FORM`↔`form`도 같은 사고였다. 매처는 이제 두 개다 —
+     대소문자 무시(`ENT_RE`)와 구분(`ENT_RE_CS`) — 그리고 `ALIAS2KEY`가 둘을 같이 담는다
+     (구분 대상은 원 표기 그대로, 나머지는 소문자 키).
+  3. **같은 용어는 문단마다 다시 링크한다.** `linkifyPass`의 중복 방지 범위가 컨테이너
+     전체였다. 450단어짜리 본문에서 첫 줄에만 밑줄이 붙고 나머지는 통째로 비어 보였다.
+     이제 `p`·`h4`·`li`·`.chk-*`·`.cmp-c` 단위로 센다(`dedupScope`). 실측: 최신 6장의
+     본문 링크 27·11·8·11·16 → 57·31·33·19·36개.
+  또 `build_pages.py`의 glossary 병합이 **이미 있는 엔티티의 aliases를 합집합으로 패치**한다
+  (예전엔 새 키만 추가했다). 사명 변경 같은 별칭 보정을 `items.json`을 건드리지 않고
+  `glossary.json`만으로 할 수 있다 — items.json은 발행 루틴 전용이라 이게 유일한 안전한 길이다.
+  등록 누락 판정은 `scripts/check_term_coverage.py`가 하며 이제 `[용어]`와 `[이름]`
+  (직함이 붙은 사람 · 조직 접미사가 붙은 기관·회사 · 줄머리 주어) 두 갈래를 본다.
+  상시 제외는 루트 `term_stopwords.json`(레지스트리, 발행 루틴은 안 건드린다).
+  경위: 프로젝트 `claude/status-2026-08-04-term-index-coverage-rediagnosis.md`.
+
 - **★ 카드 커버는 "의미 있는 실제 이미지"만 (v83, 2026-07-21, june 지시).** 무의미한
   그라디언트 라벨 그래픽 금지. 정책: (1) 카드의 주체 회사가 있으면 그 회사 로고
   (`logoUrl` = google favicon sz=128; clearbit은 죽음), (2) 없으면 큐레이션 목록

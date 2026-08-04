@@ -2,6 +2,174 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (index coverage: matcher rules + name checking + per-paragraph relinking)
+
+june: "최근 올라온 글들을 보면 전문용어나 인물명 기업명 등등 대부분 색인이 하나도 안 되어
+있는데 왜 그런거야?" then "5개 모두 고쳐야돼 / 같은 용어는 카드당 한번만 링크되는 것도
+고쳐줘 / 예약 발행할 때부터 근본적으로 색인된 상태로 발행될 수 있도록 해야해."
+
+### Diagnosis first: the engine was fine
+Playwright against a local copy: **rendered `.has-tip` count equals the item's `ents` count,
+card for card**. Nothing was broken in `linkifyEntities`. Everything missing was simply never
+registered, and the gate that was supposed to catch that (`[5-B]`) only looked at glossary
+terms. `schiff-strategy-btc-sale-strc-buyback` shipped with its three subjects (스트래티지,
+마이클 세일러, 비트코인) all unindexed and still passed with exit 0.
+
+### Changed
+- `index.html` — three matcher changes, all mirrored in the Python builders:
+  1. `entityAliasList()` folds the **entity key** in as a name (trailing parenthetical
+     stripped, `_`-bearing synthetic keys skipped). `STRATEGY` had aliases
+     `MicroStrategy / 마이크로스트래티지 / マイクロストラテジー` only, so the word the cards
+     print never matched.
+  2. `aliasIsCaseSensitive()` + a second regex `ENT_RE_CS`. All-caps Latin aliases now match
+     case-sensitively. The term `PER` was matching the English preposition **per** in 55 of
+     245 cards (`155 per dollar`); `NOR`/`nor`, `HYPE`/`hype`, `FORM`/`form` too.
+     `ALIAS2KEY` holds both maps (exact spelling for CS, lowercase otherwise) and
+     `aliasKey()` reads them. `itemEntities` and the `tally()` in the main-key ranking run
+     both regexes.
+  3. `dedupScope()` — the "link a term once" scope moved from the whole container to the
+     paragraph (`p`/`h4`/`li`/`.chk-*`/`.cmp-c`). A 450-word summary used to light up only in
+     its first line. Measured: 27/11/8/11/16 links → 57/31/33/19/36.
+     Cost: ~3ms per card unthrottled for all three passes (was two passes); the existing 8ms
+     drain slicing keeps it off the critical path.
+- `scripts/build_data.py` — `entity_alias_list()`, `alias_is_case_sensitive()`,
+  `alias_key()`, and `_TwoCaseMatcher` so `build_entity_matcher()` still returns one object
+  with `.finditer()`. **These two helpers are the single source of truth for all three matchers.**
+- `scripts/build_pages.py` — `build_matcher()` imports both helpers via `_build_data()` (with a
+  local fallback so a missing build_data degrades instead of crashing); the glossary merge now
+  also **unions aliases into entities that already exist**, so a rename can be fixed from
+  `glossary.json` alone. `items.json` is the publishing routine's file and must not be edited
+  by other sessions — this was the only safe path.
+- `scripts/check_term_coverage.py` — merged on top of Codex's `bb09526` (kept its URL/TLD
+  regex, unit tokens, media stopwords, and the `출하가` removal). Added the **`[이름]` pass**:
+  titles-suffixed people, org-suffixed institutions, and line-initial subjects of reporting
+  verbs, minus a Korean media list, country/region names and common nouns. Both `[용어]` and
+  `[이름]` block. Also reads `term_stopwords.json`.
+- `glossary.json` — merged with Codex's 16 new terms; added 15 of my own (국채·담보·레포·환율·
+  공동 개입·공시·비트코인·보통주·배당률·취득단가·시간외 거래·한국은행·MCKINSEY·마이클 세일러·
+  S&P GLOBAL) plus an alias patch for `STRATEGY` (스트래티지·ストラテジー·MSTR·Strategy Inc).
+  **Dropped `출하가`** after reading Codex's note — every live use is 출하 + the subject particle 가.
+- `term_stopwords.json` (new) — the permanent `--allow` registry the fix-queue kept asking for.
+  Bare `S&P` lives here: it is ambiguous between the index and the ratings agency, and both are
+  now indexed under their full names.
+- `CLAUDE.md` — the three matcher rules written down as one block, with the warning that the
+  three implementations must move together.
+- Project doc `claude/prompts/publish-v4.6-editorial.md` — new section **[Y] 색인**: names are
+  now a blocking check, alias rules (Korean transliteration required, renames add rather than
+  replace, all-caps acronyms are case-sensitive), register into `items.json` entities in the
+  same round, plus two `[H-3]` checklist lines and a `(k)` report extension.
+
+### Tests run
+- `build_pages.py` + `build_data.py` clean; 248 items, 552 entity pages, no hash-suffixed slugs
+  (the 담보 entry needed a Latin alias or its slug degenerated to `k-17b7e98d`).
+- `check_term_coverage.py --latest 40`: 5 candidates left, all genuine new tokens
+  (V8 · V9 · BiCS10 · Elec · trade), **zero `[이름]` false positives**.
+- `check_editorial.py --ids ...`: BLOCK 0.
+- Before/after matcher diff over 80 cards: ents/card 12.01 → 11.75 (code alone) → 12.18 (with
+  the new glossary). Everything the code dropped was a false positive: PER×18, FORMFACTOR×3
+  (English "form"), NOR×2 ("nor"), 하이퍼리퀴드×1 ("hype"). Gained ETF×3, 넥스트레이드×1 from
+  key folding.
+- Playwright desktop + iPhone 13, feed and detail overlay, no console errors.
+
+### Remaining risks / next
+- `items.json` is **not** part of this change set. `og-assets.yml` merges `glossary.json` into
+  it on the runner (Codex's `ff96217` added glossary.json to that workflow's trigger paths).
+  If that job does not run, the new terms exist in `glossary.json` but not yet in the app.
+- The three matchers are now coupled through `build_data.py`. Editing one without the others
+  will silently split app indexing from SEO-page indexing.
+- Short all-caps aliases that a card writes in mixed case will now miss. `FormFactor` is
+  already covered by its own mixed-case alias; watch for others as they show up.
+- `term_stopwords.json` is outside the publishing routine's commit whitelist by design —
+  interactive sessions own it.
+
+## 2026-08-04 Claude (person detail name -> that person's related posts)
+june: "인물 상세에서도 인물명을 누르면 인물 관련 글로 이동하게 해줘." (follow-up to the entity-rail
+change earlier the same day.)
+
+Changed: `index.html` only (`7f7184d`, +28/-1). No asset files, so no cache-hash bump.
+
+- `ceoTap()`'s `.ceo-detail` box renders its `<b>name</b>` as `<button class="ceo-detail-name">`
+  wired to `entityFeedView(key)` when the person resolves to an indexed entity.
+- New `ceoEntityKey(name)` does the resolving: `ENTITIES[name]` -> `ALIAS2KEY[ko name]` ->
+  `ALIAS2KEY[CEO_WIKI[name]]` (the English form). It reuses `ALIAS2KEY`, the lowercase alias
+  dictionary `buildEntityMatcher()` already fills - do not build a second alias table here, the
+  two would drift.
+- **It returns null unless the entity has at least one article.** Only about a third of the 26
+  `CEO_INFO` people exist in the index (verified against `data/core.json`: 젠슨 황, 최태원, 팀 쿡,
+  일론 머스크, 사티아 나델라, 마크 저커버그, 데미스 하사비스, 순다르 피차이 resolve; 이재용, 샘 올트먼,
+  곽노정, 웨이저자 and the rest do not). A search fallback was measured and rejected - a plain text
+  search for those names returns 0 or 1 items, so it would land the reader on an empty screen.
+  Those names stay a plain `<b>`, exactly as before.
+- CSS `.ceo-detail-name` only strips button chrome and restores `display:block` +
+  `font-weight:700` so it is visually identical to the `<b>` it replaces (measured: block,
+  700, 13px in both shells).
+
+Verified:
+- `node --check` on all 6 inline script blocks.
+- Local Playwright, ko, both shells (desktop `?v83beta` 1440x900, mobile `?v82beta` 390x820):
+  resolver returns the expected keys/nulls; NVIDIA entity view -> tap CEO -> `.ceo-detail`
+  renders a BUTTON; clicking it lands on `ENTITY_VIEW = "Jensen Huang (@JensenHuang)"` with the
+  "관련 글 보기" bar (desktop `.v83post-title`, mobile `#v82subbar .ti`) and 3 cards.
+- Deploy: same route as `43e911f` (sandbox push blocked -> GitHub `edit` page CodeMirror
+  dispatch). `deploy_guard` clean, base sha 327a2600… matched `git show origin/main:` before
+  dispatch, target sha 8a04b9fe… matched after, pushed blob identical to the local file.
+  Clobber guard success. `git diff --numstat 7666214 7f7184d` = 28/1, the single deletion being
+  the `ceo-detail-txt` line that was replaced.
+- Live stacksdaily.com after pages deploy: same flow end to end.
+
+Notes / next:
+- If a CEO should be clickable but is not, the fix is data, not code: give that person an entity
+  (or an alias on an existing one) and `ceoEntityKey` picks it up on the next build.
+- The `.ceo-link` in the facts row is unchanged - it still opens/closes the detail box. Only the
+  name *inside* the box navigates.
+
+## 2026-08-04 Claude (entity rail name -> related posts, "관련 글 보기" top bar)
+june: "우측 패널에서 이름을 누르면 해당 기업·인물·전문용어 등의 관련글 보기로 이동하게 해줘.
+그리고 관련 글 보기로 이동하면 지금 쏠린 곳 상단바처럼 뒤로가기 우측에는 관련 글 보기라고 써줘."
+
+Changed: `index.html` only (`43e911f`, +23/-1). No asset files, so no cache-hash bump.
+
+- `entityHeadEl(key, S, count, "rail")` now renders `.eh-name` as a `<button class="eh-name
+  eh-name-go">` wired to `entityFeedView(key)` - the same destination as the existing
+  "관련 글 N개 보기 →" link, so there is one funnel and no new state. `mode === "feed"` keeps the
+  plain `<div>`: that header *is* the related-posts screen, so it is not a target.
+- CSS `.entity-head .eh-name-go` only strips button chrome. It deliberately does not set
+  `font-size`/`font-weight` - `.entity-head .eh-name` (20px) and `.entity-head.in-rail
+  .eh-name` (17px) keep owning that, so the rail name looks byte-identical to before.
+- The shared back+title bar (the block that already draws "‹ 지금 쏠린 곳", "‹ 알림 설정" etc.)
+  now also detects `#feedList > .entity-head` and titles it 관련 글 보기 / Related posts /
+  関連記事. Label is built in that IIFE (`relLabel()`) rather than read from `STRINGS`, matching
+  `bmLabel()` - the bar can sync before `STRINGS` is reachable.
+- `hideOwnTitle()` additionally collapses `#feedList > .entity-head > .series-close`, because
+  the new bar already carries the back arrow. The entity name inside the profile card stays.
+- One `detect()` clause covers both shells: desktop draws `.v83post-head.v83navback`, mobile
+  fills `#v82subbar` and sets `nav.nav-sub` (which hides the 최신/팔로잉 switcher), same as every
+  other left-menu page.
+
+Verified:
+- `node --check` on all 6 inline script blocks.
+- Local Playwright, ko, both shells: desktop 1440x900 `?v83beta` - rail name is a BUTTON with
+  class `eh-name eh-name-go`, click lands on ENTITY_VIEW, bar title "관련 글 보기", bar is
+  `firstElementChild` of `#feedList`, in-card `.series-close` computed `display:none`, 56 cards.
+  Mobile 390x780 `?v82beta` - `#v82subbar .ti` = "관련 글 보기", `nav.nav-sub` true. `history.back()`
+  clears ENTITY_VIEW and removes the bar in both.
+- Deploy: sandbox push blocked (proxy MITM, "could not read Username") -> GitHub `edit` page
+  CodeMirror dispatch. `deploy_guard` clean beforehand; editor base sha256 compared against
+  `git show origin/main:index.html` (08ce7ba6…) before dispatch and target sha (327a2600…)
+  after - both matched, and the pushed blob hashes identical to the local file.
+  Clobber guard success. `git diff --numstat 619e240 43e911f` = 23/1, the single deletion being
+  the `.eh-name` line that was replaced.
+- Live stacksdaily.com after pages deploy: rail name is a button, click -> "‹ 관련 글 보기" bar
+  over the SK HYNIX profile + 57 cards, back returns to the feed.
+
+Notes / next:
+- Pressing back from the related-posts screen returns to the feed, not to the open rail panel.
+  That is the pre-existing behaviour of the rail's own `pushView()` snapshot and is identical
+  to what the "관련 글 N개 보기 →" button already did; not touched here.
+- `deploy_guard --verify` run without a prior recorded base falls back to a 24h window and
+  reported a stale ❌ for `97aedd6` (`.gradec h4` lines). Those lines were already absent in the
+  base `619e240`, so it is a false positive of the fallback, not a clobber.
+
 ## 2026-08-04 Claude (term-index sweep: 16 glossary terms, checker false-positive cuts)
 june: "최근 색인 안된 글들 많은데 색인 안된 글들 이번만 수동으로 갱신해줘. 그리고 이제부턴
 예약작업 자동발행 파이프라인에서 색인 체크하고 자동 발행하는거지?" (색인 = the in-app

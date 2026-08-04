@@ -4486,15 +4486,16 @@ function itemMainKeys(item){
   if (rest.length > 1){
     const tally = text => {
       const hits = {}, at = {};
-      if (ENT_RE){
-        ENT_RE.lastIndex = 0; let m;
-        while ((m = ENT_RE.exec(text))){
-          const k = ALIAS2KEY[m[0].toLowerCase()];
+      [ENT_RE, ENT_RE_CS].forEach(RE => {
+        if (!RE) return;
+        RE.lastIndex = 0; let m;
+        while ((m = RE.exec(text))){
+          const k = aliasKey(ALIAS2KEY, m[0]);
           if (!k) continue;
           hits[k] = (hits[k] || 0) + 1;
           if (at[k] === undefined) at[k] = m.index;
         }
-      }
+      });
       return { hits: hits, at: at };
     };
     const t = item.title || {}, lang = ["ko", "en", "ja"];
@@ -5491,19 +5492,51 @@ function goToItem(id){
    (entities[key].aliases). */
 let ENTITY_VIEW = null;
 let FEED_MINE = false;
-let ENT_RE = null;
+let ENT_RE = null, ENT_RE_CS = null;
 const ALIAS2KEY = {};
 function reEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+/* An entity's key is a name too. This used to read aliases only, so
+   "STRATEGY" - renamed from MicroStrategy, aliases never updated - never
+   matched the word the cards actually print, and the whole company went
+   unindexed. Fold the key in, minus a trailing parenthetical
+   ("케빈 워시 (Kevin Warsh)" -> "케빈 워시", "Jukan (@jukan05)" -> "Jukan").
+   Synthetic keys (SWF_KO, EV_TERM) carry an underscore and are skipped.
+   Mirrors entity_alias_list() in build_data.py / build_pages.py; keep the
+   three in sync. 2026-08-04. */
+function entityAliasList(key, ent){
+  const out = ((ent && ent.aliases) || []).filter(Boolean).slice();
+  if (key.indexOf("_") < 0){
+    const bare = key.replace(/\s*\([^)]*\)\s*$/, "").trim();
+    if (bare.length >= 2) out.push(bare);
+  }
+  return out;
+}
+/* An all-uppercase Latin alias is an acronym, and acronyms are written in
+   caps. Matching them case-insensitively is what made the term "PER" light
+   up on the English preposition "per" (155 per dollar) in 55 of 245 cards.
+   Everything else - mixed case, lowercase, any Hangul or kana - keeps the
+   old case-insensitive behaviour. 2026-08-04. */
+function aliasIsCaseSensitive(a){
+  return /^[A-Za-z0-9][A-Za-z0-9.&+/'-]*$/.test(a) && /[A-Za-z]/.test(a) && a === a.toUpperCase();
+}
+/* both maps live in ALIAS2KEY: case-sensitive aliases under their exact
+   spelling, everything else lowercased. */
+function aliasKey(A2K, hit){ return A2K[hit] || A2K[hit.toLowerCase()]; }
 function buildEntityMatcher(){
-  ENT_RE = null;
+  ENT_RE = ENT_RE_CS = null;
   for (const k in ALIAS2KEY) delete ALIAS2KEY[k];
-  const raw = [];
-  Object.keys(ENTITIES).forEach(key => (ENTITIES[key].aliases || []).forEach(a => {
+  const raw = [], rawCS = [];
+  Object.keys(ENTITIES).forEach(key => entityAliasList(key, ENTITIES[key]).forEach(a => {
     if (!a) return;
+    if (aliasIsCaseSensitive(a)){
+      if (!(a in ALIAS2KEY)){ ALIAS2KEY[a] = key; rawCS.push(a); }
+      return;
+    }
     const low = a.toLowerCase();
     if (!(low in ALIAS2KEY)){ ALIAS2KEY[low] = key; raw.push(a); }
   }));
   raw.sort((a, b) => b.length - a.length); /* longest alias wins */
+  rawCS.sort((a, b) => b.length - a.length);
   /* word boundaries only where they can actually match: \b works between
      \w and non-\w, so "SK하이닉스" must NOT get a trailing \b (하이닉스 is
      not \w) or the full name never matches and only "하이닉스" lights up.
@@ -5514,13 +5547,15 @@ function buildEntityMatcher(){
      ("애플" + "리케이션"). Mirrors build_entity_matcher() in
      scripts/build_data.py; keep both in sync. */
   const HANGUL_PARTICLES = ["은","는","이","가","을","를","의","에","와","과","도","만","로","께","이나","나"];
-  const pats = raw.map(a => {
+  const mk = a => {
     const head = /^[A-Za-z0-9]/.test(a) ? "\\b" : "(?<![가-힣])";
     const tail = /[A-Za-z0-9]$/.test(a) ? "\\b" :
       "(?=$|[^가-힣]|(?:" + HANGUL_PARTICLES.join("|") + ")(?![가-힣]))";
     return head + reEsc(a) + tail;
-  });
+  };
+  const pats = raw.map(mk), patsCS = rawCS.map(mk);
   if (pats.length) ENT_RE = new RegExp("(" + pats.join("|") + ")", "gi");
+  if (patsCS.length) ENT_RE_CS = new RegExp("(" + patsCS.join("|") + ")", "g");
 }
 function itemEntities(item){
   if (item._entset) return item._entset;
@@ -5532,12 +5567,15 @@ function itemEntities(item){
   if (item.cover && ENTITIES[item.cover.label]) set.add(item.cover.label);
   (item.tags || []).forEach(t => { if (ENTITIES[t]) set.add(t); });
   if (ENTITIES[item.source]) set.add(item.source);
-  if (ENT_RE){
+  if (ENT_RE || ENT_RE_CS){
     const text = [item.title.en, item.title.ko, item.title.ja,
       item.gist.en, item.gist.ko, item.gist.ja,
       item.why.en, item.why.ko, item.why.ja].join("  ");
-    ENT_RE.lastIndex = 0; let m;
-    while ((m = ENT_RE.exec(text))){ const key = ALIAS2KEY[m[0].toLowerCase()]; if (key) set.add(key); }
+    [ENT_RE, ENT_RE_CS].forEach(RE => {
+      if (!RE) return;
+      RE.lastIndex = 0; let m;
+      while ((m = RE.exec(text))){ const key = aliasKey(ALIAS2KEY, m[0]); if (key) set.add(key); }
+    });
   }
   item._entset = set;
   return set;
@@ -5551,10 +5589,24 @@ function makeEntSpan(text, key){
   span.innerHTML = esc(text) + entityTip(key);
   return span;
 }
+/* Dedup scope for repeat links. It used to be the whole container, so a term
+   that ran through a 450-word summary lit up in the first line and nowhere
+   after - the rest of the article read as unindexed. june 2026-08-04: link it
+   again in every new paragraph. gistRich emits <p class="gp">, <h4 class="gsub">
+   and the .chk/.cmp blocks, so a paragraph is a real element here; falling back
+   to the container keeps single-block containers (h3, .why p) at once each. */
+function dedupScope(node, container){
+  for (let p = node.parentNode; p && p !== container; p = p.parentNode){
+    if (p.nodeType === 1 && /^(P|H4|H5|LI|BLOCKQUOTE|TD|FIGCAPTION)$/.test(p.tagName)) return p;
+    if (p.nodeType === 1 && p.classList && (p.classList.contains("chk-n") || p.classList.contains("chk-s")
+      || p.classList.contains("chk-c") || p.classList.contains("cmp-c"))) return p;
+  }
+  return container;
+}
 function linkifyPass(card, RE, A2K, makeSpan){
   if (!RE) return;
   card.querySelectorAll("h3, .gist, .why p").forEach(container => {
-    const used = new Set(); /* link each match once per container, so headline and body both index the same term */
+    const usedBy = new Map(); /* one link per key per paragraph, not per card */
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
       acceptNode(n){
         for (let p = n.parentNode; p && p !== container; p = p.parentNode){
@@ -5566,10 +5618,13 @@ function linkifyPass(card, RE, A2K, makeSpan){
     });
     const nodes = []; let t; while ((t = walker.nextNode())) nodes.push(t);
     nodes.forEach(node => {
+      const scope = dedupScope(node, container);
+      let used = usedBy.get(scope);
+      if (!used){ used = new Set(); usedBy.set(scope, used); }
       const s = node.nodeValue; RE.lastIndex = 0;
       let m, last = 0, frag = null;
       while ((m = RE.exec(s))){
-        const key = A2K[m[0].toLowerCase()];
+        const key = aliasKey(A2K, m[0]);
         if (!key || used.has(key)) continue;
         used.add(key);
         if (!frag) frag = document.createDocumentFragment();
@@ -5585,6 +5640,7 @@ function linkifyEntitiesNow(card){
   /* entities (companies/people) first, then the plain-language glossary of
      uncommon terms. Glossary skips text already inside an entity link. */
   linkifyPass(card, ENT_RE, ALIAS2KEY, makeEntSpan);
+  linkifyPass(card, ENT_RE_CS, ALIAS2KEY, makeEntSpan);
   linkifyPass(card, GLOSS_RE, GALIAS2KEY, makeGlossSpan);
 }
 /* INP fix 2026-08-03: on a throttled phone the two linkify passes cost
