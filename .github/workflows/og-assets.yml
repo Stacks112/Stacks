@@ -13,6 +13,9 @@ on:
     paths:
       - "items.json"
       - "index.html"
+      # 2026-08-04: 큐레이션 용어집. build_pages가 이걸 items.json entities로 병합하므로
+      # 여기 없으면 새 용어가 6시간 크론이 돌 때까지 앱에 안 나타난다(실제로 그랬다).
+      - "glossary.json"
       - "scripts/build_pages.py"
       - "scripts/build_data.py"
       - "scripts/fetch_og_assets.py"
