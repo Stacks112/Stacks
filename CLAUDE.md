@@ -548,6 +548,13 @@ python3 scripts/deploy_guard.py --verify index.html sw.js
 - macroalf(EN, rss.app 브리지) — Macro Compass. ⚠️ 순정 *.substack.com은 GH Actions IP를 403으로 막음 → 반드시 rss.app 브리지. 발행 드묾. (〃)
 - bilello(EN, bilello.blog 무료) — Week in Charts, 주간. (〃)
 - kobeissi(EN, rss.app X @KobeissiLetter) — 시황 해석. 발행량 많음 → 실행당 최대 2건. (〃)
+- **schiff(EN, rss.app X @PeterSchiff) — 로스터의 첫 상시 약세 소스 (2026-08-04 추가).**
+  달러·주식·BTC 약세 / 금 강세. 하루 5건 안팎이라 48시간 창을 통과하고, **숫자와 시한이 붙은
+  주장(금 $11,400·달러지수 70)을 해서 채점표를 실제로 채운다** — 넣은 이유의 절반이 이것이다.
+  ⚠️ **이해관계 공시 필수**: 금괴 딜러 SchiffGold와 자산운용사를 운영한다. 금·달러 카드에는
+  그 사실을 본문에 밝히고 반대 논거를 `@@REF@@`/`@@CMP@@`로 붙인다. 브리지에 자기 회사
+  계정(`schiffgold`) 5건이 섞여 있는데 `x_handle`이 자동으로 걷어낸다. 나머지 거를 것(실측
+  25건 기준): 정치 논평 3, 팟캐스트 홍보 4, 오타만 다른 중복 1쌍. 상세 규칙은 `sources.json`.
 - camillo(EN, rss.app X @ChrisCamillo) — 소셜 차익거래 트레이더(Dumb Money/TickerTags 창업자). 잡담·라이브스트림 홍보 다수 → 명백한 종목·시장 콜일 때만. (2026-07-23 추가)
 - pichai(EN, rss.app X @sundarpichai, category ceo) — 구글·알파벳 CEO. RT 다수 섞임 → 본인 발언 중 실적·제품·AI 전략 관련만. (〃)
 - jensen(EN, rss.app X @JensenHuang, category ceo) — 엔비디아 CEO. 계정 자체가 2026-07-24 개설(첫 글부터 추적). ⚠️ rss.app 피드에 사칭 계정(@JensenHuang__ 등) 옛 스팸 섞임 → **link가 정확히 x.com/JensenHuang/ 인 항목만 카드화한다. 이 핸들 검증이 이제 유일한 방어다.** (2026-07-24 추가)
