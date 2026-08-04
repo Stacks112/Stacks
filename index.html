@@ -2756,11 +2756,18 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .why-lab ul.sum3 li:last-child{margin-bottom:0;}
 .why-lab ul.sum3 li::before{content:"·";position:absolute;left:3px;top:-.02em;color:var(--muted);font-weight:700;}
 /* 채점 카드 / 출처 목록 — 정적 p/*.html 과 같은 구조를 앱 카드에도 */
+.gradec-fold,.srcs-fold{margin-top:14px;}
+.gradec-fold>summary,.srcs-fold>summary{display:flex;align-items:center;gap:8px;cursor:pointer;list-style:none;
+  font-size:12.5px;font-weight:800;letter-spacing:.02em;color:var(--muted,#8E93A0);padding:2px 0;}
+.gradec-fold>summary::-webkit-details-marker,.srcs-fold>summary::-webkit-details-marker{display:none;}
+.gradec-fold .fold-arrow,.srcs-fold .fold-arrow{margin-left:auto;transition:transform .15s;font-weight:400;}
+.gradec-fold[open] .fold-arrow,.srcs-fold[open] .fold-arrow{transform:rotate(45deg);}
+.gf-badge{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207;}
+.gradec-fold.gc-hit .gf-badge{background:rgba(14,159,94,.14);color:#1C7A42;}
+.gradec-fold.gc-miss .gf-badge{background:rgba(224,68,56,.14);color:#B02525;}
+.gradec-fold>.gradec{margin-top:8px;}
+.srcs-fold>.srcs-list{margin-top:8px;}
 .gradec{margin:14px 0 0;border:1px solid var(--line,#ECEDF1);border-radius:12px;overflow:hidden;background:var(--card,#F6F7F9);}
-.gradec h4{display:flex;align-items:center;gap:9px;margin:0;padding:10px 13px;font-size:12.5px;font-weight:800;letter-spacing:.02em;border-bottom:1px solid var(--line,#ECEDF1);}
-.gradec h4 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207;}
-.gradec.gc-hit h4 i{background:rgba(14,159,94,.14);color:#1C7A42;}
-.gradec.gc-miss h4 i{background:rgba(224,68,56,.14);color:#B02525;}
 .gc-r{display:flex;gap:12px;padding:7px 13px;border-bottom:1px solid var(--line,#ECEDF1);font-size:13.5px;line-height:1.6;}
 .gc-r:last-child{border-bottom:0;}
 .gc-r .k{flex:0 0 60px;font-size:12px;font-weight:700;color:var(--muted,#8E93A0);padding-top:2px;}
@@ -2768,7 +2775,6 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .gc-r .v .gc-hit{color:#1C7A42;font-weight:700;}
 .gc-r .v .gc-miss{color:#B02525;font-weight:700;}
 .srcs-list{margin:14px 0 0;border:1px solid var(--line,#ECEDF1);border-radius:12px;padding:12px 14px;}
-.srcs-list h4{margin:0 0 9px;font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--muted,#8E93A0);}
 .srcs-list ol{margin:0;padding-left:17px;}
 .srcs-list li{font-size:13px;line-height:1.7;margin-bottom:4px;color:var(--muted,#5B6070);}
 .srcs-list li b{color:var(--fg,#17181C);font-weight:700;}
@@ -3248,7 +3254,7 @@ footer a{color:var(--muted);}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </noscript>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=c2194fb8">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=229bcef9">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
@@ -4591,8 +4597,11 @@ function gradeCardHtml(item, S){
   if (!rows) return "";
   var badge = { hit: S.ocHit, miss: S.ocMiss, pending: S.ocPending }[st] || "";
   var title = st === "pending" ? S.gcTitle : (S.ocLabel || S.gcTitle);
-  return '<section class="gradec gc-' + esc(st) + '"><h4>' + esc(title)
-       + (badge ? '<i>' + esc(badge) + '</i>' : "") + '</h4>' + rows + '</section>';
+  return '<details class="gradec-fold gc-' + esc(st) + '"><summary>'
+       + '<span class="fold-label">' + esc(title) + '</span>'
+       + (badge ? '<i class="gf-badge">' + esc(badge) + '</i>' : "")
+       + '<span class="fold-arrow">+</span></summary>'
+       + '<div class="gradec">' + rows + '</div></details>';
 }
 
 function srcsListHtml(item, S){
@@ -4607,8 +4616,11 @@ function srcsListHtml(item, S){
   }).filter(Boolean).join("");
   if (!lis) return "";
   var asof = langText(item.sourcesAsOf, LANG);
-  return '<section class="srcs-list"><h4>' + esc(S.srcsLabel) + '</h4><ol>' + lis + '</ol>'
-       + (asof ? '<p class="srcs-asof">' + esc(asof) + '</p>' : "") + '</section>';
+  return '<details class="srcs-fold"><summary>'
+       + '<span class="fold-label">' + esc(S.srcsLabel) + '</span>'
+       + '<span class="fold-arrow">+</span></summary>'
+       + '<div class="srcs-list"><ol>' + lis + '</ol>'
+       + (asof ? '<p class="srcs-asof">' + esc(asof) + '</p>' : "") + '</div></details>';
 }
 
 function outcomeTally(items){
@@ -11017,7 +11029,7 @@ bootData();
 <!-- ============ v82: Twitter-style mobile shell ============ -->
 <script src="assets/v82.js?v=cbde1050"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
-<script src="assets/v83tw.js?v=71011512"></script>
+<script src="assets/v83tw.js?v=e348e52c"></script>
 
 <!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
 <script src="assets/twc.js?v=3ca67014"></script>
@@ -11248,6 +11260,8 @@ bootData();
   html.v83 #feedList .card.card-lab.v83clip .gist{ max-height:130px; }   /* lab: X처럼 임베드 밑 본문은 몇 줄만 */
   html.v83 #feedList .card.gclip.card-lab .gist{ min-height:0; }   /* 자리 예약(215px)이 짧은 클립을 이기지 않게 */
   html.v83 #feedList .card.card-lab .card-body > .why{ order:22; }   /* lab: 요약+의미 박스, 본문 바로 아래 */
+  html.v83 #feedList .card-body > .gradec-fold,
+  html.v83 #feedList .card-body > .srcs-fold{ order:23; }   /* 채점 예정·출처는 세 줄 요약 바로 아래 */
   html.v83 #feedList .card.card-lab .card-body > .chips-lab{ display:flex; flex-wrap:wrap; gap:6px; order:24; margin:8px 0 2px; }
   html.v83 #feedList .card.card-lab .card-top .chips{ display:none; }   /* 칩은 본문 사본으로 이동 */
   html.v83 #feedList .card.card-lab .card-body > .related{ order:82; }   /* lab: 함께 읽기, 댓글 아래 */
