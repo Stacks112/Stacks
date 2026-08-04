@@ -2,6 +2,47 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (mobile drawer: avatar and type down to X's scale)
+
+june, with two screenshots (ours + X's side drawer): "좌측패널 프로필 아이콘이랑 글씨크기도
+트위터처럼 작게 부탁해"
+
+Changed: `index.html` only (`6b82763`, +21/-0). **CSS only, no JS.** No asset files, so no
+cache-hash bump.
+
+- **Measured both at the same 393px viewport before touching anything.** X: avatar ~38,
+  account name ~17, menu label ~17/700, icon ~23, row pitch ~53. Ours: 44, 21/850, 18/760, 25,
+  pitch 52. So the **spacing was already right** - what read as heavy was the circle, the type
+  size and the weight. Row pitch is left alone.
+- New values: logo 38 (mark 23), `.v82dw-name` 17.5/800, `.v82dw-item` 16.5/700 with 23px icons,
+  secondary rows 14/640 with 21px icons.
+- All of it sits in `index.html`'s own `@media (max-width:1023px)`, scoped with `#v82drawer`
+  (1,1,0) so it outranks v82.css's `.v82dw-*` (0,1,0) whatever the stylesheet order. Editing
+  v82.css instead would drag the `?v=` cache hash in index.html along with it - two files, two
+  commits, for pure CSS.
+- ⚠ **The new `#v82drawer .v82dw-item` (1,1,0) also outranks v82.css's
+  `.v82dw-secondary .v82dw-item` (0,2,0)**, so the secondary rows inherited the primary
+  `min-height`/`gap` and grew from 46 to 48. Both are restored explicitly in the secondary rule.
+  Same trap applies to the `@media (max-width:360px)` tweak in v82.css, so that one is repeated
+  under `#v82drawer` at the same width.
+
+Verified:
+- Local Playwright 393x852 (`isMobile`, DPR 3), drawer opened: logo 38x38, mark 23, name 17.5/800,
+  item 16.5/700 h48, icon 23, secondary 14/640 h44, pitch 50. Light-theme screenshot compared
+  against june's X reference.
+- Live stacksdaily.com through a 393px same-origin iframe: identical numbers, drawer opens and
+  renders correctly.
+- Actions: Clobber guard ✅ · Email render guard ✅ · pages build ✅.
+
+Notes / next:
+- **`deploy_guard --verify` cried wolf on this one and it was right to be ignored.** 25 remote
+  commits landed mid-work, one of them `ecac604` "revert(index): 피드 접힘 손댄 것 전부 되돌린다",
+  which removed lines that `29e7f1d`/`656f6ed`/`a49879e` had added earlier the same day. Verify
+  compares against every commit since the recorded base, so it reported those lines as missing.
+  The two manual checks from WORK-LOCK settled it: `git diff --numstat origin/main` was 21/0 and
+  `git diff origin/main | grep '^-'` was empty. **When a revert lands inside the verify window,
+  expect this and fall back to the deletion count.**
+
 ## 2026-08-04 Claude (mobile header profile button: 44px circle -> 32px, tap area kept)
 
 june, comparing against an X screenshot: "상단바 맨좌측의 동그란 스택스 프로필 아이콘은 좌측 패널
