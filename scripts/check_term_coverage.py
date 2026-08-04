@@ -193,7 +193,8 @@ def load_registry_stopwords(path):
                 out.add(str(w))
     return out
 
-MARKER_PREFIXES = ("@@IMG@@", "@@REF@@", "@@CHK@@", "@@CMP@@")
+MARKER_PREFIXES = ("@@IMG@@", "@@REF@@", "@@CHK@@", "@@CMP@@",
+                   "@@BAR@@", "@@SHARE@@", "@@TIME@@", "@@FLOW@@")
 
 
 def build_alias_patterns(*sources):

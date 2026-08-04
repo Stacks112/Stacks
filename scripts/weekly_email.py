@@ -552,8 +552,135 @@ def _blk_cmp(line):
             % (box(c[0], c[1]), _GREY, box(c[2], c[3])))
 
 
+# ── 데이터 블록 (2026-08-04, 발행 규칙 v4.7) ──────────────────────────
+# 그래픽 어휘가 표와 VS 둘뿐이라 모든 카드가 같은 모양으로 읽히던 것을 넓힌
+# 것이다. 앱·정적 페이지와 같은 뜻으로 그리되, 이메일이라 flex/grid를 쓸 수
+# 없어 표와 인라인 CSS로만 짠다. 화살표는 가로로 놓으면 아웃룩에서 깨지므로
+# 세로로 흐르게 한다 — 단계 순서는 그대로다.
+_TRACK = "#EEF0F4"
+_SERIES = ("#2563EB", "#F59E0B", "#0D9488", "#7C3AED")
+
+
+def _dnum(s):
+    try:
+        return float(re.sub(r"[^0-9.\-]", "", str(s or "")) or "x")
+    except ValueError:
+        return None
+
+
+def _dcells(s, n):
+    p = [x.strip() for x in str(s or "").split("|")]
+    return [tuple(p[i:i + n]) for i in range(0, len(p) - n + 1, n)]
+
+
+def _dtail(parts):
+    note = ('<div style="font-size:12.5px;color:#3B3F46;line-height:1.6;margin:10px 0 0;">%s</div>'
+            % _esc(parts[1])) if len(parts) > 1 and parts[1] else ""
+    src = ('<div style="font-size:11px;color:%s;line-height:1.5;margin:6px 0 0;">%s</div>'
+           % (_GREY, _esc(parts[2]))) if len(parts) > 2 and parts[2] else ""
+    return note + src
+
+
+def _blk_bar(line):
+    """@@BAR@@라벨|표시값|숫자 …@@각주@@출처 -> 길이로 크기를 보여주는 막대."""
+    parts = line[7:].split("@@")
+    rows = _dcells(parts[0], 3)
+    if not rows:
+        return ""
+    vals = [_dnum(v) for _, _, v in rows]
+    top = max([v for v in vals if v is not None] or [0])
+    bars = []
+    for (lab, disp, _), v in zip(rows, vals):
+        w = max((v / top * 100) if (top and v is not None) else 0, 0.5)
+        bars.append(
+            '<div style="margin:0 0 13px;">'
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0"><tr>'
+            '<td style="font-size:12.5px;line-height:1.45;color:%s;">%s</td>'
+            '<td align="right" style="font-size:15px;font-weight:800;color:#111318;'
+            'white-space:nowrap;padding-left:12px;">%s</td></tr></table>'
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+            'style="margin:6px 0 0;background:%s;border-radius:5px;"><tr>'
+            '<td width="%.4g%%" style="width:%.4g%%;"><div style="height:10px;background:%s;'
+            'border-radius:5px;font-size:0;line-height:0;">&nbsp;</div></td>'
+            '<td style="font-size:0;line-height:0;">&nbsp;</td></tr></table></div>'
+            % (_GREY, _esc(lab), _esc(disp), _TRACK, w, w, _SERIES[0]))
+    badge, ok = "", [v for v in vals if v]
+    if len(rows) == 2 and len(ok) == 2 and min(ok) > 0:
+        r = max(ok) / min(ok)
+        if r >= 1.5:
+            badge = ('<div style="display:inline-block;padding:3px 9px;border-radius:999px;'
+                     'background:%s;font-size:12px;font-weight:800;color:%s;">&#215;%s</div>'
+                     % (_TRACK, _SERIES[0], ("%.1f" % r).rstrip("0").rstrip(".")))
+    return '<div style="margin:16px 0;">%s%s%s</div>' % ("".join(bars), badge, _dtail(parts))
+
+
+def _blk_share(line):
+    """@@SHARE@@라벨|표시값|숫자 …@@각주@@출처 -> 100% 한 줄 띠 + 범례."""
+    parts = line[9:].split("@@")
+    rows = _dcells(parts[0], 3)
+    if not rows:
+        return ""
+    vals = [(_dnum(v) or 0) for _, _, v in rows]
+    tot = sum(vals) or 1.0
+    segs = "".join(
+        '<td width="%.4g%%" style="width:%.4g%%;background:%s;%s"><div style="height:26px;'
+        'font-size:0;line-height:0;">&nbsp;</div></td>'
+        % (max(v / tot * 100, 0.8), max(v / tot * 100, 0.8), _SERIES[i % 4],
+           "" if i == len(vals) - 1 else "border-right:2px solid #ffffff;")
+        for i, v in enumerate(vals))
+    leg = "".join(
+        '<span style="display:inline-block;margin:0 16px 6px 0;font-size:12.5px;color:%s;">'
+        '<span style="display:inline-block;width:9px;height:9px;border-radius:2px;'
+        'background:%s;margin-right:6px;">&nbsp;</span>%s <b style="color:#111318;">%s</b></span>'
+        % (_GREY, _SERIES[i % 4], _esc(r[0]), _esc(r[1])) for i, r in enumerate(rows))
+    return ('<div style="margin:16px 0;">'
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+            'style="border-radius:6px;overflow:hidden;"><tr>%s</tr></table>'
+            '<div style="margin:11px 0 0;">%s</div>%s</div>' % (segs, leg, _dtail(parts)))
+
+
+def _blk_time(line):
+    """@@TIME@@날짜|사건 …@@각주@@출처 -> 세로 연표. 날짜 앞 '>'는 아직 안 온 일."""
+    parts = line[8:].split("@@")
+    rows = _dcells(parts[0], 2)
+    if not rows:
+        return ""
+    trs = "".join(
+        '<tr><td valign="top" style="font-size:11.5px;font-weight:800;color:#5B6070;'
+        'padding:0 10px 13px 0;white-space:nowrap;">%s%s</td>'
+        '<td valign="top" style="font-size:13px;line-height:1.6;color:#111318;'
+        'border-left:2px solid %s;padding:0 0 13px 13px;">%s</td></tr>'
+        % ("" if not w.startswith(">") else "· ", _esc(w.lstrip(">").strip()),
+           _LINE, _esc(what))
+        for w, what in rows)
+    return ('<div style="margin:16px 0;">'
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">'
+            '%s</table>%s</div>' % (trs, _dtail(parts)))
+
+
+def _blk_flow(line):
+    """@@FLOW@@단계|설명 …@@각주 -> 위에서 아래로 흐르는 경로."""
+    parts = line[8:].split("@@")
+    rows = _dcells(parts[0], 2)
+    if not rows:
+        return ""
+    steps = []
+    for i, (t, d) in enumerate(rows):
+        if i:
+            steps.append('<div style="font-size:14px;color:%s;padding:5px 0 5px 16px;">&#8595;</div>' % _GREY)
+        steps.append(
+            '<div style="padding:11px 13px;border:1px solid %s;border-radius:11px;background:%s;">'
+            '<div style="font-size:13.5px;font-weight:800;color:#111318;line-height:1.45;">%s</div>%s</div>'
+            % (_LINE, _SOFT, _esc(t),
+               ('<div style="font-size:12.5px;line-height:1.55;color:%s;margin:4px 0 0;">%s</div>'
+                % (_GREY, _esc(d))) if d else ""))
+    return '<div style="margin:16px 0;">%s%s</div>' % ("".join(steps), _dtail(parts))
+
+
 _BLOCKS = (("@@REF@@", _blk_ref), ("@@IMG@@", _blk_img),
-           ("@@CHK@@", _blk_chk), ("@@CMP@@", _blk_cmp))
+           ("@@CHK@@", _blk_chk), ("@@CMP@@", _blk_cmp),
+           ("@@BAR@@", _blk_bar), ("@@SHARE@@", _blk_share),
+           ("@@TIME@@", _blk_time), ("@@FLOW@@", _blk_flow))
 
 
 def gist_html(text, lang, ctx, url, used):

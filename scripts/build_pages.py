@@ -78,7 +78,8 @@ def dispname(x):
 # Emitted per page only when the body actually contains one of these blocks.
 # Article pages inline their CSS, so an unconditional 1.3 KB would land in all
 # 462 of them for the handful of cards that use a check or compare panel.
-BLOCK_CSS = """.gist+.gist{margin-top:1em}
+BLOCK_CSS = """:root{--s1:#2563EB;--s2:#F59E0B;--s3:#0D9488;--s4:#7C3AED;--track:#EEF0F4;--ring:#fff}
+.gist+.gist{margin-top:1em}
 h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
 .srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
 .srcq blockquote{margin:0;quotes:none}
@@ -109,12 +110,51 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
 .gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
 .gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+.dbk{margin:18px 0}
+.dbk-n{margin:11px 0 0;font-size:14.5px;line-height:1.6}
+.dbk-s{margin:6px 0 0;font-size:12px;color:#8E93A0;line-height:1.5}
+.bar-r{margin:0 0 13px}
+.bar-r:last-of-type{margin-bottom:0}
+.bar-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 6px}
+.bar-h i{font-style:normal;font-size:12.5px;line-height:1.45;color:#5B6070}
+.bar-h b{font-size:15.5px;white-space:nowrap}
+.bar-t{height:10px;border-radius:5px;background:var(--track)}
+.bar-f{height:100%;border-radius:5px;background:var(--s1);min-width:3px}
+.bar-x{display:inline-block;margin:2px 0 0;padding:3px 9px;border-radius:999px;background:var(--track);font-size:12.5px;font-weight:800;color:var(--s1)}
+.shr-t{display:flex;height:26px;gap:2px;margin:2px 0 0}
+.shr-g{height:100%;min-width:3px}
+.shr-g:first-child{border-radius:6px 0 0 6px}
+.shr-g:last-child{border-radius:0 6px 6px 0}
+.shr-l{display:flex;flex-wrap:wrap;gap:7px 18px;margin:11px 0 0}
+.shr-i{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6070}
+.shr-d{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.shr-i b{color:#111318;font-weight:700}
+.tml{margin:0;padding:2px 0 0 22px;list-style:none;position:relative}
+.tml:before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:2px;background:#E7E9EE}
+.tml li{position:relative;margin:0 0 15px}
+.tml li:last-child{margin-bottom:0}
+.tml li:before{content:"";position:absolute;left:-22px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--s1);box-shadow:0 0 0 3px var(--ring)}
+.tml li.fut:before{background:var(--ring);border:2px dashed #9AA1AE;box-shadow:none}
+.tml i{display:block;font-style:normal;font-size:12px;font-weight:800;color:#5B6070;margin:0 0 3px}
+.tml p{margin:0;font-size:14.5px;line-height:1.6}
+.flw{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:0}
+.flw-s{flex:1 1 155px;min-width:0;padding:11px 13px;border:1px solid #E7E9EE;border-radius:11px;background:#FAFBFC}
+.flw-s b{display:block;font-size:13.5px;line-height:1.45;margin:0 0 4px}
+.flw-s span{display:block;font-size:12.5px;line-height:1.55;color:#5B6070}
+.flw-a{flex:0 0 auto;align-self:center;color:#9AA1AE;font-size:15px;font-weight:800}
+@media(max-width:520px){.flw{display:block}.flw-s{margin:0}.flw-a{display:block;margin:5px 0 5px 18px;transform:rotate(90deg);width:1em}}
 @media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
-  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}}"""
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}
+  :root{--s1:#3B82F6;--s2:#BC8404;--s3:#0FA391;--s4:#8257F0;--track:#26272E;--ring:#141519}
+  .bar-x{color:#7FB0FA}
+  .bar-h i,.shr-i,.tml i,.flw-s span{color:#9AA1AE}
+  .shr-i b{color:#E8EAEE}
+  .tml:before{background:#2E3038}
+  .flw-s{background:#1A1B21;border-color:#26272E}}"""
 
 
 def block_css_for(body):
-    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"', 'class="gcard')):
+    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"', 'class="gcard', 'class="dbk')):
         return ""
     return BLOCK_CSS
 
@@ -191,8 +231,108 @@ SUM3_CSS = """.sum3,.splitb{margin:20px 0 0;padding:13px 15px;border-radius:12px
 .sum3 li:before{color:inherit;left:2px}"""
 
 
+# ── 데이터 블록 (2026-08-04, 발행 규칙 v4.7) ──────────────────────────
+# 그래픽 어휘가 표(@@CHK@@)와 VS(@@CMP@@) 둘뿐이라 모든 카드가 같은 모양으로
+# 읽히던 것을 넓힌 것이다. 형태는 "독자가 어디서 막히는가"가 고른다:
+#   @@BAR@@   이 숫자가 큰 건가 작은 건가   라벨|표시값|숫자 …@@각주@@출처
+#   @@SHARE@@ 무엇이 얼마를 차지하나       라벨|표시값|숫자 …@@각주@@출처
+#   @@TIME@@  언제 무슨 일이 있었나         날짜|사건 …@@각주@@출처  (날짜 앞 > = 예정)
+#   @@FLOW@@  무엇이 어디로 가나            단계|설명 …@@각주
+# 렌더러가 세 곳(앱 index.html · 이 파일 · scripts/weekly_email.py)이다.
+# 하나를 고치면 나머지 둘도 같이 본다 — check_email_render.py 가 셋의 마커
+# 목록이 갈라지는 것을 막고 있다.
+
+# 색각 이상·명암 검증을 통과한 순서다(dataviz 팔레트 검사기, 명도대 L 0.43~0.77,
+# 인접쌍 CVD ΔE 최소 16.6). 순서를 섞거나 5번째 색을 만들어 쓰지 않는다.
+SERIES = ("var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)")
+
+
+def _dnum(s):
+    """표시값과 별개로 막대 길이에 쓸 숫자. 쉼표·단위는 버린다."""
+    try:
+        return float(re.sub(r"[^0-9.\-]", "", str(s or "")) or "x")
+    except ValueError:
+        return None
+
+
+def _dcells(s, n):
+    """'a|b|c|a|b|c' -> [(a,b,c), …]. 모자란 꼬리 조각은 버린다."""
+    p = [x.strip() for x in str(s or "").split("|")]
+    return [tuple(p[i:i + n]) for i in range(0, len(p) - n + 1, n)]
+
+
+def _dtail(parts):
+    note = ('<p class="dbk-n">%s</p>' % E(parts[1])) if len(parts) > 1 and parts[1] else ""
+    src = ('<p class="dbk-s">%s</p>' % E(parts[2])) if len(parts) > 2 and parts[2] else ""
+    return note + src
+
+
+def _blk_bar(payload):
+    parts = payload.split("@@")
+    rows = _dcells(parts[0], 3)
+    if not rows:
+        return ""
+    vals = [_dnum(v) for _, _, v in rows]
+    top = max([v for v in vals if v is not None] or [0])
+    body = "".join(
+        '<div class="bar-r"><div class="bar-h"><i>%s</i><b>%s</b></div>'
+        '<div class="bar-t"><div class="bar-f" style="width:%.4g%%"></div></div></div>'
+        % (E(lab), E(disp), max((v / top * 100) if (top and v is not None) else 0, 0.4))
+        for (lab, disp, _), v in zip(rows, vals))
+    # 두 값을 재는 블록에서 배수는 독자가 암산할 것이 아니라 우리가 보여줄 것이다.
+    badge, ok = "", [v for v in vals if v]
+    if len(rows) == 2 and len(ok) == 2 and min(ok) > 0:
+        r = max(ok) / min(ok)
+        if r >= 1.5:
+            badge = '<div class="bar-x">&#215;%s</div>' % ("%.1f" % r).rstrip("0").rstrip(".")
+    return '<div class="dbk">%s%s%s</div>' % (body, badge, _dtail(parts))
+
+
+def _blk_share(payload):
+    parts = payload.split("@@")
+    rows = _dcells(parts[0], 3)
+    if not rows:
+        return ""
+    vals = [(_dnum(v) or 0) for _, _, v in rows]
+    tot = sum(vals) or 1.0
+    segs = "".join('<span class="shr-g" style="width:%.4g%%;background:%s"></span>'
+                   % (max(v / tot * 100, 0.8), SERIES[i % len(SERIES)])
+                   for i, v in enumerate(vals))
+    # 조각 안에 글자를 넣지 않는다 — 값과 이름은 아래 범례가 본문 색으로 진다.
+    leg = "".join('<span class="shr-i"><span class="shr-d" style="background:%s"></span>%s <b>%s</b></span>'
+                  % (SERIES[i % len(SERIES)], E(r[0]), E(r[1])) for i, r in enumerate(rows))
+    return ('<div class="dbk"><div class="shr-t">%s</div><div class="shr-l">%s</div>%s</div>'
+            % (segs, leg, _dtail(parts)))
+
+
+def _blk_time(payload):
+    parts = payload.split("@@")
+    rows = _dcells(parts[0], 2)
+    if not rows:
+        return ""
+    lis = "".join('<li%s><i>%s</i><p>%s</p></li>'
+                  % (' class="fut"' if w.startswith(">") else "",
+                     E(w.lstrip(">").strip()), E(what))
+                  for w, what in rows)
+    return '<div class="dbk"><ul class="tml">%s</ul>%s</div>' % (lis, _dtail(parts))
+
+
+def _blk_flow(payload):
+    parts = payload.split("@@")
+    rows = _dcells(parts[0], 2)
+    if not rows:
+        return ""
+    steps = []
+    for i, (t, d) in enumerate(rows):
+        if i:
+            steps.append('<div class="flw-a">&#8594;</div>')
+        steps.append('<div class="flw-s"><b>%s</b>%s</div>'
+                     % (E(t), ('<span>%s</span>' % E(d)) if d else ""))
+    return '<div class="dbk"><div class="flw">%s</div>%s</div>' % ("".join(steps), _dtail(parts))
+
+
 def gist_blocks(gist):
-    """Marked-up gist -> page HTML. Same three markers as the app."""
+    """Marked-up gist -> page HTML. Same markers as the app."""
     html, buf = [], []
 
     def flush():
@@ -229,6 +369,18 @@ def gist_blocks(gist):
                 '<div class="cmp-c cmp-b"><i>%s</i><p>%s</p></div></div>'
                 % (E(c[0]), E(c[1]), E(c[2]), E(c[3]))
             )
+        elif line.startswith("@@BAR@@"):
+            flush()
+            html.append(_blk_bar(line[7:]))
+        elif line.startswith("@@SHARE@@"):
+            flush()
+            html.append(_blk_share(line[9:]))
+        elif line.startswith("@@TIME@@"):
+            flush()
+            html.append(_blk_time(line[8:]))
+        elif line.startswith("@@FLOW@@"):
+            flush()
+            html.append(_blk_flow(line[8:]))
         elif line.startswith("@@REF@@"):
             flush()
             r = (line[7:].split("|") + ["", "", ""])[:3]

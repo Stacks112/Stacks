@@ -645,7 +645,7 @@ def pick_priors(items, entities, alias2key, themes=None):
 # painted before the full text arrives, so it has to come out as plain prose:
 # a preview cut in the middle of "@@CHK@@10년물 금리|4.71%|..." would sit on the
 # card as visible garbage for the first few seconds of every visit.
-MARKER_RE = re.compile(r"^(?:##\s+|@@CHK@@.*|@@CMP@@.*)$", re.M)
+MARKER_RE = re.compile(r"^(?:##\s+|@@[A-Z]+@@.*)$", re.M)
 
 
 def strip_markers(text):

@@ -18,7 +18,9 @@ import sys, os, re, json, argparse
 from collections import Counter
 
 BLOCK, WARN = "BLOCK", "WARN"
-MARKER = re.compile(r"^@@(REF|IMG|CHK|CMP)@@")
+MARKER = re.compile(r"^@@(REF|IMG|CHK|CMP|BAR|SHARE|TIME|FLOW)@@")
+# 그래픽 어휘. REF·IMG는 출처·사진이라 여기 넣지 않는다 (v4.7).
+GRAPHIC = ("CHK", "CMP", "BAR", "SHARE", "TIME", "FLOW")
 
 # ── gist 파싱 ─────────────────────────────────────────────────────────
 def parse_gist(g):
@@ -38,6 +40,15 @@ def parse_gist(g):
         buf.append(ln)
     if buf: paras.append(" ".join(buf))
     return heads, paras
+
+def blocks_of(g):
+    """카드가 쓴 그래픽 블록의 종류별 개수."""
+    c = Counter()
+    for raw in (g or "").split("\n"):
+        m = MARKER.match(raw.strip())
+        if m and m.group(1) in GRAPHIC:
+            c[m.group(1)] += 1
+    return c
 
 def sentences(p):
     return [x for x in re.split(r"(?<=다)\s+|(?<=[.!?])\s+", p) if x.strip()]
@@ -116,6 +127,14 @@ def check_card(item, corpus_heads=None):
     if msgs:
         out.append((BLOCK, "9", " / ".join(msgs)))
 
+    # v4.7 (2026-08-04): 한 카드가 같은 형태를 두 번 쓰면 그 형태가 재료 때문에
+    # 골라진 것이지 독자가 막히는 지점 때문에 골라진 것이 아니다.
+    bl = blocks_of(gist)
+    dup = [k for k, c in bl.items() if c >= 2]
+    if dup:
+        out.append((WARN, "13", "같은 그래픽을 한 카드에서 여러 번 썼다: %s. 형태는 독자가 "
+                    "막히는 지점마다 다르게 고른다." % ", ".join("@@%s@@×%d" % (k, bl[k]) for k in dup)))
+
     # 새 필드(2026-08-04): 판별 조건은 본문이 아니라 채점 카드로, 출처는 글 끝 목록으로
     oc = item.get("outcome") or {}
     if oc.get("status") and not oc.get("card"):
@@ -146,6 +165,12 @@ def title_form(t):
 SHARE_CAP  = 0.40   # 한 틀이 이 비율을 넘으면 편중
 SHARE_CD   = 0.55   # C/D는 단정형·장면형 두 틀이 합쳐진 칸이라 따로 본다
 QMARK_CAP  = 0.45   # 물음표 제목 비율 (메르 원문 표본은 50%)
+
+# 그래픽 편중 상한 (v4.7, 2026-08-04 신설). 제목 틀과 같은 원리다 — 세지 않고
+# 고르면 반드시 손에 익은 것으로 돌아간다. 실측: 최근 20장에서 @@CHK@@ 80% ·
+# @@CMP@@ 50% · 둘 다 40%. 전체 평균은 24.6% · 31.5%였으니 최근에 쏠린 것이다.
+BLOCK_CAP  = {"CHK": 0.55, "CMP": 0.40}
+BLOCK_CAP_DEFAULT = 0.45
 MIN_N      = 8      # 표본이 이보다 적으면 비율을 보지 않는다
 
 def weekly(items, days=7):
@@ -173,10 +198,24 @@ def weekly(items, days=7):
     if qn / n >= QMARK_CAP:
         out.append((WARN, "W2", "최근 %d일 물음표 제목 %d/%d편(%.0f%%). 상한 %.0f%%."
                     % (days, qn, n, 100*qn/n, 100*QMARK_CAP)))
+    # 그래픽 편중 (v4.7)
+    bcount = Counter()
+    for i in recent:
+        for k in blocks_of(lang_text(i.get("gist"))):
+            bcount[k] += 1
+    for name, c in bcount.most_common():
+        cap = BLOCK_CAP.get(name, BLOCK_CAP_DEFAULT)
+        if c / n >= cap:
+            out.append((WARN, "W3", "최근 %d일 @@%s@@ %d/%d편(%.0f%%). 상한 %.0f%%. "
+                        "다음 회차는 다른 형태에서 고른다 — 규모는 @@BAR@@, 비중은 "
+                        "@@SHARE@@, 순서는 @@TIME@@, 경로는 @@FLOW@@."
+                        % (days, name, c, n, 100*c/n, 100*cap)))
     if not out:
         top = forms.most_common(3)
         out.append(("INFO", "W0", "분포 " + " · ".join("%s %.0f%%" % (k, 100*v/n) for k, v in top)
                     + " · 물음표 %.0f%%" % (100*qn/n)))
+    out.append(("INFO", "W4", "그래픽 " + (" · ".join("%s %.0f%%" % (k, 100*v/n)
+                for k, v in bcount.most_common()) or "0편")))
     return out, n
 
 # ── 회차 상한 (v4.6 [X], 2026-08-04) ─────────────────────────────────
@@ -221,6 +260,13 @@ def round_caps(items_sel, caps=None):
         if cap is not None and c > cap:
             out.append((BLOCK, "R3", "'%s' 카테고리 %d건. 카테고리 합계 최대 %d건."
                         % (cat, c, cap)))
+    # 이번 회차 카드들이 전부 같은 형태 조합이면, 형태가 사안이 아니라 습관에서
+    # 나온 것이다 (v4.7).
+    sigs = [tuple(sorted(blocks_of(lang_text(i.get("gist"))))) for i in items_sel]
+    if len(sigs) >= 2 and len(set(sigs)) == 1 and sigs[0]:
+        out.append((WARN, "R4", "이번 회차 %d장이 모두 같은 그래픽 조합(%s)이다. 사안이 다르면 "
+                    "형태도 달라야 한다." % (len(sigs), " + ".join("@@%s@@" % x for x in sigs[0]))))
+
     if len(counted) > caps["total"]:
         out.append((BLOCK, "R2", "회차 발행 %d건. 최대 %d건." % (len(counted), caps["total"])))
     if not out:

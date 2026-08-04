@@ -57,7 +57,14 @@ import os
 import re
 import sys
 
-MARKER_PREFIXES = ("@@IMG@@", "@@REF@@", "@@CHK@@", "@@CMP@@")
+MARKER_PREFIXES = ("@@IMG@@", "@@REF@@", "@@CHK@@", "@@CMP@@",
+                   "@@BAR@@", "@@SHARE@@", "@@TIME@@", "@@FLOW@@")
+
+# 원문 밖에서 가져온 사실을 담는 블록. v4.7 이전에는 @@CHK@@ 하나뿐이라 이
+# 검사가 사실상 "표를 만들어라"는 지시로 읽혔고, 최근 20장 중 16장(80%)이
+# 표를 달았다. 담는 그릇이 여럿이면 그릇 때문에 글이 같아질 이유가 없다.
+# @@FLOW@@는 우리가 조회한 값이 아니라 설명이라 여기에 넣지 않는다.
+DATA_PREFIXES = ("@@CHK@@", "@@BAR@@", "@@SHARE@@", "@@TIME@@")
 
 # 숫자로 세지 않는 것: 연도, 한 자리 수, 순번처럼 보이는 것.
 _YEAR = re.compile(r"^(19|20)\d{2}$")
@@ -117,12 +124,12 @@ def load_feed_index(root):
 
 
 def gist_parts(item, lang="ko"):
-    """(마커를 뺀 본문, CHK 줄 수, REF 줄 수, CHK/REF 줄 텍스트)"""
+    """(마커를 뺀 본문, 수치 블록 줄 수, REF 줄 수, 그 줄들의 텍스트)"""
     g = item.get("gist") or {}
     text = g.get(lang, "") if isinstance(g, dict) else str(g)
     body, marker_text, chk, ref = [], [], 0, 0
     for line in str(text).split("\n"):
-        if line.startswith("@@CHK@@"):
+        if line.startswith(DATA_PREFIXES):
             chk += 1
             marker_text.append(line)
         elif line.startswith("@@REF@@"):
@@ -167,7 +174,7 @@ def check(item, feed_idx):
     borrow = (len(shared) / len(card_nums)) if card_nums else None
 
     if chk == 0 and ref == 0:
-        v, note = "FAIL", "원문 밖에서 가져온 것이 없다 (@@CHK@@ 0, @@REF@@ 0)"
+        v, note = "FAIL", "원문 밖에서 가져온 것이 없다 (수치 블록 0, @@REF@@ 0)"
     elif ref and not outside and chk == 0:
         v, note = "WARN", "@@REF@@는 있으나 원문에 없는 숫자가 본문에 0개 — 기사를 소화하지 않았을 수 있다"
     else:
@@ -205,7 +212,7 @@ def main():
         v = r["verdict"]
         if v == "FAIL" and it["id"] in allow:
             v = "allow"
-        tail = "CHK %d · REF %d" % (r["chk"], r["ref"])
+        tail = "수치블록 %d · REF %d" % (r["chk"], r["ref"])
         if r.get("borrow") is not None:
             tail += " · 카드 숫자 %d개 중 원문서 온 것 %.0f%% (참고값)" % (r["card"], r["borrow"] * 100)
         print("[%-4s] %s\n       %s" % (v, it["id"], tail))
@@ -216,7 +223,8 @@ def main():
 
     if failed:
         print("\n%d장이 원문 요약으로만 이루어져 있다: %s" % (len(failed), ", ".join(failed)))
-        print("원문 밖 사실을 하나 넣는다 — 직접 조회한 수치(@@CHK@@)든, 교차확인 기사에서")
+        print("원문 밖 사실을 하나 넣는다 — 직접 조회한 수치(@@CHK@@·@@BAR@@·@@SHARE@@·@@TIME@@ 중")
+        print("이 카드에 맞는 형태 하나)든, 교차확인 기사에서")
         print("꺼낸 사실(@@REF@@ + 본문 발췌)이든. 넣을 수 없으면 그 카드는 이번 회차에 내지 않는다.")
         sys.exit(1)
     print("\n원문 의존도 이상 없음.")
