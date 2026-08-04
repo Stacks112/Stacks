@@ -514,8 +514,17 @@ function v83CardFix(card){
         if (fold){
           fold.open = true;
           btn.classList.add("on");
-          try { fold.scrollIntoView({behavior:"smooth", block:"center"}); }
-          catch(_) { fold.scrollIntoView(); }
+          /* 이 앱의 상세 화면에서는 scrollIntoView / window.scrollTo 가 먹지 않는다
+             (3열 셸의 스크롤 주인이 달라서). 앵커 점프는 확실히 동작하므로 그걸 쓰고,
+             주소창에 해시가 남지 않게 곧바로 원래 URL로 되돌린다. */
+          if (!fold.id) fold.id = "gcard-" + (id || "x");
+          var back = location.pathname + location.search;
+          try {
+            location.hash = "#" + fold.id;
+            history.replaceState(null, "", back);
+          } catch(_) {
+            try { fold.scrollIntoView({block:"center"}); } catch(__){}
+          }
           return;
         }
         var open = oc.classList.toggle("oc-open");
