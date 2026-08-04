@@ -183,7 +183,12 @@ SUM3_CSS = """.sum3,.splitb{margin:20px 0 0;padding:13px 15px;border-radius:12px
 .sum3 li:last-child{margin-bottom:0}
 .sum3 li:before{content:"\u00B7";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
-.splitb p:last-child{margin-bottom:0}"""
+.splitb p:last-child{margin-bottom:0}
+/* 세 줄 요약은 카드가 아니라 본문 끝의 구분선 다음에 온다 (편집 가이드 §6). */
+.sum3{background:none;border:0;border-top:2px solid currentColor;border-radius:0;margin:34px 0 0;padding:17px 0 0}
+.sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
+.sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
+.sum3 li:before{color:inherit;left:2px}"""
 
 
 def gist_blocks(gist):
@@ -938,6 +943,14 @@ REC_UI = {
                pending="採点待ち", opp="同じ話題、別の見方",
                dlt="同じ銘柄、この筆者の以前の記事"),
 }
+# 채점 카드(구조화 행)와 출처 목록에 쓰는 라벨. 기존 키를 건드리지 않으려고
+# 리터럴 밖에서 덧붙인다.
+REC_UI["ko"].update(srcs="출처", ocSched="채점 예정", ocMetric="지표",
+                    ocNow="현재", ocWhen="채점일", ocHit="맞음", ocMiss="틀림")
+REC_UI["en"].update(srcs="Sources", ocSched="Scheduled for grading", ocMetric="Metric",
+                    ocNow="Now", ocWhen="Grading date", ocHit="Hit", ocMiss="Miss")
+REC_UI["ja"].update(srcs="出典", ocSched="採点予定", ocMetric="指標",
+                    ocNow="現在", ocWhen="採点日", ocHit="的中", ocMiss="外れ")
 LANGS = ("ko", "en", "ja")
 LANG_DIR = {"ko": "p", "en": "p/en", "ja": "p/ja"}
 LANG_REL = {"ko": "../", "en": "../../", "ja": "../../"}
@@ -1055,8 +1068,50 @@ def outcome_block(item, lang, R):
         return ""
     st = oc.get("status") or "pending"
     label = {"hit": R["hit"], "miss": R["miss"]}.get(st, R["pending"])
+    card = oc.get("card") or {}
+    if card:
+        # 판별 조건을 본문 밖 카드로 뺀다 (편집 가이드 §7). 행이 하나라도
+        # 차 있을 때만 카드로, 아니면 아래 기존 문장형으로 떨어진다.
+        def _row(key, lbl, cls=""):
+            v = lang_text(card.get(key), lang) or ""
+            if not v:
+                return ""
+            v = ('<span class="%s">%s</span>' % (cls, E(v))) if cls else E(v)
+            return '<div class="occ-r"><div class="k">%s</div><div class="v">%s</div></div>' % (E(lbl), v)
+        rows = (_row("metric", R["ocMetric"]) + _row("now", R["ocNow"])
+                + _row("when", R["ocWhen"]) + _row("hit", R["ocHit"], "hit")
+                + _row("miss", R["ocMiss"], "miss"))
+        if rows:
+            title = R["ocSched"] if st == "pending" else R["oc"]
+            return ('<section class="oc occ oc-%s"><h3>%s<i>%s</i></h3>%s</section>'
+                    % (E(st), E(title), E(label), rows))
     return ('<section class="oc oc-%s"><h3>%s</h3><p><i>%s</i>%s</p></section>'
             % (E(st), E(R["oc"]), E(label), E(note)))
+
+
+def sources_block(item, lang, R):
+    """글 끝 출처 목록. 본문은 문장 안 매체명으로 귀속하고 추적성은 여기서
+    전수 보존한다 (편집 가이드 §8). `sources`가 없는 카드에는 아무것도 안 낸다."""
+    srcs = item.get("sources") or []
+    if not srcs:
+        return ""
+    lis = []
+    for s in srcs:
+        name = lang_text(s.get("name"), lang) or lang_text(s.get("name"), "ko") or ""
+        desc = lang_text(s.get("desc"), lang) or lang_text(s.get("desc"), "ko") or ""
+        if not (name or desc):
+            continue
+        inner = ("<b>%s</b> " % E(name) if name else "") + E(desc)
+        url = s.get("url") or ""
+        if url:
+            inner = '<a href="%s" rel="noopener nofollow" target="_blank">%s</a>' % (E(url), inner)
+        lis.append("<li>%s</li>" % inner)
+    if not lis:
+        return ""
+    asof = lang_text(item.get("sourcesAsOf"), lang) or ""
+    tail = ('<p class="srcs-a">%s</p>' % E(asof)) if asof else ""
+    return ('<section class="srcs"><h3>%s</h3><ol>%s</ol>%s</section>'
+            % (E(R["srcs"]), "".join(lis), tail))
 
 
 def opp_block(item, lang, R):
@@ -1192,7 +1247,27 @@ REC_CSS = """.rec,.oc,.opp,.dlt{margin-top:26px}
 .oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
   .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
-  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}"""
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
+.occ{border:1px solid #ECEDF1;border-radius:12px;background:#F6F7F9;overflow:hidden}
+.occ h3{display:flex;align-items:center;gap:9px;margin:0;padding:11px 14px;border-bottom:1px solid #ECEDF1}
+.occ h3 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207}
+.occ.oc-hit h3 i{background:#E8F5EC;color:#1C7A42}.occ.oc-miss h3 i{background:#FDEAEA;color:#B02525}
+.occ-r{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #ECEDF1;font-size:14px;line-height:1.6}
+.occ-r:last-child{border-bottom:0}
+.occ-r .k{flex:0 0 64px;font-size:12.5px;font-weight:700;color:#8E93A0;padding-top:2px}
+.occ-r .v{flex:1}
+.occ-r .v .hit{color:#1C7A42;font-weight:700}.occ-r .v .miss{color:#B02525;font-weight:700}
+.srcs{margin-top:26px;border:1px solid #ECEDF1;border-radius:12px;padding:14px 16px}
+.srcs h3{font-size:12.5px;letter-spacing:.03em;color:#8E93A0;margin:0 0 10px}
+.srcs ol{margin:0;padding-left:18px}
+.srcs li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:#5B6070;border:0;padding:0}
+.srcs li b{color:#17181C}
+.srcs a{color:inherit;text-decoration:none}.srcs a:hover{text-decoration:underline}
+.srcs-a{margin:11px 0 0;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){
+  .occ{background:#141519;border-color:#2E3037}.occ h3,.occ-r{border-color:#2E3037}
+  .occ.oc-hit h3 i{background:rgba(14,159,94,.14)}.occ.oc-miss h3 i{background:rgba(224,68,56,.14)}
+  .srcs{border-color:#2E3037}.srcs li b{color:#ECEDF1}}"""
 
 
 # One app, not a pile of leaves. Every generated page here is a dead end for a
@@ -1349,7 +1424,8 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     # CSS rides along only when at least one of them rendered, for the same
     # reason BLOCK_CSS is conditional (this is inlined into ~500 pages).
     R = REC_UI[lang]
-    rec_html = (outcome_block(item, lang, R) + record_block(item, lang, R, REL)
+    rec_html = (outcome_block(item, lang, R) + sources_block(item, lang, R)
+                + record_block(item, lang, R, REL)
                 + opp_block(item, lang, R) + prior_block(item, lang, R))
     if rec_html:
         block_css += REC_CSS + "\n"
