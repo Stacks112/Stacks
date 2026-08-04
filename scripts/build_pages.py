@@ -490,9 +490,23 @@ def build_matcher(entities):
     hangul_particles = ["은", "는", "이", "가", "을", "를", "의", "에", "와", "과",
                          "도", "만", "로", "께", "이나", "나"]
     particle_alt = "|".join(hangul_particles)
+    # entity_alias_list()/alias_is_case_sensitive() live in build_data.py so the
+    # three matchers (app, build_data, build_pages) cannot drift. Without it we
+    # keep the old alias-only, case-insensitive behaviour rather than crash.
+    bd = _build_data()
+    if bd is None or not hasattr(bd, "entity_alias_list"):
+        class _Fallback(object):
+            @staticmethod
+            def entity_alias_list(key, e):
+                return [a for a in (e.get("aliases") or []) if a]
+
+            @staticmethod
+            def alias_is_case_sensitive(a):
+                return False
+        bd = _Fallback()
     pats = []
     for key, e in entities.items():
-        for a in e.get("aliases", []) or []:
+        for a in bd.entity_alias_list(key, e):
             if not a:
                 continue
             head = r"\b" if re.match(r"[A-Za-z0-9]", a) else r"(?<![가-힣])"
@@ -500,7 +514,10 @@ def build_matcher(entities):
                 tail = r"\b"
             else:
                 tail = r"(?=$|[^가-힣]|(?:%s)(?![가-힣]))" % particle_alt
-            pats.append((re.compile(head + re.escape(a) + tail, re.I), key))
+            # all-caps Latin aliases are acronyms; matching them case-insensitively
+            # is what made the term PER light up on the English preposition "per".
+            flags = 0 if bd.alias_is_case_sensitive(a) else re.I
+            pats.append((re.compile(head + re.escape(a) + tail, flags), key))
     return pats
 
 
@@ -2546,14 +2563,27 @@ def main():
         _gloss = json.load(open("glossary.json", encoding="utf-8"))
     except Exception:
         _gloss = {}
-    _gadd = 0
+    _gadd = _gpatch = 0
     for _gk, _gv in _gloss.items():
         if _gk not in entities:
             entities[_gk] = _gv; _gadd += 1
-    if _gadd:
+            continue
+        # Alias-only patch for an entity that already exists. A company that
+        # renames itself (MicroStrategy -> Strategy) leaves its old aliases
+        # behind and goes unindexed under the name the cards actually print;
+        # before this, the only way to fix that was to edit items.json, which
+        # only the publishing routine may write. Union, never remove.
+        _have = entities[_gk].get("aliases") or []
+        _low = {str(a).lower() for a in _have}
+        _new = [a for a in (_gv.get("aliases") or []) if a and str(a).lower() not in _low]
+        if _new:
+            entities[_gk]["aliases"] = _have + _new
+            _gpatch += 1
+    if _gadd or _gpatch:
         d["entities"] = entities
         json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("[glossary] merged " + str(_gadd) + " curated terms into entities")
+        print("[glossary] merged " + str(_gadd) + " curated terms, patched aliases on "
+              + str(_gpatch) + " existing entities")
     global EMBEDS
     try:
         EMBEDS = json.load(open("embeds.json", encoding="utf-8"))

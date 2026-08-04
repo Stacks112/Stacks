@@ -1,26 +1,64 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""check_term_coverage.py — 카드 본문의 전문용어가 entities/glossary에 색인되는지 검사.
+"""check_term_coverage.py — 카드 본문의 전문용어·기업명·인물명이 색인되는지 검사.
 
-발행 루틴 v4.3 [5] 필수 단계 (2026-07-28 신설, june 지시 "전문용어 색인이 빈번하게
+발행 루틴 v4.3 [5-B] 필수 단계 (2026-07-28 신설, june 지시 "전문용어 색인이 빈번하게
 문제로 일어나는데 근본적으로 해결"). 리라이트 세션도 배포 전에 돌린다.
 
 원리: 앱(index.html linkifyEntities)과 SEO 페이지가 쓰는 것과 같은 별칭 매칭 규칙으로
-본문을 훑어, (1) 한글·일문 본문 속 라틴 토큰(LPDDR6, DUV 같은 것은 거의 전부 전문용어다)
-과 (2) 내장 감시 목록의 한국어 용어 중 어떤 별칭에도 걸리지 않는 것을 후보로 뽑는다.
+본문을 훑어, 어떤 별칭에도 걸리지 않는 것을 후보로 뽑는다. 검사는 두 갈래다.
+
+  [용어]  (1) 한글·일문 본문 속 라틴 토큰(LPDDR6, DUV 같은 것은 거의 전부 전문용어다)
+          (2) 내장 감시 목록(WATCHLIST)의 한국어 용어
+  [이름]  (3) 직함이 붙은 사람 이름, 조직 접미사가 붙은 기관·회사 이름, 그리고
+          줄머리에서 "~는 ... 전했다/밝혔다" 꼴로 주어 자리에 선 고유명사
+
+2026-08-04 개정 (june 지시 "전문용어나 인물명 기업명 대부분 색인이 안 된다"):
+  · 이때까지 이 검사기는 **전문용어만** 봤다. 회사·인물은 아무도 검사하지 않아서
+    게이트가 exit 0을 줘도 카드의 주인공이 통째로 미색인인 채 나갔다
+    (2026-08-03 `schiff-strategy-btc-sale-strc-buyback`: 스트래티지·마이클 세일러·
+    비트코인 셋 다 미색인). 위 (3)이 그 구멍을 메운다.
+  · 한국어 용어 감시 목록을 매크로·크레딧·외환·크립토·회계로 넓혔다.
+  · 별칭 규칙을 앱과 다시 맞췄다 — 엔티티 키도 이름으로 치고(entity_alias_list),
+    전부 대문자인 라틴 별칭은 대소문자를 구분한다(alias_is_case_sensitive).
+  · 회차마다 같은 `--allow`를 다시 치지 않도록 상시 제외 목록을 레지스트리 파일
+    `term_stopwords.json`으로 뺐다.
 
 사용:
   python3 scripts/check_term_coverage.py --latest 5        # 최신 5장 검사
   python3 scripts/check_term_coverage.py --ids id1,id2     # 특정 카드 검사
-  python3 scripts/check_term_coverage.py --allow "TOKEN1,TOKEN2"  # 의식적 제외(사유는 보고에)
+  python3 scripts/check_term_coverage.py --allow "TOKEN1,TOKEN2"  # 1회성 제외
+  python3 scripts/check_term_coverage.py --no-names        # 이름 검사만 끈다(진단용)
 
 종료코드: 후보 0건이면 0, 있으면 1. 루틴은 1인 채로 커밋하지 않는다 —
-각 후보를 entities에 등록하거나, --allow로 제외하고 그 사유를 [9] 보고에 적는다.
+각 후보를 entities(또는 glossary.json)에 등록하거나, --allow로 제외하고 그 사유를
+[9] 보고에 적는다. 반복되는 제외는 `term_stopwords.json`에 넣어 영구화한다.
 """
 import argparse
 import json
+import os
 import re
 import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
+try:
+    import build_data as _bd
+except Exception:                                    # 단독 실행 안전망
+    _bd = None
+
+
+def entity_alias_list(key, ent):
+    if _bd and hasattr(_bd, "entity_alias_list"):
+        return _bd.entity_alias_list(key, ent)
+    return [a for a in (ent.get("aliases") or []) if a]
+
+
+def alias_is_case_sensitive(a):
+    if _bd and hasattr(_bd, "alias_is_case_sensitive"):
+        return _bd.alias_is_case_sensitive(a)
+    return False
 
 # 항상 허용 (색인 대상이 아닌 흔한 토큰). 등록 여부와 무관하게 후보로 뽑지 않는다.
 STOPWORDS = {
@@ -73,6 +111,88 @@ WATCHLIST = [
 
 _STOP_UP = {s.upper() for s in STOPWORDS}
 
+# 한국어 매체명 — 위와 같은 이유로 [이름] 검사에서 제외한다. 하우스 룰:
+# 기사 출처 표기는 색인 대상이 아니다.
+MEDIA_KO = {
+    "로이터", "블룸버그", "알자지라", "니혼게이자이", "닛케이", "니케이", "월스트리트저널",
+    "파이낸셜타임스", "포브스", "포춘", "이코노미스트", "가디언", "AP통신", "AFP",
+    "코인데스크", "더블록", "크립토슬레이트", "코인텔레그래프", "디크립트",
+    "전자신문", "머니투데이", "한국경제", "매일경제", "서울경제", "헤럴드경제",
+    "디지털타임스", "파이낸셜뉴스", "연합뉴스", "조선일보", "중앙일보", "동아일보",
+    "이데일리", "아시아경제", "뉴시스", "뉴스핌", "더구루", "지디넷", "테크크런치",
+    "재팬타임스", "요미우리", "아사히", "산케이", "마이니치", "신화통신", "차이신",
+    "사우스차이나모닝포스트", "트렌드포스", "디지타임스", "비즈니스인사이더",
+    "코리아타임스", "코리아헤럴드", "코리아중앙데일리", "닛케이아시아", "인베스팅닷컴",
+    "톰스하드웨어", "오일프라이스닷컴", "모틀리풀", "스톡스토리", "KED글로벌",
+    "비인크립토", "더버지", "아스테크니카",
+}
+
+# ---------------------------------------------------------------------------
+# [이름] 검사 — 회사·인물·기관 (2026-08-04 신설)
+# ---------------------------------------------------------------------------
+# 규칙 A. 직함이 뒤에 붙으면 앞은 사람 이름이다. 오탐이 거의 없다.
+TITLE_SUFFIX = ("장관", "차관", "의장", "총재", "부총재", "회장", "부회장", "사장",
+                "위원장", "총리", "대통령", "교수", "애널리스트", "이코노미스트",
+                "전략가", "창업자", "설립자", "최고경영자", "재무책임자")
+RE_PERSON = re.compile(
+    r"(?<![가-힣])([가-힣]{2,6}|[A-Z][A-Za-z.'\-]+(?:\s[A-Z][A-Za-z.'\-]+){0,2})\s?(?:%s)(?![가-힣])"
+    % "|".join(TITLE_SUFFIX))
+
+# 규칙 B. 조직 접미사가 붙으면 기관·회사다.
+ORG_SUFFIX = ("증권", "은행", "자산운용", "투자자문", "중공업", "해운", "건설",
+              "모터스", "홀딩스", "테크놀로지스", "일렉트로닉스", "재무부", "재무성",
+              "중앙은행", "거래소", "경제연구원", "공사", "공단")
+RE_ORG = re.compile(r"(?<![가-힣])([가-힣A-Za-z0-9]{2,10}(?:%s))(?![가-힣])" % "|".join(ORG_SUFFIX))
+
+# 규칙 D. "X는 ... 전했다" 꼴에서 주어 자리에 선 고유명사. 발화·거래 동사만 본다.
+# ★ 줄 맨 앞에 고정한다. 문장 중간의 "마무리하는"·"열리는" 같은 용언 활용형이
+#   조사처럼 끝나 주어로 잡히던 오탐이 여기서 전부 사라진다(2026-08-04 실측).
+#   이 사이트의 본문은 한 줄 한 문장이라 진짜 주어는 거의 항상 줄머리에 선다.
+REPORT_VERB = ("전했다", "밝혔다", "보도했다", "적었다", "추정했다", "집계했다",
+               "발표했다", "공시했다", "인수했다", "출시했다", "공개했다", "제시했다",
+               "매입했다", "매도했다", "발행했다", "상장했다", "샀다", "팔았다",
+               "되샀다", "내놨다", "올렸다", "낮췄다")
+RE_SUBJECT = re.compile(
+    r"^([가-힣]{2,12}|[A-Z][A-Za-z0-9.&'\-]{1,20})(?:는|은|이|가|도)\s"
+    r"[^\n]{0,60}?(?:%s)" % "|".join(REPORT_VERB), re.M)
+
+# 주어 자리에 흔히 서지만 고유명사가 아닌 것들.
+COMMON_SUBJECT = {
+    "회사", "시장", "정부", "당국", "업계", "투자자", "애널리스트", "전문가", "매체",
+    "보고서", "자료", "지수", "주가", "가격", "수요", "공급", "실적", "매출", "이익",
+    "저자", "원문", "기사", "이번", "지난", "올해", "내년", "작년", "최근", "현재",
+    "지금", "결과", "문제", "이유", "배경", "상황", "사람", "우리", "그것", "이것",
+    "여기", "거기", "관계자", "소식통", "일부", "대부분", "다수", "양쪽", "한쪽",
+    "모두", "전부", "국내", "해외", "회사의", "그는", "그녀", "이들", "양사", "당사",
+    "이곳", "그곳", "한편", "다만", "게다가", "그러나", "그래서", "이후", "이전",
+    # 조직 같지만 특정 주체가 아닌 말
+    "연합", "펀드", "협회", "컨소시엄", "재단", "조합", "기관", "단체", "본부",
+    "위원회", "이사회", "노조", "규제당국", "감독당국", "중앙은행", "재무부",
+    "거래소", "연은", "연준", "한은", "금통위", "지주", "본사", "자회사",
+    # 부처 이름 조각 — "재무장관"에서 직함 앞을 이름으로 잘못 집던 것
+    "재무", "경제", "외무", "국방", "국무", "산업", "기획재정", "산업통상",
+    "국토교통", "보건복지", "행정안전", "과학기술",
+    # 국가·지역 — 이 사이트는 국가를 엔티티로 색인하지 않는다(태그로만 쓴다)
+    "일본", "미국", "중국", "한국", "대만", "유럽", "독일", "영국", "프랑스",
+    "인도", "러시아", "사우디", "이란", "이스라엘", "브라질", "베트남", "호주",
+    "캐나다", "멕시코", "네덜란드", "싱가포르", "홍콩", "도쿄", "베이징", "워싱턴",
+    "서울", "뉴욕", "런던", "상하이", "선전", "허페이", "실리콘밸리",
+}
+
+
+def load_registry_stopwords(path):
+    """상시 제외 목록. 회차마다 같은 --allow를 다시 치지 않기 위한 레지스트리 파일."""
+    try:
+        raw = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return set()
+    out = set()
+    for bucket in ("terms", "names", "tokens"):
+        for w in (raw.get(bucket) or []):
+            if w:
+                out.add(str(w))
+    return out
+
 MARKER_PREFIXES = ("@@IMG@@", "@@REF@@", "@@CHK@@", "@@CMP@@")
 
 
@@ -85,7 +205,7 @@ def build_alias_patterns(*sources):
         for key, ent in src.items():
             if not isinstance(ent, dict):
                 continue
-            for a in ent.get("aliases", []) or []:
+            for a in entity_alias_list(key, ent):
                 if not a:
                     continue
                 # 경계는 ASCII 영숫자 기준 룩어라운드로 건다. 파이썬 \b는 유니코드
@@ -93,7 +213,8 @@ def build_alias_patterns(*sources):
                 # 앱(JS)의 \b는 ASCII 기준이라 걸린다 — 앱과 같은 동작이 정답이다.
                 head = r"(?<![A-Za-z0-9])" if re.match(r"[A-Za-z0-9]", a) else ""
                 tail = r"(?![A-Za-z0-9])" if re.search(r"[A-Za-z0-9]$", a) else ""
-                pats.append((re.compile(head + re.escape(a) + tail, re.I), key))
+                flags = 0 if alias_is_case_sensitive(a) else re.I
+                pats.append((re.compile(head + re.escape(a) + tail, flags), key))
     return pats
 
 
@@ -127,6 +248,10 @@ def covered_spans(text, pats):
 
 def in_spans(start, end, spans):
     return any(s <= start and end <= e for s, e in spans)
+
+
+def overlaps(start, end, spans):
+    return any(start < e and s < end for s, e in spans)
 
 
 # 라틴 토큰: 영숫자 연속(하이픈·&·+ 허용). 한글·일문 본문 안의 이런 토큰은
@@ -173,6 +298,35 @@ def candidates_for(text, pats, allow):
     return out
 
 
+def name_candidates_for(text, pats, allow):
+    """회사·인물·기관 후보. 매체명과 흔한 보통명사 주어는 뺀다."""
+    text = strip_markers(text)
+    spans = covered_spans(text, pats)
+    out = {}
+
+    def add(name, start, end):
+        name = (name or "").strip()
+        if len(name) < 2 or name in allow or name in MEDIA_KO or name in COMMON_SUBJECT:
+            return
+        if name.upper() in _STOP_UP:
+            return
+        # 관형형 어미로 끝나면 이름이 아니라 용언 활용형이다("열리는 의장 기자회견").
+        if re.search(r"(?:는|은|던|한|된|릴|할|줄|킬)$", name) and not re.search(r"[A-Za-z0-9]$", name):
+            return
+        # 이름 자리가 이미 색인돼 있으면(별칭이 이름의 일부여도) 통과시킨다.
+        if overlaps(start, end, spans):
+            return
+        out[name] = out.get(name, 0) + 1
+
+    for m in RE_PERSON.finditer(text):
+        add(m.group(1), m.start(1), m.end(1))
+    for m in RE_ORG.finditer(text):
+        add(m.group(1), m.start(1), m.end(1))
+    for m in RE_SUBJECT.finditer(text):
+        add(m.group(1), m.start(1), m.end(1))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--latest", type=int, default=5)
@@ -180,6 +334,8 @@ def main():
     ap.add_argument("--allow", default="", help="의식적으로 제외할 토큰(쉼표 구분) — 사유는 보고에 적을 것")
     ap.add_argument("--items", default="items.json")
     ap.add_argument("--glossary", default="glossary.json")
+    ap.add_argument("--stopwords", default="term_stopwords.json")
+    ap.add_argument("--no-names", action="store_true", help="[이름] 검사를 끈다(진단용)")
     args = ap.parse_args()
 
     data = json.load(open(args.items, encoding="utf-8"))
@@ -187,8 +343,21 @@ def main():
         gloss = json.load(open(args.glossary, encoding="utf-8"))
     except Exception:
         gloss = {}
-    pats = build_alias_patterns(data.get("entities", {}), gloss)
+    entities = data.get("entities", {}) or {}
+    # build_pages.py의 glossary 병합과 같은 규칙: 없으면 추가, 있으면 별칭만 합집합.
+    merged = dict(entities)
+    for k, v in (gloss or {}).items():
+        if k in merged:
+            base = merged[k].get("aliases") or []
+            low = {str(a).lower() for a in base}
+            merged[k] = dict(merged[k])
+            merged[k]["aliases"] = base + [a for a in (v.get("aliases") or [])
+                                           if a and str(a).lower() not in low]
+        else:
+            merged[k] = v
+    pats = build_alias_patterns(merged)
     allow = {t.strip() for t in args.allow.split(",") if t.strip()}
+    allow |= load_registry_stopwords(args.stopwords)
 
     items = data["items"]
     if args.ids:
@@ -203,21 +372,27 @@ def main():
         ko = gist.get("ko", "") if isinstance(gist, dict) else str(gist)
         ja = gist.get("ja", "") if isinstance(gist, dict) else ""
         title_ko = (it.get("title") or {}).get("ko", "") if isinstance(it.get("title"), dict) else ""
-        cands = candidates_for(title_ko + "\n" + ko, pats, allow)
+        body_ko = title_ko + "\n" + ko
+        cands = candidates_for(body_ko, pats, allow)
         for tok, n in candidates_for(ja, pats, allow).items():
             cands[tok] = max(cands.get(tok, 0), n)
-        if cands:
-            total += len(cands)
+        names = {} if args.no_names else name_candidates_for(body_ko, pats, allow)
+        if cands or names:
+            total += len(cands) + len(names)
             print(f"[GAP] {it['id']}")
             for tok, n in sorted(cands.items(), key=lambda kv: -kv[1]):
-                print(f"      {tok}  x{n}")
+                print(f"      [용어] {tok}  x{n}")
+            for tok, n in sorted(names.items(), key=lambda kv: -kv[1]):
+                print(f"      [이름] {tok}  x{n}")
         else:
             print(f"[ok]  {it['id']}")
 
     if total:
-        print(f"\n{total}개 후보. 각각 entities에 등록하거나 --allow로 제외하고 사유를 보고([9])에 적는다.")
+        print(f"\n{total}개 후보. 각각 entities(또는 glossary.json)에 등록하거나 "
+              f"--allow로 제외하고 사유를 보고([9])에 적는다.\n"
+              f"반복되는 제외는 {args.stopwords}에 넣어 영구화한다.")
         sys.exit(1)
-    print("\n용어 커버리지 이상 없음.")
+    print("\n색인 커버리지 이상 없음 (용어·이름).")
     sys.exit(0)
 
 

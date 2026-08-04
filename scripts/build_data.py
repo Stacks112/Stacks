@@ -182,6 +182,30 @@ def re_esc(s):
     return re.escape(s)
 
 
+def entity_alias_list(key, ent):
+    """An entity's key is a name too. Reading aliases only meant "STRATEGY"
+    (renamed from MicroStrategy, aliases never updated) never matched the word
+    the cards actually print. The key is folded in minus a trailing
+    parenthetical ("케빈 워시 (Kevin Warsh)" -> "케빈 워시"); synthetic keys
+    (SWF_KO, EV_TERM) carry an underscore and are skipped.
+    Mirrors entityAliasList() in index.html. 2026-08-04."""
+    out = [a for a in (ent.get("aliases") or []) if a]
+    if "_" not in key:
+        bare = re.sub(r"\s*\([^)]*\)\s*$", "", key).strip()
+        if len(bare) >= 2:
+            out.append(bare)
+    return out
+
+
+def alias_is_case_sensitive(a):
+    """An all-uppercase Latin alias is an acronym and acronyms are written in
+    caps. Matching them case-insensitively is what made the term "PER" light up
+    on the English preposition "per" in 55 of 245 cards.
+    Mirrors aliasIsCaseSensitive() in index.html. 2026-08-04."""
+    return bool(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.&+/'-]*", a)) \
+        and bool(re.search(r"[A-Za-z]", a)) and a == a.upper()
+
+
 def build_entity_matcher(entities):
     """Mirror of buildEntityMatcher() in index.html.
 
@@ -194,29 +218,61 @@ def build_entity_matcher(entities):
     word that just continues ("애플" + "리케이션"). Mirrors buildEntityMatcher()
     in index.html; keep both in sync.
     """
-    alias2key, raw = {}, []
+    alias2key, raw, raw_cs = {}, [], []
     for key, ent in entities.items():
-        for a in (ent.get("aliases") or []):
+        for a in entity_alias_list(key, ent):
             if not a:
+                continue
+            if alias_is_case_sensitive(a):
+                if a not in alias2key:
+                    alias2key[a] = key
+                    raw_cs.append(a)
                 continue
             low = a.lower()
             if low not in alias2key:
                 alias2key[low] = key
                 raw.append(a)
     raw.sort(key=len, reverse=True)
+    raw_cs.sort(key=len, reverse=True)
     hangul_particles = ["은", "는", "이", "가", "을", "를", "의", "에", "와", "과",
                          "도", "만", "로", "께", "이나", "나"]
     particle_alt = "|".join(hangul_particles)
-    pats = []
-    for a in raw:
+
+    def mk(a):
         head = r"\b" if re.match(r"^[A-Za-z0-9]", a) else r"(?<![가-힣])"
         if re.search(r"[A-Za-z0-9]$", a):
             tail = r"\b"
         else:
             tail = r"(?=$|[^가-힣]|(?:%s)(?![가-힣]))" % particle_alt
-        pats.append(head + re_esc(a) + tail)
+        return head + re_esc(a) + tail
+
+    pats = [mk(a) for a in raw]
+    pats_cs = [mk(a) for a in raw_cs]
     rx = re.compile("(" + "|".join(pats) + ")", re.I | re.A) if pats else None
-    return rx, alias2key
+    rx_cs = re.compile("(" + "|".join(pats_cs) + ")", re.A) if pats_cs else None
+    if rx is None and rx_cs is None:
+        return None, alias2key
+    return _TwoCaseMatcher(rx, rx_cs), alias2key
+
+
+class _TwoCaseMatcher(object):
+    """One matcher object over two regexes: the case-insensitive alias set and
+    the case-sensitive (all-caps acronym) set. Callers keep using .finditer()."""
+
+    def __init__(self, rx, rx_cs):
+        self.rx, self.cs = rx, rx_cs
+
+    def finditer(self, text):
+        for r in (self.rx, self.cs):
+            if r is not None:
+                for m in r.finditer(text):
+                    yield m
+
+
+def alias_key(alias2key, hit):
+    """case-sensitive aliases sit in alias2key under their exact spelling,
+    everything else lowercased."""
+    return alias2key.get(hit) or alias2key.get(hit.lower())
 
 
 def item_text(item):
@@ -274,7 +330,7 @@ def entity_set(item, entities, rx, alias2key):
         out.add(item["source"])
     if rx:
         for m in rx.finditer(item_text(item)):
-            key = alias2key.get(m.group(0).lower())
+            key = alias_key(alias2key, m.group(0))
             if key:
                 out.add(key)
     return out
@@ -338,7 +394,7 @@ def explicit_key(item, entities, alias2key=None):
         if k:
             return k
         low = str(v).strip().lower()
-        k = alias2key.get(low) or tick2key.get(low)
+        k = alias_key(alias2key, str(v).strip()) or tick2key.get(low)
         return listed(k) if k else None
 
     return resolve((item.get("cover") or {}).get("label")) or next(
@@ -365,7 +421,7 @@ def mention_rank(item, entities, ents, rx, alias2key):
     def tally(text):
         hits, first = {}, {}
         for m in rx.finditer(text):
-            k = alias2key.get(m.group(0).lower())
+            k = alias_key(alias2key, m.group(0))
             if k:
                 hits[k] = hits.get(k, 0) + 1
                 first.setdefault(k, m.start())
