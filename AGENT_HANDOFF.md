@@ -2,6 +2,65 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (term-index sweep: 16 glossary terms, checker false-positive cuts)
+june: "최근 색인 안된 글들 많은데 색인 안된 글들 이번만 수동으로 갱신해줘. 그리고 이제부턴
+예약작업 자동발행 파이프라인에서 색인 체크하고 자동 발행하는거지?" (색인 = the in-app
+term/entity index, confirmed with him - not Google Search Console.)
+
+Changed: `glossary.json` (`9453251`, +392) · `.github/workflows/og-assets.yml` (`ff96217`, +3) ·
+`scripts/check_term_coverage.py` (`bb09526`, +46/-5). All three clobber-guard green.
+
+**Answer to the second question: yes, since 2026-07-28.** Publish v4.3 `[5-B]` runs
+`check_term_coverage.py --ids <cards touched this round>` and forbids committing until it exits
+0. The autopublish loader has no section-range limit, so that clause is actually read. What it
+does *not* cover is anything published before 07-28 or any card a later round never touches -
+hence this one-off sweep.
+
+### What was actually missing
+A full scan of the 245 live cards reported 118 [GAP] cards / 383 candidates, but most were noise:
+- body URLs leaking domain fragments (`com`, `xyz`, `trade`, `note`, `to5Mac`)
+- outlet names and units (`Fortune`, `China Daily`, `km`, `kHz`, `Mbps`)
+- **already-registered terms whose token got cut**: the `bp` in `25bp`, the `GW` in `1.5GW` (19)
+- genuinely unregistered terms: **16**
+
+After the fixes: **118 -> 95 GAP cards, 383 -> 211 candidates, newest 12 exit 0.**
+
+### Registered (glossary.json, kind=term, ko/en/ja)
+AGI · LLM · GPT · 클린룸 · 식각 · 본딩 · 서브스트레이트 · 장기물 · 매그니피센트7 · NISA ·
+최종투자결정(FID) · PCB · DIMM · PIM · SEC · MSCI — **71 new links across 31 live cards**,
+pre-checked by running `build_pages.build_matcher` over every card body.
+
+**`출하가` was deliberately NOT registered.** Both live occurrences are "출하" + the subject
+particle "가" ("루빈 울트라 2027년 출하가 갈리는 지점"), so a term entry would attach a price
+tooltip to the wrong words. It was removed from the checker's WATCHLIST too - that closes
+fix-queue checker request 3, and the rule is now "drop it from the watchlist, don't `--allow` it".
+
+### Checker changes (`bb09526`)
+- Strip URLs before scanning, **TLD allow-list only**: an open `\.[A-Za-z0-9-]+` also eats
+  `1.5GW` and `V3.1`, silently shrinking coverage. The first draft did exactly that.
+- Skip latin fragments that start right after a digit; the whole token (`25bp`) is still caught
+  by `HAS_DIGIT_PREFIX`, so nothing leaves the scan.
+- STOPWORDS: ~20 outlet names + `Asia` + the words that make up multi-word mastheads. `ARR` is in
+  there because `index.html`'s inline GLOSS covers it and this checker cannot see that table.
+- WATCHLIST: `액침`/`자사주` in (fix-queue request 2), `출하가` out.
+
+### Wiring bug fixed along the way (`ff96217`)
+`build_pages.py` merges `glossary.json` into `items.json` entities, but `glossary.json` was not in
+og-assets' push paths — new terms would sit invisible until the 6-hourly cron. Added the path, and
+dispatched the workflow manually for this batch.
+
+Verified: 16/16 merged into `items.json` and `data/core.json` (entities 528 -> 544); on live
+stacksdaily.com `ALIAS2KEY` resolves 클린룸/기판/본딩/식각 and a new term (`메모리 모듈` -> DIMM)
+renders as a real tooltip in a feed card.
+
+Left for someone with items.json write access — see fix-queue **item R**: alias additions
+(`S&P 500`←`S&P`, `액침 노광`←`액침`, `NEBIUS`←`NBIS`, `SK HYNIX`←`SKHY`, `TRUMP MEDIA`←`TMTG`),
+new company entities (xAI, Innolight, Marvell, TDK, KKR, EQT), and two structural notes:
+**(a)** the alias boundary rule hides digit-prefixed units (`25bp`, `1.5GW`) — fixing it means
+changing `buildEntityMatcher` / `build_matcher` / `build_entity_matcher` together, deferred for
+the September gate; **(b)** the routine's duplicate check must include `glossary.json` — two of
+the 12 duplicate pairs in fix-queue item Q were created exactly that way.
+
 ## 2026-08-04 Claude (mobile 44px tap targets)
 
 june: Clarity 8/4 세션 리뷰 후속. "32px 미만 탭 타깃 키우기" 승인 건.
