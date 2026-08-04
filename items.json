@@ -32799,6 +32799,400 @@
     "ko": "버전이 올라갈 때마다 학습에 쓰는 연산량이 크게 늘어, 출시 일정이 곧 데이터센터·반도체 발주 일정이 된다. 사용량도 같은 이유로 중요하다. 모델을 돌리는 데는 학습 때 한 번이 아니라 매일 GPU와 전력이 들어간다.",
     "ja": "バージョンが上がるたび学習に使う演算量が大きく増えるため、リリース日程はそのままデータセンター・半導体の発注日程になる。利用量も同じ理由で重要だ。モデルの運用には学習時の一度きりではなく、毎日GPUと電力がかかる。"
    }
+  },
+  "국채": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "국채",
+    "government bond",
+    "Treasury bond",
+    "sovereign bond",
+    "国債"
+   ],
+   "desc": {
+    "en": "A bond a government issues to borrow money, repaid by the state.",
+    "ko": "정부가 돈을 빌리려고 발행하는 빚 증서. 나라가 갚기로 약속한 채권이다.",
+    "ja": "政府が資金を借りるために発行する債券。国が返済を約束する。"
+   },
+   "longDesc": {
+    "en": "Governments issue bonds when taxes do not cover spending. Buyers get principal and interest unless the state defaults, so these are treated as the safest asset and their yield anchors every other rate, from mortgages to corporate debt. When a foreign central bank dumps them, the issuing country's long-term rates get pushed up.",
+    "ko": "정부가 세금만으로 지출을 감당하지 못할 때 발행한다. 사는 쪽은 나라가 망하지 않는 한 원금과 이자를 받으므로 가장 안전한 자산으로 취급된다. 값이 내려가면 금리는 올라가고, 그 금리가 주택담보대출부터 회사채까지 다른 모든 금리의 기준이 된다. 외국 중앙은행이 이것을 대량으로 내다 팔면 그 나라의 장기 금리가 밀려 올라간다.",
+    "ja": "税収で支出を賄えないときに政府が発行する。国が破綻しない限り元本と利息が戻るため最も安全な資産とされ、その利回りは住宅ローンから社債まであらゆる金利の基準になる。外国の中央銀行が大量に売れば、その国の長期金利は押し上げられる。"
+   }
+  },
+  "담보": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "담보",
+    "담보물",
+    "collateral asset",
+    "pledged collateral",
+    "担保"
+   ],
+   "desc": {
+    "en": "An asset pledged to a lender in case the borrower cannot repay.",
+    "ko": "돈을 빌릴 때 못 갚을 경우에 대비해 맡기는 자산.",
+    "ja": "借入時に返済不能に備えて差し入れる資産。"
+   },
+   "longDesc": {
+    "en": "Collateral lowers a lender's risk, so pledged loans carry lower rates. The best collateral is stable and easy to sell, which is why government bonds dominate. If its value falls the lender demands more, and failure to post it forces a sale. That is the channel through which one drop feeds the next in a stressed market.",
+    "ko": "빌려주는 쪽은 담보가 있으면 떼일 걱정이 줄어 금리를 낮게 매긴다. 값이 잘 변하지 않고 언제든 팔 수 있는 자산일수록 좋은 담보이고, 그래서 국채가 가장 흔히 쓰인다. 담보 가치가 떨어지면 더 채워 넣으라는 요구가 오고, 못 채우면 강제로 팔린다. 시장이 흔들릴 때 하락이 하락을 부르는 통로가 여기다.",
+    "ja": "担保があれば貸し手の焦げ付き懸念が減り、金利は低くなる。値動きが小さくいつでも売れる資産ほど良い担保で、国債が最も多く使われる。担保価値が下がれば追加差し入れを求められ、応じられなければ強制的に売却される。相場急変時に下落が下落を呼ぶ経路がここだ。"
+   }
+  },
+  "레포": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "레포",
+    "환매조건부채권",
+    "repo",
+    "repurchase agreement",
+    "レポ"
+   ],
+   "desc": {
+    "en": "A short-term loan where an asset is sold and bought back at an agreed price.",
+    "ko": "자산을 맡기고 돈을 빌린 뒤 정한 값에 되사 오는 단기 자금거래.",
+    "ja": "資産を渡して資金を借り、決めた価格で買い戻す短期取引。"
+   },
+   "longDesc": {
+    "en": "Legally a sale, economically a secured loan: a bond is handed over for overnight or few-day cash and bought back at a set price. It is the main plumbing through which banks and central banks square up their daily cash, and a spike in repo rates reads as a warning that cash is drying up somewhere.",
+    "ko": "형식은 매매지만 실질은 담보대출이다. 국채를 맡기고 하루나 며칠짜리 현금을 받은 뒤, 약속한 값에 되사 온다. 은행과 중앙은행이 하루하루의 현금을 맞추는 가장 큰 통로이고, 이 시장의 금리가 튀면 어딘가에서 현금이 마르고 있다는 신호로 읽힌다.",
+    "ja": "形式は売買だが実質は担保付き融資。国債を渡して翌日物など短期の現金を受け取り、決めた価格で買い戻す。銀行と中央銀行が日々の資金を調整する最大の経路で、この金利が跳ねれば、どこかで現金が枯れている合図と読まれる。"
+   }
+  },
+  "환율": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "환율",
+    "exchange rate",
+    "為替レート",
+    "為替相場"
+   ],
+   "desc": {
+    "en": "The rate at which one currency is exchanged for another.",
+    "ko": "한 나라 돈을 다른 나라 돈으로 바꿀 때의 교환 비율.",
+    "ja": "ある国の通貨を別の通貨に換える比率。"
+   },
+   "longDesc": {
+    "en": "A cheaper home currency means exporters convert the same sale into more domestic money, while importers of raw materials pay more. Rate differentials, the trade balance and capital flows set the level together, and when moves get disorderly governments and central banks step in to slow them.",
+    "ko": "수출 기업은 자국 통화가 싸지면 같은 물건을 팔고도 더 많은 자국 돈을 받는다. 반대로 원자재를 사 오는 쪽은 비용이 오른다. 금리 차이, 무역수지, 자본 이동이 함께 값을 정하고, 움직임이 지나치게 빠르면 정부와 중앙은행이 직접 사고팔아 속도를 늦추기도 한다.",
+    "ja": "自国通貨が安くなれば輸出企業は同じ売上でも受け取る自国通貨が増え、原材料を買う側は費用が増える。金利差・貿易収支・資本移動が水準を決め、動きが急すぎる場合は政府と中央銀行が直接売買して速度を緩めることがある。"
+   }
+  },
+  "공동 개입": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "공동 개입",
+    "협조 개입",
+    "joint intervention",
+    "coordinated intervention",
+    "協調介入"
+   ],
+   "desc": {
+    "en": "Two or more countries intervening in the currency market together, in the same direction.",
+    "ko": "두 나라 이상이 같은 방향으로 동시에 외환시장에 개입하는 것.",
+    "ja": "二カ国以上が同じ方向で同時に為替介入すること。"
+   },
+   "longDesc": {
+    "en": "When one country intervenes alone the market starts counting how long its reserves last. Joint action multiplies both the firepower and the political commitment behind it, so the news that an intervention was coordinated is itself the bigger signal.",
+    "ko": "한 나라가 혼자 개입하면 시장은 실탄이 언제 떨어지는지를 센다. 여러 나라가 같이 들어오면 쓸 수 있는 돈의 크기와 정치적 의지가 함께 커져 효과가 훨씬 오래간다. 그래서 단독 개입보다 공동 개입이 나왔다는 사실 자체가 더 큰 신호로 읽힌다.",
+    "ja": "一国だけの介入なら市場は弾がいつ尽きるかを数え始める。複数国が同時に入れば使える資金量と政治的意思の両方が大きくなり効果は長続きする。だからこそ協調介入だったという事実自体がより強いシグナルになる。"
+   }
+  },
+  "공시": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "공시",
+    "정기공시",
+    "disclosure",
+    "regulatory filing",
+    "適時開示"
+   ],
+   "desc": {
+    "en": "A listed company's legally required release of facts investors need.",
+    "ko": "상장회사가 투자 판단에 필요한 사실을 법에 따라 공개하는 것.",
+    "ja": "上場企業が投資判断に必要な事実を法に基づき公表すること。"
+   },
+   "longDesc": {
+    "en": "Facts that can move a share price, from earnings to big contracts to asset sales, cannot be released selectively: they go out on a prescribed form, such as an 8-K or 10-Q in the US. A filing precedes and outranks the news story built on it, so when the numbers disagree the filing is the one to check.",
+    "ko": "실적, 대규모 계약, 자산 매각처럼 주가에 영향을 줄 사실은 회사가 마음대로 골라 알릴 수 없고 정해진 서식으로 공개해야 한다. 미국은 8-K, 10-Q 같은 서식이 그것이다. 기사보다 공시가 먼저이자 원본이라, 숫자가 갈릴 때는 공시를 확인하는 것이 맞다.",
+    "ja": "業績や大型契約、資産売却など株価に影響する事実は企業が任意に選んで伝えることはできず、所定の様式で公表する。米国では8-Kや10-Qがそれにあたる。記事より開示が先であり原典なので、数字が食い違うときは開示を確認するのが正しい。"
+   }
+  },
+  "비트코인": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "비트코인",
+    "bitcoin",
+    "BTC",
+    "ビットコイン"
+   ],
+   "desc": {
+    "en": "The first cryptocurrency, with supply capped at 21 million coins.",
+    "ko": "발행량이 2,100만 개로 정해진 최초의 암호화폐.",
+    "ja": "発行上限2,100万枚の最初の暗号資産。"
+   },
+   "longDesc": {
+    "en": "It runs without a central bank: network participants jointly verify a shared ledger. Its supply is capped in code, which earns it the nickname digital gold, though its swings dwarf gold's. Spot ETFs and corporate treasury holdings have wired it into the stock market, so it now moves with equities and rates more often than it used to.",
+    "ko": "중앙은행 없이 네트워크 참가자들이 장부를 나눠 검증하는 방식으로 돌아간다. 총량이 코드로 묶여 있어 디지털 금으로 불리지만, 값의 흔들림은 금과 비교가 안 될 만큼 크다. 최근에는 현물 ETF와 기업 금고 편입을 통해 주식시장과 이어졌고, 그만큼 주식이나 금리 흐름과 같이 움직이는 구간이 늘었다.",
+    "ja": "中央銀行を持たず、ネット参加者が台帳を分散して検証する仕組みで動く。総量がコードで固定されているため、デジタルゴールドと呼ばれるが、値動きの荒さは金の比ではない。近年は現物ETFや企業の保有を通じて株式市場と接続され、株価や金利と連動する場面が増えた。"
+   }
+  },
+  "보통주": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "보통주",
+    "common stock",
+    "ordinary shares",
+    "普通株"
+   ],
+   "desc": {
+    "en": "The ordinary share class: it votes, and it is paid last.",
+    "ko": "의결권이 있고 배당 순위는 뒤인, 가장 일반적인 주식.",
+    "ja": "議決権があり配当順位は後の、最も一般的な株式。"
+   },
+   "longDesc": {
+    "en": "Creditors and preferred holders are paid first; whatever is left belongs to common shareholders. Being last in line means the largest gain when things go well and the largest loss when they do not. Issuing new common shares spreads the same company over more owners, which is what dilution means.",
+    "ko": "회사가 이익을 내면 채권자와 우선주에 먼저 주고 남은 몫이 보통주의 것이다. 순위가 뒤라서 잘될 때 가장 크게 얻고 나빠질 때 가장 크게 잃는다. 회사가 새 보통주를 찍으면 같은 회사를 나눠 갖는 사람이 늘어 기존 주주 몫이 그만큼 줄어드는데, 이것을 희석이라고 부른다.",
+    "ja": "会社が利益を出すと債権者と優先株に先に配られ、残りが普通株の取り分になる。順位が後なので好調時の取り分が最も大きく、不調時の損失も最も大きい。新たに普通株を発行すると同じ会社を分け合う人が増え、既存株主の取り分はその分減る。これを希薄化という。"
+   }
+  },
+  "배당률": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "배당률",
+    "dividend rate",
+    "配当率"
+   ],
+   "desc": {
+    "en": "The dividend on one share, expressed as a rate.",
+    "ko": "주식 한 주에 약속되거나 지급되는 배당을 비율로 나타낸 것.",
+    "ja": "一株あたりの配当を比率で示したもの。"
+   },
+   "longDesc": {
+    "en": "It matters most for preferred stock, which is sold on the promise of a set payment per share each year. Raising the rate is therefore also an admission that buyers have become harder to find. If the payment holds while the price falls, the yield to a new buyer rises.",
+    "ko": "우선주에서 특히 중요하다. 회사가 한 주당 얼마를 매년 준다고 약속하고 파는 구조라, 배당률을 올린다는 것은 그 주식을 사 줄 사람을 찾기가 어려워졌다는 뜻이기도 하다. 같은 배당을 유지한 채 주가가 내리면 사는 사람 기준의 수익률은 올라간다.",
+    "ja": "特に優先株で重要になる。一株あたり毎年いくら払うと約束して売る仕組みのため、配当率を引き上げることは買い手を見つけにくくなった証しでもある。配当を据え置いたまま株価が下がれば、新規の買い手にとっての利回りは上がる。"
+   }
+  },
+  "취득단가": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "취득단가",
+    "평균 취득단가",
+    "average cost basis",
+    "取得単価"
+   ],
+   "desc": {
+    "en": "The average price paid per unit across everything bought so far.",
+    "ko": "지금까지 사 모은 자산의 한 단위당 평균 매입가격.",
+    "ja": "これまで買い集めた資産の一単位あたり平均取得価格。"
+   },
+   "longDesc": {
+    "en": "It is the break-even line for an asset accumulated in several purchases: above it the position shows a paper gain, below it a paper loss. A company selling below its own cost basis is usually raising cash rather than taking profit, which makes it a useful clue to why the sale happened.",
+    "ko": "여러 번 나눠 산 자산의 손익을 재는 기준선이다. 현재 값이 취득단가보다 높으면 평가이익, 낮으면 평가손실이다. 기업이 취득단가보다 싼 값에 자산을 파는 것은 값이 좋아서가 아니라 현금이 필요해서인 경우가 많아, 매도 이유를 읽는 단서가 된다.",
+    "ja": "何度かに分けて買った資産の損益を測る基準線。現在値が取得単価より高ければ評価益、低ければ評価損となる。企業が取得単価より安く売る場合は好条件だからではなく現金が必要な場合が多く、売却理由を読む手がかりになる。"
+   }
+  },
+  "시간외 거래": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "시간외 거래",
+    "애프터마켓",
+    "after-hours trading",
+    "時間外取引"
+   ],
+   "desc": {
+    "en": "Share trading that continues after the regular session closes.",
+    "ko": "정규 장이 끝난 뒤에도 이어지는 주식 거래.",
+    "ja": "通常取引終了後も続く株式売買。"
+   },
+   "longDesc": {
+    "en": "Earnings usually land after the close, so this is where the first reaction shows up. Far fewer participants are trading, though, so the same order moves the price much more, and the swings seen here carry into the next regular session less often than people assume.",
+    "ko": "실적 발표는 대개 장이 닫힌 뒤에 나오기 때문에, 그 반응이 가장 먼저 나타나는 곳이 이 시간대다. 다만 참여자가 적어 같은 주문에도 값이 크게 흔들린다. 여기서 본 급등락이 다음 날 정규장까지 그대로 이어지는 경우는 생각보다 적다.",
+    "ja": "決算発表は通常、引け後に出るため、その反応が最初に表れるのがこの時間帯だ。ただし参加者が少なく同じ注文でも値が大きく振れる。ここで見た急騰急落が翌日の通常取引までそのまま続く例は思うより少ない。"
+   }
+  },
+  "한국은행": {
+   "kind": "term",
+   "sector": {
+    "en": "Central bank",
+    "ko": "중앙은행",
+    "ja": "中央銀行"
+   },
+   "aliases": [
+    "한국은행",
+    "한은",
+    "Bank of Korea",
+    "BOK",
+    "韓国銀行"
+   ],
+   "desc": {
+    "ko": "한국의 중앙은행. 기준금리를 정하고 원화를 발행한다.",
+    "en": "South Korea's central bank: it sets the policy rate and issues the won.",
+    "ja": "韓国の中央銀行。政策金利を決め、ウォンを発行する。"
+   },
+   "longDesc": {
+    "ko": "금융통화위원회가 기준금리를 결정하고, 그 금리가 예금, 대출, 채권 금리의 출발점이 된다. 외환보유액을 운용하고 필요하면 외환시장에도 개입한다. 국내 주식과 채권에 들어온 외국인 자금의 흐름을 집계해 발표하는 곳이기도 해서, 자본 유출입을 말할 때 근거로 자주 인용된다.",
+    "en": "Its Monetary Policy Board sets the base rate that anchors deposit, loan and bond yields. It manages the country's FX reserves and intervenes in the currency market when needed, and it publishes the tallies of foreign flows into Korean stocks and bonds that get cited whenever capital flight is discussed.",
+    "ja": "金融通貨委員会が基準金利を決め、それが預金・貸出・債券利回りの出発点になる。外貨準備を運用し、必要に応じて為替介入も行う。韓国株・債券への外国人資金の流れを集計・公表する主体でもあり、資本流出入を論じる際の根拠として頻繁に引用される。"
+   }
+  },
+  "MCKINSEY": {
+   "kind": "company",
+   "sector": {
+    "en": "Consulting",
+    "ko": "컨설팅",
+    "ja": "コンサルティング"
+   },
+   "aliases": [
+    "McKinsey",
+    "McKinsey & Company",
+    "맥킨지",
+    "マッキンゼー"
+   ],
+   "logo": "mckinsey.com",
+   "exchange": "비상장",
+   "founded": "1926",
+   "hq": {
+    "ko": "미국 뉴욕",
+    "en": "New York, USA",
+    "ja": "米国・ニューヨーク"
+   },
+   "website": "https://www.mckinsey.com",
+   "ceo": {
+    "ko": "밥 스턴펠스",
+    "en": "Bob Sternfels",
+    "ja": "ボブ・スターンフェルス"
+   },
+   "desc": {
+    "ko": "세계 최대 경영 컨설팅 회사. 산업과 거시 보고서가 자주 인용된다.",
+    "en": "The world's largest management consultancy, whose industry and macro reports are widely cited.",
+    "ja": "世界最大の経営コンサルティング会社。産業・マクロ報告書が頻繁に引用される。"
+   },
+   "longDesc": {
+    "ko": "1926년 설립된 비상장 파트너십으로, 각국 대기업과 정부를 상대로 전략을 자문한다. 자체 연구조직인 맥킨지글로벌연구소가 내는 세계 자산과 부채 총량, 산업별 투자 전망 같은 집계는 언론과 투자자가 근거로 자주 인용하는 자료다. 상장사가 아니라 실적은 공개되지 않는다.",
+    "en": "A private partnership founded in 1926 that advises large companies and governments on strategy. Its research arm, the McKinsey Global Institute, publishes tallies such as global assets and liabilities or sector investment outlooks that the press and investors routinely cite. As a private firm it discloses no financials.",
+    "ja": "1926年設立の非上場パートナーシップで、各国の大企業や政府に戦略を助言する。調査部門のマッキンゼー・グローバル・インスティテュートが出す世界の資産・負債総額や産業別投資見通しなどの集計は、報道や投資家が根拠として頻繁に引用する。非上場のため業績は開示されない。"
+   }
+  },
+  "마이클 세일러": {
+   "kind": "person",
+   "url": "https://x.com/saylor",
+   "sector": {
+    "en": "Executive",
+    "ko": "경영자",
+    "ja": "経営者"
+   },
+   "aliases": [
+    "마이클 세일러",
+    "세일러",
+    "Michael Saylor",
+    "Saylor",
+    "マイケル・セイラー",
+    "セイラー"
+   ],
+   "desc": {
+    "ko": "스트래티지 창업자이자 의장. 기업 금고에 비트코인을 쌓는 전략을 처음 밀어붙인 인물.",
+    "en": "Founder and chair of Strategy, the executive who pioneered putting bitcoin on a corporate balance sheet.",
+    "ja": "ストラテジー創業者兼会長。企業のバランスシートにビットコインを積む戦略を最初に押し進めた人物。"
+   }
+  },
+  "S&P GLOBAL": {
+   "kind": "company",
+   "ticker": "spgi.us",
+   "sector": {
+    "en": "Finance",
+    "ko": "금융",
+    "ja": "金融"
+   },
+   "aliases": [
+    "S&P Global",
+    "S&P Global Ratings",
+    "에스앤피글로벌",
+    "스탠더드앤드푸어스",
+    "SPGI",
+    "S&Pグローバル"
+   ],
+   "logo": "spglobal.com",
+   "exchange": "NYSE",
+   "founded": "1860",
+   "hq": {
+    "ko": "미국 뉴욕",
+    "en": "New York, USA",
+    "ja": "米国・ニューヨーク"
+   },
+   "website": "https://www.spglobal.com",
+   "ceo": {
+    "ko": "마틴 프라이덴슨",
+    "en": "Martina Cheung",
+    "ja": "マルティナ・チャン"
+   },
+   "desc": {
+    "ko": "세계 3대 신용평가사이자 S&P500 지수를 만드는 금융정보 회사.",
+    "en": "One of the big three credit rating agencies and the owner of the S&P 500 index.",
+    "ja": "世界三大格付け会社の一つで、S&P500指数を算出する金融情報会社。"
+   },
+   "longDesc": {
+    "ko": "기업과 국가의 빚 갚을 능력에 등급을 매긴다. 등급이 내려가면 그 회사가 새로 빌릴 때 물어야 하는 이자가 오르고, 투자등급 아래로 떨어지면 규정상 투자등급만 담을 수 있는 연기금이 강제로 팔아야 한다. 그래서 등급 변경은 그 자체로 자금조달 비용을 바꾸는 사건이다. 지수사업부는 S&P500을 비롯한 주가지수를 만들어 사용료를 받는다.",
+    "en": "It grades how likely companies and governments are to repay their debt. A downgrade raises what the borrower must pay to issue new debt, and a fall below investment grade forces pension funds that may only hold investment-grade paper to sell. A rating change is therefore itself an event that moves funding costs. Its index arm builds and licenses the S&P 500 and other benchmarks.",
+    "ja": "企業や国家の返済能力に格付けを与える。格下げされれば新規借入時の金利が上がり、投資適格を下回れば投資適格しか保有できない年金基金は強制的に売却する。したがって格付け変更はそれ自体が資金調達コストを動かす事件だ。指数部門はS&P500などの株価指数を算出し使用料を得る。"
+   }
   }
  }
 }
