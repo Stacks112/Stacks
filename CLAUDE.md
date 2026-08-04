@@ -523,6 +523,14 @@ python3 scripts/deploy_guard.py --verify index.html sw.js
 
 ## 피드 소스 (fetch_feeds.py FEEDS — 메타는 sources.json이 단일 진실 출처)
 - meru(KO, naver) · emin(JA, note.com) · trump(EN, trumpstruth.org) — 정상.
+- **bessent(EN, rss.app X @SecScottBessent, category politician) — 미 재무장관 (2026-08-04 추가).**
+  국채 발행·관세·달러·재정을 말하는 **로스터 유일의 1차 발화자**(그동안은 코베이시가 2차로 옮긴
+  것뿐이었다). 거의 매일 올라와 **48시간 창을 실제로 통과하는 몇 안 되는 신규 소스**다.
+  ⚠️ **공직자 계정 3규칙이 붙어 있다 — 전문은 `sources.json`의 trump·bessent `notes`에 있고
+  둘 다 같은 내용이다.** 요약: ① 시장에 직접 닿는 발언만, politician 전체 합쳐 회차당 1건
+  ② **`outcome`을 달 수 없으면 발행하지 않는다**(공직자 발언은 대개 판별 가능한 예측이 없어
+  채점률을 희석시킨다) ③ **stance 기본 watch** + 시장 반응·반대 논거를 본문에 반드시 넣는다
+  (직무상 낙관을 bull로 읽지 않는다. 발언만 옮긴 카드는 홍보물이 된다).
 - doomberg/netinterest(EN, 커스텀도메인 Substack) — 브라우저 UA로 정상.
 - serenity(rss.app 브리지, X @aleabitoreddit) — rss.app Basic 결제 완료(2026-07-20), 기한 리스크 없음.
   ⚠️ **serenity_substack은 2026-08-03에 FEEDS·sources.json에서 제거됐다.** 순정
