@@ -2,6 +2,57 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (「Stacks에서 보기」 button on the daily prediction card)
+
+june: "오늘의 예측 카드에 한해서만 Stacks에서 보기 버튼 하나 더 추가해줘. 독자들이 Stacks 원래
+어떤 글이였는지 궁금할수도 있으니까"
+
+Changed: `index.html` only (`ffe6583`, +60/-3). No asset files, so no cache-hash bump.
+
+- The prediction card **takes the article's slot in the feed** (`appendFeedPage` skips the normal
+  card for that id), so before this there was no route back to the original Stacks post at all.
+- New outline pill `.prediction-result-post` inserted right after the black `.original-link`
+  ("원문 보기 ↗") inside `.cta-row`, so the X source and the Stacks post sit on one line.
+  Copy lives in the existing `copy` object of `dailyPredictionResultEl`
+  (ko `Stacks에서 보기 →` / en `View on Stacks →` / ja `Stacksで見る →`).
+  **Detail only** - `.cta-row` is already hidden on the collapsed feed card in both shells, which
+  is what june picked; the feed card gains nothing.
+- `openStacksPost(id, ev)` (next to `openFromCard`) is the whole behaviour:
+  - **Desktop.** Clear `PRED_CLICK_ID` *before* calling `v83OpenItem` - it is still set from the
+    capture-phase listener, and `v83OpenItem` would otherwise re-arm `V83PRED` and reopen the
+    prediction view. Then the detail re-renders from `ITEMS` as the plain article.
+  - **Mobile.** The overlay holds the card *node*, so a plain card has to exist in the feed first.
+    Close the overlay through the shell's own path (`history.back()` -> `v82Pop` -> `closeDetail`)
+    rather than swapping the node in place: `#twcOv > .twc-sheet` is mounted **inside** that
+    node's `.comment-box`, and tearing the node out takes the comment sheet with it, killing
+    comments for the rest of the session. After the close the card is back in the feed, so swap it
+    for `cardEl(item, STRINGS[LANG], 0)` and reopen with `v82OpenCard`. History depth is neutral
+    (back 1 + `openDetail`'s `pushView` 1); scroll position is kept because the feed is not
+    re-rendered.
+  - Mobile side effect, accepted by june: after this the feed slot stays a normal article card
+    until the next full render/reload, when the prediction card comes back.
+- Mobile order: v82.css already numbers `.cta-row` children (original-link 1, paywall 3,
+  lang-note 4). Default `order:0` would put the new button **before** 원문 보기, so
+  `index.html`'s own `@media (max-width:1023px)` block pins it to `order:2` - no asset edit,
+  no cache-hash bump.
+
+Verified:
+- `node --check` on all 6 inline script blocks.
+- Local Playwright desktop 1440x1000: cta-row order `original-link / prediction-result-post /
+  lang-note`; click -> `V83PRED = null`, plain article detail; Back -> feed still has exactly 1
+  prediction card. Korean label renders as `Stacks에서 보기 →` next to `원문 보기 ↗`.
+- Local Playwright mobile 390x820: button `order:2` and visible in the detail; click -> plain
+  article detail, `.twc-sheet` still alive and still inline (`#v82dbody .twc-sheet` present),
+  `history.length` delta +1 (same as a single detail open); after closing, the feed has the plain
+  card, 0 prediction cards and **no duplicate `sig-` ids**.
+- Live stacksdaily.com (ko): button renders, click lands on the Kobeissi article detail.
+  ⚠ Needed **two** hard reloads - the service worker served the old index.html through the first
+  one. Do not read that as a failed deploy; check `fetch('/index.html?cb=')` for the new string.
+
+Notes / next:
+- The comment-sheet trap is the reason for the `history.back()` hop. If anyone "simplifies" this
+  to a direct `replaceChild` inside `#v82dbody`, comments die silently on mobile.
+
 ## 2026-08-04 Claude (daily prediction card -> prediction detail on desktop)
 
 june: "오늘의 예측 글은 누르면 예측 글 상세 카드로 이동하는게 아니라 아예 원문글로 이동하는데 왜
