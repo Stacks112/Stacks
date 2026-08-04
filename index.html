@@ -3799,8 +3799,17 @@ function dbkFold(){
     var gr = g.getBoundingClientRect(), br = b.getBoundingClientRect();
     var top = br.top - gr.top, bottom = top + br.height + DBK_FADE;
     if (bottom <= base) return;                   /* 이미 다 보인다 */
-    if (bottom <= DBK_FEED_CAP) g.style.maxHeight = Math.ceil(bottom) + "px";
-    else if (top > 48)          g.style.maxHeight = Math.floor(top - 8) + "px";
+    if (bottom <= DBK_FEED_CAP){
+      g.style.maxHeight = Math.ceil(bottom) + "px";
+    } else if (top > 48 && top < base){
+      /* 블록이 접힘선을 **가로지를** 때만 그 앞에서 끊는다. 접힘선보다 한참 아래에
+         있는 블록 앞에서 끊으면 접힘이 오히려 늘어난다 — 모바일 실측에서 막대가
+         본문 972px 지점에 있어 카드가 92px에서 963px로 부풀었다. 그때는 손대지
+         않고 CSS 기준값 그대로 둔다. */
+      g.style.maxHeight = Math.floor(top - 8) + "px";
+    } else {
+      return;
+    }
     /* 높이를 손댔으면 자르는 것까지 같이 박는다 — 위 주석의 ② */
     if (g.style.maxHeight) g.style.overflow = "hidden";
   });
