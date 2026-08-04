@@ -19,7 +19,15 @@
   "category": "politician",
   "avatarImg": "trump.webp",
   "wiki": "Donald_Trump",
-  "notes": "Truth Social 아카이브. sourceUrl은 가능하면 truthsocial.com 원본. 시장영향 있는 것만 최대 1건."
+  "notes": "Truth Social 아카이브. sourceUrl은 가능하면 truthsocial.com 원본. ★공직자 계정 3규칙(category=politician 공통, 2026-08-04 신설) — ① 시장에 직접 닿는 발언만 카드로 만든다: 국채 발행·관세·금리·달러·재정적자·규제·제재·무역합의. 정파 공방·인사·의전·선거·집회·수사 홍보·밈은 제외. politician 소스 전체(트럼프+베선트) 합쳐 회차당 최대 1건. ② outcome을 달 수 없으면 발행하지 않는다: 공직자 발언은 대개 발표·성과 홍보라 판별 가능한 예측이 없다. 그 발언에서 90일 안에 공개 자료로 확인 가능한 질문을 우리가 만들어 outcome{status:pending,due,note}를 붙일 수 있을 때만 카드로 낸다. 못 만들면 보류하고 [9]에 사유를 적는다. ③ stance 기본값은 watch이고 본문에 반대편을 반드시 넣는다: 대통령·장관의 낙관은 직무상 발화이므로 그 발언만으로 bull을 붙이지 않는다. bull/bear는 발언이 아니라 시장 데이터가 근거일 때만 쓴다. 그 발언에 대한 시장의 실제 반응이나 반대 논거를 @@REF@@ 또는 @@CMP@@로 한 대목 반드시 넣는다 — 발언만 옮긴 카드는 홍보물이 된다."
+ },
+ "bessent": {
+  "source": "Scott Bessent (@SecScottBessent)",
+  "lang": "EN",
+  "category": "politician",
+  "avatarImg": "https://unavatar.io/twitter/SecScottBessent?fallback=false",
+  "wiki": "Scott_Bessent",
+  "notes": "미 재무장관 공식 계정, X via rss.app. link가 정확히 x.com/SecScottBessent/ 인 항목만 사용(2026-08-04 피드 25건 전수 확인 시점에는 사칭 계정 없음). 로스터에서 국채 발행·관세·달러·재정을 말하는 유일한 1차 발화자다 — 지금까지는 코베이시가 2차로 옮긴 것만 있었다. ★공직자 계정 3규칙(category=politician 공통, 2026-08-04 신설) — ① 시장에 직접 닿는 발언만 카드로 만든다: 국채 발행·관세·금리·달러·재정적자·규제·제재·무역합의. 정파 공방·인사·의전·선거·집회·수사 홍보·밈은 제외. politician 소스 전체(트럼프+베선트) 합쳐 회차당 최대 1건. ② outcome을 달 수 없으면 발행하지 않는다: 공직자 발언은 대개 발표·성과 홍보라 판별 가능한 예측이 없다. 그 발언에서 90일 안에 공개 자료로 확인 가능한 질문을 우리가 만들어 outcome{status:pending,due,note}를 붙일 수 있을 때만 카드로 낸다(예: ‘관세 수입 사상 최대’ 자랑 → ‘2026년 3분기 관세 수입이 2분기를 넘는가’). 못 만들면 보류하고 [9]에 사유를 적는다. ③ stance 기본값은 watch이고 본문에 반대편을 반드시 넣는다: 재무장관의 낙관은 직무상 발화이므로 그 발언만으로 bull을 붙이지 않는다. bull/bear는 발언이 아니라 시장 데이터가 근거일 때만 쓴다. 그 발언에 대한 시장의 실제 반응이나 반대 논거를 @@REF@@ 또는 @@CMP@@로 한 대목 반드시 넣는다 — 발언만 옮긴 카드는 홍보물이 된다."
  },
  "serenity": {
   "source": "Serenity (@aleabitoreddit)",
