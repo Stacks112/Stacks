@@ -34,6 +34,12 @@ FEEDS = [
     {"id": "netinterest", "url": "https://www.netinterest.co/feed", "keep_days": SLOW_DAYS, "naver": False},
     {"id": "emin", "url": "https://note.com/eminyurumazu/rss", "naver": False},
     {"id": "trump", "url": "https://trumpstruth.org/feed", "naver": False},
+    # The sitting Treasury Secretary. First-party voice on issuance, tariffs, the
+    # dollar and the deficit, which the roster otherwise only gets second hand
+    # through Kobeissi. Posts most days, so unlike the weekly longform sources it
+    # actually clears the 48h publishing window. The three handling rules that
+    # keep this from becoming a press-release feed live in sources.json.
+    {"id": "bessent", "url": "https://rss.app/feeds/SgkcwvGZgvrR8L8l.xml", "naver": False},
     # Serenity's X posts via RSS.app (the real firehose — tweets with full
     # text; item links point at the original x.com posts)
     {"id": "serenity", "url": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml", "naver": False},
