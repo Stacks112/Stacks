@@ -2113,6 +2113,16 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
   /* 모바일에는 v82의 클립 「더 보기」(.v82-more)가 이미 붙는다. 예측 카드가 자기 것을
      하나 더 달아 두 개로 보였다(june 신고). 모바일에서는 v82 쪽만 남긴다. */
   .prediction-result-card .prediction-result-more{display:none;}
+  /* 상단바 프로필(스택스 마크) 버튼 — 보이는 원은 X와 같은 32px (2026-08-04, june).
+     v82.css가 44px 탭 영역을 주려고 min-width/min-height를 걸었는데, 이 버튼은 배경과
+     반지름이 있어서 그게 그대로 "보이는 원"이 됐다(44px). 원은 32px로 줄이고 44px 탭
+     영역은 보이지 않는 ::after로 되돌려 놓는다 — 「원문 보기」 칩이 쓰는 방식과 같다.
+     v82.css의 `nav .nav-inner #v82av`(1,1,1)를 이기려고 `button#v82av`(1,1,2)로 쓴다.
+     에셋을 안 건드리므로 캐시 해시도 그대로다. */
+  nav .nav-inner button#v82av{min-width:0;min-height:0;width:32px;height:32px;position:relative;}
+  nav .nav-inner button#v82av::after{content:"";position:absolute;left:50%;top:50%;
+    width:44px;height:44px;transform:translate(-50%,-50%);}
+  nav .nav-inner button#v82av .v82-stack-mark{width:19px;height:19px;}
 }
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
