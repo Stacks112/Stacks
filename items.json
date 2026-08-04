@@ -726,11 +726,97 @@
      "en": "Score on the Fed's H.4.1 released August 6 (as of August 5): dollars borrowed by foreign monetary authorities against Treasuries moving off zero counts as the FIMA route opening, staying at zero counts as the original expectation missing.",
      "ja": "8月6日公表のFRB H.4.1(8月5日基準)で、外国の通貨当局による国債担保のドル借入残高がゼロから増えればFIMA経路が実際に開いたとし、ゼロのままなら原文の想定が外れたと採点する。"
     },
-    "due": "2026-08-06"
+    "due": "2026-08-06",
+    "card": {
+     "metric": {
+      "ko": "연준 H.4.1 · 외국 통화당국 국채담보 달러 차입 잔액",
+      "en": "Fed H.4.1 · dollars borrowed by foreign monetary authorities against Treasuries",
+      "ja": "FRB H.4.1 · 外国通貨当局の国債担保ドル借入残高"
+     },
+     "now": {
+      "ko": "0달러 (2026-07-29 기준)",
+      "en": "$0 (as of 2026-07-29)",
+      "ja": "0ドル (2026-07-29時点)"
+     },
+     "when": {
+      "ko": "2026-08-06 (8/5 기준 발표)",
+      "en": "2026-08-06 (data as of 8/5)",
+      "ja": "2026-08-06 (8/5時点で公表)"
+     },
+     "hit": {
+      "ko": "0에서 증가 → FIMA 경로가 실제로 열렸다",
+      "en": "Rises above zero → the FIMA route actually opened",
+      "ja": "0から増加 → FIMA経路が実際に開いた"
+     },
+     "miss": {
+      "ko": "계속 0 → 원문의 예상이 빗나갔다",
+      "en": "Stays at zero → the original post's expectation missed",
+      "ja": "0のまま → 原文の予想が外れた"
+     }
+    }
    },
    "lab": true,
    "foldWhy": true,
-   "ts": "2026-08-03T04:19:41.992095+00:00"
+   "ts": "2026-08-03T04:19:41.992095+00:00",
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르(ranto28) · 2026-08-03",
+      "en": "meru (ranto28) · 2026-08-03",
+      "ja": "メル(ranto28) · 2026-08-03"
+     },
+     "url": "https://blog.naver.com/ranto28/224366267736"
+    },
+    {
+     "name": {
+      "ko": "포춘·블룸버그",
+      "en": "Fortune / Bloomberg",
+      "ja": "フォーチュン・ブルームバーグ"
+     },
+     "desc": {
+      "ko": "베센트가 일본과 손잡고 몇 달간 이어진 엔화 하락을 되돌리다 (2026-08-01)",
+      "en": "Bessent joins Japan to reverse months of yen weakness (2026-08-01)",
+      "ja": "ベッセントが日本と組み、数カ月続いた円安を反転させる (2026-08-01)"
+     },
+     "url": "https://fortune.com/2026/08/01/scott-bessent-treasury-japan-yen-dollar-exchange-rate/"
+    },
+    {
+     "name": {
+      "ko": "로이터",
+      "en": "Reuters",
+      "ja": "ロイター"
+     },
+     "desc": {
+      "ko": "베센트의 '해야 할 일' 목록, 엔화 50억~100억달러 매입 (2026-07-31)",
+      "en": "Exclusive: Bessent's to-do list — buy $5–10bn of yen (2026-07-31)",
+      "ja": "独占: ベッセントの「やること」リスト、円50〜100億ドル買い (2026-07-31)"
+     },
+     "url": "https://finance.yahoo.com/news/exclusive-bessents-list-buy-5-225415289.html"
+    },
+    {
+     "name": {
+      "ko": "미 연방준비제도",
+      "en": "Federal Reserve",
+      "ja": "米連邦準備制度"
+     },
+     "desc": {
+      "ko": "상설 FIMA 레포 창구 도입 발표 (2021-07-28)",
+      "en": "Establishment of the standing FIMA repo facility (2021-07-28)",
+      "ja": "常設FIMAレポ・ファシリティ導入発表 (2021-07-28)"
+     },
+     "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-03 조회 · 미 연준 H.4.1(2026-07-30 발표, 7월 29일 기준) · FRED DGS10",
+    "en": "Retrieved 2026-08-03 · Fed H.4.1 (released 2026-07-30, as of 7/29) · FRED DGS10",
+    "ja": "2026-08-03 取得 · 米FRB H.4.1(2026-07-30公表、7月29日時点) · FRED DGS10"
+   }
   },
   {
    "date": "2026-08-02",
@@ -807,11 +893,123 @@
      "en": "Score on Samsung's full-year 2026 results in early 2027. If annual operating profit reaches around 391 trillion won, the first year of Nomura's forecast held, and if it falls short of the 358 trillion implied by four times Q2, it did not.",
      "ja": "2027年初のサムスン電子2026年通期決算で採点する。通期営業利益が391兆ウォンの線に届けば野村予想の初年度は当たり、4-6月期を4倍した358兆ウォンにも届かなければ外れたと見る。"
     },
-    "due": "2027-01-31"
+    "due": "2027-01-31",
+    "card": {
+     "metric": {
+      "ko": "삼성전자 2026년 연간 영업이익",
+      "en": "Samsung Electronics 2026 full-year operating profit",
+      "ja": "サムスン電子 2026年 通期営業利益"
+     },
+     "now": {
+      "ko": "2분기 89.5조원 · 네 배 환산 358조원",
+      "en": "Q2 89.5tn won · four-quarter run rate 358tn won",
+      "ja": "2Q 89.5兆ウォン · 4倍換算 358兆ウォン"
+     },
+     "when": {
+      "ko": "2027년 초 (연간 실적 발표)",
+      "en": "Early 2027 (full-year results)",
+      "ja": "2027年初 (通期決算発表)"
+     },
+     "hit": {
+      "ko": "391조원 선 도달 → 노무라 추정 첫 해 적중",
+      "en": "Reaches the 391tn won line → Nomura's first year lands",
+      "ja": "391兆ウォン線に到達 → ノムラ推定の初年度が的中"
+     },
+     "miss": {
+      "ko": "358조원 미달 → 첫 해에서 어긋남",
+      "en": "Falls short of 358tn won → off in the first year",
+      "ja": "358兆ウォン未達 → 初年度で外れ"
+     }
+    }
    },
    "lab": true,
    "foldWhy": true,
-   "ts": "2026-08-03T04:58:49.247234+00:00"
+   "ts": "2026-08-03T04:58:49.247234+00:00",
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-02",
+      "en": "Jukan (@jukan05) · 2026-08-02",
+      "ja": "Jukan(@jukan05) · 2026-08-02"
+     },
+     "url": "https://x.com/jukan05/status/2083915223644397881"
+    },
+    {
+     "name": {
+      "ko": "서울경제 영문판",
+      "en": "Seoul Economic Daily (English)",
+      "ja": "ソウル経済 英文版"
+     },
+     "desc": {
+      "ko": "삼성전자, 시가총액 1조달러 클럽에 복귀 (2026-07-31)",
+      "en": "Samsung Electronics re-enters the $1 trillion club (2026-07-31)",
+      "ja": "サムスン電子、時価総額1兆ドルクラブに復帰 (2026-07-31)"
+     },
+     "url": "https://en.sedaily.com/finance/2026/07/31/samsung-electronics-re-enters-1-trillion-club-as-kospi"
+    },
+    {
+     "name": {
+      "ko": "서울경제 영문판",
+      "en": "Seoul Economic Daily (English)",
+      "ja": "ソウル経済 英文版"
+     },
+     "desc": {
+      "ko": "삼성 반도체 부문만 88조원, 초점은 120조원 주주환원으로 (2026-07-30)",
+      "en": "Samsung's chip unit alone earns 88tn won; focus turns to 120tn won of shareholder returns (2026-07-30)",
+      "ja": "サムスン半導体部門だけで88兆ウォン、焦点は120兆ウォンの株主還元へ (2026-07-30)"
+     },
+     "url": "https://en.sedaily.com/finance/2026/07/30/samsung-chip-unit-alone-earns-88-trillion-won-focus-turns"
+    },
+    {
+     "name": {
+      "ko": "StockAnalysis",
+      "en": "StockAnalysis",
+      "ja": "StockAnalysis"
+     },
+     "desc": {
+      "ko": "시가총액 (2026-07-31 종가 기준)",
+      "en": "Market capitalisation (close of 2026-07-31)",
+      "ja": "時価総額 (2026-07-31終値基準)"
+     },
+     "url": ""
+    },
+    {
+     "name": {
+      "ko": "삼성전자",
+      "en": "Samsung Electronics",
+      "ja": "サムスン電子"
+     },
+     "desc": {
+      "ko": "2026년 2분기 실적 발표 및 컨퍼런스콜",
+      "en": "Q2 2026 results and earnings call",
+      "ja": "2026年2Q決算発表およびカンファレンスコール"
+     },
+     "url": ""
+    },
+    {
+     "name": {
+      "ko": "노무라",
+      "en": "Nomura",
+      "ja": "ノムラ"
+     },
+     "desc": {
+      "ko": "삼성전자 영업이익·잉여현금흐름 추정 (원문 인용)",
+      "en": "Samsung operating profit and free cash flow estimates (as cited in the original)",
+      "ja": "サムスン電子の営業利益・フリーキャッシュフロー推定 (原文引用)"
+     },
+     "url": ""
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-03 조회 · 시가총액은 StockAnalysis(2026-07-31 종가 기준), 추정치는 원문",
+    "en": "Retrieved 2026-08-03 · Market cap from StockAnalysis (close of 2026-07-31); estimates from the original",
+    "ja": "2026-08-03 取得 · 時価総額はStockAnalysis(2026-07-31終値基準)、推定値は原文"
+   }
   },
   {
    "date": "2026-08-02",
@@ -891,11 +1089,84 @@
      "en": "Score by the end of August: if trade.xyz changes its price calculation from a single venue's fill to a blend of venues or a time average as it said it would, this counts as one operator's setting, and if the method is unchanged it counts as a structural feature of such markets.",
      "ja": "8月末までにtrade.xyzが表明どおり値段の計算を単一市場の約定値から複数市場の混合や一定時間の平均に変えれば一社の設定の問題とし、方式が変わらなければこの種の市場が抱え続ける構造として採点する。"
     },
-    "due": "2026-08-31"
+    "due": "2026-08-31",
+    "card": {
+     "metric": {
+      "ko": "trade.xyz의 가격 산출 방식",
+      "en": "How trade.xyz computes its reference price",
+      "ja": "trade.xyzの価格算出方式"
+     },
+     "now": {
+      "ko": "단일 시장(넥스트레이드) 체결가",
+      "en": "A single venue's fill (NextTrade)",
+      "ja": "単一市場(ネクストレード)の約定値"
+     },
+     "when": {
+      "ko": "2026-08-31",
+      "en": "2026-08-31",
+      "ja": "2026-08-31"
+     },
+     "hit": {
+      "ko": "복수 시장 혼합 또는 시간 평균으로 변경 → 한 곳의 설정 문제였다",
+      "en": "Switches to a blend of venues or a time average → one operator's setting",
+      "ja": "複数市場の混合か一定時間の平均に変更 → 一社の設定の問題だった"
+     },
+     "miss": {
+      "ko": "방식이 그대로 → 이런 시장이 계속 안고 갈 구조다",
+      "en": "Method unchanged → a structural feature of such markets",
+      "ja": "方式が変わらず → この種の市場が抱え続ける構造だ"
+     }
+    }
    },
    "lab": true,
    "foldWhy": true,
-   "ts": "2026-08-03T04:19:41.992095+00:00"
+   "ts": "2026-08-03T04:19:41.992095+00:00",
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르(ranto28) · 2026-08-02",
+      "en": "meru (ranto28) · 2026-08-02",
+      "ja": "メル(ranto28) · 2026-08-02"
+     },
+     "url": "https://blog.naver.com/ranto28/224364898631"
+    },
+    {
+     "name": {
+      "ko": "서울경제 영문판",
+      "en": "Seoul Economic Daily (English)",
+      "ja": "ソウル経済 英文版"
+     },
+     "desc": {
+      "ko": "SK하이닉스 1주 하한가 체결이 830억원 규모 가상자산 선물 청산을 불렀다 (2026-07-30)",
+      "en": "A single SK hynix share at the floor triggered 83 billion won of crypto futures liquidations (2026-07-30)",
+      "ja": "SKハイニックス1株のストップ安約定が830億ウォン規模の暗号資産先物清算を招いた (2026-07-30)"
+     },
+     "url": "https://en.sedaily.com/finance/2026/07/30/sk-hynix-single-share-limit-trade-triggers-83-billion-won"
+    },
+    {
+     "name": {
+      "ko": "BeInCrypto",
+      "en": "BeInCrypto",
+      "ja": "BeInCrypto"
+     },
+     "desc": {
+      "ko": "하이퍼리퀴드, 가격 이상으로 발생한 5,740만달러 SK하이닉스 무기한선물 청산을 설명하다 (2026-07-28)",
+      "en": "Hyperliquid explains the $57.4m SK hynix perp liquidation caused by the price anomaly (2026-07-28)",
+      "ja": "ハイパーリキッド、価格異常で発生した5,740万ドルのSKハイニックス無期限先物清算を説明 (2026-07-28)"
+     },
+     "url": "https://beincrypto.com/hyperliquid-sk-hynix-perp-oracle-liquidations/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-03 조회 · 체결가와 기준값은 원문 및 위 두 매체 보도",
+    "en": "Retrieved 2026-08-03 · Fill and reference prices from the original post and the two reports above",
+    "ja": "2026-08-03 取得 · 約定値と基準値は原文および上記2媒体の報道"
+   }
   },
   {
    "date": "2026-08-01",
