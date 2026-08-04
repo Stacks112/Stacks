@@ -497,10 +497,29 @@ oEmbed 실패·원문 삭제 때 폴백이 된다.
 ## 소제목                                        → <h4 class="gsub">
 @@CHK@@라벨|값|라벨|값@@해석@@출처               → .chk (우리가 직접 조회한 수치)
 @@CMP@@왼쪽라벨|왼쪽글|오른쪽라벨|오른쪽글        → .cmp (같은 사실의 두 해석)
+@@BAR@@라벨|표시값|숫자|…@@해석@@출처            → .dbk (규모를 길이로. 2개면 ×배수 자동)
+@@SHARE@@라벨|표시값|숫자|…@@해석@@출처          → .dbk (100% 한 줄 띠 + 범례)
+@@TIME@@날짜|사건|…@@해석@@출처                  → .dbk (연표. 날짜 앞 '>'는 예정)
+@@FLOW@@단계|설명|…@@해석                        → .dbk (무엇이 어디로 가나)
 ```
 
-- 렌더는 `index.html`의 `gistRich()` **한 곳**만 안다. SEO 페이지는 `build_pages.py`의
-  `gist_blocks()`가 같은 일을 한다(두 곳이 갈리면 검색 결과에 마커가 그대로 나간다).
+**★ 그래픽 어휘 확장 (2026-08-04, june 지시 — 발행 규칙 v4.7).**
+june 지적: "글마다 똑같이 생겨서 다른 글을 복사 붙여넣기 한 느낌이 든다."
+실측이 그대로 나왔다 — **최근 20장 중 `@@CHK@@` 16장(80%) · `@@CMP@@` 10장(50%) ·
+둘 다 8장(40%)**, 전체 245장 평균은 24.6% · 31.5%였다. 원인은 취향이 아니라 어휘였다.
+그릴 수 있는 형태가 표와 VS 둘뿐인데 v4.6 `[Y]`가 원문 의존도 FAIL의 1순위 처방을
+"`@@CHK@@`를 만든다"로 정해 놓아, 표가 사실상 매 회차 의무가 됐다.
+그래서 ① 형태를 넷 더 만들고 ② `check_source_dependence.py`가 `@@CHK@@` 대신
+`DATA_PREFIXES`(CHK·BAR·SHARE·TIME) 아무거나로 만족하게 바꾸고
+③ `check_editorial.py`에 편중 상한(`BLOCK_CAP`, W3)·회차 반복(R4)·카드 내 중복(#13)을 걸었다.
+**형태는 재료가 아니라 독자가 막히는 지점이 고른다** — 규칙 전문은
+프로젝트 `claude/prompts/publish-v4.7-graphics.md`.
+계열색(`--s1`~`--s4`)은 명도대·채도·색각이상 인접쌍 분리를 검사기로 통과시킨 조합이고
+**밝은 모드와 어두운 모드가 각각 따로 골라져 있다.** 순서를 섞거나 5번째 색을 만들지 않는다.
+
+- 렌더는 **세 곳**이다: `index.html`의 `gistRich()`/`dataBlock()` · `build_pages.py`의
+  `gist_blocks()` · `weekly_email.py`의 `gist_html()`/`_BLOCKS`. 하나를 고치면 셋을 같이
+  고친다 — `scripts/check_email_render.py`가 셋의 마커 목록이 갈라지면 실패한다.
 - 평문이 필요한 곳은 전부 마커를 걷어내야 한다: 미리보기(`build_data.strip_markers`),
   meta description(`build_pages.strip_markers`), TTS·공유 텍스트·핫리스트 요약
   (`index.html`의 `plainGist()`), v82 스니펫.

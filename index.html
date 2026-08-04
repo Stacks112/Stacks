@@ -733,6 +733,10 @@ const STRINGS = {
   --black:#111214;
   --accent:#2E5BFF;
   --radius:20px;
+  /* 데이터 블록의 계열색. 순서가 곧 배정 순서다 — 섞거나 5번째를 만들지 않는다.
+     명도대·채도·색각이상 인접쌍 분리를 검사기로 통과시킨 조합이다(2026-08-04). */
+  --s1:#2563EB; --s2:#F59E0B; --s3:#0D9488; --s4:#7C3AED;
+  --track:#EEF0F4;
   /* Apple's system UI font on Apple devices (San Francisco + Apple SD Gothic Neo
      for Korean), graceful system fallbacks elsewhere. */
   --ui-font:"Pretendard Variable","Pretendard JP Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -2738,6 +2742,50 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
    here is why it is wrong" order survives on a phone */
 @media (max-width:520px){ .cmp{grid-template-columns:1fr;} .cmp-vs{justify-self:center;margin:-2px 0;} }
 
+/* ---------- 데이터 블록 (2026-08-04, 발행 규칙 v4.7) ----------
+   표(.chk)와 VS(.cmp) 둘뿐이던 그래픽 어휘를 넓힌 것이다. 어느 형태를 쓸지는
+   "독자가 어디서 막히는가"가 고른다 — 규모(.bar) · 비중(.shr) · 순서(.tml) ·
+   경로(.flw). 정적 페이지(build_pages.py)와 이메일(weekly_email.py)에도 같은
+   뜻의 렌더가 있어야 한다. */
+.dbk{margin:16px 0;}
+.dbk-n{margin:11px 0 0;font-size:13px;line-height:1.6;color:var(--text);white-space:pre-line;}
+.dbk-s{margin:6px 0 0;font-size:11px;line-height:1.5;color:var(--muted);}
+.bar-r{margin:0 0 12px;}
+.bar-r:last-of-type{margin-bottom:0;}
+.bar-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 6px;}
+.bar-h i{font-style:normal;font-size:11.5px;line-height:1.45;color:var(--muted);}
+.bar-h b{font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text);
+  font-family:"Inter",sans-serif;white-space:nowrap;}
+.bar-t{height:10px;border-radius:5px;background:var(--track);}
+.bar-f{height:100%;border-radius:5px;background:var(--s1);min-width:3px;}
+.bar-x{display:inline-block;margin:3px 0 0;padding:3px 9px;border-radius:999px;
+  background:var(--track);font-family:"Inter",sans-serif;font-size:12px;font-weight:800;color:var(--s1);}
+.shr-t{display:flex;height:26px;gap:2px;}
+.shr-g{height:100%;min-width:3px;}
+.shr-g:first-child{border-radius:6px 0 0 6px;}
+.shr-g:last-child{border-radius:0 6px 6px 0;}
+.shr-l{display:flex;flex-wrap:wrap;gap:7px 18px;margin:11px 0 0;}
+.shr-i{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);}
+.shr-d{width:9px;height:9px;border-radius:2px;flex:0 0 auto;}
+.shr-i b{color:var(--text);font-weight:700;}
+.tml{margin:0;padding:2px 0 0 22px;list-style:none;position:relative;}
+.tml:before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:2px;background:var(--line);}
+.tml li{position:relative;margin:0 0 14px;}
+.tml li:last-child{margin-bottom:0;}
+.tml li:before{content:"";position:absolute;left:-22px;top:4px;width:10px;height:10px;
+  border-radius:50%;background:var(--s1);box-shadow:0 0 0 3px var(--card);}
+.tml li.fut:before{background:var(--card);border:2px dashed var(--muted);box-shadow:none;}
+.tml i{display:block;font-style:normal;font-size:11px;font-weight:800;color:var(--muted);margin:0 0 3px;}
+.tml p{margin:0;font-size:13px;line-height:1.6;color:var(--text);}
+.flw{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;}
+.flw-s{flex:1 1 150px;min-width:0;padding:10px 12px;border:1px solid var(--line);
+  border-radius:11px;background:rgba(127,127,140,.045);}
+.flw-s b{display:block;font-size:12.5px;font-weight:800;line-height:1.45;color:var(--text);margin:0 0 4px;}
+.flw-s span{display:block;font-size:12px;line-height:1.55;color:var(--muted);}
+.flw-a{flex:0 0 auto;align-self:center;color:var(--muted);font-size:15px;font-weight:800;}
+/* 좁은 화면에서는 화살표를 세워 아래로 흐르게 한다 — 단계 순서가 뒤집히면 안 된다. */
+@media (max-width:520px){ .flw{display:block;} .flw-a{display:block;width:1em;margin:5px 0 5px 16px;transform:rotate(90deg);} }
+
 .gcardw{margin:12px 0 14px;max-width:520px;}
 .gcard{position:relative;display:block;border:1px solid var(--line);border-radius:14px;
   overflow:hidden;text-decoration:none;background:var(--bg-soft);}
@@ -3210,6 +3258,9 @@ html[data-theme="dark"]{
   --muted:#9BA1B0;
   --line:#26272E;
   --accent:#7C93FF;
+  /* 어두운 바탕에 맞춰 다시 고른 계열색이다 — 밝은 모드 값을 그대로 쓰지 않는다. */
+  --s1:#3B82F6; --s2:#BC8404; --s3:#0FA391; --s4:#8257F0;
+  --track:#26272E;
 }
 html[data-theme="dark"] nav{background:rgba(0,0,0,.86);}
 html[data-theme="dark"] .card,
@@ -3680,6 +3731,77 @@ function plainGist(text){
   }).filter((L, i, a2) => L !== "" || (i > 0 && a2[i - 1] !== "")).join("\n");
 }
 
+/* ---------- 데이터 블록 (2026-08-04, 발행 규칙 v4.7) ----------
+
+   표(@@CHK@@)와 VS(@@CMP@@) 둘뿐이던 그래픽 어휘를 넓힌 것이다. 어느 형태를
+   쓸지는 재료가 아니라 독자가 막히는 지점이 고른다:
+
+     "@@BAR@@"    이 숫자가 큰 건가 작은 건가   라벨|표시값|숫자 …@@각주@@출처
+     "@@SHARE@@"  무엇이 얼마를 차지하나       라벨|표시값|숫자 …@@각주@@출처
+     "@@TIME@@"   언제 무슨 일이 있었나         날짜|사건 …@@각주@@출처
+     "@@FLOW@@"   무엇이 어디로 가나            단계|설명 …@@각주
+
+   @@TIME@@의 날짜 앞에 ">"를 붙이면 아직 오지 않은 일(점선 표식)이다.
+   막대 길이는 세 번째 칸의 숫자가 정하고, 화면에 찍히는 글자는 두 번째 칸이다
+   ("1조1,400억달러"처럼 단위가 붙은 표기를 그대로 쓰기 위해서다).
+   같은 뜻의 렌더가 scripts/build_pages.py 와 scripts/weekly_email.py 에도 있다. */
+function dNum(s){
+  const n = parseFloat(String(s == null ? "" : s).replace(/[^0-9.\-]/g, ""));
+  return isFinite(n) ? n : null;
+}
+function dCells(s, n){
+  const p = String(s || "").split("|").map(x => x.trim()), rows = [];
+  for (let i = 0; i + n <= p.length; i += n) rows.push(p.slice(i, i + n));
+  return rows;
+}
+function dTail(parts){
+  return (parts[1] ? '<div class="dbk-n">' + esc(parts[1]) + "</div>" : "") +
+         (parts[2] ? '<div class="dbk-s">' + esc(parts[2]) + "</div>" : "");
+}
+function dataBlock(kind, payload){
+  const parts = String(payload || "").split("@@");
+  const rows = dCells(parts[0], kind === "bar" || kind === "share" ? 3 : 2);
+  if (!rows.length) return "";
+  let body = "";
+  if (kind === "bar"){
+    const vals = rows.map(r => dNum(r[2]));
+    const top = Math.max.apply(null, vals.filter(v => v != null).concat([0]));
+    body = rows.map((r, i) => {
+      const w = (top > 0 && vals[i] != null) ? Math.max(vals[i] / top * 100, 0.4) : 0.4;
+      return '<div class="bar-r"><div class="bar-h"><i>' + esc(r[0]) + "</i><b>" + esc(r[1]) + "</b></div>" +
+             '<div class="bar-t"><div class="bar-f" style="width:' + w.toFixed(2) + '%"></div></div></div>';
+    }).join("");
+    /* 두 값을 재는 블록에서 배수는 독자가 암산할 것이 아니라 우리가 보여줄 것이다. */
+    const ok = vals.filter(v => v);
+    if (rows.length === 2 && ok.length === 2){
+      const r = Math.max.apply(null, ok) / Math.min.apply(null, ok);
+      if (r >= 1.5) body += '<div class="bar-x">×' + String(r.toFixed(1)).replace(/\.0$/, "") + "</div>";
+    }
+  } else if (kind === "share"){
+    const vals = rows.map(r => dNum(r[2]) || 0);
+    const tot = vals.reduce((a, b) => a + b, 0) || 1;
+    /* 조각 안에는 글자를 넣지 않는다 — 이름과 값은 아래 범례가 본문 색으로 진다. */
+    body = '<div class="shr-t">' + vals.map((v, i) =>
+      '<span class="shr-g" style="width:' + Math.max(v / tot * 100, 0.8).toFixed(2) +
+      '%;background:var(--s' + (i % 4 + 1) + ')"></span>').join("") + "</div>" +
+      '<div class="shr-l">' + rows.map((r, i) =>
+        '<span class="shr-i"><span class="shr-d" style="background:var(--s' + (i % 4 + 1) + ')"></span>' +
+        esc(r[0]) + " <b>" + esc(r[1]) + "</b></span>").join("") + "</div>";
+  } else if (kind === "time"){
+    body = '<ul class="tml">' + rows.map(r => {
+      const fut = r[0].charAt(0) === ">";
+      return "<li" + (fut ? ' class="fut"' : "") + "><i>" + esc(r[0].replace(/^>+\s*/, "")) +
+             "</i><p>" + esc(r[1]) + "</p></li>";
+    }).join("") + "</ul>";
+  } else {
+    body = '<div class="flw">' + rows.map((r, i) =>
+      (i ? '<div class="flw-a">→</div>' : "") +
+      '<div class="flw-s"><b>' + esc(r[0]) + "</b>" +
+      (r[1] ? "<span>" + esc(r[1]) + "</span>" : "") + "</div>").join("") + "</div>";
+  }
+  return '<div class="dbk">' + body + dTail(parts) + "</div>";
+}
+
 function gistRich(item){
   const S = STRINGS[LANG] || STRINGS.en;
   const raw = (item.gist && item.gist[LANG]) || "";
@@ -3717,6 +3839,14 @@ function gistRich(item){
         '<div class="cmp-vs">VS</div>' +
         '<div class="cmp-c cmp-b"><i>' + esc(c[2] || "") + "</i><p>" + esc(c[3] || "") + "</p></div>" +
       "</div>");
+    } else if (L.indexOf("@@BAR@@") === 0){
+      flush(); out.push(dataBlock("bar", L.slice(7)));
+    } else if (L.indexOf("@@SHARE@@") === 0){
+      flush(); out.push(dataBlock("share", L.slice(9)));
+    } else if (L.indexOf("@@TIME@@") === 0){
+      flush(); out.push(dataBlock("time", L.slice(8)));
+    } else if (L.indexOf("@@FLOW@@") === 0){
+      flush(); out.push(dataBlock("flow", L.slice(8)));
     } else if (L.indexOf("@@REF@@") === 0){
       /* @@REF@@title|url|image - related coverage as a Twitter-style link
          card: picture, headline strip over its bottom edge, source domain
