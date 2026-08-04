@@ -88,6 +88,11 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
 .splitb p:last-child{margin-bottom:0}
+/* 세 줄 요약은 카드가 아니라 본문 끝의 구분선 다음에 온다 (편집 가이드 §6). */
+.sum3{background:none;border:0;border-top:2px solid currentColor;border-radius:0;margin:34px 0 0;padding:17px 0 0}
+.sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
+.sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
+.sum3 li:before{color:inherit;left:2px}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}

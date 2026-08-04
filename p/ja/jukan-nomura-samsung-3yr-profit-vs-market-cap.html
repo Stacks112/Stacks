@@ -88,6 +88,11 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
 .splitb p:last-child{margin-bottom:0}
+/* 세 줄 요약은 카드가 아니라 본문 끝의 구분선 다음에 온다 (편집 가이드 §6). */
+.sum3{background:none;border:0;border-top:2px solid currentColor;border-radius:0;margin:34px 0 0;padding:17px 0 0}
+.sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
+.sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
+.sum3 li:before{color:inherit;left:2px}
 .rec,.oc,.opp,.dlt{margin-top:26px}
 .rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -109,6 +114,26 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
   .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
   .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
+.occ{border:1px solid #ECEDF1;border-radius:12px;background:#F6F7F9;overflow:hidden}
+.occ h3{display:flex;align-items:center;gap:9px;margin:0;padding:11px 14px;border-bottom:1px solid #ECEDF1}
+.occ h3 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207}
+.occ.oc-hit h3 i{background:#E8F5EC;color:#1C7A42}.occ.oc-miss h3 i{background:#FDEAEA;color:#B02525}
+.occ-r{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #ECEDF1;font-size:14px;line-height:1.6}
+.occ-r:last-child{border-bottom:0}
+.occ-r .k{flex:0 0 64px;font-size:12.5px;font-weight:700;color:#8E93A0;padding-top:2px}
+.occ-r .v{flex:1}
+.occ-r .v .hit{color:#1C7A42;font-weight:700}.occ-r .v .miss{color:#B02525;font-weight:700}
+.srcs{margin-top:26px;border:1px solid #ECEDF1;border-radius:12px;padding:14px 16px}
+.srcs h3{font-size:12.5px;letter-spacing:.03em;color:#8E93A0;margin:0 0 10px}
+.srcs ol{margin:0;padding-left:18px}
+.srcs li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:#5B6070;border:0;padding:0}
+.srcs li b{color:#17181C}
+.srcs a{color:inherit;text-decoration:none}.srcs a:hover{text-decoration:underline}
+.srcs-a{margin:11px 0 0;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){
+  .occ{background:#141519;border-color:#2E3037}.occ h3,.occ-r{border-color:#2E3037}
+  .occ.oc-hit h3 i{background:rgba(14,159,94,.14)}.occ.oc-miss h3 i{background:rgba(224,68,56,.14)}
+  .srcs{border-color:#2E3037}.srcs li b{color:#ECEDF1}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -202,7 +227,7 @@ e.preventDefault();location.href=B+d;},false);})();
 メモリー企業の値段は、常に次の下降局面をどれだけ早く織り込むかで決まってきた。
 長期供給契約がその下降局面を実際に遅らせるなら今のディスカウントは根拠を失い、遅らせられなければ予想の側が崩れる。
 1カ月の間に時価総額が1兆ドルを割り込み、1日で20%超戻したことも、市場がこの前提一つを巡って揺れているという意味に見える。</p><div class="sum3"><b>3行まとめ</b><ul><li>野村がサムスン電子の営業利益予想を3年で391兆ウォン、635兆ウォン、774兆ウォンに引き上げた。合計で1,800兆ウォンだ。</li><li>7月31日終値時点の時価総額は1,669兆ウォンで、3年分の利益予想が会社の値段より131兆ウォン大きい。</li><li>この数字を支えているのはメモリーの値段そのものではなく、生産能力の60~70%を5年契約で固定した構造だ。</li></ul></div>
-  <section class="oc oc-pending"><h3>その後どうなったか</h3><p><i>採点待ち</i>2027年初のサムスン電子2026年通期決算で採点する。通期営業利益が391兆ウォンの線に届けば野村予想の初年度は当たり、4-6月期を4倍した358兆ウォンにも届かなければ外れたと見る。</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>68</b>記事</span><span><b>32</b>方向性コール</span><span class="bl"><b>27</b>強気</span><span class="be"><b>5</b>弱気</span><span class="bl"><b>3</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="jukan-samsung-lta-asymmetric-cap-vs-micron.html">同じ5年の長期契約なのに、サムスンは上がった値段を全部受け取りマイクロンは受け取れない理由は何だろうか?</a><time>08-01</time></li><li><i class="bl">強気</i><a href="jukan-korea-nand-unit-price-vs-ssd-mix.html">NANDの輸出単価が下がった7月、韓国のコンピューター輸出は404%増えた</a><time>08-01</time></li><li><i class="bl">強気</i><a href="jukan-samsung-2q26-lta-60-70-capacity.html">過去最高の決算を出したサムスン電子が、メモリー生産能力の60~70%を5年契約に固定する理由は?</a><time>07-30</time></li></ul><a class="rec-m" href="../../r/jukan.html" data-app="?l=ja#record-Jukan%20%28%40jukan05%29">記録をすべて見る →</a></section><section class="dlt"><h3>同じ銘柄、この筆者の以前の記事</h3><ul><li><i class="bl">強気</i><a href="jukan-samsung-lta-asymmetric-cap-vs-micron.html">同じ5年の長期契約なのに、サムスンは上がった値段を全部受け取りマイクロンは受け取れない理由は何だろうか?</a><time>08-01</time></li><li><i class="wa">観点</i><a href="jukan-samsung-foundry-2nm-taylor-fab2.html">サムスンのファウンドリー業績を押し上げたのは2ナノの受注ではなかった</a><time>07-30</time></li></ul></section>
+  <section class="oc occ oc-pending"><h3>採点予定<i>採点待ち</i></h3><div class="occ-r"><div class="k">指標</div><div class="v">サムスン電子 2026年 通期営業利益</div></div><div class="occ-r"><div class="k">現在</div><div class="v">2Q 89.5兆ウォン · 4倍換算 358兆ウォン</div></div><div class="occ-r"><div class="k">採点日</div><div class="v">2027年初 (通期決算発表)</div></div><div class="occ-r"><div class="k">的中</div><div class="v"><span class="hit">391兆ウォン線に到達 → ノムラ推定の初年度が的中</span></div></div><div class="occ-r"><div class="k">外れ</div><div class="v"><span class="miss">358兆ウォン未達 → 初年度で外れ</span></div></div></section><section class="srcs"><h3>出典</h3><ol><li><a href="https://x.com/jukan05/status/2083915223644397881" rel="noopener nofollow" target="_blank"><b>原文</b> Jukan(@jukan05) · 2026-08-02</a></li><li><a href="https://en.sedaily.com/finance/2026/07/31/samsung-electronics-re-enters-1-trillion-club-as-kospi" rel="noopener nofollow" target="_blank"><b>ソウル経済 英文版</b> サムスン電子、時価総額1兆ドルクラブに復帰 (2026-07-31)</a></li><li><a href="https://en.sedaily.com/finance/2026/07/30/samsung-chip-unit-alone-earns-88-trillion-won-focus-turns" rel="noopener nofollow" target="_blank"><b>ソウル経済 英文版</b> サムスン半導体部門だけで88兆ウォン、焦点は120兆ウォンの株主還元へ (2026-07-30)</a></li><li><b>StockAnalysis</b> 時価総額 (2026-07-31終値基準)</li><li><b>サムスン電子</b> 2026年2Q決算発表およびカンファレンスコール</li><li><b>ノムラ</b> サムスン電子の営業利益・フリーキャッシュフロー推定 (原文引用)</li></ol><p class="srcs-a">2026-08-03 取得 · 時価総額はStockAnalysis(2026-07-31終値基準)、推定値は原文</p></section><section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>68</b>記事</span><span><b>32</b>方向性コール</span><span class="bl"><b>27</b>強気</span><span class="be"><b>5</b>弱気</span><span class="bl"><b>3</b>的中</span><span class="be"><b>0</b>外れ</span></div><ul class="rec-l"><li><i class="bl">強気</i><a href="jukan-samsung-lta-asymmetric-cap-vs-micron.html">同じ5年の長期契約なのに、サムスンは上がった値段を全部受け取りマイクロンは受け取れない理由は何だろうか?</a><time>08-01</time></li><li><i class="bl">強気</i><a href="jukan-korea-nand-unit-price-vs-ssd-mix.html">NANDの輸出単価が下がった7月、韓国のコンピューター輸出は404%増えた</a><time>08-01</time></li><li><i class="bl">強気</i><a href="jukan-samsung-2q26-lta-60-70-capacity.html">過去最高の決算を出したサムスン電子が、メモリー生産能力の60~70%を5年契約に固定する理由は?</a><time>07-30</time></li></ul><a class="rec-m" href="../../r/jukan.html" data-app="?l=ja#record-Jukan%20%28%40jukan05%29">記録をすべて見る →</a></section><section class="dlt"><h3>同じ銘柄、この筆者の以前の記事</h3><ul><li><i class="bl">強気</i><a href="jukan-samsung-lta-asymmetric-cap-vs-micron.html">同じ5年の長期契約なのに、サムスンは上がった値段を全部受け取りマイクロンは受け取れない理由は何だろうか?</a><time>08-01</time></li><li><i class="wa">観点</i><a href="jukan-samsung-foundry-2nm-taylor-fab2.html">サムスンのファウンドリー業績を押し上げたのは2ナノの受注ではなかった</a><time>07-30</time></li></ul></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jukan-nomura-samsung-3yr-profit-vs-market-cap.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jukan-nomura-samsung-3yr-profit-vs-market-cap.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/dram.html">DRAM</a><a class="ent-chip" href="../../e/jukan-jukan05.html">Jukan (@jukan05)</a><a class="ent-chip" href="../../e/lta.html">LTA</a><a class="ent-chip" href="../../e/nomura.html">NOMURA</a><a class="ent-chip" href="../../e/samsung-electronics.html">SAMSUNG ELECTRONICS</a><a class="ent-chip" href="../../e/yield.html">YIELD</a><a class="ent-chip" href="../../e/market-cap.html">時価総額</a><a class="ent-chip" href="../../e/fcf.html">フリーキャッシュフロー</a><a class="ent-chip" href="../../e/shareholder-return.html">株主還元</a><a class="ent-chip" href="../../e/capa.html">生産能力</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="jukan-samsung-2q26-lta-60-70-capacity.html">過去最高の決算を出したサムスン電子が、メモリー生産能力の60~70%を5年契約に固定する理由は?</a></li><li><a href="jukan-skhynix-hbm-2027-lta-price-cap.html">長期契約のせいで値上がり分を取れないと言われたSKハイニックス、その契約に価格の上限はなかった</a></li></ul></nav>

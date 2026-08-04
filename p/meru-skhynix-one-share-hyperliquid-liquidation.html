@@ -88,6 +88,11 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
 .splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
 .splitb p:last-child{margin-bottom:0}
+/* 세 줄 요약은 카드가 아니라 본문 끝의 구분선 다음에 온다 (편집 가이드 §6). */
+.sum3{background:none;border:0;border-top:2px solid currentColor;border-radius:0;margin:34px 0 0;padding:17px 0 0}
+.sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
+.sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
+.sum3 li:before{color:inherit;left:2px}
 .rec,.oc,.opp,.dlt{margin-top:26px}
 .rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
 .rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
@@ -109,6 +114,26 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 @media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
   .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
   .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
+.occ{border:1px solid #ECEDF1;border-radius:12px;background:#F6F7F9;overflow:hidden}
+.occ h3{display:flex;align-items:center;gap:9px;margin:0;padding:11px 14px;border-bottom:1px solid #ECEDF1}
+.occ h3 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207}
+.occ.oc-hit h3 i{background:#E8F5EC;color:#1C7A42}.occ.oc-miss h3 i{background:#FDEAEA;color:#B02525}
+.occ-r{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #ECEDF1;font-size:14px;line-height:1.6}
+.occ-r:last-child{border-bottom:0}
+.occ-r .k{flex:0 0 64px;font-size:12.5px;font-weight:700;color:#8E93A0;padding-top:2px}
+.occ-r .v{flex:1}
+.occ-r .v .hit{color:#1C7A42;font-weight:700}.occ-r .v .miss{color:#B02525;font-weight:700}
+.srcs{margin-top:26px;border:1px solid #ECEDF1;border-radius:12px;padding:14px 16px}
+.srcs h3{font-size:12.5px;letter-spacing:.03em;color:#8E93A0;margin:0 0 10px}
+.srcs ol{margin:0;padding-left:18px}
+.srcs li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:#5B6070;border:0;padding:0}
+.srcs li b{color:#17181C}
+.srcs a{color:inherit;text-decoration:none}.srcs a:hover{text-decoration:underline}
+.srcs-a{margin:11px 0 0;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){
+  .occ{background:#141519;border-color:#2E3037}.occ h3,.occ-r{border-color:#2E3037}
+  .occ.oc-hit h3 i{background:rgba(14,159,94,.14)}.occ.oc-miss h3 i{background:rgba(224,68,56,.14)}
+  .srcs{border-color:#2E3037}.srcs li b{color:#ECEDF1}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -194,7 +219,7 @@ e.preventDefault();location.href=B+d;},false);})();
 어느 거래소에 상장돼 있느냐와, 그 주식의 값이 어디까지 흘러가느냐는 이제 다른 문제다.
 
 그 값이 어디까지 흘러갈지는, 이제 아무도 정하지 않는다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>한국 증시가 받은 충격은 없었다. 같은 값을 기준으로 쓰던 국외 시장은 그 사실을 알 방법이 없었다.</li><li>값을 어디서 가져올지 정한 곳은 거래소가 아니라 판을 연 쪽이었고, 그쪽은 규칙을 어기지 않았다. 사고는 났는데 위반이 없다.</li><li>그래서 보상은 의무가 아니라 선택으로 이뤄졌다. 다음에도 같은 선택이 나오리라는 보장은 없다.</li></ul></div>
-  <section class="oc oc-pending"><h3>그 후 어떻게 됐나</h3><p><i>채점 대기</i>trade.xyz가 밝힌 대로 8월 말까지 값 계산 방식을 단일 시장 체결가에서 복수 시장 혼합이나 일정 시간 평균으로 바꾸면 한 곳의 설정 문제로, 방식이 그대로면 이런 시장이 계속 안고 갈 구조로 채점한다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>39</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>3</b>적중</span><span class="be"><b>1</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-china-duv-ssa800-1950i-class.html">ASML의 7나노 노광기를 손에 넣고도 중국이 2008년 모델을 만들어 낸 이유는 뭘까?</a><time>08-03</time></li><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
+  <section class="oc occ oc-pending"><h3>채점 예정<i>채점 대기</i></h3><div class="occ-r"><div class="k">지표</div><div class="v">trade.xyz의 가격 산출 방식</div></div><div class="occ-r"><div class="k">현재</div><div class="v">단일 시장(넥스트레이드) 체결가</div></div><div class="occ-r"><div class="k">채점일</div><div class="v">2026-08-31</div></div><div class="occ-r"><div class="k">맞음</div><div class="v"><span class="hit">복수 시장 혼합 또는 시간 평균으로 변경 → 한 곳의 설정 문제였다</span></div></div><div class="occ-r"><div class="k">틀림</div><div class="v"><span class="miss">방식이 그대로 → 이런 시장이 계속 안고 갈 구조다</span></div></div></section><section class="srcs"><h3>출처</h3><ol><li><a href="https://blog.naver.com/ranto28/224364898631" rel="noopener nofollow" target="_blank"><b>원문</b> 메르(ranto28) · 2026-08-02</a></li><li><a href="https://en.sedaily.com/finance/2026/07/30/sk-hynix-single-share-limit-trade-triggers-83-billion-won" rel="noopener nofollow" target="_blank"><b>서울경제 영문판</b> SK하이닉스 1주 하한가 체결이 830억원 규모 가상자산 선물 청산을 불렀다 (2026-07-30)</a></li><li><a href="https://beincrypto.com/hyperliquid-sk-hynix-perp-oracle-liquidations/" rel="noopener nofollow" target="_blank"><b>BeInCrypto</b> 하이퍼리퀴드, 가격 이상으로 발생한 5,740만달러 SK하이닉스 무기한선물 청산을 설명하다 (2026-07-28)</a></li></ol><p class="srcs-a">2026-08-03 조회 · 체결가와 기준값은 원문 및 위 두 매체 보도</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>39</b>글</span><span><b>10</b>방향성 콜</span><span class="bl"><b>8</b>강세</span><span class="be"><b>2</b>약세</span><span class="bl"><b>3</b>적중</span><span class="be"><b>1</b>빗나감</span></div><ul class="rec-l"><li><i class="bl">강세</i><a href="meru-china-duv-ssa800-1950i-class.html">ASML의 7나노 노광기를 손에 넣고도 중국이 2008년 모델을 만들어 낸 이유는 뭘까?</a><time>08-03</time></li><li><i class="bl">강세</i><a href="meru-saudi-tanker-strike-fallout.html">후티, 사우디 소유 유조선 2척 이름까지 특정해 공격... 닷새 전 봉쇄 경고 그대로 실행</a><time>07-24</time></li><li><i class="bl">강세</i><a href="meru-googl-q2-results-korea-impact.html">메르: 알파벳 CAPEX 1,950억~2,050억달러로 상향, 잉여현금흐름은 적자전환해도 삼성·하이닉스엔 호재</a><time>07-23</time></li></ul><a class="rec-m" href="../r/meru.html" data-app="?l=ko#record-%EB%A9%94%EB%A5%B4">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/meru-skhynix-one-share-hyperliquid-liquidation.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/meru-skhynix-one-share-hyperliquid-liquidation.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/nor.html">NOR</a><a class="ent-chip" href="../e/sk-hynix.html">SK HYNIX</a><a class="ent-chip" href="../e/forced-liquidation.html">강제청산</a><a class="ent-chip" href="../e/nextrade.html">넥스트레이드</a><a class="ent-chip" href="../e/leverage.html">레버리지</a><a class="ent-chip" href="../e/meru.html">메르</a><a class="ent-chip" href="../e/perp.html">무기한선물</a><a class="ent-chip" href="../e/advance-payment.html">선수금</a><a class="ent-chip" href="../e/maintenance-margin.html">유지증거금</a><a class="ent-chip" href="../e/collateral.html">증거금</a><a class="ent-chip" href="../e/hyperliquid.html">하이퍼리퀴드</a><a class="ent-chip" href="../e/limit-down.html">하한가</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="meru-leverage-etf-fx-defense-miss.html">환율 방어용으로 만든 국내 2배 ETF, 홍콩 돈은 왜 안 돌아왔을까?</a></li><li><a href="jukan-korea-leverage-etf-professional-only.html">단일종목 레버리지 ETF를 전문투자자만 사게 하면, 개인 돈은 어디로 갈까?</a></li><li><a href="meru-nps-circuit-breaker-buying-power.html">서킷브레이커가 걸리면 늘 사주던 국민연금이 올해는 다섯 번이나 팔았던 이유는?</a></li></ul></nav>
