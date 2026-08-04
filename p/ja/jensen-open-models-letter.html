@@ -133,6 +133,47 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
 .sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
 .sum3 li:before{color:inherit;left:2px}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
+.occ{border:1px solid #ECEDF1;border-radius:12px;background:#F6F7F9;overflow:hidden}
+.occ h3{display:flex;align-items:center;gap:9px;margin:0;padding:11px 14px;border-bottom:1px solid #ECEDF1}
+.occ h3 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207}
+.occ.oc-hit h3 i{background:#E8F5EC;color:#1C7A42}.occ.oc-miss h3 i{background:#FDEAEA;color:#B02525}
+.occ-r{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #ECEDF1;font-size:14px;line-height:1.6}
+.occ-r:last-child{border-bottom:0}
+.occ-r .k{flex:0 0 64px;font-size:12.5px;font-weight:700;color:#8E93A0;padding-top:2px}
+.occ-r .v{flex:1}
+.occ-r .v .hit{color:#1C7A42;font-weight:700}.occ-r .v .miss{color:#B02525;font-weight:700}
+.srcs{margin-top:26px;border:1px solid #ECEDF1;border-radius:12px;padding:14px 16px}
+.srcs h3{font-size:12.5px;letter-spacing:.03em;color:#8E93A0;margin:0 0 10px}
+.srcs ol{margin:0;padding-left:18px}
+.srcs li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:#5B6070;border:0;padding:0}
+.srcs li b{color:#17181C}
+.srcs a{color:inherit;text-decoration:none}.srcs a:hover{text-decoration:underline}
+.srcs-a{margin:11px 0 0;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){
+  .occ{background:#141519;border-color:#2E3037}.occ h3,.occ-r{border-color:#2E3037}
+  .occ.oc-hit h3 i{background:rgba(14,159,94,.14)}.occ.oc-miss h3 i{background:rgba(224,68,56,.14)}
+  .srcs{border-color:#2E3037}.srcs li b{color:#ECEDF1}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -204,11 +245,11 @@ e.preventDefault();location.href=B+d;},false);})();
 これは単なる競争上のポジション取りではなく、実質的な安全性をめぐる論争だ。この書簡が出たタイミングも示唆的だ。その4日前、ホワイトハウスが中国のオープンウェイトモデル(7月16日公開のMoonshot AIのKimi K3、米モデルを蒸留で模倣したとの疑惑)への規制を再び推し進めているとの報道が出ており、習近平国家主席自身も7月17日の世界AI大会で開放性を掲げ、29カ国が参加する別組織、世界AI協力機構の発足を発表した直後だった。</p><div class="gcardw"><a class="gcard" href="https://www.axios.com/2026/07/27/nvidia-anthropic-openai-open-weight-debate" rel="noopener" target="_blank"><img src="https://images.axios.com/T0kiLOXo8ikXMd6Vj1NWbBlEfHQ=/0x0:1920x1080/1366x768/2026/03/26/1774548278869.jpeg" alt="" loading="lazy"><span class="gcard-t">Big Tech lines up in support of open-weight AI (Axios, 2026-07-27)</span></a><div class="gcard-src">출처: axios.com</div></div><h2 class="gsub">なぜエヌビディアがこの立場を主導するのか</h2><p class="gist">ヤフーファイナンスの報道によれば、エヌビディアはデータセンター向けAIチップ市場の約81%を握っており、オープンモデルが増えるほどチップの買い手が少数の効率最適化された閉鎖型API提供者に集中せず、より多くの参加者に広がるという商業的な利害がその立場の裏にある。
 フアン氏自身もAIの利用が増えれば、結局はエヌビディアのコンピューターをもっと売ることになると述べたと伝えられる。フォーブスはこれを署名者全員が他人の庭でだけ開放を主張していると評した。エヌビディア自体は独自のCUDAを保有し、OpenAIに260億ドルを投資する株主でもある。</p><h2 class="gsub">だから何を見ればいいのか</h2><p class="gist">この書簡を業界全体の総意と読むか、それぞれ異なるタイミングで自らの利害に沿って加わった連合と読むかは、誰がいつ署名したか、そして誰が署名しなかったかにかかっている。
 本当に注目すべきは、この書簡がワシントンの実際の輸出規制と調達政策にどう影響するか、そしてAnthropicが参加を見送る理由として挙げた回収不能という安全上の懸念に、他の署名企業がどう答えるかだ。</p><div class="sum3"><b>3行まとめ</b><ul><li>ジェンスン・フアン氏のX初投稿が、オープンAIモデル支持の書簡を共有した。</li><li>メタ、OpenAI、Anthropicまで業界全体が足並みを揃えたように聞こえる。</li><li>だがこの書簡は当初約25社で始まり、OpenAIとグーグルは1日遅れて加わった。Anthropicは結局署名しなかった。CEOのダリオ・アモデイ氏は、オープンウェイトは一度公開されれば回収できないという安全上の懸念を理由に挙げている。</li></ul></div><p class="why"><b>Why it matters</b> · ジェンスン・フアン氏のオープンモデル支持書簡は当初25社で始まり、OpenAIとグーグルは遅れて加わった。Anthropicは安全上の懸念から結局署名しなかった。エヌビディアのオープンモデル支持の背後にチップ販売拡大という商業的利害があるという点が、この書簡をどう読むかを左右する。</p><p class="ask"><b>考えるべき点</b> · Anthropicはオープンウェイトが回収不能だという安全上の懸念から署名しなかった一方、エヌビディアはどちらに転んでもチップを売れるという商業的利害を抱えている。この書簡を本物の政策的信念と読むべきか、それとも各社の事業上の利害が単に分かれた結果にすぎないと見るべきか。</p>
-  
+  <section class="rec"><h3>この筆者の記録</h3><div class="rec-s"><span><b>3</b>記事</span><span><b>0</b>方向性コール</span></div><a class="rec-m" href="../../r/jensen.html" data-app="?l=ja#record-Jensen%20Huang%20%28%40JensenHuang%29">記録をすべて見る →</a></section>
   <nav class="otherlang">他の言語で読む: <a href="https://stacksdaily.com/p/jensen-open-models-letter.html" hreflang="ko" lang="ko">한국어</a> · <a href="https://stacksdaily.com/p/en/jensen-open-models-letter.html" hreflang="en" lang="en">English</a></nav>
   <nav class="ent-nav"><h3>関連銘柄・人物</h3><div class="ent-chips"><a class="ent-chip" href="../../e/a16z.html">A16Z</a><a class="ent-chip" href="../../e/amazon.html">AMAZON</a><a class="ent-chip" href="../../e/amd.html">AMD</a><a class="ent-chip" href="../../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../../e/cuda.html">CUDA</a><a class="ent-chip" href="../../e/github.html">GITHUB</a><a class="ent-chip" href="../../e/google.html">GOOGLE</a><a class="ent-chip" href="../../e/hugging-face.html">HUGGING FACE</a><a class="ent-chip" href="../../e/ibm.html">IBM</a><a class="ent-chip" href="../../e/jensen-huang-jensenhuang.html">Jensen Huang (@JensenHuang)</a><a class="ent-chip" href="../../e/meta.html">META</a><a class="ent-chip" href="../../e/microsoft.html">MICROSOFT</a><a class="ent-chip" href="../../e/mistral.html">MISTRAL</a><a class="ent-chip" href="../../e/moonshot-ai.html">MOONSHOT AI</a><a class="ent-chip" href="../../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../../e/openai.html">OPENAI</a><a class="ent-chip" href="../../e/xi-jinping.html">Xi Jinping</a><a class="ent-chip" href="../../e/data-center.html">データセンター</a><a class="ent-chip" href="../../e/open-weight.html">オープンウェイト</a><a class="ent-chip" href="../../e/consensus-estimate.html">コンセンサス</a></div></nav>
   <nav class="related"><h3>関連記事</h3><ul><li><a href="meru-kimi-moment.html">「Kimiモーメント」: 米AIトレード全体を問い直しかねない13億ドルのオープンウェイトモデル</a></li></ul></nav>
-  <nav class="latest"><h3>最新記事</h3><ul><li><a href="meru-yen-carry-unwind-trigger-cme-shorts.html">米国と日本がそろって円を買った、市場が恐れているのは円がさらに上がるほうだ</a><time>08-05</time></li><li><a href="kobeissi-anthropic-volta-bitdeer-tydal-term-gap.html">設立7カ月、自己資金3億ドル、16年の賃貸借</a><time>08-04</time></li><li><a href="jukan-fcc-china-optical-transceiver-import-ban.html">米国がデータセンターの中国製通信部品を締め出すことにした、その席を埋める米国の工場はまだない</a><time>08-04</time></li><li><a href="jukan-counterpoint-q2-dram-share-hynix-micron.html">サムスンがDRAMシェアを39%へ伸ばした、ただし席を譲ったのは中国ではなくSKハイニックスだ</a><time>08-04</time></li><li><a href="serenity-2027-memory-capacity-sold-out-allocation.html">2027年のメモリー数量はすでに売り切れた、ところが値段はまだ決まっていない</a><time>08-04</time></li><li><a href="jukan-hbf-ocp-spec-google-tenstorrent.html">エヌビディアが要らないと言ったNANDメモリー規格に、グーグルが標準連合として加わった</a><time>08-04</time></li><li><a href="meru-fima-repo-upsize-bessent-warsh.html">日本が米国債を担保にドルを借りると表明した、上限を上げようと先に言ったのは米国だ</a><time>08-04</time></li><li><a href="kobeissi-chip-leveraged-etf-record-assets-decay.html">3倍レバレッジの半導体ETFが元に戻るには、指数は170%上がる必要がある</a><time>08-03</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
+  <nav class="latest"><h3>最新記事</h3><ul><li><a href="meru-yen-carry-unwind-trigger-cme-shorts.html">米国と日本がそろって円を買った、市場が恐れているのは円がさらに上がるほうだ</a><time>08-05</time></li><li><a href="jensen-alpamayo2-super-open-weights-commercial-license.html">エヌビディアが自動運転モデルを丸ごと開いた理由は安全だけではない</a><time>08-04</time></li><li><a href="kobeissi-tokenized-treasury-record-loop-leverage.html">162億ドル、二桁の利回り、そして借金</a><time>08-04</time></li><li><a href="kobeissi-anthropic-volta-bitdeer-tydal-term-gap.html">設立7カ月、自己資金3億ドル、16年の賃貸借</a><time>08-04</time></li><li><a href="jukan-fcc-china-optical-transceiver-import-ban.html">米国がデータセンターの中国製通信部品を締め出すことにした、その席を埋める米国の工場はまだない</a><time>08-04</time></li><li><a href="jukan-counterpoint-q2-dram-share-hynix-micron.html">サムスンがDRAMシェアを39%へ伸ばした、ただし席を譲ったのは中国ではなくSKハイニックスだ</a><time>08-04</time></li><li><a href="serenity-2027-memory-capacity-sold-out-allocation.html">2027年のメモリー数量はすでに売り切れた、ところが値段はまだ決まっていない</a><time>08-04</time></li><li><a href="jukan-hbf-ocp-spec-google-tenstorrent.html">エヌビディアが要らないと言ったNANDメモリー規格に、グーグルが標準連合として加わった</a><time>08-04</time></li></ul><a class="latest-all" href="../../articles.html">記事一覧を見る →</a></nav>
   <footer>
     要約・解説はStacksの著作物です。元記事の著作権は原著者に帰属し、各項目は出典を明記して原文にリンクしています。投資助言ではなく、投資判断とその責任は利用者本人にあります。<br>
     <a href="../../">Stacks ホーム</a> · <a href="../../articles.html">記事一覧</a> · <a href="../../about.html">Stacksについて</a> · <a href="../../feed-ja.xml">RSS</a>
