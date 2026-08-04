@@ -3277,6 +3277,11 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
     try { document.documentElement.classList.remove("stkboot"); } catch(e){}
     setTimeout(relRail, 700); }
   function relSoon(){
+    /* rAF is frozen in a background tab, so a tab opened in the background
+       would stay reserved (blank) until a failsafe fired — which is exactly
+       when the reader switches to it. Nothing is being painted there and CLS
+       is not recorded while hidden, so release immediately instead. */
+    if (document.visibilityState === "hidden"){ rel(); return; }
     try { requestAnimationFrame(function(){ requestAnimationFrame(rel); }); } catch(e){ rel(); }
   }
   window.stkBootRelease = relSoon;
