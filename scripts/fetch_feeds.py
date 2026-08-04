@@ -39,10 +39,10 @@ FEEDS = [
     # through Kobeissi. Posts most days, so unlike the weekly longform sources it
     # actually clears the 48h publishing window. The three handling rules that
     # keep this from becoming a press-release feed live in sources.json.
-    {"id": "bessent", "url": "https://rss.app/feeds/SgkcwvGZgvrR8L8l.xml", "naver": False},
+    {"id": "bessent", "url": "https://rss.app/feeds/SgkcwvGZgvrR8L8l.xml", "x_handle": "SecScottBessent", "naver": False},
     # Serenity's X posts via RSS.app (the real firehose — tweets with full
     # text; item links point at the original x.com posts)
-    {"id": "serenity", "url": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml", "naver": False},
+    {"id": "serenity", "url": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml", "x_handle": "aleabitoreddit", "naver": False},
     # (serenity_substack removed 2026-08-03. A plain *.substack.com host answers
     # the Actions IP with 403, and unlike macroalf this entry had no RSS.app
     # mirror to fall back to, so it never fetched successfully once since it was
@@ -50,7 +50,7 @@ FEEDS = [
     # above already covers this author. Do not re-add without a mirror URL.)
     {"id": "goto", "url": "https://note.com/goto_finance/rss", "naver": False},
     {"id": "semianalysis", "url": "https://newsletter.semianalysis.com/feed", "keep_days": SLOW_DAYS, "naver": False},
-    {"id": "tesuta", "url": "https://rss.app/feeds/u6twTSFkvGHn7Tlw.xml", "naver": False},
+    {"id": "tesuta", "url": "https://rss.app/feeds/u6twTSFkvGHn7Tlw.xml", "x_handle": "tesuta001", "naver": False},
     {"id": "damodaran", "url": "https://aswathdamodaran.blogspot.com/feeds/posts/default?alt=rss",
      "alt": ["https://aswathdamodaran.blogspot.com/feeds/posts/default"], "keep_days": SLOW_DAYS, "naver": False},
     # The Diff is paywalled: its own Ghost feed only exposes a handful of old
@@ -62,13 +62,19 @@ FEEDS = [
     {"id": "lynalden", "url": "https://www.lynalden.com/feed/",
      "alt": ["https://www.lynalden.com/?feed=rss2", "https://www.lynalden.com/rss"],
      "keep_days": SLOW_DAYS, "naver": False},
-    {"id": "jukan", "url": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml", "naver": False},
+    {"id": "jukan", "url": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml", "x_handle": "jukan05", "naver": False},
     # The Macro Compass publishes on Substack; the RSS.app mirror never returned an item.
     {"id": "macroalf", "url": "https://themacrocompass.substack.com/feed",
      "alt": ["https://rss.app/feeds/eGT8EYReWt302sdv.xml"], "keep_days": SLOW_DAYS, "naver": False},
     {"id": "bilello", "url": "https://bilello.blog/feed",
      "alt": ["https://bilello.blog/feed/", "https://bilello.blog/?feed=rss2", "https://bilello.blog/rss"],
      "keep_days": SLOW_DAYS, "naver": False},
+    # Second intake for an author we already carry. The blog is weekly, so it
+    # clears the 48h publishing window only on the day it lands; the X account
+    # posts most days. Two thirds of that feed is retweets, which own_post()
+    # drops - see the pairing rule in sources.json before publishing from it.
+    {"id": "bilello_x", "url": "https://rss.app/feeds/tFrfqL1pGAb6ui5U.xml",
+     "x_handle": "charliebilello", "naver": False},
     # Ming-Chi Kuo publishes his supply chain surveys on Medium in full, which
     # gives us a first-party feed with no RSS.app dependency.
     {"id": "kuo", "url": "https://medium.com/feed/@mingchikuo",
@@ -76,20 +82,20 @@ FEEDS = [
     # Kuo's X posts are often standalone survey findings rather than Medium
     # teasers, so they come in as a second intake for the same author.
     {"id": "kuo_x", "url": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
-     "keep_days": SLOW_DAYS, "naver": False},
-    {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "naver": False},
-    {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "naver": False},
+     "keep_days": SLOW_DAYS, "x_handle": "mingchikuo", "naver": False},
+    {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "x_handle": "KobeissiLetter", "naver": False},
+    {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "x_handle": "ChrisCamillo", "naver": False},
     # CEO accounts post a handful of times a year, so the 7-day default empties
     # their feed between posts and the author silently drops out of the candidate
     # pool. jensen fell to zero items on 2026-08-03 because its newest post
     # (07-27 11:07) sat 51 minutes on the wrong side of that day's cutoff.
-    # Handle verification still matters here: the RSS.app mirror carries old spam
-    # from impersonator accounts, so the publishing routine keeps taking only
-    # items whose link is exactly x.com/<handle>/.
+    # The RSS.app mirror also carries old spam from impersonator accounts. That
+    # used to rest on the publishing routine remembering to check the handle;
+    # own_post() now enforces it at intake via "x_handle".
     {"id": "pichai", "url": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml",
-     "keep_days": SLOW_DAYS, "naver": False},
+     "keep_days": SLOW_DAYS, "x_handle": "sundarpichai", "naver": False},
     {"id": "jensen", "url": "https://rss.app/feeds/tLWYaMsky2fJ8tkW.xml",
-     "keep_days": SLOW_DAYS, "naver": False},
+     "keep_days": SLOW_DAYS, "x_handle": "JensenHuang", "naver": False},
 ]
 
 
@@ -201,6 +207,30 @@ def fetch_entries(feed: dict):
     return urls[0], [], last_err
 
 
+def own_post(feed, entry):
+    """Is this entry actually written by the author whose feed this is?
+
+    RSS.app's X bridges carry retweets, and some of those items keep the
+    ORIGINAL poster's status URL. Publishing one puts another person's words
+    under our author's name and links the reader to a stranger's profile, which
+    is a sourcing error rather than mere noise. Measured 2026-08-04:
+    pichai 6/15 foreign, camillo 3/15, tesuta 2/15, bilello_x 19/30 retweets.
+
+    Leaving this to the publishing routine did not work - the rule existed in
+    sources.json for pichai and the feed still filled up with other accounts -
+    so the drop happens at intake where it cannot be forgotten.
+
+    Feeds without "x_handle" (blogs, Substack, Naver) are unaffected.
+    """
+    handle = feed.get("x_handle")
+    if not handle:
+        return True
+    if (entry.get("title") or "").lstrip().lower().startswith("rt by"):
+        return False
+    link = (entry.get("link") or "").lower()
+    return link.startswith(f"https://x.com/{handle.lower()}/")
+
+
 def main():
     os.makedirs("feeds", exist_ok=True)
     now = datetime.now(timezone.utc)
@@ -214,6 +244,8 @@ def main():
 
         url, entries, error = fetch_entries(feed)
         raw_count = len(entries)
+        entries = [it for it in entries if own_post(feed, it)]
+        foreign_count = raw_count - len(entries)
 
         cleaned = []
         newest = None
@@ -250,6 +282,9 @@ def main():
             "url_used": url,
             "keep_days": keep_days,
             "raw_count": raw_count,
+            # Retweets and other accounts' posts dropped by own_post(). A number
+            # that suddenly jumps means the bridge changed what it syndicates.
+            "foreign_count": foreign_count,
             # Newest item the feed offered, whatever the retention window. Without
             # it a kept_count of 0 cannot tell a quiet author from a stale mirror.
             "newest_published": newest.isoformat() if newest else prev.get("newest_published"),
