@@ -931,17 +931,20 @@ REC_UI = {
                bull="강세", bear="약세", watch="관점", hit="적중", miss="빗나감",
                more="전체 기록 보기 →", oc="그 후 어떻게 됐나",
                pending="채점 대기", opp="같은 사안, 다른 관점",
-               dlt="같은 종목, 이 필진의 이전 글"),
+               dlt="같은 종목, 이 필진의 이전 글",
+               dltTheme="같은 주제, 이 필진의 이전 글"),
     "en": dict(rec="This author's record", posts="posts", calls="directional calls",
                bull="Bull", bear="Bear", watch="Watch", hit="Hit", miss="Miss",
                more="See the full record →", oc="What happened next",
                pending="Awaiting grading", opp="Same story, other views",
-               dlt="Earlier from this author on this stock"),
+               dlt="Earlier from this author on this stock",
+               dltTheme="Earlier from this author on this theme"),
     "ja": dict(rec="この筆者の記録", posts="記事", calls="方向性コール",
                bull="強気", bear="弱気", watch="観点", hit="的中", miss="外れ",
                more="記録をすべて見る →", oc="その後どうなったか",
                pending="採点待ち", opp="同じ話題、別の見方",
-               dlt="同じ銘柄、この筆者の以前の記事"),
+               dlt="同じ銘柄、この筆者の以前の記事",
+               dltTheme="同じテーマ、この筆者の以前の記事"),
 }
 # 채점 카드(구조화 행)와 출처 목록에 쓰는 라벨. 기존 키를 건드리지 않으려고
 # 리터럴 밖에서 덧붙인다.
@@ -1129,11 +1132,15 @@ def prior_block(item, lang, R):
     trajectory. Pairing comes from build_data.pick_priors (same author, same
     explicit_key, 180-day window); nothing is recomputed here for the same
     reason opp_block doesn't recompute pairings."""
-    ids = (PRIOR_OF.get(item["id"]) or {}).get("ids") or []
+    rec = PRIOR_OF.get(item["id"]) or {}
+    ids = rec.get("ids") or []
     rows = _card_rows(ids, lang, R, limit=2)
     if not rows:
         return ""
-    return '<section class="dlt"><h3>%s</h3><ul>%s</ul></section>' % (E(R["dlt"]), rows)
+    # Two kinds of subject come out of pick_priors; saying "same stock" over a
+    # theme pairing would be a claim the data does not make.
+    head = R["dltTheme"] if rec.get("kind") == "theme" else R["dlt"]
+    return '<section class="dlt"><h3>%s</h3><ul>%s</ul></section>' % (E(head), rows)
 
 
 def _build_data():
