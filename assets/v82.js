@@ -29,6 +29,11 @@
         me:"내 정보",record:"판정 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
         dwProfile:"프로필",dwFollowing:"팔로잉",dwShared:"공유한 글",
         skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
+        trWk:"지난주 → 이번 주",trLast:"지난주",trNow:"이번 주",
+        trMove:"지난주와 이번 주, 쏠림이 이렇게 옮겨갔습니다.",
+        trSame:"지난주에 이어 이번 주도 같은 곳에 쏠려 있습니다.",
+        trOnly:"이번 주 논의가 가장 뜨거운 곳입니다.",
+        trRank:"쏠림 순위 · 최근 7일",trAll:"전체 기간 · 테마와 종목",trN:"{n}건",trNew:"NEW",trKeep:"=",
         themesSec:"테마 논쟁",recordSec:"판정 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
         bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
@@ -44,6 +49,11 @@
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
         dwProfile:"Profile",dwFollowing:"Following",dwShared:"Shared posts",
         skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
+        trWk:"Last week → this week",trLast:"Last week",trNow:"This week",
+        trMove:"Here is how the lean moved between last week and this week.",
+        trSame:"Same place as last week — the lean has not moved.",
+        trOnly:"Where the argument is hottest this week.",
+        trRank:"Skew ranking · last 7 days",trAll:"All time · themes and tickers",trN:"{n} posts",trN1:"1 post",trNew:"NEW",trKeep:"=",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
         ntNew:"New",ntGrade:"Graded",ntSkew:"Skew alert",noAlerts:"No new alerts.",
         bull:"Bull",bear:"Bear",openThemes:"Open theme debates",openRecord:"Open author track record",
@@ -59,6 +69,11 @@
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
         dwProfile:"プロフィール",dwFollowing:"フォロー中",dwShared:"共有した記事",
         skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
+        trWk:"先週 → 今週",trLast:"先週",trNow:"今週",
+        trMove:"先週と今週で、傾きはこう動きました。",
+        trSame:"先週に続き今週も同じところに傾いています。",
+        trOnly:"今週、議論が最も熱い場所。",
+        trRank:"傾きランキング · 直近7日",trAll:"全期間 · テーマと銘柄",trN:"{n}件",trNew:"NEW",trKeep:"=",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
         ntNew:"新着",ntGrade:"採点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
         bull:"強気",bear:"弱気",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
@@ -605,12 +620,62 @@
 
   /* ---------- 탐색 서브뷰 (지금쏠린곳 / 테마논쟁 / 적중기록) ---------- */
   /* 지금 쏠린곳: 허브 화면 안에서 콘텐츠만 스킴 목록으로 바꾼다(같은 화면, 한 스텝). */
+  /* 2026-08-04 (june): "섹터 쏠림이 지난주보다 얼마나 더 쏠렸는지"가 차별점이다.
+     데스크톱(v83)에는 이미 있지만 모바일에는 현재 상태 막대뿐이었다 — 대부분의 독자가
+     못 보는 자리에 있던 셈. 계산은 index.html의 v83ThemeAttention을 그대로 재사용한다.
+     로직을 여기서 다시 구현하면 두 셸의 숫자가 갈라진다. 그 함수가 없으면(로드 순서·구버전)
+     조용히 통째로 생략하고 기존 목록만 보여준다. */
+  function skewTrendHtml(){
+    if (typeof v83ThemeAttention !== "function") return "";
+    var t = T(), h = "";
+    try {
+      var d0 = new Date(); d0.setHours(0, 0, 0, 0);
+      var iso = function(off){ return new Date(d0.getTime() - off * 86400000).toISOString().slice(0, 10); };
+      var nowA = v83ThemeAttention(iso(6), iso(0));      /* 최근 7일 */
+      var prevA = v83ThemeAttention(iso(13), iso(7));    /* 그 전 7일 */
+      if (!nowA.length) return "";
+      var sideLb = function(c){ return c.side === "bull" ? t.bull : t.bear; };
+      var chip = function(lb, c, now){
+        return '<span class="v82-tr-chip' + (now ? " now" : "") + '"><small>' + esc(lb) + '</small>'
+          + '<b>' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</b>'
+          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span></span>';
+      };
+      var topNow = nowA[0], topPrev = prevA.length ? prevA[0] : null;
+      h += '<div class="v82-tr">';
+      h += '<div class="v82-tr-h">' + esc(t.trWk) + '</div>';
+      h += '<div class="v82-tr-hero">'
+         + (topPrev && topPrev.key !== topNow.key
+              ? chip(t.trLast, topPrev, false) + '<span class="v82-tr-arr">→</span>' + chip(t.trNow, topNow, true)
+              : chip(t.trNow, topNow, true))
+         + '</div>';
+      h += '<p class="v82-tr-cap">' + esc(topPrev ? (topPrev.key !== topNow.key ? t.trMove : t.trSame) : t.trOnly) + '</p>';
+      var prevIdx = {}; prevA.forEach(function(c, i){ prevIdx[c.key] = i; });
+      h += '<div class="v82-tr-rk">' + nowA.slice(0, 6).map(function(c, i){
+        var pi = prevIdx[c.key], mv;
+        if (pi === undefined) mv = '<span class="mv new">' + esc(t.trNew) + '</span>';
+        else if (pi > i) mv = '<span class="mv up">▲' + (pi - i) + '</span>';
+        else if (pi < i) mv = '<span class="mv dn">▼' + (i - pi) + '</span>';
+        else mv = '<span class="mv">' + esc(t.trKeep) + '</span>';
+        return '<button class="v82-tr-row" data-th="' + esc(c.key) + '">'
+          + '<span class="rk">' + (i + 1) + '</span>'
+          + '<span class="nm">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
+          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span>'
+          + '<span class="n">' + esc(String(c.dir === 1 && t.trN1 ? t.trN1 : t.trN).replace("{n}", c.dir)) + '</span>'
+          + mv + '</button>';
+      }).join("") + '</div>';
+      h += '</div>';
+    } catch (e){ return ""; }
+    return h;
+  }
   function skewSubHtml(){
     var t = T(), rows = skewData(), html = "";
     html += '<div class="v82-skew-sub" style="margin-top:2px">' + t.skewSub + '</div>';
+    html += skewTrendHtml();
     if (!rows.length){
       html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';
     } else {
+      /* 위 블록은 최근 7일 창이고 아래 목록은 전체 기간이다 — 창이 다르므로 라벨을 붙인다 */
+      html += '<div class="v82-hub-sec">' + esc(t.trAll) + '</div>';
       rows.forEach(function(o, idx){
         var dir = o.bull + o.bear, bp = dir ? Math.round(o.bull / dir * 100) : 0, rp = 100 - bp;
         var leanLb = (o.side === "bull" ? t.bull : t.bear) + " " + Math.round(o.pct * 100) + "%";
@@ -637,6 +702,16 @@
         closeHub(true); silentBack();
         try { if (o.kind === "theme" && typeof openTheme === "function") openTheme(o.key);
               else if (typeof entityFeedView === "function") entityFeedView(o.key); } catch (e) {}
+        setActive();
+      };
+    }
+    var trows = head.querySelectorAll(".v82-tr-row");
+    for (var ti = 0; ti < trows.length; ti++){
+      trows[ti].onclick = function(){
+        var k = this.dataset.th; if (!k) return;
+        HUB_SUB = null;
+        closeHub(true); silentBack();
+        try { if (typeof openTheme === "function") openTheme(k); } catch (e) {}
         setActive();
       };
     }
