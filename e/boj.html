@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일본은행 (BOJ) · 관련 글 1건 · Stacks</title>
+<meta name="description" content="금리는 총재와 부총재를 포함한 아홉 명의 금융정책결정회의에서 표결로 정해지고, 회의는 해마다 여덟 번 열린다. 세계에서 가장 오래 금리를 0% 부근에 묶어 둔 중앙은행이라, 이곳이 금리를 올리면 싼 엔을 빌려 해외에 투자하던 자금의 셈이 함께 바뀐다. 환율 개입 자체는 재무성이 결정하…">
+<link rel="canonical" href="https://stacksdaily.com/e/boj.html">
+<meta name="robots" content="noindex,follow">
+<link rel="alternate" hreflang="ko" href="https://stacksdaily.com/e/boj.html"><link rel="alternate" hreflang="en" href="https://stacksdaily.com/e/en/boj.html"><link rel="alternate" hreflang="ja" href="https://stacksdaily.com/e/ja/boj.html"><link rel="alternate" hreflang="x-default" href="https://stacksdaily.com/e/en/boj.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stacks">
+<meta property="og:title" content="일본은행 (BOJ) · Stacks">
+<meta property="og:description" content="금리는 총재와 부총재를 포함한 아홉 명의 금융정책결정회의에서 표결로 정해지고, 회의는 해마다 여덟 번 열린다. 세계에서 가장 오래 금리를 0% 부근에 묶어 둔 중앙은행이라, 이곳이 금리를 올리면 싼 엔을 빌려 해외에 투자하던 자금의 셈이 함께 바뀐다. 환율 개입 자체는 재무성이 결정하…">
+<meta property="og:url" content="https://stacksdaily.com/e/boj.html">
+<meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
+<link rel="icon" href="../favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "일본은행 (BOJ)", "description": "금리는 총재와 부총재를 포함한 아홉 명의 금융정책결정회의에서 표결로 정해지고, 회의는 해마다 여덟 번 열린다. 세계에서 가장 오래 금리를 0% 부근에 묶어 둔 중앙은행이라, 이곳이 금리를 올리면 싼 엔을 빌려 해외에 투자하던 자금의 셈이 함께 바뀐다. 환율 개입 자체는 재무성이 결정하…", "url": "https://stacksdaily.com/e/boj.html", "about": {"@type": "DefinedTerm", "name": "일본은행 (BOJ)"}, "publisher": {"@type": "Organization", "@id": "https://stacksdaily.com/#org", "name": "Stacks", "alternateName": ["Stacks Daily", "StacksDaily", "stacksdaily.com", "스택스", "스택스데일리", "スタックス"], "url": "https://stacksdaily.com/", "logo": {"@type": "ImageObject", "url": "https://stacksdaily.com/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://x.com/Stacks0g"]}, "isPartOf": {"@id": "https://stacksdaily.com/#website"}, "inLanguage": "ko", "mainEntity": {"@type": "ItemList", "numberOfItems": 1, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://stacksdaily.com/p/meru-yen-carry-unwind-trigger-cme-shorts.html", "name": "미국과 일본이 함께 엔을 사줬다, 시장이 겁내는 건 엔이 더 오르는 쪽이다"}]}}</script>
+<style>
+body{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}}
+a{color:inherit}
+.top{font-weight:800;text-decoration:none}
+.sector{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8E93A0;margin:18px 0 4px}
+h1{font-size:26px;letter-spacing:-.02em;margin:0 0 6px}
+.tk{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#8E93A0;margin-left:8px}
+.desc{color:#3E414B;font-size:15px;margin:8px 0 4px}
+@media(prefers-color-scheme:dark){.desc{color:#C9CDD6}}
+.prof{display:inline-block;margin:8px 0 2px;font-size:13px;font-weight:600;color:#2E5BFF;text-decoration:none}
+.facts{font-size:12.5px;color:#8E93A0;line-height:1.9}
+.facts b{color:#3E414B;font-weight:600;margin-right:2px}
+@media(prefers-color-scheme:dark){.facts b{color:#C9CDD6}}
+.facts a{color:#2E5BFF;text-decoration:none}
+.tally{display:flex;gap:8px;margin:14px 0 2px;flex-wrap:wrap}
+.tally b{padding:6px 14px;border-radius:999px;font-size:13px;color:#fff;font-weight:700}
+.tally .bl{background:#0E9F5E}.tally .wa{background:#6B7280}.tally .be{background:#E04438}
+b.sp-bull{color:#0E9F5E}b.sp-bear{color:#E04438}b.sp-watch{color:#8E93A0}
+.preds .oc{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-right:6px}
+.oc-pending{background:#F1F2F4;color:#6B7280}.oc-hit{background:rgba(14,159,94,.12);color:#0E9F5E}.oc-miss{background:rgba(224,68,56,.12);color:#E04438}
+@media(prefers-color-scheme:dark){.oc-pending{background:#20222A;color:#9AA0AC}}
+h2{font-size:16px;margin:26px 0 8px}
+ul{list-style:none;padding:0}
+li{padding:12px 0;border-bottom:1px solid #ECEDF1}
+@media(prefers-color-scheme:dark){li{border-color:#26272E}}
+.d{display:block;font-size:12px;color:#8E93A0;margin-top:3px}
+footer{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){footer{border-color:#26272E}}
+footer a{color:#8E93A0}
+</style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
+</head>
+<body>
+<a class="top" href="../">◆ Stacks</a>
+<div class="sector">용어</div>
+<h1>일본은행 (BOJ)</h1>
+<p class="desc">금리는 총재와 부총재를 포함한 아홉 명의 금융정책결정회의에서 표결로 정해지고, 회의는 해마다 여덟 번 열린다. 세계에서 가장 오래 금리를 0% 부근에 묶어 둔 중앙은행이라, 이곳이 금리를 올리면 싼 엔을 빌려 해외에 투자하던 자금의 셈이 함께 바뀐다. 환율 개입 자체는 재무성이 결정하고 일본은행은 그 주문을 대신 실행한다.</p>
+
+
+<div class="tally"><b class="wa">관점 1</b></div>
+<h2>예측 · 적중 기록 1건</h2><ul class="preds"><li><span class="oc oc-pending">채점 대기</span> <a href="../p/meru-yen-carry-unwind-trigger-cme-shorts.html">미국과 일본이 함께 엔을 사줬다, 시장이 겁내는 건 엔이 더 오르는 쪽이다</a><span class="d">2026년 9월 30일 자 CFTC 주간 보고에서 엔 투기적 순매도가 6만 계약 아래로 줄면 적중, 그 이상이면 어긋난 것으로 채점한다.</span></li></ul>
+<h2>관련 글 1건</h2>
+<ul><li><b class=sp-watch>관점</b> <a href="../p/meru-yen-carry-unwind-trigger-cme-shorts.html">미국과 일본이 함께 엔을 사줬다, 시장이 겁내는 건 엔이 더 오르는 쪽이다</a> <span class="d">메르 (ranto28) · 2026-08-05</span></li></ul>
+<footer>
+  요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
+  <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
+</footer>
+</body>
+</html>
