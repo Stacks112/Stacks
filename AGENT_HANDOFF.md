@@ -2,6 +2,41 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (mobile header profile button: 44px circle -> 32px, tap area kept)
+
+june, comparing against an X screenshot: "상단바 맨좌측의 동그란 스택스 프로필 아이콘은 좌측 패널
+여튼 버튼은 조금만 작게해줘 / X는 첨부한 이미지 정도의 사이즈야"
+
+Changed: `index.html` only (`fd63021`, +10/-0). **CSS only, no JS.** No asset files, so no
+cache-hash bump.
+
+- **Why it was 44px.** `assets/v82.css` styles `#v82av` as a 34x34 circle, but the 2026-08-04
+  44px tap-target pass added `nav .nav-inner #v82av{min-width:44px;min-height:44px}`. That button
+  carries `background` + `border-radius:50%`, so **the tap box became the visible circle** - the
+  accessibility rule silently changed the look. Measured before: 44x44 with a 21px mark.
+- **Fix.** Visible circle 32px (X measures ~32 CSS px on a 3x phone), mark 19px, and the 44px hit
+  area comes back as an invisible centred `::after` - the same trick `.chips-end .chips-orig`
+  already uses in v82.css. So the accessibility target is preserved, not traded away.
+- Written in `index.html`'s own `@media (max-width:1023px)` block with `button#v82av` (1,1,2) to
+  beat v82.css's `nav .nav-inner #v82av` (1,1,1) regardless of stylesheet order. **Deliberately
+  not edited in v82.css** - that would need the `?v=` cache hash in index.html bumped too, i.e.
+  two files and two commits for a three-line change.
+
+Verified:
+- Local Playwright 390x840 (`isMobile`, DPR 3): button 32x32, mark 19x19; `elementFromPoint` at
+  20px left of centre and 21px above centre still resolves inside the button, so the 44px target
+  is intact. Screenshot compared against june's X reference.
+- Live stacksdaily.com through a 390px same-origin iframe (`resize_window` does not work in
+  june's Chrome): mobile shell, button 32x32, mark 19x19, hit test at 20px still inside.
+- Actions: Clobber guard ✅ · Email render guard ✅ · pages build ✅.
+
+Notes / next:
+- **Rule of thumb this exposed:** giving a 44px tap target to an element that already paints a
+  background/border is a visual change, not just an accessibility one. The other entries from
+  that pass (`.chips-orig`, `.mini-install .mi-btn`, `#v82tabs .v82fsw-t`) either use the
+  invisible-`::after` form or are plain boxes, so they are fine - but check the paint before
+  adding `min-width`/`min-height` to anything round.
+
 ## 2026-08-04 Claude (feed hides the grading/sources folds; one More on the prediction card)
 
 june (from the phone, two screenshots): "피드창에서는 채점 예정, 출처는 노출되지 않게 해줘 /
