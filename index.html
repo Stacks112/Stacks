@@ -3101,6 +3101,9 @@ html[data-lang="ko"] .debate-title,html[data-lang="ja"] .debate-title{
 .ceo-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
 .ceo-detail{margin-top:12px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:13px;line-height:1.62;}
 .ceo-detail b{display:block;margin-bottom:3px;}
+/* 인물 상세의 이름은 그 인물의 관련 글로 가는 버튼이다 (색인에 있는 인물일 때만 버튼, 아니면 <b>) */
+.ceo-detail-name{display:block;margin:0 0 3px;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:700;text-align:left;cursor:pointer;}
+.ceo-detail-name:hover{text-decoration:underline;text-underline-offset:3px;}
 .entity-head .ceo-detail{background:var(--bg);}
 html[data-lang="ko"] .ceo-detail{font-family:var(--ui-font);}
 /* stage6: CEO tooltip opens BELOW + left-aligned so the right-rail overflow never clips it */
@@ -5337,6 +5340,25 @@ function ceoEnhance(root){
     });
   } catch (e) {}
 }
+/* 2026-08-04 (june): 인물 상세(ceo-detail)의 이름도 그 인물의 관련 글로 보낸다.
+   CEO_INFO의 표기(한국어)를 색인 엔티티 키로 옮긴다 — 키 자체 → 한국어 별칭 →
+   CEO_WIKI 영문 표기 별칭 순. 별칭 사전은 buildEntityMatcher가 채우는 ALIAS2KEY를
+   그대로 쓴다(사전을 새로 만들면 두 벌이 갈린다).
+   ⚠ CEO_INFO 26명 중 색인에 실제로 있는 사람은 일부뿐이다. 없는 사람을 억지로
+   보내면 빈 화면이 나오므로, 글이 1건이라도 있을 때만 키를 돌려준다 —
+   링크가 없는 편이 빈 페이지보다 낫다. */
+function ceoEntityKey(name){
+  try {
+    if (typeof ENTITIES === "undefined" || !name) return null;
+    let k = ENTITIES[name] ? name : null;
+    if (!k && typeof ALIAS2KEY !== "undefined"){
+      k = ALIAS2KEY[String(name).toLowerCase()];
+      if (!k && typeof CEO_WIKI !== "undefined" && CEO_WIKI[name]) k = ALIAS2KEY[String(CEO_WIKI[name]).toLowerCase()];
+    }
+    if (!k || !ENTITIES[k]) return null;
+    return ITEMS.some(i => itemEntities(i).has(k)) ? k : null;
+  } catch (e) { return null; }
+}
 function ceoTap(el, name){
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
@@ -5359,9 +5381,14 @@ function ceoTap(el, name){
   box.className = "ceo-detail";
   box.dataset.name = name;
   const dispCeo = (LANG === "ko") ? name : ((typeof CEO_WIKI !== "undefined" && CEO_WIKI[name]) || name);
+  const goKey = ceoEntityKey(name);
+  const nameHtml = goKey
+    ? '<button type="button" class="ceo-detail-name" onclick="entityFeedView(\'' + goKey.replace(/'/g, "\\'") + '\')" title="'
+        + esc(STRINGS[LANG].entRelated || "Related posts") + '">' + dispCeo + '</button>'
+    : '<b>' + dispCeo + '</b>';
   box.innerHTML = '<div class="ceo-detail-row">'
     + '<span class="ceo-photo" aria-hidden="true"></span>'
-    + '<span class="ceo-detail-txt"><b>' + dispCeo + '</b>' + (info.l[LANG] || info.l.ko) + '</span>'
+    + '<span class="ceo-detail-txt">' + nameHtml + (info.l[LANG] || info.l.ko) + '</span>'
     + '</div>';
   if (typeof CEO_WIKI !== "undefined" && CEO_WIKI[name] && typeof wikiPhoto === "function"){
     wikiPhoto(CEO_WIKI[name]).then(function(src){
