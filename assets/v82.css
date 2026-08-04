@@ -504,3 +504,38 @@
   }
   html.rbeta #calSheet .me-head .cfs-close::before{content:"←"; font-size:22px; line-height:1;}
 }
+
+/* --- 2026-08-04 (june): 주간 쏠림 추이 (모바일 탐색 → 지금 쏠린 곳 상단)
+   데스크톱 v83의 .skh / .skr 와 같은 정보를 좁은 화면 폭에 맞춰 다시 짠 것.
+   미디어쿼리 밖에 두는 이유는 .v82-brief-subj 와 동일 — 이 마크업은 모바일 셸
+   안에서만 생성되고, 그 셸 자체가 데스크톱에서 숨겨진다. */
+.v82-tr{background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:14px 14px 8px;margin:0 0 18px;}
+.v82-tr-h{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.06em;
+  font-family:var(--mono-font);margin-bottom:10px;}
+.v82-tr-hero{display:flex;align-items:stretch;gap:8px;}
+.v82-tr-chip{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;
+  background:var(--bg-soft);border-radius:12px;padding:9px 10px;}
+.v82-tr-chip.now{background:var(--bg-soft);outline:2px solid var(--text);outline-offset:-2px;}
+.v82-tr-chip small{font-size:10.5px;color:var(--muted);font-family:var(--mono-font);letter-spacing:.04em;}
+.v82-tr-chip b{font-size:14px;font-weight:800;line-height:1.25;overflow:hidden;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word;}
+.v82-tr-chip .sd{font-size:11.5px;font-weight:800;font-family:var(--mono-font);}
+.v82-tr .sd.bull{color:#16A34A;}
+.v82-tr .sd.bear{color:#E5484D;}
+.v82-tr-arr{align-self:center;color:var(--muted);font-size:16px;flex:0 0 auto;}
+.v82-tr-cap{margin:9px 2px 4px;font-size:12px;line-height:1.5;color:var(--muted);}
+.v82-tr-rk{border-top:1px solid var(--line);margin-top:6px;}
+.v82-tr-row{display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;
+  border-bottom:1px solid var(--line);padding:10px 2px;cursor:pointer;font-family:inherit;
+  color:var(--text);text-align:left;}
+.v82-tr-row:last-child{border-bottom:none;}
+.v82-tr-row .rk{flex:0 0 16px;font-size:11px;font-weight:800;color:var(--muted);font-family:var(--mono-font);}
+.v82-tr-row .nm{flex:1;min-width:0;font-size:13.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.v82-tr-row .sd{flex:0 0 auto;font-size:11px;font-weight:800;font-family:var(--mono-font);}
+.v82-tr-row .n{flex:0 0 auto;font-size:10.5px;color:var(--muted);font-family:var(--mono-font);}
+.v82-tr-row .mv{flex:0 0 30px;text-align:right;font-size:10.5px;font-weight:800;
+  font-family:var(--mono-font);color:var(--muted);}
+.v82-tr-row .mv.up{color:#16A34A;}
+.v82-tr-row .mv.dn{color:#E5484D;}
+.v82-tr-row .mv.new{color:var(--text);}
