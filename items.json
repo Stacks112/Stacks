@@ -1,6 +1,323 @@
 {
  "items": [
   {
+   "date": "2026-08-04",
+   "id": "jukan-counterpoint-q2-dram-share-hynix-micron",
+   "related": [
+    "jukan-samsung-lta-asymmetric-cap-vs-micron",
+    "jukan-skhynix-2q26-earnings-consensus-miss",
+    "jukan-goldman-china-dram-catchup"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2084505776161431829",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#1E3A5F",
+    "label": "26% vs 25%"
+   },
+   "tags": [
+    "DRAM",
+    "MARKETSHARE",
+    "HBM"
+   ],
+   "stance": "bear",
+   "docUrl": "https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share",
+   "title": {
+    "ko": "삼성이 D램 점유율을 39%로 늘렸다, 그런데 자리를 내준 쪽은 중국이 아니라 SK하이닉스다",
+    "en": "Samsung pushed its DRAM share to 39%, and the share it took came from SK hynix, not from China",
+    "ja": "サムスンがDRAMシェアを39%へ伸ばした、ただし席を譲ったのは中国ではなくSKハイニックスだ"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Contrary to what many expected, this is attributed to HBM3E prices actually falling through renegotiations rather than rising, along with the impact of delays in the launch of HBM4."
+     ],
+     "ko": [
+      "많은 이들의 예상과 달리, 이것은 HBM3E 값이 재협상을 거쳐 오른 것이 아니라 실제로 내린 데다 HBM4 출시 지연의 영향이 겹친 탓으로 풀이된다."
+     ],
+     "ja": [
+      "多くの人の予想とは違い、これはHBM3Eの値が再交渉を経て上がったのではなく実際に下がったうえ、HBM4投入の遅れの影響が重なったためだとされる。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "D램 순위를 가른 것이 만드는 능력이 아니라 계약을 언제 맺었느냐였다는 사실이, 처음으로 점유율 숫자에 나타났다.\n값이 오를 때 손해를 보는 쪽은 물량을 먼저 묶어 둔 쪽이다. 하이닉스는 장기공급계약을 경쟁사보다 먼저 맺은 것으로 전해졌다.\n그래서 다음 분기에 볼 곳은 중국의 추격이 아니라, HBM4 물량이 언제부터 새 값으로 매겨지느냐다.",
+    "en": "For the first time the share table shows that what separated the DRAM makers was not how well they build but when they signed.\nWhen prices rise it is the maker that locked in volume first that gets hurt, and hynix is reported to have signed its long-term agreements ahead of its rivals.\nSo the thing to watch next quarter is not China closing in, but the point at which HBM4 volume starts carrying a new price.",
+    "ja": "DRAMの順位を分けたのが作る力ではなく契約をいつ結んだかだったという事実が、初めてシェアの数字に現れた。\n値が上がるときに損をするのは数量を先に縛った側であり、ハイニックスは長期供給契約を競合より先に結んだと伝えられている。\nしたがって次の四半期に見る場所は中国の追い上げではなく、HBM4の数量がいつから新しい値で測られるかだ。"
+   },
+   "why": {
+    "ko": "메모리 3사의 순위는 어느 회사가 잘 만드느냐가 아니라 어느 회사가 언제 값을 묶었느냐로 갈리고 있다. 이번 집계는 그 사실이 실제 숫자로 나타난 첫 분기다. 값이 오르는 국면에서 장기계약을 먼저 맺는 것은 물량을 지키는 대신 값을 포기하는 선택인데, 그 대가가 얼마나 큰지는 지금까지 추정치로만 이야기됐다. 하이닉스 주식을 들고 있다면 다음 분기 실적보다 계약이 언제 다시 매겨지는지가 더 중요한 정보다.",
+    "en": "The order among the three memory makers is being set less by who builds well than by who fixed prices when. This count is the first quarter in which that shows up as an actual number. In a rising market, signing long-term first means keeping the volume and giving up the price, and until now the size of that trade-off has only been argued in estimates. For anyone holding the stock, when the contracts reprice matters more than the next set of quarterly results.",
+    "ja": "メモリ3社の順位は、どこがうまく作るかではなく、どこがいつ値を縛ったかで分かれつつある。今回の集計は、それが実際の数字として表れた最初の四半期だ。値が上がる局面で長期契約を先に結ぶことは、数量を守るかわりに値を諦める選択であり、その代償の大きさはこれまで推定でしか語られてこなかった。株を持つ側にとっては、次の四半期の業績よりも契約がいつ付け直されるかのほうが重い情報になる。"
+   },
+   "ask": {
+    "ko": "값이 오르는 국면에서 물량을 먼저 묶어 둔 SK하이닉스의 선택은, 값을 포기하고 자리를 지킨 성공일까 아니면 자리까지 내준 실패일까?",
+    "en": "In a rising market, was SK hynix's choice to lock in volume first a success that gave up price to keep its place, or a failure that gave up the place as well?",
+    "ja": "値が上がる局面で数量を先に縛ったSKハイニックスの選択は、値を諦めて席を守った成功だろうか、それとも席まで譲った失敗だろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 3분기 카운터포인트 D램 매출 점유율에서 SK하이닉스와 마이크론의 차이가 1%포인트 이하로 유지되거나 뒤집히면 적중, 1%포인트를 넘게 다시 벌어지면 어긋난 것으로 채점한다.",
+     "en": "Score a hit if the gap between SK hynix and Micron in Counterpoint's third-quarter DRAM revenue share stays at one point or less or flips, and a miss if it widens beyond one point again.",
+     "ja": "2026年第3四半期のカウンターポイントのDRAM売上シェアで、SKハイニックスとマイクロンの差が1ポイント以下にとどまるか逆転すれば的中、1ポイントを超えて再び開けば外れと採点する。"
+    },
+    "due": "2026-12-31",
+    "card": {
+     "metric": {
+      "ko": "SK하이닉스와 마이크론의 D램 매출 점유율 차이 (카운터포인트 분기 집계)",
+      "en": "The gap in DRAM revenue share between SK hynix and Micron, in Counterpoint's quarterly count",
+      "ja": "SKハイニックスとマイクロンのDRAM売上シェア差 (カウンターポイントの四半期集計)"
+     },
+     "now": {
+      "ko": "2026년 2분기 SK하이닉스 26% · 마이크론 25% · 차이 1%포인트",
+      "en": "Q2 2026: SK hynix 26%, Micron 25%, a gap of one point",
+      "ja": "2026年第2四半期 SKハイニックス26% · マイクロン25% · 差1ポイント"
+     },
+     "when": {
+      "ko": "2026-12-31까지 (3분기 집계가 공개되는 시점)",
+      "en": "By 2026-12-31, when the third-quarter count is published",
+      "ja": "2026-12-31まで(第3四半期の集計が公開される時点)"
+     },
+     "hit": {
+      "ko": "3분기 차이가 1%포인트 이하로 유지되거나 마이크론이 앞선다",
+      "en": "The third-quarter gap holds at one point or less, or Micron moves ahead",
+      "ja": "第3四半期の差が1ポイント以下にとどまるか、マイクロンが前に出る"
+     },
+     "miss": {
+      "ko": "3분기에 SK하이닉스가 마이크론을 1%포인트 넘는 차이로 다시 앞선다",
+      "en": "SK hynix leads Micron by more than one point again in the third quarter",
+      "ja": "第3四半期にSKハイニックスがマイクロンを1ポイント超の差で再び上回る"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 카운터포인트 2분기 D램 점유율, 하이닉스와 마이크론의 차이는 1%포인트 · 2026-08-04",
+      "en": "Jukan (@jukan05) · Counterpoint's Q2 DRAM share, hynix ahead of Micron by about one point · 2026-08-04",
+      "ja": "Jukan(@jukan05) · カウンターポイントの第2四半期DRAMシェア、ハイニックスとマイクロンの差は1ポイント · 2026-08-04"
+     },
+     "url": "https://x.com/jukan05/status/2084505776161431829"
+    },
+    {
+     "name": {
+      "ko": "스톡트위츠",
+      "en": "Stocktwits",
+      "ja": "ストックツイッツ"
+     },
+     "desc": {
+      "ko": "삼성 39%로 D램 1위 복귀, 마이크론 25%로 SK하이닉스와의 격차 축소 (2026-08-04)",
+      "en": "Samsung back at the top of DRAM with 39%, Micron at 25% narrowing the gap with SK hynix (2026-08-04)",
+      "ja": "サムスンが39%でDRAM首位に復帰、マイクロンが25%でSKハイニックスとの差を縮小 (2026-08-04)"
+     },
+     "url": "https://stocktwits.com/news-articles/markets/equity/mu-sndk-dram-stocks-advance-premarket-samsung-reclaims-dram-lead-micron-narrows-gap-with-sk-hynix/cZo5W2pRJE4"
+    },
+    {
+     "name": {
+      "ko": "카운터포인트리서치",
+      "en": "Counterpoint Research",
+      "ja": "カウンターポイント・リサーチ"
+     },
+     "desc": {
+      "ko": "글로벌 D램·HBM 점유율 분기 집계. 2026년 1분기는 삼성 38% · SK하이닉스 29%였다",
+      "en": "Global DRAM and HBM market share, quarterly. In Q1 2026 the split was Samsung 38%, SK hynix 29%",
+      "ja": "グローバルDRAM・HBMシェアの四半期集計。2026年第1四半期はサムスン38% · SKハイニックス29%だった"
+     },
+     "url": "https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-04 조회 · 점유율은 카운터포인트리서치의 매출 기준 분기 집계이며, 2026년 2분기 값이다. 직전 분기(1분기) 값은 삼성 38% · SK하이닉스 29%였다.",
+    "en": "Retrieved 2026-08-04 · Shares are Counterpoint Research's revenue-based quarterly count for Q2 2026. The prior quarter read Samsung 38% and SK hynix 29%.",
+    "ja": "2026-08-04照会 · シェアはカウンターポイント・リサーチの売上ベース四半期集計で、2026年第2四半期の値だ。前四半期はサムスン38% · SKハイニックス29%だった。"
+   },
+   "gist": {
+    "ko": "카운터포인트리서치가 집계한 2분기 D램 매출 점유율에서 SK하이닉스가 26%, 마이크론이 25%로 나왔다.\n1위와 2위 사이가 아니라, 2위와 3위 사이가 1%포인트까지 좁혀졌다.\n\n@@REF@@삼성이 D램 1위를 되찾고 마이크론이 SK하이닉스와의 격차를 좁혔다 (스톡트위츠, 2026-08-04)|https://stocktwits.com/news-articles/markets/equity/mu-sndk-dram-stocks-advance-premarket-samsung-reclaims-dram-lead-micron-narrows-gap-with-sk-hynix/cZo5W2pRJE4|https://news.stocktwits-cdn.com/large_Getty_Images_2225258760_jpg_e1ca6549bf.webp\n\n@@SHARE@@삼성전자|39%|39|SK하이닉스|26%|26|마이크론|25%|25|그 외 전체|10%|10@@세 분기 전만 해도 이 띠에서 가장 넓은 칸은 SK하이닉스였다. 자리를 내준 상대가 중국 업체가 아니라 같은 3사 안에 있다는 것이 이번 집계의 내용이다.@@2026-08-04 조회 · 카운터포인트리서치 글로벌 D램·HBM 점유율 (2026년 2분기)\n\n@@IMG@@dram-module|서버에 꽂는 D램 막대다. 점유율은 이 물건이 몇 개 팔렸느냐가 아니라 얼마에 팔렸느냐로 매겨진다.\n\n메모리 값이 오르는 국면인데 점유율을 잃은 회사가 나왔고, 그것도 AI 서버용 고대역폭 메모리를 가장 많이 파는 SK하이닉스다.\n\n## 값이 오르는데 왜 하이닉스만 밀렸나\n\n점유율은 판 개수가 아니라 판 돈으로 매긴다.\n\n그래서 같은 물량을 팔아도 받는 값이 낮으면 점유율이 깎인다.\n주칸은 두 가지를 원인으로 든다.\n하나는 HBM3E 값이다. 올해 재협상에서 이 값이 오른 것이 아니라 내렸다.\n다른 하나는 HBM4다. 다음 세대 제품이 늦어지면서, 새 값을 받을 수 있는 물건이 2분기에는 아직 없었다.\n\n카운터포인트도 같은 곳을 짚는다.\n분기 HBM 값이 1년 전보다 내려간 이유로 HBM3E 값 약세와 HBM4 출시 지연을 함께 든다.\n\n## 먼저 계약한 쪽이 낮은 값에 묶인다\n\n여기에 원문이 하나를 더 붙인다.\nSK하이닉스는 장기공급계약(LTA)을 경쟁사보다 먼저 맺었고, 그래서 고정가가 경쟁사보다 낮은 것으로 전해졌다.\n\n몇 년치 물량과 값을 미리 묶어 두는 계약이다.\n값이 내릴 것 같으면 먼저 묶은 쪽이 이기고, 값이 오를 것 같으면 나중에 묶은 쪽이 이긴다.\n지금은 뒤쪽 국면이다.\n가장 먼저 물량을 확보해 둔 회사가 그 이유 때문에 가장 낮은 고정가를 들고 이번 분기를 통과한 것으로 보인다.\n같은 계약이 값이 내리는 국면에서는 반대로 방패가 되므로, 이 조건이 잘못됐다는 뜻은 아니다.\n\n## HBM4가 값을 다시 매기는 시점\n\n카운터포인트는 하반기에 차세대 HBM과 그것을 쓰는 GPU가 나오면서 HBM 값이 다시 오를 것으로 본다.\n일반 D램 쪽도 AI 서버용 CPU 수요가 값을 받쳐 줄 것으로 본다.\n\n@@REF@@글로벌 D램·HBM 점유율 분기 집계 (카운터포인트리서치, 2026-06-08 갱신)|https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share|https://counterpointresearch.com/statics/images/admin/92e24190-ab20-11f0-99ef-8b7923256dc5.jpg\n\n그렇다면 이번 집계는 값을 다시 매기기 직전의 한 분기를 찍은 사진에 가깝다.\n3분기 집계에서 두 회사의 차이가 다시 벌어지면 원인은 값을 늦게 다시 매긴 쪽에 있었고, 차이가 그대로이거나 뒤집히면 원인은 계약 조건 쪽에 더 깊이 있다.\n\n이번 분기에 드러난 것은 중국의 추격이 아니라, 값이 오르는 국면에서 미리 묶어 둔 계약이 어떻게 되돌아오는가다.",
+    "en": "Counterpoint Research puts SK hynix at 26% of second-quarter DRAM revenue and Micron at 25%.\nThe gap that narrowed to a single point is not the one at the top, but the one between second and third place.\n\n@@REF@@Samsung reclaims the DRAM lead as Micron narrows the gap with SK hynix (Stocktwits, 2026-08-04)|https://stocktwits.com/news-articles/markets/equity/mu-sndk-dram-stocks-advance-premarket-samsung-reclaims-dram-lead-micron-narrows-gap-with-sk-hynix/cZo5W2pRJE4|https://news.stocktwits-cdn.com/large_Getty_Images_2225258760_jpg_e1ca6549bf.webp\n\n@@SHARE@@Samsung|39%|39|SK hynix|26%|26|Micron|25%|25|Everyone else|10%|10@@Three quarters ago the widest band here belonged to SK hynix. What this count says is that the share it gave up went to a rival inside the same top three, not to a Chinese newcomer.@@Retrieved 2026-08-04 · Counterpoint Research, global DRAM and HBM share, Q2 2026\n\n@@IMG@@dram-module|These are the DRAM sticks that go into a server. Share is measured not by how many of them were sold but by how much they sold for.\n\nA company lost share in a quarter when memory prices were climbing, and that company is the one selling the most high-bandwidth memory for AI servers.\n\n## Why did only hynix slip while prices rose\n\nShare here is counted in money taken, not in units shipped.\n\nSo a maker can ship the same volume and still lose share if it is paid less for it.\nThe author points at two things.\nOne is the price of HBM3E, which came down in this year's renegotiations rather than going up.\nThe other is HBM4. With the next generation running late, there was no product in the second quarter that could carry a new price.\n\nCounterpoint points at the same place.\nIt explains a year-on-year fall in HBM pricing by softening HBM3E prices and the delay in the HBM4 rollout.\n\n## Signing first means being locked in lower\n\nThe author adds one more piece.\nSK hynix is reported to have signed its long-term supply agreements ahead of its rivals, which leaves its fixed prices below theirs.\n\nSuch an agreement fixes both volume and price years in advance.\nIf prices are heading down, whoever signed first wins; if prices are heading up, whoever signed later wins.\nThis is the second case.\nThe maker that locked in supply earliest appears to have carried the lowest fixed prices through the quarter for exactly that reason.\nThe same contract works as a shield when prices fall, so this is not a sign that the terms were wrong.\n\n## When HBM4 reprices the book\n\nCounterpoint expects HBM prices to recover in the second half as the next generation of HBM and the GPUs that use it reach the market.\nIt also expects demand for AI server CPUs to hold up pricing on conventional DRAM.\n\n@@REF@@Global DRAM and HBM market share, quarterly (Counterpoint Research, updated 2026-06-08)|https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share|https://counterpointresearch.com/statics/images/admin/92e24190-ab20-11f0-99ef-8b7923256dc5.jpg\n\nIf that holds, this count is closer to a photograph of the quarter just before the repricing.\nIf the gap between the two widens again in the third quarter, the cause was late repricing; if it stays put or flips, the cause sits deeper, in the contract terms.\n\nWhat this quarter shows is not China closing in, but what a contract signed early does when prices turn upward.",
+    "ja": "カウンターポイント・リサーチが集計した第2四半期のDRAM売上シェアで、SKハイニックスが26%、マイクロンが25%となった。\n1ポイントまで縮んだのは首位と2位の差ではなく、2位と3位の差だ。\n\n@@REF@@サムスンがDRAM首位を取り戻し、マイクロンがSKハイニックスとの差を縮めた (ストックツイッツ、2026-08-04)|https://stocktwits.com/news-articles/markets/equity/mu-sndk-dram-stocks-advance-premarket-samsung-reclaims-dram-lead-micron-narrows-gap-with-sk-hynix/cZo5W2pRJE4|https://news.stocktwits-cdn.com/large_Getty_Images_2225258760_jpg_e1ca6549bf.webp\n\n@@SHARE@@サムスン電子|39%|39|SKハイニックス|26%|26|マイクロン|25%|25|その他全体|10%|10@@3四半期前まで、この帯で最も広い区画はSKハイニックスだった。席を譲った相手が中国勢ではなく同じ上位3社の中にいる、というのが今回の集計の中身だ。@@2026-08-04照会 · カウンターポイント・リサーチ グローバルDRAM・HBMシェア (2026年第2四半期)\n\n@@IMG@@dram-module|サーバーに挿すDRAMの棒だ。シェアはこれが何本売れたかではなく、いくらで売れたかで測られる。\n\nメモリの値が上がる局面なのにシェアを落とした会社が出た。しかもAIサーバー向け広帯域メモリを最も多く売っている会社だ。\n\n## 値が上がるのになぜハイニックスだけ後退したか\n\nシェアは売った本数ではなく、受け取った金額で測る。\n\nだから同じ数量を売っても、受け取る値が低ければシェアは削られる。\n著者は二つを原因に挙げる。\n一つはHBM3Eの値だ。今年の再交渉でこの値は上がったのではなく下がった。\nもう一つはHBM4だ。次世代品が遅れ、新しい値を受け取れる商品が第2四半期にはまだなかった。\n\nカウンターポイントも同じ場所を指す。\n四半期のHBM価格が1年前より下がった理由として、HBM3E価格の軟化とHBM4投入の遅れをあわせて挙げている。\n\n## 先に契約した側が低い値に縛られる\n\nここに原文がもう一つ足す。\nSKハイニックスは長期供給契約を競合より先に結び、そのため固定価格が競合より低いと伝えられている。\n\n数年分の数量と値を前もって縛る契約だ。\n値が下がりそうなら先に縛った側が勝ち、値が上がりそうなら後で縛った側が勝つ。\nいまは後者の局面だ。\n最も早く数量を確保した会社が、まさにその理由で最も低い固定価格を抱えたままこの四半期を通過したとみられる。\n同じ契約は値が下がる局面では逆に盾になるので、この条件が誤りだったという意味ではない。\n\n## HBM4が値を付け直す時点\n\nカウンターポイントは、下期に次世代HBMとそれを使うGPUが出てくることでHBM価格が再び上がるとみている。\n一般DRAM側もAIサーバー向けCPUの需要が値を支えるとみている。\n\n@@REF@@グローバルDRAM・HBMシェアの四半期集計 (カウンターポイント・リサーチ、2026-06-08更新)|https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share|https://counterpointresearch.com/statics/images/admin/92e24190-ab20-11f0-99ef-8b7923256dc5.jpg\n\nそうであれば今回の集計は、値を付け直す直前の一四半期を写した写真に近い。\n第3四半期の集計で両社の差が再び開けば原因は値の付け直しの遅れにあり、差がそのままか逆転すれば原因は契約条件の側にもっと深くある。\n\nこの四半期に見えたのは中国の追い上げではなく、値が上がる局面で先に縛った契約がどう返ってくるかだ。"
+   },
+   "ts": "2026-08-04T09:57:52.973979+00:00"
+  },
+  {
+   "date": "2026-08-03",
+   "id": "schiff-coldcard-2021-firmware-seed-flaw",
+   "related": [
+    "schiff-strategy-btc-sale-strc-buyback",
+    "schiff-us-credit-card-delinquency-level-vs-direction"
+   ],
+   "source": "Peter Schiff (@PeterSchiff)",
+   "sourceUrl": "https://x.com/PeterSchiff/status/2084098973623595162",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/PeterSchiff?fallback=false",
+   "wiki": "Peter_Schiff",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#4C1D95",
+    "label": "1,367 BTC"
+   },
+   "tags": [
+    "BITCOIN",
+    "SECURITY",
+    "CUSTODY"
+   ],
+   "stance": "bear",
+   "docUrl": "https://www.foxbusiness.com/fox-news-tech/coldcard-wallet-attack-drains-up-89m-bitcoin-from-1200-addresses",
+   "title": {
+    "ko": "8,900만달러어치 비트코인을 가져간 것은 지갑을 뚫은 해킹이 아니었다",
+    "en": "What took $89 million in bitcoin was not a break-in on the wallets",
+    "ja": "8,900万ドル分のビットコインを持ち去ったのは、財布を破った侵入ではなかった"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Coldcard wallet attack drains up to $89M in Bitcoin from 1,200+ addresses"
+     ],
+     "ko": [
+      "콜드카드 지갑 공격으로 1,200개가 넘는 주소에서 최대 8,900만달러어치 비트코인이 빠져나갔다"
+     ],
+     "ja": [
+      "コールドカード財布への攻撃で、1,200を超えるアドレスから最大8,900万ドル相当のビットコインが流出した"
+     ]
+    },
+    "cite": "Peter Schiff · 2026.08.03"
+   },
+   "sum3": {
+    "ko": "하드웨어 지갑을 뚫은 사건이 아니라, 2021년 3월 펌웨어가 약하게 만들어 둔 열쇠가 5년 뒤에 열린 사건이다.\n기기를 만지지 않고도 열쇠를 다시 만들어 낼 수 있었기 때문에, 인터넷에 연결하지 않는다는 방어가 통하지 않았다.\n펌웨어는 고쳐도 이미 만들어진 시드 문구는 그대로 남으므로, 해당 기기 사용자는 자금을 새 지갑으로 옮겨야 안전해진다.",
+    "en": "This was not a break-in on hardware wallets but the opening of keys that a March 2021 firmware had already made weak five years earlier.\nThe keys could be regenerated without touching the device, so keeping the wallet offline defended nothing.\nFirmware can be patched but a seed phrase already made by it does not change, so owners of affected devices are only safe once the coins move to a fresh wallet.",
+    "ja": "ハードウェアウォレットを破った事件ではなく、2021年3月のファームウェアが弱く作っておいた鍵が5年後に開かれた事件だ。\n機器に触れなくても鍵を作り直せたため、インターネットにつながないという守りが働かなかった。\nファームウェアを直しても、すでに作られたシードフレーズはそのまま残るので、該当機器の利用者は資金を新しい財布へ移して初めて安全になる。"
+   },
+   "why": {
+    "ko": "자가보관을 택한 사람의 전제는 '내 열쇠는 나만 안다'는 것이다. 이번 일은 그 전제가 기기 제조사의 소프트웨어 품질에 통째로 얹혀 있었다는 사실을 보여 준다. 열쇠가 언제 어떤 코드로 만들어졌는지 확인할 수 없다면, 보관 방식을 아무리 조심스럽게 골라도 그 선택은 내 손을 떠나 있다. 비트코인을 직접 들고 있는 개인과, 자가보관 물량을 담보로 잡는 금융상품 모두에 같은 질문이 남는다.",
+    "en": "Anyone who chooses self-custody is assuming that only they know their key. This episode shows that assumption resting entirely on the software quality of the device maker. If you cannot establish when your key was made and by what code, then however carefully you pick a storage method, the choice was never fully yours. The same question sits with individuals holding coins directly and with any product that takes self-custodied coins as collateral.",
+    "ja": "セルフカストディを選ぶ人の前提は「自分の鍵は自分しか知らない」ということだ。今回の件は、その前提が機器メーカーのソフトウェア品質に丸ごと乗っていたことを示している。鍵がいつ、どのコードで作られたかを確かめられないなら、保管方法をどれだけ慎重に選んでもその選択は自分の手を離れている。コインを直接持つ個人にも、セルフカストディの資産を担保に取る金融商品にも、同じ問いが残る。"
+   },
+   "ask": {
+    "ko": "5년 전 펌웨어 결함이 지금 열린 일을 두고, 자가보관의 구조적 약점으로 볼까 아니면 특정 기기의 품질 사고로 볼까?",
+    "en": "With a five-year-old firmware defect opening only now, is this a structural weakness of self-custody or a quality failure at one device maker?",
+    "ja": "5年前のファームウェア欠陥がいま開いたことを、セルフカストディの構造的な弱点と見るか、特定機器の品質事故と見るか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 9월 말까지 이 결함으로 자금이 빠져나간 주소 수가 4,585개에서 더 늘어나면 취약 시드가 아직 남아 있다는 쪽이 적중, 늘지 않으면 어긋난 것으로 채점한다.",
+     "en": "Score a hit if the number of addresses drained through this defect rises above 4,585 by the end of September 2026, meaning vulnerable seeds are still in use, and a miss if it does not.",
+     "ja": "2026年9月末までにこの欠陥で資金が流出したアドレス数が4,585件より増えれば、脆弱なシードがまだ残っているという側が的中、増えなければ外れと採点する。"
+    },
+    "due": "2026-09-30",
+    "card": {
+     "metric": {
+      "ko": "이 결함으로 자금이 빠져나간 비트코인 주소 수 (갤럭시 리서치 집계)",
+      "en": "The number of bitcoin addresses drained through this defect, as counted by Galaxy Research",
+      "ja": "この欠陥で資金が流出したビットコインアドレス数 (ギャラクシー・リサーチ集計)"
+     },
+     "now": {
+      "ko": "2026-08-01 기준 4,585개 · 1,367 BTC · 약 8,900만달러",
+      "en": "As of 2026-08-01: 4,585 addresses, 1,367 BTC, about $89 million",
+      "ja": "2026-08-01時点で4,585件 · 1,367 BTC · 約8,900万ドル"
+     },
+     "when": {
+      "ko": "2026-09-30까지",
+      "en": "By 2026-09-30",
+      "ja": "2026-09-30まで"
+     },
+     "hit": {
+      "ko": "9월 말까지 집계가 4,585개보다 늘어난다",
+      "en": "The count rises above 4,585 by the end of September",
+      "ja": "9月末までに集計が4,585件より増える"
+     },
+     "miss": {
+      "ko": "9월 말까지 집계가 4,585개에서 늘지 않는다",
+      "en": "The count does not rise above 4,585 by the end of September",
+      "ja": "9月末まで集計が4,585件から増えない"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Peter Schiff(@PeterSchiff) · 콜드카드 지갑 공격으로 1,200개 넘는 주소에서 최대 8,900만달러 유출 · 2026-08-03",
+      "en": "Peter Schiff (@PeterSchiff) · Coldcard wallet attack drains up to $89M from 1,200+ addresses · 2026-08-03",
+      "ja": "Peter Schiff(@PeterSchiff) · コールドカード財布への攻撃で1,200超のアドレスから最大8,900万ドルが流出 · 2026-08-03"
+     },
+     "url": "https://x.com/PeterSchiff/status/2084098973623595162"
+    },
+    {
+     "name": {
+      "ko": "코인데스크",
+      "en": "CoinDesk",
+      "ja": "コインデスク"
+     },
+     "desc": {
+      "ko": "갤럭시 리서치 추적 기준 4,585개 주소·1,367 BTC. 1차 파도는 41분 만에 1,196개 주소에서 1,083 BTC (2026-08-01)",
+      "en": "4,585 addresses and 1,367 BTC on Galaxy Research's tracking; the first wave took 1,083 BTC from 1,196 addresses in 41 minutes (2026-08-01)",
+      "ja": "ギャラクシー・リサーチの追跡で4,585アドレス・1,367 BTC。第1波は41分で1,196アドレスから1,083 BTC (2026-08-01)"
+     },
+     "url": "https://www.coindesk.com/tech/2026/08/02/bitcoin-cold-wallet-attack-spreads-to-4-500-addresses-as-losses-near-usd89-million"
+    },
+    {
+     "name": {
+      "ko": "IG",
+      "en": "IG",
+      "ja": "IG"
+     },
+     "desc": {
+      "ko": "콜드카드 Mk2·Mk3 일부의 2021년 3월 펌웨어 결함, 자가보관과 거래소 보관은 다른 종류의 위험 (2026-08-03)",
+      "en": "The March 2021 firmware defect on some Coldcard Mk2 and Mk3 units, and why self-custody and exchange custody carry different categories of risk (2026-08-03)",
+      "ja": "コールドカードMk2・Mk3の一部における2021年3月のファームウェア欠陥、セルフカストディと取引所保管は別種の危険 (2026-08-03)"
+     },
+     "url": "https://www.ig.com/uk/trading-strategies/coldcard-hardware-wallet-hack-self-custody-260803"
+    },
+    {
+     "name": {
+      "ko": "폭스 비즈니스",
+      "en": "Fox Business",
+      "ja": "フォックス・ビジネス"
+     },
+     "desc": {
+      "ko": "원문이 링크한 기사. 주소 1,200개 기준으로 작성됐다 (2026-08-02)",
+      "en": "The article the original post linked to, written on the 1,200-address count (2026-08-02)",
+      "ja": "原文がリンクした記事。アドレス1,200件を基準に書かれている (2026-08-02)"
+     },
+     "url": "https://www.foxbusiness.com/fox-news-tech/coldcard-wallet-attack-drains-up-89m-bitcoin-from-1200-addresses"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-04 조회 · 주소 수와 유출량은 갤럭시 리서치가 세 파도까지 집계한 2026-08-01 기준값이다. 달러 환산액은 사건 당시 시세 기준이며 이후 시세에 따라 달라진다.",
+    "en": "Retrieved 2026-08-04 · Address counts and amounts are Galaxy Research's figures through the third wave, as of 2026-08-01. The dollar figure is at prices during the event and moves with the market afterwards.",
+    "ja": "2026-08-04照会 · アドレス数と流出量は、ギャラクシー・リサーチが第3波まで集計した2026-08-01時点の値だ。ドル換算額は事件当時の相場基準であり、その後の相場で変わる。"
+   },
+   "gist": {
+    "ko": "7월 30일부터 나흘 동안 4,585개의 비트코인 주소에서 1,367 BTC, 약 8,900만달러어치가 빠져나갔다.\n지갑을 물리적으로 뺏기거나 비밀번호가 새어 나간 사건이 아니다.\n\n@@REF@@비트코인 콜드월렛 공격이 4,500개 주소로 번지며 피해가 8,900만달러에 다가섰다 (코인데스크, 2026-08-01)|https://www.coindesk.com/tech/2026/08/02/bitcoin-cold-wallet-attack-spreads-to-4-500-addresses-as-losses-near-usd89-million|https://cdn.sanity.io/images/s3y3vcno/production/6c28c3dcd5461d3803d6e6200f1da0686dde993f-1920x1082.jpg\n\n원인은 2021년 3월에 배포된 콜드카드 펌웨어 하나였다.\n\n@@TIME@@2021-03|콜드카드 펌웨어가 시드 문구 생성의 일부를 하드웨어 난수 대신 소프트웨어 난수로 넘긴다|2026-07-30|첫 파도, 41분 만에 1,196개 주소에서 1,083 BTC가 빠져나간다|2026-08-01|세 번째 파도까지 확인되어 누적 4,585개 주소·1,367 BTC|2026-08-03|일부 보유자가 자가보관 물량을 거래소로 되돌린다@@열쇠가 약하게 만들어진 시점과 그 열쇠가 열린 시점 사이가 5년이다. 그 사이에 기기를 쓰던 사람이 알아챌 수 있는 신호는 없었다.@@2026-08-04 조회 · 코인데스크(갤럭시 리서치 추적) · IG\n\n## 난수가 약하면 무엇이 무너지나\n\n하드웨어 지갑은 인터넷에 연결하지 않는 것을 안전장치로 삼는다.\n열쇠가 기기 밖으로 나가지 않으니 남이 훔쳐 갈 길이 없다는 논리다.\n\n그 논리는 열쇠가 처음에 아무도 짐작할 수 없는 방식으로 만들어졌을 때만 성립한다.\n지갑의 열쇠는 시드 문구라고 부르는 단어 묶음에서 나오고, 그 단어 묶음은 기기 안의 난수생성기가 뽑는다.\n콜드카드 Mk2와 Mk3 일부에 들어간 2021년 3월 펌웨어는 이 과정의 일부를 전용 하드웨어 난수 대신 소프트웨어 난수로 처리했다.\n그러면 나올 수 있는 열쇠의 가짓수가 확 줄어든다.\n공격자는 기기를 만질 필요 없이, 자기 컴퓨터에서 그 가짓수를 전부 만들어 놓고 어느 주소에 돈이 들어 있는지 맞춰 보기만 하면 된다.\n\n인터넷에 연결하지 않았다는 방어가 여기서는 아무 일도 하지 못한다.\n\n## 펌웨어를 고쳐도 시드는 바뀌지 않는다\n\n원문이 옮긴 기사 제목은 주소 1,200개 기준이다.\n갤럭시 리서치가 세 파도를 모두 세었을 때 숫자는 4,585개였다.\n\n숫자보다 중요한 것은 결함이 남는 방식이다.\n펌웨어는 고칠 수 있지만, 그 펌웨어로 이미 만들어진 시드 문구는 그대로 남는다.\n그래서 문제의 기기를 쓰던 사람은 업데이트만으로는 안전해지지 않고, 새 지갑을 만들어 자금을 옮겨야 한다.\n5년이라는 시차가 생긴 이유가 여기에 있다.\n\n## 콜드카드가 남긴 질문은 자가보관이 아니다\n\n피터 시프는 오래된 비트코인 회의론자이고, 금괴 판매사를 운영한다.\n그가 이 기사를 옮긴 맥락은 그 자체로 감안하고 읽는 편이 낫다.\n\n같은 사건을 다룬 IG의 정리는 다른 쪽을 짚는다.\n보안 연구자들은 이번 일이 자가보관이 거래소 보관보다 본질적으로 위험하다는 증거는 아니라고 본다.\n둘은 아예 다른 종류의 위험이다. 자가보관은 펌웨어 결함과 사용자 실수를 안고, 거래소 보관은 파산과 출금 정지를 안는다.\n\n@@REF@@콜드카드 하드웨어 지갑 해킹이 자가보관에 뜻하는 것 (IG, 2026-08-03)|https://www.ig.com/uk/trading-strategies/coldcard-hardware-wallet-hack-self-custody-260803|https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/news-article-image-folder/BB_bitcoin_260603.jpg\n\n그러니 이번 일로 갈리는 것은 자가보관이냐 거래소냐가 아니다.\n내 열쇠가 언제 어떤 소프트웨어로 만들어졌는지를 확인할 수 있느냐다.\n확인할 수 없는 열쇠는 인터넷에 연결하지 않아도 이미 공개된 것이나 다름없다.",
+    "en": "Over four days from 30 July, 1,367 BTC worth roughly $89 million left 4,585 bitcoin addresses.\nNo device was physically taken and no password leaked.\n\n@@REF@@Bitcoin cold-wallet attack spreads to 4,500 addresses as losses near $89 million (CoinDesk, 2026-08-01)|https://www.coindesk.com/tech/2026/08/02/bitcoin-cold-wallet-attack-spreads-to-4-500-addresses-as-losses-near-usd89-million|https://cdn.sanity.io/images/s3y3vcno/production/6c28c3dcd5461d3803d6e6200f1da0686dde993f-1920x1082.jpg\n\nThe cause was a single Coldcard firmware release from March 2021.\n\n@@TIME@@2021-03|Coldcard firmware routes part of seed generation through a software randomiser instead of the hardware one|2026-07-30|First wave: 1,083 BTC out of 1,196 addresses in 41 minutes|2026-08-01|A third wave is identified, bringing the count to 4,585 addresses and 1,367 BTC|2026-08-03|Some holders move coins from self-custody back onto exchanges@@Five years separate the moment the keys were made weak from the moment they were opened. Nothing in between would have told the owner of the device.@@Retrieved 2026-08-04 · CoinDesk (tracking by Galaxy Research) · IG\n\n## What breaks when the randomness is weak\n\nA hardware wallet treats staying off the internet as its safety catch.\nThe key never leaves the device, so the reasoning goes, there is no path for anyone to take it.\n\nThat reasoning holds only if the key was made in a way nobody can guess at.\nA wallet's key comes from a set of words called a seed phrase, and those words are drawn by a random number generator inside the device.\nThe March 2021 firmware on some Coldcard Mk2 and Mk3 units ran part of that step through a software randomiser rather than the dedicated hardware one.\nThat shrinks the number of keys the device can possibly produce.\nAn attacker never has to touch the device: generate the whole reduced set at home, then check which of those addresses holds coins.\n\nBeing offline does no work at all against that.\n\n## Fixing the firmware does not change the seed\n\nThe headline the author passed along counts 1,200 addresses.\nBy the time Galaxy Research had counted all three waves the figure was 4,585.\n\nWhat matters more than the count is the way the flaw persists.\nFirmware can be patched, but a seed phrase already produced by that firmware stays exactly as it is.\nSo an owner of an affected device is not made safe by updating; the coins have to move to a wallet generated fresh.\nThat is where the five-year gap comes from.\n\n## The question Coldcard leaves is not about self-custody\n\nPeter Schiff is a long-standing bitcoin sceptic who also runs a bullion dealer.\nIt is worth reading the context in which he passed this story on.\n\nIG's write-up of the same event points somewhere else.\nSecurity researchers do not read this as evidence that self-custody is inherently riskier than leaving coins with an exchange.\nThe two carry different categories of risk. Self-custody carries firmware defects and user error; exchange custody carries insolvency and frozen withdrawals.\n\n@@REF@@What the Coldcard hardware wallet hack means for self-custody (IG, 2026-08-03)|https://www.ig.com/uk/trading-strategies/coldcard-hardware-wallet-hack-self-custody-260803|https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/news-article-image-folder/BB_bitcoin_260603.jpg\n\nSo what this splits is not self-custody against exchanges.\nIt is whether you can find out when your key was made, and by which piece of software.\nA key you cannot check is effectively already public, however far offline it sits.",
+    "ja": "7月30日から4日間で、4,585のビットコインアドレスから1,367 BTC、およそ8,900万ドル分が流出した。\n財布を物理的に奪われたわけでも、パスワードが漏れたわけでもない。\n\n@@REF@@ビットコインのコールドウォレット攻撃が4,500アドレスに広がり、被害が8,900万ドルに迫った (コインデスク、2026-08-01)|https://www.coindesk.com/tech/2026/08/02/bitcoin-cold-wallet-attack-spreads-to-4-500-addresses-as-losses-near-usd89-million|https://cdn.sanity.io/images/s3y3vcno/production/6c28c3dcd5461d3803d6e6200f1da0686dde993f-1920x1082.jpg\n\n原因は2021年3月に配布されたコールドカードのファームウェア一つだった。\n\n@@TIME@@2021-03|コールドカードのファームウェアがシードフレーズ生成の一部をハードウェア乱数ではなくソフトウェア乱数に回す|2026-07-30|第1波、41分で1,196アドレスから1,083 BTCが流出する|2026-08-01|第3波まで確認され、累計4,585アドレス・1,367 BTCとなる|2026-08-03|一部の保有者がセルフカストディの資金を取引所へ戻す@@鍵が弱く作られた時点と、その鍵が開かれた時点のあいだが5年ある。その間、機器を使っていた人が気づける合図はなかった。@@2026-08-04照会 · コインデスク(ギャラクシー・リサーチの追跡) · IG\n\n## 乱数が弱いと何が崩れるか\n\nハードウェアウォレットは、インターネットにつながないことを安全装置にしている。\n鍵が機器の外に出ないのだから、誰かが持ち去る経路はない、という理屈だ。\n\nその理屈は、鍵が最初に誰にも見当のつかない方法で作られたときにだけ成り立つ。\n財布の鍵はシードフレーズと呼ばれる単語の束から出てきて、その単語の束は機器内の乱数生成器が引く。\nコールドカードMk2とMk3の一部に入った2021年3月のファームウェアは、この工程の一部を専用のハードウェア乱数ではなくソフトウェア乱数で処理していた。\nそうなると、出てきうる鍵の通り数が一気に減る。\n攻撃者は機器に触れる必要がない。自分の計算機でその通り数をすべて作っておき、どのアドレスに資金があるかを照合すればよい。\n\nインターネットにつながないという守りは、ここでは何の働きもしない。\n\n## ファームウェアを直してもシードは変わらない\n\n原文が引いた記事の見出しはアドレス1,200件が基準だ。\nギャラクシー・リサーチが三つの波をすべて数えた時点で、その数は4,585件だった。\n\n数より大事なのは、欠陥が残る仕組みのほうだ。\nファームウェアは直せるが、そのファームウェアですでに作られたシードフレーズはそのまま残る。\nだから問題の機器を使っていた人は更新だけでは安全にならず、新しい財布を作って資金を移す必要がある。\n5年という時差が生まれた理由はここにある。\n\n## コールドカードが残した問いはセルフカストディではない\n\nピーター・シフは長年のビットコイン懐疑論者であり、地金販売会社を営んでいる。\n彼がこの記事を引いた文脈は、その分を織り込んで読むほうがよい。\n\n同じ出来事を扱ったIGの整理は別の場所を指す。\nセキュリティ研究者は、今回の件をセルフカストディが取引所保管より本質的に危険だという証拠とは読んでいない。\n二つはそもそも別の種類の危険だ。セルフカストディはファームウェアの欠陥と利用者の誤りを抱え、取引所保管は破綻と出金停止を抱える。\n\n@@REF@@コールドカードのハードウェアウォレット侵害がセルフカストディに意味すること (IG、2026-08-03)|https://www.ig.com/uk/trading-strategies/coldcard-hardware-wallet-hack-self-custody-260803|https://a.c-dn.net/c/content/dam/publicsites/igcom/uk/images/news-article-image-folder/BB_bitcoin_260603.jpg\n\nだから今回の件で分かれるのは、セルフカストディか取引所かではない。\n自分の鍵がいつ、どのソフトウェアで作られたかを確かめられるかどうかだ。\n確かめられない鍵は、どれだけ回線から離してあってもすでに公開されているのと変わらない。"
+   },
+   "ts": "2026-08-03T12:00:00+00:00"
+  },
+  {
    "date": "2026-08-02",
    "id": "schiff-us-credit-card-delinquency-level-vs-direction",
    "related": [
@@ -1185,9 +1502,9 @@
     "ja": "2026-08-04 取得 · FIMA上限は2021-07-28の連銀発表基準 · 円相場は2026-08-03のアルジャジーラ報道基準"
    },
    "gist": {
-    "ko": "미국 재무장관이 연준을 향해 창구 하나를 키우자고 공개적으로 말했다.\n외국 중앙은행이 자기가 가진 미국 국채를 담보로 맡기고 달러를 빌려 가는 FIMA 레포 창구다.\n\n@@REF@@베센트, 엔 공동개입을 반복할 준비가 됐다며 연준 안전판 확대를 촉구 (로이터, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\n로이터는 스콧 베센트 장관이 8월 2일 엑스에 올린 글을 그대로 전했다.\n\"FIMA 레포 창구는 중요한 안전판이며, 앞으로 몇 달 안에 그 규모를 키울 것을 권한다\"는 문장이 들어 있다.\n같은 글에서 그는 추가 공동 개입에도 주저하지 않겠다고 했다.\n\n돈을 빌리는 쪽이 아니라 빌려주는 쪽이 먼저 한도를 올리자고 말한 것이다.\n\n## 왜 국채를 팔면 안 되나\n\n엔을 강하게 만들려면 달러를 팔고 엔을 사야 한다.\n문제는 그 달러를 어디서 구하느냐다.\n일본이 지금까지 쓴 방법은 가지고 있던 미국 국채를 시장에 내다 파는 것이었다.\n국채를 팔면 국채 값이 내려가고, 값이 내려간 만큼 금리는 올라간다.\n워싱턴이 가장 신경 쓰는 숫자가 바로 그 장기 금리다.\n\n7월 31일의 공동 개입은 그 방법을 쓰지 않았다.\n미 재무부는 외환안정기금에 들어 있던 유로를 팔아 엔을 샀고, 미국 국채는 시장에 나오지 않았다.\n\n@@REF@@일본과 미국, 엔을 떠받치기 위한 이례적 공동 개입을 확인하다 (알자지라, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\n알자지라에 따르면 일본 재무성은 \"최근 엔화의 과도한 변동성과 무질서한 움직임에 대응했다\"며 개입을 공식 인정했고, 추가 공동 개입에도 주저하지 않겠다고 덧붙였다.\n개입 뒤 엔은 달러당 155엔대까지 올라 석 달 만에 가장 강한 수준이 됐다.\n일본이 앞으로 FIMA 창구도 쓰겠다고 밝혔다는 대목은 원문 게시물이 전한 것으로, 영어권 보도에서는 아직 확인되지 않는다.\n\n## 담보는 넘치는데 한도가 막고 있다\n\n@@CHK@@FIMA 레포 국가별 한도|600억달러|일본이 가진 미국 국채|1조1,400억달러@@맡길 담보가 한도의 열아홉 배다. 창구를 넓히자는 말이 나온 자리가 여기다.@@2026-08-04 조회 · 한도는 미 연준 2021-07-28 발표 · 일본 보유액은 미 재무부 국제자본흐름(TIC) 5월 말 기준, 로이터 인용 보도\n\n담보로 쓸 국채는 남아돈다.\n정작 창구에서 빌릴 수 있는 금액은 그 담보의 5%를 조금 넘는 선에서 잘려 있다.\n\n알자지라는 이번 개입에서 도쿄가 590억달러가량을 썼을 수 있다고 전했다.\n그 추정이 맞다면 한 번의 개입이 창구 하나를 거의 다 비우는 규모다.\n\n## 한도를 바꿀 권한은 연준에 있다\n\n@@REF@@상설 FIMA 레포 창구 도입 발표 (미 연방준비제도, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm|https://www.federalreserve.gov/images/social-media/social-default-image-opengraph.jpg\n\nFIMA 레포 창구는 2020년 3월에 임시로 열렸다가 2021년 7월에 상설 창구가 됐다.\n연준이 그때 공표한 조건에 국가당 600억달러라는 한도가 적혀 있다.\n이 조건을 바꾸려면 연방공개시장위원회의 승인이 필요하다.\n재무장관이 아무리 권해도 결정은 연준 안에서 난다.\n\n여기서 걸리는 것이 하나 있다.\nFIMA 레포는 연준의 대차대조표를 키우는 장치다.\n일본이 국채를 맡기고 달러를 빌리면 연준의 자산에는 그 국채가, 부채에는 새로 찍어 준 달러가 같이 잡힌다.\n\n케빈 워시 의장은 대차대조표를 줄이는 것을 최우선으로 삼아 온 사람이다.\n다만 빌려준 달러가 돌아오면 그만큼 다시 줄어드는 한시적 팽창이라, 저항이 크지 않을 수 있다는 견해도 있다.\n\n## 워시 의장 앞에 놓인 8월의 선택\n\n이제 갈리는 지점은 일본에 실탄이 남았느냐가 아니라, 연준이 한도를 열어 주느냐다.\n한도가 올라가면 일본은 국채를 팔지 않고도 개입을 이어 갈 수 있고, 엔 방어의 상한은 일본의 준비금이 아니라 워싱턴의 승인이 정한다.\n한도가 그대로면 개입은 다시 국채를 파는 방식으로 돌아가고, 미국 장기 금리가 그 값을 치른다.\n엔을 지키는 일이 두 나라의 공동 사업이 됐다는 것은, 앞으로 엔의 방향을 읽을 때 도쿄만 봐서는 안 된다는 뜻이다.",
-    "en": "The US Treasury Secretary has publicly asked the Federal Reserve to enlarge one of its windows.\nIt is the FIMA repo window, where foreign central banks pledge the US Treasuries they already own and borrow dollars against them.\n\n@@REF@@Bessent ready to repeat joint yen intervention, urges bigger Fed backstop (Reuters, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\nReuters carried the post Scott Bessent put on X on August 2.\nOne line in it reads that the FIMA Repo Facility is an important backstop and that he would encourage it to be upsized in the coming months.\nIn the same post he said Treasury would not hesitate to take part in further joint intervention.\n\nIt was the lender, not the borrower, who asked first for the ceiling to be lifted.\n\n## Why not simply sell the bonds\n\nMaking the yen stronger means selling dollars and buying yen.\nThe question is where those dollars come from.\nUntil now Japan's method was to sell the US Treasuries it holds into the market.\nSelling bonds pushes their price down, and a lower price means a higher yield.\nThat long yield is the number Washington watches most closely.\n\nThe joint intervention of July 31 did not use that method.\nThe Treasury sold euros sitting in its Exchange Stabilization Fund and bought yen with them, so no US government bonds reached the market.\n\n@@REF@@Japan and US confirm rare joint intervention to prop up yen (Al Jazeera, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\nAccording to Al Jazeera, Japan's finance ministry confirmed the operation, saying it had countered excessive volatility and disorderly movements in the yen, and added that it would not hesitate to conduct further joint intervention.\nAfter the operation the yen firmed to around 155 per dollar, its strongest in nearly three months.\nThe part about Japan planning to use the FIMA window comes from the original post, and English language reporting has not confirmed it yet.\n\n## Collateral is abundant, the ceiling is not\n\n@@CHK@@FIMA repo limit per country|$60bn|US Treasuries held by Japan|$1.14tn@@The collateral available is nineteen times the ceiling. That gap is where the call to widen the window comes from.@@Retrieved 2026-08-04 · limit from the Federal Reserve announcement of 2021-07-28 · Japan's holdings from US Treasury TIC data as of end-May, as cited by Reuters\n\nThere is no shortage of bonds to pledge.\nWhat is capped is the amount that can actually be drawn, a little above five percent of that collateral.\n\nAl Jazeera reported that Tokyo may have spent around $59bn in this intervention.\nIf that estimate holds, a single operation nearly empties one country's window.\n\n## The Fed, not the Treasury, holds the switch\n\n@@REF@@Establishment of the standing FIMA repurchase agreement facility (Federal Reserve, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm|https://www.federalreserve.gov/images/social-media/social-default-image-opengraph.jpg\n\nThe window opened as a temporary measure in March 2020 and became a standing facility in July 2021.\nThe terms the Fed published then include a limit of $60 billion per counterparty.\nChanging those terms requires approval from the Federal Open Market Committee.\nHowever strongly a Treasury Secretary recommends it, the decision is made inside the central bank.\n\nOne thing sits in the way.\nFIMA repo is a device that enlarges the Fed's balance sheet.\nWhen Japan pledges bonds and draws dollars, those bonds land on the Fed's asset side while the newly created dollars land on the liability side.\n\nChair Kevin Warsh has made shrinking that balance sheet his stated priority.\nThe expansion here is temporary, unwinding as the dollars are repaid, so some argue the resistance may be smaller than it looks.\n\n## The choice in front of Warsh this August\n\nWhat is now at issue is not whether Japan has ammunition left, but whether the Fed opens the ceiling.\nIf the limit rises, Japan can keep intervening without selling bonds, and the ceiling on defending the yen is set by Washington's approval rather than by Japan's reserves.\nIf it stays, intervention goes back to selling Treasuries, and the US long yield pays for it.\nOnce defending a currency becomes a joint enterprise of two governments, reading the yen from Tokyo alone stops being enough.",
-    "ja": "米財務長官が連邦準備制度に向けて、ある窓口を大きくしようと公に述べた。\n外国の中央銀行が自ら保有する米国債を担保に預け、ドルを借りるFIMAレポ窓口だ。\n\n@@REF@@ベッセント、円の共同介入を繰り返す用意があるとして連銀の安全弁拡大を促す (ロイター, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\nロイターは、スコット・ベッセント長官が8月2日にXへ投稿した文をそのまま伝えた。\n「FIMAレポ窓口は重要な安全弁であり、今後数カ月のうちに規模を拡大することを勧める」という一文が入っている。\n同じ投稿で、追加の共同介入にもためらわないと述べた。\n\n借りる側ではなく、貸す側が先に上限を上げようと言ったことになる。\n\n## なぜ国債を売ってはいけないのか\n\n円を強くするにはドルを売って円を買う必要がある。\n問題は、そのドルをどこから調達するかだ。\n日本がこれまで使ってきた方法は、保有する米国債を市場で売ることだった。\n国債を売れば価格が下がり、下がった分だけ利回りは上がる。\nワシントンが最も気にする数字が、その長期金利だ。\n\n7月31日の共同介入は、その方法を使わなかった。\n米財務省は為替安定基金に入っていたユーロを売って円を買い、米国債は市場に出なかった。\n\n@@REF@@日本と米国、円を支えるための異例の共同介入を確認 (アルジャジーラ, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\nアルジャジーラによれば、日本の財務省は「最近の円の過度な変動と無秩序な動きに対応した」として介入を公式に認め、追加の共同介入にもためらわないと付け加えた。\n介入のあと円は1ドル155円台まで戻し、およそ3カ月ぶりの水準になった。\n日本が今後FIMA窓口も使うと明らかにしたという部分は原文の投稿が伝えたもので、英語圏の報道ではまだ確認されていない。\n\n## 担保はあり余り、上限が塞いでいる\n\n@@CHK@@FIMAレポの国別上限|600億ドル|日本が保有する米国債|1兆1,400億ドル@@預けられる担保は上限の19倍だ。窓口を広げようという話が出た場所がここになる。@@2026-08-04 取得 · 上限は米連邦準備制度2021-07-28発表 · 日本の保有額は米財務省TIC 5月末時点、ロイター引用報道\n\n担保に使う国債は余っている。\n実際に窓口から借りられる金額は、その担保の5%を少し超える線で切られている。\n\nアルジャジーラは、今回の介入で東京が590億ドルほどを使った可能性があると伝えた。\nその推計が正しければ、一度の介入で窓口ひとつをほぼ空にする規模だ。\n\n## 上限を変える権限は連銀にある\n\n@@REF@@常設FIMAレポ・ファシリティ導入の発表 (米連邦準備制度, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm|https://www.federalreserve.gov/images/social-media/social-default-image-opengraph.jpg\n\nFIMAレポ窓口は2020年3月に臨時で開かれ、2021年7月に常設の窓口になった。\n連銀がそのとき公表した条件に、1カ国あたり600億ドルという上限が書かれている。\nこの条件を変えるには連邦公開市場委員会の承認が必要だ。\n財務長官がいくら勧めても、決めるのは中央銀行の中だ。\n\nここで引っかかるものがひとつある。\nFIMAレポは連銀のバランスシートを膨らませる装置だ。\n日本が国債を預けてドルを借りれば、連銀の資産にその国債が、負債に新しく発行したドルが同時に載る。\n\nケビン・ウォーシュ議長は、そのバランスシートを縮めることを最優先に掲げてきた人物だ。\nただし貸したドルが戻れば同じだけ縮む一時的な膨張なので、抵抗はそれほど大きくないかもしれないという見方もある。\n\n## ウォーシュ議長の前に置かれた8月の選択\n\nいま分かれ目になるのは、日本に弾が残っているかではなく、連銀が上限を開けるかどうかだ。\n上限が上がれば日本は国債を売らずに介入を続けられ、円防衛の上限は日本の準備金ではなくワシントンの承認が決める。\n上限がそのままなら介入は再び国債を売る方式に戻り、米国の長期金利がその代金を払う。\n円を守ることが二国の共同事業になった以上、これからの円の方向を読むのに東京だけを見ていては足りない。"
+    "ko": "미국 재무장관이 연준을 향해 창구 하나를 키우자고 공개적으로 말했다.\n외국 중앙은행이 자기가 가진 미국 국채를 담보로 맡기고 달러를 빌려 가는 FIMA 레포 창구다.\n\n@@REF@@베센트, 엔 공동개입을 반복할 준비가 됐다며 연준 안전판 확대를 촉구 (로이터, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\n로이터는 스콧 베센트 장관이 8월 2일 엑스에 올린 글을 그대로 전했다.\n\"FIMA 레포 창구는 중요한 안전판이며, 앞으로 몇 달 안에 그 규모를 키울 것을 권한다\"는 문장이 들어 있다.\n같은 글에서 그는 추가 공동 개입에도 주저하지 않겠다고 했다.\n\n돈을 빌리는 쪽이 아니라 빌려주는 쪽이 먼저 한도를 올리자고 말한 것이다.\n\n## 왜 국채를 팔면 안 되나\n\n엔을 강하게 만들려면 달러를 팔고 엔을 사야 한다.\n문제는 그 달러를 어디서 구하느냐다.\n일본이 지금까지 쓴 방법은 가지고 있던 미국 국채를 시장에 내다 파는 것이었다.\n국채를 팔면 국채 값이 내려가고, 값이 내려간 만큼 금리는 올라간다.\n워싱턴이 가장 신경 쓰는 숫자가 바로 그 장기 금리다.\n\n7월 31일의 공동 개입은 그 방법을 쓰지 않았다.\n미 재무부는 외환안정기금에 들어 있던 유로를 팔아 엔을 샀고, 미국 국채는 시장에 나오지 않았다.\n\n@@REF@@일본과 미국, 엔을 떠받치기 위한 이례적 공동 개입을 확인하다 (알자지라, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\n알자지라에 따르면 일본 재무성은 \"최근 엔화의 과도한 변동성과 무질서한 움직임에 대응했다\"며 개입을 공식 인정했고, 추가 공동 개입에도 주저하지 않겠다고 덧붙였다.\n개입 뒤 엔은 달러당 155엔대까지 올라 석 달 만에 가장 강한 수준이 됐다.\n일본이 앞으로 FIMA 창구도 쓰겠다고 밝혔다는 대목은 원문 게시물이 전한 것으로, 영어권 보도에서는 아직 확인되지 않는다.\n\n## 담보는 넘치는데 한도가 막고 있다\n\n@@BAR@@FIMA 레포 국가별 한도|600억달러|600|일본이 가진 미국 국채|1조1,400억달러|11400@@맡길 수 있는 담보가 창구보다 훨씬 크다는 뜻이고, 창구를 넓히자는 말이 나온 자리가 여기다.@@2026-08-04 조회 · 한도는 미 연준 2021-07-28 발표 · 일본 보유액은 미 재무부 국제자본흐름(TIC) 5월 말 기준, 로이터 인용 보도\n\n담보로 쓸 국채는 남아돈다.\n정작 창구에서 빌릴 수 있는 금액은 그 담보의 5%를 조금 넘는 선에서 잘려 있다.\n\n알자지라는 이번 개입에서 도쿄가 590억달러가량을 썼을 수 있다고 전했다.\n그 추정이 맞다면 한 번의 개입이 창구 하나를 거의 다 비우는 규모다.\n\n## 한도를 바꿀 권한은 연준에 있다\n\n@@REF@@상설 FIMA 레포 창구 도입 발표 (미 연방준비제도, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm|https://www.federalreserve.gov/images/social-media/social-default-image-opengraph.jpg\n\nFIMA 레포 창구는 2020년 3월에 임시로 열렸다가 2021년 7월에 상설 창구가 됐다.\n연준이 그때 공표한 조건에 국가당 600억달러라는 한도가 적혀 있다.\n이 조건을 바꾸려면 연방공개시장위원회의 승인이 필요하다.\n재무장관이 아무리 권해도 결정은 연준 안에서 난다.\n\n여기서 걸리는 것이 하나 있다.\nFIMA 레포는 연준의 대차대조표를 키우는 장치다.\n일본이 국채를 맡기고 달러를 빌리면 연준의 자산에는 그 국채가, 부채에는 새로 찍어 준 달러가 같이 잡힌다.\n\n케빈 워시 의장은 대차대조표를 줄이는 것을 최우선으로 삼아 온 사람이다.\n다만 빌려준 달러가 돌아오면 그만큼 다시 줄어드는 한시적 팽창이라, 저항이 크지 않을 수 있다는 견해도 있다.\n\n## 워시 의장 앞에 놓인 8월의 선택\n\n이제 갈리는 지점은 일본에 실탄이 남았느냐가 아니라, 연준이 한도를 열어 주느냐다.\n한도가 올라가면 일본은 국채를 팔지 않고도 개입을 이어 갈 수 있고, 엔 방어의 상한은 일본의 준비금이 아니라 워싱턴의 승인이 정한다.\n한도가 그대로면 개입은 다시 국채를 파는 방식으로 돌아가고, 미국 장기 금리가 그 값을 치른다.\n엔을 지키는 일이 두 나라의 공동 사업이 됐다는 것은, 앞으로 엔의 방향을 읽을 때 도쿄만 봐서는 안 된다는 뜻이다.",
+    "en": "The US Treasury Secretary has publicly asked the Federal Reserve to enlarge one of its windows.\nIt is the FIMA repo window, where foreign central banks pledge the US Treasuries they already own and borrow dollars against them.\n\n@@REF@@Bessent ready to repeat joint yen intervention, urges bigger Fed backstop (Reuters, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\nReuters carried the post Scott Bessent put on X on August 2.\nOne line in it reads that the FIMA Repo Facility is an important backstop and that he would encourage it to be upsized in the coming months.\nIn the same post he said Treasury would not hesitate to take part in further joint intervention.\n\nIt was the lender, not the borrower, who asked first for the ceiling to be lifted.\n\n## Why not simply sell the bonds\n\nMaking the yen stronger means selling dollars and buying yen.\nThe question is where those dollars come from.\nUntil now Japan's method was to sell the US Treasuries it holds into the market.\nSelling bonds pushes their price down, and a lower price means a higher yield.\nThat long yield is the number Washington watches most closely.\n\nThe joint intervention of July 31 did not use that method.\nThe Treasury sold euros sitting in its Exchange Stabilization Fund and bought yen with them, so no US government bonds reached the market.\n\n@@REF@@Japan and US confirm rare joint intervention to prop up yen (Al Jazeera, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\nAccording to Al Jazeera, Japan's finance ministry confirmed the operation, saying it had countered excessive volatility and disorderly movements in the yen, and added that it would not hesitate to conduct further joint intervention.\nAfter the operation the yen firmed to around 155 per dollar, its strongest in nearly three months.\nThe part about Japan planning to use the FIMA window comes from the original post, and English language reporting has not confirmed it yet.\n\n## Collateral is abundant, the ceiling is not\n\n@@BAR@@FIMA repo limit per country|$60bn|600|US Treasuries held by Japan|$1.14tn|11400@@The collateral that could be pledged dwarfs the window it would go through, and that gap is where the call to widen it comes from.@@Retrieved 2026-08-04 · limit from the Federal Reserve announcement of 2021-07-28 · Japan's holdings from US Treasury TIC data as of end-May, as cited by Reuters\n\nThere is no shortage of bonds to pledge.\nWhat is capped is the amount that can actually be drawn, a little above five percent of that collateral.\n\nAl Jazeera reported that Tokyo may have spent around $59bn in this intervention.\nIf that estimate holds, a single operation nearly empties one country's window.\n\n## The Fed, not the Treasury, holds the switch\n\n@@REF@@Establishment of the standing FIMA repurchase agreement facility (Federal Reserve, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm|https://www.federalreserve.gov/images/social-media/social-default-image-opengraph.jpg\n\nThe window opened as a temporary measure in March 2020 and became a standing facility in July 2021.\nThe terms the Fed published then include a limit of $60 billion per counterparty.\nChanging those terms requires approval from the Federal Open Market Committee.\nHowever strongly a Treasury Secretary recommends it, the decision is made inside the central bank.\n\nOne thing sits in the way.\nFIMA repo is a device that enlarges the Fed's balance sheet.\nWhen Japan pledges bonds and draws dollars, those bonds land on the Fed's asset side while the newly created dollars land on the liability side.\n\nChair Kevin Warsh has made shrinking that balance sheet his stated priority.\nThe expansion here is temporary, unwinding as the dollars are repaid, so some argue the resistance may be smaller than it looks.\n\n## The choice in front of Warsh this August\n\nWhat is now at issue is not whether Japan has ammunition left, but whether the Fed opens the ceiling.\nIf the limit rises, Japan can keep intervening without selling bonds, and the ceiling on defending the yen is set by Washington's approval rather than by Japan's reserves.\nIf it stays, intervention goes back to selling Treasuries, and the US long yield pays for it.\nOnce defending a currency becomes a joint enterprise of two governments, reading the yen from Tokyo alone stops being enough.",
+    "ja": "米財務長官が連邦準備制度に向けて、ある窓口を大きくしようと公に述べた。\n外国の中央銀行が自ら保有する米国債を担保に預け、ドルを借りるFIMAレポ窓口だ。\n\n@@REF@@ベッセント、円の共同介入を繰り返す用意があるとして連銀の安全弁拡大を促す (ロイター, 2026-08-02)|https://ca.finance.yahoo.com/news/bessent-ready-repeat-joint-yen-004023739.html|https://s.yimg.com/lo/mysterio/api/E6FE7F349F51E9150DEFC421DE4EDD63F06ABD194A887E45CBAD6604DD258AA5/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F4225abb81565f92c9a9bf21857ed0b8c\n\nロイターは、スコット・ベッセント長官が8月2日にXへ投稿した文をそのまま伝えた。\n「FIMAレポ窓口は重要な安全弁であり、今後数カ月のうちに規模を拡大することを勧める」という一文が入っている。\n同じ投稿で、追加の共同介入にもためらわないと述べた。\n\n借りる側ではなく、貸す側が先に上限を上げようと言ったことになる。\n\n## なぜ国債を売ってはいけないのか\n\n円を強くするにはドルを売って円を買う必要がある。\n問題は、そのドルをどこから調達するかだ。\n日本がこれまで使ってきた方法は、保有する米国債を市場で売ることだった。\n国債を売れば価格が下がり、下がった分だけ利回りは上がる。\nワシントンが最も気にする数字が、その長期金利だ。\n\n7月31日の共同介入は、その方法を使わなかった。\n米財務省は為替安定基金に入っていたユーロを売って円を買い、米国債は市場に出なかった。\n\n@@REF@@日本と米国、円を支えるための異例の共同介入を確認 (アルジャジーラ, 2026-08-03)|https://www.aljazeera.com/economy/2026/8/3/japan-and-us-confirm-rare-joint-intervention-to-prop-up-yen|https://www.aljazeera.com/wp-content/uploads/2026/08/2026-08-02T233755Z_609247456_RC2NQMATKU91_RTRMADP_3_JAPAN-YEN-1785717755.jpg?resize=1920%2C1440\n\nアルジャジーラによれば、日本の財務省は「最近の円の過度な変動と無秩序な動きに対応した」として介入を公式に認め、追加の共同介入にもためらわないと付け加えた。\n介入のあと円は1ドル155円台まで戻し、およそ3カ月ぶりの水準になった。\n日本が今後FIMA窓口も使うと明らかにしたという部分は原文の投稿が伝えたもので、英語圏の報道ではまだ確認されていない。\n\n## 担保はあり余り、上限が塞いでいる\n\n@@BAR@@FIMAレポの国別上限|600億ドル|600|日本が保有する米国債|1兆1,400億ドル|11400@@預けられる担保は通す窓口よりはるかに大きいということであり、窓口を広げようという話が出た場所がここになる。@@2026-08-04 取得 · 上限は米連邦準備制度2021-07-28発表 · 日本の保有額は米財務省TIC 5月末時点、ロイター引用報道\n\n担保に使う国債は余っている。\n実際に窓口から借りられる金額は、その担保の5%を少し超える線で切られている。\n\nアルジャジーラは、今回の介入で東京が590億ドルほどを使った可能性があると伝えた。\nその推計が正しければ、一度の介入で窓口ひとつをほぼ空にする規模だ。\n\n## 上限を変える権限は連銀にある\n\n@@REF@@常設FIMAレポ・ファシリティ導入の発表 (米連邦準備制度, 2021-07-28)|https://www.federalreserve.gov/newsevents/pressreleases/monetary20210728b.htm|https://www.federalreserve.gov/images/social-media/social-default-image-opengraph.jpg\n\nFIMAレポ窓口は2020年3月に臨時で開かれ、2021年7月に常設の窓口になった。\n連銀がそのとき公表した条件に、1カ国あたり600億ドルという上限が書かれている。\nこの条件を変えるには連邦公開市場委員会の承認が必要だ。\n財務長官がいくら勧めても、決めるのは中央銀行の中だ。\n\nここで引っかかるものがひとつある。\nFIMAレポは連銀のバランスシートを膨らませる装置だ。\n日本が国債を預けてドルを借りれば、連銀の資産にその国債が、負債に新しく発行したドルが同時に載る。\n\nケビン・ウォーシュ議長は、そのバランスシートを縮めることを最優先に掲げてきた人物だ。\nただし貸したドルが戻れば同じだけ縮む一時的な膨張なので、抵抗はそれほど大きくないかもしれないという見方もある。\n\n## ウォーシュ議長の前に置かれた8月の選択\n\nいま分かれ目になるのは、日本に弾が残っているかではなく、連銀が上限を開けるかどうかだ。\n上限が上がれば日本は国債を売らずに介入を続けられ、円防衛の上限は日本の準備金ではなくワシントンの承認が決める。\n上限がそのままなら介入は再び国債を売る方式に戻り、米国の長期金利がその代金を払う。\n円を守ることが二国の共同事業になった以上、これからの円の方向を読むのに東京だけを見ていては足りない。"
    },
    "ts": "2026-08-04T04:51:31.622767+00:00"
   },
@@ -18168,7 +18485,8 @@
     "SK Hynix",
     "SK하이닉스",
     "하이닉스",
-    "SKハイニックス"
+    "SKハイニックス",
+    "SKHY"
    ],
    "logo": "skhynix.com",
    "exchange": "KOSPI",
@@ -18207,7 +18525,8 @@
    "aliases": [
     "Nebius",
     "네비우스",
-    "ネビウス"
+    "ネビウス",
+    "NBIS"
    ],
    "logo": "nebius.com",
    "exchange": "NASDAQ",
@@ -25847,7 +26166,8 @@
     "S&P500",
     "S&P 500",
     "SP500",
-    "에스앤피500"
+    "에스앤피500",
+    "S&P"
    ],
    "name": {
     "ko": "S&P500",
@@ -26665,7 +26985,8 @@
     "액침 노광",
     "침지 노광",
     "액침 DUV",
-    "液浸露光"
+    "液浸露光",
+    "액침"
    ],
    "desc": {
     "en": "Immersion argon-fluoride (ArF) lithography, the workhorse DUV process just below EUV in resolution.",
@@ -33196,6 +33517,105 @@
     "ko": "기업과 국가의 빚 갚을 능력에 등급을 매긴다. 등급이 내려가면 그 회사가 새로 빌릴 때 물어야 하는 이자가 오르고, 투자등급 아래로 떨어지면 규정상 투자등급만 담을 수 있는 연기금이 강제로 팔아야 한다. 그래서 등급 변경은 그 자체로 자금조달 비용을 바꾸는 사건이다. 지수사업부는 S&P500을 비롯한 주가지수를 만들어 사용료를 받는다.",
     "en": "It grades how likely companies and governments are to repay their debt. A downgrade raises what the borrower must pay to issue new debt, and a fall below investment grade forces pension funds that may only hold investment-grade paper to sell. A rating change is therefore itself an event that moves funding costs. Its index arm builds and licenses the S&P 500 and other benchmarks.",
     "ja": "企業や国家の返済能力に格付けを与える。格下げされれば新規借入時の金利が上がり、投資適格を下回れば投資適格しか保有できない年金基金は強制的に売却する。したがって格付け変更はそれ自体が資金調達コストを動かす事件だ。指数部門はS&P500などの株価指数を算出し使用料を得る。"
+   }
+  },
+  "시드 문구": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "seed phrase",
+    "시드 문구",
+    "recovery phrase",
+    "복구 문구",
+    "シードフレーズ"
+   ],
+   "desc": {
+    "ko": "암호화폐 지갑의 열쇠를 되살릴 수 있는 12~24개 단어 묶음.",
+    "en": "A set of 12 to 24 words from which a crypto wallet's key can be restored.",
+    "ja": "暗号資産ウォレットの鍵を復元できる12~24語のまとまり。"
+   },
+   "longDesc": {
+    "ko": "지갑의 개인키를 사람이 옮겨 적을 수 있게 단어로 바꿔 놓은 것이다. 이 단어 묶음을 아는 사람은 기기가 없어도 그 지갑을 열 수 있어서, 사실상 자산 그 자체로 취급된다. 한 번 만들어지면 기기의 소프트웨어를 고쳐도 바뀌지 않기 때문에, 생성 과정에 결함이 있었다면 그 지갑은 계속 약한 상태로 남는다.",
+    "en": "It is the wallet's private key written out as words a person can copy down. Anyone who knows the words can open the wallet without the device, so the phrase is treated as the asset itself. It does not change once created, even if the device's software is patched, so a flaw at the moment of generation leaves that wallet weak for good.",
+    "ja": "ウォレットの秘密鍵を人が書き写せるように単語へ置き換えたものだ。この単語の束を知る人は機器がなくてもその財布を開けるため、事実上、資産そのものとして扱われる。一度作られると機器のソフトウェアを直しても変わらないので、生成の過程に欠陥があればその財布は弱いまま残る。"
+   }
+  },
+  "하드웨어 지갑": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "hardware wallet",
+    "하드웨어 지갑",
+    "cold wallet",
+    "콜드월렛",
+    "ハードウェアウォレット"
+   ],
+   "desc": {
+    "ko": "인터넷에 연결하지 않은 전용 기기에 암호화폐 열쇠를 보관하는 장치.",
+    "en": "A dedicated device that holds a crypto key while staying off the internet.",
+    "ja": "インターネットにつながない専用機器に暗号資産の鍵を保管する装置。"
+   },
+   "longDesc": {
+    "ko": "열쇠를 기기 안에만 두고 거래에 서명할 때만 꺼내 쓰는 방식이다. 인터넷에 연결된 컴퓨터가 해킹돼도 열쇠 자체는 밖으로 나가지 않는다는 것이 판매 논리다. 다만 이 방어는 열쇠가 처음에 제대로 만들어졌다는 전제 위에 서 있어서, 기기 펌웨어의 결함은 이 방어를 통째로 무력화한다.",
+    "en": "The key stays inside the device and comes out only to sign a transaction. The selling point is that even a compromised internet-connected computer never sees the key. That defence rests on the key having been generated properly in the first place, so a defect in the device's firmware disables it entirely.",
+    "ja": "鍵を機器の中だけに置き、取引に署名するときだけ使う方式だ。インターネットにつながった計算機が乗っ取られても鍵自体は外へ出ない、というのが売り文句である。ただしこの守りは鍵が最初に正しく作られたという前提に立つので、機器のファームウェアの欠陥はこの守りを丸ごと無効にする。"
+   }
+  },
+  "자가보관": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "self-custody",
+    "자가보관",
+    "셀프 커스터디",
+    "セルフカストディ",
+    "自己保管"
+   ],
+   "desc": {
+    "ko": "거래소에 맡기지 않고 본인이 직접 암호화폐 열쇠를 들고 있는 방식.",
+    "en": "Holding one's own crypto keys instead of leaving coins with an exchange.",
+    "ja": "取引所に預けず、本人が直接暗号資産の鍵を持つ方式。"
+   },
+   "longDesc": {
+    "ko": "거래소가 파산하거나 출금을 막아도 내 자산은 영향을 받지 않는다는 것이 장점이다. 대신 열쇠를 잃어버리거나 열쇠를 만든 소프트웨어에 결함이 있으면 되돌릴 방법이 없다. 두 방식은 안전한 쪽과 위험한 쪽으로 나뉘는 것이 아니라, 감수하는 위험의 종류가 서로 다르다.",
+    "en": "The advantage is that an exchange going bankrupt or freezing withdrawals cannot touch the holding. In exchange, losing the key or having it generated by flawed software leaves no way back. The two arrangements are not a safe option and a risky one; they carry different kinds of risk.",
+    "ja": "取引所が破綻したり出金を止めたりしても自分の資産は影響を受けない点が利点だ。かわりに鍵を失ったり、鍵を作ったソフトウェアに欠陥があったりすれば戻す方法がない。二つの方式は安全な側と危険な側に分かれるのではなく、引き受ける危険の種類が違う。"
+   }
+  },
+  "난수생성기": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "random number generator",
+    "난수생성기",
+    "난수",
+    "乱数生成器"
+   ],
+   "desc": {
+    "ko": "아무도 예측할 수 없는 수를 뽑아내는 장치나 프로그램.",
+    "en": "A device or program that produces numbers nobody can predict.",
+    "ja": "誰にも予測できない数を取り出す装置やプログラム。"
+   },
+   "longDesc": {
+    "ko": "암호화폐 지갑의 열쇠, 통신 암호, 인증 토큰이 모두 여기서 나온다. 전용 하드웨어는 회로의 물리적 잡음을 써서 예측을 사실상 불가능하게 만들지만, 소프트웨어만으로 흉내 낸 것은 시작값만 알면 같은 수열을 되풀이할 수 있다. 그래서 뽑히는 값의 가짓수가 줄어들고, 공격자가 전부 만들어 놓고 맞춰 보는 일이 가능해진다.",
+    "en": "Wallet keys, communication ciphers and authentication tokens all come out of one. Dedicated hardware draws on physical noise in a circuit, which makes prediction effectively impossible, while a software imitation will repeat the same sequence to anyone who knows its starting value. That shrinks the set of possible outputs, and a shrunken set can be generated in full and checked against.",
+    "ja": "暗号資産ウォレットの鍵、通信の暗号、認証トークンはすべてここから出てくる。専用のハードウェアは回路の物理的な雑音を使って予測を事実上不可能にするが、ソフトウェアだけで真似たものは初期値さえ分かれば同じ数列を繰り返せる。そのため出てくる値の通り数が減り、攻撃者がすべて作って照合することが可能になる。"
    }
   }
  }
