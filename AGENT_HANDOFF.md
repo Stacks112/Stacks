@@ -2,6 +2,89 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (그래픽 어휘 확장 — 표와 VS 둘뿐이던 것을 넷 더한다)
+
+june: "우리 글을 보다보면 항상 이 vs랑 이 표가 자주 나오는데 글마다 똑같이 생겨서 다른 글들을
+복사 붙여넣기 한 느낌이 든다. 표나 vs 들어가는 것 자체는 좋은데 모든 글이 이걸로 통일되니까
+별로인 것 같다. 정말로 독자들의 이해를 돕는 차원에서의 그래픽이 쓰였으면 좋겠다."
+
+Commits: `7f7f6d7`(scripts) · `3b3d15b`(index.html + CLAUDE.md). GitHub 웹 업로드로 올렸다
+(이 세션은 push 자격증명이 없었다). 생성물(`p/`·`e/`·`og/`·sitemap·feed)은 커밋하지 않았다 —
+`build_pages.py` 가 바뀌었으므로 og-assets.yml 이 재생성한다.
+
+### 진단 (라이브 248장 전수 실측)
+
+| 구간 | @@CHK@@ | @@CMP@@ | 둘 다 | 그래픽 0개 |
+|---|---|---|---|---|
+| 전체 248장 | 24.6% | 31.5% | 14.5% | 52.4% |
+| 최근 60장 | 71.7% | 50.0% | 35.0% | 6.7% |
+| **최근 20장** | **80.0%** | **50.0%** | **40.0%** | 10.0% |
+
+취향 문제가 아니라 구조였다. ① 그릴 수 있는 형태가 표와 VS 둘뿐이었고(`@@IMG@@`는 레지스트리
+키가 모자라 자주 비고 `@@REF@@`는 출처지 그래픽이 아니다) ② v4.6 `[Y]`가 원문 의존도 FAIL의
+처방 1순위를 "지표를 조회해 `@@CHK@@`를 만든다"로 정해 놓아 표가 사실상 의무였다.
+
+### 새 마커 넷 (세 렌더러 동시)
+
+```
+@@BAR@@   라벨|표시값|숫자 …@@각주@@출처   규모를 길이로. 막대 2개면 배수 배지 자동
+@@SHARE@@ 라벨|표시값|숫자 …@@각주@@출처   100% 한 줄 띠 + 범례
+@@TIME@@  날짜|사건 …@@각주@@출처          연표. 날짜 앞 '>' = 아직 오지 않은 일
+@@FLOW@@  단계|설명 …@@각주                무엇이 어디로 가나
+```
+
+표시값(화면 글자)과 숫자(막대 길이)를 나눈 것은 `1조1,400억달러` 같은 표기를 그대로 쓰면서
+길이는 정확히 그리기 위해서다. **`@@BAR@@`의 숫자 칸은 반드시 같은 단위**여야 한다.
+
+### Changed
+
+- `scripts/build_pages.py` — `_blk_bar/_blk_share/_blk_time/_blk_flow` + `gist_blocks()` 분기,
+  `BLOCK_CSS` 에 `:root{--s1..--s4,--track,--ring}` 와 다크 오버라이드, `block_css_for()` 에
+  `class="dbk` 추가.
+- `index.html` — `dataBlock()` 신설 + `gistRich()` 분기 4개, `:root`/`[data-theme=dark]` 에
+  계열색 변수, `.dbk/.bar-*/.shr-*/.tml/.flw-*` CSS. **순수 추가 131줄 · 삭제 0줄**
+  (원격이 먼저 올린 `ffe6583` 예측카드 버튼 위에 다시 얹고 diff로 무손실 확인했다).
+- `scripts/weekly_email.py` — 같은 넷을 표 + 인라인 CSS 로. flex/grid 없음, 화살표는 세로.
+- `scripts/check_source_dependence.py` — `DATA_PREFIXES`(CHK·BAR·SHARE·TIME) 신설.
+  **`@@CHK@@` 강제가 풀렸다.** `@@FLOW@@`는 조회한 사실이 아니라 제외. 출력은 `수치블록 n`.
+- `scripts/check_editorial.py` — `blocks_of()` + `GRAPHIC`, `#13`(카드 내 같은 형태 중복) ·
+  `W3`(주간 편중 상한 CHK 55% · CMP 40% · 기타 45%) · `W4`(분포 INFO) · `R4`(회차 전체가
+  같은 조합).
+- `scripts/check_term_coverage.py` · `scripts/build_data.py` — 마커 목록 동기화.
+- `CLAUDE.md` — gist 마커표 갱신 + 렌더러가 세 곳이라는 사실 · 편중 실측치.
+
+### 색
+
+`--s1~--s4` 네 개. dataviz 팔레트 검사기로 **명도대 · 채도 하한 · 색각이상(적녹·청황) 인접쌍
+분리 · 바탕 대비**를 통과시킨 조합이고 밝은 모드와 어두운 모드를 각각 따로 골랐다
+(어두운 모드는 밝은 값의 자동 반전이 아니다 — 밝기 대역이 다르다).
+**순서를 섞거나 다섯 번째 색을 만들지 않는다.** 띠 조각 안에 글자를 넣지 않는 것도 같은
+이유다(색 위 흰 글자는 명암이 모자란 조합이 나온다) — 이름과 값은 범례가 본문 색으로 진다.
+
+### Tests
+
+- `scripts/build_pages.py` — 248 article + 552 entity pages, EXIT 0.
+- `scripts/check_email_render.py` — 세 렌더러 마커 목록 일치
+  (`BAR CHK CMP FLOW IMG REF SHARE TIME`), 주간 메일 렌더 통과.
+- `scripts/check_editorial.py --weekly` — BLOCK 0. `W3`가 CHK 67% · CMP 49%로 **둘 다 초과**.
+- `scripts/check_source_dependence.py` — 최근 2장 `ok`.
+- Playwright로 밝은/어두운/모바일 3판 전체 렌더 스크린샷을 떠서 눈으로 확인
+  (`@@FLOW@@`가 좁은 화면에서 세로로 흐르는 것, 다크에서 계열색이 다시 골라지는 것 포함).
+- `python3 -c ast.parse` 6개 스크립트.
+
+### Remaining risks / next
+
+1. **`W3`가 당분간 계속 뜬다.** 최근 7일 CHK 67% · CMP 49%로 상한 초과 상태에서 출발한다.
+   검사기 오류가 아니라 갈아타는 중이라는 표시다. **임계값을 올려서 끄지 말 것.**
+2. **아직 새 마커를 쓴 카드가 0장이다.** 렌더는 배포됐지만 실사용은 다음 발행 회차부터다.
+   `items.json이 쓰는 마커: ['CHK','CMP','IMG','REF']` 로 남아 있는 게 정상이다.
+3. **소급 교체는 대기열에 있다** (june: "신규 + 최근분 점진 교체"). `claude/fix-queue.md`
+   항목 P 참조 — 회차당 2~3장씩, `@@CHK@@`인데 **배수·격차가 논지인 것**부터.
+4. 생성물은 이 커밋에 없다. og-assets.yml 이 도는지 확인할 것.
+5. 규칙 전문은 프로젝트 `claude/prompts/publish-v4.7-graphics.md` 이고 **v4.6 헤더에 이어
+   읽기 체인을 걸어 뒀다.** v4.4가 두 달간 읽힐 경로 없이 방치됐던 사고를 막기 위한 것이니
+   체인을 지우지 말 것.
+
 ## 2026-08-04 Claude (「Stacks에서 보기」 button on the daily prediction card)
 
 june: "오늘의 예측 카드에 한해서만 Stacks에서 보기 버튼 하나 더 추가해줘. 독자들이 Stacks 원래
