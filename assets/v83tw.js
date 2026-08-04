@@ -201,6 +201,14 @@ window.v83AlertsPanel = function(){
 };
 
 /* ---- 최신/팔로잉 tabs: match the center column's width exactly (X-style) ---- */
+/* 2026-08-04 perf: this used to read two bounding rects and write three inline
+   styles unconditionally, 12 times at 400ms — a read/write/read cycle that
+   forces synchronous layout on a very heavy document. It was the single
+   largest main-thread cost of a cold load (677ms self time, CPU 4x), which is
+   what put INP at 530ms. Two changes: skip the write when the geometry has not
+   moved (an unchanged layout makes the next read nearly free), and stop the
+   retry chain once the value has held still. Same end state, same call sites. */
+var FSW_L = null, FSW_W = null, FSW_PEND = false;
 function alignFsw(){
   try {
     var f = document.getElementById("v83fsw");
@@ -208,18 +216,47 @@ function alignFsw(){
     if (!f || !c || !f.parentElement || !document.documentElement.classList.contains("v83")) return;
     var cr = c.getBoundingClientRect(), nr = f.parentElement.getBoundingClientRect();
     if (!cr.width) return;
-    f.style.left = (cr.left - nr.left) + "px";
-    f.style.width = cr.width + "px";
+    var L = cr.left - nr.left, W = cr.width;
+    if (L === FSW_L && W === FSW_W) return;
+    FSW_L = L; FSW_W = W;
+    f.style.left = L + "px";
+    f.style.width = W + "px";
     f.style.transform = "none";
   } catch (e){}
 }
-window.addEventListener("resize", alignFsw);
-(function retryAlign(n){
+function alignFswSoon(){
+  if (FSW_PEND) return;
+  FSW_PEND = true;
+  try { requestAnimationFrame(function(){ FSW_PEND = false; alignFsw(); }); }
+  catch (e){ FSW_PEND = false; alignFsw(); }
+}
+window.addEventListener("resize", alignFswSoon);
+/* Prefer an observer over the poll: inside a ResizeObserver callback the layout
+   is already current, so the two rect reads cost nothing, whereas a setTimeout
+   poll lands mid-mutation and forces a full layout of a ~660KB document each
+   time. #v83center only exists after mountV83, so the poll below hands over as
+   soon as it can attach. */
+var FSW_RO = null;
+function fswObserve(){
+  try {
+    if (FSW_RO || !window.ResizeObserver) return;
+    var c = document.getElementById("v83center");
+    if (!c) return;
+    FSW_RO = new ResizeObserver(function(){ alignFsw(); });
+    FSW_RO.observe(c);
+  } catch (e){}
+}
+(function retryAlign(n, stable){
+  var w = FSW_W;
   alignFsw();
-  if (n > 0) setTimeout(function(){ retryAlign(n - 1); }, 400);
-})(12);
+  fswObserve();
+  stable = (w === FSW_W) ? stable + 1 : 0;
+  if (FSW_RO && stable >= 1) return;   /* observer has it from here */
+  /* fallback path (no ResizeObserver): 3 consecutive no-ops means settled. */
+  if (n > 0 && stable < 3) setTimeout(function(){ retryAlign(n - 1, stable); }, 400);
+})(12, 0);
 try {
-  new MutationObserver(alignFsw)
+  new MutationObserver(alignFswSoon)
     .observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 } catch (e){}
 
