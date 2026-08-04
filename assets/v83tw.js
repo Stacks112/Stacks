@@ -494,46 +494,18 @@ function v83CardFix(card){
         body.appendChild(ask);
       }
     }
-    /* Item5: 예측 추적(oc)을 원문보기 옆 아이콘으로 접기 */
+    /* 2026-08-04: 과녁(🎯) 토글 제거 — 모바일/PC 공통.
+       채점 카드가 접힌 형태로 본문(세 줄 요약 아래)에 들어가면서, cta-row 옆 아이콘은
+       같은 내용을 두 번 두는 자리가 됐다. 아이콘도 oc-collap 숨김도 걸지 않는다.
+       채점 카드가 있는 글에서는 한 줄짜리 oc 배지를 지우고(중복),
+       없는 글에서는 원래 자리에 그대로 보이게 둔다(정보 손실 없음). */
     var oc = card.querySelector(".oc");
-    var cta = card.querySelector(".cta-row");
-    if (oc && cta && !cta.querySelector(".oc-toggle")){
-      oc.classList.add("oc-collap");
-      if (cta.nextSibling) cta.parentNode.insertBefore(oc, cta.nextSibling);
-      else cta.parentNode.appendChild(oc);
-      var btn = document.createElement("button");
-      btn.type = "button"; btn.className = "oc-toggle";
-      btn.innerHTML = "🎯";   /* 아이콘만: 텍스트 라벨 제거, 클릭 시 접힌 예측 내용이 펼쳐짐 */
-      btn.title = (oc.textContent || "").trim();
-      btn.setAttribute("aria-label", (oc.textContent || "").trim() || "예측 추적");
-      btn.addEventListener("click", function(e){
-        e.stopPropagation();
-        /* 채점 카드가 있는 글이면 접혀 있는 그 카드를 열고 그 자리로 옮겨 준다.
-           없으면 예전처럼 한 줄짜리 oc 노트를 토글한다. */
-        var fold = card.querySelector(".gradec-fold");
-        if (fold){
-          fold.open = true;
-          btn.classList.add("on");
-          /* 이 앱의 상세 화면에서는 scrollIntoView / window.scrollTo 가 먹지 않는다
-             (3열 셸의 스크롤 주인이 달라서). 앵커 점프는 확실히 동작하므로 그걸 쓰고,
-             주소창에 해시가 남지 않게 곧바로 원래 URL로 되돌린다. */
-          if (!fold.id) fold.id = "gcard-" + (id || "x");
-          var back = location.pathname + location.search;
-          try {
-            location.hash = "#" + fold.id;
-            history.replaceState(null, "", back);
-          } catch(_) {
-            try { fold.scrollIntoView({block:"center"}); } catch(__){}
-          }
-          return;
-        }
-        var open = oc.classList.toggle("oc-open");
-        btn.classList.toggle("on", open);
-      });
-      var ol = cta.querySelector(".original-link");
-      if (ol && ol.nextSibling) cta.insertBefore(btn, ol.nextSibling);
-      else cta.appendChild(btn);
+    if (oc){
+      oc.classList.remove("oc-collap", "oc-open");
+      if (card.querySelector(".gradec-fold")) oc.remove();
     }
+    var staleOcBtn = card.querySelector(".oc-toggle");
+    if (staleOcBtn) staleOcBtn.remove();
   } else {
     /* Item4: 피드 핵심(gist) 클릭 → 상세 페이지 (모바일 트위터식) */
     var g = card.querySelector(".gist");
