@@ -252,6 +252,13 @@ async function ensureTables(db) {
     "updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')), " +
     "PRIMARY KEY (page_id, voter))"
   );
+  await db.exec(
+    "CREATE TABLE IF NOT EXISTS view_dedup (" +
+    "page_id TEXT NOT NULL, " +
+    "ip_hash TEXT NOT NULL, " +
+    "created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ','now')), " +
+    "PRIMARY KEY (page_id, ip_hash))"
+  );
   await ensureManualTables(db);
   TABLES_READY = true;
 }
@@ -353,6 +360,17 @@ async function pageIdSeen(db, pageId) {
 
 /* shape check + existence check. `kind` lets comment-hearts (numeric comment
    ids) skip the items.json lookup, which does not apply to them. */
+async function viewIsNew(db, pageId, ipH) {
+  try {
+    const row = await db.prepare(
+      "INSERT INTO view_dedup (page_id, ip_hash) VALUES (?1, ?2) ON CONFLICT(page_id, ip_hash) DO NOTHING RETURNING page_id"
+    ).bind(pageId, ipH).first();
+    return !!row;
+  } catch (e) {
+    return true;
+  }
+}
+__name(viewIsNew, "viewIsNew");
 async function validPageId(db, pageId, checkExists) {
   if (!PAGE_ID_RE.test(pageId)) return false;
   if (!checkExists) return true;
@@ -1351,7 +1369,9 @@ export default {
         return json({ error: "rate limited" }, 429, origin);
       }
       if (!await validPageId(env.DB, pageId, true)) return json({ error: "bad pageId" }, 400, origin);
-      const count = await bump(env.DB, "view", pageId, 1);
+      const ipH = await ipHash(request, env);
+      const isNew = await viewIsNew(env.DB, pageId, ipH);
+      const count = await bump(env.DB, "view", pageId, isNew ? 1 : 0);
       return json({ count }, 200, origin);
     }
 
