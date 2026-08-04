@@ -2,6 +2,57 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (daily prediction card -> prediction detail on desktop)
+
+june: "오늘의 예측 글은 누르면 예측 글 상세 카드로 이동하는게 아니라 아예 원문글로 이동하는데 왜
+그러지? 오늘의 예측 글 상세페이지로 이동했으면 좋겠어."
+
+Changed: `index.html` only (`64a64fd`, +40/-2). No asset files, so no cache-hash bump.
+
+- **Desktop-only bug.** `dailyPredictionResultEl()` paints the question headline, the
+  「판정 결과 · 적중」 banner and the decision rule *on top of* a plain `cardEl()`, and the
+  result keeps the source item's `sig-<id>`. Mobile `openDetail()` moves that DOM node into
+  `#v82detail`, so the decoration survives. Desktop `v83OpenItem()` -> `render()` rebuilds the
+  single-post view from `ITEMS` with `cardEl()`, so every prediction-specific part was dropped
+  and the reader landed on the original article. Reproduced locally before touching anything.
+- New `V83PRED` (id to draw in prediction form) + `PRED_CLICK_ID`, set by a **document
+  capture-phase** click listener so it runs before the title `onclick`, the card-body delegate
+  and the `.gist` handler - none of them pass the event down to `v83OpenItem`.
+  `v83OpenItem` sets `V83PRED` only when `PRED_CLICK_ID === id`; the id compare is what stops a
+  Related link *inside* the prediction card from inheriting the prediction view.
+  `PRED_CLICK_ID` is cleared on a `setTimeout(...,0)` so async openers (deep links, programmatic
+  calls) can never see a stale value.
+- The single-post block draws `dailyPredictionResultEl(_it, S, 0)` + `v83expanded` when
+  `V83PRED === V83ITEM`, else the old `cardEl`. Wrapped in try/catch: any failure falls back to
+  the article card rather than an empty screen.
+- `captureView`/`applyView` carry `pred`, so Back/Forward restores the prediction view instead
+  of silently swapping it for the article. This rides on `6b621f5` (per-view URLs) - the URL
+  itself deliberately does **not** encode `pred`, so a reload/share of that post opens the normal
+  article detail, which is the behaviour june picked.
+
+Verified:
+- `node --check` on all 6 inline script blocks.
+- Local Playwright, desktop `?v83beta` 1440x900: prediction card click -> `.prediction-result-card
+  .v83expanded .v83one`, verdict banner "판정 결과 · 판정일 2026.07.30 / 적중", decision rule
+  `display:grid`, X embed + `.cta-row` visible, "더 보기" hidden. Back -> feed still has exactly 1
+  prediction card; Forward -> prediction detail again. Korean shell checked separately
+  (badge/verdict/rule strings all render).
+- Guard cases: normal card click, `?c=` deep link and a programmatic `v83OpenItem` all give
+  `V83PRED = null` and the plain article detail.
+- Mobile `?v82beta` 390x820 unchanged: card node still moves into `#v82detail` as
+  `card card-lab prediction-result-card`.
+- Deploy: sandbox push blocked (proxy MITM, "could not read Username") -> GitHub `edit` page
+  CodeMirror dispatch. `deploy_guard --verify` clean after two rebases (`2eed2ba` 63 lines and
+  `6b621f5` 159 lines both preserved); baseSha `66eaf214…` matched the editor doc before the
+  patch, targetSha `67634917…` matched in the editor and again in `git show origin/main:` after
+  the push.
+
+Notes / next:
+- `dailyForecastPick()` still hard-prefers `kobeissi-nasdaq-900b-selloff` (Codex, 2026-08-02);
+  the fallback is the newest graded item. Nothing here depends on that choice.
+- If a third shell ever renders the single-post view, it needs the same `V83PRED` branch - the
+  decoration lives in `dailyPredictionResultEl`, not in the data.
+
 ## 2026-08-04 Claude (every app view gets its own URL)
 
 june: "x를 들어가보면 좌측 패널의 메뉴마다 다 주소가 다르고 (…) 우리 사이트는 주소가 똑같은데가
