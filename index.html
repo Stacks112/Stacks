@@ -214,6 +214,7 @@ const STRINGS = {
     oppNote: "Same company, opposite call",
     dltLabel: "Earlier takes",
     dltNote: "Same stock, this author before",
+    dltNoteTheme: "Same theme, this author before",
     adLabel: "Ad",
     fromSource: "From the source",
     chkLabel: "📊 We looked it up",
@@ -391,6 +392,7 @@ const STRINGS = {
     oppNote: "같은 종목을 반대로 본 글",
     dltLabel: "이전 판단",
     dltNote: "같은 종목, 이 필진의 이전 글",
+    dltNoteTheme: "같은 주제, 이 필진의 이전 글",
     adLabel: "광고",
     fromSource: "원문에서",
     chkLabel: "📊 확인해보면",
@@ -568,6 +570,7 @@ const STRINGS = {
     oppNote: "同じ銘柄への逆の見方",
     dltLabel: "以前の見方",
     dltNote: "同じ銘柄、この筆者の以前の記事",
+    dltNoteTheme: "同じテーマ、この筆者の以前の記事",
     adLabel: "広告",
     fromSource: "原文から",
     chkLabel: "📊 確認すると",
@@ -4362,10 +4365,16 @@ function dltHtml(item, S){
         + '<span class="opp-src">' + esc((r.date || "").slice(5)) + "</span></button>";
     }).join("");
   if (!rows) return "";
+  /* pick_priors pairs on a declared ticker OR a declared theme; saying "same
+     stock" over a theme pairing would be a claim the data does not make. */
+  const isTheme = o.kind === "theme";
+  const chip = isTheme
+    ? ((THEMES[o.k] && THEMES[o.k].label[LANG]) || "")
+    : (ENTITIES[o.k] ? entName(o.k) : "");
   return '<div class="opp dlt"><div class="opp-h">'
     + '<span class="opp-ico">⏳</span><b>' + S.dltLabel + "</b>"
-    + (ENTITIES[o.k] ? '<span class="opp-k">' + esc(entName(o.k)) + "</span>" : "")
-    + '<span class="opp-note">' + S.dltNote + "</span></div>" + rows + "</div>";
+    + (chip ? '<span class="opp-k">' + esc(chip) + "</span>" : "")
+    + '<span class="opp-note">' + (isTheme ? S.dltNoteTheme : S.dltNote) + "</span></div>" + rows + "</div>";
 }
 function stancePillHtml(item){
   /* rbeta: geopolitical/macro posts (oil-geopolitics) don't get a bull/bear tag —
