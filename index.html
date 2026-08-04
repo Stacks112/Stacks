@@ -2089,8 +2089,18 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 #feedList>.prediction-result-card:not(.v83expanded) .srcq,
 #feedList>.prediction-result-card:not(.v83expanded) .prediction-result-meta,
 #feedList>.prediction-result-card:not(.v83expanded) .cta-row{display:none!important;}
+/* 「Stacks에서 보기」 — 검정 알약(.original-link) 옆의 외곽선 알약 */
+.prediction-result-post{
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+  background:none;color:var(--text);border:1px solid var(--line);border-radius:999px;padding:8px 17px;
+  transition:border-color .15s ease,color .15s ease,transform .15s ease;
+}
+.prediction-result-post:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
 @media (max-width:1023px){
   .prediction-result-card .card-body>.prediction-result-meta{order:21;}
+  /* v82.css가 .cta-row 자식들에 order를 준다(원문 보기 1 · 유료 3 · 언어안내 4).
+     기본 order:0이면 이 버튼이 원문 보기 앞으로 가므로 사이 자리를 명시한다. */
+  .prediction-result-card .cta-row .prediction-result-post{order:2;}
 }
 @media (max-width:560px){
   .home-brief{grid-template-columns:1fr;padding:12px 14px;}
@@ -7769,6 +7779,43 @@ function openFromCard(id, ev){
   }
   if (typeof v83OpenItem === "function") v83OpenItem(id);
 }
+/* ---- 「Stacks에서 보기」: 예측 카드 → 원래 기사 상세 (2026-08-04, june) ----
+   예측 카드는 피드에서 그 글의 자리를 대신한다. 그래서 "원래 어떤 글이었나"를 보려면
+   길을 따로 내야 한다.
+   · 데스크톱(v83): 상세를 ITEMS에서 다시 그리므로 진입 표시만 비우면 원래 카드가 나온다.
+   · 모바일(v82): 상세가 피드 카드 노드를 그대로 옮기는 구조라, 그 자리에 보통 기사 카드가
+     실제로 있어야 한다. 열려 있는 상세를 셸의 자기 경로(뒤로가기 → v82Pop → closeDetail)로
+     먼저 닫는다 — 노드를 직접 갈아끼우면 그 안에 들어와 있는 댓글 시트(.twc-inline)가
+     같이 떨어져 나가 세션 내내 댓글이 죽는다. 닫히면 카드가 제자리로 돌아오므로 그때
+     교체하고 다시 연다. 히스토리 깊이는 back 1 + openDetail의 pushView 1로 상쇄된다. */
+function openStacksPost(id, ev){
+  if (ev){ if (ev.stopPropagation) ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
+  PRED_CLICK_ID = null;   /* 이걸 안 지우면 v83OpenItem이 다시 예측 상세로 연다 */
+  V83PRED = null;
+  if (document.documentElement.classList.contains("v83")){
+    if (typeof v83OpenItem === "function") v83OpenItem(id);
+    return;
+  }
+  var swapAndOpen = function(){
+    try {
+      var pred = document.getElementById("sig-" + id);
+      var it = ITEMS.find(function(x){ return x.id === id; });
+      if (pred && it && pred.parentNode && pred.classList.contains("prediction-result-card")){
+        var plain = cardEl(it, STRINGS[LANG], 0);
+        pred.parentNode.replaceChild(plain, pred);
+        if (typeof linkifyEntities === "function") linkifyEntities(plain);
+        if (typeof hydrateImages === "function") hydrateImages();
+        if (typeof applyEngageCounts === "function") applyEngageCounts();
+        if (typeof setupViewObserver === "function") setupViewObserver();
+      }
+    } catch (e) {}
+    if (typeof window.v82OpenCard === "function") window.v82OpenCard(id);
+    else if (typeof goToItem === "function") goToItem(id);
+  };
+  var dt = document.getElementById("v82detail");
+  if (dt && dt.classList.contains("on")){ history.back(); setTimeout(swapAndOpen, 140); }
+  else swapAndOpen();
+}
 /* ---- 카드 전체 클릭 → 상세 (2026-08-03, june 승인 A안) ----
    Clarity 데드클릭 세션 판독 결과, 데스크톱 데드클릭은 대부분 카드 본문
    텍스트(P.gp 요약 문단·H2.section-title·카드 컨테이너) 클릭이었다. 제목만
@@ -9602,9 +9649,9 @@ function dailyPredictionResultEl(item,S,idx){
   if(!item) return null;
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var copy={
-    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준"},
-    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule"},
-    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準"}
+    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준",post:"Stacks에서 보기 →"},
+    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule",post:"View on Stacks →"},
+    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準",post:"Stacksで見る →"}
   }[lang];
   var exactTitle={
     ko:"7월 23일 증시 매도는 이란전쟁 때문이었을까, AI 설비투자 공포 때문이었을까?",
@@ -9674,6 +9721,19 @@ function dailyPredictionResultEl(item,S,idx){
   var cta=el.querySelector(".cta-row");
   if(why) why.insertAdjacentElement("beforebegin",meta);
   else if(cta) cta.insertAdjacentElement("beforebegin",meta);
+  /* 「Stacks에서 보기」 — 이 카드가 피드에서 그 글의 자리를 대신하므로(appendFeedPage가
+     원래 카드를 건너뛴다), 이 버튼 말고는 독자가 원래 기사에 닿을 길이 없다.
+     X 원문으로 나가는 「원문 보기 ↗」 바로 옆에 둔다. (2026-08-04, june) */
+  if(cta){
+    var post=document.createElement("button");
+    post.type="button";
+    post.className="prediction-result-post";
+    post.textContent=copy.post;
+    post.addEventListener("click",function(e){ openStacksPost(item.id,e); });
+    var origLink=cta.querySelector(".original-link");
+    if(origLink) origLink.insertAdjacentElement("afterend",post);
+    else cta.insertAdjacentElement("afterbegin",post);
+  }
   return el;
 }
 function homeBriefEl(items){
