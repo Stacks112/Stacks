@@ -539,3 +539,52 @@
 .v82-tr-row .mv.up{color:#16A34A;}
 .v82-tr-row .mv.dn{color:#E5484D;}
 .v82-tr-row .mv.new{color:var(--text);}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   2026-08-04 · 모바일 탭 타깃 44px 확보 (Clarity 8/4 세션 리뷰 후속)
+   390px에서 실측하니 누를 수 있는 요소 121개 중 104개가 44px 미만이었고,
+   8/4 12:24 모바일 세션이 글 하단 액션 아이콘 근처를 탭하다 8초 만에 이탈했다.
+   아이콘·글자 크기는 그대로 두고 "눌리는 상자"만 키운다. 데스크톱은 손대지 않는다
+   (전부 @media (max-width:1023px) 안).
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (max-width:1023px){
+
+  /* 카드 하단 액션 바 29x29 → 44x44.
+     .eg는 배경이 투명이라(:hover 틴트는 모바일에서 안 뜬다) 커져도 보이는 건 그대로고,
+     늘어난 폭은 가운데 .eg-spacer{flex:1}가 흡수하므로 좌/우 그룹 정렬도 유지된다. */
+  .engage .eg{min-width:44px;min-height:44px;justify-content:center;}
+
+  /* 더 보기 / 접기 (50x23, 350x23) — 투명 텍스트 버튼이라 여백만 늘어난다 */
+  .card .v82-more,
+  .card .card-body > .v83-more{min-height:44px;}
+
+  /* 접기 토글 <summary> (350x24~26) — 이미 flex+align-items:center라 마커 영향 없음 */
+  .gradec-fold > summary,
+  .srcs-fold > summary{min-height:44px;}
+
+  /* 설치 미니바 닫기 19x22 → 44x44 */
+  .mini-install .mi-close{min-width:44px;min-height:44px;}
+
+  /* 「원문 보기」 칩 135x29. 검은 알약이 눈에 보이므로 상자는 그대로 두고
+     보이지 않는 히트 영역만 위아래로 넓힌다(좌우는 옆 태그 칩과 겹치므로 건드리지 않음). */
+  .chips-end .chips-orig{position:relative;}
+  .chips-end .chips-orig::after{content:"";position:absolute;left:0;right:0;top:-8px;bottom:-8px;}
+
+  /* 상단바 프로필 버튼 34x34 → 44x44 */
+  nav .nav-inner #v82av{min-width:44px;min-height:44px;}
+
+  /* 최신/팔로잉 탭 195x42 → 높이 44 */
+  #v82tabs .v82fsw-t{min-height:44px;}
+
+  /* 설치 미니바 버튼 151x30 → 높이 44 */
+  .mini-install .mi-btn{min-height:44px;}
+
+  /* 엔티티 툴팁의 팔로우 버튼 61x22 → 높이 44 (팔로우는 전환 동선이라 특히 중요) */
+  .entity-tip .tip-follow{min-height:44px;padding-left:14px;padding-right:14px;}
+
+  /* 출처 목록 링크 (…x37) */
+  .srcs-list li a{display:inline-flex;align-items:center;min-height:44px;}
+
+  /* 푸터 링크 높이 12 → 44 */
+  .foot-links a{display:inline-block;padding:16px 0;line-height:1;}
+}
