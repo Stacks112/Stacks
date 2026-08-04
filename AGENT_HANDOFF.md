@@ -2,6 +2,69 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (every app view gets its own URL)
+
+june: "x를 들어가보면 좌측 패널의 메뉴마다 다 주소가 다르고 (…) 우리 사이트는 주소가 똑같은데가
+많거든? 이거 혹시 문제가 없을까?" -> then "1번부터 3번까지 다해줘" (share / reload-restore / analytics).
+
+Changed: `index.html` only (`6b621f5`, +173/-14). No asset files, so no cache-hash bump.
+
+The app already kept a per-entry view snapshot (`captureView`/`pushView`/`applyView`, 2026-07-25),
+but `pushState`/`replaceState` were called with two arguments, so every screen shared `/`.
+
+- New `viewUrl(v)` translates that existing snapshot into a path. `noteView()` now passes it as
+  the third argument on **every** render (it used to write the snapshot only into an empty entry,
+  which left the URL stale on paths that change the screen without `pushView` - closing an
+  article with the `‹` button was the visible one).
+  Map: item `?c=<id>` · entity `?e=<key>` · record `#record-<src>` · scoreboard `#record` ·
+  themes `#themes` / `#theme-<k>` · `#read` `#bookmarks` `#browse` `#skew` `#calendar`
+  `#alerts` `#following`. `?l=` is preserved from the boot URL.
+- `handleDeepLink()` reads all of them back. **It reads `STK_BOOT` (a boot-time snapshot of
+  `location.search`/`.hash`), not `location`** - `bootData()` runs `render()` before
+  `handleDeepLink()`, so by then the address bar has already been rewritten to `/`.
+  Same reason `showIntro()`'s `#sig-`/`#comments-` deep-link test now reads `STK_BOOT.h`.
+- `#browse`/`#skew`/`#alerts` are desktop-nav screens with no mobile counterpart, so on the v82
+  shell those hashes are ignored (home) rather than rendering an empty feed.
+- Mobile detail is an overlay (`#v82detail`) with no render behind it, so `captureView` gained
+  `mitem` (read off the moved card's `sig-<id>` element id) and a MutationObserver stamps the URL
+  when it opens. **It must be deferred (~180ms):** `v82MountComments` opens and closes the twc
+  sheet, and that close is `silentBack()`, which rewinds the URL you just wrote. A `popstate`
+  listener re-stamps if the detail is still open. Closing is deliberately not handled - the
+  browser restores the previous entry's URL by itself.
+- Analytics: one debounced (900ms) GoatCounter pageview per URL change, plus `document.title` set
+  to the article title on detail views. Deferred by a tick because `applyMetaLang` rewrites the
+  title during render. The first load is not counted (count.js already does it).
+- **Search is deliberately not addressable.** `viewUrl` returns the root for a query view, so no
+  reader's search text lands in the URL, in Clarity's page list, or in GoatCounter - that would
+  have needed a `privacy.html` processor-table review.
+
+Verified:
+- `node --check` on all 6 inline script blocks (the 7th block is JSON-LD).
+- Local Playwright, both shells: 13/13 URLs restore on reload (desktop), 7/7 (mobile, including
+  the three that should be ignored); back x4 / forward x4 restore the same screens as before;
+  `?l=ko` survives every hop; typing in search adds 0 history entries; `#sig-` still scrolls and
+  is left in the URL; comment sheet still closes on the first Back and the article on the second;
+  JS errors 0 in every run.
+- Live stacksdaily.com after pages deploy: desktop nav writes `#browse`/`#skew`/`#bookmarks`,
+  `?c=` + Korean article title on the article view, `/#bookmarks` reload lands on 북마크,
+  and a 390px same-origin iframe shows the mobile detail writing `?c=<id>`.
+- Deploy: sandbox push blocked (proxy MITM, "could not read Username") -> GitHub `edit` page
+  CodeMirror dispatch. **origin/main moved twice mid-flight** (`48e944d`/`dd60763` mobile tap
+  targets, then `2eed2ba` entity-matcher). Rebased both times; `deploy_guard --verify` confirmed
+  all 63 lines of `2eed2ba` survived. Line-patch spec 9 hunks / 8,596 chars = 7 chunks, chunk
+  sha 7/7 + spec sha + base sha + target sha all matched first try, 0 re-sends. Clobber guard,
+  Email render guard and pages build all success.
+
+Notes / next:
+- The mobile 탐색 허브 and its skew subview still have no URL (they are v82-only screens tracked
+  in `HUB_SUB`, outside `captureView`). Desktop `#skew` covers the same content.
+- No lock was taken in `claude/WORK-LOCK.md`; `deploy_guard` was run before the work, before the
+  patch and again immediately before the commit instead. Another agent was committing to
+  `index.html` throughout - if that keeps up, take the lock.
+- Canonical was left alone: it still self-references `/?l=xx`, so `?c=`/`?e=` URLs consolidate to
+  the root exactly as before. Pointing an open article's canonical at its `/p/<id>.html` page is
+  the obvious next SEO step, but it needs a per-language existence check first.
+
 ## 2026-08-04 Claude (index coverage: matcher rules + name checking + per-paragraph relinking)
 
 june: "최근 올라온 글들을 보면 전문용어나 인물명 기업명 등등 대부분 색인이 하나도 안 되어
