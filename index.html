@@ -8599,6 +8599,113 @@ let VIEW_PUSHED = 0;
 
    pushView 호출 시점이 상태 변경 전(setTab)일 수도 후(entityFeedView)일 수도 있어서,
    "떠나는 화면"은 라이브 변수가 아니라 마지막 렌더 시점의 CUR_VIEW에서 가져온다. */
+/* ---------------- 화면마다 주소를 준다 (2026-08-04, june) ----------------
+   히스토리 엔트리에 스냅샷만 담고 URL은 늘 "/" 였다. 그래서 ① 주소창을 복사해
+   공유하면 홈이 나가고 ② 새로고침·탭 복원이 항상 홈으로 떨어지고 ③ Clarity·
+   GoatCounter가 모든 화면을 "/" 한 덩어리로 뭉갰다.
+   고친 방법: 이미 있는 스냅샷을 URL로 번역하는 viewUrl() 하나를 만들고,
+   noteView가 replaceState의 세 번째 인자로 그 값을 넘긴다. 새 상태 변수 없음.
+   읽는 쪽은 handleDeepLink 한 곳만 넓혔다.
+
+   ⚠ 부팅 시점 URL은 STK_BOOT에 떠 둔다 — 첫 render()의 noteView가 주소를 "/"로
+   되돌린 뒤에 handleDeepLink가 돌기 때문에, location을 그때 읽으면 ?c= 를 잃는다.
+   ⚠ 검색어(QUERY)는 주소에도 계측에도 싣지 않는다. */
+var STK_BOOT = { s: location.search, h: location.hash };
+function stkBootL(){
+  try { var l = new URLSearchParams(STK_BOOT.s).get("l");
+        return (l === "ko" || l === "en" || l === "ja") ? l : ""; } catch (e) { return ""; }
+}
+var STK_L = stkBootL();
+function stkRoot(){ return location.pathname + (STK_L ? "?l=" + STK_L : ""); }
+function stkOne(k, val){ return location.pathname + "?" + k + "=" + encodeURIComponent(val) + (STK_L ? "&l=" + STK_L : ""); }
+function stkHere(){ return location.pathname + location.search + location.hash; }
+/* 모바일 상세는 상태 변수가 아니라 오버레이(#v82detail)라 스냅샷에 안 잡힌다.
+   카드 엘리먼트 id가 "sig-<글id>"라 거기서 뽑는다. */
+function stkMobileItem(){
+  try {
+    var d = document.getElementById("v82detail");
+    if (!d || !d.classList.contains("on")) return null;
+    var c = d.querySelector(".card");
+    return c ? ((c.id || "").replace(/^sig-/, "") || null) : null;
+  } catch (e) { return null; }
+}
+function viewUrl(v){
+  if (!v) return stkRoot();
+  var it = v.item || v.mitem;
+  if (it) return stkOne("c", it);
+  if (v.rec) return stkRoot() + "#record-" + encodeURIComponent(v.rec);
+  if (v.sb) return stkRoot() + "#record";
+  if (v.theme) return stkRoot() + (v.theme === "index" ? "#themes" : "#theme-" + v.theme);
+  if (v.ent) return stkOne("e", v.ent);
+  if (v.q) return stkRoot();                 /* 검색은 주소로 만들지 않는다 */
+  if (v.readv) return stkRoot() + "#read";
+  if (v.bm) return stkRoot() + "#bookmarks";
+  if (v.tab === "browse") return stkRoot() + "#browse";
+  if (v.tab === "skew") return stkRoot() + "#skew";
+  if (v.tab === "cal") return stkRoot() + "#calendar";
+  if (v.tab === "alerts") return stkRoot() + "#alerts";
+  if (v.tab === "mine") return stkRoot() + "#following";
+  /* 푸시 알림에서 오는 #sig-<id>·#comments-<id>는 화면이 아니라 스크롤 위치라
+     스냅샷에 안 잡힌다. 홈 피드를 보는 동안에는 지우지 않는다 — 지우면 새로고침이
+     그 카드를 잃고, 인트로 게이트(showIntro)도 딥링크 판정을 못 한다. */
+  try {
+    var hh = location.hash || "";
+    if (hh.indexOf("#sig-") === 0 || hh.indexOf("#comments-") === 0) return stkRoot() + hh;
+  } catch (e) {}
+  return stkRoot();
+}
+/* 렌더가 따라오지 않는 화면 변화(모바일 상세 오버레이)에서 주소만 맞춘다.
+   ⚠ 즉시 부르면 안 된다 — 모바일 상세는 열리면서 v82MountComments가 댓글 시트를
+   한 번 열었다 닫는데, 그 닫기가 silentBack()(history.back)이라 방금 얹은 주소가
+   되감긴다. 그래서 그 왕복이 끝난 뒤에 한 번만 얹는다. */
+var STK_SYNC_T = null;
+function stkSyncUrlSoon(){
+  if (STK_SYNC_T) clearTimeout(STK_SYNC_T);
+  STK_SYNC_T = setTimeout(function(){ STK_SYNC_T = null; stkSyncUrl(); }, 180);
+}
+function stkSyncUrl(){
+  try {
+    var v = captureView(), u = viewUrl(v);
+    if (u && u !== stkHere()) history.replaceState(history.state, "", u);
+    stkAfterUrl(v);
+  } catch (e) {}
+}
+function stkViewTitle(v){
+  var base = document.title;
+  try { if (STRINGS[LANG] && STRINGS[LANG].metaTitle) base = STRINGS[LANG].metaTitle; } catch (e) {}
+  try {
+    var it = v && (v.item || v.mitem);
+    if (it && typeof ITEMS !== "undefined"){
+      for (var i = 0; i < ITEMS.length; i++){
+        if (ITEMS[i].id !== it) continue;
+        var t = ITEMS[i].title && (ITEMS[i].title[LANG] || ITEMS[i].title.en);
+        if (t) return t + " · Stacks";
+        break;
+      }
+    }
+  } catch (e) {}
+  return base;
+}
+/* 주소가 바뀌면 (1) 탭 제목을 그 화면에 맞추고 (2) 페이지뷰 1건을 보낸다.
+   applyMetaLang이 렌더 도중 제목을 다시 쓰므로 한 틱 뒤에 처리하고,
+   연속 변화(검색 타이핑 등)를 위해 디바운스한다. 최초 로드는 count.js가 이미 센다. */
+var STK_KEY = null, STK_PATH = null, STK_PV_T = null;
+function stkAfterUrl(v){
+  var p = stkHere(), key = p + "|" + ((typeof LANG !== "undefined") ? LANG : "");
+  if (key === STK_KEY) return;
+  var moved = (STK_PATH !== null && p !== STK_PATH);
+  STK_KEY = key; STK_PATH = p;
+  if (STK_PV_T) clearTimeout(STK_PV_T);
+  STK_PV_T = setTimeout(function(){
+    STK_PV_T = null;
+    try { document.title = stkViewTitle(captureView()); } catch (e) {}
+    if (!moved) return;
+    try {
+      if (window.goatcounter && window.goatcounter.count)
+        window.goatcounter.count({ path: stkHere(), title: document.title, event: false });
+    } catch (e) {}
+  }, 900);
+}
 function captureView(){
   var g = function(n, d){ try { return eval(n); } catch (e) { return d; } };
   return {
@@ -8606,6 +8713,7 @@ function captureView(){
     sb: g("SB_VIEW", false), theme: g("THEME_VIEW", null), rec: g("RECORD_SRC", null),
     item: g("V83ITEM", null), bm: g("BM_ONLY", false), unread: g("UNREAD_ONLY", false),
     readv: g("READ_VIEW", false), q: g("QUERY", ""),
+    mitem: stkMobileItem(),
     alerts: !!document.getElementById("v83npOv")
   };
 }
@@ -8615,12 +8723,15 @@ function noteView(){
   var v = captureView();
   CUR_VIEW = v;
   try {
-    if (PENDING_PUSH){
-      PENDING_PUSH = false;
-      history.replaceState({ stk: VIEW_PUSHED, view: v }, "");
-    } else if (!history.state || !history.state.view){
-      history.replaceState({ stk: (history.state && history.state.stk) || 0, view: v }, "");
-    }
+    /* 2026-08-04: 스냅샷을 "빈 엔트리일 때만" 채우던 걸 매 렌더로 바꿨다.
+       ‹ 버튼으로 상세를 닫는 것처럼 pushView 없이 화면만 바뀌는 경로가 있어서,
+       그때 주소가 옛 화면(?c=...)에 그대로 남았다. 값은 늘 현재 화면이라 멱등하다. */
+    var st = { stk: PENDING_PUSH ? VIEW_PUSHED : ((history.state && history.state.stk) || 0), view: v };
+    PENDING_PUSH = false;
+    var u = viewUrl(v);
+    if (u && u !== stkHere()) history.replaceState(st, "", u);
+    else history.replaceState(st, "");
+    stkAfterUrl(v);
   } catch (e) {}
 }
 function pushView(){
@@ -8688,8 +8799,17 @@ window.addEventListener("popstate", function(ev){
 });
 
 /* shared links land on the exact card */
+/* 2026-08-04 (june): viewUrl이 만드는 주소를 전부 여기서 되읽는다 — 이게 "새로고침하면
+   홈으로 떨어진다"의 반대편이다. location이 아니라 STK_BOOT(부팅 시점 스냅샷)를 읽는
+   이유는 이 함수보다 먼저 render()가 돌면서 주소를 이미 "/"로 되돌려 놓기 때문이다. */
 function handleDeepLink(){
-  const c = new URLSearchParams(location.search).get("c");
+  var sp = null; try { sp = new URLSearchParams(STK_BOOT.s); } catch (e) {}
+  var get = function(k){ try { return sp ? sp.get(k) : null; } catch (e) { return null; } };
+  var h = STK_BOOT.h || "";
+  var desk = function(){ return document.documentElement.classList.contains("v83"); };
+  var later = function(fn){ setTimeout(function(){ try { fn(); } catch (e) {} }, 350); };
+
+  const c = get("c");
   if (c){
     /* 2026-07-28 (june): ?c= 링크는 댓글 시트가 아니라 게시물 상세를 연다.
        /p/ 페이지 리다이렉트와 공유 링크가 전부 이 경로라, 독자는 글을 기대하고 온다.
@@ -8697,21 +8817,57 @@ function handleDeepLink(){
        모바일에서 v82.js가 아직 로드 전이면 잠깐 기다렸다가 연다. */
     let cTries = 0;
     const openDeepCard = () => {
-      const mobile = !document.documentElement.classList.contains("v83");
+      const mobile = !desk();
       if (mobile && typeof window.v82OpenCard !== "function" && cTries++ < 20){ setTimeout(openDeepCard, 150); return; }
       try { openFromCard(c); } catch (e) { goToItem(c); }
     };
     setTimeout(openDeepCard, 300);
     return;
   }
-  if (location.hash === "#calendar"){ setTimeout(openCal,350); return; }
-  if (location.hash && location.hash.indexOf("#theme-")===0){ const k=location.hash.slice(7); if (typeof THEMES!=="undefined" && THEMES[k]) setTimeout(function(){ openTheme(k); },350); return; }
-  if (location.hash && location.hash.indexOf("#record-")===0){ const s=decodeURIComponent(location.hash.slice(8)); setTimeout(function(){ openRecord(s); },350); return; }
-  if (location.hash && location.hash.startsWith("#sig-")){
-    const id = location.hash.slice(5);
+  const e = get("e");
+  if (e){ later(function(){ if (typeof ENTITIES !== "undefined" && ENTITIES[e] && typeof entityFeedView === "function") entityFeedView(e); }); return; }
+  if (h === "#calendar"){ later(function(){ if (desk() && typeof setTab === "function") setTab("cal"); else openCal(); }); return; }
+  if (h.indexOf("#theme-")===0){ const k=h.slice(7); if (typeof THEMES!=="undefined" && THEMES[k]) later(function(){ openTheme(k); }); return; }
+  if (h === "#themes"){ later(function(){ openThemes(); }); return; }
+  if (h.indexOf("#record-")===0){ const s=decodeURIComponent(h.slice(8)); later(function(){ openRecord(s); }); return; }
+  if (h === "#record"){ later(function(){ openScoreboard(); }); return; }
+  if (h === "#bookmarks"){ later(function(){ v83Bookmarks(); }); return; }
+  if (h === "#read"){ later(function(){ v83ReadList(); }); return; }
+  if (h === "#following"){ later(function(){ setTab("mine"); }); return; }
+  if (h === "#browse" || h === "#skew" || h === "#alerts"){
+    /* 이 셋은 데스크톱 좌측 내비 전용 화면이다. 모바일 셸에는 대응 화면이 없으므로
+       홈으로 두는 편이 빈 피드를 보여주는 것보다 낫다. */
+    if (!desk()) return;
+    later(function(){ setTab(h.slice(1)); });
+    return;
+  }
+  if (h.indexOf("#sig-")===0){
+    const id = h.slice(5);
     setTimeout(() => goToItem(id), 300);
   }
 }
+
+/* 모바일 상세(#v82detail)는 오버레이라 열려도 렌더가 따라오지 않는다 —
+   pushView가 민 엔트리에 주소만 직접 얹는다. 닫힘은 히스토리가 알아서 되돌리므로
+   여는 순간에만 손댄다(닫을 때 손대면 silentBack이 되감을 엔트리를 미리 더럽힌다). */
+(function(){
+  var tries = 0;
+  (function arm(){
+    var d = document.getElementById("v82detail");
+    if (!d){ if (++tries < 60) setTimeout(arm, 250); return; }
+    try {
+      new MutationObserver(function(){
+        if (d.classList.contains("on")) stkSyncUrlSoon();
+      }).observe(d, { attributes: true, attributeFilter: ["class"] });
+      /* 상세가 열린 채로 히스토리가 되감기는 경우(댓글 시트 무음 닫기)에도 다시 맞춘다.
+         진짜 뒤로가기로 상세가 닫히는 경우는 앞선 리스너의 v82Pop이 이미 .on을 떼므로
+         여기서 걸리지 않는다. */
+      window.addEventListener("popstate", function(){
+        if (d.classList.contains("on")) stkSyncUrlSoon();
+      });
+    } catch (e) {}
+  })();
+})();
 
 /* Track a named event in GoatCounter (no-op if analytics is off).
    Shows up in the dashboard as read/{id}, share/{id}, comment/{id},
@@ -10677,7 +10833,10 @@ const FIRST_RUN_GATES_DISABLED_FOR_ADSENSE = true;
    shared cards still land directly on their article. */
 function showIntro(){
   if (FIRST_RUN_GATES_DISABLED_FOR_ADSENSE) return false;
-  if (location.hash && (location.hash.startsWith("#sig-") || location.hash.startsWith("#comments-"))) return false;
+  /* 2026-08-04: 주소가 화면을 따라다니게 되면서 이 시점의 location.hash는 이미
+     현재 화면 것으로 바뀌어 있을 수 있다 — 딥링크 판정은 부팅 스냅샷으로 한다. */
+  var _bh = (typeof STK_BOOT !== "undefined" ? (STK_BOOT.h || "") : location.hash) || "";
+  if (_bh && (_bh.startsWith("#sig-") || _bh.startsWith("#comments-"))) return false;
   if (store.get("stk_intro_seen", false)) return false; /* only the first visit */
   const el = document.getElementById("intro");
   if (!el) return false;
