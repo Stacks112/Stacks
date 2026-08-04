@@ -370,7 +370,6 @@ async function viewIsNew(db, pageId, ipH) {
     return true;
   }
 }
-__name(viewIsNew, "viewIsNew");
 async function validPageId(db, pageId, checkExists) {
   if (!PAGE_ID_RE.test(pageId)) return false;
   if (!checkExists) return true;
