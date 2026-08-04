@@ -198,6 +198,12 @@ def weekly(items, days=7):
     if qn / n >= QMARK_CAP:
         out.append((WARN, "W2", "최근 %d일 물음표 제목 %d/%d편(%.0f%%). 상한 %.0f%%."
                     % (days, qn, n, 100*qn/n, 100*QMARK_CAP)))
+    # ⚠ W0(제목 틀 분포)은 **제목 규칙에 걸린 것이 없을 때만** 찍는다. 아래 그래픽
+    # 편중(W3)까지 센 뒤에 `if not out` 으로 판정하면, 그래픽이 상한을 넘긴 동안에는
+    # 제목 분포가 통째로 사라진다. v4.7 첫 실전 회차(2026-08-04 09:4xZ)가 실제로 이걸
+    # 밟아서 루틴이 제목 틀을 손으로 세야 했다. 그래서 여기서 미리 끊어 둔다.
+    title_ok = not out
+
     # 그래픽 편중 (v4.7)
     bcount = Counter()
     for i in recent:
@@ -210,7 +216,7 @@ def weekly(items, days=7):
                         "다음 회차는 다른 형태에서 고른다 — 규모는 @@BAR@@, 비중은 "
                         "@@SHARE@@, 순서는 @@TIME@@, 경로는 @@FLOW@@."
                         % (days, name, c, n, 100*c/n, 100*cap)))
-    if not out:
+    if title_ok:
         top = forms.most_common(3)
         out.append(("INFO", "W0", "분포 " + " · ".join("%s %.0f%%" % (k, 100*v/n) for k, v in top)
                     + " · 물음표 %.0f%%" % (100*qn/n)))
