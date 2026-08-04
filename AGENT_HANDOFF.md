@@ -2,6 +2,41 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (correction: the RT title prefix was not a signal)
+Goal:
+- june pushed back on the previous entry: "이 계정은 내가 다시보니까 자기가 직접 쓴글도 많은데?"
+  He was right and the filter shipped hours earlier was wrong.
+
+Changed:
+- `scripts/fetch_feeds.py` (`a4a95982`), `sources.json` (`9c209d3e`), `CLAUDE.md` (`858eb624`)
+
+What was wrong:
+- `own_post()` dropped an entry when its title started with `RT by`. Reading the raw bridges
+  showed RSS.app writes `RT by @<owner>:` on the owner's OWN reposts - on bilello_x it even
+  doubles the prefix (`RT by @charliebilello: RT by @charliebilello: The 30-Year US Treasury
+  Yield ended the month at 5.27%...`). 22 of his 25 items carried the prefix while only 4
+  actually pointed at another account, so the rule threw away 18 of his own posts and left the
+  feed with 3 items.
+- Measured across all ten bridges: there is not a single `RT by @<someone else>` title anywhere.
+  The prefix has zero discriminating power. Only the link handle does.
+
+Fix:
+- `own_post()` now checks the link only: keep when it starts with `https://x.com/<x_handle>/`.
+  The docstring records why the title check must not come back.
+
+Verified (feed-sync dispatched after deploy):
+- bilello_x kept 3 -> 15, foreign 22 -> 4, residual contamination 0. The recovered items are his
+  own: 30Y Treasury yield at 5.27%, the bond market's 6-year drawdown, the debt-ceiling thread,
+  S&P 500 Q2 margins at 16.7%.
+- camillo 4 -> 3 dropped, tesuta 5 -> 4: the over-drop is gone.
+- pichai 8 and jensen 8 unchanged - those were genuine foreign-account links and are still cut.
+- Deployed sha256 matched the local target for all three files, before and after commit.
+
+Lesson worth keeping:
+- The earlier entry's numbers ("19 of 30 retweets", "47 foreign items dropped") were an artifact
+  of the bad rule, not a measurement of reality. When a filter's own output is the evidence for
+  the filter, read the upstream source directly before writing the number down.
+
 ## 2026-08-04 Claude (bilello_x + retweets and foreign posts dropped at intake)
 Goal:
 - june added an RSS.app bridge for https://x.com/charliebilello and asked to wire it in.
