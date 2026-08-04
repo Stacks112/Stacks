@@ -2,6 +2,53 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (entity rail name -> related posts, "관련 글 보기" top bar)
+june: "우측 패널에서 이름을 누르면 해당 기업·인물·전문용어 등의 관련글 보기로 이동하게 해줘.
+그리고 관련 글 보기로 이동하면 지금 쏠린 곳 상단바처럼 뒤로가기 우측에는 관련 글 보기라고 써줘."
+
+Changed: `index.html` only (`43e911f`, +23/-1). No asset files, so no cache-hash bump.
+
+- `entityHeadEl(key, S, count, "rail")` now renders `.eh-name` as a `<button class="eh-name
+  eh-name-go">` wired to `entityFeedView(key)` - the same destination as the existing
+  "관련 글 N개 보기 →" link, so there is one funnel and no new state. `mode === "feed"` keeps the
+  plain `<div>`: that header *is* the related-posts screen, so it is not a target.
+- CSS `.entity-head .eh-name-go` only strips button chrome. It deliberately does not set
+  `font-size`/`font-weight` - `.entity-head .eh-name` (20px) and `.entity-head.in-rail
+  .eh-name` (17px) keep owning that, so the rail name looks byte-identical to before.
+- The shared back+title bar (the block that already draws "‹ 지금 쏠린 곳", "‹ 알림 설정" etc.)
+  now also detects `#feedList > .entity-head` and titles it 관련 글 보기 / Related posts /
+  関連記事. Label is built in that IIFE (`relLabel()`) rather than read from `STRINGS`, matching
+  `bmLabel()` - the bar can sync before `STRINGS` is reachable.
+- `hideOwnTitle()` additionally collapses `#feedList > .entity-head > .series-close`, because
+  the new bar already carries the back arrow. The entity name inside the profile card stays.
+- One `detect()` clause covers both shells: desktop draws `.v83post-head.v83navback`, mobile
+  fills `#v82subbar` and sets `nav.nav-sub` (which hides the 최신/팔로잉 switcher), same as every
+  other left-menu page.
+
+Verified:
+- `node --check` on all 6 inline script blocks.
+- Local Playwright, ko, both shells: desktop 1440x900 `?v83beta` - rail name is a BUTTON with
+  class `eh-name eh-name-go`, click lands on ENTITY_VIEW, bar title "관련 글 보기", bar is
+  `firstElementChild` of `#feedList`, in-card `.series-close` computed `display:none`, 56 cards.
+  Mobile 390x780 `?v82beta` - `#v82subbar .ti` = "관련 글 보기", `nav.nav-sub` true. `history.back()`
+  clears ENTITY_VIEW and removes the bar in both.
+- Deploy: sandbox push blocked (proxy MITM, "could not read Username") -> GitHub `edit` page
+  CodeMirror dispatch. `deploy_guard` clean beforehand; editor base sha256 compared against
+  `git show origin/main:index.html` (08ce7ba6…) before dispatch and target sha (327a2600…)
+  after - both matched, and the pushed blob hashes identical to the local file.
+  Clobber guard success. `git diff --numstat 619e240 43e911f` = 23/1, the single deletion being
+  the `.eh-name` line that was replaced.
+- Live stacksdaily.com after pages deploy: rail name is a button, click -> "‹ 관련 글 보기" bar
+  over the SK HYNIX profile + 57 cards, back returns to the feed.
+
+Notes / next:
+- Pressing back from the related-posts screen returns to the feed, not to the open rail panel.
+  That is the pre-existing behaviour of the rail's own `pushView()` snapshot and is identical
+  to what the "관련 글 N개 보기 →" button already did; not touched here.
+- `deploy_guard --verify` run without a prior recorded base falls back to a 24h window and
+  reported a stale ❌ for `97aedd6` (`.gradec h4` lines). Those lines were already absent in the
+  base `619e240`, so it is a false positive of the fallback, not a clobber.
+
 ## 2026-08-04 Claude (Clarity review: desktop CLS 1.68 -> 0.04, alignFsw layout thrash)
 june asked for a read on the Clarity dashboard and then for the top three fixes to be done.
 Clarity (last 7 days): score 49/100, LCP 1.9s good, INP 530ms bad, **CLS 1.2 bad**, dead
