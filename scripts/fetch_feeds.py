@@ -84,6 +84,13 @@ FEEDS = [
     {"id": "kuo_x", "url": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
      "keep_days": SLOW_DAYS, "x_handle": "mingchikuo", "naver": False},
     {"id": "kobeissi", "url": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml", "x_handle": "KobeissiLetter", "naver": False},
+    # The roster's first standing bear. Posts ~5x a day, so unlike the weekly
+    # longform bears he clears the 48h window, and he states dated numeric
+    # targets (gold, DXY) that the grading routine can actually settle.
+    # "x_handle" also drops the schiffgold.com bullion-shop account, which the
+    # bridge mixes in - see sources.json for why that matters here.
+    {"id": "schiff", "url": "https://rss.app/feeds/lFaHyJT3RN7cIZAE.xml",
+     "x_handle": "PeterSchiff", "naver": False},
     {"id": "camillo", "url": "https://rss.app/feeds/pMv7wgdkXM18ya8j.xml", "x_handle": "ChrisCamillo", "naver": False},
     # CEO accounts post a handful of times a year, so the 7-day default empties
     # their feed between posts and the author silently drops out of the candidate
