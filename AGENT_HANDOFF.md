@@ -2,6 +2,47 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (person detail name -> that person's related posts)
+june: "인물 상세에서도 인물명을 누르면 인물 관련 글로 이동하게 해줘." (follow-up to the entity-rail
+change earlier the same day.)
+
+Changed: `index.html` only (`7f7184d`, +28/-1). No asset files, so no cache-hash bump.
+
+- `ceoTap()`'s `.ceo-detail` box renders its `<b>name</b>` as `<button class="ceo-detail-name">`
+  wired to `entityFeedView(key)` when the person resolves to an indexed entity.
+- New `ceoEntityKey(name)` does the resolving: `ENTITIES[name]` -> `ALIAS2KEY[ko name]` ->
+  `ALIAS2KEY[CEO_WIKI[name]]` (the English form). It reuses `ALIAS2KEY`, the lowercase alias
+  dictionary `buildEntityMatcher()` already fills - do not build a second alias table here, the
+  two would drift.
+- **It returns null unless the entity has at least one article.** Only about a third of the 26
+  `CEO_INFO` people exist in the index (verified against `data/core.json`: 젠슨 황, 최태원, 팀 쿡,
+  일론 머스크, 사티아 나델라, 마크 저커버그, 데미스 하사비스, 순다르 피차이 resolve; 이재용, 샘 올트먼,
+  곽노정, 웨이저자 and the rest do not). A search fallback was measured and rejected - a plain text
+  search for those names returns 0 or 1 items, so it would land the reader on an empty screen.
+  Those names stay a plain `<b>`, exactly as before.
+- CSS `.ceo-detail-name` only strips button chrome and restores `display:block` +
+  `font-weight:700` so it is visually identical to the `<b>` it replaces (measured: block,
+  700, 13px in both shells).
+
+Verified:
+- `node --check` on all 6 inline script blocks.
+- Local Playwright, ko, both shells (desktop `?v83beta` 1440x900, mobile `?v82beta` 390x820):
+  resolver returns the expected keys/nulls; NVIDIA entity view -> tap CEO -> `.ceo-detail`
+  renders a BUTTON; clicking it lands on `ENTITY_VIEW = "Jensen Huang (@JensenHuang)"` with the
+  "관련 글 보기" bar (desktop `.v83post-title`, mobile `#v82subbar .ti`) and 3 cards.
+- Deploy: same route as `43e911f` (sandbox push blocked -> GitHub `edit` page CodeMirror
+  dispatch). `deploy_guard` clean, base sha 327a2600… matched `git show origin/main:` before
+  dispatch, target sha 8a04b9fe… matched after, pushed blob identical to the local file.
+  Clobber guard success. `git diff --numstat 7666214 7f7184d` = 28/1, the single deletion being
+  the `ceo-detail-txt` line that was replaced.
+- Live stacksdaily.com after pages deploy: same flow end to end.
+
+Notes / next:
+- If a CEO should be clickable but is not, the fix is data, not code: give that person an entity
+  (or an alias on an existing one) and `ceoEntityKey` picks it up on the next build.
+- The `.ceo-link` in the facts row is unchanged - it still opens/closes the detail box. Only the
+  name *inside* the box navigates.
+
 ## 2026-08-04 Claude (entity rail name -> related posts, "관련 글 보기" top bar)
 june: "우측 패널에서 이름을 누르면 해당 기업·인물·전문용어 등의 관련글 보기로 이동하게 해줘.
 그리고 관련 글 보기로 이동하면 지금 쏠린 곳 상단바처럼 뒤로가기 우측에는 관련 글 보기라고 써줘."
