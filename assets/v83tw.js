@@ -508,6 +508,16 @@ function v83CardFix(card){
       btn.setAttribute("aria-label", (oc.textContent || "").trim() || "예측 추적");
       btn.addEventListener("click", function(e){
         e.stopPropagation();
+        /* 채점 카드가 있는 글이면 접혀 있는 그 카드를 열고 그 자리로 옮겨 준다.
+           없으면 예전처럼 한 줄짜리 oc 노트를 토글한다. */
+        var fold = card.querySelector(".gradec-fold");
+        if (fold){
+          fold.open = true;
+          btn.classList.add("on");
+          try { fold.scrollIntoView({behavior:"smooth", block:"center"}); }
+          catch(_) { fold.scrollIntoView(); }
+          return;
+        }
         var open = oc.classList.toggle("oc-open");
         btn.classList.toggle("on", open);
       });
