@@ -2,6 +2,63 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-04 Claude (조회수 어뷰징 진단 + /view 서버측 dedup 배포)
+
+Goal:
+- june 질문: "netinterest-situational-awareness-67-percent-comeback" 글이 발행 12시간 만에
+  조회수 124(확인 시점 127)가 나온 게 이상하다는 신고. 과거 데이터로는 발행 0~1일차 중앙값 6,
+  전체 최고 기록도 55였던 사이트에서 나온 이상치.
+
+Findings:
+- Cloudflare D1 counters 테이블 직접 조회: 해당 글 n=127, 같은 회차 발행글(jukan-cxmt-...)도
+  n=92 — 전체 238페이지 평균(14.8)의 8~9배, 역대 최고치(55)의 2배. 좋아요/댓글은 0건.
+- GoatCounter는 SPA 라우트/이벤트만 기록해(v83/item 주간 17건) 이 글의 실방문을 개별로는
+  못 봤지만, 사이트 전체 데스크톱 "글 열기" 이벤트가 주간 17건뿐이라는 사실 자체가 단일 글
+  12시간 127회와 규모가 맞지 않는다. 외부 리퍼러 급증도 없었다.
+- worker/index.js 소스(raw.githubusercontent.com 직접 fetch, Cloudflare workers_get_worker_code
+  아님) 확인: POST /view는 pageId 존재검사(validPageId)만 하고 방문자/기기 단위 중복제거가
+  전혀 없었다. counterOk()는 IP당 분당 300회라는 전역 쓰기 상한일 뿐, 같은 IP가 같은 글을
+  몇 번을 호출해도 막지 않는다. 2026-07-25 감사 H3가 "패치됨"으로 기록돼 있었지만 실제
+  코드엔 페이지 단위 dedup이 빠져 있었다 — 문서와 코드가 어긋나 있었음.
+
+Changed:
+- `worker/index.js`:
+  - 커밋 `059d96e6`: view_dedup(page_id, ip_hash) 테이블 신설 + POST /view에서
+    INSERT ... ON CONFLICT DO NOTHING RETURNING 패턴으로 (ip_hash, page_id) 최초 1회만
+    bump(+1), 이후 같은 IP 재호출은 카운트만 반환(증가 없음). votes 테이블과 동일 설계.
+  - 배포 실패(Deploy worker #15, 059d96e6): `Uncaught ReferenceError: __name is not defined`.
+    원인: Cloudflare workers_get_worker_code로 읽었던 "배포된 번들"(wrangler/esbuild가 자체
+    삽입한 __name/__defProp 셰이밍 헬퍼 포함)을 실제 GitHub 소스 형식으로 착각해, 존재하지
+    않는 __name() 호출을 새 함수 뒤에 그대로 붙여 넣었던 것. **실제 저장소 소스에는 __name
+    래퍼가 없다** — 다음에 그 도구로 읽은 코드를 패치 앵커로 쓸 때는 반드시
+    raw.githubusercontent.com 원본과 대조할 것 (WORK-LOCK에 추가 권장).
+  - 커밋 `8ec599cd`: 위 stray `__name(viewIsNew, "viewIsNew");` 한 줄 제거. Deploy worker
+    재실행 성공(run 30869676258, conclusion success).
+
+Tests run:
+- 패치 적용 전: CodeMirror 문서 sha256 vs raw fetch sha256 일치 확인(베이스 검증).
+- 패치 적용 후: 앵커 치환 전/후 등장 횟수(0→1) 확인, 중괄호·괄호 균형 확인(old 347/347·
+  1058/1058, patch 후에도 균형 유지), GitHub API contents(sha)로 커밋 반영 바이트 대조.
+- 배포 후 라이브 검증: stacksdaily.com 탭에서 POST https://api.stacksdaily.com/view
+  {pageId: "netinterest-situational-awareness-67-percent-comeback"}를 연속 2회 호출 —
+  1회차 count 127→128(이 브라우저는 이 글 /view가 이번이 처음이라 정상 증가),
+  2회차 count 128 그대로(증가 없음, dedup 동작 확인). D1 view_dedup 테이블에 해당 행 1건
+  생성 확인.
+
+Remaining risks / 다음 단계:
+- 이번 조치는 **같은 IP당 페이지별 1회**로 제한한다. NAT/사무실 공용 IP 뒤 여러 실사용자가
+  있으면 2번째 이후 실방문자는 카운트되지 않는다(과소집계 방향 — 어뷰징 대비 안전한
+  트레이드오프로 판단해 그대로 감).
+- 이번 이상치의 실제 발생 경로(봇/스크레이퍼가 직접 API를 두드렸는지 등)는 로그가 없어
+  특정하지 못했다. Cloudflare 대시보드 workersInvocationsAdaptive(계정 태그
+  898876c2b7fe1652e72736e182ad610b, scriptName stacks-comments)에서 8/3 12:5x~8/4 01:3x
+  구간 요청 IP/UA 분포를 보면 추가 확인 가능 — 다음 세션 후보.
+- `/like`·`/vote`·`/clike`는 이번에 손대지 않았다. `/like`도 같은 구조(전역 IP 스로틀뿐,
+  페이지별 dedup 없음)라 원하면 같은 패턴으로 확장 가능 — vote는 이미 votes 테이블로 서버
+  권위화돼 있어 우선순위 낮음.
+- 기존 D1 view 카운터 값(127 등)은 롤백하지 않았다 — 이미 쌓인 수치를 지우는 건 별도 결정
+  필요(요청 시 처리).
+
 ## 2026-08-04 Claude (graded-prediction push: 릴레이 경로로 이관)
 Goal:
 - june: "이것 좀 해줘" - 이전 세션이 푸시하지 못한 채점 알림 수정본을 실제 main 에 반영.
