@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>/* shared link (?l=xx): bounce a human into the live app in the sharer's language. No ?l = organic/SEO visit, so this stays a normal crawlable page. */
+(function(){try{var l=new URLSearchParams(location.search).get('l');if(!l)return;location.replace('https://stacksdaily.com/?c=kobeissi-anthropic-custom-silicon-multi-chip&l='+encodeURIComponent(l));}catch(e){}})();</script>
+<title>앤스로픽이 자체 칩을 만들겠다고 했다, 그런데 남의 칩도 계속 쓴다고 했다 · Stacks</title>
+<meta name="description" content="앤스로픽이 클로드를 돌릴 칩을 직접 설계하겠다고 공식 확인했다. 그런데 같은 발표에서 아마존 AWS와 구글, 엔비디아, AMD의 칩은 앞으로도 필수라고 못 박았다. 칩을 직접 만들겠다는 회사가 남의 칩도 계속 사겠다고 말한 셈이다. 두 문장은 서로 부딪히지 않는다. 설계를 시작한 칩이…">
+<meta name="keywords" content="AI, SILICON, COST, The Kobeissi Letter (@KobeissiLetter)">
+<link rel="canonical" href="https://stacksdaily.com/p/kobeissi-anthropic-custom-silicon-multi-chip.html">
+<link rel="alternate" hreflang="ko" href="https://stacksdaily.com/p/kobeissi-anthropic-custom-silicon-multi-chip.html"><link rel="alternate" hreflang="en" href="https://stacksdaily.com/p/en/kobeissi-anthropic-custom-silicon-multi-chip.html"><link rel="alternate" hreflang="ja" href="https://stacksdaily.com/p/ja/kobeissi-anthropic-custom-silicon-multi-chip.html"><link rel="alternate" hreflang="x-default" href="https://stacksdaily.com/p/en/kobeissi-anthropic-custom-silicon-multi-chip.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Stacks">
+<meta property="og:title" content="앤스로픽이 자체 칩을 만들겠다고 했다, 그런데 남의 칩도 계속 쓴다고 했다">
+<meta property="og:description" content="앤스로픽이 클로드를 돌릴 칩을 직접 설계하겠다고 공식 확인했다. 그런데 같은 발표에서 아마존 AWS와 구글, 엔비디아, AMD의 칩은 앞으로도 필수라고 못 박았다. 칩을 직접 만들겠다는 회사가 남의 칩도 계속 사겠다고 말한 셈이다. 두 문장은 서로 부딪히지 않는다. 설계를 시작한 칩이…">
+<meta property="og:url" content="https://stacksdaily.com/p/kobeissi-anthropic-custom-silicon-multi-chip.html">
+<meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP">
+<meta property="article:published_time" content="2026-08-05">
+<meta property="og:image" content="https://stacksdaily.com/og/kobeissi-anthropic-custom-silicon-multi-chip.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://stacksdaily.com/og/kobeissi-anthropic-custom-silicon-multi-chip.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="앤스로픽이 자체 칩을 만들겠다고 했다, 그런데 남의 칩도 계속 쓴다고 했다">
+<meta name="twitter:description" content="앤스로픽이 클로드를 돌릴 칩을 직접 설계하겠다고 공식 확인했다. 그런데 같은 발표에서 아마존 AWS와 구글, 엔비디아, AMD의 칩은 앞으로도 필수라고 못 박았다. 칩을 직접 만들겠다는 회사가 남의 칩도 계속 사겠다고 말한 셈이다. 두 문장은 서로 부딪히지 않는다. 설계를 시작한 칩이…">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
+<link rel="icon" href="../favicon-32.png">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "앤스로픽이 자체 칩을 만들겠다고 했다, 그런데 남의 칩도 계속 쓴다고 했다", "description": "앤스로픽이 클로드를 돌릴 칩을 직접 설계하겠다고 공식 확인했다. 그런데 같은 발표에서 아마존 AWS와 구글, 엔비디아, AMD의 칩은 앞으로도 필수라고 못 박았다. 칩을 직접 만들겠다는 회사가 남의 칩도 계속 사겠다고 말한 셈이다. 두 문장은 서로 부딪히지 않는다. 설계를 시작한 칩이…", "datePublished": "2026-08-05T00:00:00Z", "dateModified": "2026-08-05T00:00:00Z", "inLanguage": "ko", "author": {"@type": "Person", "name": "The Kobeissi Letter (@KobeissiLetter)", "url": "https://x.com/KobeissiLetter"}, "publisher": {"@type": "Organization", "@id": "https://stacksdaily.com/#org", "name": "Stacks", "alternateName": ["Stacks Daily", "StacksDaily", "stacksdaily.com", "스택스", "스택스데일리", "スタックス"], "url": "https://stacksdaily.com/", "logo": {"@type": "ImageObject", "url": "https://stacksdaily.com/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://x.com/Stacks0g"]}, "mainEntityOfPage": "https://stacksdaily.com/p/kobeissi-anthropic-custom-silicon-multi-chip.html", "isBasedOn": "https://x.com/KobeissiLetter/status/2085002895678734635", "url": "https://stacksdaily.com/p/kobeissi-anthropic-custom-silicon-multi-chip.html", "citation": {"@type": "SocialMediaPosting", "url": "https://x.com/KobeissiLetter/status/2085002895678734635", "datePublished": "2026-08-05T00:00:00Z", "author": {"@type": "Person", "name": "The Kobeissi Letter (@KobeissiLetter)", "url": "https://x.com/KobeissiLetter"}}, "image": "https://stacksdaily.com/og/kobeissi-anthropic-custom-silicon-multi-chip.png"}</script>
+<script src="../assets/manual-overrides.js" defer></script>
+<style>
+:root{color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.7;color:#17181C;background:#fff}
+@media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}.card{background:#141519!important}.gist{color:#C9CDD6!important}}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px 60px}
+.topbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0;margin-bottom:6px;border-bottom:1px solid #ECEDF1}
+.topbar a{color:inherit;text-decoration:none}
+.topbar .brand{font-weight:800;font-size:16px}
+.topbar .sitenav{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
+.topbar .sitenav a{font-size:13.5px;font-weight:600;color:#8E93A0}
+.topbar .sitenav a:hover{color:#17181C}
+@media(prefers-color-scheme:dark){.topbar{border-color:#26272E}.topbar .sitenav a:hover{color:#ECEDF1}}
+.cover{height:120px;border-radius:16px;background:linear-gradient(135deg,#0B1220,#4C1D95);display:flex;align-items:flex-end;padding:16px;margin:8px 0 20px}
+.cover .label{font-family:ui-monospace,Menlo,monospace;color:rgba(255,255,255,.85);font-size:26px;letter-spacing:.05em}
+.meta{font-size:13px;color:#8E93A0;margin-bottom:4px}
+h1{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}
+.gist{color:#3E414B;white-space:pre-line;font-size:16px}
+@media(prefers-color-scheme:dark){.gist{color:#C9CDD6}}
+:root{--s1:#2563EB;--s2:#F59E0B;--s3:#0D9488;--s4:#7C3AED;--track:#EEF0F4;--ring:#fff}
+.gist+.gist{margin-top:1em}
+h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
+.srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
+.srcq blockquote{margin:0;quotes:none}
+.srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
+.srcq-c{font-size:12.5px;color:#8E93A0}
+.srcq-c a{color:#8E93A0}
+.chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
+.chk-g{display:flex;flex-wrap:wrap}
+.chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
+.chk-c i{display:block;font-style:normal;font-size:11.5px;color:#8E93A0;margin-bottom:4px}
+.chk-c b{display:block;font-size:18px}
+.chk-n{margin:0;padding:11px 13px;border-top:1px solid #ECEDF1;font-size:14.5px;line-height:1.6}
+.chk-s{margin:0;padding:0 13px 10px;font-size:12px;color:#8E93A0}
+.cmp{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cmp-c{flex:1 1 240px;padding:12px 14px;border:1px solid #ECEDF1;border-radius:12px}
+.cmp-c.cmp-b{border-color:#3B82F6}
+.cmp-c i{display:block;font-style:normal;font-size:11.5px;font-weight:800;color:#8E93A0;margin-bottom:6px}
+.cmp-c p{margin:0;font-size:14.5px;line-height:1.6}
+.cmp-vs{align-self:center;width:32px;height:32px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#fff;background:linear-gradient(135deg,#EF4444,#3B82F6)}
+.gimg{margin:16px 0}
+.gimg img{display:block;width:100%;max-width:520px;border:1px solid #ECEDF1;border-radius:12px;background:#fff}
+.gimg figcaption{margin-top:6px;font-size:12px;color:#8E93A0}
+.gimg figcaption a{color:#8E93A0}
+.gref{margin:6px 0 14px;font-size:13px}
+.gref a{color:#8E93A0}
+.gcardw{margin:12px 0 16px;max-width:520px}
+.gcard{position:relative;display:block;border:1px solid #ECEDF1;border-radius:14px;overflow:hidden;text-decoration:none;background:#F6F7F9}
+.gcard img{display:block;width:100%;max-height:250px;object-fit:cover}
+.gcard-t{position:absolute;left:10px;right:10px;bottom:10px;padding:5px 10px;border-radius:8px;background:rgba(0,0,0,.65);color:#fff;font-size:13px;line-height:1.4;font-weight:600}
+.gcard-src{margin-top:6px;font-size:12px;color:#8E93A0}
+.dbk{margin:18px 0}
+.dbk-n{margin:11px 0 0;font-size:14.5px;line-height:1.6}
+.dbk-s{margin:6px 0 0;font-size:12px;color:#8E93A0;line-height:1.5}
+.bar-r{margin:0 0 13px}
+.bar-r:last-of-type{margin-bottom:0}
+.bar-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 6px}
+.bar-h i{font-style:normal;font-size:12.5px;line-height:1.45;color:#5B6070}
+.bar-h b{font-size:15.5px;white-space:nowrap}
+.bar-t{height:10px;border-radius:5px;background:var(--track)}
+.bar-f{height:100%;border-radius:5px;background:var(--s1);min-width:3px}
+.bar-x{display:inline-block;margin:2px 0 0;padding:3px 9px;border-radius:999px;background:var(--track);font-size:12.5px;font-weight:800;color:var(--s1)}
+.shr-t{display:flex;height:26px;gap:2px;margin:2px 0 0}
+.shr-g{height:100%;min-width:3px}
+.shr-g:first-child{border-radius:6px 0 0 6px}
+.shr-g:last-child{border-radius:0 6px 6px 0}
+.shr-l{display:flex;flex-wrap:wrap;gap:7px 18px;margin:11px 0 0}
+.shr-i{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5B6070}
+.shr-d{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.shr-i b{color:#111318;font-weight:700}
+.tml{margin:0;padding:2px 0 0 22px;list-style:none;position:relative}
+.tml:before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:2px;background:#E7E9EE}
+.tml li{position:relative;margin:0 0 15px}
+.tml li:last-child{margin-bottom:0}
+.tml li:before{content:"";position:absolute;left:-22px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--s1);box-shadow:0 0 0 3px var(--ring)}
+.tml li.fut:before{background:var(--ring);border:2px dashed #9AA1AE;box-shadow:none}
+.tml i{display:block;font-style:normal;font-size:12px;font-weight:800;color:#5B6070;margin:0 0 3px}
+.tml p{margin:0;font-size:14.5px;line-height:1.6}
+.flw{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:0}
+.flw-s{flex:1 1 155px;min-width:0;padding:11px 13px;border:1px solid #E7E9EE;border-radius:11px;background:#FAFBFC}
+.flw-s b{display:block;font-size:13.5px;line-height:1.45;margin:0 0 4px}
+.flw-s span{display:block;font-size:12.5px;line-height:1.55;color:#5B6070}
+.flw-a{flex:0 0 auto;align-self:center;color:#9AA1AE;font-size:15px;font-weight:800}
+@media(max-width:520px){.flw{display:block}.flw-s{margin:0}.flw-a{display:block;margin:5px 0 5px 18px;transform:rotate(90deg);width:1em}}
+@media(prefers-color-scheme:dark){.srcq,.cmp-c{background:#1A1B21}.srcq p{color:#C9CDD6}
+  .chk,.chk-c,.chk-n,.cmp-c{border-color:#26272E}.otherlang{border-color:#26272E}
+  :root{--s1:#3B82F6;--s2:#BC8404;--s3:#0FA391;--s4:#8257F0;--track:#26272E;--ring:#141519}
+  .bar-x{color:#7FB0FA}
+  .bar-h i,.shr-i,.tml i,.flw-s span{color:#9AA1AE}
+  .shr-i b{color:#E8EAEE}
+  .tml:before{background:#2E3038}
+  .flw-s{background:#1A1B21;border-color:#26272E}}
+.sum3,.splitb{margin:20px 0 0;padding:13px 15px;border-radius:12px}
+.sum3{background:#F6F7F9;border:1px solid #ECEDF1}
+.splitb{border:1px dashed #D7DAE0}
+.sum3>b,.splitb>b{display:block;font-size:12px;letter-spacing:.02em;color:#5B6070;margin-bottom:7px}
+.sum3 ul{list-style:none;margin:0;padding:0}
+.sum3 li{position:relative;padding-left:15px;margin:0 0 7px;font-size:15px;line-height:1.62}
+.sum3 li:last-child{margin-bottom:0}
+.sum3 li:before{content:"·";position:absolute;left:3px;color:#8E93A0;font-weight:700}
+.splitb p{margin:0 0 5px;font-size:14.5px;line-height:1.6}
+.splitb p:last-child{margin-bottom:0}
+/* 세 줄 요약은 카드가 아니라 본문 끝의 구분선 다음에 온다 (편집 가이드 §6). */
+.sum3{background:none;border:0;border-top:2px solid currentColor;border-radius:0;margin:34px 0 0;padding:17px 0 0}
+.sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
+.sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
+.sum3 li:before{color:inherit;left:2px}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
+.occ{border:1px solid #ECEDF1;border-radius:12px;background:#F6F7F9;overflow:hidden}
+.occ h3{display:flex;align-items:center;gap:9px;margin:0;padding:11px 14px;border-bottom:1px solid #ECEDF1}
+.occ h3 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207}
+.occ.oc-hit h3 i{background:#E8F5EC;color:#1C7A42}.occ.oc-miss h3 i{background:#FDEAEA;color:#B02525}
+.occ-r{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #ECEDF1;font-size:14px;line-height:1.6}
+.occ-r:last-child{border-bottom:0}
+.occ-r .k{flex:0 0 64px;font-size:12.5px;font-weight:700;color:#8E93A0;padding-top:2px}
+.occ-r .v{flex:1}
+.occ-r .v .hit{color:#1C7A42;font-weight:700}.occ-r .v .miss{color:#B02525;font-weight:700}
+.srcs{margin-top:26px;border:1px solid #ECEDF1;border-radius:12px;padding:14px 16px}
+.srcs h3{font-size:12.5px;letter-spacing:.03em;color:#8E93A0;margin:0 0 10px}
+.srcs ol{margin:0;padding-left:18px}
+.srcs li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:#5B6070;border:0;padding:0}
+.srcs li b{color:#17181C}
+.srcs a{color:inherit;text-decoration:none}.srcs a:hover{text-decoration:underline}
+.srcs-a{margin:11px 0 0;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){
+  .occ{background:#141519;border-color:#2E3037}.occ h3,.occ-r{border-color:#2E3037}
+  .occ.oc-hit h3 i{background:rgba(14,159,94,.14)}.occ.oc-miss h3 i{background:rgba(224,68,56,.14)}
+  .srcs{border-color:#2E3037}.srcs li b{color:#ECEDF1}}
+.why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
+.ask{margin-top:10px}
+@media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
+.otherlang{margin:22px 0 0;font-size:13px;color:#8E93A0;border-top:1px solid #ECEDF1;padding-top:16px}
+.otherlang a{color:#17181C;font-weight:600}
+@media(prefers-color-scheme:dark){.otherlang{border-color:#26272E}.otherlang a{color:#ECEDF1}}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.btn{display:inline-block;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px}
+.btn.app{background:#111214;color:#fff}
+.btn.src{background:#F6F7F9;color:#17181C;border:1px solid #ECEDF1}
+@media(prefers-color-scheme:dark){.btn.app{background:#1E1F26;color:#fff}.btn.src{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.paid{font-size:12px;color:#8E93A0;align-self:center}
+.related{margin-top:30px;font-size:14px}
+.related ul{padding-left:18px}
+.ent-nav{margin-top:28px}
+.ent-nav h3{font-size:14px;margin:0 0 10px}
+.ent-chips{display:flex;flex-wrap:wrap;gap:8px}
+.ent-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:13px;font-weight:600;text-decoration:none;color:#17181C}
+.ent-chip:hover{border-color:#111214}
+@media(prefers-color-scheme:dark){.ent-chip{background:#141519;color:#ECEDF1;border-color:#2E3037}}
+.latest{margin-top:34px;padding-top:22px;border-top:1px solid #ECEDF1}
+.latest h3{font-size:14px;margin:0 0 10px}
+.latest ul{list-style:none;margin:0;padding:0}
+.latest li{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid #F2F3F6}
+.latest li a{flex:1;font-size:14.5px;font-weight:600;color:#17181C;text-decoration:none}
+.latest li a:hover{text-decoration:underline}
+.latest time{flex:none;font-size:12px;color:#8E93A0}
+.latest-all{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:700;color:#17181C;text-decoration:none}
+@media(prefers-color-scheme:dark){.latest{border-color:#26272E}.latest li{border-bottom-color:#1E1F25}.latest li a,.latest-all{color:#ECEDF1}}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){footer{border-color:#26272E}}
+footer a{color:#8E93A0}
+</style>
+<script>
+(function(){var B="https://stacksdaily.com/",L="ko";
+function tgt(a){var d=a.getAttribute("data-app");if(d!==null)return d;
+var u;try{u=new URL(a.getAttribute("href"),location.href);}catch(e){return null;}
+if(u.origin!==location.origin)return null;
+var p=u.pathname.replace(/^\/+/,""),m;
+if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
+if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
+if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+return null;}
+document.addEventListener("click",function(e){
+if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+var a=e.target;while(a&&a.nodeName!=="A")a=a.parentNode;
+if(!a||!a.getAttribute("href")||a.target==="_blank"||a.hasAttribute("download"))return;
+var d=tgt(a);if(d===null)return;
+e.preventDefault();location.href=B+d;},false);})();
+</script>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="brand" href="../">◆ Stacks</a>
+    <nav class="sitenav"><a href="../articles.html">전체 글</a> · <a href="../this-week.html">이번 주</a> · <a href="../about.html">소개</a></nav>
+  </div>
+  <div class="cover"><span class="label">SILICON</span></div>
+  <div class="meta">The Kobeissi Letter (@KobeissiLetter) · 2026-08-05 · 원문: EN</div>
+  <h1>앤스로픽이 자체 칩을 만들겠다고 했다, 그런데 남의 칩도 계속 쓴다고 했다</h1>
+  <div class="actions">
+    <a class="btn app" href="https://stacksdaily.com/?c=kobeissi-anthropic-custom-silicon-multi-chip&amp;l=ko">Stacks 앱에서 보기 →</a>
+    <a class="btn src" href="https://x.com/KobeissiLetter/status/2085002895678734635" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
+    
+  </div>
+  <figure class="srcq"><blockquote cite="https://x.com/KobeissiLetter/status/2085002895678734635" lang="ko"><p>속보: 앤스로픽이 클로드를 더 빠르고 효율적으로 돌리기 위해 사내 커스텀 칩을 만들고 있다고 확인했다.</p><p>앤스로픽은 AWS와 구글, 엔비디아, AMD의 하드웨어가 앞으로도 필수적으로 남는 &#x27;멀티 칩 접근&#x27;을 택할 것이다</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/KobeissiLetter/status/2085002895678734635" rel="nofollow noopener" target="_blank">The Kobeissi Letter (@KobeissiLetter) · 2026.08.05</a> · 영어 원문 옮김</figcaption></figure><p class="gist">앤스로픽이 클로드를 돌릴 칩을 직접 설계하겠다고 공식 확인했다.
+그런데 같은 발표에서 아마존 AWS와 구글, 엔비디아, AMD의 칩은 앞으로도 필수라고 못 박았다.</p><div class="gcardw"><a class="gcard" href="https://techcrunch.com/2026/08/05/anthropic-is-hiring-an-ai-chip-design-team/" rel="noopener" target="_blank"><img src="https://techcrunch.com/wp-content/uploads/2024/09/GettyImages-1484622878.jpeg?resize=1200,800" alt="" loading="lazy"><span class="gcard-t">앤스로픽이 AI 칩 설계팀을 채용한다 (테크크런치, 2026-08-05)</span></a><div class="gcard-src">출처: techcrunch.com</div></div><p class="gist">칩을 직접 만들겠다는 회사가 남의 칩도 계속 사겠다고 말한 셈이다.
+두 문장은 서로 부딪히지 않는다. 설계를 시작한 칩이 실제 서버에 꽂히기까지 걸리는 시간이 그 사이에 들어 있다.</p><h2 class="gsub">왜 지금 자체 칩인가</h2><p class="gist">클로드 같은 모델을 굴리는 비용은 크게 둘로 나뉜다.
+모델을 학습시키는 비용과, 학습이 끝난 모델이 이용자의 질문에 답할 때마다 드는 비용이다.
+뒤쪽을 인퍼런스라고 부르는데, 이용자가 늘수록 이 비용은 계속 늘어난다.
+
+학습은 한 번 끝내면 되지만 인퍼런스는 서비스가 살아 있는 동안 매일 나가는 돈이다.
+그래서 답 하나를 만드는 데 드는 전기와 시간을 몇 퍼센트만 줄여도 회사 전체의 손익이 달라진다.
+
+범용 가속기는 학습과 인퍼런스를 두루 잘하도록 만들어져 있다.
+자기 모델의 계산 방식에만 맞춘 칩을 따로 만들면 안 쓰는 기능을 떼어낸 만큼 전기와 면적을 아낄 수 있다.
+앤스로픽이 하드웨어와 모델을 함께 설계하겠다고 말한 대목이 이것이다.</p><figure class="gimg"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/NVIDIA_GPU.jpg/960px-NVIDIA_GPU.jpg" alt="지금 클로드를 돌리는 것은 이렇게 남이 만들어 파는 가속기 보드다. 앤스로픽이 그리겠다는 것은 이 자리에 들어갈 자기 칩이다." loading="lazy"><figcaption>지금 클로드를 돌리는 것은 이렇게 남이 만들어 파는 가속기 보드다. 앤스로픽이 그리겠다는 것은 이 자리에 들어갈 자기 칩이다. · <a href="https://commons.wikimedia.org/wiki/File:NVIDIA_GPU.jpg" rel="noopener" target="_blank">Mickael Courtiade · CC BY 2.0</a></figcaption></figure><h2 class="gsub">설계도를 넘기는 데만 몇 년</h2><p class="gist">반도체는 설계를 마쳤다고 바로 나오지 않는다.
+회로 도면을 공장으로 넘겨 첫 시제품을 찍는 단계를 테이프아웃이라고 부른다.
+새 칩이 이 단계에 닿는 데만 보통 몇 년이 걸리고, 그 뒤에 검증과 양산 준비가 다시 붙는다.
+
+지금 막 사람을 뽑기 시작한 팀의 칩이 서비스를 떠받치는 것은 그만큼 뒤의 일이다.
+
+그때까지 클로드를 돌릴 칩은 계속 사 와야 한다.
+앤스로픽이 여러 회사의 칩을 함께 쓰겠다고 말한 이유도 여기 있다. 자체 칩은 지금 쓰는 칩을 대신하는 물건이 아니라 몇 년 뒤에 그 옆에 놓일 물건이다.</p><h2 class="gsub">채용 공고가 요구한 경력</h2><p class="gist">공고에 적힌 연봉은 32만달러에서 48만5,000달러다.
+요구 조건은 논문이 아니라 칩을 실제로 테이프아웃해 출하까지 해 본 경험이다.
+연구자가 아니라 물건을 뽑아 본 사람을 찾고 있다는 뜻이다.</p><div class="gref"><a href="https://finance.biggo.com/news/13056eb1-c5d9-46eb-93f9-d522773cd4ec" rel="noopener" target="_blank">앤스로픽, 커스텀 칩 계획을 처음 공개하며 연 최대 48만5,000달러를 제시 (빅고 파이낸스, 2026-08-05) &#8599;</a></div><p class="gist">이 공고는 사내에 반도체 조직이 아직 없다는 사실도 같이 알려 준다.
+설계 도구, 공정 계약, 검증 인력까지 밖에서 데려와야 하는 단계다.</p><div class="dbk"><ul class="tml"><li><i>2024-11</i><p>아마존이 앤스로픽에 40억달러를 추가 투자하고 AWS가 주 클라우드가 됐다</p></li><li><i>2025-10</i><p>앤스로픽이 구글의 TPU를 최대 100만 개 도입하기로 합의했다</p></li><li><i>2026-06</i><p>오픈AI가 브로드컴과 만든 추론 전용 칩 할라피뇨를 공개했다</p></li><li><i>2026-08-05</i><p>앤스로픽이 자체 칩 설계팀 채용을 공식 확인했다</p></li></ul><p class="dbk-n">남의 칩을 빌려 여기까지 온 회사가 이제 도면 쪽으로 한 칸 옮겨 앉았다.</p><p class="dbk-s">2026-08-05 조회 · 테크크런치·로이터·말레이메일 보도 종합</p></div><h2 class="gsub">앤스로픽이 칩으로 사려는 것</h2><p class="gist">자체 칩의 목적은 성능 순위표가 아니라 단가다.
+오픈AI는 6월 할라피뇨를 공개하며 비용이 절반으로 줄었다고 밝혔다. 다만 이것은 오픈AI 자체 발표이고 외부 검증은 아직 나오지 않았다.
+
+코베이시레터는 이 흐름을 두고 사내 AI 칩이 다음 대세라고 썼다.
+그 말이 맞다면 가속기를 파는 쪽에서 보면 최대 고객이 하나씩 설계팀을 갖추는 중이다.
+
+앞으로 갈리는 지점은 가격표다.
+앤스로픽이 자체 칩을 서비스에 넣었다고 밝히면서 클로드의 이용 요금이나 처리 속도가 함께 바뀌면 이 채용은 원가 구조를 실제로 바꾼 것이고, 칩 이야기가 나온 뒤에도 요금과 한도가 그대로면 지금 단계는 공급사와의 협상 카드에 가깝다.
+빌려 쓰는 쪽이 직접 만들기 시작할 때 값이 먼저 움직이는지 물량이 먼저 움직이는지가 여기서 드러난다.</p><div class="sum3"><b>세 줄 요약</b><ul><li>앤스로픽이 클로드 전용 칩을 직접 설계하겠다고 공식 확인하고, 커스텀 실리콘 팀 채용을 시작했다.</li><li>겉으로 보면 엔비디아와 AMD의 고객 하나가 공급자 쪽으로 넘어가는 그림이다.</li><li>그런데 같은 발표가 AWS와 구글, 엔비디아, AMD의 칩은 계속 필수라고 못 박았다. 지금 설계를 시작한 칩이 서버에 꽂히기까지는 몇 년이 걸린다.</li></ul></div>
+  <section class="oc occ oc-pending"><h3>채점 예정<i>채점 대기</i></h3><div class="occ-r"><div class="k">지표</div><div class="v">앤스로픽 자체 설계 칩의 실서비스 투입 발표</div></div><div class="occ-r"><div class="k">현재</div><div class="v">2026년 8월 5일 현재 설계팀 채용 공고 단계, 칩 이름·공정·제조사 모두 미공개</div></div><div class="occ-r"><div class="k">채점일</div><div class="v">2027년 8월 말</div></div><div class="occ-r"><div class="k">맞음</div><div class="v"><span class="hit">2027년 8월까지 자체 칩이 실서비스에 투입됐다는 앤스로픽 공식 발표가 나온다</span></div></div><div class="occ-r"><div class="k">틀림</div><div class="v"><span class="miss">2027년 8월까지 그런 발표가 없다. 설계·시제품 단계에 머문다</span></div></div></section><section class="srcs"><h3>출처</h3><ol><li><a href="https://x.com/KobeissiLetter/status/2085002895678734635" rel="noopener nofollow" target="_blank"><b>원문</b> The Kobeissi Letter (@KobeissiLetter) · 2026-08-05</a></li><li><a href="https://techcrunch.com/2026/08/05/anthropic-is-hiring-an-ai-chip-design-team/" rel="noopener nofollow" target="_blank"><b>참고 기사</b> 테크크런치 · 앤스로픽이 AI 칩 설계팀을 채용한다 · 2026-08-05</a></li><li><a href="https://finance.biggo.com/news/13056eb1-c5d9-46eb-93f9-d522773cd4ec" rel="noopener nofollow" target="_blank"><b>참고 기사</b> 빅고 파이낸스 · 커스텀 칩 채용 공고의 연봉 32만~48만5,000달러 · 2026-08-05</a></li></ol><p class="srcs-a">2026-08-05 조회 · 연표의 2024년 11월 아마존 추가 투자와 2025년 10월 구글 TPU 도입 합의는 당시 보도 기준이다. 앤스로픽은 칩 이름과 제조 위탁처를 공개하지 않았다.</p></section><section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>57</b>글</span><span><b>25</b>방향성 콜</span><span class="bl"><b>12</b>강세</span><span class="be"><b>13</b>약세</span><span class="bl"><b>4</b>적중</span><span class="be"><b>3</b>빗나감</span></div><ul class="rec-l"><li><i class="be">약세</i><a href="kobeissi-chip-leveraged-etf-record-assets-decay.html">3배 레버리지 반도체 ETF가 본전에 오려면 지수는 170% 올라야 한다</a><time>08-03</time></li><li><i class="be">약세</i><a href="kobeissi-asia-private-credit-12y-low.html">아시아 기업에 직접 돈을 빌려주는 펀드가 12년 만에 가장 적게 모았다, 그 돈은 어디로 갔을까?</a><time>07-28</time></li><li><i class="be">약세</i><a href="kobeissi-margin-debt-net-credit-record.html">마진부채 1.5조달러 사상최대, 그런데 상당수는 AI 레버리지 ETF에 몰려 있다</a><time>07-25</time></li></ul><a class="rec-m" href="../r/kobeissi.html" data-app="?l=ko#record-The%20Kobeissi%20Letter%20%28%40KobeissiLetter%29">전체 기록 보기 →</a></section>
+  <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/kobeissi-anthropic-custom-silicon-multi-chip.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/kobeissi-anthropic-custom-silicon-multi-chip.html" hreflang="ja" lang="ja">日本語</a></nav>
+  <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/amazon.html">AMAZON</a><a class="ent-chip" href="../e/amd.html">AMD</a><a class="ent-chip" href="../e/anthropic.html">ANTHROPIC</a><a class="ent-chip" href="../e/broadcom.html">BROADCOM</a><a class="ent-chip" href="../e/google.html">GOOGLE</a><a class="ent-chip" href="../e/nvidia.html">NVIDIA</a><a class="ent-chip" href="../e/openai.html">OPENAI</a><a class="ent-chip" href="../e/the-kobeissi-letter-kobeissiletter.html">The Kobeissi Letter (@KobeissiLetter)</a><a class="ent-chip" href="../e/ai.html">가속기</a><a class="ent-chip" href="../e/leverage.html">레버리지</a><a class="ent-chip" href="../e/inference.html">인퍼런스</a><a class="ent-chip" href="../e/tape-out.html">테이프아웃</a></div></nav>
+  <nav class="related"><h3>관련 글</h3><ul><li><a href="kobeissi-anthropic-volta-bitdeer-tydal-term-gap.html">설립 7개월, 자기 돈 3억달러, 16년짜리 임대</a></li><li><a href="jensen-alpamayo2-super-open-weights-commercial-license.html">엔비디아가 자율주행 모델을 통째로 연 이유는 안전만이 아니다</a></li><li><a href="semianalysis-kimi-k3-linear-attention-kv-cache.html">키미 K3가 아낀 메모리는 실제 서버까지 그대로 오지 않는다</a></li></ul></nav>
+  <nav class="latest"><h3>최신 글</h3><ul><li><a href="hanke-ubs-gold-5200-target-below-january-high.html">UBS가 말한 금 5,200달러는 사상 최고가가 아니다</a><time>08-05</time></li><li><a href="jukan-solidigm-pre-ipo-50-trillion-tag.html">SK하이닉스가 88억달러에 사 온 사업에 지금 350억달러 값표가 붙었다</a><time>08-05</time></li><li><a href="jukan-samsung-5nm-pitch-sf5a-auto-line-squeeze.html">삼성이 지금 고객에게 앞세우는 공정은 최선단이 아니다</a><time>08-05</time></li><li><a href="meru-2026-property-tax-owner-occupancy-pivot.html">실거주냐 아니냐로 종부세 공제가 5억 원 갈린다</a><time>08-05</time></li><li><a href="serenity-rocketlab-sbamti-second-batch-neutron.html">3억9,700만달러, 아직 날지 않은 로켓, 석 달 먼저 주계약을 받은 스페이스X</a><time>08-05</time></li><li><a href="meru-yen-carry-unwind-trigger-cme-shorts.html">미국과 일본이 함께 엔을 사줬다, 시장이 겁내는 건 엔이 더 오르는 쪽이다</a><time>08-05</time></li><li><a href="kobeissi-stock-bond-correlation-negative-since-1999.html">금리가 오르면 주가가 떨어진다, 그런데 물가 기대는 가만히 있다</a><time>08-04</time></li><li><a href="schiff-bitcoin-sat-out-the-peace-rally.html">여드레, S&amp;P500 3.9%, 비트코인 0.2%</a><time>08-04</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
+  <footer>
+    요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
+    <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>
+  </footer>
+</div>
+</body>
+</html>
