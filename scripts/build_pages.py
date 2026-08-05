@@ -2693,13 +2693,20 @@ def main():
     # auto-publish session). Items that already carry ts are left untouched. ---
     def _stamp_ts(doc):
         changed = False
-        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-        now_iso = datetime.now(timezone.utc).isoformat()
+        now_dt = datetime.now(timezone.utc)
+        today = now_dt.strftime("%Y-%m-%d")
+        now_iso = now_dt.isoformat()
         for it in doc.get("items", []):
             if it.get("ts"):
                 continue
             dt = it.get("date") or today
-            it["ts"] = now_iso if dt == today else (dt + "T12:00:00+00:00")
+            candidate = now_iso if dt == today else (dt + "T12:00:00+00:00")
+            try:
+                if datetime.fromisoformat(candidate) > now_dt:
+                    candidate = now_iso
+            except Exception:
+                candidate = now_iso
+            it["ts"] = candidate
             changed = True
         return changed
     if _stamp_ts(d):
