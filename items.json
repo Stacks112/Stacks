@@ -2,6 +2,340 @@
  "items": [
   {
    "date": "2026-08-04",
+   "id": "jukan-cxmt-hp-asus-acer-adoption-not-price",
+   "related": [
+    "jukan-cxmt-lpddr6-duv-speed-ceiling",
+    "jukan-cxmt-second-beijing-fab-capacity-double",
+    "serenity-2027-memory-capacity-sold-out-allocation"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2084507923062096050",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#B91C1C",
+    "label": "CXMT IN LAPTOPS"
+   },
+   "tags": [
+    "MEMORY",
+    "CHINA",
+    "SUPPLY"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "HP와 에이수스, 에이서가 중국산 D램을 쓰기 시작했다, 값이 싸서가 아니다",
+    "en": "HP, Asus and Acer started buying Chinese DRAM, and not because it costs less",
+    "ja": "HP・ASUS・エイサーが中国製DRAMを使い始めた、安いからではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "NIKKEI: HP, ASUS AND ACER BEGIN USING CXMT CHIPS AMID MEMORY SHORTAGE",
+      "You would think CXMT's price is cheaper than the top three players, which is a wrong assumption."
+     ],
+     "ko": [
+      "니혼게이자이신문: HP·에이수스·에이서, 메모리 부족 속에 CXMT 칩을 쓰기 시작하다",
+      "CXMT 가격이 상위 3사보다 쌀 것이라고 생각하겠지만, 그것은 잘못된 가정이다."
+     ],
+     "ja": [
+      "日経: HP・ASUS・エイサー、メモリ不足のなかCXMTのチップを使い始める",
+      "CXMTの価格が上位3社より安いと思うだろうが、それは誤った前提だ。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "D램을 살 곳이 사실상 세 곳뿐이던 시장에 네 번째 이름이 처음 들어왔다.\n겉으로는 중국 업체가 값으로 파고든 것처럼 보이지만, 업계에서 나온 말은 CXMT의 D램이 삼성보다 싸지 않다는 것이다.\n채택을 좁히고 있는 것은 값도 품질도 아니라 미국의 규제선이고, 미국에서 파는 제품에는 아직 한 개도 들어가지 않았다.",
+    "en": "A market where PC makers could buy DRAM from only three companies now has a fourth name in it.\nOn the surface this looks like a Chinese supplier winning on price, but industry sources say CXMT's DRAM is no cheaper than Samsung's.\nWhat keeps the adoption narrow is neither price nor quality but the American regulatory line, and not one of these chips has gone into a machine sold in the United States.",
+    "ja": "DRAMを買える先が事実上三社しかなかった市場に、四つ目の名前が初めて入った。\n表面上は中国メーカーが価格で食い込んだように見えるが、業界から出てきた言葉はCXMTのDRAMがサムスンより安くはないというものだ。\n採用を狭めているのは価格でも品質でもなく米国の規制線であり、米国で売る製品にはまだ一つも入っていない。"
+   },
+   "gist": {
+    "ko": "HP와 에이수스, 에이서가 노트북에 중국 CXMT의 D램을 넣기 시작했다.\n값이 싸서가 아니라 살 물건이 없어서다.\n\n@@REF@@세계 3대 PC 업체가 중국산 메모리를 쓰기 시작했다 (Tom's Hardware, 2026-08-04)|https://www.tomshardware.com/tech-industry/three-major-pc-makers-now-using-chinese-memory-to-fight-unprecedented-memory-shortage-report-claims-hp-asus-and-acer-using-small-amounts-of-cxmt-chips-in-limited-number-of-notebooks-for-non-us-market|https://cdn.mos.cms.futurecdn.net/2eA5L64mkxS8pA9DVYgMcD-2000-80.jpg\n\n노트북 안에서 프로그램을 열어 두는 동안 그 내용을 잠깐 담아 두는 반도체가 D램이다.\n이 물건은 그동안 사실상 세 회사에서만 나왔다.\n삼성전자와 SK하이닉스, 마이크론이다.\nPC를 만드는 쪽에서 보면 이 셋 말고는 살 데가 없었고, 값이 오르면 오르는 대로 받아 왔다.\n이번에 벌어진 일은 그 구도에 네 번째 이름이 처음 끼어든 것이다.\n\n@@IMG@@dram-module|노트북과 서버에 꽂히는 D램. 지금은 이 물건을 구하지 못해 만들던 제품의 사양을 바꾸는 일이 벌어지고 있다.\n\n## 미국에 파는 노트북에는 들어가지 않는다\n\n들어간 물량은 소량이고, 들어간 제품은 미국 밖에서 파는 일부 저가 노트북뿐이다.\n\n톰스하드웨어는 미국 국방부가 CXMT를 중국군과 연계된 기업 목록에 올려 두었고,\n미국 의회에서 이 회사를 아예 수출통제 명단에 넣자는 움직임이 있다고 전했다.\n회사는 군과의 관계를 부인하고 있고 아직 공식 제재 명단에 오르지는 않았다.\n그래도 지금 미국에 파는 제품에 넣으면 나중에 그 제품을 도로 거둬들여야 할 수 있다.\n\n## 90%를 쥔 쪽의 눈치\n\nPC 업체가 조심하는 상대는 미국 정부만이 아니다.\n\n벤징가가 인용한 업계 관계자의 말이 이 사건의 온도를 그대로 보여준다.\n상위 세 곳이 세계 시장의 90% 넘게 쥐고 있고 지금은 파는 쪽이 값을 정하는 장이니, CXMT에서 너무 많이 들여올 엄두를 내지 못한다는 것이다.\n물량을 나눠 주는 쪽의 심기를 건드리면 내년에 받을 몫이 줄어든다.\n\n@@REF@@세 곳의 눈치를 보며 CXMT 칩을 조용히 받아들이는 PC 업체들 (Benzinga, 2026-08-04)|https://www.benzinga.com/markets/tech/26/08/60901057/hp-asus-acer-quietly-embrace-limited-cxmt-chips-amid-tight-dram-supply-as-they-fear-upsetting-memory-giants-report|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/08/04/Futuristic-Ai-Microchip-Processor-With-G.jpg\n\n싸지 않다는 말이 여기서 무게를 얻는다.\n후발 주자가 값을 깎지 않는다는 것은 깎을 이유가 없다는 뜻이다.\n물건이 모자란 장에서는 뒤늦게 들어온 쪽도 줄 서 있는 손님을 고르면 된다.\nCXMT가 자국의 화웨이 같은 고객을 먼저 챙기고 있다는 대목도 같은 이야기다.\n\n## 상장에서 노트북까지 여드레\n\n@@TIME@@2026-07-27|상하이 커촹반에 상장해 첫날 466% 올랐다|2026-08-03|베이징에 두 번째 D램 공장을 검토 중이라고 로이터가 전했다|2026-08-04|HP·에이수스·에이서의 일부 노트북에 이 회사 D램이 들어간 것이 확인됐다|>2026-12|LPDDR6를 소량 생산하겠다는 계획이 블룸버그를 통해 전해졌다@@여드레 사이에 자금 조달과 증설과 서방 고객이 차례로 붙었다. 이 회사에 지금 모자란 것은 돈도 주문도 아니다.@@원문 게시물 · 로이터(2026-08-03) · 블룸버그(2026-08-04) 인용 보도\n\n## 연말 LPDDR6가 가리는 것\n\nCXMT가 연말까지 내놓겠다고 한 LPDDR6는 스마트폰과 얇은 노트북에 들어가는 최신 규격이다.\n저가 노트북 몇 종에 옛 규격을 채워 넣는 것과, 최신 규격을 서방 브랜드에 파는 것은 다른 이야기다.\n\n앞의 것이라면 이번 채택은 값이 정상으로 돌아올 때까지의 임시방편이다.\n뒤의 것이라면 D램을 사는 쪽은 처음으로 네 번째 견적서를 손에 쥐게 된다.\n\n그때도 미국에서 파는 제품에는 여전히 들어가지 못할 가능성이 높다.\n이 시장에서 공급자가 늘어나는 일과 값이 내려가는 일은 지금 서로 다른 문제다.",
+    "en": "HP, Asus and Acer have started putting DRAM from China's CXMT into their laptops.\nNot because it is cheap, but because there is nothing else left to buy.\n\n@@REF@@Three of the world's largest PC makers begin using Chinese memory (Tom's Hardware, 2026-08-04)|https://www.tomshardware.com/tech-industry/three-major-pc-makers-now-using-chinese-memory-to-fight-unprecedented-memory-shortage-report-claims-hp-asus-and-acer-using-small-amounts-of-cxmt-chips-in-limited-number-of-notebooks-for-non-us-market|https://cdn.mos.cms.futurecdn.net/2eA5L64mkxS8pA9DVYgMcD-2000-80.jpg\n\nDRAM is the chip that holds whatever a program is working on while the machine is switched on.\nUntil now it came from three companies and effectively no one else.\nSamsung, SK hynix and Micron.\nFor anyone building a PC there was nowhere else to shop, so when prices rose the bill was simply paid.\nWhat happened this week is that a fourth name entered that arrangement for the first time.\n\n@@IMG@@dram-module|The DRAM sticks that go into laptops and servers. Right now the shortage of this part is forcing makers to change the specification of machines already on the drawing board.\n\n## Nothing ships to the United States\n\nThe volumes are small and the machines are budget notebooks sold outside the United States.\n\nTom's Hardware reports that the Pentagon lists CXMT among companies tied to the Chinese military,\nand that lawmakers have been pushing to place the firm on the export blacklist outright.\nThe company denies any military link and is not formally blacklisted yet.\nEven so, putting these chips into a machine sold in America today could mean pulling that machine back tomorrow.\n\n## Watching the holders of 90 percent\n\nWashington is not the only party these PC makers are being careful with.\n\nA source quoted by Benzinga gives the temperature of the thing.\nThe top three memory makers hold more than 90 percent of the global market, it is a seller's market, and so nobody dares source too much from CXMT right now.\nAnnoy the party that hands out allocations and next year's share gets smaller.\n\n@@REF@@PC makers quietly take CXMT chips while fearing the memory giants (Benzinga, 2026-08-04)|https://www.benzinga.com/markets/tech/26/08/60901057/hp-asus-acer-quietly-embrace-limited-cxmt-chips-amid-tight-dram-supply-as-they-fear-upsetting-memory-giants-report|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/08/04/Futuristic-Ai-Microchip-Processor-With-G.jpg\n\nThat is where the line about price carries its weight.\nA latecomer who does not undercut is a latecomer who has no reason to.\nIn a market this short, even the newest supplier gets to pick among buyers already queueing.\nThe same logic sits behind reports that CXMT serves domestic customers such as Huawei first.\n\n## Eight days from listing to laptops\n\n@@TIME@@2026-07-27|Listed on Shanghai's STAR Market and rose 466 percent on day one|2026-08-03|Reuters reported the company is weighing a second DRAM fab in Beijing|2026-08-04|Its DRAM was confirmed inside selected HP, Asus and Acer notebooks|>2026-12|A plan to produce LPDDR6 in small volumes was reported by Bloomberg@@Funding, expansion and a Western customer arrived within eight days of each other. What this company is short of right now is neither money nor orders.@@Original post · Reuters (2026-08-03) · reporting citing Bloomberg (2026-08-04)\n\n## What LPDDR6 decides in December\n\nThe LPDDR6 that CXMT says it will produce by year end is the current standard for phones and thin laptops.\nFilling a few budget notebooks with an older standard is one thing. Selling the newest standard to Western brands is another.\n\nIf it stays the first, this adoption is a stopgap that lasts until prices come back down.\nIf it becomes the second, buyers of DRAM will hold a fourth quotation for the first time in the history of this market.\n\nEven then those chips will most likely still be missing from anything sold in America.\nIn this market, gaining a supplier and getting a lower price are, for now, two separate questions.",
+    "ja": "HP・ASUS・エイサーが、中国CXMTのDRAMをノートPCに載せ始めた。\n安いからではなく、買える物がないからだ。\n\n@@REF@@世界大手3社のPCメーカーが中国製メモリを使い始めた (Tom's Hardware, 2026-08-04)|https://www.tomshardware.com/tech-industry/three-major-pc-makers-now-using-chinese-memory-to-fight-unprecedented-memory-shortage-report-claims-hp-asus-and-acer-using-small-amounts-of-cxmt-chips-in-limited-number-of-notebooks-for-non-us-market|https://cdn.mos.cms.futurecdn.net/2eA5L64mkxS8pA9DVYgMcD-2000-80.jpg\n\nパソコンが動いている間、開いているプログラムの中身を一時的に置いておく半導体がDRAMだ。\nこの部品はこれまで事実上三社からしか出てこなかった。\nサムスン電子とSKハイニックス、マイクロンである。\nPCを作る側から見れば他に買う先がなく、値が上がればそのまま払ってきた。\n今回起きたのは、その構図に四つ目の名前が初めて入り込んだことだ。\n\n@@IMG@@dram-module|ノートPCやサーバーに挿さるDRAM。いまはこの部品が手に入らず、設計中の製品の仕様を変える事態が起きている。\n\n## 米国で売るノートPCには入らない\n\n入った量は少なく、入った製品は米国外で売る一部の低価格ノートPCだけだ。\n\nTom's Hardwareは、米国防総省がCXMTを中国軍と関係のある企業の一覧に載せており、\n米議会にはこの会社を輸出規制リストに入れようという動きがあると伝えた。\n会社は軍との関係を否定しており、正式な制裁リストにはまだ載っていない。\nそれでも、いま米国で売る製品に入れれば、後でその製品を回収することになりかねない。\n\n## 90%を握る側の顔色\n\nPCメーカーが気を遣う相手は米政府だけではない。\n\nBenzingaが引いた業界関係者の言葉が、この件の温度をそのまま示している。\n上位三社が世界市場の90%超を握り、いまは売る側が値を決める相場なので、CXMTから多くを仕入れる度胸はない、というものだ。\n割当を配る側の機嫌を損ねれば、来年もらう分が減る。\n\n@@REF@@メモリ大手の顔色をうかがいながらCXMTのチップを静かに受け入れるPCメーカー (Benzinga, 2026-08-04)|https://www.benzinga.com/markets/tech/26/08/60901057/hp-asus-acer-quietly-embrace-limited-cxmt-chips-amid-tight-dram-supply-as-they-fear-upsetting-memory-giants-report|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/08/04/Futuristic-Ai-Microchip-Processor-With-G.jpg\n\n安くないという言葉がここで重みを持つ。\n後発が値を下げないのは、下げる理由がないということだ。\n物が足りない相場では、遅れて入った側でも並んでいる客を選べる。\nCXMTが自国のファーウェイのような顧客を先に押さえているという話も同じ筋である。\n\n## 上場からノートPCまで八日\n\n@@TIME@@2026-07-27|上海の科創板に上場し初日に466%上げた|2026-08-03|北京に二つ目のDRAM工場を検討中とロイターが伝えた|2026-08-04|HP・ASUS・エイサーの一部ノートPCにこの会社のDRAMが入っていることが確認された|>2026-12|LPDDR6を少量生産する計画がブルームバーグ経由で伝えられた@@八日の間に資金調達と増設と西側の顧客が順に付いた。この会社にいま足りないのは金でも注文でもない。@@原文の投稿 · ロイター(2026-08-03) · ブルームバーグを引いた報道(2026-08-04)\n\n## 年末のLPDDR6が分けるもの\n\nCXMTが年末までに出すとしたLPDDR6は、スマートフォンや薄型ノートPCに入る最新の規格だ。\n低価格ノートPC数機種に古い規格を詰めることと、最新の規格を西側ブランドに売ることは別の話である。\n\n前者にとどまるなら、今回の採用は値が正常に戻るまでの間に合わせだ。\n後者になれば、DRAMを買う側はこの市場で初めて四枚目の見積書を手にする。\n\nそのときも米国で売る製品には入れないままである可能性が高い。\nこの市場では供給者が増えることと値が下がることが、いまのところ別の問題だ。"
+   },
+   "why": {
+    "ko": "메모리 값이 오르는 국면에서 사람들은 대체 공급자가 나타나면 값이 내려간다고 기대한다. 이번 채택은 그 기대가 왜 어긋나는지를 보여준다. 새 공급자가 들어왔는데 값을 깎지 않고, 들어갈 수 있는 시장은 규제선 밖으로 한정된다. 공급자 수와 가격이 따로 움직이는 구간에서는 부족이 얼마나 심한지가 두 가지 모두를 정한다.",
+    "en": "When memory prices run, the reflex is to assume that a new supplier will bring them down. This adoption shows why that reflex misfires. A fourth supplier arrives, declines to undercut, and can only sell where the regulatory line permits. In a stretch like this the depth of the shortage, not the number of suppliers, sets both the price and the map.",
+    "ja": "メモリの値が上がる局面では、代わりの供給者が現れれば値が下がると期待されがちだ。今回の採用はその期待がなぜ外れるかを示している。新しい供給者が入っても値を下げず、売れる先は規制線の外側に限られる。供給者の数と価格が別に動く区間では、不足の深さが両方を決める。"
+   },
+   "ask": {
+    "ko": "메모리 부족이 만든 이번 중국산 채택은 값이 정상으로 돌아오면 사라질 임시방편일까, 아니면 D램을 사는 쪽이 처음으로 네 번째 견적서를 손에 쥐는 구조 변화의 시작일까?",
+    "en": "Is this shortage-driven turn to Chinese DRAM a stopgap that disappears once prices normalize, or the start of a structural change in which buyers finally hold a fourth quotation?",
+    "ja": "メモリ不足が生んだ今回の中国製採用は、値が正常に戻れば消える間に合わせだろうか、それともDRAMを買う側が初めて四枚目の見積書を持つ構造変化の始まりだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2027-02-28",
+    "note": {
+     "ko": "CXMT의 LPDDR6 소량 생산이 2026년 말까지 시작되는지, 서방 PC 업체의 채택이 미국 밖 저가 노트북 밖으로 넓어지는지를 2027년 2월에 채점한다.",
+     "en": "Score in February 2027 on whether CXMT started small-volume LPDDR6 production by the end of 2026 and whether Western PC makers widened adoption beyond budget notebooks sold outside the United States.",
+     "ja": "CXMTのLPDDR6少量生産が2026年末までに始まるか、西側PCメーカーの採用が米国外の低価格ノートPCの外へ広がるかを2027年2月に採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "CXMT의 LPDDR6 생산 개시와 서방 PC 업체 채택 범위",
+      "en": "CXMT's start of LPDDR6 production and the breadth of Western PC adoption",
+      "ja": "CXMTのLPDDR6生産開始と西側PCメーカーの採用範囲"
+     },
+     "now": {
+      "ko": "2026년 8월 현재 미국 밖 일부 저가 노트북에 소량. LPDDR6는 아직 생산 전",
+      "en": "As of August 2026, small volumes in selected budget notebooks outside the US. LPDDR6 not yet in production",
+      "ja": "2026年8月時点で米国外の一部低価格ノートPCに少量。LPDDR6は未生産"
+     },
+     "when": {
+      "ko": "2027년 2월 (연말 생산 계획과 그 뒤 두 달의 채택 상황)",
+      "en": "February 2027 (the year-end production plan and two months of adoption after it)",
+      "ja": "2027年2月（年末の生産計画とその後2か月の採用状況）"
+     },
+     "hit": {
+      "ko": "2026년 말까지 LPDDR6 소량 생산이 시작되고, 2027년 2월까지 채택이 저가 노트북 밖으로 넓어진다",
+      "en": "Small-volume LPDDR6 production starts by end-2026 and adoption widens beyond budget notebooks by February 2027",
+      "ja": "2026年末までにLPDDR6の少量生産が始まり、2027年2月までに採用が低価格ノートPCの外へ広がる"
+     },
+     "miss": {
+      "ko": "2026년 말까지 LPDDR6 생산이 시작되지 않거나, 2027년 2월까지 채택이 지금의 저가 노트북 소량에 머문다",
+      "en": "LPDDR6 production has not started by end-2026, or adoption is still limited to small volumes in budget notebooks in February 2027",
+      "ja": "2026年末までにLPDDR6の生産が始まらないか、2027年2月時点で採用が低価格ノートPCの少量にとどまる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 니혼게이자이신문 보도 인용과 CXMT 가격에 대한 업계 발언 · 2026-08-04",
+      "en": "Jukan (@jukan05) · citing the Nikkei report and an industry remark on CXMT pricing · 2026-08-04",
+      "ja": "Jukan(@jukan05) · 日経報道の引用とCXMTの価格に関する業界発言 · 2026-08-04"
+     },
+     "url": "https://x.com/jukan05/status/2084507923062096050"
+    },
+    {
+     "name": {
+      "ko": "톰스하드웨어",
+      "en": "Tom's Hardware",
+      "ja": "Tom's Hardware"
+     },
+     "desc": {
+      "ko": "채택 규모와 미국 밖 시장 한정, 국방부 목록과 수출통제 논의 (2026-08-04)",
+      "en": "Scale of adoption, the non-US limitation, the Pentagon list and blacklist push (2026-08-04)",
+      "ja": "採用規模と米国外市場への限定、国防総省の一覧と輸出規制の動き（2026-08-04）"
+     },
+     "url": "https://www.tomshardware.com/tech-industry/three-major-pc-makers-now-using-chinese-memory-to-fight-unprecedented-memory-shortage-report-claims-hp-asus-and-acer-using-small-amounts-of-cxmt-chips-in-limited-number-of-notebooks-for-non-us-market"
+    },
+    {
+     "name": {
+      "ko": "벤징가",
+      "en": "Benzinga",
+      "ja": "Benzinga"
+     },
+     "desc": {
+      "ko": "상위 3사 90% 점유와 물량 배정을 의식한 업계 관계자 발언, 화웨이 우선 공급 (2026-08-04)",
+      "en": "The 90 percent share of the top three, the allocation-driven caution quoted from a source, and priority supply to Huawei (2026-08-04)",
+      "ja": "上位三社の90%シェアと割当を意識した業界関係者の発言、ファーウェイ優先供給（2026-08-04）"
+     },
+     "url": "https://www.benzinga.com/markets/tech/26/08/60901057/hp-asus-acer-quietly-embrace-limited-cxmt-chips-amid-tight-dram-supply-as-they-fear-upsetting-memory-giants-report"
+    },
+    {
+     "name": {
+      "ko": "로이터 (인용 보도)",
+      "en": "Reuters (via reporting)",
+      "ja": "ロイター（引用報道）"
+     },
+     "desc": {
+      "ko": "베이징 두 번째 D램 공장 검토 (2026-08-03, 기존 카드에서 확인한 내용)",
+      "en": "Report that CXMT is weighing a second DRAM fab in Beijing (2026-08-03, as covered in an earlier card)",
+      "ja": "北京の二つ目のDRAM工場を検討との報道（2026-08-03、既存カードで確認）"
+     },
+     "url": ""
+    },
+    {
+     "name": {
+      "ko": "블룸버그 (인용 보도)",
+      "en": "Bloomberg (via reporting)",
+      "ja": "ブルームバーグ（引用報道）"
+     },
+     "desc": {
+      "ko": "연말까지 LPDDR6 소량 생산 준비 (2026-08-04, 원문 게시물이 전한 헤드라인)",
+      "en": "CXMT preparing to produce LPDDR6 in small quantities by year end (2026-08-04, headline relayed by the original post)",
+      "ja": "年末までにLPDDR6を少量生産する準備（2026-08-04、原文の投稿が伝えた見出し）"
+     },
+     "url": ""
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-04 조회 · 채택 규모와 시장 범위는 니혼게이자이신문 보도를 인용한 2차 보도 기준이며, 세 회사 가운데 문의에 답한 곳은 에이서뿐이다.",
+    "en": "Checked 2026-08-04 · the scale and geography of adoption come from second-hand reporting of the Nikkei story, and Acer was the only one of the three companies to answer a press query.",
+    "ja": "2026-08-04 調査 · 採用規模と市場範囲は日経報道を引用した二次報道に基づき、三社のうち問い合わせに答えたのはエイサーのみである。"
+   },
+   "ts": "2026-08-04T21:56:26.773936+00:00"
+  },
+  {
+   "date": "2026-08-04",
+   "id": "kobeissi-spacex-nvidia-starmind-power-before-compute",
+   "related": [
+    "kobeissi-anthropic-volta-bitdeer-tydal-term-gap",
+    "jensen-alpamayo2-super-open-weights-commercial-license",
+    "jukan-rubin-ultra-hbm-despec-supply-side"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2084727346968363234",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#020617",
+    "to": "#1D4ED8",
+    "label": "ORBITAL COMPUTE"
+   },
+   "tags": [
+    "SPACE",
+    "AI",
+    "CAPEX"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "250킬로와트, 라디에이터 110제곱미터, 자본지출 184억달러",
+    "en": "250 kilowatts, 110 square meters of radiator, $18.4 billion of capex",
+    "ja": "250キロワット、110平方メートルのラジエーター、184億ドルの設備投資"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "BREAKING: SpaceX, $SPCX, announces a new partnership with Nvidia, $NVDA, to design its Starmind AI-1 payload, bringing data center-class compute into orbit.",
+      "The partnership will use Nvidia's Rubin GPUs and Vera CPUs, while increasing SpaceX's peak satellite computing capacity to 250 kW."
+     ],
+     "ko": [
+      "속보: 스페이스X($SPCX)가 엔비디아($NVDA)와 새 협력을 발표했다. 데이터센터급 연산을 궤도로 올리는 스타마인드 AI-1 페이로드를 함께 설계한다.",
+      "이번 협력에는 엔비디아의 루빈 GPU와 베라 CPU가 쓰이며, 스페이스X 위성의 최대 연산 전력은 250킬로와트로 올라간다."
+     ],
+     "ja": [
+      "速報: スペースX（$SPCX）がエヌビディア（$NVDA）との新たな提携を発表した。データセンター級の演算を軌道へ運ぶスターマインドAI-1ペイロードを共同で設計する。",
+      "この提携ではエヌビディアのRubin GPUとVera CPUが使われ、スペースX衛星のピーク演算電力は250キロワットに引き上げられる。"
+     ]
+    },
+    "cite": "The Kobeissi Letter · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "스페이스X와 엔비디아가 궤도에서 인공지능 연산을 돌릴 위성의 속을 함께 설계하기로 했다.\n발표에서 앞자리에 나온 숫자는 연산 성능이 아니라 위성 한 기가 쓸 최대 전력이었다.\n그 값은 석 주 만에 67% 올랐고, 같은 날 나온 첫 분기 실적에서 자본지출은 매출의 두 배를 넘었다.",
+    "en": "SpaceX and Nvidia will jointly design the insides of a satellite meant to run AI workloads in orbit.\nThe number the announcement led with was not compute performance but the peak power a single satellite may draw.\nThat figure rose 67 percent in three weeks, and in the company's first quarterly report, published the same day, capital spending came in at more than twice revenue.",
+    "ja": "スペースXとエヌビディアが、軌道上でAIの計算を回す衛星の中身を共同で設計することになった。\n発表で先に出た数字は演算性能ではなく、衛星一基が使える最大電力だった。\nその値は三週間で67%上がり、同じ日に出た初の四半期決算では設備投資が売上高の二倍を超えた。"
+   },
+   "gist": {
+    "ko": "스페이스X가 엔비디아와 함께 인공위성에 실을 연산 장치를 설계하기로 했다.\n위성 이름은 스타마인드 AI1이고, 안에 들어가는 것은 엔비디아의 루빈 GPU와 베라 CPU다.\n\n발표에서 맨 앞에 나온 숫자는 성능이 아니었다.\n위성 한 기가 끌어 쓸 수 있는 최대 전력, 250킬로와트였다.\n\n## 석 주 전 같은 위성의 최대치는 150킬로와트였다\n\n노트북체크가 7월 11일에 정리한 이 위성의 사양에서 전력은 평균 120킬로와트, 최대 150킬로와트였다.\n석 주 만에 최대치가 67% 올라간 것이다.\n\n@@REF@@스페이스X가 공개한 AI1 위성의 냉각 사양 (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html\n\n숫자가 오른 이유는 안에 들어갈 물건이 정해졌기 때문이다.\n엔비디아가 루빈 세대에서 파는 랙은 GPU 72장을 한 덩어리로 묶은 물건이다.\n그 한 덩어리를 궤도에서 돌리겠다고 정한 순간, 위성이 준비해야 할 전력도 거기에 맞춰졌다.\n연산을 먼저 정하고 전력을 나중에 맞추는 것이 아니라, 전력이 실을 수 있는 만큼만 연산이 올라간다.\n\n@@IMG@@gpu-board|위성에 들어갈 루빈 세대의 GPU. 지상 데이터센터에서 쓰는 것과 같은 계열이고, 그래서 먹는 전기도 같은 계열이다.\n\n## 우주에서 어려운 것은 계산이 아니라 열\n\n지상 데이터센터는 공기나 물로 열을 옮겨 밖에 버린다.\n진공에는 옮겨 줄 공기가 없어서, 열을 버리는 길은 빛으로 내보내는 것 하나뿐이다.\n\n그래서 이 위성에는 액체를 돌려 열을 넓게 펴는 라디에이터가 110제곱미터 붙는다.\n전기를 만들 태양전지판까지 더하면 날개폭이 70미터, 높이가 20미터가 된다.\n쉽게 말해 선풍기를 돌릴 공기 자체가 없는 방에서 서버를 켜 두는 일이라, 열을 내보낼 판을 몸집만큼 크게 달아야 한다.\n\n위성 한 기가 감당하는 연산은 이 몸집을 다 쓰고도 지상 서버 랙 한 대 수준이다.\n스페이스X가 미국 연방통신위원회에 낸 신청서에 최대 100만 기라는 숫자가 적혀 있는 이유가 여기에 있다.\n\n## 발표와 같은 날 나온 첫 실적\n\n@@BAR@@2026년 2분기 매출|78억달러|78|2026년 2분기 자본지출|184억달러|184@@궤도에 연산을 올리는 일은 아직 버는 단계가 아니라 까는 단계다. 발표가 하나 늘 때마다 이 간격은 먼저 벌어진다.@@야후파이낸스(2026-08-04) · 스페이스X 2026년 2분기 실적\n\n상장 후 처음 내놓은 실적에서 매출은 시장 예상을 웃돌았는데 주가는 밀렸다.\n인공지능 부문 자본지출이 1분기 77억달러에서 158억달러로 한 분기 만에 두 배가 됐기 때문이다.\n\n@@REF@@스페이스X 2분기 실적은 예상을 웃돌았지만 AI 자본지출에 주가가 밀렸다 (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html\n\n이 회사가 지금 파는 것은 발사와 통신이고, 사는 것은 궤도 데이터센터다.\n발표가 나올 때마다 시장이 주가를 깎는 이유는 사업이 나빠서가 아니라 그 간격이 언제 좁혀지는지가 아직 안 보이기 때문이다.\n\n## 2027년 초 시제 위성이 가리는 것\n\n스페이스X는 시제 위성을 2027년 초에, 양산을 그해 후반에 잡고 있다.\n\n시제기가 올라가 궤도에서 실제로 추론 작업을 돌리면, 전력과 열이라는 두 벽은 적어도 한 기 규모에서는 넘어선 것이다.\n발사가 밀리거나 전력과 냉각 사양이 다시 내려가면, 벽은 칩이 아니라 그 두 가지에 그대로 남아 있다.\n\n궤도에 데이터센터를 올린다는 말은 전기와 열을 다루는 문제를 지구 밖으로 옮긴다는 말이다.\n옮긴 곳에서 그 문제가 더 쉬워지는지는 아직 아무도 보여주지 않았다.",
+    "en": "SpaceX will design the computing payload of a satellite together with Nvidia.\nThe satellite is called Starmind AI1, and what goes inside it are Nvidia's Rubin GPUs and Vera CPUs.\n\nThe number the announcement led with was not performance.\nIt was 250 kilowatts, the peak power a single satellite may draw.\n\n## Three weeks ago the same satellite peaked at 150 kilowatts\n\nIn the specification Notebookcheck compiled on July 11, power was listed as 120 kilowatts on average and 150 kilowatts at peak.\nThe peak went up 67 percent in three weeks.\n\n@@REF@@SpaceX lists cooling specs for the AI1 satellite (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html\n\nThe figure moved because the hardware got decided.\nThe rack Nvidia sells in the Rubin generation binds 72 GPUs into a single unit.\nThe moment that unit was chosen for orbit, the power budget of the satellite had to be sized to it.\nCompute is not settled first with power fitted afterwards. Only as much compute goes up as the power can carry.\n\n@@IMG@@gpu-board|A Rubin-generation GPU of the kind headed for orbit. It is the same family used in ground data centers, which means it eats electricity like one.\n\n## In orbit the hard part is heat, not arithmetic\n\nA data center on the ground moves heat into air or water and dumps it outside.\nA vacuum has no air to move it into, so the only way out is to radiate the heat away as light.\n\nThat is why the satellite carries 110 square meters of liquid radiator to spread the heat thin.\nAdd the solar arrays that make the electricity and the thing ends up 70 meters across and 20 meters tall.\nPut simply, it is running a server in a room with no air to blow, so the panel that throws heat away has to be as large as the machine itself.\n\nFor all that bulk, one satellite carries roughly the compute of a single server rack on the ground.\nThat is why the number in the company's filing to the Federal Communications Commission runs to as many as one million units.\n\n## The first earnings report, published the same day\n\n@@BAR@@Q2 2026 revenue|$7.8bn|78|Q2 2026 capital spending|$18.4bn|184@@Putting compute into orbit is still a laying-out phase, not an earning phase. Each new announcement widens this gap before it narrows it.@@Yahoo Finance (2026-08-04) · SpaceX Q2 2026 results\n\nIn the first results the company has published as a listed firm, revenue beat expectations and the stock fell anyway.\nCapital spending in the AI segment doubled in a single quarter, from $7.7 billion to $15.8 billion.\n\n@@REF@@SpaceX's Q2 results top estimates but the stock drops on AI capex (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html\n\nWhat this company sells today is launch and connectivity. What it is buying is a data center in orbit.\nThe market marks the stock down on each announcement not because the business is deteriorating but because nobody can yet see when that gap closes.\n\n## What the prototype decides in early 2027\n\nSpaceX has the prototype satellite set for early 2027 and volume production for later that year.\n\nIf the prototype reaches orbit and actually runs inference there, then power and heat, the two walls, have been cleared at least at the scale of one unit.\nIf the launch slips or the power and cooling specs come back down, the walls are still exactly where they were, and they were never the chips.\n\nPutting a data center in orbit means moving the problem of electricity and heat off the planet.\nWhether the problem gets easier once it has been moved is something nobody has shown yet.",
+    "ja": "スペースXがエヌビディアと組み、人工衛星に載せる演算装置を設計することになった。\n衛星の名はスターマインドAI1で、中に入るのはエヌビディアのRubin GPUとVera CPUだ。\n\n発表で最初に出た数字は性能ではなかった。\n衛星一基が引き出せる最大電力、250キロワットである。\n\n## 三週間前、同じ衛星のピークは150キロワットだった\n\nNotebookcheckが7月11日にまとめたこの衛星の仕様では、電力は平均120キロワット、最大150キロワットだった。\n三週間でピークが67%上がったことになる。\n\n@@REF@@スペースXが公開したAI1衛星の冷却仕様 (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html\n\n数字が上がったのは、中に入れる物が決まったからだ。\nエヌビディアがRubin世代で売るラックは、GPUを72枚ひとかたまりにまとめた物だ。\nその一かたまりを軌道で回すと決めた時点で、衛星が用意すべき電力もそこに合わせられた。\n演算を先に決めて電力を後から合わせるのではなく、電力が運べる分だけ演算が上がる。\n\n@@IMG@@gpu-board|軌道へ向かうRubin世代のGPU。地上のデータセンターで使うものと同じ系列であり、食う電気も同じ系列だ。\n\n## 軌道で難しいのは計算ではなく熱だ\n\n地上のデータセンターは空気や水に熱を移して外に捨てる。\n真空には移す先の空気がないので、熱を捨てる道は光として放つことだけになる。\n\nそのためこの衛星には、液体を回して熱を薄く広げるラジエーターが110平方メートル付く。\n電気を作る太陽電池パネルまで加えると、翼幅70メートル、高さ20メートルになる。\n平たく言えば、扇ぐ空気そのものがない部屋でサーバーを動かす話であり、熱を逃がす板を機体と同じ大きさで持たねばならない。\n\nその図体を使い切って、衛星一基が担う演算は地上のサーバーラック一台ほどだ。\nスペースXが米連邦通信委員会に出した申請書に最大100万基という数字が並ぶ理由がここにある。\n\n## 発表と同じ日に出た初の決算\n\n@@BAR@@2026年4-6月期 売上高|78億ドル|78|2026年4-6月期 設備投資|184億ドル|184@@軌道に演算を上げる仕事は、まだ稼ぐ段階ではなく敷く段階だ。発表が一つ増えるたび、この差は先に開く。@@Yahoo Finance（2026-08-04）· スペースX 2026年4-6月期決算\n\n上場後はじめて出した決算では、売上高は市場予想を上回ったのに株価は下げた。\nAI部門の設備投資が1-3月期の77億ドルから158億ドルへ、一四半期で二倍になったからだ。\n\n@@REF@@スペースXの4-6月期は予想を上回ったが、AI設備投資で株価は下げた (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html\n\nこの会社がいま売っているのは打ち上げと通信で、買っているのは軌道上のデータセンターだ。\n発表のたびに市場が株価を削るのは事業が悪いからではなく、その差がいつ縮むのかがまだ見えないからである。\n\n## 2027年初めの試験機が分けるもの\n\nスペースXは試験衛星を2027年初め、量産をその年の後半に置いている。\n\n試験機が軌道に上がって実際に推論を回せば、電力と熱という二つの壁は少なくとも一基の規模では越えたことになる。\n打ち上げがずれるか、電力と冷却の仕様が再び下がれば、壁はチップではなくその二つのまま残っている。\n\n軌道にデータセンターを上げるとは、電気と熱の問題を地球の外へ移すということだ。\n移した先でその問題が楽になるかどうかは、まだ誰も見せていない。"
+   },
+   "why": {
+    "ko": "궤도 데이터센터 이야기는 대개 어떤 칩이 올라가느냐로 소비된다. 이번 발표에서 실제로 움직인 숫자는 칩이 아니라 전력과 냉각이었고, 그 둘을 올리는 값이 같은 날 실적에 자본지출로 찍혔다. 어떤 회사가 궤도 연산을 진짜로 하고 있는지는 발표한 칩 이름이 아니라 위성 한 기가 감당하는 전력과 열, 그리고 그것을 대는 현금흐름으로 갈린다.",
+    "en": "Talk of data centers in orbit usually gets consumed as a question of which chip goes up. In this announcement the number that actually moved was not the chip but the power and the cooling, and the cost of raising both showed up the same day as capital spending. Who is really doing orbital compute will be settled by the power and heat a single satellite can carry, and by the cash flow paying for it, rather than by the name of the chip in the press release.",
+    "ja": "軌道上のデータセンターの話は、たいていどのチップが上がるかとして消費される。今回の発表で実際に動いた数字はチップではなく電力と冷却であり、その二つを上げる費用が同じ日の決算に設備投資として出た。どの会社が本当に軌道演算をしているかは、発表されたチップの名前ではなく、衛星一基が担える電力と熱、そしてそれを賄う資金の流れで分かれる。"
+   },
+   "ask": {
+    "ko": "궤도에 연산을 올리는 것은 지상에서 부딪힌 전력과 냉각의 한계를 넘는 길일까, 아니면 같은 한계를 훨씬 비싼 곳으로 옮겨 놓는 일일까?",
+    "en": "Is moving compute into orbit a way past the power and cooling limits hit on the ground, or is it the same limit relocated to a far more expensive place?",
+    "ja": "演算を軌道へ上げることは、地上でぶつかった電力と冷却の限界を越える道だろうか、それとも同じ限界をはるかに高くつく場所へ移すことだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2027-06-30",
+    "note": {
+     "ko": "스타마인드 AI1 시제 위성이 2027년 상반기까지 발사되어 궤도에서 추론 작업을 돌린 것이 확인되는지를 채점한다.",
+     "en": "Score whether a Starmind AI1 prototype satellite is launched by the first half of 2027 and confirmed to run inference workloads in orbit.",
+     "ja": "スターマインドAI1の試験衛星が2027年前半までに打ち上げられ、軌道で推論処理を回したことが確認されるかを採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "스타마인드 AI1 시제 위성의 궤도 실증",
+      "en": "Orbital demonstration of a Starmind AI1 prototype",
+      "ja": "スターマインドAI1試験衛星の軌道実証"
+     },
+     "now": {
+      "ko": "2026년 8월 현재 설계 단계. 최대 전력 250킬로와트, 시제기 목표는 2027년 초",
+      "en": "As of August 2026 still at design stage. Peak power 250 kilowatts, prototype targeted for early 2027",
+      "ja": "2026年8月時点で設計段階。ピーク電力250キロワット、試験機の目標は2027年初め"
+     },
+     "when": {
+      "ko": "2027년 6월 (상반기 마감 시점)",
+      "en": "June 2027 (end of the first half)",
+      "ja": "2027年6月（上半期の締め）"
+     },
+     "hit": {
+      "ko": "2027년 상반기까지 시제 위성이 발사되고 궤도에서 추론 작업을 수행한 것이 확인된다",
+      "en": "By the end of the first half of 2027 a prototype satellite has launched and is confirmed running inference in orbit",
+      "ja": "2027年前半までに試験衛星が打ち上げられ、軌道で推論処理を行ったことが確認される"
+     },
+     "miss": {
+      "ko": "2027년 상반기까지 발사가 이뤄지지 않거나, 발사되어도 궤도 추론 수행이 확인되지 않는다",
+      "en": "No launch takes place by the end of the first half of 2027, or a launch occurs but orbital inference is not confirmed",
+      "ja": "2027年前半までに打ち上げが行われないか、打ち上げられても軌道での推論実行が確認されない"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "The Kobeissi Letter(@KobeissiLetter) · 스페이스X와 엔비디아의 스타마인드 AI-1 협력, 최대 전력 250킬로와트 · 2026-08-04",
+      "en": "The Kobeissi Letter (@KobeissiLetter) · the SpaceX and Nvidia partnership on Starmind AI-1, peak power of 250 kW · 2026-08-04",
+      "ja": "The Kobeissi Letter(@KobeissiLetter) · スペースXとエヌビディアのスターマインドAI-1提携、ピーク電力250キロワット · 2026-08-04"
+     },
+     "url": "https://x.com/KobeissiLetter/status/2084727346968363234"
+    },
+    {
+     "name": {
+      "ko": "노트북체크",
+      "en": "Notebookcheck",
+      "ja": "Notebookcheck"
+     },
+     "desc": {
+      "ko": "7월 11일자 위성 사양. 평균 120킬로와트·최대 150킬로와트, 라디에이터 110제곱미터, 고도 600킬로미터, 시제기 2027년 초, 최대 100만 기 신청 (2026-07-11)",
+      "en": "Satellite specification as of July 11: 120 kW average and 150 kW peak, 110 square meters of radiator, 600 km altitude, prototype in early 2027, filing for up to one million units (2026-07-11)",
+      "ja": "7月11日時点の衛星仕様。平均120キロワット・ピーク150キロワット、ラジエーター110平方メートル、高度600キロメートル、試験機2027年初め、最大100万基の申請（2026-07-11）"
+     },
+     "url": "https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html"
+    },
+    {
+     "name": {
+      "ko": "야후파이낸스",
+      "en": "Yahoo Finance",
+      "ja": "Yahoo Finance"
+     },
+     "desc": {
+      "ko": "스페이스X 2026년 2분기 실적. 매출 78억달러, 자본지출 184억달러, AI 부문 자본지출 1분기 77억달러에서 158억달러 (2026-08-04)",
+      "en": "SpaceX Q2 2026 results: revenue of $7.8bn, capital spending of $18.37bn, AI segment capex up from $7.7bn in Q1 to $15.8bn (2026-08-04)",
+      "ja": "スペースX 2026年4-6月期決算。売上高78億ドル、設備投資184億ドル、AI部門の設備投資は1-3月期の77億ドルから158億ドルへ（2026-08-04）"
+     },
+     "url": "https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-04 조회 · 실적 수치는 스페이스X가 발표한 2026년 2분기 기준이고, 위성 사양은 7월 11일자 공개 사양에 이번 발표의 최대 전력 상향을 더해 읽은 것이다.",
+    "en": "Checked 2026-08-04 · the financial figures are SpaceX's reported second quarter of 2026, and the satellite specification is the publicly listed July 11 version read together with the peak power increase in this announcement.",
+    "ja": "2026-08-04 調査 · 決算数値はスペースXが公表した2026年4-6月期に基づき、衛星仕様は7月11日時点の公開仕様に今回のピーク電力引き上げを合わせて読んだものである。"
+   },
+   "ts": "2026-08-04T21:56:26.773936+00:00"
+  },
+  {
+   "date": "2026-08-04",
    "id": "jensen-alpamayo2-super-open-weights-commercial-license",
    "related": [
     "jensen-nvidia-open-secure-ai-alliance",
