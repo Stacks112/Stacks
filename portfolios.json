@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-05T03:14:55.814305+00:00",
+ "generated_at": "2026-08-05T09:08:32.898552+00:00",
  "investors": [
   {
    "slug": "berkshire",
@@ -28,6 +28,12 @@
      "issuer": "APPLE INC",
      "ticker": "aapl.us",
      "entity_key": "APPLE",
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     },
      "value": 57843260493,
      "shares": 227917808,
      "weight": 0.2199,
@@ -39,6 +45,8 @@
      "issuer": "AMERICAN EXPRESS CO",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 45859204536,
      "shares": 151610700,
      "weight": 0.1743,
@@ -50,6 +58,8 @@
      "issuer": "COCA COLA CO",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 30420000000,
      "shares": 400000000,
      "weight": 0.1156,
@@ -61,6 +71,12 @@
      "issuer": "BANK AMERICA CORP",
      "ticker": "bac.us",
      "entity_key": "BofA",
+     "put_call": null,
+     "sector": {
+      "en": "Financial Services",
+      "ko": "금융",
+      "ja": "金融"
+     },
      "value": 25039178044,
      "shares": 513624165,
      "weight": 0.0952,
@@ -72,6 +88,8 @@
      "issuer": "CHEVRON CORPORATION",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 17457364606,
      "shares": 84375856,
      "weight": 0.0664,
@@ -83,6 +101,8 @@
      "issuer": "OCCIDENTAL PETE CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 17221193015,
      "shares": 264941431,
      "weight": 0.0655,
@@ -94,6 +114,12 @@
      "issuer": "ALPHABET INC",
      "ticker": "googl.us",
      "entity_key": "GOOGLE",
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     },
      "value": 16628526688,
      "shares": 57835013,
      "weight": 0.0632,
@@ -105,6 +131,8 @@
      "issuer": "CHUBB LTD SWITZ",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 11162836215,
      "shares": 34249183,
      "weight": 0.0424,
@@ -116,6 +144,8 @@
      "issuer": "MOODYS CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 10762190653,
      "shares": 24669778,
      "weight": 0.0409,
@@ -127,6 +157,8 @@
      "issuer": "KRAFT HEINZ CO",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 7323527057,
      "shares": 325634818,
      "weight": 0.0278,
@@ -138,6 +170,8 @@
      "issuer": "DAVITA INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 4626158909,
      "shares": 30100585,
      "weight": 0.0176,
@@ -149,6 +183,8 @@
      "issuer": "KROGER CO",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 3618000000,
      "shares": 50000000,
      "weight": 0.0138,
@@ -160,6 +196,8 @@
      "issuer": "SIRIUSXM HOLDINGS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 2880548260,
      "shares": 124807117,
      "weight": 0.0109,
@@ -171,6 +209,8 @@
      "issuer": "DELTA AIR LINES INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 2646532635,
      "shares": 39809456,
      "weight": 0.0101,
@@ -182,6 +222,8 @@
      "issuer": "VERISIGN INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 2232726597,
      "shares": 8989880,
      "weight": 0.0085,
@@ -193,6 +235,8 @@
      "issuer": "CAPITAL ONE FINL CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 1304374500,
      "shares": 7150000,
      "weight": 0.005,
@@ -204,6 +248,8 @@
      "issuer": "NEW YORK TIMES CO MTN BE",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 1268219376,
      "shares": 15146535,
      "weight": 0.0048,
@@ -215,6 +261,8 @@
      "issuer": "ALLY FINL INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 1137670000,
      "shares": 29000000,
      "weight": 0.0043,
@@ -226,6 +274,8 @@
      "issuer": "LIBERTY LIVE HOLDINGS INC (COM SHS SER C)",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 996356028,
      "shares": 10587143,
      "weight": 0.0038,
@@ -234,9 +284,11 @@
     },
     {
      "cusip": "526057104",
-     "issuer": "LENNAR CORP",
+     "issuer": "LENNAR CORP (CL A)",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 877052911,
      "shares": 10099642,
      "weight": 0.0033,
@@ -248,6 +300,8 @@
      "issuer": "NUCOR CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 660686383,
      "shares": 3907075,
      "weight": 0.0025,
@@ -259,6 +313,8 @@
      "issuer": "LIBERTY LIVE HOLDINGS INC (COM SER A)",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 456970925,
      "shares": 4986588,
      "weight": 0.0017,
@@ -270,6 +326,8 @@
      "issuer": "LOUISIANA PAC CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 412113691,
      "shares": 5664793,
      "weight": 0.0016,
@@ -281,6 +339,8 @@
      "issuer": "CONSTELLATION BRANDS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 94933500,
      "shares": 632890,
      "weight": 0.0004,
@@ -292,6 +352,8 @@
      "issuer": "NVR INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 73226191,
      "shares": 11112,
      "weight": 0.0003,
@@ -303,6 +365,8 @@
      "issuer": "VISA INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -314,6 +378,8 @@
      "issuer": "MASTERCARD INCORPORATED",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -325,6 +391,8 @@
      "issuer": "UNITEDHEALTH GROUP INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -336,6 +404,8 @@
      "issuer": "DOMINOS PIZZA INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -347,6 +417,8 @@
      "issuer": "AON PLC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -361,7 +433,44 @@
    },
    "checked_at": "2026-08-05T03:14:55.814305+00:00",
    "ok": true,
-   "error": null
+   "error": null,
+   "activity": {
+    "available": true,
+    "reason": null,
+    "new_count": 2,
+    "added_count": 4,
+    "exited_count": 16,
+    "reduced_count": 6,
+    "options_count": 0,
+    "top10_pct": 0.9111,
+    "total_value_prev": 274160086701,
+    "value_change_pct": -0.0404,
+    "turnover_pct": 0.4091
+   },
+   "sector_alloc": {
+    "covered_pct": 0.3782,
+    "sectors": [
+     {
+      "sector": {
+       "en": "Big Tech",
+       "ko": "빅테크",
+       "ja": "ビッグテック"
+      },
+      "value": 74471787181,
+      "weight": 0.2831
+     },
+     {
+      "sector": {
+       "en": "Financial Services",
+       "ko": "금융",
+       "ja": "金融"
+      },
+      "value": 25039178044,
+      "weight": 0.0952
+     }
+    ]
+   },
+   "ticker_coverage_pct": 0.3782
   },
   {
    "slug": "pershing-square",
@@ -394,7 +503,9 @@
      "shares": 59697208,
      "weight": 0.1762,
      "change": "trim",
-     "prev_shares": 61403089
+     "prev_shares": 61403089,
+     "put_call": null,
+     "sector": null
     },
     {
      "cusip": "023135106",
@@ -405,7 +516,13 @@
      "shares": 11451981,
      "weight": 0.1739,
      "change": "add",
-     "prev_shares": 9607824
+     "prev_shares": 9607824,
+     "put_call": null,
+     "sector": {
+      "en": "E-commerce & Cloud",
+      "ko": "이커머스·클라우드",
+      "ja": "Eコマース・クラウド"
+     }
     },
     {
      "cusip": "90353T100",
@@ -416,7 +533,13 @@
      "shares": 29958771,
      "weight": 0.1571,
      "change": "trim",
-     "prev_shares": 30207734
+     "prev_shares": 30207734,
+     "put_call": null,
+     "sector": {
+      "en": "Mobility",
+      "ko": "모빌리티",
+      "ja": "モビリティ"
+     }
     },
     {
      "cusip": "594918104",
@@ -427,18 +550,26 @@
      "shares": 5654078,
      "weight": 0.1526,
      "change": "new",
-     "prev_shares": null
+     "prev_shares": null,
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     }
     },
     {
      "cusip": "76131D103",
      "issuer": "RESTAURANT BRANDS INTL INC",
-     "ticker": null,
+     "ticker": "qsr.us",
      "entity_key": null,
      "value": 1673501194,
      "shares": 22645483,
      "weight": 0.122,
      "change": "trim",
-     "prev_shares": 22866773
+     "prev_shares": 22866773,
+     "put_call": null,
+     "sector": null
     },
     {
      "cusip": "30303M102",
@@ -449,7 +580,13 @@
      "shares": 2660861,
      "weight": 0.111,
      "change": "trim",
-     "prev_shares": 2673569
+     "prev_shares": 2673569,
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     }
     },
     {
      "cusip": "44267T102",
@@ -460,7 +597,9 @@
      "shares": 18852064,
      "weight": 0.087,
      "change": "hold",
-     "prev_shares": 18852064
+     "prev_shares": 18852064,
+     "put_call": null,
+     "sector": null
     },
     {
      "cusip": "812215200",
@@ -471,7 +610,9 @@
      "shares": 5023780,
      "weight": 0.0079,
      "change": "hold",
-     "prev_shares": 5023780
+     "prev_shares": 5023780,
+     "put_call": null,
+     "sector": null
     },
     {
      "cusip": "02079K107",
@@ -482,7 +623,13 @@
      "shares": 344102,
      "weight": 0.0072,
      "change": "trim",
-     "prev_shares": 6842168
+     "prev_shares": 6842168,
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     }
     },
     {
      "cusip": "42806J700",
@@ -493,7 +640,9 @@
      "shares": 15241127,
      "weight": 0.0051,
      "change": "hold",
-     "prev_shares": 15241127
+     "prev_shares": 15241127,
+     "put_call": null,
+     "sector": null
     },
     {
      "cusip": "43300A203",
@@ -504,7 +653,9 @@
      "shares": 0,
      "weight": 0,
      "change": "exit",
-     "prev_shares": 3028664
+     "prev_shares": 3028664,
+     "put_call": null,
+     "sector": null
     }
    ],
    "desc": {
@@ -514,7 +665,53 @@
    },
    "checked_at": "2026-08-05T03:14:55.814305+00:00",
    "ok": true,
-   "error": null
+   "error": null,
+   "activity": {
+    "available": true,
+    "reason": null,
+    "new_count": 1,
+    "added_count": 1,
+    "exited_count": 1,
+    "reduced_count": 5,
+    "options_count": 0,
+    "top10_pct": 1.0,
+    "total_value_prev": null,
+    "value_change_pct": null,
+    "turnover_pct": 0.1818
+   },
+   "sector_alloc": {
+    "covered_pct": 0.6019,
+    "sectors": [
+     {
+      "sector": {
+       "en": "Big Tech",
+       "ko": "빅테크",
+       "ja": "ビッグテック"
+      },
+      "value": 3714060220,
+      "weight": 0.2708
+     },
+     {
+      "sector": {
+       "en": "E-commerce & Cloud",
+       "ko": "이커머스·클라우드",
+       "ja": "Eコマース・クラウド"
+      },
+      "value": 2385104083,
+      "weight": 0.1739
+     },
+     {
+      "sector": {
+       "en": "Mobility",
+       "ko": "모빌리티",
+       "ja": "モビリティ"
+      },
+      "value": 2154934398,
+      "weight": 0.1571
+     }
+    ]
+   },
+   "ticker_coverage_pct": 0.7239
   },
   {
    "slug": "ark",
@@ -543,6 +740,12 @@
      "issuer": "Tesla Inc",
      "ticker": "tsla.us",
      "entity_key": "TESLA",
+     "put_call": null,
+     "sector": {
+      "en": "EV / Auto",
+      "ko": "전기차",
+      "ja": "EV・自動車"
+     },
      "value": 1052546690,
      "shares": 2831329,
      "weight": 0.0925,
@@ -554,6 +757,12 @@
      "issuer": "Advanced Micro Devices Inc",
      "ticker": "amd.us",
      "entity_key": "AMD",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 551875889,
      "shares": 2712854,
      "weight": 0.0485,
@@ -565,6 +774,8 @@
      "issuer": "CRISPR Therapeutics AG",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 538189027,
      "shares": 11313623,
      "weight": 0.0473,
@@ -576,6 +787,8 @@
      "issuer": "Shopify Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 495553074,
      "shares": 4177652,
      "weight": 0.0435,
@@ -587,6 +800,8 @@
      "issuer": "Palantir Technologies Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 454913400,
      "shares": 3109881,
      "weight": 0.04,
@@ -598,6 +813,8 @@
      "issuer": "Tempus AI Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 434462230,
      "shares": 9607745,
      "weight": 0.0382,
@@ -609,6 +826,8 @@
      "issuer": "Robinhood Markets Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 416012113,
      "shares": 6003061,
      "weight": 0.0365,
@@ -620,6 +839,8 @@
      "issuer": "Coinbase Global Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 414329300,
      "shares": 2372884,
      "weight": 0.0364,
@@ -631,6 +852,12 @@
      "issuer": "Teradyne Inc",
      "ticker": "ter.us",
      "entity_key": "TERADYNE",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductor test equipment",
+      "ko": "반도체 검사장비",
+      "ja": "半導体テスト装置"
+     },
      "value": 369128978,
      "shares": 1245122,
      "weight": 0.0324,
@@ -640,8 +867,10 @@
     {
      "cusip": "77543R102",
      "issuer": "Roku Inc",
-     "ticker": null,
+     "ticker": "roku.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 361486706,
      "shares": 3820405,
      "weight": 0.0318,
@@ -653,6 +882,8 @@
      "issuer": "ROBLOX Corp",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 333483744,
      "shares": 5896106,
      "weight": 0.0293,
@@ -664,6 +895,8 @@
      "issuer": "Twist Bioscience Corp",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 301406681,
      "shares": 6342733,
      "weight": 0.0265,
@@ -675,6 +908,8 @@
      "issuer": "Beam Therapeutics Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 289139697,
      "shares": 12133433,
      "weight": 0.0254,
@@ -686,6 +921,12 @@
      "issuer": "Amazon.com Inc",
      "ticker": "amzn.us",
      "entity_key": "AMAZON",
+     "put_call": null,
+     "sector": {
+      "en": "E-commerce & Cloud",
+      "ko": "이커머스·클라우드",
+      "ja": "Eコマース・クラウド"
+     },
      "value": 282264888,
      "shares": 1355283,
      "weight": 0.0248,
@@ -697,6 +938,8 @@
      "issuer": "10X Genomics Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 248758647,
      "shares": 11717317,
      "weight": 0.0219,
@@ -708,6 +951,8 @@
      "issuer": "Kratos Defense & Security Solutions Inc.",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 246164080,
      "shares": 3491194,
      "weight": 0.0216,
@@ -719,6 +964,8 @@
      "issuer": "Deere & Co",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 224798576,
      "shares": 399074,
      "weight": 0.0197,
@@ -730,6 +977,12 @@
      "issuer": "Taiwan Semiconductor Manufacturing Company Ltd",
      "ticker": "tsm.us",
      "entity_key": "TSMC",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 212132567,
      "shares": 627704,
      "weight": 0.0186,
@@ -741,6 +994,12 @@
      "issuer": "Alphabet Inc",
      "ticker": "googl.us",
      "entity_key": "GOOGLE",
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     },
      "value": 206658015,
      "shares": 720414,
      "weight": 0.0182,
@@ -752,6 +1011,12 @@
      "issuer": "CoreWeave Inc",
      "ticker": "crwv.us",
      "entity_key": "COREWEAVE",
+     "put_call": null,
+     "sector": {
+      "en": "Cloud / AI Infrastructure",
+      "ko": "클라우드/AI 인프라",
+      "ja": "クラウド/AIインフラ"
+     },
      "value": 196628508,
      "shares": 2538125,
      "weight": 0.0173,
@@ -763,6 +1028,8 @@
      "issuer": "Archer Aviation Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 193549613,
      "shares": 37437062,
      "weight": 0.017,
@@ -774,6 +1041,8 @@
      "issuer": "Block Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 186193070,
      "shares": 3093936,
      "weight": 0.0164,
@@ -785,6 +1054,8 @@
      "issuer": "Intellia Therapeutics Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 186008545,
      "shares": 14509247,
      "weight": 0.0163,
@@ -796,6 +1067,12 @@
      "issuer": "NVIDIA Corp",
      "ticker": "nvda.us",
      "entity_key": "NVIDIA",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 180578233,
      "shares": 1035426,
      "weight": 0.0159,
@@ -807,6 +1084,8 @@
      "issuer": "ARK 21Shares Bitcoin ETF",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 150642653,
      "shares": 6698206,
      "weight": 0.0132,
@@ -821,7 +1100,89 @@
    },
    "checked_at": "2026-08-05T03:14:55.814305+00:00",
    "ok": true,
-   "error": null
+   "error": null,
+   "activity": {
+    "available": true,
+    "reason": null,
+    "new_count": 22,
+    "added_count": 57,
+    "exited_count": 22,
+    "reduced_count": 68,
+    "options_count": 0,
+    "top10_pct": 0.447,
+    "total_value_prev": 12314366838,
+    "value_change_pct": -0.0757,
+    "turnover_pct": 0.2604
+   },
+   "sector_alloc": {
+    "covered_pct": 0.2761,
+    "sectors": [
+     {
+      "sector": {
+       "en": "EV / Auto",
+       "ko": "전기차",
+       "ja": "EV・自動車"
+      },
+      "value": 1052546690,
+      "weight": 0.0925
+     },
+     {
+      "sector": {
+       "en": "Semiconductors",
+       "ko": "반도체",
+       "ja": "半導体"
+      },
+      "value": 947761122,
+      "weight": 0.0833
+     },
+     {
+      "sector": {
+       "en": "Semiconductor test equipment",
+       "ko": "반도체 검사장비",
+       "ja": "半導体テスト装置"
+      },
+      "value": 369128978,
+      "weight": 0.0324
+     },
+     {
+      "sector": {
+       "en": "Big Tech",
+       "ko": "빅테크",
+       "ja": "ビッグテック"
+      },
+      "value": 294763672,
+      "weight": 0.0259
+     },
+     {
+      "sector": {
+       "en": "E-commerce & Cloud",
+       "ko": "이커머스·클라우드",
+       "ja": "Eコマース・クラウド"
+      },
+      "value": 282264888,
+      "weight": 0.0248
+     },
+     {
+      "sector": {
+       "en": "Cloud / AI Infrastructure",
+       "ko": "클라우드/AI 인프라",
+       "ja": "クラウド/AIインフラ"
+      },
+      "value": 196628508,
+      "weight": 0.0173
+     },
+     {
+      "sector": {
+       "en": "Diversified Industrials",
+       "ko": "복합소재·산업재",
+       "ja": "複合素材・産業財"
+      },
+      "value": 72179,
+      "weight": 0.0
+     }
+    ]
+   },
+   "ticker_coverage_pct": 0.3214
   },
   {
    "slug": "duquesne",
@@ -842,28 +1203,32 @@
    "filed": "2026-05-15",
    "accession": "0001536411-26-000004",
    "source_url": "https://www.sec.gov/Archives/edgar/data/1536411/000153641126000004/",
-   "total_value": 2937172000,
-   "holdings_count": 65,
+   "total_value": 3376828000,
+   "holdings_count": 70,
    "holdings": [
     {
      "cusip": "632307104",
      "issuer": "Natera Inc",
-     "ticker": null,
+     "ticker": "ntra.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 612691000,
      "shares": 3063606,
-     "weight": 0.2086,
+     "weight": 0.1814,
      "change": "add",
      "prev_shares": 2511357
     },
     {
      "cusip": "457669307",
      "issuer": "Insmed Inc",
-     "ticker": null,
+     "ticker": "insm.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 188717000,
      "shares": 1154090,
-     "weight": 0.0643,
+     "weight": 0.0559,
      "change": "trim",
      "prev_shares": 1481752
     },
@@ -872,20 +1237,54 @@
      "issuer": "Taiwan Semiconductor Manufac",
      "ticker": "tsm.us",
      "entity_key": "TSMC",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 167380000,
      "shares": 495280,
-     "weight": 0.057,
+     "weight": 0.0496,
      "change": "trim",
      "prev_shares": 543085
     },
     {
-     "cusip": "984245100",
-     "issuer": "Ypf Sociedad Anonima",
+     "cusip": "464286400",
+     "issuer": "Ishares Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": "CALL",
+     "sector": null,
+     "value": 162313000,
+     "shares": 4228000,
+     "weight": 0.0481,
+     "change": "hold",
+     "prev_shares": 4228000
+    },
+    {
+     "cusip": "46137V357",
+     "issuer": "Invesco Exchange Traded Fd T",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": "CALL",
+     "sector": null,
+     "value": 157566000,
+     "shares": 821000,
+     "weight": 0.0467,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "984245100",
+     "issuer": "Ypf Sociedad Anonima",
+     "ticker": "ypf.us",
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 149566000,
      "shares": 3235962,
-     "weight": 0.0509,
+     "weight": 0.0443,
      "change": "add",
      "prev_shares": 606990
     },
@@ -894,9 +1293,11 @@
      "issuer": "Ishares Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 131915000,
      "shares": 3436170,
-     "weight": 0.0449,
+     "weight": 0.0391,
      "change": "trim",
      "prev_shares": 3552575
     },
@@ -905,86 +1306,102 @@
      "issuer": "Bbb Foods Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 109972000,
      "shares": 3109202,
-     "weight": 0.0374,
+     "weight": 0.0326,
      "change": "add",
      "prev_shares": 2675152
     },
     {
      "cusip": "013872106",
      "issuer": "Alcoa Corp",
-     "ticker": null,
+     "ticker": "aa.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 99057000,
      "shares": 1493390,
-     "weight": 0.0337,
+     "weight": 0.0293,
      "change": "add",
      "prev_shares": 1376050
     },
     {
      "cusip": "N62509109",
      "issuer": "Newamsterdam Pharma Company",
-     "ticker": null,
+     "ticker": "nams.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 98275000,
      "shares": 3070146,
-     "weight": 0.0335,
+     "weight": 0.0291,
      "change": "hold",
      "prev_shares": 3070146
     },
     {
      "cusip": "81141R100",
      "issuer": "Sea Ltd",
-     "ticker": null,
+     "ticker": "se.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 91083000,
      "shares": 1099905,
-     "weight": 0.031,
+     "weight": 0.027,
      "change": "add",
      "prev_shares": 944120
     },
     {
      "cusip": "861012102",
      "issuer": "Stmicroelectronics N V",
-     "ticker": null,
+     "ticker": "stm.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 90275000,
      "shares": 2612880,
-     "weight": 0.0307,
+     "weight": 0.0267,
      "change": "add",
      "prev_shares": 773555
     },
     {
      "cusip": "980745103",
      "issuer": "Woodward Inc",
-     "ticker": null,
+     "ticker": "wwd.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 75648000,
      "shares": 211355,
-     "weight": 0.0258,
+     "weight": 0.0224,
      "change": "trim",
      "prev_shares": 590930
     },
     {
      "cusip": "881624209",
      "issuer": "Teva Pharmaceutical Inds Ltd",
-     "ticker": null,
+     "ticker": "teva.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 71604000,
      "shares": 2377285,
-     "weight": 0.0244,
+     "weight": 0.0212,
      "change": "trim",
      "prev_shares": 5874870
     },
     {
      "cusip": "77543R102",
      "issuer": "Roku Inc",
-     "ticker": null,
+     "ticker": "roku.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 70983000,
      "shares": 750190,
-     "weight": 0.0242,
+     "weight": 0.021,
      "change": "add",
      "prev_shares": 582980
     },
@@ -993,42 +1410,88 @@
      "issuer": "Broadcom Inc",
      "ticker": "avgo.us",
      "entity_key": "BROADCOM",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 60650000,
      "shares": 195955,
-     "weight": 0.0206,
+     "weight": 0.018,
      "change": "new",
      "prev_shares": null
+    },
+    {
+     "cusip": "78462F103",
+     "issuer": "State Str Spdr S&P 500 Etf T",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": "CALL",
+     "sector": null,
+     "value": 58531000,
+     "shares": 90000,
+     "weight": 0.0173,
+     "change": "hold",
+     "prev_shares": 90000
     },
     {
      "cusip": "22266T109",
      "issuer": "Coupang Inc",
      "ticker": "cpng.us",
      "entity_key": "COUPANG",
+     "put_call": null,
+     "sector": {
+      "en": "E-commerce & Logistics",
+      "ko": "이커머스, 물류",
+      "ja": "EC、物流"
+     },
      "value": 50362000,
      "shares": 2667485,
-     "weight": 0.0171,
+     "weight": 0.0149,
      "change": "trim",
      "prev_shares": 6772909
     },
     {
      "cusip": "68404L201",
      "issuer": "Option Care Health Inc",
-     "ticker": null,
+     "ticker": "opch.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 50301000,
      "shares": 1868550,
-     "weight": 0.0171,
+     "weight": 0.0149,
      "change": "add",
      "prev_shares": 1745950
     },
     {
+     "cusip": "023135106",
+     "issuer": "Amazon Com Inc",
+     "ticker": "amzn.us",
+     "entity_key": "AMAZON",
+     "put_call": "CALL",
+     "sector": {
+      "en": "E-commerce & Cloud",
+      "ko": "이커머스·클라우드",
+      "ja": "Eコマース・クラウド"
+     },
+     "value": 41654000,
+     "shares": 200000,
+     "weight": 0.0123,
+     "change": "add",
+     "prev_shares": 100000
+    },
+    {
      "cusip": "G25508105",
      "issuer": "Crh Plc",
-     "ticker": null,
+     "ticker": "crh.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 39689000,
      "shares": 377555,
-     "weight": 0.0135,
+     "weight": 0.0118,
      "change": "trim",
      "prev_shares": 474955
     },
@@ -1037,9 +1500,11 @@
      "issuer": "Figure Technology Solutio",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 39057000,
      "shares": 1150415,
-     "weight": 0.0133,
+     "weight": 0.0116,
      "change": "trim",
      "prev_shares": 1539785
     },
@@ -1048,9 +1513,11 @@
      "issuer": "Global X Fds",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 36152000,
      "shares": 387400,
-     "weight": 0.0123,
+     "weight": 0.0107,
      "change": "new",
      "prev_shares": null
     },
@@ -1059,72 +1526,34 @@
      "issuer": "Caris Life Sciences Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 33873000,
      "shares": 1894450,
-     "weight": 0.0115,
+     "weight": 0.01,
      "change": "new",
      "prev_shares": null
     },
     {
      "cusip": "76131D103",
      "issuer": "Restaurant Brands Intl Inc",
-     "ticker": null,
+     "ticker": "qsr.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 33583000,
      "shares": 454435,
-     "weight": 0.0114,
+     "weight": 0.0099,
      "change": "trim",
      "prev_shares": 1209000
-    },
-    {
-     "cusip": "76155X100",
-     "issuer": "Revolution Medicines Inc",
-     "ticker": null,
-     "entity_key": null,
-     "value": 30717000,
-     "shares": 315860,
-     "weight": 0.0105,
-     "change": "new",
-     "prev_shares": null
-    },
-    {
-     "cusip": "518415104",
-     "issuer": "Lattice Semiconductor Corp",
-     "ticker": null,
-     "entity_key": null,
-     "value": 29974000,
-     "shares": 323135,
-     "weight": 0.0102,
-     "change": "trim",
-     "prev_shares": 925970
-    },
-    {
-     "cusip": "80004C200",
-     "issuer": "Sandisk Corp",
-     "ticker": "sndk.us",
-     "entity_key": "SANDISK",
-     "value": 24241000,
-     "shares": 38155,
-     "weight": 0.0083,
-     "change": "new",
-     "prev_shares": null
-    },
-    {
-     "cusip": "910047109",
-     "issuer": "United Airls Hldgs Inc",
-     "ticker": null,
-     "entity_key": null,
-     "value": 24168000,
-     "shares": 262495,
-     "weight": 0.0082,
-     "change": "trim",
-     "prev_shares": 348400
     },
     {
      "cusip": "81369Y605",
      "issuer": "Select Sector Spdr Tr",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1136,6 +1565,8 @@
      "issuer": "Invesco Exchange Traded Fd T",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1147,6 +1578,12 @@
      "issuer": "Alphabet Inc",
      "ticker": "googl.us",
      "entity_key": "GOOGLE",
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     },
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1158,6 +1595,8 @@
      "issuer": "Cogent Biosciences Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1169,6 +1608,8 @@
      "issuer": "Entegris Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1180,6 +1621,8 @@
      "issuer": "Docusign Inc",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1194,7 +1637,71 @@
    },
    "checked_at": "2026-08-05T03:14:55.814305+00:00",
    "ok": true,
-   "error": null
+   "error": null,
+   "activity": {
+    "available": true,
+    "reason": null,
+    "new_count": 31,
+    "added_count": 13,
+    "exited_count": 23,
+    "reduced_count": 19,
+    "options_count": 5,
+    "top10_pct": 0.556,
+    "total_value_prev": 4494450000,
+    "value_change_pct": -0.2487,
+    "turnover_pct": 0.5806
+   },
+   "sector_alloc": {
+    "covered_pct": 0.1194,
+    "sectors": [
+     {
+      "sector": {
+       "en": "Semiconductors",
+       "ko": "반도체",
+       "ja": "半導体"
+      },
+      "value": 278331000,
+      "weight": 0.0824
+     },
+     {
+      "sector": {
+       "en": "E-commerce & Cloud",
+       "ko": "이커머스·클라우드",
+       "ja": "Eコマース・クラウド"
+      },
+      "value": 51193000,
+      "weight": 0.0152
+     },
+     {
+      "sector": {
+       "en": "E-commerce & Logistics",
+       "ko": "이커머스, 물류",
+       "ja": "EC、物流"
+      },
+      "value": 50362000,
+      "weight": 0.0149
+     },
+     {
+      "sector": {
+       "en": "Power",
+       "ko": "전력/에너지",
+       "ja": "電力"
+      },
+      "value": 18470000,
+      "weight": 0.0055
+     },
+     {
+      "sector": {
+       "en": "Optical Components",
+       "ko": "광통신 부품",
+       "ja": "光通信部品"
+      },
+      "value": 4893000,
+      "weight": 0.0014
+     }
+    ]
+   },
+   "ticker_coverage_pct": 0.6731
   },
   {
    "slug": "appaloosa",
@@ -1223,6 +1730,12 @@
      "issuer": "AMAZON COM INC",
      "ticker": "amzn.us",
      "entity_key": "AMAZON",
+     "put_call": null,
+     "sector": {
+      "en": "E-commerce & Cloud",
+      "ko": "이커머스·클라우드",
+      "ja": "Eコマース・クラウド"
+     },
      "value": 899726400,
      "shares": 4320000,
      "weight": 0.1516,
@@ -1234,6 +1747,12 @@
      "issuer": "MICRON TECHNOLOGY INC",
      "ticker": "mu.us",
      "entity_key": "MICRON",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 562503600,
      "shares": 1665000,
      "weight": 0.0948,
@@ -1245,6 +1764,12 @@
      "issuer": "ALPHABET INC",
      "ticker": "googl.us",
      "entity_key": "GOOGLE",
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     },
      "value": 497042322,
      "shares": 1732700,
      "weight": 0.0838,
@@ -1256,6 +1781,12 @@
      "issuer": "UBER TECHNOLOGIES INC",
      "ticker": "uber.us",
      "entity_key": "UBER",
+     "put_call": null,
+     "sector": {
+      "en": "Mobility",
+      "ko": "모빌리티",
+      "ja": "モビリティ"
+     },
      "value": 455512550,
      "shares": 6332720,
      "weight": 0.0768,
@@ -1267,6 +1798,12 @@
      "issuer": "TAIWAN SEMICONDUCTOR MANUFAC",
      "ticker": "tsm.us",
      "entity_key": "TSMC",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 448628625,
      "shares": 1327500,
      "weight": 0.0756,
@@ -1278,6 +1815,12 @@
      "issuer": "ALIBABA GROUP HLDG LTD",
      "ticker": "baba.us",
      "entity_key": "ALIBABA",
+     "put_call": null,
+     "sector": {
+      "en": "E-commerce / Cloud",
+      "ko": "이커머스/클라우드",
+      "ja": "EC・クラウド"
+     },
      "value": 434718900,
      "shares": 3465000,
      "weight": 0.0733,
@@ -1289,6 +1832,8 @@
      "issuer": "VISTRA CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 304017170,
      "shares": 2022332,
      "weight": 0.0512,
@@ -1300,6 +1845,8 @@
      "issuer": "ISHARES INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 295224000,
      "shares": 2400000,
      "weight": 0.0498,
@@ -1311,6 +1858,12 @@
      "issuer": "NVIDIA CORPORATION",
      "ticker": "nvda.us",
      "entity_key": "NVIDIA",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 256629600,
      "shares": 1471500,
      "weight": 0.0433,
@@ -1322,6 +1875,8 @@
      "issuer": "NRG ENERGY INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 253471354,
      "shares": 1734442,
      "weight": 0.0427,
@@ -1333,6 +1888,12 @@
      "issuer": "META PLATFORMS INC",
      "ticker": "meta.us",
      "entity_key": "META",
+     "put_call": null,
+     "sector": {
+      "en": "Big Tech",
+      "ko": "빅테크",
+      "ja": "ビッグテック"
+     },
      "value": 249734745,
      "shares": 436500,
      "weight": 0.0421,
@@ -1344,6 +1905,12 @@
      "issuer": "SANDISK CORP",
      "ticker": "sndk.us",
      "entity_key": "SANDISK",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 178689375,
      "shares": 281250,
      "weight": 0.0301,
@@ -1355,6 +1922,8 @@
      "issuer": "CORNING INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 153578115,
      "shares": 1129500,
      "weight": 0.0259,
@@ -1366,6 +1935,8 @@
      "issuer": "WHIRLPOOL CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 105144000,
      "shares": 1950000,
      "weight": 0.0177,
@@ -1377,6 +1948,8 @@
      "issuer": "PDD HOLDINGS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 91962000,
      "shares": 900000,
      "weight": 0.0155,
@@ -1388,6 +1961,12 @@
      "issuer": "LAM RESEARCH CORP",
      "ticker": "lrcx.us",
      "entity_key": "LAM RESEARCH",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 81724950,
      "shares": 382500,
      "weight": 0.0138,
@@ -1399,6 +1978,8 @@
      "issuer": "BAIDU INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 77113782,
      "shares": 692100,
      "weight": 0.013,
@@ -1410,6 +1991,8 @@
      "issuer": "L3HARRIS TECHNOLOGIES INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 68339700,
      "shares": 198000,
      "weight": 0.0115,
@@ -1421,6 +2004,8 @@
      "issuer": "RTX CORPORATION",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 65971800,
      "shares": 342000,
      "weight": 0.0111,
@@ -1432,6 +2017,12 @@
      "issuer": "ASML HLDG NV",
      "ticker": "asml.us",
      "entity_key": "ASML",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 65381085,
      "shares": 49500,
      "weight": 0.011,
@@ -1443,6 +2034,12 @@
      "issuer": "QUALCOMM INC",
      "ticker": "qcom.us",
      "entity_key": "QUALCOMM",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 64211382,
      "shares": 498613,
      "weight": 0.0108,
@@ -1454,6 +2051,8 @@
      "issuer": "BALL CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 49475070,
      "shares": 837000,
      "weight": 0.0083,
@@ -1465,6 +2064,12 @@
      "issuer": "ADVANCED MICRO DEVICES INC",
      "ticker": "amd.us",
      "entity_key": "AMD",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
      "value": 45039402,
      "shares": 221400,
      "weight": 0.0076,
@@ -1476,6 +2081,8 @@
      "issuer": "JD.COM INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 38588850,
      "shares": 1305000,
      "weight": 0.0065,
@@ -1487,6 +2094,8 @@
      "issuer": "LYFT INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 35910000,
      "shares": 2700000,
      "weight": 0.0061,
@@ -1498,6 +2107,8 @@
      "issuer": "AMERICAN AIRLS GROUP INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1509,6 +2120,8 @@
      "issuer": "OWENS CORNING NEW",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1520,6 +2133,8 @@
      "issuer": "MOHAWK INDS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
@@ -1534,7 +2149,702 @@
    },
    "checked_at": "2026-08-05T03:14:55.814305+00:00",
    "ok": true,
-   "error": null
+   "error": null,
+   "activity": {
+    "available": true,
+    "reason": null,
+    "new_count": 1,
+    "added_count": 8,
+    "exited_count": 9,
+    "reduced_count": 22,
+    "options_count": 0,
+    "top10_pct": 0.7428,
+    "total_value_prev": 6925020650,
+    "value_change_pct": -0.1432,
+    "turnover_pct": 0.25
+   },
+   "sector_alloc": {
+    "covered_pct": 0.7201,
+    "sectors": [
+     {
+      "sector": {
+       "en": "Semiconductors",
+       "ko": "반도체",
+       "ja": "半導体"
+      },
+      "value": 1702808019,
+      "weight": 0.287
+     },
+     {
+      "sector": {
+       "en": "E-commerce & Cloud",
+       "ko": "이커머스·클라우드",
+       "ja": "Eコマース・クラウド"
+      },
+      "value": 899726400,
+      "weight": 0.1516
+     },
+     {
+      "sector": {
+       "en": "Big Tech",
+       "ko": "빅테크",
+       "ja": "ビッグテック"
+      },
+      "value": 780092367,
+      "weight": 0.1315
+     },
+     {
+      "sector": {
+       "en": "Mobility",
+       "ko": "모빌리티",
+       "ja": "モビリティ"
+      },
+      "value": 455512550,
+      "weight": 0.0768
+     },
+     {
+      "sector": {
+       "en": "E-commerce / Cloud",
+       "ko": "이커머스/클라우드",
+       "ja": "EC・クラウド"
+      },
+      "value": 434718900,
+      "weight": 0.0733
+     }
+    ]
+   },
+   "ticker_coverage_pct": 0.7201
+  },
+  {
+   "slug": "situational-awareness",
+   "cik": "0002045724",
+   "filer": "Situational Awareness LP",
+   "name": {
+    "ko": "시추에이셔널 어웨어니스",
+    "en": "Situational Awareness LP",
+    "ja": "シチュエーショナル・アウェアネス"
+   },
+   "manager": {
+    "ko": "레오폴드 아셴브레너",
+    "en": "Leopold Aschenbrenner",
+    "ja": "レオポルド・アッシェンブレナー"
+   },
+   "entity_key": null,
+   "period": "2026-03-31",
+   "filed": "2026-05-18",
+   "accession": "0002045724-26-000008",
+   "source_url": "https://www.sec.gov/Archives/edgar/data/2045724/000204572426000008/",
+   "total_value": 13676657577,
+   "holdings_count": 42,
+   "holdings": [
+    {
+     "cusip": "92189F676",
+     "issuer": "VANECK ETF TRUST",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": "PUT",
+     "sector": null,
+     "value": 2042716860,
+     "shares": 5327900,
+     "weight": 0.1494,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "67066G104",
+     "issuer": "NVIDIA CORPORATION",
+     "ticker": "nvda.us",
+     "entity_key": "NVIDIA",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 1568257120,
+     "shares": 8992300,
+     "weight": 0.1147,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "68389X105",
+     "issuer": "ORACLE CORP",
+     "ticker": "orcl.us",
+     "entity_key": "ORACLE",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Enterprise software / cloud infrastructure",
+      "ko": "기업용 소프트웨어·클라우드 인프라",
+      "ja": "エンタープライズソフトウェア・クラウドインフラ"
+     },
+     "value": 1072873230,
+     "shares": 7293000,
+     "weight": 0.0784,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "11135F101",
+     "issuer": "BROADCOM INC",
+     "ticker": "avgo.us",
+     "entity_key": "BROADCOM",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 1006247961,
+     "shares": 3251100,
+     "weight": 0.0736,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "007903107",
+     "issuer": "ADVANCED MICRO DEVICES INC",
+     "ticker": "amd.us",
+     "entity_key": "AMD",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 969160863,
+     "shares": 4764100,
+     "weight": 0.0709,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "093712107",
+     "issuer": "BLOOM ENERGY CORP",
+     "ticker": "be.us",
+     "entity_key": "BLOOM ENERGY",
+     "put_call": null,
+     "sector": {
+      "en": "Power",
+      "ko": "전력/에너지",
+      "ja": "電力"
+     },
+     "value": 878707930,
+     "shares": 6485408,
+     "weight": 0.0642,
+     "change": "trim",
+     "prev_shares": 10076022
+    },
+    {
+     "cusip": "80004C200",
+     "issuer": "SANDISK CORP",
+     "ticker": "sndk.us",
+     "entity_key": "SANDISK",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 724363205,
+     "shares": 1140119,
+     "weight": 0.053,
+     "change": "add",
+     "prev_shares": 1054200
+    },
+    {
+     "cusip": "595112103",
+     "issuer": "MICRON TECHNOLOGY INC",
+     "ticker": "mu.us",
+     "entity_key": "MICRON",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 583686168,
+     "shares": 1727700,
+     "weight": 0.0427,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "21873S108",
+     "issuer": "COREWEAVE INC",
+     "ticker": "crwv.us",
+     "entity_key": "COREWEAVE",
+     "put_call": null,
+     "sector": {
+      "en": "Cloud / AI Infrastructure",
+      "ko": "클라우드/AI 인프라",
+      "ja": "クラウド/AIインフラ"
+     },
+     "value": 556073385,
+     "shares": 7177919,
+     "weight": 0.0407,
+     "change": "add",
+     "prev_shares": 6098812
+    },
+    {
+     "cusip": "874039100",
+     "issuer": "TAIWAN SEMICONDUCTOR MANUFAC",
+     "ticker": "tsm.us",
+     "entity_key": "TSMC",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 535110030,
+     "shares": 1583400,
+     "weight": 0.0391,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "N07059210",
+     "issuer": "ASML HLDG NV N Y REGISTRY",
+     "ticker": "asml.us",
+     "entity_key": "ASML",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 494122503,
+     "shares": 374100,
+     "weight": 0.0361,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "595112103",
+     "issuer": "MICRON TECHNOLOGY INC",
+     "ticker": "mu.us",
+     "entity_key": "MICRON",
+     "put_call": "CALL",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 422300000,
+     "shares": 1250000,
+     "weight": 0.0309,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "Q4982L109",
+     "issuer": "IREN LIMITED",
+     "ticker": "iren.us",
+     "entity_key": "IREN",
+     "put_call": null,
+     "sector": {
+      "en": "AI Cloud / Data Centers",
+      "ko": "AI 클라우드·데이터센터",
+      "ja": "AIクラウド・データセンター"
+     },
+     "value": 401036064,
+     "shares": 11698835,
+     "weight": 0.0293,
+     "change": "add",
+     "prev_shares": 8700621
+    },
+    {
+     "cusip": "21874A106",
+     "issuer": "CORE SCIENTIFIC INC NEW",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 389086756,
+     "shares": 26008473,
+     "weight": 0.0284,
+     "change": "trim",
+     "prev_shares": 28756478
+    },
+    {
+     "cusip": "80004C200",
+     "issuer": "SANDISK CORP",
+     "ticker": "sndk.us",
+     "entity_key": "SANDISK",
+     "put_call": "CALL",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 388764546,
+     "shares": 611900,
+     "weight": 0.0284,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "874039100",
+     "issuer": "TAIWAN SEMICONDUCTOR MANUFAC",
+     "ticker": "tsm.us",
+     "entity_key": "TSMC",
+     "put_call": "CALL",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 354847500,
+     "shares": 1050000,
+     "weight": 0.0259,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "038169207",
+     "issuer": "APPLIED DIGITAL CORP",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 319978118,
+     "shares": 13478438,
+     "weight": 0.0234,
+     "change": "add",
+     "prev_shares": 11339060
+    },
+    {
+     "cusip": "458140100",
+     "issuer": "INTEL CORP",
+     "ticker": "intc.us",
+     "entity_key": "INTEL",
+     "put_call": "PUT",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 159106302,
+     "shares": 3605400,
+     "weight": 0.0116,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "767292105",
+     "issuer": "RIOT PLATFORMS INC",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 142166413,
+     "shares": 11502137,
+     "weight": 0.0104,
+     "change": "add",
+     "prev_shares": 6167700
+    },
+    {
+     "cusip": "21873S108",
+     "issuer": "COREWEAVE INC",
+     "ticker": "crwv.us",
+     "entity_key": "COREWEAVE",
+     "put_call": "CALL",
+     "sector": {
+      "en": "Cloud / AI Infrastructure",
+      "ko": "클라우드/AI 인프라",
+      "ja": "クラウド/AIインフラ"
+     },
+     "value": 140569315,
+     "shares": 1814500,
+     "weight": 0.0103,
+     "change": "trim",
+     "prev_shares": 10814500
+    },
+    {
+     "cusip": "18452B209",
+     "issuer": "CLEANSPARK INC",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 104469943,
+     "shares": 12276139,
+     "weight": 0.0076,
+     "change": "add",
+     "prev_shares": 1640400
+    },
+    {
+     "cusip": "83418M103",
+     "issuer": "SOLARIS ENERGY INFRAS INC",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 62474687,
+     "shares": 1105551,
+     "weight": 0.0046,
+     "change": "trim",
+     "prev_shares": 1866500
+    },
+    {
+     "cusip": "093712107",
+     "issuer": "BLOOM ENERGY CORP",
+     "ticker": "be.us",
+     "entity_key": "BLOOM ENERGY",
+     "put_call": "CALL",
+     "sector": {
+      "en": "Power",
+      "ko": "전력/에너지",
+      "ja": "電力"
+     },
+     "value": 55347665,
+     "shares": 408500,
+     "weight": 0.004,
+     "change": "hold",
+     "prev_shares": 408500
+    },
+    {
+     "cusip": "35834F104",
+     "issuer": "T1 ENERGY INC",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 43900000,
+     "shares": 10000000,
+     "weight": 0.0032,
+     "change": "new",
+     "prev_shares": null
+    },
+    {
+     "cusip": "09173B107",
+     "issuer": "BITFARMS LTD",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 38757888,
+     "shares": 19875840,
+     "weight": 0.0028,
+     "change": "add",
+     "prev_shares": 6897100
+    },
+    {
+     "cusip": "458140100",
+     "issuer": "INTEL CORP",
+     "ticker": "intc.us",
+     "entity_key": "INTEL",
+     "put_call": "CALL",
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 20237400
+    },
+    {
+     "cusip": "55024U109",
+     "issuer": "LUMENTUM HLDGS INC",
+     "ticker": "lite.us",
+     "entity_key": "LUMENTUM",
+     "put_call": null,
+     "sector": {
+      "en": "Optical Components",
+      "ko": "광통신 부품",
+      "ja": "光通信部品"
+     },
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 1298400
+    },
+    {
+     "cusip": "17253J106",
+     "issuer": "CIPHER MINING INC",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 10469093
+    },
+    {
+     "cusip": "26884L109",
+     "issuer": "EQT CORP",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 2482225
+    },
+    {
+     "cusip": "19247G107",
+     "issuer": "COHERENT CORP",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 480300
+    },
+    {
+     "cusip": "M87915274",
+     "issuer": "TOWER SEMICONDUCTOR LTD",
+     "ticker": "tsem.us",
+     "entity_key": "TOWER SEMI",
+     "put_call": null,
+     "sector": {
+      "en": "Semiconductors",
+      "ko": "반도체",
+      "ja": "半導体"
+     },
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 723004
+    },
+    {
+     "cusip": "49427F108",
+     "issuer": "KILROY RLTY CORP",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 1327700
+    },
+    {
+     "cusip": "44812J104",
+     "issuer": "HUT 8 CORP",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 860200
+    },
+    {
+     "cusip": "26884L109",
+     "issuer": "EQT CORP",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": "CALL",
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 700000
+    },
+    {
+     "cusip": "53115L104",
+     "issuer": "LIBERTY ENERGY INC",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 0,
+     "shares": 0,
+     "weight": 0,
+     "change": "exit",
+     "prev_shares": 567200
+    }
+   ],
+   "activity": {
+    "available": true,
+    "reason": null,
+    "new_count": 23,
+    "added_count": 9,
+    "exited_count": 10,
+    "reduced_count": 4,
+    "options_count": 16,
+    "top10_pct": 0.7266,
+    "total_value_prev": 5516758345,
+    "value_change_pct": 1.4791,
+    "turnover_pct": 0.6346
+   },
+   "sector_alloc": {
+    "covered_pct": 0.7575,
+    "sectors": [
+     {
+      "sector": {
+       "en": "Semiconductors",
+       "ko": "반도체",
+       "ja": "半導体"
+      },
+      "value": 7255124030,
+      "weight": 0.5305
+     },
+     {
+      "sector": {
+       "en": "Enterprise software / cloud infrastructure",
+       "ko": "기업용 소프트웨어·클라우드 인프라",
+       "ja": "エンタープライズソフトウェア・クラウドインフラ"
+      },
+      "value": 1072873230,
+      "weight": 0.0784
+     },
+     {
+      "sector": {
+       "en": "Power",
+       "ko": "전력/에너지",
+       "ja": "電力"
+      },
+      "value": 934055595,
+      "weight": 0.0683
+     },
+     {
+      "sector": {
+       "en": "Cloud / AI Infrastructure",
+       "ko": "클라우드/AI 인프라",
+       "ja": "クラウド/AIインフラ"
+      },
+      "value": 696642700,
+      "weight": 0.0509
+     },
+     {
+      "sector": {
+       "en": "AI Cloud / Data Centers",
+       "ko": "AI 클라우드·데이터센터",
+       "ja": "AIクラウド・データセンター"
+      },
+      "value": 401036064,
+      "weight": 0.0293
+     }
+    ]
+   },
+   "desc": {
+    "ko": "전 OpenAI 연구원 레오폴드 아셴브레너가 2024년 에세이 'Situational Awareness'로 AGI 임박론을 편 뒤 차린 헤지펀드로, AI 인프라·반도체·전력 관련 종목에 집중 베팅한다. 콜·풋 옵션으로 방향성을 강하게 표현해, 보통주만 봐서는 포지션의 실제 색깔(강세/약세)을 읽기 어렵다.",
+    "en": "A hedge fund founded by former OpenAI researcher Leopold Aschenbrenner after his 2024 essay 'Situational Awareness' argued AGI was near. It concentrates on AI infrastructure, semiconductors and power names, and leans heavily on call and put options to express direction, so reading the common-stock rows alone misses most of what the fund is actually betting on.",
+    "ja": "元OpenAI研究者のレオポルド・アッシェンブレナーが、2024年のエッセイ『Situational Awareness』でAGI到来が近いと論じた後に設立したヘッジファンド。AIインフラ・半導体・電力関連銘柄に集中し、コール・プットオプションで方向性を強く表現するため、普通株の行だけを見てもポジションの本当の強気・弱気は読み取れない。"
+   },
+   "checked_at": "2026-08-05T08:19:49.230086+00:00",
+   "ok": true,
+   "error": null,
+   "ticker_coverage_pct": 0.7575
   }
  ]
 }

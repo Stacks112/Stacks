@@ -3520,11 +3520,45 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 .inv-disclaimer p{margin:0 0 4px;}
 .inv-sec-link{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--accent);}
 .inv-empty{color:var(--muted);font-size:13px;padding:16px 4px;}
+/* ---------- 13F 포트폴리오 가치 차트 / 활동 요약 / 매수·매도 상위 / 섹터 배분 (v85) ---------- */
+.inv-value-card{margin:14px 0 18px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg-soft);}
+.inv-value-head{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:800;color:var(--text);}
+.inv-value-chg{font-family:var(--mono-font);font-size:13px;font-weight:800;margin-left:auto;white-space:nowrap;}
+.inv-value-cov{font-size:11.5px;color:var(--muted);margin:4px 0 8px;}
+.inv-value-chart{position:relative;height:260px;width:100%;}
+.inv-value-warn{margin-top:8px;font-size:12px;font-weight:700;color:#B45309;background:rgba(245,158,11,.14);border-radius:10px;padding:8px 10px;}
+.inv-value-nodata{font-size:12.5px;color:var(--muted);padding:8px 0;}
+.inv-filed-vl{stroke:var(--accent);stroke-width:1.4;stroke-dasharray:4 3;opacity:.85;}
+.inv-filed-lab{font-size:10px;fill:var(--accent);font-weight:700;font-family:var(--mono-font);}
+.inv-opt-badge{display:inline-block;font-size:9.5px;font-weight:800;border-radius:5px;padding:1px 5px;margin-left:5px;vertical-align:middle;white-space:nowrap;}
+.inv-opt-put{background:rgba(224,68,56,.14);color:#E04438;}
+.inv-opt-call{background:rgba(18,183,106,.14);color:#0E9F5E;}
+.inv-activity-card{margin:14px 0;}
+.inv-activity-none{font-size:12.5px;color:var(--muted);padding:8px 0;}
+.inv-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;}
+.inv-stat{display:flex;flex-direction:column;gap:2px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px;}
+.inv-stat-v{font-family:var(--mono-font);font-size:16px;font-weight:800;color:var(--text);}
+.inv-stat-l{font-size:11px;color:var(--muted);}
+.inv-movers-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.inv-mover-col{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0;}
+.inv-mover-h{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px;}
+.inv-mover-row{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--line);font-size:12.5px;}
+.inv-mover-row:last-child{border-bottom:none;}
+.inv-mover-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);}
+.inv-mover-w{font-family:var(--mono-font);font-size:12px;color:var(--muted);white-space:nowrap;}
+.inv-mover-empty{font-size:12px;color:var(--muted);padding:4px 0;}
+.inv-sector-card{margin:14px 0;}
+.inv-sector-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.inv-sector-cov{font-size:11px;font-weight:600;color:var(--muted);}
 @media (max-width:1023px){
   .inv-bar-row{grid-template-columns:minmax(70px,120px) 1fr auto;}
   .inv-bar-name{font-size:11.5px;}
   .inv-table{font-size:11.5px;}
   .inv-table td,.inv-table th{padding:6px 5px;}
+  .inv-value-chart{height:200px;}
+  .inv-value-head{flex-wrap:wrap;}
+  .inv-movers-grid{grid-template-columns:1fr;}
+  .inv-stat-grid{grid-template-columns:repeat(auto-fit,minmax(96px,1fr));}
 }
 /* v84.2 (2026-08-05, june 정정): 13F 화면에서는 우측 레일의 "다가오는 일정/이번 주
    인기/내 브리핑/뉴스레터"만 숨긴다. 검색창(.v83-search)은 대상이 아니므로 셀렉터에
@@ -5107,6 +5141,34 @@ function debateTitleHtml(key){
        invNoneShown:"表示する投資家がありません。" }
 }; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
 
+/* ---------------- 13F 포트폴리오 가치 차트 / 활동 요약 / 매수·매도 상위 / 섹터 배분 문자열 (v85) ---------------- */
+(function(){ var X={
+  en:{ invChartTitle:"Portfolio value if held", invChartCov:"Based on {p}% of holdings mapped to a ticker (options excluded)", invChartCovLoading:"Calculating ticker coverage…",
+       invChartNoTicker:"No holdings could be matched to a ticker, so this chart can't be shown.", invChartFail:"Price data unavailable",
+       invChartLowCov:"Ticker coverage is under 50%, so this line may not represent the full portfolio.", invChartFiled:"Filed",
+       invActNew:"New buys", invActAdd:"Added", invActExit:"Exited", invActTrim:"Trimmed", invActTop10:"Top-10 weight",
+       invActValueChg:"Value vs. prior Q", invActTurnover:"Turnover", invActOptions:"Option positions",
+       invActNoData:"No prior-quarter activity data for this filing.",
+       invMoverBuy:"Top buys", invMoverSell:"Top sells", invMoverNone:"None this quarter",
+       invSectorTitle:"Sector allocation", invSectorCov:"Based on {p}% of the portfolio" },
+  ko:{ invChartTitle:"그대로 들고 있었다면", invChartCov:"티커 매핑된 종목 {p}% 기준 (옵션 제외)", invChartCovLoading:"티커 커버리지 계산 중…",
+       invChartNoTicker:"티커에 매핑된 종목이 없어 이 차트를 표시할 수 없습니다.", invChartFail:"시세를 불러오지 못했습니다",
+       invChartLowCov:"티커 매핑 비율이 50% 미만이라 실제 포트폴리오를 온전히 대표하지 못할 수 있습니다.", invChartFiled:"공시일",
+       invActNew:"신규 매수", invActAdd:"추가 매수", invActExit:"청산", invActTrim:"축소", invActTop10:"상위10 비중",
+       invActValueChg:"평가액(전분기比)", invActTurnover:"회전율", invActOptions:"옵션 포지션",
+       invActNoData:"직전 분기 대비 활동 데이터가 없습니다.",
+       invMoverBuy:"매수 상위", invMoverSell:"매도 상위", invMoverNone:"이번 분기 없음",
+       invSectorTitle:"섹터 배분", invSectorCov:"전체의 {p}% 집계 기준" },
+  ja:{ invChartTitle:"そのまま保有していたら", invChartCov:"ティッカーに紐づく銘柄{p}%基準(オプション除く)", invChartCovLoading:"ティッカー網羅率を計算中…",
+       invChartNoTicker:"ティッカーに一致する銘柄がなく、このチャートは表示できません。", invChartFail:"価格データを取得できませんでした",
+       invChartLowCov:"ティッカーの網羅率が50%未満のため、実際のポートフォリオを正確に反映していない可能性があります。", invChartFiled:"開示日",
+       invActNew:"新規買い", invActAdd:"追加買い", invActExit:"清算", invActTrim:"縮小", invActTop10:"上位10比率",
+       invActValueChg:"評価額(前四半期比)", invActTurnover:"回転率", invActOptions:"オプションポジション",
+       invActNoData:"前四半期比の活動データがありません。",
+       invMoverBuy:"買い上位", invMoverSell:"売り上位", invMoverNone:"今四半期はなし",
+       invSectorTitle:"セクター配分", invSectorCov:"全体の{p}%集計基準" }
+}; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
+
 function stanceTally(items){ var t={bull:0,bear:0,watch:0}; (items||[]).forEach(function(i){ var s=itemStance(i); if(s) t[s]++; }); return t; }
 function skewInfo(items){
   var t=stanceTally(items), dir=t.bull+t.bear;
@@ -6067,9 +6129,16 @@ function investorCardEl(inv, S){
     + warn;
   return b;
 }
+/* put_call: "PUT"|"CALL"|undefined. 13F에서 옵션 포지션의 "shares"는 실제
+   보유 주식수가 아니라 계약이 커버하는 기초자산 주식수라, 종목명만 봐서는
+   보통주와 구분이 안 된다 - 이름 옆에 항상 눈에 띄는 배지를 붙인다. */
+function invPutCallBadgeHtml(pc){
+  if (pc !== "PUT" && pc !== "CALL") return "";
+  return '<span class="inv-opt-badge inv-opt-' + (pc === "PUT" ? "put" : "call") + '">' + pc + "</span>";
+}
 function investorHoldingRowHtml(h, S){
   var hasEnt = !!(h.entity_key && typeof ENTITIES !== "undefined" && ENTITIES[h.entity_key]);
-  var label = esc(h.issuer || "");
+  var label = esc(h.issuer || "") + invPutCallBadgeHtml(h.put_call);
   var nameCell = hasEnt
     ? '<span class="inv-name-link" data-ent="' + esc(h.entity_key) + '">' + label + "</span>"
     : "<span>" + label + "</span>";
@@ -6085,6 +6154,315 @@ function investorHoldingRowHtml(h, S){
     + '<td class="num">' + sh + "</td>"
     + "<td>" + badge + sinceSlot + "</td></tr>";
 }
+
+/* ---------------- 13F 활동 요약 (v85) ----------------
+   activity는 없을 수도(null/undefined, 구 데이터), {available:false, reason}로
+   올 수도 있다 - 두 경우 모두 조용히 처리하고 undefined/NaN을 절대 찍지 않는다.
+   각 필드도 개별적으로 없을 수 있어 항목 단위로 존재 여부를 검사한다. */
+function invActivityHtml(activity, S){
+  if (!activity || typeof activity !== "object") return null;
+  var wrap = document.createElement("div"); wrap.className = "inv-activity-card";
+  if (activity.available === false){
+    wrap.innerHTML = '<div class="inv-activity-none">' + esc(activity.reason || S.invActNoData || "") + "</div>";
+    return wrap;
+  }
+  var rows = [];
+  function stat(label, val, color){
+    if (val == null || label == null) return;
+    rows.push('<div class="inv-stat"><span class="inv-stat-v"' + (color ? ' style="color:' + color + '"' : "")
+      + ">" + esc(String(val)) + '</span><span class="inv-stat-l">' + esc(label) + "</span></div>");
+  }
+  function pctStr(v){ return (v * 100).toFixed(1) + "%"; }
+  function chgStr(v){ return (v >= 0 ? "+" : "") + (v * 100).toFixed(1) + "%"; }
+  if (typeof activity.new_count === "number") stat(S.invActNew, activity.new_count);
+  if (typeof activity.added_count === "number") stat(S.invActAdd, activity.added_count);
+  if (typeof activity.exited_count === "number") stat(S.invActExit, activity.exited_count);
+  if (typeof activity.reduced_count === "number") stat(S.invActTrim, activity.reduced_count);
+  if (typeof activity.top10_pct === "number") stat(S.invActTop10, pctStr(activity.top10_pct));
+  if (typeof activity.value_change_pct === "number") stat(S.invActValueChg, chgStr(activity.value_change_pct), activity.value_change_pct >= 0 ? "#12B76A" : "#F04438");
+  if (typeof activity.turnover_pct === "number") stat(S.invActTurnover, pctStr(activity.turnover_pct));
+  if (typeof activity.options_count === "number" && activity.options_count > 0) stat(S.invActOptions, activity.options_count);
+  if (!rows.length) return null; /* 모든 필드가 없으면 빈 카드를 남기지 않는다 */
+  wrap.innerHTML = '<div class="inv-stat-grid">' + rows.join("") + "</div>";
+  return wrap;
+}
+
+/* ---------------- 13F 매수/매도 상위 카드 (v85) ----------------
+   new/add는 비중 큰 순. trim/exit는 한 목록으로 묶어 비중 큰 순으로 정렬하면
+   trim(비중>0)이 먼저, exit(비중 항상 0)이 배열 안정 정렬로 그 뒤에 자연히
+   붙는다 - exit는 가격 정보 없이 매도 규모를 매길 수 없어 별도 지표를 만드는
+   대신 이 순서를 그대로 "정리된 포지션" 하단부로 쓴다. */
+function invMoverRowHtml(h, S){
+  var label = esc(h.issuer || "") + invPutCallBadgeHtml(h.put_call);
+  var w = (typeof h.weight === "number") ? (h.weight * 100).toFixed(2) + "%" : "—";
+  return '<div class="inv-mover-row"><span class="inv-mover-name">' + label + "</span>"
+    + '<span class="inv-mover-w">' + w + "</span>" + invChangeBadgeHtml(h.change, S) + "</div>";
+}
+function invMoversHtml(holdings, S){
+  var buys = (holdings || []).filter(function(h){ return h && (h.change === "new" || h.change === "add"); })
+    .sort(function(a, b){ return (b.weight || 0) - (a.weight || 0); }).slice(0, 8);
+  var sells = (holdings || []).filter(function(h){ return h && (h.change === "trim" || h.change === "exit"); })
+    .sort(function(a, b){ return (b.weight || 0) - (a.weight || 0); }).slice(0, 8);
+  if (!buys.length && !sells.length) return null;
+  function col(title, items){
+    return '<div class="inv-mover-col"><div class="inv-mover-h">' + esc(title) + "</div>"
+      + (items.length ? items.map(function(h){ return invMoverRowHtml(h, S); }).join("")
+        : '<div class="inv-mover-empty">' + esc(S.invMoverNone || "") + "</div>")
+      + "</div>";
+  }
+  var wrap = document.createElement("div"); wrap.className = "inv-movers-grid";
+  wrap.innerHTML = col(S.invMoverBuy, buys) + col(S.invMoverSell, sells);
+  return wrap;
+}
+
+/* ---------------- 13F 섹터 배분 (v85) ----------------
+   실 데이터 관찰(2026-08-05 통합 검증): sector_alloc은 애초 설계했던 평면 맵
+   { covered_pct, "Technology":0.42, ... } 이 아니라 { covered_pct, sectors:[
+   {sector:{en,ko,ja}|string, value, weight}, ... ] } 로 온다 - sector 이름이
+   지역화 객체라 언어별로 다르고, 실제 필드명도 weight(비중)/value(평가액)로
+   나뉜다. sectors 배열이 있으면 그걸 쓰고, 혹시 모를 구형/평면 스키마가 다시
+   오더라도 깨지지 않도록 예전 방식(숫자 키 직접 스캔)도 폴백으로 남겨둔다. */
+function invSectorHtml(sector_alloc, S){
+  if (!sector_alloc || typeof sector_alloc !== "object") return null;
+  var covered = (typeof sector_alloc.covered_pct === "number") ? sector_alloc.covered_pct : null;
+  var rows;
+  if (Array.isArray(sector_alloc.sectors)){
+    rows = sector_alloc.sectors
+      .filter(function(r){ return r && typeof r.weight === "number"; })
+      .map(function(r){ return { name: locVal(r.sector) || "", v: r.weight }; })
+      .filter(function(r){ return r.name; });
+  } else {
+    rows = Object.keys(sector_alloc)
+      .filter(function(k){ return k !== "covered_pct" && typeof sector_alloc[k] === "number"; })
+      .map(function(k){ return { name: k, v: sector_alloc[k] }; });
+  }
+  rows = rows.sort(function(a, b){ return b.v - a.v; });
+  if (!rows.length) return null;
+  var maxV = rows.reduce(function(m, r){ return Math.max(m, r.v); }, 0) || 1;
+  var bars = rows.map(function(r){
+    var pct = r.v * 100;
+    var barPct = Math.max(2, (r.v / maxV) * 100);
+    return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + esc(r.name) + '">' + esc(r.name) + "</span>"
+      + '<span class="inv-bar-track"><span class="inv-bar-fill" style="width:' + barPct.toFixed(1) + '%"></span></span>'
+      + '<span class="inv-bar-pct">' + pct.toFixed(1) + "%</span></div>";
+  }).join("");
+  var wrap = document.createElement("div"); wrap.className = "inv-sector-card";
+  wrap.innerHTML = '<div class="inv-sector-head"><b>' + esc(S.invSectorTitle) + "</b>"
+    + (covered != null ? '<span class="inv-sector-cov">' + esc((S.invSectorCov || "").replace("{p}", Math.round(covered * 100))) + "</span>" : "")
+    + '</div><div class="inv-bars">' + bars + "</div>";
+  return wrap;
+}
+
+/* ---------------- 13F 포트폴리오 전체 가치 차트 (v85, june "제일 중요") ----------------
+   "이 투자자의 공시 보유(shares)를 그대로 들고 있었다면 지금 얼마가 됐는가"를
+   일별 라인차트로. 워커 fetch·캐시 경로(quote1y/QR/Q1Y, ~4952행)를 그대로 재사용
+   - 엔티티 미니차트·카드 since 배지와 네트워크 요청·캐시를 공유한다.
+   옵션(put_call: PUT/CALL)은 반드시 합산에서 제외한다: 13F에서 옵션 포지션의
+   "shares"는 실제 보유 주식수가 아니라 계약이 커버하는 기초자산 주식수라, 종가를
+   곱하면 포지션 가치를 수십~수백 배 부풀린다 - 상위 보유가 대부분 옵션인 펀드일수록
+   이 오류가 치명적이다.
+   날짜 정렬: 여러 티커의 quote 표본 수가 다를 수 있어(상장일·거래정지 등), 표본이
+   가장 많은 종목의 t[](유닉스초) 배열을 "달력"으로 채택하고 나머지 종목은
+   forward-fill(직전 종가 유지)한다. 달력 시작일보다 앞선 구간(그 티커의 첫 종가
+   이전)은 그 종목의 첫 종가로 backfill한다 - 날짜를 통째로 버리면 달력 전체가
+   가장 늦게 상장된 종목 하나 때문에 통째로 줄어들 수 있어, 대신 "그 시점까지
+   알려진 최선의 값"으로 채우는 쪽을 택했다. */
+var INV_VALUE_CACHE = {};
+function invMapLimit(items, limit, fn){
+  return new Promise(function(resolve){
+    var out = new Array(items.length), n = items.length, i = 0, running = 0;
+    if (!n){ resolve(out); return; }
+    function next(){
+      if (i >= n && running === 0){ resolve(out); return; }
+      while (running < limit && i < n){
+        (function(idx){
+          running++;
+          fn(items[idx]).then(function(r){ out[idx] = r; }).catch(function(){ out[idx] = null; })
+            .then(function(){ running--; next(); });
+        })(i++);
+      }
+    }
+    next();
+  });
+}
+function invValueAt(q, t){
+  var ts = q && q.t, cs = q && q.closes;
+  if (!ts || !ts.length) return null;
+  if (t <= ts[0]) return cs[0];
+  if (t >= ts[ts.length - 1]) return cs[cs.length - 1];
+  var lo = 0, hi = ts.length - 1;
+  while (lo < hi){ var mid = (lo + hi + 1) >> 1; if (ts[mid] <= t) lo = mid; else hi = mid - 1; }
+  return cs[lo];
+}
+function invFiledEpoch(filed){
+  if (!filed) return null;
+  var t = Date.parse(String(filed).slice(0, 10) + "T00:00:00Z") / 1000 - 43200;
+  return isFinite(t) ? t : null;
+}
+function invPaintValueChart(box, calendar, values, filedIdx, S){
+  if (!box) return null;
+  if (!calendar || calendar.length < 2){ box.innerHTML = '<div class="ehq-loading">-</div>'; return null; }
+  var first = values[0], last = values[values.length - 1];
+  var chg = last - first, pct = first ? (chg / first) * 100 : 0, up = chg >= 0;
+  var col = up ? "#12B76A" : "#F04438";
+  var W = Math.max(320, Math.round(box.clientWidth || 960));
+  var H = Math.max(180, Math.round(box.clientHeight || 260));
+  var pL = 10, pR = 74, pT = 16, pB = 30;
+  var pw = W - pL - pR, ph = H - pT - pB;
+  var mn = Math.min.apply(null, values), mx = Math.max.apply(null, values);
+  var span = (mx - mn) || 1; mn -= span * 0.08; mx += span * 0.08;
+  function X(i){ return pL + (i / (calendar.length - 1)) * pw; }
+  function Y(v){ return pT + (1 - (v - mn) / (mx - mn)) * ph; }
+  function fmtX(i){ var d = new Date(calendar[i] * 1000); return String(d.getFullYear()).slice(2) + "." + (d.getMonth() + 1) + "." + d.getDate(); }
+  var grid = "", ylab = "";
+  for (var g = 0; g <= 4; g++){
+    var v = mn + ((mx - mn) * g) / 4, y = Y(v);
+    grid += '<line x1="' + pL + '" y1="' + y.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + y.toFixed(1) + '" class="ehq-grid"/>';
+    ylab += '<text x="' + (pL + pw + 8) + '" y="' + (y + 4).toFixed(1) + '" class="ehq-ylab">' + invMoneyFmt(v) + "</text>";
+  }
+  var xlab = "";
+  var nx = Math.min(6, Math.max(3, Math.round(W / 160)));
+  for (var g2 = 0; g2 <= nx; g2++){
+    var i2 = Math.round(((calendar.length - 1) * g2) / nx);
+    var anchor = g2 === 0 ? "start" : g2 === nx ? "end" : "middle";
+    xlab += '<text x="' + X(i2).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="' + anchor + '" class="ehq-xlab">' + fmtX(i2) + "</text>";
+  }
+  var pts = values.map(function(v, i){ return X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
+  var area = pL + "," + (pT + ph) + " " + pts + " " + (pL + pw) + "," + (pT + ph);
+  var filedLine = "", filedLabel = "";
+  if (filedIdx != null && filedIdx >= 0 && filedIdx < calendar.length){
+    var fx = X(filedIdx).toFixed(1);
+    filedLine = '<line x1="' + fx + '" y1="' + pT + '" x2="' + fx + '" y2="' + (pT + ph) + '" class="inv-filed-vl"/>';
+    filedLabel = '<text x="' + fx + '" y="' + (pT - 4) + '" text-anchor="middle" class="inv-filed-lab">' + esc(S.invChartFiled || "") + "</text>";
+  }
+  box.innerHTML =
+    '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">'
+    + '<defs><linearGradient id="invVg" x1="0" y1="0" x2="0" y2="1">'
+    + '<stop offset="0%" stop-color="' + col + '" stop-opacity=".22"/>'
+    + '<stop offset="100%" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>'
+    + grid
+    + '<polygon points="' + area + '" fill="url(#invVg)"/>'
+    + '<polyline points="' + pts + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linejoin="round"/>'
+    + filedLine + filedLabel
+    + '<line id="invVlL" y1="' + pT + '" y2="' + (pT + ph) + '" class="ehq-vl" visibility="hidden"/>'
+    + '<circle id="invVlD" r="4" fill="' + col + '" stroke="#fff" stroke-width="1.5" visibility="hidden"/>'
+    + ylab + xlab + "</svg>"
+    + '<div class="ehq-tip" id="invVlTip" hidden></div>';
+  var svg = box.querySelector("svg");
+  var tip = box.querySelector("#invVlTip");
+  function move(ev){
+    var rect = svg.getBoundingClientRect();
+    var cx = (ev.touches ? ev.touches[0].clientX : ev.clientX) - rect.left;
+    var frac = Math.max(0, Math.min(1, (cx / rect.width * W - pL) / pw));
+    var i = Math.round(frac * (calendar.length - 1));
+    var vl = box.querySelector("#invVlL"), dot = box.querySelector("#invVlD");
+    if (!vl || !dot) return;
+    vl.setAttribute("x1", X(i)); vl.setAttribute("x2", X(i)); vl.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", X(i)); dot.setAttribute("cy", Y(values[i])); dot.setAttribute("visibility", "visible");
+    if (tip){
+      tip.hidden = false;
+      tip.textContent = invMoneyFmt(values[i]) + " · " + fmtX(i);
+      tip.style.left = (X(i) / W * 100) + "%";
+      tip.style.top = (Y(values[i]) / H * 100) + "%";
+    }
+  }
+  function leave(){
+    ["invVlL", "invVlD"].forEach(function(id){ var el = box.querySelector("#" + id); if (el) el.setAttribute("visibility", "hidden"); });
+    if (tip) tip.hidden = true;
+  }
+  svg.addEventListener("mousemove", move);
+  svg.addEventListener("touchmove", move, { passive: true });
+  svg.addEventListener("mouseleave", leave);
+  svg.addEventListener("touchend", leave);
+  return { pct: pct, up: up };
+}
+function invValueChartSection(inv, S){
+  var wrap = document.createElement("div"); wrap.className = "inv-value-card";
+  var reals = (inv.holdings || []).filter(function(h){ return h && h.change !== "exit"; });
+  var totalW = reals.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
+  var eligible = reals.filter(function(h){ return h && h.ticker && h.put_call !== "PUT" && h.put_call !== "CALL"; });
+  if (!eligible.length){
+    wrap.innerHTML = '<div class="inv-value-head"><b>' + esc(S.invChartTitle || "") + "</b></div>"
+      + '<div class="inv-value-nodata">' + esc(S.invChartNoTicker || "") + "</div>";
+    return wrap;
+  }
+  var eligibleW = eligible.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
+  var staticCov = (typeof inv.ticker_coverage_pct === "number") ? inv.ticker_coverage_pct : (totalW > 0 ? eligibleW / totalW : null);
+  wrap.innerHTML =
+    '<div class="inv-value-head"><b>' + esc(S.invChartTitle || "") + '</b><span class="inv-value-chg" id="invValChg">···</span></div>'
+    + '<div class="inv-value-cov" id="invValCov">' + (staticCov != null ? esc((S.invChartCov || "").replace("{p}", Math.round(staticCov * 100))) : esc(S.invChartCovLoading || "")) + "</div>"
+    + '<div class="inv-value-chart" id="invValChart"><div class="ehq-loading">···</div></div>'
+    + '<div class="inv-value-warn" id="invValWarn" hidden></div>';
+  var slug = inv.slug;
+  var cacheKey = slug + "|" + (inv.filed || "") + "|" + eligible.length;
+  function stillHere(){ return ((typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null) === slug; }
+  function doPaint(res){
+    if (!stillHere()) return; /* 사용자가 이미 화면을 떠났다 */
+    var box = wrap.querySelector("#invValChart");
+    var chgEl = wrap.querySelector("#invValChg");
+    var covEl = wrap.querySelector("#invValCov");
+    var warnEl = wrap.querySelector("#invValWarn");
+    if (!box) return;
+    /* 커버리지·경고는 fetch 성공 여부와 무관하게 항상 "실제로 그려진(또는 그려지지
+       못한) 값"을 반영한다 - 가격 조회가 전부 실패해도 정적 추정치(staticCov)를
+       그대로 남겨두면 대표성이 없는 차트를 있는 것처럼 보이게 할 위험이 있다. */
+    if (res && covEl) covEl.textContent = (S.invChartCov || "").replace("{p}", Math.round((res.coverage || 0) * 100));
+    if (res && warnEl){
+      if ((res.coverage || 0) < 0.5){ warnEl.hidden = false; warnEl.textContent = "⚠ " + (S.invChartLowCov || ""); }
+      else warnEl.hidden = true;
+    }
+    if (!res || !res.calendar || res.calendar.length < 2){
+      box.innerHTML = '<div class="ehq-loading">' + esc(S.invChartFail || "") + "</div>";
+      if (chgEl) chgEl.textContent = "";
+      return;
+    }
+    var r = invPaintValueChart(box, res.calendar, res.values, res.filedIdx, S);
+    if (chgEl && r){
+      chgEl.style.color = r.up ? "#12B76A" : "#F04438";
+      chgEl.textContent = (r.up ? "▲ " : "▼ ") + (r.up ? "+" : "") + r.pct.toFixed(1) + "%";
+    }
+  }
+  if (Object.prototype.hasOwnProperty.call(INV_VALUE_CACHE, cacheKey)){
+    doPaint(INV_VALUE_CACHE[cacheKey]);
+    return wrap;
+  }
+  /* 종목 수만큼 동시 요청이 나가지 않도록 5개씩 소량 병렬 처리 - queueSince/
+     queueInvestorSince와 같은 quote1y 캐시를 타므로 이미 열어본 티커는 즉시 반환된다. */
+  invMapLimit(eligible, 5, function(h){
+    return quote1y(h.ticker).then(function(q){ return { h: h, q: (q && !q.error) ? q : null }; });
+  }).then(function(rows){
+    if (!stillHere()) return;
+    var ok = rows.filter(function(r){ return r && r.q && r.q.t && r.q.t.length > 1; });
+    if (!ok.length){
+      var failRes = { calendar: null, values: null, filedIdx: null, coverage: 0 };
+      INV_VALUE_CACHE[cacheKey] = failRes; doPaint(failRes); return;
+    }
+    var best = ok[0];
+    ok.forEach(function(r){ if (r.q.t.length > best.q.t.length) best = r; });
+    var calendar = best.q.t.slice();
+    var values = calendar.map(function(t){
+      var sum = 0;
+      ok.forEach(function(r){
+        var v = invValueAt(r.q, t);
+        if (v != null && typeof r.h.shares === "number") sum += v * r.h.shares;
+      });
+      return sum;
+    });
+    var filedEpoch = invFiledEpoch(inv.filed);
+    var filedIdx = null;
+    if (filedEpoch != null){
+      for (var i = 0; i < calendar.length; i++){ if (calendar[i] >= filedEpoch){ filedIdx = i; break; } }
+      if (filedIdx == null) filedIdx = calendar.length - 1;
+    }
+    var pricedW = ok.reduce(function(s, r){ return s + (r.h.weight || 0); }, 0);
+    var coverage = totalW > 0 ? pricedW / totalW : (staticCov || 0);
+    var res = { calendar: calendar, values: values, filedIdx: filedIdx, coverage: coverage };
+    INV_VALUE_CACHE[cacheKey] = res;
+    doPaint(res);
+  }).catch(function(){ doPaint(null); });
+  return wrap;
+}
+
 function renderInvestorDetail(list, S, inv){
   var name = locVal(inv.name) || inv.slug;
   var manager = locVal(inv.manager);
@@ -6097,6 +6475,13 @@ function renderInvestorDetail(list, S, inv){
     + '<div class="inv-asof-badge">📅 ' + esc(asOf) + "</div>"
     + (inv.ok === false ? '<div class="inv-card-warn">⚠ ' + esc(S.invDataIssue) + "</div>" : "");
   list.appendChild(head);
+
+  /* v85 (june "제일 중요"): 공시일 배지 바로 아래 - 이 화면에서 가장 먼저 눈에
+     들어와야 하는 요소라 다른 신규 블록(활동 요약·매수매도·섹터)보다 앞에 둔다. */
+  try { list.appendChild(invValueChartSection(inv, S)); } catch (e) {}
+  /* v85: 활동 요약은 전체 가치 추이 바로 다음 - "무엇이 바뀌었나"를 숫자로 한 번
+     더 요약해 차트가 준 인상을 구체적인 신규/청산/회전율 수치로 뒷받침한다. */
+  try { var actEl = invActivityHtml(inv.activity, S); if (actEl) list.appendChild(actEl); } catch (e) {}
 
   /* real 파일 관찰(2026-08-05): holdings_count는 "이번 분기 실제 보유 종목 수"만 센다.
      holdings 배열은 그 상위 N종목(가중치 top-25 정도)에 "이번 분기 완전 청산"(change:"exit",
@@ -6118,13 +6503,21 @@ function renderInvestorDetail(list, S, inv){
       bars.innerHTML = top15.map(function(h){
         var pct = (h.weight || 0) * 100;
         var barPct = Math.max(2, (h.weight || 0) / maxW * 100);
-        var label = esc(h.issuer || "");
-        return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + label + '">' + label + "</span>"
+        var plainLabel = esc(h.issuer || "");
+        var label = plainLabel + invPutCallBadgeHtml(h.put_call);
+        return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + plainLabel + '">' + label + "</span>"
           + '<span class="inv-bar-track"><span class="inv-bar-fill" style="width:' + barPct.toFixed(1) + '%"></span></span>'
           + '<span class="inv-bar-pct">' + pct.toFixed(1) + "%</span></div>";
       }).join("");
       list.appendChild(bars);
     }
+
+    /* v85: 매수/매도 상위는 비중 막대 다음 - "무엇이 얼마나 큰가"를 본 뒤
+       "무엇이 새로 들어오고 나갔나"로 자연스럽게 이어진다. 섹터 배분은 그
+       다음(개별 종목 흐름 → 산업 구성이라는 순서). 둘 다 전체 보유 표보다 위에
+       둬서 표까지 스크롤하지 않아도 핵심 요약이 보이게 한다. */
+    try { var movEl = invMoversHtml(allHoldings, S); if (movEl) list.appendChild(movEl); } catch (e) {}
+    try { var secEl = invSectorHtml(inv.sector_alloc, S); if (secEl) list.appendChild(secEl); } catch (e) {}
 
     var top25 = reals.slice(0, 25);
     var tableRows = top25.concat(exits); /* 청산 종목은 25종목 한도와 무관하게 항상 맨 아래에 표시 */
