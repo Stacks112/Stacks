@@ -510,11 +510,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "튀달 캠퍼스 1단계가 2026년 12월 31일까지 인도되면 적중, 그 날짜를 넘기면 어긋난 것으로 채점한다.",
-     "en": "Score as a hit if phase one of the Tydal campus is delivered by 31 December 2026, and as a miss if the date slips.",
-     "ja": "ティダル・キャンパスの第一段階が2026年12月31日までに引き渡されれば的中、その日付を過ぎれば外れと採点する。"
+     "ko": "2026년 12월 31일 인도 목표는 그대로다(중간 판정 아님). 2026년 11월 초까지 비트디어·튀달 데이터센터의 운영 업데이트·실적 공시·언론 보도에서 공사 진행 상황(잔여 공사비·일정 재확인 또는 지연 신호)이 나오는지 확인한다.",
+     "en": "The 31 December 2026 delivery target stands unchanged (this is an interim check, not the final grading). Check by early November 2026 for construction-progress updates from Bitdeer/Tydal operational disclosures, earnings, or press coverage — either reaffirming the timeline or flagging a slip.",
+     "ja": "2026年12月31日の引き渡し目標は変わらない(これは中間チェックであり最終判定ではない)。2026年11月初めまでに、ビットディア/ティダルの運営アップデート・決算開示・報道で工事進捗(スケジュール再確認または遅延の兆候)が出ているか確認する。"
     },
-    "due": "2027-01-31",
+    "due": "2026-11-03",
     "card": {
      "metric": {
       "ko": "노르웨이 튀달 캠퍼스 1단계 인도 여부",
@@ -1683,7 +1683,7 @@
     "due": "2026-10-31",
     "note": {
      "ko": "트렌드포스가 2026년 10월 말까지 내놓는 차기 분기 메모리 전망에서도 2027년 D램은 타이트, 낸드는 2027년 하반기로 갈수록 완화된다는 기존 방향(7/21·7/30 발표)이 유지되는지 확인한다.",
-     "en": "Check whether TrendForce's next quarterly memory outlook, due by end of October 2026, still holds the same direction as its July 21/30 reports — DRAM staying tight into 2027 while NAND eases toward 2H27.",
+     "en": "Check whether TrendForce's next quarterly memory outlook, due by end of October 2026, still holds the same direction as its July 21/30 reports, DRAM staying tight into 2027 while NAND eases toward 2H27.",
      "ja": "TrendForceが2026年10月末までに出す次の四半期メモリー見通しでも、7月21日・30日の発表通り2027年DRAMはタイトなまま、NANDは2027年後半に向けて緩むという方向が維持されているかを確認する。"
     },
     "card": {
@@ -2871,11 +2871,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 1월, 삼성전자 비메모리 부문이 2026년 3분기나 4분기에 분기 흑자로 돌아섰는지, 2나노 수율이 70%대에 안착했다는 확인이 나왔는지를 채점한다.",
-     "en": "In January 2027, score whether Samsung's non-memory business turned a quarterly profit in Q3 or Q4 2026 and whether 2nm yields were confirmed to have settled in the 70% range.",
-     "ja": "2027年1月に、サムスン電子の非メモリ部門が2026年第3四半期または第4四半期に四半期黒字へ転じたか、2ナノ歩留まりが70%台に定着したとの確認が出たかを採点する。"
+     "ko": "삼성전자의 2026년 3분기 실적발표(10월 말 예정)에서 비메모리 부문이 3분기 분기 흑자로 돌아섰는지, 2나노 수율에 대한 구체적 언급(70%대 안착 여부)이 나오는지 확인한다.",
+     "en": "Check Samsung's Q3 2026 earnings call (expected late October) for whether the non-memory business turned a Q3 quarterly profit and for any concrete comment on 2nm yields settling in the 70% range.",
+     "ja": "サムスン電子の2026年第3四半期決算発表(10月末予定)で、非メモリ部門が第3四半期に黒字転換したか、2ナノ歩留まり(70%台定着かどうか)についての具体的な言及があるか確認する。"
     },
-    "due": "2027-01-31"
+    "due": "2026-10-30"
    },
    "gist": {
     "ko": "삼성전자 파운드리가 올해 하반기 안에 가동률 100%에 닿는 것을 목표로 하고 있다.\n지금 가동률은 70~80%로 추정되고, 주문 잔량과 계약 협상 상황을 보면 목표 달성이 사실상 확실하다는 분위기라고 업계는 전한다.\n2024년부터 50% 아래에 오래 눌려 있던 라인이 1년쯤 만에 다시 꽉 차는 셈이다.\n\n@@REF@@삼성전자, 2026년 2분기 실적 발표 (삼성전자 뉴스룸, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\n회사가 직접 확인해 준 것은 여기까지다.\n7월 30일 실적 자료에는 HBM 베이스 다이 수요와 미국 고객의 강한 주문으로 파운드리 실적이 크게 좋아졌다는 문장만 있고, 가동률 100%나 흑자 시점 같은 숫자는 없다.\n파운드리 손익은 반도체를 담당하는 DS부문 안에 메모리와 묶여 나오기 때문에, 흑자로 돌아섰는지를 밖에서 숫자로 확인할 방법도 없다.\n\n## 가동률이 왜 그렇게 중요한가\n공장이 가진 생산능력 가운데 실제로 돌리고 있는 비율이 가동률이다.\n식당으로 치면 좌석의 몇 할을 채웠는지에 해당한다. 손님이 절반만 와도 임대료와 인건비는 그대로 나간다.\n\n반도체 위탁생산은 설비에 들어간 돈이 워낙 커서 이 성질이 훨씬 심하다.\n라인을 세워 두든 돌리든 감가상각은 똑같이 빠져나가고, 그래서 지난해 4나노와 5나노 라인의 가동률이 50% 아래로 내려갔을 때 파운드리는 고정비조차 메우지 못했다.\n반대로 가동률이 정상으로 돌아오면 늘어난 매출이 거의 그대로 이익이 된다.\n\n## 그런데 왜 2028년이라고 했나\n파운드리를 맡은 한진만 사장은 6월 브리핑에서 연간 흑자 시점을 2028년으로 잡았다.\n분기 한 번 흑자를 내는 것과 한 해 전체를 흑자로 마치는 것은 다르다는 이유였다.\n\n@@REF@@삼성 파운드리 수장, 연간 흑자 시점을 2028년으로 (테크타임스, 2026-06-14)|https://www.techtimes.com/articles/318311/20260614/samsung-foundry-chief-sets-2028-annual-profit-tempering-talk-2026-rebound.htm|https://d.techtimes.com/en/full/466638/amsung-electronics-factory.jpg\n\n이 기사는 그가 적자의 이유로 든 것들도 함께 적었다.\n구형 사업 정리, 새로 생긴 성과급, 부족한 기술 성숙도, 마진이 얇은 주문, 그리고 늦어진 텍사스 테일러 공장 가동이다.\n가동률이 올라간다고 이 항목들이 같이 사라지지는 않는다.\n\n## 진짜 문턱은 어디에 있나\n업계에서 의견이 갈리는 지점이 여기다.\n가동률 100% 자체가 아니라 2나노 수율이 70%를 넘느냐가 퀄컴이나 AMD 같은 대형 고객의 본격 발주를 가르는 분수령이라는 시각이 있다.\n\n웨이퍼 한 장에서 정상 작동하는 칩이 나오는 비율이 수율이다.\n수율이 낮으면 같은 웨이퍼를 돌려도 버리는 칩이 많아, 라인이 꽉 차 있어도 칩 하나에 드는 원가가 내려가지 않는다.\n가동률이 라인을 얼마나 채웠는지라면, 수율은 채운 라인에서 쓸 물건이 얼마나 나오는지다.\n\n@@CHK@@2025년 말 2나노 수율|약 20%|2026년 4월 보도|약 55%|2026년 1분기 (6월 보도)|60% 초과@@공개된 숫자가 출처마다 55%와 60% 초과로 갈린다. 어느 쪽을 택해도 양산 문턱으로 통하는 70%에는 닿지 않았다. 원문이 수율을 먼저 봐야 한다고 짚은 근거가 숫자로도 확인된다.@@2026-08-03 조회 · TrendForce(2026-04-14)와 Tech Times(2026-06-14) 보도 인용\n\n@@REF@@삼성 2나노 수율 약 55%로 양산 문턱 아래, 퀄컴은 TSMC로 (트렌드포스, 2026-04-14)|https://www.trendforce.com/news/2026/04/14/news-samsung-2nm-yields-reportedly-at-55-below-mass-production-threshold-qualcomm-may-opt-for-tsmc/|https://img.trendforce.com/blog/wp-content/uploads/2026/03/04155736/Samsung-20260304-624x413.jpg\n\n이 기사는 원문에 나온 이름 하나를 뒷받침하고 하나를 흔든다.\n테슬라가 자율주행 칩을 삼성에 맡겼다는 대목은 그대로 확인되지만, 퀄컴은 차세대 주력 칩의 본생산을 TSMC의 2나노 공정에 맡긴 것으로 전해졌다.\n원문이 협상 테이블에 앉기 시작했다고 쓴 것과 실제 발주는 아직 다른 단계라는 뜻이다.\n\n@@CMP@@가동률로 읽기|라인이 꽉 차면 늘어난 매출이 그대로 이익이 된다. 분기 흑자가 눈앞이고, 그래서 지금이 변곡점이다.|수율로 읽기|채운 물량은 대부분 기존 공정이다. 2나노 수율이 70%에 안착해야 대형 고객이 양산으로 넘어온다.\n같은 회사의 같은 분기를 두고, 라인이 얼마나 찼는지를 보느냐 그 라인에서 쓸 칩이 얼마나 나오는지를 보느냐에 따라 결론이 갈린다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 가동률 100%는 흑자의 도착점인가, 문턱이 하나 남은 중간 지점인가.\n\n3분기나 4분기에 비메모리 부문이 흑자로 돌아서고 2나노 수율이 70%대에 안착하면 앞쪽이 맞다.\n가동률만 채워지고 수율이 60%대에 머물면, 퀄컴 사례처럼 대형 고객의 본생산은 계속 다른 회사로 간다.\n\n라인을 채운 물량의 상당 부분은 메모리 호황이 만들어 준 것이다.\n그 호황이 식는 구간에서도 라인이 차 있으려면, 그때는 외부 고객의 이름이 대신 그 자리를 채워야 한다.",
@@ -5138,11 +5138,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 1월, 삼성전자가 2026년에 확보한 2나노 프로젝트 수가 실제로 2025년의 두 배를 넘었는지, 브로드컴 물량이 계약으로 확인됐는지를 채점한다.",
-     "en": "In January 2027, score whether Samsung's 2nm project wins for 2026 really more than doubled from 2025 and whether Broadcom volume was confirmed as a contract.",
-     "ja": "2027年1月に、サムスン電子が2026年に獲得した2ナノ案件数が実際に2025年の2倍を超えたか、ブロードコムの数量が契約として確認されたかを採点する。"
+     "ko": "삼성전자의 2026년 3분기 실적발표(10월 말 예정)에서 2026년 2나노 프로젝트 수주 현황과 브로드컴 물량 계약 진행 상황에 대한 업데이트가 나오는지 확인한다.",
+     "en": "Check Samsung's Q3 2026 earnings call (expected late October) for an update on 2026 2nm project wins and progress on confirming Broadcom volume as a contract.",
+     "ja": "サムスン電子の2026年第3四半期決算発表(10月末予定)で、2026年の2ナノ案件獲得状況とブロードコムの数量契約化の進捗についての更新があるか確認する。"
     },
-    "due": "2027-01-31"
+    "due": "2026-10-30"
    },
    "gist": {
     "ko": "삼성전자 파운드리의 수익성이 1년 전보다 크게 좋아졌고, 회사는 흑자 전환이 머지않았다고 밝혔다.\n8나노 이하 선단 공정의 가동률이 최고 수준까지 올라왔고, 여기에 수율 개선과 가격 인상이 겹쳤다.\n\n@@REF@@삼성전자, 2026년 2분기 실적 발표 (삼성전자 뉴스룸, 2026-07-30)|https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results|https://img.global.news.samsung.com/global/wp-content/uploads/2026/07/29111731/Samsung-Corporate-More-Stories-Second-Quarter-2026-Reults_Thumb932.jpg\n\n같은 날 공개된 이 발표 자료에는 파운드리 흑자 전환 이야기가 없다.\n반도체를 담당하는 DS부문의 매출 127조 5,000억원, 영업이익 89조 2,000억원까지가 자료에 실린 숫자고, 파운드리 이야기는 그 뒤에 열린 설명회에서 나왔다.\n\n## 그런데 무엇이 매출을 늘렸나\n회사가 파운드리 매출 증가 요인으로 꼽은 것은 두 가지다.\nHBM 베이스 다이 수요가 늘었고, 북미 고객의 제품 물량이 들어왔다.\n\n@@REF@@삼성전자, 연내 테일러 2공장 착공 (코리아타임스, 2026-07-30)|https://www.koreatimes.co.kr/business/companies/20260730/samsung-electronics-to-break-ground-on-2nd-fab-in-taylor-within-this-year|https://newsimg.koreatimes.co.kr/2026/07/30/db274b33-ff4a-4858-830e-09cf557a9bc7.jpg\n\n베이스 다이는 HBM 더미의 맨 아래에 깔리는 칩이다.\n쌓아 올린 D램과 바깥의 GPU 사이에서 신호를 정리해 주는 층이고, 메모리 공정이 아니라 파운드리 공정에서 만든다.\n\n@@IMG@@dram-module|서버에 꽂는 D램. HBM은 이 D램을 여러 장 쌓아 올린 것이고, 그 맨 아래에는 파운드리가 만든 칩이 한 장 깔린다.\n\n그래서 메모리가 잘 팔리면 파운드리 매출도 같이 늘어난다.\n외부 고객이 돌아와서 좋아진 부분과 자사 메모리가 끌어준 부분이 한 숫자 안에 섞여 있다는 뜻이다.\n\n## 2나노는 어디까지 왔나\n1세대 2나노 양산 경험을 바탕으로 하반기에 2세대 2나노의 본격 양산을 시작한다고 회사는 밝혔다.\n2분기에는 대형 클라우드 업체 한 곳과 고성능 컴퓨팅 고객에게서 2나노 물량을 받았고, 브로드컴을 포함한 대형 고객과의 논의도 넓어지고 있다고 했다.\n올해 확보할 2나노 프로젝트 수는 지난해의 두 배를 넘을 것으로 본다.\n\n## 지금 짓는 공장의 물건은 언제 나오나\n테일러 1공장은 올해 가동을 준비하고 있고, 2공장은 연내 착공해 2030년 양산이 목표다.\n1.4나노 문의가 늘어 공장을 하나 더 확보하는 것도 검토하고 있다.\n\n@@REF@@삼성, 연내 텍사스 2공장 착공해 2030년 양산 목표 (서울경제 영문판, 2026-07-30)|https://en.sedaily.com/finance/2026/07/30/samsung-to-break-ground-on-texas-fab-2-by-year-end-target|https://wimg.sedaily.com/news/cms/2026/07/30/news-p.v1.20260730.bbcf0b54510b45098aad5c199c891530_P1.jpg\n\n이 기사는 첫 테일러 공장이 올해 가동에 들어갔다는 사실을 함께 적었다.\n착공에서 양산까지 4년이 걸린다는 뜻이고, 선단 공정 증설이 수요를 따라가지 못했다고 회사가 인정한 말의 실체가 이 시차다.\n\n메모리에서 새 공장의 웨이퍼가 나오기까지 3년 반이 걸린다고 했던 것과 같은 구조다.\n지금 결정하는 증설은 지금의 부족을 풀지 못한다.\n\n## 오래된 공정은 어디로 가나\n성숙 공정은 물량 경쟁 대신 값을 더 받을 수 있는 제품으로 옮긴다.\n8나노와 17나노, 이미지센서, 칩 안에 넣는 비휘발성 메모리의 생산능력을 늘리고 있다고 밝혔다.\n실리콘 커패시터와 실리콘 포토닉스도 키우는 분야로 꼽았다.\n\n## 그래서 무엇으로 가릴까\n결국 질문은 하나다. 파운드리의 회복이 외부 고객이 돌아온 결과인가, 자사 메모리가 끌어준 결과인가.\n\n올해 2나노 프로젝트 수가 실제로 두 배를 넘고 브로드컴 물량이 계약으로 확인되면 앞쪽이 맞다.\n숫자는 좋아지는데 고객 이름이 늘지 않으면, 메모리 호황이 식는 구간에서 파운드리도 같이 식는다.\n\n메모리와 파운드리를 한 회사가 같이 하는 구조는 오래 약점으로 불렸다.\n이번 분기에는 그 구조가 파운드리를 떠받쳤다. 같은 구조는 반대 방향으로도 작동한다.",
@@ -6823,11 +6823,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 초에 나오는 2026년 연간 집계로 채점한다. 미국 사모신용 조달액도 함께 줄었으면 자산군이 식은 것이고, 미국은 유지되거나 늘고 아시아만 줄었으면 자금 이동이었던 것이 된다.",
-     "en": "Grade on the full-year 2026 tallies published in early 2027. If US private credit fundraising fell alongside Asia, the asset class cooled. If US held or grew while only Asia shrank, it was a relocation of capital.",
-     "ja": "2027年初めに出る2026年通年の集計で採点する。米国のプライベートクレジット調達額も一緒に減っていれば資産クラスが冷めたことになり、米国が保たれるか増えてアジアだけ減っていれば資金の移動だったことになる。"
+     "ko": "2026년 2분기 아시아 사모신용 조달·거래가 이미 부진했다는 보도(Mondaq, 2026-07)가 나왔다. 2026년 11월 초까지 나오는 3분기 아시아 사모신용 집계에서 미국 조달액도 함께 줄었는지(자산군 전체 냉각), 아니면 미국은 유지·증가하고 아시아만 계속 줄었는지(자금 이동)를 확인한다.",
+     "en": "Q2 2026 Asia private credit fundraising/dealmaking was already reported muted (Mondaq, July 2026). Check the Q3 2026 Asia private credit tallies, due by early November 2026, for whether US fundraising also fell (asset class cooled) or held/grew while only Asia kept shrinking (capital relocation).",
+     "ja": "2026年第2四半期のアジアのプライベートクレジット調達・案件がすでに低調だったと報じられている(Mondaq、2026年7月)。2026年11月初めまでに出る第3四半期のアジア・プライベートクレジット集計で、米国の調達額も一緒に減ったか(資産クラス全体の冷え込み)、それとも米国は維持・増加してアジアだけ減り続けたか(資金の移動)を確認する。"
     },
-    "due": "2027-02-28"
+    "due": "2026-11-03"
    },
    "lab": true,
    "foldWhy": true,
@@ -8921,11 +8921,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 1월 27일 락업 해제 이후 CXMT 주가가 노무라의 목표주가 116위안에 가까운지, 모닝스타의 적정가 14.90위안에 가까운지로 채점.",
-     "en": "Check whether, after the January 27, 2027 lock-up expiry, CXMT trades closer to Nomura's ¥116 target or Morningstar's ¥14.90 fair value.",
-     "ja": "2027年1月27日のロックアップ解除以降、CXMTの株価が野村の目標株価116元とモーニングスターの適正株価14.90元のどちらに近いかで採点する。"
+     "ko": "블룸버그가 노무라·모닝스타의 1조달러 격차 목표주가를 재확인했다(2026-08-03). 2027년 1월 27일 락업 해제 전 중간 점검으로, 2026년 11월 초 CXMT 주가가 노무라 쪽(고평가 지속)과 모닝스타 쪽(밸류에이션 조정) 중 어디에 더 가깝게 움직이는지 확인한다.",
+     "en": "Bloomberg reconfirmed the trillion-dollar gap between Nomura's and Morningstar's CXMT targets (2026-08-03). As an interim check ahead of the January 27, 2027 lock-up expiry, see by early November 2026 whether CXMT's share price is trending closer to Nomura's bullish case or Morningstar's valuation-correction case.",
+     "ja": "ブルームバーグが野村とモーニングスターのCXMT目標株価の1兆ドルの差を再確認した(2026-08-03)。2027年1月27日のロックアップ解除前の中間チェックとして、2026年11月初めにCXMTの株価が野村側(強気継続)とモーニングスター側(バリュエーション調整)のどちらに近く動いているかを確認する。"
     },
-    "due": "2027-02-15"
+    "due": "2026-11-03"
    },
    "quote": {
     "lines": {
@@ -12296,7 +12296,7 @@
     "due": "2026-08-26",
     "note": {
      "ko": "엔비디아의 2027 회계연도 2분기(2026년 8월 26일 실적발표 예정) 콘퍼런스콜에서 800V HVDC 전력 시스템 일정에 관한 언급이 나오는지, 세미애널리시스의 2028년 지연 경고에 맞서 2027년 1분기 양산 일정을 재확인하는지 확인한다.",
-     "en": "Check Nvidia's fiscal Q2 2027 earnings call (scheduled August 26, 2026) for any comment on the 800V HVDC power system timeline — whether management reaffirms the Q1 2027 production schedule against SemiAnalysis's 2028-slip warning.",
+     "en": "Check Nvidia's fiscal Q2 2027 earnings call (scheduled August 26, 2026) for any comment on the 800V HVDC power system timeline, whether management reaffirms the Q1 2027 production schedule against SemiAnalysis's 2028-slip warning.",
      "ja": "エヌビディアの2027会計年度第2四半期決算発表(2026年8月26日予定)のカンファレンスコールで、800V HVDC電力システムの日程への言及があるか、セミアナリシスの2028年遅延警告に対し2027年第1四半期の量産スケジュールを再確認するかを確認する。"
     }
    },
@@ -14607,7 +14607,7 @@
     "status": "pending",
     "note": {
      "ko": "TSMC의 2026년 3분기 실적발표(통상 10월 중순)에서 9.5배 리티클 CoWoS-L 패키징의 납땜 수율 문제에 대한 언급이 나오는지, 해결됐다고 밝히는지 아니면 여전히 병목이라고 인정하는지 확인한다.",
-     "en": "Check TSMC's Q3 2026 earnings call (typically mid-October) for any comment on the 9.5x reticle CoWoS-L soldering yield issue — whether management says it's resolved or still a bottleneck.",
+     "en": "Check TSMC's Q3 2026 earnings call (typically mid-October) for any comment on the 9.5x reticle CoWoS-L soldering yield issue, whether management says it's resolved or still a bottleneck.",
      "ja": "TSMCの2026年第3四半期決算発表(通常10月中旬)で、9.5倍リティクルCoWoS-Lパッケージングのはんだ付け歩留まり問題への言及があるか、解決したと述べるか、それとも依然としてボトルネックだと認めるかを確認する。"
     },
     "due": "2026-10-20"
@@ -14723,11 +14723,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Check in early 2027 whether TSMC's new pricing (5-10% base, plus 10-15% premium on extra HPC orders) takes effect as reported and how customers respond.",
-     "ja": "2027年初め、TSMCの新価格(基本5〜10%、HPC追加注文への10〜15%プレミアム)が報道通り実際に適用されるか、顧客企業がどう反応するかを確認する。",
-     "ko": "2027년 초 TSMC의 새 가격(기본 5~10%, HPC 추가 주문 10~15% 프리미엄)이 보도대로 실제 적용되는지, 고객사들이 어떻게 반응하는지 확인한다."
+     "en": "Check TSMC's Q3 2026 earnings call (typically mid-October) for any comment on the new 2027 pricing (5-10% base, plus 10-15% premium on extra HPC orders) taking effect and how customers are responding.",
+     "ja": "TSMCの2026年第3四半期決算発表(通常10月中旬)で、2027年の新価格(基本5〜10%、HPC追加注文への10〜15%プレミアム)の適用や顧客企業の反応についての言及があるか確認する。",
+     "ko": "TSMC의 2026년 3분기 실적발표(통상 10월 중순)에서 2027년 새 가격(기본 5~10%, HPC 추가 주문 10~15% 프리미엄) 적용과 고객사 반응에 대한 언급이 나오는지 확인한다."
     },
-    "due": "2027-02-28"
+    "due": "2026-10-20"
    },
    "ts": "2026-07-21T12:00:00+00:00",
    "coverArt": "covers/jukan-tsmc-foundry-price-hike-2027.png",
@@ -17217,11 +17217,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Grade when China's full-year 2026 solar installation figures are published: did new additions come in below the 2025 record, as Doomberg predicts?",
-     "ko": "중국의 2026년 연간 태양광 설치량이 발표되면 채점: 둠버그 예측대로 신규 설치가 2025년 기록보다 적게 나왔는가?",
-     "ja": "中国の2026年通年の太陽光設置量が公表された時点で採点:ドゥームバーグの予測どおり、新規設置は2025年の記録を下回ったか?"
+     "en": "China's monthly solar data already shows installs down sharply in 2026 (January-April down 51% YoY, June down 85% month-on-month, per PV-Tech). Check the cumulative January-September 2026 figure, typically published by late October with about a one-month lag, against the same period in 2025 to see if the pace is already tracking below the record.",
+     "ko": "중국의 월별 태양광 설치 데이터는 이미 2026년 큰 폭 감소를 보이고 있다(1~4월 전년 대비 -51%, 6월 전월 대비 -85%, PV-Tech). 통상 한 달가량 시차를 두고 10월 말까지 발표되는 2026년 1~9월 누적치를 2025년 같은 기간과 비교해, 이미 기록을 밑도는 속도인지 확인한다.",
+     "ja": "中国の月次太陽光設置データはすでに2026年の大幅減少を示している(1〜4月は前年比-51%、6月は前月比-85%、PV-Tech調べ)。通常1カ月ほどの時差で10月末までに発表される2026年1〜9月の累計値を2025年同期と比べ、すでに記録を下回るペースかどうかを確認する。"
     },
-    "due": "2027-02-15"
+    "due": "2026-10-31"
    },
    "ts": "2026-07-18T12:00:00+00:00",
    "quote": {
@@ -18362,11 +18362,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Grade after full-year 2026 results: did S&P 500 realized EPS growth come in near the ~24% expectation, or well below?",
-     "ko": "2026년 연간 실적 확정 후 채점: S&P500 실현 EPS 성장률이 기대치 약 24%에 근접했는가, 아니면 크게 밑돌았는가?",
-     "ja": "2026年通期の実績確定後に採点：S&P500の実現EPS成長率は期待の約24%に近かったか、それとも大きく下回ったか？"
+     "en": "Check the Q3 2026 earnings season (most S&P 500 companies report by early November) for whether realized EPS growth is tracking near the ~24% full-year expectation or falling well short.",
+     "ko": "2026년 3분기 실적 시즌(대부분 11월 초까지 발표)에서 S&P500 실현 EPS 성장률이 연간 기대치 약 24%에 근접한 궤적인지, 아니면 크게 못 미치는지 확인한다.",
+     "ja": "2026年第3四半期決算シーズン(S&P500の大半が11月初めまでに発表)で、実現EPS成長率が通期期待の約24%に近い軌道か、それとも大きく下回っているかを確認する。"
     },
-    "due": "2027-02-28"
+    "due": "2026-11-03"
    },
    "avatarImg": "https://unavatar.io/twitter/charliebilello?fallback=false",
    "ts": "2026-07-14T12:00:00+00:00",
