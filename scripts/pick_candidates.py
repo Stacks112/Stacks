@@ -192,14 +192,27 @@ def main():
         sys.exit(2)
 
     feed_map = {}
+    disabled_feed_ids = set()
+    display_feed_ids = {}
     for k, v in sources_data.items():
         if k.startswith("_"):
             continue
-        feed_map[k] = {"source": v.get("source", k), "category": v.get("category", "")}
+        display = v.get("source", k)
+        feed_map[k] = {"source": display, "category": v.get("category", "")}
+        display_feed_ids.setdefault(display, []).append(k)
+        if v.get("disabled"):
+            disabled_feed_ids.add(k)
     caps = sources_data.get("_CAPS")
     if not caps:
         print("[경고] sources.json 에 _CAPS 블록이 없다 — 상한 판정 없이 진행", file=sys.stderr)
         caps = {}
+
+    # 표시명 하나가 여러 feed_id로 수집되는 경우(kuo/kuo_x 등)가 있으므로,
+    # 그 표시명에 딸린 feed_id가 전부 disabled 일 때만 "비활성 소스"로 취급한다.
+    disabled_displays = sorted(
+        display for display, fids in display_feed_ids.items()
+        if all(sources_data.get(fid, {}).get("disabled") for fid in fids)
+    )
 
     # 기존 sourceUrl 정규화 집합
     existing_keys, existing_norm_fail = build_existing_url_set(items)
@@ -236,6 +249,8 @@ def main():
         info = feed_map.get(feed_id)
         if info is None:
             unregistered_feeds.append(feed_id)
+            continue
+        if feed_id in disabled_feed_ids:
             continue
         display = info["source"]
         category = info["category"]
@@ -343,8 +358,9 @@ def main():
         emit("(_CAPS 없음 — 상한 판정 불가)")
     else:
         emit(f"총 상한 total={total_cap} default_per_source={default_per_source}")
-        # 등록된 전체 표시명(중복 제거, feed_id 짝은 표시명 기준 합산되어 자동 처리됨)
-        all_displays = sorted(set(v["source"] for v in feed_map.values()))
+        # 등록된 전체 표시명(중복 제거, feed_id 짝은 표시명 기준 합산되어 자동 처리됨).
+        # 비활성 소스(disabled:true)는 상한 표에서 아예 뺀다 — 검토 대상이 아니다.
+        all_displays = sorted(set(v["source"] for v in feed_map.values()) - set(disabled_displays))
         no_candidate_displays = []
         for display in all_displays:
             cat = next((v["category"] for v in feed_map.values() if v["source"] == display), "")
@@ -386,7 +402,9 @@ def main():
         if d >= fourteen_days_ago:
             recent14_counts[src] = recent14_counts.get(src, 0) + 1
 
-    all_registered_displays = sorted(set(v["source"] for v in feed_map.values()))
+    # 비활성 소스는 "0건" 목록에서도 뺀다 — 애초에 검토 대상이 아니므로 june이
+    # 없애려던 매 회차 노이즈("The Diff: 0건")를 여기서 만들지 않는다.
+    all_registered_displays = sorted(set(v["source"] for v in feed_map.values()) - set(disabled_displays))
     zero_7d = [d for d in all_registered_displays if d not in recent7_sources]
     emit(f"=== 최근 7일 카드 0건 소스 ({len(zero_7d)}개) ===")
     emit(", ".join(zero_7d) if zero_7d else "(없음)")
@@ -466,6 +484,8 @@ def main():
         f"이미 발행 제외 {excluded_already_pub}건 / 창 밖 제외 {excluded_out_of_window}건 / "
         f"파싱 실패 {unparsed_count}건"
     )
+    if disabled_displays:
+        emit(f"비활성 소스 {len(disabled_displays)}개 제외: {', '.join(disabled_displays)}")
 
     print("\n".join(out_lines))
 
@@ -476,6 +496,7 @@ def main():
             "debut_days": args.debut_days,
             "candidates": candidates,
             "unregistered_feeds": unregistered_feeds,
+            "disabled_sources": disabled_displays,
             "excluded_already_published": excluded_already_pub,
             "excluded_out_of_window": excluded_out_of_window,
             "unparsed_count": unparsed_count,
