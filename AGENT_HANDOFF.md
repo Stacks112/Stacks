@@ -2,6 +2,64 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-opus-5) — 13F 유명 투자자 포트폴리오 신규 기능 (커밋 `6262c42` + `027e721`)
+
+june 지시로 9월 게이트 **예외** 진행(캘린더에 이은 두 번째 예외). SEC EDGAR 13F-HR 공시 기반
+"유명 투자자 보유 종목" 화면을 신규 배포. 설계·조사 원문은 프로젝트 문서
+`claude/design-2026-08-05-13f-investor-portfolios.md`, 결과 보고는
+`claude/status-2026-08-05-13f-investor-portfolios-shipped.md`.
+
+**Changed**: `index.html`(+421줄) · `portfolios.json`(신규) · `cusip_map.json`(신규) ·
+`scripts/fetch_13f.py`(신규). `items.json`·`build_pages.py`·`assets/*`·`worker/*`는 **건드리지 않았다.**
+
+**대상 5곳**: 버크셔(CIK 0001067983) · 퍼싱스퀘어(0001336528) · ARK(0001697748) ·
+듀케인(0001536411) · 아팔루사(**0001656456** — 옛 CIK 0001006438은 2016년에 죽었다).
+사이언(버리)·그린라이트(아인혼)는 13F 제출 자체가 끊겨 제외. 브리지워터는 초분산이라 제외.
+아이칸을 나중에 넣는다면 법인이 아니라 **개인 CIK 0000921669**다.
+
+**⚠ 13F 파싱에서 반드시 지켜야 할 것 (전부 실측으로 밟은 함정)**
+1. infotable XML **파일명이 filer마다 다르다** — 퍼싱·ARK는 `infotable.xml`, **버크셔는 `53405.xml`**.
+   `Archives/edgar/data/{CIK}/{accession}/index.json`의 `directory.item[]`으로 동적 조회 필수.
+2. **CUSIP GROUP BY + SUM 필수** — 버크셔는 Apple을 **12행**으로 쪼개 신고한다.
+   집계 후 **$57,843,260,493**이 회귀 테스트 기준값.
+3. **주식 클래스 2차 병합** — Alphabet A(`02079K305`)/C(`02079K107`)가 따로 남아 같은 이름이
+   두 줄 뜬다. ticker 기준으로 합치고, ticker 없는 동명 증권은 `titleOfClass` 괄호 병기로 구분만.
+4. **Duquesne은 `value`가 천 달러 단위**(나머지 4곳은 달러). `fix_value_units()`가 filer 단위로
+   보정하고 stderr 경고를 찍는다. 이상치면 `ok:false`로 떨군다.
+5. **`exit` 종목은 weight 0이라 상위 25 정렬에서 사라진다.** 별도 분리해 표 맨 아래 항상 노출.
+6. SEC는 이 샌드박스에서 **WebFetch만** 통한다(curl/urllib 프록시 403). Actions 러너는 제약 없음.
+   `cgi-bin/browse-edgar?...&company=`는 robots 차단. OpenFIGI는 POST 전용 + 403이라 사용 불가.
+
+**🔴 별개로 발견한 기존 버그(13F와 무관, 미수정)**: `items.json` `entities` 중 ticker가 있는
+84개 회사에서 **28개가 stooq 접미사 없는 순수 심볼**이다(`AMZN`, `AMD`, `MS`, `GS`, `ORCL`, `KLAC` …;
+`SMIC`는 `"688981 / 0981"`). `worker/index.js:739` `yahooSymbol()`은 `.us` 접미사를 전제하므로
+**이 28개에서는 기존 미니 차트·풀스크린 차트도 안 돌고 있을 가능성이 높다.** 13F 쪽만
+`normalize_ticker()`로 막아 뒀다. 근본 수리는 **워커 `yahooSymbol()`에 접미사 없는 심볼 폴백
+한 줄**이 `items.json`을 건드리는 것보다 싸고 안전하다(KRX/TSE 모호성만 확인 필요).
+
+**⏰ 자동 갱신이 아직 없다**: `scripts/fetch_13f.py`는 커밋만 됐고 실행 주체가 없다.
+**Q2 2026 제출 마감이 2026-08-14(금)**다. 실측상 18곳 중 10곳 이상이 마감일 당일 제출하므로
+주간 폴링은 낭비 — 권고 cron(UTC) `0 22 8-19 2,5,8,11 *`(마감월 8~19일만). 스크립트가
+accession 동일 시 스킵하므로 헛돌아도 비용 없음. Cowork 예약보다 **GitHub Actions**가 낫다
+(SEC 접근 제약 없음, PAT 불필요).
+
+**Verified (라이브 stacksdaily.com 실측)**: 5개 slug 전부 상세 정상 · 막대차트 · 기준일 배지
+(`2026.03.31 기준 · 2026.05.15 공시`) · 변화 배지 4종 · "외 N개" 정확(ark 122/duquesne 40/
+appaloosa 6/berkshire 3, pershing은 전량 표시라 표기 없음) · 고지문 · SEC 원문 링크 ·
+**공시일 이후 수익률 배지 실동작**(퍼싱 MICROSOFT `공시일 이후 +20.4%`, 워커 `/quote` 정상) ·
+모바일 390px 드로어 진입점(중복 0, 탭→목록 전환). CI: Clobber guard✅×2 · Email render guard✅ ·
+pages build✅. 4파일 전부 로컬↔origin sha256 바이트 일치.
+
+**배포 방식**: 이 세션도 git push 거부("not in this session's authorized repository set").
+june Chrome + `/upload/main` **파일 업로드**로 배포했다 — 신규 파일 3개 + index.html 통째 교체라
+줄패치·CodeMirror dispatch보다 단순했다. 업로드 직전 `api.github.com`으로 HEAD를 재확인해
+그 사이 들어온 발행 봇 커밋(`a0cf613`)이 우리 경로와 무관함을 확인하고 진행.
+
+**미처리/의도적 제외**: 정적 SEO 페이지(`/i/{slug}.html`) 미생성(얇은 페이지 애드센스 전례) ·
+회사 페이지 역참조("이 종목을 들고 있는 유명 투자자", `cusip_map.json` 역인덱스로 거의 공짜 —
+**가장 싼 다음 한 수**) · 분기 추이 꺾은선(데이터 1~2분기뿐) · `WORK-LOCK.md` 락 미등록
+(deploy_guard + HEAD 재확인 + 바이트 대조로 갈음).
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 예측 채점 [2-A] 10건 신규 판정 (hit 4 · miss 6)
 
 **작업**: `outcome.status`가 `pending`이고 `outcome.due <= 2026-08-05`인 항목 10건에 대해 grading.md `[3-A]`(서로 다른 각도 WebSearch 3회 이상)·`[3-B]`(판정표) 절차를 거쳐 hit/miss를 확정하고 `items.json`에 반영했다. 증거 수집은 항목별 서브에이전트(WebSearch)에게 위임했고, 최종 판정(hit/miss 결정)은 상위 세션이 증거를 검토해 직접 내렸다.
