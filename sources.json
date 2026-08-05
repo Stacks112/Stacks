@@ -83,7 +83,9 @@
   "lang": "EN",
   "category": "investor",
   "notes": "Ghost 뉴스레터(thediff.co)를 rss.app으로 브리지. 테크·금융 전략, 거의 매일. 유료라 제목+미리보기만 → 200자 예외, 없는 수치 지어내지 말 것.",
-  "avatarImg": "https://unavatar.io/twitter/ByrneHobart?fallback=false"
+  "avatarImg": "https://unavatar.io/twitter/ByrneHobart?fallback=false",
+  "disabled": true,
+  "disabled_reason": "피드가 제목만 제공하고 본문이 유료 구독자 전용이라 카드를 만들 수 없다. 2026-08-05 june 결정으로 수집·후보 검토 대상에서 제외. 이미 발행된 카드(thediff-overlubricated-economy)의 표시명·아바타 조회를 위해 항목 자체는 남긴다."
  },
  "lynalden": {
   "source": "Lyn Alden",
