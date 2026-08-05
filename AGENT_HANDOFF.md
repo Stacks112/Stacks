@@ -2,6 +2,68 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 급변동 알림 스캔 누락(5/84) 원인 규명·수정·배포
+
+june 지시: surge-monitor 예약(08:20 KST)이 `complete:false`(79/84, 5개 스캔 누락)를 반복
+보고 → 원인 조사 → "다시 오류 일어나지 않게 수정해줘".
+
+### 원인
+
+`worker/index.js`의 `yahooSymbol()`이 특이 포맷 티커 5개를 Yahoo Finance가 이해 못 하는
+심볼로 잘못 변환해 매일 결정론적으로 조회 실패(subrequest/CPU 상한 문제 아님 — 코드
+조사는 sonnet 서브에이전트에 위임, `claude/decision-2026-08-04-coding-in-subagent-lower-model.md`
+규칙). 대상: APACER(`8271`)·WINBOND(`2344`, 대만 티커라 거래소 접미사 없음)·
+GAZPROM(`gazp.moex`, `.moex`가 Yahoo 형식 아님)·HUA HONG(`1347 / 688347`)·
+SMIC(`688981 / 0981`, 이중상장 표기가 정규식에 뭉개져 무효 심볼 생성).
+
+Changed: `worker/index.js`만, 커밋 2건.
+- `6831e02` — `yahooSymbol()`에 대만 거래소 매핑(`TAIWAN_TICKER_EXCHANGE`)·`.moex→.ME`
+  정규화·이중상장 슬래시 분리(HKEX 코드 우선) 추가. `/quote` 라우트의 중복 인라인 변환
+  로직도 `yahooSymbol()` 재사용으로 리팩터(같은 버그가 개별 종목 차트 조회에도 있었음).
+- `c178e97` — 라이브 검증 중 APACER를 TPEx(`.TWO`)로 잘못 매핑한 걸 발견(웹서치로
+  Yahoo Finance·TradingView가 `8271.TW`/`TWSE:8271`로 일관 확인) → TWSE(`.TW`)로 정정.
+
+### 검증
+
+로컬(`/root/Stacks` 클론): `node --check` 통과, `yahooSymbol()` 순수 함수 단위로 신규
+5케이스 + 기존 84개 팔로우 종목 티커 포맷 전체 회귀 없음 확인(서브에이전트 위임).
+
+배포: git push 권한 없는 세션(프록시 403, `git push --dry-run` 확인) → GitHub `edit`
+페이지 CodeMirror `dispatch`(WORK-LOCK.md 절차). 두 커밋 모두 baseSha(raw fetch 또는
+`api.github.com` contents로 CDN 캐시 우회) 대조 → 앵커 치환 → targetSha 사전 계산·
+dispatch 후 재대조까지 byte-exact 일치. Clobber guard✅·Deploy worker✅ 양쪽 커밋 모두.
+
+라이브 검증(`/quote?s=<ticker>` 직접 호출, `WebFetch` — 샌드박스 아웃바운드 프록시가
+`api.stacksdaily.com`을 막아 `curl`은 불가):
+- WINBOND(`2344`) → `currency:"TWD"` 정상 수신
+- HUA HONG(`1347 / 688347`) → HKD 정상 수신 (1347.HK)
+- SMIC(`688981 / 0981`) → HKD 정상 수신 (0981.HK)
+- APACER(`8271`) → 2차 수정 후 `currency:"TWD"` 정상 수신 (8271.TW)
+- GAZPROM(`gazp.moex`) → 여전히 404("no data"). 심볼 포맷(`GAZP.ME`)은 Yahoo Finance
+  quote 페이지 존재로 웹서치 확인했으나 Yahoo chart API가 러시아 제재 종목 데이터를
+  안 줄 가능성 — **매핑 버그가 아니라 별개의 정상적 실패로 판단, 미해결로 남김.**
+
+Risks:
+- GAZPROM은 여전히 스캔 실패한다(5개 중 4개만 해결, 84 중 83/84가 새 기대치).
+  다음 surge-monitor 회차(내일 08:20 KST)가 `complete:true` 또는 `scannedToday:83`을
+  보이는지 확인 필요 — 이 세션은 크론이 아직 재실행되지 않아 실측하지 못했다(POST
+  `/cron/surge`로 강제 실행은 규칙상 금지, 시크릿도 없음).
+- HUA HONG/SMIC의 "HKEX 코드 우선" 선택은 합리적 추정이며 SSE STAR마켓 데이터가 더
+  정확할 가능성은 네트워크로 검증 못 함(코드 주석에 근거 남김).
+- `claude/WORK-LOCK.md`에 이 작업의 락을 정식 등록하지 못했다 — 문서 크기(30K+자)가
+  커서 손 전사 시 오탈자 위험이 크다고 판단해 생략. 대신 매 배포 직전 `git fetch
+  origin main`으로 다른 세션 커밋과 충돌 여부를 확인했고(실제로 충돌 없었음), 이
+  경위를 여기 남긴다. 다음에 이 파일을 만지는 세션은 락 보드 갱신 관행을 유지할 것.
+
+Next:
+- 내일(08-06) 08:20 KST surge-monitor 회차에서 `scannedToday`가 79→83으로 개선됐는지,
+  GAZPROM만 남았는지 확인.
+- GAZPROM은 필요하면 별도로 제재 관련 데이터 소스 대체(예: MOEX 직접 API)를 검토하되,
+  September gate 기간(~09-06) 새 기능 금지 원칙에 걸릴 수 있어 june 판단 필요.
+
+상세: 프로젝트 `claude/status-2026-08-05-surge-scan-gap-yahoosymbol-root-cause.md`(원인
+조사),`claude/status-2026-08-05-surge-scan-fix-deployed.md`(수정·배포·검증 전체 기록).
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 예측 채점 push 거부 우회: 소급 정리 8건 브라우저 업로드로 반영
 
 june이 예약(스케줄) 세션의 예측 채점 오류 확인을 요청. `git push`가
