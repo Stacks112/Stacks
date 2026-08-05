@@ -3489,11 +3489,36 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 .inv-card-name{font-size:16px;font-weight:800;color:var(--text);}
 .inv-card-manager{font-size:12.5px;color:var(--muted);}
 .inv-card-asof{font-size:11px;color:var(--muted);font-family:var(--mono-font);}
-.inv-card-top3{display:flex;flex-direction:column;gap:3px;margin:4px 0;}
-.inv-card-top3 span{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--text);}
-.inv-card-top3 span b{font-family:var(--mono-font);color:var(--muted);font-weight:700;white-space:nowrap;}
-.inv-card-total{font-size:12.5px;font-weight:700;color:var(--text);margin-top:2px;}
 .inv-card-warn{font-size:11.5px;color:#E04438;font-weight:700;margin-top:4px;}
+/* v86: 인물 사진 + 운용사 로고 배지 + 미니 스파크라인 (top3/total 대체) */
+.inv-card-photos{display:flex;align-items:center;gap:10px;}
+.inv-card-photo-wrap{position:relative;flex:0 0 40px;width:40px;height:40px;}
+.inv-card-photo{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#2E5BFF,#8A5BFF);overflow:hidden;}
+.inv-card-photo.photo{background:var(--bg-soft);}
+/* 이니셜 폴백 색상을 slug 해시로 10갈래 분산(invAvatarClass) - 사진이 아직 없거나
+   로드에 실패했을 때 서로 다른 투자자가 같은 색 원으로 뭉쳐 보이지 않게 한다.
+   :not(.photo)로 걸어서 실제 사진이 들어오면(class photo 추가) 항상 무조건
+   var(--bg-soft)가 이기게 한다(선택자 소스 순서에 기대지 않음). */
+.inv-card-photo.ic0:not(.photo){background:linear-gradient(135deg,#2E5BFF,#8A5BFF);}
+.inv-card-photo.ic1:not(.photo){background:linear-gradient(135deg,#F59E0B,#DC2626);}
+.inv-card-photo.ic2:not(.photo){background:linear-gradient(135deg,#0D9488,#2563EB);}
+.inv-card-photo.ic3:not(.photo){background:linear-gradient(135deg,#7C3AED,#EC4899);}
+.inv-card-photo.ic4:not(.photo){background:linear-gradient(135deg,#059669,#65A30D);}
+.inv-card-photo.ic5:not(.photo){background:linear-gradient(135deg,#DC2626,#F97316);}
+.inv-card-photo.ic6:not(.photo){background:linear-gradient(135deg,#0891B2,#1D4ED8);}
+.inv-card-photo.ic7:not(.photo){background:linear-gradient(135deg,#BE185D,#7C3AED);}
+.inv-card-photo.ic8:not(.photo){background:linear-gradient(135deg,#CA8A04,#92400E);}
+.inv-card-photo.ic9:not(.photo){background:linear-gradient(135deg,#334155,#64748B);}
+.inv-card-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;}
+.inv-card-logo-badge{position:absolute;right:-3px;bottom:-3px;width:20px;height:20px;border-radius:50%;background:var(--bg-soft);box-shadow:0 0 0 2px var(--bg-soft);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.inv-card-logo-badge img{width:100%;height:100%;object-fit:contain;display:block;}
+.inv-card-names{display:flex;flex-direction:column;gap:2px;}
+.inv-card-photos .inv-card-names{flex:1;min-width:0;}
+.inv-card-spark{width:100%;height:44px;margin-top:2px;border-radius:8px;overflow:hidden;position:relative;}
+.inv-card-spark svg{width:100%;height:100%;display:block;}
+.inv-card-spark-loading{background:linear-gradient(90deg,var(--bg-soft) 25%,var(--line) 50%,var(--bg-soft) 75%);background-size:200% 100%;animation:invSparkPulse 1.5s ease-in-out infinite;}
+.inv-card-spark-empty{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;font-family:var(--mono-font);}
+@keyframes invSparkPulse{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
 .inv-asof-badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--text);background:var(--bg-soft);border:1px solid var(--accent);border-radius:999px;padding:6px 14px;margin:8px 0 4px;}
 .inv-manager-line{font-size:13px;color:var(--muted);margin:2px 0 0;}
 .inv-bars{margin:16px 0;display:flex;flex-direction:column;gap:8px;}
@@ -6111,31 +6136,103 @@ function queueInvestorSince(container, holdings, filed){
     });
   });
 }
+/* v86: 인물 사진(위키피디아)·운용사 로고(favicon) 매핑, slug 기준. wiki는
+   en.wikipedia.org 문서 제목(wikiPhoto가 그대로 사용), domain은 logoUrl(구글
+   favicon)에 넘길 회사 도메인. 전부 실제 https://en.wikipedia.org/api/rest_v1/
+   page/summary/<wiki> 조회로 인물·설명 일치를 확인한 값이다(2026-08-05).
+   듀케인·아팔루사는 패밀리오피스라 공개 마케팅 도메인이 확인되지 않아 domain을
+   비워둔다 - 존재하지 않는 도메인을 넣으면 구글 favicon이 에러 대신 의미 없는
+   기본 아이콘을 돌려줄 수 있어(onerror 미발생), 아예 없는 편이 낫다. wiki/domain
+   둘 다 없거나 slug가 매핑에 없으면 investorCardEl이 사진 영역 전체를 생략한다. */
+var INV_PROFILE = {
+  "berkshire": { wiki: "Warren_Buffett", domain: "berkshirehathaway.com" },
+  "pershing-square": { wiki: "Bill_Ackman", domain: "pershingsquareholdings.com" },
+  "ark": { wiki: "Cathie_Wood", domain: "ark-invest.com" },
+  "duquesne": { wiki: "Stanley_Druckenmiller" },
+  "appaloosa": { wiki: "David_Tepper" },
+  "situational-awareness": { wiki: "Leopold_Aschenbrenner", domain: "situationalawarenesslp.com" }
+};
+/* 이니셜 폴백 원 색상을 slug 기준 해시로 10갈래(.ic0~.ic9, CSS)에 분산시킨다.
+   전에는 전 투자자가 같은 고정 그라디언트를 써서, 사진이 아직 안 뜬 순간이나
+   위키 조회가 실패한 경우 이름 첫 글자가 같은 두 투자자(ARK/Appaloosa 둘 다 "A")가
+   색까지 같아 구분이 안 됐다(2026-08-05 스크린샷 리뷰로 확인). 현재 6개 slug
+   기준 10갈래에서 전부 서로 다른 칸에 떨어진다(검증 완료). */
+function invAvatarClass(key){
+  var s = String(key || ""), h = 0;
+  for (var i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; }
+  return "ic" + (h % 10);
+}
 function investorCardEl(inv, S){
   var b = document.createElement("button");
   b.type = "button"; b.className = "inv-card";
   var slug = (inv && inv.slug) || "";
   b.addEventListener("click", function(){ openInvestor(slug); });
-  var name = esc(locVal(inv && inv.name) || slug);
+  var rawName = locVal(inv && inv.name) || slug;
+  var name = esc(rawName);
   var manager = locVal(inv && inv.manager);
-  var top3 = ((inv && inv.holdings) || []).filter(function(h){ return h.change !== "exit"; })
-    .sort(function(a, b2){ return (b2.weight || 0) - (a.weight || 0); }).slice(0, 3);
-  var top3Html = top3.map(function(h){
-    var nm = esc((h && h.issuer) || "");
-    var w = (h && typeof h.weight === "number") ? (h.weight * 100).toFixed(1) + "%" : "—";
-    return "<span>" + nm + "<b>" + w + "</b></span>";
-  }).join("");
-  var total = (inv && typeof inv.total_value === "number") ? invMoneyFmt(inv.total_value) : "—";
   var asOf = (S.invAsOf || "").replace("{period}", invFmtDate(inv && inv.period)).replace("{filed}", invFmtDate(inv && inv.filed));
   var warn = (inv && inv.ok === false) ? '<div class="inv-card-warn">⚠ ' + esc(S.invDataIssue) + "</div>" : "";
+  var namesHtml = '<div class="inv-card-names"><div class="inv-card-name">' + name + "</div>"
+    + (manager ? '<div class="inv-card-manager">' + esc(manager) + "</div>" : "") + "</div>";
+  /* 인물 사진+로고: 매핑이 없으면(또는 wiki/domain 둘 다 없으면) 영역째로 생략해
+     사진 없는 카드도 예전과 같이 자연스럽게 보이게 한다. */
+  var prof = (typeof INV_PROFILE !== "undefined") ? INV_PROFILE[slug] : null;
+  var topHtml = namesHtml;
+  if (prof && (prof.wiki || prof.domain)){
+    var initCh = esc(initial(rawName || "?"));
+    var avatarCls = "inv-card-photo " + invAvatarClass(slug);
+    var logoHtml = prof.domain
+      ? '<span class="inv-card-logo-badge"><img src="' + logoUrl(prof.domain) + '" alt="" onerror="this.parentNode.remove()"></span>'
+      : "";
+    topHtml = '<div class="inv-card-photos"><div class="inv-card-photo-wrap">'
+      + '<div class="' + avatarCls + '" data-init="' + initCh + '">' + initCh + "</div>"
+      + logoHtml + "</div>" + namesHtml + "</div>";
+  }
   b.innerHTML =
-    '<div class="inv-card-name">' + name + "</div>"
-    + (manager ? '<div class="inv-card-manager">' + esc(manager) + "</div>" : "")
+    topHtml
     + '<div class="inv-card-asof">' + esc(asOf) + "</div>"
-    + '<div class="inv-card-top3">' + top3Html + "</div>"
-    + '<div class="inv-card-total">' + esc(S.invTotalValue) + " " + total + "</div>"
+    + '<div class="inv-card-spark inv-card-spark-loading"></div>'
     + warn;
+  /* 인물 사진은 비동기(위키 API 조회 + 이미지 프리로드) - 카드는 지금 바로
+     반환하고, 성공하면 이니셜 원을 사진으로 바꿔치기한다(기존 wikiPhoto/
+     swapInPhoto 컨벤션 그대로). 실패하면 이니셜을 그대로 둔다 - 에러가 아니다.
+     카드가 이미 DOM에서 떨어져 나갔으면(다른 화면으로 이동) 아무것도 안 한다.
+     alt에는 esc()된 name이 아니라 rawName을 쓴다 - .alt는 innerHTML이 아니라 DOM
+     프로퍼티 대입이라 파싱을 안 거치므로, 미리 이스케이프한 문자열을 넣으면
+     "&"가 든 이름에서 "&amp;"가 그대로 보이는 이중 이스케이프가 된다. */
+  if (prof && prof.wiki){
+    var photoEl = b.querySelector(".inv-card-photo");
+    wikiPhoto(prof.wiki).then(function(src){
+      if (!src || !photoEl || !b.isConnected) return;
+      swapInPhoto(photoEl, src, rawName);
+    });
+  }
   return b;
+}
+/* 목록 화면 카드 한 장의 스파크라인을 채운다. investorCardEl에서 분리한 이유는
+   renderInvestorsIndex가 "카드 DOM 생성"이 아니라 "이 호출 자체"를 invMapLimit
+   으로 투자자 레벨에서 동시 실행 수를 제한하기 위해서다(카드당 내부적으로
+   티커 최대 5개를 병렬로 물으므로, 제한이 없으면 카드 6장이 한꺼번에 열릴 때
+   순간 동시 요청이 쌓인다). Promise를 반환해야 invMapLimit이 "언제 한 자리가
+   비는지" 알 수 있다. */
+function investorCardFillSpark(cardEl, inv){
+  var box = cardEl && cardEl.querySelector(".inv-card-spark");
+  if (!box) return Promise.resolve();
+  function empty(){
+    if (!cardEl.isConnected) return; /* 이미 다른 화면으로 이동함 */
+    box.classList.remove("inv-card-spark-loading");
+    box.classList.add("inv-card-spark-empty");
+    box.textContent = "—";
+  }
+  return invComputeValueSeries(inv).then(function(res){
+    if (!cardEl.isConnected) return; /* 이미 다른 화면으로 이동함 */
+    if (res && res.values && res.values.length > 1){
+      box.classList.remove("inv-card-spark-loading");
+      invPaintSparkline(box, res.values);
+    } else {
+      empty();
+    }
+  }).catch(empty);
 }
 /* put_call: "PUT"|"CALL"|undefined. 13F에서 옵션 포지션의 "shares"는 실제
    보유 주식수가 아니라 계약이 커버하는 기초자산 주식수라, 종목명만 봐서는
@@ -6307,6 +6404,60 @@ function invFiledEpoch(filed){
   var t = Date.parse(String(filed).slice(0, 10) + "T00:00:00Z") / 1000 - 43200;
   return isFinite(t) ? t : null;
 }
+/* v86: invValueChartSection이 하던 "시세를 모아 날짜별 포트폴리오 가치를 계산"
+   부분을 분리 - 상세화면 전체 차트와 목록 카드의 미니 스파크라인이 완전히 같은
+   계산과 같은 캐시를 공유하게 하기 위해서다. ★ 캐시 키 형식은 절대 바꾸지 않는다
+   (slug+"|"+filed+"|"+eligible.length) - 그래야 목록에서 먼저 계산해둔 걸
+   상세화면 진입 시 캐시 히트로 재사용해 즉시 그릴 수 있다. eligible 종목이 아예
+   없으면(옵션 제외 후 티커 있는 보유종목 0개) 네트워크 조회 없이 즉시 "데이터
+   없음" 모양의 결과를 resolve한다 - 에러가 아니다. */
+function invComputeValueSeries(inv){
+  var reals = ((inv && inv.holdings) || []).filter(function(h){ return h && h.change !== "exit"; });
+  var totalW = reals.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
+  var eligible = reals.filter(function(h){ return h && h.ticker && h.put_call !== "PUT" && h.put_call !== "CALL"; });
+  if (!eligible.length) return Promise.resolve({ calendar: null, values: null, filedIdx: null, coverage: 0 });
+  var eligibleW = eligible.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
+  var staticCov = (typeof inv.ticker_coverage_pct === "number") ? inv.ticker_coverage_pct : (totalW > 0 ? eligibleW / totalW : null);
+  var slug = (inv && inv.slug) || "";
+  var cacheKey = slug + "|" + (inv.filed || "") + "|" + eligible.length;
+  if (Object.prototype.hasOwnProperty.call(INV_VALUE_CACHE, cacheKey)) return Promise.resolve(INV_VALUE_CACHE[cacheKey]);
+  /* 종목 수만큼 동시 요청이 나가지 않도록 5개씩 소량 병렬 처리 - queueSince/
+     queueInvestorSince와 같은 quote1y 캐시를 타므로 이미 열어본 티커는 즉시 반환된다. */
+  return invMapLimit(eligible, 5, function(h){
+    return quote1y(h.ticker).then(function(q){ return { h: h, q: (q && !q.error) ? q : null }; });
+  }).then(function(rows){
+    var ok = rows.filter(function(r){ return r && r.q && r.q.t && r.q.t.length > 1; });
+    var res;
+    if (!ok.length){
+      res = { calendar: null, values: null, filedIdx: null, coverage: 0 };
+    } else {
+      var best = ok[0];
+      ok.forEach(function(r){ if (r.q.t.length > best.q.t.length) best = r; });
+      var calendar = best.q.t.slice();
+      var values = calendar.map(function(t){
+        var sum = 0;
+        ok.forEach(function(r){
+          var v = invValueAt(r.q, t);
+          if (v != null && typeof r.h.shares === "number") sum += v * r.h.shares;
+        });
+        return sum;
+      });
+      var filedEpoch = invFiledEpoch(inv.filed);
+      var filedIdx = null;
+      if (filedEpoch != null){
+        for (var i = 0; i < calendar.length; i++){ if (calendar[i] >= filedEpoch){ filedIdx = i; break; } }
+        if (filedIdx == null) filedIdx = calendar.length - 1;
+      }
+      var pricedW = ok.reduce(function(s, r){ return s + (r.h.weight || 0); }, 0);
+      var coverage = totalW > 0 ? pricedW / totalW : (staticCov || 0);
+      res = { calendar: calendar, values: values, filedIdx: filedIdx, coverage: coverage };
+    }
+    INV_VALUE_CACHE[cacheKey] = res;
+    return res;
+  }).catch(function(){
+    return { calendar: null, values: null, filedIdx: null, coverage: 0 };
+  });
+}
 function invPaintValueChart(box, calendar, values, filedIdx, S){
   if (!box) return null;
   if (!calendar || calendar.length < 2){ box.innerHTML = '<div class="ehq-loading">-</div>'; return null; }
@@ -6384,6 +6535,35 @@ function invPaintValueChart(box, calendar, values, filedIdx, S){
   svg.addEventListener("touchend", leave);
   return { pct: pct, up: up };
 }
+/* v86: 목록 카드용 미니 스파크라인 - invPaintValueChart의 축소판. 축·그리드·
+   숫자라벨·hover 툴팁·공시일 세로선을 전부 빼고 선 + 옅은 그라디언트 영역만
+   그린다. 패딩을 최소화(상하 4px, 좌우 2px)해 작은 공간에서도 선이 안 잘리게. */
+function invPaintSparkline(box, values){
+  if (!box) return;
+  if (!values || values.length < 2){ box.innerHTML = ""; return; }
+  var first = values[0], last = values[values.length - 1];
+  var up = (last - first) >= 0;
+  var col = up ? "#12B76A" : "#F04438";
+  var W = Math.max(60, Math.round(box.clientWidth || 200));
+  var H = Math.max(24, Math.round(box.clientHeight || 44));
+  var pX = 2, pY = 4;
+  var pw = Math.max(1, W - pX * 2), ph = Math.max(1, H - pY * 2);
+  var mn = Math.min.apply(null, values), mx = Math.max.apply(null, values);
+  var span = (mx - mn) || 1;
+  function X(i){ return pX + (i / (values.length - 1)) * pw; }
+  function Y(v){ return pY + (1 - (v - mn) / span) * ph; }
+  var pts = values.map(function(v, i){ return X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
+  var area = pX + "," + (pY + ph) + " " + pts + " " + (pX + pw) + "," + (pY + ph);
+  var gid = "invSpg" + Math.random().toString(36).slice(2, 9);
+  box.innerHTML =
+    '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" height="100%" preserveAspectRatio="none">'
+    + '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="0" y2="1">'
+    + '<stop offset="0%" stop-color="' + col + '" stop-opacity=".28"/>'
+    + '<stop offset="100%" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>'
+    + '<polygon points="' + area + '" fill="url(#' + gid + ')"/>'
+    + '<polyline points="' + pts + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+    + "</svg>";
+}
 function invValueChartSection(inv, S){
   var wrap = document.createElement("div"); wrap.className = "inv-value-card";
   var reals = (inv.holdings || []).filter(function(h){ return h && h.change !== "exit"; });
@@ -6402,7 +6582,11 @@ function invValueChartSection(inv, S){
     + '<div class="inv-value-chart" id="invValChart"><div class="ehq-loading">···</div></div>'
     + '<div class="inv-value-warn" id="invValWarn" hidden></div>';
   var slug = inv.slug;
-  var cacheKey = slug + "|" + (inv.filed || "") + "|" + eligible.length;
+  /* v86: 시세 fetch + 계산은 invComputeValueSeries(inv)로 위임(카드 스파크라인과
+     공유). 캐시 히트든 미스든 항상 Promise 경로 하나로 통일 - 캐시 히트일 때도
+     doPaint는 마이크로태스크로 미뤄질 뿐, 브라우저가 그 사이 페인트를 하지 않으니
+     체감 동작은 기존의 "즉시 동기 페인트"와 동일하다(2026-08-05 Playwright로
+     회귀 검증). */
   function stillHere(){ return ((typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null) === slug; }
   function doPaint(res){
     if (!stillHere()) return; /* 사용자가 이미 화면을 떠났다 */
@@ -6430,44 +6614,7 @@ function invValueChartSection(inv, S){
       chgEl.textContent = (r.up ? "▲ " : "▼ ") + (r.up ? "+" : "") + r.pct.toFixed(1) + "%";
     }
   }
-  if (Object.prototype.hasOwnProperty.call(INV_VALUE_CACHE, cacheKey)){
-    doPaint(INV_VALUE_CACHE[cacheKey]);
-    return wrap;
-  }
-  /* 종목 수만큼 동시 요청이 나가지 않도록 5개씩 소량 병렬 처리 - queueSince/
-     queueInvestorSince와 같은 quote1y 캐시를 타므로 이미 열어본 티커는 즉시 반환된다. */
-  invMapLimit(eligible, 5, function(h){
-    return quote1y(h.ticker).then(function(q){ return { h: h, q: (q && !q.error) ? q : null }; });
-  }).then(function(rows){
-    if (!stillHere()) return;
-    var ok = rows.filter(function(r){ return r && r.q && r.q.t && r.q.t.length > 1; });
-    if (!ok.length){
-      var failRes = { calendar: null, values: null, filedIdx: null, coverage: 0 };
-      INV_VALUE_CACHE[cacheKey] = failRes; doPaint(failRes); return;
-    }
-    var best = ok[0];
-    ok.forEach(function(r){ if (r.q.t.length > best.q.t.length) best = r; });
-    var calendar = best.q.t.slice();
-    var values = calendar.map(function(t){
-      var sum = 0;
-      ok.forEach(function(r){
-        var v = invValueAt(r.q, t);
-        if (v != null && typeof r.h.shares === "number") sum += v * r.h.shares;
-      });
-      return sum;
-    });
-    var filedEpoch = invFiledEpoch(inv.filed);
-    var filedIdx = null;
-    if (filedEpoch != null){
-      for (var i = 0; i < calendar.length; i++){ if (calendar[i] >= filedEpoch){ filedIdx = i; break; } }
-      if (filedIdx == null) filedIdx = calendar.length - 1;
-    }
-    var pricedW = ok.reduce(function(s, r){ return s + (r.h.weight || 0); }, 0);
-    var coverage = totalW > 0 ? pricedW / totalW : (staticCov || 0);
-    var res = { calendar: calendar, values: values, filedIdx: filedIdx, coverage: coverage };
-    INV_VALUE_CACHE[cacheKey] = res;
-    doPaint(res);
-  }).catch(function(){ doPaint(null); });
+  invComputeValueSeries(inv).then(doPaint).catch(function(){ doPaint(null); });
   return wrap;
 }
 
@@ -6573,8 +6720,17 @@ function renderInvestorsIndex(list, S, investors){
     list.appendChild(em); return;
   }
   var grid = document.createElement("div"); grid.className = "inv-grid";
-  investors.forEach(function(inv){ grid.appendChild(investorCardEl(inv, S)); });
+  var cards = investors.map(function(inv){
+    var el = investorCardEl(inv, S);
+    grid.appendChild(el);
+    return { inv: inv, el: el };
+  });
   list.appendChild(grid);
+  /* v86: 스파크라인 계산은 카드당 내부적으로 티커를 최대 5개씩 병렬로 문의한다.
+     목록의 투자자 수(현재 6)만큼 한꺼번에 시작하면 순간 동시 요청이 쌓일 수 있어,
+     투자자 레벨에서도 동시 2~3개까지만 진행되도록 같은 invMapLimit 패턴으로
+     스로틀한다(끝까지 순차 대기는 아니고, 2~3개가 항상 동시 진행되는 정도). */
+  invMapLimit(cards, 3, function(c){ return investorCardFillSpark(c.el, c.inv); });
 }
 /* async, called fire-and-forget from renderFeed exactly like renderScoreboard —
    appends a loading placeholder synchronously, then fills in once
