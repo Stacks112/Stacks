@@ -1,6 +1,353 @@
 {
  "items": [
   {
+   "date": "2026-08-04",
+   "id": "kobeissi-stock-bond-correlation-negative-since-1999",
+   "related": [
+    "meru-treasury-yield-deficit-not-just-oil",
+    "kobeissi-10y-yield-breaks-470",
+    "meru-fima-repo-upsize-bessent-warsh"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2084788269640740987",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#12233f",
+    "to": "#2f4d78",
+    "label": "BONDS"
+   },
+   "tags": [
+    "BONDS",
+    "EQUITIES",
+    "MACRO"
+   ],
+   "stance": "watch",
+   "refFred": [
+    "DGS10",
+    "T10YIE",
+    "DFII10"
+   ],
+   "title": {
+    "ko": "금리가 오르면 주가가 떨어진다, 그런데 물가 기대는 가만히 있다",
+    "en": "When yields rise, stocks now fall. But inflation expectations have not moved",
+    "ja": "金利が上がると株が下がる。ただし期待インフレは動いていない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "The 90-day correlation between the 10Y Treasury Yield and the S&P 500 is down to -0.48, its most negative reading since 1999.",
+      "The current reading is even more negative than the 2022 bear market low of -0.42.",
+      "All eyes are on the bond market."
+     ],
+     "ko": [
+      "10년물 국채금리와 S&P500의 90일 상관계수가 -0.48까지 내려왔다. 1999년 이후 가장 마이너스 쪽으로 간 값이다.",
+      "지금 값은 2022년 약세장 바닥이던 -0.42보다도 더 마이너스다.",
+      "모든 눈이 채권시장을 향해 있다."
+     ],
+     "ja": [
+      "10年国債利回りとS&P500の90日相関係数はマイナス0.48まで低下した。1999年以降で最もマイナス側に振れた値だ。",
+      "現在の値は2022年の弱気相場の底だったマイナス0.42よりもさらにマイナスである。",
+      "すべての目が債券市場に向いている。"
+     ]
+    },
+    "cite": "The Kobeissi Letter · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "10년물 금리와 S&P500의 90일 상관계수가 -0.48로 1999년 이후 가장 낮아졌다.\n코베이시레터는 물가 불확실성과 재정 우려를 나란히 원인으로 들었다.\n그런데 기대인플레이션은 2.2%에 머물고 실질금리가 2.4%다. 움직인 쪽은 물가가 아니라 재정과 수급이다.",
+    "en": "The 90-day correlation between the 10-year yield and the S&P 500 has fallen to -0.48, the lowest since 1999.\nThe Kobeissi Letter blames inflation uncertainty and fiscal concerns in equal measure.\nYet breakeven inflation sits at 2.2% while the real yield is 2.4%. What moved was the budget and bond supply, not prices.",
+    "ja": "10年利回りとS&P500の90日相関係数はマイナス0.48と、1999年以降で最も低い。\nコベイシ・レターは物価の不確実性と財政懸念を並べて原因に挙げる。\nだが期待インフレ率は2.2%に留まり、実質金利は2.4%だ。動いたのは物価ではなく財政と需給である。"
+   },
+   "gist": {
+    "ko": "10년물 국채금리와 S&P500이 지난 90일 동안 서로 반대로 움직인 정도가 -0.48까지 내려갔다.\n1999년 이후 가장 낮은 값이고, 2022년 약세장 바닥의 -0.42보다도 낮다.\n\n@@REF@@주식과 채권의 관계가 완전히 뒤집혔다 (The Kobeissi Letter, 2026-08-04)|https://x.com/KobeissiLetter/status/2084788269640740987\n\n## 왜 금리와 주가가 반대로 가나\n\n상관계수는 두 값이 같은 방향으로 움직이는 정도를 -1에서 1 사이 숫자로 잰 것이다.\n1이면 늘 나란히, -1이면 늘 반대로, 0이면 서로 상관없이 움직인다는 뜻이다.\n\n2020년 이전 십여 년 동안 이 숫자는 플러스였다.\n금리가 오르는 것이 경기가 좋아진다는 신호였고, 경기가 좋으면 기업이 버는 돈도 늘어나니 주가가 같이 올랐다.\n\n그 연결이 끊어졌다.\n\n지금은 금리가 오르면 주가가 밀리고, 금리가 내리면 주가가 버틴다.\n8월 4일 뉴욕 증시가 그 모습 그대로였는데, S&P500은 7,736.52로 사상 최고치를 새로 썼고 같은 날 10년물 금리는 4.6%로 내려앉았다.\n\n## 기대인플레이션은 2.2%에서 움직이지 않았다\n\n코베이시레터는 원인으로 물가 불확실성과 재정 우려를 나란히 들었다.\n직접 조회해 본 숫자는 그 둘의 무게가 같지 않다고 말한다.\n\n명목 10년물 금리는 8월 3일 기준 4.7%다.\n이 값은 두 조각으로 나뉘는데, 앞으로 물가가 얼마나 오를지에 대한 시장의 예상치와, 물가를 빼고도 남는 돈 자체의 값이다.\n앞을 기대인플레이션, 뒤를 실질금리라고 부른다.\n기대인플레이션은 8월 4일 2.2%로 연준 목표 2%에서 크게 벗어나지 않았고, 실질금리는 2.4%다.\n물가 기대는 조용한데 돈 자체가 비싸진 것이다.\n두 값은 관측일이 하루 달라서 합이 명목금리와 딱 맞아떨어지지는 않는다.\n\n@@FLOW@@재정적자|정부가 쓰는 돈이 걷는 돈보다 많다|국채 발행 증가|모자란 몫을 빌리려고 채권을 더 찍는다|채권값 하락|파는 물량이 늘면 값이 내리고 금리는 올라간다|주가 할인|같은 이익도 오늘 값으로 바꿀 때 더 깎인다@@출발점이 물가가 아니라 재정이면 금리 상승은 호황의 증거가 아니라 청구서다. 주식이 금리를 무서워하게 된 자리가 여기다.\n\n## 8월 3일 재무부가 올린 숫자\n\n미 재무부는 8월 3일 3분기에 시장에서 새로 빌릴 돈, 곧 순차입 전망을 7,390억달러로 발표했다.\n5월에 내놓은 전망보다 680억달러 많고, 재무부는 그 이유를 예상 순현금흐름이 낮아졌기 때문이라고 적었다.\n4분기 전망은 6,280억달러다.\n\n@@REF@@재무부, 시장성 국채 차입 전망 발표 (미 재무부, 2026-08-03)|https://home.treasury.gov/news/press-releases/sb0584|https://home.treasury.gov/system/files/291/treasury-preview-1900x950.jpg\n\n빌릴 돈이 늘면 팔 채권도 늘어난다.\n위 경로의 첫 칸이 숫자로 확인된 셈이다.\n\n다만 재정만으로 다 설명되지는 않는다.\n인베스트먼트 리서치 파트너스는 8월 4일 자료에서 금리 상승의 원인이 연준 신뢰 훼손인지, 물가 기대인지, 재정인지, 아니면 대형 클라우드 업체들의 회사채 발행인지 아직 갈리지 않았다고 적었다.\nAI 데이터센터를 짓는 빅테크가 채권시장에서 정부와 같은 돈을 놓고 줄을 서 있다는 뜻이다.\n\n@@REF@@더 대시보드 2026년 8월 (Investment Research Partners, 2026-08-04)|https://www.investmentresearchpartners.com/post/the-dashboard-august-2026|https://static.wixstatic.com/media/12213b_5e826d30ce9a481f9411a495d6a43846~mv2.jpg\n\n## 8월 12일 물가지표와 9월 FOMC\n\n@@TIME@@2026-08-03|재무부, 3분기 차입 전망을 7,390억달러로 상향|2026-08-05|분기 리펀딩 발표, 국채 경매 규모 확정|>2026-08-12|7월 소비자물가지수 발표|>2026-09-15|FOMC와 경제전망 요약@@8월에는 정례 FOMC가 없다. 다음 여섯 주 동안 금리를 움직이는 것은 연준의 말이 아니라 국채 물량과 물가 숫자다.@@미 재무부 · 미 노동통계국 · 연준 일정, 2026-08-05 조회\n\n물가 기대가 그 자리를 벗어나 뛰기 시작하면 코베이시레터의 읽기가 맞고, 지금처럼 그 자리에 머무는데 금리만 오르면 이 이야기는 처음부터 끝까지 재정과 수급 문제다.\n두 경우에 주식이 받는 충격의 성격이 다르다.\n앞이면 기업이 버는 돈 자체가 깎이고, 뒤면 버는 돈은 그대로인데 그것을 주가로 바꾸는 잣대만 깐깐해진다.",
+    "en": "The 90-day correlation between the 10-year Treasury yield and the S&P 500 has fallen to -0.48.\nThat is the most negative reading since 1999, below even the -0.42 low of the 2022 bear market.\n\n@@REF@@The relationship between stocks and bonds has completely flipped (The Kobeissi Letter, 2026-08-04)|https://x.com/KobeissiLetter/status/2084788269640740987\n\n## Why yields and stocks now move apart\n\nA correlation is a single number between -1 and 1 that measures how closely two things move together.\nAt 1 they always move in the same direction, at -1 always in opposite directions, and at 0 they have nothing to do with each other.\n\nFor more than a decade before 2020 this number was positive.\nRising yields signalled a stronger economy, and a stronger economy meant companies earned more, so share prices rose alongside them.\n\nThat link has broken.\n\nToday, when yields rise stocks give way, and when yields fall stocks hold up.\nAugust 4 in New York looked exactly like that: the S&P 500 closed at a record 7,736.52 while the 10-year yield slipped to 4.6%.\n\n## Breakeven inflation has not moved from 2.2%\n\nThe Kobeissi Letter names inflation uncertainty and fiscal concerns side by side as the cause.\nThe numbers we pulled ourselves say the two do not carry equal weight.\n\nThe nominal 10-year yield was 4.7% as of August 3.\nIt splits into two pieces: what the market expects prices to do, and what money itself costs once inflation is stripped out.\nThe first is called breakeven inflation, the second the real yield.\nBreakeven inflation sat at 2.2% on August 4, close enough to the Fed's 2% target, while the real yield was 2.4%.\nPrice expectations are quiet; money itself has become expensive.\nThe two readings come from different days, so they do not add exactly to the nominal yield.\n\n@@FLOW@@Deficit|Washington spends more than it collects|More issuance|It sells more bonds to cover the gap|Prices fall|More supply pushes prices down and yields up|Equities discounted|The same earnings are worth less in today's money@@If the chain starts with the budget rather than with prices, a higher yield is not evidence of a boom but a bill. That is where equities learned to fear the bond market.\n\n## The number Treasury published on August 3\n\nOn August 3 the Treasury said it expects to borrow $739 billion in privately held net marketable debt this quarter.\nThat is $68 billion more than it projected in May, and Treasury attributed the increase to lower projected net cash flows.\nThe fourth-quarter estimate is $628 billion.\n\n@@REF@@Treasury Announces Marketable Borrowing Estimates (U.S. Treasury, 2026-08-03)|https://home.treasury.gov/news/press-releases/sb0584|https://home.treasury.gov/system/files/291/treasury-preview-1900x950.jpg\n\nMore borrowing means more paper to sell.\nThe first box in the chain above now has an actual figure attached to it.\n\nThe budget is not the whole story, though.\nInvestment Research Partners wrote on August 4 that it remains unsettled whether the move in yields reflects lost Fed credibility, inflation expectations, fiscal strain, or hyperscaler debt issuance.\nIn plain terms, the big technology firms financing AI data centres are queuing for the same money as the government.\n\n@@REF@@The Dashboard - August 2026 (Investment Research Partners, 2026-08-04)|https://www.investmentresearchpartners.com/post/the-dashboard-august-2026|https://static.wixstatic.com/media/12213b_5e826d30ce9a481f9411a495d6a43846~mv2.jpg\n\n## August 12 inflation data and the September FOMC\n\n@@TIME@@2026-08-03|Treasury raises the quarterly borrowing estimate to $739bn|2026-08-05|Quarterly refunding statement sets auction sizes|>2026-08-12|July consumer price index|>2026-09-15|FOMC meeting with updated projections@@There is no scheduled FOMC meeting in August. For the next six weeks yields will be moved by bond supply and inflation prints rather than by anything the Fed says.@@U.S. Treasury, Bureau of Labor Statistics, Federal Reserve calendars, retrieved 2026-08-05\n\nIf breakeven inflation breaks out of the 2.2% area, the Kobeissi reading holds.\nIf it stays put while yields keep climbing, this is a story about deficits and supply from beginning to end.\nThe two cases hit equities differently: in the first, earnings themselves shrink; in the second, earnings hold but the yardstick that converts them into a share price gets stricter.",
+    "ja": "10年国債利回りとS&P500がこの90日間で逆方向に動いた度合いが、マイナス0.48まで下がった。\n1999年以降で最も低く、2022年の弱気相場の底だったマイナス0.42よりも低い。\n\n@@REF@@株式と債券の関係が完全に反転した (The Kobeissi Letter, 2026-08-04)|https://x.com/KobeissiLetter/status/2084788269640740987\n\n## なぜ金利と株価が逆に動くのか\n\n相関係数は、二つの値が同じ方向に動く度合いをマイナス1から1までの数字で測ったものだ。\n1なら常に並んで動き、マイナス1なら常に反対に動き、0なら互いに関係なく動くという意味になる。\n\n2020年より前の十数年、この数字はプラスだった。\n金利の上昇は景気が良くなる合図であり、景気が良ければ企業の稼ぎも増えるので、株価も一緒に上がっていた。\n\nそのつながりが切れた。\n\nいまは金利が上がると株が押され、金利が下がると株が持ちこたえる。\n8月4日のニューヨーク市場がまさにその形で、S&P500は7,736.52と過去最高値を更新し、同じ日に10年利回りは4.6%まで下がった。\n\n## 期待インフレ率は2.2%から動いていない\n\nコベイシ・レターは原因として、物価の不確実性と財政への懸念を並べて挙げている。\n自分たちで引いてきた数字は、その二つの重さが同じではないと語っている。\n\n名目の10年利回りは8月3日時点で4.7%だ。\nこの値は二つに分かれる。これから物価がどれだけ上がるかという市場の見込みと、物価を除いてもなお残るお金そのものの値段である。\n前者を期待インフレ率、後者を実質金利と呼ぶ。\n期待インフレ率は8月4日で2.2%と、FRBの目標である2%から大きく離れていない。一方で実質金利は2.4%だ。\n物価の見込みは静かなのに、お金そのものが高くなっている。\n二つの値は観測日が一日ずれているため、足しても名目利回りとぴったりは合わない。\n\n@@FLOW@@財政赤字|政府が使う額が集める額を上回る|国債発行の増加|足りない分を借りるため債券を多く出す|債券価格の下落|売る量が増えれば価格は下がり利回りは上がる|株式の割引|同じ利益でも今日の値段に直すと目減りする@@出発点が物価ではなく財政なら、金利上昇は好況の証拠ではなく請求書だ。株式が債券市場を怖がるようになった場所がここにある。\n\n## 8月3日に財務省が引き上げた数字\n\n米財務省は8月3日、今四半期に市場から新たに借りる額、すなわち純借入の見通しを7,390億ドルと発表した。\n5月の見通しより680億ドル多く、財務省はその理由を純現金収支の見込みが下振れしたためと記している。\n第4四半期の見通しは6,280億ドルだ。\n\n@@REF@@財務省、市場性債務の借入見通しを公表 (米財務省, 2026-08-03)|https://home.treasury.gov/news/press-releases/sb0584|https://home.treasury.gov/system/files/291/treasury-preview-1900x950.jpg\n\n借りる額が増えれば、売る債券も増える。\n上の経路の最初の箱に、実際の数字が入ったことになる。\n\nただし財政だけで全部が説明できるわけではない。\nインベストメント・リサーチ・パートナーズは8月4日の資料で、利回りの動きがFRBの信認低下なのか、期待インフレなのか、財政なのか、それとも大手クラウド事業者の社債発行なのか、まだ決着していないと書いている。\nAIデータセンターを建てる大手テック企業が、債券市場で政府と同じ資金を求めて並んでいるということだ。\n\n@@REF@@ザ・ダッシュボード 2026年8月 (Investment Research Partners, 2026-08-04)|https://www.investmentresearchpartners.com/post/the-dashboard-august-2026|https://static.wixstatic.com/media/12213b_5e826d30ce9a481f9411a495d6a43846~mv2.jpg\n\n## 8月12日の物価統計と9月のFOMC\n\n@@TIME@@2026-08-03|財務省、第3四半期の借入見通しを7,390億ドルへ上方修正|2026-08-05|四半期リファンディング発表で入札規模が確定|>2026-08-12|7月の消費者物価指数|>2026-09-15|FOMCと経済見通しの更新@@8月には定例のFOMCがない。この先6週間、利回りを動かすのはFRBの発言ではなく国債の量と物価の数字だ。@@米財務省・米労働統計局・FRBの日程、2026-08-05取得\n\n期待インフレ率が2.2%台を離れて跳ね始めれば、コベイシ・レターの読みが正しい。\nいまのようにそこに留まったまま利回りだけが上がるなら、この話は最初から最後まで財政と需給の問題だ。\n二つの場合で株式が受ける衝撃の性質は違う。前者では企業の稼ぎそのものが削られ、後者では稼ぎは変わらないのに、それを株価に換算する物差しだけが厳しくなる。"
+   },
+   "why": {
+    "ko": "금리가 오르는 이유가 호황이 아니라 정부의 빚이면, 주식은 이익이 늘어도 값이 깎이는 국면에 들어간다.",
+    "en": "If yields are rising because of government borrowing rather than growth, equities can be marked down even while earnings grow.",
+    "ja": "金利上昇の理由が好況ではなく政府の借金なら、株式は利益が伸びても値段を削られる局面に入る。"
+   },
+   "ask": {
+    "ko": "지금 금리를 밀어올리는 것은 물가일까, 정부의 국채 물량일까? 주식에 더 나쁜 쪽은 어디일까?",
+    "en": "Is it inflation or Treasury supply that is pushing yields up right now, and which is worse for equities?",
+    "ja": "いま利回りを押し上げているのは物価か、それとも国債の発行量か。株式にとってより悪いのはどちらだろうか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "The Kobeissi Letter(@KobeissiLetter) · 2026-08-04",
+      "en": "The Kobeissi Letter (@KobeissiLetter) · 2026-08-04",
+      "ja": "The Kobeissi Letter(@KobeissiLetter) · 2026-08-04"
+     },
+     "url": "https://x.com/KobeissiLetter/status/2084788269640740987"
+    },
+    {
+     "name": {
+      "ko": "미 재무부",
+      "en": "U.S. Treasury",
+      "ja": "米財務省"
+     },
+     "desc": {
+      "ko": "시장성 국채 차입 전망 발표 · 2026-08-03",
+      "en": "Treasury Announces Marketable Borrowing Estimates · 2026-08-03",
+      "ja": "市場性債務の借入見通し公表 · 2026-08-03"
+     },
+     "url": "https://home.treasury.gov/news/press-releases/sb0584"
+    },
+    {
+     "name": {
+      "ko": "Investment Research Partners",
+      "en": "Investment Research Partners",
+      "ja": "Investment Research Partners"
+     },
+     "desc": {
+      "ko": "더 대시보드 2026년 8월 · 2026-08-04",
+      "en": "The Dashboard - August 2026 · 2026-08-04",
+      "ja": "ザ・ダッシュボード 2026年8月 · 2026-08-04"
+     },
+     "url": "https://www.investmentresearchpartners.com/post/the-dashboard-august-2026"
+    },
+    {
+     "name": {
+      "ko": "FRED",
+      "en": "FRED",
+      "ja": "FRED"
+     },
+     "desc": {
+      "ko": "DGS10 4.70%(8월 3일) · T10YIE 2.23%(8월 4일) · DFII10 2.43%(8월 3일), 2026-08-05 조회",
+      "en": "DGS10 4.70% (Aug 3) · T10YIE 2.23% (Aug 4) · DFII10 2.43% (Aug 3), retrieved 2026-08-05",
+      "ja": "DGS10 4.70%(8月3日)· T10YIE 2.23%(8月4日)· DFII10 2.43%(8月3日)、2026-08-05取得"
+     },
+     "url": "https://fred.stlouisfed.org/series/DGS10"
+    },
+    {
+     "name": {
+      "ko": "일정",
+      "en": "Calendars",
+      "ja": "日程"
+     },
+     "desc": {
+      "ko": "미 노동통계국 발표 일정(7월 CPI 8월 12일) · 연준 FOMC 일정(9월 15~16일), 2026-08-05 조회",
+      "en": "BLS release schedule (July CPI on Aug 12) and Federal Reserve FOMC calendar (Sep 15-16), retrieved 2026-08-05",
+      "ja": "米労働統計局の発表日程(7月CPIは8月12日)とFRBのFOMC日程(9月15~16日)、2026-08-05取得"
+     },
+     "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회. 금리는 FRED 일별 시계열 기준이며 DGS10과 DFII10은 8월 3일, T10YIE는 8월 4일이 마지막 관측일이다. S&P500 7,736.52는 8월 4일 종가다.",
+    "en": "Retrieved 2026-08-05. Yields are FRED daily series; DGS10 and DFII10 are as of August 3, T10YIE as of August 4. The S&P 500 level of 7,736.52 is the August 4 close.",
+    "ja": "2026-08-05取得。利回りはFREDの日次系列で、DGS10とDFII10は8月3日、T10YIEは8月4日が最終観測日。S&P500の7,736.52は8月4日の終値である。"
+   }
+  },
+  {
+   "date": "2026-08-04",
+   "id": "schiff-bitcoin-sat-out-the-peace-rally",
+   "related": [
+    "schiff-strategy-btc-sale-strc-buyback",
+    "kobeissi-bitcoin-etf-inflow-surge",
+    "lynalden-orange-juice-bitcoin-pe"
+   ],
+   "source": "Peter Schiff (@PeterSchiff)",
+   "sourceUrl": "https://x.com/PeterSchiff/status/2084721855735222761",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/PeterSchiff?fallback=false",
+   "wiki": "Peter_Schiff",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#3a2a12",
+    "to": "#7a5a20",
+    "label": "BITCOIN"
+   },
+   "tags": [
+    "BITCOIN",
+    "RISKASSETS",
+    "VOLATILITY"
+   ],
+   "stance": "bear",
+   "title": {
+    "ko": "여드레, S&P500 3.9%, 비트코인 0.2%",
+    "en": "Eight days, S&P 500 +3.9%, bitcoin +0.2%",
+    "ja": "8日間、S&P500は3.9%、ビットコインは0.2%"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "In case you haven't noticed, this peace-inspired mega-rally hasn't lifted all boats.",
+      "Despite the huge rise in risk assets, including mining stocks, Bitcoin is barely up.",
+      "The Bitcoin party is over."
+     ],
+     "ko": [
+      "혹시 못 보셨을까 봐 적자면, 평화 기대가 만든 이번 대형 랠리가 모든 배를 띄운 것은 아니다.",
+      "금광주를 포함해 위험자산이 크게 올랐는데도 비트코인은 거의 오르지 않았다.",
+      "비트코인의 파티는 끝났다."
+     ],
+     "ja": [
+      "気づいていない方のために書くと、この和平期待による大相場はすべての船を浮かせたわけではない。",
+      "金鉱株を含むリスク資産が大きく上げたにもかかわらず、ビットコインはほとんど上がっていない。",
+      "ビットコインのパーティーは終わった。"
+     ]
+    },
+    "cite": "Peter Schiff · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "미국 현물 비트코인 ETF는 석 달째 순유출이고, 8월 4일 그중 하나가 문을 닫는다고 밝혔다.\n피터 슈프는 위험자산이 다 오르는 장에서 못 오른 비트코인을 다음 하락장에 가장 먼저 팔릴 자산으로 읽는다.\nK33은 같은 장면을 AI 주식이 너무 잘 올라 생긴 기회비용 문제로 읽는다. 슈프는 2025년 10월 6만4,107달러에서도 같은 말을 했다.",
+    "en": "US spot bitcoin ETFs have seen three straight months of net outflows, and on August 4 one of them said it would close.\nPeter Schiff reads bitcoin's failure to join a broad risk rally as a sign it will be sold first in the next downturn.\nK33 reads the same scene as an opportunity-cost problem created by AI equities. Schiff said the same thing in October 2025, with bitcoin at $64,107.",
+    "ja": "米国の現物ビットコインETFは3か月続けて資金流出で、8月4日にはそのうち一つが閉鎖を発表した。\nピーター・シフは、リスク資産が総じて上がる相場で上がれなかったことを、次の下落局面で真っ先に売られる兆候と読む。\nK33は同じ場面を、AI株の成績が良すぎることで生じた機会費用の問題と読む。シフは2025年10月、6万4,107ドルの時にも同じことを言っていた。"
+   },
+   "gist": {
+    "ko": "7월 28일부터 8월 4일까지 여드레 동안 S&P500은 7,444.88에서 7,736.52로 올라 사상 최고치를 새로 썼다.\n같은 기간 비트코인은 6만3,408달러에서 6만3,526달러가 됐다.\n호르무즈 해협을 다시 여는 합의가 가까워졌다는 보도에 위험자산이 한꺼번에 올랐는데, 비트코인만 그 자리에 서 있었다.\n\n@@REF@@S&P500과 다우, 지정학 긴장 완화로 신고가 (The Motley Fool, 2026-08-04)|https://www.fool.com/coverage/stock-market-today/2026/08/04/stock-market-today-aug-4-s-and-p-500-and-dow-set-new-highs-on-easing-geopolitical-tensions/\n\n@@BAR@@S&P500|+3.9%|3.92|비트코인|+0.2%|0.19@@같은 장에서 같은 기간을 재는데 오른 폭이 스무 배 넘게 벌어졌다. 위험자산이 다 같이 오른 장이 아니었다는 뜻이다.@@2026-08-05 조회 · S&P500은 7월 28일·8월 4일 종가, 비트코인은 Fortune의 일별 시세 스냅숏(7월 28일 07:30 ET 6만3,408달러 → 8월 4일 05:30 ET 6만3,526달러)\n\n## 유가는 여드레 만에 10% 넘게 빠졌다\n\n이번 랠리의 연료는 실적이 아니라 지정학이다.\n중동 긴장이 풀린다는 기대에 브렌트유는 7월 28일 배럴당 89.08달러에서 8월 4일 79.47달러로 내려왔다.\n\n기름값이 내리면 물건을 만들고 옮기는 비용이 줄고, 물가를 걱정하던 중앙은행의 부담도 가벼워진다.\n그래서 유가 하락은 주식에 바로 호재가 된다.\n\n비트코인에는 그 경로가 없다.\n비트코인은 무언가를 만들어 파는 자산이 아니라서, 기름값이 내려도 원가가 줄거나 이익이 늘지 않는다.\n남는 것은 사람들이 위험을 얼마나 감수하고 싶은지, 그 심리 하나다.\n피터 슈프가 이번 장을 두고 모든 배가 뜬 것은 아니라고 말한 자리가 여기다.\n\n## 조용한 시장을 읽는 두 가지 방법\n\n비트코인은 움직이지 않은 정도가 아니라, 앞으로도 움직이지 않을 것처럼 가격이 매겨져 있다.\n코인데스크에 따르면 30일 내재변동성 지수는 36%로 5월 31일 이후 가장 낮고, 6월 초 60% 부근에서 거의 반토막이 났다.\n내재변동성은 앞으로 값이 얼마나 출렁일지를 옵션 가격에서 거꾸로 뽑아낸 숫자다.\n이 값이 낮다는 것은 시장이 큰 사건을 예상하지 않는다는 뜻이다.\n\n같은 기사는 6만2,000~6만5,000달러 구간에 약 15만5,000개의 비트코인이 쌓여 있다고 짚었다.\n이만큼이 한 가격대에 몰려 있으면 그 구간이 바닥이자 천장으로 함께 작동해서, 웬만한 재료로는 값이 그 밖으로 나가지 못한다.\n\n돈이 어디로 갔는지도 숫자로 남았다.\n8월 4일 해시덱스는 운용자산 1,470만달러짜리 미국 현물 비트코인 ETF를 닫는다고 밝혔고, 코인데스크는 미국 현물 비트코인 ETF 전체가 석 달째 순유출이라고 전했다.\nK33 리서치의 베틀 룬데는 AI와 관련된 것이면 무엇이든 치솟는 동안 비트코인을 들고 있는 기회비용을 시장이 너무 크다고 본다고 말했다.\n\n@@REF@@해시덱스, 미국 현물 비트코인 ETF 폐쇄 · 자금은 AI로 (CoinDesk, 2026-08-04)|https://www.coindesk.com/business/2026/08/04/first-u-s-spot-bitcoin-etf-to-close-as-inflows-dwindle-investors-chase-ai-returns|https://cdn.sanity.io/images/s3y3vcno/production/b2b575e5fb400b044ebb5d3c2d88d2a80846eafb-1920x1080.jpg\n\n@@CMP@@슈프의 읽기|다 오르는 장에서 못 오른 자산은, 반대로 다 팔리는 장이 왔을 때 가장 먼저 팔린다.|K33의 읽기|AI 주식 수익률이 너무 좋아서 비트코인을 들고 있는 기회비용이 커졌을 뿐, 비트코인 자체가 망가진 것은 아니다.\n\n같은 정지 화면을 두고 한쪽은 체력이 떨어졌다고 읽고, 다른 쪽은 돈이 잠시 다른 데 가 있다고 읽는다.\n갈리는 지점은 자금이 돌아올 자리가 남아 있느냐다.\n\n## 슈프가 2025년 10월에도 했던 말\n\n슈프는 비트코인의 파티가 끝났다는 말을 이번에 처음 한 것이 아니다.\n2025년 10월 16일에도 같은 표현을 썼고, 그때 비트코인 값은 6만4,107달러였다.\n열 달이 지난 지금 값은 그때와 거의 같은 자리에 있다.\n\n@@REF@@피터 슈프, 비트코인을 두고 승리 선언 (Yahoo Finance, 2025-10-16)|https://finance.yahoo.com/news/peter-schiff-takes-victory-lap-183105932.html\n\n값이 거의 그대로라는 사실은 그의 말을 반박하지도, 증명하지도 않는다.\n파티가 끝났다는 주장은 값이 떨어질 때가 아니라 오르지 못할 때 맞는 말이 되기 때문이다.\n다만 같은 문장을 열 달 간격으로 두 번 들은 독자라면, 이번 문장의 무게도 그만큼 재서 들을 필요가 있다.\n\n슈프가 어디에 서 있는지도 함께 봐야 한다.\n그는 금괴를 파는 슈프골드와 자산운용사 유로퍼시픽을 운영하며, 비트코인 대신 금을 오래 권해 온 사람이다.\n이 카드가 그의 주장을 옮기면서 반대편 읽기를 나란히 놓은 이유가 그것이다.\n\n앞으로 석 달 안에 위험자산이 한 번 팔리는 국면이 오고 그때 비트코인이 6만2,000달러 아래로 내려앉으면 슈프의 읽기가 맞고, 위험자산이 계속 오르는 동안 비트코인이 그 구간을 지켜 내면 이번 정체는 파티의 끝이 아니라 자리 비움이었다.",
+    "en": "Between July 28 and August 4 the S&P 500 climbed from 7,444.88 to a record close of 7,736.52.\nOver the same eight days bitcoin went from $63,408 to $63,526.\nRisk assets rallied together on reports that a deal to reopen the Strait of Hormuz was close. Bitcoin stayed where it was.\n\n@@REF@@S&P 500 and Dow set new highs on easing geopolitical tensions (The Motley Fool, 2026-08-04)|https://www.fool.com/coverage/stock-market-today/2026/08/04/stock-market-today-aug-4-s-and-p-500-and-dow-set-new-highs-on-easing-geopolitical-tensions/\n\n@@BAR@@S&P 500|+3.9%|3.92|Bitcoin|+0.2%|0.19@@Same market, same eight days, and a gap of more than twenty times in how much each moved. This was not a rally that lifted risk assets as a group.@@Retrieved 2026-08-05. S&P 500 closing prices for July 28 and August 4; bitcoin from Fortune's daily price snapshots ($63,408 at 07:30 ET on July 28, $63,526 at 05:30 ET on August 4)\n\n## Brent fell more than 10% in eight days\n\nThe fuel for this rally was geopolitics rather than earnings.\nAs Middle East tension eased, Brent crude slid from $89.08 a barrel on July 28 to $79.47 on August 4.\n\nCheaper oil lowers the cost of making and shipping goods, and it takes pressure off central banks worried about inflation.\nThat is why falling crude reads straight through to equities as good news.\n\nBitcoin has no such channel.\nIt does not make or sell anything, so a lower oil price does not cut its costs or lift its earnings.\nWhat is left is one thing only: how much risk people currently want to hold.\nThat is the ground Peter Schiff was standing on when he said this rally had not lifted all boats.\n\n## Two ways to read a quiet market\n\nBitcoin is not merely still. It is priced as though it will stay still.\nCoinDesk reports that its 30-day implied volatility index has fallen to 36%, the lowest since May 31 and roughly half its early-June level near 60%.\nImplied volatility is the market's expected size of future swings, backed out of option prices.\nA low reading means traders are not positioned for a big event.\n\nThe same piece notes that about 155,000 bitcoin have accumulated in the $62,000 to $65,000 range.\nWhen that much supply sits in one band it acts as both floor and ceiling, and ordinary news is not enough to push price out of it.\n\nWhere the money went is also on the record.\nOn August 4 Hashdex said it would close a US spot bitcoin ETF holding $14.7 million, and CoinDesk reported that US spot bitcoin ETFs have now seen three straight months of net outflows.\nVetle Lunde of K33 Research said much of the market views the opportunity cost of holding bitcoin as too high while anything AI-related soars.\n\n@@REF@@Hashdex to close U.S. spot BTC ETF as investors chase AI returns (CoinDesk, 2026-08-04)|https://www.coindesk.com/business/2026/08/04/first-u-s-spot-bitcoin-etf-to-close-as-inflows-dwindle-investors-chase-ai-returns|https://cdn.sanity.io/images/s3y3vcno/production/b2b575e5fb400b044ebb5d3c2d88d2a80846eafb-1920x1080.jpg\n\n@@CMP@@Schiff's reading|An asset that cannot rise when everything rises will be the first thing sold when everything is sold.|K33's reading|The opportunity cost of holding bitcoin has grown because AI equities are returning so much. Bitcoin itself is not broken.\n\nOne side reads the same frozen frame as lost strength, the other as money parked elsewhere for a while.\nThe split is whether there is still a seat for that money to come back to.\n\n## What Schiff also said in October 2025\n\nThis is not the first time Schiff has declared the bitcoin party over.\nHe used the same phrase on October 16, 2025, when bitcoin traded at $64,107.\nTen months later it sits in almost the same place.\n\n@@REF@@Peter Schiff takes a victory lap on bitcoin (Yahoo Finance, 2025-10-16)|https://finance.yahoo.com/news/peter-schiff-takes-victory-lap-183105932.html\n\nA flat price neither refutes nor proves him.\nThe claim that a party is over is settled not by a price falling but by a price failing to rise.\nStill, a reader who has now heard the same sentence twice ten months apart has reason to weigh this one accordingly.\n\nIt also matters where Schiff stands.\nHe runs SchiffGold, a precious metals dealer, and Euro Pacific Asset Management, and he has recommended gold over bitcoin for years.\nThat is why this card sets an opposing reading beside his.\n\nIf risk assets sell off in the next three months and bitcoin drops below $62,000 with them, Schiff's reading holds. If risk assets keep climbing and bitcoin defends that band, this pause was an absence rather than an ending.",
+    "ja": "7月28日から8月4日までの8日間で、S&P500は7,444.88から7,736.52へ上がり、過去最高値を更新した。\n同じ期間、ビットコインは6万3,408ドルから6万3,526ドルになった。\nホルムズ海峡を再開する合意が近いとの報道で、リスク資産が一斉に上がった。そのなかでビットコインだけがその場に立っていた。\n\n@@REF@@S&P500とダウ、地政学的緊張の緩和で最高値 (The Motley Fool, 2026-08-04)|https://www.fool.com/coverage/stock-market-today/2026/08/04/stock-market-today-aug-4-s-and-p-500-and-dow-set-new-highs-on-easing-geopolitical-tensions/\n\n@@BAR@@S&P500|+3.9%|3.92|ビットコイン|+0.2%|0.19@@同じ相場の同じ8日間を測って、上げ幅に20倍を超える差がついた。リスク資産がそろって上がった相場ではなかったということだ。@@2026-08-05取得。S&P500は7月28日と8月4日の終値、ビットコインはFortuneの日次スナップショット(7月28日07:30 ETに6万3,408ドル、8月4日05:30 ETに6万3,526ドル)\n\n## 原油は8日間で10%以上下げた\n\n今回の上昇の燃料は業績ではなく地政学だ。\n中東の緊張が緩むとの見方から、ブレント原油は7月28日の1バレル89.08ドルから8月4日には79.47ドルまで下がった。\n\n原油が安くなれば物を作って運ぶ費用が減り、物価を気にしていた中央銀行の負担も軽くなる。\nだから原油安はそのまま株式にとっての好材料になる。\n\nビットコインにはその経路がない。\nビットコインは何かを作って売る資産ではないので、原油が下がっても原価が減ることも利益が増えることもない。\n残るのは、人々がいまどれだけリスクを取りたいかという一点だけだ。\nピーター・シフが今回の相場を指して、すべての船が浮かんだわけではないと言った足場がここにある。\n\n## 静かな相場の二つの読み方\n\nビットコインは動いていないだけでなく、これからも動かない前提で値がついている。\nコインデスクによれば30日物の予想変動率指数は36%と5月31日以降で最も低く、6月初めの60%近辺からほぼ半減した。\n予想変動率とは、この先どれだけ値が振れるかをオプション価格から逆算した数字だ。\nこれが低いということは、市場が大きな出来事を織り込んでいないという意味になる。\n\n同じ記事は、6万2,000ドルから6万5,000ドルの帯におよそ15万5,000枚のビットコインが積み上がっていると指摘している。\nこれだけの量が一つの価格帯に集まると、その帯が下値にも上値にも同時に働き、並の材料では値がそこから出られない。\n\n資金がどこへ行ったかも数字に残っている。\n8月4日、ハッシュデックスは運用資産1,470万ドルの米国現物ビットコインETFを閉じると発表し、コインデスクは米国の現物ビットコインETF全体が3か月続けて資金流出だと伝えた。\nK33リサーチのヴェトレ・ルンデは、AI関連なら何でも急騰するなかで、ビットコインを保有する機会費用が高すぎると市場の多くが見ていると述べている。\n\n@@REF@@ハッシュデックス、米現物ビットコインETFを閉鎖 資金はAIへ (CoinDesk, 2026-08-04)|https://www.coindesk.com/business/2026/08/04/first-u-s-spot-bitcoin-etf-to-close-as-inflows-dwindle-investors-chase-ai-returns|https://cdn.sanity.io/images/s3y3vcno/production/b2b575e5fb400b044ebb5d3c2d88d2a80846eafb-1920x1080.jpg\n\n@@CMP@@シフの読み|皆が上がる相場で上がれなかった資産は、皆が売られる相場では真っ先に売られる。|K33の読み|AI株の利回りが良すぎてビットコインを持つ機会費用が大きくなっただけで、ビットコイン自体が壊れたわけではない。\n\n同じ静止画を前に、一方は体力が落ちたと読み、他方は資金が一時よそに行っていると読む。\n分かれ目は、その資金が戻ってくる席が残っているかどうかだ。\n\n## シフが2025年10月にも言っていたこと\n\nシフがビットコインのパーティーは終わったと言うのは、今回が初めてではない。\n2025年10月16日にも同じ表現を使い、そのときのビットコインは6万4,107ドルだった。\n10か月が過ぎたいまも、値はほぼ同じ場所にある。\n\n@@REF@@ピーター・シフ、ビットコインで勝利宣言 (Yahoo Finance, 2025-10-16)|https://finance.yahoo.com/news/peter-schiff-takes-victory-lap-183105932.html\n\n値がほぼ変わらないという事実は、彼の主張を否定も証明もしない。\nパーティーが終わったという主張は、値が下がることではなく、値が上がれないことで正しくなるからだ。\nただ、同じ文を10か月の間隔で二度聞いた読者なら、今回の一文の重さもそれなりに測って聞く必要がある。\n\nシフがどこに立っているかも合わせて見ておきたい。\n彼は金地金を売るシフゴールドと資産運用会社ユーロパシフィックを率いており、長年ビットコインではなく金を勧めてきた人物だ。\nこのカードが彼の主張を伝えながら反対側の読みを並べて置いたのは、そのためである。\n\nこの先3か月のうちにリスク資産が一度売られる場面が来て、そのときビットコインが6万2,000ドルを割り込めばシフの読みが当たる。リスク資産が上がり続けるなかでビットコインがその帯を守り切れば、今回の停滞は終わりではなく席の空きだった。"
+   },
+   "why": {
+    "ko": "위험자산이 다 오르는 장에서 혼자 못 오른 자산은, 그 장이 끝났을 때 어디에 서 있게 되는지를 미리 보여준다.",
+    "en": "An asset that fails to rise in a broad risk rally is telling you in advance where it will stand when that rally ends.",
+    "ja": "リスク資産がそろって上がる相場で一人だけ上がれない資産は、その相場が終わったときにどこに立つのかを先に示している。"
+   },
+   "ask": {
+    "ko": "AI 주식이 계속 이기는 동안 비트코인이 제자리인 것은 체력이 떨어진 신호일까, 아니면 돈이 잠시 다른 데 가 있는 것뿐일까?",
+    "en": "While AI equities keep winning, is bitcoin's flat price a sign of lost strength or just money parked elsewhere for a while?",
+    "ja": "AI株が勝ち続けるあいだビットコインが横ばいなのは、体力が落ちた合図なのか、それとも資金が一時よそに行っているだけなのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-11-04",
+    "note": {
+     "ko": "2026년 11월 4일 비트코인 가격이 6만2,000달러 아래인지로 슈프의 '파티는 끝났다'를 채점한다.",
+     "en": "Grade Schiff's 'the party is over' by whether bitcoin trades below $62,000 on 2026-11-04.",
+     "ja": "2026年11月4日のビットコイン価格が6万2,000ドルを下回るかで、シフの「パーティーは終わった」を採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "비트코인 가격 (BTC/USD)",
+      "en": "Bitcoin price (BTC/USD)",
+      "ja": "ビットコイン価格 (BTC/USD)"
+     },
+     "now": {
+      "ko": "2026년 8월 4일 6만3,526달러",
+      "en": "$63,526 on August 4, 2026",
+      "ja": "2026年8月4日に6万3,526ドル"
+     },
+     "when": {
+      "ko": "2026년 11월 4일 (석 달 뒤)",
+      "en": "November 4, 2026 (three months out)",
+      "ja": "2026年11月4日(3か月後)"
+     },
+     "hit": {
+      "ko": "6만2,000달러 아래 → 슈프의 읽기가 맞는다",
+      "en": "Below $62,000 → Schiff's reading holds",
+      "ja": "6万2,000ドル未満 → シフの読みが当たる"
+     },
+     "miss": {
+      "ko": "6만2,000달러 이상 → 슈프의 읽기가 어긋난다",
+      "en": "At or above $62,000 → Schiff's reading misses",
+      "ja": "6万2,000ドル以上 → シフの読みは外れる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Peter Schiff(@PeterSchiff) · 2026-08-04",
+      "en": "Peter Schiff (@PeterSchiff) · 2026-08-04",
+      "ja": "Peter Schiff(@PeterSchiff) · 2026-08-04"
+     },
+     "url": "https://x.com/PeterSchiff/status/2084721855735222761"
+    },
+    {
+     "name": {
+      "ko": "The Motley Fool",
+      "en": "The Motley Fool",
+      "ja": "The Motley Fool"
+     },
+     "desc": {
+      "ko": "8월 4일 S&P500 종가 7,736.52 신고가 · 2026-08-04",
+      "en": "S&P 500 record close of 7,736.52 on August 4 · 2026-08-04",
+      "ja": "8月4日のS&P500終値7,736.52は最高値 · 2026-08-04"
+     },
+     "url": "https://www.fool.com/coverage/stock-market-today/2026/08/04/stock-market-today-aug-4-s-and-p-500-and-dow-set-new-highs-on-easing-geopolitical-tensions/"
+    },
+    {
+     "name": {
+      "ko": "CoinDesk",
+      "en": "CoinDesk",
+      "ja": "CoinDesk"
+     },
+     "desc": {
+      "ko": "해시덱스의 현물 비트코인 ETF 폐쇄와 석 달 연속 순유출, K33 인용 · 2026-08-04",
+      "en": "Hashdex closing a spot bitcoin ETF, three months of net outflows, K33 quote · 2026-08-04",
+      "ja": "ハッシュデックスの現物ビットコインETF閉鎖と3か月連続の資金流出、K33の発言 · 2026-08-04"
+     },
+     "url": "https://www.coindesk.com/business/2026/08/04/first-u-s-spot-bitcoin-etf-to-close-as-inflows-dwindle-investors-chase-ai-returns"
+    },
+    {
+     "name": {
+      "ko": "CoinDesk",
+      "en": "CoinDesk",
+      "ja": "CoinDesk"
+     },
+     "desc": {
+      "ko": "30일 내재변동성 36%와 6만2,000~6만5,000달러 구간의 약 15만5,000 비트코인 · 2026-08-04",
+      "en": "30-day implied volatility at 36% and about 155,000 BTC in the $62,000-$65,000 band · 2026-08-04",
+      "ja": "30日予想変動率36%と6万2,000~6万5,000ドル帯の約15万5,000BTC · 2026-08-04"
+     },
+     "url": "https://www.coindesk.com/daybook-us/2026/08/04/the-bitcoin-market-has-plenty-of-reasons-to-freak-out-yet-calm-pervades"
+    },
+    {
+     "name": {
+      "ko": "Fortune",
+      "en": "Fortune",
+      "ja": "Fortune"
+     },
+     "desc": {
+      "ko": "비트코인 일별 시세 스냅숙 7월 28일 6만3,408달러 · 8월 4일 6만3,526달러",
+      "en": "Daily bitcoin price snapshots: $63,408 on July 28 and $63,526 on August 4",
+      "ja": "ビットコインの日次価格スナップショット 7月28日6万3,408ドル・8月4日6万3,526ドル"
+     },
+     "url": "https://fortune.com/article/price-of-bitcoin-08-04-2026/"
+    },
+    {
+     "name": {
+      "ko": "Yahoo Finance",
+      "en": "Yahoo Finance",
+      "ja": "Yahoo Finance"
+     },
+     "desc": {
+      "ko": "슈프가 2025년 10월 16일 같은 표현을 썼을 때 비트코인은 6만4,107달러 · 2025-10-16",
+      "en": "Schiff used the same phrase on October 16, 2025, with bitcoin at $64,107 · 2025-10-16",
+      "ja": "シフが2025年10月16日に同じ表現を使ったとき、ビットコインは6万4,107ドル · 2025-10-16"
+     },
+     "url": "https://finance.yahoo.com/news/peter-schiff-takes-victory-lap-183105932.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회. S&P500은 7월 28일과 8월 4일 종가 기준이고, 비트코인은 같은 두 날의 Fortune 스냅숙이라 조회 시각이 각각 07:30 ET와 05:30 ET로 다르다. 브렌트유는 7월 28일 89.08달러, 8월 4일 79.47달러다.",
+    "en": "Retrieved 2026-08-05. S&P 500 figures are closing prices for July 28 and August 4; bitcoin figures are Fortune snapshots taken at 07:30 ET and 05:30 ET on those days, so the times of day differ. Brent crude was $89.08 on July 28 and $79.47 on August 4.",
+    "ja": "2026-08-05取得。S&P500は7月28日と8月4日の終値、ビットコインは同じ2日のFortuneのスナップショットで、取得時刻はそれぞれ07:30 ETと05:30 ETと異なる。ブレント原油は7月28日が89.08ドル、8月4日が79.47ドル。"
+   }
+  },
+  {
    "date": "2026-08-03",
    "id": "semianalysis-kimi-k3-linear-attention-kv-cache",
    "related": [
@@ -36716,6 +37063,80 @@
    "aliases": [
     "vLLM",
     "VLLM"
+   ]
+  },
+  "내재변동성": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "앞으로 값이 얼마나 출렉일지를 옵션 가격에서 거꿒로 뽑아난 숫자.",
+    "en": "The size of future price swings the market expects, backed out of option prices.",
+    "ja": "この先どれだけ値が振れるかを、オプション価格から逆算した数字。"
+   },
+   "longDesc": {
+    "ko": "옵션은 값이 크게 움직일수록 비싸지므로, 거꿒로 옵션 값을 보면 시장이 앞으로의 출렉임을 얼마로 보는지 읽을 수 있다. 이 값이 낮으면 시장이 큰 사건을 예상하지 않는다는 뜻이고, 갑자기 뛰면 무언가를 대비하기 시작했다는 신호다. 값 자체의 방향은 알려주지 않고 흔들림의 크기만 알려준다.",
+    "en": "Options cost more when prices are expected to swing, so reading option prices backwards shows how much movement the market is bracing for. A low reading means traders are not positioned for a big event; a sudden jump means they have started to hedge one. It says nothing about direction, only about the size of the expected move.",
+    "ja": "オプションは値動きが大きいほど高くなるため、逆にオプション価格を見れば、市場がこの先の振れ幅をどれくらいと見ているかが読める。低ければ大きな出来事を織り込んでいないという意味で、急に跳ねれば何かに備え始めた合図だ。値の方向は示さず、揺れの大きさだけを示す。"
+   },
+   "aliases": [
+    "implied volatility",
+    "내재변동성",
+    "예상 변동률",
+    "インプライド・ボラティリティ",
+    "予想変動率"
+   ]
+  },
+  "상관계수": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "두 값이 같은 방향으로 움직이는 정도를 -1에서 1 사이 숫자로 잰 것.",
+    "en": "A number between -1 and 1 measuring how closely two series move together.",
+    "ja": "二つの値が同じ方向に動く度合いをマイナス1から1の数字で測ったもの。"
+   },
+   "longDesc": {
+    "ko": "1에 가까울수록 두 값이 나란히 움직이고, -1에 가까울수록 반대로 움직인다. 0이면 서로 상관이 없다는 뜻이다. 주식과 채권의 상관계수는 자산을 나눠 담는 전략의 전제라서, 이 값의 부호가 바뀌면 같은 포트폴리오라도 위험의 크기가 달라진다.",
+    "en": "Near 1 the two series move together, near -1 they move in opposite directions, and at 0 they are unrelated. The stock-bond correlation is the assumption underneath most diversified portfolios, so when its sign flips the same portfolio carries a different amount of risk.",
+    "ja": "1に近いほど二つの値は並んで動き、マイナス1に近いほど反対に動く。0なら互いに無関係だ。株式と債券の相関係数は分散投資の前提そのものなので、符号が変わると同じポートフォリオでもリスクの大きさが変わる。"
+   },
+   "aliases": [
+    "correlation coefficient",
+    "상관계수",
+    "상관관계",
+    "相関係数"
+   ]
+  },
+  "리펀딩": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "미 재무부가 분기마다 앞으로 찍을 국채의 종류와 규모를 미리 알리는 절차.",
+    "en": "The quarterly announcement in which the U.S. Treasury sets the size and mix of its coming bond auctions.",
+    "ja": "米財務省が四半期ごとに今後発行する国債の種類と規模を事前に示す手続き。"
+   },
+   "longDesc": {
+    "ko": "만기가 돌아온 국채를 갚기 위해 새 국채를 찍는 일이라 리펀딩, 곧 차환이라고 부른다. 어느 만기 구간을 얼마나 늘릴지가 여기서 정해지므로 채권시장은 이 발표를 금리 방향의 재료로 본다. 장기물 발행이 늘면 장기 금리가 먼저 반응하는 경우가 많다.",
+    "en": "It is called refunding because the new bonds largely repay maturing ones. The statement fixes how much of each maturity Treasury will sell, so the bond market treats it as a direct input to the path of yields. When long-dated issuance rises, long yields usually react first.",
+    "ja": "満期を迎えた国債を返すために新しい国債を出すので、借り換え(リファンディング)と呼ばれる。どの年限をどれだけ増やすかがここで決まるため、債券市場はこの発表を金利の方向を占める材料と見る。長期債の発行が増えると、まず長期金利が反応することが多い。"
+   },
+   "aliases": [
+    "quarterly refunding",
+    "리펀딩",
+    "분기 리펀딩",
+    "차환",
+    "リファンディング"
    ]
   }
  }
