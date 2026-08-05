@@ -44,7 +44,8 @@
         followsPeople:"논객",followsCompany:"회사",followsSeries:"시리즈",
         nsTitle:"알림 설정",nsNew:"새 글 알림",nsFollow:"팔로우 새 글 알림",
         nsEvents:"다가오는 이벤트 알림",nsNoEvents:"예정된 이벤트가 없어요.",nsRecent:"최근 알림",nsEvSubEmpty:"알림 신청한 이벤트가 없어요. 이벤트의 종 버튼을 눌러 신청하세요.",
-        recentQ:"최근 검색",recentClear:"전체 지우기",recentDel:"지우기"},
+        recentQ:"최근 검색",recentClear:"전체 지우기",recentDel:"지우기",
+        calToday:"오늘",calMonthView:"월별보기",calWeekView:"주별보기",calMonthSoon:"월별 보기는 곧 추가됩니다",calEarnings:"실적",calActual:"실제",calAiSummary:"이번주 AI 요약"},
     en:{home:"Home",find:"Find",explore:"Explore",cal:"Calendar",notif:"Alerts",post:"Post",more:"More",
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
         dwProfile:"Profile",dwFollowing:"Following",dwShared:"Shared posts",
@@ -64,7 +65,8 @@
         followsPeople:"Author",followsCompany:"Company",followsSeries:"Series",
         nsTitle:"Notification settings",nsNew:"New posts",nsFollow:"New posts from who you follow",
         nsEvents:"Upcoming events",nsNoEvents:"No upcoming events.",nsRecent:"Recent alerts",nsEvSubEmpty:"No events subscribed yet. Tap the bell on an event to get alerts.",
-        recentQ:"Recent searches",recentClear:"Clear all",recentDel:"Remove"},
+        recentQ:"Recent searches",recentClear:"Clear all",recentDel:"Remove",
+        calToday:"Today",calMonthView:"Monthly",calWeekView:"Weekly",calMonthSoon:"Monthly view is coming soon.",calEarnings:"Earnings",calActual:"Actual",calAiSummary:"This week's AI summary"},
     ja:{home:"ホーム",find:"探す",explore:"発見",cal:"カレンダー",notif:"通知",post:"投稿",more:"もっと見る",
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
         dwProfile:"プロフィール",dwFollowing:"フォロー中",dwShared:"共有した記事",
@@ -84,7 +86,8 @@
         followsPeople:"論客",followsCompany:"企業",followsSeries:"シリーズ",
         nsTitle:"通知設定",nsNew:"新着記事",nsFollow:"フォロー中の新着",
         nsEvents:"今後のイベント",nsNoEvents:"予定されたイベントはありません。",nsRecent:"最近の通知",nsEvSubEmpty:"通知を登録したイベントはありません。イベントのベルを押して登録してください。",
-        recentQ:"最近の検索",recentClear:"すべて消去",recentDel:"削除"}
+        recentQ:"最近の検索",recentClear:"すべて消去",recentDel:"削除",
+        calToday:"今日",calMonthView:"月別",calWeekView:"週別",calMonthSoon:"月別表示は近日公開予定です。",calEarnings:"決算",calActual:"実績",calAiSummary:"今週のAI要約"}
   };
   function T(){ var l = (typeof LANG !== "undefined" && V82S[LANG]) ? LANG : "ko"; return V82S[l]; }
   function $(id){ return document.getElementById(id); }
@@ -320,7 +323,7 @@
     return true;
   }
   function anyScreenOpen(){
-    return ["v82explore","v82hub","v82notif","v82picker","v82list"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
+    return ["v82explore","v82hub","v82notif","v82picker","v82list","v82cal"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
   }
 
   /* ---------- FIND (search + secondary filters + discovery modules) ---------- */
@@ -992,6 +995,471 @@
     return true;
   }
 
+  /* ---------- MOBILE CALENDAR (v82.15, 2026-08-05): Toss-style week view ----------
+     데스크톱 v83 캘린더(index.html의 renderV83CalPage/tcalRowHtml/V83CAL 등)는 건드리지
+     않는다 — 여기서는 순수 데이터 함수(v83CalAllRows/tcalWeekGroups/tcalWeekLabel/
+     tcalSunday/tcalYmd/TCAL_FLAG/logoUrl 등, 전부 index.html 전역)만 재사용하고
+     필터 상태(V82CAL_FILTER)와 렌더링은 모바일 전용으로 완전히 분리했다.
+     주의: V83CAL.filter/country는 데스크톱과 공유되는 전역이라 여기서는 안 쓴다 —
+     "실적" 필터는 데스크톱의 "이벤트"(전체 뉴스 이벤트) 필터와 의미가 다르다(실데이터
+     확인 결과 이벤트 kind는 earnings/macro 두 종류가 섞여 있고, "실적"은 kind==="earnings"
+     만을 뜻해야 맞다 — 그대로 v83CalFilter('event')를 재사용하면 macro 뉴스까지
+     "실적" 탭에 섞여 나온다). V83CAL.anchor만 렌더 시점마다 "오늘"로 맞춘다. */
+  var V82CAL_FILTER = { filter: "all" };
+  /* 2026-08-05(월간뷰): 주간뷰와 토글되는 두 번째 모드. 데스크톱 V83CAL.y/.m는
+     화살표로 월을 넘기는 상태라 여기서 같이 쓰면 두 화면이 서로 간섭한다 —
+     그래서 공유하지 않고 모바일 전용 변수 하나만 둔다. 월 이동 UI는 없다(참고
+     이미지에도 화살표가 없다) — 항상 "이번 달"만 고정으로 보여준다. openCalScreen()이
+     열 때마다 "week"로 리셋해 재진입 시 항상 주간뷰부터 시작하게 한다. */
+  var V82CAL_MODE = "week";
+
+  /* "21:30" → "오후 9시 30분" 같은 표기. indicator.nextTime은 이미 KST 문자열이라
+     (지표 상세 페이지도 변환 없이 그대로 표시) 타임존 계산 없이 파싱만 한다.
+     기존 코드에 재사용 가능한 시간 포맷 헬퍼가 없어 새로 작성했다. */
+  function v82CalTimeLabel(hhmm){
+    if (!hhmm || hhmm.indexOf(":") < 0) return "";
+    var bits = hhmm.split(":"); var h = parseInt(bits[0], 10), m = parseInt(bits[1], 10) || 0;
+    if (isNaN(h)) return "";
+    var pm = h >= 12; var h12 = h % 12; if (h12 === 0) h12 = 12;
+    if (LANG === "ja"){
+      var pj = pm ? "午後" : "午前";
+      return m === 0 ? (pj + h12 + "時") : (pj + h12 + "時" + m + "分");
+    }
+    if (LANG === "en"){
+      var pe = pm ? "PM" : "AM";
+      return m === 0 ? (h12 + pe) : (h12 + ":" + (m < 10 ? "0" + m : m) + pe);
+    }
+    var pk = pm ? "오후" : "오전";
+    return m === 0 ? (pk + " " + h12 + "시") : (pk + " " + h12 + "시 " + m + "분");
+  }
+
+  /* v83CalAllRows()(index.html 전역, 순수 함수)를 그대로 불러온 뒤 모바일 전용
+     필터만 로컬로 적용한다 — v83CalFiltered()는 공유 V83CAL.filter/country를
+     건드리므로 쓰지 않는다(위 섹션 코멘트 참고). */
+  function v82CalRows(){
+    var rows = (typeof v83CalAllRows === "function") ? v83CalAllRows() : [];
+    if (V82CAL_FILTER.filter === "indicator") rows = rows.filter(function(r){ return r.isIndicator; });
+    else if (V82CAL_FILTER.filter === "earnings") rows = rows.filter(function(r){ return !r.isIndicator && r.kind === "earnings"; });
+    return rows;
+  }
+
+  /* 이번 주(일~토) 지표 회차 수 + 실적 발표 수를 세어 "AI가 요약한 것처럼" 보이는
+     문장을 만든다 — 실제 LLM 호출은 없다(예산/연동 없음, 이번 작업 범위 밖). */
+  function v82CalWeekSummaryText(){
+    var TS = (typeof TCAL_STR !== "undefined" && (TCAL_STR[LANG] || TCAL_STR.ko)) || {};
+    var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
+    var sun = tcalSunday(todayD), sat = new Date(sun.getTime() + 6 * 86400000);
+    var sunStr = tcalYmd(sun), satStr = tcalYmd(sat);
+    var rows = (typeof v83CalAllRows === "function" ? v83CalAllRows() : [])
+      .filter(function(r){ return r.date >= sunStr && r.date <= satStr; });
+    var indN = rows.filter(function(r){ return r.isIndicator; }).length;
+    var earnN = rows.filter(function(r){ return !r.isIndicator && r.kind === "earnings"; }).length;
+    if (!indN && !earnN) return TS.weekSummaryEmpty || "";
+    if (LANG === "ja"){
+      if (indN && earnN) return "今週、経済指標" + indN + "件・決算" + earnN + "件が予定されています";
+      if (indN) return "今週、経済指標" + indN + "件が予定されています";
+      return "今週、決算発表" + earnN + "件が予定されています";
+    }
+    if (LANG === "en"){
+      if (indN && earnN) return "This week: " + indN + " indicator release" + (indN > 1 ? "s" : "") + " and " + earnN + " earnings report" + (earnN > 1 ? "s" : "") + " ahead.";
+      if (indN) return "This week: " + indN + " indicator release" + (indN > 1 ? "s" : "") + " ahead.";
+      return "This week: " + earnN + " earnings report" + (earnN > 1 ? "s" : "") + " ahead.";
+    }
+    if (indN && earnN) return "이번주 지표 " + indN + "건, 실적 " + earnN + "건이 예정되어 있어요";
+    if (indN) return "이번주 지표 " + indN + "건이 예정되어 있어요";
+    return "이번주 실적 " + earnN + "건이 예정되어 있어요";
+  }
+
+  /* 원형 아이콘(44px). 지표=국기(연회색 원 안에 작게 인셋), 실적/뉴스=회사 로고
+     (원 전체를 채움). 실패 시 kind별 색(.ck-earnings/.ck-macro/.ck-x, 데스크톱
+     캘린더 도트에서 쓰는 기존 색 범례 재사용)만 남는 원으로 폴백한다 — 데스크톱
+     tcalRowHtml()의 onerror 전략(이미지만 숨기고 슬롯 크기는 고정이라 레이아웃이
+     안 밀림)과 동일한 원리다. */
+  function v82CalIconHtml(r){
+    if (r.isIndicator){
+      var flagCode = (typeof TCAL_FLAG !== "undefined" && TCAL_FLAG[r.ind.country]) || "";
+      var flagImg = flagCode
+        ? '<img src="https://flagcdn.com/48x36/' + flagCode + '.png" alt="" onerror="this.style.display=\'none\'">'
+        : "";
+      return '<span class="v82cal-icon v82cal-icon-flag">' + flagImg + '</span>';
+    }
+    var domain = (r.entity && typeof ENTITIES !== "undefined" && ENTITIES[r.entity] && ENTITIES[r.entity].logo) || null;
+    var ck = "ck-" + (r.kind || "x");
+    var img = (domain && typeof logoUrl === "function")
+      ? '<img src="' + logoUrl(domain) + '" alt="" onerror="this.style.display=\'none\'">'
+      : "";
+    return '<span class="v82cal-icon ' + ck + '">' + img + '</span>';
+  }
+
+  /* 한 행. 지표는 발표 회차가 있으면(actual 존재) 실제/예측 비교색(.tcal-hi/.tcal-lo,
+     데스크톱과 같은 규칙 재사용), 없으면(다음 예정) 발표 시각을 보여준다. 실적/뉴스
+     이벤트는 "주요/관심" 같은 중요도 태그를 넣지 않는다(items.json의 events엔 그런
+     필드가 없다 — date/entity/id/itemId/kind/label/title뿐이라 지어내지 않았다).
+     실적 행 2번째 줄도 EPS 실제/예측이 아니라 티커다 — 같은 이유로 EPS 데이터가
+     없어서, 있는 정보(티커)만 보여준다. */
+  function v82CalRowHtml(r){
+    var iconHtml = v82CalIconHtml(r);
+    var title, subHtml = "", onclick;
+    if (r.isIndicator){
+      var ind = r.ind, unit = ind.unit || "";
+      title = esc(ind.name[LANG] || ind.name.en);
+      var hasActual = r.actual !== null && r.actual !== undefined;
+      if (hasActual){
+        var colorCls = "";
+        if (r.forecast !== null && r.forecast !== undefined){
+          if (r.actual > r.forecast + 1e-9) colorCls = "tcal-hi"; else if (r.actual < r.forecast - 1e-9) colorCls = "tcal-lo";
+        }
+        var TSf = (typeof TCAL_STR !== "undefined" && (TCAL_STR[LANG] || TCAL_STR.ko)) || {};
+        var fTxt = (r.forecast === null || r.forecast === undefined) ? "" : (' · ' + esc(TSf.colForecast || "") + ' ' + esc(r.forecast + unit));
+        subHtml = '<span class="v82cal-sub"><span class="' + colorCls + '">' + esc(T().calActual) + ' ' + esc(r.actual + unit) + '</span>' + fTxt + '</span>';
+      } else {
+        var tLbl = v82CalTimeLabel(ind.nextTime);
+        if (tLbl) subHtml = '<span class="v82cal-sub v82cal-sub-muted">' + esc(tLbl) + '</span>';
+      }
+      onclick = "goIndicator('" + ind.id + "')";
+    } else {
+      title = esc((r.label && (r.label[LANG] || r.label.en)) || (r.title && (r.title[LANG] || r.title.en)) || "");
+      var ticker = (r.entity && typeof ENTITIES !== "undefined" && ENTITIES[r.entity] && ENTITIES[r.entity].ticker) || "";
+      if (ticker) subHtml = '<span class="v82cal-sub v82cal-sub-muted">' + esc(ticker) + '</span>';
+      onclick = "evGo('" + r.id + "')";
+    }
+    return '<button type="button" class="v82cal-row" onclick="' + onclick + '">' + iconHtml
+      + '<span class="v82cal-row-txt"><span class="v82cal-row-title">' + title + '</span>' + subHtml + '</span></button>';
+  }
+
+  /* 월간뷰 칩 전용 제목 헬퍼 — v82CalRowHtml()과 같은 우선순위(ind.name → label →
+     title)로 표시용 문자열만 뽑는다. v82CalRowHtml() 자체는 건드리지 않는다(주간뷰
+     회귀 위험 최소화). */
+  function v82CalRowTitle(r){
+    if (r.isIndicator){
+      var ind = r.ind;
+      return (ind && ind.name && (ind.name[LANG] || ind.name.en)) || "";
+    }
+    return (r.label && (r.label[LANG] || r.label.en)) || (r.title && (r.title[LANG] || r.title.en)) || "";
+  }
+
+  function v82CalDayHeadHtml(dateStr, todayStr){
+    var d = new Date(dateStr + "T00:00:00");
+    var wd = (typeof TCAL_WD1 !== "undefined" && TCAL_WD1[LANG]) || TCAL_WD1.ko;
+    var chip = dateStr === todayStr ? ('<span class="v82cal-today-chip">' + esc(T().calToday) + '</span>') : "";
+    return '<div class="v82cal-day-h" data-date="' + dateStr + '"><span class="v82cal-day-num">' + d.getDate()
+      + '</span><span class="v82cal-day-wd">' + esc(wd[d.getDay()]) + '</span>' + chip + '</div>';
+  }
+
+  /* group.rows는 tcalWeekGroups()가 이미 날짜 오름차순으로 정렬해서 준다 — 날짜가
+     바뀔 때마다 새 day-group 컨테이너를 연다(데스크톱은 showDate로 한 줄에 압축해
+     보여주지만, 모바일은 참고 이미지 구조상 날짜별 소제목 블록이 필요하다). */
+  function v82CalWeekRowsHtml(group, todayStr){
+    var html = "", lastDate = null, open = false;
+    group.rows.forEach(function(r){
+      if (r.date !== lastDate){
+        if (open) html += "</div>";
+        lastDate = r.date; open = true;
+        html += v82CalDayHeadHtml(r.date, todayStr) + '<div class="v82cal-day-rows">';
+      }
+      html += v82CalRowHtml(r);
+    });
+    if (open) html += "</div>";
+    return html;
+  }
+
+  /* 월~토 6열, 오늘 강조, 토요일 흐리게. 탭 → 스크롤 + 선택 표시. 이 파일의 기존
+     방식대로 인라인 onclick 문자열 대신 querySelector 후 바인딩한다. */
+  function v82CalRenderStrip(){
+    var wrap = $("v82calStrip"); if (!wrap) return;
+    var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
+    var todayStr = tcalYmd(todayD);
+    var sun = tcalSunday(todayD);
+    var wd = (typeof TCAL_WD1_MINI !== "undefined" && TCAL_WD1_MINI[LANG]) || TCAL_WD1_MINI.ko;
+    var t = T();
+    var html = "";
+    for (var i = 1; i <= 6; i++){
+      var d = new Date(sun.getTime() + i * 86400000);
+      var dStr = tcalYmd(d);
+      var isToday = dStr === todayStr;
+      var cls = "v82cal-strip-btn" + (isToday ? " today" : "") + (i === 6 ? " sat" : "");
+      var label = isToday ? t.calToday : wd[i - 1];
+      html += '<button type="button" class="' + cls + '" data-date="' + dStr + '">'
+        + '<span class="v82cal-strip-wd">' + esc(label) + '</span>'
+        + '<span class="v82cal-strip-num' + (isToday ? " badge" : "") + '">' + d.getDate() + '</span></button>';
+    }
+    wrap.innerHTML = html;
+    var btns = wrap.querySelectorAll(".v82cal-strip-btn");
+    for (var b = 0; b < btns.length; b++){ btns[b].onclick = function(){ v82CalPickDay(this.dataset.date); }; }
+  }
+  function v82CalPickDay(dateStr){
+    try {
+      var strip = $("v82calStrip");
+      if (strip){
+        var btns = strip.querySelectorAll(".v82cal-strip-btn");
+        for (var i = 0; i < btns.length; i++) btns[i].classList.toggle("sel", btns[i].dataset.date === dateStr);
+      }
+      var target = document.querySelector('#v82calGroups [data-date="' + dateStr + '"]');
+      if (target && target.scrollIntoView) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (e) {}
+  }
+  function v82CalGoToday(){
+    var d = new Date(); d.setHours(0, 0, 0, 0);
+    v82CalPickDay(tcalYmd(d));
+  }
+  /* ---------- 2026-08-05: 월간뷰 (주간뷰와 헤더 토글로 전환되는 두 번째 모드) ----------
+     "+N개" 오버플로 라벨. 템플릿 치환 헬퍼가 이 파일에 따로 없어(v82CalWeekSummaryText도
+     LANG별로 직접 문자열을 짠다) 같은 스타일로 맞춘다. */
+  function v82CalMoreLabel(n){
+    if (LANG === "ja") return "+" + n + "件";
+    if (LANG === "en") return "+" + n + " more";
+    return "+" + n + "개";
+  }
+  /* v82CalWeekSummaryText()와 정확히 같은 패턴(카운트 기반, 실제 LLM 호출 없음)을
+     주 단위 대신 달 단위로 확장한 것. 필터(V82CAL_FILTER)는 적용하지 않는다 —
+     주간뷰 원본도 v83CalAllRows()를 그대로 세므로 동일하게 맞춘다. */
+  function v82CalMonthSummaryText(){
+    var TS = (typeof TCAL_STR !== "undefined" && (TCAL_STR[LANG] || TCAL_STR.ko)) || {};
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    var y = now.getFullYear(), mo = now.getMonth();
+    var msStr = tcalYmd(new Date(y, mo, 1)), meStr = tcalYmd(new Date(y, mo + 1, 0));
+    var rows = (typeof v83CalAllRows === "function" ? v83CalAllRows() : [])
+      .filter(function(r){ return r.date >= msStr && r.date <= meStr; });
+    var indN = rows.filter(function(r){ return r.isIndicator; }).length;
+    var earnN = rows.filter(function(r){ return !r.isIndicator && r.kind === "earnings"; }).length;
+    if (!indN && !earnN) return TS.monthNoData || "";
+    if (LANG === "ja"){
+      if (indN && earnN) return "今月、経済指標" + indN + "件・決算" + earnN + "件が予定されています";
+      if (indN) return "今月、経済指標" + indN + "件が予定されています";
+      return "今月、決算発表" + earnN + "件が予定されています";
+    }
+    if (LANG === "en"){
+      if (indN && earnN) return "This month: " + indN + " indicator release" + (indN > 1 ? "s" : "") + " and " + earnN + " earnings report" + (earnN > 1 ? "s" : "") + " ahead.";
+      if (indN) return "This month: " + indN + " indicator release" + (indN > 1 ? "s" : "") + " ahead.";
+      return "This month: " + earnN + " earnings report" + (earnN > 1 ? "s" : "") + " ahead.";
+    }
+    if (indN && earnN) return "이번달 지표 " + indN + "건, 실적 " + earnN + "건이 예정되어 있어요";
+    if (indN) return "이번달 지표 " + indN + "건이 예정되어 있어요";
+    return "이번달 실적 " + earnN + "건이 예정되어 있어요";
+  }
+  /* 헤드라인 문구 디스패치. "✦ 이번주 AI 요약" 링크는 참고 이미지에도 월간뷰에서
+     문구가 그대로다(월간용 문구로 바꾸지 않는다) — june 지시 원문 그대로 유지. */
+  function v82CalSummaryText(){ return V82CAL_MODE === "month" ? v82CalMonthSummaryText() : v82CalWeekSummaryText(); }
+  function v82CalRenderSummary(){
+    var sum = $("v82calSummary"); if (!sum) return;
+    sum.innerHTML = '<div class="v82cal-summary-txt">' + esc(v82CalSummaryText()) + '</div>'
+      + '<button type="button" class="v82cal-ai">✦ ' + esc(T().calAiSummary) + ' <span class="chev">›</span></button>';
+  }
+  /* 날짜 숫자 한 칸. hasEvent=그 날 이벤트 있음(진하게), today=오늘(연회색 배지) —
+     데스크톱 미니 달력의 "발표 있는 날 볼드" 관례를 그대로 재사용한다. */
+  function v82CalMonthDayNumHtml(dnum, dateStr, todayStr, hasEvent){
+    var cls = "v82cal-month-daynum" + (hasEvent ? " has" : "") + (dateStr === todayStr ? " today" : "");
+    return '<span class="' + cls + '">' + dnum + '</span>';
+  }
+  /* 셀 하나 = 버튼(전체가 탭 영역, 칩 포함) — data-date는 v82CalPickDay()가 주간뷰
+     day-head와 같은 방식으로 찾을 수 있게 동일 속성명을 쓴다(과제 지시: 날짜 셀 탭 →
+     주간뷰 전환 + 그 주로 스크롤, 기존 로직 재사용). 칩은 최대 2개, 나머지는 "+N개"
+     텍스트 — 아이콘 없이 accent 단색 바만(과제 지시, 셀 폭이 좁아 로고/국기 생략). */
+  function v82CalMonthCellHtml(y, mo, dnum, todayStr, byDate){
+    var d = new Date(y, mo, dnum);
+    var dateStr = tcalYmd(d);
+    var dayRows = byDate[dateStr] || [];
+    var hasEvent = dayRows.length > 0;
+    var chipsHtml = "";
+    if (hasEvent){
+      var shown = dayRows.slice(0, 2);
+      chipsHtml = '<span class="v82cal-month-chips">' + shown.map(function(r){
+        return '<span class="v82cal-month-chip"><span class="v82cal-month-chip-txt">' + esc(v82CalRowTitle(r)) + '</span></span>';
+      }).join("");
+      if (dayRows.length > 2){
+        chipsHtml += '<span class="v82cal-month-more">' + esc(v82CalMoreLabel(dayRows.length - 2)) + '</span>';
+      }
+      chipsHtml += '</span>';
+    }
+    /* v82CalMonthCellTap()은 v82.js 클로저 안에서만 보이는 함수라 인라인 onclick
+       문자열(window 전역 스코프에서 평가됨)로는 못 부른다 — v82CalRowHtml()의
+       goIndicator()/evGo()는 index.html 전역이라 인라인이 되지만 이건 다르다.
+       그래서 data-date만 심어 두고, v82CalRenderMonth()가 렌더 뒤 .onclick을
+       직접 배선한다(v82CalRenderStrip()과 같은 패턴). */
+    return '<button type="button" class="v82cal-month-cell" data-date="' + dateStr + '">'
+      + v82CalMonthDayNumHtml(dnum, dateStr, todayStr, hasEvent) + chipsHtml + '</button>';
+  }
+  /* 월~금 5열, 토/일 컬럼 자체가 없다(참고 이미지와 동일). 월 이동 없음 — 항상
+     "오늘이 속한 달"만 고정으로 그린다(설계 이유는 위 V82CAL_MODE 주석 참고).
+     leadBlanks: 그 달 1일의 요일에 따라 첫 주 앞을 얼마나 비울지(월=0 ~ 금=4),
+     1일이 토/일이면 그 주엔 이 달 평일이 전혀 없거나(토) 월요일부터 바로 시작하는
+     주(일, 다음날인 월요일부터가 이미 이 달 이틀째)라 0으로 둔다. */
+  function v82CalRenderMonth(){
+    var body = $("v82calGroups"); if (!body) return;
+    var now = new Date(); now.setHours(0, 0, 0, 0);
+    var y = now.getFullYear(), mo = now.getMonth();
+    var todayStr = tcalYmd(now);
+    var firstOfMonth = new Date(y, mo, 1);
+    var daysInMonth = new Date(y, mo + 1, 0).getDate();
+    var dow = firstOfMonth.getDay();
+    var leadBlanks = (dow === 1) ? 0 : (dow === 2) ? 1 : (dow === 3) ? 2 : (dow === 4) ? 3 : (dow === 5) ? 4 : 0;
+
+    var rows = v82CalRows();
+    var byDate = {};
+    rows.forEach(function(r){ (byDate[r.date] || (byDate[r.date] = [])).push(r); });
+
+    var cells = [];
+    for (var i = 0; i < leadBlanks; i++) cells.push('<span class="v82cal-month-cell v82cal-month-blank" aria-hidden="true"></span>');
+    for (var dnum = 1; dnum <= daysInMonth; dnum++){
+      var wd = new Date(y, mo, dnum).getDay();
+      if (wd === 0 || wd === 6) continue; /* 토/일 컬럼 없음 */
+      cells.push(v82CalMonthCellHtml(y, mo, dnum, todayStr, byDate));
+    }
+    var weekRows = "";
+    for (var k = 0; k < cells.length; k += 5){
+      weekRows += '<div class="v82cal-month-week">' + cells.slice(k, k + 5).join("") + '</div>';
+    }
+    var monthLbl = (typeof calLocale === "function")
+      ? firstOfMonth.toLocaleDateString(calLocale(), { year: "numeric", month: "long" })
+      : (y + "." + (mo + 1));
+    body.innerHTML = '<div class="v82cal-month-divider"><span>' + esc(monthLbl) + '</span></div>'
+      + '<div class="v82cal-month-grid">' + weekRows + '</div>';
+    var cellBtns = body.querySelectorAll(".v82cal-month-cell[data-date]");
+    for (var ci = 0; ci < cellBtns.length; ci++){
+      cellBtns[ci].onclick = function(){ v82CalMonthCellTap(this.dataset.date); };
+    }
+  }
+  /* 날짜 셀(또는 칩) 탭 → 주간뷰로 전환 + 그 날짜가 속한 주로 스크롤. 이번 주보다
+     과거인 날짜를 탭하면 주간뷰가 애초에 "이번 주부터"만 그리므로(위 v82CalRenderGroups
+     주석 참고) 스크롤 대상이 없어 조용히 무시된다 — 주간뷰 범위를 넓히면 그쪽 설계를
+     건드리게 되어 하지 않았다(남은 리스크로 보고). */
+  function v82CalMonthCellTap(dateStr){
+    v82CalOpenWeek();
+    v82CalPickDay(dateStr);
+  }
+  /* 필터(전체/경제지표/실적) 반영 후 다시 그리는 대상은 .v82cal-groups(과제
+     설명의 ".v82cal-body") 컨테이너 하나뿐이다. renderFeedOnly()는 데스크톱
+     전용 재렌더 함수라 호출하지 않는다(모바일 DOM 구조를 모른다). */
+  function v82CalRenderGroups(){
+    var body = $("v82calGroups"); if (!body) return;
+    var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
+    var todayStr = tcalYmd(todayD);
+    /* V83CAL은 데스크톱과 공유되는 전역이지만 mountV83() 안이 아니라 스크립트
+       최상위에서 var로 선언돼 있어(index.html) 모바일 전용 세션에서도 이미
+       초기화돼 있다 — 존재 가드는 사실상 불필요하지만 방어적으로 남겨둔다.
+       anchor만 "오늘"로 맞춘다 — 데스크톱에서 다른 날짜를 찍어 둔 세션이 있어도
+       모바일 주간뷰는 항상 이번 주부터 시작해야 한다(참고 이미지에 주 이동
+       화살표가 없다 = 이번 주 고정 설계). */
+    try { if (typeof V83CAL !== "undefined" && V83CAL) V83CAL.anchor = todayStr; } catch (e) {}
+    var rows = v82CalRows();
+    var groups = (typeof tcalWeekGroups === "function") ? tcalWeekGroups(rows) : [];
+    /* tcalWeekGroups()는 지난 2주+이번 주+앞으로 4주(총 7그룹, 과거→미래 순)를
+       준다. 모바일 주간뷰는 과거 주는 보여주지 않고 이번 주부터 시작한다
+       (index 2 = 이번 주) — 이 slice(2)가 그 판단이다. */
+    groups = groups.slice(2);
+    var nonEmpty = groups.filter(function(g){ return g.rows && g.rows.length > 0; });
+    var html = "";
+    if (!nonEmpty.length){
+      var TS = (typeof TCAL_STR !== "undefined" && (TCAL_STR[LANG] || TCAL_STR.ko)) || {};
+      html = '<div class="v82cal-empty">' + esc(TS.weekNoData || "") + '</div>';
+    } else {
+      nonEmpty.forEach(function(g){
+        var label = (typeof tcalWeekLabel === "function") ? tcalWeekLabel(g.start) : "";
+        html += '<div class="v82cal-wk-divider"><span>' + esc(label) + '</span></div>';
+        html += v82CalWeekRowsHtml(g, todayStr);
+      });
+    }
+    body.innerHTML = html;
+  }
+  /* 모드(week/month) 분기 — 필터 재적용·모드 전환 양쪽에서 공통으로 부른다.
+     v82CalRenderGroups()(주간뷰)는 이름·내부 로직 전부 무수정. */
+  function v82CalRenderBody(){
+    if (V82CAL_MODE === "month") v82CalRenderMonth(); else v82CalRenderGroups();
+  }
+  function v82CalSetFilter(f){
+    V82CAL_FILTER.filter = (f === "indicator" || f === "earnings") ? f : "all";
+    var fb = $("v82calFilterBar");
+    if (fb){
+      var btns = fb.querySelectorAll("[data-f]");
+      for (var i = 0; i < btns.length; i++) btns[i].classList.toggle("on", btns[i].dataset.f === V82CAL_FILTER.filter);
+    }
+    v82CalRenderBody();
+  }
+  /* 헤더 우측 토글 버튼 라벨: 주간뷰일 땐 "월별보기", 월간뷰일 땐 "주별보기"
+     (지금 모드에서 다음에 갈 곳을 알려주는 문구 — 참고 이미지와 동일). */
+  function v82CalSyncHeader(){
+    var btn = document.querySelector("#v82cal-h .v82cal-month-btn");
+    if (!btn) return;
+    var t = T();
+    btn.textContent = V82CAL_MODE === "month" ? t.calWeekView : t.calMonthView;
+  }
+  /* 요일 스트립(월~토 6열 미니 탭)은 주간뷰 전용 UI라 월간뷰에선 숨긴다(참고
+     이미지에도 없다) — DOM은 그대로 두고 CSS로만 감춘다(v82CalGoToday 등 기존
+     로직이 스트립 버튼을 계속 찾아도 안전하게 동작하도록). */
+  function v82CalSyncStripVisibility(){
+    var scr = $("v82cal");
+    if (scr) scr.classList.toggle("v82cal-month-mode", V82CAL_MODE === "month");
+  }
+  function v82CalSetMode(mode){
+    V82CAL_MODE = (mode === "month") ? "month" : "week";
+    v82CalSyncHeader();
+    v82CalSyncStripVisibility();
+    v82CalRenderSummary();
+    v82CalRenderBody();
+    var scr = $("v82cal"); if (scr) scr.scrollTop = 0;
+  }
+  /* v82CalOpenMonth(): 이전엔 "준비 중" 토스트만 띄우던 자리 — 이제 실제로
+     월간뷰로 전환한다. */
+  function v82CalOpenMonth(){ v82CalSetMode("month"); }
+  function v82CalOpenWeek(){ v82CalSetMode("week"); }
+  function v82CalToggleMode(){ v82CalSetMode(V82CAL_MODE === "month" ? "week" : "month"); }
+
+  /* 화면 최초 생성(지연 생성 — openCalScreen()에서 없을 때만 호출). 헤더는
+     addHead() 공용 템플릿(뒤로가기+제목만)으로는 부족해서(오늘/월별보기 버튼이
+     더 필요) 같은 .v82-sh 스타일을 쓰는 전용 헤더를 직접 만든다. */
+  function v82CalBuildScreen(){
+    if ($("v82cal")) return;
+    var t = T(), IS = (typeof IND_STR !== "undefined" && (IND_STR[LANG] || IND_STR.ko)) || {};
+    var s = document.createElement("div"); s.id = "v82cal"; s.className = "v82-screen v82cal-screen";
+    s.innerHTML =
+      '<div class="v82cal-strip" id="v82calStrip"></div>'
+      + '<div class="v82cal-summary" id="v82calSummary"></div>'
+      + '<div class="v82cal-groups" id="v82calGroups"></div>'
+      + '<div class="v82cal-filterbar" id="v82calFilterBar"><div class="tcal-seg-group">'
+      + '<button type="button" class="tcal-seg-btn on" data-f="all">' + esc(IS.filterAll || "All") + '</button>'
+      + '<button type="button" class="tcal-seg-btn" data-f="indicator">' + esc(IS.filterInd || "Indicators") + '</button>'
+      + '<button type="button" class="tcal-seg-btn" data-f="earnings">' + esc(t.calEarnings) + '</button>'
+      + '</div></div>';
+    document.body.appendChild(s);
+    var fbtns = s.querySelectorAll("#v82calFilterBar [data-f]");
+    for (var i = 0; i < fbtns.length; i++){ fbtns[i].onclick = function(){ v82CalSetFilter(this.dataset.f); }; }
+
+    var h = document.createElement("div"); h.className = "v82-sh v82cal-sh"; h.id = "v82cal-h";
+    h.setAttribute("aria-label", t.cal);
+    h.innerHTML = '<button class="bk" aria-label="back">←</button><span class="v82cal-hsp"></span>'
+      + '<button type="button" class="v82cal-today-btn">' + esc(t.calToday) + '</button>'
+      + '<span class="v82cal-hsep">|</span>'
+      + '<button type="button" class="v82cal-month-btn">' + esc(t.calMonthView) + '</button>';
+    h.querySelector(".bk").onclick = function(){ navGo("home"); };
+    h.querySelector(".v82cal-today-btn").onclick = function(){ v82CalGoToday(); };
+    h.querySelector(".v82cal-month-btn").onclick = function(){ v82CalToggleMode(); };
+    document.body.appendChild(h);
+  }
+  /* openCal()/closeCal()(index.html)이 호출하는 진입점 — index.html 쪽은 이제
+     이 둘을 얇게 위임만 한다(과제 지시대로 index.html 본문 변경을 최소화하려고
+     실제 로직은 전부 여기 v82.js에 뒀다). 열 때마다 본문을 통째로 다시 그린다
+     (캐시 안 함 — 날짜가 바뀌었을 수 있어서). 매번 "week"로 리셋해 재진입 시
+     항상 주간뷰부터 시작한다(월간뷰에서 나갔다 다시 들어와도 마지막 모드를
+     기억하지 않음 — 과제의 "캘린더 열기 → 주간뷰 기본 화면" 요구와 일치). */
+  function openCalScreen(){
+    if (!mq.matches) return;
+    V82CAL_MODE = "week";
+    v82CalBuildScreen();
+    v82CalSyncHeader();
+    v82CalSyncStripVisibility();
+    v82CalRenderStrip();
+    v82CalRenderSummary();
+    v82CalRenderBody();
+    showScreen("v82cal");
+    setActive();
+  }
+  function closeCalScreen(){
+    hideScreen("v82cal");
+    setActive();
+  }
+  window.v82CalOpen = openCalScreen;
+  window.v82CalClose = closeCalScreen;
+
   /* ---------- entity picker (논객 / 회사) ---------- */
   function openPicker(kind){
     if (!mq.matches) return;
@@ -1468,6 +1936,9 @@
   /* ---------- bottom nav ---------- */
   function closeAppSheets(){
     try { var cal=$("calSheet"); if(cal && !cal.hidden && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
+    /* 2026-08-05: 캘린더가 이제 모달(#calSheet)이 아니라 .v82-screen(#v82cal)이라
+       위 체크만으로는 안 걸린다 — "cal.hidden 아님" 대신 ".on" 클래스를 본다. */
+    try { var vc=$("v82cal"); if(vc && vc.classList.contains("on") && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
     try { var me=$("meSheet"); if(me && !me.hidden && typeof closeMe==="function"){ closeMe(); silentBack(); } } catch(e){}
   }
   function navGo(v){
@@ -1502,6 +1973,7 @@
     else if ($("v82notif") && $("v82notif").classList.contains("on")) cur = "notif";
     else { try { if (THEME_VIEW || SB_VIEW) cur = "explore"; } catch(e){} }
     try { var cal=$("calSheet"); if (cal && !cal.hidden) cur = "cal"; } catch(e){}
+    try { var vcal=$("v82cal"); if (vcal && vcal.classList.contains("on")) cur = "cal"; } catch(e){}
     var bs = nav.querySelectorAll("button");
     for (var i = 0; i < bs.length; i++) bs[i].classList.toggle("on", bs[i].dataset.v === cur);
     refreshNav();
@@ -1513,6 +1985,11 @@
     if (!mq.matches) return false;
     var cfs = $("chartFS"); if (cfs && !cfs.hidden) return false;
     var cal = $("calSheet"); if (cal && !cal.hidden) return false;
+    /* 2026-08-05: 새 주간뷰 캘린더(.v82-screen #v82cal)의 실제 브라우저 뒤로가기 처리.
+       다른 5개 셸 화면(find/hub/notif/list/picker)과 동일하게 여기서 직접 닫는다 —
+       옛 #calSheet 체크(바로 위)는 이제 절대 안 걸리므로(모달을 더 이상 열지 않음)
+       이 분기가 없으면 하드웨어 뒤로가기로 화면이 안 닫힌다. */
+    var vcal = $("v82cal"); if (vcal && vcal.classList.contains("on")){ hideScreen("v82cal"); setActive(); return true; }
     var me = $("meSheet"); if (me && !me.hidden) return false;
     /* 탐색 서브뷰가 최우선: 지금쏠린곳(허브 내부) / 테마논쟁·적중기록(피드) → 뒤로가기는 허브로 */
     if (HUB_SUB && $("v82hub") && $("v82hub").classList.contains("on")){ closeHubSub(true); return true; }

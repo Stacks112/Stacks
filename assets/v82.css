@@ -588,3 +588,136 @@
   /* 푸터 링크 높이 12 → 44 */
   .foot-links a{display:inline-block;padding:16px 0;line-height:1;}
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   2026-08-05 · 모바일 캘린더 주간뷰 (토스증권 앱 참고, assets/v82.js openCalScreen 등)
+   #v82cal은 .v82-screen 공용 셸을 그대로 쓴다(고정 헤더 .v82-sh, 하단 #v82nav 여백
+   calc(78px+safe-area) 등은 index.html 1023px 이하 블록의 기존 규칙 재사용). 여기는
+   이 화면 전용 요소만 추가한다. 데스크톱(min-width:1024px)에는 노출되지 않도록
+   전부 이 미디어쿼리 안에 둔다.
+   ───────────────────────────────────────────────────────────────────────────── */
+@media (max-width:1023px){
+  /* 하단 고정 필터바(약 60px) 만큼 스크롤 영역 바닥 여백을 더 확보한다 —
+     #v82nav용 78px는 .v82-screen 기본값에 이미 있으니 여기 더한다. */
+  #v82cal{padding-bottom:calc(142px + env(safe-area-inset-bottom));}
+
+  /* --- 헤더 오른쪽: 오늘 | 월별보기 (뒤로가기는 .v82-sh .bk 공용 스타일 그대로) --- */
+  .v82cal-hsp{flex:1;}
+  .v82cal-today-btn,.v82cal-month-btn{background:none;border:0;font-family:inherit;
+    font-size:14px;font-weight:700;padding:6px 8px;cursor:pointer;white-space:nowrap;}
+  .v82cal-today-btn{color:var(--text);}
+  .v82cal-hsep{color:var(--line);font-size:13px;}
+  /* 2026-08-05: 월간뷰 구현 완료 — 더 이상 "준비 중" 표시가 아니라 실제로 눌리는
+     토글이라 .v82cal-today-btn과 같은 진한 색으로 맞춘다(흐리게 두면 비활성처럼
+     보여 오해를 준다). */
+  .v82cal-month-btn{color:var(--text);}
+
+  /* --- 요일 스트립: 월~토 6열(일요일 없음), 오늘=진한 배지, 토요일=흐리게 --- */
+  .v82cal-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;padding:2px 0 12px;}
+  .v82cal-strip-btn{display:flex;flex-direction:column;align-items:center;gap:6px;
+    background:none;border:0;padding:6px 2px;border-radius:12px;cursor:pointer;font-family:inherit;}
+  .v82cal-strip-btn.sel{background:var(--bg-soft);}
+  .v82cal-strip-wd{font-size:12px;font-weight:700;color:var(--text);}
+  .v82cal-strip-btn.sat .v82cal-strip-wd{color:var(--muted);font-weight:650;}
+  .v82cal-strip-num{font-size:16px;font-weight:800;color:var(--text);min-width:30px;
+    padding:4px 0;border-radius:10px;text-align:center;}
+  .v82cal-strip-btn.sat .v82cal-strip-num{color:var(--muted);font-weight:700;}
+  .v82cal-strip-num.badge{background:var(--text);color:var(--bg);}
+
+  /* --- "이번주 AI 요약"(진짜 AI 호출 없음, 카운트 기반 문장) --- */
+  .v82cal-summary{padding:2px 0 14px;border-bottom:1px solid var(--line);margin-bottom:6px;}
+  .v82cal-summary-txt{font-size:14.5px;font-weight:750;color:var(--text);line-height:1.4;
+    margin:0 0 9px;word-break:keep-all;}
+  .v82cal-ai{display:inline-flex;align-items:center;gap:3px;background:none;border:0;
+    padding:0;font-family:inherit;font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;}
+  .v82cal-ai .chev{font-size:13px;}
+
+  /* --- "8월 N주차" 점선 구분선 (tcalWeekLabel() 그대로 재사용) --- */
+  .v82cal-wk-divider{display:flex;align-items:center;gap:10px;margin:20px 0 12px;
+    color:var(--muted);font-size:12px;font-weight:800;}
+  .v82cal-wk-divider::before,.v82cal-wk-divider::after{content:"";flex:1;border-top:1px dashed var(--line);}
+  .v82cal-groups > .v82cal-wk-divider:first-child{margin-top:0;}
+
+  /* --- 날짜별 그룹 --- */
+  .v82cal-day-h{display:flex;align-items:baseline;gap:6px;margin:16px 0 6px;}
+  .v82cal-day-num{font-size:14px;font-weight:800;color:var(--text);}
+  .v82cal-day-wd{font-size:13px;font-weight:700;color:var(--muted);}
+  .v82cal-today-chip{font-size:10.5px;font-weight:800;color:var(--accent);
+    background:rgba(46,107,255,.12);border-radius:999px;padding:2px 8px;margin-left:2px;}
+  html[data-theme="dark"] .v82cal-today-chip{background:rgba(46,107,255,.22);}
+  .v82cal-day-rows{display:flex;flex-direction:column;}
+
+  /* --- 이벤트 행: 원형 아이콘 + 제목/부제 (참고 이미지 카드 스타일). "주요/관심"
+     같은 중요도 태그는 없다 — items.json events엔 그 필드가 없어서 지어내지 않았다. */
+  .v82cal-row{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;
+    padding:10px 0;font-family:inherit;text-align:left;cursor:pointer;min-height:44px;}
+  .v82cal-row-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+  .v82cal-row-title{font-size:15px;font-weight:700;color:var(--text);line-height:1.32;word-break:keep-all;}
+  .v82cal-sub{font-size:12.5px;font-weight:650;color:var(--muted);}
+  .v82cal-sub-muted{color:var(--muted);}
+
+  /* --- 원형 아이콘(44px): 지표=국기(연회색 원에 인셋), 실적/뉴스=회사 로고(원 전체).
+     로고 로드 실패(onerror) 시 이미지만 숨고 .ck-earnings/.ck-macro/.ck-x(기존 데스크톱
+     캘린더 색 범례, index.html 전역 CSS) 배경색만 남는다. */
+  .v82cal-icon{width:44px;height:44px;flex:0 0 44px;border-radius:50%;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;}
+  .v82cal-icon img{width:100%;height:100%;object-fit:cover;display:block;}
+  .v82cal-icon.v82cal-icon-flag{background:var(--bg-soft);}
+  .v82cal-icon.v82cal-icon-flag img{width:26px;height:20px;border-radius:3px;
+    object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08);}
+
+  .v82cal-empty{padding:40px 0;text-align:center;color:var(--muted);font-size:13.5px;}
+
+  /* --- 하단 고정 필터바: 전체/경제지표/실적, #v82nav 바로 위. .tcal-seg-group/
+     .tcal-seg-btn은 데스크톱 캘린더(index.html)가 이미 쓰는 필 스타일을 그대로 재사용. --- */
+  .v82cal-filterbar{position:fixed;left:0;right:0;bottom:calc(78px + env(safe-area-inset-bottom));
+    z-index:2;display:flex;justify-content:center;padding:10px 0;
+    background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-top:1px solid var(--line);}
+  html[data-theme="dark"] .v82cal-filterbar{background:rgba(0,0,0,.86);}
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     2026-08-05 · 모바일 캘린더 월간뷰(월별보기, 주간뷰와 헤더 토글). 위 주간뷰
+     규칙(.v82cal-strip · .v82cal-summary · .v82cal-day-N류 · .v82cal-row 등)은
+     전혀 고치지 않았다 — 여기는 월간뷰 전용 클래스만 새로 추가한다. 월 이동
+     화살표는 없다(참고 이미지에도 없음, 항상 "이번 달"만 고정 표시 —
+     assets/v82.js V82CAL_MODE 주석 참고). 색상·간격 변수는 위 주간뷰 규칙과
+     동일한 것만 재사용했다. ⚠ CSS 주석 안에서 별표 바로 뒤에 슬래시가 오면
+     주석이 조기 종료된다(이 파일에 이미 기록된 함정) — 위 목록에 "/"를 안 쓴 이유.
+     ───────────────────────────────────────────────────────────────────────── */
+  /* 월간뷰에선 요일 스트립(주간뷰 전용 미니 탭)을 숨긴다 — 참고 이미지에도 없다. */
+  .v82cal-screen.v82cal-month-mode #v82calStrip{display:none;}
+
+  /* "YYYY년 M월" 점선 구분선 — .v82cal-wk-divider와 시각적으로 동일하지만 별도
+     클래스로 둬서 주간뷰 규칙을 절대 건드리지 않는다. */
+  .v82cal-month-divider{display:flex;align-items:center;gap:10px;margin:20px 0 12px;
+    color:var(--muted);font-size:12px;font-weight:800;}
+  .v82cal-month-divider::before,.v82cal-month-divider::after{content:"";flex:1;border-top:1px dashed var(--line);}
+  .v82cal-groups > .v82cal-month-divider:first-child{margin-top:0;}
+
+  /* 월~금 5열 grid, 주 단위로 행을 나누고 행 사이엔 무늬 없는 실선(참고 이미지와 동일,
+     "N주차" 같은 텍스트 라벨은 없음). */
+  .v82cal-month-grid{display:flex;flex-direction:column;}
+  .v82cal-month-week{display:grid;grid-template-columns:repeat(5,1fr);column-gap:4px;padding:14px 0;}
+  .v82cal-month-week:first-child{padding-top:2px;}
+  .v82cal-month-week + .v82cal-month-week{border-top:1px solid var(--line);}
+
+  /* 셀 = 버튼(전체 탭 영역). 날짜 숫자는 위쪽 중앙, 칩은 그 아래 왼쪽 정렬. */
+  .v82cal-month-cell{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;
+    background:none;border:0;font-family:inherit;cursor:pointer;padding:0 3px;}
+  .v82cal-month-blank{cursor:default;}
+  .v82cal-month-daynum{font-size:14px;font-weight:800;color:var(--muted);border-radius:8px;
+    padding:2px 8px;min-width:14px;text-align:center;}
+  .v82cal-month-daynum.has{color:var(--text);}
+  .v82cal-month-daynum.today{background:var(--bg-soft);color:var(--text);}
+
+  /* 칩: 최대 2개, 지표/실적 구분 없이 accent 단색 바(로고·국기 아이콘은 셀이
+     좁아 넣지 않는다) + 말줄임 텍스트. 2개 초과분은 "+N개"만 텍스트로. */
+  .v82cal-month-chips{display:flex;flex-direction:column;gap:4px;width:100%;align-self:stretch;min-width:0;}
+  .v82cal-month-chip{display:flex;align-items:center;gap:3px;width:100%;min-width:0;}
+  .v82cal-month-chip::before{content:"";width:2px;align-self:stretch;border-radius:2px;
+    background:var(--accent);flex:0 0 2px;}
+  .v82cal-month-chip-txt{font-size:10.5px;font-weight:650;color:var(--text);line-height:1.3;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1;text-align:left;}
+  .v82cal-month-more{font-size:10px;font-weight:650;color:var(--muted);width:100%;
+    text-align:left;padding-left:5px;}
+}
