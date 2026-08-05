@@ -2,6 +2,49 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-opus-5) — [2-C] 소급 정리 8건 + 예약 작업 반영 절차를 GitHub 웹 업로드로 전환
+
+**이 세션은 `git push`가 항상 403으로 거부되고 `api.github.com` 쓰기도 프록시에 막힌다.** 반영은 반드시 GitHub 웹 업로드(`https://github.com/stacks112/Stacks/upload/main`)를 Claude in Chrome으로 조작해서 한다. push나 curl PUT을 시도하지 마라.
+
+**1) 채점 소급 정리 [2-C] 3차 — 8건**
+
+커밋 `da7b2b3dc70df9ec0946d88ef95ac7fc056fb88d` ("chore: score predictions 2026-08-05 round3"). `due`가 가장 먼 8건을 90일 이내(≤2026-11-03) 중간 체크포인트로 재설정. `status`는 `pending` 유지, 판정 없음. 각 체크포인트는 실제 공표된 일정을 검색으로 확인해 근거로 삼았다.
+
+| id | 이전 due | 새 due | 체크포인트 근거 |
+|---|---|---|---|
+| kobeissi-spacex-nvidia-starmind-power-before-compute | 2027-06-30 | 2026-11-03 | 스페이스X 3분기 실적(애널리스트 캘린더 기준, 공식 확정 아님). 발사·궤도 추론은 회사가 2027년 목표로 못박아 잘라내고 자본지출·인허가 진척만 봄 |
+| jukan-cxmt-hp-asus-acer-adoption-not-price | 2027-02-28 | 2026-10-31 | CXMT가 2026-07-27 상하이 과창판 상장 → 상장사 분기보고 의무(분기 종료 후 1개월). 신규 상장 첫 분기 예외 여부는 미확인 |
+| jukan-nomura-samsung-3yr-profit-vs-market-cap | 2027-01-31 | 2026-10-30 | 삼성전자 3분기 컨퍼런스콜 **공식 확정**(IR 페이지, 10/30 10시). 상반기 146.7조원 기준 분기 임계값 105조/122조 산출해 note에 명시 |
+| jukan-samsung-2q26-lta-60-70-capacity | 2027-01-31 | 2026-10-30 | 같은 컨콜. LTA 진척은 실적자료가 아니라 Q&A에서만 공개되는 패턴(SK하이닉스도 동일) 확인 |
+| jukan-microsoft-capex-175b-lease-reclass | 2027-01-31 | 2026-10-30 | 마이크로소프트 FY27 1분기 실적(10월 말, 과거 3년 모두 10월 마지막 주). 회계 변경은 2026-07-29 CFO 발언으로 이미 공식화 확인 |
+| jukan-morgan-stanley-bearish-memory | 2027-01-31 | 2026-10-31 | 트렌드포스 분기 전망은 분기 시작 ±5일, 월간 계약가는 매월 말 발행 패턴 확인. 4분기 계약가가 10월 중 드러남 |
+| serenity-meritz-memory | 2027-01-15 | 2026-10-30 | SK하이닉스 3분기 실적(10/27경 예상, 전년 10/28~29). 2027년 60%대 검증은 잘라내고 하반기 공급부족 방향성만 봄 |
+| semianalysis-meta-superintelligence | 2027-01-15 | 2026-10-30 | 메타 3분기 실적(10/28경 예상). OpenAI·앤스로픽과의 컴퓨트 총량 비교는 공개 자료가 없어 잘라내고 capex·가동 진척만 봄 |
+
+**검증**: api.github.com 커밋 patch를 상위 세션이 직접 fetch해 확인 — 파일 1개(items.json), `+32/-32`, due 8쌍이 정확히 일치, due/note(ko·en·ja) 외 추가된 라인 0줄. `card` 하위 객체 무손상.
+
+**주의**: 이번 라운드 due 8건 중 6건이 각사 3분기 실적 발표일에 걸려 있는데, 그중 **공식 확정된 것은 삼성전자(10/30)뿐**이다. 나머지(스페이스X·마이크로소프트·SK하이닉스·메타)는 애널리스트 캘린더나 과거 패턴 기반 추정이다. 8월 말~9월에 각사가 IR 캘린더를 확정 게시하면 재확인이 필요하고, 실제 발표일이 due를 넘기면 `[3-C]` 연기(항목당 1회)를 쓰면 된다.
+
+**2) 예약 작업 반영 절차를 GitHub 웹 업로드로 전환**
+
+june 지시("예약 발행 문제는 github웹으로 하도록해"). 실측 프로브로 이 환경의 쓰기 차단 범위를 먼저 확정했다:
+
+- `git push` → `not in this session's authorized repository set` 403 (세션 게이트, anthropics/claude-code#76248 미해결)
+- `api.github.com` → Anthropic 프록시가 TLS를 가로채고(`CN=CCR Upstream Proxy CA`) 쓰기 메서드를 통째로 차단. **GitHub에 요청이 도달조차 안 하므로 토큰이 있어도 Contents API 커밋 불가**
+- `gh` CLI 미설치, 일반 egress도 화이트리스트 방식(`example.com`·자체 Cloudflare 워커 모두 CONNECT 403)
+- 열려 있는 것은 읽기뿐: `git clone`, `raw.githubusercontent.com`
+
+즉 **브라우저 업로드가 유일하게 실증된 쓰기 경로**다. 이에 맞춰 프로젝트 문서 두 개를 고쳤다(저장소 파일 아님):
+
+- `claude/prompts/grading.md` — `[4]`를 "GitHub 웹 업로드"로 전면 교체. `[4-A]` 업로드 절차(deploy_guard 충돌 확인 → 새 경로에 파일 → 업로드 → api.github.com patch 검증), `[4-B]` 브라우저 불가 시 폴백(바뀐 항목만 `claude/pending-grading-*.json`으로 저장 + fix-queue 등재 + `[6]`에 "반영 대기" 명시 + 팔로워 푸시 금지), `[4-C]` 하지 말 것(push·API·새 우회 설계 금지) 신설. `[0]` 인증을 선택 사항으로 강등, `[5]`에 "실제 반영 성공 시에만 푸시" 단서와 워커 egress 차단 주의, `[6]`에 반영 방법·대기 여부 보고 항목 추가.
+- `claude/prompts/publish-v4.3.md` — `[6]`의 `git push` + `GIT_CONFIG_*` 우회 + 403 재시도 지시를 삭제하고 `[6-A]` 브라우저 업로드 / `[6-B]` `[0-A]` 보류 폴백으로 교체. 같은 문서 안에서 `[0-A]`("재시도 무의미")와 `[6]`("403이면 1회 재시도")가 충돌하던 것을 해소.
+
+**함께 문서화한 함정**: 브라우저 업로드 도구는 **같은 로컬 경로로 두 번 업로드하면 앞서 올린 내용을 그대로 다시 올린다**(2026-08-05 실측 — 로컬 파일은 새 내용인데 커밋된 blob이 이전 것과 동일). 두 문서 모두에 "매번 새 디렉터리 경로를 쓰고, 업로드 UI가 보고하는 파일 크기를 로컬 크기와 대조하라"를 넣었다.
+
+**남은 위험**: 예약(헤드리스) 세션에 Claude in Chrome이 붙어 있지 않으면 `[4-A]`/`[6-A]`를 쓸 수 없고 폴백으로 빠진다. 폴백은 조용히 실패하지 않고 대기 파일을 남기도록 설계했지만, **반영 자체는 여전히 사람이 있는 세션이 해야 한다.** 이 구조적 제약은 Anthropic 쪽 버그가 풀리기 전까지 남는다.
+
+**미처리**: `[2-C]` 잔여 19건. `[5]` 팔로워 푸시는 `NOTIFY_SECRET`이 인터랙티브 세션에 없어 계속 스킵 중(8/5 [2-A] 판정 10건분 미발송).
+
 ## 2026-08-05 Claude (Cowork, claude-opus-5) — 13F 유명 투자자 포트폴리오 신규 기능 (커밋 `6262c42` + `027e721`)
 
 june 지시로 9월 게이트 **예외** 진행(캘린더에 이은 두 번째 예외). SEC EDGAR 13F-HR 공시 기반
