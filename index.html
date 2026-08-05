@@ -13484,33 +13484,85 @@ bootData();
 </style>
 
 <!-- ============================================================
-     13F 투자자 화면 전용 폭 확장 (v84.4)
+     13F 투자자 화면 전용 폭 확장 (v84.5)
      위치: xparity-css 바로 뒤. 되돌리려면 이 블록만 삭제.
-     원칙: 위 xparity-css의 3개 그리드 규칙은 건드리지 않는다 - html.v83.inv-wide 라는
-     한 클래스를 더 요구해 특이도로 이기고, 소스 순서도 뒤라 동률이어도 이긴다.
-     게이트는 invViewActive() 단 하나 - renderFeed()가 #v83rail.inv-rail-hide와
-     정확히 같은 호출부에서 html.inv-wide를 같이 토글한다. ============================ -->
+     원칙: 위 xparity-css의 3개 그리드 규칙과 캘린더 탭의 cal-wide 규칙(3326행 부근)은
+     건드리지 않는다 - html.v83.inv-wide 라는 한 클래스를 더 요구해 특이도로 이기고,
+     소스 순서도 뒤라 동률이어도 이긴다. 게이트는 invViewActive() 단 하나 -
+     renderFeed()가 #v83rail.inv-rail-hide와 정확히 같은 호출부에서 html.inv-wide를
+     같이 토글한다.
+
+     2026-08-05 (june 재지시): v84.4는 본문이 768px로 좁고 .wrap이 화면 좌측 끝(0)에
+     붙어 좌우 여백이 사라지는 두 가지 문제가 있었다 - 검색창을 350px 그리드 컬럼으로
+     붙들어 둔 채 max-width만 1720까지 올려 여백을 없앤 게 원인. 방향을 바꿔 캘린더
+     탭이 이미 쓰는 2단 레이아웃(275px+본문, max-width:1320px - 위 3332행
+     html.cal-wide 규칙과 정확히 같은 수치)을 그대로 재사용한다. 레일(검색창)은
+     그리드 3번째 컬럼에서 완전히 빼서 .wrap 우측 상단에 절대배치 - 판정 기록
+     화면(html.v83 .series-header.sb-header, 969행)의 검색창과 같은 높이·같은 우측
+     위치를 absolute로 재현한다(cal-wide처럼 레일을 통째로 숨기면 검색창도 같이
+     사라지므로 display:none은 쓸 수 없다). ============================ -->
 <style id="inv-wide-css">
 @media (min-width:1024px){
-  /* 가운데 컬럼(#v83center)만 고정 602px → 유연 폭으로. 레일(3열)은 검색창 하나뿐이라
-     늘어날 이유가 없어 350px 고정 - minmax 하한이던 시절 가운데 minmax(0,1fr)와
-     경합해 380까지 먼저 먹어버리는 문제(1024~1264 구간에서 본문이 되레 좁아짐)를 막는다. */
+  /* cal-wide(3332행)과 동일한 2단 그리드 + max-width. 레일은 absolute로 빠지므로
+     3번째 컬럼이 필요 없다. position:relative는 레일의 absolute 기준점을 이
+     .wrap으로 고정하기 위함(다른 화면엔 영향 없게 inv-wide 조합에서만 건다). */
   html.v83.inv-wide .wrap{
-    grid-template-columns:minmax(88px,275px) minmax(0,1fr) 350px !important;
-    max-width:1720px !important;
+    grid-template-columns:minmax(88px,275px) minmax(0,1fr) !important;
+    max-width:1320px !important;
+    position:relative !important;
+  }
+  /* 레일 = 검색창 하나(다른 자식은 inv-rail-hide로 이미 숨어 있다, 3511행).
+     그리드에서 빼서 .wrap 우측 상단에 절대배치.
+     right:16px = .wrap의 좌우 padding(xparity 13210행, 16px)과 같은 값 - absolute의
+     컨테이닝 블록은 .wrap의 padding box(=테두리 바깥 경계)라 padding만큼 다시 안으로
+     넣어줘야 기존 3번째 그리드 컬럼의 우측 경계와 같은 자리가 된다.
+     top:0 = xparity 13215행에서 넘어오는 값 그대로 - #v83nav/#v83center의 그리드 행
+     시작(.wrap 콘텐츠 박스 맨 위, 상하 padding이 없어 .wrap 테두리와 같은 지점)과
+     일치시켜 판정 기록 화면과 같은 높이가 되게 한다. */
+  html.v83.inv-wide #v83rail{
+    position:absolute !important; grid-column:auto !important;
+    top:0 !important; right:16px !important; left:auto !important; bottom:auto !important;
+    width:350px !important; max-height:none !important; z-index:8;
   }
   /* #v83rail의 좌측 30px는 실제 컬럼 gap이 아니라 레일 자신의 padding-left다
-     (X는 gap을 레일 padding으로 만든다는 xparity 주석 참고) - 검색창만 그 30px
-     거터로 밀어 넣어 350px 트랙 전체를 쓰게 한다. 레일의 다른 자식은 13F 화면에서
-     inv-rail-hide로 이미 숨어 있어 영향이 없다. */
+     (X는 gap을 레일 padding으로 만든다는 xparity 주석 참고, 13215행) - absolute
+     박스에서도 그대로 살아있는 padding이라 상쇄해야 검색창이 350px 폭을 다 쓴다.
+     v84.4에서 쓰던 트릭 그대로 재사용. */
   html.v83.inv-wide #v83rail > .v83-search{
     margin-left:-30px !important; width:calc(100% + 30px) !important;
   }
+  /* 조사 중 실측 발견: 13F 목록·상세 모두 본문 최상단은 june 지시문이 가리킨
+     .series-header .series-head-name(투자자 › 버크셔 해서웨이)가 아니라, 그걸
+     display:none으로 숨기고 대신 세워지는 공용 상단바 #feedList > .v83post-head.
+     v83navback(← 버튼 + 제목, 13681행에서 생성 - 판정 기록·최근 읽은 글 등 좌측
+     메뉴로 들어간 모든 페이지가 공유)다. 이 바는 sticky + z-index:6(13278행)이고
+     폭이 본문 전체(1013px)라 배경이 불투명 - 원래 레일 z-index(4)보다 위에 그려져
+     검색창을 완전히 가리고 클릭도 막는다(elementFromPoint 실측으로 확인). 그래서
+     위 #v83rail 규칙에서 z-index를 8로 올려 그 위에 뜨게 했다. 바 자신에는 검색창
+     폭+거터만큼 padding-right를 줘 제목 글자가 애초에 그 밑으로 들어가지 않게 한다
+     (표·차트가 있는 본문 전체에는 주지 않는다 - 1013px 그대로 유지). */
+  html.v83.inv-wide #feedList > .v83post-head.v83navback{
+    padding-right:366px !important;
+  }
+  html.v83.inv-wide #feedList > .v83post-head.v83navback .v83post-title{
+    overflow:hidden !important; text-overflow:ellipsis !important; white-space:nowrap !important;
+  }
+  /* 조사 중 실측 발견 ②: inv-rail-hide(3511행)는 캘린더·핫한글·내브리핑·뉴스레터
+     4개만 숨기고 레일 맨 끝에 항상 붙는 사이트 푸터(#railFoot, xparity-js
+     13601행 - @Stacks0g/이번 주/전체 글/RSS/소개/개인정보 링크)는 대상이 아니다.
+     레일이 그리드 3번째 컬럼일 때는 검색창 밑에 조용히 붙어 있어 문제가 없었지만,
+     지금은 레일 전체가 absolute로 본문 위에 얹히므로 이 푸터까지 본문 카드를
+     덮어버린다(스크린샷 실측으로 확인). inv-wide 조합에서만 추가로 숨긴다 -
+     inv-rail-hide 자체(다른 화면에도 걸리는 공용 클래스)는 건드리지 않는다. */
+  html.v83.inv-wide #v83rail > #railFoot{ display:none !important; }
 }
 @media (min-width:1024px) and (max-width:1264px){
-  /* 1024~1264 경계: nav는 아이콘만 남는 88px 고정, 레일은 검색창 하나뿐이라 290px로
-     고정 - 여기서도 가운데 컬럼만 유연해진다. */
-  html.v83.inv-wide .wrap{ grid-template-columns:88px minmax(0,1fr) 290px !important; }
+  /* cal-wide(3336행)과 동일: nav는 아이콘만 남는 88px 고정. 레일 폭은 xparity의
+     1024~1264 구간 값(290px, 구 13513행 규칙과 동일)을 유지한다. */
+  html.v83.inv-wide .wrap{ grid-template-columns:88px minmax(0,1fr) !important; }
+  html.v83.inv-wide #v83rail{ width:290px !important; }
+  /* 레일 폭이 290px로 줄어드는 구간이라 상단바 여백도 같이 줄인다(290+16). */
+  html.v83.inv-wide #feedList > .v83post-head.v83navback{ padding-right:306px !important; }
 }
 </style>
 <script id="xparity-js">
