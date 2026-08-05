@@ -2,6 +2,51 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 캘린더 화면 새 글 배너 홈 피드 전용화
+
+커밋 `4d8dc09c fix(calendar): hide new-post banner outside home feed`.
+`index.html` 단일 파일 `+18/-7`. `items.json`/`assets/*`/`scripts/`는 무변경.
+Email render guard, Clobber guard, pages build 전부 통과.
+
+### 무엇이 바뀌었나
+
+june이 캘린더 화면(이벤트 캘린더) 스크린샷을 첨부하며 "지난 방문 이후 새 글 1개" 배너가
+캘린더에도 떠 있다고 지적, 홈 피드에서만 보이게 요청.
+
+원인은 `#newBanner`(정적 HTML, `#feedList`의 형제 엘리먼트)의 표시 토글이 `render()`
+안에서만 `NEW_IDS.size > 0`으로 계산되고 현재 화면이 무엇인지 전혀 보지 않았던 것 —
+`cal-wide` 클래스 버그와 같은 근본 원인(화면 상태 토글이 "모든 경로가 반드시 거치는
+함수"에 있지 않음).
+
+`render()`에서 토글 로직을 제거하고, `renderFeed()` 최상단(`cal-wide` 계산 직후)에
+`_bannerHome` 조건을 추가했다 — `v83DirTab()`(캘린더/쏠림/알림설정/골라보기),
+`THEME_VIEW`, `SB_VIEW`, `invViewActive()`(13F), `V83ITEM`(게시물 상세), `ENTITY_VIEW`,
+`SERIES_VIEW` 전부 아닐 때만 배너를 재계산·표시한다. `renderFeed()`는 `render()`를
+포함해 화면을 그리는 모든 경로가 공통으로 거치므로 뷰 전환 어느 경로로도 desync되지 않는다.
+
+### 검증
+
+서브에이전트(sonnet)가 라이브 raw 기반으로 패치 설계 후 `/tmp/index.html`에 적용,
+`node --check`로 구문 검증, diff로 다른 기능(13F 등) 무변경·변수명 충돌 없음 확인.
+배포는 GitHub edit 페이지에서 브라우저가 라이브 원본을 직접 fetch → 앵커 등장 횟수(각 1회)
+확인 → 치환 → CodeMirror `view.dispatch` 삽입 → `finalDocLen === patchedLen` 확인 후 커밋.
+api.github.com 커밋 diff로 index.html 1개 파일만 변경, 삭제 7줄 전부 옛 배너 블록임을 재확인.
+
+라이브 실기능 검증(june 브라우저, stacksdaily.com): `NEW_IDS`에 테스트 id를 주입해 홈에서
+배너가 실제로 뜨는 것 확인 → `setTab("cal")`로 캘린더 이동 시 배너 사라짐(스크린샷으로
+june이 신고한 화면과 동일 화면에서 배너 없음 확인) → `openThemes()`/`openScoreboard()`/
+`openInvestors()`(테마논쟁/판정기록/13F, 전부 `render()` 우회 경로) 전부 배너 숨김 확인 →
+`goHome()` 복귀 시 배너 재표시 확인. 테스트로 주입한 항목은 `NEW_IDS.clear()`로 원복
+(localStorage 미사용이라 새로고침으로도 원복됨, 실사용자 상태 영향 없음).
+
+### 남은 위험 / 다음 단계
+
+모바일 셸은 정적 코드 분석으로만 확인했다(구조상 안전 — 모바일 캘린더는 전체화면 모달이라
+배너가 애초에 가려짐). 카테고리 탭(TAB이 "all"이 아닌 필터)·북마크만 보기·최근 읽은 글·
+검색 중에는 배너가 그대로 뜬다 — 같은 카드 목록 레이아웃을 쓰는 필터라 "다른 화면"이
+아니라고 판단했으나 명시적 확인은 아니다. 다른 화면에서도 배너가 남아 있다는 신고가 오면
+`renderFeed()`의 `_bannerHome` 조건에 해당 뷰 플래그를 추가하면 된다.
+
 ## 2026-08-05 Claude (Cowork, claude-opus-5) — 토스증권 스타일 이벤트 캘린더 배포
 
 커밋 `1ae8a5e feat(calendar): Toss-style event calendar with economic indicators`.
