@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-05T09:08:32.898552+00:00",
+ "generated_at": "2026-08-05T11:57:18.355116+00:00",
  "investors": [
   {
    "slug": "berkshire",
@@ -426,14 +426,6 @@
      "prev_shares": 3602995
     }
    ],
-   "desc": {
-    "ko": "워런 버핏이 이끄는 지주회사로, 보험·철도·에너지 자회사와 함께 대규모 상장주식 포트폴리오를 운용한다. 13F 보고 대상 미국 주식 포지션은 분기 말 기준 수백억 달러 규모이며, 소수 종목에 집중된 장기 보유 스타일이 특징이다.",
-    "en": "Warren Buffett's holding company, which runs insurance, rail and energy subsidiaries alongside a large public-equity portfolio. Its 13F-reportable U.S. stock positions total in the hundreds of billions of dollars and are concentrated in a small number of long-held names.",
-    "ja": "ウォーレン・バフェット率いる持株会社。保険・鉄道・エネルギー子会社に加え、大規模な上場株式ポートフォリオを運用する。13F報告対象の米国株ポジションは四半期末時点で数百億ドル規模で、少数銘柄への長期集中保有が特徴。"
-   },
-   "checked_at": "2026-08-05T03:14:55.814305+00:00",
-   "ok": true,
-   "error": null,
    "activity": {
     "available": true,
     "reason": null,
@@ -470,7 +462,15 @@
      }
     ]
    },
-   "ticker_coverage_pct": 0.3782
+   "ticker_coverage_pct": 0.3782,
+   "desc": {
+    "ko": "워런 버핏이 이끄는 지주회사로, 보험·철도·에너지 자회사와 함께 대규모 상장주식 포트폴리오를 운용한다. 13F 보고 대상 미국 주식 포지션은 분기 말 기준 수백억 달러 규모이며, 소수 종목에 집중된 장기 보유 스타일이 특징이다.",
+    "en": "Warren Buffett's holding company, which runs insurance, rail and energy subsidiaries alongside a large public-equity portfolio. Its 13F-reportable U.S. stock positions total in the hundreds of billions of dollars and are concentrated in a small number of long-held names.",
+    "ja": "ウォーレン・バフェット率いる持株会社。保険・鉄道・エネルギー子会社に加え、大規模な上場株式ポートフォリオを運用する。13F報告対象の米国株ポジションは四半期末時点で数百億ドル規模で、少数銘柄への長期集中保有が特徴。"
+   },
+   "checked_at": "2026-08-05T11:57:19.672809+00:00",
+   "ok": true,
+   "error": null
   },
   {
    "slug": "pershing-square",
@@ -499,173 +499,165 @@
      "issuer": "BROOKFIELD CORP",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 2415946008,
      "shares": 59697208,
      "weight": 0.1762,
      "change": "trim",
-     "prev_shares": 61403089,
-     "put_call": null,
-     "sector": null
+     "prev_shares": 61403089
     },
     {
      "cusip": "023135106",
      "issuer": "AMAZON COM INC",
      "ticker": "amzn.us",
      "entity_key": "AMAZON",
-     "value": 2385104083,
-     "shares": 11451981,
-     "weight": 0.1739,
-     "change": "add",
-     "prev_shares": 9607824,
      "put_call": null,
      "sector": {
       "en": "E-commerce & Cloud",
       "ko": "이커머스·클라우드",
       "ja": "Eコマース・クラウド"
-     }
+     },
+     "value": 2385104083,
+     "shares": 11451981,
+     "weight": 0.1739,
+     "change": "add",
+     "prev_shares": 9607824
     },
     {
      "cusip": "90353T100",
      "issuer": "UBER TECHNOLOGIES INC",
      "ticker": "uber.us",
      "entity_key": "UBER",
-     "value": 2154934398,
-     "shares": 29958771,
-     "weight": 0.1571,
-     "change": "trim",
-     "prev_shares": 30207734,
      "put_call": null,
      "sector": {
       "en": "Mobility",
       "ko": "모빌리티",
       "ja": "モビリティ"
-     }
+     },
+     "value": 2154934398,
+     "shares": 29958771,
+     "weight": 0.1571,
+     "change": "trim",
+     "prev_shares": 30207734
     },
     {
      "cusip": "594918104",
      "issuer": "MICROSOFT CORP",
      "ticker": "msft.us",
      "entity_key": "MICROSOFT",
-     "value": 2092970053,
-     "shares": 5654078,
-     "weight": 0.1526,
-     "change": "new",
-     "prev_shares": null,
      "put_call": null,
      "sector": {
       "en": "Big Tech",
       "ko": "빅테크",
       "ja": "ビッグテック"
-     }
+     },
+     "value": 2092970053,
+     "shares": 5654078,
+     "weight": 0.1526,
+     "change": "new",
+     "prev_shares": null
     },
     {
      "cusip": "76131D103",
      "issuer": "RESTAURANT BRANDS INTL INC",
      "ticker": "qsr.us",
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 1673501194,
      "shares": 22645483,
      "weight": 0.122,
      "change": "trim",
-     "prev_shares": 22866773,
-     "put_call": null,
-     "sector": null
+     "prev_shares": 22866773
     },
     {
      "cusip": "30303M102",
      "issuer": "META PLATFORMS INC",
      "ticker": "meta.us",
      "entity_key": "META",
-     "value": 1522358404,
-     "shares": 2660861,
-     "weight": 0.111,
-     "change": "trim",
-     "prev_shares": 2673569,
      "put_call": null,
      "sector": {
       "en": "Big Tech",
       "ko": "빅테크",
       "ja": "ビッグテック"
-     }
+     },
+     "value": 1522358404,
+     "shares": 2660861,
+     "weight": 0.111,
+     "change": "trim",
+     "prev_shares": 2673569
     },
     {
      "cusip": "44267T102",
      "issuer": "HOWARD HUGHES HOLDINGS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 1192581569,
      "shares": 18852064,
      "weight": 0.087,
      "change": "hold",
-     "prev_shares": 18852064,
-     "put_call": null,
-     "sector": null
+     "prev_shares": 18852064
     },
     {
      "cusip": "812215200",
      "issuer": "SEAPORT ENTMT GROUP INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 107910794,
      "shares": 5023780,
      "weight": 0.0079,
      "change": "hold",
-     "prev_shares": 5023780,
-     "put_call": null,
-     "sector": null
+     "prev_shares": 5023780
     },
     {
      "cusip": "02079K107",
      "issuer": "ALPHABET INC",
      "ticker": "googl.us",
      "entity_key": "GOOGLE",
-     "value": 98731763,
-     "shares": 344102,
-     "weight": 0.0072,
-     "change": "trim",
-     "prev_shares": 6842168,
      "put_call": null,
      "sector": {
       "en": "Big Tech",
       "ko": "빅테크",
       "ja": "ビッグテック"
-     }
+     },
+     "value": 98731763,
+     "shares": 344102,
+     "weight": 0.0072,
+     "change": "trim",
+     "prev_shares": 6842168
     },
     {
      "cusip": "42806J700",
      "issuer": "HERTZ GLOBAL HLDGS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 70261595,
      "shares": 15241127,
      "weight": 0.0051,
      "change": "hold",
-     "prev_shares": 15241127,
-     "put_call": null,
-     "sector": null
+     "prev_shares": 15241127
     },
     {
      "cusip": "43300A203",
      "issuer": "HILTON WORLDWIDE HLDGS INC",
      "ticker": null,
      "entity_key": null,
+     "put_call": null,
+     "sector": null,
      "value": 0,
      "shares": 0,
      "weight": 0,
      "change": "exit",
-     "prev_shares": 3028664,
-     "put_call": null,
-     "sector": null
+     "prev_shares": 3028664
     }
    ],
-   "desc": {
-    "ko": "빌 애크먼이 운용하는 액티비스트 헤지펀드로, 10개 안팎의 종목에 초집중 투자하는 전략을 쓴다. 13F 보고 포트폴리오는 소수의 대형 포지션이 대부분을 차지한다.",
-    "en": "An activist hedge fund run by Bill Ackman that concentrates on roughly a dozen or fewer positions at a time. Its 13F portfolio is dominated by a handful of large stakes.",
-    "ja": "ビル・アックマンが運用するアクティビスト・ヘッジファンドで、10銘柄前後への超集中投資を戦略とする。13F報告ポートフォリオは少数の大型ポジションが大半を占める。"
-   },
-   "checked_at": "2026-08-05T03:14:55.814305+00:00",
-   "ok": true,
-   "error": null,
    "activity": {
     "available": true,
     "reason": null,
@@ -675,8 +667,8 @@
     "reduced_count": 5,
     "options_count": 0,
     "top10_pct": 1.0,
-    "total_value_prev": null,
-    "value_change_pct": null,
+    "total_value_prev": 15526737802,
+    "value_change_pct": -0.1167,
     "turnover_pct": 0.1818
    },
    "sector_alloc": {
@@ -711,7 +703,15 @@
      }
     ]
    },
-   "ticker_coverage_pct": 0.7239
+   "ticker_coverage_pct": 0.7239,
+   "desc": {
+    "ko": "빌 애크먼이 운용하는 액티비스트 헤지펀드로, 10개 안팎의 종목에 초집중 투자하는 전략을 쓴다. 13F 보고 포트폴리오는 소수의 대형 포지션이 대부분을 차지한다.",
+    "en": "An activist hedge fund run by Bill Ackman that concentrates on roughly a dozen or fewer positions at a time. Its 13F portfolio is dominated by a handful of large stakes.",
+    "ja": "ビル・アックマンが運用するアクティビスト・ヘッジファンドで、10銘柄前後への超集中投資を戦略とする。13F報告ポートフォリオは少数の大型ポジションが大半を占める。"
+   },
+   "checked_at": "2026-08-05T11:57:20.861607+00:00",
+   "ok": true,
+   "error": null
   },
   {
    "slug": "ark",
@@ -732,8 +732,8 @@
    "filed": "2026-05-12",
    "accession": "0001104659-26-059240",
    "source_url": "https://www.sec.gov/Archives/edgar/data/1697748/000110465926059240/",
-   "total_value": 11382686332,
-   "holdings_count": 147,
+   "total_value": 12859485476,
+   "holdings_count": 182,
    "holdings": [
     {
      "cusip": "88160R101",
@@ -748,7 +748,7 @@
      },
      "value": 1052546690,
      "shares": 2831329,
-     "weight": 0.0925,
+     "weight": 0.0818,
      "change": "trim",
      "prev_shares": 2914492
     },
@@ -765,7 +765,7 @@
      },
      "value": 551875889,
      "shares": 2712854,
-     "weight": 0.0485,
+     "weight": 0.0429,
      "change": "add",
      "prev_shares": 2574779
     },
@@ -778,7 +778,7 @@
      "sector": null,
      "value": 538189027,
      "shares": 11313623,
-     "weight": 0.0473,
+     "weight": 0.0419,
      "change": "add",
      "prev_shares": 10522057
     },
@@ -791,7 +791,7 @@
      "sector": null,
      "value": 495553074,
      "shares": 4177652,
-     "weight": 0.0435,
+     "weight": 0.0385,
      "change": "add",
      "prev_shares": 3978898
     },
@@ -804,7 +804,7 @@
      "sector": null,
      "value": 454913400,
      "shares": 3109881,
-     "weight": 0.04,
+     "weight": 0.0354,
      "change": "trim",
      "prev_shares": 3231901
     },
@@ -817,9 +817,22 @@
      "sector": null,
      "value": 434462230,
      "shares": 9607745,
-     "weight": 0.0382,
-     "change": "new",
-     "prev_shares": null
+     "weight": 0.0338,
+     "change": "add",
+     "prev_shares": 7557583
+    },
+    {
+     "cusip": "172573107",
+     "issuer": "Circle Internet Group Inc",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 430249668,
+     "shares": 4509482,
+     "weight": 0.0335,
+     "change": "add",
+     "prev_shares": 4141628
     },
     {
      "cusip": "770700102",
@@ -830,7 +843,7 @@
      "sector": null,
      "value": 416012113,
      "shares": 6003061,
-     "weight": 0.0365,
+     "weight": 0.0324,
      "change": "add",
      "prev_shares": 4806211
     },
@@ -843,7 +856,7 @@
      "sector": null,
      "value": 414329300,
      "shares": 2372884,
-     "weight": 0.0364,
+     "weight": 0.0322,
      "change": "trim",
      "prev_shares": 2541928
     },
@@ -860,7 +873,7 @@
      },
      "value": 369128978,
      "shares": 1245122,
-     "weight": 0.0324,
+     "weight": 0.0287,
      "change": "trim",
      "prev_shares": 2356256
     },
@@ -873,7 +886,7 @@
      "sector": null,
      "value": 361486706,
      "shares": 3820405,
-     "weight": 0.0318,
+     "weight": 0.0281,
      "change": "trim",
      "prev_shares": 5881738
     },
@@ -886,7 +899,7 @@
      "sector": null,
      "value": 333483744,
      "shares": 5896106,
-     "weight": 0.0293,
+     "weight": 0.0259,
      "change": "add",
      "prev_shares": 4834337
     },
@@ -899,7 +912,7 @@
      "sector": null,
      "value": 301406681,
      "shares": 6342733,
-     "weight": 0.0265,
+     "weight": 0.0234,
      "change": "trim",
      "prev_shares": 7559495
     },
@@ -912,7 +925,7 @@
      "sector": null,
      "value": 289139697,
      "shares": 12133433,
-     "weight": 0.0254,
+     "weight": 0.0225,
      "change": "trim",
      "prev_shares": 12467189
     },
@@ -929,7 +942,7 @@
      },
      "value": 282264888,
      "shares": 1355283,
-     "weight": 0.0248,
+     "weight": 0.0219,
      "change": "add",
      "prev_shares": 1212301
     },
@@ -942,7 +955,7 @@
      "sector": null,
      "value": 248758647,
      "shares": 11717317,
-     "weight": 0.0219,
+     "weight": 0.0193,
      "change": "trim",
      "prev_shares": 12667369
     },
@@ -955,9 +968,22 @@
      "sector": null,
      "value": 246164080,
      "shares": 3491194,
-     "weight": 0.0216,
+     "weight": 0.0191,
      "change": "add",
      "prev_shares": 3454123
+    },
+    {
+     "cusip": "G16910120",
+     "issuer": "Bullish",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 234461649,
+     "shares": 6562039,
+     "weight": 0.0182,
+     "change": "add",
+     "prev_shares": 4821700
     },
     {
      "cusip": "244199105",
@@ -968,7 +994,7 @@
      "sector": null,
      "value": 224798576,
      "shares": 399074,
-     "weight": 0.0197,
+     "weight": 0.0175,
      "change": "trim",
      "prev_shares": 421907
     },
@@ -985,7 +1011,7 @@
      },
      "value": 212132567,
      "shares": 627704,
-     "weight": 0.0186,
+     "weight": 0.0165,
      "change": "trim",
      "prev_shares": 748580
     },
@@ -1002,7 +1028,7 @@
      },
      "value": 206658015,
      "shares": 720414,
-     "weight": 0.0182,
+     "weight": 0.0161,
      "change": "add",
      "prev_shares": 545892
     },
@@ -1019,9 +1045,9 @@
      },
      "value": 196628508,
      "shares": 2538125,
-     "weight": 0.0173,
-     "change": "new",
-     "prev_shares": null
+     "weight": 0.0153,
+     "change": "add",
+     "prev_shares": 1924256
     },
     {
      "cusip": "03945R102",
@@ -1032,9 +1058,22 @@
      "sector": null,
      "value": 193549613,
      "shares": 37437062,
-     "weight": 0.017,
+     "weight": 0.0151,
      "change": "add",
      "prev_shares": 35170701
+    },
+    {
+     "cusip": "09175A206",
+     "issuer": "BitMine Immersion Technologies",
+     "ticker": null,
+     "entity_key": null,
+     "put_call": null,
+     "sector": null,
+     "value": 191849484,
+     "shares": 9699165,
+     "weight": 0.0149,
+     "change": "add",
+     "prev_shares": 9457330
     },
     {
      "cusip": "852234103",
@@ -1045,78 +1084,36 @@
      "sector": null,
      "value": 186193070,
      "shares": 3093936,
-     "weight": 0.0164,
+     "weight": 0.0145,
      "change": "trim",
      "prev_shares": 3371456
-    },
-    {
-     "cusip": "45826J105",
-     "issuer": "Intellia Therapeutics Inc",
-     "ticker": null,
-     "entity_key": null,
-     "put_call": null,
-     "sector": null,
-     "value": 186008545,
-     "shares": 14509247,
-     "weight": 0.0163,
-     "change": "add",
-     "prev_shares": 14207324
-    },
-    {
-     "cusip": "67066G104",
-     "issuer": "NVIDIA Corp",
-     "ticker": "nvda.us",
-     "entity_key": "NVIDIA",
-     "put_call": null,
-     "sector": {
-      "en": "Semiconductors",
-      "ko": "반도체",
-      "ja": "半導体"
-     },
-     "value": 180578233,
-     "shares": 1035426,
-     "weight": 0.0159,
-     "change": "trim",
-     "prev_shares": 1254577
-    },
-    {
-     "cusip": "040919102",
-     "issuer": "ARK 21Shares Bitcoin ETF",
-     "ticker": null,
-     "entity_key": null,
-     "put_call": null,
-     "sector": null,
-     "value": 150642653,
-     "shares": 6698206,
-     "weight": 0.0132,
-     "change": "trim",
-     "prev_shares": 6871505
     }
    ],
-   "desc": {
-    "ko": "캐시 우드가 이끄는 액티브 운용사로, 혁신·성장 테마의 상장지수펀드(ARKK 등)를 통해 파괴적 혁신 기업에 집중 투자한다. 13F 포트폴리오는 수백 개 종목에 걸쳐 있으며 회전율이 높은 편이다.",
-    "en": "An active manager led by Cathie Wood, best known for thematic innovation-growth ETFs such as ARKK. Its 13F portfolio spans a large number of names and turns over relatively quickly.",
-    "ja": "キャシー・ウッド率いるアクティブ運用会社。ARKKなどのイノベーション・成長テーマ型ETFを通じて破壊的イノベーション企業に集中投資する。13Fポートフォリオは多数の銘柄にまたがり、回転率も比較的高い。"
-   },
-   "checked_at": "2026-08-05T03:14:55.814305+00:00",
-   "ok": true,
-   "error": null,
    "activity": {
     "available": true,
     "reason": null,
-    "new_count": 22,
-    "added_count": 57,
-    "exited_count": 22,
-    "reduced_count": 68,
-    "options_count": 0,
-    "top10_pct": 0.447,
-    "total_value_prev": 12314366838,
-    "value_change_pct": -0.0757,
-    "turnover_pct": 0.2604
+    "new_count": 14,
+    "added_count": 86,
+    "exited_count": 28,
+    "reduced_count": 82,
+    "options_count": 1,
+    "top10_pct": 0.401,
+    "total_value_prev": 15067426139,
+    "value_change_pct": -0.1465,
+    "turnover_pct": 0.2
    },
    "sector_alloc": {
-    "covered_pct": 0.2761,
+    "covered_pct": 0.2621,
     "sectors": [
+     {
+      "sector": {
+       "en": "Semiconductors",
+       "ko": "반도체",
+       "ja": "半導体"
+      },
+      "value": 1073980229,
+      "weight": 0.0835
+     },
      {
       "sector": {
        "en": "EV / Auto",
@@ -1124,16 +1121,7 @@
        "ja": "EV・自動車"
       },
       "value": 1052546690,
-      "weight": 0.0925
-     },
-     {
-      "sector": {
-       "en": "Semiconductors",
-       "ko": "반도체",
-       "ja": "半導体"
-      },
-      "value": 947761122,
-      "weight": 0.0833
+      "weight": 0.0818
      },
      {
       "sector": {
@@ -1142,7 +1130,7 @@
        "ja": "半導体テスト装置"
       },
       "value": 369128978,
-      "weight": 0.0324
+      "weight": 0.0287
      },
      {
       "sector": {
@@ -1150,8 +1138,8 @@
        "ko": "빅테크",
        "ja": "ビッグテック"
       },
-      "value": 294763672,
-      "weight": 0.0259
+      "value": 297132390,
+      "weight": 0.0231
      },
      {
       "sector": {
@@ -1160,7 +1148,7 @@
        "ja": "Eコマース・クラウド"
       },
       "value": 282264888,
-      "weight": 0.0248
+      "weight": 0.0219
      },
      {
       "sector": {
@@ -1169,7 +1157,16 @@
        "ja": "クラウド/AIインフラ"
       },
       "value": 196628508,
-      "weight": 0.0173
+      "weight": 0.0153
+     },
+     {
+      "sector": {
+       "en": "E-commerce / Cloud",
+       "ko": "이커머스/클라우드",
+       "ja": "EC・クラウド"
+      },
+      "value": 98256590,
+      "weight": 0.0076
      },
      {
       "sector": {
@@ -1182,7 +1179,15 @@
      }
     ]
    },
-   "ticker_coverage_pct": 0.3214
+   "ticker_coverage_pct": 0.3021,
+   "desc": {
+    "ko": "캐시 우드가 이끄는 액티브 운용사로, 혁신·성장 테마의 상장지수펀드(ARKK 등)를 통해 파괴적 혁신 기업에 집중 투자한다. 13F 포트폴리오는 수백 개 종목에 걸쳐 있으며 회전율이 높은 편이다.",
+    "en": "An active manager led by Cathie Wood, best known for thematic innovation-growth ETFs such as ARKK. Its 13F portfolio spans a large number of names and turns over relatively quickly.",
+    "ja": "キャシー・ウッド率いるアクティブ運用会社。ARKKなどのイノベーション・成長テーマ型ETFを通じて破壊的イノベーション企業に集中投資する。13Fポートフォリオは多数の銘柄にまたがり、回転率も比較的高い。"
+   },
+   "checked_at": "2026-08-05T11:57:22.102807+00:00",
+   "ok": true,
+   "error": null
   },
   {
    "slug": "duquesne",
@@ -1630,14 +1635,6 @@
      "prev_shares": 1019085
     }
    ],
-   "desc": {
-    "ko": "스탠리 드러켄밀러가 자신의 자산을 운용하는 패밀리 오피스로, 매크로 관점에 따라 종목·비중을 자주 바꾸는 것으로 알려져 있다. 13F 포트폴리오는 옵션 포지션을 포함해 회전율이 높다.",
-    "en": "Stanley Druckenmiller's family office, known for shifting names and sizing frequently around a top-down macro view. Its 13F filings include options positions and turn over quickly.",
-    "ja": "スタンレー・ドラッケンミラーが自身の資産を運用するファミリーオフィス。マクロ観に基づき銘柄・比率を頻繁に入れ替えることで知られる。13Fポートフォリオはオプションポジションを含み回転率が高い。"
-   },
-   "checked_at": "2026-08-05T03:14:55.814305+00:00",
-   "ok": true,
-   "error": null,
    "activity": {
     "available": true,
     "reason": null,
@@ -1701,7 +1698,15 @@
      }
     ]
    },
-   "ticker_coverage_pct": 0.6731
+   "ticker_coverage_pct": 0.6731,
+   "desc": {
+    "ko": "스탠리 드러켄밀러가 자신의 자산을 운용하는 패밀리 오피스로, 매크로 관점에 따라 종목·비중을 자주 바꾸는 것으로 알려져 있다. 13F 포트폴리오는 옵션 포지션을 포함해 회전율이 높다.",
+    "en": "Stanley Druckenmiller's family office, known for shifting names and sizing frequently around a top-down macro view. Its 13F filings include options positions and turn over quickly.",
+    "ja": "スタンレー・ドラッケンミラーが自身の資産を運用するファミリーオフィス。マクロ観に基づき銘柄・比率を頻繁に入れ替えることで知られる。13Fポートフォリオはオプションポジションを含み回転率が高い。"
+   },
+   "checked_at": "2026-08-05T11:57:23.320090+00:00",
+   "ok": true,
+   "error": null
   },
   {
    "slug": "appaloosa",
@@ -2142,14 +2147,6 @@
      "prev_shares": 675000
     }
    ],
-   "desc": {
-    "ko": "데이비드 테퍼가 운용하는 헤지펀드로, 대형 기술주와 매크로 베팅 위주의 집중 포트폴리오로 알려져 있다. 13F 보고 종목 수는 수십 개 안팎이다.",
-    "en": "A hedge fund run by David Tepper, known for a concentrated portfolio weighted toward large-cap tech and macro-driven bets. Its 13F typically lists on the order of a few dozen positions.",
-    "ja": "デビッド・テッパーが運用するヘッジファンドで、大型テック株とマクロ主導のベットに偏った集中ポートフォリオで知られる。13F報告銘柄数はおおむね数十程度。"
-   },
-   "checked_at": "2026-08-05T03:14:55.814305+00:00",
-   "ok": true,
-   "error": null,
    "activity": {
     "available": true,
     "reason": null,
@@ -2213,7 +2210,15 @@
      }
     ]
    },
-   "ticker_coverage_pct": 0.7201
+   "ticker_coverage_pct": 0.7201,
+   "desc": {
+    "ko": "데이비드 테퍼가 운용하는 헤지펀드로, 대형 기술주와 매크로 베팅 위주의 집중 포트폴리오로 알려져 있다. 13F 보고 종목 수는 수십 개 안팎이다.",
+    "en": "A hedge fund run by David Tepper, known for a concentrated portfolio weighted toward large-cap tech and macro-driven bets. Its 13F typically lists on the order of a few dozen positions.",
+    "ja": "デビッド・テッパーが運用するヘッジファンドで、大型テック株とマクロ主導のベットに偏った集中ポートフォリオで知られる。13F報告銘柄数はおおむね数十程度。"
+   },
+   "checked_at": "2026-08-05T11:57:24.498243+00:00",
+   "ok": true,
+   "error": null
   },
   {
    "slug": "situational-awareness",
@@ -2836,15 +2841,15 @@
      }
     ]
    },
+   "ticker_coverage_pct": 0.7575,
    "desc": {
     "ko": "전 OpenAI 연구원 레오폴드 아셴브레너가 2024년 에세이 'Situational Awareness'로 AGI 임박론을 편 뒤 차린 헤지펀드로, AI 인프라·반도체·전력 관련 종목에 집중 베팅한다. 콜·풋 옵션으로 방향성을 강하게 표현해, 보통주만 봐서는 포지션의 실제 색깔(강세/약세)을 읽기 어렵다.",
     "en": "A hedge fund founded by former OpenAI researcher Leopold Aschenbrenner after his 2024 essay 'Situational Awareness' argued AGI was near. It concentrates on AI infrastructure, semiconductors and power names, and leans heavily on call and put options to express direction, so reading the common-stock rows alone misses most of what the fund is actually betting on.",
     "ja": "元OpenAI研究者のレオポルド・アッシェンブレナーが、2024年のエッセイ『Situational Awareness』でAGI到来が近いと論じた後に設立したヘッジファンド。AIインフラ・半導体・電力関連銘柄に集中し、コール・プットオプションで方向性を強く表現するため、普通株の行だけを見てもポジションの本当の強気・弱気は読み取れない。"
    },
-   "checked_at": "2026-08-05T08:19:49.230086+00:00",
+   "checked_at": "2026-08-05T11:57:25.661323+00:00",
    "ok": true,
-   "error": null,
-   "ticker_coverage_pct": 0.7575
+   "error": null
   }
  ]
 }
