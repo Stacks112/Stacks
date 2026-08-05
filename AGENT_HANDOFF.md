@@ -45,6 +45,46 @@ june 지시("예약 발행 문제는 github웹으로 하도록해"). 실측 프�
 
 **미처리**: `[2-C]` 잔여 19건. `[5]` 팔로워 푸시는 `NOTIFY_SECRET`이 인터랙티브 세션에 없어 계속 스킵 중(8/5 [2-A] 판정 10건분 미발송).
 
+## 2026-08-05 Claude (Cowork, claude-opus-5) — 13F 뷰 UI 후속: 상단 탭바·우측 레일 숨김 (`4081f37` + `d3dc631`)
+
+june 지시: **"상단바 최신/팔로잉 없애줘"** + **"우측 레일은 13F 페이지에서만 안 보이게, 검색창만
+놔두고"**. 레일 전체 제거가 아니라 **13F 뷰 한정**이다. 본문 폭·`grid-template-columns`는
+건드리지 않았다(3곳에 `!important`로 얽혀 있고 june이 요청하지 않았다).
+
+**Changed**: `index.html`만. `#v83rail.inv-rail-hide` CSS 4줄 + 게이트 함수 1개 + 리셋 10곳.
+
+**★ 이번 라운드의 교훈 — 뷰 상태 플래그를 새로 만들면 리셋 지점이 반드시 샌다**
+
+`INVESTOR_VIEW`를 추가하면서 **같은 종류의 누락이 세 번 연속 났다**:
+1. `#v83fsw`(최신/팔로잉) 가시성 조건에서 누락 → 13F 화면에 탭바 노출 (`4081f37`에서 수정)
+2. `openThemes`·`openTheme`·`openCal`·`entityFeedView`에서 `INVESTOR_VIEW = null` 누락 →
+   13F에서 테마·캘린더로 나가면 **레일 숨김이 따라갔다**(라이브에서 발견)
+3. grep 전수조사로 6곳 추가 발견: `glossTap` · `chipTap` · `goToItem` · `openSeries` ·
+   `toggleBmOnly` · `filterByEntity` · `onSearch`
+
+**근본 대책으로 `invViewActive()` 단일 게이트를 도입했다:**
+```
+function invViewActive(){
+  return !!(INVESTOR_VIEW && !THEME_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW);
+}
+```
+**레일 토글 · `#v83fsw` 가시성 · `renderFeed()`의 investor 분기 — 세 곳이 전부 이 함수 하나를
+본다.** 앞으로 누가 리셋을 또 빠뜨려도 화면과 레일이 어긋날 수 없다.
+**새 뷰 플래그를 추가하는 다음 세션은 개별 리셋을 흩뿌리지 말고 이 패턴을 따를 것.**
+(`closeThemes`/`closeScoreboard` 같은 "닫기"류는 기존 관례대로 자기 플래그만 정리하게 뒀다.)
+
+**딥링크 `hashchange` 리스너 추가**: 부팅 후 **같은 탭에서 주소창 해시만 바꾸면**
+`handleDeepLink()`가 재실행되지 않아 13F 상세가 안 열렸다(브라우저가 같은 문서 내 프래그먼트
+이동으로 처리). `#investors`/`#investor-` 전용 `hashchange` 리스너를 추가하고
+`INVESTOR_VIEW !== target`일 때만 도는 멱등성 가드를 넣었다(뒤로가기 시 이중 `pushView()` 방지).
+⚠ **`#theme-`·`#record-` 등 다른 해시 라우트도 원래부터 같은 한계를 갖고 있다** — 이번엔
+건드리지 않았다. 별도 작업 후보.
+
+**Verified (라이브 왕복 매트릭스)**: 홈 → 13F목록 → 13F상세 → 테마 → 13F상세 → 캘린더 →
+13F상세 → 홈. 13F 화면에서만 `inv-rail-hide`·`#v83fsw` 숨김, **테마·캘린더에서 레일 3섹션
+전부 복구**, `INVESTOR_VIEW`도 매번 null로 정리. 검색창은 전 화면에서 노출 유지.
+Clobber guard✅ · Email render guard✅. `index.html` sha8 `e4203ab9`.
+
 ## 2026-08-05 Claude (Cowork, claude-opus-5) — 13F 유명 투자자 포트폴리오 신규 기능 (커밋 `6262c42` + `027e721`)
 
 june 지시로 9월 게이트 **예외** 진행(캘린더에 이은 두 번째 예외). SEC EDGAR 13F-HR 공시 기반
