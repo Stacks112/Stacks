@@ -1680,11 +1680,11 @@
    },
    "outcome": {
     "status": "pending",
-    "due": "2027-12-31",
+    "due": "2026-10-31",
     "note": {
-     "ko": "2027년 하반기 낸드 수급이 남는 쪽으로 돌아섰는지를 트렌드포스 분기 전망으로 채점한다.",
-     "en": "Score against TrendForce quarterly outlooks on whether NAND swung to surplus in the second half of 2027.",
-     "ja": "2027年後半にNANDの需給が余る側へ転じたかを、TrendForceの四半期見通しで採点する。"
+     "ko": "트렌드포스가 2026년 10월 말까지 내놓는 차기 분기 메모리 전망에서도 2027년 D램은 타이트, 낸드는 2027년 하반기로 갈수록 완화된다는 기존 방향(7/21·7/30 발표)이 유지되는지 확인한다.",
+     "en": "Check whether TrendForce's next quarterly memory outlook, due by end of October 2026, still holds the same direction as its July 21/30 reports — DRAM staying tight into 2027 while NAND eases toward 2H27.",
+     "ja": "TrendForceが2026年10月末までに出す次の四半期メモリー見通しでも、7月21日・30日の発表通り2027年DRAMはタイトなまま、NANDは2027年後半に向けて緩むという方向が維持されているかを確認する。"
     },
     "card": {
      "metric": {
@@ -2542,11 +2542,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "루빈 울트라가 HBM4 8단으로 확정된 뒤 2027년 HBM 총 출하 비트가 늘면 공급 제약이라는 원문 해석이 맞은 것으로, 함께 줄면 수요 둔화 해석이 맞은 것으로 채점한다.",
-     "en": "If Rubin Ultra is fixed at HBM4 8 high and total 2027 HBM bit shipments still rise, score the supply reading as correct; if they fall together, score the demand reading as correct.",
-     "ja": "ルービン・ウルトラがHBM4 8段で確定した後、2027年のHBM総出荷ビットが増えれば供給制約という原文の解釈を的中、一緒に減れば需要鈍化の解釈を的中と採点する。"
+     "ko": "삼성전자·SK하이닉스의 2026년 3분기 실적발표(10월 말 예정)에서 루빈 울트라 HBM4 사양과 2027년 HBM 출하 가이던스가 상향 조정되는지(공급 제약 해석 지지) 아니면 수요 둔화 언급이 나오는지 확인한다.",
+     "en": "Check Samsung's and SK Hynix's Q3 2026 earnings calls (expected late October) for whether they raise 2027 HBM shipment/bit guidance (supporting the supply-constraint reading) or instead flag demand softness for the despec'd Rubin Ultra HBM4 spec.",
+     "ja": "サムスン電子・SKハイニックスの2026年第3四半期決算発表(10月末予定)で、ルービン・ウルトラのHBM4仕様と2027年HBM出荷ガイダンスが上方修正されるか(供給制約説を支持)、それとも需要鈍化への言及が出るかを確認する。"
     },
-    "due": "2027-06-30",
+    "due": "2026-10-30",
     "card": {
      "metric": {
       "ko": "2027년 HBM 총 출하 비트 (업계 집계)",
@@ -5728,11 +5728,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "2027년 상반기에 미국 증권거래위원회가 반년 보고 규정을 최종 채택했는지, 채택 뒤 실제로 반년 보고를 고른 상장사가 나왔는지를 채점한다.",
-     "en": "In the first half of 2027, score whether the SEC adopted the semiannual reporting rule and whether any listed company actually elected it.",
-     "ja": "2027年前半に、米国証券取引委員会が半年報告の規則を最終採択したか、採択後に実際に半年報告を選んだ上場企業が出たかを採点する。"
+     "ko": "미국 증권거래위원회 반년 보고 규정안의 의견수렴이 2026년 7월 6일 이미 마감됐다. 2026년 10월 말까지 위원회가 최종 표결 일정을 공지했는지 또는 표결을 마쳤는지 확인한다.",
+     "en": "The SEC's comment period on the semiannual reporting proposal already closed on July 6, 2026. Check by the end of October 2026 whether the Commission has scheduled or held a final vote on adopting the rule.",
+     "ja": "米証券取引委員会の半年報告規則案に対する意見募集は2026年7月6日にすでに締め切られた。2026年10月末までに委員会が最終採決の日程を公表したか、あるいは採決を終えたかを確認する。"
     },
-    "due": "2027-06-30"
+    "due": "2026-10-31"
    },
    "lab": true,
    "foldWhy": true,
@@ -8885,11 +8885,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "ko": "이 협상이 발표대로 확정되는지, 그리고 오픈AI가 별도의 투자적격 신용등급을 확보하는지를 2027년 1분기까지 확인.",
-     "en": "Check by Q1 2027 whether this deal closes as reported, and whether OpenAI secures an independent investment-grade credit rating.",
-     "ja": "この協議が報道通り成立するか、オープンAIが独自の投資適格格付けを確保するかを2027年第1四半期までに確認する。"
+     "ko": "7월 27일 보도 시점엔 '검토 중'이었다. 2026년 10월 말까지 엔비디아·오픈AI가 2500억달러 지급보증 오하이오 거래를 공식 발표·서명했는지, 아니면 무산·축소됐는지 확인한다.",
+     "en": "As of the July 27 report the deal was still 'under discussion.' Check by end of October 2026 whether Nvidia and OpenAI have formally announced/signed the $250B Ohio guarantee deal, or whether it has fallen through or been scaled back.",
+     "ja": "7月27日の報道時点では『検討中』だった。2026年10月末までにエヌビディアとオープンAIが2500億ドルのオハイオ保証取引を正式に発表・締結したか、それとも破談・縮小したかを確認する。"
     },
-    "due": "2027-03-31"
+    "due": "2026-10-31"
    }
   },
   {
@@ -12293,11 +12293,11 @@
    },
    "outcome": {
     "status": "pending",
-    "due": "2027-03-31",
+    "due": "2026-08-26",
     "note": {
-     "en": "Check around Q1 2027 whether Nvidia's 800V HVDC system reaches large-scale production on the original timeline or slips into 2028 as SemiAnalysis warned.",
-     "ko": "2027년 1분기쯤 엔비디아의 800V HVDC 시스템이 원래 일정대로 대량생산에 들어가는지, 세미애널리시스 경고대로 2028년으로 밀리는지 확인한다.",
-     "ja": "2027年第1四半期頃、エヌビディアの800V HVDCシステムが当初予定通り量産に入るか、セミアナリシスの警告通り2028年にずれ込むかを確認する。"
+     "ko": "엔비디아의 2027 회계연도 2분기(2026년 8월 26일 실적발표 예정) 콘퍼런스콜에서 800V HVDC 전력 시스템 일정에 관한 언급이 나오는지, 세미애널리시스의 2028년 지연 경고에 맞서 2027년 1분기 양산 일정을 재확인하는지 확인한다.",
+     "en": "Check Nvidia's fiscal Q2 2027 earnings call (scheduled August 26, 2026) for any comment on the 800V HVDC power system timeline — whether management reaffirms the Q1 2027 production schedule against SemiAnalysis's 2028-slip warning.",
+     "ja": "エヌビディアの2027会計年度第2四半期決算発表(2026年8月26日予定)のカンファレンスコールで、800V HVDC電力システムの日程への言及があるか、セミアナリシスの2028年遅延警告に対し2027年第1四半期の量産スケジュールを再確認するかを確認する。"
     }
    },
    "ts": "2026-07-24T00:47:30.327651+00:00",
@@ -13033,11 +13033,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Grade around mid-2027 whether Huawei's chip software ecosystem (DeepSeek's compiler and TileLang tooling) has closed the gap with CUDA as Wenfeng predicted, and whether Nvidia's China-exposed growth underperformed as a result.",
-     "ko": "2027년 중반쯤 딥시크의 컴파일러·타일랭 도구가 화웨이 칩에 이식돼 량원펑 예측대로 쿠다와의 격차가 좁혀졌는지, 그 결과 엔비디아의 중국 관련 성장이 예상보다 부진했는지 채점.",
-     "ja": "2027年半ば頃、ディープシークのコンパイラ・TileLangツールがファーウェイ製チップに移植され、梁文峰氏の予測通りCUDAとの差が縮まったか、その結果エヌビディアの中国関連の成長が想定より鈍化したかを採点。"
+     "ko": "화웨이 어센드 950DT 배치가 2026년 8월로 앞당겨졌고 딥시크 V4.2가 초기 채택 후보로 거론된다. 2026년 10월 말까지 딥시크 V4 계열이 실제로 화웨이 칩에서 돌아가며 성능 벤치마크가 공개돼 쿠다 대비 격차가 좁혀지는 신호가 나오는지 확인한다.",
+     "en": "Huawei's Ascend 950DT deployment was moved up to August 2026, with DeepSeek V4.2 cited as a potential early adopter. Check by end of October 2026 whether DeepSeek's V4-series actually runs at scale on Huawei chips with published benchmarks signaling a narrowing CUDA gap.",
+     "ja": "ファーウェイのAscend 950DTの投入が2026年8月に前倒しされ、DeepSeek V4.2が早期採用候補として挙がっている。2026年10月末までにDeepSeekのV4系がファーウェイ製チップで実際に稼働し、CUDAとの差が縮まったことを示すベンチマークが公開されるかを確認する。"
     },
-    "due": "2027-06-30"
+    "due": "2026-10-31"
    },
    "ts": "2026-07-23T12:47:20.494056+00:00",
    "coverArt": "covers/jukan-deepseek-huawei-cuda-moat.png",
@@ -14606,11 +14606,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Check by H1 2027 whether TSMC has resolved the soldering issue on 9.5x reticle CoWoS-L packaging, and by 2029 whether Nvidia's Feynman GPU architecture ships on its expected schedule or slips due to packaging constraints.",
-     "ja": "2027年上半期までにTSMCが9.5倍リティクルのCoWoS-Lパッケージングのはんだ付け問題を解決したか、また2029年までにエヌビディアのファインマンGPUアーキテクチャが予定通り出荷されるか、パッケージング制約で遅れるかを確認して判定する。",
-     "ko": "2027년 상반기까지 TSMC가 9.5배 리티클 CoWoS-L 패키징의 납땜 문제를 해결했는지, 그리고 2029년까지 엔비디아의 파인만 GPU 아키텍처가 예정대로 출시되는지 아니면 패키징 제약으로 지연되는지를 확인해 채점한다."
+     "ko": "TSMC의 2026년 3분기 실적발표(통상 10월 중순)에서 9.5배 리티클 CoWoS-L 패키징의 납땜 수율 문제에 대한 언급이 나오는지, 해결됐다고 밝히는지 아니면 여전히 병목이라고 인정하는지 확인한다.",
+     "en": "Check TSMC's Q3 2026 earnings call (typically mid-October) for any comment on the 9.5x reticle CoWoS-L soldering yield issue — whether management says it's resolved or still a bottleneck.",
+     "ja": "TSMCの2026年第3四半期決算発表(通常10月中旬)で、9.5倍リティクルCoWoS-Lパッケージングのはんだ付け歩留まり問題への言及があるか、解決したと述べるか、それとも依然としてボトルネックだと認めるかを確認する。"
     },
-    "due": "2027-06-30"
+    "due": "2026-10-20"
    },
    "ts": "2026-07-21T12:00:00+00:00",
    "coverArt": "covers/jukan-rubin-ultra-reticle-packaging-risk.png",
@@ -15992,11 +15992,11 @@
    "outcome": {
     "status": "pending",
     "note": {
-     "en": "Score later: does CMX-linked NAND demand actually climb toward the cited 100M+ terabytes in 2027?",
-     "ko": "이후 채점: CMX발 낸드 수요가 2027년 인용된 1억 TB 이상으로 실제 올라서는가?",
-     "ja": "後日採点：CMX由来のNAND需要は2027年に引用された1億TB超へ実際に伸びるか。"
+     "ko": "삼성전자가 이미 낸드 생산 60% 이상을 CMX용으로 배정했다는 보도가 나왔다. 삼성·SK하이닉스의 2026년 3분기 실적발표(10월 말)에서 CMX 관련 낸드 수요·출하 물량에 대한 구체적 수치나 가이던스가 공개돼 1억 TB를 향한 궤적을 뒷받침하는지 확인한다.",
+     "en": "Samsung has reportedly already allocated over 60% of NAND output to CMX. Check Samsung's and SK Hynix's Q3 2026 earnings calls (late October) for concrete figures or guidance on CMX-linked NAND demand/shipments that would support the trajectory toward 100M+ TB.",
+     "ja": "サムスン電子はすでにNAND生産の60%以上をCMX向けに割り当てたと報じられている。サムスン・SKハイニックスの2026年第3四半期決算発表(10月末)で、CMX関連のNAND需要・出荷量について、1億TBへの軌道を裏付ける具体的な数値やガイダンスが示されるかを確認する。"
     },
-    "due": "2027-03-31"
+    "due": "2026-10-30"
    },
    "ts": "2026-07-20T12:00:00+00:00",
    "coverArt": "covers/jukan-nvidia-cmx-nand-demand.png",
