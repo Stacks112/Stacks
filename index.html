@@ -4200,6 +4200,7 @@ function glossTap(el, key){
   hideTipSheet();
   if (typeof ENTITIES !== "undefined" && ENTITIES[key]){
     SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+    if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
     const inp1 = document.getElementById("searchInput"); if (inp1) inp1.value = "";
     ENTITY_VIEW = key; renderFeed(true);
   } else {
@@ -5137,6 +5138,19 @@ var THEME_VIEW = null;
 var RECORD_SRC = null;
 /* v84: 13F investor portfolio view. null | "index" | slug (e.g. "berkshire"). */
 var INVESTOR_VIEW = null;
+/* v84.3: single source of truth for "is renderFeed() actually about to render
+   the 13F view right now". INVESTOR_VIEW alone is NOT enough — THEME_VIEW (and
+   friends) can win the dispatch below even while INVESTOR_VIEW is still set
+   (a reset that got missed somewhere upstream), and anything that keys off
+   INVESTOR_VIEW directly (the rail-hide class, the feed-switcher visibility)
+   would then show 13F-only chrome over a theme/entity/scoreboard screen.
+   This mirrors the renderFeed dispatch condition for INVESTOR_VIEW exactly —
+   change one, change both — so the two can never drift apart again. */
+function invViewActive(){
+  return !!(typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW
+    && !(typeof THEME_VIEW !== "undefined" && THEME_VIEW)
+    && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW);
+}
 var THEME_FOLLOW = null; /* lazy Set from localStorage */
 function themeFollowSet(){ if(!THEME_FOLLOW){ try{ THEME_FOLLOW=new Set(store.get("stk_themes",[])); }catch(e){ THEME_FOLLOW=new Set(); } } return THEME_FOLLOW; }
 function toggleThemeFollow(k){
@@ -5181,13 +5195,13 @@ function themeItems(k){
   });
 }
 function openThemes(){
-  THEME_VIEW="index"; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+  THEME_VIEW="index"; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
   pushView(); try{ if(location.hash.indexOf("#theme-")===0||location.hash.indexOf("#record-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
   track("themes"); renderFeed(false);
   var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function openTheme(k){
-  THEME_VIEW=k; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+  THEME_VIEW=k; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
   pushView(); try{ history.replaceState(history.state,"","#theme-"+k); }catch(e){}
   track("theme/"+k); renderFeed(false);
   var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
@@ -5967,6 +5981,7 @@ function chipTap(el, tag){
       return;
     }
     SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+    if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
     const inp1 = document.getElementById("searchInput"); if (inp1) inp1.value = "";
     ENTITY_VIEW = tag;
     renderFeed(true);
@@ -5995,6 +6010,7 @@ function goToItem(id){
   if (!target) return;
   /* leave any view/filter that could hide the target, so it's in the feed */
   SERIES_VIEW = null; ENTITY_VIEW = null;
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   if (typeof SB_VIEW !== "undefined" && SB_VIEW){ SB_VIEW = false; renderFeed(false); }
   let changed = false;
   if (TAB !== "all" && target.category !== TAB){ TAB = "all"; changed = true; }
@@ -6384,6 +6400,7 @@ function entityFeedView(key){
   closeEntityRail();
   FEED_RETURN = { y: window.scrollY, shown: (typeof SHOWN === "number" ? SHOWN : 0) };
   SERIES_VIEW = null; BM_ONLY = false; QUERY = ""; SB_VIEW = false;
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   ENTITY_VIEW = key;
   pushView();
@@ -8176,6 +8193,7 @@ function epNum(item){
 function openSeries(sid){
   if (!SERIES[sid]) return;
   SERIES_VIEW = sid; SB_VIEW = false;
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   pushView();
   SERIES_SEEN[sid] = seriesItems(sid).length; /* caught up */
   store.set("stk_series_seen", SERIES_SEEN);
@@ -8223,7 +8241,7 @@ function toggleBookmark(id){
   if (btn) btn.classList.toggle("on", BM.has(id));
   refreshBmBtn();
 }
-function toggleBmOnly(){ SERIES_VIEW = null; ENTITY_VIEW = null; BM_ONLY = !BM_ONLY; renderFeed(false); }
+function toggleBmOnly(){ SERIES_VIEW = null; ENTITY_VIEW = null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null; BM_ONLY = !BM_ONLY; renderFeed(false); }
 function refreshCompanyFilter(){
   const sel = document.getElementById("companyFilter");
   if (sel){
@@ -8251,6 +8269,7 @@ function tagTap(tag){
 function filterByEntity(key){
   if (key && ENTITIES[key]){ entityFeedView(key); return; }
   ENTITY_VIEW = null; SERIES_VIEW = null; BM_ONLY = false; QUERY = "";
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   var _i = document.getElementById("searchInput"); if (_i) _i.value = "";
   if (typeof closeEntityRail === "function") closeEntityRail();
   var _c = document.getElementById("companyFilter"); if (_c) _c.value = "";
@@ -8446,7 +8465,7 @@ function onSearch(v){
      사이트를 벗어났다(좌측 패널 전수조사에서 같은 결함으로 확인). 검색을 "시작"할 때만
      한 번 쌓는다 — 글자마다 쌓으면 뒤로가기가 한 글자씩 지워지는 꼴이 된다. */
   if (!APPLYING_VIEW && !QUERY && (v || "").trim()) pushView();
-  if (v){ SERIES_VIEW = null; ENTITY_VIEW = null; }
+  if (v){ SERIES_VIEW = null; ENTITY_VIEW = null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null; }
   QUERY = (v || "").trim().toLowerCase();
   const clear = document.getElementById("searchClear");
   if (clear) clear.hidden = !QUERY;
@@ -10493,18 +10512,20 @@ function renderFeed(animate){
         && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !QUERY && !BM_ONLY
         && !(typeof READ_VIEW !== "undefined" && READ_VIEW)
         && !(typeof THEME_VIEW !== "undefined" && THEME_VIEW)
-        && !(typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW)
+        && !invViewActive()
         && !(typeof V83ITEM !== "undefined" && V83ITEM);
       _fsw.hidden = !_vis;
       _fsw.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.f === TAB));
     }
-    /* v84.2: 13F 뷰에서만 우측 레일의 캘린더/핫/브리핑/뉴스레터 섹션을 숨긴다
-       (검색창 제외). #v83fsw와 같은 자리에서 매 렌더마다 다시 계산하므로,
-       INVESTOR_VIEW를 껐다 켰다 하는 9곳짜리 reset 목록을 또 만들 필요가 없다 —
-       바로 위 _fsw 조건에 INVESTOR_VIEW를 추가하지 않고 넘어갔던 실수를
-       반복하지 않기 위해 일부러 이 블록 안에 둔다. */
+    /* v84.3: 13F 뷰가 실제로 그려질 때만 우측 레일의 캘린더/핫/브리핑/뉴스레터
+       섹션을 숨긴다(검색창 제외). INVESTOR_VIEW 단독이 아니라 invViewActive()로
+       판단한다 — THEME_VIEW 등 상위 우선순위 뷰가 대신 그려지는 순간에는
+       INVESTOR_VIEW가 아직 안 지워졌어도 레일을 숨기면 안 된다(v84.2의 회귀:
+       13F에서 테마 논쟁으로 넘어가도 레일이 계속 숨어 있었다). 리셋을 빠짐없이
+       챙기는 것과는 별개로, 판단 자체를 아래 dispatch와 같은 함수 하나로
+       묶어두면 리셋이 또 새더라도 화면과 레일이 어긋나지 않는다. */
     const _railEl = document.getElementById("v83rail");
-    if (_railEl) _railEl.classList.toggle("inv-rail-hide", !!(typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW));
+    if (_railEl) _railEl.classList.toggle("inv-rail-hide", invViewActive());
   } catch (e) {}
   if (typeof renderToday === "function") renderToday();
   refreshFilterBtn();
@@ -10514,8 +10535,10 @@ function renderFeed(animate){
 
   /* theme debate boards view (v76) */
     if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW){ renderThemes(list,S); if(typeof hydrateImages==="function") hydrateImages(); return; }
-    /* 13F investor portfolios view (v84) */
-    if (typeof INVESTOR_VIEW!=="undefined" && INVESTOR_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW){ renderInvestors(list,S); if(typeof hydrateImages==="function") hydrateImages(); return; }
+    /* 13F investor portfolios view (v84). invViewActive() is the same
+       predicate the rail-hide/fsw toggles use above — one function decides
+       both "does this branch fire" and "should 13F-only chrome show". */
+    if (invViewActive()){ renderInvestors(list,S); if(typeof hydrateImages==="function") hydrateImages(); return; }
     /* track-record scoreboard view */
   if (SB_VIEW){
     renderScoreboard(list, S);
