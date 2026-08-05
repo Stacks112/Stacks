@@ -19,7 +19,7 @@ Shared handoff log for Codex and Claude.
 - Playwright(모바일 393×852, 데스크톱 1440×900), `service_workers="block"`: 필터(전체/경제지표/실적) 행 카운트 변화, 요일탭/날짜셀탭 스크롤, 뒤로가기, 행탭→`evGo()`, 다크모드, en/ja, 월간뷰 오버플로(+N개) 전부 확인. 데스크톱 v83 캘린더·13F 데이터 로직 회귀 없음(`.wrap` 1257px 유지, 판정기록·캘린더·13F 세 페이지 픽셀 일치).
 - 배포 후 라이브(stacksdaily.com)에서 `fetch()`로 재확인: `assets/v82.js` 200 + 신규 함수 3종 포함, `index.html` 200 + 13F 옛 버그 패턴 제거 확인 + `grid-column:span 2`·캘린더 위임 코드 포함 확인. 데스크톱 캘린더·13F 페이지 스크린샷 육안 확인 완료.
 - `python3 scripts/deploy_guard.py index.html` 매 단계 통과(작업 중 원격이 5회 이동, 그때마다 rebase). 최종 origin/main `5f54101` 위에서 병합 후 web upload로 반영(이 세션은 push 권한 없음).
-- Clobber guard가 커밋 `5a718a0`에서 오탐 발생(issue #26) — 지워진 4줄은 13F가 복사해간 모바의 옛 버그 CSS(a78ac29)임을 확인, 근거 남기고 close(issue #25와 동일 유형의 오탐).
+- Clobber guard가 커밋 `5a718a0`에서 오탐 발생(issue #26) — 지워진 4줄은 13F가 복사해간 캘린더의 옛 버그 CSS(a78ac29)임을 확인, 근거 남기고 close(issue #25와 동일 유형의 오탐).
 
 남은 리스크:
 - 모바일 "이번주/이번달 AI 요약"은 실제 AI 호출이 아니라 건수 기반 템플릿 문장(사용자에게 이미 고지함).
@@ -28,7 +28,7 @@ Shared handoff log for Codex and Claude.
 - 모바일 월간뷰에 이전/다음 달 이동 없음(이번 달 고정 — 참고 이미지에도 화살표 없었음).
 - 모바일 월간뷰에서 "이번 주 이전" 날짜셀 탭 시 스크롤 무반응(주간뷰가 "이번 주부터만" 렌더링하는 기존 설계 때문 — 월말에 재현 가능. 주간뷰 자체 설계 변경은 이번 범위 밖이라 미수정).
 - 레거시 모바일 캘린더 코드(`renderCal`/`calShift`/`calPick`/`#calSheet`/`rbeta` CSS)는 이제 죽은 코드지만 diff 최소화를 위해 삭제하지 않고 그대로 둠 — 향후 정리 과제.
-- 기존䗐 문서화된 리스크(데이터 플레이스홀더, FRED API 키 미발급, preview 베타 파일 미삭제 등)는 이번 작업과 무관하게 미해결 그대로.
+- 기존에 문서화된 리스크(데이터 플레이스홀더, FRED API 키 미발급, preview 베타 파일 미삭제 등)는 이번 작업과 무관하게 미해결 그대로.
 
 다음:
 - 사용자 피드백에 따라 모바일 캘린더 세부 조정.
