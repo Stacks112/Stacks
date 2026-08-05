@@ -1,6 +1,328 @@
 {
  "items": [
   {
+   "date": "2026-08-05",
+   "id": "jukan-samsung-5nm-pitch-sf5a-auto-line-squeeze",
+   "related": [
+    "jukan-samsung-foundry-100-utilization-2nm-yield-gate",
+    "jukan-samsung-foundry-2nm-taylor-fab2",
+    "jukan-counterpoint-q2-dram-share-hynix-micron"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2084934690717270345",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A8A",
+    "label": "SF5A"
+   },
+   "tags": [
+    "FOUNDRY",
+    "CAPACITY",
+    "HBM"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "삼성이 지금 고객에게 앞세우는 공정은 최선단이 아니다",
+    "en": "The node Samsung is putting in front of customers right now is not its most advanced one",
+    "ja": "サムスンがいま客に差し出している工程は最先端ではない"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "삼성전자의 HBM4 주문 물량이 급증하면서 4나노 라인 가동률이 치솔았다. 파운드리의 최대 고객은 메모리 사업부가 됐다.",
+      "삼성은 TSMC에서 밀려난 소량 고객까지 흡수하고 있어 5나노 공정에서 낙수 효과를 거두고 있다."
+     ],
+     "en": [
+      "As Samsung Electronics' HBM4 order volumes have surged, 4nm line utilization has shot up. The foundry's largest customer has become the memory division.",
+      "Samsung is absorbing even the smaller-volume customers pushed out of TSMC, so it is reaping spillover benefits on the 5nm process."
+     ],
+     "ja": [
+      "サムスン電子のHBM4の受注量が急増し、4ナノラインの稼働率が跡ね上がった。ファウンドリの最大の顧客はメモリ事業部になった。",
+      "サムスンはTSMCから押し出された少量の顧客まで吸収しており、5ナノ工程で恩恵を拾っている。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.05"
+   },
+   "sum3": {
+    "ko": "4나노 라인이 내년까지 꿉 차자, 삼성전자 파운드리는 한 세대 아래인 5나노를 고객에게 대안으로 내밀기 시작했다.\n겉으로 보면 물량이 넘쳐 아래로 흘러내리는 그림이다. 2나노 문의도 계속 들어온다고 한다.\n그런데 그 5나노는 원래 자동차 전용으로 잡아 둔 라인이다. 서버·AI 주문을 받으면 2030년 양산을 예약해 둔 차량용 칩과 같은 자리를 다투게 된다.",
+    "en": "With the 4nm line booked out through next year, Samsung Foundry has started offering customers the generation below it, 5nm, as the alternative.\nOn the surface that looks like overflow running downhill. Inquiries about 2nm keep arriving too.\nBut that 5nm line was set aside for automotive. Taking server and AI orders puts them in the same queue as car chips already booked for 2030 production.",
+    "ja": "4ナノラインが来年まで埋まったことで、サムスン電子のファウンドリは一世代下の5ナノを客への代案として差し出し始めた。\n表向きは物量があふれて下へ流れる図に見える。2ナノの問い合わせも続いているという。\nしかしその5ナノは、もともと車載専用に確保されたラインだ。サーバーやAIの受注を取れば、2030年の量産を押さえた車載チップと同じ枠を争うことになる。"
+   },
+   "gist": {
+    "ko": "삼성전자 파운드리가 지금 고객 앞에 앞세우는 공정은 2나노도 4나노도 아닌 5나노다.\n4나노 라인이 내년까지 차 있어서, 더 미세한 공정으로 올라가기에 비용이 버겁은 팝리스에게 이미 수율이 잡힌 한 세대 아래 공정을 대신 권하는 영업으로 돌아졌다.\n\n@@BAR@@TSMC|70.4%|70.4|삼성 파운드리|7.1%|7.1@@라인을 채우는 것과 고객을 데려오는 것은 다른 일이다. 두 회사 사이의 거리는 아직 여기에 있다.@@2026-08-05 조회 · TrendForce 2026-03-12 발표, 2025년 4분기 매출 기준\n\n@@REF@@AI 수요로 4분기 상위 10대 파운드리 매출 2.6% 증가, 삼성 점유율 상승 (트렌드포스, 2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## 4나노를 채운 손님\n라인을 채운 최대 고객은 밖에서 온 팝리스가 아니라 같은 회사의 메모리 사업부다.\nHBM은 D램을 여러 층 쌍은 물건인데, 그 맨 아래에서 신호를 정리하고 밖으로 내보내는 판이 베이스 다이다.\n삼성은 이 판을 메모리 공정이 아니라 파운드리의 4나노 로직 공정에서 만든다.\n\n그래서 메모리가 잘 팜릴수록 파운드리 라인이 챡다.\n\n여기에 엔비디아의 추론 전용 칩 물량이 얹혔다고 업계는 전한다.\n엔비디아는 2025년 12월 그록의 기술을 라이선스한 뒤 2026년 3월 GTC에서 그록3 LPU를 내놓았는데, 이 칩은 HBM을 쓰지 않고 500메가바이트 SRAM을 칩 안에 두는 구조다.\nHBM을 떠받치는 판과 HBM을 쓰지 않는 칩이 같은 4나노 라인에서 나오고 있다.\n\n@@REF@@GTC 2026 기조연설, 추론의 왕 (EE 타임스, 2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\n이 기사는 그록3 LPU가 루빈 GPU와 짝을 이뤄 토큰 생성만 맡는 칩이라고 전한다.\n원문이 이름만 적고 지나간 대목이 여기서 채워진다.\n\n## 밀려난 쪽이 오는 길\n\n@@FLOW@@TSMC 3~5나노 포화|2026년 내내 사실상 예약이 차 상태로 전해진다|대형 고객 우선|애플·퀵컴·엔비디아가 물량을 먼저 가져간다|밀려난 소량 고객|중국·인도 팝리스가 대체 라인을 찾는다|삼성 5나노|수율이 잡힌 공정으로 그 물량을 받는다@@삼성이 지금 얻는 것은 최선단 수주가 아니라 남이 다 쓰고 남긴 자리다.\n\n중국·인도 팝리스가 제재를 우회해 삼성 5나노로 온다는 대목은 삼성 협력사 관계자의 전언이다.\n영어권에서 확인되는 것은 여기까지다.\n중국 전기차 니오가 자율주행 칩에 삼성 5나노를 이미 쓰고 있고, 삼성이 비야디와 자율주행 SoC를 협의 중이라는 보도가 있다.\n인도 쪽 고객 이름은 확인되지 않는다.\n\n## SF5A가 자동차와 서버 사이에 선다\n5나노 라인은 자동차 전용 공정 SF5A로 분류돼 있다.\n2030년 양산을 목표로 한 현대차 ADAS 칩, 보스반도체의 SoC, 텔레칩스의 차량용 AP가 여기에 잡혀 있다.\n\n차량용 반도체는 인증을 받는 데 몇 년이 걸리고, 한 번 잡히면 모델 수명만큼 길게 간다.\n그 자리에 서버와 AI 주문을 받으면 지금은 매출이 늘지만, 몇 년 뒤 양산에 들어갈 차량 물량이 들어설 칸이 줄어든다.\n라인이 찬다는 소식이 곳 이익이 되지 않는 이유도 여기 있다. 삼성의 비메모리 부문은 2026년 2분기에도 약 6,000억 원 손실을 낸 것으로 전해진다.\n\n갈릴 지점은 이 물량이 점유율로 옥겨 가느냐다.\n5나노에 붙은 외부 고객이 다음 세대까지 남아 삼성의 분기 파운드리 점유율을 8%대로 밀어 올리면 라인을 채운 것이 자리를 옥겨 건 것이 되고, 점유율이 7% 언저에 머물러면 이번 호황은 자기 회사 메모리가 만들어 준 한철로 남는다.",
+    "en": "The node Samsung Foundry is now putting in front of customers is neither 2nm nor 4nm. It is 5nm.\nWith the 4nm line booked out through next year, the sales pitch has shifted to offering fabless customers who cannot absorb the cost of a finer node the generation below it, where yields are already settled.\n\n@@BAR@@TSMC|70.4%|70.4|Samsung Foundry|7.1%|7.1@@Filling a line and winning a customer are different things. This is still the distance between the two companies.@@Retrieved 2026-08-05 · TrendForce release of 2026-03-12, based on 4Q25 revenue\n\n@@REF@@AI demand drives 4Q25 global top 10 foundry revenue up 2.6% QoQ, Samsung gains share (TrendForce, 2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## Who filled the 4nm line\nThe largest customer filling that line is not an outside fabless firm. It is the memory division of the same company.\nHBM is a stack of DRAM layers, and the board at the very bottom that organises the signals and sends them out is the base die.\nSamsung builds that board not on a memory process but on the foundry's 4nm logic process.\n\nSo the better memory sells, the fuller the foundry line gets.\n\nOn top of that, industry sources say, came volume from Nvidia's dedicated inference chip.\nNvidia licensed Groq's technology in December 2025 and unveiled the Groq 3 LPU at GTC in March 2026, a chip that uses no HBM at all and instead keeps 500 megabytes of SRAM on the die itself.\nThe board that holds up HBM and the chip that refuses to use HBM are coming off the same 4nm line.\n\n@@REF@@GTC 2026 keynote: long live the inference king (EE Times, 2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\nThat article describes the Groq 3 LPU as a chip paired with Rubin GPUs and handed only the token-generation work.\nIt fills in the part the original post names and moves past.\n\n## The road the pushed-out customers take\n\n@@FLOW@@TSMC 3-5nm full|reported effectively booked through 2026|Large customers first|Apple, Qualcomm and Nvidia take the wafers ahead of others|Smaller customers pushed out|Chinese and Indian fabless firms look for another line|Samsung 5nm|takes that volume on a process whose yields are settled@@What Samsung is gaining right now is not leading-edge orders but the seats everyone else left behind.\n\nThe claim that Chinese and Indian fabless firms are coming to Samsung's 5nm to work around sanctions comes from a Samsung supply-chain partner, quoted anonymously.\nEnglish-language reporting confirms only part of it.\nChina's NIO already uses Samsung 5nm for its autonomous driving chip, and Samsung is reported to be in talks with BYD on autonomous driving SoCs.\nNo Indian customer is named anywhere.\n\n## SF5A stands between cars and servers\nThe 5nm line is classified as SF5A, a process dedicated to automotive.\nHyundai's ADAS chip targeting 2030 production, a system on chip from BOS Semiconductor, and an automotive application processor from Telechips are all booked on it.\n\nAutomotive chips take years to qualify, and once they are in they stay for the life of the model.\nPutting server and AI orders in those slots lifts revenue now, but it shrinks the room that car volumes will need when they reach production a few years out.\nThat is also why a full line does not immediately mean profit. Samsung's non-memory business is reported to have posted a loss of about 600 billion won in the second quarter of 2026.\n\nThe split is whether this volume converts into share.\nIf the outside customers on 5nm stay through the next generation and push Samsung's quarterly foundry share into the 8 percent range, filling the line will have meant moving position; if share sits near 7 percent, this run stays a season the company's own memory division paid for.",
+    "ja": "サムスン電子のファウンドリがいま客の前に差し出す工程は、2ナノでも4ナノでもなく、5ナノだ。\n4ナノラインが来年まで埋まっているため、より微細な工程へ上がる費用が重いファブレスに対して、すでに歩留まりの固まった一世代下の工程を代わりに勧める営業へ切り替えた。\n\n@@BAR@@TSMC|70.4%|70.4|サムスン ファウンドリ|7.1%|7.1@@ラインを埋めることと客を連れてくることは別の仕事だ。両社の距離はまだここにある。@@2026-08-05 閲覧 · TrendForce 2026-03-12 発表、2025年第4四半期の売上基準\n\n@@REF@@AI需要で第4四半期の上位10社ファウンドリ売上が2.6%増、サムスンはシェア上昇 (トレンドフォース、2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## 4ナノを埋めた客\nラインを埋めた最大の顧客は、外から来たファブレスではなく同じ会社のメモリ事業部だ。\nHBMはDRAMを何層も積んだ製品で、その一番下で信号を整えて外へ送り出す板がベースダイだ。\nサムスンはこの板をメモリ工程ではなく、ファウンドリの4ナノロジック工程で作っている。\n\nだからメモリが売れるほどファウンドリのラインが埋まる。\n\nそこにエヌビディアの推論専用チップの物量が乗ったと業界は伝える。\nエヌビディアは2025年12月にGroqの技術をライセンスし、2026年3月のGTCでGroq 3 LPUを出した。このチップはHBMを使わず、500メガバイトのSRAMをチップ内に置く構造だ。\nHBMを支える板と、HBMを使わないチップが、同〘4ナノラインから出ている。\n\n@@REF@@GTC 2026 基調講演、推論の王 (EEタイムズ、2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\nこの記事は、Groq 3 LPUがRubin GPUと組んでトークン生成だけを担うチップだと伝えている。\n原文が名前だけ書いて通り過ぎた部分が、ここで埋まる。\n\n## 押し出された側が来る道\n\n@@FLOW@@TSMC 3~5ナノの逸迫|2026年を通じて事実上予約が埋まっていると伝えられる|大口顧客が先|アップル・クアルコム・エヌビディアが先にウェハーを取る|押し出された少量顧客|中国とインドのファブレスが代替ラインを探す|サムスン5ナノ|歩留まりの固まった工程でその物量を受ける@@サムスンがいま得ているのは最先端の受注ではなく、他社が使い切って残した席だ。\n\n中国とインドのファブレスが制裁を回避してサムスンの5ナノへ来るという篇所は、サムスンの協力会社関係者の伝語である。\n英語圏で確認できるのはここまでだ。\n中国のNIOが自動運転チップにサムスンの5ナノをすでに使っており、サムスンがBYDと自動運転SoCを協議中だという報道がある。\nインド側の顧客名は確認されない。\n\n## SF5Aが車とサーバーの間に立つ\n5ナノラインは車載専用工程SF5Aとして分類されている。\n2030年の量産を目指す現代自動車のADASチップ、ボス半導体のSoC、テレチップスの車載APがここに押さえられている。\n\n車載半導体は認証に数年かかり、いったん入るとモデルの寿命の分だけ長く居座る。\nその枠にサーバーやAIの受注を入れれば足元の売上は伸びるが、数年後に量産へ入る車載の物量が座る席は狭くなる。\nラインが埋まった知らせがすぐ利益にならない理由もここにある。サムスンの非メモリ部門は2026年第2四半期にも約6,000億ウォンの損失を出したと伝えられる。\n\n分かれ目は、この物量がシェアへ移るかどうかだ。\n5ナノに付いた外部顧客が次の世代まで残ってサムスンの四半期ファウンドリシェアを8%台へ押し上げれば、ラインを埋めたことが位置を動かしたことになり、シェアが7%前後にとどまれば、今回の活況は自社メモリが作ってくれた一季節として残る。"
+   },
+   "why": {
+    "ko": "가동률이 올라간 파운드리는 보통 회복 신호로 읽힌다. 이번 국면에서 확인해야 할 것은 그 라인을 누가 채웠느냐다. 최대 고객이 같은 회사의 메모리 사업부이고, 밖에서 온 물량은 TSMC에서 밀려난 소량 주문이라면, 라인이 챰는 것과 시장에서 자리를 옥기는 것은 다른 일이 된다.",
+    "en": "A foundry running at higher utilisation is usually read as a recovery signal. What has to be checked here is who filled the line. If the largest customer is the memory division of the same company and the outside volume is small orders pushed out of TSMC, then filling the line and moving position in the market are two different things.",
+    "ja": "稼働率が上がったファウンドリはふつう回復の合図として読まれる。この局面で確かめるべきは、そのラインを誰が埋めたかだ。最大の顧客が同じ会社のメモリ事業部で、外から来た物量がTSMCから押し出された少量の受注なら、ラインが埋まることと市場で位置を動かすことは別の話になる。"
+   },
+   "ask": {
+    "ko": "삼성 파운드리가 최선단 대신 5나노를 앞세우며 물량을 채우고 있다. 이것은 고객 기반을 넓히는 발판일까, 아니면 자동차용으로 잡아 둔 자리를 당겨 쓰는 것일까?",
+    "en": "Samsung Foundry is filling capacity by leading with 5nm instead of its most advanced node. Is that a foothold for widening the customer base, or borrowing against seats reserved for automotive?",
+    "ja": "サムスンのファウンドリは最先端ではなぇ5ナノを前面に出して物量を埋めている。これは顧客基盤を広げる足がかりだろうか、それとも車載向けに確保した枠を前借りしているのだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "트렌드포스가 집계하는 분기 파운드리 매출 점유율에서 삼성전자가 8.0% 이상에 닿으면 적중, 그 아래면 어긋난 것으로 채점한다.",
+     "en": "Score as a hit if Samsung Electronics reaches 8.0 percent or more in TrendForce's quarterly foundry revenue share, and as a miss below that.",
+     "ja": "トレンドフォースが集計する四半期ファウンドリ売上シェアでサムスン電子が8.0%以上に達すれば的中、それ未満なら外れと採点する。"
+    },
+    "due": "2026-12-31",
+    "card": {
+     "metric": {
+      "ko": "트렌드포스 집계 분기 파운드리 매출 점유율 (삼성전자)",
+      "en": "Samsung Electronics' quarterly foundry revenue share, as tallied by TrendForce",
+      "ja": "トレンドフォース集計の四半期ファウンドリ売上シェア (サムスン電子)"
+     },
+     "now": {
+      "ko": "2025년 4분기 7.1% (직전 분기 6.8%), 같은 분기 TSMC 70.4%",
+      "en": "7.1 percent in 4Q25, up from 6.8 percent the prior quarter, against TSMC's 70.4 percent",
+      "ja": "2025年第4四半期は7.1% (前四半期6.8%)、同四半期のTSMCは70.4%"
+     },
+     "when": {
+      "ko": "2026년 3분기 집계 (2026년 12월 공표 예정)",
+      "en": "The 3Q26 tally, due to be published in December 2026",
+      "ja": "2026年第3四半期の集計 (2026年12月公表予定)"
+     },
+     "hit": {
+      "ko": "점유율 8.0% 이상 → 채운 라인이 시장 자리로 옥겨 갔다",
+      "en": "Share at 8.0 percent or above → the filled line converted into market position",
+      "ja": "シェアが8.0%以上 → 埋まったラインが市場での位置に移った",
+      "da": ""
+     },
+     "miss": {
+      "ko": "점유율 8.0% 미만 → 라인은 챠지만 자리는 그대로다",
+      "en": "Share below 8.0 percent → the line filled but the position did not move",
+      "ja": "シェアが8.0%未満 → ラインは埋まったが位置は変わらない"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 삼성 파운드리 4나노 만석, 5나노 수주 증가 · 2026-08-05",
+      "en": "Jukan (@jukan05) · Samsung Foundry's 4nm capacity fully booked as 5nm orders rise · 2026-08-05",
+      "ja": "Jukan(@jukan05) · サムスンのファウンドリ4ナノが満杯、5ナノの受注が増加 · 2026-08-05"
+     },
+     "url": "https://x.com/jukan05/status/2084934690717270345"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "2025년 4분기 파운드리 매출 점유율 TSMC 70.4% · 삼성 7.1% (2026-03-12)",
+      "en": "4Q25 foundry revenue share, TSMC 70.4 percent and Samsung 7.1 percent (2026-03-12)",
+      "ja": "2025年第4四半期のファウンドリ売上シェア、TSMC70.4%・サムスン7.1% (2026-03-12)"
+     },
+     "url": "https://www.trendforce.com/presscenter/news/20260312-12965.html"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "HBM4 베이스 다이와 미국 고객 주문으로 하반기 가동률 상승, 비메모리 2분기 약 6,000억 원 손실 (2026-08-03)",
+      "en": "Utilisation rising in 2H26 on HBM4 base dies and US orders, with a non-memory loss of about 600 billion won in 2Q26 (2026-08-03)",
+      "ja": "HBM4のベースダイと米顧客の受注で下期の稼働率が上昇、非メモリは第2四半期に約6,000億ウォンの損失 (2026-08-03)"
+     },
+     "url": "https://www.trendforce.com/news/2026/08/03/news-samsung-foundry-eyes-2h26-full-utilization-as-hbm4-base-dies-and-u-s-orders-fuel-turnaround-hopes/"
+    },
+    {
+     "name": {
+      "ko": "EE 타임스",
+      "en": "EE Times",
+      "ja": "EEタイムズ"
+     },
+     "desc": {
+      "ko": "엔비디아 그록3 LPU 공개, SRAM 500MB·HBM 미사용, 루빈 GPU와 토큰 생성 분담 (2026-03-20)",
+      "en": "Nvidia unveils the Groq 3 LPU, 500MB of SRAM and no HBM, splitting token generation with Rubin GPUs (2026-03-20)",
+      "ja": "エヌビディアがGroq 3 LPUを公開、SRAM 500MBでHBM不使用、Rubin GPUとトークン生成を分担 (2026-03-20)"
+     },
+     "url": "https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/"
+    },
+    {
+     "name": {
+      "ko": "KED 글로벌",
+      "en": "KED Global",
+      "ja": "KEDグローバル"
+     },
+     "desc": {
+      "ko": "삼성, HBM4 베이스 다이를 4나노 파운드리 공정으로 양산하기로 (2024-07-16)",
+      "en": "Samsung to mass-produce the HBM4 base die on its 4nm foundry process (2024-07-16)",
+      "ja": "サムスン、HBM4のベースダイを4ナノのファウンドリ工程で量産へ (2024-07-16)"
+     },
+     "url": "https://www.kedglobal.com/korean-chipmakers/newsView/ked202407150016"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회 · 점유율은 2025년 4분기 매출 기준이며 트렌드포스 2026-03-12 발표값이다. 4나노 만석·5나노 영업 전환·중국·인도 팝리스 유입은 국내 업계 관계자 전언이고 회사 확인은 없다.",
+    "en": "Retrieved 2026-08-05 · share figures are on 4Q25 revenue as published by TrendForce on 2026-03-12. The fully booked 4nm line, the shift to selling 5nm and the inflow of Chinese and Indian fabless customers come from Korean industry sources and have not been confirmed by the company.",
+    "ja": "2026-08-05 閲覧 · シェアは2025年第4四半期の売上基準で、トレンドフォースが2026-03-12に発表した値である。4ナノの満杯、5ナノへの営業転換、中国・インドのファブレス流入は韓国業界関係者の伝聴であり、会社の確認はない。"
+   }
+  },
+  {
+   "date": "2026-08-05",
+   "id": "meru-2026-property-tax-owner-occupancy-pivot",
+   "related": [],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224368470386",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#155E75",
+    "label": "TAX REFORM"
+   },
+   "tags": [
+    "TAX",
+    "HOUSING",
+    "SEOUL"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "실거주냐 아니냐로 종부세 공제가 5억 원 갈린다",
+    "en": "Whether you live in it decides a 500 million won gap in the holding tax deduction",
+    "ja": "実際に住んでいるかどうかで、保有税の控除が5億ウォン分かれる"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "이번 조치의 메인 타깃중 하나는 비거주 1주택자다.",
+      "종부세 기본공제가 12억 원이었는데, 실거주 1주택자는 14억으로 높이고, 비거주 1주택자는 9억 원으로 낮췄다.",
+      "비거주에 페널티를 주고, 실거주에 혜택을 몰면서, 집주인들이 전월세를 놓던 집에 직접 입주하려는 유인이 커진다."
+     ],
+     "en": [
+      "One of the main targets of this measure is the single-home owner who does not live in the home.",
+      "The basic deduction for the holding tax was 1.2 billion won, and it has been raised to 1.4 billion won for owners who live in the home and cut to 900 million won for those who do not.",
+      "By penalising non-residence and concentrating the benefits on residence, the incentive grows for landlords to move into the homes they had been renting out."
+     ],
+     "ja": [
+      "今回の措置のメインターゲットの一つは、住んでいない一戸保有者だ。",
+      "保有税の基礎控除は12億ウォンだったが、実際に住む一戸保有者は14億ウォンに引き上げ、住んでいない一戸保有者は9億ウォンに引き下げた。",
+      "非居住に罰を与え、実居住に恩恵を集めることで、家主が賃貸に出していた家へ自ら入居しようとする誘因が大きくなる。"
+     ]
+    },
+    "cite": "메르 · 2026.08.05"
+   },
+   "sum3": {
+    "ko": "2026년 세제개편안은 1주택자의 종부세 기본공제를 실제로 사는 사람은 14억 원으로 올리고, 살지 않는 사람은 9억 원으로 내렸다.\n겉으로는 고가 주택과 갭투자를 겨눈 세금이다. 종부세를 실제로 내는 사람은 주택 소유자의 3%뿐이다.\n그런데 서울에서 주인이 직접 사는 집은 44.1%다. 나머지에 세 들어 사는 가구가 그 좁은 쪽의 선택에 딸려 움직인다.",
+    "en": "The 2026 tax reform raises the holding-tax deduction for a single home to 1.4 billion won if the owner lives there and cuts it to 900 million won if the owner does not.\nOn the surface this is a tax aimed at expensive homes and leveraged buyers. Only about 3 percent of Korean homeowners actually pay the holding tax.\nYet only 44.1 percent of Seoul homes are lived in by their owners. The households renting the rest are dragged along by what that narrow group decides.",
+    "ja": "2026年の税制改正案は、一戸保有者の保有税の基礎控除を、実際に住む人には14億ウォンへ引き上げ、住まない人には9億ウォンへ引き下げた。\n表向きは高額住宅とレバレッジ購入を狙った税だ。保有税を実際に納めるのは住宅所有者の3%にすぎない。\nしかしソウルで持ち主自身が住んでいる家は44.1%だ。残りに借りて住む世帯が、その狭い側の選択に引きずられて動く。"
+   },
+   "gist": {
+    "ko": "같은 집을 가지고 있어도 그 집에 사는지 아닌지로 종합부동산세 공제가 5억 원 갈린다.\n2026년 8월 3일 정부가 내놓은 세제개편안은 1세대 1주택자의 기본공제를 실제로 거주하는 사람에게는 12억 원에서 14억 원으로 올리고,\n거주하지 않는 사람에게는 9억 원으로 내렸다.\n\n@@BAR@@실거주 1주택 기본공제|14억원|14|비거주 1주택 기본공제|9억원|9@@집값이 같아도 세금이 붙기 시작하는 지점이 사람마다 달라진다는 뜻이다.@@2026-08-05 조회 · Korea Times(2026-08-03) 보도 · 시행 2027년 1월 1일\n\n@@REF@@정부, 고가·비거주 주택을 겨눈 부동산 세제 개편 (코리아타임스, 2026-08-03)|https://www.koreatimes.co.kr/economy/policy/20260803/govt-targets-high-value-non-owner-occupied-homes-in-tax-overhaul|https://newsimg.koreatimes.co.kr/2026/08/03/7bd869bd-4b35-47d8-b31a-9f4d27aa00d8.jpg\n\n이 기사에는 원문이 다루지 않은 숫자가 하나 더 있다.\n규제지역과 다주택 물건에 적용하는 공정시장가액비율이 60%에서 2027년 70%, 2028년 80%로 오른다는 것이다.\n공정시장가액비율은 공시가격에 곱해서 세금을 매길 금액을 만드는 비율이다.\n쉽게 말해 공제 한도가 문이라면 이 비율은 문 뒤에 놓인 저울이다. 문을 그대로 두고 저울만 바꿔도 무게는 늘어난다.\n\n## 팔 때 벌어지는 폭\n보유 단계보다 처분 단계의 변화가 크다.\n양도소득세의 장기보유특별공제 80% 가운데 오래 갖고만 있으면 받던 40%가 2029년부터 없어지고, 실제로 산 기간에 붙는 공제만 남는다.\n공제 한도도 2028년 20억 원, 2029년 10억 원으로 내려간다.\n\n메르는 이 변화를 자기 사례로 계산해 두었다.\n12억 원에 산 아파트를 10년 넘게 갖고 있다가 2년만 거주하고 32억 원에 팔면, 지금 기준으로 약 2억6,000만 원인 양도소득세가 바뀐 기준에서는 약 4억4,600만 원이 된다는 추정이다.\n장특공제가 6억 원에서 2억 원으로 줄면서 과세표준이 최고세율 구간으로 올라간다는 계산이다.\n숫자 자체는 그의 가정 위에 선 추정이고 정부가 확인해 준 값이 아니다.\n\n@@REF@@3.2억 원 초과 고가주택·비거주 1주택·다주택에 종부세 강화 (경향신문 영문판, 2026-08-03)|https://www.khan.co.kr/en/article/202608031838047/|https://img.khan.co.kr/news/2026/08/03/news-p.v1.20260727.3ae33563fc894879ad40f6907e0362bb_P1.jpeg\n\n이 기사는 세율 인상 구간을 원문보다 좁혀 적었다.\n과세표준 6억~12억 원 구간의 세율이 1.0%에서 1.3%로 오르고, 그 구간은 시가로 약 32억 원부터라는 설명이다.\n원문이 32억7,000만 원이라고 적은 선과 대체로 겹친다.\n\n## 서울에서 주인이 사는 집은 절반이 안 된다\n\n@@SHARE@@자가|44.1%|44.1|전세|25.4%|25.4|월세|28.0%|28.0|기타|2.5%|2.5@@실거주에 혜택을 몰아주는 정책이 닿는 집은 넉 채 중 한 채가 조금 넘는다. 나머지에는 세입자가 살고 있다.@@2024 서울시 주거실태조사 (2026-08-05 조회)\n\n원문은 이 대목을 서울연구원 자료로 적었다.\n44%라는 숫자 자체는 맞지만 출처는 2024년 서울시 주거실태조사이고, 나머지는 전세 25.4%와 월세 28.0%로 갈린다.\n집주인이 들어와 살기로 하면 그 자리에 있던 전세나 월세 한 채가 시장에서 사라진다.\n\n## 48만 명의 선택이 서울 전월세로 번진다\n2025년 종부세 고지를 받은 사람은 48만577명으로 전체 주택 소유자의 약 3%다.\n\n이 대비가 이 개편안의 성격을 말해 준다.\n세금이 직접 닿는 쪽은 좁고, 그 좁은 쪽이 집을 비우거나 채우는 결정을 내리면 파장은 서울 가구의 절반 넘는 임차 가구에 닿는다.\n원문이 최대 수혜 자산으로 꼽은 시가 20억~32억 원대 실거주 1주택은 뒤집어 보면 실입주 수요가 가장 두꺼운 구간이고, 전월세 물량이 가장 먼저 얇아질 구간이기도 하다.\n\n갈리는 지점은 집주인이 실제로 들어와 사느냐다.\n비거주 1주택자가 2027년 1월 이후 실입주를 택하면 임대 물량이 줄어 전월세가 먼저 움직이고, 세금을 감수하고 계속 세를 놓으면 이 개편은 보유세 인상으로만 끝난다.",
+    "en": "Owning the same home now brings a 500 million won difference in the comprehensive real estate tax deduction, depending on whether the owner lives in it.\nThe tax reform bill the government released on 3 August 2026 raises the basic deduction for a single-home household from 1.2 billion won to 1.4 billion won for owners who actually live there,\nand cuts it to 900 million won for those who do not.\n\n@@BAR@@Owner-occupied single home|1.4bn won|14|Non-resident single home|0.9bn won|9@@Two identical homes now start being taxed at different points, depending on where the owner sleeps.@@Retrieved 2026-08-05 · reported by Korea Times (2026-08-03) · effective 1 January 2027\n\n@@REF@@Gov't targets high-value, non-owner-occupied homes in tax overhaul (Korea Times, 2026-08-03)|https://www.koreatimes.co.kr/economy/policy/20260803/govt-targets-high-value-non-owner-occupied-homes-in-tax-overhaul|https://newsimg.koreatimes.co.kr/2026/08/03/7bd869bd-4b35-47d8-b31a-9f4d27aa00d8.jpg\n\nThat article carries a number the original post does not.\nThe fair market value ratio applied to regulated-zone and multi-home properties rises from 60 percent to 70 percent in 2027 and 80 percent in 2028.\nThat ratio is the multiplier applied to the official assessed price to produce the amount actually taxed.\nIf the deduction is the door, this ratio is the scale sitting behind it. Leave the door alone, change the scale, and the weight still goes up.\n\n## The gap widens at the sale\nThe change at the point of sale is larger than the change in annual holding tax.\nWithin the 80 percent long-term special deduction on capital gains, the 40 percent earned simply by holding disappears from 2029, leaving only the part earned by actually living in the home.\nThe cap on that deduction also steps down to 2 billion won in 2028 and 1 billion won in 2029.\n\nThe author works the change through his own example.\nAn apartment bought for 1.2 billion won, held for more than ten years but lived in for only two, and sold for 3.2 billion won would carry capital gains tax of roughly 260 million won under today's rules and roughly 446 million won under the new ones, by his estimate.\nThe long-term deduction shrinks from 600 million won to 200 million won, and the taxable base climbs into the top rate bracket.\nThose figures rest on his assumptions and have not been confirmed by the government.\n\n@@REF@@Comprehensive real estate tax to be strengthened for homes above 3.2 billion won, non-resident and multi-home owners (Kyunghyang Shinmun English, 2026-08-03)|https://www.khan.co.kr/en/article/202608031838047/|https://img.khan.co.kr/news/2026/08/03/news-p.v1.20260727.3ae33563fc894879ad40f6907e0362bb_P1.jpeg\n\nThis article draws the rate band more tightly than the original post does.\nThe rate on the 600 million to 1.2 billion won taxable base rises from 1.0 percent to 1.3 percent, and that band begins at a market value of roughly 3.2 billion won.\nThat broadly overlaps the 3.27 billion won line the original post cites.\n\n## In Seoul, fewer than half of homes house their owners\n\n@@SHARE@@Owner-occupied|44.1%|44.1|Jeonse deposit lease|25.4%|25.4|Monthly rent|28.0%|28.0|Other|2.5%|2.5@@The policy that concentrates benefits on living in your own home reaches a little over one home in four. Tenants live in the rest.@@2024 Seoul Housing Survey (retrieved 2026-08-05)\n\nThe original post attributes this figure to the Seoul Institute.\nThe 44 percent itself is right, but the source is the 2024 Seoul Housing Survey, and the remainder splits into 25.4 percent on jeonse deposit leases and 28.0 percent on monthly rent.\nWhen an owner decides to move in, one leased home leaves the rental market with him.\n\n## What 480,000 owners decide reaches Seoul's tenants\nIn 2025, 480,577 people received a comprehensive real estate tax bill, about 3 percent of all homeowners in Korea.\n\nThat contrast is what this reform really is.\nThe tax touches a narrow group directly, and when that narrow group decides whether to empty a home or fill it, the effect reaches the majority of Seoul households who rent.\nThe 2 to 3.2 billion won owner-occupied home the original post names as the biggest winner is, read the other way, the band where demand to move in is thickest and where rental supply thins out first.\n\nThe split is whether owners actually move in.\nIf non-resident owners choose to occupy from January 2027, rental supply shrinks and the lease market moves first; if they swallow the tax and keep renting the home out, this reform ends as nothing more than a higher annual holding tax.",
+    "ja": "同じ家を持っていても、その家に住んでいるかどうかで総合不動産税の控除が5億ウォン分かれる。\n2026年8月3日に政府が出した税制改正案は、一世帯一戸保有者の基礎控除を、実際に居住する人には12億ウォンから14億ウォンへ引き上げ、\n居住しない人には9億ウォンへ引き下げた。\n\n@@BAR@@実居住の一戸保有 基礎控除|14億ウォン|14|非居住の一戸保有 基礎控除|9億ウォン|9@@家の値段が同じでも、税がかかり始める地点が人によって変わるということだ。@@2026-08-05 閲覧 · Korea Times(2026-08-03)報道 · 施行は2027年1月1日\n\n@@REF@@政府、高額住宅と非居住住宅を狙った不動産税制の改編 (コリアタイムズ、2026-08-03)|https://www.koreatimes.co.kr/economy/policy/20260803/govt-targets-high-value-non-owner-occupied-homes-in-tax-overhaul|https://newsimg.koreatimes.co.kr/2026/08/03/7bd869bd-4b35-47d8-b31a-9f4d27aa00d8.jpg\n\nこの記事には原文が触れていない数字がもう一つある。\n規制地域と多数保有の物件に適用する公正市場価額比率が、60%から2027年に70%、2028年に80%へ上がるというものだ。\n公正市場価額比率とは、公示価格に掛けて課税する金額を作る比率だ。\nわかりやすく言えば、控除の枠が扉なら、この比率は扉の奥に置かれた秤だ。扉をそのままにして秤だけ替えても重さは増える。\n\n## 売るときに開く差\n保有段階より処分段階の変化のほうが大きい。\n譲渡所得税の長期保有特別控除80%のうち、長く持っているだけで受けられた40%が2029年からなくなり、実際に住んだ期間に付く控除だけが残る。\n控除の上限も2028年に20億ウォン、2029年に10億ウォンへ下がる。\n\nメルはこの変化を自分の事例で計算している。\n12億ウォンで買ったマンションを10年以上持ち、2年だけ居住して32億ウォンで売る場合、いまの基準で約2億6,000万ウォンの譲渡所得税が、新しい基準では約4億4,600万ウォンになるという推定だ。\n長期保有控除が6億ウォンから2億ウォンへ縮み、課税標準が最高税率の区分まで上がるという計算である。\n数字自体は彼の仮定の上に立つ推定であり、政府が確認した値ではない。\n\n@@REF@@32億ウォン超の高額住宅・非居住一戸・多数保有に総合不動産税を強化 (京郷新聞英語版、2026-08-03)|https://www.khan.co.kr/en/article/202608031838047/|https://img.khan.co.kr/news/2026/08/03/news-p.v1.20260727.3ae33563fc894879ad40f6907e0362bb_P1.jpeg\n\nこの記事は税率引き上げの区分を原文より狭く書いている。\n課税標準6億~12億ウォンの区分の税率が1.0%から1.3%へ上がり、その区分は時価でおよそ32億ウォンからだという説明だ。\n原文が32億7,000万ウォンと書いた線とおおむね重なる。\n\n## ソウルで持ち主が住む家は半分に満たない\n\n@@SHARE@@自家|44.1%|44.1|チョンセ|25.4%|25.4|月家賃|28.0%|28.0|その他|2.5%|2.5@@実居住に恩恵を集める政策が届く家は、四軒に一軒を少し超える程度だ。残りには借り手が住んでいる。@@2024年ソウル市住居実態調査 (2026-08-05 閲覧)\n\n原文はこの箇所をソウル研究院の資料として書いている。\n44%という数字自体は正しいが、出所は2024年のソウル市住居実態調査であり、残りはチョンセ25.4%と月家賃28.0%に分かれる。\n家主が入居すると決めれば、その場所にあった賃貸の一軒が市場から消える。\n\n## 48万人の選択がソウルの賃貸に及ぶ\n2025年に総合不動産税の通知を受けたのは48万577人で、住宅所有者全体の約3%だ。\n\nこの対比がこの改正案の性格を語っている。\n税が直接届く側は狭く、その狭い側が家を空けるか埋めるかを決めれば、影響はソウル世帯の半数を超える借家世帯に及ぶ。\n原文が最大の恩恵資産に挙げた時価20億~32億ウォン台の実居住一戸は、裏返せば入居需要が最も厚い区分であり、賃貸の出物が最も早く薄くなる区分でもある。\n\n分かれ目は家主が実際に入って住むかどうかだ。\n非居住の一戸保有者が2027年1月以降に入居を選べば賃貸の出物が減って賃貸市場が先に動き、税を飲み込んで貸し続ければ、この改正は保有税の引き上げだけで終わる。"
+   },
+   "why": {
+    "ko": "부동산 세제는 보통 누가 얼마를 더 내는지로 읽힌다. 이번 개편에서 더 중요한 것은 세금이 닿는 사람의 수와 그 결정이 닿는 사람의 수가 크게 다르다는 점이다. 종부세를 내는 48만 명이 실입주를 택하느냐 마느냐가, 세금과 무관한 서울의 절반 넘는 임차 가구의 전월세 조건을 먼저 움직인다.",
+    "en": "Property tax changes are usually read by who pays how much more. What matters more here is the gap between the number of people the tax touches and the number of people their decision touches. Whether the 480,000 holding-tax payers move into their homes will move lease terms for the majority of Seoul households who rent and who pay none of this tax.",
+    "ja": "不動産税制はふつう誰がいくら多く払うかで読まれる。今回の改正でより重いのは、税が届く人の数と、その決定が届く人の数が大きく違う点だ。保有税を納める48万人が入居を選ぶかどうかが、税とは無関係なソウルの半数を超える借家世帯の賃貸条件を先に動かす。"
+   },
+   "ask": {
+    "ko": "실거주에 혜택을 몰아주는 세제 개편이 2027년부터 시작된다. 집주인들이 실제로 들어와 살면서 전월세 물량이 줄어드는 쪽일까, 세금을 감수하고 계속 세를 놓는 쪽일까?",
+    "en": "The reform that concentrates benefits on living in your own home starts in 2027. Will owners actually move in and thin out the rental market, or swallow the tax and keep renting the homes out?",
+    "ja": "実居住に恩恵を集める税制改正が2027年から始まる。家主が実際に入居して賃貸の出物が減るほうだろうか、それとも税を飲み込んで貸し続けるほうだろうか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르(ranto28) · 2026 세제개편안(부동산), 뜨는 곳과 지는 곳 · 2026-08-05",
+      "en": "meru (ranto28) · The 2026 tax reform on property, who rises and who falls · 2026-08-05",
+      "ja": "メル(ranto28) · 2026年税制改正案(不動産)、上がる側と下がる側 · 2026-08-05"
+     },
+     "url": "https://blog.naver.com/ranto28/224368470386"
+    },
+    {
+     "name": {
+      "ko": "코리아타임스",
+      "en": "Korea Times",
+      "ja": "コリアタイムズ"
+     },
+     "desc": {
+      "ko": "종부세 기본공제 실거주 14억·비거주 9억, 공정시장가액비율 60%→70%→80% (2026-08-03)",
+      "en": "Holding tax deduction of 1.4bn won for owner-occupiers and 0.9bn won for non-residents, fair market value ratio moving 60 to 70 to 80 percent (2026-08-03)",
+      "ja": "保有税の基礎控除は実居住14億・非居住9億、公正市場価額比率は60%→70%→80% (2026-08-03)"
+     },
+     "url": "https://www.koreatimes.co.kr/economy/policy/20260803/govt-targets-high-value-non-owner-occupied-homes-in-tax-overhaul"
+    },
+    {
+     "name": {
+      "ko": "경향신문 영문판",
+      "en": "Kyunghyang Shinmun English",
+      "ja": "京郷新聞英語版"
+     },
+     "desc": {
+      "ko": "과세표준 6억~12억 구간 세율 1.0%→1.3%, 장특공제 한도 2028년 20억·2029년 10억 (2026-08-03)",
+      "en": "Rate on the 600m to 1.2bn won taxable base rising from 1.0 to 1.3 percent, long-term deduction cap at 2bn won in 2028 and 1bn won in 2029 (2026-08-03)",
+      "ja": "課税標準6億~12億の税率が1.0%→1.3%、長期保有控除の上限は2028年20億・2029年10億 (2026-08-03)"
+     },
+     "url": "https://www.khan.co.kr/en/article/202608031838047/"
+    },
+    {
+     "name": {
+      "ko": "2024 서울시 주거실태조사",
+      "en": "2024 Seoul Housing Survey",
+      "ja": "2024年ソウル市住居実態調査"
+     },
+     "desc": {
+      "ko": "서울 자가 점유 44.1%, 전세 25.4%, 월세 28.0% · 국토교통부·서울시 공동조사, 표본 1만5,000가구",
+      "en": "Seoul owner occupancy 44.1 percent, jeonse 25.4 percent, monthly rent 28.0 percent · joint MOLIT and Seoul City survey of 15,000 households",
+      "ja": "ソウルの自家占有44.1%、チョンセ25.4%、月家賃28.0% · 国土交通部とソウル市の共同調査、標本1万5,000世帯"
+     },
+     "url": ""
+    },
+    {
+     "name": {
+      "ko": "2025년 종부세 고지 통계",
+      "en": "2025 holding tax notice statistics",
+      "ja": "2025年の保有税通知統計"
+     },
+     "desc": {
+      "ko": "2025년 종부세 납세자 48만577명, 전체 주택 소유자의 약 3% · 국세청 고지 기준 보도 인용",
+      "en": "480,577 holding-tax payers in 2025, about 3 percent of all homeowners · cited from reporting on National Tax Service notices",
+      "ja": "2025年の保有税納税者は48万577人、住宅所有者全体の約3% · 国税庁通知に基づく報道の引用"
+     },
+     "url": ""
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회 · 공제·세율·공정시장가액비율은 2026년 8월 3일 발표된 세제개편안 기준이며 국회 통과 전이다. 자가 점유율은 2024년 조사 기준.",
+    "en": "Retrieved 2026-08-05 · deductions, rates and the fair market value ratio are as announced in the 3 August 2026 reform bill and have not yet passed the National Assembly. Owner occupancy is as of the 2024 survey.",
+    "ja": "2026-08-05 閲覧 · 控除・税率・公正市場価額比率は2026年8月3日発表の税制改正案に基づき、国会通過前である。自家占有率は2024年調査時点。"
+   }
+  },
+  {
    "date": "2026-08-04",
    "id": "kobeissi-stock-bond-correlation-negative-since-1999",
    "related": [
@@ -37139,6 +37461,191 @@
     "분기 리펀딩",
     "차환",
     "リファンディング"
+   ]
+  },
+  "종합부동산세": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A national tax levied once a year on people whose combined official house price exceeds a deduction threshold.",
+    "ko": "보유한 주택의 공시가격 합계가 공제 기준을 넘는 사람에게 해마다 한 번 물리는 국세.",
+    "ja": "保有する住宅の公示価格の合計が控除の基準を超える人に、年に一度課される国税。"
+   },
+   "longDesc": {
+    "en": "Because the tax only starts above a deduction threshold, changing that threshold moves who pays at all rather than how much everyone pays. In Korea only about three percent of homeowners are billed for it, which is why the deduction line, not the rate, is usually the political fight.",
+    "ko": "공제 기준선을 넘어야 세금이 시작되는 구조라, 기준선을 움직이면 세율보다 누가 아예 내느냐가 먼저 바뀐다. 한국에서 실제로 고지를 받는 사람은 주택 소유자의 약 3%뿐이고, 그래서 세율보다 공제선이 늘 정치적 다툼의 대상이 된다.",
+    "ja": "控除の基準線を超えて初めて課税される仕組みのため、基準線を動かすと税率よりも誰が納めるかが先に変わる。韓国で実際に通知を受けるのは住宅所有者の約3%にすぎず、税率より控除線が政治的争点になりやすい。"
+   },
+   "aliases": [
+    "Comprehensive Real Estate Tax",
+    "종합부동산세",
+    "종부세",
+    "総合不動産税"
+   ]
+  },
+  "공정시장가액비율": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The multiplier applied to a property's official assessed price to produce the amount actually taxed.",
+    "ko": "공시가격에 곱해서 실제로 세금을 매길 금액을 만드는 비율.",
+    "ja": "公示価格に掛けて、実際に課税する金額を作る比率。"
+   },
+   "longDesc": {
+    "en": "Governments can raise property tax without touching either the rate or the deduction simply by lifting this ratio, because it decides how much of the assessed price enters the tax base at all. That makes it a quieter lever than a rate change and one that is easy to miss when reading a reform bill.",
+    "ko": "이 비율을 올리면 세율도 공제도 건드리지 않고 세금을 늘릴 수 있다. 공시가격 가운데 얼마만큼이 과세 대상으로 들어오는지를 이 비율이 정하기 때문이다. 세율 인상보다 눈에 덜 띄는 장치라, 개편안을 읽을 때 놓치기 쉽다.",
+    "ja": "この比率を上げれば、税率も控除も触らずに税を増やせる。公示価格のうちどれだけが課税対象に入るかをこの比率が決めるからだ。税率引き上げより目立たない仕掛けで、改正案を読むとき見落としやすい。"
+   },
+   "aliases": [
+    "Fair Market Value Ratio",
+    "공정시장가액비율",
+    "公正市場価額比率"
+   ]
+  },
+  "LPU": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A chip built only to generate text from an already-trained model, rather than to train one.",
+    "ko": "모델을 학습시키는 것이 아니라, 이미 학습된 모델이 글을 만들어 내는 일만 맡도록 만든 칩.",
+    "ja": "モデルを学習させるのではなく、学習済みのモデルが文章を生み出す作業だけを担うように作られたチップ。"
+   },
+   "longDesc": {
+    "en": "Training and text generation stress a chip differently, so a part built only for generation can drop the wide external memory a training chip needs and keep its working data on the die instead. That changes which memory suppliers benefit from the chip, which is why these designs matter beyond their own performance numbers.",
+    "ko": "학습과 글 생성은 칩에 걸리는 부담이 다르다. 생성만 맡는 칩은 학습용 칩에 필요한 넓은 외부 메모리를 덜어내고 작업 데이터를 칩 안에 둘 수 있다. 그러면 어느 메모리 업체가 이 칩으로 이득을 보는지가 달라져, 성능 수치 밖에서도 의미가 생긴다.",
+    "ja": "学習と文章生成ではチップにかかる負荷が違う。生成だけを担うチップは、学習用チップに必要な広い外部メモリを外し、作業データをチップ内に置ける。するとどのメモリ企業がそのチップで得をするかが変わり、性能の数字の外でも意味を持つ。"
+   },
+   "aliases": [
+    "LPU",
+    "Language Processing Unit",
+    "언어처리장치",
+    "エルピユー"
+   ]
+  },
+  "SRAM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "Fast memory built into a chip itself, which keeps its contents as long as power is on without needing refresh.",
+    "ko": "칩 안에 직접 만들어 넣는 빠른 메모리. 전원이 켜져 있는 동안 내용을 계속 붙잡아 두며 새로 고칠 필요가 없다.",
+    "ja": "チップ内部に直接作り込む速いメモリ。電源が入っている間は内容を保ち続け、リフレッシュを必要としない。"
+   },
+   "longDesc": {
+    "en": "It is far faster and far more expensive per byte than the DRAM sitting outside the chip, so designers put only small amounts of it on a die. A design that holds its whole working set in this memory is choosing speed and giving up capacity, and it buys no external memory at all.",
+    "ko": "칩 밖에 붙는 D램보다 훨씬 빠르지만 같은 용량에 드는 값이 비싸서, 칩 안에는 적은 양만 넣는다. 작업 데이터를 통채로 이 메모리에 담는 설계는 속도를 얻고 용량을 포기하는 선택이며, 외부 메모리를 아예 사지 않는다.",
+    "ja": "チップ外に付くDRAMよりはるかに速いが、同じ容量にかかる費用が高いため、チップ内には少量しか載せない。作業データを丸ごとこのメモリに置く設計は、速度を取って容量を捨てる選択であり、外部メモリを一切買わない。"
+   },
+   "aliases": [
+    "SRAM",
+    "Static RAM",
+    "에스램",
+    "정적 메모리",
+    "エスラム"
+   ]
+  },
+  "ADAS": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The set of driver assistance features in a car, such as lane keeping and automatic braking.",
+    "ko": "차선 유지나 자동 제동처럼 운전자를 돕는 자동차의 기능 묶음.",
+    "ja": "車線維持や自動ブレーキのように、運転者を助ける自動車の機能のまとまり。"
+   },
+   "longDesc": {
+    "en": "Chips for these features have to pass automotive qualification, which takes years and locks the part in for as long as the car model is built. That is why automotive orders are booked on a foundry line many years before production and are hard to move once placed.",
+    "ko": "이 기능에 들어가는 칩은 자동차용 인증을 통과해야 하고, 인증에는 몇 년이 걸리며 한 번 정해지면 그 차종이 생산되는 동안 계속 쓰인다. 자동차 주문이 양산보다 여러 해 앞서 파운드리 라인에 잡히고, 한 번 잡히면 옥기기 어려운 이유다.",
+    "ja": "この機能に入るチップは車載認証を通す必要があり、認証には数年かかる。いったん決まればその車種が作られる間ずっと使われる。車載の受注が量産よりはるか前にファウンドリのラインへ押さえられ、いったん押さえられると動かしにくい理由でもある。"
+   },
+   "aliases": [
+    "ADAS",
+    "Advanced Driver Assistance Systems",
+    "첨단 운전자 보조 시스템",
+    "先進運転支援システム"
+   ]
+  },
+  "SoC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A single chip that packs the processor, memory controller and other blocks a whole system needs.",
+    "ko": "프로세서와 메모리 제어기 등 하나의 시스템에 필요한 부품을 한 칩에 몰아넣은 것.",
+    "ja": "プロセッサやメモリ制御など、一つのシステムに必要な部品を一つのチップにまとめたもの。"
+   },
+   "longDesc": {
+    "en": "Putting the blocks on one die cuts power and board space, which is why phones and cars use them, but it also means one foundry process has to serve every block at once. A customer that moves such a chip to a different node has to requalify the whole system, not just one part.",
+    "ko": "부품을 한 칩에 모으면 전력과 기판 면적이 줄어 휴대폰과 자동차가 이 방식을 쓴다. 대신 한 파운드리 공정이 모든 부품을 한꺼번에 감당해야 한다. 이런 칩을 다른 공정으로 옥기려면 부품 하나가 아니라 시스템 전체를 다시 검증해야 한다.",
+    "ja": "部品を一つのチップに集めると電力と基板面積が減るため、携帯電話や自動車で使われる。その代わり一つのファウンドリ工程がすべての部品をまとめて担う。こうしたチップを別の工程へ移すには、部品一つではなくシステム全体を検証し直さねばならない。"
+   },
+   "aliases": [
+    "SoC",
+    "System on Chip",
+    "시스템 온 칩",
+    "시스템온칩",
+    "システムオンチップ"
+   ]
+  },
+  "NIO": {
+   "kind": "company",
+   "ticker": "NIO",
+   "logo": "nio.com",
+   "exchange": "NYSE",
+   "founded": "2014",
+   "ceo": {
+    "en": "William Li",
+    "ko": "윈리엄 리",
+    "ja": "ウィリアム・リー"
+   },
+   "hq": {
+    "en": "Shanghai, China",
+    "ko": "중국 상하이",
+    "ja": "中国 上海"
+   },
+   "website": "https://www.nio.com",
+   "sector": {
+    "en": "Electric Vehicles",
+    "ko": "전기차",
+    "ja": "電気自動車"
+   },
+   "desc": {
+    "en": "Chinese premium electric vehicle maker, known for battery swapping stations.",
+    "ko": "배터리 교환소로 알려진 중국의 프리미엄 전기차 업체.",
+    "ja": "バッテリー交換ステーションで知られる中国のプレミアム電気自動車メーカー。"
+   },
+   "longDesc": {
+    "en": "NIO sells premium electric cars in China and Europe and runs a battery swapping network that lets a driver exchange a depleted pack rather than wait to charge. It designs its own driving computer rather than buying a finished module, which is why its chip supplier choices are followed as a signal about foundry competition.",
+    "ko": "중국과 유럽에서 프리미엄 전기차를 팔고, 방전된 배터리를 갈아 끼우고 바로 출발하는 교환소망을 운영한다. 완성된 모듈을 사 오지 않고 주행용 연산 장치를 직접 설계하기 때문에, 이 회사가 어느 파운드리를 쓰는지가 경쟁 구도의 신호로 읽힌다.",
+    "ja": "中国と欧州でプレミアム電気自動車を販売し、放電したバッテリーを交換してすぐ走り出せる交換ステーション網を運営する。完成したモジュールを買わずに走行用の演算装置を自ら設計するため、どのファウンドリを使うかが競争構図の合図として読まれる。"
+   },
+   "aliases": [
+    "NIO",
+    "NIO Inc.",
+    "니오",
+    "蔚来",
+    "ニオ"
    ]
   }
  }
