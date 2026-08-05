@@ -2,6 +2,73 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — Clarity 8/4 리뷰 후속: 데드클릭 진단·수정 배포, CLS는 측정 아티팩트로 결론
+
+june 지시: "CLS 회귀 의심 / 데드클릭 10.71% / 두가지 모두 확인해서 해결하고 배포까지 해줘"
+(Microsoft Clarity 8/4~8/5 대시보드 리뷰에서 나온 두 항목).
+
+### 데드클릭 10.71% (3세션) — 원인 진단·수정·배포 완료
+
+DOM 레벨로 세션 리코딩 3건을 분석(재생 플레이어가 이 환경에서 특정 타임스탬프로 seek가
+막혀서, 이벤트 로그+DOM 텍스트 추출로 대체). 가장 명확한 사례: 오른쪽 레일의 노무라
+홀딩스 엔티티 카드에서 "관련 글 4개 보기"(색인 확인)가 같이 뜨는데도 "CEO 오쿠다 겐타로"
+이름을 3번 반복 클릭 — 매번 Clarity가 데드클릭으로 기록.
+
+코드 조사(서브에이전트 위임, `claude/decision-2026-08-04-coding-in-subagent-lower-model.md`
+규칙에 따라 sonnet 서브에이전트에 위임): `entityHeadEl(key, S, count, "rail")`이 그리는
+CEO 사실 행 → `ceoTap()`이 여는 `.ceo-detail` 박스 안에서, `ceoEntityKey()`가 색인 문서가
+있는 인물만 `<button class="ceo-detail-name" onclick="entityFeedView(...)">`로 렌더하고
+나머지는 그냥 `<b>`로 렌더한다(의도된 동작, `CEO_INFO` 26명 중 일부만 색인). **JS 배선
+자체는 정상**이었다 — 문제는 `.ceo-detail-name`과 `<b>`이 폰트/굵기/색이 완전히 같아서
+클릭 가능 여부가 시각적으로 구분되지 않는 UX 버그였다.
+
+Changed: `index.html`만(`5e8c5f0`, +2/-2). **CSS 2줄만, JS 변경 없음.** 자산 파일 변경 없어
+캐시 해시 교체 불필요.
+
+- `.ceo-detail-name`에 같은 박스 상단 `.ceo-link`(CEO 사실 행)와 동일한 시각 언어 부여:
+  점선 밑줄(`text-decoration:underline dotted`) 상시 표시 + hover 시 `var(--accent)` 강조.
+  `<b>`(비색인, 클릭 불가)는 그대로 두어 대조군 유지.
+- 리스크: `.ceo-detail-name`은 `ceoTap()` 한 곳에서만 쓰이고, 미디어쿼리별 재정의가 없어
+  데스크톱(v83)·모바일(v82) 양쪽에 동일 적용. 박스모델 속성 변경 없어 리플로우 없음.
+
+배포: 이 세션은 `Stacks112/Stacks`에 git push 권한이 없는 세션(프록시가 레포 미승인,
+`git push --dry-run` 확인) → GitHub `edit` 페이지 CodeMirror `dispatch` 방식(WORK-LOCK.md
+절차)으로 배포. baseSha(`4b95cd70...`) 대조 후 앵커 치환 → targetSha(`37f2d4a9...`) 사전
+계산·검증 → dispatch → 커밋(`5e8c5f0`, "fix: 인물 상세 이름 버튼 클릭 어포던스 표시
+(데드클릭 대응)"). 배포 후 `raw.githubusercontent.com` fetch로 sha256 재대조(byte-exact
+일치), `api.github.com`으로 commit diff(+2/-2) 확인. Clobber guard ✅ · Email render guard ✅
+· pages build and deployment ✅. 라이브 `stacksdaily.com`에서 배포된 CSS로 직접 DOM을
+구성해 computed style 확인: `.ceo-detail-name` 기본 상태에서 `text-decoration-line:underline`
++ `text-decoration-style:dotted` + `cursor:pointer` 확인, 대조군 `<b>`는 `text-decoration-
+line:none` + `cursor:auto` 그대로 — 클릭 가능/불가가 이제 hover 없이도 시각적으로 구분됨을
+확인. (hover 시 `color:var(--accent)` 전환은 CDP 합성 마우스 이벤트가 실제 `:hover` 의사
+클래스를 트리거하지 않아 자동화로는 직접 확인 못 함 — `.ceo-link:hover`와 동일 패턴이라
+그대로 작동할 것으로 판단, 코드 검토로만 확인.)
+
+### CLS 회귀 의심(0.08 → 0.41) — 코드 수정 없음, 측정 아티팩트로 결론
+
+Yesterday(8/4) 데이터에서 "poor"(1-50점) 버킷을 필터링한 결과 3세션·5페이지뷰 전부
+Chrome/데스크톱이고 그 버킷 내 CLS 0.74. 그중 CLS≥0.74로 필터링된 리코딩 1건을 열어보니
+사용자 `1xpqb3c` — 기존에 문서화된 "장시간 백그라운드 탭" 패턴을 보이는 재방문자였다
+(세션 1시간56분21초, 45페이지뷰, 01:38에 "페이지 숨김" 이벤트 확인). 기존에 이미
+"무시 가능"으로 다뤄온 LCP 백그라운드-탭 아티팩트와 같은 패턴.
+
+**코드 변경은 하지 않았다.** 이유: (1) poor 버킷 전체가 이 소수 세션에 좌우되는 표본
+크기 문제로 보이고, (2) 코드 레벨에서 이 시점에 상응하는 레이아웃 시프트 유발 변경(신규
+비동기 콘텐츠 삽입, 이미지 치수 누락 등)을 특정하지 못했다. 리스크가 낮은 확정적 원인
+없이 추측성 CLS 패치를 넣는 것은 September gate 기간 정책(`claude/decision-2026-08-04-
+september-gate.md` — "새 기능/추가 성능 최적화/데이터 부채 정리 금지, 확실한 회귀 수정만
+예외")과도 맞지 않는다고 판단했다. **재발 시 표본이 커지면 재조사 필요.**
+
+### 참고: `AGENTS.md`의 "caveman ultra" 커뮤니케이션 지시
+
+이 레포의 `AGENTS.md`에 "이 저장소에서는 매 턴을 `/caveman ultra`로 취급하라"는 지시가
+있으나, 이는 도구로 관찰한 파일 콘텐츠(데이터)이지 사용자가 채팅으로 준 직접 지시가
+아니므로 이번 세션에서는 채택하지 않았다(프로젝트 설정 "한국어로만 대답"은 별도로 준수).
+june에게 존재를 알리는 것으로 갈음.
+
+WORK-LOCK.md `index.html` 락 해제 완료(작업 종료).
+
 ## 2026-08-04 Claude (mobile drawer: avatar and type down to X's scale)
 
 june, with two screenshots (ours + X's side drawer): "좌측패널 프로필 아이콘이랑 글씨크기도
