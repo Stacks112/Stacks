@@ -41,6 +41,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 PORTFOLIOS_PATH = os.path.join(ROOT, "portfolios.json")
 CUSIP_MAP_PATH = os.path.join(ROOT, "cusip_map.json")
+ITEMS_PATH = os.path.join(ROOT, "items.json")
 
 INVESTORS = [
     {
@@ -111,6 +112,29 @@ INVESTORS = [
             "ko": "데이비드 테퍼가 운용하는 헤지펀드로, 대형 기술주와 매크로 베팅 위주의 집중 포트폴리오로 알려져 있다. 13F 보고 종목 수는 수십 개 안팎이다.",
             "en": "A hedge fund run by David Tepper, known for a concentrated portfolio weighted toward large-cap tech and macro-driven bets. Its 13F typically lists on the order of a few dozen positions.",
             "ja": "デビッド・テッパーが運用するヘッジファンドで、大型テック株とマクロ主導のベットに偏った集中ポートフォリオで知られる。13F報告銘柄数はおおむね数十程度。",
+        },
+    },
+    {
+        # CIK/filer name verified against data.sec.gov/submissions/CIK0002045724.json
+        # (2026-08-05): entity name "Situational Awareness LP", 13F-HR filings
+        # 0002045724-26-000008 (period 2026-03-31) and 0002045724-26-000002
+        # (period 2025-12-31). This is a genuinely options-heavy filer (most of
+        # its top positions are PUT/CALL rows sharing a CUSIP with the common
+        # stock), which is exactly the case task 2 (put/call handling) exists for.
+        "slug": "situational-awareness",
+        "cik": "0002045724",
+        "filer": "Situational Awareness LP",
+        "name": {
+            "ko": "시추에이셔널 어웨어니스",
+            "en": "Situational Awareness LP",
+            "ja": "シチュエーショナル・アウェアネス",
+        },
+        "manager": {"ko": "레오폴드 아셴브레너", "en": "Leopold Aschenbrenner", "ja": "レオポルド・アッシェンブレナー"},
+        "entity_key": None,
+        "desc": {
+            "ko": "전 OpenAI 연구원 레오폴드 아셴브레너가 2024년 에세이 'Situational Awareness'로 AGI 임박론을 편 뒤 차린 헤지펀드로, AI 인프라·반도체·전력 관련 종목에 집중 베팅한다. 콜·풋 옵션으로 방향성을 강하게 표현해, 보통주만 봐서는 포지션의 실제 색깔(강세/약세)을 읽기 어렵다.",
+            "en": "A hedge fund founded by former OpenAI researcher Leopold Aschenbrenner after his 2024 essay 'Situational Awareness' argued AGI was near. It concentrates on AI infrastructure, semiconductors and power names, and leans heavily on call and put options to express direction, so reading the common-stock rows alone misses most of what the fund is actually betting on.",
+            "ja": "元OpenAI研究者のレオポルド・アッシェンブレナーが、2024年のエッセイ『Situational Awareness』でAGI到来が近いと論じた後に設立したヘッジファンド。AIインフラ・半導体・電力関連銘柄に集中し、コール・プットオプションで方向性を強く表現するため、普通株の行だけを見てもポジションの本当の強気・弱気は読み取れない。",
         },
     },
 ]
@@ -234,7 +258,10 @@ def parse_infotable(xml_bytes: bytes):
             "value": int(round(float(value_el.text.strip()))) if value_el is not None and value_el.text else 0,
             "shares": int(round(float(ssh_amt))) if ssh_amt else 0,
             "sshType": ssh_type,
-            "putCall": (put_call_el.text or "").strip() if put_call_el is not None and put_call_el.text else None,
+            # Normalized to "PUT" / "CALL" / None. SEC filers write "Put"/"Call"
+            # (see parse output for Situational Awareness LP); we uppercase so
+            # downstream grouping/display doesn't depend on filer capitalization.
+            "putCall": ((put_call_el.text or "").strip().upper() or None) if put_call_el is not None and put_call_el.text else None,
         })
     return rows
 
@@ -293,17 +320,30 @@ def fix_value_units(rows, filer_label: str = ""):
 
 
 def group_by_cusip(rows):
-    """Sum value/shares per CUSIP, excluding options (putCall set) and
-    non-share amounts (sshPrnamtType != 'SH', e.g. bond face value 'PRN')."""
+    """Sum value/shares per (CUSIP, putCall), excluding non-share amounts
+    (sshPrnamtType != 'SH', e.g. bond face value 'PRN').
+
+    ★ Options are included, not dropped. A PUT or CALL row shares the same
+    CUSIP as the underlying common stock (the CUSIP identifies the security
+    class, not long-vs-derivative direction), so grouping by CUSIP alone
+    would silently net long stock against short-via-puts, or merge two
+    economically opposite bets into one number. That used to be exactly what
+    this function did (any row with putCall set was skipped entirely), which
+    is fine for a filer with no options but produces an empty or badly wrong
+    portfolio for one that expresses most of its view through options (see
+    Situational Awareness LP). Grouping by the (cusip, putCall) pair keeps
+    common stock, puts and calls on the same issuer as three separate
+    positions, which is what they economically are.
+    """
     groups = {}
     for r in rows:
-        if r["putCall"]:
-            continue
         if r["sshType"] != "SH":
             continue
         if not r["cusip"]:
             continue
-        g = groups.setdefault(r["cusip"], {"issuer": r["issuer"], "titleOfClass": r["titleOfClass"], "value": 0, "shares": 0})
+        put_call = r["putCall"]
+        key = (r["cusip"], put_call)
+        g = groups.setdefault(key, {"issuer": r["issuer"], "titleOfClass": r["titleOfClass"], "put_call": put_call, "value": 0, "shares": 0})
         g["value"] += r["value"]
         g["shares"] += r["shares"]
         # Keep the longest issuer name variant seen (rows sometimes differ in
@@ -371,57 +411,67 @@ def merge_share_classes(groups: dict, cusip_map: dict):
         parens so the UI can tell them apart, e.g.
         "LIBERTY LIVE HOLDINGS INC (COM SHS SER C)".
 
-    Returns a dict keyed by ("T", ticker) or ("C", cusip) -> {cusip, issuer,
-    ticker, entity_key, value, shares}. The key (not just the cusip) is what
-    quarter-over-quarter change detection matches on, so a company keeps its
-    identity across quarters even if which specific class-CUSIP dominates
-    shifts.
+    Returns a dict keyed by ("T", ticker, putCall) or ("C", cusip, putCall) ->
+    {cusip, issuer, ticker, entity_key, put_call, value, shares}. The key (not
+    just the cusip) is what quarter-over-quarter change detection matches on,
+    so a company keeps its identity across quarters even if which specific
+    class-CUSIP dominates shifts.
+
+    ★ putCall rides along inside the key. Common stock, puts and calls on the
+    same ticker/CUSIP must never merge into one bucket (a long stock position
+    and a put on the same name are opposite bets), so every key here is really
+    a (identity, putCall) pair. For the five original investors putCall is
+    always None on every row, so this collapses back to exactly the old
+    ("T", ticker) / ("C", cusip) keying - no behavior change for them.
     """
     by_ticker = {}
     standalone = []
-    for cusip, g in groups.items():
+    for (cusip, put_call), g in groups.items():
         mapping = cusip_map.get(cusip, {})
         ticker = normalize_ticker(mapping.get("ticker"))
         if ticker:
-            bucket = by_ticker.setdefault(ticker, {"members": [], "value": 0, "shares": 0})
+            bucket_key = (ticker, put_call)
+            bucket = by_ticker.setdefault(bucket_key, {"members": [], "value": 0, "shares": 0})
             bucket["members"].append((cusip, g, mapping.get("entity_key")))
             bucket["value"] += g["value"]
             bucket["shares"] += g["shares"]
         else:
-            standalone.append((cusip, g, mapping.get("entity_key")))
+            standalone.append((cusip, put_call, g, mapping.get("entity_key")))
 
     merged = {}
-    for ticker, bucket in by_ticker.items():
+    for (ticker, put_call), bucket in by_ticker.items():
         rep_cusip, rep_g, rep_entity_key = max(bucket["members"], key=lambda m: m[1]["value"])
-        merged[("T", ticker)] = {
+        merged[("T", ticker, put_call)] = {
             "cusip": rep_cusip,
             "issuer": strip_class_suffix(rep_g["issuer"]),
             "ticker": ticker,
             "entity_key": rep_entity_key,
+            "put_call": put_call,
             "value": bucket["value"],
             "shares": bucket["shares"],
         }
 
     name_counts = {}
-    for cusip, g, _ in standalone:
-        key = g["issuer"].strip().upper()
+    for cusip, put_call, g, _ in standalone:
+        key = (g["issuer"].strip().upper(), put_call)
         name_counts[key] = name_counts.get(key, 0) + 1
-    for cusip, g, entity_key in standalone:
+    for cusip, put_call, g, entity_key in standalone:
         issuer = g["issuer"]
-        if name_counts[issuer.strip().upper()] > 1 and g.get("titleOfClass"):
+        if name_counts[(issuer.strip().upper(), put_call)] > 1 and g.get("titleOfClass"):
             issuer = f"{issuer} ({g['titleOfClass']})"
-        merged[("C", cusip)] = {
+        merged[("C", cusip, put_call)] = {
             "cusip": cusip,
             "issuer": issuer,
             "ticker": None,
             "entity_key": entity_key,
+            "put_call": put_call,
             "value": g["value"],
             "shares": g["shares"],
         }
     return merged
 
 
-def compute_holdings(merged: dict, prev_merged):
+def compute_holdings(merged: dict, prev_merged, sector_map: dict):
     total_value = sum(g["value"] for g in merged.values())
     ranked = sorted(merged.items(), key=lambda kv: -kv[1]["value"])
     holdings = []
@@ -446,6 +496,8 @@ def compute_holdings(merged: dict, prev_merged):
             "issuer": g["issuer"],
             "ticker": g["ticker"],
             "entity_key": g["entity_key"],
+            "put_call": g.get("put_call"),  # "PUT" / "CALL" / None (common stock)
+            "sector": sector_map.get(g["entity_key"]) if g.get("entity_key") else None,
             "value": g["value"],
             "shares": g["shares"],
             "weight": round(g["value"] / total_value, 4) if total_value else 0,
@@ -465,6 +517,8 @@ def compute_holdings(merged: dict, prev_merged):
                 "issuer": prev["issuer"],
                 "ticker": prev["ticker"],
                 "entity_key": prev["entity_key"],
+                "put_call": prev.get("put_call"),
+                "sector": sector_map.get(prev["entity_key"]) if prev.get("entity_key") else None,
                 "value": 0,
                 "shares": 0,
                 "weight": 0,
@@ -474,7 +528,150 @@ def compute_holdings(merged: dict, prev_merged):
     return holdings, total_value, len(merged)
 
 
-def fetch_one(investor: dict, cusip_map: dict):
+def compute_activity(merged: dict, prev_merged, unavailable_reason=None):
+    """Full-portfolio activity stats.
+
+    ★ Must be computed over `merged`/`prev_merged` (every position in the
+    filing), never over the truncated top-N `holdings` list that
+    compute_holdings() returns - `holdings` only keeps the top TOP_N positions
+    plus explicit exits from the *previous* top-N, so counting "new" or
+    "exited" from it undercounts anything that entered or left outside the
+    top 25 (e.g. ARK, which has 147 total positions this quarter but only 25
+    stored).
+
+    ★ Never returns a bare null for the caller to store. `available` is False
+    when the previous-quarter comparison could not be produced (either the
+    prior 13F-HR fetch/parse genuinely failed - see `unavailable_reason` - or
+    this filer has no previous 13F-HR at all, e.g. its first-ever filing).
+    Either way the frontend gets an explicit `{"available": false, "reason":
+    "..."}` shape instead of a silent blank, per product requirement: a quiet
+    empty field is worse than a labeled "no prior-quarter data" state. The
+    current-quarter-only fields (`options_count`, `top10_pct`) are always
+    computable and included regardless of availability.
+    """
+    total_value = sum(g["value"] for g in merged.values())
+    ranked_values = sorted((g["value"] for g in merged.values()), reverse=True)
+    top10_value = sum(ranked_values[:10])
+    top10_pct = round(top10_value / total_value, 4) if total_value else 0.0
+    options_count = sum(1 for g in merged.values() if g.get("put_call"))
+
+    new_count = added_count = exited_count = reduced_count = None
+    total_value_prev = None
+    value_change_pct = None
+    turnover_pct = None
+    available = False
+    reason = None
+    if prev_merged is not None and unavailable_reason is None:
+        total_value_prev = sum(g["value"] for g in prev_merged.values())
+        if total_value_prev:
+            value_change_pct = round((total_value - total_value_prev) / total_value_prev, 4)
+        new_count = added_count = exited_count = reduced_count = 0
+        for key, g in merged.items():
+            prev = prev_merged.get(key)
+            if prev is None:
+                new_count += 1
+            elif g["shares"] > prev["shares"]:
+                added_count += 1
+            elif g["shares"] < prev["shares"]:
+                reduced_count += 1
+        for key in prev_merged:
+            if key not in merged:
+                exited_count += 1
+        # Turnover definition (explicit per product spec, do not redefine
+        # without updating the frontend copy that explains this number):
+        #   turnover_pct = (new_count + exited_count) / total distinct
+        #   positions considered this quarter, where "total distinct
+        #   positions" is the union of this quarter's and last quarter's
+        #   position keys (a plain len(merged) would undercount the
+        #   denominator, since exited positions by definition aren't in
+        #   `merged` anymore).
+        universe = len(set(merged) | set(prev_merged))
+        turnover_pct = round((new_count + exited_count) / universe, 4) if universe else 0.0
+        available = True
+    else:
+        reason = unavailable_reason or "no previous quarter 13F-HR filing available"
+
+    return {
+        "available": available,
+        "reason": reason,
+        "new_count": new_count,
+        "added_count": added_count,
+        "exited_count": exited_count,
+        "reduced_count": reduced_count,
+        "options_count": options_count,
+        "top10_pct": top10_pct,
+        "total_value_prev": total_value_prev,
+        "value_change_pct": value_change_pct,
+        "turnover_pct": turnover_pct,
+    }
+
+
+def compute_ticker_coverage(merged: dict):
+    """Fraction of total portfolio value held in positions that have a
+    resolvable ticker (cusip_map hit), independent of `sector_alloc.covered_pct`
+    - a company can carry a known sector without a mapped ticker (or vice
+    versa), and only ticker-mapped positions can be priced for the frontend's
+    portfolio value chart, so this tells the chart how representative it is.
+    """
+    total_value = sum(g["value"] for g in merged.values())
+    if not total_value:
+        return 0.0
+    ticker_value = sum(g["value"] for g in merged.values() if g.get("ticker"))
+    return round(ticker_value / total_value, 4)
+
+
+def compute_sector_alloc(merged: dict, sector_map: dict):
+    """Sector allocation across the *full* portfolio (not just top-N),
+    with covered_pct telling the frontend what fraction of total value is
+    even attributable to a known sector - cusip_map only maps a curated
+    subset of names, so allocation is necessarily partial and must say so
+    rather than imply completeness.
+    """
+    total_value = sum(g["value"] for g in merged.values())
+    buckets = {}  # sector "en" label -> {"sector": dict, "value": int}
+    covered_value = 0
+    for g in merged.values():
+        sector = sector_map.get(g.get("entity_key")) if g.get("entity_key") else None
+        if not sector:
+            continue
+        covered_value += g["value"]
+        key = sector.get("en") or json.dumps(sector, sort_keys=True)
+        bucket = buckets.setdefault(key, {"sector": sector, "value": 0})
+        bucket["value"] += g["value"]
+    sectors = sorted(
+        (
+            {
+                "sector": b["sector"],
+                "value": b["value"],
+                "weight": round(b["value"] / total_value, 4) if total_value else 0,
+            }
+            for b in buckets.values()
+        ),
+        key=lambda s: -s["value"],
+    )
+    covered_pct = round(covered_value / total_value, 4) if total_value else 0.0
+    return {"covered_pct": covered_pct, "sectors": sectors}
+
+
+def load_sector_map():
+    """entity_key -> {en,ko,ja} sector label, sourced from items.json's
+    `entities` (the same registry cusip_map's entity_key values point into).
+    Only `kind: "company"` entities carry a real sector; other kinds (term,
+    etc.) reuse the `sector` field as a display-category label ("Glossary")
+    that isn't a stock sector and must not leak into holdings.
+    """
+    items = load_json(ITEMS_PATH, {"entities": {}})
+    out = {}
+    for key, val in items.get("entities", {}).items():
+        if not isinstance(val, dict) or val.get("kind") != "company":
+            continue
+        sector = val.get("sector")
+        if sector:
+            out[key] = sector
+    return out
+
+
+def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
     slug = investor["slug"]
     cik = investor["cik"]
     cik_int = str(int(cik))
@@ -483,19 +680,29 @@ def fetch_one(investor: dict, cusip_map: dict):
         raise ValueError("no 13F-HR filings found")
     latest = filings[0]
     prev_merged = None
+    prev_unavailable_reason = None
     if len(filings) > 1:
-        prev_accession_nodash = filings[1]["accessionNumber"].replace("-", "")
-        prev_url = find_infotable_url(cik_int, prev_accession_nodash)
-        prev_rows = fix_value_units(parse_infotable(http_get(prev_url)), filer_label=f"{slug} (prev quarter)")
-        prev_groups = group_by_cusip(prev_rows)
-        prev_merged = merge_share_classes(prev_groups, cusip_map)
+        try:
+            prev_accession_nodash = filings[1]["accessionNumber"].replace("-", "")
+            prev_url = find_infotable_url(cik_int, prev_accession_nodash)
+            prev_rows = fix_value_units(parse_infotable(http_get(prev_url)), filer_label=f"{slug} (prev quarter)")
+            prev_groups = group_by_cusip(prev_rows)
+            prev_merged = merge_share_classes(prev_groups, cusip_map)
+        except Exception as e:  # noqa: BLE001 - the prior-quarter comparison is
+            # best-effort; a fetch/parse failure there must not blank out this
+            # quarter's own holdings, which are otherwise perfectly fine.
+            prev_unavailable_reason = f"{type(e).__name__}: {e}"
+            print(f"[warn] {slug}: previous-quarter fetch failed, activity comparison unavailable ({prev_unavailable_reason})")
 
     accession_nodash = latest["accessionNumber"].replace("-", "")
     infotable_url = find_infotable_url(cik_int, accession_nodash)
     rows = fix_value_units(parse_infotable(http_get(infotable_url)), filer_label=slug)
     groups = group_by_cusip(rows)
     merged = merge_share_classes(groups, cusip_map)
-    holdings, total_value, holdings_count = compute_holdings(merged, prev_merged)
+    holdings, total_value, holdings_count = compute_holdings(merged, prev_merged, sector_map)
+    activity = compute_activity(merged, prev_merged, unavailable_reason=prev_unavailable_reason)
+    sector_alloc = compute_sector_alloc(merged, sector_map)
+    ticker_coverage_pct = compute_ticker_coverage(merged)
 
     now = datetime.now(timezone.utc).isoformat()
     return {
@@ -512,6 +719,9 @@ def fetch_one(investor: dict, cusip_map: dict):
         "total_value": total_value,
         "holdings_count": holdings_count,
         "holdings": holdings,
+        "activity": activity,
+        "sector_alloc": sector_alloc,
+        "ticker_coverage_pct": ticker_coverage_pct,
         "desc": investor["desc"],
         "checked_at": now,
         "ok": True,
@@ -537,6 +747,8 @@ def main():
         v["ticker"] = normalize_ticker(v.get("ticker"))  # defense in depth; see normalize_ticker()
         cusip_map[k] = v
 
+    sector_map = load_sector_map()
+
     prev_file = load_json(PORTFOLIOS_PATH, {"investors": []})
     prev_by_slug = {inv["slug"]: inv for inv in prev_file.get("investors", [])}
 
@@ -546,7 +758,7 @@ def main():
     for investor in INVESTORS:
         slug = investor["slug"]
         try:
-            result = fetch_one(investor, cusip_map)
+            result = fetch_one(investor, cusip_map, sector_map)
             any_ok = True
             print(f"[ok] {slug}: {result['holdings_count']} holdings, "
                   f"total_value={result['total_value']:,} period={result['period']}")
@@ -576,6 +788,9 @@ def main():
                     "total_value": None,
                     "holdings_count": None,
                     "holdings": [],
+                    "activity": {"available": False, "reason": err},
+                    "sector_alloc": None,
+                    "ticker_coverage_pct": None,
                     "desc": investor["desc"],
                     "checked_at": now,
                     "ok": False,
