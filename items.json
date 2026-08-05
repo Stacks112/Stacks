@@ -1077,7 +1077,7 @@
    "quote": {
     "lines": {
      "ko": [
-      "삼성전자의 HBM4 주문 물량이 급증하면서 4나노 라인 가동률이 치솔았다. 파운드리의 최대 고객은 메모리 사업부가 됐다.",
+      "삼성전자의 HBM4 주문 물량이 급증하면서 4나노 라인 가동률이 치솟았다. 파운드리의 최대 고객은 메모리 사업부가 됐다.",
       "삼성은 TSMC에서 밀려난 소량 고객까지 흡수하고 있어 5나노 공정에서 낙수 효과를 거두고 있다."
      ],
      "en": [
@@ -1085,31 +1085,31 @@
       "Samsung is absorbing even the smaller-volume customers pushed out of TSMC, so it is reaping spillover benefits on the 5nm process."
      ],
      "ja": [
-      "サムスン電子のHBM4の受注量が急増し、4ナノラインの稼働率が跡ね上がった。ファウンドリの最大の顧客はメモリ事業部になった。",
+      "サムスン電子のHBM4の受注量が急増し、4ナノラインの稼働率が跳ね上がった。ファウンドリの最大の顧客はメモリ事業部になった。",
       "サムスンはTSMCから押し出された少量の顧客まで吸収しており、5ナノ工程で恩恵を拾っている。"
      ]
     },
     "cite": "Jukan (@jukan05) · 2026.08.05"
    },
    "sum3": {
-    "ko": "4나노 라인이 내년까지 꿉 차자, 삼성전자 파운드리는 한 세대 아래인 5나노를 고객에게 대안으로 내밀기 시작했다.\n겉으로 보면 물량이 넘쳐 아래로 흘러내리는 그림이다. 2나노 문의도 계속 들어온다고 한다.\n그런데 그 5나노는 원래 자동차 전용으로 잡아 둔 라인이다. 서버·AI 주문을 받으면 2030년 양산을 예약해 둔 차량용 칩과 같은 자리를 다투게 된다.",
+    "ko": "4나노 라인이 내년까지 꽉 차자, 삼성전자 파운드리는 한 세대 아래인 5나노를 고객에게 대안으로 내밀기 시작했다.\n겉으로 보면 물량이 넘쳐 아래로 흘러내리는 그림이다. 2나노 문의도 계속 들어온다고 한다.\n그런데 그 5나노는 원래 자동차 전용으로 잡아 둔 라인이다. 서버·AI 주문을 받으면 2030년 양산을 예약해 둔 차량용 칩과 같은 자리를 다투게 된다.",
     "en": "With the 4nm line booked out through next year, Samsung Foundry has started offering customers the generation below it, 5nm, as the alternative.\nOn the surface that looks like overflow running downhill. Inquiries about 2nm keep arriving too.\nBut that 5nm line was set aside for automotive. Taking server and AI orders puts them in the same queue as car chips already booked for 2030 production.",
     "ja": "4ナノラインが来年まで埋まったことで、サムスン電子のファウンドリは一世代下の5ナノを客への代案として差し出し始めた。\n表向きは物量があふれて下へ流れる図に見える。2ナノの問い合わせも続いているという。\nしかしその5ナノは、もともと車載専用に確保されたラインだ。サーバーやAIの受注を取れば、2030年の量産を押さえた車載チップと同じ枠を争うことになる。"
    },
    "gist": {
-    "ko": "삼성전자 파운드리가 지금 고객 앞에 앞세우는 공정은 2나노도 4나노도 아닌 5나노다.\n4나노 라인이 내년까지 차 있어서, 더 미세한 공정으로 올라가기에 비용이 버겁은 팝리스에게 이미 수율이 잡힌 한 세대 아래 공정을 대신 권하는 영업으로 돌아졌다.\n\n@@BAR@@TSMC|70.4%|70.4|삼성 파운드리|7.1%|7.1@@라인을 채우는 것과 고객을 데려오는 것은 다른 일이다. 두 회사 사이의 거리는 아직 여기에 있다.@@2026-08-05 조회 · TrendForce 2026-03-12 발표, 2025년 4분기 매출 기준\n\n@@REF@@AI 수요로 4분기 상위 10대 파운드리 매출 2.6% 증가, 삼성 점유율 상승 (트렌드포스, 2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## 4나노를 채운 손님\n라인을 채운 최대 고객은 밖에서 온 팝리스가 아니라 같은 회사의 메모리 사업부다.\nHBM은 D램을 여러 층 쌍은 물건인데, 그 맨 아래에서 신호를 정리하고 밖으로 내보내는 판이 베이스 다이다.\n삼성은 이 판을 메모리 공정이 아니라 파운드리의 4나노 로직 공정에서 만든다.\n\n그래서 메모리가 잘 팜릴수록 파운드리 라인이 챡다.\n\n여기에 엔비디아의 추론 전용 칩 물량이 얹혔다고 업계는 전한다.\n엔비디아는 2025년 12월 그록의 기술을 라이선스한 뒤 2026년 3월 GTC에서 그록3 LPU를 내놓았는데, 이 칩은 HBM을 쓰지 않고 500메가바이트 SRAM을 칩 안에 두는 구조다.\nHBM을 떠받치는 판과 HBM을 쓰지 않는 칩이 같은 4나노 라인에서 나오고 있다.\n\n@@REF@@GTC 2026 기조연설, 추론의 왕 (EE 타임스, 2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\n이 기사는 그록3 LPU가 루빈 GPU와 짝을 이뤄 토큰 생성만 맡는 칩이라고 전한다.\n원문이 이름만 적고 지나간 대목이 여기서 채워진다.\n\n## 밀려난 쪽이 오는 길\n\n@@FLOW@@TSMC 3~5나노 포화|2026년 내내 사실상 예약이 차 상태로 전해진다|대형 고객 우선|애플·퀵컴·엔비디아가 물량을 먼저 가져간다|밀려난 소량 고객|중국·인도 팝리스가 대체 라인을 찾는다|삼성 5나노|수율이 잡힌 공정으로 그 물량을 받는다@@삼성이 지금 얻는 것은 최선단 수주가 아니라 남이 다 쓰고 남긴 자리다.\n\n중국·인도 팝리스가 제재를 우회해 삼성 5나노로 온다는 대목은 삼성 협력사 관계자의 전언이다.\n영어권에서 확인되는 것은 여기까지다.\n중국 전기차 니오가 자율주행 칩에 삼성 5나노를 이미 쓰고 있고, 삼성이 비야디와 자율주행 SoC를 협의 중이라는 보도가 있다.\n인도 쪽 고객 이름은 확인되지 않는다.\n\n## SF5A가 자동차와 서버 사이에 선다\n5나노 라인은 자동차 전용 공정 SF5A로 분류돼 있다.\n2030년 양산을 목표로 한 현대차 ADAS 칩, 보스반도체의 SoC, 텔레칩스의 차량용 AP가 여기에 잡혀 있다.\n\n차량용 반도체는 인증을 받는 데 몇 년이 걸리고, 한 번 잡히면 모델 수명만큼 길게 간다.\n그 자리에 서버와 AI 주문을 받으면 지금은 매출이 늘지만, 몇 년 뒤 양산에 들어갈 차량 물량이 들어설 칸이 줄어든다.\n라인이 찬다는 소식이 곳 이익이 되지 않는 이유도 여기 있다. 삼성의 비메모리 부문은 2026년 2분기에도 약 6,000억 원 손실을 낸 것으로 전해진다.\n\n갈릴 지점은 이 물량이 점유율로 옥겨 가느냐다.\n5나노에 붙은 외부 고객이 다음 세대까지 남아 삼성의 분기 파운드리 점유율을 8%대로 밀어 올리면 라인을 채운 것이 자리를 옥겨 건 것이 되고, 점유율이 7% 언저에 머물러면 이번 호황은 자기 회사 메모리가 만들어 준 한철로 남는다.",
+    "ko": "삼성전자 파운드리가 지금 고객 앞에 앞세우는 공정은 2나노도 4나노도 아닌 5나노다.\n4나노 라인이 내년까지 차 있어서, 더 미세한 공정으로 올라가기에 비용이 버거운 팹리스에게 이미 수율이 잡힌 한 세대 아래 공정을 대신 권하는 영업으로 돌아섰다.\n\n@@BAR@@TSMC|70.4%|70.4|삼성 파운드리|7.1%|7.1@@라인을 채우는 것과 고객을 데려오는 것은 다른 일이다. 두 회사 사이의 거리는 아직 여기에 있다.@@2026-08-05 조회 · TrendForce 2026-03-12 발표, 2025년 4분기 매출 기준\n\n@@REF@@AI 수요로 4분기 상위 10대 파운드리 매출 2.6% 증가, 삼성 점유율 상승 (트렌드포스, 2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## 4나노를 채운 손님\n라인을 채운 최대 고객은 밖에서 온 팹리스가 아니라 같은 회사의 메모리 사업부다.\nHBM은 D램을 여러 층 쌓은 물건인데, 그 맨 아래에서 신호를 정리하고 밖으로 내보내는 판이 베이스 다이다.\n삼성은 이 판을 메모리 공정이 아니라 파운드리의 4나노 로직 공정에서 만든다.\n\n그래서 메모리가 잘 팔릴수록 파운드리 라인이 찬다.\n\n여기에 엔비디아의 추론 전용 칩 물량이 얹혔다고 업계는 전한다.\n엔비디아는 2025년 12월 그록의 기술을 라이선스한 뒤 2026년 3월 GTC에서 그록3 LPU를 내놓았는데, 이 칩은 HBM을 쓰지 않고 500메가바이트 SRAM을 칩 안에 두는 구조다.\nHBM을 떠받치는 판과 HBM을 쓰지 않는 칩이 같은 4나노 라인에서 나오고 있다.\n\n@@REF@@GTC 2026 기조연설, 추론의 왕 (EE 타임스, 2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\n이 기사는 그록3 LPU가 루빈 GPU와 짝을 이뤄 토큰 생성만 맡는 칩이라고 전한다.\n원문이 이름만 적고 지나간 대목이 여기서 채워진다.\n\n## 밀려난 쪽이 오는 길\n\n@@FLOW@@TSMC 3~5나노 포화|2026년 내내 사실상 예약이 찬 상태로 전해진다|대형 고객 우선|애플·퀄컴·엔비디아가 물량을 먼저 가져간다|밀려난 소량 고객|중국·인도 팹리스가 대체 라인을 찾는다|삼성 5나노|수율이 잡힌 공정으로 그 물량을 받는다@@삼성이 지금 얻는 것은 최선단 수주가 아니라 남이 다 쓰고 남긴 자리다.\n\n중국·인도 팹리스가 제재를 우회해 삼성 5나노로 온다는 대목은 삼성 협력사 관계자의 전언이다.\n영어권에서 확인되는 것은 여기까지다.\n중국 전기차 니오가 자율주행 칩에 삼성 5나노를 이미 쓰고 있고, 삼성이 비야디와 자율주행 SoC를 협의 중이라는 보도가 있다.\n인도 쪽 고객 이름은 확인되지 않는다.\n\n## SF5A가 자동차와 서버 사이에 선다\n5나노 라인은 자동차 전용 공정 SF5A로 분류돼 있다.\n2030년 양산을 목표로 한 현대차 ADAS 칩, 보스반도체의 SoC, 텔레칩스의 차량용 AP가 여기에 잡혀 있다.\n\n차량용 반도체는 인증을 받는 데 몇 년이 걸리고, 한 번 잡히면 모델 수명만큼 길게 간다.\n그 자리에 서버와 AI 주문을 받으면 지금은 매출이 늘지만, 몇 년 뒤 양산에 들어갈 차량 물량이 들어설 칸이 줄어든다.\n라인이 찼다는 소식이 곧 이익이 되지 않는 이유도 여기 있다. 삼성의 비메모리 부문은 2026년 2분기에도 약 6,000억 원 손실을 낸 것으로 전해진다.\n\n갈릴 지점은 이 물량이 점유율로 옮겨 가느냐다.\n5나노에 붙은 외부 고객이 다음 세대까지 남아 삼성의 분기 파운드리 점유율을 8%대로 밀어 올리면 라인을 채운 것이 자리를 옮긴 것이 되고, 점유율이 7% 언저리에 머물면 이번 호황은 자기 회사 메모리가 만들어 준 한철로 남는다.",
     "en": "The node Samsung Foundry is now putting in front of customers is neither 2nm nor 4nm. It is 5nm.\nWith the 4nm line booked out through next year, the sales pitch has shifted to offering fabless customers who cannot absorb the cost of a finer node the generation below it, where yields are already settled.\n\n@@BAR@@TSMC|70.4%|70.4|Samsung Foundry|7.1%|7.1@@Filling a line and winning a customer are different things. This is still the distance between the two companies.@@Retrieved 2026-08-05 · TrendForce release of 2026-03-12, based on 4Q25 revenue\n\n@@REF@@AI demand drives 4Q25 global top 10 foundry revenue up 2.6% QoQ, Samsung gains share (TrendForce, 2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## Who filled the 4nm line\nThe largest customer filling that line is not an outside fabless firm. It is the memory division of the same company.\nHBM is a stack of DRAM layers, and the board at the very bottom that organises the signals and sends them out is the base die.\nSamsung builds that board not on a memory process but on the foundry's 4nm logic process.\n\nSo the better memory sells, the fuller the foundry line gets.\n\nOn top of that, industry sources say, came volume from Nvidia's dedicated inference chip.\nNvidia licensed Groq's technology in December 2025 and unveiled the Groq 3 LPU at GTC in March 2026, a chip that uses no HBM at all and instead keeps 500 megabytes of SRAM on the die itself.\nThe board that holds up HBM and the chip that refuses to use HBM are coming off the same 4nm line.\n\n@@REF@@GTC 2026 keynote: long live the inference king (EE Times, 2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\nThat article describes the Groq 3 LPU as a chip paired with Rubin GPUs and handed only the token-generation work.\nIt fills in the part the original post names and moves past.\n\n## The road the pushed-out customers take\n\n@@FLOW@@TSMC 3-5nm full|reported effectively booked through 2026|Large customers first|Apple, Qualcomm and Nvidia take the wafers ahead of others|Smaller customers pushed out|Chinese and Indian fabless firms look for another line|Samsung 5nm|takes that volume on a process whose yields are settled@@What Samsung is gaining right now is not leading-edge orders but the seats everyone else left behind.\n\nThe claim that Chinese and Indian fabless firms are coming to Samsung's 5nm to work around sanctions comes from a Samsung supply-chain partner, quoted anonymously.\nEnglish-language reporting confirms only part of it.\nChina's NIO already uses Samsung 5nm for its autonomous driving chip, and Samsung is reported to be in talks with BYD on autonomous driving SoCs.\nNo Indian customer is named anywhere.\n\n## SF5A stands between cars and servers\nThe 5nm line is classified as SF5A, a process dedicated to automotive.\nHyundai's ADAS chip targeting 2030 production, a system on chip from BOS Semiconductor, and an automotive application processor from Telechips are all booked on it.\n\nAutomotive chips take years to qualify, and once they are in they stay for the life of the model.\nPutting server and AI orders in those slots lifts revenue now, but it shrinks the room that car volumes will need when they reach production a few years out.\nThat is also why a full line does not immediately mean profit. Samsung's non-memory business is reported to have posted a loss of about 600 billion won in the second quarter of 2026.\n\nThe split is whether this volume converts into share.\nIf the outside customers on 5nm stay through the next generation and push Samsung's quarterly foundry share into the 8 percent range, filling the line will have meant moving position; if share sits near 7 percent, this run stays a season the company's own memory division paid for.",
-    "ja": "サムスン電子のファウンドリがいま客の前に差し出す工程は、2ナノでも4ナノでもなく、5ナノだ。\n4ナノラインが来年まで埋まっているため、より微細な工程へ上がる費用が重いファブレスに対して、すでに歩留まりの固まった一世代下の工程を代わりに勧める営業へ切り替えた。\n\n@@BAR@@TSMC|70.4%|70.4|サムスン ファウンドリ|7.1%|7.1@@ラインを埋めることと客を連れてくることは別の仕事だ。両社の距離はまだここにある。@@2026-08-05 閲覧 · TrendForce 2026-03-12 発表、2025年第4四半期の売上基準\n\n@@REF@@AI需要で第4四半期の上位10社ファウンドリ売上が2.6%増、サムスンはシェア上昇 (トレンドフォース、2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## 4ナノを埋めた客\nラインを埋めた最大の顧客は、外から来たファブレスではなく同じ会社のメモリ事業部だ。\nHBMはDRAMを何層も積んだ製品で、その一番下で信号を整えて外へ送り出す板がベースダイだ。\nサムスンはこの板をメモリ工程ではなく、ファウンドリの4ナノロジック工程で作っている。\n\nだからメモリが売れるほどファウンドリのラインが埋まる。\n\nそこにエヌビディアの推論専用チップの物量が乗ったと業界は伝える。\nエヌビディアは2025年12月にGroqの技術をライセンスし、2026年3月のGTCでGroq 3 LPUを出した。このチップはHBMを使わず、500メガバイトのSRAMをチップ内に置く構造だ。\nHBMを支える板と、HBMを使わないチップが、同〘4ナノラインから出ている。\n\n@@REF@@GTC 2026 基調講演、推論の王 (EEタイムズ、2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\nこの記事は、Groq 3 LPUがRubin GPUと組んでトークン生成だけを担うチップだと伝えている。\n原文が名前だけ書いて通り過ぎた部分が、ここで埋まる。\n\n## 押し出された側が来る道\n\n@@FLOW@@TSMC 3~5ナノの逸迫|2026年を通じて事実上予約が埋まっていると伝えられる|大口顧客が先|アップル・クアルコム・エヌビディアが先にウェハーを取る|押し出された少量顧客|中国とインドのファブレスが代替ラインを探す|サムスン5ナノ|歩留まりの固まった工程でその物量を受ける@@サムスンがいま得ているのは最先端の受注ではなく、他社が使い切って残した席だ。\n\n中国とインドのファブレスが制裁を回避してサムスンの5ナノへ来るという篇所は、サムスンの協力会社関係者の伝語である。\n英語圏で確認できるのはここまでだ。\n中国のNIOが自動運転チップにサムスンの5ナノをすでに使っており、サムスンがBYDと自動運転SoCを協議中だという報道がある。\nインド側の顧客名は確認されない。\n\n## SF5Aが車とサーバーの間に立つ\n5ナノラインは車載専用工程SF5Aとして分類されている。\n2030年の量産を目指す現代自動車のADASチップ、ボス半導体のSoC、テレチップスの車載APがここに押さえられている。\n\n車載半導体は認証に数年かかり、いったん入るとモデルの寿命の分だけ長く居座る。\nその枠にサーバーやAIの受注を入れれば足元の売上は伸びるが、数年後に量産へ入る車載の物量が座る席は狭くなる。\nラインが埋まった知らせがすぐ利益にならない理由もここにある。サムスンの非メモリ部門は2026年第2四半期にも約6,000億ウォンの損失を出したと伝えられる。\n\n分かれ目は、この物量がシェアへ移るかどうかだ。\n5ナノに付いた外部顧客が次の世代まで残ってサムスンの四半期ファウンドリシェアを8%台へ押し上げれば、ラインを埋めたことが位置を動かしたことになり、シェアが7%前後にとどまれば、今回の活況は自社メモリが作ってくれた一季節として残る。"
+    "ja": "サムスン電子のファウンドリがいま客の前に差し出す工程は、2ナノでも4ナノでもなく5ナノだ。\n4ナノラインが来年まで埋まっているため、より微細な工程へ上がる費用が重いファブレスに対して、すでに歩留まりの固まった一世代下の工程を代わりに勧める営業へ切り替えた。\n\n@@BAR@@TSMC|70.4%|70.4|サムスン ファウンドリ|7.1%|7.1@@ラインを埋めることと客を連れてくることは別の仕事だ。両社の距離はまだここにある。@@2026-08-05 閲覧 · TrendForce 2026-03-12 発表、2025年第4四半期の売上基準\n\n@@REF@@AI需要で第4四半期の上位10社ファウンドリ売上が2.6%増、サムスンはシェア上昇 (トレンドフォース、2026-03-12)|https://www.trendforce.com/presscenter/news/20260312-12965.html|https://img.trendforce.com/EDM/2026/03/20260312_163034_3.jpg\n\n## 4ナノを埋めた客\nラインを埋めた最大の顧客は、外から来たファブレスではなく同じ会社のメモリ事業部だ。\nHBMはDRAMを何層も積んだ製品で、その一番下で信号を整えて外へ送り出す板がベースダイだ。\nサムスンはこの板をメモリ工程ではなく、ファウンドリの4ナノロジック工程で作っている。\n\nだからメモリが売れるほどファウンドリのラインが埋まる。\n\nそこにエヌビディアの推論専用チップの物量が乗ったと業界は伝える。\nエヌビディアは2025年12月にGroqの技術をライセンスし、2026年3月のGTCでGroq 3 LPUを出した。このチップはHBMを使わず、500メガバイトのSRAMをチップ内に置く構造だ。\nHBMを支える板と、HBMを使わないチップが、同じ4ナノラインから出ている。\n\n@@REF@@GTC 2026 基調講演、推論の王 (EEタイムズ、2026-03-20)|https://www.eetimes.com/gtc-2026-keynote-long-live-the-inference-king/|https://www.eetimes.com/wp-content/uploads/Inference-King-sq.jpg\n\nこの記事は、Groq 3 LPUがRubin GPUと組んでトークン生成だけを担うチップだと伝えている。\n原文が名前だけ書いて通り過ぎた部分が、ここで埋まる。\n\n## 押し出された側が来る道\n\n@@FLOW@@TSMC 3~5ナノの逼迫|2026年を通じて事実上予約が埋まっていると伝えられる|大口顧客が先|アップル・クアルコム・エヌビディアが先にウェハーを取る|押し出された少量顧客|中国とインドのファブレスが代替ラインを探す|サムスン5ナノ|歩留まりの固まった工程でその物量を受ける@@サムスンがいま得ているのは最先端の受注ではなく、他社が使い切って残した席だ。\n\n中国とインドのファブレスが制裁を回避してサムスンの5ナノへ来るという箇所は、サムスンの協力会社関係者の伝聞である。\n英語圏で確認できるのはここまでだ。\n中国のNIOが自動運転チップにサムスンの5ナノをすでに使っており、サムスンがBYDと自動運転SoCを協議中だという報道がある。\nインド側の顧客名は確認されない。\n\n## SF5Aが車とサーバーの間に立つ\n5ナノラインは車載専用工程SF5Aとして分類されている。\n2030年の量産を目指す現代自動車のADASチップ、ボス半導体のSoC、テレチップスの車載APがここに押さえられている。\n\n車載半導体は認証に数年かかり、いったん入るとモデルの寿命の分だけ長く居座る。\nその枠にサーバーやAIの受注を入れれば足元の売上は伸びるが、数年後に量産へ入る車載の物量が座る席は狭くなる。\nラインが埋まった知らせがすぐ利益にならない理由もここにある。サムスンの非メモリ部門は2026年第2四半期にも約6,000億ウォンの損失を出したと伝えられる。\n\n分かれ目は、この物量がシェアへ移るかどうかだ。\n5ナノに付いた外部顧客が次の世代まで残ってサムスンの四半期ファウンドリシェアを8%台へ押し上げれば、ラインを埋めたことが位置を動かしたことになり、シェアが7%前後にとどまれば、今回の活況は自社メモリが作ってくれた一季節として残る。"
    },
    "why": {
-    "ko": "가동률이 올라간 파운드리는 보통 회복 신호로 읽힌다. 이번 국면에서 확인해야 할 것은 그 라인을 누가 채웠느냐다. 최대 고객이 같은 회사의 메모리 사업부이고, 밖에서 온 물량은 TSMC에서 밀려난 소량 주문이라면, 라인이 챰는 것과 시장에서 자리를 옥기는 것은 다른 일이 된다.",
+    "ko": "가동률이 올라간 파운드리는 보통 회복 신호로 읽힌다. 이번 국면에서 확인해야 할 것은 그 라인을 누가 채웠느냐다. 최대 고객이 같은 회사의 메모리 사업부이고, 밖에서 온 물량은 TSMC에서 밀려난 소량 주문이라면, 라인이 차는 것과 시장에서 자리를 옮기는 것은 다른 일이 된다.",
     "en": "A foundry running at higher utilisation is usually read as a recovery signal. What has to be checked here is who filled the line. If the largest customer is the memory division of the same company and the outside volume is small orders pushed out of TSMC, then filling the line and moving position in the market are two different things.",
     "ja": "稼働率が上がったファウンドリはふつう回復の合図として読まれる。この局面で確かめるべきは、そのラインを誰が埋めたかだ。最大の顧客が同じ会社のメモリ事業部で、外から来た物量がTSMCから押し出された少量の受注なら、ラインが埋まることと市場で位置を動かすことは別の話になる。"
    },
    "ask": {
-    "ko": "삼성 파운드리가 최선단 대신 5나노를 앞세우며 물량을 채우고 있다. 이것은 고객 기반을 넓히는 발판일까, 아니면 자동차용으로 잡아 둔 자리를 당겨 쓰는 것일까?",
+    "ko": "삼성 파운드리가 최선단 대신 5나노를 앞세워 물량을 채우고 있다. 이것은 고객 기반을 넓히는 발판일까, 아니면 자동차용으로 잡아 둔 자리를 당겨 쓰는 것일까?",
     "en": "Samsung Foundry is filling capacity by leading with 5nm instead of its most advanced node. Is that a foothold for widening the customer base, or borrowing against seats reserved for automotive?",
-    "ja": "サムスンのファウンドリは最先端ではなぇ5ナノを前面に出して物量を埋めている。これは顧客基盤を広げる足がかりだろうか、それとも車載向けに確保した枠を前借りしているのだろうか。"
+    "ja": "サムスンのファウンドリは最先端ではなく5ナノを前面に出して物量を埋めている。これは顧客基盤を広げる足がかりだろうか、それとも車載向けに確保した枠を前借りしているのだろうか。"
    },
    "outcome": {
     "status": "pending",
@@ -1136,13 +1136,12 @@
       "ja": "2026年第3四半期の集計 (2026年12月公表予定)"
      },
      "hit": {
-      "ko": "점유율 8.0% 이상 → 채운 라인이 시장 자리로 옥겨 갔다",
+      "ko": "점유율 8.0% 이상 → 채운 라인이 시장 자리로 옮겨 갔다",
       "en": "Share at 8.0 percent or above → the filled line converted into market position",
-      "ja": "シェアが8.0%以上 → 埋まったラインが市場での位置に移った",
-      "da": ""
+      "ja": "シェアが8.0%以上 → 埋まったラインが市場での位置に移った"
      },
      "miss": {
-      "ko": "점유율 8.0% 미만 → 라인은 챠지만 자리는 그대로다",
+      "ko": "점유율 8.0% 미만 → 라인은 찼지만 자리는 그대로다",
       "en": "Share below 8.0 percent → the line filled but the position did not move",
       "ja": "シェアが8.0%未満 → ラインは埋まったが位置は変わらない"
      }
@@ -1216,9 +1215,9 @@
     }
    ],
    "sourcesAsOf": {
-    "ko": "2026-08-05 조회 · 점유율은 2025년 4분기 매출 기준이며 트렌드포스 2026-03-12 발표값이다. 4나노 만석·5나노 영업 전환·중국·인도 팝리스 유입은 국내 업계 관계자 전언이고 회사 확인은 없다.",
+    "ko": "2026-08-05 조회 · 점유율은 2025년 4분기 매출 기준이며 트렌드포스 2026-03-12 발표값이다. 4나노 만석·5나노 영업 전환·중국·인도 팹리스 유입은 국내 업계 관계자 전언이고 회사 확인은 없다.",
     "en": "Retrieved 2026-08-05 · share figures are on 4Q25 revenue as published by TrendForce on 2026-03-12. The fully booked 4nm line, the shift to selling 5nm and the inflow of Chinese and Indian fabless customers come from Korean industry sources and have not been confirmed by the company.",
-    "ja": "2026-08-05 閲覧 · シェアは2025年第4四半期の売上基準で、トレンドフォースが2026-03-12に発表した値である。4ナノの満杯、5ナノへの営業転換、中国・インドのファブレス流入は韓国業界関係者の伝聴であり、会社の確認はない。"
+    "ja": "2026-08-05 閲覧 · シェアは2025年第4四半期の売上基準で、トレンドフォースが2026-03-12に発表した値である。4ナノの満杯、5ナノへの営業転換、中国・インドのファブレス流入は韓国業界関係者の伝聞であり、会社の確認はない。"
    },
    "ts": "2026-08-05T13:27:01.193906+00:00"
   },
@@ -38574,7 +38573,7 @@
     "LPU",
     "Language Processing Unit",
     "언어처리장치",
-    "エルピユー"
+    "エルピーユー"
    ]
   },
   "SRAM": {
@@ -38591,7 +38590,7 @@
    },
    "longDesc": {
     "en": "It is far faster and far more expensive per byte than the DRAM sitting outside the chip, so designers put only small amounts of it on a die. A design that holds its whole working set in this memory is choosing speed and giving up capacity, and it buys no external memory at all.",
-    "ko": "칩 밖에 붙는 D램보다 훨씬 빠르지만 같은 용량에 드는 값이 비싸서, 칩 안에는 적은 양만 넣는다. 작업 데이터를 통채로 이 메모리에 담는 설계는 속도를 얻고 용량을 포기하는 선택이며, 외부 메모리를 아예 사지 않는다.",
+    "ko": "칩 밖에 붙는 D램보다 훨씬 빠르지만 같은 용량에 드는 값이 비싸서, 칩 안에는 적은 양만 넣는다. 작업 데이터를 통째로 이 메모리에 담는 설계는 속도를 얻고 용량을 포기하는 선택이며, 외부 메모리를 아예 사지 않는다.",
     "ja": "チップ外に付くDRAMよりはるかに速いが、同じ容量にかかる費用が高いため、チップ内には少量しか載せない。作業データを丸ごとこのメモリに置く設計は、速度を取って容量を捨てる選択であり、外部メモリを一切買わない。"
    },
    "aliases": [
@@ -38616,8 +38615,8 @@
    },
    "longDesc": {
     "en": "Chips for these features have to pass automotive qualification, which takes years and locks the part in for as long as the car model is built. That is why automotive orders are booked on a foundry line many years before production and are hard to move once placed.",
-    "ko": "이 기능에 들어가는 칩은 자동차용 인증을 통과해야 하고, 인증에는 몇 년이 걸리며 한 번 정해지면 그 차종이 생산되는 동안 계속 쓰인다. 자동차 주문이 양산보다 여러 해 앞서 파운드리 라인에 잡히고, 한 번 잡히면 옥기기 어려운 이유다.",
-    "ja": "この機能に入るチップは車載認証を通す必要があり、認証には数年かかる。いったん決まればその車種が作られる間ずっと使われる。車載の受注が量産よりはるか前にファウンドリのラインへ押さえられ、いったん押さえられると動かしにくい理由でもある。"
+    "ko": "이 기능에 들어가는 칩은 자동차용 인증을 통과해야 하고, 인증에는 몇 년이 걸리며 한 번 정해지면 그 차종이 생산되는 동안 계속 쓰인다. 자동차 주문이 양산보다 여러 해 앞서 파운드리 라인에 잡히고, 한 번 잡히면 옮기기 어려운 이유다.",
+    "ja": "この機能に入るチップは車載認証を通す必要があり、認証には数年かかる。いったん決まればその車種が作られる間ずっと使われる。車載の受注が量産よりはるかに前にファウンドリのラインへ押さえられ、動かしにくい理由でもある。"
    },
    "aliases": [
     "ADAS",
@@ -38640,7 +38639,7 @@
    },
    "longDesc": {
     "en": "Putting the blocks on one die cuts power and board space, which is why phones and cars use them, but it also means one foundry process has to serve every block at once. A customer that moves such a chip to a different node has to requalify the whole system, not just one part.",
-    "ko": "부품을 한 칩에 모으면 전력과 기판 면적이 줄어 휴대폰과 자동차가 이 방식을 쓴다. 대신 한 파운드리 공정이 모든 부품을 한꺼번에 감당해야 한다. 이런 칩을 다른 공정으로 옥기려면 부품 하나가 아니라 시스템 전체를 다시 검증해야 한다.",
+    "ko": "부품을 한 칩에 모으면 전력과 기판 면적이 줄어 휴대폰과 자동차가 이 방식을 쓴다. 대신 한 파운드리 공정이 모든 부품을 한꺼번에 감당해야 한다. 이런 칩을 다른 공정으로 옮기려면 부품 하나가 아니라 시스템 전체를 다시 검증해야 한다.",
     "ja": "部品を一つのチップに集めると電力と基板面積が減るため、携帯電話や自動車で使われる。その代わり一つのファウンドリ工程がすべての部品をまとめて担う。こうしたチップを別の工程へ移すには、部品一つではなくシステム全体を検証し直さねばならない。"
    },
    "aliases": [
@@ -38659,7 +38658,7 @@
    "founded": "2014",
    "ceo": {
     "en": "William Li",
-    "ko": "윈리엄 리",
+    "ko": "윌리엄 리",
     "ja": "ウィリアム・リー"
    },
    "hq": {
@@ -38681,7 +38680,7 @@
    "longDesc": {
     "en": "NIO sells premium electric cars in China and Europe and runs a battery swapping network that lets a driver exchange a depleted pack rather than wait to charge. It designs its own driving computer rather than buying a finished module, which is why its chip supplier choices are followed as a signal about foundry competition.",
     "ko": "중국과 유럽에서 프리미엄 전기차를 팔고, 방전된 배터리를 갈아 끼우고 바로 출발하는 교환소망을 운영한다. 완성된 모듈을 사 오지 않고 주행용 연산 장치를 직접 설계하기 때문에, 이 회사가 어느 파운드리를 쓰는지가 경쟁 구도의 신호로 읽힌다.",
-    "ja": "中国と欧州でプレミアム電気自動車を販売し、放電したバッテリーを交換してすぐ走り出せる交換ステーション網を運営する。完成したモジュールを買わずに走行用の演算装置を自ら設計するため、どのファウンドリを使うかが競争構図の合図として読まれる。"
+    "ja": "中国と欧州でプレミアム電気自動車を販売し、放電したバッテリーを交換してすぐ走り出せる交換ステーション網を運営する。完成したモジュールを買わずに走行用の演算装置を自ら設計するため、どのファウンドリを使うかが競争の合図として読まれる。"
    },
    "aliases": [
     "NIO",
