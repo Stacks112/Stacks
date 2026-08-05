@@ -2,6 +2,72 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-opus-5) — 자동 발행 회차 속도 개선 (규칙 통합 + 후보 선별 스크립트)
+
+커밋 `577247b chore: add scripts/pick_candidates.py`. **레포 변경은 이 신규 파일 1개뿐이다.**
+`index.html` · `items.json` · 기존 `scripts/*` · `.github/workflows/*` 전부 무변경.
+나머지 조치는 전부 프로젝트 문서(`claude/prompts/`) 쪽이라 레포에 영향이 없다.
+
+### 왜
+
+june: "이 예약 작업이 발행하는데 시간이 되게 오래걸리거든? 문제 파악해봐."
+실측 회차 소요가 50~130분인데, 인프라는 전부 빨랐다 — `git clone --depth 1` 8.0초,
+`items.json`(4.79MB) 파싱 0.29초, `check_term_coverage.py` 0.74초,
+`check_source_dependence.py` 0.18초. 합쳐 1분이 안 된다.
+병목은 **모델의 읽기·쓰기 토큰**이었다: 규칙 5문서(89,627자)를 매 회차 새 세션에서 다시 읽는
+고정비와, 피드 26개(245건)를 손으로 훑어 48시간 창·중복·상한을 판정하던 작업.
+
+### `scripts/pick_candidates.py` (신규, 501줄, 표준 라이브러리만, 네트워크 없음)
+
+레포 루트에서 `python3 scripts/pick_candidates.py`. **0.116초에 약 110줄 브리핑**을 찍는다.
+
+- `DOUBLE-RUN:` — `git log -1 origin/main` 으로 이중 실행 판정(`content:`/`fix(content):` 30분 창)
+- `=== 후보 ===` — 48시간 창 통과 + 미발행. 소스 표시명별로 묶고 `[debut]`(신규 소스 7일 창)·
+  `[short]`(본문 200자 미만) 표시. **중복 판정은 정규화 키로 한다** — naver는 글 ID,
+  x.com은 status ID, truthsocial/trumpstruth는 경로 내 최장 숫자열, 그 밖은 스킴·`www.`·
+  쿼리스트링·말미 슬래시 제거
+- `=== 소스별 상한 ===` — `sources.json` 의 `_CAPS`. **짝 피드(`kuo`/`kuo_x`, `bilello`/`bilello_x`)는
+  `source` 표시명 기준으로 자동 합산**된다(feed_id로 세면 상한이 두 배가 된다)
+- `=== 최근 7일 카드 0건 소스 ===` · `=== 편중 ===`(7·14일 소스별 비율) · `MACRO:`(매크로 카드 경과일)
+- 맨 끝 요약: 총 후보 / 이미 발행 제외 / 창 밖 제외 / 파싱 실패
+
+**품질 판정은 하지 않는다** — 투자 관련성·잡담 여부·같은 서사 반복·연속 게시물 묶기는 모델 몫이다.
+실패해도 죽지 않는다(git 없으면 `DOUBLE-RUN: unknown`, `items.json`/`sources.json` 못 읽을 때만 종료코드 2).
+
+실측(08-05 08:50Z): 245건 → 후보 92건 / 이미 발행 제외 13건 / 창 밖 제외 153건 / 파싱 실패 0건.
+
+확인된 것 둘: 26개 피드 스키마는 완전히 균일하다(`title`/`link`/`published`/`content`,
+`published` 는 항상 ISO8601 오프셋 포함 — 네이버도 `+09:00`). `feeds/trump.json` 은
+`content` 가 전부 빈 문자열이라 전건 `[short]` 로 잡히는데 **버그가 아니라 원본 피드 특성**이다.
+
+### 프로젝트 문서 쪽 (레포 무관, 참고용)
+
+발행 규칙 체인 `v4.3 → v4.4 → v4.5 → v4.6 → v4.7`(89,627자)을
+`claude/prompts/publish-runbook.md`(56,519자) **한 문서로 통합**했다. override 8건 해소,
+원문 문장은 그대로 이관(요약 안 함). 진입점 `publish-v4.3.md` 는 runbook 으로 가는 얇은
+리다이렉트가 됐고 옛 내용은 `claude/prompts/archive/publish-v4.3-original.md` 에 있다.
+`[9]` 보고 16항목은 `[6]` 6항목으로 줄였다(검사기 출력은 요약하지 말고 붙여넣기).
+**예약 트리거는 건드리지 않았다** — 프롬프트에 시크릿 평문이 있어 전체 교체를 피했다.
+
+### Codex 쪽에서 알아야 할 것
+
+- `scripts/pick_candidates.py` 는 **읽기 전용**이다. `items.json`·`feeds/`·`sources.json` 을
+  읽기만 하고 아무것도 쓰지 않는다. CI 워크플로 어디에도 아직 연결돼 있지 않다.
+- `sources.json` 의 `_CAPS` 스키마에 의존한다. **상한을 바꿀 때 `_CAPS` 만 고치면 되고**
+  이 스크립트는 고치지 않아도 된다. 다만 `_CAPS` 블록 이름·키를 바꾸면 스크립트가 `[WARN]` 을 낸다.
+- 피드 항목 스키마(`published` 의 ISO8601 오프셋)에 의존한다. `feed-sync.yml` 이 피드 형식을
+  바꾸면 여기도 같이 봐야 한다.
+
+### 남은 위험
+
+**`[1-0]` 이중 실행 방지가 실제로는 작동하지 않는다.** 30분 창을 가정했는데 실측 회차가
+90~130분이다. 회차가 150분 상한까지 가면 다음 회차와 겹치는데, 앞 회차가 아직 커밋 전이라
+30분 창에 걸리지 않는다. 2026-08-03 04:47Z 충돌과 같은 구멍이다. 옛 방어선이던
+"push 직전 `git fetch`" 는 발행 경로가 D1 큐로 옮겨져 더 이상 존재하지 않는다.
+june 이 이번 범위에서 뺀 항목이라 **미착수**다.
+
+상세: `claude/status-2026-08-05-publish-round-speed-rules-consolidated.md`
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 캘린더 화면 새 글 배너 홈 피드 전용화
 
 커밋 `4d8dc09c fix(calendar): hide new-post banner outside home feed`.
