@@ -703,13 +703,48 @@ function surgeSlug(k) {
   return String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g, "_").replace(/^_+|_+$/g, "");
 }
 
+/* Taiwan-listed tickers in items.json are bare numbers with no exchange
+   hint attached (unlike the .ks/.jp/.us suffixes used elsewhere), so
+   Yahoo's .TW (TWSE) vs .TWO (TPEx/OTC) suffix can't be derived from the
+   digits alone. Hardcoded per known follow; extend as more Taiwan
+   companies with bare-numeric tickers are added. */
+const TAIWAN_TICKER_EXCHANGE = {
+  "8271": "TWO", // APACER TECHNOLOGY - Taipei Exchange (OTC)
+  "2344": "TW"   // WINBOND ELECTRONICS - Taiwan Stock Exchange
+};
+
 /* stooq-style ticker -> Yahoo symbol, identical mapping to the /quote route. */
 function yahooSymbol(rawTicker) {
-  const s = String(rawTicker || "").toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 20);
+  let raw = String(rawTicker || "").trim();
+  if (!raw) return "";
+
+  /* dual-listing notation, e.g. "1347 / 688347" (HUA HONG) or
+     "688981 / 0981" (SMIC): one HKEX code plus one Shanghai STAR-market
+     code (6 digits, "688" prefix). MUST split on "/" before the generic
+     cleanup below, which strips spaces and slashes and would otherwise
+     mash both codes into one invalid symbol (e.g. "1347688347"). Prefer
+     the non-688xxx (HKEX) code -- Yahoo tends to serve Hong Kong-listed
+     data more reliably than mainland STAR-market tickers for the same
+     company; this is a reasonable default, not network-verified. HKEX
+     codes are zero-padded to 4 digits for Yahoo (e.g. "981" -> "0981"). */
+  if (raw.indexOf("/") !== -1) {
+    const parts = raw.split("/").map(p => p.trim()).filter(Boolean);
+    const hk = parts.find(p => !/^688\d{3}$/.test(p));
+    raw = hk || parts[0] || "";
+    if (/^\d+$/.test(raw)) raw = raw.padStart(4, "0") + ".hk";
+  }
+
+  const s = raw.toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 20);
   if (!s) return "";
   if (s.endsWith(".us")) return s.slice(0, -3).toUpperCase();
   if (s.endsWith(".ks")) return s.slice(0, -3).toUpperCase() + ".KS";
   if (s.endsWith(".jp")) return s.slice(0, -3).toUpperCase() + ".T";
+  /* Yahoo has no ".moex" suffix; Moscow Exchange listings use ".ME".
+     Note: Western sanctions may mean Yahoo simply has no data for
+     Russian tickers regardless of symbol format -- that would be a
+     separate, legitimate scan failure, not a symbol-mapping bug. */
+  if (s.endsWith(".moex")) return s.slice(0, -5).toUpperCase() + ".ME";
+  if (TAIWAN_TICKER_EXCHANGE[s]) return s.toUpperCase() + "." + TAIWAN_TICKER_EXCHANGE[s];
   return s.toUpperCase();
 }
 
@@ -1030,7 +1065,8 @@ export default {
        Ranged daily/intraday prices via Yahoo Finance with a cache,
        so cards & charts can show prices. */
     if (url.pathname === "/quote") {
-      const s = (url.searchParams.get("s") || "").toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 20);
+      const rawS = url.searchParams.get("s") || "";
+      const s = rawS.toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 20);
       if (!s) return json({ error: "s required" }, 400, origin);
       /* range support for real charts. r = 1d | 5d | 1mo | 6mo | 1y */
       const RANGES = {
@@ -1050,13 +1086,9 @@ export default {
         return new Response(body, { status: 200,
           headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=" + R.ttl, ...cors(origin) } });
       }
-      /* map stooq-style tickers to Yahoo symbols:
-         aapl.us -> AAPL, 000660.ks -> 000660.KS, 7203.jp -> 7203.T */
-      let ysym = s;
-      if (s.endsWith(".us")) ysym = s.slice(0, -3).toUpperCase();
-      else if (s.endsWith(".ks")) ysym = s.slice(0, -3).toUpperCase() + ".KS";
-      else if (s.endsWith(".jp")) ysym = s.slice(0, -3).toUpperCase() + ".T";
-      else ysym = s.toUpperCase();
+      /* map stooq-style tickers to Yahoo symbols; use the raw (pre-sanitized)
+         query value so the dual-listing "/" split in yahooSymbol() still works. */
+      const ysym = yahooSymbol(rawS);
       let t = [], closes = [], meta = null;
       try {
         const yr = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/"
