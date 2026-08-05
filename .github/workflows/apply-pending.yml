@@ -1,0 +1,200 @@
+name: Apply pending cards
+
+# 자동 발행 파이프라인의 마지막 구간.
+#
+# 예약(Cowork) 세션은 클라우드 git 프록시 때문에 저장소에 push 를 못 한다
+# (미해결 이슈 anthropics/claude-code#76248 — PAT 를 넣어도 403, api.github.com 도 403).
+# 그래서 세션은 완성한 카드를 Cloudflare D1 의 pending_cards 테이블에 INSERT 만 하고,
+# 이 워크플로가 10분마다 큐를 비워 items.json 에 병합·커밋한다.
+# 그 뒤는 og-assets.yml 이 이어받아 p/ e/ og/ sitemap feed 를 굽는다.
+#
+# D1 은 Cloudflare API 로 직접 읽는다. 필요한 시크릿 CLOUDFLARE_API_TOKEN 은
+# deploy-worker.yml 이 이미 쓰고 있는 것을 그대로 재사용한다 — 새로 만들 것이 없다.
+#
+#   payload 형식: {"item": {...items.json 항목 1개...}, "entities": {"용어": {...}, ...}}
+#
+# 멱등: 이미 items.json 에 있는 id 는 건너뛴다. 커밋에 성공한 행만 D1 에서 지우므로,
+# push 경합으로 이번 회차가 실패해도 큐가 남아 10분 뒤 회차가 그대로 다시 처리한다.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apply-pending
+  cancel-in-progress: false
+
+env:
+  CF_ACCOUNT_ID: "898876c2b7fe1652e72736e182ad610b"
+  CF_DATABASE_ID: "ddc4f84e-badf-4ff2-9b4e-f07c378784cf"
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Merge queued cards into items.json
+        id: merge
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          python - <<'PY'
+          import json, os, re, urllib.request, urllib.error
+
+          ACCOUNT = os.environ["CF_ACCOUNT_ID"]
+          DB      = os.environ["CF_DATABASE_ID"]
+          TOKEN   = os.environ.get("CF_API_TOKEN") or ""
+          URL     = ("https://api.cloudflare.com/client/v4/accounts/%s"
+                     "/d1/database/%s/query" % (ACCOUNT, DB))
+
+          def d1(sql, params=None):
+              body = json.dumps({"sql": sql, "params": params or []}).encode()
+              req = urllib.request.Request(URL, data=body, method="POST", headers={
+                  "Authorization": "Bearer " + TOKEN,
+                  "Content-Type": "application/json",
+              })
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  out = json.loads(r.read().decode())
+              if not out.get("success"):
+                  raise RuntimeError("D1 error: %s" % out.get("errors"))
+              return out["result"][0].get("results", [])
+
+          if not TOKEN:
+              print("CLOUDFLARE_API_TOKEN is not set - nothing to do")
+              raise SystemExit(0)
+
+          try:
+              queue = d1("SELECT id, payload FROM pending_cards "
+                         "ORDER BY created_at ASC LIMIT 50")
+          except Exception as e:
+              # 큐를 못 읽는 것은 회차 실패가 아니다. 10분 뒤 다시 시도한다.
+              print("queue read failed (%s)" % e)
+              raise SystemExit(0)
+
+          if not queue:
+              print("empty queue")
+              raise SystemExit(0)
+
+          with open("items.json", encoding="utf-8") as f:
+              data = json.load(f)
+
+          have     = {it.get("id") for it in data["items"]}
+          entities = data.setdefault("entities", {})
+
+          added, applied, titles, new_terms = [], [], [], []
+          for row in queue:                        # created_at ASC
+              rid = row.get("id")
+              try:
+                  payload = json.loads(row.get("payload") or "{}")
+              except Exception:
+                  print("skip unparseable payload:", rid)
+                  continue
+              item = payload.get("item")
+              if not isinstance(item, dict) or not item.get("id"):
+                  print("skip malformed row:", rid)
+                  continue
+              applied.append(rid)                  # 이미 반영된 것도 큐에서는 지운다
+              if item["id"] in have:
+                  print("already published, dequeue only:", item["id"])
+                  continue
+              data["items"].insert(0, item)        # 마지막에 넣은 것이 맨 앞 = 최신
+              have.add(item["id"])
+              added.append(item["id"])
+              t = item.get("title")
+              titles.append(t.get("ko") if isinstance(t, dict) else str(t))
+              for term, body in (payload.get("entities") or {}).items():
+                  if term not in entities:
+                      entities[term] = body
+                      new_terms.append(term)
+
+          out = open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8")
+          out.write("dequeue=%s\n" % " ".join(applied))
+
+          if not added:
+              print("nothing new to publish")
+              out.write("added=\n")
+              out.close()
+              raise SystemExit(0)
+
+          # 저장소의 직렬화 형식과 바이트 단위로 같아야 diff 가 최소로 남는다.
+          with open("items.json", "w", encoding="utf-8") as f:
+              f.write(json.dumps(data, ensure_ascii=False, indent=1) + "\n")
+
+          summary = re.sub(r'[\r\n"`$\\]', " ", " / ".join(titles))[:150].strip()
+          out.write("added=%s\n" % " ".join(added))
+          out.write("summary=%s\n" % summary)
+          out.close()
+
+          print("added items:", added)
+          print("added entities:", new_terms)
+          PY
+
+      - name: Commit and push
+        id: push
+        if: steps.merge.outputs.added != ''
+        run: |
+          git config user.name "stacks-publish-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add items.json
+          if git diff --cached --quiet; then
+            echo "no change to commit"
+            exit 0
+          fi
+          git commit -m "content: auto-publish ${{ steps.merge.outputs.summary }}"
+          # og-assets 등과 push 경합이 날 수 있다. 끝내 실패하면 큐를 비우지 않으므로
+          # 다음 10분 회차가 처음부터 다시 병합한다 — 억지로 충돌을 봉합하지 않는다.
+          for i in 1 2 3 4 5; do
+            git fetch origin main || true
+            if git rebase --autostash FETCH_HEAD && git push origin main; then
+              echo "pushed"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push race lost, retry $i"
+            sleep $(( (RANDOM % 8) + 3 * i ))
+          done
+          echo "::error::push failed after 5 attempts - the queue is kept, next run retries"
+          exit 1
+
+      - name: Clear applied rows from the queue
+        # 커밋이 실제로 성공했을 때만 큐를 비운다. 새로 반영할 것이 없어
+        # dequeue 만 있는 경우(이미 발행된 잔여 행 정리)도 여기서 처리된다.
+        if: always() && steps.merge.outputs.dequeue != '' && steps.push.outcome != 'failure'
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          DEQUEUE: ${{ steps.merge.outputs.dequeue }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request
+
+          ids = os.environ.get("DEQUEUE", "").split()
+          if not ids:
+              raise SystemExit(0)
+
+          URL = ("https://api.cloudflare.com/client/v4/accounts/%s"
+                 "/d1/database/%s/query" % (os.environ["CF_ACCOUNT_ID"],
+                                            os.environ["CF_DATABASE_ID"]))
+          placeholders = ",".join("?" for _ in ids)
+          body = json.dumps({
+              "sql": "DELETE FROM pending_cards WHERE id IN (%s)" % placeholders,
+              "params": ids,
+          }).encode()
+          req = urllib.request.Request(URL, data=body, method="POST", headers={
+              "Authorization": "Bearer " + os.environ["CF_API_TOKEN"],
+              "Content-Type": "application/json",
+          })
+          with urllib.request.urlopen(req, timeout=30) as r:
+              out = json.loads(r.read().decode())
+          print("dequeued %d row(s): %s" % (len(ids), out.get("success")))
+          PY
