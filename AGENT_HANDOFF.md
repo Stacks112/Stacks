@@ -2,6 +2,81 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-opus-5) — 토스증권 스타일 이벤트 캘린더 배포
+
+커밋 `1ae8a5e feat(calendar): Toss-style event calendar with economic indicators`.
+`index.html` 단일 파일 `+1170/-38` (827,667 bytes, sha256 `276f39a616a43b96...`).
+`items.json`/`assets/*`/`scripts/`는 무변경. Clobber guard, Email render guard, pages build 전부 통과.
+
+### 무엇이 바뀌었나
+
+좌 nav '캘린더' 페이지(`renderV83CalPage`)를 토스증권 증시캘린더 구조로 전면 개편했다.
+좌측은 미니 달력(월~토 6열, 오늘 accent, 이번 주 행 하이라이트, 발표일 볼드)과 '이번 주 요약' 카드,
+우측은 날짜순 목록이다. 요약 카드 문구는 하드코딩이 아니라 그 주 항목을 집계해 생성한다
+(실제 LLM 생성물이 아니므로 'AI 요약'이라 쓰지 않았다).
+
+우측 목록은 필터 바(`전체/경제지표/뉴스 이벤트` + `전체/국내/해외` + `주별/월별`), 컬럼 헤더
+`발표/예측/이전`(상단 1회만), 주차 그룹핑(빈 주는 그룹 통째 생략), 그리고 행 단위로
+날짜(연속 시 첫 행만)·국기 이모지·지표명·값 3열을 그린다. 값 색은 토스와 동일하게
+예측 초과 빨강 / 미만 파랑 / 동일 중립이고, 미발표 건은 `-` + 흐림이다.
+뉴스 이벤트 행은 `뉴스` 배지를 달고 값 열을 비우며 클릭 시 기존 `evGo()`를 그대로 탄다.
+
+지표를 누르면 `goIndicator(id)` -> `renderIndicatorDetailPage`로 상세가 열린다.
+다음 발표 카드, 인라인 SVG 라인차트(2단일 때 420px), 히스토리 표 4열(발표일/실제값/예측값/이전값),
+설명과 출처, 관련 글(흡수된 이벤트 -> `evGo`) 구성이며 `#indicator-<id>` 해시 딥링크를 지원한다.
+
+데이터는 `INDICATORS` 상수 15개(US 12 + KR 3)이며 **전부 플레이스홀더**다.
+각 지표의 `history[]`를 캘린더 행으로 펼쳐서 과거 발표값과 색이 기본 화면에 보이게 했다
+(주별 기본 범위 = 지난 2주 + 이번 주 + 앞 4주).
+
+### 레일 숨김 로직 — 13F와 공존한다, 손대기 전에 읽을 것
+
+캘린더 탭에서 우측 레일을 숨기고 중앙을 전체 폭으로 쓴다. 같은 날 13F 세션이 동일 목적의
+독립 시스템(`inv-wide` + `inv-rail-hide` + `invViewActive()`)을 만들어서, 지금 이 파일에는
+폭 제어 시스템이 둘 있다. **두 클래스가 동시에 붙으면 안 된다.**
+
+- 우리: `html.v83.cal-wide .wrap{...}`, 토글은 **`renderFeed()` 최상단**에서
+  `classList.toggle("cal-wide", v83DirTab()==="cal" && !INVESTOR_VIEW)`
+- 13F: `html.v83.inv-wide .wrap{...!important}`, 토글은 `invViewActive()`
+
+라이브 실측: 홈 `v83`(레일 보임, 3컬럼) / 캘린더·지표상세 `v83 cal-wide`(레일 숨김, `275px 1013px`) /
+13F `v83 inv-wide`(레일 보임, `275px 768px 350px`). 동시 부착 0회.
+
+### 이 과정에서 잡은 버그 2건 (재발 방지)
+
+1. 토글을 `render()`에 뒀더니 13F에서 눌어붙었다. `openInvestors()`/테마/적중 등은 `render()`를
+   안 거치고 `renderFeed()`만 부르기 때문에, 캘린더 -> 13F 이동 시 `cal-wide`가 안 떨어져
+   13F 화면의 레일까지 사라졌고 `pushState`로 히스토리에도 박제됐다. 토글을 `renderFeed()`
+   최상단으로 옮겨 매 렌더 재계산되게 고쳤다.
+   **교훈: 화면 상태에 연동되는 클래스 토글은 모든 경로가 반드시 지나는 함수에 둔다. `render()`는 그 함수가 아니다.**
+2. CSS 주석 안에 `cal-*/ind-card-*`라고 쓴 것이 `*/`로 해석돼 주석이 조기 종료, 뒤따르는
+   `.tcal-grid` 규칙이 브라우저에서 통째로 사라졌다.
+   **교훈: CSS 주석에 `foo-*/bar` 패턴을 쓰지 말 것.**
+
+### 배포 중 클로버 위험 3회 — deploy_guard가 전부 잡았다
+
+작업 동안 13F 세션이 `index.html`에 연달아 커밋했고(`6262c42`, `374da7c` — 후자는 폭/레일로
+우리와 정확히 같은 영역) 업로드 직전 검사에서 3번 걸렸다. 매번
+`git stash -> reset --hard(또는 merge --ff-only) origin/main -> stash pop` 리베이스 후 전체 재검증했다.
+텍스트 병합이 깨끗해도 화면에서 싸울 수 있으므로 매번 브라우저 검증을 다시 돌렸고, 그 덕에 위 1번 버그를 잡았다.
+업로드 직전 절차: `deploy_guard.py index.html` -> `git diff --numstat origin/main` ->
+`git diff origin/main | grep '^-' | grep -ci "13f|investor|inv-wide|inv-rail-hide"`(0이어야) ->
+남의 기능 마커 개수를 origin/main과 대조.
+
+### 남은 일
+
+데이터가 전부 플레이스홀더라 실제 방문자에게 가짜 수치가 보인다 — 최우선 후속 과제다.
+특히 **예측(컨센서스) 값의 출처가 없다**: FRED에 컨센서스가 없어서 15개 지표의 `forecast`가
+전부 수기 가짜값이고 색 규칙이 여기 의존한다. 실데이터 전환 시 별도 소스를 구하거나 `예측` 열을 빼야 한다.
+FRED API 키는 june 미발급 상태이며, 실데이터 전환 시 손댈 곳은 `INDICATORS` 상수 하나
+(`fetch("indicators.json")` 비동기 로드로 교체, 로딩 상태 처리 추가 필요)다.
+모바일(<1024px)에는 새 캘린더가 안 뜬다 — v83 셸 전체가 데스크톱 전용이라 기존 모달 캘린더로 라우팅된다.
+지표-이벤트 흡수 매칭(`v83EventMatchesIndicator`)이 `nextDate`만 봐서 과거 회차와 같은 날
+뉴스 이벤트가 중복 노출될 수 있다. 그리고 초기 베타 프리뷰였던 `preview/calendar-indicator-cpi.html`은
+이제 정식 기능이 들어갔으니 **삭제해야 한다**(현재 리포에 남아 있음, noindex·미링크).
+
+상세: `claude/status-2026-08-05-toss-style-event-calendar-shipped.md`
+
 ## 2026-08-05 Claude (Cowork, claude-opus-5) — [2-C] 소급 정리 8건 + 예약 작업 반영 절차를 GitHub 웹 업로드로 전환
 
 **이 세션은 `git push`가 항상 403으로 거부되고 `api.github.com` 쓰기도 프록시에 막힌다.** 반영은 반드시 GitHub 웹 업로드(`https://github.com/stacks112/Stacks/upload/main`)를 Claude in Chrome으로 조작해서 한다. push나 curl PUT을 시도하지 마라.
