@@ -2,6 +2,49 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — apply-pending.yml: 같은 job에서 build_pages/build_data 실행
+
+커밋 `6a597fe ci(apply-pending): build pages+data in the same job so auto-published cards render immediately`.
+`.github/workflows/apply-pending.yml` 단일 파일 교체(전체 콘텐츠 교체, GitHub 웹 upload UI로 반영).
+YAML/Python 내용은 june이 직접 작성해 전달, 이 세션은 지시된 절차(로컬 저장 -> 브라우저 업로드 ->
+지정 커밋 메시지로 main 직커밋)만 실행하고 검증했다.
+
+### 무엇이 바뀌었나 / 왜
+
+기존 apply-pending.yml은 D1 pending_cards 큐를 items.json에 병합·커밋만 하고 끝났다.
+GITHUB_TOKEN으로 만든 커밋은 GitHub의 재귀 워크플로 방지 규칙 때문에 og-assets.yml을
+트리거하지 못해서, 자동 발행된 카드가 6시간 스케줄이나 사람의 다른 커밋이 있을 때까지
+화면(앱/정적 페이지가 읽는 data/core.json)에 나타나지 않는 구조였다.
+
+이번 교체는 items.json 커밋 직후 같은 job 안에서 CJK 폰트 설치 -> build_pages.py ->
+build_data.py를 실행하고 그 산출물을 별도 커밋(`-X theirs`로 push 경합 처리)으로 바로
+올리도록 스텝 3개(Install CJK font / Build pages and data / Commit build output)를 추가했다.
+이미지 수집(fetch_og_assets 등 네트워크 필요한 부분)은 여전히 og-assets.yml 몫으로 남겨두고,
+여기서는 화면 표시에 필요한 최소(HTML 페이지 + data/core.json)만 굽는다. 큐 dequeue 조건도
+push 실패 시 큐를 비우지 않도록 그대로 유지.
+
+### 검증
+
+- 로컬에서 `yaml.safe_load`로 YAML 구조 파싱 확인(8 steps, jobs.apply 정상 — `on:`이
+  PyYAML에 의해 boolean `True` 키로 파싱되는 것은 YAML 1.1 알려진 동작이고 GitHub Actions
+  파서에는 영향 없음), 파일 내 Python heredoc 블록 2개 전부 `ast.parse`로 구문 검증 통과.
+- GitHub upload 페이지(`/upload/main/.github/workflows`)에 같은 파일명으로 업로드 -> 커밋 후
+  api.github.com으로 확인: 변경 파일 `.github/workflows/apply-pending.yml` 1개, status
+  `modified`(중복 생성 아님). raw.githubusercontent.com 재확인으로 새 스텝 4개(Build pages,
+  Install CJK font, Commit build output, Clear applied rows) 전부 라이브 반영, 파일 시작/끝
+  내용도 의도한 그대로 확인.
+- Actions 탭(`actions/workflows/apply-pending.yml`)에서 에러 배너 없이 정상 로드,
+  "This workflow has a workflow_dispatch event trigger" 배너 + Run workflow 버튼 정상 표시 —
+  `on:` 트리거 블록(schedule + workflow_dispatch) 파싱 성공을 뜻한다. 실제 실행 트리거는
+  지시 범위 밖이라 하지 않았다(다음 스케줄 실행은 커밋 시점 이후로 아직 발생 전).
+
+### 남은 위험 / 다음 단계
+
+- 새 빌드 스텝이 실제 스케줄 실행에서 정상 동작하는지(특히 `build_pages.py`/`build_data.py`가
+  이 환경에서 필요한 의존성 없이 도는지, push 경합 재시도 루프가 실제로 작동하는지)는 다음
+  스케줄 실행(10분 간격) 또는 실제 pending 카드가 있는 상태의 회차에서 결과를 지켜봐야 한다.
+  이번 세션은 문법 검증까지만 확인했다.
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 13F 폭 버그 수정 + 모바일 Toss 스타일 캘린더(주간/월간뷰)
 
 목표(june): "13f도 고쳐줘 그리고 모바일은 첨부한 이미지처럼 구성하자" — 캘린더가 예전에 쓰던 버그 폭 수치를 13F(inv-wide)가 복사해간 문제 수정 + 모바일에 Toss 스타일 캘린더(주간 리스트뷰 + 월간 그리드뷰) 신규 구현.
