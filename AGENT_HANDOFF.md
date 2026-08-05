@@ -2,6 +2,33 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 모바일 캘린더 지표 탭 시 상세페이지(v82ind) 추가
+
+목표(june): 첨부한 Toss 지표 상세 화면 참고 이미지(ISM 서비스업 PMI) 기준 — "이제 이벤트를 누르면 이런식으로 내용을 볼수 있게 하자". 캘린더 주간뷰에서 지표(경제지표) 행을 탭하면 예측/직전값·히스토리 차트·인사이트·발표 히스토리·설명·관련기사·다가오는 지표를 보여주는 풀스크린 상세페이지로 이동하도록 신규 구현. 직전 핸드오프(13F 폭 버그 항목)에 남겼던 "모바일 이벤트 탭 시 상세페이지 없음" 리스크를 지표 행에 한해 해소.
+
+커밋:
+- `3bb1930` feat(mobile): 지표 탭 시 상세페이지(v82ind) 추가 (`assets/v82.js`, `assets/v82.css`)
+
+변경 파일:
+- `assets/v82.js` — `#v82ind` 화면(신규 `.v82-screen`, `#v82cal` 위에 스택) 관련 함수 전체(+404/-2줄): `v82GoIndicator`/`v82IndClose`(전역), `v82IndBuildScreen`/`v82IndWireBody`/`v82IndRenderBody`/`v82IndBodyHtml`, 예측 인사이트 문구 생성(`v82IndInsightText`+ko/en/ja 테이블), 관련기사 키워드 매처(`v82IndRelatedArticles`+15개 지표 키워드 테이블), 히스토리/다가오는 지표 로우 렌더러, 기사뷰 진입(`v82IndOpenArticle`). 기존 `refreshNav`/`anyScreenOpen`/`closeAppSheets`/`window.v82Pop`/`mqChange`에 v82ind 화면 인식 로직 추가. 캘린더 지표 행 탭 핸들러를 데스크톱 전용 `goIndicator()` 호출(무동작 상태였음)에서 `v82GoIndicator()`로 교체.
+- `assets/v82.css` — `.v82ind-*` 신규 블록(+77줄), `@media(max-width:1023px)` 스코프.
+- `index.html` — 변경 없음(sha256 배포 전후 동일).
+
+검증:
+- Playwright(모바일 393×852, 데스크톱 1440×900): 지표 탭→상세 진입→히스토리 더보기 확장→관련기사 탭→기사뷰→뒤로가기(2단 스택 정상)→다른 지표(다가오는 지표 로우)로 전환, 월간뷰 셀 탭 연동, 실적(기업) 행은 기존 `evGo()` 그대로 보존 확인, 데스크톱 지표 상세·캘린더 무회귀 확인.
+- 배포 후 라이브(stacksdaily.com)에서 `fetch()` + `crypto.subtle.digest`로 `assets/v82.js`/`assets/v82.css` sha256 바이트 단위 일치 확인(로컬 스테이징 파일과 100% 동일). 콘솔 에러 없음(무관한 OneSignal 태그 설정 실패 1건 제외). Clobber guard(#311) 통과, 오탐 이슈 없음.
+- `python3 scripts/deploy_guard.py`를 업로드 직전 재실행해 origin/main 이동(4커밋, 모두 무관한 CI/데이터 파일) 확인 후 충돌 없음 확인하고 반영.
+
+남은 리스크/스코프 결정:
+- "예측 인사이트" 카드는 실제 AI 호출이 아니라 예측치·직전값·`goodDir` 필드를 비교하는 규칙 기반 문구(참고 이미지의 "AI 예측" 문구 대신 과장 방지 위해 "예측 인사이트"로 조정).
+- 관련기사는 지표별 키워드 매칭이라 기사 풀이 부족한 일부 한국 지표는 0건 노출 가능.
+- 실적(기업) 행은 이번 범위 밖 — 기존 `evGo()` 피드 필터 이동 그대로.
+- 레거시 모바일 캘린더 죽은 코드(13F 폭 버그 항목과 동일)는 여전히 미정리.
+
+다음:
+- 사용자 피드백에 따라 지표 상세페이지 세부 조정.
+- FRED API 키 발급 시 실데이터 연동(기존 리스크, 이번 작업과 무관).
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — apply-pending.yml: 같은 job에서 build_pages/build_data 실행
 
 커밋 `6a597fe ci(apply-pending): build pages+data in the same job so auto-published cards render immediately`.
