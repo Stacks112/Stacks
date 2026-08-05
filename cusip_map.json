@@ -1,0 +1,148 @@
+{
+ "_README": "13F CUSIP → Stacks 엔티티 매핑. Stacks에 이미 등록된 회사만. scripts/fetch_13f.py가 읽는다.",
+ "060505104": {
+  "ticker": "bac.us",
+  "entity_key": "BofA",
+  "issuer": "BANK AMERICA CORP"
+ },
+ "007903107": {
+  "ticker": "amd.us",
+  "entity_key": "AMD",
+  "issuer": "ADVANCED MICRO DEVICES INC"
+ },
+ "01609W102": {
+  "ticker": "baba.us",
+  "entity_key": "ALIBABA",
+  "issuer": "ALIBABA GROUP HLDG LTD"
+ },
+ "02079K107": {
+  "ticker": "googl.us",
+  "entity_key": "GOOGLE",
+  "issuer": "ALPHABET INC (CLASS A)"
+ },
+ "02079K305": {
+  "ticker": "googl.us",
+  "entity_key": "GOOGLE",
+  "issuer": "ALPHABET INC (CLASS C)"
+ },
+ "023135106": {
+  "ticker": "amzn.us",
+  "entity_key": "AMAZON",
+  "issuer": "AMAZON COM INC"
+ },
+ "037833100": {
+  "ticker": "aapl.us",
+  "entity_key": "APPLE",
+  "issuer": "APPLE INC"
+ },
+ "038222105": {
+  "ticker": "amat.us",
+  "entity_key": "APPLIED MATERIALS",
+  "issuer": "APPLIED MATLS INC"
+ },
+ "093712107": {
+  "ticker": "be.us",
+  "entity_key": "BLOOM ENERGY",
+  "issuer": "BLOOM ENERGY CORP"
+ },
+ "11135F101": {
+  "ticker": "avgo.us",
+  "entity_key": "BROADCOM",
+  "issuer": "BROADCOM INC"
+ },
+ "21873S108": {
+  "ticker": "crwv.us",
+  "entity_key": "COREWEAVE",
+  "issuer": "COREWEAVE INC"
+ },
+ "22266T109": {
+  "ticker": "cpng.us",
+  "entity_key": "COUPANG",
+  "issuer": "COUPANG INC"
+ },
+ "30303M102": {
+  "ticker": "meta.us",
+  "entity_key": "META",
+  "issuer": "META PLATFORMS INC"
+ },
+ "38141G104": {
+  "ticker": "gs.us",
+  "entity_key": "GOLDMAN SACHS",
+  "issuer": "GOLDMAN SACHS GROUP INC"
+ },
+ "458140100": {
+  "ticker": "intc.us",
+  "entity_key": "INTEL",
+  "issuer": "INTEL CORP"
+ },
+ "512807306": {
+  "ticker": "lrcx.us",
+  "entity_key": "LAM RESEARCH",
+  "issuer": "LAM RESEARCH CORP"
+ },
+ "55024U109": {
+  "ticker": "lite.us",
+  "entity_key": "LUMENTUM",
+  "issuer": "LUMENTUM HLDGS INC"
+ },
+ "594918104": {
+  "ticker": "msft.us",
+  "entity_key": "MICROSOFT",
+  "issuer": "MICROSOFT CORP"
+ },
+ "595112103": {
+  "ticker": "mu.us",
+  "entity_key": "MICRON",
+  "issuer": "MICRON TECHNOLOGY INC"
+ },
+ "67066G104": {
+  "ticker": "nvda.us",
+  "entity_key": "NVIDIA",
+  "issuer": "NVIDIA CORP"
+ },
+ "747525103": {
+  "ticker": "qcom.us",
+  "entity_key": "QUALCOMM",
+  "issuer": "QUALCOMM INC"
+ },
+ "80004C200": {
+  "ticker": "sndk.us",
+  "entity_key": "SANDISK",
+  "issuer": "SANDISK CORP"
+ },
+ "874039100": {
+  "ticker": "tsm.us",
+  "entity_key": "TSMC",
+  "issuer": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD"
+ },
+ "880770102": {
+  "ticker": "ter.us",
+  "entity_key": "TERADYNE",
+  "issuer": "TERADYNE INC"
+ },
+ "88160R101": {
+  "ticker": "tsla.us",
+  "entity_key": "TESLA",
+  "issuer": "TESLA INC"
+ },
+ "88579Y101": {
+  "ticker": "mmm.us",
+  "entity_key": "3M",
+  "issuer": "3M CO"
+ },
+ "90353T100": {
+  "ticker": "uber.us",
+  "entity_key": "UBER",
+  "issuer": "UBER TECHNOLOGIES INC"
+ },
+ "M87915274": {
+  "ticker": "tsem.us",
+  "entity_key": "TOWER SEMI",
+  "issuer": "TOWER SEMICONDUCTOR LTD"
+ },
+ "N07059210": {
+  "ticker": "asml.us",
+  "entity_key": "ASML",
+  "issuer": "ASML HOLDING NV"
+ }
+}

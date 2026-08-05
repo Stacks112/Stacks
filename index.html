@@ -3288,6 +3288,50 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .th-follow{margin-top:10px;font-size:12px;font-weight:800;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--bg-soft);color:var(--text);cursor:pointer;}
 .th-follow.on{background:#111214;color:#fff;border-color:#111214;}
 html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
+/* ---------- 13F investor portfolios (v84) ---------- */
+.inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:14px 0;}
+.inv-card{display:flex;flex-direction:column;align-items:stretch;gap:8px;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;font:inherit;color:inherit;}
+.inv-card:hover{filter:brightness(1.03);}
+.inv-card-name{font-size:16px;font-weight:800;color:var(--text);}
+.inv-card-manager{font-size:12.5px;color:var(--muted);}
+.inv-card-asof{font-size:11px;color:var(--muted);font-family:var(--mono-font);}
+.inv-card-top3{display:flex;flex-direction:column;gap:3px;margin:4px 0;}
+.inv-card-top3 span{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--text);}
+.inv-card-top3 span b{font-family:var(--mono-font);color:var(--muted);font-weight:700;white-space:nowrap;}
+.inv-card-total{font-size:12.5px;font-weight:700;color:var(--text);margin-top:2px;}
+.inv-card-warn{font-size:11.5px;color:#E04438;font-weight:700;margin-top:4px;}
+.inv-asof-badge{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--text);background:var(--bg-soft);border:1px solid var(--accent);border-radius:999px;padding:6px 14px;margin:8px 0 4px;}
+.inv-manager-line{font-size:13px;color:var(--muted);margin:2px 0 0;}
+.inv-bars{margin:16px 0;display:flex;flex-direction:column;gap:8px;}
+.inv-bar-row{display:grid;grid-template-columns:minmax(90px,180px) 1fr auto;align-items:center;gap:10px;}
+.inv-bar-name{font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.inv-bar-track{background:var(--track);border-radius:6px;height:16px;overflow:hidden;}
+.inv-bar-fill{display:block;background:var(--accent);height:100%;border-radius:6px;min-width:3px;}
+.inv-bar-pct{font-family:var(--mono-font);font-size:12px;font-weight:700;color:var(--muted);text-align:right;min-width:44px;}
+.inv-table-wrap{overflow-x:auto;margin:14px 0;}
+.inv-table{width:100%;border-collapse:collapse;font-size:13px;}
+.inv-table th{text-align:left;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap;}
+.inv-table td{padding:8px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.inv-table td.num{text-align:right;font-family:var(--mono-font);white-space:nowrap;}
+.inv-name-link{color:var(--text);cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
+.inv-name-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
+.inv-badge{display:inline-block;font-size:10.5px;font-weight:800;border-radius:6px;padding:2px 6px;margin-left:6px;white-space:nowrap;}
+.inv-badge-new{background:rgba(18,183,106,.14);color:#0E9F5E;}
+.inv-badge-add{background:rgba(46,91,255,.12);color:var(--accent);}
+.inv-badge-trim{background:rgba(245,158,11,.16);color:#B45309;}
+.inv-badge-exit{background:rgba(224,68,56,.14);color:#E04438;}
+.inv-since{display:inline-block;font-family:var(--mono-font);font-size:11px;font-weight:800;margin-left:6px;white-space:nowrap;}
+.inv-more{font-size:12.5px;color:var(--muted);padding:8px 4px;}
+.inv-disclaimer{font-size:11.5px;line-height:1.7;color:var(--muted);border-top:1px solid var(--line);margin-top:16px;padding-top:12px;}
+.inv-disclaimer p{margin:0 0 4px;}
+.inv-sec-link{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:var(--accent);}
+.inv-empty{color:var(--muted);font-size:13px;padding:16px 4px;}
+@media (max-width:1023px){
+  .inv-bar-row{grid-template-columns:minmax(70px,120px) 1fr auto;}
+  .inv-bar-name{font-size:11.5px;}
+  .inv-table{font-size:11.5px;}
+  .inv-table td,.inv-table th{padding:6px 5px;}
+}
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
   --bg:#000000;
@@ -3725,6 +3769,7 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
      winning inside renderFeed). Applies to every shell. */
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   if (typeof V83ITEM !== "undefined") V83ITEM = null;
   if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
@@ -4821,6 +4866,40 @@ function debateTitleHtml(key){
   ja:{ skewLead:"一方向に偏り", skewTip:"方向性のあるコール3件以上、片側が80%以上。極端な偏りは逆張りのサインになり得ます。", skewSecTitle:"今、偏っている論点", rcPreds:"予測{n}件", rcGraded:"採点{g}(的中{h})", rcPending:"採点待ち{p}" }
 }; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
 
+/* ---------------- 13F investor portfolios strings (v84) ---------------- */
+(function(){ var X={
+  en:{ invTitle:"Investor 13F portfolios", invSub:"Quarterly U.S. equity long holdings disclosed to the SEC by well-known institutional investors.",
+       invBreadcrumb:"Investors", invTotalValue:"Total reported value",
+       invAsOf:"As of {period} · filed {filed}", invColName:"Holding", invColWeight:"Weight", invColValue:"Value", invColShares:"Shares", invColChange:"Change",
+       invMore:"+{n} more not shown", invBadgeNew:"New", invBadgeAdd:"Added", invBadgeTrim:"Trimmed", invBadgeExit:"Exited", invSince:"since filing",
+       invSecLink:"View original SEC filing →",
+       invDisc1:"13F covers U.S.-listed long equity positions only — short positions, bonds, cash and non-U.S.-listed shares are not included.",
+       invDisc2:"Filed within 45 days of quarter-end, so actual current holdings may differ from what is shown here.",
+       invDisc3:"Positions granted confidential treatment can be withheld from filings for up to a year.",
+       invEmpty:"No holdings data is available for this filing.", invDataIssue:"The latest data for this investor could not be verified. Showing the last known snapshot.",
+       invNoneShown:"No investors to show yet." },
+  ko:{ invTitle:"13F 유명 투자자 포트폴리오", invSub:"유명 기관 투자자가 SEC에 분기별로 공시하는 미국 상장 주식 롱 포지션입니다.",
+       invBreadcrumb:"투자자", invTotalValue:"총 평가액",
+       invAsOf:"{period} 기준 · {filed} 공시", invColName:"종목", invColWeight:"비중", invColValue:"평가액", invColShares:"주식수", invColChange:"변화",
+       invMore:"외 {n}개", invBadgeNew:"신규", invBadgeAdd:"추가", invBadgeTrim:"축소", invBadgeExit:"청산", invSince:"공시일 이후",
+       invSecLink:"SEC 원문 보기 →",
+       invDisc1:"13F는 미국 상장 주식 롱 포지션만 포함하며, 공매도·채권·현금·해외 상장주는 포함되지 않습니다.",
+       invDisc2:"분기말 기준 45일 이내에 공시되므로 실제 현재 보유 내역과 다를 수 있습니다.",
+       invDisc3:"기밀취급 승인을 받은 종목은 최대 1년까지 공시에서 제외될 수 있습니다.",
+       invEmpty:"이 공시에는 표시할 보유 종목 데이터가 없습니다.", invDataIssue:"이 투자자의 최신 데이터를 확인하지 못했습니다. 마지막으로 확인된 내역을 표시합니다.",
+       invNoneShown:"표시할 투자자가 없습니다." },
+  ja:{ invTitle:"13F著名投資家ポートフォリオ", invSub:"著名な機関投資家がSECに四半期ごとに開示する米国上場株式のロングポジションです。",
+       invBreadcrumb:"投資家", invTotalValue:"報告時価総額",
+       invAsOf:"{period}時点 · {filed}開示", invColName:"銘柄", invColWeight:"比率", invColValue:"評価額", invColShares:"株式数", invColChange:"変化",
+       invMore:"他{n}件", invBadgeNew:"新規", invBadgeAdd:"追加", invBadgeTrim:"縮小", invBadgeExit:"清算", invSince:"開示日以降",
+       invSecLink:"SEC原文を見る →",
+       invDisc1:"13Fは米国上場株式のロングポジションのみを対象とし、空売り・債券・現金・非米国上場株は含まれません。",
+       invDisc2:"四半期末から45日以内に開示されるため、実際の現在の保有状況と異なる場合があります。",
+       invDisc3:"機密扱いが承認された銘柄は、最長1年間開示から除外される場合があります。",
+       invEmpty:"この開示には表示できる保有銘柄データがありません。", invDataIssue:"この投資家の最新データを確認できませんでした。最後に確認できた内容を表示します。",
+       invNoneShown:"表示する投資家がありません。" }
+}; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
+
 function stanceTally(items){ var t={bull:0,bear:0,watch:0}; (items||[]).forEach(function(i){ var s=itemStance(i); if(s) t[s]++; }); return t; }
 function skewInfo(items){
   var t=stanceTally(items), dir=t.bull+t.bear;
@@ -4996,7 +5075,7 @@ function evGo(evid){
   var ids=eventRelatedSet(e);
   if(!ids.size){ if(e.itemId) goToItem(e.itemId); return; }
   EVENT_FILTER=ids;
-  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; READ_VIEW=false; TAB="all";
+  SERIES_VIEW=null; ENTITY_VIEW=null; SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; STANCE_FILTER=null; BM_ONLY=false; UNREAD_ONLY=false; FREE_ONLY=false; READ_VIEW=false; TAB="all"; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
   var lbl=(e.label&&(e.label[LANG]||e.label.en))||"";
   QUERY=lbl.trim().toLowerCase();
   var si=document.getElementById("searchInput"); if(si) si.value=lbl;
@@ -5047,6 +5126,8 @@ function renderCal(){
    single-author record view (shareable via #record-<name>). */
 var THEME_VIEW = null;
 var RECORD_SRC = null;
+/* v84: 13F investor portfolio view. null | "index" | slug (e.g. "berkshire"). */
+var INVESTOR_VIEW = null;
 var THEME_FOLLOW = null; /* lazy Set from localStorage */
 function themeFollowSet(){ if(!THEME_FOLLOW){ try{ THEME_FOLLOW=new Set(store.get("stk_themes",[])); }catch(e){ THEME_FOLLOW=new Set(); } } return THEME_FOLLOW; }
 function toggleThemeFollow(k){
@@ -5107,8 +5188,47 @@ function closeThemes(){
   try{ if(location.hash.indexOf("#theme-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
   renderFeed(false);
 }
+
+/* ---------------- 13F investor portfolios: open/close (v84) ----------------
+   Modeled on openTheme(k)/openThemes()/closeThemes(). One extra step vs. those:
+   on mobile the article detail is a DOM overlay (#v82detail) that sits ABOVE
+   the feed, not a state variable — swapping INVESTOR_VIEW and re-rendering
+   underneath it changes nothing the reader can see (the entityFeedView bug,
+   2026-07-29). #v82detail's closeDetail() is private to assets/v82.js (not on
+   window), so we use the same workaround index.html already uses elsewhere
+   (openStacksPost): if the overlay is open, walk it back via history.back()
+   (which the shell's own popstate handler closes with) and only then run. */
+function invRunAfterMobileDetailClosed(fn){
+  var dt = document.getElementById("v82detail");
+  if (dt && dt.classList.contains("on")){ history.back(); setTimeout(fn, 140); }
+  else fn();
+}
+function openInvestors(){
+  invRunAfterMobileDetailClosed(function(){
+    INVESTOR_VIEW = "index";
+    SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+    pushView(); try{ history.replaceState(history.state,"","#investors"); }catch(e){}
+    track("investors"); renderFeed(false);
+    var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+}
+function openInvestor(slug){
+  invRunAfterMobileDetailClosed(function(){
+    INVESTOR_VIEW = slug;
+    SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+    pushView(); try{ history.replaceState(history.state,"","#investor-"+encodeURIComponent(slug)); }catch(e){}
+    track("investor/"+slug); renderFeed(false);
+    var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+}
+function closeInvestors(){
+  INVESTOR_VIEW=null;
+  try{ if(location.hash.indexOf("#investor")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
+  renderFeed(false);
+}
+
 function openRecord(src){
-  RECORD_SRC=src; SB_VIEW=true; THEME_VIEW=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
+  RECORD_SRC=src; SB_VIEW=true; THEME_VIEW=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
   pushView(); try{ history.replaceState(history.state,"","#record-"+encodeURIComponent(src)); }catch(e){}
   track("record/"+src); renderFeed(false);
   var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
@@ -5172,11 +5292,238 @@ function renderThemes(list,S){
   });
 }
 
+/* ---------------- 13F investor portfolios (v84) ----------------
+   INVESTOR_VIEW: null | "index" | slug. Data lives in the root file
+   portfolios.json (fetched lazily, cached in PORTFOLIOS_DATA), not in
+   items.json / ENTITIES — a 13F filing is a quarterly snapshot, not a post.
+   Rendered as a feed-mode view (same family as THEME_VIEW/SB_VIEW) rather
+   than an overlay, per the shell's own guidance: an overlay would need its
+   own z-index layer and its own mobile-detail-close handling, while a feed
+   view gets both the auto title-bar (see the tail-of-file "sync" IIFE, which
+   keys off .series-header.sb-header > .series-head-name) and the back-button
+   wiring for free. */
+var PORTFOLIOS_DATA = null, PORTFOLIOS_P = null;
+function loadPortfolios(){
+  if (PORTFOLIOS_DATA) return Promise.resolve(PORTFOLIOS_DATA);
+  if (!PORTFOLIOS_P){
+    PORTFOLIOS_P = (typeof getJSON === "function" ? getJSON("portfolios.json") : Promise.resolve(null))
+      .then(function(j){ PORTFOLIOS_DATA = (j && Array.isArray(j.investors)) ? j : { investors: [] }; return PORTFOLIOS_DATA; })
+      .catch(function(){ PORTFOLIOS_DATA = { investors: [] }; return PORTFOLIOS_DATA; });
+  }
+  return PORTFOLIOS_P;
+}
+function invMoneyFmt(v){
+  try {
+    var n = Number(v); if (!isFinite(n)) return "—";
+    var abs = Math.abs(n), sign = n < 0 ? "-" : "";
+    if (abs >= 1e12) return sign + "$" + (abs / 1e12).toFixed(2) + "T";
+    if (abs >= 1e9) return sign + "$" + (abs / 1e9).toFixed(2) + "B";
+    if (abs >= 1e6) return sign + "$" + (abs / 1e6).toFixed(1) + "M";
+    return sign + "$" + abs.toLocaleString();
+  } catch (e) { return "—"; }
+}
+function invFmtDate(d){ return d ? fmt(d) : "—"; }
+function invChangeBadgeHtml(change, S){
+  /* "hold" and null both render nothing — hold is the no-news state, and a
+     missing prior-quarter comparison is not a claim we can make. Only the
+     four actionable transitions the spec calls out get a badge. */
+  if (change === "new") return '<span class="inv-badge inv-badge-new">' + esc(S.invBadgeNew) + '</span>';
+  if (change === "add") return '<span class="inv-badge inv-badge-add">' + esc(S.invBadgeAdd) + '</span>';
+  if (change === "trim") return '<span class="inv-badge inv-badge-trim">' + esc(S.invBadgeTrim) + '</span>';
+  if (change === "exit") return '<span class="inv-badge inv-badge-exit">' + esc(S.invBadgeExit) + '</span>';
+  return "";
+}
+function invCssAttrEscape(s){ return String(s == null ? "" : s).replace(/(["\\])/g, "\\$1"); }
+/* "공시일 이후 수익률" badge for freshly-opened positions. Reuses the same
+   quote infra as the card "since post" badges (quote1y + sinceCalc from the
+   ~line 4700 block) instead of a parallel fetch path — quote1y already
+   caches per ticker, so re-opening the same investor is free network-wise. */
+var INV_SINCE_CACHE = {};
+function queueInvestorSince(container, holdings, filed){
+  if (!filed || !holdings || !holdings.length) return;
+  var targets = holdings.filter(function(h){ return h && h.change === "new" && h.ticker; }).slice(0, 10);
+  if (!targets.length) return;
+  Promise.all(targets.map(function(h){
+    var ck = h.ticker + "|" + filed;
+    if (Object.prototype.hasOwnProperty.call(INV_SINCE_CACHE, ck)) return Promise.resolve({ t: h.ticker, r: INV_SINCE_CACHE[ck] });
+    return quote1y(h.ticker).then(function(q){ var r = sinceCalc(q, filed); INV_SINCE_CACHE[ck] = r; return { t: h.ticker, r: r }; })
+      .catch(function(){ return { t: h.ticker, r: null }; });
+  })).then(function(rows){
+    var S = STRINGS[LANG];
+    rows.forEach(function(o){
+      if (!o.r) return; /* ticker unresolvable / no close since filing: leave the slot silently empty, no error text */
+      var up = o.r.pct >= 0;
+      container.querySelectorAll('[data-inv-ticker="' + invCssAttrEscape(o.t) + '"]').forEach(function(el){
+        el.hidden = false;
+        el.style.color = up ? "#12B76A" : "#F04438";
+        el.textContent = (S.invSince || "") + " " + (up ? "+" : "") + o.r.pct.toFixed(1) + "%";
+      });
+    });
+  });
+}
+function investorCardEl(inv, S){
+  var b = document.createElement("button");
+  b.type = "button"; b.className = "inv-card";
+  var slug = (inv && inv.slug) || "";
+  b.addEventListener("click", function(){ openInvestor(slug); });
+  var name = esc(locVal(inv && inv.name) || slug);
+  var manager = locVal(inv && inv.manager);
+  var top3 = ((inv && inv.holdings) || []).filter(function(h){ return h.change !== "exit"; })
+    .sort(function(a, b2){ return (b2.weight || 0) - (a.weight || 0); }).slice(0, 3);
+  var top3Html = top3.map(function(h){
+    var nm = esc((h && h.issuer) || "");
+    var w = (h && typeof h.weight === "number") ? (h.weight * 100).toFixed(1) + "%" : "—";
+    return "<span>" + nm + "<b>" + w + "</b></span>";
+  }).join("");
+  var total = (inv && typeof inv.total_value === "number") ? invMoneyFmt(inv.total_value) : "—";
+  var asOf = (S.invAsOf || "").replace("{period}", invFmtDate(inv && inv.period)).replace("{filed}", invFmtDate(inv && inv.filed));
+  var warn = (inv && inv.ok === false) ? '<div class="inv-card-warn">⚠ ' + esc(S.invDataIssue) + "</div>" : "";
+  b.innerHTML =
+    '<div class="inv-card-name">' + name + "</div>"
+    + (manager ? '<div class="inv-card-manager">' + esc(manager) + "</div>" : "")
+    + '<div class="inv-card-asof">' + esc(asOf) + "</div>"
+    + '<div class="inv-card-top3">' + top3Html + "</div>"
+    + '<div class="inv-card-total">' + esc(S.invTotalValue) + " " + total + "</div>"
+    + warn;
+  return b;
+}
+function investorHoldingRowHtml(h, S){
+  var hasEnt = !!(h.entity_key && typeof ENTITIES !== "undefined" && ENTITIES[h.entity_key]);
+  var label = esc(h.issuer || "");
+  var nameCell = hasEnt
+    ? '<span class="inv-name-link" data-ent="' + esc(h.entity_key) + '">' + label + "</span>"
+    : "<span>" + label + "</span>";
+  var w = (typeof h.weight === "number") ? (h.weight * 100).toFixed(2) + "%" : "—";
+  var val = (typeof h.value === "number") ? invMoneyFmt(h.value) : "—";
+  var sh = (typeof h.shares === "number") ? Number(h.shares).toLocaleString() : "—";
+  var badge = invChangeBadgeHtml(h.change, S);
+  var sinceSlot = (h.change === "new" && h.ticker)
+    ? '<span class="inv-since" data-inv-ticker="' + esc(h.ticker) + '" hidden></span>' : "";
+  return "<tr><td>" + nameCell + "</td>"
+    + '<td class="num">' + w + "</td>"
+    + '<td class="num">' + val + "</td>"
+    + '<td class="num">' + sh + "</td>"
+    + "<td>" + badge + sinceSlot + "</td></tr>";
+}
+function renderInvestorDetail(list, S, inv){
+  var name = locVal(inv.name) || inv.slug;
+  var manager = locVal(inv.manager);
+  var asOf = (S.invAsOf || "").replace("{period}", invFmtDate(inv.period)).replace("{filed}", invFmtDate(inv.filed));
+  var head = document.createElement("div"); head.className = "series-header sb-header";
+  head.innerHTML =
+    '<button class="series-close" onclick="openInvestors()">← ' + esc(S.invBreadcrumb) + "</button>"
+    + '<div class="series-head-name">' + esc(S.invBreadcrumb) + " › " + esc(name) + "</div>"
+    + (manager ? '<p class="inv-manager-line">' + esc(manager) + "</p>" : "")
+    + '<div class="inv-asof-badge">📅 ' + esc(asOf) + "</div>"
+    + (inv.ok === false ? '<div class="inv-card-warn">⚠ ' + esc(S.invDataIssue) + "</div>" : "");
+  list.appendChild(head);
+
+  /* real 파일 관찰(2026-08-05): holdings_count는 "이번 분기 실제 보유 종목 수"만 센다.
+     holdings 배열은 그 상위 N종목(가중치 top-25 정도)에 "이번 분기 완전 청산"(change:"exit",
+     value/shares/weight 전부 0) 행을 얹어서 온다 - 청산 종목은 holdings_count에 안 잡히므로
+     가중치 정렬 한 번으로 배열을 자르면 늘 맨 밑으로 밀려나 화면에서 통째로 사라진다(버크셔
+     처럼 종목이 많은 투자자일수록 100% 발생). exit는 따로 떼어 top-N 한도 밖에 항상 붙인다. */
+  var allHoldings = (inv.holdings || []).slice();
+  var reals = allHoldings.filter(function(h){ return h.change !== "exit"; })
+    .sort(function(a, b){ return (b.weight || 0) - (a.weight || 0); });
+  var exits = allHoldings.filter(function(h){ return h.change === "exit"; });
+  if (!allHoldings.length){
+    var em = document.createElement("div"); em.className = "empty inv-empty"; em.textContent = S.invEmpty;
+    list.appendChild(em);
+  } else {
+    var top15 = reals.slice(0, 15);
+    if (top15.length){
+      var maxW = top15.reduce(function(m, h){ return Math.max(m, h.weight || 0); }, 0) || 1;
+      var bars = document.createElement("div"); bars.className = "inv-bars";
+      bars.innerHTML = top15.map(function(h){
+        var pct = (h.weight || 0) * 100;
+        var barPct = Math.max(2, (h.weight || 0) / maxW * 100);
+        var label = esc(h.issuer || "");
+        return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + label + '">' + label + "</span>"
+          + '<span class="inv-bar-track"><span class="inv-bar-fill" style="width:' + barPct.toFixed(1) + '%"></span></span>'
+          + '<span class="inv-bar-pct">' + pct.toFixed(1) + "%</span></div>";
+      }).join("");
+      list.appendChild(bars);
+    }
+
+    var top25 = reals.slice(0, 25);
+    var tableRows = top25.concat(exits); /* 청산 종목은 25종목 한도와 무관하게 항상 맨 아래에 표시 */
+    var tableWrap = document.createElement("div"); tableWrap.className = "inv-table-wrap";
+    tableWrap.innerHTML =
+      '<table class="inv-table"><thead><tr>'
+      + "<th>" + esc(S.invColName) + '</th><th class="num">' + esc(S.invColWeight) + "</th>"
+      + '<th class="num">' + esc(S.invColValue) + '</th><th class="num">' + esc(S.invColShares) + "</th>"
+      + "<th>" + esc(S.invColChange) + "</th></tr></thead><tbody>"
+      + tableRows.map(function(h){ return investorHoldingRowHtml(h, S); }).join("")
+      + "</tbody></table>";
+    list.appendChild(tableWrap);
+    tableWrap.querySelectorAll("[data-ent]").forEach(function(el){
+      el.addEventListener("click", function(){
+        var k = el.getAttribute("data-ent");
+        if (typeof entityFeedView === "function") entityFeedView(k);
+      });
+    });
+    /* holdings_count는 청산분을 안 세므로, 표에 못 실은 "그 외 보유 종목" 수는
+       top25(reals) 기준으로만 계산한다 - exits는 이미 전부 표에 실려 있어 별도 집계 대상이 아니다. */
+    var remain = (typeof inv.holdings_count === "number" ? inv.holdings_count : reals.length) - top25.length;
+    if (remain > 0){
+      var more = document.createElement("div"); more.className = "inv-more";
+      more.textContent = (S.invMore || "").replace("{n}", remain);
+      list.appendChild(more);
+    }
+    try { queueInvestorSince(tableWrap, top25, inv.filed); } catch (e) {}
+  }
+
+  var disc = document.createElement("div"); disc.className = "inv-disclaimer";
+  disc.innerHTML = "<p>① " + esc(S.invDisc1) + "</p>"
+    + "<p>② " + esc(S.invDisc2) + "</p>"
+    + "<p>③ " + esc(S.invDisc3) + "</p>"
+    + (inv.source_url ? '<a class="inv-sec-link" href="' + safeUrl(inv.source_url) + '" target="_blank" rel="noopener noreferrer">' + esc(S.invSecLink) + "</a>" : "");
+  list.appendChild(disc);
+}
+function renderInvestorsIndex(list, S, investors){
+  var head = document.createElement("div"); head.className = "series-header sb-header";
+  head.innerHTML = '<button class="series-close" onclick="closeInvestors()">← ' + esc(S.seriesClose) + "</button>"
+    + '<div class="series-head-name">📈 ' + esc(S.invTitle) + "</div>"
+    + '<p class="series-head-desc">' + esc(S.invSub) + "</p>";
+  list.appendChild(head);
+  if (!investors.length){
+    var em = document.createElement("div"); em.className = "empty"; em.textContent = S.invNoneShown;
+    list.appendChild(em); return;
+  }
+  var grid = document.createElement("div"); grid.className = "inv-grid";
+  investors.forEach(function(inv){ grid.appendChild(investorCardEl(inv, S)); });
+  list.appendChild(grid);
+}
+/* async, called fire-and-forget from renderFeed exactly like renderScoreboard —
+   appends a loading placeholder synchronously, then fills in once
+   portfolios.json resolves, bailing out if the reader has since left the view. */
+async function renderInvestors(list, S){
+  var view = (typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null;
+  var loading = document.createElement("div"); loading.className = "ehq-loading"; loading.textContent = "···";
+  list.appendChild(loading);
+  var data = await loadPortfolios();
+  if (((typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null) !== view) { loading.remove(); return; } /* user left the view */
+  loading.remove();
+  var investors = (data && data.investors) || [];
+  if (view === "index"){ renderInvestorsIndex(list, S, investors); return; }
+  var inv = investors.find(function(x){ return x && x.slug === view; });
+  if (!inv){
+    var head = document.createElement("div"); head.className = "series-header sb-header";
+    head.innerHTML = '<button class="series-close" onclick="openInvestors()">← ' + esc(S.invBreadcrumb) + "</button>"
+      + '<div class="series-head-name">' + esc(S.invBreadcrumb) + "</div>";
+    list.appendChild(head);
+    var em = document.createElement("div"); em.className = "empty"; em.textContent = S.invNoneShown;
+    list.appendChild(em); return;
+  }
+  renderInvestorDetail(list, S, inv);
+}
+
 /* ---------------- track-record scoreboard ----------------
    One honest page: every directional call (bull/bear) per author,
    what the market did afterwards ("since post" %), and the manually
    verified predictions (hit / miss / pending). Wins AND losses. */
-function openScoreboard(){ SB_VIEW = true; THEME_VIEW = null; RECORD_SRC = null; SERIES_VIEW = null; ENTITY_VIEW = null; STANCE_FILTER = null;
+function openScoreboard(){ SB_VIEW = true; THEME_VIEW = null; RECORD_SRC = null; SERIES_VIEW = null; ENTITY_VIEW = null; STANCE_FILTER = null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   pushView();
   track("scoreboard");
   renderFeed(false);
@@ -5396,6 +5743,7 @@ function goHome(ev){
   /* v83.2 bugfix: Home must also leave the theme-board / record views */
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   if (typeof V83ITEM !== "undefined") V83ITEM = null;
   const inp = document.getElementById("searchInput"); if (inp) inp.value = "";
   render();
@@ -6154,6 +6502,7 @@ var V83ICONS = {
   politics:'<svg viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M6 8l-2 6h4zM18 8l2 6h-4z"/></svg>',
   themes:'<svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',
   record:'<svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l3-4 3 3 4-6"/></svg>',
+  investors:'<svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9l4 3 4-6 4 4v9"/></svg>',
   cal:'<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 10h16M8 4v4M16 4v4"/></svg>',
   bm:'<svg viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
   skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
@@ -6167,9 +6516,9 @@ var V83ICONS = {
 };
 function v83T(k){
   var s = {
-    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"판정 기록",cal:"캘린더",bm:"북마크",readlist:"최근 읽은 글",alerts:"알림 설정",appearance:"화면 테마",search:"검색",me:"내 정보"},
-    en:{home:"Home",browse:"Explore",skew:"Sentiment",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Debates",record:"Track record",cal:"Calendar",bm:"Bookmarks",readlist:"Recently read",alerts:"Notifications",appearance:"Appearance",search:"Search",me:"Profile"},
-    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",cal:"カレンダー",bm:"ブックマーク",readlist:"最近読んだ記事",alerts:"通知設定",appearance:"テーマ",search:"検索",me:"マイページ"}
+    ko:{home:"홈",browse:"골라보기",skew:"지금 쏠린 곳",authors:"투자 고수",company:"기업",politics:"정치인",themes:"테마 논쟁",record:"판정 기록",investors:"13F 포트폴리오",cal:"캘린더",bm:"북마크",readlist:"최근 읽은 글",alerts:"알림 설정",appearance:"화면 테마",search:"검색",me:"내 정보"},
+    en:{home:"Home",browse:"Explore",skew:"Sentiment",authors:"Authors",company:"Companies",politics:"Politicians",themes:"Debates",record:"Track record",investors:"13F portfolios",cal:"Calendar",bm:"Bookmarks",readlist:"Recently read",alerts:"Notifications",appearance:"Appearance",search:"Search",me:"Profile"},
+    ja:{home:"ホーム",browse:"ピックアップ",skew:"今の偏り",authors:"投資家",company:"企業",politics:"政治家",themes:"テーマ論争",record:"的中記録",investors:"13Fポートフォリオ",cal:"カレンダー",bm:"ブックマーク",readlist:"最近読んだ記事",alerts:"通知設定",appearance:"テーマ",search:"検索",me:"マイページ"}
   };
   var l = (typeof LANG !== "undefined" && s[LANG]) ? LANG : "ko";
   return s[l][k];
@@ -6179,6 +6528,7 @@ function v83Bookmarks(){
     if (!BM_ONLY) pushView();   /* 2026-07-25: 히스토리 미등록이라 뒤로가기가 사이트를 벗어났다 */
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
+    if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
     QUERY = ""; BM_ONLY = true; READ_VIEW = false;
     var i = document.getElementById("searchInput"); if (i) i.value = "";
     if (typeof render === "function") render();
@@ -6195,6 +6545,7 @@ function v83ReadList(){
     SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
     if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+    if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
     if (typeof V83ITEM !== "undefined") V83ITEM = null;
     QUERY = ""; TAB = "all"; BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = true;
     if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
@@ -6211,6 +6562,7 @@ function v83SyncActiveNav(){
   else if (BM_ONLY) key = "bm";
   else if (SB_VIEW || (typeof RECORD_SRC !== "undefined" && RECORD_SRC)) key = "record";
   else if (typeof THEME_VIEW !== "undefined" && THEME_VIEW) key = "themes";
+  else if (typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW) key = "investors";
   else if (TAB === "browse" || TAB === "skew" || TAB === "cal" || TAB === "alerts") key = TAB;
   nav.querySelectorAll(".v83-link.on").forEach(function(button){ button.classList.remove("on"); });
   var active = nav.querySelector('.v83-link[data-k="' + key + '"]');
@@ -6342,6 +6694,7 @@ function mountV83(){
     ["skew", V83ICONS.skew, function(){ if (typeof setTab === "function") setTab("skew"); }],
     ["themes", V83ICONS.themes, function(){ if (typeof openThemes === "function") openThemes(); }],
     ["record", V83ICONS.record, function(){ if (typeof openScoreboard === "function") openScoreboard(); }],
+    ["investors", V83ICONS.investors, function(){ if (typeof openInvestors === "function") openInvestors(); }],
     /* v83.5: 캘린더도 모달이 아니라 페이지 전환 (june 지시) */
     ["cal", V83ICONS.cal, function(){ if (typeof setTab === "function") setTab("cal"); }],
     ["bm", V83ICONS.bm, v83Bookmarks],
@@ -6796,6 +7149,7 @@ function v83OpenItem(id, withComments){
   SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof THEME_VIEW !== "undefined") THEME_VIEW = null;
   if (typeof RECORD_SRC !== "undefined") RECORD_SRC = null;
+  if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
   QUERY = "";
   var si = document.getElementById("searchInput"); if (si) si.value = "";
@@ -8875,6 +9229,7 @@ function viewUrl(v){
   if (v.rec) return stkRoot() + "#record-" + encodeURIComponent(v.rec);
   if (v.sb) return stkRoot() + "#record";
   if (v.theme) return stkRoot() + (v.theme === "index" ? "#themes" : "#theme-" + v.theme);
+  if (v.inv) return stkRoot() + (v.inv === "index" ? "#investors" : "#investor-" + v.inv);
   if (v.ent) return stkOne("e", v.ent);
   if (v.q) return stkRoot();                 /* 검색은 주소로 만들지 않는다 */
   if (v.readv) return stkRoot() + "#read";
@@ -8949,7 +9304,7 @@ function captureView(){
   var g = function(n, d){ try { return eval(n); } catch (e) { return d; } };
   return {
     tab: g("TAB", "all"), ent: g("ENTITY_VIEW", null), ser: g("SERIES_VIEW", null),
-    sb: g("SB_VIEW", false), theme: g("THEME_VIEW", null), rec: g("RECORD_SRC", null),
+    sb: g("SB_VIEW", false), theme: g("THEME_VIEW", null), rec: g("RECORD_SRC", null), inv: g("INVESTOR_VIEW", null),
     item: g("V83ITEM", null), pred: g("V83PRED", null),
     bm: g("BM_ONLY", false), unread: g("UNREAD_ONLY", false),
     readv: g("READ_VIEW", false), q: g("QUERY", ""),
@@ -8989,6 +9344,7 @@ function applyView(v){
     var wasEnt = (typeof ENTITY_VIEW !== "undefined") ? ENTITY_VIEW : null;
     TAB = v.tab; ENTITY_VIEW = v.ent; SERIES_VIEW = v.ser; SB_VIEW = v.sb;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = v.theme;
+    if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = v.inv;
     if (typeof RECORD_SRC !== "undefined") RECORD_SRC = v.rec;
     if (typeof V83ITEM !== "undefined") V83ITEM = v.item;
     if (typeof V83PRED !== "undefined") V83PRED = v.pred || null;
@@ -9034,6 +9390,7 @@ window.addEventListener("popstate", function(ev){
   if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
   if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return; }
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW){ closeThemes(); return; }
+  if (typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW){ closeInvestors(); return; }
     if (typeof SB_VIEW !== "undefined" && SB_VIEW){ closeScoreboard(); return; }
   if (typeof TAB !== "undefined" && TAB === "mine"){ setTab("all"); return; }
   /* nothing open — let the browser navigate away normally */
@@ -9069,6 +9426,8 @@ function handleDeepLink(){
   if (e){ later(function(){ if (typeof ENTITIES !== "undefined" && ENTITIES[e] && typeof entityFeedView === "function") entityFeedView(e); }); return; }
   if (h === "#calendar"){ later(function(){ if (desk() && typeof setTab === "function") setTab("cal"); else openCal(); }); return; }
   if (h.indexOf("#theme-")===0){ const k=h.slice(7); if (typeof THEMES!=="undefined" && THEMES[k]) later(function(){ openTheme(k); }); return; }
+  if (h.indexOf("#investor-")===0){ const s=decodeURIComponent(h.slice(10)); later(function(){ openInvestor(s); }); return; }
+  if (h === "#investors"){ later(function(){ openInvestors(); }); return; }
   if (h === "#themes"){ later(function(){ openThemes(); }); return; }
   if (h.indexOf("#record-")===0){ const s=decodeURIComponent(h.slice(8)); later(function(){ openRecord(s); }); return; }
   if (h === "#record"){ later(function(){ openScoreboard(); }); return; }
@@ -10110,6 +10469,8 @@ function renderFeed(animate){
 
   /* theme debate boards view (v76) */
     if (typeof THEME_VIEW!=="undefined" && THEME_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW){ renderThemes(list,S); if(typeof hydrateImages==="function") hydrateImages(); return; }
+    /* 13F investor portfolios view (v84) */
+    if (typeof INVESTOR_VIEW!=="undefined" && INVESTOR_VIEW && !SERIES_VIEW && !ENTITY_VIEW && !SB_VIEW){ renderInvestors(list,S); if(typeof hydrateImages==="function") hydrateImages(); return; }
     /* track-record scoreboard view */
   if (SB_VIEW){
     renderScoreboard(list, S);
@@ -12083,6 +12444,66 @@ bootData();
     sync();
   }
   boot();
+})();
+</script>
+<script>
+/* ---------------- 13F investor portfolios: mobile drawer entry (v84.1) ----------------
+   assets/v82.js is off-limits (touching it means recomputing the ?v= cache hash for a
+   deploy), and its hamburger drawer (#v82drawer) is a bare <div> that v82.js's private
+   renderDrawer() fills with innerHTML from scratch EVERY time the drawer opens - so a
+   one-time append here would not survive the second open. A MutationObserver re-injects
+   after each redraw; injectInvestorDrawerItem() is idempotent (checks for its own
+   data-act before adding) so repeated observer callbacks never duplicate the button.
+   closeDrawer(true) - what drawerAct() calls for "themes"/"record" before opening that
+   view - is private to v82.js's IIFE and not exposed on window. Clicking the visible
+   "X" button instead would call the OTHER path, plain closeDrawer() with no argument,
+   which pops browser history via silentBack(); that pop is asynchronous and would race
+   the pushView() inside openInvestors(), corrupting back-button depth. So the visual
+   close is reproduced by hand (mirrors closeDrawer(true)'s body minus the history pop),
+   then openInvestors() runs and pushes its own history entry - the same net effect as
+   the "themes"/"record" drawer items. */
+(function(){
+  function invDrawerLabel(){ try { return (typeof v83T === "function") ? v83T("investors") : "13F"; } catch (e) { return "13F"; } }
+  function invDrawerIcon(){ try { return (typeof V83ICONS !== "undefined" && V83ICONS.investors) ? V83ICONS.investors : ""; } catch (e) { return ""; } }
+  function invCloseDrawerVisual(){
+    var dr = document.getElementById("v82drawer"), scrim = document.getElementById("v82scrim");
+    if (dr){ dr.classList.remove("on"); dr.setAttribute("aria-hidden", "true"); }
+    if (scrim) scrim.classList.remove("on");
+    document.body.classList.remove("v82-drawer-open");
+    var nav = document.getElementById("v82nav");
+    if (nav){
+      var intro = document.getElementById("intro"), ob = document.getElementById("onboard"), dt = document.getElementById("v82detail");
+      var hide = (intro && !intro.hidden && !intro.classList.contains("out")) || (ob && !ob.hidden) || (dt && dt.classList.contains("on"));
+      nav.classList.toggle("v82-off", !!hide);
+    }
+  }
+  function buildInvestorDrawerItem(){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "v82dw-item"; b.setAttribute("data-act", "investors");
+    var lbl = (typeof esc === "function") ? esc(invDrawerLabel()) : invDrawerLabel();
+    b.innerHTML = '<span class="ic">' + invDrawerIcon() + '</span><span>' + lbl + '</span>';
+    b.addEventListener("click", function(){
+      invCloseDrawerVisual();
+      if (typeof openInvestors === "function") openInvestors();
+    });
+    return b;
+  }
+  function injectInvestorDrawerItem(){
+    var dr = document.getElementById("v82drawer");
+    if (!dr || dr.querySelector('[data-act="investors"]')) return; /* dedupe guard */
+    var recordBtn = dr.querySelector('[data-act="record"]');
+    var primary = dr.querySelector(".v82dw-menu.v82dw-primary");
+    var item = buildInvestorDrawerItem();
+    if (recordBtn && recordBtn.parentNode) recordBtn.parentNode.insertBefore(item, recordBtn.nextSibling);
+    else if (primary) primary.appendChild(item);
+  }
+  function armInvestorDrawerWatch(){
+    var dr = document.getElementById("v82drawer");
+    if (!dr){ setTimeout(armInvestorDrawerWatch, 300); return; }
+    injectInvestorDrawerItem();
+    try { new MutationObserver(injectInvestorDrawerItem).observe(dr, { childList: true }); } catch (e) {}
+  }
+  armInvestorDrawerWatch();
 })();
 </script>
 </body>
