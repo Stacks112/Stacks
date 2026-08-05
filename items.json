@@ -236,9 +236,9 @@
     "ja": "スペースXとエヌビディアが、軌道上でAIの計算を回す衛星の中身を共同で設計することになった。\n発表で先に出た数字は演算性能ではなく、衛星一基が使える最大電力だった。\nその値は三週間で67%上がり、同じ日に出た初の四半期決算では設備投資が売上高の二倍を超えた。"
    },
    "gist": {
-    "ko": "스페이스X가 엔비디아와 함께 인공위성에 실을 연산 장치를 설계하기로 했다.\n위성 이름은 스타마인드 AI1이고, 안에 들어가는 것은 엔비디아의 루빈 GPU와 베라 CPU다.\n\n발표에서 맨 앞에 나온 숫자는 성능이 아니었다.\n위성 한 기가 끌어 쓸 수 있는 최대 전력, 250킬로와트였다.\n\n## 석 주 전 같은 위성의 최대치는 150킬로와트였다\n\n노트북체크가 7월 11일에 정리한 이 위성의 사양에서 전력은 평균 120킬로와트, 최대 150킬로와트였다.\n석 주 만에 최대치가 67% 올라간 것이다.\n\n@@REF@@스페이스X가 공개한 AI1 위성의 냉각 사양 (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html|https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/SpaceX-Starmind-AI1-satellite90.jpg\n\n숫자가 오른 이유는 안에 들어갈 물건이 정해졌기 때문이다.\n엔비디아가 루빈 세대에서 파는 랙은 GPU 72장을 한 덩어리로 묶은 물건이다.\n그 한 덩어리를 궤도에서 돌리겠다고 정한 순간, 위성이 준비해야 할 전력도 거기에 맞춰졌다.\n연산을 먼저 정하고 전력을 나중에 맞추는 것이 아니라, 전력이 실을 수 있는 만큼만 연산이 올라간다.\n\n@@IMG@@gpu-board|위성에 들어갈 루빈 세대의 GPU. 지상 데이터센터에서 쓰는 것과 같은 계열이고, 그래서 먹는 전기도 같은 계열이다.\n\n## 우주에서 어려운 것은 계산이 아니라 열\n\n지상 데이터센터는 공기나 물로 열을 옮겨 밖에 버린다.\n진공에는 옮겨 줄 공기가 없어서, 열을 버리는 길은 빛으로 내보내는 것 하나뿐이다.\n\n그래서 이 위성에는 액체를 돌려 열을 넓게 펴는 라디에이터가 110제곱미터 붙는다.\n전기를 만들 태양전지판까지 더하면 날개폭이 70미터, 높이가 20미터가 된다.\n쉽게 말해 선풍기를 돌릴 공기 자체가 없는 방에서 서버를 켜 두는 일이라, 열을 내보낼 판을 몸집만큼 크게 달아야 한다.\n\n위성 한 기가 감당하는 연산은 이 몸집을 다 쓰고도 지상 서버 랙 한 대 수준이다.\n스페이스X가 미국 연방통신위원회에 낸 신청서에 최대 100만 기라는 숫자가 적혀 있는 이유가 여기에 있다.\n\n## 발표와 같은 날 나온 첫 실적\n\n@@BAR@@2026년 2분기 매출|78억달러|78|2026년 2분기 자본지출|184억달러|184@@궤도에 연산을 올리는 일은 아직 버는 단계가 아니라 까는 단계다. 발표가 하나 늘 때마다 이 간격은 먼저 벌어진다.@@야후파이낸스(2026-08-04) · 스페이스X 2026년 2분기 실적\n\n상장 후 처음 내놓은 실적에서 매출은 시장 예상을 웃돌았는데 주가는 밀렸다.\n인공지능 부문 자본지출이 1분기 77억달러에서 158억달러로 한 분기 만에 두 배가 됐기 때문이다.\n\n@@REF@@스페이스X 2분기 실적은 예상을 웃돌았지만 AI 자본지출에 주가가 밀렸다 (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html|https://s.yimg.com/lo/mysterio/api/EAB1FB227C92311BD75462A2DC42852310DE7F008E79CB13B1F5E1BAD79DB37F/subgraphmysterio/resizefill_w1200_h901;quality_80;format_webp/https:%2F%2Fd29szjachogqwa.cloudfront.net%2Fimages%2F2026-08%2Fbabc2da0-8f79-4cd3-914f-bd2460413e99\n\n이 회사가 지금 파는 것은 발사와 통신이고, 사는 것은 궤도 데이터센터다.\n발표가 나올 때마다 시장이 주가를 깎는 이유는 사업이 나빠서가 아니라 그 간격이 언제 좁혀지는지가 아직 안 보이기 때문이다.\n\n## 2027년 초 시제 위성이 가리는 것\n\n스페이스X는 시제 위성을 2027년 초에, 양산을 그해 후반에 잡고 있다.\n\n시제기가 올라가 궤도에서 실제로 추론 작업을 돌리면, 전력과 열이라는 두 벽은 적어도 한 기 규모에서는 넘어선 것이다.\n발사가 밀리거나 전력과 냉각 사양이 다시 내려가면, 벽은 칩이 아니라 그 두 가지에 그대로 남아 있다.\n\n궤도에 데이터센터를 올린다는 말은 전기와 열을 다루는 문제를 지구 밖으로 옮긴다는 말이다.\n옮긴 곳에서 그 문제가 더 쉬워지는지는 아직 아무도 보여주지 않았다.",
-    "en": "SpaceX will design the computing payload of a satellite together with Nvidia.\nThe satellite is called Starmind AI1, and what goes inside it are Nvidia's Rubin GPUs and Vera CPUs.\n\nThe number the announcement led with was not performance.\nIt was 250 kilowatts, the peak power a single satellite may draw.\n\n## Three weeks ago the same satellite peaked at 150 kilowatts\n\nIn the specification Notebookcheck compiled on July 11, power was listed as 120 kilowatts on average and 150 kilowatts at peak.\nThe peak went up 67 percent in three weeks.\n\n@@REF@@SpaceX lists cooling specs for the AI1 satellite (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html|https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/SpaceX-Starmind-AI1-satellite90.jpg\n\nThe figure moved because the hardware got decided.\nThe rack Nvidia sells in the Rubin generation binds 72 GPUs into a single unit.\nThe moment that unit was chosen for orbit, the power budget of the satellite had to be sized to it.\nCompute is not settled first with power fitted afterwards. Only as much compute goes up as the power can carry.\n\n@@IMG@@gpu-board|A Rubin-generation GPU of the kind headed for orbit. It is the same family used in ground data centers, which means it eats electricity like one.\n\n## In orbit the hard part is heat, not arithmetic\n\nA data center on the ground moves heat into air or water and dumps it outside.\nA vacuum has no air to move it into, so the only way out is to radiate the heat away as light.\n\nThat is why the satellite carries 110 square meters of liquid radiator to spread the heat thin.\nAdd the solar arrays that make the electricity and the thing ends up 70 meters across and 20 meters tall.\nPut simply, it is running a server in a room with no air to blow, so the panel that throws heat away has to be as large as the machine itself.\n\nFor all that bulk, one satellite carries roughly the compute of a single server rack on the ground.\nThat is why the number in the company's filing to the Federal Communications Commission runs to as many as one million units.\n\n## The first earnings report, published the same day\n\n@@BAR@@Q2 2026 revenue|$7.8bn|78|Q2 2026 capital spending|$18.4bn|184@@Putting compute into orbit is still a laying-out phase, not an earning phase. Each new announcement widens this gap before it narrows it.@@Yahoo Finance (2026-08-04) · SpaceX Q2 2026 results\n\nIn the first results the company has published as a listed firm, revenue beat expectations and the stock fell anyway.\nCapital spending in the AI segment doubled in a single quarter, from $7.7 billion to $15.8 billion.\n\n@@REF@@SpaceX's Q2 results top estimates but the stock drops on AI capex (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html|https://s.yimg.com/lo/mysterio/api/EAB1FB227C92311BD75462A2DC42852310DE7F008E79CB13B1F5E1BAD79DB37F/subgraphmysterio/resizefill_w1200_h901;quality_80;format_webp/https:%2F%2Fd29szjachogqwa.cloudfront.net%2Fimages%2F2026-08%2Fbabc2da0-8f79-4cd3-914f-bd2460413e99\n\nWhat this company sells today is launch and connectivity. What it is buying is a data center in orbit.\nThe market marks the stock down on each announcement not because the business is deteriorating but because nobody can yet see when that gap closes.\n\n## What the prototype decides in early 2027\n\nSpaceX has the prototype satellite set for early 2027 and volume production for later that year.\n\nIf the prototype reaches orbit and actually runs inference there, then power and heat, the two walls, have been cleared at least at the scale of one unit.\nIf the launch slips or the power and cooling specs come back down, the walls are still exactly where they were, and they were never the chips.\n\nPutting a data center in orbit means moving the problem of electricity and heat off the planet.\nWhether the problem gets easier once it has been moved is something nobody has shown yet.",
-    "ja": "スペースXがエヌビディアと組み、人工衛星に載せる演算装置を設計することになった。\n衛星の名はスターマインドAI1で、中に入るのはエヌビディアのRubin GPUとVera CPUだ。\n\n発表で最初に出た数字は性能ではなかった。\n衛星一基が引き出せる最大電力、250キロワットである。\n\n## 三週間前、同じ衛星のピークは150キロワットだった\n\nNotebookcheckが7月11日にまとめたこの衛星の仕様では、電力は平均120キロワット、最大150キロワットだった。\n三週間でピークが67%上がったことになる。\n\n@@REF@@スペースXが公開したAI1衛星の冷却仕様 (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html|https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/SpaceX-Starmind-AI1-satellite90.jpg\n\n数字が上がったのは、中に入れる物が決まったからだ。\nエヌビディアがRubin世代で売るラックは、GPUを72枚ひとかたまりにまとめた物だ。\nその一かたまりを軌道で回すと決めた時点で、衛星が用意すべき電力もそこに合わせられた。\n演算を先に決めて電力を後から合わせるのではなく、電力が運べる分だけ演算が上がる。\n\n@@IMG@@gpu-board|軌道へ向かうRubin世代のGPU。地上のデータセンターで使うものと同じ系列であり、食う電気も同じ系列だ。\n\n## 軌道で難しいのは計算ではなく熱だ\n\n地上のデータセンターは空気や水に熱を移して外に捨てる。\n真空には移す先の空気がないので、熱を捨てる道は光として放つことだけになる。\n\nそのためこの衛星には、液体を回して熱を薄く広げるラジエーターが110平方メートル付く。\n電気を作る太陽電池パネルまで加えると、翼幅70メートル、高さ20メートルになる。\n平たく言えば、扇ぐ空気そのものがない部屋でサーバーを動かす話であり、熱を逃がす板を機体と同じ大きさで持たねばならない。\n\nその図体を使い切って、衛星一基が担う演算は地上のサーバーラック一台ほどだ。\nスペースXが米連邦通信委員会に出した申請書に最大100万基という数字が並ぶ理由がここにある。\n\n## 発表と同じ日に出た初の決算\n\n@@BAR@@2026年4-6月期 売上高|78億ドル|78|2026年4-6月期 設備投資|184億ドル|184@@軌道に演算を上げる仕事は、まだ稼ぐ段階ではなく敷く段階だ。発表が一つ増えるたび、この差は先に開く。@@Yahoo Finance（2026-08-04）· スペースX 2026年4-6月期決算\n\n上場後はじめて出した決算では、売上高は市場予想を上回ったのに株価は下げた。\nAI部門の設備投資が1-3月期の77億ドルから158億ドルへ、一四半期で二倍になったからだ。\n\n@@REF@@スペースXの4-6月期は予想を上回ったが、AI設備投資で株価は下げた (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html|https://s.yimg.com/lo/mysterio/api/EAB1FB227C92311BD75462A2DC42852310DE7F008E79CB13B1F5E1BAD79DB37F/subgraphmysterio/resizefill_w1200_h901;quality_80;format_webp/https:%2F%2Fd29szjachogqwa.cloudfront.net%2Fimages%2F2026-08%2Fbabc2da0-8f79-4cd3-914f-bd2460413e99\n\nこの会社がいま売っているのは打ち上げと通信で、買っているのは軌道上のデータセンターだ。\n発表のたびに市場が株価を削るのは事業が悪いからではなく、その差がいつ縮むのかがまだ見えないからである。\n\n## 2027年初めの試験機が分けるもの\n\nスペースXは試験衛星を2027年初め、量産をその年の後半に置いている。\n\n試験機が軌道に上がって実際に推論を回せば、電力と熱という二つの壁は少なくとも一基の規模では越えたことになる。\n打ち上げがずれるか、電力と冷却の仕様が再び下がれば、壁はチップではなくその二つのまま残っている。\n\n軌道にデータセンターを上げるとは、電気と熱の問題を地球の外へ移すということだ。\n移した先でその問題が楽になるかどうかは、まだ誰も見せていない。"
+    "ko": "스페이스X가 엔비디아와 함께 인공위성에 실을 연산 장치를 설계하기로 했다.\n위성 이름은 스타마인드 AI1이고, 안에 들어가는 것은 엔비디아의 루빈 GPU와 베라 CPU다.\n\n발표에서 맨 앞에 나온 숫자는 성능이 아니었다.\n위성 한 기가 끌어 쓸 수 있는 최대 전력, 250킬로와트였다.\n\n## 석 주 전 같은 위성의 최대치는 150킬로와트였다\n\n노트북체크가 7월 11일에 정리한 이 위성의 사양에서 전력은 평균 120킬로와트, 최대 150킬로와트였다.\n석 주 만에 최대치가 67% 올라간 것이다.\n\n@@REF@@스페이스X가 공개한 AI1 위성의 냉각 사양 (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html\n\n숫자가 오른 이유는 안에 들어갈 물건이 정해졌기 때문이다.\n엔비디아가 루빈 세대에서 파는 랙은 GPU 72장을 한 덩어리로 묶은 물건이다.\n그 한 덩어리를 궤도에서 돌리겠다고 정한 순간, 위성이 준비해야 할 전력도 거기에 맞춰졌다.\n연산을 먼저 정하고 전력을 나중에 맞추는 것이 아니라, 전력이 실을 수 있는 만큼만 연산이 올라간다.\n\n@@IMG@@gpu-board|위성에 들어갈 루빈 세대의 GPU. 지상 데이터센터에서 쓰는 것과 같은 계열이고, 그래서 먹는 전기도 같은 계열이다.\n\n## 우주에서 어려운 것은 계산이 아니라 열\n\n지상 데이터센터는 공기나 물로 열을 옮겨 밖에 버린다.\n진공에는 옮겨 줄 공기가 없어서, 열을 버리는 길은 빛으로 내보내는 것 하나뿐이다.\n\n그래서 이 위성에는 액체를 돌려 열을 넓게 펴는 라디에이터가 110제곱미터 붙는다.\n전기를 만들 태양전지판까지 더하면 날개폭이 70미터, 높이가 20미터가 된다.\n쉽게 말해 선풍기를 돌릴 공기 자체가 없는 방에서 서버를 켜 두는 일이라, 열을 내보낼 판을 몸집만큼 크게 달아야 한다.\n\n위성 한 기가 감당하는 연산은 이 몸집을 다 쓰고도 지상 서버 랙 한 대 수준이다.\n스페이스X가 미국 연방통신위원회에 낸 신청서에 최대 100만 기라는 숫자가 적혀 있는 이유가 여기에 있다.\n\n## 발표와 같은 날 나온 첫 실적\n\n@@BAR@@2026년 2분기 매출|78억달러|78|2026년 2분기 자본지출|184억달러|184@@궤도에 연산을 올리는 일은 아직 버는 단계가 아니라 까는 단계다. 발표가 하나 늘 때마다 이 간격은 먼저 벌어진다.@@야후파이낸스(2026-08-04) · 스페이스X 2026년 2분기 실적\n\n상장 후 처음 내놓은 실적에서 매출은 시장 예상을 웃돌았는데 주가는 밀렸다.\n인공지능 부문 자본지출이 1분기 77억달러에서 158억달러로 한 분기 만에 두 배가 됐기 때문이다.\n\n@@REF@@스페이스X 2분기 실적은 예상을 웃돌았지만 AI 자본지출에 주가가 밀렸다 (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html\n\n이 회사가 지금 파는 것은 발사와 통신이고, 사는 것은 궤도 데이터센터다.\n발표가 나올 때마다 시장이 주가를 깎는 이유는 사업이 나빠서가 아니라 그 간격이 언제 좁혀지는지가 아직 안 보이기 때문이다.\n\n## 2027년 초 시제 위성이 가리는 것\n\n스페이스X는 시제 위성을 2027년 초에, 양산을 그해 후반에 잡고 있다.\n\n시제기가 올라가 궤도에서 실제로 추론 작업을 돌리면, 전력과 열이라는 두 벽은 적어도 한 기 규모에서는 넘어선 것이다.\n발사가 밀리거나 전력과 냉각 사양이 다시 내려가면, 벽은 칩이 아니라 그 두 가지에 그대로 남아 있다.\n\n궤도에 데이터센터를 올린다는 말은 전기와 열을 다루는 문제를 지구 밖으로 옮긴다는 말이다.\n옮긴 곳에서 그 문제가 더 쉬워지는지는 아직 아무도 보여주지 않았다.",
+    "en": "SpaceX will design the computing payload of a satellite together with Nvidia.\nThe satellite is called Starmind AI1, and what goes inside it are Nvidia's Rubin GPUs and Vera CPUs.\n\nThe number the announcement led with was not performance.\nIt was 250 kilowatts, the peak power a single satellite may draw.\n\n## Three weeks ago the same satellite peaked at 150 kilowatts\n\nIn the specification Notebookcheck compiled on July 11, power was listed as 120 kilowatts on average and 150 kilowatts at peak.\nThe peak went up 67 percent in three weeks.\n\n@@REF@@SpaceX lists cooling specs for the AI1 satellite (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html\n\nThe figure moved because the hardware got decided.\nThe rack Nvidia sells in the Rubin generation binds 72 GPUs into a single unit.\nThe moment that unit was chosen for orbit, the power budget of the satellite had to be sized to it.\nCompute is not settled first with power fitted afterwards. Only as much compute goes up as the power can carry.\n\n@@IMG@@gpu-board|A Rubin-generation GPU of the kind headed for orbit. It is the same family used in ground data centers, which means it eats electricity like one.\n\n## In orbit the hard part is heat, not arithmetic\n\nA data center on the ground moves heat into air or water and dumps it outside.\nA vacuum has no air to move it into, so the only way out is to radiate the heat away as light.\n\nThat is why the satellite carries 110 square meters of liquid radiator to spread the heat thin.\nAdd the solar arrays that make the electricity and the thing ends up 70 meters across and 20 meters tall.\nPut simply, it is running a server in a room with no air to blow, so the panel that throws heat away has to be as large as the machine itself.\n\nFor all that bulk, one satellite carries roughly the compute of a single server rack on the ground.\nThat is why the number in the company's filing to the Federal Communications Commission runs to as many as one million units.\n\n## The first earnings report, published the same day\n\n@@BAR@@Q2 2026 revenue|$7.8bn|78|Q2 2026 capital spending|$18.4bn|184@@Putting compute into orbit is still a laying-out phase, not an earning phase. Each new announcement widens this gap before it narrows it.@@Yahoo Finance (2026-08-04) · SpaceX Q2 2026 results\n\nIn the first results the company has published as a listed firm, revenue beat expectations and the stock fell anyway.\nCapital spending in the AI segment doubled in a single quarter, from $7.7 billion to $15.8 billion.\n\n@@REF@@SpaceX's Q2 results top estimates but the stock drops on AI capex (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html\n\nWhat this company sells today is launch and connectivity. What it is buying is a data center in orbit.\nThe market marks the stock down on each announcement not because the business is deteriorating but because nobody can yet see when that gap closes.\n\n## What the prototype decides in early 2027\n\nSpaceX has the prototype satellite set for early 2027 and volume production for later that year.\n\nIf the prototype reaches orbit and actually runs inference there, then power and heat, the two walls, have been cleared at least at the scale of one unit.\nIf the launch slips or the power and cooling specs come back down, the walls are still exactly where they were, and they were never the chips.\n\nPutting a data center in orbit means moving the problem of electricity and heat off the planet.\nWhether the problem gets easier once it has been moved is something nobody has shown yet.",
+    "ja": "スペースXがエヌビディアと組み、人工衛星に載せる演算装置を設計することになった。\n衛星の名はスターマインドAI1で、中に入るのはエヌビディアのRubin GPUとVera CPUだ。\n\n発表で最初に出た数字は性能ではなかった。\n衛星一基が引き出せる最大電力、250キロワットである。\n\n## 三週間前、同じ衛星のピークは150キロワットだった\n\nNotebookcheckが7月11日にまとめたこの衛星の仕様では、電力は平均120キロワット、最大150キロワットだった。\n三週間でピークが67%上がったことになる。\n\n@@REF@@スペースXが公開したAI1衛星の冷却仕様 (Notebookcheck, 2026-07-11)|https://www.notebookcheck.net/SpaceX-lists-AI1-satellite-cooling-specs-for-Starmind-data-center-in-space.1340218.0.html\n\n数字が上がったのは、中に入れる物が決まったからだ。\nエヌビディアがRubin世代で売るラックは、GPUを72枚ひとかたまりにまとめた物だ。\nその一かたまりを軌道で回すと決めた時点で、衛星が用意すべき電力もそこに合わせられた。\n演算を先に決めて電力を後から合わせるのではなく、電力が運べる分だけ演算が上がる。\n\n@@IMG@@gpu-board|軌道へ向かうRubin世代のGPU。地上のデータセンターで使うものと同じ系列であり、食う電気も同じ系列だ。\n\n## 軌道で難しいのは計算ではなく熱だ\n\n地上のデータセンターは空気や水に熱を移して外に捨てる。\n真空には移す先の空気がないので、熱を捨てる道は光として放つことだけになる。\n\nそのためこの衛星には、液体を回して熱を薄く広げるラジエーターが110平方メートル付く。\n電気を作る太陽電池パネルまで加えると、翼幅70メートル、高さ20メートルになる。\n平たく言えば、扇ぐ空気そのものがない部屋でサーバーを動かす話であり、熱を逃がす板を機体と同じ大きさで持たねばならない。\n\nその図体を使い切って、衛星一基が担う演算は地上のサーバーラック一台ほどだ。\nスペースXが米連邦通信委員会に出した申請書に最大100万基という数字が並ぶ理由がここにある。\n\n## 発表と同じ日に出た初の決算\n\n@@BAR@@2026年4-6月期 売上高|78億ドル|78|2026年4-6月期 設備投資|184億ドル|184@@軌道に演算を上げる仕事は、まだ稼ぐ段階ではなく敷く段階だ。発表が一つ増えるたび、この差は先に開く。@@Yahoo Finance（2026-08-04）· スペースX 2026年4-6月期決算\n\n上場後はじめて出した決算では、売上高は市場予想を上回ったのに株価は下げた。\nAI部門の設備投資が1-3月期の77億ドルから158億ドルへ、一四半期で二倍になったからだ。\n\n@@REF@@スペースXの4-6月期は予想を上回ったが、AI設備投資で株価は下げた (Yahoo Finance, 2026-08-04)|https://finance.yahoo.com/technology/article/spacexs-q2-results-top-estimates-in-first-ever-quarterly-report-132323178.html\n\nこの会社がいま売っているのは打ち上げと通信で、買っているのは軌道上のデータセンターだ。\n発表のたびに市場が株価を削るのは事業が悪いからではなく、その差がいつ縮むのかがまだ見えないからである。\n\n## 2027年初めの試験機が分けるもの\n\nスペースXは試験衛星を2027年初め、量産をその年の後半に置いている。\n\n試験機が軌道に上がって実際に推論を回せば、電力と熱という二つの壁は少なくとも一基の規模では越えたことになる。\n打ち上げがずれるか、電力と冷却の仕様が再び下がれば、壁はチップではなくその二つのまま残っている。\n\n軌道にデータセンターを上げるとは、電気と熱の問題を地球の外へ移すということだ。\n移した先でその問題が楽になるかどうかは、まだ誰も見せていない。"
    },
    "why": {
     "ko": "궤도 데이터센터 이야기는 대개 어떤 칩이 올라가느냐로 소비된다. 이번 발표에서 실제로 움직인 숫자는 칩이 아니라 전력과 냉각이었고, 그 둘을 올리는 값이 같은 날 실적에 자본지출로 찍혔다. 어떤 회사가 궤도 연산을 진짜로 하고 있는지는 발표한 칩 이름이 아니라 위성 한 기가 감당하는 전력과 열, 그리고 그것을 대는 현금흐름으로 갈린다.",
@@ -7894,13 +7894,28 @@
     "ja": "キオクシアの急落は半導体セクター全体の調整なのか、それとも特許訴訟というこの会社固有の重荷が上乗せされたものなのか?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "ko": "7월30일 키옥시아 실적이 가이던스(매출 1조7500억엔)대로 나오는지, 삼성전자·SK하이닉스와 동반 반등하는지, 비아셋 특허소송 항소 결과나 합의 소식이 언제 나오는지로 채점.",
-     "en": "To be scored on whether Kioxia's July 30 earnings meet guidance (1.75 trillion yen revenue) and recover together with Samsung and SK hynix, and on when the Viasat patent appeal ruling or settlement lands.",
-     "ja": "7月30日のキオクシアの決算がガイダンス(売上高1兆7500億円)通りか、サムスン電子・SKハイニックスと共に反発するか、ビアサット特許訴訟の控訴判決や和解がいつ出るかで採点する。"
+     "ko": "7월31일 키옥시아 실적(매출 1조7671억엔, 가이던스 1조7500억엔 상회)과 7월 두 차례(7/9, 7/29~30) 삼성전자·SK하이닉스 동반 반등은 확인됐으나, 비아셋 특허소송 항소나 합의 소식은 나오지 않았고 실적 발표 당일 주가 반응도 매체마다 엇갈려(+18%~-11%) 일관되게 확인되지 않았다. 7월30일 기준 고점 대비 낙폭도 키옥시아(-63.66%)가 SK하이닉스(-54.68%)보다 여전히 커서 애초 질문의 전제가 뚜렷이 해소됐다고 보기 어렵다.",
+     "en": "Kioxia's July 31 earnings (revenue ¥1.7671 trillion, above the ¥1.75 trillion guidance) and two instances in July (7/9, 7/29-30) of Kioxia rebounding together with Samsung Electronics and SK hynix were both confirmed, but no news emerged of a Viasat patent lawsuit appeal ruling or settlement, and the stock reaction on the earnings-announcement day itself was inconsistent across outlets (+18% to -11%). As of July 30, Kioxia's drawdown from its peak (-63.66%) was still larger than SK hynix's (-54.68%), so the original question's premise cannot be said to have been clearly resolved.",
+     "ja": "7月31日のキオクシア決算(売上高1兆7671億円、ガイダンス1兆7500億円を上回る)と、7月に2回(7/9、7/29~30)確認されたサムスン電子・SKハイニックスとの同時反発は確認できたが、ビアサット特許訴訟の控訴や和解のニュースは出ておらず、決算発表当日の株価反応もメディアによって(+18%~-11%)ばらつきがあり一貫して確認できなかった。7月30日時点の高値からの下落率もキオクシア(-63.66%)がSKハイニックス(-54.68%)より依然大きく、当初の質問の前提が明確に解消されたとは言い難い。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "Kioxia Q1 FY2026 earnings July 31 2026 revenue guidance",
+      "found": "매출 1조7671억엔으로 가이던스(1조7500억엔) 소폭 상회 (Nikkei)"
+     },
+     {
+      "q": "キオクシア 株価 決算後 サムスン SKハイニックス 동반 반등",
+      "found": "7/9, 7/29~30 두 차례 삼성전자·SK하이닉스와 동반 급반등 확인, 다만 8/1 실적 발표 당일 주가 반응은 매체마다 +18%/-11%로 엇갈림"
+     },
+     {
+      "q": "Viasat Kioxia patent lawsuit appeal settlement 2026",
+      "found": "해당 보도 없음"
+     }
+    ]
    },
    "ts": "2026-07-28T09:55:00+00:00",
    "foldWhy": true,
@@ -9688,13 +9703,28 @@
     "ja": "今週マイクロソフト・メタ・アマゾン・アップルの決算が出そろえば、S&P500の利益率の物語は広範なAI好況になるのか、それともアルファベット1社が生んだ錯覚になるのか?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "hit",
     "note": {
-     "ko": "마이크로소프트·메타·아마존·애플의 2분기 실적 발표 후 이들 기업의 마진도 비슷하게 개선됐는지 확인한다. 그 결과로 15.7%가 넓은 AI 호황인지 알파벳 착시인지 갈린다.",
-     "en": "Check after Microsoft, Meta, Amazon and Apple report Q2 results whether their margins improved similarly, that determines whether 15.7% reflects a broad AI boom or an Alphabet-sized illusion.",
-     "ja": "マイクロソフト・メタ・アマゾン・アップルの第2四半期決算発表後、各社の利益率も同様に改善したかを確認する。それによって15.7%が広範なAI好況かアルファベット1社の錯覚かが判明する。"
+     "ko": "FactSet 집계로 2026년 2분기 S&P500 블렌디드 순이익률이 15.7%(2009년 이후 최고치)였고, 알파벳(스페이스X 지분 미실현평가이익 771억달러 포함)을 제외하면 14.4%로 떨어진다는 사실이 원자료 및 복수 매체(cryptobriefing, 247wallst 등)로 확인됐다.",
+     "en": "FactSet's tally confirmed that the S&P 500's blended net profit margin for Q2 2026 hit 15.7% (the highest since 2009), and that excluding Alphabet (whose results included a $77.1 billion unrealized gain on its SpaceX stake), the margin drops to 14.4%, verified against the primary FactSet source and multiple outlets (CryptoBriefing, 24/7 Wall St., etc).",
+     "ja": "FactSetの集計により、2026年第2四半期のS&P500ブレンド純利益率が15.7%(2009年以降で最高)となり、アルファベット(スペースX株式の未実現評価益771億ドルを含む)を除くと14.4%に下がるという事実が、原資料および複数メディア(クリプトブリーフィング、24/7ウォール・ストリートなど)で確認された。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "S&P 500 Q2 2026 net profit margin FactSet 15.7% Alphabet 14.4%",
+      "found": "FactSet 원문 'blended net profit margin 15.7%, ex-Alphabet 14.4%' 확인"
+     },
+     {
+      "q": "S&P 500 net profit margin record Q2 2026 earnings season",
+      "found": "cryptobriefing, 247wallst 등 복수 매체 동일 수치 교차 확인"
+     },
+     {
+      "q": "Alphabet SpaceX unrealized gain Q2 2026 margin distortion",
+      "found": "알파벳 순이익 1,121억달러 중 771억달러가 스페이스X 지분 미실현이익, 스페이스X 제외시 마진 29%"
+     }
+    ]
    },
    "ts": "2026-07-26T21:58:44.774799+00:00",
    "sum3": {
@@ -10530,13 +10560,28 @@
     "ja": "韓国政府はSKハイニックス750億ドル、サムスン電子200億ドル、合計950億ドル規模のメモリ契約を発表した。\nサムスン・ブロードコムの200億ドルはサムスンの公式発表で確認できる。\nしかしエヌビディアのジェンスン・ファンCEO自身はSKグループとの契約を500億ドルと語っており、二つの数字は範囲が異なるとみられる。"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "ko": "삼성전자·SK하이닉스의 2026년 2분기 실적 발표에서 이 계약과 연결된 실제 수주 잔고나 매출 반영이 구체적으로 확인되는지 지켜본다.",
-     "en": "Watch whether Samsung and SK hynix's Q2 2026 earnings confirm concrete order backlog or revenue tied to these deals.",
-     "ja": "サムスン電子・SKハイニックスの2026年第2四半期決算で、この契約に関連する具体的な受注残高や売上への反映が確認できるかを見る。"
+     "ko": "SK하이닉스 2026년 2분기 실적발표(7/28~29) 컨퍼런스콜에서 엔비디아 등과 장기공급계약(LTA) 체결 사실은 밝혔으나 계약금액·수주잔고는 '개별 고객 계약 조건은 공개하기 어렵다'며 공개하지 않았다. 실제 보도된 딜 규모도 SK그룹-엔비디아 5000억달러 AI 파트너십과 SK-빅테크 5년 7500억달러 반도체 협력 두 갈래로, 예측이 전제한 '750억 대 500억달러' 논쟁과는 자릿수가 달라 750억달러 수주 반영은 확인되지 않았다.",
+     "en": "In its Q2 2026 earnings conference call (7/28-29), SK hynix disclosed that it had signed long-term supply agreements (LTAs) with Nvidia and others, but did not disclose the contract value or order backlog, saying 'terms of individual customer contracts are difficult to disclose.' The deal sizes actually reported also split into two separate threads, the SK Group-Nvidia $500 billion AI partnership and a five-year, $750 billion SK-Big Tech semiconductor cooperation, an order of magnitude different from the '$75 billion vs $50 billion' dispute the prediction assumed, so a $75 billion order-backlog reflection was not confirmed.",
+     "ja": "SKハイニックスの2026年第2四半期決算発表(7/28~29)のカンファレンスコールでは、エヌビディアなどとの長期供給契約(LTA)締結の事実は明かしたが、契約金額や受注残高については「個別顧客との契約条件は開示が難しい」として公表しなかった。実際に報じられた案件規模も、SKグループ・エヌビディアの5000億ドルAIパートナーシップと、SKとビッグテックの5年間7500億ドル半導体協力という2系統に分かれており、予測が前提とした「750億ドル対500億ドル」の論争とは桁が異なるため、750億ドルの受注反映は確認できなかった。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "SK Hynix Q2 2026 earnings conference call Nvidia contract amount backlog",
+      "found": "컨콜에서 '개별 고객 계약 조건은 공개하기 어렵다'며 금액 비공개 (thelec.kr 전문)"
+     },
+     {
+      "q": "SK하이닉스 엔비디아 500억달러 750억달러 계약 보도",
+      "found": "실제 보도된 규모는 SK그룹-엔비디아 5000억달러 AI파트너십(7/25), SK-빅테크 5년 7500억달러 협력 — 750억/500억달러와 자릿수 불일치"
+     },
+     {
+      "q": "Samsung SK Hynix Q2 2026 backlog Nvidia MOU revenue reflected",
+      "found": "구체적 수주잔고·매출 반영 확인 안 됨"
+     }
+    ]
    },
    "lab": true,
    "foldWhy": true,
@@ -13855,13 +13900,28 @@
     "ja": "すでに巨額だったGoogleのAI投資計画がさらに増え、クラウドのマージンまで拡大した。これはAI投資強気派が待っていた確認材料なのか、それとも完璧を織り込む市場が来週のマイクロソフト・メタ決算で失望する余地を広げただけなのか。"
    },
    "outcome": {
-    "status": "pending",
+    "status": "hit",
     "note": {
-     "en": "Check in the following weeks whether optics and networking suppliers like $LITE rally on Google's raised capex guidance, and whether Microsoft and Meta echo the same capex increase when they report next week.",
-     "ko": "앞으로 몇 주 안에 $LITE 등 광통신·네트워킹 공급업체들이 구글의 CAPEX 상향에 힘입어 오르는지, 다음 주 실적을 발표하는 마이크로소프트·메타도 같은 투자 확대 기조를 보이는지 확인한다.",
-     "ja": "今後数週間で$LITEなど光通信・ネットワーキング関連企業がGoogleのCAPEX上方修正を受けて上昇するか、来週決算を発表するマイクロソフト・メタも同様の投資拡大方針を示すか確認する。"
+     "ko": "알파벳은 2026-07-22 발표한 2분기 실적에서 매출 +24%(클라우드 +82%)로 컨센서스를 상회했고, 2026년 CAPEX 가이던스를 예측대로 1,950억~2,050억달러로 상향했다(CNBC, Yahoo Finance, Investing.com 등 복수 매체 확인). 다만 광통신주 루멘텀 반등이나 마이크로소프트의 CAPEX 상향은 뚜렷하게 확인되지 않았다(메타만 재상향, MS는 유지).",
+     "en": "In its Q2 earnings reported on 2026-07-22, Alphabet beat consensus with revenue up 24% (cloud up 82%), and raised its 2026 CAPEX guidance to $195-205 billion as predicted (confirmed across multiple outlets including CNBC, Yahoo Finance, and Investing.com). However, a rebound in optics stock Lumentum or a CAPEX raise from Microsoft was not clearly confirmed (only Meta raised its guidance again; Microsoft kept its guidance unchanged).",
+     "ja": "アルファベットは2026年7月22日に発表した第2四半期決算で、売上高が前年比+24%(クラウドは+82%)とコンセンサスを上回り、2026年のCAPEXガイダンスを予測通り1,950億~2,050億ドルに引き上げた(CNBC、Yahoo Finance、Investing.comなど複数メディアで確認)。ただし、光通信株ルメンタムの反発やマイクロソフトのCAPEX上方修正は明確には確認されなかった(メタのみ再上方修正、マイクロソフトは維持にとどまった)。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "Alphabet Q2 2026 earnings capex guidance $195-205 billion",
+      "found": "CNBC, Yahoo Finance, MLQ 등 복수 매체가 CAPEX 가이던스 1,950억~2,050억달러 상향 확인"
+     },
+     {
+      "q": "Alphabet Q2 2026 earnings beat cloud revenue growth",
+      "found": "매출 +24%, 클라우드 +82%로 컨센서스 상회 확인"
+     },
+     {
+      "q": "Lumentum LITE Microsoft Meta capex after Google Q2 2026",
+      "found": "메타는 CAPEX 재상향, 마이크로소프트는 유지에 그침; 구글 capex와 루멘텀 반등의 직접 연관성은 불명확"
+     }
+    ]
    },
    "ts": "2026-07-22T12:00:00+00:00",
    "quote": {
@@ -13919,13 +13979,28 @@
     "ja": "イランリスクと金利上昇で株式市場が揺れる中、ビットコインETFの流入ペースが5月以来最速に跳ね上がった。これはヘッジ手段としてのビットコインへの機関投資家の新たな確信なのか、それとも地政学的な雑音が収まれば消える一時的なローテーションに過ぎないのか。"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "en": "Check in two weeks whether Bitcoin ETF weekly inflows keep accelerating past the $900M mark or fade back toward the prior week's $197M pace.",
-     "ko": "2주 후 비트코인 ETF 주간 유입액이 9억달러를 넘어 계속 가속하는지, 아니면 전주 수준인 1억9,700만달러대로 되돌아가는지 확인한다.",
-     "ja": "2週間後、ビットコインETFの週間流入額が9億ドルを超えて加速し続けるか、それとも前週水準の1億9,700万ドル前後に戻るかを確認する。"
+     "ko": "7월22일 무렵 주간 9억달러 유입은 실제 있었으나, 이후 유입세는 급격히 꺾여 7/24 마감주 3,379만달러로 축소되고 7/31 마감주는 6,153만달러 순유출로 전환됐다(Farside 집계 7/31 단일일 -2억6,540만달러). 8/4 보도는 '유입 둔화, 자금이 AI 펀드로 이동'을 명시해 예측된 가속 흐름은 재현되지 않았다.",
+     "en": "The $900 million weekly inflow around July 22 did occur, but inflows then dropped off sharply: the week ending 7/24 shrank to $33.79 million, and the week ending 7/31 flipped to a net outflow of $61.53 million (Farside's tally shows a single-day outflow of -$265.4 million on 7/31). An 8/4 report explicitly stated that inflows were slowing and capital was rotating into AI funds, so the predicted accelerating inflow trend did not recur.",
+     "ja": "7月22日ごろの週間9億ドルの流入は実際にあったが、その後流入は急激に細り、7/24締めの週には3,379万ドルまで縮小、7/31締めの週には6,153万ドルの純流出に転じた(Farside集計では7/31単日で-2億6,540万ドルの流出)。8/4の報道は「流入鈍化、資金はAIファンドへ移動」と明記しており、予測された加速的な流入トレンドは再現されなかった。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "Bitcoin ETF weekly inflows outflows late July early August 2026",
+      "found": "7/24 마감주 유입 3,379만달러로 급감, 7/31 마감주 6,153만달러 순유출 전환 (CryptoTimes)"
+     },
+     {
+      "q": "Farside Investors Bitcoin ETF daily flow August 2026",
+      "found": "7/31 단일일 -2억6,540만달러 유출 확인"
+     },
+     {
+      "q": "Bitcoin ETF inflows dwindle August 2026",
+      "found": "CoinDesk 8/4 보도 '유입 둔화, 자금이 AI펀드로 이동' 확인"
+     }
+    ]
    },
    "ts": "2026-07-22T12:00:00+00:00",
    "quote": {
@@ -14038,13 +14113,28 @@
     "ja": "長期国債利回りが原油価格と同時に数年ぶりの高水準にあり、市場はイラン戦争を一時的な衝撃ではなく持続的なインフレリスクとして織り込んでいる。この組み合わせは株式市場全体でのリスクオフをより懸念させるか、それとも利回りはすでに天井に近いと考えるか。"
    },
    "outcome": {
-    "status": "pending",
-    "due": "2026-08-05",
+    "status": "hit",
     "note": {
-     "en": "Check whether the 10-Year yield breaks above the 4.70% 52-week high and the 30-Year stays above 5.00%, or whether yields retreat as Iran war tensions ease.",
-     "ko": "10년물 금리가 52주 최고치인 4.70%를 실제로 돌파하는지, 30년물이 5.00% 위에 계속 머무는지, 아니면 이란전쟁 긴장이 완화되며 금리가 되돌리는지를 확인한다.",
-     "ja": "10年債利回りが52週高値の4.70%を実際に上抜けるか、30年債が5.00%超を維持するか、あるいはイラン戦争の緊張緩和とともに利回りが低下するかを確認する。"
-    }
+     "ko": "10년물 국채금리는 2026년 7월23일 4.707%까지 상승해 2025년 1월 이후 처음 4.70%를 돌파했고(사우디 인근 유조선 공격·대이란 공습 위협에 따른 유가 급등, 예상보다 견조한 고용지표), 30년물도 5%를 넘어 2007년 이후 최장 기간(8/4 기준 5.18%) 그 위에 머물렀다. 8월 초 이란 긴장 완화 기대로 금리가 다소 되돌렸지만(10년물 8/5 기준 4.63%) 예측된 돌파 자체는 이미 실현됐다.",
+     "en": "The 10-year Treasury yield rose to 4.707% on July 23, 2026, breaking above 4.70% for the first time since January 2025 (driven by an oil-price spike from a tanker attack near Saudi Arabia and the threat of strikes on Iran, plus stronger-than-expected employment data), and the 30-year yield also topped 5% and stayed above it for its longest stretch since 2007 (5.18% as of 8/4). Yields pulled back somewhat in early August on hopes of Iran tensions easing (10-year at 4.63% as of 8/5), but the predicted breakout had already occurred.",
+     "ja": "10年債利回りは2026年7月23日に4.707%まで上昇し、2025年1月以来初めて4.70%を上抜けた(サウジアラビア近海でのタンカー攻撃とイラン空爆の脅威による原油価格急騰、予想より底堅い雇用統計が背景)。30年債利回りも5%を上回り、2007年以降で最長となる期間(8/4時点で5.18%)その水準を維持した。8月初旬にはイラン情勢の緊張緩和期待から利回りはやや押し戻されたが(10年債は8/5時点で4.63%)、予測された5%突破自体はすでに実現していた。"
+    },
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "US 10 year treasury yield 4.70% July 2026 Iran war",
+      "found": "10년물 7/23 4.707% 기록, 2025년1월 이후 최고"
+     },
+     {
+      "q": "30 year treasury yield above 5% Iran war August 2026",
+      "found": "30년물 5% 상회 2007년 이후 최장 유지, 8/4 기준 5.18%"
+     },
+     {
+      "q": "Treasury yields fall Iran de-escalation August 2026",
+      "found": "8/3 이후 긴장완화 기대로 되돌림, 10년물 8/5 기준 4.63%"
+     }
+    ]
    },
    "sourceUrl": "https://x.com/KobeissiLetter/status/2080015385634418825",
    "ts": "2026-07-22T12:00:00+00:00",
@@ -14105,13 +14195,28 @@
     "ko": "미국과 이란이 이제 호르무즈를 두고 사안별 대응 대신 자동 보복을 공언하고 있다. 이런 맞대응 규칙이 더 큰 충돌 가능성을 높이는 걸까, 아니면 확실하고 신속한 대가가 오히려 양측 모두 먼저 쏘는 걸 주저하게 만들까?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "en": "Grade within the next few weeks whether either side follows through, an actual US strike on an Iranian power plant or bridge, or an Iranian strike on an energy site, or whether the standoff stays rhetorical.",
-     "ja": "今後数週間で、実際にどちらかが警告を実行に移すか、すなわち米国がイランの発電所・橋を実際に攻撃するか、イランがエネルギー施設を攻撃するか、あるいは言葉だけの対立にとどまるかを判定する。",
-     "ko": "앞으로 몇 주 안에 실제로 양측 중 한쪽이 위협을 실행하는지, 즉 미국이 이란의 발전소·다리를 실제로 타격하거나 이란이 에너지 시설을 타격하는지, 아니면 말뿐인 대치로 남는지를 채점한다."
+     "ko": "트윗(7/22) 이후 약 2주간 미국은 이란 발전소를 실제로 타격하지 않았다. 8/1 '주말 중 이란 에너지시설 타격' 계획이 보도됐지만 트럼프가 이를 취소하고 8/3 호르무즈 관련 협상을 개시했다(Bloomberg, CBS). 조건부 위협의 발동 조건(미국의 실제 타격)이 성립하지 않아 이란의 보복 타격도 일어나지 않았고, 말뿐인 대치로 남았다.",
+     "en": "For roughly two weeks after the tweet (7/22), the US did not actually strike Iranian power plants. A plan to 'strike Iranian energy facilities over the weekend' was reported on 8/1, but Trump called it off and instead opened Hormuz-related negotiations on 8/3 (Bloomberg, CBS). Because the triggering condition for the conditional threat (an actual US strike) never materialized, Iran's retaliatory strike also did not happen, and the standoff remained purely rhetorical.",
+     "ja": "ツイート(7/22)から約2週間、米国はイランの発電所を実際には攻撃しなかった。8/1に「週末中にイランのエネルギー施設を攻撃する」計画が報じられたが、トランプはこれを取りやめ、8/3にホルムズ関連の交渉を開始した(Bloomberg、CBS)。条件付き脅威の発動条件(米国による実際の攻撃)が成立しなかったため、イランによる報復攻撃も起きず、言葉だけの対立にとどまった。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "US Israel strikes Iran energy infrastructure August 2026",
+      "found": "8/1 주말 타격 계획 보도됐으나 실행 확인 안 됨"
+     },
+     {
+      "q": "Trump calls off Iran strikes negotiations August 2026",
+      "found": "Bloomberg, CBS 8/3 보도 — 트럼프가 타격 취소하고 협상 개시"
+     },
+     {
+      "q": "Iran retaliation energy facility attack after US strike August 2026",
+      "found": "미국의 실제 타격이 없어 이란의 보복 타격도 확인 안 됨"
+     }
+    ]
    },
    "ts": "2026-07-22T12:00:00+00:00",
    "quote": {
@@ -14223,13 +14328,28 @@
     "ko": "트럼프가 호르무즈 보복을 자동 규칙으로 만들었다. 사격 한 번마다 다리나 발전소 하나씩. 이게 정말 이란을 억제할까, 아니면 다음 사건을 예전보다 더 빨리 격화시키는 장치가 될까?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "hit",
     "note": {
-     "en": "Check in the following weeks whether Iran fires at a ship in the Strait of Hormuz again, and if so, whether the US follows through with a strike on an Iranian bridge or power plant as Trump warned.",
-     "ja": "今後数週間で、イランがホルムズ海峡で再び船舶に発砲するか、その場合トランプの警告通り米国がイランの橋や発電所を実際に攻撃するかを確認する。",
-     "ko": "앞으로 몇 주 안에 이란이 호르무즈에서 다시 선박에 사격을 가하는지, 그리고 그럴 경우 트럼프의 경고대로 미국이 실제로 이란의 다리나 발전소를 타격하는지 확인한다."
+     "ko": "2026년 7월 초 이란이 호르무즈 해협에서 상선 3척에 미사일 공격을 가해 기존 공격중단 합의를 파기했고, 이에 대응해 미국이 7월9~17일 반다르 압바스 인근 다리·철도와 부시에르 핵발전소 인근 시설 등을 실제로 타격했다. 트럼프는 7월22~23일 '선박 공격 1회당 다리·발전소 1개 파괴' 정책을 공식화해 경고대로 실행됐음을 재확인했다.",
+     "en": "In early July 2026, Iran fired missiles at three merchant ships in the Strait of Hormuz, breaking the existing cessation-of-attacks agreement, and in response the US actually struck bridges and rail near Bandar Abbas and facilities near the Bushehr nuclear plant between July 9-17. On July 22-23, Trump formalized a policy of 'destroying one bridge or power plant for every ship attack,' reconfirming that the warning was carried out as stated.",
+     "ja": "2026年7月初旬、イランはホルムズ海峡で商船3隻にミサイル攻撃を行い、既存の攻撃停止合意を破った。これを受け米国は7月9日から17日にかけて、バンダルアッバス近郊の橋・鉄道やブーシェフル原発近郊の施設などを実際に攻撃した。トランプは7月22~23日、「船舶攻撃1回につき橋・発電所を1つ破壊する」という政策を正式に発表し、警告通りに実行されたことを再確認した。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "Iran Strait of Hormuz ship attacks July 2026",
+      "found": "Axios, CNN 등 — 이란이 상선 3척 공격, 기존 합의 파기 확인"
+     },
+     {
+      "q": "US strikes Iran bridges power plant infrastructure July 2026",
+      "found": "NBC News, Hormuz Strait Monitor — 미국이 반다르 압바스 인근 다리·철도, 부시에르 인근 시설 타격 확인"
+     },
+     {
+      "q": "Trump policy statement strike per ship attack bridges power plants",
+      "found": "7/22~23 트럼프가 '선박 공격 1회당 다리·발전소 1개 파괴' 정책 공식 발표"
+     }
+    ]
    },
    "ts": "2026-07-22T12:00:00+00:00"
   },
@@ -14279,11 +14399,11 @@
     "ko": "AMD가 '시장의 기대'였던 계약을 실제 수백억 달러 규모의 칩·투자 계약으로 바꿔놨다. 이게 AMD를 엔비디아의 진짜 대안으로 검증해주는 걸까, 아니면 백스톱 금융까지 동원해야 할 만큼 AI 설비투자 자금 조달이 까다로워지고 있다는 신호일까?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "en": "Deferred one day past AMD's Aug 4, 2026 earnings call to confirm whether the Anthropic deal (2GW of MI450 chips, up to $5B AMD investment) was reaffirmed on the call; longer-term follow-through checked through 2027 in later rounds.",
-     "ja": "AMDの2026年8月4日決算発表の翌日まで延期し、アンソロピック契約(MI450チップ2ギガワット、AMD出資最大50億ドル)が決算で再確認されるかを確認する。2027年までの長期的な進捗は今後の回で確認する。",
-     "ko": "AMD의 2026년 8월 4일 실적 발표 하루 뒤로 연기해, 앤스로픽 계약(MI450 칩 2기가와트, AMD 투자 최대 50억달러)이 실적 발표에서 재확인되는지 확인한다. 2027년까지의 장기 이행 여부는 이후 회차에서 확인한다."
+     "ko": "AMD는 2026-08-04 2분기 실적 발표에서 앤스로픽과의 칩 공급 계약(최대 2기가와트 MI450, 1GW분 2027년 상반기 배치 시작)은 보도자료·컨퍼런스콜에서 명시적으로 재확인했다. 다만 'AMD의 최대 50억달러 역투자' 부분은 이번 실적 자료에서 별도로 재확인되지 않았다 — 축소·철회 보도는 없지만 언급도 없어, 예측이 제시한 두 조건(칩 공급 계약과 역투자) 중 하나만 확인됐다.",
+     "en": "In its Q2 earnings release on 2026-08-04, AMD explicitly reaffirmed the chip supply deal with Anthropic (up to 2 gigawatts of MI450 chips, with 1GW of deployment starting in H1 2027) in both its press release and conference call. However, the 'up to $5 billion AMD investment back into Anthropic' portion was not separately reaffirmed in this earnings material, there was no report of it being scaled back or withdrawn, but it also went unmentioned, so only one of the prediction's two conditions (the chip supply deal and the reverse investment) was confirmed.",
+     "ja": "AMDは2026年8月4日の第2四半期決算発表で、アンソロピックとのチップ供給契約(最大2ギガワットのMI450、うち1GW分は2027年上半期に配備開始)についてはプレスリリース・カンファレンスコールで明示的に再確認した。ただし「AMDによる最大50億ドルの逆出資」の部分は今回の決算資料では別途再確認されなかった。縮小・撤回の報道はないものの言及もなく、予測が示した2つの条件(チップ供給契約と逆出資)のうちひとつしか確認できなかった。"
     },
     "due": "2026-08-05",
     "deferrals": [
@@ -14291,6 +14411,21 @@
       "from": "2026-08-04",
       "to": "2026-08-05",
       "why": "AMD 2026년 2분기 실적 발표 및 컨퍼런스콜이 2026-08-04(미국 장 마감 후) 예정 — 발표 하루 뒤로 미뤄 실제 진행 상황(2GW MI450 계약·최대 50억달러 투자)이 재확인되는지 확인"
+     }
+    ],
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "AMD Q2 2026 earnings August 4 Anthropic MI450 2 gigawatt",
+      "found": "AMD 공식 보도자료·컨콜에서 2GW MI450 배치 파트너십 명시적 재확인"
+     },
+     {
+      "q": "AMD $5 billion investment Anthropic confirmed earnings call",
+      "found": "실적 콜·보도자료에 투자 부분 언급 없음(축소·철회 보도도 없이 침묵)"
+     },
+     {
+      "q": "AMD Anthropic deal canceled scaled back",
+      "found": "해당 보도 없음"
      }
     ]
    },
@@ -18229,13 +18364,28 @@
     "ja": "7月29日以降、ADRプレミアムはどこまで縮小する?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "ko": "7월 29일 ADR 전환 개시 후 프리미엄 축소 여부를 채점합니다",
-     "en": "Scoring after the July 29 ADR conversion window opens: does the premium compress?",
-     "ja": "7月29日のADR転換開始後、プレミアム縮小を採点します"
+     "ko": "7월29~30일 SK하이닉스 원주-ADR 상호전환이 개시됐지만 실질 즉시 전환 가능 물량이 기발행분의 2.5%에 불과해 차익거래가 사실상 제한됐다. 전환 개시 직후(7/30) 프리미엄은 좁혀지기는커녕 60.0%까지 급등했고(7/13 36% 대비 확대), 7/31 20.7%로 급락한 것도 전환 메커니즘이 아니라 한국 증시 자체의 상한가(+29.95%) 반등에 기인한 것으로 평가돼, '전환으로 통로가 생긴다'는 예측의 핵심 메커니즘은 확인되지 않았다.",
+     "en": "SK hynix's common-share/ADR mutual conversion opened on July 29-30, but the volume immediately eligible for conversion was only 2.5% of shares already issued, effectively limiting arbitrage. Right after the conversion opened (7/30) the premium, far from narrowing, jumped to 60.0% (widening from 36% on 7/13), and even the drop to 20.7% on 7/31 was assessed as being driven not by the conversion mechanism but by a rebound in the Korean stock market itself hitting its daily limit (+29.95%). So the prediction's core mechanism, that conversion would open an arbitrage channel, was not confirmed.",
+     "ja": "7月29~30日にSKハイニックスの原株-ADR相互転換が開始されたが、実質的に即時転換可能な数量は既発行分のわずか2.5%にとどまり、裁定取引は事実上制限された。転換開始直後(7/30)、プレミアムは縮小するどころか60.0%まで急騰し(7/13の36%から拡大)、7/31に20.7%へ急落したのも転換メカニズムではなく、韓国株式市場自体のストップ高(+29.95%)による反発が原因と評価され、「転換で裁定の通り道ができる」という予測の核心メカニズムは確認されなかった。"
     },
-    "due": "2026-08-05"
+    "due": "2026-08-05",
+    "gradedOn": "2026-08-05",
+    "evidence": [
+     {
+      "q": "SK Hynix ADR conversion quota 2.5% arbitrage limited July 2026",
+      "found": "즉시 전환 가능 물량 기발행분 2.5%뿐, 차익거래 사실상 제한"
+     },
+     {
+      "q": "SK Hynix ADR premium after conversion started July 30 2026",
+      "found": "전환 개시 직후(7/30) 프리미엄 60.0%로 급등(7/13 36% 대비 확대)"
+     },
+     {
+      "q": "SK Hynix ADR premium narrow August 2026",
+      "found": "7/31 20.7%로 급락했으나 한국 증시 상한가(+29.95%) 반등이 원인, 전환 메커니즘 효과 아님"
+     }
+    ]
    },
    "ts": "2026-07-16T12:00:00+00:00",
    "coverArt": "covers/meru-adr-conv.png",
