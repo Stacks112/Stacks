@@ -167,6 +167,60 @@ jobs:
           echo "::error::push failed after 5 attempts - the queue is kept, next run retries"
           exit 1
 
+      # ------------------------------------------------------------------
+      # 2026-08-05 신설. items.json 을 커밋해도 화면에는 아무것도 나오지 않는다.
+      # 앱(index.html)과 정적 페이지는 data/core.json 을 읽기 때문이다.
+      #
+      # og-assets.yml 이 items.json 푸시를 감시하고 있지만, 위 스텝은 기본
+      # GITHUB_TOKEN 으로 푸시하므로 **다른 워크플로를 트리거하지 못한다**
+      # (GitHub 의 무한 루프 방지 규칙). 그래서 자동 발행분은 6시간 크론이
+      # 돌거나 사람이 다른 커밋을 밀 때까지 화면에 나오지 않았다.
+      #
+      # 그 구간을 여기서 직접 메운다. 네트워크가 필요한 이미지 수집
+      # (fetch_og_assets 등)은 하지 않는다 — 그건 og-assets.yml 이 계속 맡고,
+      # 여기서는 **화면에 나오는 데 필요한 최소한**인 페이지와 데이터만 굽는다.
+      # 이 스텝이 실패해도 items.json 커밋은 이미 올라가 있으므로 6시간 크론이
+      # 늦게라도 복구한다.
+      # og 공유 카드(og/<id>.png)는 CJK 폰트가 있어야 그려진다. 없으면
+      # build_pages.py 의 _og_setup() 이 None 을 돌려주고 이미지 생성만 조용히
+      # 건너뛴다(페이지·데이터는 정상). 설치는 20초쯤이라 넣어 두는 편이 낫다.
+      - name: Install CJK font for share cards
+        if: steps.merge.outputs.added != '' && steps.push.outcome == 'success'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+
+      - name: Build pages and data so the cards actually render
+        id: build
+        if: steps.merge.outputs.added != '' && steps.push.outcome == 'success'
+        run: |
+          pip install requests pillow --quiet
+          python scripts/build_pages.py
+          python scripts/build_data.py
+
+      - name: Commit build output
+        if: steps.build.outcome == 'success'
+        run: |
+          git config user.name "stacks-publish-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no build output changed"
+            exit 0
+          fi
+          git commit -m "chore: build pages for auto-published cards"
+          # og-assets.yml 과 같은 이유로 -X theirs 다. 여기서 쓰는 파일은 전부
+          # 생성물이라 병합할 내용이 없고, 낡은 것이 남아도 다음 빌드가 고친다.
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main || true
+            if git rebase --autostash -X theirs FETCH_HEAD && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push race lost, retry $i"
+            sleep $(( (RANDOM % 8) + 3 * i ))
+          done
+          echo "::error::build push failed after 6 attempts"
+          exit 1
+
       - name: Clear applied rows from the queue
         # 커밋이 실제로 성공했을 때만 큐를 비운다. 새로 반영할 것이 없어
         # dequeue 만 있는 경우(이미 발행된 잔여 행 정리)도 여기서 처리된다.
