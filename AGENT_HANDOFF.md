@@ -2,6 +2,41 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 캘린더 지표 상세 베타 프리뷰 페이지 추가
+
+june 요청: "실제로 우리 사이트에서 어떻게 보이는지 임시로 보여줘" → 정적 파일 목업 전달 →
+"베타 사이트에 배포해볼래? 정식말고" → "예전에는 v83beta 같은 페이지 만들어서 보여줬잖아"
+(진짜 라이브 URL 요청으로 확인).
+
+Changed: `preview/calendar-indicator-cpi.html`(신규, 174,630 bytes, `9f6b9fc`). **index.html 등
+기존 프로덕션 파일은 무변경.**
+
+- CPI 지표 상세 페이지 베타 프리뷰. 라이브 `assets/v82.css`/`v83tw.css`를 `<link>`로 직접
+  참조 + index.html 상단 인라인 `<style>` 블록(원본 725~3377줄)을 그대로 복사해 실제 사이트와
+  동일한 다크 테마·폰트·`.card`/`.chip` 스타일로 렌더된다.
+- 표시 데이터는 전부 가상(검토용) — FRED API 연동 전 단계. 예측/컨센서스 열, "AI가 분석했어요",
+  실시간 시세 위젯, "최근 본 지표" 탭은 토스증권 실사 후 의도적으로 제외(근거:
+  프로젝트 `claude/design-2026-08-05-calendar-indicators-toss-parity-decisions.md`).
+- `<meta name="robots" content="noindex,nofollow">`, 상단 베타 배너, 하단 안내 문구로
+  "미배포 목업"임을 명시. index.html 라우팅에 연결되지 않음(직접 URL로만 접근).
+- 서브에이전트(sonnet)가 파일 제작(`claude/decision-2026-08-04-coding-in-subagent-lower-model.md`
+  규칙), 본 세션이 검토 후 GitHub 업로드 페이지(`/upload/main/preview`)로 커밋·배포.
+
+Verified: 커밋 후 `api.github.com/repos/.../contents/preview/calendar-indicator-cpi.html`로
+size 174630 byte 일치 확인, `pages build and deployment` success, 라이브
+`https://stacksdaily.com/preview/calendar-indicator-cpi.html`에서 스크린샷으로 실제 렌더링
+확인(breadcrumb·배지·차트·히스토리 표·설명·관련 글 섹션 전부 정상).
+
+Risks:
+- 저장소에 영구히 남는 파일이다(리뷰 끝나면 삭제 필요 — 아직 삭제 안 됨).
+- FRED 데이터 연동·실제 index.html 배선은 아직 착수 전(설계 결정 문서 참고, june 최종 승인 대기).
+
+Next:
+- june 피드백 반영.
+- 승인되면 FRED API 키 발급 요청 후 서브에이전트에 실제 패치(index.html·scripts/·
+  indicators.json) 위임.
+- 리뷰 종료 시 `preview/calendar-indicator-cpi.html` 삭제(`/delete/main/preview/...`).
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — Clarity 8/4 리뷰 후속: 데드클릭 진단·수정 배포, CLS는 측정 아티팩트로 결론
 
 june 지시: "CLS 회귀 의심 / 데드클릭 10.71% / 두가지 모두 확인해서 해결하고 배포까지 해줘"
