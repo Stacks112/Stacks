@@ -1,6 +1,136 @@
 {
  "items": [
   {
+   "date": "2026-08-03",
+   "id": "semianalysis-kimi-k3-linear-attention-kv-cache",
+   "related": [
+    "semianalysis-vera-rubin-nvl72-tco",
+    "jukan-deepseek-huawei-cuda-moat",
+    "serenity-2027-memory-capacity-sold-out-allocation"
+   ],
+   "source": "SemiAnalysis",
+   "sourceUrl": "https://newsletter.semianalysis.com/p/kimi-k3-the-manos-the-mythos-the",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1120",
+    "to": "#4C1D95",
+    "label": "KIMI K3"
+   },
+   "tags": [
+    "AI",
+    "INFERENCE",
+    "MEMORY"
+   ],
+   "stance": "watch",
+   "docUrl": "https://vllm-project.github.io/2026/07/27/k3.html",
+   "title": {
+    "ko": "키미 K3가 아낀 메모리는 실제 서버까지 그대로 오지 않는다",
+    "en": "The memory Kimi K3 saves does not arrive intact on real servers",
+    "ja": "Kimi K3が節約したメモリは、実際のサーバーまでそのまま届かない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Kimi Linear showed that 3:1 is the ideal KDA to MLA ratio that balances performance and efficiency.",
+      "This shows that even though linear attentions like KDA greatly reduce KV cache memory consumption, realistically during serving, they do not consume a constant amount of KV cache memory."
+     ],
+     "ko": [
+      "Kimi Linear는 성능과 효율의 균형을 맞추는 이상적인 KDA 대 MLA 비율이 3대 1임을 보여 주었다.",
+      "이는 KDA 같은 선형 어텐션이 KV 캐시 메모리 사용량을 크게 줄이더라도, 실제 운영 중에는 일정한 양의 KV 캐시 메모리만 쓰지는 않는다는 것을 보여 준다."
+     ],
+     "ja": [
+      "Kimi Linearは、性能と効率の均衡を取る理想的なKDA対MLAの比率が3対1であることを示した。",
+      "これは、KDAのような線形アテンションがKVキャッシュのメモリ消費を大きく減らすとしても、実際の運用では一定量のKVキャッシュメモリしか使わないわけではないことを示している。"
+     ]
+    },
+    "cite": "SemiAnalysis · 2026.08.03"
+   },
+   "sum3": {
+    "ko": "키미 K3는 KV 캐시가 커지지 않는 선형 어텐션과 기존 어텐션을 3대 1로 섞어 쌓았다.\n겉으로 보면 대화가 길어질수록 메모리를 아끼는 구조다.\n그런데 앞부분을 재사용하려면 상태를 주기적으로 저장해야 해서, 실제로 돌릴 때의 메모리는 상수로 유지되지 않는다.",
+    "en": "Kimi K3 stacks a linear attention whose KV cache does not grow against conventional attention, three to one.\nOn the surface, the longer the conversation the more memory it saves.\nBut reusing the front of a prompt requires periodic state checkpoints, so memory in production does not stay constant.",
+    "ja": "Kimi K3は、KVキャッシュが膨らまない線形アテンションと従来のアテンションを3対1で積み重ねている。\n表向きは、会話が長くなるほどメモリを節約する設計だ。\nだが前半を再利用するには状態を定期的に保存する必要があり、運用現場のメモリは一定に保たれない。"
+   },
+   "gist": {
+    "ko": "문샷AI가 7월 27일 가중치를 공개한 키미 K3를 뜯어본 분석이 나왔다.\n이 모델이 어텐션을 두 종류로 섞어 쓰는 이유는 성능이 아니라 메모리였다.\n\n@@REF@@키미 K3가 왔다: vLLM의 당일 지원 (vLLM 블로그, 2026-07-27)|https://vllm-project.github.io/2026/07/27/k3.html|https://vllm-project.github.io/assets/figures/2026-07-27-k3/social-preview.png\n\n키미 K3를 실제로 돌리는 추론 엔진 vLLM은 이 구조를 두고\n\"커지는 KV 캐시 대신 고정 크기의 순환 상태를 유지하는 선형 어텐션\"이라고 적었다.\n\n## 캐시가 자라지 않는다는 말\n\n말을 이어 만드는 모델은 앞서 읽은 내용을 매번 다시 계산하지 않으려고 중간 결과를 들고 있는다.\n그 짐이 KV 캐시다.\n대화가 길어질수록 짐은 비례해서 무거워지고, 그 무게는 그대로 GPU 메모리를 먹는다.\n\n선형 어텐션은 앞의 내용을 하나의 고정된 상태로 눌러 담는다.\n문장이 아무리 길어져도 짐의 크기가 변하지 않는다는 뜻이다.\n키미 K3는 이 방식과 앞을 전부 기억하는 기존 방식을 3대 1로 번갈아 쌓았다.\n총 2조8,000억개 규모의 매개변수 가운데 토큰 하나에 실제로 쓰이는 것은 일부이고, 한 번에 읽을 수 있는 길이는 100만 토큰이다.\n\n## 32,000토큰마다 한 번씩 붙잡아 둔다\n\n여기에 실제로 서비스할 때의 사정이 하나 걸린다.\n같은 대화의 앞부분을 다시 쓰려면 그 지점의 상태가 저장돼 있어야 한다.\n그런데 고정 상태는 지나가면 덮어써지므로, 되돌아갈 자리를 따로 남겨야 한다.\n\nvLLM은 일정 간격마다 상태를 체크포인트로 남기는 방식을 쓴다고 적었고, 예로 든 간격이 32,000토큰이다.\n이 값은 설정으로 바꿀 수 있는 기본 예시이지 못박힌 상수가 아니다.\n간격을 좁히면 메모리가 늘고, 넓히면 다음 요청이 앞부분을 다시 계산한다.\n그래서 실제로 서비스할 때 이 모델의 메모리 사용량은 상수로 유지되지 않는다.\n\n@@FLOW@@HBM|GPU에 붙은 가장 빠른 메모리. 모델 가중치가 먼저 자리를 차지하고, 남는 만큼만 캐시가 들어간다|서버 D램|HBM이 차면 캐시가 여기로 흘러내린다. 용량은 크고 대역폭은 낮다|SSD|D램도 넘치면 마지막으로 여기까지 내려간다@@짐이 한 칸 내려갈 때마다 첫 글자가 나오기까지 걸리는 시간이 길어진다. 캐시를 줄이는 기술에 값이 붙는 자리가 이 계단이다.\n\n@@IMG@@dram-module|서버에 꽂는 D램 막대. HBM에서 밀려난 KV 캐시가 내려앉는 자리가 여기다.\n\n## 값이 싸다는 것과 메모리를 덜 쓴다는 것\n\n키미 K3는 공개 직후 아티피셜애널리시스의 종합 지능 지수에서 3위에 올랐다.\n같은 집계에서 태스크 하나를 처리하는 비용은 아래와 같이 갈렸다.\n\n@@BAR@@키미 K3|0.94달러|0.94|GPT-5.6 Sol|1.04달러|1.04|오퍼스 4.8|1.80달러|1.80@@성적이 비슷한 자리에 있는 모델끼리도 값은 두 배 가까이 벌어진다. 오픈웨이트 모델이 팔리는 이유가 성능이 아니라 이 칸에 있다.@@Artificial Analysis 종합 지능 지수 집계 (2026-07-17 공개 · 2026-08-05 조회)\n\n@@REF@@키미 K3, 아티피셜애널리시스 지능 지수 3위에 오르다 (Artificial Analysis, 2026-07-17)|https://artificialanalysis.ai/articles/kimi-k3-achieves-3-in-the-artificial-analysis-intelligence-index-comparable-to-opus-4-8-and-gpt-5-5\n\n아티피셜애널리시스는 키미 K3의 성적이 오퍼스 4.8과 GPT-5.5에 견줄 만하고, 그보다 위에 있는 모델은 둘뿐이라고 적었다.\n값이 싸지는 경로가 칩을 더 사는 쪽이 아니라 같은 답을 더 적은 메모리로 뽑는 쪽으로 옮겨 가고 있다는 뜻이다.\n다만 아낀 메모리가 그대로 수요 감소로 이어지지는 않는다.\n캐시가 가벼워지면 같은 장비로 더 긴 문맥과 더 많은 동시 사용자를 받게 되고, 그러면 아낀 자리는 다시 채워진다.\n\n## 문샷이 라이선스에 그어 놓은 선\n\n가중치는 공개돼 있지만 아무나 이걸로 장사할 수 있는 것은 아니다.\n개발자 사이먼 윌리슨은 연매출 2,000만달러가 넘는 서비스 사업자는 문샷과 별도 상업 계약을 맺어야 한다고 짚었다.\n직접 돌려 쓰는 쪽에는 열려 있고, 이 모델을 팔아 돈을 버는 쪽에는 문이 반쯤 닫혀 있다.\n\n다음 모델이 이 구조를 어느 쪽으로 미는지가 갈림길이다.\n문샷이 키미 K4에서 앞을 전부 기억하는 층까지 걷어내면 메모리를 줄이는 쪽에 승부를 건 것이고,\n반대로 그 층을 다시 늘리면 캐시를 줄여 얻는 이득이 실제 운영에서 생각만큼 크지 않았다는 뜻이다.",
+    "en": "A teardown of Kimi K3, the model whose weights Moonshot AI released on July 27, has landed.\nThe reason it mixes two kinds of attention is not accuracy. It is memory.\n\n@@REF@@Kimi K3 Is Here: Efficient Day-0 Support on vLLM (vLLM Blog, 2026-07-27)|https://vllm-project.github.io/2026/07/27/k3.html|https://vllm-project.github.io/assets/figures/2026-07-27-k3/social-preview.png\n\nvLLM, the inference engine that actually serves this model, describes the design as\n\"a linear-attention mechanism that keeps a fixed-size recurrent state instead of a growing KV cache.\"\n\n## What it means for the cache not to grow\n\nA model that writes one word after another holds on to intermediate results so it does not recompute what it already read.\nThat luggage is the KV cache.\nThe longer the conversation runs, the heavier it gets, and the weight comes straight out of GPU memory.\n\nLinear attention compresses everything before it into a single fixed-size state.\nHowever long the text gets, the luggage stays the same size.\nKimi K3 stacks that layer against a conventional layer that remembers everything, in a 3 to 1 ratio.\nOf roughly 2.8 trillion parameters only a fraction fire on any one token, and the model reads up to one million tokens at once.\n\n## Held down once every 32,000 tokens\n\nServing reality gets in the way here.\nTo reuse the front of a conversation, the state at that point has to be sitting somewhere.\nA fixed-size state gets overwritten as it moves forward, so you have to leave markers to come back to.\n\nvLLM writes that it keeps checkpoints of the state at intervals, and the interval it gives as an example is 32,000 tokens.\nThat value is a configurable default, not a hard-coded constant.\nTighten the interval and memory goes up. Widen it and the next request recomputes the front of the prompt.\nSo in real serving this model does not hold a constant amount of memory.\n\n@@FLOW@@HBM|The fastest memory, attached to the GPU. Model weights take their seats first and the cache gets whatever is left|Server DRAM|Once HBM fills, the cache spills down here. More capacity, less bandwidth|SSD|When DRAM overflows too, this is the last stop@@Every step down the ladder adds to the wait before the first character appears. That ladder is where cache-shrinking techniques get their price tag.\n\n@@IMG@@dram-module|The DRAM sticks that go into a server. This is where a KV cache lands once it is pushed out of HBM.\n\n## Being cheap and using less memory are two different things\n\nRight after release, Kimi K3 came third on the Artificial Analysis intelligence index.\nIn the same tally, the cost of running one task split like this.\n\n@@BAR@@Kimi K3|$0.94|0.94|GPT-5.6 Sol|$1.04|1.04|Opus 4.8|$1.80|1.80@@Models sitting close together on score are nearly twice apart on price. What sells an open-weight model lives in this column, not in the benchmark.@@Artificial Analysis intelligence index tally (published 2026-07-17, retrieved 2026-08-05)\n\n@@REF@@Kimi K3 achieves #3 in the Artificial Analysis Intelligence Index (Artificial Analysis, 2026-07-17)|https://artificialanalysis.ai/articles/kimi-k3-achieves-3-in-the-artificial-analysis-intelligence-index-comparable-to-opus-4-8-and-gpt-5-5\n\nArtificial Analysis wrote that Kimi K3 scores comparably to Opus 4.8 and GPT-5.5, with only two models placed above it.\nThe path to cheaper output is shifting away from buying more chips and toward producing the same answer with less memory.\nThe saved memory does not simply become lower demand, though.\nA lighter cache means the same hardware now takes longer contexts and more simultaneous users, and the space that was freed fills back up.\n\n## The line Moonshot drew in its license\n\nThe weights are public, but not everyone is free to sell service on top of them.\nThe developer Simon Willison pointed out that providers above 20 million dollars in annual revenue have to negotiate a separate commercial agreement with Moonshot.\nIt is open to whoever runs it themselves, and half shut to whoever wants to resell it.\n\nWhere the next model pushes this design is the fork to watch.\nIf Moonshot strips out the full-attention layers in Kimi K4, it has bet the house on shrinking memory.\nIf it puts more of those layers back, the gain from a smaller cache was worth less in production than it looked on paper.",
+    "ja": "7月27日にムーンショットAIが重みを公開したKimi K3を、分解した分析が出た。\nこのモデルがアテンションを二種類混ぜて使う理由は、性能ではなくメモリだった。\n\n@@REF@@Kimi K3が来た: vLLMの当日サポート (vLLMブログ, 2026-07-27)|https://vllm-project.github.io/2026/07/27/k3.html|https://vllm-project.github.io/assets/figures/2026-07-27-k3/social-preview.png\n\nこのモデルを実際に動かす推論エンジンvLLMは、その設計を\n「膨らむKVキャッシュの代わりに固定サイズの再帰状態を保つ線形アテンション」と記している。\n\n## キャッシュが育たないという意味\n\n言葉を次々に紡ぐモデルは、すでに読んだ内容を毎回計算し直さないように途中結果を抱えている。\nその荷物がKVキャッシュだ。\n会話が長くなるほど荷物は比例して重くなり、その重さはそのままGPUのメモリを食う。\n\n線形アテンションは、前の内容をひとつの固定された状態に押し込める。\n文章がどれだけ長くなっても、荷物の大きさは変わらないということだ。\nKimi K3は、この方式と前をすべて覚える従来方式を3対1で交互に積んでいる。\n総計2兆8,000億規模のパラメータのうち一つのトークンで実際に働くのは一部で、一度に読める長さは100万トークンだ。\n\n## 32,000トークンごとに一度つなぎ留める\n\nここで運用側の事情がひとつ引っかかる。\n同じ会話の前半を再利用するには、その地点の状態が保存されていなければならない。\nだが固定状態は先へ進むと上書きされるので、戻る目印を別に残す必要がある。\n\nvLLMは一定間隔で状態をチェックポイントとして残す方式を採ると書いており、例として挙げた間隔が32,000トークンだ。\nこの値は設定で変えられる既定の例であって、固定された定数ではない。\n間隔を詰めればメモリが増え、広げれば次のリクエストが前半を計算し直す。\nつまり実運用では、このモデルのメモリ使用量は一定に保たれない。\n\n@@FLOW@@HBM|GPUに付く最速のメモリ。まずモデルの重みが席を取り、残った分だけキャッシュが入る|サーバーDRAM|HBMが埋まるとキャッシュはここへ流れ落ちる。容量は大きく帯域は狭い|SSD|DRAMも溢れれば、最後はここまで降りてくる@@荷物が一段下がるたびに、最初の一文字が出るまでの時間が延びる。キャッシュを減らす技術に値がつくのは、この階段があるからだ。\n\n@@IMG@@dram-module|サーバーに挿すDRAMのモジュール。HBMから押し出されたKVキャッシュが降りてくる場所がここだ。\n\n## 安いことと、メモリを使わないことは別だ\n\nKimi K3は公開直後、アーティフィシャルアナリシスの総合知能指数で3位に入った。\n同じ集計で、タスク一件を処理する費用は次のように分かれた。\n\n@@BAR@@Kimi K3|0.94ドル|0.94|GPT-5.6 Sol|1.04ドル|1.04|オーパス4.8|1.80ドル|1.80@@スコアが近い位置にあるモデル同士でも、値段は二倍近く開く。オープンウェイトのモデルが選ばれる理由は、ベンチマークではなくこの欄にある。@@Artificial Analysis 総合知能指数の集計（2026-07-17公開 · 2026-08-05取得）\n\n@@REF@@Kimi K3、アーティフィシャルアナリシスの知能指数で3位に (Artificial Analysis, 2026-07-17)|https://artificialanalysis.ai/articles/kimi-k3-achieves-3-in-the-artificial-analysis-intelligence-index-comparable-to-opus-4-8-and-gpt-5-5\n\nアーティフィシャルアナリシスは、Kimi K3の成績はオーパス4.8やGPT-5.5に比肩し、上位にいるモデルは二つだけだと記した。\n安くなる経路が、チップを買い増す側から、同じ答えをより少ないメモリで出す側へ移りつつあるということだ。\nただし節約されたメモリが、そのまま需要の減少になるわけではない。\nキャッシュが軽くなれば同じ機材でより長い文脈と同時利用者を受けられるようになり、空いた場所はまた埋まる。\n\n## ムーンショットがライセンスに引いた線\n\n重みは公開されているが、誰もがそれで商売できるわけではない。\n開発者のサイモン・ウィリソン氏は、年間売上2,000万ドルを超える事業者はムーンショットと別途の商用契約が要ると指摘した。\n自分で動かす側には開かれ、これを売って稼ぐ側には扉が半分閉じている。\n\n次のモデルがこの設計をどちらへ押すかが分かれ道だ。\nムーンショットがKimi K4で前をすべて覚える層まで取り払えば、メモリを削る側に賭けたことになり、\n逆にその層を増やし直せば、キャッシュ削減の利得は実運用では見かけほど大きくなかったということだ。"
+   },
+   "why": {
+    "ko": "추론 비용이 내려가는 경로가 칩을 더 사는 쪽에서 메모리를 덜 쓰는 쪽으로 옮겨 가고 있다. 다만 아낀 자리는 더 긴 문맥과 더 많은 사용자가 다시 채운다.",
+    "en": "The path to cheaper inference is moving from buying more chips toward using less memory. The space that gets freed, though, refills with longer contexts and more users.",
+    "ja": "推論コストが下がる経路は、チップを買い増す側から、メモリを使わない側へ移りつつある。ただし空いた場所は、より長い文脈と利用者が埋め戻す。"
+   },
+   "ask": {
+    "ko": "메모리를 아끼는 구조가 늘어나면 AI 인프라의 메모리 수요는 꺾일까, 아니면 더 긴 문맥을 쓰게 되면서 오히려 늘어날까?",
+    "en": "If memory-saving architectures spread, does AI infrastructure demand for memory finally bend, or does it grow because everyone starts using longer contexts?",
+    "ja": "メモリを節約する設計が広がれば、AIインフラのメモリ需要は折れるのか、それとも文脈が長くなってむしろ増えるのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "SemiAnalysis, Kimi K3, The Manos, The Mythos, The Legendos · 2026-08-03",
+      "en": "SemiAnalysis, Kimi K3, The Manos, The Mythos, The Legendos, 2026-08-03",
+      "ja": "SemiAnalysis, Kimi K3, The Manos, The Mythos, The Legendos · 2026-08-03"
+     },
+     "url": "https://newsletter.semianalysis.com/p/kimi-k3-the-manos-the-mythos-the"
+    },
+    {
+     "name": {
+      "ko": "vLLM 블로그",
+      "en": "vLLM Blog",
+      "ja": "vLLMブログ"
+     },
+     "desc": {
+      "ko": "Kimi K3 Is Here: Efficient Day-0 Support on vLLM · 2026-07-27 · 고정 크기 순환 상태와 32,000토큰 체크포인트 간격의 1차 출처",
+      "en": "Kimi K3 Is Here: Efficient Day-0 Support on vLLM, 2026-07-27, the primary source for the fixed-size recurrent state and the 32,000-token checkpoint interval",
+      "ja": "Kimi K3 Is Here: Efficient Day-0 Support on vLLM · 2026-07-27 · 固定サイズの再帰状態と32,000トークンのチェックポイント間隔の一次出典"
+     },
+     "url": "https://vllm-project.github.io/2026/07/27/k3.html"
+    },
+    {
+     "name": {
+      "ko": "Artificial Analysis",
+      "en": "Artificial Analysis",
+      "ja": "Artificial Analysis"
+     },
+     "desc": {
+      "ko": "종합 지능 지수 3위, 태스크당 비용 0.94달러 집계 · 2026-07-17 공개 · 2026-08-05 조회",
+      "en": "Third place on the intelligence index and the $0.94 cost-per-task tally, published 2026-07-17, retrieved 2026-08-05",
+      "ja": "総合知能指数3位、タスク当たり0.94ドルの集計 · 2026-07-17公開 · 2026-08-05取得"
+     },
+     "url": "https://artificialanalysis.ai/articles/kimi-k3-achieves-3-in-the-artificial-analysis-intelligence-index-comparable-to-opus-4-8-and-gpt-5-5"
+    },
+    {
+     "name": {
+      "ko": "사이먼 윌리슨",
+      "en": "Simon Willison",
+      "ja": "サイモン・ウィリソン"
+     },
+     "desc": {
+      "ko": "키미 K3 라이선스 해설 · 연매출 2,000만달러 초과 사업자의 상업 계약 조건 · 2026-07-27",
+      "en": "Notes on the Kimi K3 license, including the commercial agreement required above 20 million dollars of annual revenue, 2026-07-27",
+      "ja": "Kimi K3のライセンス解説 · 年商2,000万ドル超の事業者に求められる商用契約 · 2026-07-27"
+     },
+     "url": "https://simonwillison.net/2026/Jul/27/kimi-k3/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회 · 비용과 순위는 Artificial Analysis의 2026-07-17 공개 시점 집계 · 매개변수와 문맥 길이는 문샷AI 공개 사양이며 토큰당 실제 사용 규모는 공식 수치가 없다.",
+    "en": "Retrieved 2026-08-05. Cost and ranking are from the Artificial Analysis tally published 2026-07-17. Parameter count and context length are Moonshot AI's published specs; the active parameter count per token has not been disclosed.",
+    "ja": "2026-08-05取得 · 費用と順位はArtificial Analysisが2026-07-17に公開した集計 · パラメータ数と文脈長はムーンショットAIの公開仕様で、トークン当たりの実働規模は公式値がない。"
+   }
+  },
+  {
    "date": "2026-08-04",
    "id": "bessent-yen-intervention-signal-policy-sustains",
    "related": [
@@ -36534,6 +36664,54 @@
     "currency intervention",
     "외환시장 개입",
     "為替介入"
+   ]
+  },
+  "선형 어텐션": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "앞의 내용을 고정된 크기의 상태 하나로 눌러 담아, 문장이 길어져도 기억해 둘 짐이 커지지 않게 만든 어텐션 방식.",
+    "en": "An attention design that compresses everything read so far into a single fixed-size state, so the memory it carries does not grow with the length of the text.",
+    "ja": "これまで読んだ内容を固定サイズの状態ひとつに押し込め、文章が長くなっても抱える荷物が増えないようにしたアテンションの方式。"
+   },
+   "longDesc": {
+    "ko": "기존 어텐션은 앞서 읽은 모든 토큰의 중간 결과를 들고 있어야 해서, 문맥이 길어질수록 KV 캐시가 비례해 커지고 그만큼 GPU 메모리를 먹는다. 선형 어텐션은 그 기록을 하나의 고정 크기 상태로 압축해 길이와 무관하게 같은 자리만 쓰게 만든다. 대신 앞부분을 정확히 되짚는 능력이 떨어져, 최근 모델들은 전부 기억하는 층과 번갈아 쌓아 쓰는 방식을 택한다.",
+    "en": "Conventional attention has to keep intermediate results for every token it has read, so the KV cache grows with context length and eats GPU memory in proportion. Linear attention compresses that history into one fixed-size state, so the footprint stays the same no matter how long the input runs. The trade-off is weaker exact recall of earlier tokens, which is why recent models interleave it with full-attention layers.",
+    "ja": "従来のアテンションは読んだ全トークンの中間結果を保持する必要があり、文脈が長くなるほどKVキャッシュが比例して増え、GPUメモリを圧迫する。線形アテンションはその履歴を固定サイズの状態ひとつに圧縮し、長さに関係なく同じ容量で済むようにする。代わりに前方を正確に思い出す力が落ちるため、近年のモデルは全体を記憶する層と交互に積む構成を採る。"
+   },
+   "aliases": [
+    "linear attention",
+    "Linear Attention",
+    "선형 어텐션",
+    "リニアアテンション",
+    "KDA",
+    "Kimi Delta Attention"
+   ]
+  },
+  "vLLM": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "대형 언어 모델을 실제 서비스로 돌릴 때 널리 쓰이는 오픈소스 추론 엔진.",
+    "en": "A widely used open-source inference engine for serving large language models in production.",
+    "ja": "大規模言語モデルを実サービスで動かす際に広く使われるオープンソースの推論エンジン。"
+   },
+   "longDesc": {
+    "ko": "모델을 실제로 서비스하려면 여러 요청을 묶어 처리하고 KV 캐시를 관리하는 별도의 소프트웨어가 필요한데, vLLM이 그 자리를 맡는 대표 오픈소스다. 새 모델이 나올 때 vLLM이 같은 날 지원을 붙이면 그 모델을 곧바로 자체 서버에서 돌릴 수 있다는 뜻이다. 어떤 모델 구조가 메모리를 얼마나 쓰는지도 이 엔진의 구현을 통해 현실 수치로 드러난다.",
+    "en": "Serving a model in production needs software that batches requests and manages the KV cache, and vLLM is the dominant open-source project in that role. When vLLM ships day-0 support for a new model, that model can be run on your own servers immediately. How much memory a given architecture really consumes also becomes visible through this engine's implementation.",
+    "ja": "モデルを実サービスで動かすには、複数のリクエストをまとめKVキャッシュを管理するソフトウェアが要る。その役割を担う代表的なオープンソースがvLLMだ。新しいモデルの公開日にvLLMが対応を出せば、そのモデルをすぐ自前のサーバーで動かせることを意味する。どの構造がどれだけメモリを使うかも、この実装を通じて現実の数値として見えてくる。"
+   },
+   "aliases": [
+    "vLLM",
+    "VLLM"
    ]
   }
  }
