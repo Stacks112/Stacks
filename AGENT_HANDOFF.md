@@ -2,6 +2,28 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — GAZPROM을 급변동 팔로우 목록에서 제외 (커밋 `653cd63`)
+
+앞선 항목(같은 날, yahooSymbol 수정)에서 미해결로 남긴 GAZPROM 후속. Yahoo Finance
+quote 페이지 자체가 404(`finance.yahoo.com/quote/GAZP.ME/`)라 심볼 매핑으로 고칠 수
+없는 것으로 확인 → june에게 제외/MOEX 직접 연동/방치 3가지 선택지 제시 → **"팔로우
+목록에서 제외"** 선택.
+
+Changed: `worker/index.js`만(`653cd63`). `listCompanies()` 필터에 `SURGE_EXCLUDE_TICKERS =
+["gazp.moex"]` 제외 목록 추가. **`items.json`은 건드리지 않았다** — GAZPROM 엔티티가
+발행 카드(`meru-china-russia-gas-talks-collapse`) 본문의 자동 엔티티 링크에서 실제로
+참조되고 있어 엔티티 자체를 지우면 안 된다고 판단(서브에이전트 조사로 확인).
+
+Verified: `node --check` 통과, `listCompanies()` 순수 함수 재현으로 84→83·GAZPROM만
+제외·나머지 83개 이름/티커/순서 불변 확인. 배포 방식은 앞선 두 커밋과 동일(GitHub edit
+페이지 CodeMirror dispatch, baseSha/targetSha byte-exact 대조, Clobber guard✅·Deploy
+worker✅). 배포 직후 `GET /cron/surge-dryrun` → `total:83` 확인(즉시 반영).
+
+Risks: 내일(08-06) 08:20 KST 회차에서 `scannedToday:83`·`complete:true`로 실제 스캔이
+완전해지는지는 아직 미실측(크론 재실행 전).
+
+상세: 프로젝트 `claude/status-2026-08-05-surge-scan-fix-deployed.md`.
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 급변동 알림 스캔 누락(5/84) 원인 규명·수정·배포
 
 june 지시: surge-monitor 예약(08:20 KST)이 `complete:false`(79/84, 5개 스캔 누락)를 반복
