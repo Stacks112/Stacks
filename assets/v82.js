@@ -228,6 +228,9 @@
     var ob = $("onboard"); if (ob && !ob.hidden) hide = true;
     var dt = $("v82detail"); if (dt && dt.classList.contains("on")) hide = true;
     var dr = $("v82drawer"); if (dr && dr.classList.contains("on")) hide = true;
+    /* 2026-08-05: 지표 상세(#v82ind)도 v82detail(기사 상세)과 같은 "드릴다운" 화면이라
+       (v82cal처럼 하단 nav를 유지하는 최상위 탭이 아님) 열려 있는 동안 nav를 숨긴다. */
+    var vind = $("v82ind"); if (vind && vind.classList.contains("on")) hide = true;
     nav.classList.toggle("v82-off", hide);
   }
 
@@ -323,7 +326,7 @@
     return true;
   }
   function anyScreenOpen(){
-    return ["v82explore","v82hub","v82notif","v82picker","v82list","v82cal"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
+    return ["v82explore","v82hub","v82notif","v82picker","v82list","v82cal","v82ind"].some(function(id){ var s=$(id); return s && s.classList.contains("on"); });
   }
 
   /* ---------- FIND (search + secondary filters + discovery modules) ---------- */
@@ -1116,7 +1119,11 @@
         var tLbl = v82CalTimeLabel(ind.nextTime);
         if (tLbl) subHtml = '<span class="v82cal-sub v82cal-sub-muted">' + esc(tLbl) + '</span>';
       }
-      onclick = "goIndicator('" + ind.id + "')";
+      /* 2026-08-05: 지표 행 탭 → 새 모바일 지표 상세(v82ind, 아래 섹션). 데스크톱
+         전용 goIndicator()(index.html, INDICATOR_VIEW/render() 기반)는 그대로 두고
+         건드리지 않는다 — 모바일은 별도 함수로 분기한다. 실적/뉴스 행(else 분기)의
+         evGo() 폴백은 무수정. */
+      onclick = "v82GoIndicator('" + ind.id + "')";
     } else {
       title = esc((r.label && (r.label[LANG] || r.label.en)) || (r.title && (r.title[LANG] || r.title.en)) || "");
       var ticker = (r.entity && typeof ENTITIES !== "undefined" && ENTITIES[r.entity] && ENTITIES[r.entity].ticker) || "";
@@ -1459,6 +1466,384 @@
   }
   window.v82CalOpen = openCalScreen;
   window.v82CalClose = closeCalScreen;
+
+  /* ---------- MOBILE INDICATOR DETAIL (2026-08-05) ----------
+     캘린더 주간뷰 지표 행 탭에서 진입하는 새 지표 상세 화면(참고: Toss증권 앱 스크린샷).
+     데스크톱 v83의 renderIndicatorDetailPage()/goIndicator()/closeIndicator()/
+     INDICATOR_VIEW(전부 index.html)는 절대 건드리지 않는다 — 대신 그 옆의 순수
+     데이터·문자열 함수만 그대로 재사용한다(사전 조사 결과):
+       · INDICATORS/IND_CAT/IND_STR (index.html 전역 상수) — 그대로.
+       · indHistAsc(ind)/indHistDate(dateStr)/indSvgChart(ind,IS) — DOM id를 전혀
+         참조하지 않고 문자열만 반환하는 순수 함수라 포터블함을 확인, 그대로 호출.
+       · v83CalAllRows() — 지표별 "다음 발표"(next, actual=null) 1건 + 과거 회차를
+         이미 한 배열로 합쳐 주므로, 발표값 색 규칙(.tcal-hi=빨강/.tcal-lo=파랑, 예측
+         대비 등락 — 데스크톱 tcalRowHtml()·모바일 v82CalRowHtml()과 동일 기준)까지
+         그대로 물려받는다. 새로 만든 색 규칙이 아니라 기존 것 재사용.
+       · v83IndicatorMatchedEvents()(데스크톱 "관련 글" = 같은 날짜에 흡수된 뉴스
+         이벤트)는 용도가 달라(참고 이미지의 "함께 읽으면 좋은 글"은 흡수된 이벤트가
+         아니라 주제 관련 기사 추천) 재사용하지 않았다 — 아래 v82IndRelatedArticles()가
+         별도의 간단한 키워드 매칭이다. IND_EVENT_KEYWORDS(index.html, 이벤트 흡수용)는
+         확장하지 않았다 — 거길 건드리면 데스크톱 캘린더의 이벤트 흡수 결과까지 바뀌어
+         회귀 위험이 생긴다.
+     화면은 #v82cal 위에 z-index만 높여 겹쳐서 연다(v82cal을 hideScreen하지 않음) —
+     그래서 "캘린더 전체보기"는 이 화면만 닫으면 끝난다(아래 v82cal이 항상 그대로
+     열려 있다). #v82detail(기사 상세, z13600)이 "함께 읽으면 좋은 글" 탭으로 이 위에
+     또 열릴 수 있어 v82Pop()에 우선순위를 추가해 뒀다(위 window.v82Pop 참고). */
+  var V82IND_ID = null;
+
+  function v82IndStr(){ return (typeof IND_STR !== "undefined" && (IND_STR[LANG] || IND_STR.ko)) || {}; }
+  function v82IndFind(id){
+    if (typeof INDICATORS === "undefined") return null;
+    for (var i = 0; i < INDICATORS.length; i++) if (INDICATORS[i].id === id) return INDICATORS[i];
+    return null;
+  }
+
+  /* freq별 "지난달" 카드 라벨. rate8(FOMC·한국은행)은 "지난달"이 어색해 "직전 결정"으로
+     조정했다(과제 지시 — 복잡하면 "지난달" 고정도 허용된다고 했지만 필드가 4종류뿐이라
+     그대로 다 반영). */
+  var V82IND_LASTLBL = {
+    monthly: { ko: "지난달", en: "Last month", ja: "先月" },
+    weekly: { ko: "지난주", en: "Last week", ja: "先週" },
+    quarterly: { ko: "지난분기", en: "Last quarter", ja: "前四半期" },
+    rate8: { ko: "직전 결정", en: "Previous decision", ja: "前回決定" }
+  };
+  function v82IndLastLabel(freq){
+    var m = V82IND_LASTLBL[freq] || V82IND_LASTLBL.monthly;
+    return m[LANG] || m.ko;
+  }
+
+  /* 발표일 옆 "(N월)" 표기 — 그 발표가 다루는 실제 데이터 기준월(참고 이미지: 8/5
+     발표 옆에 "(7월)"). 월간·분기 지표는 대체로 발표 한 달 전이 기준월/기준분기라
+     dateStr에서 1개월만 빼면 둘 다 맞는다(gdp 히스토리로 검산: 10/30 발표→9월→3분기 ✓,
+     1/29 발표→12월→4분기 ✓). rate8(정책 결정일이라 "기준월" 개념이 없음)·weekly는 생략. */
+  function v82IndPeriodLabel(freq, dateStr){
+    if (freq !== "monthly" && freq !== "quarterly") return "";
+    var d = new Date(dateStr + "T00:00:00");
+    var pm = new Date(d.getFullYear(), d.getMonth() - 1, 1);
+    if (freq === "quarterly"){
+      var q = Math.floor(pm.getMonth() / 3) + 1;
+      if (LANG === "ja") return "(" + q + "Q)";
+      if (LANG === "en") return "(Q" + q + ")";
+      return "(" + q + "분기)";
+    }
+    if (LANG === "ja") return "(" + (pm.getMonth() + 1) + "月)";
+    if (LANG === "en") return "(" + pm.toLocaleDateString("en-US", { month: "short" }) + ")";
+    return "(" + (pm.getMonth() + 1) + "월)";
+  }
+
+  /* ---- "✦ 예측 인사이트" 카드 문구 ----
+     forecast(nextForecast)와 lastValue를 비교하고 goodDir(값이 높은 게 좋은 지표인지/
+     낮은 게 좋은지/방향성 없음)로 분기하는 규칙 기반 템플릿이다. 실제 AI·전문가 호출이
+     아니다 — 참고 이미지의 "전문가 예측이 나왔어요"는 우리가 진짜 전문가/AI가 아니라서
+     그대로 베끼지 않았다(과제 지시). */
+  var V82IND_INSIGHT_STR = {
+    ko: {
+      upUp: "예측치가 지난 값보다 높아요. 지표가 개선되는 방향이라 통상 경기 확장 신호로 해석돼요.",
+      upDown: "예측치가 지난 값보다 낮아요. 지표가 둔화되는 방향이라 통상 경기 위축 신호로 해석될 수 있어요.",
+      upFlat: "예측치가 지난 값과 비슷한 수준이에요. 뚜렷한 방향 전환 신호는 아직 없어요.",
+      downUp: "예측치가 지난 값보다 높아요. 통상 부담 요인(지표 악화)으로 해석될 수 있어요.",
+      downDown: "예측치가 지난 값보다 낮아요. 지표가 개선되는 방향이라 통상 긍정적으로 해석돼요.",
+      downFlat: "예측치가 지난 값과 비슷한 수준이에요. 뚜렷한 방향 전환 신호는 아직 없어요.",
+      neutralUp: "예측치가 지난 값보다 높아요. 인상 가능성을 반영한 예측이에요.",
+      neutralDown: "예측치가 지난 값보다 낮아요. 인하 가능성을 반영한 예측이에요.",
+      neutralFlat: "지난 결정과 같은 수준(동결)이 예상돼요."
+    },
+    en: {
+      upUp: "The forecast is above the last reading, typically read as a sign of expansion.",
+      upDown: "The forecast is below the last reading, typically read as a sign of slowing momentum.",
+      upFlat: "The forecast is close to the last reading, with no clear shift in direction yet.",
+      downUp: "The forecast is above the last reading, which can be read as a headwind.",
+      downDown: "The forecast is below the last reading, typically read as improvement.",
+      downFlat: "The forecast is close to the last reading, with no clear shift in direction yet.",
+      neutralUp: "The forecast is above last time, pointing to a possible hike.",
+      neutralDown: "The forecast is below last time, pointing to a possible cut.",
+      neutralFlat: "Forecasts point to holding steady at the same level as last time."
+    },
+    ja: {
+      upUp: "予測値は前回より高く、通常は景気拡大のサインと解釈されます。",
+      upDown: "予測値は前回より低く、通常は景気減速のサインと解釈されることがあります。",
+      upFlat: "予測値は前回とほぼ同水準で、明確な方向転換のサインはまだありません。",
+      downUp: "予測値は前回より高く、負担要因(指標の悪化)と解釈されることがあります。",
+      downDown: "予測値は前回より低く、通常は改善のサインと解釈されます。",
+      downFlat: "予測値は前回とほぼ同水準で、明確な方向転換のサインはまだありません。",
+      neutralUp: "予測値は前回より高く、引き上げの可能性を反映しています。",
+      neutralDown: "予測値は前回より低く、引き下げの可能性を反映しています。",
+      neutralFlat: "前回と同水準(据え置き)が予想されています。"
+    }
+  };
+  function v82IndInsightText(ind){
+    var f = ind.nextForecast, l = ind.lastValue;
+    if (f === undefined || f === null || l === undefined || l === null) return "";
+    var eps = 1e-9, diff = f - l;
+    var dir = diff > eps ? "Up" : (diff < -eps ? "Down" : "Flat");
+    var gd = ind.goodDir === "down" ? "down" : (ind.goodDir === "neutral" ? "neutral" : "up");
+    var tbl = V82IND_INSIGHT_STR[LANG] || V82IND_INSIGHT_STR.ko;
+    return tbl[gd + dir] || "";
+  }
+
+  /* ---- "함께 읽으면 좋은 글" ----
+     ITEMS(기사)를 상대로 한 지표별 키워드 매칭 — 데스크톱의 "관련 글"
+     (v83IndicatorMatchedEvents, EVENTS 흡수용)과는 별개다(위 섹션 설명 참고). 아주
+     간단한 정규식 매칭이고, IND_EVENT_KEYWORDS(index.html)는 손대지 않았으므로 데스크톱
+     이벤트 흡수 동작에는 영향이 없다. */
+  var V82IND_ART_KW = {
+    cpi: [/\bCPI\b/i, /소비자물가/, /消費者物価/],
+    coreCpi: [/근원\s*CPI/i, /core\s*cpi/i, /コアCPI/i],
+    unrate: [/실업률/, /unemployment/i, /失業率/],
+    nfp: [/비농업|고용지표|\bNFP\b/i, /nonfarm/i, /雇用者数/],
+    claims: [/실업수당\s*청구/, /jobless\s*claims/i, /失業保険/],
+    fomc: [/FOMC/i, /기준금리/, /rate\s*decision/i, /政策金利/],
+    gdp: [/\bGDP\b/i, /성장률/, /成長率/],
+    pce: [/\bPCE\b/i, /개인소비지출/, /個人消費支出/],
+    corePce: [/근원\s*PCE/i, /core\s*pce/i, /コアPCE/i],
+    ismPmi: [/\bISM\b/i, /\bPMI\b/i, /구매관리자/, /購買担当者/],
+    umich: [/소비자심리/, /미시간/, /consumer\s*sentiment/i, /消費者信頼感/],
+    newHomeSales: [/신규주택/, /주택\s*매매/, /new\s*home\s*sales/i, /新築住宅/],
+    krCpi: [/한국\s*소비자물가|국내\s*물가/, /korea.{0,6}cpi/i],
+    krRate: [/한국은행|기준금리/, /bank\s*of\s*korea/i, /韓国銀行/],
+    krTrade: [/무역수지|수출입/, /trade\s*balance/i, /貿易収支/]
+  };
+  function v82IndRelatedArticles(ind, max){
+    max = max || 2;
+    var kws = V82IND_ART_KW[ind.id];
+    if (!kws || !kws.length || typeof ITEMS === "undefined") return [];
+    var hits = [];
+    for (var i = 0; i < ITEMS.length; i++){
+      var it = ITEMS[i];
+      try {
+        var hay = [
+          it.title && (it.title.ko || it.title.en || it.title.ja),
+          it.gist && (it.gist.ko || it.gist.en || it.gist.ja),
+          it.why && (it.why.ko || it.why.en || it.why.ja),
+          (it.tags || []).join(" ")
+        ].filter(Boolean).join(" ");
+        if (kws.some(function(re){ return re.test(hay); })) hits.push(it);
+      } catch (e) {}
+    }
+    hits.sort(function(a, b){ return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); });
+    return hits.slice(0, max);
+  }
+  function v82IndArticleRowHtml(it){
+    var title = esc((it.title && (it.title[LANG] || it.title.en)) || "");
+    var sub = esc((it.cover && it.cover.label) || it.source || "");
+    return '<button type="button" class="v82ind-art-row" data-aid="' + esc(it.id) + '">'
+      + '<span class="v82ind-art-txt"><span class="v82ind-art-title">' + title + '</span>'
+      + (sub ? '<span class="v82ind-art-sub">' + sub + '</span>' : "") + '</span>'
+      + '<span class="v82ind-art-arrow">›</span></button>';
+  }
+
+  /* ---- "다가오는 경제지표" — 현재 지표 제외(가능하면, 과제 지시), nextDate 오름차순
+     상위 N개. 캘린더 주간뷰와 같은 원형 아이콘(v82CalIconHtml 재사용, 국기)+제목+시각
+     스타일. ---- */
+  function v82IndUpcoming(excludeId, max){
+    max = max || 3;
+    if (typeof INDICATORS === "undefined") return [];
+    var todayStr = tcalYmd(new Date());
+    return INDICATORS.filter(function(x){ return x.id !== excludeId && x.nextDate >= todayStr; })
+      .sort(function(a, b){
+        if (a.nextDate !== b.nextDate) return a.nextDate < b.nextDate ? -1 : 1;
+        return (a.nextTime || "") < (b.nextTime || "") ? -1 : 1;
+      })
+      .slice(0, max);
+  }
+  function v82IndUpcomingRowHtml(ind, todayStr){
+    var iconHtml = v82CalIconHtml({ isIndicator: true, ind: ind });
+    var name = esc(ind.name[LANG] || ind.name.en);
+    var timeLbl = v82CalTimeLabel(ind.nextTime);
+    var isToday = ind.nextDate === todayStr;
+    var badge = isToday ? ('<span class="v82cal-today-chip">' + esc(T().calToday) + '</span>') : "";
+    return '<button type="button" class="v82ind-up-row" data-ind="' + esc(ind.id) + '">' + iconHtml
+      + '<span class="v82ind-up-txt"><span class="v82ind-up-title">' + name + '</span>'
+      + (timeLbl ? '<span class="v82ind-up-time">' + esc(timeLbl) + '</span>' : "") + '</span>' + badge
+      + '</button>';
+  }
+
+  /* ---- 히스토리 표 한 행. r은 v83CalAllRows()가 만드는 지표 행 그대로
+     ({isIndicator:true, ind, date, actual, forecast, prev[, isNext]}) — 발표값 색
+     (.tcal-hi/.tcal-lo)도 캘린더 주간뷰(v82CalRowHtml)와 완전히 같은 기준(예측 대비
+     ±1e-9 밖이면 색, 같으면 무색)으로 계산해 재사용한다. ---- */
+  function v82IndHistRowHtml(ind, r){
+    var unit = ind.unit || "";
+    var hd = (typeof indHistDate === "function") ? indHistDate(r.date) : r.date;
+    var period = v82IndPeriodLabel(ind.freq, r.date);
+    var noActual = (r.actual === null || r.actual === undefined);
+    var actualTxt = noActual ? "—" : (r.actual + unit);
+    var forecastTxt = (r.forecast === null || r.forecast === undefined) ? "—" : (r.forecast + unit);
+    var colorCls = "";
+    if (!noActual && r.forecast !== null && r.forecast !== undefined){
+      if (r.actual > r.forecast + 1e-9) colorCls = "tcal-hi";
+      else if (r.actual < r.forecast - 1e-9) colorCls = "tcal-lo";
+    }
+    return '<tr><td>' + esc(hd) + (period ? ' <span class="v82ind-hist-period">' + esc(period) + '</span>' : "") + '</td>'
+      + '<td class="v82ind-hist-val ' + colorCls + '">' + esc(actualTxt) + '</td>'
+      + '<td class="v82ind-hist-val v82ind-hist-muted">' + esc(forecastTxt) + '</td></tr>';
+  }
+
+  function v82IndBodyHtml(ind){
+    var IS = v82IndStr();
+    var name = ind.name[LANG] || ind.name.en;
+    var catLbl = (IND_CAT[ind.cat] || {})[LANG] || (IND_CAT[ind.cat] || {}).en || "";
+    var unit = ind.unit || "";
+    var nd = new Date(ind.nextDate + "T00:00:00");
+    var dateLbl = nd.toLocaleDateString(calLocale(), { month: "long", day: "numeric", weekday: "short" });
+    var timeLbl = v82CalTimeLabel(ind.nextTime);
+    var forecastLbl = (typeof TCAL_STR !== "undefined" && (TCAL_STR[LANG] || TCAL_STR.ko).colForecast) || "Forecast";
+
+    var html = "";
+    html += '<div class="v82ind-cat"><span class="chip">' + esc(catLbl) + '</span></div>';
+    html += '<div class="v82ind-title">' + esc(name) + '</div>';
+    var sub;
+    if (LANG === "en") sub = dateLbl + (timeLbl ? " · Releases " + timeLbl : "");
+    else if (LANG === "ja") sub = dateLbl + (timeLbl ? " · " + timeLbl + " 発表" : "");
+    else sub = dateLbl + (timeLbl ? " · " + timeLbl + " 발표" : "");
+    html += '<div class="v82ind-sub">' + esc(sub) + '</div>';
+
+    html += '<div class="v82ind-cards">'
+      + '<div class="v82ind-card"><div class="v82ind-card-l">' + esc(forecastLbl) + '</div><div class="v82ind-card-v">'
+      + ((ind.nextForecast === undefined || ind.nextForecast === null) ? "—" : (ind.nextForecast + unit)) + '</div></div>'
+      + '<div class="v82ind-card"><div class="v82ind-card-l">' + esc(v82IndLastLabel(ind.freq)) + '</div><div class="v82ind-card-v">'
+      + ((ind.lastValue === undefined || ind.lastValue === null) ? "—" : (ind.lastValue + unit)) + '</div></div>'
+      + '</div>';
+
+    if (typeof indSvgChart === "function"){
+      html += '<div class="v82ind-chart-card">' + indSvgChart(ind, IS) + '</div>';
+    }
+
+    var insight = v82IndInsightText(ind);
+    if (insight){
+      var insightTitle = LANG === "en" ? "Forecast insight" : (LANG === "ja" ? "予測インサイト" : "예측 인사이트");
+      html += '<div class="v82ind-insight"><div class="v82ind-insight-h">✦ ' + esc(insightTitle) + '</div>'
+        + '<div class="v82ind-insight-b">' + esc(insight) + '</div></div>';
+    }
+
+    /* v83CalAllRows()가 만든 지표 행(다음 발표 1개 + 과거 회차) 중 이 지표 것만 뽑아
+       최신순으로 정렬 — 캘린더 주간뷰와 완전히 같은 데이터 소스(재사용, 과제 지시 1-4). */
+    var histRows = (typeof v83CalAllRows === "function" ? v83CalAllRows() : [])
+      .filter(function(r){ return r.isIndicator && r.ind && r.ind.id === ind.id; })
+      .sort(function(a, b){ return a.date < b.date ? 1 : (a.date > b.date ? -1 : 0); });
+    if (histRows.length){
+      var headDate = LANG === "en" ? "Date" : (LANG === "ja" ? "発表日" : "발표 날짜");
+      var headActual = LANG === "en" ? "Actual" : (LANG === "ja" ? "実績" : "발표");
+      html += '<div class="v82ind-hist"><table class="v82ind-hist-table"><thead><tr><th>' + esc(headDate)
+        + '</th><th>' + esc(headActual) + '</th><th>' + esc(forecastLbl) + '</th></tr></thead>';
+      var head4 = histRows.slice(0, 4), rest = histRows.slice(4);
+      html += '<tbody>' + head4.map(function(r){ return v82IndHistRowHtml(ind, r); }).join("") + '</tbody>';
+      if (rest.length){
+        html += '<tbody class="v82ind-hist-extra" hidden>' + rest.map(function(r){ return v82IndHistRowHtml(ind, r); }).join("") + '</tbody>';
+      }
+      html += '</table>';
+      if (rest.length) html += '<button type="button" class="v82ind-more">' + esc(T().more) + '</button>';
+      html += '</div>';
+    }
+
+    var desc = (ind.desc && (ind.desc[LANG] || ind.desc.ko)) || "";
+    if (desc){
+      html += '<div class="v82ind-desc"><div class="v82ind-sec-h">' + esc(name) + esc(IS.whatIs || "") + '</div>'
+        + desc.split("\n\n").map(function(p){ return '<p class="v82ind-desc-p">' + esc(p) + '</p>'; }).join("")
+        + '</div>';
+    }
+
+    var related = v82IndRelatedArticles(ind, 2);
+    if (related.length){
+      var relTitle = LANG === "en" ? "Worth reading" : (LANG === "ja" ? "一緒に読みたい記事" : "함께 읽으면 좋은 글");
+      html += '<div class="v82ind-related"><div class="v82ind-sec-h">' + esc(relTitle) + '</div>'
+        + related.map(v82IndArticleRowHtml).join("") + '</div>';
+    }
+
+    var todayStr = tcalYmd(new Date());
+    var upcoming = v82IndUpcoming(ind.id, 3);
+    if (upcoming.length){
+      var upTitle = LANG === "en" ? "Upcoming indicators" : (LANG === "ja" ? "今後の経済指標" : "다가오는 경제지표");
+      html += '<div class="v82ind-upcoming"><div class="v82ind-sec-h">' + esc(upTitle) + '</div>'
+        + upcoming.map(function(x){ return v82IndUpcomingRowHtml(x, todayStr); }).join("") + '</div>';
+    }
+
+    var calLbl = LANG === "en" ? "Open full calendar" : (LANG === "ja" ? "カレンダーをすべて見る" : "캘린더 전체보기");
+    html += '<button type="button" class="v82ind-cal-link">' + esc(calLbl) + ' ›</button>';
+
+    var disclaimer = LANG === "en" ? "For reference only — not investment advice." : (LANG === "ja" ? "投資判断の参考情報です。実際の発表値と異なる場合があります。" : "투자 판단 참고용 정보이며 실제 발표치와 다를 수 있어요.");
+    html += '<div class="v82ind-disclaimer">' + esc(disclaimer) + '</div>';
+
+    return html;
+  }
+
+  function v82IndBuildScreen(){
+    if ($("v82ind")) return;
+    var s = document.createElement("div"); s.id = "v82ind"; s.className = "v82-screen v82ind-screen";
+    s.innerHTML = '<div class="v82ind-body" id="v82indBody"></div>';
+    document.body.appendChild(s);
+    var h = document.createElement("div"); h.className = "v82-sh v82ind-sh"; h.id = "v82ind-h";
+    h.innerHTML = '<button class="bk" aria-label="back">←</button><span class="ti"></span>';
+    h.querySelector(".bk").onclick = function(){ v82IndClose(false); };
+    document.body.appendChild(h);
+  }
+
+  function v82IndWireBody(){
+    var body = $("v82indBody"); if (!body) return;
+    var moreBtn = body.querySelector(".v82ind-more");
+    if (moreBtn){
+      moreBtn.onclick = function(){
+        var extra = body.querySelector(".v82ind-hist-extra");
+        if (extra) extra.hidden = false;
+        moreBtn.remove();
+      };
+    }
+    var upRows = body.querySelectorAll(".v82ind-up-row");
+    for (var i = 0; i < upRows.length; i++){
+      upRows[i].onclick = function(){ v82GoIndicator(this.dataset.ind); };
+    }
+    var artRows = body.querySelectorAll(".v82ind-art-row");
+    for (var j = 0; j < artRows.length; j++){
+      artRows[j].onclick = function(){ v82IndOpenArticle(this.dataset.aid); };
+    }
+    var calLink = body.querySelector(".v82ind-cal-link");
+    if (calLink) calLink.onclick = function(){ v82IndClose(false); };
+  }
+
+  function v82IndRenderBody(){
+    var body = $("v82indBody"); if (!body) return;
+    var ind = v82IndFind(V82IND_ID);
+    if (!ind){ body.innerHTML = ""; return; }
+    body.innerHTML = v82IndBodyHtml(ind);
+    v82IndWireBody();
+  }
+
+  /* 캘린더 지표 행(v82CalRowHtml, 위 onclick) 탭 + 상세 안 "다가오는 경제지표" 항목
+     탭이 함께 쓰는 진입점. 이미 열려 있을 때(다른 지표로 갈아탈 때)는 pushView()를
+     또 하지 않는다 — 데스크톱 goIndicator()의 "!wasOpen일 때만 push" 규칙과 동일한
+     이유(관련 지표를 여러 번 옮겨 다녀도 뒤로가기 한 번이면 캘린더로 바로 돌아간다). */
+  function v82GoIndicator(id){
+    if (!mq.matches) return;
+    if (!v82IndFind(id)) return;
+    v82IndBuildScreen();
+    V82IND_ID = id;
+    v82IndRenderBody();
+    var scr = $("v82ind");
+    if (scr && scr.classList.contains("on")){
+      scr.scrollTop = 0;
+    } else {
+      showScreen("v82ind");
+    }
+    setActive();
+    if (typeof track === "function") track("indicator/" + id);
+  }
+  function v82IndClose(fromPop){
+    if (!hideScreen("v82ind")) return false;
+    if (!fromPop) silentBack();
+    setActive();
+    return true;
+  }
+  /* 관련 글 탭: v82notif/v82list의 기존 "행 탭 → 이 화면 닫고 기사 열기" 패턴
+     (예: closeNotif(true); silentBack(); openCardById(r.id);)을 그대로 따른다.
+     v82cal은 열어 둔 채로 둔다(다른 화면들과 동일하게 자기 자신만 정리) — 기사에서
+     뒤로가면 v82detail이 먼저 닫히고(위 v82Pop 참고) 캘린더가 다시 보인다. */
+  function v82IndOpenArticle(id){
+    v82IndClose(true);
+    silentBack();
+    if (typeof openCardById === "function") openCardById(id);
+  }
+  window.v82GoIndicator = v82GoIndicator;
+  window.v82IndClose = v82IndClose;
 
   /* ---------- entity picker (논객 / 회사) ---------- */
   function openPicker(kind){
@@ -1936,6 +2321,9 @@
   /* ---------- bottom nav ---------- */
   function closeAppSheets(){
     try { var cal=$("calSheet"); if(cal && !cal.hidden && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
+    /* 2026-08-05: 지표 상세(#v82ind)는 캘린더(#v82cal) 위에 겹쳐 열리므로, 안쪽(위)
+       레이어부터 닫는다 — 순서를 바꾸면 v82cal만 닫히고 v82ind가 화면을 계속 덮는다. */
+    try { var vi=$("v82ind"); if(vi && vi.classList.contains("on") && typeof v82IndClose==="function"){ v82IndClose(false); } } catch(e){}
     /* 2026-08-05: 캘린더가 이제 모달(#calSheet)이 아니라 .v82-screen(#v82cal)이라
        위 체크만으로는 안 걸린다 — "cal.hidden 아님" 대신 ".on" 클래스를 본다. */
     try { var vc=$("v82cal"); if(vc && vc.classList.contains("on") && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
@@ -1985,6 +2373,17 @@
     if (!mq.matches) return false;
     var cfs = $("chartFS"); if (cfs && !cfs.hidden) return false;
     var cal = $("calSheet"); if (cal && !cal.hidden) return false;
+    /* 2026-08-05: 지표 상세(#v82ind, z45)는 캘린더(#v82cal, z40) 위에 겹쳐서 열리고,
+       기사 상세(#v82detail, z13600)는 지표 상세의 "함께 읽으면 좋은 글"에서 그 위에
+       또 열릴 수 있다 — 안쪽(가장 위) 레이어부터 닫아야 한다. 아래 vcal 체크가 먼저
+       걸리면(원래 순서) 기사·지표 상세가 떠 있는 채로 캘린더만 조용히 닫혀 버튼 한
+       번이 "허공에" 소비된다. closeDetail(true) 체크는 원래도 있었지만(현재 위치
+       그대로 둠) vcal보다 뒤에 있어 이 두 레이어와 v82cal이 동시에 열린 상태에서는
+       늦게 걸렸다 — 그 상태를 처음 만드는 게 이번 지표 상세 기능이라 여기서 먼저
+       가로챈다. */
+    var dtOv = $("v82detail");
+    if (dtOv && dtOv.classList.contains("on")){ if (typeof closeDetail === "function" && closeDetail(true)) return true; }
+    var vind = $("v82ind"); if (vind && vind.classList.contains("on")){ if (typeof v82IndClose === "function") v82IndClose(true); return true; }
     /* 2026-08-05: 새 주간뷰 캘린더(.v82-screen #v82cal)의 실제 브라우저 뒤로가기 처리.
        다른 5개 셸 화면(find/hub/notif/list/picker)과 동일하게 여기서 직접 닫는다 —
        옛 #calSheet 체크(바로 위)는 이제 절대 안 걸리므로(모달을 더 이상 열지 않음)
@@ -2179,6 +2578,7 @@
     if (!mq.matches){
       closeDrawer(true); closeDetail(true);
       closeFind(true); closeHub(true); closeNotif(true); closePicker(true); closeList(true);
+      hideScreen("v82ind"); /* 2026-08-05: 지표 상세도 데스크톱 폭 전환 시 정리(캘린더 v82cal 자체는 기존에도 여기서 정리 대상이 아니었음 — 그 관례는 건드리지 않는다) */
       var nav = document.querySelector("nav"); if (nav) nav.classList.remove("v82hide");
       document.body.style.overflow = "";
       var list = $("feedList");

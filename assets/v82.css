@@ -721,3 +721,80 @@
   .v82cal-month-more{font-size:10px;font-weight:650;color:var(--muted);width:100%;
     text-align:left;padding-left:5px;}
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   2026-08-05 · 모바일 지표 상세(캘린더 주간뷰 지표 행 탭에서 진입, assets/v82.js
+   v82GoIndicator() 등). #v82ind는 위 캘린더와 같은 .v82-screen 공용 셸을 쓰되
+   z-index만 올려 #v82cal 위에 겹쳐서 연다(v82cal은 그대로 열려 있음 — JS 쪽 주석
+   참고). 데스크톱 전용 .ind-*(index.html, renderIndicatorDetailPage) 규칙은 전혀
+   건드리지 않았고 클래스명도 전부 v82ind- 접두로 분리해 겹치는 이름이 없다. 차트만
+   예외로, indSvgChart()가 반환하는 기존 .ind-chart-wrap/.ind-chart/.ind-chart-axis
+   마크업을 그대로 재사용하되(과제 지시로 확인한 재사용 가능 여부) 그 공용 규칙은
+   손대지 않고 .v82ind-chart-card 스코프 안에서만 크기를 다시 잡는다.
+   ───────────────────────────────────────────────────────────────────────── */
+@media (max-width:1023px){
+  .v82ind-screen{z-index:45;}
+  .v82ind-sh{z-index:46;}
+
+  .v82ind-cat{text-align:center;margin:2px 0 14px;}
+  .v82ind-title{text-align:center;font-size:19px;font-weight:800;line-height:1.35;
+    margin:0 0 10px;word-break:keep-all;}
+  .v82ind-sub{text-align:center;font-size:15px;font-weight:700;color:var(--muted);
+    margin:0 0 24px;}
+
+  .v82ind-cards{display:flex;gap:10px;margin:0 0 22px;}
+  .v82ind-card{flex:1;min-width:0;background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:16px;padding:16px 12px;text-align:center;}
+  .v82ind-card-l{font-size:12.5px;color:var(--muted);font-weight:700;margin-bottom:8px;}
+  .v82ind-card-v{font-size:21px;font-weight:800;color:var(--text);letter-spacing:-.01em;}
+
+  .v82ind-chart-card{margin:2px 0 20px;}
+  .v82ind-chart-card .ind-chart-wrap{margin:0;}
+  .v82ind-chart-card .ind-chart{height:170px;}
+
+  .v82ind-insight{background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;
+    padding:14px 16px;margin:0 0 22px;}
+  .v82ind-insight-h{color:var(--accent);font-weight:800;font-size:13px;margin-bottom:8px;}
+  .v82ind-insight-b{font-size:13.5px;line-height:1.6;color:var(--text);}
+
+  .v82ind-sec-h{font-size:15px;font-weight:800;margin:0 0 12px;color:var(--text);}
+
+  .v82ind-hist{margin:0 0 26px;}
+  .v82ind-hist-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .v82ind-hist-table th{text-align:right;color:var(--muted);font-weight:700;font-size:11px;
+    text-transform:uppercase;letter-spacing:.04em;padding:8px 2px;border-bottom:1px solid var(--line);}
+  .v82ind-hist-table th:first-child{text-align:left;}
+  .v82ind-hist-table td{padding:12px 2px;border-bottom:1px solid var(--line);
+    font-family:var(--mono-font);color:var(--text);text-align:right;}
+  .v82ind-hist-table td:first-child{text-align:left;font-family:inherit;font-weight:600;}
+  .v82ind-hist-period{color:var(--muted);font-size:11.5px;font-weight:400;font-family:inherit;}
+  .v82ind-hist-val.v82ind-hist-muted{color:var(--muted);}
+  .v82ind-more{display:block;width:100%;background:none;border:0;color:var(--muted);
+    font-family:inherit;font-size:13px;font-weight:700;padding:14px 0 4px;cursor:pointer;
+    text-align:center;}
+
+  .v82ind-desc{margin:0 0 24px;}
+  .v82ind-desc-p{font-size:13.5px;line-height:1.65;color:var(--text);margin:0 0 12px;}
+
+  .v82ind-related{margin:0 0 24px;}
+  .v82ind-art-row{display:flex;align-items:center;gap:10px;width:100%;background:var(--bg-soft);
+    border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:8px;
+    font-family:inherit;text-align:left;cursor:pointer;}
+  .v82ind-art-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;}
+  .v82ind-art-title{font-size:13.5px;font-weight:700;color:var(--text);line-height:1.4;}
+  .v82ind-art-sub{font-size:11.5px;color:var(--muted);}
+  .v82ind-art-arrow{flex:0 0 auto;color:var(--muted);font-size:16px;}
+
+  .v82ind-upcoming{margin:0 0 8px;}
+  .v82ind-up-row{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;
+    padding:10px 0;font-family:inherit;text-align:left;cursor:pointer;min-height:44px;}
+  .v82ind-up-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+  .v82ind-up-title{font-size:14.5px;font-weight:700;color:var(--text);line-height:1.32;}
+  .v82ind-up-time{font-size:12px;font-weight:650;color:var(--muted);}
+
+  .v82ind-cal-link{display:block;width:100%;background:none;border:0;color:var(--accent);
+    font-family:inherit;font-size:14px;font-weight:700;padding:16px 0;cursor:pointer;
+    text-align:center;}
+  .v82ind-disclaimer{font-size:11.5px;color:var(--muted);line-height:1.6;text-align:center;
+    padding:8px 0 4px;}
+}
