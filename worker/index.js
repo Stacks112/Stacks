@@ -709,7 +709,7 @@ function surgeSlug(k) {
    digits alone. Hardcoded per known follow; extend as more Taiwan
    companies with bare-numeric tickers are added. */
 const TAIWAN_TICKER_EXCHANGE = {
-  "8271": "TWO", // APACER TECHNOLOGY - Taipei Exchange (OTC)
+  "8271": "TW",  // APACER TECHNOLOGY - Taiwan Stock Exchange (TWSE)
   "2344": "TW"   // WINBOND ELECTRONICS - Taiwan Stock Exchange
 };
 
