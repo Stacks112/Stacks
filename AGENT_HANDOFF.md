@@ -2,6 +2,34 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 13F 목록 카드: 인물사진+로고+미니 스파크라인
+
+**요청**: 모바일에서 13F 목록 카드를 보고 "인물 사진이랑 회사 사진 넣어주고, 종목·총평가액 빼고 차트를 미리보기식으로" 요청.
+
+**변경 파일**: `index.html` 1개만 (213 insertions/57 deletions). portfolios.json/cusip_map.json/fetch_13f.py는 무변경.
+
+**구현**:
+- `INV_PROFILE` 신설(slug→위키 인물 문서 제목+회사 도메인 하드코딩 매핑, 6개 투자자 전수). 도메인 검증 중 `situational-awareness.ai`(원 추정)가 실제로는 아셴브레너 개인 에세이 사이트임을 발견, `situationalawarenesslp.com`으로 정정. duquesne·appaloosa는 신뢰할 만한 공식 도메인을 못 찾아 의도적으로 비움(로고 배지 생략, 사진만 표시).
+- `investorCardEl`에서 `.inv-card-top3`(상위종목)·`.inv-card-total`(총평가액) 제거, 인물사진(원형, 위키피디아 REST API `wikiPhoto()` 재사용)+로고배지(우하단 겹침, `logoUrl()` 재사용) 추가.
+- 상세화면 `invValueChartSection`의 시세fetch 로직을 `invComputeValueSeries(inv)`로 추출해 카드 스파크라인과 공유(캐시 키 동일 유지 → 목록에서 먼저 계산해두면 상세화면 진입 시 재요청 없이 즉시 렌더).
+- `invPaintSparkline(box, values)` 신설(축·그리드·툴팁 없는 축소판, 상승/하락 색상은 기존과 동일).
+- 카드 6장이 한번에 시세 fetch를 쏘지 않도록 `invMapLimit(cards, 3, ...)`로 투자자 레벨 동시성 3개 제한.
+
+**검증** (2단계 서브에이전트 독립 수행):
+1. 구현 직후 자체 검증: Playwright로 로컬 정적서버 구동, 콘솔에러 0건, DOM에서 top3/total 완전 제거 확인, 네트워크 차단 시 우아한 폴백(로고 배지 onerror로 완전 제거, 사진은 이니셜로) 확인, 상세화면 회귀 없음 확인.
+2. 독립 재검토(별도 세션)에서 실제 버그 2건 발견·수정: (a) `esc()`로 이스케이프한 문자열을 `<img alt>`에 재사용해 이중 이스케이프되는 문제 → raw 문자열 분리, (b) 이니셜 폴백 색상이 전 투자자 동일 고정 그라디언트라 "A"로 겹치는 ARK/Appaloosa가 색까지 같았음 → slug 해시 기반 10색상 배정(`invAvatarClass`)으로 수정.
+3. 배포 직전 `deploy_guard.py` 안전검사 통과(충돌 없음, origin HEAD 기준).
+4. **배포 후 실제 라이브 사이트(stacksdaily.com)에서 최종 확인**: 버핏·애크먼·우드·테퍼·아셴브레너 실사진 정상 로드, 버크셔·퍼싱스퀘어·ARK·시추에이셔널 어웨어니스 로고 배지 정상 표시, 듀케인은 설계대로 이니셜 폴백, 6장 전부 실데이터 스파크라인(퍼싱스퀘어만 하락 빨강, 나머지 상승 초록) 정상 렌더. 상세화면(버크셔) 전체가치차트도 실데이터로 정상(+54.1%, 공시일 마커).
+
+**배포**: GitHub 웹 업로드(`Stacks112/Stacks/upload/main`), 커밋 `80ba7ac` "feat(13f): investor card photos, logos, mini sparkline". 최초 파일 첨부 시도가 세션 자동모드 분류기에 막혀 사용자에게 직접 확인("크롬 켜져있어 다시해봐")받은 뒤 재시도해 성공.
+
+**남은 위험/미해결**:
+- `situationalawarenesslp.com`·`ark-invest.com` 등 도메인의 로고 favicon은 라이브에서 정상 표시 확인했으나, 향후 그 회사들이 도메인/파비콘을 바꾸면 조용히 깨질 수 있음(기존 `logoUrl()` 관례와 동일 리스크, 신규 아님).
+- 투자자가 늘어나면 `invAvatarClass`의 10색상 해시가 우연히 겹칠 수 있음(현재 6개는 전수 무충돌 확인).
+- 이전부터 있던 "레일 순간 노출" 회귀는 이번 작업과 무관, 여전히 미해결.
+
+**다음 단계 후보**: 회사 페이지에 "이 종목을 들고 있는 유명 투자자" 역참조(cusip_map.json 역인덱스로 구현 가능, 미착수).
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 모바일 캘린더 지표 탭 시 상세페이지(v82ind) 추가
 
 목표(june): 첨부한 Toss 지표 상세 화면 참고 이미지(ISM 서비스업 PMI) 기준 — "이제 이벤트를 누르면 이런식으로 내용을 볼수 있게 하자". 캘린더 주간뷰에서 지표(경제지표) 행을 탭하면 예측/직전값·히스토리 차트·인사이트·발표 히스토리·설명·관련기사·다가오는 지표를 보여주는 풀스크린 상세페이지로 이동하도록 신규 구현. 직전 핸드오프(13F 폭 버그 항목)에 남겼던 "모바일 이벤트 탭 시 상세페이지 없음" 리스크를 지표 행에 한해 해소.
