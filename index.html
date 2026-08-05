@@ -3332,6 +3332,15 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
   .inv-table{font-size:11.5px;}
   .inv-table td,.inv-table th{padding:6px 5px;}
 }
+/* v84.2 (2026-08-05, june 정정): 13F 화면에서는 우측 레일의 "다가오는 일정/이번 주
+   인기/내 브리핑/뉴스레터"만 숨긴다. 검색창(.v83-search)은 대상이 아니므로 셀렉터에
+   넣지 않는다 — 그대로 노출·고정 유지. 클래스는 renderFeed()가 매 렌더마다
+   INVESTOR_VIEW 값으로 다시 계산해 붙이고 떼므로(#v83fsw와 같은 자리), 홈으로
+   나가거나 뒤로가기를 해도 다음 렌더에서 항상 정확한 상태로 복구된다. */
+#v83rail.inv-rail-hide #v83calSec,
+#v83rail.inv-rail-hide #hotSec,
+#v83rail.inv-rail-hide #watchSec,
+#v83rail.inv-rail-hide #nlSec{display:none !important;}
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
   --bg:#000000;
@@ -6760,7 +6769,7 @@ function mountV83(){
   var calSec = document.createElement("section"); calSec.id = "v83calSec";
   calSec.innerHTML = '<h2 class="section-title" id="v83calTitle"></h2><div id="v83calBody"></div>';
   rail.appendChild(calSec);
-  if (hotSec) rail.appendChild(hotSec);
+  if (hotSec){ hotSec.id = "hotSec"; rail.appendChild(hotSec); }
   var ws = document.getElementById("watchSec"); if (ws) rail.appendChild(ws);
   /* 2026-07-23 june: newsletter lives at the bottom of the right rail */
   var nl = document.getElementById("nlSec");
@@ -9396,6 +9405,34 @@ window.addEventListener("popstate", function(ev){
   /* nothing open — let the browser navigate away normally */
 });
 
+/* v84.3 (2026-08-05 fix): handleDeepLink() only runs once, at boot. A hash
+   change AFTER the app is already running — someone edits the address bar to
+   #investor-<slug> in the same tab, or a same-document navigation skips a
+   full reload — never re-runs it, so the address bar shows the right hash
+   while the app quietly stays on whatever it was already showing (confirmed:
+   INVESTOR_VIEW stays null, 0 .inv-* nodes, but calling openInvestor() by
+   hand fixes it instantly — that gap, not a missing data-existence guard in
+   handleDeepLink, is what produced the "#investor- deep link doesn't work"
+   report). Scoped to just the investor routes so it can't touch the other
+   hash routes' existing (unrelated, pre-existing) behavior.
+   Back/forward already restores state via the popstate/applyView path above,
+   which also fires a hashchange when the fragment differs — by the time that
+   fires, applyView() has already set INVESTOR_VIEW to match the new hash, so
+   the equality guards below make this a no-op for that path and only act on
+   a genuine "hash moved without the app knowing" case (no double pushView,
+   no extra history entries). */
+window.addEventListener("hashchange", function(){
+  try {
+    var h = location.hash || "";
+    if (h.indexOf("#investor-") === 0){
+      var s = decodeURIComponent(h.slice(10));
+      if (s && (typeof INVESTOR_VIEW === "undefined" || INVESTOR_VIEW !== s)) openInvestor(s);
+    } else if (h === "#investors"){
+      if (typeof INVESTOR_VIEW === "undefined" || INVESTOR_VIEW !== "index") openInvestors();
+    }
+  } catch (e) {}
+});
+
 /* shared links land on the exact card */
 /* 2026-08-04 (june): viewUrl이 만드는 주소를 전부 여기서 되읽는다 — 이게 "새로고침하면
    홈으로 떨어진다"의 반대편이다. location이 아니라 STK_BOOT(부팅 시점 스냅샷)를 읽는
@@ -10456,10 +10493,18 @@ function renderFeed(animate){
         && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !QUERY && !BM_ONLY
         && !(typeof READ_VIEW !== "undefined" && READ_VIEW)
         && !(typeof THEME_VIEW !== "undefined" && THEME_VIEW)
+        && !(typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW)
         && !(typeof V83ITEM !== "undefined" && V83ITEM);
       _fsw.hidden = !_vis;
       _fsw.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.f === TAB));
     }
+    /* v84.2: 13F 뷰에서만 우측 레일의 캘린더/핫/브리핑/뉴스레터 섹션을 숨긴다
+       (검색창 제외). #v83fsw와 같은 자리에서 매 렌더마다 다시 계산하므로,
+       INVESTOR_VIEW를 껐다 켰다 하는 9곳짜리 reset 목록을 또 만들 필요가 없다 —
+       바로 위 _fsw 조건에 INVESTOR_VIEW를 추가하지 않고 넘어갔던 실수를
+       반복하지 않기 위해 일부러 이 블록 안에 둔다. */
+    const _railEl = document.getElementById("v83rail");
+    if (_railEl) _railEl.classList.toggle("inv-rail-hide", !!(typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW));
   } catch (e) {}
   if (typeof renderToday === "function") renderToday();
   refreshFilterBtn();
