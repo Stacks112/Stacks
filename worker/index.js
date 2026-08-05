@@ -797,6 +797,17 @@ async function osPushTag(env, tag, headings, contents, link) {
   } catch (e) { return false; }
 }
 
+/* Tickers to skip in the surge scan even though items.json still carries
+   the entity (entity stays -- it's referenced from published article text
+   via itemEntities()/auto-linking, so it can't just be deleted). Lowercase,
+   matched against e.ticker.toLowerCase().
+   - "gazp.moex" (GAZPROM): Yahoo Finance serves no data for this symbol at
+     all (quote page itself 404s), independent of the .moex->.ME mapping in
+     yahooSymbol() -- a real data-availability gap, not a code bug. june
+     decided (2026-08-05) to drop it from the surge follow list rather than
+     chase a workaround. See claude/status-2026-08-05-surge-scan-gap-yahoosymbol-root-cause.md. */
+const SURGE_EXCLUDE_TICKERS = ["gazp.moex"];
+
 /* items.json -> the full list of followable companies, in a deterministic
    order. The order MUST be stable across invocations or shard membership
    drifts between the three firings and some companies are never priced.
@@ -812,7 +823,10 @@ async function listCompanies() {
   const companies = [];
   for (const name in entities) {
     const e = entities[name];
-    if (e && e.kind === "company" && e.ticker) companies.push({ name, ticker: e.ticker });
+    if (e && e.kind === "company" && e.ticker &&
+        SURGE_EXCLUDE_TICKERS.indexOf(String(e.ticker).toLowerCase()) === -1) {
+      companies.push({ name, ticker: e.ticker });
+    }
   }
   companies.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
   return companies;
