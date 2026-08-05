@@ -133,6 +133,60 @@ push 실패 시 큐를 비우지 않도록 그대로 유지.
 - 레거시 모바일 캘린더 죽은 코드 정리(선택 과제).
 - FRED API 키 발급 시 실데이터 연동.
 
+## 2026-08-05 Claude (Cowork, claude-opus-5) — 발행 사고 수습 + `disabled` 소스 플래그 신설
+
+커밋 셋. `5707819`(items.json 정정) · `c7b504a`(scripts 2개) · `a4b5f0a`(sources.json).
+`index.html` · 워크플로 무변경.
+
+### ① 사고 — 서브에이전트가 D1 페이로드의 한국어를 다시 타이핑했다
+
+12:43Z 자동 발행 회차가 D1 INSERT 를 하위 모델 서브에이전트에 맡겼고, 그 에이전트가
+2만 자 페이로드를 **옮겨 적으며 재생성**해 한국어·일본어 30여 곳을 훼손한 채 라이브에 나갔다
+(`치솟았다`→`치솔았다`, `팹리스`→`팝리스` 5곳, `퀄컴`→`퀵컴`, `跳ね上がった`→`跡ね上がった`).
+**JSON 키까지 바뀌었다** — `outcome.card.hit.ja` → `hit.da`, 일본어 화면의 그 칸이 비었다.
+
+**길이 검사로는 원리적으로 못 잡는다** — 2만 자 중 차이가 24자뿐이었다(치환 대부분이 같은 글자 수).
+내용 해시로만 잡힌다.
+
+정정은 `claude/fix-payload-2026-08-05-1243z-jukan-card-corrupted.json` 을 최신 `origin/main`
+위에서 **python 파일 대 파일**로 재병합해 업로드(`5707819`). diff `+20/-21`, 훼손 문자열 16종 0건,
+`hit` 키 `['ko','en','ja']` 복구, 카드 274장 유지, `deploy_guard` 0, `check_editorial` BLOCK 0.
+
+⚠ **`items.json` 은 CI 와 발행 회차가 분 단위로 밀어서 베이스가 계속 움직인다.**
+이번에 두 번 다시 병합했다. **업로드 직전에 반드시 `git fetch` 후 바이트·sha 재대조.**
+
+### ② `sources.json` 에 `disabled` 플래그 신설 — Codex 가 알아야 할 부분
+
+소스 항목에 `disabled: true` + `disabled_reason` 을 달면:
+
+- `scripts/fetch_feeds.py` 가 그 소스의 피드를 갱신하지 않는다(자체 `FEEDS` 리스트에서 제거하는 방식)
+- `scripts/pick_candidates.py` 가 **후보 목록 · 소스별 상한 표 · 「최근 7일 0건 소스」 목록 셋 다에서**
+  제외하고, 출력 끝에 `비활성 소스 N개 제외: <표시명>` 을 찍는다. `--json` 에도 `disabled_sources` 키
+- 판정은 `feed_id` 가 아니라 **`source` 표시명 기준**이다 — 짝 피드(`kuo`/`kuo_x`, `bilello`/`bilello_x`)는
+  **모든 feed_id 가 disabled 일 때만** 비활성으로 본다
+
+첫 적용 대상은 `thediff`(Byrne Hobart). 피드가 제목만 주고 본문이 유료 구독자 전용이라
+구조적으로 카드를 만들 수 없는데 매 회차 「0건 소스」 목록에만 올라왔다. june 결정.
+
+**항목을 지우지 않고 플래그로 끈 이유**: 이미 발행된 카드 1장(`thediff-overlubricated-economy`)의
+표시명·아바타 조회가 `sources.json` 을 탄다. `feeds/thediff.json` 도 남겼다(과거 원문 복원용).
+
+### ③ 규칙 문서 쪽 (레포 무관)
+
+`claude/prompts/publish-runbook.md` `[4]` 에 가드 3절 신설 — `4-A` D1 INSERT 를 서브에이전트에
+위임 금지(프로젝트 지침의 「하위 모델 서브에이전트」가 자연어 페이로드에는 적용되지 않는다고 명시) ·
+`4-B` 롤링 해시 대조 · `4-C` 검증 전 INSERT 금지 + **D1 큐로는 기존 카드를 고칠 수 없다**
+(`apply-pending.yml` 병합이 멱등이라 있는 id 는 건너뛴다 — 발행에는 옳지만 수정 경로가 없다는 뜻).
+
+### 남은 위험
+
+1. **`0-5` 이중 실행 방지가 작동하지 않는다.** 30분 창 가정인데 회차가 90~135분이다.
+   다음 회차와 겹치는 시점에 앞 회차는 아직 커밋 전이라 창에 안 걸린다. 미착수(june 이 범위에서 뺌).
+2. **회차 속도 개선이 아직 입증되지 않았다.** 12:43Z 회차 135분 중 40분이 사고 수습이라
+   측정이 오염됐다. 깨끗한 회차 하나가 더 필요하다. 기준선 50 / 100 / 130분.
+
+상세: `claude/status-2026-08-05-1922z-postmortem-and-fixes.md`
+
 ## 2026-08-05 Claude (Cowork, claude-opus-5) — 자동 발행 회차 속도 개선 (규칙 통합 + 후보 선별 스크립트)
 
 커밋 `577247b chore: add scripts/pick_candidates.py`. **레포 변경은 이 신규 파일 1개뿐이다.**
