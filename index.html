@@ -3323,17 +3323,24 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .ind-related-btn{display:block;width:100%;text-align:left;font-family:inherit;font-size:13px;font-weight:600;color:var(--text);background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;}
 .ind-related-btn:hover{border-color:var(--accent);color:var(--accent);}
 
-/* ---------- v83.10: calendar tab widens (right rail hidden) ----------
-   Selector specificity ( .cal-wide adds an extra class) beats the two
-   !important grid-template-columns rules in xparity-css regardless of
-   source order, so this always wins while html.cal-wide is present —
-   and disappears the instant render() stops adding that class. */
+/* ---------- v83.15 (june 재지시): calendar tab widens (right rail hidden) ----------
+   2026-08-05: 이전 버전은 .wrap의 grid-template-columns/max-width를 직접 덮어썼다
+   (275px+1fr, max-width:1320) — xparity-css 기본값(275+602+350, max-width:1257)과
+   숫자가 달라 판정 기록(html.v83 .wrap, 13240행)보다 좌측이 31px 더 왼쪽, 우측이
+   32px 더 오른쪽으로 어긋났다. 게다가 브레이크포인트(1024~1264)마다 기본값을
+   복제해야 해서 xparity-css가 나중에 바뀌면 또 어긋나기 쉬웠다.
+   지금은 .wrap 그리드를 전혀 건드리지 않는다 — #v83rail만 지우고(그리드 3번째
+   트랙에서 완전히 빠짐) #v83center를 2번째+3번째 트랙에 걸쳐(span 2) 놓는다.
+   .wrap의 max-width·좌우 패딩·nav 폭은 모든 브레이크포인트에서 xparity-css
+   기본값을 그대로 상속하므로, 캘린더의 좌측 시작·우측 끝이 판정 기록과 항상
+   정확히 같다(602+350=952px 본문, 1024~1264 구간도 xparity 13502행 값을 그대로
+   따라간다). ⚠ 13F(inv-wide-css, 13537행 부근)는 이 옛 275/1320 수치를 독립적으로
+   하드코딩해 재사용 중이다 — 여기서 그 숫자를 없애도 inv-wide-css 자체는
+   건드리지 않으므로 13F 폭엔 영향이 없다(다만 캘린더와 13F가 서로 다른 폭이 된다 —
+   13F 쪽 재조정은 이번 작업 범위 밖). */
 @media (min-width:1024px){
-  html.v83.cal-wide .wrap{ grid-template-columns:minmax(88px,275px) minmax(0,1fr) !important; max-width:1320px !important; }
   html.v83.cal-wide #v83rail{ display:none !important; }
-}
-@media (min-width:1024px) and (max-width:1264px){
-  html.v83.cal-wide .wrap{ grid-template-columns:88px minmax(0,1fr) !important; }
+  html.v83.cal-wide #v83center{ grid-column:span 2 !important; }
 }
 /* container queries key off this wrapper's own inline-size so the 2-column
    card layout folds to 1 column whenever the CENTER column itself gets
@@ -3431,7 +3438,20 @@ html[data-theme="dark"] .tcal-mini-cell.tcal-week-cur{background:rgba(124,147,25
 .tcal-row{display:grid;grid-template-columns:34px 20px 1fr 58px 58px 58px;align-items:center;gap:6px;padding:9px 2px;border-bottom:1px solid var(--line);}
 .tcal-row-future{opacity:.6;}
 .tcal-cell-date{font-family:var(--mono-font);font-size:11px;color:var(--muted);white-space:nowrap;}
-.tcal-cell-flag{font-size:14px;text-align:center;line-height:1;}
+.tcal-cell-flag{display:flex;align-items:center;justify-content:center;}
+/* v83.14 (june 지시): 지표 행(국기)·실적 행(로고)·기타 뉴스 행(배지) 세 종류
+   모두 이 고정폭 슬롯 안에 아이콘을 넣는다 — 셋 다 같은 크기의 박스라서
+   getBoundingClientRect() left/width가 항상 같다(내용물이 이미지든 텍스트
+   배지든, 로드에 실패해 비어 있든 상관없다). */
+.tcal-icon-slot{display:inline-flex;align-items:center;justify-content:center;width:20px;height:16px;}
+/* 이모지 국기(🇺🇸/🇰🇷)는 Windows에서 문자로 깨져 보인다 — 같은 파일 언어
+   드롭다운의 flagImg()가 이미 이 이유로 이미지를 쓰고 있다(주석 참고). 같은
+   flagcdn 소스를 캘린더 행 크기에 맞춘 전용 클래스로 재사용한다. */
+.tcal-flag-img{width:18px;height:13px;object-fit:cover;border-radius:2px;border:1px solid var(--line);display:block;}
+/* 실적 이벤트 행 회사 로고 — .eh-logo와 같은 원형 아이콘 패턴(URL은 logoUrl()
+   재사용). 로드 실패(onerror) 시 같은 슬롯 안의 .tcal-news-badge로 되돌아가
+   아이콘이 통째로 사라져 열이 밀리는 일이 없다. */
+.tcal-logo{width:16px;height:16px;border-radius:50%;object-fit:contain;background:#fff;border:1px solid var(--line);display:block;}
 /* v83.13(2라운드 fix4): 뉴스 이벤트 행의 국기 자리 배지 — 지표 행과 톤이 흐트러지지
    않도록 중립 톤(muted)의 작은 알약 배지. */
 .tcal-news-badge{display:inline-block;font-size:8px;font-weight:700;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:3px;padding:1px 2px;line-height:1.4;white-space:nowrap;}
@@ -3451,6 +3471,9 @@ html[data-theme="dark"] .tcal-hi{color:#FDA29B;}
   .tcal-cell-date,.tcal-cell-val{font-size:11px;}
   .tcal-cell-name{font-size:12px;}
   .tcal-group-cols{grid-template-columns:46px 46px 46px;}
+  .tcal-icon-slot{width:16px;height:13px;}
+  .tcal-flag-img{width:15px;height:11px;}
+  .tcal-logo{width:13px;height:13px;}
 }
 
 /* ---------- fair-value pill + theme follow (v78) ---------- */
@@ -5294,7 +5317,10 @@ const TCAL_STR = {
         unitCase: "件", monthNoData: "今月は予定された発表がありません。",
         weekNoData: "今週は予定された発表がありません。", newsBadge: "ニュース" }
 };
-const TCAL_FLAG = { US: "\u{1F1FA}\u{1F1F8}", KR: "\u{1F1F0}\u{1F1F7}" };
+/* v83.14 (june 지시): 이모지 국기(🇺🇸/🇰🇷)는 Windows에서 문자로 깨져 보인다 —
+   언어 드롭다운의 flagImg()가 이미 같은 이유로 flagcdn 이미지를 쓰고 있다.
+   이제 이모지 대신 flagcdn용 ISO 국가 코드(소문자)를 담는다. */
+const TCAL_FLAG = { US: "us", KR: "kr" };
 const TCAL_WD1 = { ko: ["일","월","화","수","목","금","토"], ja: ["日","月","火","水","木","金","土"], en: ["S","M","T","W","T","F","S"] };
 /* v83.13(2라운드 fix5): 미니 달력 전용 요일 헤더 — 월~토 6개만(토스 증시 캘린더는
    일요일을 아예 표시하지 않는다). tcalRowHtml()의 날짜 라벨(getDay() 0=일 기준 인덱싱)은
@@ -7544,7 +7570,7 @@ function v83CalAllRows(){
   (typeof EVENTS !== "undefined" ? EVENTS : []).forEach(function(e){
     var absorbed = INDICATORS.some(function(ind){ return v83EventMatchesIndicator(e, ind); });
     if (absorbed) return;
-    rows.push({ isIndicator: false, id: e.id, date: e.date, kind: e.kind || "x", label: e.label, title: e.title });
+    rows.push({ isIndicator: false, id: e.id, date: e.date, kind: e.kind || "x", label: e.label, title: e.title, entity: e.entity || null });
   });
   return rows;
 }
@@ -7842,7 +7868,12 @@ function tcalRowHtml(r, todayStr, showDate){
     var ind = r.ind;
     var unit = ind.unit || "";
     var name = ind.name[LANG] || ind.name.en;
-    var flag = TCAL_FLAG[ind.country] || "";
+    var flagCode = TCAL_FLAG[ind.country] || "";
+    /* onerror: 이미지 자체만 숨긴다(display:none) — 슬롯(.tcal-icon-slot)은
+       고정 크기라 실패해도 열이 밀리지 않는다. */
+    var flag = flagCode
+      ? '<img class="tcal-flag-img" src="https://flagcdn.com/24x18/' + flagCode + '.png" srcset="https://flagcdn.com/48x36/' + flagCode + '.png 2x" alt="" onerror="this.style.display=\'none\'">'
+      : "";
     var noActual = (r.actual === null || r.actual === undefined) || isFuture;
     var actualTxt = noActual ? "-" : (r.actual + unit);
     var forecastTxt = (r.forecast === null || r.forecast === undefined) ? "-" : (r.forecast + unit);
@@ -7854,7 +7885,7 @@ function tcalRowHtml(r, todayStr, showDate){
     }
     return '<div class="tcal-row' + (noActual ? " tcal-row-future" : "") + '">'
       + '<span class="tcal-cell-date">' + esc(dateTxt) + '</span>'
-      + '<span class="tcal-cell-flag">' + flag + '</span>'
+      + '<span class="tcal-cell-flag"><span class="tcal-icon-slot">' + flag + '</span></span>'
       + '<button type="button" class="tcal-cell-name" onclick="goIndicator(\'' + ind.id + '\')">' + esc(name) + '</button>'
       + '<span class="tcal-cell-val ' + colorCls + '">' + esc(actualTxt) + '</span>'
       + '<span class="tcal-cell-val tcal-cell-muted">' + esc(forecastTxt) + '</span>'
@@ -7866,9 +7897,18 @@ function tcalRowHtml(r, todayStr, showDate){
   /* v83.13: 뉴스 이벤트 행도 지표 행과 같은 그리드·정렬·폰트 굵기를 쓴다(같은
      .tcal-cell-name 클래스). 국기 자리엔 국가 대신 중립 "뉴스" 배지를 둬서 지표
      행과 톤이 흐트러지지 않게 했다. 값 3열은 지표가 아니므로 그대로 비운다. */
+  /* v83.14 (june 지시): entity가 있고 그 엔티티에 logo(도메인)가 있으면(실적
+     발표 등) 배지 대신 회사 로고 원형 아이콘을 보여준다 — 토스 캘린더 참고.
+     로고 로드 실패(onerror) 시 같은 슬롯 안에 미리 넣어둔 .tcal-news-badge를
+     보이게 해 배지로 되돌아간다(아이콘이 사라져 열이 밀리는 일이 없다). */
+  var entLogo = (r.entity && ENTITIES[r.entity] && ENTITIES[r.entity].logo) || null;
+  var iconHtml = entLogo
+    ? '<img class="tcal-logo" src="' + logoUrl(entLogo) + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'inline-block\';">'
+      + '<span class="tcal-news-badge" style="display:none">' + esc(TSn.newsBadge) + '</span>'
+    : '<span class="tcal-news-badge">' + esc(TSn.newsBadge) + '</span>';
   return '<div class="tcal-row' + (isFuture ? " tcal-row-future" : "") + '">'
     + '<span class="tcal-cell-date">' + esc(dateTxt) + '</span>'
-    + '<span class="tcal-cell-flag"><span class="tcal-news-badge">' + esc(TSn.newsBadge) + '</span></span>'
+    + '<span class="tcal-cell-flag"><span class="tcal-icon-slot">' + iconHtml + '</span></span>'
     + '<button type="button" class="tcal-cell-name" onclick="evGo(\'' + r.id + '\')">' + esc(lbl) + '</button>'
     + '<span class="tcal-cell-val"></span><span class="tcal-cell-val"></span><span class="tcal-cell-val"></span>'
     + '</div>';
