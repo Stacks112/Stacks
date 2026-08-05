@@ -3282,6 +3282,177 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .cal-li-t{font-size:13px;color:var(--text);line-height:1.35;}
 .cal-none{color:var(--muted);font-size:13px;padding:12px 0;}
 
+/* ---------- economic indicators on the calendar page (v83.8) ---------- */
+.ck-indicator{background:#F79009;}
+.cal-filters{display:flex;gap:8px;margin:14px 0 10px;flex-wrap:wrap;}
+.cal-filter-chip{font-family:var(--mono-font);font-size:11.5px;font-weight:700;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg-soft);color:var(--muted);cursor:pointer;}
+.cal-filter-chip.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+/* 2026-08-05 데드클릭 교훈: 지표 행이 클릭 가능하다는 걸 점선 밑줄로 드러낸다
+   (.ceo-link와 같은 신호), hover 시 accent로 확인해 준다. */
+.cal-ind-name{text-decoration:underline dotted;text-underline-offset:2px;text-decoration-color:var(--muted);font-weight:600;}
+.cal-li-ind:hover .cal-ind-name{color:var(--accent);text-decoration-color:var(--accent);}
+.cal-ind-badges{display:inline-flex;gap:4px;margin-left:8px;vertical-align:middle;}
+.cal-ind-badges .chip{padding:2px 7px;}
+.ind-detail{padding-bottom:8px;}
+.ind-back{margin:16px 0 4px 16px;font-size:12.5px;}
+.ind-crumb{padding:0 20px;margin:2px 0 10px;font-size:11.5px;color:var(--muted);}
+.ind-crumb-link{cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
+.ind-crumb-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
+.ind-title{padding:0 20px;margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.02em;}
+.ind-badges{padding:0 20px;display:flex;gap:6px;margin-bottom:16px;}
+.ind-next-card{margin:0 20px 22px;padding:16px 18px;border-radius:var(--radius);background:var(--bg-soft);border:1px solid var(--line);}
+.ind-next-label{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.ind-next-date{font-size:16px;font-weight:800;margin-bottom:4px;color:var(--text);}
+.ind-next-prev{font-size:12.5px;color:var(--muted);}
+.ind-section-title{padding:0 20px;margin:22px 0 10px;font-size:13px;font-weight:800;color:var(--text);}
+.ind-chart-wrap{margin:0 20px 8px;}
+/* v83.11: preserveAspectRatio="none" on the SVG (see indSvgChart) means height is
+   fully CSS-controlled instead of following the 640x180 viewBox ratio — default is
+   a moderate height (matches the pre-v83.11 look on narrow/1-col layouts), and the
+   @container rule below grows it only when the 2-col detail layout is actually
+   active, to roughly match the 12-row history table's height instead of leaving a
+   gap under a short chart. */
+.ind-chart{width:100%;height:200px;display:block;}
+.ind-chart-axis{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:4px;font-family:var(--mono-font);}
+.ind-table{width:calc(100% - 40px);margin:0 20px 20px;border-collapse:collapse;font-size:12.5px;}
+.ind-table th{text-align:left;color:var(--muted);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:6px 8px;border-bottom:1px solid var(--line);}
+.ind-table td{padding:7px 8px;border-bottom:1px solid var(--line);font-family:var(--mono-font);color:var(--text);}
+.ind-desc{padding:0 20px;margin:0 0 10px;font-size:13.5px;line-height:1.6;color:var(--text);}
+.ind-source{padding:0 20px 12px;font-size:11.5px;color:var(--muted);}
+.ind-related{padding:0 20px 24px;display:flex;flex-direction:column;gap:8px;}
+.ind-related-btn{display:block;width:100%;text-align:left;font-family:inherit;font-size:13px;font-weight:600;color:var(--text);background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;}
+.ind-related-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ---------- v83.10: calendar tab widens (right rail hidden) ----------
+   Selector specificity ( .cal-wide adds an extra class) beats the two
+   !important grid-template-columns rules in xparity-css regardless of
+   source order, so this always wins while html.cal-wide is present —
+   and disappears the instant render() stops adding that class. */
+@media (min-width:1024px){
+  html.v83.cal-wide .wrap{ grid-template-columns:minmax(88px,275px) minmax(0,1fr) !important; max-width:1320px !important; }
+  html.v83.cal-wide #v83rail{ display:none !important; }
+}
+@media (min-width:1024px) and (max-width:1264px){
+  html.v83.cal-wide .wrap{ grid-template-columns:88px minmax(0,1fr) !important; }
+}
+/* container queries key off this wrapper's own inline-size so the 2-column
+   card layout folds to 1 column whenever the CENTER column itself gets
+   narrow — not just at fixed viewport widths (nav width varies by breakpoint
+   too, see xparity-css) */
+.v83cal-page{container-type:inline-size;}
+.cal-wide-grid{display:grid;grid-template-columns:minmax(360px,440px) 1fr;gap:28px;align-items:start;margin-top:8px;}
+.cal-wide-grid.cal-wide-solo{grid-template-columns:minmax(360px,440px);}
+.cal-wide-left{min-width:0;}
+.cal-wide-right{min-width:0;}
+.ind-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.ind-card{display:block;width:100%;text-align:left;font-family:inherit;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:border-color .12s ease;}
+.ind-card:hover{border-color:var(--accent);}
+.ind-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px;}
+.ind-card-name{font-size:13.5px;font-weight:700;color:var(--text);line-height:1.3;}
+.ind-card-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
+.ind-card-badges .chip{padding:2px 7px;font-size:9.5px;}
+.ind-card-dday{font-family:var(--mono-font);font-size:10.5px;font-weight:800;color:#fff;background:var(--muted);border-radius:6px;padding:3px 7px;white-space:nowrap;flex:0 0 auto;}
+.ind-card-value-row{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;}
+.ind-card-value{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--text);}
+.ind-card-change{font-family:var(--mono-font);font-size:12px;font-weight:700;}
+.ind-card-change.good{color:#12B76A;}
+.ind-card-change.bad{color:#F04438;}
+.ind-card-change.neutral{color:var(--muted);}
+.ind-card-spark{width:100%;height:36px;display:block;}
+/* 지표 카드가 클릭 가능하다는 걸 hover 밑줄로도 한 번 더 드러낸다(데드클릭 교훈) */
+.ind-card-name{text-decoration:underline dotted;text-underline-offset:2px;text-decoration-color:transparent;}
+.ind-card:hover .ind-card-name{text-decoration-color:var(--accent);color:var(--accent);}
+.cal-wide-news{margin-top:28px;}
+@container (max-width:900px){
+  .cal-wide-grid{grid-template-columns:1fr;}
+}
+/* ---------- v83.10: indicator detail, full-width 2-col ---------- */
+.ind-detail-grid{display:grid;grid-template-columns:1fr minmax(320px,400px);gap:28px;align-items:start;}
+.ind-detail-left{min-width:0;}
+.ind-detail-right{min-width:0;}
+.ind-detail-full{margin-top:8px;}
+@container (max-width:900px){
+  .ind-detail-grid{grid-template-columns:1fr;}
+}
+@container (min-width:901px){
+  .ind-detail-left .ind-chart{height:420px;}
+}
+
+/* ---------- v83.12 (june 지시): 캘린더 목록 페이지 토스 스타일 전면 개편 ----------
+   전부 새 클래스(tcal- 접두사)라 기존 cal-, ind-card- 규칙과 겹치지 않는다(그 규칙들은
+   모달 캘린더·우측 레일 미리보기·구 지표 카드가 여전히 쓸 수 있어 그대로 둔다). */
+.tcal-grid{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start;margin-top:10px;}
+.tcal-left{min-width:0;}
+.tcal-right{min-width:0;}
+@container (max-width:900px){
+  .tcal-grid{grid-template-columns:1fr;}
+}
+/* -- 왼쪽: 컴팩트 미니 달력 -- */
+.tcal-mini{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:12px 12px 14px;}
+.tcal-mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.tcal-mini-head b{font-size:13px;font-weight:800;color:var(--text);}
+.tcal-mini-arrows{display:flex;gap:4px;}
+.tcal-mini-arrow{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:13px;line-height:1;cursor:pointer;padding:0;font-family:inherit;}
+.tcal-mini-arrow:hover{border-color:var(--accent);color:var(--accent);}
+.tcal-mini-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;}
+.tcal-mini-wd{text-align:center;font-size:9px;font-weight:700;color:var(--muted);padding:2px 0 4px;}
+.tcal-mini-cell{min-height:30px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text);background:none;border:0;border-radius:6px;cursor:pointer;padding:0;font-family:inherit;}
+.tcal-mini-cell.tcal-mini-empty{cursor:default;}
+.tcal-mini-cell:not(.tcal-mini-empty):hover{background:var(--line);}
+.tcal-mini-cell.tcal-week-cur{background:rgba(46,91,255,.08);}
+html[data-theme="dark"] .tcal-mini-cell.tcal-week-cur{background:rgba(124,147,255,.16);}
+.tcal-mini-cell.tcal-mini-today{color:var(--accent);font-weight:800;}
+.tcal-mini-cell.tcal-mini-has{font-weight:800;}
+.tcal-mini-cell.tcal-mini-sel{box-shadow:0 0 0 1.5px var(--accent) inset;border-radius:6px;}
+/* -- 왼쪽: 이번 주 요약 카드 -- */
+.tcal-summary{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;}
+.tcal-summary-head{font-size:11.5px;font-weight:800;color:var(--accent);margin-bottom:8px;letter-spacing:.02em;}
+.tcal-summary-body{font-size:13px;line-height:1.55;color:var(--text);margin-bottom:10px;}
+.tcal-summary-more{display:block;width:100%;text-align:left;background:none;border:0;padding:0;font:inherit;font-size:12px;font-weight:700;color:var(--accent);cursor:pointer;}
+.tcal-summary-more:hover{text-decoration:underline;}
+/* -- 오른쪽: 필터 바 (칩 2그룹 + 주별/월별 토글) -- */
+.tcal-filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px;}
+.tcal-seg-group{display:inline-flex;gap:2px;background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:2px;}
+.tcal-seg-mode{margin-left:auto;}
+.tcal-seg-btn{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;}
+.tcal-seg-btn.on{background:var(--accent);color:#fff;}
+/* -- 오른쪽: 그룹(주차/월) 헤더 + 날짜순 행 목록 -- */
+.tcal-group-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:20px 2px 6px;}
+.tcal-group:first-child .tcal-group-head{margin-top:8px;}
+.tcal-group-label{font-size:13.5px;font-weight:800;color:var(--text);}
+.tcal-group-cols{display:grid;grid-template-columns:58px 58px 58px;gap:6px;font-size:9.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
+.tcal-group-cols span{text-align:right;}
+/* v83.13(2라운드 fix3): 발표/예측/이전 컬럼 헤더 — 필터 바 바로 아래, 목록 전체에
+   한 번만. 안의 .tcal-group-cols는 기존 3열(58px×3) 그리드를 그대로 재사용해 실제
+   행의 값 컬럼과 폭이 맞는다. */
+.tcal-cols-header{display:flex;justify-content:flex-end;padding:2px 2px 8px;border-bottom:1px solid var(--line);margin-bottom:2px;}
+.tcal-empty{color:var(--muted);font-size:13px;padding:12px 2px;}
+.tcal-rows{display:flex;flex-direction:column;}
+.tcal-row{display:grid;grid-template-columns:34px 20px 1fr 58px 58px 58px;align-items:center;gap:6px;padding:9px 2px;border-bottom:1px solid var(--line);}
+.tcal-row-future{opacity:.6;}
+.tcal-cell-date{font-family:var(--mono-font);font-size:11px;color:var(--muted);white-space:nowrap;}
+.tcal-cell-flag{font-size:14px;text-align:center;line-height:1;}
+/* v83.13(2라운드 fix4): 뉴스 이벤트 행의 국기 자리 배지 — 지표 행과 톤이 흐트러지지
+   않도록 중립 톤(muted)의 작은 알약 배지. */
+.tcal-news-badge{display:inline-block;font-size:8px;font-weight:700;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:3px;padding:1px 2px;line-height:1.4;white-space:nowrap;}
+.tcal-cell-name{text-align:left;background:none;border:0;font:inherit;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;padding:0;text-decoration:underline dotted;text-underline-offset:2px;text-decoration-color:transparent;}
+.tcal-cell-name:hover{color:var(--accent);text-decoration-color:var(--accent);}
+.tcal-cell-val{font-family:var(--mono-font);font-size:12.5px;text-align:right;color:var(--text);white-space:nowrap;}
+.tcal-cell-muted{color:var(--muted);}
+/* 발표값 색 규칙(토스 동일): 예측보다 높으면 빨강, 낮으면 파랑. 기존 .sp-bull/
+   .sp-bear는 "좋다/나쁘다"(초록/빨강) 의미라 이 "고/저"(빨강/파랑) 의미와 달라
+   재사용하지 않는다. .tcal-lo는 사이트 --accent가 라이트/다크 모두 이미 파란
+   계열이라 그대로 재사용 — 새 하드코딩 없이 테마별로 자동으로 맞다. */
+.tcal-hi{color:#B42318;font-weight:700;}
+html[data-theme="dark"] .tcal-hi{color:#FDA29B;}
+.tcal-lo{color:var(--accent);font-weight:700;}
+@container (max-width:480px){
+  .tcal-row{grid-template-columns:26px 16px 1fr 46px 46px 46px;}
+  .tcal-cell-date,.tcal-cell-val{font-size:11px;}
+  .tcal-cell-name{font-size:12px;}
+  .tcal-group-cols{grid-template-columns:46px 46px 46px;}
+}
+
 /* ---------- fair-value pill + theme follow (v78) ---------- */
 .tv-pill{display:inline-flex;align-items:center;gap:4px;margin-left:8px;font-size:11px;font-weight:700;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap;}
 .tv-pill b{font-family:var(--mono-font);font-weight:800;}
@@ -3781,6 +3952,9 @@ function setTab(t){ SERIES_VIEW = null; ENTITY_VIEW = null; SB_VIEW = false;
   if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = null;
   if (typeof V83ITEM !== "undefined") V83ITEM = null;
   if (typeof EVENT_FILTER !== "undefined") EVENT_FILTER = null;
+  /* v83.8: 다른 탭으로 나가면 지표 상세도 닫는다 — 안 그러면 "캘린더"를 다시
+     눌렀을 때 목록 대신 지난 지표 상세가 그대로 떠서 죽은 화면처럼 보인다. */
+  if (t !== TAB && typeof INDICATOR_VIEW !== "undefined") INDICATOR_VIEW = null;
   /* v83.5 bugfix: v83 전용 페이지 탭은 북마크/안읽음/무료 필터가 켜져 있으면
      가드에 막혀 아무 것도 안 바뀌는 것처럼 보였다 — 페이지 탭 진입 시 해제. */
   if (t === "browse" || t === "skew" || t === "cal" || t === "alerts"){ BM_ONLY = false; UNREAD_ONLY = false; FREE_ONLY = false; READ_VIEW = false;
@@ -5054,6 +5228,463 @@ function renderEntityDebate(list, items, S){
 /* ---------------- stage3: stance filter + rail debate + CEO profiles + home ---------------- */
 let STANCE_FILTER = null, STANCE_FILTER_KEY = null, SB_VIEW = false;
 
+
+/* ---------------- economic indicators (v83.8, placeholder data) ----------------
+   All values below are FAKE / illustrative — the FRED integration is a later
+   step. Kept as one flat constant so the eventual swap is just:
+     const INDICATORS = await fetch("indicators.json").then(r => r.json());
+   Do NOT read/write items.json for any of this. */
+const IND_CAT = {
+  inflation: { ko: "물가", en: "Inflation", ja: "物価" },
+  employment: { ko: "고용", en: "Employment", ja: "雇用" },
+  rates: { ko: "금리", en: "Rates", ja: "金利" },
+  growth: { ko: "성장", en: "Growth", ja: "成長" },
+  sentiment: { ko: "심리", en: "Sentiment", ja: "心理" },
+  housing: { ko: "주택", en: "Housing", ja: "住宅" },
+  trade: { ko: "무역", en: "Trade", ja: "貿易" }
+};
+const IND_FREQ = {
+  monthly: { ko: "매달", en: "Monthly", ja: "毎月" },
+  weekly: { ko: "매주", en: "Weekly", ja: "毎週" },
+  quarterly: { ko: "분기", en: "Quarterly", ja: "四半期" },
+  rate8: { ko: "연 8회", en: "8x / year", ja: "年8回" }
+};
+const IND_STR = {
+  ko: { filterAll: "전체", filterInd: "경제지표", filterEv: "뉴스 이벤트",
+        crumbCal: "캘린더", crumbCat: "경제지표", back: "캘린더",
+        next: "다음 발표", kst: "한국시간", last: "지난 발표값",
+        history: "발표 히스토리", dateCol: "발표일", actualCol: "실제값", forecastCol: "예측값", prevCol: "이전값",
+        whatIs: "란?", source: "출처", noHist: "히스토리가 아직 없어요.", related: "관련 글" },
+  en: { filterAll: "All", filterInd: "Indicators", filterEv: "News events",
+        crumbCal: "Calendar", crumbCat: "Indicators", back: "Calendar",
+        next: "Next release", kst: "KST", last: "Last reading",
+        history: "Release history", dateCol: "Date", actualCol: "Actual", forecastCol: "Forecast", prevCol: "Prior",
+        whatIs: ": what is it?", source: "Source", noHist: "No history yet.", related: "Related articles" },
+  ja: { filterAll: "すべて", filterInd: "経済指標", filterEv: "ニュースイベント",
+        crumbCal: "カレンダー", crumbCat: "経済指標", back: "カレンダー",
+        next: "次回発表", kst: "韓国時間", last: "前回発表値",
+        history: "発表履歴", dateCol: "発表日", actualCol: "実績", forecastCol: "予測", prevCol: "前回",
+        whatIs: "とは?", source: "出典", noHist: "まだ履歴がありません。", related: "関連記事" }
+};
+/* ---------------- v83.12 (june 지시): 토스 스타일 캘린더 목록 페이지 전용 문자열.
+   기존 IND_STR/CAL_STR을 건드리지 않고 새 UI 조각만 여기 모은다. */
+const TCAL_STR = {
+  ko: { filterCountryAll: "전체", filterKR: "국내", filterUS: "해외",
+        modeWeek: "주별", modeMonth: "월별",
+        colDate: "발표", colForecast: "예측", colPrev: "이전",
+        weekSummaryTitle: "이번 주 요약", weekSummaryMore: "자세히 보기 ›",
+        weekSummaryEmpty: "이번 주는 예정된 발표가 없어요",
+        weekSummarySuffixSingle: "가 발표돼요", weekSummarySuffixMulti: "이 발표돼요",
+        unitCase: "건", monthNoData: "이 달엔 예정된 발표가 없어요.",
+        weekNoData: "이 주엔 예정된 발표가 없어요.", newsBadge: "뉴스" },
+  en: { filterCountryAll: "All", filterKR: "Korea", filterUS: "Overseas",
+        modeWeek: "Weekly", modeMonth: "Monthly",
+        colDate: "Actual", colForecast: "Forecast", colPrev: "Prior",
+        weekSummaryTitle: "This week", weekSummaryMore: "See all ›",
+        weekSummaryEmpty: "No releases scheduled this week.",
+        weekSummarySuffixSingle: " this week.", weekSummarySuffixMulti: " this week.",
+        unitCase: "", monthNoData: "No releases scheduled this month.",
+        weekNoData: "No releases scheduled this week.", newsBadge: "News" },
+  ja: { filterCountryAll: "すべて", filterKR: "国内", filterUS: "海外",
+        modeWeek: "週別", modeMonth: "月別",
+        colDate: "発表", colForecast: "予測", colPrev: "前回",
+        weekSummaryTitle: "今週のまとめ", weekSummaryMore: "詳しく見る ›",
+        weekSummaryEmpty: "今週は予定された発表がありません。",
+        weekSummarySuffixSingle: "が発表されます。", weekSummarySuffixMulti: "が発表されます。",
+        unitCase: "件", monthNoData: "今月は予定された発表がありません。",
+        weekNoData: "今週は予定された発表がありません。", newsBadge: "ニュース" }
+};
+const TCAL_FLAG = { US: "\u{1F1FA}\u{1F1F8}", KR: "\u{1F1F0}\u{1F1F7}" };
+const TCAL_WD1 = { ko: ["일","월","화","수","목","금","토"], ja: ["日","月","火","水","木","金","土"], en: ["S","M","T","W","T","F","S"] };
+/* v83.13(2라운드 fix5): 미니 달력 전용 요일 헤더 — 월~토 6개만(토스 증시 캘린더는
+   일요일을 아예 표시하지 않는다). tcalRowHtml()의 날짜 라벨(getDay() 0=일 기준 인덱싱)은
+   TCAL_WD1을 그대로 쓰므로 여기서는 건드리지 않고 새 상수를 따로 둔다. */
+const TCAL_WD1_MINI = { ko: ["월","화","수","목","금","토"], ja: ["月","火","水","木","金","土"], en: ["M","T","W","T","F","S"] };
+const INDICATORS = [
+  {
+    id: "cpi",
+    name: { ko: "소비자물가지수(CPI)", en: "Consumer Price Index (CPI)", ja: "消費者物価指数(CPI)" },
+    cat: "inflation", country: "US", unit: "%", freq: "monthly", goodDir: "down",
+    nextDate: "2026-08-12", nextTime: "21:30", lastValue: 3.4, nextForecast: 3.3,
+    desc: {
+      ko: "소비자물가지수(CPI)는 미국 가정이 실제로 사는 물건과 서비스—식료품, 임대료, 휘발유, 의료비 등—의 가격을 모아, 1년 전 같은 달과 비교해 얼마나 올랐는지 퍼센트(%)로 보여주는 지표예요. \"물가가 3.4% 올랐다\"는 건 작년 이맘때 100원이던 게 지금은 103.4원이 됐다는 뜻이에요.\n\n투자자들이 CPI를 특히 주목하는 이유는 미국 중앙은행(연준)의 금리 결정과 직결되기 때문이에요. 물가가 예상보다 높게 나오면 연준이 금리를 계속 높게 유지하거나 올릴 가능성이 커지고, 반대로 물가가 안정되면 금리를 내릴 여력이 생겨요. 그래서 CPI 발표 직후 주식·채권·환율이 크게 움직이는 경우가 많아요.\n\n매달 한 번, 미국 노동통계국(BLS)이 전월 데이터를 집계해 발표하고, 여기 실린 수치는 세인트루이스 연방준비은행이 운영하는 공개 데이터베이스 FRED를 통해 배포돼요.",
+      en: "The Consumer Price Index (CPI) tracks the prices U.S. households actually pay — groceries, rent, gasoline, healthcare — and compares them to the same month a year earlier, expressed as a percentage. \"CPI up 3.4%\" means something that cost $100 a year ago costs $103.40 now.\n\nInvestors watch it closely because it drives the Federal Reserve's interest-rate decisions. Hotter-than-expected inflation makes the Fed more likely to keep rates high (or raise them); cooler inflation gives it room to cut. Stocks, bonds and currencies often move sharply right after the release.\n\nThe U.S. Bureau of Labor Statistics (BLS) compiles and releases it monthly for the prior month; the figures here are distributed via FRED, the public database run by the Federal Reserve Bank of St. Louis.",
+      ja: "消費者物価指数(CPI)は、米国の家庭が実際に支払う食料品・家賃・ガソリン・医療費などの価格をまとめ、1年前の同じ月と比べて何%上がったかを示す指標です。「CPIが3.4%上昇」は、1年前100ドルだったものが今は103.4ドルになったという意味です。\n\n投資家がCPIを注視するのは、米連邦準備制度(FRB)の金利判断に直結するからです。物価が予想より高ければ高金利が長引きやすく、落ち着けば利下げの余地が生まれます。発表直後は株式・債券・為替が大きく動くことが多いです。\n\n米労働統計局(BLS)が前月分を毎月集計・発表し、ここに掲載する数値はセントルイス連邦準備銀行が運営する公開データベースFREDを通じて配布されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-12", actual: 4.5, forecast: 4.5, prev: 4.6 },
+      { date: "2025-09-11", actual: 4.4, forecast: 4.3, prev: 4.5 },
+      { date: "2025-10-14", actual: 4.3, forecast: 4.3, prev: 4.4 },
+      { date: "2025-11-13", actual: 4.4, forecast: 4.5, prev: 4.3 },
+      { date: "2025-12-11", actual: 4.2, forecast: 4.1, prev: 4.4 },
+      { date: "2026-01-14", actual: 4.0, forecast: 3.9, prev: 4.2 },
+      { date: "2026-02-12", actual: 4.1, forecast: 4.3, prev: 4.0 },
+      { date: "2026-03-12", actual: 3.8, forecast: 3.6, prev: 4.1 },
+      { date: "2026-04-10", actual: 3.7, forecast: 3.7, prev: 3.8 },
+      { date: "2026-05-13", actual: 3.6, forecast: 3.6, prev: 3.7 },
+      { date: "2026-06-11", actual: 3.5, forecast: 3.4, prev: 3.6 },
+      { date: "2026-07-11", actual: 3.4, forecast: 3.4, prev: 3.5 }
+    ]
+  },
+  {
+    id: "coreCpi",
+    name: { ko: "근원 소비자물가지수(근원 CPI)", en: "Core CPI", ja: "コア消費者物価指数(コアCPI)" },
+    cat: "inflation", country: "US", unit: "%", freq: "monthly", goodDir: "down",
+    nextDate: "2026-08-12", nextTime: "21:30", lastValue: 3.8, nextForecast: 3.7,
+    desc: {
+      ko: "근원 CPI는 소비자물가지수(CPI)에서 변동성이 큰 식료품·에너지 가격을 뺀 나머지 품목들의 물가 상승률이에요. 유가나 농산물 가격처럼 일시적 요인에 휘둘리지 않는 \"진짜 물가 흐름\"을 보려고 연준이 CPI와 함께 항상 같이 보는 지표예요.\n\n같은 날 CPI와 함께 발표되며, 헤드라인 CPI보다 근원 CPI가 높게 유지되면 물가 압력이 쉽게 꺾이지 않는다는 신호로 해석돼요.",
+      en: "Core CPI strips out the volatile food and energy components from headline CPI, giving a read on underlying inflation that isn't swayed by short-term swings in oil or crop prices. The Fed watches it alongside headline CPI for that reason.\n\nReleased the same day as CPI; if core stays hotter than headline, it signals inflation pressure isn't easing as easily as the topline number suggests.",
+      ja: "コアCPIは、消費者物価指数(CPI)から変動の大きい食品・エネルギー価格を除いた物価上昇率です。原油や農産物価格などの一時的要因に左右されない「本当の物価トレンド」を見るため、FRBはCPIと合わせて常に注視します。\n\nCPIと同日に発表され、コアがヘッドラインより高止まりしていると、物価圧力が簡単には収まらないサインと解釈されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-12", actual: 4.7, forecast: 4.7, prev: 4.8 },
+      { date: "2025-09-11", actual: 4.6, forecast: 4.6, prev: 4.7 },
+      { date: "2025-10-14", actual: 4.6, forecast: 4.5, prev: 4.6 },
+      { date: "2025-11-13", actual: 4.5, forecast: 4.6, prev: 4.6 },
+      { date: "2025-12-11", actual: 4.5, forecast: 4.5, prev: 4.5 },
+      { date: "2026-01-14", actual: 4.6, forecast: 4.5, prev: 4.5 },
+      { date: "2026-02-12", actual: 4.3, forecast: 4.4, prev: 4.6 },
+      { date: "2026-03-12", actual: 4.1, forecast: 4.0, prev: 4.3 },
+      { date: "2026-04-10", actual: 4.0, forecast: 4.0, prev: 4.1 },
+      { date: "2026-05-13", actual: 3.9, forecast: 4.0, prev: 4.0 },
+      { date: "2026-06-11", actual: 3.8, forecast: 3.7, prev: 3.9 },
+      { date: "2026-07-11", actual: 3.8, forecast: 3.8, prev: 3.8 }
+    ]
+  },
+  {
+    id: "unrate",
+    name: { ko: "실업률", en: "Unemployment Rate", ja: "失業率" },
+    cat: "employment", country: "US", unit: "%", freq: "monthly", goodDir: "down",
+    nextDate: "2026-08-07", nextTime: "21:30", lastValue: 4.2, nextForecast: 4.1,
+    desc: {
+      ko: "실업률은 일할 의사와 능력이 있는 경제활동인구 중에서 지금 일자리가 없는 사람의 비율이에요. 고용시장이 얼마나 튼튼한지 보여주는 가장 기본적인 지표 중 하나예요.\n\n실업률이 낮으면 대체로 경기가 좋다는 신호지만, 너무 낮아지면 기업들이 사람을 구하기 어려워 임금을 더 많이 줘야 하고, 그게 물가 상승 압력으로 이어질 수 있어요. 반대로 실업률이 오르기 시작하면 경기 둔화 신호로 읽혀요. 연준은 \"물가 안정\"과 \"최대 고용\"을 함께 목표로 삼고 있어서, 실업률은 CPI만큼이나 금리 결정에서 중요하게 다뤄져요.\n\n미국 노동통계국(BLS)이 매달 첫째 주 금요일 무렵 비농업 신규고용과 함께 발표하며, FRED를 통해 배포돼요.",
+      en: "The unemployment rate is the share of people who want and are able to work, but don't currently have a job, out of the total labor force. It's one of the most basic gauges of how healthy the job market is.\n\nA low unemployment rate usually signals a strong economy — but if it goes too low, employers struggle to hire and end up paying more, which can push prices up. A rising unemployment rate, on the other hand, often signals a slowdown. Because the Fed targets both stable prices and maximum employment, this number matters to rate decisions almost as much as CPI does.\n\nThe BLS releases it monthly, alongside nonfarm payrolls, usually on the first Friday of the month; distributed via FRED.",
+      ja: "失業率は、働く意思と能力がある労働力人口のうち、現在職に就いていない人の割合です。雇用市場の健全性を示す最も基本的な指標の一つです。\n\n失業率が低いことは景気が良い兆候ですが、低すぎると企業が人材確保のために賃金を上げざるを得ず、物価上昇圧力につながることがあります。逆に失業率の上昇は景気減速のサインとされます。FRBは「物価安定」と「最大雇用」を目標としているため、この指標はCPIと同じくらい金利判断で重視されます。\n\n米労働統計局(BLS)が毎月第1金曜日前後に非農業部門雇用者数とともに発表し、FREDを通じて配布されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-01", actual: 4.0, forecast: 4.0, prev: 3.9 },
+      { date: "2025-09-05", actual: 4.1, forecast: 4.1, prev: 4.0 },
+      { date: "2025-10-03", actual: 4.2, forecast: 4.3, prev: 4.1 },
+      { date: "2025-11-07", actual: 4.0, forecast: 3.9, prev: 4.2 },
+      { date: "2025-12-05", actual: 4.1, forecast: 4.1, prev: 4.0 },
+      { date: "2026-01-09", actual: 4.3, forecast: 4.4, prev: 4.1 },
+      { date: "2026-02-06", actual: 4.2, forecast: 4.1, prev: 4.3 },
+      { date: "2026-03-06", actual: 4.1, forecast: 4.1, prev: 4.2 },
+      { date: "2026-04-03", actual: 4.0, forecast: 4.0, prev: 4.1 },
+      { date: "2026-05-01", actual: 4.2, forecast: 4.3, prev: 4.0 },
+      { date: "2026-06-05", actual: 4.3, forecast: 4.3, prev: 4.2 },
+      { date: "2026-07-03", actual: 4.2, forecast: 4.1, prev: 4.3 }
+    ]
+  },
+  {
+    id: "nfp",
+    name: { ko: "비농업 신규고용(NFP)", en: "Nonfarm Payrolls (NFP)", ja: "非農業部門雇用者数(NFP)" },
+    cat: "employment", country: "US", unit: "만명", freq: "monthly", goodDir: "up",
+    nextDate: "2026-08-07", nextTime: "21:30", lastValue: 14.2, nextForecast: 15.0,
+    desc: {
+      ko: "비농업 신규고용(NFP)은 농업을 제외한 산업 전반에서 한 달 동안 새로 늘어난 일자리 수예요. 미국 고용시장의 \"기세\"를 가장 빠르게 보여주는 지표로 꼽혀요.\n\n숫자가 예상보다 훨씬 많이 늘면(서프라이즈) 경기가 튼튼하다는 뜻이지만, 동시에 연준이 금리를 계속 높게 가져갈 이유가 되기도 해서 주가가 오히려 흔들리기도 해요. 반대로 예상보다 적게 늘면 경기 둔화 신호로 해석돼 금리 인하 기대가 커지곤 해요. 그래서 발표 순간 시장 변동성이 한 달 중 가장 큰 날 중 하나로 꼽혀요.\n\n미국 노동통계국(BLS)이 매달 첫째 주 금요일 무렵 실업률과 함께 발표하며, FRED를 통해 배포돼요. 단위는 편의상 \"만 명\"으로 표기했어요(예: 14.2만 명 = 142,000명).",
+      en: "Nonfarm payrolls (NFP) count the net new jobs added across the economy in a month, excluding farm work. It's considered one of the fastest reads on the U.S. labor market's momentum.\n\nA much-bigger-than-expected number signals a strong economy — but can also rattle stocks, since it gives the Fed more reason to keep rates high. A weaker-than-expected number is often read as a slowdown signal and can boost rate-cut hopes. This release is routinely one of the most volatile moments of the month for markets.\n\nReleased monthly by the BLS alongside the unemployment rate, usually the first Friday of the month; distributed via FRED. Units here are shown in 10,000s (e.g. 14.2 = 142,000 jobs).",
+      ja: "非農業部門雇用者数(NFP)は、農業を除く産業全体で1か月に純増した雇用者数です。米国労働市場の勢いを最も早く示す指標の一つとされています。\n\n予想を大きく上回ると景気の強さを示しますが、FRBが高金利を維持する理由にもなり、株価がむしろ揺れることもあります。逆に予想を下回ると景気減速のサインと受け止められ、利下げ期待が高まりがちです。そのため発表の瞬間は月内で最も変動が大きい場面の一つです。\n\n米労働統計局(BLS)が毎月第1金曜日前後に失業率とともに発表し、FREDを通じて配布されます。単位は万人で表記しています(例: 14.2 = 142,000人)。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-01", actual: 18.5, forecast: 19.5, prev: 20.1 },
+      { date: "2025-09-05", actual: 22.0, forecast: 20.0, prev: 18.5 },
+      { date: "2025-10-03", actual: 15.4, forecast: 17.4, prev: 22.0 },
+      { date: "2025-11-07", actual: 10.2, forecast: 13.2, prev: 15.4 },
+      { date: "2025-12-05", actual: 24.8, forecast: 20.8, prev: 10.2 },
+      { date: "2026-01-09", actual: 19.6, forecast: 18.6, prev: 24.8 },
+      { date: "2026-02-06", actual: 13.1, forecast: 15.1, prev: 19.6 },
+      { date: "2026-03-06", actual: 21.7, forecast: 18.7, prev: 13.1 },
+      { date: "2026-04-03", actual: 16.9, forecast: 17.9, prev: 21.7 },
+      { date: "2026-05-01", actual: 23.4, forecast: 21.4, prev: 16.9 },
+      { date: "2026-06-05", actual: 11.8, forecast: 14.8, prev: 23.4 },
+      { date: "2026-07-03", actual: 14.2, forecast: 15.7, prev: 11.8 }
+    ]
+  },
+  {
+    id: "claims",
+    name: { ko: "주간 신규실업수당청구", en: "Initial Jobless Claims", ja: "週間新規失業保険申請件数" },
+    cat: "employment", country: "US", unit: "만건", freq: "weekly", goodDir: "down",
+    nextDate: "2026-08-06", nextTime: "21:30", lastValue: 22.9, nextForecast: 23.0,
+    desc: {
+      ko: "주간 신규실업수당청구 건수는 그 주에 새로 실업수당을 신청한 사람 수예요. 매주 발표돼 고용시장의 \"실시간 체온계\" 역할을 하는, 발표 빈도가 가장 높은 고용지표예요.\n\n건수가 갑자기 늘면 해고가 늘고 있다는 신호로 경기 둔화 우려를, 낮게 유지되면 고용시장이 여전히 탄탄하다는 신호로 받아들여져요. 월간 지표(NFP·실업률)가 나오기 전 한 달의 흐름을 미리 가늠하는 용도로도 쓰여요.",
+      en: "Weekly initial jobless claims count how many people filed for unemployment benefits for the first time that week — the most frequently released labor-market gauge, acting as a real-time thermometer.\n\nA sudden jump suggests layoffs are rising and can stoke slowdown fears; claims staying low suggests the job market remains tight. It's also used to gauge the month's trend before NFP and the unemployment rate land.",
+      ja: "週間新規失業保険申請件数は、その週に新たに失業保険を申請した人の数です。毎週発表され、雇用市場の「リアルタイム体温計」として最も発表頻度の高い雇用指標です。\n\n件数が急増すると解雇増加・景気減速懸念のサインとなり、低水準を維持していれば雇用市場が依然堅調というサインになります。月次指標(NFP・失業率)が出る前の月内トレンドを先読みする用途にも使われます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2026-05-14", actual: 22.3, forecast: 22.5, prev: 22.0 },
+      { date: "2026-05-21", actual: 22.8, forecast: 22.5, prev: 22.3 },
+      { date: "2026-05-28", actual: 23.5, forecast: 23.9, prev: 22.8 },
+      { date: "2026-06-04", actual: 22.9, forecast: 22.7, prev: 23.5 },
+      { date: "2026-06-11", actual: 23.1, forecast: 23.2, prev: 22.9 },
+      { date: "2026-06-18", actual: 24.2, forecast: 24.7, prev: 23.1 },
+      { date: "2026-06-25", actual: 23.8, forecast: 23.4, prev: 24.2 },
+      { date: "2026-07-02", actual: 22.6, forecast: 22.7, prev: 23.8 },
+      { date: "2026-07-09", actual: 23.0, forecast: 23.3, prev: 22.6 },
+      { date: "2026-07-16", actual: 23.9, forecast: 23.4, prev: 23.0 },
+      { date: "2026-07-23", actual: 22.4, forecast: 22.6, prev: 23.9 },
+      { date: "2026-07-30", actual: 22.9, forecast: 22.8, prev: 22.4 }
+    ]
+  },
+  {
+    id: "fomc",
+    name: { ko: "FOMC 기준금리 결정", en: "FOMC Rate Decision", ja: "FOMC政策金利決定" },
+    cat: "rates", country: "US", unit: "%", freq: "rate8", goodDir: "neutral",
+    nextDate: "2026-09-17", nextTime: "03:00", lastValue: 4.25, nextForecast: 4.25,
+    desc: {
+      ko: "FOMC(연방공개시장위원회)는 미국 중앙은행인 연준 산하 위원회로, 1년에 8번 정례 회의를 열어 기준금리(연방기금금리) 목표 범위를 결정해요. 이 금리는 은행 간에 돈을 빌리고 빌려주는 기준이 되는 금리라, 여기서 시작해 대출·예금 금리, 주택담보대출, 신용카드 금리까지 줄줄이 영향을 받아요.\n\n기준금리가 오르면 대출이 비싸지고 예금 이자는 늘어나 돈이 은행에 머물기 쉬워지는 반면, 기준금리가 내리면 대출이 싸져 투자와 소비가 살아나는 경향이 있어요. 그래서 주식·채권·환율 시장은 FOMC 발표 시각에 맞춰 크게 움직이고, 결정 자체만큼이나 회의 후 파월 의장의 기자회견 발언(\"매파적이었다/비둘기파적이었다\")도 함께 주목받아요.\n\n결정 시각은 미국 동부시간 오후 2시경으로, 한국시간으로는 다음날 새벽 3시 전후예요. 수치는 FRED를 통해 배포돼요.",
+      en: "The FOMC (Federal Open Market Committee) is the Fed panel that meets 8 times a year to set the target range for the federal funds rate — the rate banks charge each other for overnight loans. From there, the effect ripples out to mortgage rates, savings yields and credit-card rates.\n\nWhen the rate rises, borrowing gets more expensive and saving gets more rewarding; when it falls, borrowing gets cheaper and tends to spur investment and spending. Markets often move sharply right at the announcement, and the Fed chair's post-meeting press conference tone (\"hawkish\" vs \"dovish\") gets almost as much attention as the decision itself.\n\nDecisions land around 2pm US Eastern time, which is roughly 3am the next day in Korea. Figures distributed via FRED.",
+      ja: "FOMC(連邦公開市場委員会)は米連邦準備制度(FRB)傘下の委員会で、年8回の定例会合でフェデラルファンド金利(政策金利)の誘導目標を決定します。この金利は銀行間の資金貸借の基準となり、そこから住宅ローンや預金金利、クレジットカード金利にまで波及します。\n\n政策金利が上がると借入コストが上がり預金は有利になる一方、下がると借入が安くなり投資・消費を刺激する傾向があります。発表の瞬間は株式・債券・為替市場が大きく動き、決定内容そのものと同じくらいパウエル議長の会見トーン(タカ派的/ハト派的)も注目されます。\n\n決定時刻は米東部時間午後2時頃、韓国時間では翌日未明3時前後です。数値はFREDを通じて配布されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-03-19", actual: 5.50, forecast: 5.50, prev: 5.50 },
+      { date: "2025-05-07", actual: 5.25, forecast: 5.25, prev: 5.50 },
+      { date: "2025-06-18", actual: 5.00, forecast: 5.25, prev: 5.25 },
+      { date: "2025-07-30", actual: 5.25, forecast: 5.25, prev: 5.00 },
+      { date: "2025-09-17", actual: 5.00, forecast: 5.00, prev: 5.25 },
+      { date: "2025-10-29", actual: 4.75, forecast: 4.75, prev: 5.00 },
+      { date: "2025-12-10", actual: 4.75, forecast: 4.75, prev: 4.75 },
+      { date: "2026-01-28", actual: 4.50, forecast: 4.50, prev: 4.75 },
+      { date: "2026-03-18", actual: 4.50, forecast: 4.50, prev: 4.50 },
+      { date: "2026-04-29", actual: 4.25, forecast: 4.25, prev: 4.50 },
+      { date: "2026-06-17", actual: 4.25, forecast: 4.25, prev: 4.25 },
+      { date: "2026-07-29", actual: 4.25, forecast: 4.25, prev: 4.25 }
+    ]
+  },
+  {
+    id: "gdp",
+    name: { ko: "GDP 성장률", en: "GDP Growth Rate", ja: "GDP成長率" },
+    cat: "growth", country: "US", unit: "%", freq: "quarterly", goodDir: "up",
+    nextDate: "2026-08-27", nextTime: "21:30", lastValue: 2.0, nextForecast: 2.1,
+    desc: {
+      ko: "GDP 성장률은 한 나라 안에서 일정 기간(보통 분기) 동안 새로 만들어진 모든 재화와 서비스의 가치를 합친 국내총생산(GDP)이 직전 분기 대비 얼마나 늘었는지를 연율(연간 환산)로 보여주는 지표예요. 미국 상무부는 이를 분기별로 세 차례(속보치·잠정치·확정치) 나눠 발표하는데, 여기서는 가장 먼저 나오는 속보치를 기준으로 해요.\n\nGDP 성장률은 경기가 확장하고 있는지 위축되고 있는지를 보여주는 가장 포괄적인 지표라, 기업 실적 전망과 연준의 통화정책 판단에 함께 영향을 줘요. 성장률이 예상보다 높으면 경기 과열과 인플레이션 우려로 금리 인하 기대가 줄고, 성장률이 둔화되면 침체 우려와 함께 금리 인하 기대가 커지는 경우가 많아요. 다만 GDP는 사후 집계 항목이 많아 CPI나 고용지표보다 발표가 늦고 수정도 잦다는 한계가 있어요.\n\n미국 경제분석국(BEA)이 분기 종료 후 약 한 달 뒤 속보치를 내놓으며, 여기 실린 수치는 FRED를 통해 배포돼요.",
+      en: "GDP growth measures how much the total value of goods and services produced in the economy grew from the prior quarter, expressed as an annualized rate. The U.S. Commerce Department releases it in three rounds each quarter — advance, second and third estimates — and the figures here track the advance estimate, the first to land.\n\nIt's the broadest single gauge of whether the economy is expanding or contracting, so it feeds directly into both corporate earnings expectations and the Fed's rate decisions. A hotter-than-expected reading can raise overheating and inflation concerns and cool rate-cut hopes; a weaker one often does the opposite. GDP tends to be reported later and revised more than CPI or jobs data, since it pulls together many after-the-fact components.\n\nReleased by the Bureau of Economic Analysis (BEA) roughly a month after each quarter ends; distributed via FRED.",
+      ja: "GDP成長率は、一定期間(通常四半期)に国内で新たに生み出された財・サービスの総額(国内総生産)が前期比でどれだけ伸びたかを年率換算で示す指標です。米商務省は四半期ごとに速報値・改定値・確定値の3回に分けて発表しますが、ここでは最初に出る速報値を扱います。\n\n景気が拡大しているか縮小しているかを示す最も包括的な指標であり、企業業績見通しとFRBの金融政策判断の両方に影響します。予想より高い伸びは景気過熱・インフレ懸念から利下げ期待を後退させ、鈍化は景気後退懸念とともに利下げ期待を高めがちです。ただしGDPは事後集計項目が多く、CPIや雇用統計より発表が遅く改定も多いという限界があります。\n\n米経済分析局(BEA)が四半期終了から約1か月後に速報値を発表し、ここに掲載する数値はFREDを通じて配布されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2024-10-30", actual: 2.8, forecast: 2.9, prev: 3.0 },
+      { date: "2025-01-30", actual: 2.3, forecast: 2.1, prev: 2.8 },
+      { date: "2025-04-30", actual: 1.9, forecast: 2.2, prev: 2.3 },
+      { date: "2025-07-30", actual: 2.6, forecast: 2.5, prev: 1.9 },
+      { date: "2025-10-30", actual: 2.1, forecast: 2.3, prev: 2.6 },
+      { date: "2026-01-29", actual: 1.7, forecast: 1.4, prev: 2.1 },
+      { date: "2026-04-30", actual: 2.4, forecast: 2.5, prev: 1.7 },
+      { date: "2026-07-30", actual: 2.0, forecast: 2.0, prev: 2.4 }
+    ]
+  },
+  {
+    id: "pce",
+    name: { ko: "개인소비지출(PCE) 물가지수", en: "PCE Price Index", ja: "個人消費支出(PCE)物価指数" },
+    cat: "inflation", country: "US", unit: "%", freq: "monthly", goodDir: "down",
+    nextDate: "2026-08-28", nextTime: "21:30", lastValue: 3.0, nextForecast: 3.0,
+    desc: {
+      ko: "개인소비지출(PCE) 물가지수는 미국인들이 실제로 소비한 모든 재화·서비스의 가격 변화를 반영한 물가지표로, 연준이 통화정책을 결정할 때 CPI보다 더 공식적으로 참고하는 \"연준이 가장 사랑하는 물가지표\"예요. CPI와 달리 소비 패턴 변화(예: 소고기 대신 닭고기로 이동)를 더 빠르게 반영하는 방식으로 계산돼요.\n\n연준은 물가안정 목표를 \"PCE 기준 2%\"로 명시적으로 제시하고 있어서, PCE가 예상보다 뜨겁게 나오면 금리 인하가 늦어질 거라는 신호로, 예상보다 식으면 금리 인하가 앞당겨질 신호로 시장이 받아들여요. CPI가 먼저 나오고 PCE가 뒤이어 나오기 때문에, PCE는 CPI가 만든 기대를 확인하거나 뒤집는 역할을 해요.\n\n미국 경제분석국(BEA)이 매달 말 전월 데이터를 발표하며, FRED를 통해 배포돼요.",
+      en: "The Personal Consumption Expenditures (PCE) price index tracks price changes across everything Americans actually spend money on, and it's the inflation gauge the Fed officially targets — more so than CPI — when setting policy. Unlike CPI, its methodology adjusts faster for shifts in what people buy (say, chicken instead of beef).\n\nThe Fed's stated inflation goal is explicitly \"2% on a PCE basis,\" so a hotter-than-expected PCE reading signals rate cuts may be delayed, while a cooler one signals they could come sooner. Because CPI comes out earlier in the month, PCE often either confirms or overturns the expectations CPI set.\n\nReleased monthly by the Bureau of Economic Analysis (BEA) at month-end for the prior month; distributed via FRED.",
+      ja: "個人消費支出(PCE)物価指数は、米国人が実際に支出したあらゆる財・サービスの価格変化を反映した物価指標で、FRBがCPIより公式に重視する「FRBが最も愛する物価指標」です。CPIと異なり、消費パターンの変化(牛肉から鶏肉への移行など)をより素早く反映する方式で算出されます。\n\nFRBは物価安定目標を「PCE基準で2%」と明示しているため、PCEが予想より高ければ利下げが後ずれするサインとして、予想より低ければ利下げ前倒しのサインとして市場に受け止められます。CPIが先に発表されるため、PCEはCPIが作った期待を裏付けたり覆したりする役割を果たします。\n\n米経済分析局(BEA)が毎月末に前月分を発表し、FREDを通じて配布されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-29", actual: 3.9, forecast: 3.9, prev: 4.0 },
+      { date: "2025-09-26", actual: 3.8, forecast: 3.7, prev: 3.9 },
+      { date: "2025-10-31", actual: 3.7, forecast: 3.8, prev: 3.8 },
+      { date: "2025-11-26", actual: 3.8, forecast: 3.8, prev: 3.7 },
+      { date: "2025-12-19", actual: 3.6, forecast: 3.5, prev: 3.8 },
+      { date: "2026-01-30", actual: 3.5, forecast: 3.5, prev: 3.6 },
+      { date: "2026-02-27", actual: 3.4, forecast: 3.5, prev: 3.5 },
+      { date: "2026-03-27", actual: 3.3, forecast: 3.2, prev: 3.4 },
+      { date: "2026-04-30", actual: 3.2, forecast: 3.2, prev: 3.3 },
+      { date: "2026-05-29", actual: 3.3, forecast: 3.4, prev: 3.2 },
+      { date: "2026-06-26", actual: 3.1, forecast: 3.0, prev: 3.3 },
+      { date: "2026-07-31", actual: 3.0, forecast: 3.0, prev: 3.1 }
+    ]
+  },
+  {
+    id: "corePce",
+    name: { ko: "근원 PCE 물가지수", en: "Core PCE Price Index", ja: "コアPCE物価指数" },
+    cat: "inflation", country: "US", unit: "%", freq: "monthly", goodDir: "down",
+    nextDate: "2026-08-28", nextTime: "21:30", lastValue: 3.4, nextForecast: 3.3,
+    desc: {
+      ko: "근원 PCE는 PCE 물가지수에서 식료품·에너지를 뺀 수치로, 연준이 실질적인 정책 목표(2%)로 가장 자주 인용하는 물가지표예요. CPI의 \"근원 CPI\"에 대응하는 개념이라고 보면 돼요.\n\nPCE와 같은 날 발표되며, 파월 의장을 비롯한 연준 인사들의 발언에서 가장 자주 언급되는 숫자예요.",
+      en: "Core PCE strips food and energy out of the PCE price index, and it's the number Fed officials cite most often when discussing the 2% inflation target — the PCE equivalent of core CPI.\n\nReleased alongside headline PCE; it's the figure most frequently quoted in Fed speeches, including Chair Powell's.",
+      ja: "コアPCEは、PCE物価指数から食品・エネルギーを除いた数値で、FRBが2%の物価目標を語る際に最も頻繁に引用する物価指標です。CPIにおける「コアCPI」に相当します。\n\nPCEと同日に発表され、パウエル議長をはじめFRB高官の発言で最も頻繁に言及される数字です。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-29", actual: 4.1, forecast: 4.1, prev: 4.2 },
+      { date: "2025-09-26", actual: 4.0, forecast: 4.0, prev: 4.1 },
+      { date: "2025-10-31", actual: 4.0, forecast: 3.9, prev: 4.0 },
+      { date: "2025-11-26", actual: 3.9, forecast: 4.0, prev: 4.0 },
+      { date: "2025-12-19", actual: 3.9, forecast: 3.9, prev: 3.9 },
+      { date: "2026-01-30", actual: 3.7, forecast: 3.6, prev: 3.9 },
+      { date: "2026-02-27", actual: 3.7, forecast: 3.7, prev: 3.7 },
+      { date: "2026-03-27", actual: 3.6, forecast: 3.7, prev: 3.7 },
+      { date: "2026-04-30", actual: 3.5, forecast: 3.5, prev: 3.6 },
+      { date: "2026-05-29", actual: 3.6, forecast: 3.5, prev: 3.5 },
+      { date: "2026-06-26", actual: 3.4, forecast: 3.5, prev: 3.6 },
+      { date: "2026-07-31", actual: 3.4, forecast: 3.4, prev: 3.4 }
+    ]
+  },
+  {
+    id: "ismPmi",
+    name: { ko: "ISM 제조업 PMI", en: "ISM Manufacturing PMI", ja: "ISM製造業PMI" },
+    cat: "sentiment", country: "US", unit: "", freq: "monthly", goodDir: "up",
+    nextDate: "2026-09-01", nextTime: "23:00", lastValue: 50.3, nextForecast: 50.0,
+    desc: {
+      ko: "ISM 제조업 구매관리자지수(PMI)는 미국 제조업체 구매담당자들에게 신규주문·생산·고용 등을 설문해 만드는 지수예요. 50을 넘으면 제조업 경기가 확장 중, 50 밑이면 위축 중이라는 뜻이에요.\n\n실물 통계보다 한발 앞서 나오는 \"설문 기반\" 지표라 경기 전환점을 가장 먼저 포착하는 지표 중 하나로 꼽혀요. 매달 첫 영업일에 발표돼요.",
+      en: "The ISM Manufacturing PMI surveys purchasing managers at U.S. factories on new orders, production and hiring. A reading above 50 signals manufacturing is expanding; below 50 signals contraction.\n\nBeing survey-based rather than hard data, it tends to catch turning points before official statistics do. Released on the first business day of each month.",
+      ja: "ISM製造業景況感指数(PMI)は、米製造業の購買担当者に新規受注・生産・雇用などを調査して算出する指数です。50を上回れば拡大、下回れば縮小を意味します。\n\n実物統計より一足早く出るアンケート型指標のため、景気の転換点を最も早く捉える指標の一つとされます。毎月第1営業日に発表されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-01", actual: 47.8, forecast: 48.1, prev: 47.2 },
+      { date: "2025-09-02", actual: 48.2, forecast: 48.0, prev: 47.8 },
+      { date: "2025-10-01", actual: 49.1, forecast: 49.5, prev: 48.2 },
+      { date: "2025-11-03", actual: 48.5, forecast: 48.2, prev: 49.1 },
+      { date: "2025-12-01", actual: 49.6, forecast: 49.8, prev: 48.5 },
+      { date: "2026-01-02", actual: 50.2, forecast: 49.7, prev: 49.6 },
+      { date: "2026-02-02", actual: 49.4, forecast: 49.8, prev: 50.2 },
+      { date: "2026-03-02", actual: 50.8, forecast: 50.9, prev: 49.4 },
+      { date: "2026-04-01", actual: 51.2, forecast: 50.9, prev: 50.8 },
+      { date: "2026-05-01", actual: 50.5, forecast: 50.7, prev: 51.2 },
+      { date: "2026-06-02", actual: 49.9, forecast: 50.2, prev: 50.5 },
+      { date: "2026-07-01", actual: 50.3, forecast: 50.1, prev: 49.9 }
+    ]
+  },
+  {
+    id: "umich",
+    name: { ko: "소비자심리지수(미시간대)", en: "Michigan Consumer Sentiment", ja: "ミシガン大学消費者信頼感指数" },
+    cat: "sentiment", country: "US", unit: "", freq: "monthly", goodDir: "up",
+    nextDate: "2026-08-14", nextTime: "23:00", lastValue: 69.8, nextForecast: 69.0,
+    desc: {
+      ko: "미시간대 소비자심리지수는 가계에 향후 경기·재정 상태를 어떻게 보는지 설문해 만드는 지수예요. 소비자들이 앞으로 얼마나 지갑을 열지를 가늠하는 선행지표로 쓰여요.\n\n미국 경제는 소비가 GDP의 큰 비중을 차지하기 때문에, 이 지수가 꺾이면 향후 소비 둔화 신호로 해석돼요. 매달 예비치와 확정치 두 번 발표돼요.",
+      en: "The University of Michigan Consumer Sentiment Index surveys households on how they view the economy and their own finances, serving as a leading indicator of how much consumers are likely to spend.\n\nBecause consumption is such a large share of U.S. GDP, a falling reading is often read as an early warning of slower spending ahead. Released twice a month — a preliminary and a final reading.",
+      ja: "ミシガン大学消費者信頼感指数は、家計に今後の景気や家計状況をどう見ているか調査して作る指数で、消費者が今後どれだけ支出するかを測る先行指標です。\n\n米国経済は個人消費がGDPの大きな割合を占めるため、この指数の低下は今後の消費減速のサインと解釈されます。毎月速報値と確定値の2回発表されます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-15", actual: 66.2, forecast: 67.2, prev: 67.0 },
+      { date: "2025-09-12", actual: 64.8, forecast: 64.0, prev: 66.2 },
+      { date: "2025-10-17", actual: 63.5, forecast: 64.0, prev: 64.8 },
+      { date: "2025-11-14", actual: 65.1, forecast: 63.9, prev: 63.5 },
+      { date: "2025-12-12", actual: 67.3, forecast: 68.2, prev: 65.1 },
+      { date: "2026-01-16", actual: 68.9, forecast: 67.4, prev: 67.3 },
+      { date: "2026-02-13", actual: 66.4, forecast: 67.5, prev: 68.9 },
+      { date: "2026-03-13", actual: 69.2, forecast: 68.6, prev: 66.4 },
+      { date: "2026-04-17", actual: 70.5, forecast: 71.3, prev: 69.2 },
+      { date: "2026-05-15", actual: 68.1, forecast: 67.1, prev: 70.5 },
+      { date: "2026-06-12", actual: 71.3, forecast: 72.0, prev: 68.1 },
+      { date: "2026-07-17", actual: 69.8, forecast: 68.9, prev: 71.3 }
+    ]
+  },
+  {
+    id: "newHomeSales",
+    name: { ko: "신규주택 매매건수", en: "New Home Sales", ja: "新築住宅販売件数" },
+    cat: "housing", country: "US", unit: "만채", freq: "monthly", goodDir: "up",
+    nextDate: "2026-08-25", nextTime: "21:30", lastValue: 65.3, nextForecast: 64.0,
+    desc: {
+      ko: "신규주택 매매건수는 그 달에 새로 지어져 팔린 단독주택 수를 연율로 환산한 지표예요. 주택시장의 수요 강도를 보여주는 동시에, 금리에 가장 민감하게 반응하는 지표 중 하나예요.\n\n금리가 오르면 주택담보대출 부담이 커져 매매건수가 줄어드는 경향이 있어, 연준의 금리 정책 효과가 실물 경제에 얼마나 스며들고 있는지 확인하는 용도로도 쓰여요.",
+      en: "New home sales tracks how many newly built single-family homes sold that month, annualized. It gauges housing demand and is one of the indicators most sensitive to interest rates.\n\nHigher rates raise mortgage costs and tend to cool sales, so this number is also used to check how much the Fed's rate policy is actually filtering through to the real economy.",
+      ja: "新築住宅販売件数は、その月に新たに建てられ売却された一戸建て住宅数を年率換算した指標です。住宅需要の強さを示すと同時に、金利に最も敏感に反応する指標の一つです。\n\n金利が上がると住宅ローン負担が増え販売件数が減る傾向があるため、FRBの金利政策の効果が実体経済にどれだけ波及しているかを確認する用途にも使われます。"
+    },
+    source: "FRED (Federal Reserve Bank of St. Louis)",
+    history: [
+      { date: "2025-08-26", actual: 62.8, forecast: 64.3, prev: 61.5 },
+      { date: "2025-09-24", actual: 64.1, forecast: 62.1, prev: 62.8 },
+      { date: "2025-10-24", actual: 60.5, forecast: 62.3, prev: 64.1 },
+      { date: "2025-11-26", actual: 63.9, forecast: 62.7, prev: 60.5 },
+      { date: "2025-12-23", actual: 66.2, forecast: 68.7, prev: 63.9 },
+      { date: "2026-01-27", actual: 61.4, forecast: 59.6, prev: 66.2 },
+      { date: "2026-02-25", actual: 65.8, forecast: 67.9, prev: 61.4 },
+      { date: "2026-03-25", actual: 63.2, forecast: 62.3, prev: 65.8 },
+      { date: "2026-04-23", actual: 67.5, forecast: 68.9, prev: 63.2 },
+      { date: "2026-05-27", actual: 64.9, forecast: 62.6, prev: 67.5 },
+      { date: "2026-06-24", actual: 62.1, forecast: 63.7, prev: 64.9 },
+      { date: "2026-07-24", actual: 65.3, forecast: 64.2, prev: 62.1 }
+    ]
+  },
+  {
+    id: "krCpi",
+    name: { ko: "한국 소비자물가지수", en: "Korea CPI", ja: "韓国消費者物価指数" },
+    cat: "inflation", country: "KR", unit: "%", freq: "monthly", goodDir: "down",
+    nextDate: "2026-09-02", nextTime: "09:00", lastValue: 2.4, nextForecast: 2.3,
+    desc: {
+      ko: "한국 소비자물가지수는 통계청이 국내 가계가 소비하는 상품·서비스 가격을 모아 전년 동월 대비 상승률로 발표하는 물가지표예요. 한국은행의 기준금리 결정에서 미국의 CPI만큼 중요한 역할을 해요.\n\n물가가 목표(통상 2%)를 웃돌면 한국은행이 금리를 올리거나 높게 유지할 이유가 되고, 목표 아래로 안정되면 금리 인하 여력이 생겨요.",
+      en: "Korea's CPI, released monthly by Statistics Korea, tracks price changes for goods and services domestic households buy, year-over-year. It plays as central a role in Bank of Korea rate decisions as U.S. CPI does for the Fed.\n\nInflation running above the BOK's roughly 2% target gives it reason to hold or raise rates; cooling below target opens room to cut.",
+      ja: "韓国の消費者物価指数は、統計庁が国内家計が消費する商品・サービスの価格をまとめ、前年同月比の上昇率として発表する物価指標です。韓国銀行の基準金利決定において、米国のCPIと同じくらい重要な役割を果たします。\n\n物価が目標(通常2%)を上回れば韓国銀行が金利を維持・引き上げる理由になり、目標を下回って安定すれば利下げの余地が生まれます。"
+    },
+    source: "통계청 국가통계포털(KOSIS)",
+    history: [
+      { date: "2025-08-02", actual: 2.4, forecast: 2.5, prev: 2.3 },
+      { date: "2025-09-02", actual: 2.6, forecast: 2.4, prev: 2.4 },
+      { date: "2025-10-02", actual: 2.3, forecast: 2.4, prev: 2.6 },
+      { date: "2025-11-04", actual: 2.5, forecast: 2.4, prev: 2.3 },
+      { date: "2025-12-02", actual: 2.2, forecast: 2.3, prev: 2.5 },
+      { date: "2026-01-02", actual: 2.1, forecast: 2.1, prev: 2.2 },
+      { date: "2026-02-02", actual: 2.4, forecast: 2.2, prev: 2.1 },
+      { date: "2026-03-04", actual: 2.0, forecast: 2.2, prev: 2.4 },
+      { date: "2026-04-02", actual: 2.3, forecast: 2.2, prev: 2.0 },
+      { date: "2026-05-02", actual: 2.5, forecast: 2.5, prev: 2.3 },
+      { date: "2026-06-02", actual: 2.2, forecast: 2.3, prev: 2.5 },
+      { date: "2026-07-02", actual: 2.4, forecast: 2.3, prev: 2.2 }
+    ]
+  },
+  {
+    id: "krRate",
+    name: { ko: "한국은행 기준금리", en: "BOK Base Rate", ja: "韓国銀行基準金利" },
+    cat: "rates", country: "KR", unit: "%", freq: "rate8", goodDir: "neutral",
+    nextDate: "2026-08-13", nextTime: "10:00", lastValue: 2.50, nextForecast: 2.50,
+    desc: {
+      ko: "한국은행 기준금리는 한국은행 금융통화위원회가 연 8회 정례회의를 통해 결정하는 정책금리예요. 미국 연준의 FOMC와 같은 역할을 국내에서 담당해요.\n\n미국 금리와의 격차(한미 금리차)가 원화 환율과 외국인 자금 흐름에 영향을 주기 때문에, 국내 투자자들은 FOMC 결과와 함께 이 숫자를 항상 같이 확인해요.",
+      en: "The Bank of Korea base rate is the policy rate set by the BOK's Monetary Policy Board at regular meetings roughly 8 times a year — the domestic equivalent of the Fed's FOMC.\n\nThe gap between Korean and U.S. rates affects the won's exchange rate and foreign capital flows, so domestic investors track this alongside every FOMC decision.",
+      ja: "韓国銀行基準金利は、韓国銀行金融通貨委員会が年8回程度の定例会合で決定する政策金利です。米FRBのFOMCに相当する国内の役割を担います。\n\n韓米金利差はウォンの為替レートや外国人資金の流れに影響するため、国内投資家はFOMCの結果と合わせてこの数値を常に確認します。"
+    },
+    source: "한국은행 경제통계시스템(ECOS)",
+    history: [
+      { date: "2025-08-21", actual: 3.25, forecast: 3.25, prev: 3.50 },
+      { date: "2025-10-16", actual: 3.00, forecast: 3.00, prev: 3.25 },
+      { date: "2025-11-27", actual: 3.25, forecast: 3.50, prev: 3.00 },
+      { date: "2026-01-15", actual: 2.75, forecast: 2.75, prev: 3.25 },
+      { date: "2026-02-26", actual: 2.75, forecast: 2.75, prev: 2.75 },
+      { date: "2026-04-16", actual: 2.75, forecast: 2.50, prev: 2.75 },
+      { date: "2026-05-28", actual: 2.50, forecast: 2.50, prev: 2.75 },
+      { date: "2026-07-16", actual: 2.50, forecast: 2.50, prev: 2.50 }
+    ]
+  },
+  {
+    id: "krTrade",
+    name: { ko: "수출입 동향(무역수지)", en: "Korea Trade Balance", ja: "韓国貿易収支(輸出入動向)" },
+    cat: "trade", country: "KR", unit: "억달러", freq: "monthly", goodDir: "up",
+    nextDate: "2026-09-01", nextTime: "09:00", lastValue: 29.6, nextForecast: 27.0,
+    desc: {
+      ko: "수출입 동향(무역수지)은 한국의 그 달 수출액에서 수입액을 뺀 값이에요. 양(+)이면 무역흑자, 음(-)이면 무역적자를 뜻해요. 수출 중심 경제인 한국에서는 경기와 원화 가치를 가늠하는 핵심 지표예요.\n\n반도체·자동차 등 주력 수출 품목의 수요 흐름을 가장 먼저 보여주는 실물 지표라, 글로벌 경기 진단에도 자주 인용돼요. 관세청이 매달 초 전월 확정치를 발표해요.",
+      en: "Korea's trade balance is monthly exports minus imports — positive means a surplus, negative a deficit. For an export-driven economy like Korea's, it's a core gauge of both growth momentum and the won's value.\n\nAs one of the earliest hard-data reads on demand for key exports like semiconductors and autos, it's also widely cited as a signal for the global economy. Released by the Korea Customs Service in the first days of each month for the prior month.",
+      ja: "貿易収支(輸出入動向)は、その月の韓国の輸出額から輸入額を引いた値です。プラスなら貿易黒字、マイナスなら貿易赤字を意味します。輸出主導型経済の韓国では、景気とウォンの価値を測る中核指標です。\n\n半導体・自動車など主力輸出品目の需要動向を最も早く示す実物指標であり、世界経済を診断する材料としても頻繁に引用されます。関税庁が毎月初めに前月確定値を発表します。"
+    },
+    source: "관세청 수출입무역통계",
+    history: [
+      { date: "2025-08-01", actual: 38.2, forecast: 43.2, prev: 15.0 },
+      { date: "2025-09-01", actual: -12.5, forecast: -20.5, prev: 38.2 },
+      { date: "2025-10-01", actual: 45.6, forecast: 48.6, prev: -12.5 },
+      { date: "2025-11-01", actual: 22.1, forecast: 18.1, prev: 45.6 },
+      { date: "2025-12-01", actual: -5.8, forecast: 0.2, prev: 22.1 },
+      { date: "2026-01-01", actual: 51.3, forecast: 46.3, prev: -5.8 },
+      { date: "2026-02-01", actual: 18.4, forecast: 22.4, prev: 51.3 },
+      { date: "2026-03-01", actual: -8.2, forecast: -11.2, prev: 18.4 },
+      { date: "2026-04-01", actual: 33.7, forecast: 38.7, prev: -8.2 },
+      { date: "2026-05-01", actual: 40.5, forecast: 34.5, prev: 33.7 },
+      { date: "2026-06-01", actual: -2.1, forecast: 1.9, prev: 40.5 },
+      { date: "2026-07-01", actual: 29.6, forecast: 26.6, prev: -2.1 }
+    ]
+  }
+];
+let INDICATOR_VIEW = null;
 
 /* ---------------- events calendar (v77) ---------------- */
 var CAL_Y=null, CAL_M=null, CAL_SEL=null;
@@ -6826,16 +7457,121 @@ function unmountV83(){
 
 /* ---- (1) rail events: v83.5 — 임박한 일정만 컴팩트하게 표시.
    전체 달력은 좌측 메뉴 "캘린더" 페이지가 담당. ---- */
-var V83CAL = { y: null, m: null, sel: null };
+/* v83.12 (june 지시, 토스 스타일 재개편): y/m은 왼쪽 미니 달력이 지금 보여주는
+   월(화살표로 넘김) — 월별 모드에서는 오른쪽 목록도 이 월을 그대로 쓴다.
+   anchor는 오른쪽 "주별" 목록이 어느 주부터 시작할지 정하는 날짜(기본 오늘) —
+   미니 달력에서 날짜를 클릭하면 이게 바뀐다. sel은 과거 버전 호환용으로만 남김. */
+var V83CAL = { y: null, m: null, sel: null, filter: "all", country: "all", mode: "week", anchor: null };
 function v83CalShift(d){
   V83CAL.m += d; if (V83CAL.m < 0){ V83CAL.m = 11; V83CAL.y--; } else if (V83CAL.m > 11){ V83CAL.m = 0; V83CAL.y++; }
-  V83CAL.sel = null;
   if (typeof renderFeedOnly === "function") renderFeedOnly();
 }
+/* 미니 달력에서 날짜를 클릭 — 이벤트가 있는 날만이 아니라 모든 날짜가 클릭 가능
+   (주별/월별 목록을 그 날짜가 속한 기간으로 이동시키는 게 목적이라 이벤트 유무와
+   무관하다). */
 function v83CalPick(dstr){
-  V83CAL.sel = (dstr && V83CAL.sel !== dstr) ? dstr : null;
+  if (!dstr) return;
+  V83CAL.anchor = dstr; V83CAL.sel = dstr;
   if (typeof renderFeedOnly === "function") renderFeedOnly();
 }
+/* v83.8: 캘린더 페이지 필터 칩 (전체/경제지표/뉴스 이벤트). */
+function v83CalFilter(f){
+  V83CAL.filter = (f === "indicator" || f === "event") ? f : "all";
+  if (typeof renderFeedOnly === "function") renderFeedOnly();
+}
+/* v83.12: 국내/해외 세그먼트. 뉴스 이벤트는 국가 데이터가 없어 country!=="all"일
+   때는 지표만 남고 뉴스는 통째로 숨는다(아래 v83CalAllRows 주석 참고). */
+function v83CalSetCountry(c){
+  V83CAL.country = (c === "KR" || c === "US") ? c : "all";
+  if (typeof renderFeedOnly === "function") renderFeedOnly();
+}
+function v83CalSetMode(m){
+  V83CAL.mode = (m === "month") ? "month" : "week";
+  if (typeof renderFeedOnly === "function") renderFeedOnly();
+}
+/* "이번 주 요약" 카드의 "자세히 보기" — 주별 모드로 오늘이 속한 주부터 다시 보여주고
+   미니 달력도 이번 달로 되돌린 뒤, 오른쪽 목록으로 스크롤한다. */
+function v83CalShowThisWeek(){
+  var dn = new Date();
+  V83CAL.mode = "week"; V83CAL.anchor = tcalYmd(dn); V83CAL.y = dn.getFullYear(); V83CAL.m = dn.getMonth();
+  if (typeof renderFeedOnly === "function") renderFeedOnly();
+  try {
+    var el = document.getElementById("tcalRight");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  } catch (e) {}
+}
+/* v83.9: EVENT ↔ INDICATOR 매칭 — 실데이터로 바꿀 때 이 함수만 갈아끼우면 된다.
+   같은 날짜 + 라벨에 지표 식별 키워드가 있으면 "같은 실물 발표"로 간주해, 목록에서는
+   지표 쪽이 대표로 뜨고 이벤트는 지표 상세의 "관련 글"로 흡수된다. */
+const IND_EVENT_KEYWORDS = {
+  cpi: [/CPI/i, /소비자물가/, /消費者物価/],
+  unrate: [/실업률/, /unemployment/i, /失業率/],
+  nfp: [/비농업|고용지표|NFP/i, /nonfarm/i, /雇用者数/],
+  fomc: [/FOMC/i, /기준금리/, /rate decision/i, /政策金利/]
+};
+function v83EventMatchesIndicator(e, ind){
+  if (!e || !ind || e.date !== ind.nextDate) return false;
+  var kws = IND_EVENT_KEYWORDS[ind.id]; if (!kws || !kws.length) return false;
+  var text = [e.label && e.label.ko, e.label && e.label.en, e.label && e.label.ja,
+    e.title && e.title.ko, e.title && e.title.en, e.title && e.title.ja].filter(Boolean).join(" ");
+  return kws.some(function(re){ return re.test(text); });
+}
+/* 특정 지표에 흡수된 이벤트들(상세 뷰의 "관련 글" 블록용). */
+function v83IndicatorMatchedEvents(ind){
+  return (typeof EVENTS !== "undefined" ? EVENTS : []).filter(function(e){ return v83EventMatchesIndicator(e, ind); });
+}
+/* ---------------- v83.12: 토스 스타일 날짜순 목록 — 행 생성 ----------------
+   지표 "회차"(history의 각 항목 + 다음 발표 nextDate 한 건)를 전부 개별 행으로
+   펼친다. 과거 회차는 실제값·예측값·이전값이 다 있어 발표값 색 규칙(예측 대비
+   빨강/파랑)을 그대로 검증할 수 있고, nextDate 행만 실제값이 아직 없어 "-"로
+   빠진다. EVENTS는 기존 흡수 규칙(같은 날짜의 nextDate와 겹치는 것만)을 그대로
+   따른다 — 과거 history 회차와는 매칭하지 않는다(원래도 그랬다). */
+function tcalYmd(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+/* 일요일 시작 주. 미니 달력의 행(왼쪽) · 오른쪽 "주별" 그룹 경계가 항상 같은
+   기준을 쓰도록 이 함수 하나로만 "그 날짜가 속한 주의 일요일"을 구한다. */
+function tcalSunday(d){ var r = new Date(d.getFullYear(), d.getMonth(), d.getDate()); r.setDate(r.getDate() - r.getDay()); return r; }
+function v83CalAllRows(){
+  var rows = [];
+  INDICATORS.forEach(function(ind){
+    indHistAsc(ind).forEach(function(h){
+      rows.push({ isIndicator: true, ind: ind, date: h.date, actual: h.actual,
+        forecast: (h.forecast === undefined ? null : h.forecast), prev: (h.prev === undefined ? null : h.prev) });
+    });
+    rows.push({ isIndicator: true, ind: ind, date: ind.nextDate, actual: null,
+      forecast: (ind.nextForecast === undefined ? null : ind.nextForecast), prev: ind.lastValue, isNext: true });
+  });
+  /* 뉴스 이벤트 — 지표 nextDate에 흡수된 것(같은 날짜 + 키워드 일치)은 기존 규칙대로 뺀다. */
+  (typeof EVENTS !== "undefined" ? EVENTS : []).forEach(function(e){
+    var absorbed = INDICATORS.some(function(ind){ return v83EventMatchesIndicator(e, ind); });
+    if (absorbed) return;
+    rows.push({ isIndicator: false, id: e.id, date: e.date, kind: e.kind || "x", label: e.label, title: e.title });
+  });
+  return rows;
+}
+/* 필터 칩(전체/경제지표/뉴스 이벤트) + 국내/해외 세그먼트 적용.
+   뉴스 이벤트는 국가 데이터가 없어서 country 필터가 "전체"가 아니면 통째로
+   숨긴다 — 국내/해외 어느 쪽으로도 잘못 분류하는 것보다 안전한 기본값. */
+function v83CalFiltered(){
+  var rows = v83CalAllRows();
+  if (V83CAL.filter === "indicator") rows = rows.filter(function(r){ return r.isIndicator; });
+  else if (V83CAL.filter === "event") rows = rows.filter(function(r){ return !r.isIndicator; });
+  if (V83CAL.country !== "all"){
+    rows = rows.filter(function(r){ return r.isIndicator ? r.ind.country === V83CAL.country : false; });
+  }
+  return rows;
+}
+/* 지표 상세 뷰 진입/이탈. v83OpenItem/v83CloseItem과 같은 패턴: 처음 열 때만
+   히스토리를 쌓고(pushView), 브라우저 뒤로가기가 popstate → applyView로 닫는다. */
+function goIndicator(id){
+  if (!INDICATORS.some(function(x){ return x.id === id; })) return;
+  var wasOpen = !!INDICATOR_VIEW;
+  INDICATOR_VIEW = id;
+  if (!wasOpen){ try { pushView(); } catch (e) {} }
+  if (typeof render === "function") render();
+  try { window.scrollTo({ top: 0, behavior: "auto" }); } catch (e) {}
+  if (typeof track === "function") track("indicator/" + id);
+}
+function closeIndicator(){ INDICATOR_VIEW = null; if (typeof render === "function") render(); }
 function v83RenderCal(){
   var body = document.getElementById("v83calBody"), t = document.getElementById("v83calTitle");
   if (!body) return;
@@ -6863,60 +7599,423 @@ function v83RenderCal(){
 }
 /* v83.5: full calendar PAGE (좌측 메뉴 캘린더 → 페이지 전환, 모달 아님) */
 function renderV83CalPage(list, S){
-  var CS = CAL_STR[LANG] || CAL_STR.en, loc = calLocale();
+  var CS = CAL_STR[LANG] || CAL_STR.en;
+  /* v83.8: 지표 상세는 같은 의사 탭(TAB="cal") 안에서 INDICATOR_VIEW로 전환된다. */
+  if (typeof INDICATOR_VIEW !== "undefined" && INDICATOR_VIEW){
+    var indOpen = INDICATORS.find(function(x){ return x.id === INDICATOR_VIEW; });
+    if (indOpen) return renderIndicatorDetailPage(list, S, indOpen);
+    INDICATOR_VIEW = null; /* 잘못된 id — 목록으로 조용히 되돌아간다 */
+  }
   var head = document.createElement("div");
   head.className = "v83dir-head";
   head.innerHTML = '<b>' + esc(CS.title) + '</b>';
   list.appendChild(head);
-  if (V83CAL.y === null){ var dn = new Date(); V83CAL.y = dn.getFullYear(); V83CAL.m = dn.getMonth(); }
-  var first = new Date(V83CAL.y, V83CAL.m, 1), startDow = first.getDay(), dim = new Date(V83CAL.y, V83CAL.m + 1, 0).getDate();
-  var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
-  var byDay = {};
-  (typeof EVENTS !== "undefined" ? EVENTS : []).forEach(function(e){
-    var d = new Date(e.date + "T00:00:00");
-    if (d.getFullYear() === V83CAL.y && d.getMonth() === V83CAL.m){ (byDay[d.getDate()] = byDay[d.getDate()] || []).push(e); }
-  });
-  var wd = LANG === "ko" ? ["일","월","화","수","목","금","토"] : LANG === "ja" ? ["日","月","火","水","木","金","土"] : ["S","M","T","W","T","F","S"];
-  var monthLbl = new Date(V83CAL.y, V83CAL.m, 1).toLocaleDateString(loc, { year: "numeric", month: "long" });
-  var html = '<div class="cal-nav"><button class="cal-arrow" onclick="v83CalShift(-1)">‹</button><b>' + monthLbl + '</b><button class="cal-arrow" onclick="v83CalShift(1)">›</button></div>';
-  html += '<div class="cal-grid">' + wd.map(function(w){ return '<span class="cal-wd">' + w + '</span>'; }).join("");
-  for (var i = 0; i < startDow; i++) html += '<span class="cal-cell cal-empty"></span>';
-  for (var dnum = 1; dnum <= dim; dnum++){
-    var evs = byDay[dnum] || []; var cellD = new Date(V83CAL.y, V83CAL.m, dnum);
-    var isToday = cellD.getTime() === todayD.getTime();
-    var dots = evs.slice(0, 3).map(function(e){ return '<i class="cal-dot ck-' + (e.kind || "x") + '"></i>'; }).join("");
-    var dstr = V83CAL.y + "-" + String(V83CAL.m + 1).padStart(2, "0") + "-" + String(dnum).padStart(2, "0");
-    html += '<span class="cal-cell' + (isToday ? " cal-today" : "") + (evs.length ? " cal-has" : "") + (V83CAL.sel === dstr ? " cal-sel" : "") + '"'
-      + (evs.length ? ' onclick="v83CalPick(\'' + dstr + '\')"' : '')
-      + '><span class="cal-dnum">' + dnum + '</span>' + (dots ? '<span class="cal-dots">' + dots + '</span>' : '') + '</span>';
-  }
-  html += '</div>';
-  var listEvs, selLbl;
-  if (V83CAL.sel){
-    listEvs = (typeof EVENTS !== "undefined" ? EVENTS : []).filter(function(e){ return e.date === V83CAL.sel; });
-    selLbl = new Date(V83CAL.sel + "T00:00:00").toLocaleDateString(loc, { month: "long", day: "numeric", weekday: "short" });
+  var leftHtml = '<div class="tcal-mini">' + tcalMiniCalHtml() + '</div>' + tcalWeekSummaryCardHtml();
+  var rows = v83CalFiltered();
+  /* v83.13: 컬럼 헤더(발표/예측/이전)는 필터 바 바로 아래 전체 목록에 걸쳐
+     "한 번만" 그린다 — 그룹(주차/월)마다 반복하던 걸 뺐다. */
+  var rightHtml = tcalFilterBarHtml() + tcalColsHeaderHtml();
+  if (V83CAL.mode === "month"){
+    if (V83CAL.y === null){ var dn2 = new Date(); V83CAL.y = dn2.getFullYear(); V83CAL.m = dn2.getMonth(); }
+    rightHtml += tcalGroupSectionHtml(tcalMonthGroup(rows), tcalMonthLabel());
   } else {
-    listEvs = (typeof EVENTS !== "undefined" ? EVENTS : [])
-      .filter(function(e){ return new Date(e.date + "T00:00:00") >= todayD; })
-      .sort(function(a, b){ return a.date < b.date ? -1 : 1; });
-    selLbl = CS.list;
+    /* v83.13: 0건인 주차는 헤더까지 통째로 생략한다("빈 주 안 보여준다") — 7주
+       전체가 0건일 때만 안내 문구 하나로 대신한다. */
+    var nonEmptyGroups = tcalWeekGroups(rows).filter(function(g){ return g.rows.length > 0; });
+    if (!nonEmptyGroups.length){
+      var TSe = TCAL_STR[LANG] || TCAL_STR.ko;
+      rightHtml += '<div class="tcal-empty">' + esc(TSe.weekNoData) + '</div>';
+    } else {
+      rightHtml += nonEmptyGroups.map(function(g){ return tcalGroupSectionHtml(g, tcalWeekLabel(g.start)); }).join("");
+    }
   }
-  html += '<div class="cal-list-h">' + selLbl + (V83CAL.sel ? '<button class="cal-back" onclick="v83CalPick(null)">✕ ' + CS.all + '</button>' : '') + '</div>';
-  if (!listEvs.length){ html += '<div class="cal-none">' + CS.none + '</div>'; }
-  else {
-    html += listEvs.map(function(e){
-      var d = new Date(e.date + "T00:00:00");
-      var dd = d.toLocaleDateString(loc, { month: "short", day: "numeric", weekday: "short" });
-      var days = Math.round((d - todayD) / 86400000);
-      var dday = days === 0 ? S.dToday : (days > 0 ? "D-" + days : "");
-      var lbl = (e.label && (e.label[LANG] || e.label.en)) || (e.title && (e.title[LANG] || e.title.en)) || "";
-      return '<div class="cal-li cal-li-link" onclick="evGo(\'' + e.id + '\')"><span class="cal-li-d ck-' + (e.kind || "x") + '">' + dd + '</span><span class="cal-li-t">' + esc(lbl) + '</span>' + (dday ? '<span class="ev-dday">' + dday + '</span>' : '') + '</div>';
-    }).join("");
-  }
+  var html = '<div class="tcal-grid">'
+    + '<div class="tcal-left">' + leftHtml + '</div>'
+    + '<div class="tcal-right" id="tcalRight">' + rightHtml + '</div>'
+    + '</div>';
   var wrapEl = document.createElement("div");
   wrapEl.className = "v83cal-page";
   wrapEl.innerHTML = html;
   list.appendChild(wrapEl);
+}
+/* ---------------- v83.12: 왼쪽 미니 달력 (컴팩트, 토스 스타일) ----------------
+   기존 openCal()/renderCal()(모달)와 v83RenderCal()(우측 레일 미리보기)은 전혀
+   건드리지 않는다 — 여기서 쓰는 클래스(tcal-mini-*)는 전부 새로 만든 이름이라
+   그 둘의 CSS/DOM과 겹치지 않는다. */
+function tcalMiniCalHtml(){
+  var loc = calLocale();
+  if (V83CAL.y === null){ var dn = new Date(); V83CAL.y = dn.getFullYear(); V83CAL.m = dn.getMonth(); }
+  var first = new Date(V83CAL.y, V83CAL.m, 1), startDow = first.getDay(), dim = new Date(V83CAL.y, V83CAL.m + 1, 0).getDate();
+  var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
+  var todayStr = tcalYmd(todayD);
+  var hasDate = {};
+  v83CalAllRows().forEach(function(r){ hasDate[r.date] = true; });
+  /* v83.13(2라운드 fix5): 토스는 증시 캘린더라 일요일을 아예 그리지 않는다(월~토 6열).
+     일요일 날짜는 셀 자체를 만들지 않는다 — grid-template-columns가 6열이므로 매주
+     월~토 6칸이 정확히 한 행을 채우고, 일요일 칸을 건너뛰어도 다음 날(다음 주 월요일)이
+     자동으로 다음 행 첫 칸에 배치돼 정렬이 깨지지 않는다. */
+  var leadBlanks = startDow === 0 ? 0 : startDow - 1;
+  var todayInMonth = todayD.getFullYear() === V83CAL.y && todayD.getMonth() === V83CAL.m;
+  var curWeekRow = -1, seq = leadBlanks;
+  for (var d1 = 1; d1 <= dim; d1++){
+    var wd1 = (startDow + d1 - 1) % 7;
+    if (wd1 === 0) continue;
+    if (todayInMonth && d1 === todayD.getDate()) curWeekRow = Math.floor(seq / 6);
+    seq++;
+  }
+  var wd = TCAL_WD1_MINI[LANG] || TCAL_WD1_MINI.ko;
+  var monthLbl = new Date(V83CAL.y, V83CAL.m, 1).toLocaleDateString(loc, { year: "numeric", month: "long" });
+  var html = '<div class="tcal-mini-head"><b>' + esc(monthLbl) + '</b><span class="tcal-mini-arrows">'
+    + '<button type="button" class="tcal-mini-arrow" onclick="v83CalShift(-1)" aria-label="prev month">‹</button>'
+    + '<button type="button" class="tcal-mini-arrow" onclick="v83CalShift(1)" aria-label="next month">›</button></span></div>';
+  html += '<div class="tcal-mini-grid">' + wd.map(function(w){ return '<span class="tcal-mini-wd">' + esc(w) + '</span>'; }).join("");
+  for (var i = 0; i < leadBlanks; i++){
+    html += '<span class="tcal-mini-cell tcal-mini-empty' + (curWeekRow === 0 ? " tcal-week-cur" : "") + '"></span>';
+  }
+  var seq2 = leadBlanks;
+  for (var dnum = 1; dnum <= dim; dnum++){
+    var weekday = (startDow + dnum - 1) % 7;
+    if (weekday === 0) continue;
+    var dstr = V83CAL.y + "-" + String(V83CAL.m + 1).padStart(2, "0") + "-" + String(dnum).padStart(2, "0");
+    var rowIdx = Math.floor(seq2 / 6);
+    var cls = "tcal-mini-cell";
+    if (dstr === todayStr) cls += " tcal-mini-today";
+    if (hasDate[dstr]) cls += " tcal-mini-has";
+    if (V83CAL.anchor === dstr) cls += " tcal-mini-sel";
+    if (rowIdx === curWeekRow) cls += " tcal-week-cur";
+    html += '<button type="button" class="' + cls + '" onclick="v83CalPick(\'' + dstr + '\')">' + dnum + '</button>';
+    seq2++;
+  }
+  html += '</div>';
+  return html;
+}
+/* ---------------- v83.12: "이번 주 요약" — 하드코딩 문장이 아니라 이번 주(일~토)
+   지표 회차를 나라·카테고리별로 세어서 매번 다시 만든다. 뉴스 이벤트는 "발표"가
+   아니라 세지 않는다(경제지표 회차만). */
+function tcalWeekSummaryText(){
+  var TS = TCAL_STR[LANG] || TCAL_STR.ko;
+  var todayD = new Date(); todayD.setHours(0, 0, 0, 0);
+  var sun = tcalSunday(todayD), sat = new Date(sun.getTime() + 6 * 86400000);
+  var sunStr = tcalYmd(sun), satStr = tcalYmd(sat);
+  var rows = v83CalAllRows().filter(function(r){ return r.isIndicator && r.date >= sunStr && r.date <= satStr; });
+  if (!rows.length) return TS.weekSummaryEmpty;
+  var counts = {}, order = [];
+  rows.forEach(function(r){
+    var k = r.ind.country + "|" + r.ind.cat;
+    if (!counts[k]){ counts[k] = 0; order.push(k); }
+    counts[k]++;
+  });
+  var countrySet = {}; order.forEach(function(k){ countrySet[k.split("|")[0]] = true; });
+  var countryKeys = Object.keys(countrySet);
+  var singleCountry = countryKeys.length === 1 ? countryKeys[0] : null;
+  function catLbl(cat){
+    var c = IND_CAT[cat] || {};
+    if (LANG === "ko") return (c.ko || cat) + "지표";
+    if (LANG === "ja") return (c.ja || cat) + "指標";
+    return (c.en || cat).toLowerCase();
+  }
+  function countryLbl(country){
+    if (LANG === "ko") return country === "KR" ? "한국" : "미국";
+    if (LANG === "ja") return country === "KR" ? "韓国" : "米国";
+    return country === "KR" ? "Korean" : "US";
+  }
+  var parts = order.map(function(k){
+    var bits = k.split("|"), country = bits[0], cat = bits[1], n = counts[k];
+    if (LANG === "en") return n + " " + countryLbl(country) + " " + catLbl(cat) + " release" + (n > 1 ? "s" : "");
+    var prefix = singleCountry ? "" : (countryLbl(country) + " ");
+    if (LANG === "ja") return prefix + catLbl(cat) + n + "件";
+    return prefix + catLbl(cat) + " " + n + "건";
+  });
+  if (LANG === "en"){
+    var bodyEn = parts.length > 1 ? parts.slice(0, -1).join(", ") + " and " + parts[parts.length - 1] : parts[0];
+    return bodyEn + TS.weekSummarySuffixMulti;
+  }
+  var lead = singleCountry ? (countryLbl(singleCountry) + " ") : "";
+  if (LANG === "ja"){
+    var bodyJa = parts.length > 1 ? parts.slice(0, -1).join("、") + "と" + parts[parts.length - 1] : parts[0];
+    return lead + bodyJa + TS.weekSummarySuffixMulti;
+  }
+  var bodyKo = parts.length > 1 ? parts.slice(0, -1).join(", ") + "과 " + parts[parts.length - 1] : parts[0];
+  return lead + bodyKo + TS.weekSummarySuffixMulti;
+}
+function tcalWeekSummaryCardHtml(){
+  var TS = TCAL_STR[LANG] || TCAL_STR.ko;
+  return '<div class="tcal-summary">'
+    + '<div class="tcal-summary-head">✦ ' + esc(TS.weekSummaryTitle) + '</div>'
+    + '<div class="tcal-summary-body">' + esc(tcalWeekSummaryText()) + '</div>'
+    + '<button type="button" class="tcal-summary-more" onclick="v83CalShowThisWeek()">' + esc(TS.weekSummaryMore) + '</button>'
+    + '</div>';
+}
+/* ---------------- v83.12: 상단 필터 바 (전체/경제지표/뉴스 이벤트, 전체/국내/해외, 주별/월별) --- */
+function tcalFilterBarHtml(){
+  var IS = IND_STR[LANG] || IND_STR.ko, TS = TCAL_STR[LANG] || TCAL_STR.ko;
+  var g1 = ["all", "indicator", "event"].map(function(f){
+    var lbl = f === "all" ? IS.filterAll : (f === "indicator" ? IS.filterInd : IS.filterEv);
+    return '<button type="button" class="tcal-seg-btn' + (V83CAL.filter === f ? " on" : "") + '" onclick="v83CalFilter(\'' + f + '\')">' + esc(lbl) + '</button>';
+  }).join("");
+  var g2 = ["all", "KR", "US"].map(function(c){
+    var lbl = c === "all" ? TS.filterCountryAll : (c === "KR" ? TS.filterKR : TS.filterUS);
+    return '<button type="button" class="tcal-seg-btn' + (V83CAL.country === c ? " on" : "") + '" onclick="v83CalSetCountry(\'' + c + '\')">' + esc(lbl) + '</button>';
+  }).join("");
+  var g3 = ["week", "month"].map(function(md){
+    var lbl = md === "week" ? TS.modeWeek : TS.modeMonth;
+    return '<button type="button" class="tcal-seg-btn' + (V83CAL.mode === md ? " on" : "") + '" onclick="v83CalSetMode(\'' + md + '\')">' + esc(lbl) + '</button>';
+  }).join("");
+  return '<div class="tcal-filter-bar">'
+    + '<div class="tcal-seg-group">' + g1 + '</div>'
+    + '<div class="tcal-seg-group">' + g2 + '</div>'
+    + '<div class="tcal-seg-group tcal-seg-mode">' + g3 + '</div>'
+    + '</div>';
+}
+/* ---------------- v83.12: 주별/월별 그룹핑 + 라벨 ---------------- */
+/* v83.13 (june 지시 2라운드): 기본 범위를 "이번 주부터 앞으로"에서 "지난 2주 +
+   이번 주 + 앞으로 4주"(총 7주)로 넓혔다 — 그래야 history가 이미 채워둔 과거
+   회차(실제값·색 규칙)가 첫 화면에서 바로 보인다. anchor를 명시적으로 찍었을 때도
+   그 주를 기준으로 앞뒤 맥락이 보이도록 동일하게 -2주부터 시작한다. */
+function tcalWeekGroups(rows){
+  var anchorD = V83CAL.anchor ? new Date(V83CAL.anchor + "T00:00:00") : new Date();
+  var startSun = new Date(tcalSunday(anchorD).getTime() - 14 * 86400000);
+  var groups = [];
+  for (var w = 0; w < 7; w++){
+    var gs = new Date(startSun.getTime() + w * 7 * 86400000);
+    var ge = new Date(gs.getTime() + 6 * 86400000);
+    var gsStr = tcalYmd(gs), geStr = tcalYmd(ge);
+    var gRows = rows.filter(function(r){ return r.date >= gsStr && r.date <= geStr; })
+      .sort(function(a, b){ return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0); });
+    groups.push({ start: gs, end: ge, rows: gRows });
+  }
+  return groups;
+}
+function tcalMonthGroup(rows){
+  var ms = new Date(V83CAL.y, V83CAL.m, 1), me = new Date(V83CAL.y, V83CAL.m + 1, 0);
+  var msStr = tcalYmd(ms), meStr = tcalYmd(me);
+  var gRows = rows.filter(function(r){ return r.date >= msStr && r.date <= meStr; })
+    .sort(function(a, b){ return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0); });
+  return { start: ms, end: me, rows: gRows };
+}
+/* "8월 2주차" 등 라벨은 그 주(일~토)의 목요일을 대표일로 써서 정한다 — 주가 월
+   경계에 걸치면 대부분 그 월에 속하는 쪽으로 자연스럽게 붙는다. */
+function tcalWeekLabel(startD){
+  var ref = new Date(startD.getTime() + 4 * 86400000);
+  var first = new Date(ref.getFullYear(), ref.getMonth(), 1);
+  var wk = Math.ceil((ref.getDate() + first.getDay()) / 7);
+  if (LANG === "ko") return (ref.getMonth() + 1) + "월 " + wk + "주차";
+  if (LANG === "ja") return (ref.getMonth() + 1) + "月第" + wk + "週";
+  return ref.toLocaleDateString("en-US", { month: "short" }) + " Week " + wk;
+}
+function tcalMonthLabel(){
+  return new Date(V83CAL.y, V83CAL.m, 1).toLocaleDateString(calLocale(), { year: "numeric", month: "long" });
+}
+/* v83.13: 발표/예측/이전 컬럼 헤더 — 필터 바 아래 목록 전체에 걸쳐 한 번만.
+   .tcal-row와 같은 그리드 폭(58px×3)을 그대로 써서 실제 값 컬럼과 줄이 맞는다. */
+function tcalColsHeaderHtml(){
+  var TS = TCAL_STR[LANG] || TCAL_STR.ko;
+  return '<div class="tcal-cols-header"><span class="tcal-group-cols"><span>' + esc(TS.colDate) + '</span><span>' + esc(TS.colForecast) + '</span><span>' + esc(TS.colPrev) + '</span></span></div>';
+}
+function tcalGroupSectionHtml(group, label){
+  var TS = TCAL_STR[LANG] || TCAL_STR.ko;
+  var html = '<div class="tcal-group">';
+  html += '<div class="tcal-group-head"><span class="tcal-group-label">' + esc(label) + '</span></div>';
+  if (!group.rows.length){
+    html += '<div class="tcal-empty">' + esc(V83CAL.mode === "month" ? TS.monthNoData : TS.weekNoData) + '</div>';
+  } else {
+    var todayStr = tcalYmd(new Date());
+    var lastDate = null;
+    html += '<div class="tcal-rows">' + group.rows.map(function(r){
+      var showDate = r.date !== lastDate; lastDate = r.date;
+      return tcalRowHtml(r, todayStr, showDate);
+    }).join("") + '</div>';
+  }
+  html += '</div>';
+  return html;
+}
+/* ---------------- v83.12: 한 행 — 지표(발표/예측/이전, 색 규칙) 또는 뉴스 이벤트 ----------------
+   발표값 색: 기존 .sp-bull/.sp-bear(초록/빨강, "좋다/나쁘다" 의미)는 여기 요구된
+   "예측보다 높으면 빨강·낮으면 파랑"(토스식 등락색, good/bad와 무관) 의미와 달라
+   재사용하지 않고 .tcal-hi/.tcal-lo를 새로 정의했다(CSS, 라이트·다크 둘 다 지정). */
+function tcalRowHtml(r, todayStr, showDate){
+  var wd = TCAL_WD1[LANG] || TCAL_WD1.ko;
+  var d = new Date(r.date + "T00:00:00");
+  var dateTxt = showDate ? (d.getDate() + wd[d.getDay()]) : "";
+  var isFuture = r.date > todayStr;
+  if (r.isIndicator){
+    var ind = r.ind;
+    var unit = ind.unit || "";
+    var name = ind.name[LANG] || ind.name.en;
+    var flag = TCAL_FLAG[ind.country] || "";
+    var noActual = (r.actual === null || r.actual === undefined) || isFuture;
+    var actualTxt = noActual ? "-" : (r.actual + unit);
+    var forecastTxt = (r.forecast === null || r.forecast === undefined) ? "-" : (r.forecast + unit);
+    var prevTxt = (r.prev === null || r.prev === undefined) ? "-" : (r.prev + unit);
+    var colorCls = "";
+    if (!noActual && r.forecast !== null && r.forecast !== undefined){
+      if (r.actual > r.forecast + 1e-9) colorCls = "tcal-hi";
+      else if (r.actual < r.forecast - 1e-9) colorCls = "tcal-lo";
+    }
+    return '<div class="tcal-row' + (noActual ? " tcal-row-future" : "") + '">'
+      + '<span class="tcal-cell-date">' + esc(dateTxt) + '</span>'
+      + '<span class="tcal-cell-flag">' + flag + '</span>'
+      + '<button type="button" class="tcal-cell-name" onclick="goIndicator(\'' + ind.id + '\')">' + esc(name) + '</button>'
+      + '<span class="tcal-cell-val ' + colorCls + '">' + esc(actualTxt) + '</span>'
+      + '<span class="tcal-cell-val tcal-cell-muted">' + esc(forecastTxt) + '</span>'
+      + '<span class="tcal-cell-val tcal-cell-muted">' + esc(prevTxt) + '</span>'
+      + '</div>';
+  }
+  var lbl = (r.label && (r.label[LANG] || r.label.en)) || (r.title && (r.title[LANG] || r.title.en)) || "";
+  var TSn = TCAL_STR[LANG] || TCAL_STR.ko;
+  /* v83.13: 뉴스 이벤트 행도 지표 행과 같은 그리드·정렬·폰트 굵기를 쓴다(같은
+     .tcal-cell-name 클래스). 국기 자리엔 국가 대신 중립 "뉴스" 배지를 둬서 지표
+     행과 톤이 흐트러지지 않게 했다. 값 3열은 지표가 아니므로 그대로 비운다. */
+  return '<div class="tcal-row' + (isFuture ? " tcal-row-future" : "") + '">'
+    + '<span class="tcal-cell-date">' + esc(dateTxt) + '</span>'
+    + '<span class="tcal-cell-flag"><span class="tcal-news-badge">' + esc(TSn.newsBadge) + '</span></span>'
+    + '<button type="button" class="tcal-cell-name" onclick="evGo(\'' + r.id + '\')">' + esc(lbl) + '</button>'
+    + '<span class="tcal-cell-val"></span><span class="tcal-cell-val"></span><span class="tcal-cell-val"></span>'
+    + '</div>';
+}
+/* v83.8: 지표 상세 뷰. 중앙 컬럼에 breadcrumb → 다음 발표 카드 → 12개월 추이(SVG) →
+   발표 히스토리 표 → 설명 순으로 그린다. v83.12부터 히스토리 표에 예측값 열이
+   생겼다 — 전부 플레이스홀더 수치이고, 실데이터 전환 시 FRED에는 컨센서스가
+   없다는 게 남은 리스크다(작업 보고서 참고). */
+/* 히스토리 표는 12개월치가 연도를 걸치므로 월/일만으론 헷갈린다 — 연도까지 넣는다.
+   ko는 스펙 예시(2026.07.11) 그대로, en/ja는 각 로케일에서 자연스러운 형태. */
+function indHistDate(dateStr){
+  var d = new Date(dateStr + "T00:00:00");
+  if (LANG === "ko"){
+    return d.getFullYear() + "." + String(d.getMonth() + 1).padStart(2, "0") + "." + String(d.getDate()).padStart(2, "0");
+  }
+  if (LANG === "ja") return d.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit" });
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+}
+/* v83.9.1: 정렬 기준을 한 곳에서만 정한다 — 날짜 오름차순(과거→최근).
+   차트(왼쪽=과거/오른쪽=최근), 축 라벨, 표(최신이 위로 오게 이 배열을 reverse만 함)가
+   전부 이 함수가 만든 같은 배열에서 파생된다. 이전엔 차트가 이 순서로 점을 찍으면서
+   축 라벨만 따로 전역 min/max를 갖다 붙여, 날짜와 값이 서로 다른 기준으로 매칭되는
+   버그가 있었다(추세가 우연히 단조에 가까울 때만 눈에 안 띄었을 뿐). */
+function indHistAsc(ind){
+  var h = (ind && ind.history) || [];
+  return h.slice().sort(function(a, b){ return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0); });
+}
+function renderIndicatorDetailPage(list, S, ind){
+  var IS = IND_STR[LANG] || IND_STR.ko, loc = calLocale();
+  var name = (ind.name[LANG] || ind.name.en);
+  var catLbl = (IND_CAT[ind.cat] || {})[LANG] || (IND_CAT[ind.cat] || {}).en || "";
+  var freqLbl = (IND_FREQ[ind.freq] || {})[LANG] || (IND_FREQ[ind.freq] || {}).en || "";
+  var desc = (ind.desc[LANG] || ind.desc.ko || "");
+  var unit = ind.unit || "";
+  var nd = new Date(ind.nextDate + "T00:00:00");
+  var ndLbl = nd.toLocaleDateString(loc, { year: "numeric", month: "long", day: "numeric", weekday: "short" });
+  var html = '<button class="cal-back ind-back" onclick="closeIndicator()">‹ ' + esc(IS.back) + '</button>';
+  html += '<div class="ind-crumb"><span class="ind-crumb-link" onclick="closeIndicator()">' + esc(IS.crumbCal) + '</span>'
+    + ' › <span class="ind-crumb-link" onclick="v83CalFilter(\'indicator\');closeIndicator()">' + esc(IS.crumbCat) + '</span>'
+    + ' › ' + esc(name) + '</div>';
+  html += '<h2 class="ind-title">' + esc(name) + '</h2>';
+  html += '<div class="ind-badges"><span class="chip">' + esc(catLbl) + '</span><span class="chip">' + esc(freqLbl) + '</span><span class="chip">' + esc(ind.country) + '</span></div>';
+  /* v83.10 (june 지시): 우측 레일이 사라진 폭을 여기서도 쓴다 — 왼쪽은 다음 발표
+     카드 + 큰 추이 차트, 오른쪽은 발표 히스토리 표. 설명·출처·관련 글은 전체 폭. */
+  html += '<div class="ind-detail-grid">';
+  html += '<div class="ind-detail-left">';
+  html += '<div class="ind-next-card">'
+    + '<div class="ind-next-label">' + esc(IS.next) + '</div>'
+    + '<div class="ind-next-date">' + esc(ndLbl) + ' · ' + esc(ind.nextTime) + ' (' + esc(IS.kst) + ')</div>'
+    + '<div class="ind-next-prev">' + esc(IS.last) + ': ' + ind.lastValue + esc(unit) + '</div>'
+    + '</div>';
+  html += indSvgChart(ind, IS);
+  html += '</div>';
+  html += '<div class="ind-detail-right">';
+  html += '<div class="ind-section-title">' + esc(IS.history) + '</div>';
+  if (!ind.history || !ind.history.length){
+    html += '<div class="cal-none">' + esc(IS.noHist) + '</div>';
+  } else {
+    html += '<table class="ind-table"><thead><tr><th>' + esc(IS.dateCol) + '</th><th>' + esc(IS.actualCol) + '</th><th>' + esc(IS.forecastCol) + '</th><th>' + esc(IS.prevCol) + '</th></tr></thead><tbody>'
+      + indHistAsc(ind).reverse().map(function(h){
+          var hd = indHistDate(h.date);
+          var forecastTxt = (h.forecast === null || h.forecast === undefined) ? "—" : (h.forecast + esc(unit));
+          var prevTxt = (h.prev === null || h.prev === undefined) ? "—" : (h.prev + esc(unit));
+          return '<tr><td>' + esc(hd) + '</td><td>' + h.actual + esc(unit) + '</td><td>' + forecastTxt + '</td><td>' + prevTxt + '</td></tr>';
+        }).join("")
+      + '</tbody></table>';
+  }
+  html += '</div>'; /* /ind-detail-right */
+  html += '</div>'; /* /ind-detail-grid */
+  html += '<div class="ind-detail-full">';
+  html += '<div class="ind-section-title">' + esc(name) + esc(IS.whatIs) + '</div>';
+  html += desc.split("\n\n").map(function(p){ return '<p class="ind-desc">' + esc(p) + '</p>'; }).join("");
+  html += '<div class="ind-source">' + esc(IS.source) + ': ' + esc(ind.source) + '</div>';
+  /* v83.9: 이 지표에 흡수된 이벤트(같은 날짜 발표) → "관련 글" 버튼으로 기존
+     evGo(관련 기사 필터링)를 그대로 연결한다. 흡수된 게 없으면 블록 자체를 뺀다. */
+  var related = v83IndicatorMatchedEvents(ind);
+  if (related.length){
+    html += '<div class="ind-section-title">' + esc(IS.related) + '</div>';
+    html += '<div class="ind-related">' + related.map(function(e){
+      var lbl = (e.label && (e.label[LANG] || e.label.en)) || (e.title && (e.title[LANG] || e.title.en)) || "";
+      return '<button class="ind-related-btn" onclick="evGo(\'' + e.id + '\')">' + esc(lbl) + ' →</button>';
+    }).join("") + '</div>';
+  }
+  html += '</div>'; /* /ind-detail-full */
+  var wrapEl = document.createElement("div");
+  wrapEl.className = "v83cal-page ind-detail";
+  wrapEl.innerHTML = html;
+  list.appendChild(wrapEl);
+}
+/* 외부 차트 라이브러리 없이 순수 SVG로 그리는 최근 12개월 추이 라인차트.
+   색은 --accent/--muted/--line 변수라 다크·라이트 테마 모두에서 그대로 보인다.
+   opts.mini === true면 지표 카드용 초소형 스파크라인(축 라벨·점·격자선 없이
+   선만) — 같은 indHistAsc(ind) 배열을 쓰므로 카드·상세·표가 항상 같은 소스다. */
+function indSvgChart(ind, IS, opts){
+  var mini = !!(opts && opts.mini);
+  var hist = indHistAsc(ind); /* 과거→최근, 표·라벨과 같은 배열 */
+  if (!hist.length) return "";
+  var vals = hist.map(function(h){ return h.actual; });
+  var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+  if (min === max){ min -= 1; max += 1; }
+  var pad = (max - min) * 0.18 || 1; min -= pad; max += pad;
+  var W = mini ? 200 : 640, H = mini ? 40 : 180;
+  var PL = mini ? 2 : 8, PR = mini ? 2 : 8, PT = mini ? 4 : 16, PB = mini ? 4 : 16;
+  var innerW = W - PL - PR, innerH = H - PT - PB;
+  var n = hist.length;
+  var pts = hist.map(function(h, i){
+    var x = PL + (n === 1 ? innerW / 2 : (innerW * i / (n - 1)));
+    var y = PT + innerH - ((h.actual - min) / (max - min)) * innerH;
+    return { x: x, y: y };
+  });
+  var path = pts.map(function(p, i){ return (i === 0 ? "M" : "L") + p.x.toFixed(1) + "," + p.y.toFixed(1); }).join(" ");
+  if (mini){
+    return '<svg class="ind-card-spark" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="mini history">'
+      + '<path d="' + path + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+      + '<circle cx="' + pts[n - 1].x.toFixed(1) + '" cy="' + pts[n - 1].y.toFixed(1) + '" r="2.5" fill="var(--accent)"/>'
+      + '</svg>';
+  }
+  var dots = pts.map(function(p){ return '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="3" fill="var(--accent)"/>'; }).join("");
+  var gl = '<line x1="' + PL + '" y1="' + PT.toFixed(1) + '" x2="' + (W - PR) + '" y2="' + PT.toFixed(1) + '" stroke="var(--line)" stroke-width="1"/>'
+    + '<line x1="' + PL + '" y1="' + (PT + innerH).toFixed(1) + '" x2="' + (W - PR) + '" y2="' + (PT + innerH).toFixed(1) + '" stroke="var(--line)" stroke-width="1"/>';
+  /* v83.11: 중간 눈금선(있으면) — 점이 3개 이상일 때만, 가운데에 가장 가까운 실제
+     데이터 포인트 위치에 얇은 점선을 하나 그어 넓어진 가로 간격을 시각적으로 잡아준다. */
+  var midIdx = n >= 3 ? Math.round((n - 1) / 2) : -1;
+  var midGl = midIdx >= 0 ? '<line x1="' + pts[midIdx].x.toFixed(1) + '" y1="' + PT.toFixed(1) + '" x2="' + pts[midIdx].x.toFixed(1) + '" y2="' + (PT + innerH).toFixed(1) + '" stroke="var(--line)" stroke-width="1" stroke-dasharray="2,3"/>' : '';
+  /* v83.11: preserveAspectRatio="none" — 이제 실제 렌더 높이는 .ind-chart의 CSS
+     height(2단일 때만 @container로 키움)가 정하고, viewBox 640x180 비율은 좌표
+     계산용 내부 기준일 뿐 화면 표시와는 무관해진다(미니 스파크라인과 동일한 방식). */
+  var svg = '<svg class="ind-chart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="history chart">'
+    + gl + midGl
+    + '<path d="' + path + '" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>'
+    + dots
+    + '</svg>';
+  /* 2026-08-05 버그: 라벨이 각 끝점의 실제값 대신 전역 min/max를 갖다 붙여서
+     추세가 우연히 단조가 아니면 날짜·값이 어긋나 보였다. 이제 hist[0]/hist[n-1] —
+     표·차트와 같은 배열의 진짜 양끝 실제값을 쓴다. */
+  var firstH = hist[0], lastH = hist[n - 1];
+  var firstD = new Date(firstH.date + "T00:00:00").toLocaleDateString(calLocale(), { year: "numeric", month: "short" });
+  var lastD = new Date(lastH.date + "T00:00:00").toLocaleDateString(calLocale(), { year: "numeric", month: "short" });
+  var unit = ind.unit || "";
+  var midSpan = "";
+  if (midIdx >= 0 && midIdx !== 0 && midIdx !== n - 1){
+    var midH = hist[midIdx];
+    var midD = new Date(midH.date + "T00:00:00").toLocaleDateString(calLocale(), { year: "numeric", month: "short" });
+    midSpan = '<span>' + esc(midD) + ' · ' + midH.actual + esc(unit) + '</span>';
+  }
+  var axis = '<div class="ind-chart-axis"><span>' + esc(firstD) + ' · ' + firstH.actual + esc(unit) + '</span>' + midSpan + '<span>' + esc(lastD) + ' · ' + lastH.actual + esc(unit) + '</span></div>';
+  return '<div class="ind-chart-wrap">' + svg + axis + '</div>';
 }
 
 /* ---- (2) skew trend: where the crowd leaned, and where it moved next ----
@@ -9264,6 +10363,7 @@ function viewUrl(v){
   if (v.bm) return stkRoot() + "#bookmarks";
   if (v.tab === "browse") return stkRoot() + "#browse";
   if (v.tab === "skew") return stkRoot() + "#skew";
+  if (v.tab === "cal" && v.ind) return stkRoot() + "#indicator-" + encodeURIComponent(v.ind);
   if (v.tab === "cal") return stkRoot() + "#calendar";
   if (v.tab === "alerts") return stkRoot() + "#alerts";
   if (v.tab === "mine") return stkRoot() + "#following";
@@ -9336,6 +10436,7 @@ function captureView(){
     item: g("V83ITEM", null), pred: g("V83PRED", null),
     bm: g("BM_ONLY", false), unread: g("UNREAD_ONLY", false),
     readv: g("READ_VIEW", false), q: g("QUERY", ""),
+    ind: g("INDICATOR_VIEW", null),
     mitem: stkMobileItem(),
     alerts: !!document.getElementById("v83npOv")
   };
@@ -9371,6 +10472,7 @@ function applyView(v){
   try {
     var wasEnt = (typeof ENTITY_VIEW !== "undefined") ? ENTITY_VIEW : null;
     TAB = v.tab; ENTITY_VIEW = v.ent; SERIES_VIEW = v.ser; SB_VIEW = v.sb;
+    if (typeof INDICATOR_VIEW !== "undefined") INDICATOR_VIEW = v.ind || null;
     if (typeof THEME_VIEW !== "undefined") THEME_VIEW = v.theme;
     if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW = v.inv;
     if (typeof RECORD_SRC !== "undefined") RECORD_SRC = v.rec;
@@ -9415,6 +10517,7 @@ window.addEventListener("popstate", function(ev){
   if (ev && ev.state && ev.state.view && applyView(ev.state.view)) return;
   /* 스냅샷 없는 옛 엔트리 → 예전처럼 열린 것을 하나씩 닫는다 */
   if (typeof V83ITEM !== "undefined" && V83ITEM){ v83CloseItem(); return; }
+  if (typeof INDICATOR_VIEW !== "undefined" && INDICATOR_VIEW){ closeIndicator(); return; }
   if (typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW){ closeEntity(); return; }
   if (typeof SERIES_VIEW !== "undefined" && SERIES_VIEW){ closeSeries(); return; }
   if (typeof THEME_VIEW !== "undefined" && THEME_VIEW){ closeThemes(); return; }
@@ -9481,6 +10584,19 @@ function handleDeepLink(){
   const e = get("e");
   if (e){ later(function(){ if (typeof ENTITIES !== "undefined" && ENTITIES[e] && typeof entityFeedView === "function") entityFeedView(e); }); return; }
   if (h === "#calendar"){ later(function(){ if (desk() && typeof setTab === "function") setTab("cal"); else openCal(); }); return; }
+  if (h.indexOf("#indicator-") === 0){
+    /* v83.8: 지표 상세 딥링크. 데스크톱은 캘린더 페이지 안에서 바로 열고,
+       모바일은 대응 화면이 없으니 기존 캘린더 모달로 떨어진다. */
+    const indId = decodeURIComponent(h.slice(11));
+    later(function(){
+      if (typeof INDICATORS === "undefined" || !INDICATORS.some(x => x.id === indId)) return;
+      if (!desk()){ openCal(); return; }
+      if (typeof setTab === "function") setTab("cal");
+      INDICATOR_VIEW = indId;
+      if (typeof render === "function") render();
+    });
+    return;
+  }
   if (h.indexOf("#theme-")===0){ const k=h.slice(7); if (typeof THEMES!=="undefined" && THEMES[k]) later(function(){ openTheme(k); }); return; }
   if (h.indexOf("#investor-")===0){ const s=decodeURIComponent(h.slice(10)); later(function(){ openInvestor(s); }); return; }
   if (h === "#investors"){ later(function(){ openInvestors(); }); return; }
@@ -10486,6 +11602,22 @@ function appendFeedPage(S){
 
 function renderFeed(animate){
   noteView();
+  /* v83.10 (2026-08-05 재검증 수정): 캘린더 탭(목록·지표 상세 둘 다 TAB==="cal")에서는
+     우측 레일이 중앙과 완전히 중복이라 숨기고 그 폭을 캘린더 2단 레이아웃에 준다.
+     예전엔 이 계산이 render() 안에 있었는데, openInvestors()/openThemes()/openScoreboard()
+     처럼 TAB은 그대로 두고 renderFeed()만 직접 호출하는 경로(render()를 거치지 않음)로
+     캘린더에서 넘어가면 TAB이 "cal"로 남아 있어 클래스가 안 떨어지고 13F/테마/판정
+     기록 화면에서도 레일이 계속 숨는 사고가 났다(2026-08-05 13F 병합 검증에서 발견).
+     renderFeed()는 render()를 포함해 위 경로 전부가 실제로 화면을 그릴 때 공통으로
+     거치므로 여기서 매번 재계산하면 놓치는 경로가 없다. 조건은 아래 v83DirTab()==="cal"
+     분기가 실제로 실행되는 조건과 동일해야 한다 — v83DirTab()은 THEME_VIEW/SB_VIEW 등은
+     이미 걸러주지만 INVESTOR_VIEW는 (renderFeed 안에서 그보다 먼저 return되므로) 걸러주지
+     않아 별도로 제외한다. */
+  try {
+    var _calWide = (typeof v83DirTab === "function" && v83DirTab() === "cal")
+      && !(typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW);
+    document.documentElement.classList.toggle("cal-wide", !!_calWide);
+  } catch (e) {}
   if (typeof ttsStop === "function") ttsStop();
   const S = STRINGS[LANG];
   const list = document.getElementById("feedList");
