@@ -2,6 +2,32 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-05 Claude (Cowork, claude-sonnet-5) — 예측 채점 [2-A] 10건 신규 판정 (hit 4 · miss 6)
+
+**작업**: `outcome.status`가 `pending`이고 `outcome.due <= 2026-08-05`인 항목 10건에 대해 grading.md `[3-A]`(서로 다른 각도 WebSearch 3회 이상)·`[3-B]`(판정표) 절차를 거쳐 hit/miss를 확정하고 `items.json`에 반영했다. 증거 수집은 항목별 서브에이전트(WebSearch)에게 위임했고, 최종 판정(hit/miss 결정)은 상위 세션이 증거를 검토해 직접 내렸다.
+
+**커밋**: `5abf9a0380ce0d6de77b88889c28e5c832066a63` — "chore: score predictions 2026-08-05 (2-A grading, 10 items: 4 hit, 6 miss)"
+
+**판정 결과**:
+| id | 판정 | 핵심 근거 |
+|---|---|---|
+| goto-kioxia-viasat-verdict-selloff | miss | 실적·동반반등은 확인, 비아셋 소송 소식 없음, 3개 채점기준 중 완전 충족 1개뿐 |
+| kobeissi-sp500-margin-record-q2-2026 | hit | FactSet 원자료로 15.7%/14.4% 수치 직접 확인 |
+| jukan-korea-memory-mega-mou-950b | miss | SK하이닉스 컨콜에서 계약금액 비공개, 실제 보도 규모($500B/$750B)도 예측 전제와 자릿수 불일치 |
+| serenity-googl-q2-cloud-beat | hit | 알파벳 CAPEX 가이던스 1,950억~2,050억달러로 예측대로 상향 확인 |
+| kobeissi-bitcoin-etf-inflow-surge | miss | 유입 가속은커녕 7/31 순유출 전환 확인 |
+| kobeissi-yields-iran-war-premium | hit | 10년물 7/23 4.707% 돌파, 30년물 5% 장기 유지 확인 |
+| kobeissi-iran-energy-sites-threat | miss | 트럼프가 타격 계획 취소하고 협상 개시(8/3), 위협 미실행 |
+| trump-hormuz-bomb-threat | hit | 이란 상선 공격 + 미국 실제 인프라 타격 둘 다 확인 |
+| kobeissi-amd-anthropic-deal-signed | miss | 칩 공급계약(2GW)은 재확인됐으나 최대 50억달러 역투자는 실적자료에 미언급 — deferrals 1회 소진 상태라 재연기 불가, 부분확인은 miss 규칙 적용. `deferrals` 배열은 원본 보존 |
+| meru-adr-conv | miss | 전환 물량 한도(2.5%)로 차익거래 사실상 봉쇄, 프리미엄은 오히려 급등 후 한국증시 자체 반등으로 되돌림(전환 메커니즘 효과 아님) |
+
+**검증**: api.github.com 커밋 patch를 상위 세션이 직접 fetch해 10개 항목 전부 status/note/gradedOn/evidence 반영을 재확인함(서브에이전트 보고를 그대로 신뢰하지 않고 독립 재검증).
+
+**알려진 부수 효과(무해)**: 클론 이후 `stacks-og-bot`의 "refresh OG cards + article covers" 자동 커밋(`0f2fa19`, 우리 커밋의 바로 부모)이 무관한 항목(SpaceX/Nvidia 위성 기사, gist 필드)의 REF 이미지 URL 3개를 추가했는데, 우리 업로드가 이를 되돌렸다. 이 봇은 반복 실행되는 자동화 작업(같은 세션 내 02:56·03:16 두 차례 실행 이력 확인)이므로 다음 사이클에 자동 재생성될 것으로 판단, 별도 조치 안 함.
+
+**미처리**: `[5]` 팔로워 푸시 — `NOTIFY_SECRET`이 인터랙티브 세션에는 주입되지 않아 스킵함(6건의 miss가 있어 우선순위상 3건 푸시 대상이었으나 미발송). `[2-C]` 소급 정리 25건 잔여, `[2-B]` 미확인.
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — GAZPROM을 급변동 팔로우 목록에서 제외 (커밋 `653cd63`)
 
 앞선 항목(같은 날, yahooSymbol 수정)에서 미해결로 남긴 GAZPROM 후속. Yahoo Finance
