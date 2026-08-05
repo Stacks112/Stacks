@@ -2,6 +2,555 @@
  "items": [
   {
    "date": "2026-08-05",
+   "id": "meru-korea-isa-productive-finance-domestic-only",
+   "related": [
+    "meru-2026-property-tax-owner-occupancy-pivot",
+    "meru-yen-carry-unwind-trigger-cme-shorts"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224368786980",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#101828",
+    "to": "#B45309",
+    "label": "KOREA ISA"
+   },
+   "tags": [
+    "ISA",
+    "TAX",
+    "KOREA"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "새 ISA는 한도를 두 배로 늘리면서 미국 지수는 담지 못하게 했다",
+    "en": "Korea's new ISA doubles the ceiling and shuts US index funds out of it",
+    "ja": "新しいISAは枠を二倍にしながら米国指数を入れられなくした"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "일본이 신NISA로 '평생 비과세 + 해외투자 전면 개방 + 자녀계좌 추가'로 확대를 하는 시점에 한국은 '국내 자산 한정 + 이월 폐지 + 5년 제한'으로 축소를 하고 있는 상황임.",
+      "이런 제도는 최대한 심플한게 베스트임."
+     ],
+     "en": [
+      "At the moment Japan is expanding, with the new NISA offering lifetime tax exemption, fully open access to overseas investment, and an added account for children, Korea is shrinking, with domestic assets only, the carryover abolished, and a five year limit.",
+      "A scheme like this is best kept as simple as possible."
+     ],
+     "ja": [
+      "日本が新NISAで「生涯非課税＋海外投資の全面開放＋子ども口座の追加」へ拡大している時点で、韓国は「国内資産限定＋繰り越し廃止＋5年制限」へ縮小している状況だ。",
+      "この種の制度はできるだけシンプルなのが一番だ。"
+     ]
+    },
+    "cite": "메르 · 2026.08.05"
+   },
+   "sum3": {
+    "ko": "절세 계좌를 미국 지수로 채우던 길이 막힌다.\n겉으로 보면 혜택은 커졌다. 세금을 떼지 않는 범위가 넓어졌고 청년에게는 공제가 하나 더 붙는다.\n그런데 이미 열려 있는 계좌 973만 개는 남은 한도를 다음 해로 넘기지 못하게 되고, 계약 기간도 5년에서 끊긴다.",
+    "en": "The route that filled tax favoured accounts with US index funds is being closed.\nOn the surface the benefit got larger. The range of untaxed income widened, and young savers get one more deduction on top.\nBut the 9.73 million accounts already open can no longer carry unused room into the next year, and their contracts now stop at five.",
+    "ja": "節税口座を米国指数で埋めていた道がふさがれる。\n表向きは優遇が大きくなった。課税しない範囲が広がり、若年層には控除がもう一つ付く。\nだがすでに開いている973万件は残った枠を翌年へ繰り越せなくなり、契約期間も5年で切れる。"
+   },
+   "gist": {
+    "ko": "정부가 8월 3일 세제개편안에서 생산적금융 ISA라는 계좌를 새로 만들었다.\n이자와 배당에 붙던 세금이 사라지고 총한도가 기존 ISA의 두 배가 되는데, 담을 수 있는 것은 국내 자산뿐이다.\n\n@@REF@@한국, 성장을 되살리기 위한 세제 혜택을 내놨다 (UPI, 2026-08-03)|https://www.upi.com/Top_News/World-News/2026/08/03/special-taxation-act-tax-reform/2161785809142/|https://cdnph.upi.com/sv/ph/og/i/2161785809142/2026/1/17858092557035/v1.5/South-Korea-plans-tax-breaks-to-revive-economic-growth.jpg\n\nISA는 예금과 주식, 펀드를 한 계좌에 담고 거기서 나온 수익의 세금을 깎아 주는 절세 계좌다.\n기존 ISA는 수익 200만원까지만 세금을 매기지 않고 넘는 부분은 9.9%로 따로 뗐는데, 새 계좌는 이자와 배당에 상한 없이 세금을 매기지 않는다.\n\n청년에게는 하나가 더 붙는다.\n15세에서 34세 사이이고 총급여가 7,500만원 이하면 그해 납입액의 10%를 소득에서 빼 준다. 납입 자체가 연말정산에서 공제로 돌아온다는 뜻이다.\n\n연간 납입한도는 2,000만원이고, 3년 단위로 계약해 최대 10년까지 굴릴 수 있다.\n\n## 그릇의 크기만 보면\n\n@@BAR@@기존 ISA 총한도|1억원|10000|생산적금융 ISA 총한도|2억원|20000|일본 신NISA 평생한도|1,800만엔(약 1억6,300만원)|16300@@크기만 놓고 보면 새 계좌는 일본 것보다 크다. 이 그림이 말하지 않는 것은 그 안에 무엇을 담을 수 있느냐다.@@기획재정부 2026년 세제개편안 (2026-08-03) · 일본 금융청 NISA 제도 · 환율은 100엔당 906원 (2026-08-05 조회)\n\n## 담을 수 있는 것이 정해져 있다\n\n새 계좌에 담을 수 있는 것은 국내 주식과 국내 주식형 펀드, 국민성장펀드처럼 국내 자산으로 한정된다.\n국내 증시에 상장돼 있어도 미국 지수를 따라가는 상장지수펀드는 빠진다.\n\n이 조항이 겨냥한 자리는 분명하다.\n개인 투자자가 해외 주식에 들고 있는 금액은 2025년 9월 말 기준 1,611억달러이고, 한국의 해외 주식 투자에서 개인이 차지하는 몫은 2020년 이전만 해도 열에 하나가 채 안 됐는데 지금은 셋 중 하나를 넘는다.\n절세 계좌를 미국 지수로 채우던 흐름을 국내로 돌려세우겠다는 것이다.\n\n@@REF@@한국, 해외 주식 유출을 줄이기 위해 세제 혜택을 내놓다 (Korea Herald, 2025-12-24)|https://www.koreaherald.com/article/10642876|https://wimg.heraldcorp.com/news/cms/2025/12/24/news-p.v1.20251224.c7ece11b937447eaafcfdba0cd307f0b_T1.jpg\n\n다만 국내 자산만 담으면 한 나라의 증시가 흔들릴 때 그 충격을 나눌 곳이 계좌 안에 없다.\n절세를 받는 대신 분산을 포기하는 셈이다.\n\n## 기존 계좌 973만 개가 잃는 것\n\n같은 개편안은 이미 열려 있는 계좌의 조건도 함께 손봤다.\n6월 말 기준으로 기존 ISA는 973만 개, 잔액은 73조원이다.\n\n첫째, 못 채운 납입한도를 다음 해로 넘기는 기능이 없어진다.\n올해 500만원만 넣었다면 지금까지는 이듬해에 못 넣은 1,500만원까지 몰아 넣을 수 있었다. 성과급이 나오는 해에 밀린 한도를 한꺼번에 채우던 방식이 막힌다.\n\n둘째, 사실상 계속 연장할 수 있던 계약 기간이 최대 5년으로 잘린다.\n절세 계좌의 힘은 세금을 떼지 않은 원금이 그대로 다시 굴러가는 데서 나오는데, 5년마다 계좌를 닫으면 그 시간이 짧아진다.\n\n@@CMP@@정부의 설명|이자와 배당에 붙던 세금이 사라지고 총한도가 두 배가 됐다. 청년에게는 소득공제까지 얹었으니 계좌는 커졌다.|메르의 읽기|담을 수 있는 자산이 국내로 묶였고 기존 계좌는 이월과 기간을 잃었다. 그릇은 커졌는데 담을 것이 줄었다.\n\n같은 개정안을 두고 계좌의 크기를 보느냐 담을 수 있는 자산의 범위를 보느냐에 따라 평가가 갈리고 있다.\n\n## 생산적금융 ISA가 12월 국회를 지나는 자리\n\n지금 나온 것은 정부안이고, 세법 개정안은 통상 12월 정기국회에서 확정된다.\n계좌를 어떻게 쓸지 정하기 전에 볼 것은 혜택의 크기가 아니라 국내 자산 한정 조항이 그대로 살아남느냐다.\n\n조항이 그대로 통과하면 절세를 위해 국내 자산을 담는 계좌와 해외 지수를 담는 일반 계좌를 따로 굴리는 쪽이 현실적인 답이 되고, 국회에서 해외 자산이 열리면 계좌 하나로 끝난다.\n기존 계좌를 들고 있는 쪽은 이월이 남아 있는 올해가 마지막이라는 점도 함께 따져 볼 만하다.",
+    "en": "In the tax revision unveiled on August 3, the Korean government created a new account called the productive finance ISA.\nTax on interest and dividends inside it disappears and the lifetime ceiling doubles from the existing ISA, but the only things it may hold are domestic assets.\n\n@@REF@@South Korea plans tax breaks to revive economic growth (UPI, 2026-08-03)|https://www.upi.com/Top_News/World-News/2026/08/03/special-taxation-act-tax-reform/2161785809142/|https://cdnph.upi.com/sv/ph/og/i/2161785809142/2026/1/17858092557035/v1.5/South-Korea-plans-tax-breaks-to-revive-economic-growth.jpg\n\nAn ISA is a tax favoured account that holds deposits, stocks and funds together and trims the tax on what they earn.\nThe existing Korean ISA exempts only the first 2 million won of gains and takes 9.9 percent of the rest separately, while the new account leaves interest and dividends untaxed with no ceiling at all.\n\nYoung savers get one more thing.\nAnyone aged 15 to 34 with total salary of 75 million won or less can deduct 10 percent of the year's contributions from income. Paying in comes back as a deduction at year end settlement.\n\nThe annual contribution limit is 20 million won, and the account runs in three year contracts up to ten years in total.\n\n## Looking only at the size of the bowl\n\n@@BAR@@Existing ISA lifetime cap|100m won|10000|Productive finance ISA cap|200m won|20000|Japan's new NISA lifetime cap|18m yen (about 163m won)|16300@@On size alone the new Korean account is the bigger one. What the picture does not say is what may go inside it.@@Ministry of Economy and Finance 2026 tax revision (2026-08-03), Japan FSA NISA framework, converted at 906 won per 100 yen (checked 2026-08-05)\n\n## What it is allowed to hold\n\nThe new account is limited to domestic assets: Korean stocks, domestic equity funds, and vehicles such as the National Growth Fund.\nExchange traded funds that track US indexes drop out even when they are listed in Seoul.\n\nThe target of that clause is not hard to see.\nKorean retail investors held $161.1 billion of overseas stocks as of the end of September 2025, and the retail share of the country's outbound equity investment, less than one in ten before 2020, is now more than one in three.\nThe idea is to turn the flow that had been filling tax favoured accounts with US index funds back toward the domestic market.\n\n@@REF@@Korea offers tax breaks to curb overseas stock outflows (Korea Herald, 2025-12-24)|https://www.koreaherald.com/article/10642876|https://wimg.heraldcorp.com/news/cms/2025/12/24/news-p.v1.20251224.c7ece11b937447eaafcfdba0cd307f0b_T1.jpg\n\nHolding domestic assets only also means that when one country's market shakes, there is nothing inside the account to share the shock.\nThe saver takes the tax break and gives up the spread.\n\n## What the 9.73 million existing accounts lose\n\nThe same revision reaches back into accounts that are already open.\nAt the end of June there were 9.73 million existing ISAs holding 73 trillion won.\n\nFirst, unused contribution room can no longer be carried into the next year.\nA saver who put in 5 million won this year could until now add the missing 15 million on top of the following year's room. The habit of catching up in a year when the bonus lands is closed off.\n\nSecond, a contract that could effectively be rolled forward indefinitely is now capped at five years.\nThe force of a tax favoured account comes from untaxed principal going straight back to work, and closing the account every five years shortens that runway.\n\n@@CMP@@The government's account|Tax on interest and dividends is gone and the lifetime ceiling has doubled. With an income deduction for the young on top, the account got bigger.|Meru's reading|The assets it may hold are fenced into the domestic market, and existing accounts lost carryover and duration. The bowl grew while what goes in it shrank.\n\nWhat splits the two readings of the same bill is whether you look at the size of the account or at the range of assets it is allowed to hold.\n\n## Where the productive finance ISA meets the December Assembly\n\nWhat exists today is a government proposal, and tax bills are normally settled in the regular National Assembly session in December.\nBefore deciding how to use the account, the thing to watch is not the size of the benefit but whether the domestic assets only clause survives intact.\n\nIf it passes as written, the practical answer is to run a tax favoured account for domestic assets next to an ordinary account for overseas indexes; if the Assembly opens the door to foreign assets, one account does the job.\nAnyone already holding an ISA also has reason to weigh that this year is the last one with carryover in it.",
+    "ja": "韓国政府が8月3日の税制改正案で、生産的金融ISAという口座を新設した。\n利子と配当にかかっていた税が消え、総枠は既存ISAの二倍になるが、入れられるのは国内資産だけだ。\n\n@@REF@@韓国、成長を立て直すための税制優遇を打ち出す (UPI, 2026-08-03)|https://www.upi.com/Top_News/World-News/2026/08/03/special-taxation-act-tax-reform/2161785809142/|https://cdnph.upi.com/sv/ph/og/i/2161785809142/2026/1/17858092557035/v1.5/South-Korea-plans-tax-breaks-to-revive-economic-growth.jpg\n\nISAは預金と株式、投信を一つの口座に入れ、そこから出た収益の税を軽くする節税口座だ。\n既存のISAは収益200万ウォンまでしか非課税にせず、超えた分は9.9%で別に取っていたが、新しい口座は利子と配当に上限なしで課税しない。\n\n若い世代にはもう一つ付く。\n15歳から34歳で総給与7,500万ウォン以下なら、その年の払込額の10%を所得から差し引く。払い込むこと自体が年末調整で控除として戻るという意味だ。\n\n年間の払込限度は2,000万ウォンで、3年単位の契約で最長10年まで回せる。\n\n## 器の大きさだけを見れば\n\n@@BAR@@既存ISAの総枠|1億ウォン|10000|生産的金融ISAの総枠|2億ウォン|20000|日本の新NISA生涯枠|1,800万円(約1億6,300万ウォン)|16300@@大きさだけ置いて見れば、新しい口座は日本のものより大きい。この図が語らないのは、その中に何を入れられるかだ。@@韓国企画財政部2026年税制改正案 (2026-08-03) · 日本金融庁のNISA制度 · 為替は100円=906ウォン (2026-08-05調べ)\n\n## 入れられるものが決まっている\n\n新しい口座に入れられるのは、国内株式と国内株式型ファンド、国民成長ファンドのような国内資産に限られる。\n韓国市場に上場していても、米国指数に連動する上場投資信託は外れる。\n\nこの条項が狙う場所ははっきりしている。\n個人投資家が海外株式に持つ金額は2025年9月末で1,611億ドルにのぼり、韓国の海外株式投資に占める個人の割合は、2020年以前は十に一つに満たなかったが、いまは三つに一つを超える。\n節税口座を米国指数で埋めていた流れを、国内へ向け直すということだ。\n\n@@REF@@韓国、海外株式への資金流出を抑えるため税制優遇を提示 (Korea Herald, 2025-12-24)|https://www.koreaherald.com/article/10642876|https://wimg.heraldcorp.com/news/cms/2025/12/24/news-p.v1.20251224.c7ece11b937447eaafcfdba0cd307f0b_T1.jpg\n\nただ国内資産だけを入れると、一つの国の相場が揺れたときに衝撃を分け合う先が口座の中にない。\n節税を受ける代わりに分散を手放す形になる。\n\n## 既存口座973万件が失うもの\n\n同じ改正案は、すでに開いている口座の条件にも手を入れた。\n6月末時点で既存ISAは973万件、残高は73兆ウォンだ。\n\n第一に、使い切れなかった払込枠を翌年へ繰り越す機能がなくなる。\n今年500万ウォンしか入れなかったなら、これまでは翌年に未使用の1,500万ウォンまでまとめて入れられた。賞与が出た年に遅れた枠を一度に埋めるやり方がふさがれる。\n\n第二に、事実上いくらでも延長できた契約期間が最長5年に切られる。\n節税口座の力は、税を引かれていない元本がそのまま再び回るところから出る。5年ごとに口座を閉じれば、その時間が短くなる。\n\n@@CMP@@政府の説明|利子と配当にかかっていた税が消え、総枠は二倍になった。若年層には所得控除まで乗せたのだから口座は大きくなった。|メルの読み|入れられる資産は国内に縛られ、既存口座は繰り越しと期間を失った。器は大きくなったのに入れるものが減った。\n\n同じ改正案をめぐって、口座の大きさを見るか、入れられる資産の範囲を見るかで評価が割れている。\n\n## 生産的金融ISAが12月の国会を通る場所\n\nいま出ているのは政府案で、税法改正案は通常12月の定期国会で確定する。\n口座の使い方を決める前に見るべきは、優遇の大きさではなく国内資産限定の条項がそのまま残るかどうかだ。\n\n条項がそのまま通れば、節税用に国内資産を入れる口座と海外指数を入れる一般口座を別に回すのが現実的な答えになり、国会で海外資産が開けば口座一つで済む。\n既存口座を持つ側は、繰り越しが残る今年が最後だという点も併せて考える値打ちがある。"
+   },
+   "why": {
+    "ko": "절세 계좌의 혜택이 커지는 동시에 담을 수 있는 자산이 국내로 묶였고, 이미 열려 있는 계좌 973만 개의 조건까지 함께 바뀐다. 개인 자금이 어디로 흐를지를 세법이 직접 정하는 국면이다.",
+    "en": "The tax break got bigger at the same moment the eligible assets were fenced into the domestic market, and the terms of 9.73 million existing accounts change with it. Tax law is directly setting where household money flows.",
+    "ja": "節税口座の優遇が大きくなると同時に、入れられる資産が国内に縛られ、すでに開いている973万件の条件まで変わる。個人の資金がどこへ流れるかを税法が直接決める局面だ。"
+   },
+   "ask": {
+    "ko": "절세를 받는 대신 미국 지수를 포기해야 한다면, 어느 쪽을 고를까? 세금을 아끼는 값어치가 분산을 포기하는 값어치보다 클까, 아니면 일반 계좌로 해외를 계속 담는 편이 나을까?",
+    "en": "If the tax break comes at the price of giving up US index funds, which side do you take? Is the tax saved worth more than the diversification lost, or is it better to keep buying overseas through an ordinary account?",
+    "ja": "節税を受ける代わりに米国指数を諦めるなら、どちらを選ぶだろうか。税を節約する値打ちは分散を手放す値打ちより大きいのか、それとも一般口座で海外を持ち続ける方がよいのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 12월 정기국회에서 생산적금융 ISA의 국내 자산 한정 조항이 그대로 확정되는지로 채점한다.",
+     "en": "Scored on whether the domestic assets only clause of the productive finance ISA survives the December 2026 regular Assembly session.",
+     "ja": "2026年12月の定期国会で生産的金融ISAの国内資産限定条項がそのまま確定するかで採点する。"
+    },
+    "due": "2027-01-15",
+    "card": {
+     "metric": {
+      "ko": "생산적금융 ISA의 국내 자산 한정 조항",
+      "en": "The domestic assets only clause of the productive finance ISA",
+      "ja": "生産的金融ISAの国内資産限定条項"
+     },
+     "now": {
+      "ko": "2026년 8월 3일 정부안 기준으로 국내 상장 해외 ETF까지 제외",
+      "en": "As proposed on 2026-08-03 it excludes even domestically listed foreign ETFs",
+      "ja": "2026年8月3日の政府案では国内上場の海外ETFまで除外"
+     },
+     "when": {
+      "ko": "2026년 12월 정기국회 세법 처리",
+      "en": "Tax bill passage in the regular Assembly session, December 2026",
+      "ja": "2026年12月の定期国会での税法処理"
+     },
+     "hit": {
+      "ko": "국내 자산 한정이 그대로 통과 → 정부안대로 확정됐다",
+      "en": "The clause passes unchanged, meaning the proposal was confirmed as written",
+      "ja": "国内資産限定がそのまま通過すれば、政府案どおり確定したことになる"
+     },
+     "miss": {
+      "ko": "해외 자산이 일부라도 허용되도록 수정 → 정부안에서 물러섰다",
+      "en": "The clause is amended to allow foreign assets even in part, meaning the proposal was walked back",
+      "ja": "海外資産が一部でも認められるよう修正されれば、政府案から後退したことになる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르 · 2026-08-05",
+      "en": "Meru, 2026-08-05",
+      "ja": "メル · 2026-08-05"
+     },
+     "url": "https://blog.naver.com/ranto28/224368786980"
+    },
+    {
+     "name": {
+      "ko": "개편안 보도",
+      "en": "Coverage of the revision",
+      "ja": "改正案の報道"
+     },
+     "desc": {
+      "ko": "UPI · 2026-08-03",
+      "en": "UPI, 2026-08-03",
+      "ja": "UPI · 2026-08-03"
+     },
+     "url": "https://www.upi.com/Top_News/World-News/2026/08/03/special-taxation-act-tax-reform/2161785809142/"
+    },
+    {
+     "name": {
+      "ko": "해외 주식 보유 규모",
+      "en": "Overseas holdings",
+      "ja": "海外株式の保有規模"
+     },
+     "desc": {
+      "ko": "Korea Herald · 2025-12-24",
+      "en": "Korea Herald, 2025-12-24",
+      "ja": "Korea Herald · 2025-12-24"
+     },
+     "url": "https://www.koreaherald.com/article/10642876"
+    },
+    {
+     "name": {
+      "ko": "기존 ISA 계좌 수와 잔액",
+      "en": "Existing ISA accounts and balances",
+      "ja": "既存ISAの口座数と残高"
+     },
+     "desc": {
+      "ko": "6월 말 973만 계좌·73조원 · 한국경제 보도 · 2026-08-05",
+      "en": "9.73 million accounts and 73 trillion won at end June, Hankyung, 2026-08-05",
+      "ja": "6月末で973万口座・73兆ウォン · 韓国経済報道 · 2026-08-05"
+     },
+     "url": "https://www.hankyung.com/article/2026080570091"
+    },
+    {
+     "name": {
+      "ko": "일본 NISA 한도",
+      "en": "Japan NISA limits",
+      "ja": "日本のNISA枠"
+     },
+     "desc": {
+      "ko": "신NISA 연 360만엔·평생 1,800만엔 · 로이터 정리 기사",
+      "en": "New NISA at 3.6m yen a year and 18m yen lifetime, Reuters factbox",
+      "ja": "新NISAは年360万円・生涯1,800万円 · ロイターのまとめ記事"
+     },
+     "url": "https://www.investing.com/news/stock-market-news/factboxwhat-is-japans-nisa-taxfree-investment-scheme-3246374"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회 · 개편안 내용은 2026년 8월 3일 정부안 기준이며 국회 처리 전이다. 엔화 환산은 같은 날 100엔당 906원 기준이고, 해외 주식 보유액은 2025년 9월 말 기준이다.",
+    "en": "Checked 2026-08-05. The revision is as proposed by the government on 2026-08-03 and has not been through the Assembly. The yen conversion uses 906 won per 100 yen on the same day, and the overseas holdings figure is as of end September 2025.",
+    "ja": "2026-08-05調べ · 改正案の内容は2026年8月3日の政府案時点で、国会通過前だ。円換算は同日の100円=906ウォン基準、海外株式の保有額は2025年9月末時点である。"
+   }
+  },
+  {
+   "date": "2026-08-05",
+   "id": "elerian-ism-services-employment-back-below-50",
+   "related": [
+    "elerian-copper-14000-us-stockpile-tariff-front-running",
+    "kobeissi-stock-bond-correlation-negative-since-1999",
+    "schiff-us-credit-card-delinquency-level-vs-direction"
+   ],
+   "source": "Mohamed El-Erian (@elerianm)",
+   "sourceUrl": "https://x.com/elerianm/status/2085062336230944807",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/elerianm?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#0E7490",
+    "label": "ISM SERVICES"
+   },
+   "tags": [
+    "ISM",
+    "JOBS",
+    "INFLATION"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "구인 740만 건, ADP 4만4,000명, 그리고 다시 50 아래로 내려간 고용",
+    "en": "7.4 million openings, 44,000 ADP jobs, and a services employment gauge back below 50",
+    "ja": "求人740万件、ADP4万4,000人、そして再び50を割った雇用"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Two other aspects of this report stand out: Employment: Dropped back into contractionary territory at 47.4. Prices Paid: Rose from 67.7 to 70.3.",
+      "The weakness in the employment component will sharpen the market's focus on Friday's Jobs Report."
+     ],
+     "ko": [
+      "이 보고서에서 눈에 띄는 대목이 둘 더 있다. 고용: 47.4로 다시 위축 영역으로 내려앉았다. 물가지불: 67.7에서 70.3으로 올랐다.",
+      "고용 항목의 약세는 금요일 고용보고서에 대한 시장의 관심을 더 날카롭게 만들 것이다."
+     ],
+     "ja": [
+      "この報告書で目を引く点がもう二つある。雇用: 47.4で再び縮小圏に落ちた。価格支払い: 67.7から70.3へ上がった。",
+      "雇用項目の弱さは、金曜の雇用統計に対する市場の関心をより鋭くするだろう。"
+     ]
+    },
+    "cite": "Mohamed El-Erian · 2026.08.05"
+   },
+   "sum3": {
+    "ko": "7월 미국 ISM 서비스업 지수가 25개월 연속 확장 구간에 머물렀다.\n겉으로 보면 서비스업이 버티고 있다는 이야기다. 사업활동과 신규주문 항목은 6월보다 오히려 올랐다.\n그런데 같은 보고서에서 고용 항목은 다시 50 아래로 내려갔고 물가지불 항목은 최근 1년 사이 5월에 이어 두 번째로 높았다. 사람은 덜 뽑는데 가격은 더 오르고 있다.",
+    "en": "The US ISM Services index stayed in expansion in July, its 25th month in a row.\nOn the surface that says the service sector is holding up. Business activity and new orders both improved on June.\nBut in the same report the employment component fell back below 50 and prices paid came in at the second highest reading of the past year after May. Fewer people are being hired while prices are being pushed up.",
+    "ja": "7月の米ISMサービス業指数は25カ月連続で拡大圏にとどまった。\n表向きはサービス業が持ちこたえているという話だ。事業活動と新規受注の項目はむしろ6月より上がった。\nだが同じ報告書で雇用の項目は再び50を割り、価格支払いの項目は直近1年で5月に次ぐ高さだった。人は減らして採り、値段は上げている。"
+   },
+   "gist": {
+    "ko": "미국 서비스업 경기지수가 7월에도 확장 구간에 머물렀지만, 그 안의 고용 항목은 다시 위축 구간으로 내려갔다.\n\n같은 보고서에서 사업활동은 55.4에서 59.1로, 신규주문은 55.1에서 57.2로 올랐다. 활동이 줄어서 생긴 일이 아니라는 뜻이다.\n\n@@REF@@미국 서비스업이 7월에도 강한 성장세를 이어갔다 (Reuters, 2026-08-05)|https://www.investing.com/news/economic-indicators/us-service-sector-maintains-strong-growth-pace-in-july-4838224|https://i-invdn-com.investing.com/news/LYNXMPEBBR0PM_L.jpg\n\n@@CHK@@서비스업 종합(7월)|54.1|시장 예상|54.5|고용(7월)|47.4|고용(6월)|51.2|물가지불(7월)|70.3|물가지불(6월)|67.7@@종합 지수만 보면 6월과 거의 같은 자리다. 갈라진 것은 세부 항목이고, 고용과 물가가 서로 반대 방향으로 움직였다. 엘에리언이 짚은 두 대목이 수치로 확인된다.@@2026-08-05 · ISM 서비스업 보고서 (PR Newswire 배포 원문)\n\n## 왜 50이 기준선인가\n\n이 지수는 금액을 재는 것이 아니라 방향을 묻는 조사다.\n구매 담당자에게 지난달보다 나아졌는지 나빠졌는지를 물어, 나아졌다고 답한 비율로 지수를 만든다.\n\n그래서 50은 좋아졌다는 답과 나빠졌다는 답이 같은 수라는 뜻이고, 그 아래는 줄었다고 답한 쪽이 더 많다는 뜻이다.\n고용 항목이 50 아래라는 것은 사람을 줄인 회사가 늘린 회사보다 많다는 이야기지, 서비스업 일자리가 얼마나 사라졌는지를 말해 주지는 않는다.\n\n## 봄 내내 50 아래였던 자리\n\n@@TIME@@2026-03|서비스업 고용 45.2로 올해 첫 위축|2026-04|48.0으로 두 달째 위축|2026-05|47.9로 석 달째 위축|2026-06|한 달 만에 50 위로 복귀|>2026-08-07|7월 고용보고서 발표@@올해 서비스업 고용은 봄 내내 50 아래에 있었고, 6월의 반등이 오히려 예외에 가까웠다.@@ISM 서비스업 월별 보도자료 (2026-03 ~ 2026-08)\n\n## 같은 날 나온 고용 숫자들\n\n민간 급여 처리업체 ADP가 집계한 7월 민간 고용은 4만4,000명 늘었다. 시장이 보던 6만5,000명에 크게 못 미쳤고, 6월 수치도 9만8,000명에서 9만5,000명으로 내려 잡혔다.\n\n@@REF@@ADP 민간 고용, 지난달 시장 예상에 못 미쳤다 (Yahoo Finance, 2026-08-05)|https://finance.yahoo.com/economy/policy/article/adp-private-sector-hiring-fell-short-of-expectations-last-month-122648905.html|https://s.yimg.com/lo/mysterio/api/663D1F11AB5F9508B7FE2370E2CB48EEDE961C72566EB9FAF2CEC6D4134263F1/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fd29szjachogqwa.cloudfront.net%2Fimages%2F2026-08%2F1efbc6c5-ca6d-410e-886c-fac7471096c6\n\n하루 앞서 나온 6월 구인 건수는 740만 건으로, 5월의 750만 건보다 줄었다.\n일자리를 새로 내놓는 쪽과 사람을 새로 뽑는 쪽이 같은 방향으로 식고 있다.\n\n한편 ADP 집계에서 회사를 옮긴 사람의 임금은 1년 전보다 7.0% 올라 지난해 8월 이후 가장 빠르게 뛰었다. 남아 있는 사람의 임금 상승률 4.4%와 차이가 크다.\n\n## 물가 쪽은 반대로 갔다\n\n서비스업 물가지불 항목은 올해 5월에 71.3까지 올라 2022년 8월 이후 가장 높았다. 7월은 최근 1년에서 그 다음으로 높은 자리다.\n\n이 항목은 110개월 연속으로 상승을 가리키고 있다. 9년 넘게 서비스 가격이 내려간 달이 없었다는 뜻이다.\n\n## 8월 7일 고용보고서가 받는 질문\n\n지금 시장이 재는 것은 서비스업이 확장하느냐가 아니라, 사람을 덜 뽑는 흐름이 서비스업 밖으로 번졌느냐다.\n금요일 고용보고서의 시장 예상은 비농업 고용 8만 명 증가와 실업률 4.2% 유지다.\n\n예상만큼 나오면 서비스업 고용의 위축은 조사 응답의 흔들림으로 남고, 크게 밑돌면 물가는 오르는데 고용은 식는 조합이 확인된다.\n연준이 가장 다루기 어려워하는 조합이 뒤쪽이다. 물가만 보면 금리를 낮추기 어렵고, 고용만 보면 낮춰야 하기 때문이다.",
+    "en": "The US services activity index stayed in expansion in July, but the employment component inside it dropped back into contraction.\n\nIn the same report business activity rose from 55.4 to 59.1 and new orders from 55.1 to 57.2. So this is not a case of activity drying up.\n\n@@REF@@US service sector maintains strong growth pace in July (Reuters, 2026-08-05)|https://www.investing.com/news/economic-indicators/us-service-sector-maintains-strong-growth-pace-in-july-4838224|https://i-invdn-com.investing.com/news/LYNXMPEBBR0PM_L.jpg\n\n@@CHK@@Services PMI (July)|54.1|Consensus|54.5|Employment (July)|47.4|Employment (June)|51.2|Prices Paid (July)|70.3|Prices Paid (June)|67.7@@On the headline alone the index sits almost exactly where it did in June. What split was underneath, where employment and prices moved in opposite directions. The two things El-Erian singled out show up in the numbers.@@2026-08-05, ISM Services report as distributed on PR Newswire\n\n## Why 50 is the line\n\nThis index does not measure amounts, it asks about direction.\nPurchasing managers are asked whether things got better or worse than last month, and the share answering better becomes the index.\n\nSo 50 means as many firms said better as said worse, and below 50 means more firms said they cut than said they added.\nAn employment reading under 50 says more service firms shrank headcount than grew it. It does not say how many service jobs disappeared.\n\n## Below 50 through the spring\n\n@@TIME@@2026-03|Services employment at 45.2, first contraction of the year|2026-04|48.0, a second month of contraction|2026-05|47.9, a third month|2026-06|Back above 50 after one month|>2026-08-07|July jobs report@@Services employment sat below 50 through the spring, which makes June's bounce look closer to the exception.@@ISM Services monthly releases, March to August 2026\n\n## The other jobs numbers that landed the same day\n\nADP, the payroll processor, counted 44,000 private jobs added in July. That is well short of the 65,000 the market was looking for, and June was revised down from 98,000 to 95,000.\n\n@@REF@@ADP: Private sector hiring fell short of expectations last month (Yahoo Finance, 2026-08-05)|https://finance.yahoo.com/economy/policy/article/adp-private-sector-hiring-fell-short-of-expectations-last-month-122648905.html|https://s.yimg.com/lo/mysterio/api/663D1F11AB5F9508B7FE2370E2CB48EEDE961C72566EB9FAF2CEC6D4134263F1/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fd29szjachogqwa.cloudfront.net%2Fimages%2F2026-08%2F1efbc6c5-ca6d-410e-886c-fac7471096c6\n\nJob openings for June, published a day earlier, came in at 7.4 million, down from 7.5 million in May.\nThe side posting jobs and the side filling them are cooling together.\n\nMeanwhile ADP had pay for people who changed jobs up 7.0 percent on a year earlier, the fastest since August last year, against 4.4 percent for those who stayed put.\n\n## Prices went the other way\n\nThe services prices paid component reached 71.3 in May, the highest since August 2022. July sits just under that, the second highest of the past year.\n\nThe component has now pointed to rising prices for 110 months in a row. That is more than nine years without a month of falling service prices.\n\n## The question the August 7 jobs report has to take\n\nWhat the market is measuring now is not whether services are expanding but whether slower hiring has spread beyond services.\nConsensus for Friday's report is 80,000 nonfarm jobs added and an unemployment rate holding at 4.2 percent.\n\nCome in near that and the services employment dip stays a wobble in survey responses; come in well under and the combination of rising prices with cooling employment is confirmed.\nThe second one is the combination the Federal Reserve finds hardest to handle, because prices argue against cutting rates while employment argues for it.",
+    "ja": "米サービス業の景況指数は7月も拡大圏にとどまったが、その中の雇用項目は再び縮小圏へ落ちた。\n\n同じ報告書で事業活動は55.4から59.1へ、新規受注は55.1から57.2へ上がった。活動が細って起きたことではない。\n\n@@REF@@米サービス業、7月も力強い成長ペースを維持 (Reuters, 2026-08-05)|https://www.investing.com/news/economic-indicators/us-service-sector-maintains-strong-growth-pace-in-july-4838224|https://i-invdn-com.investing.com/news/LYNXMPEBBR0PM_L.jpg\n\n@@CHK@@サービス業総合(7月)|54.1|市場予想|54.5|雇用(7月)|47.4|雇用(6月)|51.2|価格支払い(7月)|70.3|価格支払い(6月)|67.7@@総合指数だけ見れば6月とほぼ同じ位置だ。割れたのは内訳で、雇用と価格が逆の方向へ動いた。エラリアンが挙げた二点が数字で確かめられる。@@2026-08-05 · ISMサービス業報告(PR Newswire配信の原文)\n\n## なぜ50が境目なのか\n\nこの指数は金額を測るのではなく、方向を尋ねる調査だ。\n購買担当者に前月より良くなったか悪くなったかを聞き、良くなったと答えた比率で指数を作る。\n\nだから50は良いと答えた数と悪いと答えた数が同じという意味で、その下は減らしたと答えた側が多いという意味になる。\n雇用項目が50を下回るのは、人を減らした会社が増やした会社より多いという話であって、サービス業の職がどれだけ消えたかを語ってはいない。\n\n## 春の間ずっと50の下にあった場所\n\n@@TIME@@2026-03|サービス業雇用が45.2で今年初の縮小|2026-04|48.0で2カ月連続の縮小|2026-05|47.9で3カ月連続|2026-06|1カ月で50の上へ復帰|>2026-08-07|7月雇用統計の発表@@今年のサービス業雇用は春の間ずっと50の下にあり、6月の反発の方がむしろ例外に近い。@@ISMサービス業の月次リリース(2026-03～2026-08)\n\n## 同じ日に出た雇用の数字\n\n給与処理会社ADPが集計した7月の民間雇用は4万4,000人増だった。市場が見ていた6万5,000人に大きく届かず、6月の数字も9万8,000人から9万5,000人へ下方修正された。\n\n@@REF@@ADPの民間雇用、先月は市場予想に届かず (Yahoo Finance, 2026-08-05)|https://finance.yahoo.com/economy/policy/article/adp-private-sector-hiring-fell-short-of-expectations-last-month-122648905.html|https://s.yimg.com/lo/mysterio/api/663D1F11AB5F9508B7FE2370E2CB48EEDE961C72566EB9FAF2CEC6D4134263F1/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fd29szjachogqwa.cloudfront.net%2Fimages%2F2026-08%2F1efbc6c5-ca6d-410e-886c-fac7471096c6\n\n前日に出た6月の求人件数は740万件で、5月の750万件より減った。\n仕事を出す側と人を採る側が同じ方向へ冷えている。\n\n一方でADPの集計では転職した人の賃金が1年前より7.0%上がり、昨年8月以来の速さだった。とどまった人の4.4%との差は大きい。\n\n## 価格は逆へ動いた\n\nサービス業の価格支払い項目は今年5月に71.3まで上がり、2022年8月以来の高さだった。7月は直近1年でその次に高い位置にある。\n\nこの項目は110カ月連続で上昇を指している。9年以上、サービス価格が下がった月がないということだ。\n\n## 8月7日の雇用統計が受ける問い\n\nいま市場が測っているのはサービス業が拡大しているかではなく、採用を絞る流れがサービス業の外へ広がったかだ。\n金曜の雇用統計の市場予想は非農業部門雇用者数8万人増と失業率4.2%の維持である。\n\n予想どおりに出ればサービス業雇用の落ち込みは調査回答の揺れとして残り、大きく下回れば価格は上がるのに雇用は冷えるという組み合わせが確かめられる。\n連邦準備制度が最も扱いにくいのは後者だ。価格だけ見れば利下げしにくく、雇用だけ見れば下げるべきだからだ。"
+   },
+   "why": {
+    "ko": "서비스업 활동은 확장인데 그 안의 고용만 위축으로 돌아섰고 가격은 계속 오르고 있다. 물가와 고용이 반대로 움직이면 금리를 내릴 근거와 내리지 못할 근거가 같은 보고서에 함께 담긴다.",
+    "en": "Service activity is expanding while the employment inside it turned down and prices keep rising. When inflation and jobs move apart, one report carries both the case for cutting rates and the case against it.",
+    "ja": "サービス業の活動は拡大なのに、その中の雇用だけが縮小に転じ、価格は上がり続けている。物価と雇用が逆に動けば、利下げの根拠とできない根拠が同じ報告書に同居する。"
+   },
+   "ask": {
+    "ko": "고용은 식는데 서비스 가격은 계속 오르는 조합이라면, 연준은 어느 쪽을 먼저 봐야 할까? 8월 7일 고용보고서가 예상을 크게 밑돌면 금리 인하 논의가 다시 살아날까, 아니면 물가지불 항목이 그 논의를 막을까?",
+    "en": "If hiring is cooling while service prices keep climbing, which side should the Federal Reserve look at first? If Friday's jobs report undershoots badly, does the rate cut debate revive, or does the prices paid reading block it?",
+    "ja": "採用は冷えるのにサービス価格は上がり続ける組み合わせなら、連邦準備制度はどちらを先に見るべきか。8月7日の雇用統計が大きく下振れれば利下げ論は生き返るのか、それとも価格支払いの数字がそれを塞ぐのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 8월 7일 미국 7월 고용보고서의 비농업 고용 증가폭으로 채점한다.",
+     "en": "Scored on the July nonfarm payroll change in the US jobs report of 2026-08-07.",
+     "ja": "2026年8月7日の米7月雇用統計の非農業部門雇用者数の増加幅で採点する。"
+    },
+    "due": "2026-08-10",
+    "card": {
+     "metric": {
+      "ko": "미국 7월 비농업 고용 증가폭",
+      "en": "US nonfarm payroll change for July",
+      "ja": "米7月の非農業部門雇用者数の増加幅"
+     },
+     "now": {
+      "ko": "6월 5만7,000명 증가 · 7월 시장 예상 8만 명",
+      "en": "June came in at 57,000; consensus for July is 80,000",
+      "ja": "6月は5万7,000人増 · 7月の市場予想は8万人"
+     },
+     "when": {
+      "ko": "2026년 8월 7일 고용보고서",
+      "en": "Jobs report on 2026-08-07",
+      "ja": "2026年8月7日の雇用統計"
+     },
+     "hit": {
+      "ko": "8만 명 이상 → 서비스업 고용의 위축이 전체 고용으로 번지지 않았다",
+      "en": "80,000 or more, meaning the services employment dip did not spread to total payrolls",
+      "ja": "8万人以上なら、サービス業雇用の縮小は全体の雇用に波及しなかったことになる"
+     },
+     "miss": {
+      "ko": "8만 명 미만 → 채용이 서비스업 밖에서도 식고 있다",
+      "en": "Under 80,000, meaning hiring is cooling outside services too",
+      "ja": "8万人未満なら、採用がサービス業の外でも冷えていることになる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "모하메드 엘에리언(@elerianm) · 2026-08-05",
+      "en": "Mohamed El-Erian (@elerianm), 2026-08-05",
+      "ja": "モハメド・エラリアン(@elerianm) · 2026-08-05"
+     },
+     "url": "https://x.com/elerianm/status/2085062336230944807"
+    },
+    {
+     "name": {
+      "ko": "지표 원자료",
+      "en": "Index release",
+      "ja": "指標の原資料"
+     },
+     "desc": {
+      "ko": "ISM 서비스업 보고서 2026년 7월분 · PR Newswire 배포 원문 · 2026-08-05 조회",
+      "en": "ISM Services PMI report for July 2026, full text distributed via PR Newswire, checked 2026-08-05",
+      "ja": "ISMサービス業報告2026年7月分 · PR Newswire配信の原文 · 2026-08-05閲覧"
+     },
+     "url": "https://www.prnewswire.com/news-releases/services-pmi-at-54-1-july-2026-ism-services-pmi-report-302843134.html"
+    },
+    {
+     "name": {
+      "ko": "보도",
+      "en": "Coverage",
+      "ja": "報道"
+     },
+     "desc": {
+      "ko": "Reuters · 2026-08-05",
+      "en": "Reuters, 2026-08-05",
+      "ja": "Reuters · 2026-08-05"
+     },
+     "url": "https://www.investing.com/news/economic-indicators/us-service-sector-maintains-strong-growth-pace-in-july-4838224"
+    },
+    {
+     "name": {
+      "ko": "민간 고용",
+      "en": "Private payrolls",
+      "ja": "民間雇用"
+     },
+     "desc": {
+      "ko": "ADP 전미고용보고서 2026년 7월분 · Yahoo Finance 보도 · 2026-08-05",
+      "en": "ADP National Employment Report for July 2026, with Yahoo Finance coverage, 2026-08-05",
+      "ja": "ADP全米雇用報告2026年7月分 · Yahoo Finance報道 · 2026-08-05"
+     },
+     "url": "https://finance.yahoo.com/economy/policy/article/adp-private-sector-hiring-fell-short-of-expectations-last-month-122648905.html"
+    },
+    {
+     "name": {
+      "ko": "구인 건수",
+      "en": "Job openings",
+      "ja": "求人件数"
+     },
+     "desc": {
+      "ko": "미 노동통계국 JOLTS 2026년 6월분 · 2026-08-04 발표",
+      "en": "US Bureau of Labor Statistics JOLTS for June 2026, released 2026-08-04",
+      "ja": "米労働統計局JOLTS 2026年6月分 · 2026-08-04発表"
+     },
+     "url": "https://www.bls.gov/news.release/archives/jolts_08042026.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회 · 지수 값은 ISM이 그날 발표한 계절조정 수치이며, 시장 예상치는 발표 직전 집계 기준이다. 8월 7일 고용보고서 예상치는 발표 전 값이다.",
+    "en": "Checked 2026-08-05. Index values are the seasonally adjusted figures ISM published that day, and consensus numbers are as collected just before release. The August 7 jobs report figures are pre release expectations.",
+    "ja": "2026-08-05調べ · 指数はISMがその日に公表した季節調整値で、市場予想は発表直前の集計による。8月7日の雇用統計の数字は発表前の予想値だ。"
+   }
+  },
+  {
+   "date": "2026-08-05",
+   "id": "pichai-gdm-reshuffle-dean-discovery-loop",
+   "related": [
+    "jensen-alpamayo2-super-open-weights-commercial-license",
+    "semianalysis-kimi-k3-linear-attention-kv-cache",
+    "kobeissi-anthropic-custom-silicon-multi-chip"
+   ],
+   "source": "Sundar Pichai (@sundarpichai)",
+   "sourceUrl": "https://x.com/sundarpichai/status/2085033425736745093",
+   "sourceLang": "EN",
+   "category": "ceo",
+   "avatarImg": "https://unavatar.io/twitter/sundarpichai?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1020",
+    "to": "#1A73E8",
+    "label": "GOOGLE AI SHIFT"
+   },
+   "tags": [
+    "ALPHABET",
+    "AI",
+    "TALENT"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "구글이 27년 일한 수석 과학자를 배웅했다, 그가 세우는 회사의 창업 투자자로 이름을 올리면서",
+    "en": "Google waved off the chief scientist of 27 years, and signed on as a founding investor in the company he is leaving to build",
+    "ja": "グーグルが27年働いた主席科学者を送り出した、その人が興す会社の創業投資家として名を連ねながら"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Just shared some changes we're making to the teams at @GoogleDeepMind.",
+      "@DemisHassabis is stepping up to become Chair of @GoogleDeepMind & Chief Scientist of Alphabet, in addition to leading @IsomorphicLabs."
+     ],
+     "ko": [
+      "구글 딥마인드 조직에 적용하는 몇 가지 변화를 방금 공유했습니다.",
+      "데미스 허사비스는 아이소모픽 랩스를 이끄는 일에 더해, 구글 딥마인드 의장이자 알파벳 최고과학자로 올라섭니다."
+     ],
+     "ja": [
+      "グーグル・ディープマインドの組織に加える変更をいま共有しました。",
+      "デミス・ハサビスはアイソモーフィック・ラボを率いることに加え、グーグル・ディープマインド会長兼アルファベット最高科学責任者に就きます。"
+     ]
+    },
+    "cite": "Sundar Pichai · 2026.08.05"
+   },
+   "sum3": {
+    "ko": "구글이 8월 5일 인공지능 조직의 지휘부를 바꿨다. 데미스 허사비스는 딥마인드 최고경영자에서 물러나고, 제프 딘은 27년 만에 회사를 떠난다.\n겉으로 보면 인재가 빠져나간 날이다. 알파벳 주가는 장중 4% 안팎 떨어졌다.\n그런데 딘이 세우는 회사에 구글이 창업 투자자로 들어가고 첫해 클라우드까지 대준다. 나간 사람과 남은 회사가 한편에 서 있다.",
+    "en": "Google reshuffled the leadership of its AI organization on August 5. Demis Hassabis steps down as CEO of Google DeepMind, and Jeff Dean leaves after 27 years.\nOn the surface it reads as a day of talent walking out. Alphabet shares fell around 4 percent during the session.\nYet Google is going in as a founding investor in the company Dean is starting, and as its cloud partner for the first year. The people who left and the company they left stand on the same side.",
+    "ja": "グーグルが8月5日、AI組織の指揮系統を入れ替えた。デミス・ハサビスはディープマインドCEOを退き、ジェフ・ディーンは27年で会社を去る。\n表向きは人材が抜けた日に見える。アルファベット株は取引時間中に4%前後下げた。\nだがディーンが興す会社にグーグルは創業投資家として入り、初年度のクラウドまで支える。出ていく側と残る会社が同じ側に立っている。"
+   },
+   "gist": {
+    "ko": "구글이 인공지능 조직의 지휘부를 한꺼번에 바꾸고, 27년을 일한 수석 과학자를 배웅했다.\n알파벳 주가는 발표 당일 장중 4% 안팎 밀려 360달러대에서 거래된 것으로 전해졌다.\n\n@@REF@@구글의 오랜 AI 리더들이 떠나며 알파벳 주가가 하락했다 (TipRanks, 2026-08-05)|https://www.tipranks.com/news/alphabet-stock-googl-drops-after-longtime-google-ai-leaders-depart|https://blog.tipranks.com/wp-content/uploads/2026/08/shutterstock_2712594637-750x406.jpg\n\n## 자리를 옮긴 사람, 나간 사람\n\n데미스 허사비스는 구글 딥마인드 최고경영자에서 물러나 딥마인드 의장과 알파벳 최고과학자를 맡는다.\n신약 설계 회사인 아이소모픽 랩스의 대표는 그대로 유지한다.\n\n모델을 만드는 자리는 코라이 카북추올루가 이어받는다.\n딥마인드 수석부사장으로 제미나이 모델 개발과 프론티어 연구, 제미나이 앱과 개발자 조직까지 맡고 피차이에게 직접 보고한다.\n딥마인드에서 13년을 일했고 음성 합성 기술인 웨이브넷과 강화학습 모델 DQN이 그의 손에서 나왔다.\n\n@@REF@@허사비스가 딥마인드 최고경영자에서 의장으로 옮겨 AGI에 집중한다 (9to5Google, 2026-08-05)|https://9to5google.com/2026/08/05/demis-hassabis-deepmind/|https://i0.wp.com/9to5google.com/wp-content/uploads/sites/4/2025/04/Google-DeepMind-CEO-Demis-Hassabis-cover.jpg\n\n제프 딘은 27년 만에 구글을 떠난다.\n1999년에 함께 들어와 25년 넘게 같이 일한 산자이 게마와트와 새 회사를 세운다.\n두 사람이 만든 것이 맵리듀스와 구글 파일 시스템, 빅테이블, 스패너, 텐서플로다.\n지금 구글이 데이터를 처리하고 모델을 학습시키는 바닥이 이들의 손에서 나왔다.\n제미나이 공동 책임자였던 오리올 비니알스와 구글 브레인 공동 창업자 쿽 레도 함께 옮기는 것으로 보도됐다.\n\n## 나가는 회사에 구글이 돈을 댄다\n\n새 회사는 공익 목적 법인 형태로 전해졌다.\n주주 이익과 함께 정관에 적어 둔 공적 목적도 추구해야 하고, 그 성과를 정기적으로 공개해야 하는 미국 델라웨어주의 회사 형태다.\n\n쉽게 말해 이익을 내는 회사인데, 무엇을 위해 이익을 내는지를 정관에 박아 두는 구조다.\n앤스로픽과 파타고니아가 같은 형태를 쓴다.\n\n구글은 이 회사에 창업 투자자로 들어가고 첫해 클라우드도 대준다.\n래디컬 벤처스와 코슬라 벤처스가 함께 투자했다고 전해졌고, 투자 조건은 공개되지 않았다.\n회사 이름은 디스커버리 루프라는 보도가 나왔다. 피차이의 발표문에는 이름이 없다.\n\n## 하루가 아니라 1년 넘게 이어진 흐름\n\n@@TIME@@2025-06|카북추올루가 알파벳 최고 AI 설계자로 선임|2026-06-23|딥마인드 연구자들이 경쟁사로 옮기고 있다는 보도|2026-07-30|알파폴드를 만든 팀이 해체됐다는 보도|2026-08-05|조직 개편 발표와 주가 하락|>2026-10|알파벳 3분기 실적 발표@@이번 발표는 갑자기 터진 사건이라기보다 1년 넘게 쌓인 이탈의 마지막 장면에 가깝다.@@Axios (2026-06-23) · Technology.org (2026-07-30) · Google 블로그 (2026-08-05)\n\n## 알파벳이 10월에 보여줄 숫자\n\n피차이는 같은 발표에서 제미나이 앱 월 사용자가 9억5,000만 명을 넘었고 젬마 모델 내려받기가 9억 건을 넘었다고 밝혔다.\n사람은 바뀌었지만 돈은 그대로 나가고 있다. 알파벳은 7월 2분기 실적에서 올해 설비투자 계획을 1,950억~2,050억달러로 올려 잡았다.\n\n이 회사를 들고 있는 쪽이 물을 만한 것은 간판이 바뀐 자리가 아니라 모델이 나오는 속도다.\n연구자가 빠져나가도 개발이 밀리지 않는다면 이번 개편은 세대 교체로 남고, 10월 실적에서 설비투자 계획이 뒤로 물러나면 이야기가 달라진다.\n구글이 자기 인재의 새 회사에 투자자로 들어간 것도 그 자리에서 다시 읽힌다. 붙잡지 못한 것을 지분으로 붙잡아 둔 것인지, 아니면 나갈 사람은 나가되 연결은 끊지 않겠다는 것인지가 그때 드러난다.",
+    "en": "Google rewired the top of its AI organization in one announcement and waved off the chief scientist who had been there for 27 years.\nAlphabet shares were reported trading around 4 percent lower on the day, in the $360s.\n\n@@REF@@Alphabet Stock (GOOGL) Drops After Longtime Google AI Leaders Depart (TipRanks, 2026-08-05)|https://www.tipranks.com/news/alphabet-stock-googl-drops-after-longtime-google-ai-leaders-depart|https://blog.tipranks.com/wp-content/uploads/2026/08/shutterstock_2712594637-750x406.jpg\n\n## Who moved, who left\n\nDemis Hassabis steps down as CEO of Google DeepMind and becomes Chair of the lab and Chief Scientist of Alphabet.\nHe keeps running Isomorphic Labs, the drug design company.\n\nThe seat where models actually get built goes to Koray Kavukcuoglu.\nAs SVP of Google DeepMind he takes Gemini model development, frontier research, and the Gemini app and developer teams, reporting straight to Pichai.\nHe has been at DeepMind for 13 years, and WaveNet, the speech synthesis system, and the DQN reinforcement learning model came out of his work.\n\n@@REF@@Demis Hassabis drops DeepMind CEO role to become Chair and focus on AGI (9to5Google, 2026-08-05)|https://9to5google.com/2026/08/05/demis-hassabis-deepmind/|https://i0.wp.com/9to5google.com/wp-content/uploads/sites/4/2025/04/Google-DeepMind-CEO-Demis-Hassabis-cover.jpg\n\nJeff Dean is leaving Google after 27 years.\nHe is starting a company with Sanjay Ghemawat, who joined in 1999 alongside him and has worked with him for more than 25 years.\nBetween them they built MapReduce, the Google File System, Bigtable, Spanner and TensorFlow.\nThe floor Google now stands on to process data and train models came out of their hands.\nOriol Vinyals, a Gemini co-lead, and Quoc Le, a co-founder of Google Brain, are reported to be joining them.\n\n## Google is funding the company it is losing them to\n\nThe new firm is said to be a public benefit corporation.\nThat is a Delaware company form that must pursue a public purpose written into its charter alongside shareholder returns, and must report publicly on how that purpose is going.\n\nPut simply, it is a for profit company that nails down in its charter what the profit is for.\nAnthropic and Patagonia use the same structure.\n\nGoogle is going in as a founding investor and supplying cloud capacity for the first year.\nRadical Ventures and Khosla Ventures are reported to have invested alongside it, and the terms were not disclosed.\nReports name the company Discovery Loop. Pichai's own post does not name it.\n\n## Not one day, but a year of this\n\n@@TIME@@2025-06|Kavukcuoglu named Chief AI Architect at Alphabet|2026-06-23|Reports of DeepMind researchers moving to rivals|2026-07-30|Reports that the team behind AlphaFold was disbanded|2026-08-05|Reorganization announced, shares fall|>2026-10|Alphabet third quarter results@@This week reads less like a sudden break than the closing scene of departures that have been stacking up for over a year.@@Axios (2026-06-23), Technology.org (2026-07-30), Google blog (2026-08-05)\n\n## The number Alphabet shows in October\n\nIn the same announcement Pichai said the Gemini app had passed 950 million monthly users and Gemma model downloads had passed 900 million.\nThe people changed; the spending did not. At July's second quarter results Alphabet raised its capital spending plan for the year to between $195 billion and $205 billion.\n\nWhat an owner of this stock has reason to ask about is not the nameplate on the door but the pace at which models ship.\nIf development does not slip as researchers leave, this reads as a generational handover; if the capital spending plan steps back at the October results, it reads differently.\nGoogle taking an investor's seat in its own people's new company gets re read at that point too. Either it bought with equity what it could not keep on payroll, or it decided that people may leave while the connection does not.",
+    "ja": "グーグルがAI組織の指揮系統を一度に入れ替え、27年働いた主席科学者を送り出した。\nアルファベット株は発表当日、取引時間中に4%前後下げ、360ドル台で取引されたと伝えられた。\n\n@@REF@@長年のAIリーダー退社でアルファベット株が下落 (TipRanks, 2026-08-05)|https://www.tipranks.com/news/alphabet-stock-googl-drops-after-longtime-google-ai-leaders-depart|https://blog.tipranks.com/wp-content/uploads/2026/08/shutterstock_2712594637-750x406.jpg\n\n## 動いた人、出た人\n\nデミス・ハサビスはグーグル・ディープマインドCEOを退き、同社会長とアルファベット最高科学責任者に就く。\n創薬設計会社アイソモーフィック・ラボのトップはそのまま続ける。\n\nモデルを作る席はコライ・カブクチュオールが引き継ぐ。\nディープマインド上級副社長としてジェミニのモデル開発とフロンティア研究、ジェミニのアプリと開発者組織まで担い、ピチャイに直接報告する。\nディープマインドで13年を過ごし、音声合成技術ウェーブネットと強化学習モデルDQNは彼の仕事から出た。\n\n@@REF@@ハサビスがディープマインドCEOから会長へ、AGIに集中する (9to5Google, 2026-08-05)|https://9to5google.com/2026/08/05/demis-hassabis-deepmind/|https://i0.wp.com/9to5google.com/wp-content/uploads/sites/4/2025/04/Google-DeepMind-CEO-Demis-Hassabis-cover.jpg\n\nジェフ・ディーンは27年でグーグルを去る。\n1999年に共に入社し25年以上一緒に働いたサンジェイ・ゲマワットと新会社を立てる。\n二人が作ったのがマップリデュース、グーグル・ファイル・システム、ビッグテーブル、スパナー、テンソルフローだ。\nいまグーグルがデータを処理しモデルを学習させる土台は、この二人の手から出ている。\nジェミニ共同責任者だったオリオル・ヴィニャルスと、グーグル・ブレイン共同創業者のクオック・レも移ると報じられた。\n\n## 出ていく会社にグーグルが金を出す\n\n新会社は公益目的法人の形だと伝えられた。\n株主の利益とともに定款に書いた公的目的も追わなければならず、その成果を定期的に公表する義務がある米デラウェア州の会社形態だ。\n\nかみ砕けば、利益を出す会社でありながら、何のための利益かを定款に打ち込んでおく構造だ。\nアンソロピックやパタゴニアが同じ形を使う。\n\nグーグルはこの会社に創業投資家として入り、初年度のクラウドも供給する。\nラディカル・ベンチャーズとコースラ・ベンチャーズが並んで投資したと伝えられ、条件は公表されていない。\n社名はディスカバリー・ループだと報じられている。ピチャイの発表文に名前はない。\n\n## 一日ではなく一年以上続いた流れ\n\n@@TIME@@2025-06|カブクチュオールがアルファベット最高AI設計責任者に就任|2026-06-23|ディープマインドの研究者が競合に移っているとの報道|2026-07-30|アルファフォールドを作ったチームが解体されたとの報道|2026-08-05|組織再編の発表と株価下落|>2026-10|アルファベット第3四半期決算@@今回の発表は突然の断絶というより、1年以上積み上がった離脱の最後の場面に近い。@@Axios (2026-06-23) · Technology.org (2026-07-30) · Googleブログ (2026-08-05)\n\n## アルファベットが10月に見せる数字\n\nピチャイは同じ発表で、ジェミニのアプリの月間利用者が9億5,000万人を超え、ジェンマのモデル取得が9億件を超えたと明かした。\n人は替わったが金は出続けている。アルファベットは7月の第2四半期決算で今年の設備投資計画を1,950億～2,050億ドルに引き上げた。\n\nこの株を持つ側が問う値打ちがあるのは、扉の名札ではなくモデルが出てくる速さだ。\n研究者が抜けても開発が遅れなければ今回の再編は世代交代として残り、10月の決算で設備投資計画が後退すれば話は変わる。\nグーグルが自社人材の新会社に投資家として入ったことも、そこで読み直される。給与で留められなかったものを持ち分で留めたのか、人は出ても縁は切らないと決めたのかが、その時に見えてくる。"
+   },
+   "why": {
+    "ko": "구글의 인공지능 조직에서 모델을 만들던 사람들이 한꺼번에 자리를 옮기거나 나갔고, 그 회사에 구글이 투자자로 따라 들어갔다. 개발 속도가 유지되는지가 알파벳 실적의 전제를 좌우한다.",
+    "en": "The people who built models inside Google's AI organization moved or left all at once, and Google followed them in as an investor. Whether development speed holds is the premise under Alphabet's earnings.",
+    "ja": "グーグルのAI組織でモデルを作っていた人々が一度に動くか去り、その会社にグーグルが投資家として付いていった。開発の速さが保たれるかがアルファベットの業績の前提を左右する。"
+   },
+   "ask": {
+    "ko": "인공지능 회사의 값어치는 조직에 있을까, 사람에게 있을까? 구글은 나가는 사람의 회사에 지분으로 남는 길을 골랐다. 이 선택이 붙잡은 것과 놓친 것 중 어느 쪽이 클까?",
+    "en": "Does the value of an AI company sit in the organization or in the people? Google chose to stay in its departing team's new company through equity. Did that choice hold on to more than it let go?",
+    "ja": "AI企業の値打ちは組織にあるのか、人にあるのか。グーグルは出ていく人の会社に持ち分で残る道を選んだ。この選択はつかんだものと逃したもの、どちらが大きいだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 10월 알파벳 3분기 실적에서 올해 설비투자 계획이 유지되는지로 채점한다.",
+     "en": "Scored at Alphabet's third quarter results in October 2026 on whether the full year capital spending plan holds.",
+     "ja": "2026年10月のアルファベット第3四半期決算で、今年の設備投資計画が維持されるかで採点する。"
+    },
+    "due": "2026-11-15",
+    "card": {
+     "metric": {
+      "ko": "알파벳 2026년 연간 설비투자 계획",
+      "en": "Alphabet's 2026 full year capital spending plan",
+      "ja": "アルファベットの2026年通期設備投資計画"
+     },
+     "now": {
+      "ko": "1,950억~2,050억달러 (2026년 7월 2분기 실적에서 상향)",
+      "en": "$195bn to $205bn, raised at the July 2026 second quarter results",
+      "ja": "1,950億～2,050億ドル(2026年7月の第2四半期決算で上方修正)"
+     },
+     "when": {
+      "ko": "2026년 10월 3분기 실적 발표",
+      "en": "Third quarter results, October 2026",
+      "ja": "2026年10月の第3四半期決算"
+     },
+     "hit": {
+      "ko": "계획 하단이 1,950억달러 이상으로 유지되거나 상향 → 인력 이탈이 투자 계획을 흔들지 않았다",
+      "en": "The low end holds at $195bn or is raised, meaning the departures did not shake the spending plan",
+      "ja": "計画の下限が1,950億ドル以上で維持か上方修正なら、人材流出は投資計画を揺らさなかったことになる"
+     },
+     "miss": {
+      "ko": "계획 하단이 1,950억달러 아래로 내려감 → 개편 이후 투자 속도가 뒤로 물러섰다",
+      "en": "The low end falls below $195bn, meaning the spending pace stepped back after the reshuffle",
+      "ja": "計画の下限が1,950億ドルを下回れば、再編後に投資の速さが後退したことになる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "순다르 피차이(@sundarpichai) · 2026-08-05",
+      "en": "Sundar Pichai (@sundarpichai), 2026-08-05",
+      "ja": "スンダー・ピチャイ(@sundarpichai) · 2026-08-05"
+     },
+     "url": "https://x.com/sundarpichai/status/2085033425736745093"
+    },
+    {
+     "name": {
+      "ko": "구글 공식 발표문",
+      "en": "Google announcement",
+      "ja": "グーグル公式発表"
+     },
+     "desc": {
+      "ko": "The next chapter of our AI momentum · Google 블로그 · 2026-08-05",
+      "en": "The next chapter of our AI momentum, Google blog, 2026-08-05",
+      "ja": "The next chapter of our AI momentum · Googleブログ · 2026-08-05"
+     },
+     "url": "https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/"
+    },
+    {
+     "name": {
+      "ko": "인사 내용",
+      "en": "Leadership detail",
+      "ja": "人事の内容"
+     },
+     "desc": {
+      "ko": "9to5Google · 2026-08-05",
+      "en": "9to5Google, 2026-08-05",
+      "ja": "9to5Google · 2026-08-05"
+     },
+     "url": "https://9to5google.com/2026/08/05/demis-hassabis-deepmind/"
+    },
+    {
+     "name": {
+      "ko": "주가 반응",
+      "en": "Share price reaction",
+      "ja": "株価の反応"
+     },
+     "desc": {
+      "ko": "TipRanks · 2026-08-05 · 장중 시세이며 종가가 아니다",
+      "en": "TipRanks, 2026-08-05, intraday quote rather than a close",
+      "ja": "TipRanks · 2026-08-05 · 取引時間中の値で終値ではない"
+     },
+     "url": "https://www.tipranks.com/news/alphabet-stock-googl-drops-after-longtime-google-ai-leaders-depart"
+    },
+    {
+     "name": {
+      "ko": "이탈 흐름",
+      "en": "Departure trend",
+      "ja": "離脱の流れ"
+     },
+     "desc": {
+      "ko": "Axios · 2026-06-23 · Technology.org · 2026-07-30",
+      "en": "Axios, 2026-06-23, and Technology.org, 2026-07-30",
+      "ja": "Axios · 2026-06-23 · Technology.org · 2026-07-30"
+     },
+     "url": "https://www.axios.com/2026/06/23/ai-lab-agi-google-deepmind-departures"
+    },
+    {
+     "name": {
+      "ko": "설비투자 계획",
+      "en": "Capital spending plan",
+      "ja": "設備投資計画"
+     },
+     "desc": {
+      "ko": "알파벳 2026년 2분기 실적 보도 · CNBC · 2026-07-22",
+      "en": "Alphabet second quarter 2026 results coverage, CNBC, 2026-07-22",
+      "ja": "アルファベット2026年第2四半期決算報道 · CNBC · 2026-07-22"
+     },
+     "url": "https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-05 조회 · 알파벳 주가는 미국 동부시간 장중 시세 기준이며 종가가 확정되기 전 수치다. 새 회사의 이름과 투자자 구성은 보도 기준이고 구글 발표문에는 없다.",
+    "en": "Checked 2026-08-05. The Alphabet quote is intraday US eastern time, before a confirmed close. The new company's name and investor list come from press reports, not from Google's own announcement.",
+    "ja": "2026-08-05調べ · アルファベットの株価は米東部時間の取引時間中の値で、終値確定前の数字だ。新会社の社名と投資家構成は報道ベースで、グーグルの発表文にはない。"
+   }
+  },
+  {
+   "date": "2026-08-05",
    "id": "hanke-ubs-gold-5200-target-below-january-high",
    "related": [
     "elerian-copper-14000-us-stockpile-tariff-front-running",
@@ -38251,6 +38800,94 @@
     "안전자산",
     "안전 자산",
     "安全資産"
+   ]
+  },
+  "PBC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "이익과 함께 정관에 적은 공적 목적도 추구해야 하는 미국의 회사 형태.",
+    "en": "A US company form that must pursue a public purpose written into its charter alongside profit.",
+    "ja": "利益とともに定款に記した公的目的も追わねばならない米国の会社形態。"
+   },
+   "longDesc": {
+    "ko": "델라웨어주 회사법에 근거한 형태로, 이사회가 주주 이익만이 아니라 정관에 적은 공적 목적과 이해관계자까지 함께 저울에 올리도록 정해 두고 그 성과를 정기적으로 공개하게 한다. 비영리가 아니라 이익을 내는 회사이며, 투자자는 배당과 지분 가치를 그대로 기대할 수 있다. 인공지능 회사들이 이 형태를 고르는 이유는 기술의 사회적 영향을 정관에 적어 두면 나중에 주주가 수익만을 이유로 방향을 되돌리기 어려워지기 때문이다.",
+    "en": "Under Delaware corporate law the board must weigh the public purpose in the charter and the interests of affected stakeholders alongside shareholder returns, and report publicly on that purpose. It is not a nonprofit; it is a for profit company whose investors expect dividends and equity value as usual. AI companies choose the form because writing the social purpose into the charter makes it harder for shareholders to reverse direction later on financial grounds alone.",
+    "ja": "デラウェア州会社法に基づく形態で、取締役会が株主利益だけでなく定款に記した公的目的と利害関係者も併せて考慮するよう定め、その成果を定期的に公表させる。非営利ではなく利益を出す会社であり、投資家は配当と持ち分価値をそのまま期待できる。AI企業がこの形態を選ぶのは、技術の社会的影響を定款に書き込むと、後から株主が収益だけを理由に方向を戻しにくくなるからだ。"
+   },
+   "aliases": [
+    "Public Benefit Corporation",
+    "PBC",
+    "공익 목적 법인",
+    "공익법인형 주식회사",
+    "パブリック・ベネフィット・コーポレーション",
+    "公益目的法人"
+   ]
+  },
+  "ADP": {
+   "kind": "company",
+   "sector": {
+    "en": "Payroll and HR services",
+    "ko": "급여·인사 서비스",
+    "ja": "給与・人事サービス"
+   },
+   "desc": {
+    "ko": "미국 기업들의 급여 지급을 대행하는 회사. 그 자료로 매달 민간 고용 통계를 낸다.",
+    "en": "A US payroll processor that turns its own payroll data into a monthly private employment report.",
+    "ja": "米企業の給与支払いを代行する会社。その資料から毎月の民間雇用統計を出す。"
+   },
+   "aliases": [
+    "ADP",
+    "Automatic Data Processing",
+    "에이디피",
+    "オートマチック・データ・プロセッシング"
+   ],
+   "ticker": "ADP",
+   "logo": "adp.com",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "ko": "마리아 블랙",
+    "en": "Maria Black",
+    "ja": "マリア・ブラック"
+   },
+   "founded": "1949",
+   "hq": {
+    "ko": "미국 뉴저지주 로즈랜드",
+    "en": "Roseland, New Jersey, United States",
+    "ja": "米ニュージャージー州ローズランド"
+   },
+   "website": "https://www.adp.com",
+   "longDesc": {
+    "ko": "미국 기업 수십만 곳의 급여 계산과 지급을 대신 처리하는 회사다. 그 과정에서 쌓이는 실제 급여 자료를 모아 매달 민간 부문 고용이 얼마나 늘거나 줄었는지를 발표하는데, 정부 고용보고서보다 이틀 먼저 나오기 때문에 시장이 그 주의 첫 신호로 읽는다. 다만 조사 방식과 집계 대상이 정부 통계와 달라 두 수치가 자주 어긋나고, 그래서 방향을 참고하되 크기를 그대로 믿지는 않는 자료로 다뤄진다.",
+    "en": "The company handles payroll calculation and payment for hundreds of thousands of US employers. It aggregates the payroll records that accumulate in that work into a monthly reading of how much private employment grew or shrank, and because it lands two days before the government jobs report the market treats it as the first signal of that week. Its method and coverage differ from the official statistics, so the two often disagree, and it is generally used for direction rather than for the size of the number.",
+    "ja": "米国の数十万社の給与計算と支払いを代行する会社だ。その過程で積み上がる実際の給与データを集め、民間部門の雇用がどれだけ増減したかを毎月発表する。政府の雇用統計より2日早く出るため、市場はその週の最初のシグナルとして読む。ただ調査手法と対象が政府統計と異なるため両者はしばしば食い違い、方向の参考にはしても水準をそのまま信じる資料としては扱われない。"
+   }
+  },
+  "ISA": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "예금과 주식, 펀드를 한 계좌에 담고 그 수익에 붙는 세금을 깎아 주는 절세 계좌.",
+    "en": "A tax favoured account that holds deposits, stocks and funds together and trims the tax on what they earn.",
+    "ja": "預金と株式、投信を一つの口座に入れ、その収益にかかる税を軽くする節税口座。"
+   },
+   "longDesc": {
+    "ko": "1999년 영국이 예금 상품과 주식 상품으로 나뉘어 있던 절세 제도를 하나로 합치면서 시작했고, 일본이 NISA라는 이름으로 들여온 뒤 한국도 2016년에 도입했다. 계좌 안에서 난 손실과 이익을 합쳐서 세금을 매기기 때문에, 여러 상품을 한 계좌에 넣을수록 유리해지는 구조다. 나라마다 납입한도와 의무보유기간, 담을 수 있는 자산의 범위가 달라서 같은 이름이라도 실제 혜택의 크기는 크게 갈린다.",
+    "en": "It began in Britain in 1999, when separate tax favoured products for deposits and for shares were merged into one account, and it spread to Japan as NISA before Korea introduced its own version in 2016. Gains and losses inside the account are netted before tax, so the more products a saver keeps in one account the better it works. Contribution limits, minimum holding periods and the range of eligible assets differ by country, so the same name can mean very different benefits.",
+    "ja": "1999年に英国が預金商品と株式商品に分かれていた節税制度を一つに統合して始まり、日本がNISAとして取り入れた後、韓国も2016年に導入した。口座内で出た損と益を通算して課税するため、複数の商品を一つの口座に入れるほど有利になる構造だ。払込限度や最低保有期間、入れられる資産の範囲は国ごとに異なり、同じ名前でも実際の優遇の大きさは大きく変わる。"
+   },
+   "aliases": [
+    "ISA",
+    "개인종합자산관리계좌",
+    "個人総合資産管理口座"
    ]
   }
  }
