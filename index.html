@@ -11110,13 +11110,9 @@ function render(){
   document.getElementById("foot1").textContent = S.foot1;
   document.getElementById("foot2").textContent = S.foot2;
 
-  /* new-since-last-visit banner */
-  const banner = document.getElementById("newBanner");
-  if (banner){
-    banner.classList.toggle("show", NEW_IDS.size > 0);
-    document.getElementById("newBannerText").textContent =
-      S.newSince.replace("{n}", NEW_IDS.size);
-  }
+  /* new-since-last-visit banner: moved to renderFeed() top (2026-08-05) -
+     render()-only missed openThemes()/openScoreboard()/openInvestors() paths,
+     same pattern as cal-wide below. */
 
   /* hot rail */
   renderHotRail();
@@ -11660,6 +11656,21 @@ function renderFeed(animate){
   } catch (e) {}
   if (typeof ttsStop === "function") ttsStop();
   const S = STRINGS[LANG];
+  /* new-since-last-visit banner: home-feed only (2026-08-05). Same cal-wide
+     pattern - recompute every renderFeed() so no view-switch path is missed. */
+  try {
+    var _bannerHome = !(typeof v83DirTab === "function" && v83DirTab())
+      && !(typeof THEME_VIEW !== "undefined" && THEME_VIEW)
+      && !SB_VIEW && !invViewActive()
+      && !(typeof V83ITEM !== "undefined" && V83ITEM)
+      && !ENTITY_VIEW && !SERIES_VIEW;
+    var _banner = document.getElementById("newBanner");
+    if (_banner){
+      _banner.classList.toggle("show", _bannerHome && NEW_IDS.size > 0);
+      var _bnt = document.getElementById("newBannerText");
+      if (_bnt) _bnt.textContent = S.newSince.replace("{n}", NEW_IDS.size);
+    }
+  } catch (e) {}
   const list = document.getElementById("feedList");
   list.classList.toggle("no-anim", !animate);
   list.innerHTML = "";
