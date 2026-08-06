@@ -1,6 +1,237 @@
 {
  "items": [
   {
+   "date": "2026-08-04",
+   "id": "serenity-fcc-optical-ban-indium-paradox",
+   "related": [
+    "serenity-axt-2q26-record-inp-capacity-double",
+    "serenity-axt-lumentum-inp-capacity-deposit",
+    "serenity-formfactor-cpo-outlook-raise"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2084597612175618342",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#7C2D12",
+    "label": "INDIUM CHOKEPOINT"
+   },
+   "tags": [
+    "OPTICS",
+    "EXPORTCONTROL",
+    "INDIUM"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "중국 광트랜시버를 막는 미국의 무기는 중국이 쥐고 있다",
+    "en": "The weapon America wants to use against Chinese transceivers is made in China",
+    "ja": "中国製トランシーバーを封じる米国の武器は、中国が握っている"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "The Trump administration is drafting a ban of new Chinese optical transceivers and DC devices, which would likely hit China's Innolight, Eoptolink, and other Chinese optical interconnect supply chains."
+     ],
+     "ko": [
+      "트럼프 행정부가 새로 나올 중국산 광트랜시버와 데이터센터 장비의 수입을 금지하는 방안을 마련 중이며, 이는 중국의 이노라이트·이옵토링크 등 광통신 부품망을 직격할 가능성이 크다."
+     ],
+     "ja": [
+      "トランプ政権は新たな中国製光トランシーバーとデータセンター機器の輸入禁止案を準備しており、中国のイノライト、イオプトリンクなど光通信部品サプライチェーンを直撃する可能性が高い。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.04"
+   },
+   "sum3": {
+    "ko": "FCC가 중국산 광트랜시버 신모델의 수입을 막는 안을 검토 중이다.\n겉보기엔 코히런트·루멘텀 같은 미국 회사가 반사이익을 볼 구도다.\n그런데 그 회사들도 중국이 쥔 인화인듐 없이는 물량을 못 늘린다.",
+    "en": "The FCC is weighing a ban on new Chinese optical transceiver models.\nOn paper, American firms like Coherent and Lumentum stand to benefit.\nBut those same firms cannot scale output without China-controlled indium phosphide.",
+    "ja": "FCCは中国製の新型光トランシーバーの輸入禁止案を検討中だ。\n表向きはコヒレントやルーメンタムなど米企業が恩恵を受ける構図だ。\nだがその米企業も中国が握るインジウムリンなしには増産できない。"
+   },
+   "gist": {
+    "ko": "미국 정부가 중국산 광트랜시버 수입을 금지하는 안을 준비하고 있다. 그런데 이 금지안이 정작 살리려는 미국 회사들도 중국이 쥔 원료 없이는 물량을 늘릴 수 없다.\n\n연방통신위원회(FCC)는 AI 데이터센터의 서버를 잇는 광트랜시버 가운데, 새로 나올 중국산 모델의 수입을 막는 방안을 검토 중이다. 연내 시행을 목표로 안보를 이유로 든다. 겨냥한 곳은 세계 시장의 27%를 쥔 중국 이노라이트와, 매출이 1년 새 두 배 넘게 뛴 이옵토링크다. 두 회사를 합치면 엔비디아 800G 모듈 수요의 대부분을 소화하고 있다.\n\n## 미국이 심으려는 대체 후보\n\n미국 정부가 낙점한 대체 후보는 코히런트와 루멘텀이다. 둘 다 미국 회사고, 데이터센터 광링크 시장에서 이미 이름이 알려져 있다.\n\n@@REF@@The FCC Mulls Banning China-Sourced Optical Transceivers, Threatening Innolight's 27% Market Share As Coherent And Lumentum Prepare To Pounce (WCCFTECH, 2026-08-05)|https://wccftech.com/the-fcc-mulls-banning-china-sourced-optical-transceivers-threatening-innolights-27-global-market-share-as-coherent-and-lumentum-prepare-to-pounce/\n\n## 그런데 그 대체 후보들도 중국 원료에 발이 묶여 있다\n\n문제는 코히런트와 루멘텀이 만드는 고속 레이저에 인화인듐이라는 화합물 반도체가 반드시 들어간다는 점이다. 초당 100기가비트가 넘는 속도에서는 아직 이를 대신할 소재가 없다. 그런데 세계 정제 인듐의 70%가량을 쥔 곳이 중국이고, 중국은 2025년 2월부터 인화인듐을 수출 통제 품목에 올려놓았다.\n\n@@REF@@FCC Transceiver Ban Would Cut 60% of AI Data Center Supply; Western Replacements Need Chinese Indium (Tech Times, 2026-08-05)|https://www.techtimes.com/articles/323104/20260805/fcc-transceiver-ban-would-cut-60-ai-data-center-supply-western-replacements-need-chinese-indium.htm\n\n그 여파로 중국의 인화인듐 수출은 1년 새 72% 줄었고, 6인치 웨이퍼 가격은 개당 1,400달러 선에서 5,000달러 선까지 뛰었다. 코히런트에 웨이퍼를 대는 미국 소재회사 AXT는 그새 밀린 주문만 6,000만달러어치를 쌓아 뒀다. 루멘텀 최고경영자는 이 부족 사태가 '메모리 반도체 부족보다 더 심해질 것'이라고 말했다.\n\n## 금지안이 통과돼도 물량은 그대로 부족하다\n\n그래서 이 금지안의 실제 효과는 겉으로 보이는 것과 다르다. 중국산을 막으면 물량이 미국 회사로 넘어갈 것 같지만, 그 미국 회사들도 중국이 쥔 원료 없이는 생산을 늘리지 못한다. 지금 미국의 800G 트랜시버 생산능력은 월 10만개 안팎으로, 전체 수요의 일부에 불과하다. 중국이 인화인듐 수출을 더 조이면, 금지안이 지키려던 코히런트와 루멘텀조차 물량을 채우지 못하는 역설이 생긴다. 반대로 미국이 인화인듐 국내 생산이나 대체 조달처를 먼저 확보하면 이 금지안은 계획대로 작동할 수 있다. 관건은 소재 확보가 먼저냐, 금지안 시행이 먼저냐다.",
+    "en": "The US government is drafting a ban on imports of new Chinese optical transceivers. But the American companies this ban is meant to help cannot scale production without a raw material China controls.\n\nThe FCC is weighing a ban on new Chinese-made optical transceivers, the modules that link AI data-center servers, framed as a national-security measure and targeted for this year. In its sights are China's Zhongji Innolight, which holds 27% of the global market, and Eoptolink, whose revenue has more than doubled in a year. Together the two supply most of Nvidia's 800G module demand.\n\n## The replacements Washington has in mind\n\nThe intended substitutes are Coherent and Lumentum, both American, both already established names in data-center optical links.\n\n@@REF@@The FCC Mulls Banning China-Sourced Optical Transceivers, Threatening Innolight's 27% Market Share As Coherent And Lumentum Prepare To Pounce (WCCFTECH, 2026-08-05)|https://wccftech.com/the-fcc-mulls-banning-china-sourced-optical-transceivers-threatening-innolights-27-global-market-share-as-coherent-and-lumentum-prepare-to-pounce/\n\n## But those replacements are stuck on a Chinese raw material too\n\nThe catch is that the high-speed lasers Coherent and Lumentum build depend on indium phosphide, a compound semiconductor with no viable substitute above 100 gigabits per lane. China controls roughly 70% of global refined indium, and it placed indium phosphide on its export-control list in February 2025.\n\n@@REF@@FCC Transceiver Ban Would Cut 60% of AI Data Center Supply; Western Replacements Need Chinese Indium (Tech Times, 2026-08-05)|https://www.techtimes.com/articles/323104/20260805/fcc-transceiver-ban-would-cut-60-ai-data-center-supply-western-replacements-need-chinese-indium.htm\n\nSince then, China's indium phosphide exports have fallen roughly 72% year over year, and 6-inch wafer prices have jumped from about $1,400 to roughly $5,000 apiece. AXT, the US materials supplier that feeds Coherent, has piled up more than $60 million in backlogged orders. Lumentum's CEO has said the shortage will get worse than the memory-chip crunch.\n\n## Even if the ban passes, supply stays short\n\nSo the ban's real effect differs from how it looks on paper. Blocking Chinese supply seems to hand volume to American firms, but those firms cannot expand output without the raw material China controls. Current US 800G transceiver capacity runs around 100,000 units a month, a fraction of total demand. If China tightens indium exports further, even Coherent and Lumentum, the companies the ban is meant to protect, could fail to fill the gap. If the US secures domestic indium production or alternate sourcing first, the ban could work as intended. The question is which comes first: securing the material, or enforcing the ban.",
+    "ja": "米国政府が中国製光トランシーバーの輸入を禁止する案を準備している。だがこの禁止案が本来助けようとしている米企業自身も、中国が握る原料なしには増産できない。\n\n連邦通信委員会(FCC)は、AIデータセンターのサーバーをつなぐ光トランシーバーのうち、新たに出てくる中国製モデルの輸入を止める案を検討中だ。安全保障を理由に年内の施行を目指す。標的は世界市場の27%を握る中国のイノライトと、売上高が1年で2倍以上に伸びたイオプトリンクだ。両社を合わせるとエヌビディアの800Gモジュール需要の大半を賄っている。\n\n## 米国が据えようとしている代替候補\n\n米国政府が見込む代替候補はコヒレントとルーメンタムだ。どちらも米企業で、データセンターの光リンク市場ですでに名の知れた存在だ。\n\n@@REF@@The FCC Mulls Banning China-Sourced Optical Transceivers, Threatening Innolight's 27% Market Share As Coherent And Lumentum Prepare To Pounce (WCCFTECH, 2026-08-05)|https://wccftech.com/the-fcc-mulls-banning-china-sourced-optical-transceivers-threatening-innolights-27-global-market-share-as-coherent-and-lumentum-prepare-to-pounce/\n\n## だがその代替候補も中国製原料に縛られている\n\n問題は、コヒレントとルーメンタムが作る高速レーザーに、インジウムリンという化合物半導体が欠かせないことだ。毎秒100ギガビットを超える速度では、まだこれに代わる材料がない。ところが世界の精製インジウムの約70%を中国が握っており、中国は2025年2月からインジウムリンを輸出規制品目に加えている。\n\n@@REF@@FCC Transceiver Ban Would Cut 60% of AI Data Center Supply; Western Replacements Need Chinese Indium (Tech Times, 2026-08-05)|https://www.techtimes.com/articles/323104/20260805/fcc-transceiver-ban-would-cut-60-ai-data-center-supply-western-replacements-need-chinese-indium.htm\n\nその影響で中国のインジウムリン輸出は1年で約72%減り、6インチウェハーの価格は1枚1,400ドル前後から5,000ドル前後まで跳ね上がった。コヒレントにウェハーを供給する米素材会社AXTは、その間に6,000万ドル超の受注残を積み上げた。ルーメンタムの最高経営責任者は、この不足がメモリー半導体不足より深刻になると述べた。\n\n## 禁止案が通っても供給不足は変わらない\n\nだからこの禁止案の実際の効果は、表向きとは違う。中国製を締め出せば数量が米企業に回るように見えるが、その米企業も中国が握る原料なしには生産を増やせない。今の米国の800Gトランシーバー生産能力は月10万個前後で、全体需要のごく一部にすぎない。中国がインジウムリンの輸出をさらに絞れば、禁止案が守ろうとしたコヒレントとルーメンタムでさえ数量を満たせなくなる逆説が生まれる。逆に米国がインジウムリンの国内生産や代替調達先を先に確保できれば、この禁止案は狙い通りに機能しうる。焦点は原料確保が先か、禁止案の施行が先かだ。"
+   },
+   "why": {
+    "ko": "미국이 중국산 광트랜시버를 막으려는 이유는 AI 데이터센터의 핵심 부품을 중국에 의존하지 않기 위해서다. 그런데 그 대체재를 만드는 미국 회사들조차 중국이 쥔 인화인듐 없이는 물량을 늘릴 수 없어, 금지안의 효과가 계획과 다르게 흐를 수 있다.",
+    "en": "The US wants to ban Chinese optical transceivers to cut dependence on China for a core AI data-center component. But the American firms meant to replace them cannot scale without China-controlled indium phosphide, so the ban may not work as planned.",
+    "ja": "米国が中国製光トランシーバーを禁止しようとするのは、AIデータセンターの中核部品を中国に依存しないためだ。だが代替を担う米企業自身も中国が握るインジウムリンなしには増産できず、禁止案の効果は計画通りにいかない可能性がある。"
+   },
+   "ask": {
+    "ko": "중국산 부품을 막는 것과 그 부품의 원료까지 확보하는 것, 어느 쪽이 먼저여야 할까?",
+    "en": "Which should come first: banning the Chinese part, or securing the raw material behind it?",
+    "ja": "中国製部品を禁じるのと、その原料を確保するのと、どちらが先であるべきか?"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity (@aleabitoreddit) · 2026-08-04",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-04",
+      "ja": "Serenity (@aleabitoreddit) · 2026-08-04"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2084597612175618342"
+    },
+    {
+     "name": {
+      "ko": "교차확인 기사 1",
+      "en": "Cross-check 1",
+      "ja": "クロスチェック1"
+     },
+     "desc": {
+      "ko": "FCC의 중국산 광트랜시버 금지 검토, 이노라이트 시장점유율 27% (WCCFTECH, 2026-08-05)",
+      "en": "FCC weighs ban on China-sourced transceivers; Innolight holds 27% share (WCCFTECH, 2026-08-05)",
+      "ja": "FCCが中国製光トランシーバー禁止を検討、イノライトの市場シェア27% (WCCFTECH, 2026-08-05)"
+     },
+     "url": "https://wccftech.com/the-fcc-mulls-banning-china-sourced-optical-transceivers-threatening-innolights-27-global-market-share-as-coherent-and-lumentum-prepare-to-pounce/"
+    },
+    {
+     "name": {
+      "ko": "교차확인 기사 2",
+      "en": "Cross-check 2",
+      "ja": "クロスチェック2"
+     },
+     "desc": {
+      "ko": "금지안이 통과돼도 서방 대체재는 중국산 인듐이 필요하다 (Tech Times, 2026-08-05)",
+      "en": "Even if the ban passes, Western replacements need Chinese indium (Tech Times, 2026-08-05)",
+      "ja": "禁止案が通っても西側の代替品には中国産インジウムが必要 (Tech Times, 2026-08-05)"
+     },
+     "url": "https://www.techtimes.com/articles/323104/20260805/fcc-transceiver-ban-would-cut-60-ai-data-center-supply-western-replacements-need-chinese-indium.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-06 01:45 UTC 조회, 인용 수치는 각 기사 게재 시점 기준",
+    "en": "Checked 2026-08-06 01:45 UTC; figures as reported in the cited articles",
+    "ja": "2026-08-06 01:45 UTC 確認、引用数値は各記事掲載時点のもの"
+   }
+  },
+  {
+   "date": "2026-08-05",
+   "id": "jukan-cxmt-refuses-apple-dram-discount",
+   "related": [
+    "serenity-2027-memory-capacity-sold-out-allocation",
+    "serenity-cxmt-ipo-star-market-surge",
+    "serenity-substrate-ddr5-wf6-squeeze"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2084886157415084168",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#1E3A8A",
+    "label": "NO DISCOUNT"
+   },
+   "tags": [
+    "DRAM",
+    "CXMT",
+    "PRICING"
+   ],
+   "stance": "bull",
+   "title": {
+    "ko": "8월 5일, 창신메모리가 애플의 가격 인하 요구를 거절했다",
+    "en": "On August 5, China's CXMT turned down Apple's price-cut request",
+    "ja": "8月5日、長鑫存儲がアップルの値下げ要求を拒んだ"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "CXMT instead held firm at prices equal to or higher than those quoted by Samsung Electronics and SK hynix.",
+      "An unusual situation has emerged in which CXMT is holding the price floor and thereby firmly underpinning commodity DRAM pricing as well."
+     ],
+     "ko": [
+      "창신메모리는 삼성전자·SK하이닉스와 같거나 그보다 높은 가격을 그대로 고수했다.",
+      "창신메모리가 가격 하한선을 쥐고 있어 범용 D램 가격까지 떠받치는 이례적인 상황이 벌어졌다."
+     ],
+     "ja": [
+      "長鑫存儲(CXMT)はサムスン電子・SKハイニックスと同等かそれ以上の価格を譲らなかった。",
+      "CXMTが価格の下限を握り、コモディティDRAM価格まで下支えする異例の状況が生まれている。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.05"
+   },
+   "sum3": {
+    "ko": "창신메모리가 애플에 \"더는 못 깎아준다\"고 답했다.\n겉으로는 창신메모리가 배짱을 부린 것처럼 보인다.\n그런데 그 배짱은 미국의 노광장비 수출 통제가 만들어 준 것이다.",
+    "en": "CXMT's answer to Apple was, in effect, no more discounts.\nOn the surface, CXMT looks like it is calling the shots.\nBut that leverage exists only because US lithography export controls built it.",
+    "ja": "CXMTはアップルに「これ以上は値下げできない」と答えた。\n表面上はCXMTが強気に出たように見える。\nだがその強気は米国の露光装置輸出規制が作り出したものだ。"
+   },
+   "gist": {
+    "ko": "애플이 중국 D램 업체 창신메모리(CXMT)에 가격 인하를 요청했다가 거절당했다. 애플은 늘 구매력으로 협상 테이블을 흔드는 쪽이었지만, 이번엔 부품 공급사에 밀렸다. 창신메모리는 삼성전자·SK하이닉스와 같거나 그보다 높은 가격을 그대로 불렀다.\n\n애플은 차기 아이폰과 스마트기기의 제조 원가를 낮추려고 LPDDR5X 같은 모바일 D램을 창신메모리에서 조달하는 방안을 협상해 왔다. 값싼 중국산 부품을 대안으로 흔들어 기존 공급사를 압박하는, 애플이 오래 써온 수법이다. 그런데 정작 이번엔 그 수법이 통하지 않았다.\n\n## 왜 중국 회사가 애플 앞에서 배짱을 부릴 수 있었나\n\n창신메모리가 애플의 요구를 그대로 거절할 수 있었던 배경에는 화웨이·샤오미 같은 중국 대형 전자업체들의 물량 선점이 있다. 워싱턴의 반도체 제재가 이어지는 가운데, 자국 조달을 늘리려는 중국 업체들이 창신메모리의 D램 생산량을 장기계약으로 이미 사들여 놓았다. 까다로운 품질 인증과 가격 인하를 동시에 요구하는 애플에 굳이 맞춰줄 이유가 창신메모리 쪽엔 없어진 셈이다.\n\n@@REF@@CXMT Says No Thank You to Apple's Demand For A Price Cut, as Huawei And Xiaomi Hand It Rare Leverage (WCCFTECH, 2026-08-05)|https://wccftech.com/cxmt-says-no-thank-you-to-apples-demand-for-a-price-cut-as-huawei-and-xiaomi-hand-it-rare-leverage-report/\n\n동시에 삼성전자와 SK하이닉스는 뜻밖의 이득을 봤다. 중국 업체가 저가 D램 물량을 흡수해 준 덕분에, 두 회사는 이문이 박한 범용 D램을 밀어내야 하는 부담에서 벗어나 HBM 같은 고부가 메모리에 생산라인을 더 몰아줄 수 있게 됐다.\n\n## 값을 안 깎아도 되는 진짜 이유\n\n그런데 창신메모리가 버틸 수 있는 데는 더 근본적인 이유가 있다. 미국의 수출 통제로 최신 EUV(극자외선) 노광 장비를 구하지 못한 창신메모리는, 옛 세대 DUV(심자외선) 장비로 같은 회로를 여러 번 겹쳐 찍는 방식을 쓴다. 이 방식은 같은 양의 D램을 만드는 데 EUV 장비보다 웨이퍼 투입이 30% 더 든다.\n\n@@REF@@Apple's CXMT Gambit Collapses: DUV Cost Gap Locks In Samsung's Pricing Power (Tech Times, 2026-08-05)|https://www.techtimes.com/articles/323140/20260805/apples-cxmt-gambit-collapses-duv-cost-gap-locks-samsungs-pricing-power.htm\n\n공정 세대로 따지면 삼성·SK하이닉스보다 대여섯 세대 뒤처져 있다는 평가도 나온다. 창신메모리가 개발 중인 차세대 LPDDR6도 초당 12.8기가비트로, SK하이닉스가 목표로 하는 초당 14.4기가비트에 못 미친다. 장비의 한계가 그대로 성능의 한계로 이어지는 구조다.\n\n이 구조가 뒤집는 것은 하나다. 지금의 비싼 가격이 창신메모리에게는 바닥이지 천장이 아니다. 여기서 더 깎으면 남는 게 없어지는 가격이라, 애플이 원하는 만큼 물러설 여지 자체가 없다. 값을 깎아 시장을 흔드는 '가격 파괴자' 역할은 애초에 창신메모리가 고를 수 있는 선택지가 아니었던 셈이다.\n\n## 삼성과 SK하이닉스가 하반기에 쥔 카드\n\n애플로서는 앞으로도 대체 공급사 카드를 만지작거리기 힘들어졌다. 창신메모리가 값을 안 깎으면 다음 협상 상대는 결국 삼성전자와 SK하이닉스다. 두 회사가 하반기 장기계약 협상에서 예년보다 센 가격을 부를 여지가 생겼다는 뜻이다. 관건은 창신메모리의 웨이퍼 투입 부담이 언제까지 버텨줄지다. 미국이 수출 통제를 더 죄면 창신메모리의 원가는 더 오르고, 그만큼 삼성·SK하이닉스의 가격 결정권은 더 굳어진다. 반대로 중국이 자체 노광 장비 국산화에 성과를 내면 이 구도는 다시 흔들릴 수 있다.",
+    "en": "Apple asked China's CXMT for a DRAM price cut and was refused. Apple has long been the side that shakes up negotiations with its buying power, but this time it was the supplier that held the line. CXMT quoted prices at or above what Samsung Electronics and SK hynix charge.\n\nApple had been negotiating with CXMT over mobile DRAM including LPDDR5X to ease manufacturing costs on its next iPhone and other devices, a familiar Apple playbook of dangling cheap Chinese parts to pressure incumbent suppliers. This time the playbook did not work.\n\n## Why the Chinese supplier could afford to say no\n\nCXMT could reject Apple's demand because Chinese giants like Huawei and Xiaomi had already locked up its DRAM output through long-term contracts, driven by their own push for supply-chain self-sufficiency under US sanctions. With captive Chinese demand already absorbing its capacity, CXMT had no reason to bend to Apple's dual demand of tougher quality checks and lower prices.\n\n@@REF@@CXMT Says No Thank You to Apple's Demand For A Price Cut, as Huawei And Xiaomi Hand It Rare Leverage (WCCFTECH, 2026-08-05)|https://wccftech.com/cxmt-says-no-thank-you-to-apples-demand-for-a-price-cut-as-huawei-and-xiaomi-hand-it-rare-leverage-report/\n\nSamsung Electronics and SK hynix are the accidental winners here. With a Chinese buyer soaking up low-margin commodity DRAM, both Korean makers are freed from having to dump cheap volume and can devote more of their lines to high-value memory like HBM instead.\n\n## The real reason CXMT does not need to discount\n\nThere is a deeper reason CXMT can hold firm. Blocked from EUV lithography by US export controls, CXMT relies on older DUV tools and multi-patterning to print the same circuits, a process that requires roughly 30% more wafer starts than EUV-equipped rivals to produce the same DRAM output.\n\n@@REF@@Apple's CXMT Gambit Collapses: DUV Cost Gap Locks In Samsung's Pricing Power (Tech Times, 2026-08-05)|https://www.techtimes.com/articles/323140/20260805/apples-cxmt-gambit-collapses-duv-cost-gap-locks-samsungs-pricing-power.htm\n\nBy process generation, CXMT is estimated to be five or six nodes behind Samsung and SK hynix. Its next-generation LPDDR6 targets 12.8 gigabits per second, short of the 14.4 Gbps SK hynix is aiming for. The equipment ceiling becomes a performance ceiling.\n\nThat structure flips the story. Today's elevated price is CXMT's manufacturing floor, not its ceiling, since any real discount would make its sales unprofitable. Playing price disruptor was never an option CXMT could actually choose.\n\n## The hand Samsung and SK hynix hold for second-half talks\n\nApple has fewer alternative-supplier cards to play going forward. If CXMT will not budge, Apple's next negotiating partner is Samsung or SK hynix, and both now have room to push for firmer pricing in second-half long-term contracts. The open question is how long CXMT's wafer-cost burden can hold. Tighter US export controls would push CXMT's costs higher still, cementing Samsung and SK hynix's pricing power further; a breakthrough in China's domestic lithography tools could unsettle this balance again.",
+    "ja": "アップルが中国のCXMT(長鑫存儲)にDRAMの値下げを求めたが、断られた。購買力で交渉を揺さぶるのが常だったアップルが、今回は部品メーカーに押し切られた。CXMTはサムスン電子・SKハイニックスと同等かそれ以上の価格を譲らなかった。\n\nアップルは次期iPhoneなどの製造コストを下げるため、LPDDR5Xなどモバイル向けDRAMをCXMTから調達する交渉を進めていた。安い中国製部品をちらつかせて既存サプライヤーを揺さぶる、アップルが長年使ってきた手口だ。だが今回はその手口が通じなかった。\n\n## なぜ中国企業がアップルの前で強気に出られたのか\n\nCXMTがアップルの要求をそのまま拒めた背景には、ファーウェイやシャオミなど中国大手電子メーカーによる受注の先取りがある。米国の半導体制裁が続く中、自国調達を増やしたい中国企業がCXMTのDRAM生産量を長期契約ですでに買い占めていた。厳しい品質認証と値下げを同時に求めるアップルに合わせる理由が、CXMT側にはなくなっていた。\n\n@@REF@@CXMT Says No Thank You to Apple's Demand For A Price Cut, as Huawei And Xiaomi Hand It Rare Leverage (WCCFTECH, 2026-08-05)|https://wccftech.com/cxmt-says-no-thank-you-to-apples-demand-for-a-price-cut-as-huawei-and-xiaomi-hand-it-rare-leverage-report/\n\n同時にサムスン電子とSKハイニックスは思わぬ恩恵を受けた。中国企業が低価格DRAMの受け皿になってくれたおかげで、両社は利幅の薄いコモディティDRAMを捌く負担から解放され、HBMのような高付加価値メモリーに生産ラインをより多く振り向けられるようになった。\n\n## 値下げしなくて済む本当の理由\n\nCXMTが強気を貫ける理由はもっと根本的なところにある。米国の輸出規制で最新のEUV(極端紫外線)露光装置を入手できないCXMTは、旧世代のDUV(深紫外線)装置で同じ回路を何度も重ね焼きする方式を使う。この方式は、同じ量のDRAMを作るのにEUV装置を使う競合より約30%多くウェハー投入が必要になる。\n\n@@REF@@Apple's CXMT Gambit Collapses: DUV Cost Gap Locks In Samsung's Pricing Power (Tech Times, 2026-08-05)|https://www.techtimes.com/articles/323140/20260805/apples-cxmt-gambit-collapses-duv-cost-gap-locks-samsungs-pricing-power.htm\n\n工程世代で見るとサムスン・SKハイニックスより5〜6世代遅れているとの見方もある。CXMTが開発中の次世代LPDDR6も毎秒12.8ギガビットで、SKハイニックスが目標とする毎秒14.4ギガビットに届かない。装置の限界がそのまま性能の限界になる構造だ。\n\nこの構造が覆すものは一つだ。今の高い価格はCXMTにとって底値であって、天井ではない。これ以上値下げすれば採算が合わなくなる価格なので、アップルが望むほど譲る余地自体がない。値下げで市場を揺さぶる「価格破壊者」の役回りは、そもそもCXMTが選べる選択肢ではなかったわけだ。\n\n## サムスンとSKハイニックスが下半期に握るカード\n\nアップルは今後も代替調達先というカードを使いにくくなった。CXMTが値を下げないなら、次の交渉相手は結局サムスン電子かSKハイニックスになる。両社が下半期の長期契約交渉で例年より強気の価格を提示できる余地が生まれたということだ。焦点はCXMTのウェハー投入負担がいつまで持つかにある。米国が輸出規制をさらに強めればCXMTのコストはより上がり、サムスン・SKハイニックスの価格決定力はいっそう固まる。逆に中国が自前の露光装置の国産化で成果を出せば、この構図は再び揺らぎうる。"
+   },
+   "why": {
+    "ko": "창신메모리가 애플의 가격 인하 요구를 거절한 배경에는 미국의 노광장비 수출 통제가 있다. 이 구조 때문에 창신메모리는 값을 더 깎을 여력이 없고, 그 반사이익은 삼성전자와 SK하이닉스의 협상력 강화로 돌아간다.",
+    "en": "US lithography export controls are the deeper reason CXMT rejected Apple's discount request. That structure leaves CXMT with no room to cut prices further, and the spillover benefit is stronger negotiating power for Samsung Electronics and SK hynix.",
+    "ja": "CXMTがアップルの値下げ要求を拒んだ背景には、米国の露光装置輸出規制がある。この構造のためCXMTには値下げの余地がなく、その反射的な恩恵はサムスン電子とSKハイニックスの交渉力強化として返ってくる。"
+   },
+   "ask": {
+    "ko": "메모리 가격을 지금 쥐고 있는 건 정말 삼성과 SK하이닉스일까, 아니면 미국의 수출 통제일까?",
+    "en": "Is it really Samsung and SK hynix holding the memory pricing power right now, or is it US export controls?",
+    "ja": "今メモリー価格を握っているのは本当にサムスンとSKハイニックスなのか、それとも米国の輸出規制なのか?"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan (@jukan05) · 2026-08-05",
+      "en": "Jukan (@jukan05) · 2026-08-05",
+      "ja": "Jukan (@jukan05) · 2026-08-05"
+     },
+     "url": "https://x.com/jukan05/status/2084886157415084168"
+    },
+    {
+     "name": {
+      "ko": "교차확인 기사 1",
+      "en": "Cross-check 1",
+      "ja": "クロスチェック1"
+     },
+     "desc": {
+      "ko": "CXMT가 애플의 가격 인하 요구를 거절, 화웨이·샤오미 물량이 배경 (WCCFTECH, 2026-08-05)",
+      "en": "CXMT rejects Apple's price-cut request; Huawei/Xiaomi volume is the leverage (WCCFTECH, 2026-08-05)",
+      "ja": "CXMTがアップルの値下げ要求を拒否、ファーウェイ・シャオミの受注が背景 (WCCFTECH, 2026-08-05)"
+     },
+     "url": "https://wccftech.com/cxmt-says-no-thank-you-to-apples-demand-for-a-price-cut-as-huawei-and-xiaomi-hand-it-rare-leverage-report/"
+    },
+    {
+     "name": {
+      "ko": "교차확인 기사 2",
+      "en": "Cross-check 2",
+      "ja": "クロスチェック2"
+     },
+     "desc": {
+      "ko": "DUV 공정의 원가 격차가 삼성의 가격 결정력을 굳힌다 (Tech Times, 2026-08-05)",
+      "en": "DUV cost gap locks in Samsung's pricing power (Tech Times, 2026-08-05)",
+      "ja": "DUV工程のコスト格差がサムスンの価格決定力を固める (Tech Times, 2026-08-05)"
+     },
+     "url": "https://www.techtimes.com/articles/323140/20260805/apples-cxmt-gambit-collapses-duv-cost-gap-locks-samsungs-pricing-power.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-06 01:40 UTC 조회, 인용 수치는 각 기사 게재 시점 기준",
+    "en": "Checked 2026-08-06 01:40 UTC; figures as reported in the cited articles",
+    "ja": "2026-08-06 01:40 UTC 確認、引用数値は各記事掲載時点のもの"
+   }
+  },
+  {
    "date": "2026-08-05",
    "id": "meru-korea-isa-productive-finance-domestic-only",
    "related": [
@@ -38890,6 +39121,138 @@
     "ISA",
     "개인종합자산관리계좌",
     "個人総合資産管理口座"
+   ]
+  },
+  "COHERENT": {
+   "kind": "company",
+   "ticker": "COHR",
+   "sector": {
+    "en": "Optical Components",
+    "ko": "광통신 부품",
+    "ja": "光通信部品"
+   },
+   "desc": {
+    "en": "US maker of lasers and optical components for data-center networking, materials science and industrial uses.",
+    "ko": "데이터센터 네트워킹용 레이저와 광부품을 만드는 미국 회사.",
+    "ja": "データセンター向けレーザーと光部品を作る米国企業。"
+   },
+   "aliases": [
+    "Coherent",
+    "Coherent Corp",
+    "코히런트",
+    "コヒレント"
+   ],
+   "logo": "coherent.com",
+   "exchange": "NYSE",
+   "ceo": {
+    "en": "Jim Anderson",
+    "ko": "짐 앤더슨",
+    "ja": "ジム・アンダーソン"
+   },
+   "founded": "1971",
+   "hq": {
+    "en": "Saxonburg, Pennsylvania, USA",
+    "ko": "미국 펜실베이니아 색슨버그",
+    "ja": "米国ペンシルベニア州サクソンバーグ"
+   },
+   "website": "https://www.coherent.com",
+   "longDesc": {
+    "en": "Coherent Corp makes lasers, optical components and materials used in data-center networking, industrial manufacturing and life sciences. Its optical transceivers and amplifiers are positioned as a domestic alternative to Chinese suppliers for AI data-center links, but its high-speed laser production depends on indium phosphide wafers.",
+    "ko": "데이터센터 네트워킹, 산업용 제조, 생명과학 분야에 쓰이는 레이저·광부품·소재를 만드는 회사다. AI 데이터센터용 광트랜시버·증폭기에서 중국산 대체 공급처로 꼽히지만, 고속 레이저 생산 자체가 인화인듐 웨이퍼에 의존한다.",
+    "ja": "データセンターネットワーキング、産業用製造、ライフサイエンス分野で使われるレーザー・光部品・材料を作る企業。AIデータセンター向け光トランシーバー・増幅器で中国製の代替供給元とされるが、高速レーザー生産自体がインジウムリンウェハーに依存している。"
+   }
+  },
+  "INNOLIGHT": {
+   "kind": "company",
+   "ticker": "300308.SZ",
+   "sector": {
+    "en": "Optical Components",
+    "ko": "광통신 부품",
+    "ja": "光通信部品"
+   },
+   "desc": {
+    "en": "World's largest maker of optical transceivers, supplying most of Nvidia's 800G module demand.",
+    "ko": "세계 최대 광트랜시버 제조사로, 엔비디아 800G 모듈 수요 대부분을 공급한다.",
+    "ja": "世界最大の光トランシーバーメーカーで、エヌビディアの800Gモジュール需要の大半を供給する。"
+   },
+   "aliases": [
+    "Innolight",
+    "Zhongji Innolight",
+    "이노라이트",
+    "中際旭創",
+    "イノライト"
+   ],
+   "logo": "innolight.com",
+   "exchange": "Shenzhen Stock Exchange",
+   "hq": {
+    "en": "Longkou, Shandong, China",
+    "ko": "중국 산둥 룽커우",
+    "ja": "中国山東省龍口市"
+   },
+   "website": "http://www.innolight.com",
+   "longDesc": {
+    "en": "Zhongji Innolight is the world's largest producer of optical transceivers, the modules that carry data between servers and GPU clusters in AI data centers. It holds roughly 27% of the global market and is a primary supplier for Nvidia's 800G-class networking gear, making it a direct target of proposed US import restrictions.",
+    "ko": "AI 데이터센터에서 서버와 GPU 클러스터 사이 데이터를 나르는 광트랜시버를 세계에서 가장 많이 만드는 회사다. 세계 시장의 약 27%를 쥐고 있고 엔비디아 800G급 네트워킹 장비의 주요 공급사라, 미국이 검토 중인 수입 규제의 직접 대상이 된다.",
+    "ja": "AIデータセンターでサーバーとGPUクラスター間のデータを運ぶ光トランシーバーを世界で最も多く作る企業。世界市場の約27%を握り、エヌビディアの800G級ネットワーキング機器の主要供給元であるため、米国が検討中の輸入規制の直接の標的になっている。"
+   }
+  },
+  "EOPTOLINK": {
+   "kind": "company",
+   "ticker": "300502.SZ",
+   "sector": {
+    "en": "Optical Components",
+    "ko": "광통신 부품",
+    "ja": "光通信部品"
+   },
+   "desc": {
+    "en": "Chinese optical transceiver maker whose revenue has more than doubled in a year on AI data-center demand.",
+    "ko": "AI 데이터센터 수요를 타고 매출이 1년 새 두 배 넘게 뛴 중국 광트랜시버 회사.",
+    "ja": "AIデータセンター需要で売上高が1年で2倍以上に伸びた中国の光トランシーバー企業。"
+   },
+   "aliases": [
+    "Eoptolink",
+    "Eoptolink Technology",
+    "이옵토링크",
+    "光迅科技",
+    "イオプトリンク"
+   ],
+   "logo": "eoptolink.com",
+   "exchange": "Shenzhen Stock Exchange",
+   "hq": {
+    "en": "Zhuhai, Guangdong, China",
+    "ko": "중국 광둥 주하이",
+    "ja": "中国広東省珠海市"
+   },
+   "website": "http://www.eoptolink.com",
+   "longDesc": {
+    "en": "Eoptolink is a Chinese maker of optical transceivers for data-center and telecom networks. Along with Innolight, it supplies much of the AI industry's 800G optical link demand, and its rapid revenue growth has made it a focal point of proposed US restrictions on Chinese-made networking optics.",
+    "ko": "데이터센터·통신망용 광트랜시버를 만드는 중국 회사다. 이노라이트와 함께 AI 산업의 800G 광링크 수요 상당 부분을 공급하며, 빠른 매출 성장으로 미국이 검토 중인 중국산 광통신 부품 규제의 초점이 되고 있다.",
+    "ja": "データセンター・通信網向け光トランシーバーを作る中国企業。イノライトとともにAI業界の800G光リンク需要の相当部分を供給しており、急速な売上成長により米国が検討中の中国製光通信部品規制の焦点になっている。"
+   }
+  },
+  "INDIUM PHOSPHIDE": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A compound semiconductor material essential for the high-speed lasers inside data-center optical transceivers.",
+    "ko": "데이터센터 광트랜시버의 고속 레이저에 쓰이는 화합물 반도체 소재.",
+    "ja": "データセンターの光トランシーバー用高速レーザーに使われる化合物半導体材料。"
+   },
+   "longDesc": {
+    "en": "A semiconductor material that generates laser light; above 100 gigabits per second there is still no substitute. China controls roughly 70% of global refined indium, so when China tightens exports, Western optics makers like Coherent and Lumentum cannot scale production.",
+    "ko": "레이저 빛을 만들어내는 반도체 소재로, 초당 100기가비트가 넘는 속도에서는 아직 대체할 소재가 없다. 세계 정제 인듐의 70%가량을 중국이 쥐고 있어, 중국이 수출을 조이면 코히런트·루멘텀 같은 서방 광부품 회사들의 생산 자체가 막힌다.",
+    "ja": "レーザー光を生成する半導体材料で、毎秒100ギガビットを超える速度ではまだ代替材料がない。世界の精製インジウムの約70%を中国が握っており、中国が輸出を絞ると、コヒレントやルーメンタムなど西側の光部品メーカーは増産できなくなる。"
+   },
+   "aliases": [
+    "인화인듐",
+    "indium phosphide",
+    "InP",
+    "인듐포스파이드",
+    "インジウムリン"
    ]
   }
  }
