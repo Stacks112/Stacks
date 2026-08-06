@@ -347,6 +347,20 @@ def main():
             emit(f"    (+{len(lst) - args.top}건 더)")
     emit("")
 
+    # 소스 메타: 이번 회차 후보에 등장한 feed_id만 (sources.json 재조회 없이 카드 작성에 필요한
+    # source/sourceLang/category/avatarImg/wiki 를 바로 쓰도록). 값이 없으면 빈 문자열로 찍는다.
+    candidate_feed_ids = sorted(set(c["feed_id"] for c in candidates))
+    emit(f"=== 소스 메타 ({len(candidate_feed_ids)}개) ===")
+    for feed_id in candidate_feed_ids:
+        meta = sources_data.get(feed_id, {}) or {}
+        source = meta.get("source", "") or ""
+        source_lang = meta.get("lang", "") or ""
+        category = meta.get("category", "") or ""
+        avatar_img = meta.get("avatarImg", "") or ""
+        wiki = meta.get("wiki", "") or ""
+        emit(f"{feed_id}|{source}|{source_lang}|{category}|{avatar_img}|{wiki}")
+    emit("")
+
     # 소스별 상한
     per_source = caps.get("per_source", {}) if caps else {}
     per_category = caps.get("per_category", {}) if caps else {}
