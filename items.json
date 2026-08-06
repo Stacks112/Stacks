@@ -1,6 +1,175 @@
 {
  "items": [
   {
+   "date": "2026-08-06",
+   "id": "jukan-vera-socamm2-second-halving-64gb",
+   "related": [
+    "jukan-rubin-ultra-hbm-despec-supply-side",
+    "jukan-nvidia-rubin-hbm4-cost-surge",
+    "jukan-rubin-ultra-reticle-packaging-risk"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2085220111959654856",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#1E3A8A",
+    "label": "64GB"
+   },
+   "tags": [
+    "NVIDIA",
+    "MEMORY",
+    "SOCAMM"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "엔비디아 베라 랙 메모리가 두 번째로 반토막 난다, 96GB에서 64GB로",
+    "en": "Nvidia halves Vera rack memory a second time, from 96GB to 64GB",
+    "ja": "エヌビディアのベララックメモリが再び半分に、96GBから64GBへ"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Rubin's SOCAMM2 has been nerfed once again — down to 64GB.",
+      "But is that bearish? If anything, it's the opposite.",
+      "This isn't a demand problem, it's a supply problem."
+     ],
+     "ko": [
+      "루빈의 SOCAMM2가 또다시 깎였다. 이번엔 64GB까지 내려간다.",
+      "그런데 이게 약세 신호일까? 오히려 정반대다.",
+      "이건 수요의 문제가 아니라 공급의 문제다."
+     ],
+     "ja": [
+      "ルービンのSOCAMM2がまた削られた。今回は64GBまで下がる。",
+      "だがこれは弱気材料だろうか。むしろ逆だ。",
+      "これは需要の問題ではなく、供給の問題だ。"
+     ]
+    },
+    "cite": "Jukan · 2026.08.06"
+   },
+   "sum3": {
+    "ko": "베라 CPU에 붙는 SOCAMM2 메모리가 96GB에서 64GB로 한 번 더 줄어든다, 2027년 1분기까지.\n겉보기엔 엔비디아가 원가를 아끼려 메모리를 깎는 것처럼 보인다.\n그런데 물량 배정률이 60~70%뿐이라는 숫자가, 이게 아낀 게 아니라 못 받은 것임을 말해준다.",
+    "en": "Nvidia is cutting SOCAMM2 memory on its Vera CPU again, from 96GB to 64GB by early 2027.\nOn the surface it looks like Nvidia trimming memory to save cost.\nBut memory makers filling only 60-70% of the requested volume says this is a shortage, not a saving.",
+    "ja": "エヌビディアのベラCPU向けSOCAMM2メモリーが96GBから64GBへ、2027年第1四半期までに再び削減される。\n表面的にはエヌビディアがコスト削減のためメモリーを削っているように見える。\nしかし要求量の60~70%しか供給できていないという数字は、これが節約ではなく不足であることを示している。"
+   },
+   "why": {
+    "ko": "엔비디아가 스스로 메모리를 깎았다는 사실만 보면 AI 투자가 식는 신호처럼 읽히기 쉽다. 그런데 원인이 공급 부족이라면 반대로 메모리 회사들의 물량이 여전히 부족하다는 뜻이 되고, 사려는 쪽과 만드는 쪽 중 누구 사정이 급한지가 갈린다.",
+    "en": "Taken at face value, Nvidia trimming its own memory spec reads like a sign that AI investment is cooling. But if the real cause is a supply shortfall, the same cut means memory makers still can't keep up, and it flips whose hand is weaker, the buyer's or the maker's.",
+    "ja": "エヌビディア自らメモリー仕様を削ったという事実だけを見れば、AI投資が冷え込む兆しに読めてしまう。だが原因が供給不足だとすれば、話は逆になる。メモリーメーカーの生産余力がまだ足りないという意味になり、買い手と作り手のどちらが苦しいかが分かれる。"
+   },
+   "ask": {
+    "ko": "메모리 스펙을 깎은 건 엔비디아가 아끼려는 걸까, 메모리 회사가 못 채워주는 걸까?",
+    "en": "Is Nvidia cutting the memory spec to save money, or because memory makers simply can't supply enough?",
+    "ja": "メモリー仕様を削ったのは、エヌビディアが節約したいからか、それともメモリーメーカーが供給しきれないからか?"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 1분기 말까지 베라 CPU용 SOCAMM2 사양이 64GB로 확정되는지, 아니면 물량이 풀려 그보다 높은 용량으로 조정되는지 트렌드포스·디지타임스 등 공급망 매체 보도로 확인한다.",
+     "en": "By the end of Q1 2027, check TrendForce, DigiTimes and similar supply-chain outlets for whether the Vera CPU's SOCAMM2 spec is confirmed at 64GB or revised upward as more supply becomes available.",
+     "ja": "2027年第1四半期末までに、ベラCPU向けSOCAMM2の仕様が64GBで確定するのか、それとも供給が緩んでそれ以上の容量に修正されるのかを、トレンドフォース・デジタイムズなどサプライチェーン専門媒体の報道で確認する。"
+    },
+    "due": "2027-03-31",
+    "card": {
+     "metric": {
+      "ko": "베라 CPU용 SOCAMM2 모듈 확정 용량 (2027년 1분기 기준)",
+      "en": "Confirmed SOCAMM2 module capacity for Vera CPU, as of Q1 2027",
+      "ja": "ベラCPU向けSOCAMM2モジュールの確定容量(2027年第1四半期時点)"
+     },
+     "now": {
+      "ko": "2026년 8월 기준 96GB에서 64GB로 낮추는 방안이 전해짐",
+      "en": "As of August 2026, a further cut from 96GB to 64GB is reported",
+      "ja": "2026年8月時点で96GBから64GBへのさらなる引き下げが伝えられている"
+     },
+     "when": {
+      "ko": "2027-03-31 (1분기 말)",
+      "en": "2027-03-31 (end of Q1)",
+      "ja": "2027-03-31 (第1四半期末)"
+     },
+     "hit": {
+      "ko": "SOCAMM2 용량이 64GB 이하로 확정된다",
+      "en": "SOCAMM2 capacity is confirmed at 64GB or lower",
+      "ja": "SOCAMM2容量が64GB以下で確定する"
+     },
+     "miss": {
+      "ko": "SOCAMM2 용량이 64GB보다 높게(96GB 이상으로) 되돌아간다",
+      "en": "SOCAMM2 capacity is restored above 64GB (back to 96GB or higher)",
+      "ja": "SOCAMM2容量が64GBより高く(96GB以上に)戻る"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-06",
+      "en": "Jukan (@jukan05) · 2026-08-06",
+      "ja": "Jukan(@jukan05) · 2026-08-06"
+     },
+     "url": "https://x.com/jukan05/status/2085220111959654856"
+    },
+    {
+     "name": {
+      "ko": "원문(보충)",
+      "en": "Original (supplementary)",
+      "ja": "原文(補足)"
+     },
+     "desc": {
+      "ko": "같은 날 함께 올라온 제프 푸 노트 인용 게시물, 설비투자 수치의 출처 · 2026-08-06",
+      "en": "A same-day post quoting Jeff Pu's note, source of the capex figures · 2026-08-06",
+      "ja": "同日に投稿された、ジェフ・プーのノートを引用した投稿。設備投資数値の出所 · 2026-08-06"
+     },
+     "url": "https://x.com/jukan05/status/2085217844921606498"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "베라 루빈 SOCAMM 용량 첫 감축(192GB→96GB)과 원가 비중 29% 근거 · 2026-07-28",
+      "en": "First SOCAMM cut (192GB to 96GB) and the 29% cost-share rationale · 2026-07-28",
+      "ja": "ベラ・ルービンSOCAMM容量の最初の削減(192GB→96GB)と原価比率29%の根拠 · 2026-07-28"
+     },
+     "url": "https://www.trendforce.com/news/2026/07/28/news-nvidia-reportedly-halves-vera-rubin-socamm-capacity-as-memory-costs-near-29-of-system-bom/"
+    },
+    {
+     "name": {
+      "ko": "더일렉",
+      "en": "The Elec",
+      "ja": "ジ・エレック"
+     },
+     "desc": {
+      "ko": "LPDDR 공급 부족을 첫 감축의 원인으로 지목 · 2026-06-10",
+      "en": "Names LPDDR supply shortage as the cause of the first cut · 2026-06-10",
+      "ja": "LPDDR供給不足を最初の削減の原因と指摘 · 2026-06-10"
+     },
+     "url": "https://www.thelec.net/news/articleView.html?idxno=11173"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-06 조회 · 29%·20%·55TB·28TB·20.7TB는 트렌드포스 2026-07-28 보도 기준, 60~70% 물량 배정률과 64GB·2027년 1분기 시점은 Jukan이 전한 것",
+    "en": "Retrieved 2026-08-06 · the 29%, 20%, 55TB, 28TB and 20.7TB figures are from TrendForce's 2026-07-28 report; the 60-70% fill rate, 64GB figure and Q1 2027 timing are as relayed by Jukan",
+    "ja": "2026-08-06 取得 · 29%・20%・55TB・28TB・20.7TBはトレンドフォース2026-07-28の報道に基づく。60~70%の充足率、64GB、2027年第1四半期の時期はJukanが伝えたもの"
+   },
+   "gist": {
+    "ko": "엔비디아의 차세대 서버용 CPU 베라(Vera)에 꽂히는 메모리 모듈 SOCAMM2가 96기가바이트(GB)에서 64GB로 한 번 더 줄어들 예정이라고 전해졌다.\n2027년 1분기까지 반영되는 사양이다.\n\n원래 이 모듈은 192GB로 설계됐다가 지난 6~7월 이미 한 차례 96GB로 반토막 났다.\n이번이 그 뒤를 잇는 두 번째 감축이다.\n\n@@REF@@엔비디아, 베라 루빈 SOCAMM 용량을 절반으로 낮춘 것으로 전해져, 메모리가 시스템 원가의 29%까지 차지 (트렌드포스, 2026-07-28)|https://www.trendforce.com/news/2026/07/28/news-nvidia-reportedly-halves-vera-rubin-socamm-capacity-as-memory-costs-near-29-of-system-bom/|https://img.trendforce.com/blog/wp-content/uploads/2026/07/28151236/nvidia-vera-cpu-rack_20260728-624x351.jpg\n\n트렌드포스는 그 첫 감축 당시 이유를 이렇게 짚었다.\n메모리가 전체 부품 원가에서 차지하는 비중이 29%까지 올라 엔비디아가 잡은 목표치 20%를 넘어섰다는 것이다.\n그래서 베라 CPU 쪽 메모리 총량은 55테라바이트(TB)에서 28TB로 줄었고, 반면 GPU 쪽 HBM4 메모리 20.7TB는 그대로 뒀다.\n\n## SOCAMM2가 두 번 깎이는 이유\n\n@@IMG@@dram-module|서버 CPU 옆에 카드처럼 꽂는 메모리 모듈. SOCAMM2도 이런 형태로, 엔비디아 베라 CPU 옆자리를 차지한다.\n\nSOCAMM2는 서버 CPU 옆에 카드처럼 꽂는 저전력 메모리 모듈이다.\nGPU 옆에 수직으로 쌓는 HBM과 달리, CPU가 쓸 데이터를 옆에서 받쳐주는 역할을 한다.\n\n@@TIME@@2026-06|SOCAMM2 용량이 192GB에서 96GB로 첫 감축|2026-07-28|트렌드포스, 메모리 원가 비중 29%(목표 20%)를 감축 이유로 확인|>2027-Q1|SOCAMM2가 96GB에서 64GB로 두 번째 감축, Jukan이 전함@@세 시점을 나란히 놓으면 감축이 한 번의 결정이 아니라 계속되는 흐름이라는 게 보인다.@@트렌드포스(2026-07-28)·Jukan(2026-08-06)\n\n주칸은 이번 두 번째 감축의 원인을 다르게 설명한다.\n엔비디아가 192GB 구성에 맞는 물량을 메모리 업체들에 요청했는데, 업체들이 돌려준 답은 \"요청량의 60~70%만 줄 수 있다\"였다는 것이다.\n사려는 쪽이 스스로 줄인 게 아니라, 만드는 쪽이 다 채워주지 못했다는 뜻이다.\n\n@@REF@@엔비디아, LPDDR 공급 부족에 SOCAMM2 용량 192GB에서 96GB로 축소 (더일렉, 2026-06-10)|https://www.thelec.net/news/articleView.html?idxno=11173\n\n더일렉도 첫 번째 감축 때 같은 원인을 짚었다.\n업계 관계자 말을 빌려, 저전력 D램(LPDDR) 공급이 부족한 게 원인이고 오히려 LPDDR 수요가 예상보다 빠르게 늘고 있다는 뜻이라고 전했다.\n두 매체, 두 시점의 취재가 같은 방향을 가리키는 셈이다.\n\n@@CHK@@메모리가 차지한 부품원가 비중(1차 감축 전)|29%|엔비디아가 잡은 목표 비중|20%@@원가 비중이 목표보다 9%포인트 높았다는 확인은 있지만, 이번 2차 감축까지 같은 이유였는지는 트렌드포스·더일렉 보도에는 나오지 않는다.@@트렌드포스 2026-07-28 조회\n\n## HBM 12단 논쟁과 줄지 않은 투자\n\n같은 게시물에서 주칸은 루빈 울트라의 HBM 사양도 짚었다.\n어느 리서치가 8단(8Hi) HBM4E로만 확정됐다고 썼지만, 12단(12Hi) 구성도 여전히 검토 중이라는 것이다.\n이 부분은 12단에서 8단으로 내려간다고 봤던 기존 논쟁의 후속으로, 아직 어느 쪽으로도 확정되지 않았다는 뜻이다.\n\n같은 게시물에 함께 인용된 제프 푸(Jeff Pu)의 노트는 아마존·구글·메타의 2026년 설비투자 계획을 각각 약 2200억달러, 1950억~2050억달러, 1300억~1450억달러로 추정했다.\n메모리 쪽 사양은 줄어드는데, 정작 클라우드 업체들의 지출 계획은 줄지 않고 있다는 뜻이다.\n\n메모리 사양이 깎였다는 소식 하나만 보면 AI 투자가 꺾이는 신호로 읽기 쉽다.\n그런데 같은 시기에 클라우드 업체들의 설비투자 계획은 줄지 않았고, 물량 배정률이 60~70%에 그쳤다는 숫자까지 나온 상황이라면, 사려는 쪽이 아니라 만드는 쪽이 못 채워주고 있다는 쪽에 무게가 실린다.\n2027년 1분기까지 이 64GB 사양이 그대로 굳어지는지, 아니면 물량이 풀려 다시 올라가는지가 판별선이다.",
+    "en": "Nvidia's SOCAMM2 memory module, the card that plugs in beside its next-generation server CPU Vera, is set to shrink again, from 96 gigabytes (GB) to 64GB.\nThe change is expected to be in place by the first quarter of 2027.\n\nThe module was originally designed at 192GB, then already cut once to 96GB back in June and July.\nThis is the second cut following that first one.\n\n@@REF@@Nvidia reportedly halves Vera Rubin SOCAMM capacity as memory costs near 29% of system BOM (TrendForce, 2026-07-28)|https://www.trendforce.com/news/2026/07/28/news-nvidia-reportedly-halves-vera-rubin-socamm-capacity-as-memory-costs-near-29-of-system-bom/|https://img.trendforce.com/blog/wp-content/uploads/2026/07/28151236/nvidia-vera-cpu-rack_20260728-624x351.jpg\n\nTrendForce pointed to a specific reason for that first cut.\nMemory had climbed to 29% of total system cost, above the 20% target Nvidia had set.\nSo total memory on the Vera CPU side fell from 55 terabytes (TB) to 28TB, while the GPU-side HBM4 memory stayed unchanged at 20.7TB.\n\n## Why SOCAMM2 keeps getting cut\n\n@@IMG@@dram-module|A memory module that plugs in beside a server CPU like a card. SOCAMM2 takes the same shape, sitting next to Nvidia's Vera CPU.\n\nSOCAMM2 is a low-power memory module that plugs in beside a server CPU.\nUnlike HBM, which stacks vertically beside the GPU, it feeds data the CPU needs from the side.\n\n@@TIME@@2026-06|SOCAMM2 capacity first cut from 192GB to 96GB|2026-07-28|TrendForce confirms the reason: memory at 29% of system cost versus a 20% target|>2027-Q1|SOCAMM2 cut again, from 96GB to 64GB, per Jukan@@Lined up, the three dates show this isn't one decision but an ongoing trend.@@TrendForce (2026-07-28) · Jukan (2026-08-06)\n\nJukan explains the second cut differently.\nNvidia asked memory makers for enough SOCAMM2 to fill a 192GB configuration, and the makers said they could only supply 60 to 70 percent of that volume.\nThat would mean the buyer didn't trim on its own. The makers simply couldn't fill the order.\n\n@@REF@@Nvidia halves SOCAMM2 capacity from 192GB to 96GB amid LPDDR shortage (The Elec, 2026-06-10)|https://www.thelec.net/news/articleView.html?idxno=11173\n\nThe Elec pointed to the same cause for the first cut.\nCiting an industry source, it said the shortage was in low-power DRAM (LPDDR) supply, and that it actually signals LPDDR demand growing faster than expected.\nTwo outlets, two points in time, point the same direction.\n\n@@CHK@@Memory's share of system cost before the first cut|29%|Nvidia's target share|20%@@There's confirmation the cost share sat 9 points above target, but neither report says whether the same reasoning applies to this second cut.@@TrendForce, retrieved 2026-07-28\n\n## The HBM 12-high fight, and capex that hasn't shrunk\n\nIn the same post, Jukan also touched on Rubin Ultra's HBM spec.\nOne research house had written it was locked in at 8-high (8Hi) HBM4E only, but Jukan says a 12-high (12Hi) configuration is still under consideration.\nThat extends the earlier 12Hi-versus-8Hi question: it isn't decided either way yet.\n\nA note from Jeff Pu, quoted in the same post, put 2026 capex plans for Amazon, Google and Meta at roughly $220 billion, $195 to 205 billion and $130 to 145 billion respectively.\nMemory content is shrinking even as cloud providers' spending plans are not.\n\nA single report of the memory spec shrinking looks, on its own, like a sign AI investment is cooling.\nBut cloud providers' capex plans haven't shrunk over the same period, and now there's a specific number, only 60 to 70 percent of requested volume filled, that points the other way.\nThe weight tips toward makers falling short of orders, not buyers pulling them back.\nWhether this 64GB spec holds through the first quarter of 2027, or gets raised again once more supply frees up, is what settles it.",
+    "ja": "エヌビディアの次世代サーバー用CPU「ベラ(Vera)」の隣に挿すメモリーモジュール、SOCAMM2の容量が96ギガバイト(GB)から64GBへ、もう一段引き下げられると伝えられた。\n2027年第1四半期までに反映される見通しだ。\n\nこのモジュールはもともと192GBで設計されていたが、6~7月にすでに一度96GBへ半減している。\n今回はその後を継ぐ2度目の削減となる。\n\n@@REF@@エヌビディア、ベラ・ルービンのSOCAMM容量を半減か、メモリーがシステム原価の29%に (トレンドフォース, 2026-07-28)|https://www.trendforce.com/news/2026/07/28/news-nvidia-reportedly-halves-vera-rubin-socamm-capacity-as-memory-costs-near-29-of-system-bom/|https://img.trendforce.com/blog/wp-content/uploads/2026/07/28151236/nvidia-vera-cpu-rack_20260728-624x351.jpg\n\nトレンドフォースは最初の削減について理由をこう指摘した。\nメモリーが部品原価全体に占める比率が29%まで上がり、エヌビディアが設定した目標の20%を超えたためだという。\nその結果、ベラCPU側の総メモリー容量は55テラバイト(TB)から28TBへ減った一方、GPU側のHBM4メモリー20.7TBは据え置かれた。\n\n## SOCAMM2が二度削られる理由\n\n@@IMG@@dram-module|サーバーCPUの隣にカードのように挿すメモリーモジュール。SOCAMM2も同じ形状で、エヌビディアのベラCPUの隣に収まる。\n\nSOCAMM2はサーバーCPUの隣にカード状で挿す低消費電力メモリーモジュールだ。\nGPUの隣に垂直に積むHBMとは違い、CPUが使うデータを横から支える役割を持つ。\n\n@@TIME@@2026-06|SOCAMM2の容量が192GBから96GBへ最初の削減|2026-07-28|トレンドフォースが理由を確認、メモリー原価比率29%(目標20%)|>2027-Q1|SOCAMM2が96GBから64GBへ2度目の削減、Jukanが伝える@@3つの時点を並べると、削減が一度きりの決定ではなく続いている流れだと分かる。@@トレンドフォース(2026-07-28)・Jukan(2026-08-06)\n\nJukanは今回の2度目の削減について、別の理由を挙げている。\nエヌビディアは192GB構成に見合う数量をメモリー各社に要請したが、各社の返答は「要請量の60~70%しか供給できない」だったという。\n買い手側が自ら減らしたのではなく、作り手側が注文を満たしきれなかったという意味になる。\n\n@@REF@@エヌビディア、LPDDR供給不足でSOCAMM2容量を192GBから96GBに縮小 (ジ・エレック, 2026-06-10)|https://www.thelec.net/news/articleView.html?idxno=11173\n\nジ・エレックも最初の削減時に同じ原因を指摘していた。\n業界関係者の話として、低消費電力DRAM(LPDDR)の供給不足が原因であり、むしろLPDDR需要が予想より速く伸びていることを示すと伝えた。\n2つの媒体が、2つの時点で、同じ方向を指している。\n\n@@CHK@@メモリーが占めた部品原価比率(1次削減前)|29%|エヌビディアの目標比率|20%@@原価比率が目標より9ポイント高かったという確認はあるが、今回の2次削減も同じ理由かはトレンドフォース・ジ・エレックの報道には出ていない。@@トレンドフォース 2026-07-28 取得\n\n## HBM 12段論争と縮まない投資\n\n同じ投稿でJukanは、ルービン・ウルトラのHBM仕様にも触れている。\nあるリサーチは8段(8Hi)のHBM4Eのみで確定したと書いたが、Jukanによれば12段(12Hi)構成もまだ検討中だという。\nこれは以前の12段対8段の論争の続きであり、まだどちらとも決まっていないことを意味する。\n\n同じ投稿で引用されたジェフ・プー(Jeff Pu)のノートは、アマゾン・グーグル・メタの2026年設備投資計画をそれぞれ約2200億ドル、1950億~2050億ドル、1300億~1450億ドルと見積もっていた。\nメモリー仕様が縮む一方で、クラウド各社の支出計画は縮んでいないということだ。\n\nメモリー仕様が削られたという一報だけを見れば、AI投資が冷え込む兆しに読めてしまう。\nだが同じ時期にクラウド各社の設備投資計画は縮んでおらず、要求量の60~70%しか満たせなかったという具体的な数字まで出てきた以上、買い手ではなく作り手側が注文を満たせていないという見方に分がある。\nこの64GB仕様が2027年第1四半期まで維持されるのか、それとも供給が緩んで再び引き上げられるのか、そこが分かれ目になる。"
+   }
+  },
+  {
    "date": "2026-08-04",
    "id": "serenity-fcc-optical-ban-indium-paradox",
    "related": [
