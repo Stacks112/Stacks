@@ -14,7 +14,7 @@
 
 **위험**: SEC 13F는 공시 대상 미국 롱 포지션만 보여주며 최신 분기 공시 기준이다. 데이터가 없는 기업에는 영역을 표시하지 않는다.
 
-**다음**: production `main`에 배포 후 live HTML에서 새 회사 카드 코드와 `portfolios.json` 연결을 확인한다.
+**결과**: production `main` 커밋 `7eba9e052`에 반영 완료. GitHub Pages 배포 성공, live HTML에서 새 회사 카드 코드 확인, live `portfolios.json`에서 AMD 보유자 4명 매칭 확인.
 
 ## 2026-08-07 Codex — 투자자 비교 모바일·일수 표시 수정
 
