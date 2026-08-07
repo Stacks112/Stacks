@@ -1,0 +1,37 @@
+name: Mobile calendar regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/v82.js"
+      - "assets/v82.css"
+      - "index.html"
+      - "tests/mobile-calendar.spec.mjs"
+      - "playwright.config.mjs"
+      - "package.json"
+      - ".github/workflows/calendar-regression.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install test runner
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run mobile calendar regression tests
+        run: npm test -- --reporter=line

@@ -20,7 +20,7 @@ import re
 import hashlib
 import os
 import urllib.parse
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -1913,7 +1913,7 @@ ENT_UI = {
     "ko": dict(ceo="대표", founded="설립", listed="상장", hq="본사", exchange="거래소",
                website="웹사이트", profile="프로필 ↗",
                relatedN="관련 글 {n}건", preds="예측 · 적중 기록 {n}건",
-               holders="이 종목을 보유한 투자 고수", holderSub="최신 SEC 13F 공시 기준 · 미국 상장 주식 롱 포지션",
+               holders="이 종목을 보유한 투자 고수", holderSub="최신 SEC 13F 공시 기준 · 미국 상장 주식 롱 포지션", holderAsOf="{period} 공시 기준", holderWaiting="업데이트 대기", holderWaitingTip="다음 분기 13F 공시를 기다리는 중입니다.",
                holderPeriod="{period} 공시", holderValue="포트폴리오 비중 {weight}",
                holderCount="{n}명", holderChanges={"hold": "보유", "new": "신규·매수", "add": "신규·매수", "increase": "늘림", "trim": "줄임"},
                metafb="{name} 관련 투자 읽을거리 모음",
@@ -1921,7 +1921,7 @@ ENT_UI = {
     "en": dict(ceo="CEO", founded="Founded", listed="Listed", hq="HQ", exchange="Exchange",
                website="Website", profile="Profile ↗",
                relatedN="{n} related posts", preds="Predictions & track record ({n})",
-               holders="Notable investors holding this stock", holderSub="Latest SEC 13F filing · U.S. long equity positions",
+               holders="Notable investors holding this stock", holderSub="Latest SEC 13F filing · U.S. long equity positions", holderAsOf="Based on {period} filing", holderWaiting="Update pending", holderWaitingTip="Waiting for the next quarterly 13F filing.",
                holderPeriod="{period} filing", holderValue="{weight} of portfolio",
                holderCount="{n} investors", holderChanges={"hold": "Held", "new": "New / bought", "add": "New / bought", "increase": "Increased", "trim": "Trimmed"},
                metafb="Investing reads about {name}, curated by " + SITE + ".",
@@ -1929,7 +1929,7 @@ ENT_UI = {
     "ja": dict(ceo="代表", founded="設立", listed="上場", hq="本社", exchange="取引所",
                website="ウェブサイト", profile="プロフィール ↗",
                relatedN="関連記事 {n}件", preds="予測・的中記録 {n}件",
-               holders="この銘柄を保有する著名投資家", holderSub="最新のSEC 13F提出 · 米国上場株のロングポジション",
+               holders="この銘柄を保有する著名投資家", holderSub="最新のSEC 13F提出 · 米国上場株のロングポジション", holderAsOf="{period}提出時点", holderWaiting="更新待ち", holderWaitingTip="次回の四半期13F提出を待っています。",
                holderPeriod="{period}提出", holderValue="ポートフォリオ比率 {weight}",
                holderCount="{n}人", holderChanges={"hold": "保有", "new": "新規・購入", "add": "新規・購入", "increase": "買い増し", "trim": "削減"},
                metafb="{name} に関する投資の読み物。",
@@ -1981,6 +1981,23 @@ def _13f_period_label(period, lang):
     if lang == "ja":
         return "%d年第%d四半期" % (year, quarter)
     return "%d년 %d분기" % (year, quarter)
+
+
+def _13f_freshness(period, today=None):
+    """Return whether the next quarter's 45-day filing window has closed."""
+    try:
+        year, month, _ = (int(x) for x in str(period).split("-")[:3])
+        quarter_start = ((month - 1) // 3) * 3 + 1
+        next_q_month = quarter_start + 6
+        next_q_year = year
+        if next_q_month > 12:
+            next_q_month -= 12
+            next_q_year += 1
+        next_q_end = date(next_q_year, next_q_month, 1) - timedelta(days=1)
+        due = next_q_end + timedelta(days=45)
+    except (TypeError, ValueError):
+        return None
+    return {"waiting": (today or date.today()) >= due, "due": due}
 
 
 def _13f_weight(weight):
@@ -2061,6 +2078,15 @@ def entity_page(key, e, ent_items, lang="ko", holder_index=None):
     holders = (holder_index or {}).get(key, []) if kind == "company" else []
     holders_html = ""
     if holders:
+        latest_period = max((str(h.get("period") or "") for h in holders), default="")
+        latest_label = _13f_period_label(latest_period, lang)
+        freshness = _13f_freshness(latest_period)
+        holder_badge = ""
+        if freshness and freshness["waiting"]:
+            holder_badge = (f'<span class="holder-fresh holder-fresh-wait" title="{E(U["holderWaitingTip"])}">'
+                            f'{E(U["holderWaiting"])}</span>')
+        holder_status = (f'<div class="holder-status"><span class="holder-asof">'
+                         f'{E(U["holderAsOf"].format(period=latest_label))}</span>{holder_badge}</div>')
         _holder_rows = []
         for h in holders:
             manager = _loc(h.get("manager")) or _loc(h.get("name"))
@@ -2081,18 +2107,21 @@ def entity_page(key, e, ent_items, lang="ko", holder_index=None):
             )
         holders_html = (f'<section class="holder-box"><h2>{E(U["holders"])} '
                         f'<span class="holder-count">{E(U["holderCount"].format(n=len(holders)))}</span></h2>'
-                        f'<p class="holder-sub">{E(U["holderSub"])}</p><ul class="holders">'
+                        f'{holder_status}<p class="holder-sub">{E(U["holderSub"])}</p><ul class="holders">'
                         + "".join(_holder_rows) + "</ul></section>")
     holder_css = """
 .holder-box{margin:26px 0 4px;padding:16px 0 2px;border-top:1px solid #ECEDF1}
 .holder-box h2{margin:0;font-size:16px}
 .holder-count{font-size:12px;font-weight:600;color:#8E93A0;margin-left:5px}
+.holder-status{display:flex;align-items:center;gap:7px;margin-top:3px}
+.holder-asof{font-size:12px;color:#8E93A0}
+.holder-fresh{font-size:10px;font-weight:800;border-radius:999px;padding:2px 7px;color:#9A6700;background:#FFF4CC}
 .holder-sub{margin:3px 0 4px;font-size:12px;color:#8E93A0}
 .holders{margin:0}
 .holders li{padding:10px 0}
 .holder-name{font-weight:700;text-decoration:none}
 .holder-fund{display:block;font-size:12px;color:#8E93A0;margin-top:2px}
-@media(prefers-color-scheme:dark){.holder-box{border-color:#26272E}}
+@media(prefers-color-scheme:dark){.holder-box{border-color:#26272E}.holder-fresh{color:#FFD666;background:#4A3710}}
 """ if holders else ""
 
     about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": name}

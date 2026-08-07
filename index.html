@@ -292,7 +292,7 @@ const STRINGS = {
     entArticles: "View {n} related articles →",
     entRelated: "Related posts",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
-    holderTitle: "Notable investors holding this stock", holderSub: "Latest SEC 13F filing · U.S. long equity positions", holderPeriod: "{period} filing", holderWeight: "{weight} of portfolio", holderCount: "{n} investors",
+    holderTitle: "Notable investors holding this stock", holderSub: "Latest SEC 13F filing · U.S. long equity positions", holderAsOf: "Based on {period} filing", holderWaiting: "Update pending", holderWaitingTip: "Waiting for the next quarterly 13F filing.", holderPeriod: "{period} filing", holderWeight: "{weight} of portfolio", holderCount: "{n} investors",
     holderChanges: { hold: "Held", held: "Held", new: "New / bought", add: "New / bought", increase: "Increased", trim: "Trimmed" },
     watchUnread: "{n} unread",
     fsChart: "Pro chart",
@@ -474,7 +474,7 @@ const STRINGS = {
     entArticles: "관련 글 {n}개 보기 →",
     entRelated: "관련 글 보기",
     fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
-    holderTitle: "이 종목을 보유한 투자 고수", holderSub: "최신 SEC 13F 공시 기준 · 미국 상장 주식 롱 포지션", holderPeriod: "{period} 공시", holderWeight: "포트폴리오 비중 {weight}", holderCount: "{n}명",
+    holderTitle: "이 종목을 보유한 투자 고수", holderSub: "최신 SEC 13F 공시 기준 · 미국 상장 주식 롱 포지션", holderAsOf: "{period} 공시 기준", holderWaiting: "업데이트 대기", holderWaitingTip: "다음 분기 13F 공시를 기다리는 중입니다.", holderPeriod: "{period} 공시", holderWeight: "포트폴리오 비중 {weight}", holderCount: "{n}명",
     holderChanges: { hold: "보유", held: "보유", new: "신규·매수", add: "신규·매수", increase: "늘림", trim: "줄임" },
     watchUnread: "안 읽은 글 {n}",
     fsChart: "전문 차트",
@@ -656,7 +656,7 @@ const STRINGS = {
     entArticles: "関連記事{n}件を見る →",
     entRelated: "関連記事",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
-    holderTitle: "この銘柄を保有する著名投資家", holderSub: "最新のSEC 13F提出 · 米国上場株のロングポジション", holderPeriod: "{period}提出", holderWeight: "ポートフォリオ比率 {weight}", holderCount: "{n}人",
+    holderTitle: "この銘柄を保有する著名投資家", holderSub: "最新のSEC 13F提出 · 米国上場株のロングポジション", holderAsOf: "{period}提出時点", holderWaiting: "更新待ち", holderWaitingTip: "次回の四半期13F提出を待っています。", holderPeriod: "{period}提出", holderWeight: "ポートフォリオ比率 {weight}", holderCount: "{n}人",
     holderChanges: { hold: "保有", held: "保有", new: "新規・購入", add: "新規・購入", increase: "買い増し", trim: "削減" },
     watchUnread: "未読{n}件",
     fsChart: "プロチャート",
@@ -1607,6 +1607,10 @@ html[data-lang="ko"] .fsq-note{font-family:var(--ui-font);}
 .eh-holders-head{display:flex;align-items:baseline;gap:6px;font-size:14px;}
 .eh-holders-head b{font-weight:800;}
 .eh-holders-count{font-size:11px;color:var(--muted);font-weight:700;}
+.eh-holders-status{display:flex;align-items:center;gap:7px;margin-top:3px;}
+.eh-holders-asof{font-size:11px;color:var(--muted);}
+.eh-holders-fresh{font-size:10px;font-weight:800;border-radius:999px;padding:2px 7px;color:#9a6700;background:#fff4cc;}
+html[data-theme="dark"] .eh-holders-fresh{color:#ffd666;background:#4a3710;}
 .eh-holders-sub{margin:3px 0 5px;font-size:11px;color:var(--muted);line-height:1.45;}
 html[data-lang="ko"] .eh-holders-sub{font-family:var(--ui-font);}
 .eh-holder-list{display:flex;flex-direction:column;}
@@ -7576,6 +7580,35 @@ function entity13fPeriodLabel(period){
   if (LANG === "ja") return year + "年第" + quarter + "四半期";
   return year + "년 " + quarter + "분기";
 }
+function entity13fFreshness(period){
+  var bits = String(period || "").split("-");
+  var year = parseInt(bits[0], 10), month = parseInt(bits[1], 10);
+  if (!year || !month) return null;
+  var quarterStart = Math.floor((month - 1) / 3) * 3;
+  /* The next quarter's 45-day SEC filing window is the useful freshness
+     boundary. A Q1 filing is therefore current until the Q2 filing window
+     closes, rather than being marked stale merely because it is a few months
+     old. */
+  var nextQuarterEnd = new Date(year, quarterStart + 6, 0);
+  var due = new Date(nextQuarterEnd.getFullYear(), nextQuarterEnd.getMonth(), nextQuarterEnd.getDate());
+  due.setDate(due.getDate() + 45);
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  return { waiting: today >= due, due: due };
+}
+function entity13fHolderStatusHtml(rows, S){
+  var latest = "";
+  rows.forEach(function(row){
+    var p = String(row.inv && row.inv.period || "");
+    if (p > latest) latest = p;
+  });
+  if (!latest) return "";
+  var asOf = String(S.holderAsOf || "{period}").replace("{period}", entity13fPeriodLabel(latest));
+  var freshness = entity13fFreshness(latest);
+  var badge = freshness && freshness.waiting
+    ? '<span class="eh-holders-fresh eh-holders-fresh-wait" title="' + esc(S.holderWaitingTip || "") + '">' + esc(S.holderWaiting || "") + "</span>"
+    : "";
+  return '<div class="eh-holders-status"><span class="eh-holders-asof">' + esc(asOf) + "</span>" + badge + "</div>";
+}
 function entity13fHolderRows(key, data){
   var rows = [];
   (data && data.investors || []).forEach(function(inv){
@@ -7611,6 +7644,7 @@ function entity13fHolderHtml(key, data, S){
   var count = String(S.holderCount || "{n}").replace("{n}", rows.length);
   return '<section class="eh-holders"><div class="eh-holders-head"><b>' + esc(S.holderTitle || "") + "</b>"
     + '<span class="eh-holders-count">' + esc(count) + "</span></div>"
+    + entity13fHolderStatusHtml(rows, S)
     + '<p class="eh-holders-sub">' + esc(S.holderSub || "") + "</p>"
     + '<div class="eh-holder-list">' + list + "</div></section>";
 }
