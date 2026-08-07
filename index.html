@@ -3734,6 +3734,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp-dynamic-subset.min.css">
 </noscript>
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=79b64196">
+<link rel="stylesheet" href="assets/investor-compare.css?v=5c1b049f">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 </head>
@@ -6811,6 +6812,7 @@ async function renderInvestors(list, S){
   loading.remove();
   var investors = (data && data.investors) || [];
   if (view === "index"){ renderInvestorsIndex(list, S, investors); return; }
+  if (view === "compare" && typeof renderInvestorCompare === "function"){ renderInvestorCompare(list, S, investors); return; }
   var inv = investors.find(function(x){ return x && x.slug === view; });
   if (!inv){
     var head = document.createElement("div"); head.className = "series-header sb-header";
@@ -14531,5 +14533,6 @@ bootData();
   armInvestorDrawerWatch();
 })();
 </script>
+<script src="assets/investor-compare.js?v=d87da95b"></script>
 </body>
 </html>
