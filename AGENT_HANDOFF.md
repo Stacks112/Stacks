@@ -3106,3 +3106,8 @@ Next:
 - Regenerated `data/core.json`, `data/gist.ko.0.json`, `data/manifest.json`, and the Korean static article page.
 - Checks passed: JSON parse, term coverage, source dependence, editorial round, weekly editorial, and deploy guard.
 - Pending: commit/push and production Pages verification.
+
+## 2026-08-07 Codex - refresh service-worker cache
+
+- Bumped the service-worker cache from `stacks-v31` to `stacks-v32` after live verification found stale cached `data/core.json` content.
+- Pending: commit/push the cache invalidation and recheck the live reader.
