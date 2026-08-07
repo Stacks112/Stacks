@@ -3,6 +3,7 @@
  "investors": [
   {
    "slug": "berkshire",
+   "ticker": "BUFFETT",
    "cik": "0001067983",
    "filer": "BERKSHIRE HATHAWAY INC",
    "name": {
@@ -835,7 +836,7 @@
      }
     ]
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "워런 버핏이 이끄는 지주회사로, 보험·철도·에너지 자회사와 함께 대규모 상장주식 포트폴리오를 운용한다. 13F 보고 대상 미국 주식 포지션은 분기 말 기준 수백억 달러 규모이며, 소수 종목에 집중된 장기 보유 스타일이 특징이다.",
     "en": "Warren Buffett's holding company, which runs insurance, rail and energy subsidiaries alongside a large public-equity portfolio. Its 13F-reportable U.S. stock positions total in the hundreds of billions of dollars and are concentrated in a small number of long-held names.",
@@ -847,6 +848,7 @@
   },
   {
    "slug": "pershing-square",
+   "ticker": "ACKMAN",
    "cik": "0001336528",
    "filer": "Pershing Square Capital Management, L.P.",
    "name": {
@@ -1190,7 +1192,7 @@
     "exited_count": 1,
     "reduced_count": 5,
     "options_count": 0,
-    "top10_pct": 1.0,
+    "top10_pct": 1,
     "total_value_prev": 15526737802,
     "value_change_pct": -0.1167,
     "turnover_pct": 0.1818
@@ -1227,7 +1229,7 @@
      }
     ]
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "빌 애크먼이 운용하는 액티비스트 헤지펀드로, 10개 안팎의 종목에 초집중 투자하는 전략을 쓴다. 13F 보고 포트폴리오는 소수의 대형 포지션이 대부분을 차지한다.",
     "en": "An activist hedge fund run by Bill Ackman that concentrates on roughly a dozen or fewer positions at a time. Its 13F portfolio is dominated by a handful of large stakes.",
@@ -1239,6 +1241,7 @@
   },
   {
    "slug": "ark",
+   "ticker": "WOOD",
    "cik": "0001697748",
    "filer": "ARK INVESTMENT MANAGEMENT LLC",
    "name": {
@@ -3833,7 +3836,7 @@
      "sector": null,
      "value": 608310,
      "shares": 9000,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -3846,7 +3849,7 @@
      "sector": null,
      "value": 584391,
      "shares": 628310,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -3859,7 +3862,7 @@
      "sector": null,
      "value": 178949,
      "shares": 6773,
-     "weight": 0.0,
+     "weight": 0,
      "change": "add",
      "prev_shares": 5029
     },
@@ -3872,7 +3875,7 @@
      "sector": null,
      "value": 99720,
      "shares": 253,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 304
     },
@@ -3885,7 +3888,7 @@
      "sector": null,
      "value": 98767,
      "shares": 679,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 889
     },
@@ -3898,7 +3901,7 @@
      "sector": null,
      "value": 92260,
      "shares": 216,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 1219
     },
@@ -3911,7 +3914,7 @@
      "sector": null,
      "value": 89517,
      "shares": 337,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 343
     },
@@ -3924,7 +3927,7 @@
      "sector": null,
      "value": 88808,
      "shares": 2458,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 3210
     },
@@ -3937,7 +3940,7 @@
      "sector": null,
      "value": 88536,
      "shares": 4458,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -3950,7 +3953,7 @@
      "sector": null,
      "value": 85632,
      "shares": 2359,
-     "weight": 0.0,
+     "weight": 0,
      "change": "add",
      "prev_shares": 2282
     },
@@ -3963,7 +3966,7 @@
      "sector": null,
      "value": 82595,
      "shares": 571,
-     "weight": 0.0,
+     "weight": 0,
      "change": "add",
      "prev_shares": 565
     },
@@ -3980,7 +3983,7 @@
      },
      "value": 72179,
      "shares": 497,
-     "weight": 0.0,
+     "weight": 0,
      "change": "add",
      "prev_shares": 471
     },
@@ -3993,7 +3996,7 @@
      "sector": null,
      "value": 40495,
      "shares": 93,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 128
     },
@@ -4006,7 +4009,7 @@
      "sector": null,
      "value": 35467,
      "shares": 5981,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -4019,7 +4022,7 @@
      "sector": null,
      "value": 17910,
      "shares": 28,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 68
     },
@@ -4032,7 +4035,7 @@
      "sector": null,
      "value": 125,
      "shares": 0,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 38
     }
@@ -4123,11 +4126,11 @@
        "ja": "複合素材・産業財"
       },
       "value": 72179,
-      "weight": 0.0
+      "weight": 0
      }
     ]
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "캐시 우드가 이끄는 액티브 운용사로, 혁신·성장 테마의 상장지수펀드(ARKK 등)를 통해 파괴적 혁신 기업에 집중 투자한다. 13F 포트폴리오는 수백 개 종목에 걸쳐 있으며 회전율이 높은 편이다.",
     "en": "An active manager led by Cathie Wood, best known for thematic innovation-growth ETFs such as ARKK. Its 13F portfolio spans a large number of names and turns over relatively quickly.",
@@ -4139,6 +4142,7 @@
   },
   {
    "slug": "duquesne",
+   "ticker": "DRUCK",
    "cik": "0001536411",
    "filer": "Duquesne Family Office LLC",
    "name": {
@@ -5588,7 +5592,7 @@
      }
     ]
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "스탠리 드러켄밀러가 자신의 자산을 운용하는 패밀리 오피스로, 매크로 관점에 따라 종목·비중을 자주 바꾸는 것으로 알려져 있다. 13F 포트폴리오는 옵션 포지션을 포함해 회전율이 높다.",
     "en": "Stanley Druckenmiller's family office, known for shifting names and sizing frequently around a top-down macro view. Its 13F filings include options positions and turn over quickly.",
@@ -5600,6 +5604,7 @@
   },
   {
    "slug": "appaloosa",
+   "ticker": "TEPPER",
    "cik": "0001656456",
    "filer": "Appaloosa LP",
    "name": {
@@ -6558,7 +6563,7 @@
      }
     ]
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "데이비드 테퍼가 운용하는 헤지펀드로, 대형 기술주와 매크로 베팅 위주의 집중 포트폴리오로 알려져 있다. 13F 보고 종목 수는 수십 개 안팎이다.",
     "en": "A hedge fund run by David Tepper, known for a concentrated portfolio weighted toward large-cap tech and macro-driven bets. Its 13F typically lists on the order of a few dozen positions.",
@@ -6570,6 +6575,7 @@
   },
   {
    "slug": "situational-awareness",
+   "ticker": "ASCHEN",
    "cik": "0002045724",
    "filer": "Situational Awareness LP",
    "name": {
@@ -7739,7 +7745,7 @@
      },
      "value": 497912,
      "shares": 2855,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     }
@@ -7807,7 +7813,7 @@
      }
     ]
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "전 OpenAI 연구원 레오폴드 아셴브레너가 2024년 에세이 'Situational Awareness'로 AGI 임박론을 편 뒤 차린 헤지펀드로, AI 인프라·반도체·전력 관련 종목에 집중 베팅한다. 콜·풋 옵션으로 방향성을 강하게 표현해, 보통주만 봐서는 포지션의 실제 색깔(강세/약세)을 읽기 어렵다.",
     "en": "A hedge fund founded by former OpenAI researcher Leopold Aschenbrenner after his 2024 essay 'Situational Awareness' argued AGI was near. It concentrates on AI infrastructure, semiconductors and power names, and leans heavily on call and put options to express direction, so reading the common-stock rows alone misses most of what the fund is actually betting on.",
@@ -7819,6 +7825,7 @@
   },
   {
    "slug": "third-point",
+   "ticker": "LOEB",
    "cik": "0001040273",
    "filer": "Third Point LLC",
    "name": {
@@ -8787,7 +8794,7 @@
      "sector": null,
      "value": 88200,
      "shares": 367499,
-     "weight": 0.0,
+     "weight": 0,
      "change": "hold",
      "prev_shares": 367499
     }
@@ -8849,6 +8856,7 @@
   },
   {
    "slug": "baupost",
+   "ticker": "KLARMAN",
    "cik": "0001061768",
    "filer": "BAUPOST GROUP LLC/MA",
    "name": {
@@ -9580,6 +9588,7 @@
   },
   {
    "slug": "tci",
+   "ticker": "HOHN",
    "cik": "0001647251",
    "filer": "TCI Fund Management Ltd",
    "name": {
@@ -9861,10 +9870,10 @@
     "exited_count": 0,
     "reduced_count": 2,
     "options_count": 0,
-    "top10_pct": 1.0,
+    "top10_pct": 1,
     "total_value_prev": 53648816254,
     "value_change_pct": -0.158,
-    "turnover_pct": 0.0
+    "turnover_pct": 0
    },
    "sector_alloc": {
     "covered_pct": 0.0942,
@@ -9892,6 +9901,7 @@
   },
   {
    "slug": "coatue",
+   "ticker": "LAFFONT",
    "cik": "0001135730",
    "filer": "COATUE MANAGEMENT LLC",
    "name": {
@@ -11092,7 +11102,7 @@
      "sector": null,
      "value": 1068896,
      "shares": 468814,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -11105,7 +11115,7 @@
      "sector": null,
      "value": 748858,
      "shares": 154086,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -11118,7 +11128,7 @@
      "sector": null,
      "value": 492454,
      "shares": 106823,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -11131,7 +11141,7 @@
      "sector": null,
      "value": 240925,
      "shares": 343393,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -11144,7 +11154,7 @@
      "sector": null,
      "value": 223573,
      "shares": 228136,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     }
@@ -11215,6 +11225,7 @@
   },
   {
    "slug": "soros",
+   "ticker": "SOROS",
    "cik": "0001029160",
    "filer": "SOROS FUND MANAGEMENT LLC",
    "name": {
@@ -14665,7 +14676,7 @@
      "sector": null,
      "value": 352550,
      "shares": 5000,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -14678,7 +14689,7 @@
      "sector": null,
      "value": 321509,
      "shares": 2526,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 13031
     },
@@ -14691,7 +14702,7 @@
      "sector": null,
      "value": 317699,
      "shares": 20991,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -14704,7 +14715,7 @@
      "sector": null,
      "value": 264420,
      "shares": 19500,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 2229518
     },
@@ -14717,7 +14728,7 @@
      "sector": null,
      "value": 260082,
      "shares": 36891,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 137330
     },
@@ -14730,7 +14741,7 @@
      "sector": null,
      "value": 258689,
      "shares": 7287,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 34015
     },
@@ -14743,7 +14754,7 @@
      "sector": null,
      "value": 242166,
      "shares": 328,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 2021
     },
@@ -14756,7 +14767,7 @@
      "sector": null,
      "value": 218668,
      "shares": 2656,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 9828
     },
@@ -14769,7 +14780,7 @@
      "sector": null,
      "value": 193482,
      "shares": 24616,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 124827
     },
@@ -14782,7 +14793,7 @@
      "sector": null,
      "value": 191905,
      "shares": 13467,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 43868
     },
@@ -14795,7 +14806,7 @@
      "sector": null,
      "value": 143401,
      "shares": 29206,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -14808,7 +14819,7 @@
      "sector": null,
      "value": 107936,
      "shares": 20797,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 58903
     },
@@ -14821,7 +14832,7 @@
      "sector": null,
      "value": 92301,
      "shares": 15805,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 60539
     },
@@ -14834,7 +14845,7 @@
      "sector": null,
      "value": 71070,
      "shares": 19418,
-     "weight": 0.0,
+     "weight": 0,
      "change": "new",
      "prev_shares": null
     },
@@ -14847,7 +14858,7 @@
      "sector": null,
      "value": 11529,
      "shares": 19069,
-     "weight": 0.0,
+     "weight": 0,
      "change": "trim",
      "prev_shares": 33026
     },
@@ -14860,7 +14871,7 @@
      "sector": null,
      "value": 271,
      "shares": 1102,
-     "weight": 0.0,
+     "weight": 0,
      "change": "add",
      "prev_shares": 200
     }
@@ -14958,6 +14969,7 @@
   },
   {
    "slug": "carl-icahn",
+   "ticker": "ICAHN",
    "cik": "0000921669",
    "filer": "ICAHN CARL C",
    "name": {
@@ -15319,10 +15331,10 @@
     "turnover_pct": 0.0769
    },
    "sector_alloc": {
-    "covered_pct": 0.0,
+    "covered_pct": 0,
     "sectors": []
    },
-   "ticker_coverage_pct": 1.0,
+   "ticker_coverage_pct": 1,
    "desc": {
     "ko": "칼 아이칸이 지배하는 투자회사로, 행동주의 투자와 기업 지배구조·자본배분 변화 요구로 잘 알려져 있다. 13F는 다양한 전략 중 공개된 미국 상장주식 포지션만 보여준다.",
     "en": "An investment company controlled by Carl Icahn, known for activist campaigns and pushing companies to change governance and capital allocation. Its 13F shows only the public U.S. equity portion of a broader set of strategies.",
@@ -15334,6 +15346,7 @@
   },
   {
    "slug": "tiger-global",
+   "ticker": "COLEMAN",
    "cik": "0001167483",
    "filer": "TIGER GLOBAL MANAGEMENT LLC",
    "name": {
@@ -16481,7 +16494,7 @@
      "sector": null,
      "value": 1002000,
      "shares": 75000,
-     "weight": 0.0,
+     "weight": 0,
      "change": "hold",
      "prev_shares": 75000
     },
@@ -16494,7 +16507,7 @@
      "sector": null,
      "value": 309400,
      "shares": 70000,
-     "weight": 0.0,
+     "weight": 0,
      "change": "hold",
      "prev_shares": 70000
     },
@@ -16507,7 +16520,7 @@
      "sector": null,
      "value": 176000,
      "shares": 20000,
-     "weight": 0.0,
+     "weight": 0,
      "change": "hold",
      "prev_shares": 20000
     }
@@ -16596,6 +16609,7 @@
   },
   {
    "slug": "viking",
+   "ticker": "HALVORSEN",
    "cik": "0001103804",
    "filer": "VIKING GLOBAL INVESTORS LP",
    "name": {
@@ -18112,6 +18126,7 @@
   },
   {
    "slug": "oaktree",
+   "ticker": "MARKS",
    "cik": "0000949509",
    "filer": "OAKTREE CAPITAL MANAGEMENT LP",
    "name": {
@@ -19235,7 +19250,7 @@
     "turnover_pct": 0.4225
    },
    "sector_alloc": {
-    "covered_pct": 0.0,
+    "covered_pct": 0,
     "sectors": []
    },
    "ticker_coverage_pct": 0.8875,
@@ -19250,6 +19265,7 @@
   },
   {
    "slug": "scion",
+   "ticker": "BURRY",
    "cik": "0001649339",
    "filer": "Scion Asset Management, LLC",
    "name": {
@@ -19665,7 +19681,7 @@
     "exited_count": 14,
     "reduced_count": 0,
     "options_count": 4,
-    "top10_pct": 1.0,
+    "top10_pct": 1,
     "total_value_prev": 578337040,
     "value_change_pct": 1.3882,
     "turnover_pct": 0.9545
