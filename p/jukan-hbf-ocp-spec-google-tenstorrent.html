@@ -70,7 +70,6 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .xreal.x-on>.xemb{display:none}
 .xreal.x-on>.xreal-slot{display:block}
 .xreal-slot iframe{max-width:100%!important}
-.xreal-slot iframe.x-direct{display:block;width:100%;height:380px;border:0;border-radius:12px;background:#fff}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -299,29 +298,11 @@ UCIe는 서로 다른 회사가 만든 칩 조각을 한 패키지 안에서 잇
 (function(){
   var hosts = document.querySelectorAll('.xreal[data-xid]');
   if (!hosts.length) return;
-  function direct(host, id){
-    var slot = host.querySelector('.xreal-slot');
-    if (!slot) return;
-    slot.innerHTML = '';
-    var frame = document.createElement('iframe');
-    frame.className = 'x-direct';
-    frame.title = 'X post';
-    frame.loading = 'eager';
-    frame.scrolling = 'no';
-    frame.referrerPolicy = 'strict-origin-when-cross-origin';
-    frame.src = 'https://platform.twitter.com/embed/Tweet.html?id=' + encodeURIComponent(id) + '&dnt=true&lang=en';
-    frame.onload = function(){ host.classList.add('x-on'); };
-    frame.onerror = function(){ frame.remove(); };
-    slot.appendChild(frame);
-  }
   var sc = document.createElement('script');
   sc.async = true;
   sc.src = 'https://platform.twitter.com/widgets.js';
   sc.onload = function(){
-    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet){
-      Array.prototype.forEach.call(hosts, function(host){ direct(host, host.getAttribute('data-xid')); });
-      return;
-    }
+    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet) return;
     Array.prototype.forEach.call(hosts, function(host){
       var id = host.getAttribute('data-xid');
       var slot = host.querySelector('.xreal-slot');
@@ -331,14 +312,12 @@ UCIe는 서로 다른 회사가 만든 칩 조각을 한 패키지 안에서 잇
           dnt: true, conversation: 'none', align: 'left'
         })).then(function(node){
           if (node) host.classList.add('x-on');
-          else direct(host, id);
-        }).catch(function(){ direct(host, id); });
-      } catch (e) { direct(host, id); }
+          else slot.innerHTML = '';
+        }).catch(function(){ slot.innerHTML = ''; });
+      } catch (e) { slot.innerHTML = ''; }
     });
   };
-  sc.onerror = function(){
-    Array.prototype.forEach.call(hosts, function(host){ direct(host, host.getAttribute('data-xid')); });
-  };
+  sc.onerror = function(){};
   document.head.appendChild(sc);
 }());
 </script>
