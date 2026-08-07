@@ -3509,4 +3509,7 @@ Next:
 
 **위험/다음**:
 - 앱 런타임 코드는 변경하지 않음. 실제 모바일 브라우저 표시 확인은 Pages 배포 후 수행.
-- push 후 Mobile calendar regression, Pages deployment, live smoke 결과 확인.
+- Mobile calendar regression `31225229268`, Feed detail regression `31225229269`,
+  Pages deployment `31225246601` 모두 성공.
+- `stacksdaily.com`와 `ads.txt` live smoke HTTP 200 확인. 주간 클릭 리포트는
+  `GOATCOUNTER_API_KEY` GitHub secret 등록 후 생성.
