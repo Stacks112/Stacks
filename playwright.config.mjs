@@ -9,7 +9,10 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:4173",
     viewport: { width: 390, height: 844 },
-    isMobile: true,
+    // Chromium's mobile emulation uses a wider layout viewport than the 390px
+    // visual viewport here, which puts fixed header controls off-screen.
+    // Narrow viewport + touch is sufficient for this responsive regression.
+    isMobile: false,
     hasTouch: true,
     reducedMotion: "reduce",
     trace: "retain-on-failure",
