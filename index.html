@@ -3622,15 +3622,18 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
   .inv-movers-grid{grid-template-columns:1fr;}
   .inv-stat-grid{grid-template-columns:repeat(auto-fit,minmax(96px,1fr));}
 }
-/* v84.2 (2026-08-05, june 정정): 13F 화면에서는 우측 레일의 "다가오는 일정/이번 주
-   인기/내 브리핑/뉴스레터"만 숨긴다. 검색창(.v83-search)은 대상이 아니므로 셀렉터에
+/* v84.2 (2026-08-05, june 정정): 13F 화면에서는 우측 레일의 검색창을 제외한
+   일반·글 상세 전용 섹션("다가오는 일정/이번 주 인기/내 브리핑/뉴스레터"와
+   동적 추천 섹션)을 숨긴다. 검색창(.v83-search)은 대상이 아니므로 셀렉터에
    넣지 않는다 — 그대로 노출·고정 유지. 클래스는 renderFeed()가 매 렌더마다
    INVESTOR_VIEW 값으로 다시 계산해 붙이고 떼므로(#v83fsw와 같은 자리), 홈으로
    나가거나 뒤로가기를 해도 다음 렌더에서 항상 정확한 상태로 복구된다. */
 #v83rail.inv-rail-hide #v83calSec,
 #v83rail.inv-rail-hide #hotSec,
 #v83rail.inv-rail-hide #watchSec,
-#v83rail.inv-rail-hide #nlSec{display:none !important;}
+#v83rail.inv-rail-hide #nlSec,
+#v83rail.inv-rail-hide #v83relSec,
+#v83rail.inv-rail-hide .v83postRecSec{display:none !important;}
 /* ---------- dark mode ---------- */
 html[data-theme="dark"]{
   --bg:#000000;
@@ -5971,6 +5974,7 @@ function invRunAfterMobileDetailClosed(fn){
 }
 function openInvestors(){
   invRunAfterMobileDetailClosed(function(){
+    if (typeof V83ITEM !== "undefined") V83ITEM = null;
     INVESTOR_VIEW = "index";
     SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
     pushView(); try{ history.replaceState(history.state,"","#investors"); }catch(e){}
@@ -5980,6 +5984,7 @@ function openInvestors(){
 }
 function openInvestor(slug){
   invRunAfterMobileDetailClosed(function(){
+    if (typeof V83ITEM !== "undefined") V83ITEM = null;
     INVESTOR_VIEW = slug;
     SB_VIEW=false; THEME_VIEW=null; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null;
     pushView(); try{ history.replaceState(history.state,"","#investor-"+encodeURIComponent(slug)); }catch(e){}
@@ -5988,6 +5993,7 @@ function openInvestor(slug){
   });
 }
 function closeInvestors(){
+  if (typeof V83ITEM !== "undefined") V83ITEM = null;
   INVESTOR_VIEW=null;
   try{ if(location.hash.indexOf("#investor")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
   renderFeed(false);
@@ -14072,7 +14078,7 @@ bootData();
 <!-- ============ v82: Twitter-style mobile shell ============ -->
 <script src="assets/v82.js?v=31bc938a"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
-<script src="assets/v83tw.js?v=94fc844c"></script>
+<script src="assets/v83tw.js?v=right-rail-20260808"></script>
 
 <!-- ============ BETA: Twitter-style comment sheet (overrides toggleComments/closeComments) ============ -->
 <script src="assets/twc.js?v=3ca67014"></script>

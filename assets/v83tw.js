@@ -653,7 +653,8 @@ function v83RelatedRail(){
     var active = (typeof V83ITEM !== "undefined" && V83ITEM) && rail
       && !(typeof QUERY !== "undefined" && QUERY)
       && !(typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW)
-      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW);
+      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW)
+      && !(typeof invViewActive === "function" && invViewActive());
     if (!active){ if (existing) existing.remove(); return; }
     var it = (typeof ITEMS !== "undefined") ? ITEMS.find(function(x){ return x.id === V83ITEM; }) : null;
     var rel = (it && it.related ? it.related : [])
@@ -795,7 +796,8 @@ function v83PostRecRail(){
     var active = (typeof V83ITEM !== "undefined" && V83ITEM) && rail
       && !(typeof QUERY !== "undefined" && QUERY)
       && !(typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW)
-      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW);
+      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW)
+      && !(typeof invViewActive === "function" && invViewActive());
     if (!active){
       existing.forEach(function(sec){ sec.remove(); });
       if (hotSec) hotSec.hidden = false;
@@ -845,7 +847,8 @@ function v83MobilePostRecs(){
     var active = (typeof V83ITEM !== "undefined" && V83ITEM)
       && !(typeof QUERY !== "undefined" && QUERY)
       && !(typeof ENTITY_VIEW !== "undefined" && ENTITY_VIEW)
-      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW);
+      && !(typeof SERIES_VIEW !== "undefined" && SERIES_VIEW)
+      && !(typeof invViewActive === "function" && invViewActive());
     var one = document.querySelector("#feedList > .card.v83one");
     var body = one ? one.querySelector(".card-body") : null;
     if (!active || !body){ if (existing) existing.remove(); return; }
