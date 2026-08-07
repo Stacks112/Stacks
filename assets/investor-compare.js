@@ -29,6 +29,7 @@
       coverage:"시세 {p}%", mismatch:"분기 다름",
       holdGraphTitle:"그대로 들고 있었다면",
       holdGraphSub:"13F 공시일에 공개된 주식 수를 그대로 보유했다고 가정한 누적 성과입니다. 각 투자자의 공시일을 100으로 맞췄습니다.",
+      holdGraphDrag:"그래프를 마우스로 드래그하면 선택한 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
       holdGraphStart:"공시일=100", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · 공시 이후 가격 데이터 기준 · 실제 펀드 수익률 아님",
       holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음"
@@ -47,6 +48,7 @@
       coverage:"Prices {p}%", mismatch:"Different period",
       holdGraphTitle:"If held unchanged",
       holdGraphSub:"Estimated cumulative performance assuming the disclosed share counts were held from each 13F filing date. Each investor is rebased to 100 on its filing date.",
+      holdGraphDrag:"Drag across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Filing=100", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · based on prices after disclosure · not actual fund returns",
       holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data"
@@ -65,6 +67,7 @@
       coverage:"価格 {p}%", mismatch:"四半期が異なります",
       holdGraphTitle:"そのまま保有していたら",
       holdGraphSub:"13F開示日に公表された株数をそのまま保有したと仮定した累積推定成績です。各投資家の開示日を100に揃えています。",
+      holdGraphDrag:"グラフをドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開示日=100", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・開示後の価格データ基準・実際のファンド収益率ではありません",
       holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし"
@@ -241,6 +244,22 @@
     return (chg >= 0 ? "+" : "") + chg.toFixed(1) + "%";
   }
   function graphDays(c, elapsed){ return c.holdGraphDays.replace("{n}", Math.max(0, Math.round(elapsed / 86400))); }
+  function graphDate(t){
+    var d = new Date(Number(t) * 1000), m = d.getUTCMonth() + 1, day = d.getUTCDate(), y = d.getUTCFullYear();
+    if (typeof LANG !== "undefined" && LANG === "en"){
+      return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m - 1] + " " + day;
+    }
+    if (typeof LANG !== "undefined" && LANG === "ja") return m + "月" + day + "日";
+    return y + "." + String(m).padStart(2,"0") + "." + String(day).padStart(2,"0");
+  }
+  function graphRangeForSeries(series, a, b, maxElapsed){
+    var lo = Math.min(a, b), hi = Math.max(a, b);
+    var start = graphPointAt(series.points, series.start + lo * maxElapsed);
+    var end = graphPointAt(series.points, series.start + hi * maxElapsed);
+    if (!start || !end || end.t <= start.t || !(start.v > 0)) return null;
+    return { start: start, end: end, pct: (end.v / start.v - 1) * 100, days: (end.t - start.t) / 86400 };
+  }
+  function graphRangeLabel(c, days){ return c.holdGraphRange.replace("{n}", Math.max(1, Math.round(days))); }
   function graphLegend(legend, rows, c){
     legend.innerHTML = rows.map(function(row, i){
       var inv = row.inv, coverage = row.res && typeof row.res.coverage === "number" ? Math.round(row.res.coverage * 100) : null;
@@ -250,7 +269,7 @@
         + '<small>' + (coverage == null ? esc(c.holdGraphNoPrice) : esc(c.holdGraphCoverage.replace("{p}", coverage))) + '</small></span>';
     }).join("");
   }
-  function paintCompareGraph(chart, legend, rows, c){
+  function paintCompareGraph(chart, legend, rows, c, clearBtn){
     graphLegend(legend, rows, c);
     var series = rows.map(function(row, i){
       if (!row.series) return null;
@@ -278,19 +297,30 @@
       return '<polyline points="' + pts + '" fill="none" stroke="' + s.color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
     }).join("");
     chart.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="100%" role="img" aria-label="' + esc(c.holdGraphSub) + '">'
-      + grid + '<line x1="' + pL + '" y1="' + baseY.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + baseY.toFixed(1) + '" class="inv-compare-baseline"/>'
+      + grid + '<rect class="inv-compare-selection" y="' + pT + '" height="' + ph + '" visibility="hidden"/> '
+      + '<line x1="' + pL + '" y1="' + baseY.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + baseY.toFixed(1) + '" class="inv-compare-baseline"/>'
       + lines + ylab
       + '<text x="' + pL + '" y="' + (H - 9) + '" text-anchor="start" class="inv-compare-axis">' + esc(c.holdGraphStart) + '</text>'
       + '<text x="' + (pL + pw) + '" y="' + (H - 9) + '" text-anchor="end" class="inv-compare-axis">' + esc(c.holdGraphNow) + '</text>'
       + '<line class="inv-compare-hover-line" y1="' + pT + '" y2="' + (pT + ph) + '" visibility="hidden"/>'
       + series.map(function(s){ return '<circle class="inv-compare-hover-dot" data-color="' + s.color + '" r="4" fill="' + s.color + '" visibility="hidden"/>'; }).join("")
       + '</svg><div class="inv-compare-chart-tip" hidden></div>';
-    var svg = chart.querySelector("svg"), tip = chart.querySelector(".inv-compare-chart-tip"), hover = chart.querySelector(".inv-compare-hover-line"), dots = Array.prototype.slice.call(chart.querySelectorAll(".inv-compare-hover-dot"));
-    function leave(){ hover.setAttribute("visibility", "hidden"); dots.forEach(function(d){ d.setAttribute("visibility", "hidden"); }); tip.hidden = true; }
-    function move(ev){
+    var svg = chart.querySelector("svg"), tip = chart.querySelector(".inv-compare-chart-tip"), hover = chart.querySelector(".inv-compare-hover-line"), selectionRect = chart.querySelector(".inv-compare-selection"), dots = Array.prototype.slice.call(chart.querySelectorAll(".inv-compare-hover-dot"));
+    var selection = null, dragging = false, dragStart = 0;
+    function hideHover(){
+      hover.setAttribute("visibility", "hidden"); dots.forEach(function(d){ d.setAttribute("visibility", "hidden"); });
+      if (!selection) tip.hidden = true;
+    }
+    function leave(){ if (!dragging && !selection) hideHover(); else if (!dragging) hideHover(); }
+    function fracAt(ev){
       var rect = svg.getBoundingClientRect(), frac = (ev.clientX - rect.left) / rect.width;
       frac = Math.max(0, Math.min(1, (frac * W - pL) / pw));
+      return frac;
+    }
+    function move(ev){
+      var frac = fracAt(ev);
       var elapsed = frac * maxElapsed, x = X(frac);
+      hideHover();
       hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
       var html = '<b>' + esc(graphDays(c, elapsed)) + '</b>';
       series.forEach(function(s, i){
@@ -303,15 +333,55 @@
       });
       tip.innerHTML = html; tip.hidden = false; tip.style.left = (x / W * 100) + "%";
     }
-    svg.addEventListener("pointermove", move); svg.addEventListener("pointerleave", leave);
+    function rangePct(v){ return typeof v === "number" && isFinite(v) ? (v >= 0 ? "+" : "") + v.toFixed(1) + "%" : "—"; }
+    function showSelection(a, b){
+      var lo = Math.min(a, b), hi = Math.max(a, b), x1 = X(lo), x2 = X(hi);
+      selectionRect.setAttribute("x", x1.toFixed(1)); selectionRect.setAttribute("width", Math.max(1, x2 - x1).toFixed(1)); selectionRect.setAttribute("visibility", "visible");
+      hideHover();
+      var html = '<b>' + esc(c.holdGraphSelected) + ' · ' + esc(graphRangeLabel(c, (hi - lo) * maxElapsed)) + '</b>';
+      var any = false;
+      series.forEach(function(s){
+        var r = graphRangeForSeries(s, lo, hi, maxElapsed);
+        if (!r){ html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>—</b></span>'; return; }
+        any = true;
+        html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <em>' + esc(graphDate(r.start.t) + "–" + graphDate(r.end.t)) + '</em> <b>' + esc(rangePct(r.pct)) + '</b></span>';
+      });
+      if (!any) html += '<span>' + esc(c.holdGraphNoData) + '</span>';
+      tip.innerHTML = html; tip.hidden = false; tip.style.left = Math.max(14, Math.min(86, ((x1 + x2) / 2) / W * 100)) + "%";
+      if (clearBtn) clearBtn.hidden = false;
+    }
+    function clearSelection(){
+      selection = null; selectionRect.setAttribute("visibility", "hidden"); if (clearBtn) clearBtn.hidden = true; hideHover();
+    }
+    function startDrag(ev){
+      if (ev.button != null && ev.button !== 0) return;
+      dragging = true; dragStart = fracAt(ev); selection = null; if (clearBtn) clearBtn.hidden = true;
+      try { svg.setPointerCapture(ev.pointerId); } catch(e) {}
+      showSelection(dragStart, dragStart); ev.preventDefault();
+    }
+    function dragMove(ev){ if (dragging) { showSelection(dragStart, fracAt(ev)); ev.preventDefault(); } else move(ev); }
+    function endDrag(ev){
+      if (!dragging) return;
+      var end = fracAt(ev), distance = Math.abs(end - dragStart); dragging = false;
+      try { svg.releasePointerCapture(ev.pointerId); } catch(e) {}
+      if (distance < 0.008){ clearSelection(); move(ev); return; }
+      selection = { a: Math.min(dragStart, end), b: Math.max(dragStart, end) }; showSelection(selection.a, selection.b);
+    }
+    svg.addEventListener("pointerdown", startDrag);
+    svg.addEventListener("pointermove", dragMove);
+    svg.addEventListener("pointerup", endDrag);
+    svg.addEventListener("pointercancel", function(){ if (dragging){ dragging = false; clearSelection(); } });
+    svg.addEventListener("pointerleave", leave);
+    svg.addEventListener("dblclick", clearSelection);
+    if (clearBtn) clearBtn.addEventListener("click", clearSelection);
   }
   function compareGraphSection(investors){
     var c = C(), sec = document.createElement("section"); sec.className = "inv-performance-section";
-    sec.innerHTML = '<div class="inv-performance-head"><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p></div>'
-      + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-legend"></div><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
-    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend");
+    sec.innerHTML = '<div class="inv-performance-head"><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p><small class="inv-compare-drag-hint">' + esc(c.holdGraphDrag) + '</small></div>'
+      + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
+    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear");
     invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ return { inv: inv, res: null, series: null }; }); })
-      .then(function(rows){ if (sec.isConnected) paintCompareGraph(chart, legend, rows, c); });
+      .then(function(rows){ if (sec.isConnected) paintCompareGraph(chart, legend, rows, c, clearBtn); });
     return sec;
   }
 
@@ -369,11 +439,11 @@
     head.innerHTML='<button class="series-close" onclick="openInvestors()">← '+esc(c.edit)+'</button><div class="series-head-name">⇄ '+esc(c.title)+'</div>'
       +'<p class="series-head-desc">'+chosen.map(function(i){return esc(tickerLabel(i));}).join(" · ")+'</p>';
     list.appendChild(head);
+    list.appendChild(compareGraphSection(chosen));
     if(periods.size>1){var warn=document.createElement("div");warn.className="inv-period-warning";warn.innerHTML='<b>'+esc(c.mismatch)+'</b><span>'+esc(c.periodWarn)+'</span>';list.appendChild(warn);}
     var grid=document.createElement("div");grid.className="inv-compare-summary-grid";
     var cards=chosen.map(function(inv){var card=summaryCard(inv);grid.appendChild(card);return{inv:inv,card:card};});list.appendChild(grid);
     invMapLimit(cards,2,function(x){return fillPerformance(x.card,x.inv);});
-    list.appendChild(compareGraphSection(chosen));
     list.appendChild(overlapSection(chosen)); list.appendChild(topHoldingsSection(chosen)); list.appendChild(sectorSection(chosen));
     var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
   }
