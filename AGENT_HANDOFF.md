@@ -27,6 +27,18 @@ Shared handoff log for Codex and Claude.
 
 **다음**: 배포 승인 시 production deploy guard를 먼저 실행한 뒤 배포하고, 실제 투자자 상세 차트에서 가격 커버리지 문구와 전체 포지션 반영을 확인한다.
 
+## 2026-08-07 Codex — Bessent inline news-card image
+
+**Goal**: Add the missing inline reference-card image to `bessent-wages-25th-percentile-lead` and rebuild production outputs.
+
+**Changed**: Added the official BLS `og:image` URL as the third field of the ko/en/ja `@@REF@@` marker in `items.json`; rebuilt `data/core.json`, `data/gist.{ko,en,ja}.0.json`, `data/manifest.json`, and the three localized static article pages.
+
+**Verified**: BLS official page exposes `https://www.bls.gov/images/bls_emblem_2016.png` as `og:image`. Term coverage, source dependence, editorial round, and weekly checks passed with `BLOCK 0`. `deploy_guard.py items.json` passed. Full rebuild completed with 281 article pages and 603 entity pages. Target static pages changed from `.gref` to `.gcard` only.
+
+**Risks**: Inline card image depends on the official BLS-hosted asset remaining available. Unrelated generated feed, sitemap, scoreboard, pycache, and cross-platform font diffs were excluded.
+
+**Next**: Push to `main`, then verify the live app renders one `.gcard img` for the Bessent article.
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — about.html: Stacks 콘텐츠 무단 재배포 금지 조항 신설
 
 **요청**: june이 "우리 사이트 무단 복사나 베껴가서 무단으로 배포하거나 이런 위험은 없나? 누군가 우리꺼 베껴갈거 같아서"라고 우려 표명 → 위험 진단 후 "제일 급한거부터 처리해줘" 승인.
