@@ -46,7 +46,12 @@ OEMBED = "https://publish.twitter.com/oembed"
 UA = "stacksdaily.com embed fetcher (+https://stacksdaily.com)"
 TIMEOUT = 15
 PAUSE = 0.7          # be a polite neighbour; ~100 posts is ~70s
-MAX_NEW = 40         # per run, so a cold start spreads over a few runs
+try:
+    # The normal scheduled build keeps this at 40; a controlled one-off
+    # recovery can raise it without editing the publisher.
+    MAX_NEW = max(1, int(os.environ.get("STACKS_EMBED_MAX_NEW", "40")))
+except (TypeError, ValueError):
+    MAX_NEW = 40
 MAX_LINES = 4        # paragraphs kept from the post body
 STATUS_RE = re.compile(r"^https?://(?:www\.)?(?:x|twitter)\.com/[^/]+/status/(\d+)", re.I)
 LINK_RE = re.compile(r"(?:https?://)?(?:t\.co|pic\.(?:twitter|x)\.com)/\w+")
