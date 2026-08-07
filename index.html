@@ -2797,6 +2797,12 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
   font-family:"Inter",sans-serif;white-space:nowrap;}
 .bar-t{height:10px;border-radius:5px;background:var(--track);}
 .bar-f{height:100%;border-radius:5px;background:var(--s1);min-width:3px;}
+.bar-anim .bar-f{width:var(--bar-w,0%);transform-origin:left center;
+  animation:bar-grow .82s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--bar-delay,0ms);}
+.bar-anim .bar-r:nth-child(2) .bar-f{background:color-mix(in srgb,var(--s1) 72%,var(--card));}
+.bar-anim .bar-r:nth-child(3) .bar-f{background:color-mix(in srgb,var(--s1) 46%,var(--card));}
+@keyframes bar-grow{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+@media (prefers-reduced-motion:reduce){.bar-anim .bar-f{animation:none;transform:none;}}
 .bar-x{display:inline-block;margin:3px 0 0;padding:3px 9px;border-radius:999px;
   background:var(--track);font-family:"Inter",sans-serif;font-size:12px;font-weight:800;color:var(--s1);}
 .shr-t{display:flex;height:26px;gap:2px;}
@@ -4110,6 +4116,7 @@ function dTail(parts){
 function dataBlock(kind, payload){
   const parts = String(payload || "").split("@@");
   const rows = dCells(parts[0], kind === "bar" || kind === "share" ? 3 : 2);
+  const animatedBar = kind === "bar" && String(parts[3] || "").trim().toLowerCase() === "animate";
   if (!rows.length) return "";
   let body = "";
   if (kind === "bar"){
@@ -4117,8 +4124,11 @@ function dataBlock(kind, payload){
     const top = Math.max.apply(null, vals.filter(v => v != null).concat([0]));
     body = rows.map((r, i) => {
       const w = (top > 0 && vals[i] != null) ? Math.max(vals[i] / top * 100, 0.4) : 0.4;
+      const style = animatedBar
+        ? "--bar-w:" + w.toFixed(2) + "%;--bar-delay:" + String(i * 110) + "ms"
+        : "width:" + w.toFixed(2) + "%";
       return '<div class="bar-r"><div class="bar-h"><i>' + esc(r[0]) + "</i><b>" + esc(r[1]) + "</b></div>" +
-             '<div class="bar-t"><div class="bar-f" style="width:' + w.toFixed(2) + '%"></div></div></div>';
+             '<div class="bar-t"><div class="bar-f" style="' + style + '"></div></div></div>';
     }).join("");
     /* 두 값을 재는 블록에서 배수는 독자가 암산할 것이 아니라 우리가 보여줄 것이다. */
     const ok = vals.filter(v => v);
@@ -4148,7 +4158,7 @@ function dataBlock(kind, payload){
       '<div class="flw-s"><b>' + esc(r[0]) + "</b>" +
       (r[1] ? "<span>" + esc(r[1]) + "</span>" : "") + "</div>").join("") + "</div>";
   }
-  return '<div class="dbk">' + body + dTail(parts) + "</div>";
+  return '<div class="dbk' + (animatedBar ? ' bar-anim' : '') + '">' + body + dTail(parts) + "</div>";
 }
 
 function gistRich(item){

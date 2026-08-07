@@ -272,20 +272,37 @@ def _blk_bar(payload):
     rows = _dcells(parts[0], 3)
     if not rows:
         return ""
+    animated = len(parts) > 3 and parts[3].strip().lower() == "animate"
     vals = [_dnum(v) for _, _, v in rows]
     top = max([v for v in vals if v is not None] or [0])
-    body = "".join(
-        '<div class="bar-r"><div class="bar-h"><i>%s</i><b>%s</b></div>'
-        '<div class="bar-t"><div class="bar-f" style="width:%.4g%%"></div></div></div>'
-        % (E(lab), E(disp), max((v / top * 100) if (top and v is not None) else 0, 0.4))
-        for (lab, disp, _), v in zip(rows, vals))
+    bars = []
+    for i, ((lab, disp, _), v) in enumerate(zip(rows, vals)):
+        w = max((v / top * 100) if (top and v is not None) else 0, 0.4)
+        style = ("--bar-w:%.4g%%;--bar-delay:%dms" % (w, i * 110)
+                 if animated else "width:%.4g%%" % w)
+        bars.append(
+            '<div class="bar-r"><div class="bar-h"><i>%s</i><b>%s</b></div>'
+            '<div class="bar-t"><div class="bar-f" style="%s"></div></div></div>'
+            % (E(lab), E(disp), style))
+    body = "".join(bars)
     # 두 값을 재는 블록에서 배수는 독자가 암산할 것이 아니라 우리가 보여줄 것이다.
     badge, ok = "", [v for v in vals if v]
     if len(rows) == 2 and len(ok) == 2 and min(ok) > 0:
         r = max(ok) / min(ok)
         if r >= 1.5:
             badge = '<div class="bar-x">&#215;%s</div>' % ("%.1f" % r).rstrip("0").rstrip(".")
-    return '<div class="dbk">%s%s%s</div>' % (body, badge, _dtail(parts))
+    anim_css = ""
+    if animated:
+        anim_css = ('<style>.bar-anim .bar-f{width:var(--bar-w,0%);transform-origin:left center;'
+                    'animation:bar-grow .82s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--bar-delay,0ms)}'
+                    '.bar-anim .bar-r:nth-child(2) .bar-f{background:color-mix(in srgb,var(--s1) 72%,#fff)}'
+                    '.bar-anim .bar-r:nth-child(3) .bar-f{background:color-mix(in srgb,var(--s1) 46%,#fff)}'
+                    '@keyframes bar-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}'
+                    '@media(prefers-reduced-motion:reduce){.bar-anim .bar-f{animation:none;transform:none}}'
+                    '@media(prefers-color-scheme:dark){.bar-anim .bar-r:nth-child(2) .bar-f{background:color-mix(in srgb,var(--s1) 72%,#141519)}'
+                    '.bar-anim .bar-r:nth-child(3) .bar-f{background:color-mix(in srgb,var(--s1) 46%,#141519)}}</style>')
+    return '%s<div class="dbk%s">%s%s%s</div>' % (
+        anim_css, " bar-anim" if animated else "", body, badge, _dtail(parts))
 
 
 def _blk_share(payload):
