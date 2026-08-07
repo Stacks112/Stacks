@@ -28,9 +28,9 @@
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
       coverage:"시세 {p}%", mismatch:"분기 다름",
       holdGraphTitle:"공개 포트폴리오의 흐름",
-      holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 100으로 맞춥니다.",
+      holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 0%로 맞춘 상대 성과입니다.",
       holdGraphDrag:"그래프를 마우스로 드래그하면 선택한 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
-      holdGraphStart:"공시일=100", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
+      holdGraphStart:"시작점=0%", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님",
       holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음",
       holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph6m:"6개월", holdGraphYtd:"연중"
@@ -48,9 +48,9 @@
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
       coverage:"Prices {p}%", mismatch:"Different period",
       holdGraphTitle:"Public portfolio path",
-      holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor is rebased to 100 at the start of the selected period.",
+      holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor starts at 0% for the selected period.",
       holdGraphDrag:"Drag across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
-      holdGraphStart:"Filing=100", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
+      holdGraphStart:"Start=0%", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns",
       holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data",
       holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph6m:"6M", holdGraphYtd:"YTD"
@@ -68,9 +68,9 @@
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
       coverage:"価格 {p}%", mismatch:"四半期が異なります",
       holdGraphTitle:"公開ポートフォリオの推移",
-      holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を100に揃えます。",
+      holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を0%に揃えた相対成績です。",
       holdGraphDrag:"グラフをドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
-      holdGraphStart:"開示日=100", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
+      holdGraphStart:"開始点=0%", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません",
       holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし",
       holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph6m:"6か月", holdGraphYtd:"年初来"
@@ -253,8 +253,7 @@
   }
   function graphPct(v){
     if (typeof v !== "number" || !isFinite(v)) return "—";
-    var chg = v - 100;
-    return (chg >= 0 ? "+" : "") + chg.toFixed(1) + "%";
+    return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
   }
   function graphDays(c, elapsed){ return c.holdGraphDays.replace("{n}", Math.max(0, Math.round(elapsed / 86400))); }
   function graphDate(t){
@@ -269,8 +268,8 @@
     var lo = Math.min(a, b), hi = Math.max(a, b);
     var start = graphPointAt(series.points, windowStart + lo * maxElapsed);
     var end = graphPointAt(series.points, windowStart + hi * maxElapsed);
-    if (!start || !end || end.t <= start.t || !(start.v > 0)) return null;
-    return { start: start, end: end, pct: (end.v / start.v - 1) * 100, days: (end.t - start.t) / 86400 };
+    if (!start || !end || end.t <= start.t || !(start.index > 0)) return null;
+    return { start: start, end: end, pct: (end.index / start.index - 1) * 100, days: (end.t - start.t) / 86400 };
   }
   function graphRangeLabel(c, elapsed){ return c.holdGraphRange.replace("{n}", Math.max(1, Math.round(elapsed / 86400))); }
   function graphWindow(period, series){
@@ -317,10 +316,10 @@
       var points = s.points.filter(function(p){ return p.t >= first.t && p.t <= last.t; });
       if (!points.length || points[0].t !== first.t) points.unshift(first);
       if (points[points.length - 1].t !== last.t) points.push(last);
-      return { inv:s.inv, points:points.map(function(p){ return { t:p.t, v:(p.v / first.v) * 100 }; }), start:first.t, end:last.t, color:graphColor(i) };
+      return { inv:s.inv, points:points.map(function(p){ var index = (p.v / first.v) * 100; return { t:p.t, v:index - 100, index:index }; }), start:first.t, end:last.t, color:graphColor(i) };
     }).filter(Boolean);
     if (!series.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
-    var all = [100]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
+    var all = [0]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all), span = mx - mn;
     if (span < 8){ var center = (mn + mx) / 2; mn = center - 5; mx = center + 5; }
     else { mn -= span * .08; mx += span * .08; }
@@ -331,9 +330,9 @@
     for (var g = 0; g <= 4; g++){
       var yv = mn + ((mx - mn) * g) / 4, yy = Y(yv);
       grid += '<line x1="' + pL + '" y1="' + yy.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + yy.toFixed(1) + '" class="inv-compare-grid"/>';
-      ylab += '<text x="' + (pL - 8) + '" y="' + (yy + 4).toFixed(1) + '" text-anchor="end" class="inv-compare-axis">' + Math.round(yv) + '</text>';
+      ylab += '<text x="' + (pL - 8) + '" y="' + (yy + 4).toFixed(1) + '" text-anchor="end" class="inv-compare-axis">' + Math.round(yv) + '%</text>';
     }
-    var baseY = Y(100);
+    var baseY = Y(0);
     var lines = series.map(function(s){
       var pts = s.points.map(function(p){ return X((p.t - windowStart) / maxElapsed).toFixed(1) + "," + Y(p.v).toFixed(1); }).join(" ");
       return '<polyline points="' + pts + '" fill="none" stroke="' + s.color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
