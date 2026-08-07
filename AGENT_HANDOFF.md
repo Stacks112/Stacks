@@ -26,7 +26,7 @@ Shared handoff log for Codex and Claude.
 
 **다음**: 최신 `main` 기준 deploy guard 후 커밋·푸시하고, 실사이트에서 새 첫 문장과 카드 렌더를 확인한다.
 
-## 2026-08-07 Codex — 유명 투자자 5명 추가 (로컬, 미배포)
+## 2026-08-07 Codex — 유명 투자자 5명 추가 (production 반영 완료)
 
 **요청**: june이 13F 투자자 목록에 유명 투자자를 더 추가하자고 요청.
 
@@ -50,10 +50,11 @@ Icahn 12 / Tiger Global 54 / Viking 77 / Oaktree 53 / Scion 8. 새 투자자
 티커 식별 커버리지는 각각 100.0% / 99.8% / 95.5% / 88.8% / 80.7%이며,
 미확인 CUSIP은 잘못된 티커를 만들지 않고 남겼다. Python 문법·JSON·diff 검사 통과.
 
-**상태/다음**: production에는 아직 반영하지 않음. 배포 전 최신 `origin/main` 기준
-rebase, `deploy_guard.py` 검증, 13F 목록·상세·스파크라인·사진 폴백 브라우저 확인 필요.
+**상태/검증**: GitHub `main` 커밋 `a1f18dab`으로 production 반영 완료. 라이브
+`portfolios.json`에서 16명과 신규 5개 slug를 확인했고, 최신 원격 tree와 로컬 검증
+tree가 일치한다.
 
-## 2026-08-07 Codex — 인물·회사 이미지 매핑 복구 (로컬, 미배포)
+## 2026-08-07 Codex — 인물·회사 이미지 매핑 복구 (production 반영 완료)
 
 **문제**: 13F 확장 배포 뒤 인물 사진과 운용사 로고가 일부 사라짐. 원인은
 `jukan.png`·`schiff.png`·`bilello.png`가 레포에 없는 상대경로였고, 13F 운용사
@@ -71,8 +72,9 @@ inline JS 7개 블록 파싱, `git diff --check`, source-media 자동 교정 테
 전체 `build_pages.py` 실행도 성공했으나 범위를 벗어난 생성 페이지 변경은 되돌리고 위 네
 파일만 남김.
 
-**상태/다음**: production에는 아직 반영하지 않음. 원격 `main`이 로컬 작업 기준보다
-앞서 있으므로 배포 전 최신 `origin/main` 기준 rebase와 `deploy_guard.py --verify` 필요.
+**상태/검증**: GitHub `main` 커밋 `a1f18dab`으로 production 반영 완료. 라이브
+`index.html`에서 `avatarSrcForItem`, `inv-card-logo-fallback`, 신규 투자자 매핑을
+확인했다.
 
 ## 2026-08-07 Codex — 13F CUSIP 매핑 자동화 + 전체 포지션 가치차트 기반
 
