@@ -1,3 +1,25 @@
+## 2026-08-07 Codex — 자동 발행 X 임베드 누락 수정
+
+**목표**: D1 자동 발행으로 추가된 AAOI 카드에서 X 원문 임베드가 보이지 않는 문제를 수정하고 라이브 데이터까지 확인.
+
+**원인**: `.github/workflows/apply-pending.yml`은 D1 카드 병합 후 `build_pages.py`와 `build_data.py`만 실행했다. `fetch_embeds.py`가 실행되지 않아 새 카드가 `embeds.json`과 `data/core.json`에 X 원문을 받지 못하고 일반 `quote` 블록으로 내려갔다. 기본 토큰으로 `items.json`을 푸시하는 구조라 후속 `og-assets.yml` 자동 트리거에도 의존할 수 없었다.
+
+**변경 파일**:
+- `.github/workflows/apply-pending.yml` — 화면용 빌드 전에 `python scripts/fetch_embeds.py` 실행.
+- `scripts/fetch_embeds.py` — `STACKS_EMBED_MAX_NEW` 환경변수로 백필 상한을 안전하게 조정 가능.
+- `embeds.json` — AAOI 원문 X oEmbed 추가.
+- `data/core.json` — AAOI 항목에 `embed` 추가. 생성 포맷(minified JSON) 유지.
+
+**검증**:
+- X 공식 oEmbed 응답에서 Serenity, `@aleabitoreddit`, 게시일 2026-08-06, 원문 4개 라인 확인.
+- 라이브 `https://stacksdaily.com/data/core.json`에서 AAOI 항목의 `embed` 필드와 X permalink 확인.
+- 앱 코드의 `srcBlockHtml()` → `.xemb` / `.xreal` 경로와 `widgets.js` fallback 존재 확인.
+- 자동 발행 다음 회차부터 새 X 카드도 병합 회차 안에서 함께 빌드되도록 수정.
+
+**위험**: X의 `widgets.js`가 차단되거나 느려도 자체 렌더링 `.xemb` 텍스트 카드는 남는다. 실시간 iframe이 보이지 않는 환경에서도 원문·작성자·링크는 표시된다.
+
+**다음**: 다음 자동 발행 카드에서 X 원문 카드와 `embeds.json` 수집 로그를 재확인한다.
+
 # Agent Handoff Log
 
 ## 2026-08-07 Codex — 목록 프로필·회사 이미지 폴백 보강
