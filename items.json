@@ -2,6 +2,160 @@
  "items": [
   {
    "date": "2026-08-06",
+   "id": "serenity-aaoi-demand-capacity-1_6t-ramp",
+   "related": [
+    "serenity-aaoi-pluggables-cpo-coexist",
+    "serenity-viavi-cpo-nonsense-pushback-1_6t-ramp",
+    "serenity-formfactor-cpo-outlook-raise"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2085499853099208716",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#10243A",
+    "to": "#285A7A",
+    "label": "800G / 1.6T"
+   },
+   "tags": [
+    "AAOI",
+    "OPTICS",
+    "CPO"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "AAOI는 주문이 아니라 생산능력 때문에 덜 팔고 있다",
+    "en": "AAOI Is Losing Sales to Capacity, Not Demand",
+    "ja": "AAOIは需要ではなく生産能力のために売上を逃している"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Our ability to deliver revenue in general, and specifically when it comes to 800G products, is limited by our production capacity right now.",
+      "If we could produce more, we could ship more right now."
+     ],
+     "ko": [
+      "현재 매출, 특히 800G 제품 매출을 늘리는 데는 생산능력이 한계로 작용하고 있다.",
+      "더 많이 생산할 수 있다면 지금 더 많이 출하할 수 있다."
+     ],
+     "ja": [
+      "現在、売上全体、特に800G製品の売上を伸ばすうえで、生産能力が制約になっている。",
+      "もっと生産できれば、今すぐもっと出荷できる。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.06"
+   },
+   "sum3": {
+    "ko": "AAOI의 2분기 매출은 1억9,190만달러로 기록을 세웠지만 800G·1.6T 제품은 고객 수요보다 공장 생산능력이 먼저 막혔다.\n회사는 연말 월 65만개 이상, 2027년 말 월 93만개 이상의 800G·1.6T 생산능력을 제시했다.\nCPO용 ELSFP는 2028년 월 40만개까지 늘릴 계획이어서, 다음 숫자는 주문이 아니라 실제 증설과 출하량이다.",
+    "en": "AAOI posted record Q2 revenue of $191.9M, but 800G and 1.6T products are constrained by factory output rather than customer demand.\nManagement pointed to monthly capacity approaching 200,000 units, with a target above 650,000 by year-end 2026 and above 930,000 by year-end 2027.\nELSFP for CPO is planned to reach about 400,000 units per month in 2028, making expansion execution the next test.",
+    "ja": "AAOIの第2四半期売上高は過去最高の1億9,190万ドルだったが、800G・1.6T製品は顧客需要より工場の生産能力に制約されている。\n会社は月間能力が20万個に近く、2026年末に65万個超、2027年末に93万個超を目標にしている。\nCPO向けELSFPは2028年に月40万個程度まで増やす計画で、次に見るべき数字は注文ではなく増産と出荷だ。"
+   },
+   "gist": {
+    "ko": "AAOI가 2026년 2분기에 매출 1억9,190만달러를 기록했다. 전년보다 86% 늘어난 사상 최대치다. 그런데 이번 실적의 핵심은 매출 성장률보다, 더 팔지 못한 이유다.\n\n회사는 800G와 1.6T 제품에 대한 고객 수요가 강하지만 현재 출하를 제한하는 것은 공장 생산능력이라고 설명했다. 수요가 부족해서 주문을 기다리는 회사가 아니라, 만들 수 있는 만큼만 보내고 있는 회사라는 뜻이다.\n\n@@IMG@@datacenter-inside|AI 데이터센터의 서버 랙. AAOI의 광트랜시버는 이런 랙 사이의 연결 수요를 겨냥한다.\n\n## 주문보다 공장이 먼저다\n\n원문은 현재 월 생산능력이 20만개에 육박한다고 전한다. 회사가 제시한 목표는 2026년 말 800G·1.6T 합산 월 65만개 이상, 2027년 말 월 93만개 이상이다. 단순한 수요 전망이 아니라, 주문을 매출로 바꾸기 위한 물량 목표다.\n\n이 구간에서 실적을 읽는 방법은 수주 잔고를 추정하는 것이 아니다. 다음 분기 매출이 늘어도, 출하량과 생산 라인이 같이 늘지 않으면 수요 강세가 곧바로 이익으로 이어지지 않는다. 반대로 생산이 따라붙으면 지금까지 매출을 눌렀던 벽이 성장의 레버리지로 바뀔 수 있다.\n\n## 숫자로 확인한 공급의 벽\n\n@@REF@@Applied Optoelectronics Q2 2026 earnings call transcript (Investing.com, 2026-08-06)|https://www.investing.com/news/transcripts/earnings-call-transcript-applied-optoelectronics-tops-q2-2026-forecasts-93CH-4844551\n\n@@CHK@@2분기 매출|1억9,190만달러|데이터센터 매출|1억770만달러|현재 월 생산능력|20만개에 육박@@두 숫자는 AAOI가 어디에서 성장하는지, 마지막 숫자는 왜 매출이 더 빠르게 늘지 못하는지를 보여준다. 100G 제품의 일시적 약세는 고객의 스위치 조달 문제와 연결돼 있어, 모든 병목이 AAOI 공장 안에만 있는 것은 아니다.@@2026-08-06 · Applied Optoelectronics Q2 2026 earnings call transcript (Investing.com)\n\n교차 확인한 실적 통화에서는 데이터센터 매출이 1억770만달러로 전체 매출의 56%를 차지했고, 100G 제품은 고객의 스위치 공급 문제로 약해졌다는 설명도 나왔다. 원문 요약의 수요는 강한데 생산이 부족하다는 그림에, 제품 세대별·고객별 조달 문제가 겹쳐 있다는 뜻이다.\n\n## CPO는 다음 단계지만 시계가 다르다\n\nAAOI는 ELSFP를 CPO용으로 나중에 늘려 2028년 월 40만개 수준까지 생산할 계획이라고 밝혔다. 또 인화인듐(InP) 관련 시설은 2027년 초 가동을 예상했다. 이 투자는 기존 플러거블 광트랜시버의 수요를 당장 CPO로 대체한다는 이야기가 아니다. 두 흐름이 겹치는 동안 AAOI가 레이저와 광트랜시버를 얼마나 안정적으로 확보하느냐가 중요하다.\n\n내부 레이저 제조는 공급 부족을 피하는 방어막이 될 수 있다. 하지만 설비가 완성됐다는 사실만으로 매출이 생기지는 않는다. 하이퍼스케일러의 1.6T 제품 인증, 수율, 실제 출하가 차례로 확인돼야 한다. 특히 회사가 말한 몇 주 안에라는 인증 일정이 고객 주문으로 이어지는지 봐야 한다.\n\n## 다음 실적에서 채점할 것\n\n이번 카드의 판정 기준은 수요가 계속 강하다는 말이 아니다. 2026년 말 월 65만개 이상, 2027년 말 월 93만개 이상의 생산능력 목표가 실제 출하와 매출로 이어지는지다. CPO용 ELSFP가 2028년 계획대로 늘어나는지도 별도 확인한다.\n\n목표를 유지하면서 출하량과 데이터센터 매출이 함께 늘면 생산 병목이 성장의 레버리지였다는 쪽이다. 목표를 낮추거나 인증·증설이 미뤄지면, 강한 주문만으로는 실적을 설명할 수 없다는 쪽으로 판정한다.",
+    "en": "AAOI reported record Q2 revenue of $191.9M, up 86% year over year. The more important line in the release was not the growth rate, but the reason the company cannot sell more today.\n\nManagement said demand for 800G and 1.6T products is strong, while factory capacity is limiting current shipments. AAOI is not waiting for customers to place orders. It is shipping as many units as its plants can make.\n\n@@IMG@@datacenter-inside|An AI data-center server rack. AAOI's optical transceivers target the connections between racks.\n\n## The factory is the near-term limit\n\nThe original post puts current monthly capacity near 200,000 units. Management's targets are above 650,000 units per month for 800G and 1.6T combined by the end of 2026, and above 930,000 by the end of 2027. Those are not demand estimates. They are the volume targets needed to turn orders into revenue.\n\nThat changes how the next quarter should be read. Revenue can rise while demand still outruns output. If shipments and production lines expand together, the constraint can become operating leverage. If they do not, a strong order book will remain a promise rather than reported sales.\n\n## What the numbers add\n\n@@REF@@Applied Optoelectronics Q2 2026 earnings call transcript (Investing.com, 2026-08-06)|https://www.investing.com/news/transcripts/earnings-call-transcript-applied-optoelectronics-tops-q2-2026-forecasts-93CH-4844551\n\n@@CHK@@Q2 revenue|$191.9M|Data-center revenue|$107.7M|Current monthly capacity|Nearly 200,000 units@@The three figures show where AAOI is growing and why output is still the immediate ceiling. Weakness in 100G was tied to a customer's switch supply problem, so not every bottleneck sits inside AAOI's factories.@@2026-08-06 · Applied Optoelectronics Q2 2026 earnings call transcript (Investing.com)\n\nThe cross-checked earnings transcript adds that data-center revenue was $107.7M, or 56% of total revenue, while 100G weakness was linked to a customer's switch supply issue. The original demand-versus-output picture therefore has a second layer: product-generation mix and customer procurement can move in the opposite direction.\n\n## CPO changes the clock, not the bottleneck\n\nAAOI plans to ramp ELSFP for CPO toward roughly 400,000 units per month in 2028. It also expects an InP-related facility to come online in early 2027. This is not a claim that CPO will immediately replace pluggable optical transceivers. It is a claim that both paths can grow while AAOI works through laser and transceiver availability.\n\nIn-house laser manufacturing can protect AAOI from shortages that affect other suppliers. It does not make the revenue automatic. Hyperscaler qualification for 1.6T products, yield, and actual shipments still have to arrive in sequence. The near-term test is whether the qualification timeline described as a matter of weeks becomes customer volume.\n\n## What the next earnings print must show\n\nThe score is not whether management repeats that demand is strong. It is whether the above-650,000 monthly target for the end of 2026 and above-930,000 target for the end of 2027 appear in shipments and revenue. The ELSFP ramp toward 2028 is a separate checkpoint.\n\nIf the targets hold and shipments rise with data-center revenue, the production bottleneck was a growth lever. If the targets are cut or qualification and expansion slip, strong orders alone will not explain the results.",
+    "ja": "AAOIは2026年第2四半期に売上高1億9,190万ドルを記録し、前年同期比で86%増えた。今回の実績でより重要なのは成長率ではなく、なぜ今もっと売れないのかという理由だ。\n\n会社によれば、800Gと1.6T製品への需要は強い一方、現在の出荷を制約しているのは工場の生産能力だ。顧客の注文を待つ会社ではなく、工場が作れる分だけ出荷している会社ということになる。\n\n@@IMG@@datacenter-inside|AIデータセンターのサーバーラック。AAOIの光トランシーバーはラック間の接続需要を狙う。\n\n## 工場が短期の上限になる\n\n原文では現在の月間能力は20万個に近い。会社の目標は800Gと1.6Tを合わせて2026年末に月65万個超、2027年末に月93万個超だ。これは需要予測ではなく、注文を売上へ変えるために必要な数量目標である。\n\n次の決算は受注残だけで読むべきではない。需要が生産を上回ったままでも売上は増える。出荷と生産ラインが一緒に増えれば制約は成長のレバレッジになるが、そうでなければ強い受注は売上としてまだ現れない。\n\n## 数字が示す供給の壁\n\n@@REF@@Applied Optoelectronics Q2 2026 earnings call transcript (Investing.com, 2026-08-06)|https://www.investing.com/news/transcripts/earnings-call-transcript-applied-optoelectronics-tops-q2-2026-forecasts-93CH-4844551\n\n@@CHK@@第2四半期売上高|1億9,190万ドル|データセンター売上高|1億770万ドル|現在の月間能力|20万個に近い@@3つの数字はAAOIがどこで伸び、なぜ出力が当面の上限になるのかを示す。100Gの弱さは顧客側のスイッチ供給問題と結びついており、すべての制約がAAOIの工場内にあるわけではない。@@2026-08-06 · Applied Optoelectronics Q2 2026 earnings call transcript (Investing.com)\n\n照合した決算説明会の記録では、データセンター売上高は1億770万ドルで全体の56%を占め、100Gの弱さは顧客のスイッチ調達問題に関連していた。需要が強いのに出荷が伸びないという原文の整理に、製品世代と顧客調達という別の要因が重なっている。\n\n## CPOは時計を変えるが、制約は残る\n\nAAOIはCPO向けELSFPを2028年に月40万個程度まで増やす計画だ。InP関連施設は2027年初めの稼働を見込む。これはCPOがすぐにプラガブル型光トランシーバーを置き換えるという主張ではない。両方の道が伸びる間に、AAOIがレーザーと光トランシーバーを安定して確保できるかが焦点になる。\n\n社内でのレーザー製造は、他社を苦しめる不足を避ける防波堤になりうる。ただし、設備が完成しただけで売上が生まれるわけではない。ハイパースケーラーによる1.6T製品の認証、歩留まり、実際の出荷が順番に確認される必要がある。数週間以内とされた認証の予定が、顧客の数量へつながるかが短期の確認点だ。\n\n## 次の決算で採点すること\n\n採点するのは、会社が需要の強さを繰り返すかどうかではない。2026年末の月65万個超、2027年末の月93万個超という目標が、出荷と売上に現れるかどうかだ。CPO向けELSFPの2028年増産も別の確認点になる。\n\n目標を維持し、出荷がデータセンター売上と一緒に増えれば、生産の制約は成長のレバレッジだったことになる。目標が下がる、認証や増産が遅れるなら、強い注文だけでは実績を説明できない。"
+   },
+   "why": {
+    "ko": "원문이 보여주는 첫 번째 원인은 단순하다. 800G와 1.6T를 사려는 하이퍼스케일러 수요가 현재 AAOI가 공장에서 만들 수 있는 양을 웃돈다. 그래서 주문이 늘어도 단기 매출은 출하량에서 잘린다.\n\n교차 확인한 실적 통화는 이 해석을 지지하면서도 한 가지 예외를 더한다. 데이터센터 매출은 1억770만달러까지 커졌지만, 100G 제품은 고객의 스위치 조달 문제로 약했다. AAOI의 공장 병목과 고객 쪽 조달 병목이 같은 분기에 겹친 셈이다.\n\n구조적으로 봐야 할 것은 CPO 채택 속도 하나가 아니다. AAOI가 내부 레이저 제조와 ELSFP 증설, InP 시설 가동을 통해 광트랜시버 공급을 얼마나 늘리는지가 다음 변수다. 주문이 있다는 사실은 이미 확인됐고, 이제 매출을 가르는 것은 인증, 수율, 출하, 증설의 순서다.",
+    "en": "The original post points to a simple first cause: hyperscaler demand for 800G and 1.6T is above the amount AAOI can make in its factories. Orders can rise while near-term revenue is still capped by shipments.\n\nThe cross-checked earnings transcript supports that reading but adds a second constraint. Data-center revenue reached $107.7M, while 100G was weak because of a customer's switch procurement problem. AAOI's factory bottleneck and a customer-side supply bottleneck overlapped in the same quarter.\n\nThe structural question is not only how fast CPO is adopted. It is how quickly AAOI can expand optical-transceiver supply through in-house lasers, ELSFP expansion, and the InP facility. Demand is already visible. Qualification, yield, shipments, and expansion now decide how much of it becomes revenue.",
+    "ja": "原文が示す最初の原因は単純だ。800Gと1.6Tを買うハイパースケーラーの需要が、AAOIの工場で作れる量を上回っている。注文が増えても、短期売上は出荷量で頭打ちになる。\n\n照合した決算説明会の記録はこの見方を支持しつつ、別の制約も加える。データセンター売上高は1億770万ドルに達したが、100Gは顧客のスイッチ調達問題で弱かった。AAOIの工場の制約と顧客側の供給制約が同じ四半期に重なった。\n\n構造的に見るべきなのはCPOの採用速度だけではない。AAOIが社内レーザー製造、ELSFP増産、InP施設の稼働によって光トランシーバーの供給をどれだけ増やせるかだ。需要はすでに見えている。認証、歩留まり、出荷、増産の順番が、需要のどこまでを売上に変えるかを決める。"
+   },
+   "ask": {
+    "ko": "AAOI가 2026년 말과 2027년 말의 생산능력 목표를 실제 출하와 매출로 바꿀 수 있을까?",
+    "en": "Can AAOI turn its end-2026 and end-2027 capacity targets into actual shipments and revenue?",
+    "ja": "AAOIは2026年末と2027年末の生産能力目標を実際の出荷と売上に変えられるか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 2월경 다음 실적에서 2026년 말 증설 목표와 1.6T 출하가 실제로 확인되는지 채점",
+     "en": "Score around February 2027 by checking whether the end-2026 expansion target and 1.6T shipments appear in reported results",
+     "ja": "2027年2月頃の次回決算で、2026年末の増産目標と1.6T出荷が実績に現れるかを採点"
+    },
+    "due": "2027-02-15",
+    "card": {
+     "metric": {
+      "ko": "800G·1.6T 월 생산능력 목표와 실제 출하·데이터센터 매출",
+      "en": "800G and 1.6T monthly capacity targets versus actual shipments and data-center revenue",
+      "ja": "800G・1.6Tの月間生産能力目標と実際の出荷・データセンター売上高"
+     },
+     "now": {
+      "ko": "현재 월 생산능력은 20만개에 육박하며, 2026년 말 65만개 이상을 회사가 목표로 제시",
+      "en": "Current monthly capacity is approaching 200,000 units, with management targeting above 650,000 by the end of 2026",
+      "ja": "現在の月間能力は20万個に近く、会社は2026年末に65万個超を目標にしている"
+     },
+     "when": {
+      "ko": "2027년 2월경 AAOI 다음 실적발표",
+      "en": "Around February 2027, at AAOI's next earnings release",
+      "ja": "2027年2月頃、AAOIの次回決算発表"
+     },
+     "hit": {
+      "ko": "2026년 말 생산능력 목표가 유지되고 1.6T 출하와 데이터센터 매출이 함께 늘며, 2027년 93만개 이상 목표도 유지됨",
+      "en": "The end-2026 capacity target is maintained, 1.6T shipments and data-center revenue rise together, and the above-930,000 end-2027 target remains",
+      "ja": "2026年末の能力目標が維持され、1.6T出荷とデータセンター売上高がともに増え、2027年末の93万個超目標も維持される"
+     },
+     "miss": {
+      "ko": "생산능력 목표가 낮아지거나 인증·증설이 늦어지고, 1.6T 출하가 데이터센터 매출로 이어지지 않음",
+      "en": "Capacity targets are cut, qualification or expansion slips, or 1.6T shipments do not translate into data-center revenue",
+      "ja": "生産能力目標が引き下げられる、認証や増産が遅れる、または1.6T出荷がデータセンター売上高につながらない"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original post",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity의 AAOI 2분기 실적 요약",
+      "en": "Serenity's AAOI Q2 earnings summary",
+      "ja": "SerenityによるAAOI第2四半期決算の要約"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2085499853099208716"
+    },
+    {
+     "name": {
+      "ko": "실적 통화 요약",
+      "en": "Earnings call transcript",
+      "ja": "決算説明会記録"
+     },
+     "desc": {
+      "ko": "AAOI 2026년 2분기 매출, 데이터센터 매출, 생산능력 발언 교차 확인",
+      "en": "Cross-check of AAOI Q2 2026 revenue, data-center revenue, and capacity commentary",
+      "ja": "AAOI 2026年第2四半期の売上高、データセンター売上高、生産能力発言の照合"
+     },
+     "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-applied-optoelectronics-tops-q2-2026-forecasts-93CH-4844551"
+    },
+    {
+     "name": {
+      "ko": "AAOI 투자자관계",
+      "en": "AAOI Investor Relations",
+      "ja": "AAOI投資家向け情報"
+     },
+     "desc": {
+      "ko": "2026년 2분기 실적발표 및 자료",
+      "en": "Q2 2026 earnings event and materials",
+      "ja": "2026年第2四半期決算イベントと資料"
+     },
+     "url": "https://investors.ao-inc.com/events/event-details/applied-optoelectronics-q2-2026-earnings-call"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-07 조회",
+    "en": "Checked 2026-08-07",
+    "ja": "2026-08-07確認"
+   },
+   "ts": "2026-08-07T02:20:41Z"
+  },
+  {
+   "date": "2026-08-06",
    "id": "serenity-viavi-cpo-nonsense-pushback-1_6t-ramp",
    "related": [
     "serenity-formfactor-cpo-outlook-raise",
