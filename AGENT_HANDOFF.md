@@ -3416,3 +3416,75 @@ Next:
 `https://stacksdaily.com/`에서 `relative0-20260808` 자산과 0% 기준선 코드를 확인했다.
 
 ## 2026-08-08 Codex — 13F 최신성 표시·모바일 캘린더 회귀 테스트 추가
+## 2026-08-08 Codex — Search Console 색인·사이트맵 점검 및 canonical alias 정리
+
+**목표**: Stacks Search Console의 색인 제외 사유, 사이트맵, 보안·직접 조치 상태를 확인하고
+실제 SEO 계약 위반이 있으면 최소 범위로 수정.
+
+**Search Console 확인**:
+- 색인 생성 149개, 미색인 222개(발견됨 175, 크롤링됨 45, 리디렉션 2).
+- `발견됨 - 현재 색인이 생성되지 않음` 175개는 `/e/` 저내용 엔티티 페이지로,
+  저장소의 `noindex,follow` 정책과 일치. 수정·색인 요청 대상 아님.
+- `크롤링됨 - 현재 색인이 생성되지 않음` 샘플은 2026-07-26에 크롤링된 en/ja 번역 페이지.
+  canonical·색인 허용은 정상이며 GSC 최신 업데이트(2026-07-24) 기준의 지연 상태.
+- 사이트맵 성공, 마지막 읽기 2026-08-06, 발견 페이지 1,540개(현재 live sitemap은 1,642개).
+- HTTPS 16/16 정상, 직접 조치·보안 문제 모두 감지된 문제 없음, 코어 웹 바이탈은 데이터 없음.
+- 홈페이지 URL 검사 결과 Google 등록됨. 최신 2026-08-06 글은 아직 미발견 상태로, 신규 게시 지연으로 판단.
+
+**변경 파일**:
+- `scripts/build_pages.py` — canonical이 `week/{YYYY}-wNN.html`인 `this-week.html` alias를 sitemap에서 제외.
+- `sitemap.xml` — 비표준 canonical alias 1개 제거(1,642 → 1,641개).
+- `tests/test_frontend_contracts.py` — sitemap에 alias가 다시 들어가지 않는 회귀 검사 추가.
+- `AGENT_HANDOFF.md` — 점검·검증 기록.
+
+**검증**:
+- `python3 tests/test_frontend_contracts.py` — 5개 통과.
+- `python3 -m py_compile scripts/build_pages.py` 통과.
+- `git diff --check` 통과.
+- sitemap audit: 1,641개 모두 파일 존재, noindex 포함 0, canonical 불일치 0.
+
+**위험/다음**:
+- Search Console의 “수정 결과 확인”·“색인 생성 요청”·사이트맵 재제출은 외부 상태 변경이라 실행하지 않음.
+- production 반영 후 Search Console에서 sitemap 재읽기와 최신 글 URL 검사를 실행하면 됨.
+
+## 2026-08-08 Codex — 상세 회귀 CI·엔티티 클릭 리포트·모바일 색인 성능
+
+**목표**: 추천한 1~3번 작업(상세 페이지 실브라우저 회귀 테스트, 엔티티 클릭 주간 리포트,
+모바일 링크화 성능 개선)을 production에 반영한다.
+
+**변경 파일**:
+- `.github/workflows/feed-detail-regression.yml` — main 반영 시 Chromium으로 피드→상세→뒤로가기,
+  deep-link 회귀 테스트를 별도 실행.
+- `.github/workflows/calendar-regression.yml` — 캘린더 job이 피드 테스트까지 중복 실행하지 않도록
+  `test:calendar`만 호출.
+- `scripts/analytics_report.py`, `.github/workflows/stats-weekly.yml` — GoatCounter 집계 API의
+  `entity/click/...` 경로를 엔티티·표면별로 합산해 `stats/analytics-YYYY-MM-DD.md`와 Actions
+  Summary를 생성. `GOATCOUNTER_API_KEY` secret이 없으면 보고서 단계만 건너뛴다.
+- `index.html` — 링크화를 idle time에 분산하고 화면 가까운 카드부터 처리해 모바일 초기 렌더 부담을 낮춤.
+- `tests/test_analytics_report.py`, `tests/test_frontend_contracts.py` — 리포트 집계와 idle 우선순위
+  계약을 고정.
+
+**검증**:
+- `python3 tests/test_frontend_contracts.py` — 6개 통과.
+- `python3 tests/test_analytics_report.py` — 3개 통과.
+- `python3 -m py_compile scripts/analytics_report.py`, `git diff --check` 통과.
+- 로컬에는 Node/Playwright 실행기가 없어 Chromium 테스트는 새 GitHub Actions workflow에서 실행.
+
+**위험/다음**:
+- 주간 클릭 리포트는 GoatCounter API key를 GitHub Actions secret으로 등록한 다음부터 파일을 생성한다.
+- 배포 후 Feed detail regression과 Pages 실행 결과, live 상세 페이지의 entity link를 확인한다.
+## 2026-08-08 Codex — AdSense 온보딩·사이트 상태 점검
+
+**확인 결과**:
+- AdSense 온보딩: `모든 단계를 완료했습니다`.
+- 사이트 소유권 확인 완료, 리뷰 요청됨.
+- `stacksdaily.com` 승인 상태: `준비 중` / `사이트의 광고 게재 가능 여부 검토 중`.
+- Ads.txt 상태: AdSense 화면에는 `찾을 수 없음`(최종 업데이트 2026-07-30 15:19 KST).
+- 실제 `https://stacksdaily.com/ads.txt`는 HTTP 200이며
+  `google.com, pub-1656582515648973, DIRECT, f08c47fec0942fa0` 정상 반환.
+- live 홈페이지에 AdSense client·slot 코드가 있고, robots.txt도 전체 허용.
+
+**판단/다음**:
+- 코드·ads.txt 누락 문제는 현재 없음. AdSense Ads.txt 표시는 마지막 스캔 결과가 오래된 상태로 판단.
+- 사이트 심사는 Google 검토 대기라 즉시 수정할 항목 없음. 계정 화면에서 재검토 요청/사이트 삭제는 실행하지 않음.
+- 작업 중 다른 에이전트 변경이 있어 기존 dirty worktree는 보존.

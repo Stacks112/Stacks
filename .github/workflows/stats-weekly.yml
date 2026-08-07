@@ -31,7 +31,17 @@ jobs:
           STACKS_NOTIFY_SECRET: ${{ secrets.STACKS_NOTIFY_SECRET }}
           STATS_NOTIFY_TAG: ${{ secrets.STATS_NOTIFY_TAG }}
           SITE_URL: https://stacksdaily.com
+          GOATCOUNTER_SITE: https://stacks.goatcounter.com
+          GOATCOUNTER_API_KEY: ${{ secrets.GOATCOUNTER_API_KEY }}
         run: python scripts/stats.py
+
+      - name: Build entity click analytics
+        env:
+          GOATCOUNTER_SITE: https://stacks.goatcounter.com
+          GOATCOUNTER_API_KEY: ${{ secrets.GOATCOUNTER_API_KEY }}
+          ITEMS_PATH: items.json
+          OUT_DIR: stats
+        run: python scripts/analytics_report.py
 
       - name: Commit the digest
         run: |

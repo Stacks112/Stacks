@@ -2540,8 +2540,9 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     # Hand-written static pages belong in here too. about.html and privacy.html
     # are not generated, so nothing else would ever list them, and an AdSense or
     # policy reviewer landing on a single /p/ page has no other route to the
-    # site-level context.
-    urls = [(BASE, now, "1.0", None), (BASE + "this-week.html", now, "0.7", None),
+    # site-level context. this-week.html is a human-facing alias whose canonical
+    # points at the dated archive below, so only the canonical URL belongs here.
+    urls = [(BASE, now, "1.0", None),
             (BASE + "calendar.html", now, "0.7", None),
             (BASE + "articles.html", now, "0.6", None),
             (BASE + "about.html", now, "0.6", None),

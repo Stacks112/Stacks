@@ -7557,26 +7557,53 @@ function linkifyEntitiesNow(card){
   linkifyPass(card, ENT_RE_CS, ALIAS2KEY, makeEntSpan);
   linkifyPass(card, GLOSS_RE, GALIAS2KEY, makeGlossSpan);
 }
-/* INP fix 2026-08-03: on a throttled phone the two linkify passes cost
-   ~18ms per card, and a feed page paints 10 cards in the same task as the
-   tap that asked for it - linkify alone was ~60% of that long task (measured
-   1.36s at 4x CPU throttle on the Latest/Following switch). The links are
-   decoration, not layout: nothing reads them in the same frame, and the
-   walker skips already-linked spans, so re-entry is safe. Queue every call
-   and drain in <=8ms slices on later tasks; cards that left the DOM before
-   their turn are dropped. */
+/* INP fix 2026-08-03: on a throttled phone the indexing passes cost ~18ms per
+   card, and a feed page paints 10 cards in the same task as the tap that asked
+   for it. The links are decoration, not layout: nothing reads them in the
+   same frame, and the walker skips already-linked spans, so re-entry is safe.
+   2026-08-08: drain during idle time and prefer cards near the viewport. A
+   detail card still enters immediately, while off-screen feed cards yield to
+   what the reader can actually see next. */
 var LINKIFY_Q = [], LINKIFY_T = null;
-function linkifyEntities(card){
-  LINKIFY_Q.push(card);
-  if (!LINKIFY_T) LINKIFY_T = setTimeout(linkifyDrain, 0);
-}
-function linkifyDrain(){
-  var t0 = performance.now();
-  while (LINKIFY_Q.length && performance.now() - t0 < 8){
-    var c = LINKIFY_Q.shift();
-    if (c && c.isConnected){ try { linkifyEntitiesNow(c); } catch (e) {} }
+function linkifySchedule(){
+  if (LINKIFY_T) return;
+  if (window.requestIdleCallback){
+    LINKIFY_T = window.requestIdleCallback(linkifyDrain, { timeout: 350 });
+  } else {
+    LINKIFY_T = window.setTimeout(linkifyDrain, 50);
   }
-  LINKIFY_T = LINKIFY_Q.length ? setTimeout(linkifyDrain, 0) : null;
+}
+function linkifyEntities(card){
+  if (!card || card.__linkifyPending) return;
+  card.__linkifyPending = true;
+  LINKIFY_Q.push(card);
+  linkifySchedule();
+}
+function linkifyDistance(card){
+  if (!card || !card.isConnected) return Number.MAX_SAFE_INTEGER;
+  try {
+    var r = card.getBoundingClientRect(), vh = window.innerHeight || 800;
+    if (r.bottom >= -120 && r.top <= vh + 720) return Math.max(0, r.top < 0 ? -r.top : r.top);
+    return vh + Math.max(0, r.top - vh) + 1000;
+  } catch (e) { return 0; }
+}
+function linkifyDrain(deadline){
+  var t0 = performance.now();
+  while (LINKIFY_Q.length && performance.now() - t0 < 6){
+    var best = 0, bestDistance = linkifyDistance(LINKIFY_Q[0]);
+    for (var i = 1; i < LINKIFY_Q.length; i++){
+      var distance = linkifyDistance(LINKIFY_Q[i]);
+      if (distance < bestDistance){ best = i; bestDistance = distance; }
+    }
+    var c = LINKIFY_Q.splice(best, 1)[0];
+    if (c){
+      c.__linkifyPending = false;
+      if (c.isConnected){ try { linkifyEntitiesNow(c); } catch (e) {} }
+    }
+    if (deadline && deadline.timeRemaining && deadline.timeRemaining() < 1) break;
+  }
+  LINKIFY_T = null;
+  if (LINKIFY_Q.length) linkifySchedule();
 }
 /* The company profile uses the same reverse index as the static company
    pages. Keep this lookup small and local to the profile so the main feed

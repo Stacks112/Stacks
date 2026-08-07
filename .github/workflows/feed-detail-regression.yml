@@ -1,16 +1,16 @@
-name: Mobile calendar regression
+name: Feed detail regression
 
 on:
   push:
     branches: [main]
     paths:
+      - "index.html"
       - "assets/v82.js"
       - "assets/v82.css"
-      - "index.html"
-      - "tests/mobile-calendar.spec.mjs"
+      - "tests/feed-detail.spec.mjs"
       - "playwright.config.mjs"
       - "package.json"
-      - ".github/workflows/calendar-regression.yml"
+      - ".github/workflows/feed-detail-regression.yml"
   workflow_dispatch: {}
 
 permissions:
@@ -33,5 +33,5 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run mobile calendar regression tests
-        run: npm run test:calendar -- --reporter=line
+      - name: Run feed/detail regression tests
+        run: npm run test:feed-detail -- --reporter=line

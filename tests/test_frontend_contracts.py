@@ -41,6 +41,12 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("entityClickFeed", INDEX)
         self.assertIn("debate", INDEX)
 
+    def test_linkify_queue_prioritizes_visible_cards_during_idle_time(self):
+        self.assertIn("requestIdleCallback(linkifyDrain", INDEX)
+        self.assertIn("__linkifyPending", INDEX)
+        self.assertIn("linkifyDistance", INDEX)
+        self.assertIn("getBoundingClientRect", INDEX)
+
     def test_all_detail_paths_use_the_card_factory(self):
         detail = INDEX[INDEX.index("/* v83.3: single-article page"):]
         self.assertIn("if (!_ac) _ac = cardEl(_it, S, 0);", detail)
@@ -61,6 +67,11 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('const c = get("c");', deep_link)
         self.assertIn("openFromCard(c)", deep_link)
         self.assertIn("?c=", (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8"))
+
+    def test_sitemap_contains_canonical_week_url_only(self):
+        sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertNotIn("https://stacksdaily.com/this-week.html", sitemap)
+        self.assertIn("https://stacksdaily.com/week/", sitemap)
 
 
 if __name__ == "__main__":
