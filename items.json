@@ -2,6 +2,219 @@
  "items": [
   {
    "date": "2026-08-07",
+   "id": "semianalysis-gemini-gcp-tpu-financialization",
+   "related": [
+    "pichai-gdm-reshuffle-dean-discovery-loop",
+    "semianalysis-amd-cuda-moat-advancing-ai-2026",
+    "semianalysis-meta-superintelligence"
+   ],
+   "source": "SemiAnalysis",
+   "sourceUrl": "https://newsletter.semianalysis.com/p/gemini-is-cooked-but-gcp-is-cooking",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#7C3AED",
+    "label": "GEMINI / GCP"
+   },
+   "tags": [
+    "GOOGLE",
+    "TPU",
+    "AI"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "제미나이가 흔들린다는 말, GCP에는 왜 호재가 될까?",
+    "en": "If Gemini Is Wobbling, Why Is That Good for GCP?",
+    "ja": "Geminiが揺らぐという話は、なぜGCPに追い風なのか？"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Furthermore, the biggest beneficiary of today’s news is neither Anthropic nor OpenAI—it’s Google Cloud.",
+      "More than 20% of total TPU shipments from 3Q26 to 4Q27 are being sold directly to Anthropic."
+     ],
+     "ko": [
+      "게다가 오늘 뉴스의 가장 큰 수혜자는 앤스로픽도 오픈AI도 아니라 구글 클라우드다.",
+      "2026년 3분기부터 2027년 4분기까지 전체 TPU 출하량의 20% 이상이 앤스로픽에 직접 판매된다."
+     ],
+     "ja": [
+      "さらに、今回のニュースの最大の受益者はAnthropicでもOpenAIでもなく、Google Cloudだ。",
+      "2026年第3四半期から2027年第4四半期までのTPU総出荷量の20%以上がAnthropicに直接販売される。"
+     ]
+    },
+    "cite": "SemiAnalysis · 2026.08.07"
+   },
+   "sum3": {
+    "ko": "SemiAnalysis는 딥마인드의 인재 이탈과 제미나이 경쟁력 약화를 GCP의 외부 TPU 매출 확대와 연결한다.\n구글이 경쟁 모델에도 컴퓨트를 파는 구조는 클라우드 성장에는 도움이 되지만, 내부 모델 개발과 자원 배분의 긴장을 키운다.\n투자자는 제미나이 순위보다 GCP 성장률, TPU 백로그, API 사용량이 함께 움직이는지를 봐야 한다.",
+    "en": "SemiAnalysis connects DeepMind talent departures and Gemini's weakening position to GCP's expanding external TPU business.\nSelling compute to rival model labs can support cloud growth while increasing the tension over internal model resources.\nInvestors should track GCP growth, TPU backlog, and API usage together rather than model rankings alone.",
+    "ja": "SemiAnalysisは、DeepMindの人材流出とGeminiの競争力低下を、GCPの外部TPU事業の拡大と結びつける。\n競合モデルの研究所にも計算資源を売る構造は、クラウド成長を支える一方で、社内モデルへの資源配分との緊張を高める。\n投資家はモデル順位だけでなく、GCP成長率、TPUバックログ、API利用量を同時に見る必要がある。"
+   },
+   "gist": {
+    "ko": "이번 글은 구글의 딥마인드 리더십 개편을 다시 전하는 카드가 아니다. 이미 공개된 인사 변화가 구글의 돈과 컴퓨트 배분을 어디로 밀어낼지, 그리고 그 방향이 알파벳 투자자에게 어떤 숫자로 나타날지를 다룬다.\n\nSemiAnalysis의 해석은 선명하다. 딥마인드는 핵심 연구 인력이 빠져나가며 최전선 모델 경쟁에서 뒤처지고 있고, 그 빈자리를 GCP가 외부 고객에게 TPU와 클라우드 서비스를 파는 사업으로 채울 수 있다는 주장이다. 구글 클라우드가 앤스로픽 같은 경쟁 모델 회사에 컴퓨트를 공급하면 단기 매출은 커지지만, 같은 컴퓨트 자원을 제미나이 연구에 남겨둘 선택지는 줄어든다.\n\n## 모델 경쟁과 클라우드 장부가 갈라지는 지점\n\n원문은 제프 딘, 산제이 게마왓, 쿠옥 레, 오리올 비냘스의 이탈을 인재 문제의 신호로 묶는다. 이 인사 자체는 이미 알려진 사건이다. 이번 카드의 새 정보는 그 다음 단계인 자원 배분이다. SemiAnalysis는 2026년 3분기부터 2027년 4분기까지 TPU 출하량의 20% 이상이 앤스로픽으로 향한다고 추정한다.\n\n@@REF@@구글은 TPU 8t를 학습용, TPU 8i를 추론용으로 소개하면서 두 제품을 구글 클라우드의 고객 선택지로 제시했고, 자체 제미나이 모델도 TPU에서 구동된다고 설명했다@@https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/\n\n구글의 공식 설명은 GCP가 자체 모델을 위한 내부 인프라이면서 외부 고객에게 판매하는 플랫폼이라는 점을 보여준다. 클로드 같은 경쟁 모델을 올릴 수 있는 플랫폼이 커지면 모델 승패와 클라우드 매출의 방향이 분리될 수 있다. 이 구조는 제미나이의 약세가 곧바로 알파벳 전체의 약세가 되지는 않게 만들지만, 장기적으로는 구글이 어떤 사업을 우선하는지 다시 묻게 한다.\n\n@@CHK@@TPU 8t 최대 규모|9,600개|공유 메모리|2페타바이트|TPU 8i 단일 팟|1,152개@@구글 클라우드의 공식 제품 설명에서 학습용과 추론용 TPU의 규모를 확인했다. SemiAnalysis의 TPU 출하 전망과는 다른 출처의 실물 인프라 수치다.@@2026-04-22 · Google Cloud\n\n## 외부 TPU 매출의 장점과 대가\n\nSemiAnalysis는 GCP가 제3자 AI 인프라에서 2027년 730억달러 이상의 연환산 매출을 만들고, TPU 시스템 판매까지 합치면 외부 매출 규모가 훨씬 커질 수 있다고 추정한다. 이 숫자는 구글이 공시한 실적이 아니라 분석 모델의 전망이므로 그대로 실적 가이던스로 읽으면 안 된다. 다만 고객이 먼저 컴퓨트를 사겠다는 계약이 쌓이면, 모델 성능 순위와 별개로 클라우드 장부가 커지는 경로는 분명해진다.\n\n문제는 자원의 기회비용이다. 구글은 TPU를 많이 팔수록 설비투자 회수와 GCP 성장률을 앞당길 수 있다. 동시에 경쟁 모델 회사에 장기적으로 TPU를 배정하면, 제미나이가 필요할 때 되찾을 수 있는 여유가 줄어든다. 플랫폼 회사로서의 중립성이 수익을 만들면서도, 연구소로서의 집중력을 흩뜨릴 수 있는 구조다.\n\n## 다음 실적에서 확인할 것\n\n다음 질문은 제미나이가 당장 1위로 돌아오느냐가 아니다. GCP 성장률과 TPU 백로그가 계속 올라가는 동안 제미나이 API 사용량과 핵심 연구자 유지율이 어떻게 변하는지가 더 중요하다. GCP의 외부 매출, TPU 출하·백로그, 제미나이 1차 API 토큰 증가율을 한 표에 놓으면 구글이 모델 우선 전략을 회복하는지 인프라 우선 전략을 굳히는지 구분할 수 있다.",
+    "en": "This is not another card about Google's DeepMind leadership reshuffle. The question is where the change pushes Google's money and compute allocation, and which numbers would show that direction to Alphabet investors.\n\nSemiAnalysis makes a clear case. DeepMind is falling behind in frontier-model competition as key researchers leave, while GCP can fill the gap by selling TPUs and cloud services to outside customers. Supplying compute to rival model companies such as Anthropic can lift near-term cloud revenue, while reducing the pool of compute that Google can keep available for Gemini research.\n\n## Where model competition splits from the cloud ledger\n\nThe original post groups the departures of Jeff Dean, Sanjay Ghemawat, Quoc Le, and Oriol Vinyals into a signal about talent. That reshuffle is already known. The new information here is the next step: resource allocation. SemiAnalysis estimates that more than 20% of TPU shipments from the third quarter of 2026 through the fourth quarter of 2027 will go directly to Anthropic.\n\n@@REF@@Google presents TPU 8t for training and TPU 8i for inference as choices for Google Cloud customers, while explaining that its own Gemini models run on TPUs@@https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/\n\nGoogle's official description shows GCP as both internal infrastructure for its own models and a platform sold to outside customers. If the platform grows by hosting rival models such as Claude, model rankings and cloud revenue can move in different directions. That protects Alphabet from turning Gemini's weakness directly into a group-wide earnings problem, while forcing investors to ask which business Google is choosing to prioritize over time.\n\n@@CHK@@TPU 8t maximum scale|9,600 chips|Shared memory|2 petabytes|TPU 8i single pod|1,152 chips@@The figures come from Google Cloud's official product description of its training and inference TPUs. They are independent infrastructure figures, separate from SemiAnalysis's shipment forecast.@@2026-04-22 · Google Cloud\n\n## The benefit and cost of external TPU revenue\n\nSemiAnalysis estimates that GCP could reach more than $73 billion in third-party AI infrastructure annualized revenue by 2027, with TPU system sales taking the external figure much higher. These are model estimates, not Alphabet guidance, so they should not be read as a reported forecast. The investable point is the path: once customers commit to buying compute, the cloud ledger can expand even while the model leaderboard moves against Gemini.\n\nThe tradeoff is the opportunity cost of capacity. Selling more TPUs can speed up infrastructure payback and GCP growth. Long-term allocations to competing model labs also reduce the spare capacity Google can reclaim when Gemini needs it. Platform neutrality can create revenue while dispersing the focus of the research lab.\n\n## What to check in the next results\n\nThe next question is not whether Gemini immediately returns to number one. It is whether Gemini API usage and retention of key researchers change while GCP growth and TPU backlog keep rising. Put external GCP revenue, TPU shipments and backlog, and first-party Gemini API token growth in one table. The combination will show whether Google is rebuilding a model-first strategy or committing more deeply to an infrastructure-first one.",
+    "ja": "これは、GoogleのDeepMindリーダー交代をもう一度伝えるカードではない。変化がGoogleの資金と計算資源の配分をどこへ押し、Alphabetの投資家にどの数字として現れるのかを扱う。\n\nSemiAnalysisの見立ては明快だ。DeepMindは主要な研究者が離れ、最先端モデル競争で後れを取っている。その空白をGCPが外部顧客へTPUとクラウドサービスを売る事業で埋められるという主張だ。Anthropicのような競合モデル企業に計算資源を供給すれば短期のクラウド売上は伸びるが、Geminiの研究に残せる計算資源の余地は小さくなる。\n\n## モデル競争とクラウドの帳簿が分かれる地点\n\n原文は、ジェフ・ディーン、サンジェイ・ゲマワット、クオック・レ、オリオール・ビニャルスの離脱を、人材問題の信号としてまとめる。この人事変更自体はすでに知られている。今回の新しい情報は、その次の段階である資源配分だ。SemiAnalysisは、2026年第3四半期から2027年第4四半期までのTPU出荷量の20%以上がAnthropicへ直接向かうと推定する。\n\n@@REF@@GoogleはTPU 8tを学習用、TPU 8iを推論用としてGoogle Cloudの顧客向け選択肢に示し、自社のGeminiモデルもTPUで動くと説明している@@https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/\n\nGoogleの公式説明は、GCPが自社モデルの内部インフラであると同時に、外部顧客へ売るプラットフォームであることを示す。Claudeのような競合モデルを載せてプラットフォームが成長すれば、モデルの順位とクラウド売上は別々の方向に動きうる。Geminiの弱さがAlphabet全体の業績問題へ直結するのを防ぐ一方、Googleが長期的にどの事業を優先するかを投資家に問い直させる構造だ。\n\n@@CHK@@TPU 8t最大規模|9,600個|共有メモリ|2ペタバイト|TPU 8i単一ポッド|1,152個@@学習用と推論用のTPU規模はGoogle Cloudの公式製品説明で確認した。SemiAnalysisの出荷見通しとは別の出典によるインフラ数値だ。@@2026-04-22 · Google Cloud\n\n## 外部TPU売上の利点と代償\n\nSemiAnalysisは、GCPが2027年までに第三者向けAIインフラで730億ドル超の年換算売上を作り、TPUシステム販売まで含めれば外部売上の規模はさらに大きくなると推定する。これはAlphabetの公表実績ではなく分析モデルの予測なので、会社のガイダンスとして読んではいけない。ただ、顧客が計算資源を買う契約を積み上げれば、モデルの順位とは別にクラウドの帳簿が膨らむ道筋は見える。\n\n代償は容量の機会費用だ。TPUを多く売れば、設備投資の回収とGCPの成長を早められる。競合モデル研究所への長期配分は、Geminiが必要になったときに取り戻せる余力も減らす。プラットフォームの中立性が売上を作る一方で、研究所の集中力を分散させる構造になりうる。\n\n## 次の決算で確認すること\n\n次の問いは、Geminiがすぐ1位へ戻るかではない。GCPの成長率とTPUバックログが上がり続ける間に、Gemini APIの利用量と主要研究者の定着率がどう変わるかだ。外部GCP売上、TPUの出荷・バックログ、Geminiの自社APIトークン増加率を同じ表に置けば、Googleがモデル優先戦略を立て直すのか、インフラ優先戦略をさらに固めるのかを見分けられる。"
+   },
+   "why": {
+    "ko": "구글의 모델 경쟁력과 클라우드 매출이 서로 다른 방향으로 움직일 수 있는 자원 배분 구조를 보여준다. GCP 성장만으로 제미나이의 장기 경쟁력까지 확인할 수는 없다.",
+    "en": "It shows how Google's model position and cloud revenue can move in different directions because of resource allocation. GCP growth alone does not prove long-term Gemini competitiveness.",
+    "ja": "資源配分によって、Googleのモデル競争力とクラウド売上が別の方向へ動きうる構造を示す。GCPの成長だけでGeminiの長期競争力までは確認できない。"
+   },
+   "ask": {
+    "ko": "GCP 성장과 TPU 백로그가 계속 늘어나는 동안 제미나이 API 사용량과 핵심 연구자 유지율이 약해진다면, 구글은 모델 회사에서 인프라 플랫폼으로 이동했다고 봐야 할까?",
+    "en": "If GCP growth and TPU backlog keep rising while Gemini API usage and key-researcher retention weaken, should Google be judged as moving from a model company toward an infrastructure platform?",
+    "ja": "GCPの成長とTPUバックログが増え続ける一方でGemini APIの利用量と主要研究者の定着率が弱まるなら、Googleはモデル企業からインフラ基盤へ移ったと見るべきだろうか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Gemini 리더십 변화와 GCP TPU 사업에 대한 SemiAnalysis 분석",
+      "en": "SemiAnalysis analysis of the Gemini leadership change and GCP TPU business",
+      "ja": "Geminiのリーダー交代とGCPのTPU事業に関するSemiAnalysis分析"
+     },
+     "url": "https://newsletter.semianalysis.com/p/gemini-is-cooked-but-gcp-is-cooking"
+    },
+    {
+     "name": {
+      "ko": "Google Cloud TPU 설명",
+      "en": "Google Cloud TPU overview",
+      "ja": "Google Cloud TPUの説明"
+     },
+     "desc": {
+      "ko": "TPU 8t·8i의 학습·추론 용도와 규모",
+      "en": "Training and inference roles and scale of TPU 8t and 8i",
+      "ja": "TPU 8t・8iの学習・推論用途と規模"
+     },
+     "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/"
+    }
+   ],
+   "sourcesAsOf": "2026-08-08"
+  },
+  {
+   "date": "2026-08-08",
+   "id": "meru-vkospi-var-foreign-selling",
+   "related": [
+    "meru-nps-circuit-breaker-buying-power",
+    "meru-leverage-etf-fx-defense-miss",
+    "meru-korea-won-strength-surplus-vs-cash-outflow"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224371367594",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#172554",
+    "to": "#b45309",
+    "label": "KOSPI / VaR"
+   },
+   "tags": [
+    "KOSPI",
+    "VOLATILITY",
+    "RISK"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "VKOSPI가 세 배 오르자 외국인 위험 한도가 줄었다",
+    "en": "When KOSPI Volatility Tripled, Foreign Risk Limits Tightened",
+    "ja": "VKOSPIが3倍になり外国人のリスク枠が縮んだ"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "VKOSPI는 올해 1월 2일 30.6에서 6월 30일 93.8로 3배 수준으로 뛰었음.",
+      "변동성이 커지면 VaR가 부풀고, 받아놓은 위험예산한도를 맞추려면 보유물량을 줄여야 함. 국장 주식을 팔아야 한다는 말임."
+     ],
+     "en": [
+      "VKOSPI rose from 30.6 on January 2 this year to 93.8 on June 30, roughly tripling.",
+      "When volatility grows, VaR swells, and holdings have to be reduced to stay within the risk budget already assigned. That means selling Korean stocks."
+     ],
+     "ja": [
+      "VKOSPIは今年1月2日の30.6から6月30日の93.8へ、約3倍に上がった。",
+      "ボラティリティが大きくなるとVaRが膨らみ、与えられたリスク予算に合わせるため保有量を減らさなければならない。つまり韓国株を売ることになる。"
+     ]
+    },
+    "cite": "메르 · 2026.08.08"
+   },
+   "sum3": {
+    "ko": "VKOSPI 급등은 같은 코스피 보유액을 더 큰 위험으로 계산하게 만들 수 있다.\n위험예산을 맞추는 기관은 종목 전망과 별개로 보유량을 줄일 수 있다.\n외국인 흐름을 읽을 때 주가와 함께 변동성, 환율, 정책 변화를 묶어 봐야 한다.",
+    "en": "A VKOSPI surge can make the same KOSPI exposure count as a larger risk.\nInstitutions managing a risk budget may cut holdings regardless of their view on a stock.\nForeign flows need to be read alongside volatility, currencies, and policy changes.",
+    "ja": "VKOSPIの急騰は、同じKOSPIの保有額をより大きなリスクとして計算させる。\nリスク予算を管理する機関は、銘柄観とは別に保有量を減らすことがある。\n外国人フローは、ボラティリティ、為替、政策の変化と合わせて読む必要がある。"
+   },
+   "gist": {
+    "ko": "이번 글의 핵심은 외국인 매도의 일부가 한국 기업의 펀더멘털 변화보다 위험 한도 조정에서 나올 수 있다는 점이다. 메르는 VaR를 포트폴리오가 감당할 수 있는 손실 예산으로 설명한다. 변동성이 커지면 같은 주식 보유액도 더 큰 위험으로 계산된다. 펀드가 종목을 싫어해서가 아니라 정해진 한도를 지키기 위해 수량을 줄이는 구조다.\n\nVaR는 특정 기간과 신뢰수준에서 예상할 수 있는 손실의 경계를 보여주는 지표다. cVaR 또는 Expected Shortfall은 그 경계를 넘어선 최악의 구간에서 평균 손실이 어느 정도인지 보완한다. 두 수치는 예측의 정답이라기보다 포트폴리오 규모를 조정하는 공통 언어에 가깝다.\n\n@@REF@@VaR가 포지션 유지·축소·확대 판단에 쓰이고, 변동성 상승에 빠르게 반응하는 모델이 경기순응적 자본 요구를 만들 수 있다는 IMF 분석|https://www.elibrary.imf.org/view/journals/004/2009/009/article-A001-en.xml\n\nIMF는 VaR가 최대 손실 가능 규모를 공통 언어로 만들고 경영진이 포지션을 유지할지, 줄일지, 늘릴지 결정하는 데 쓰인다고 설명한다. 2009년 분석은 변동성이 커질 때 VaR 모델과 자본 요구가 빠르게 반응해 금융기관의 축소를 같은 방향으로 밀 수 있다고 지적했다. 이 구조가 작동하면 외국인 순매도는 한국 주식의 장기 전망만으로 설명되지 않는다.\n\n## VKOSPI가 위험예산을 압박한 구간\n\n원문은 VKOSPI가 1월 2일 30.6에서 6월 30일 93.8로 뛰었다고 정리한다. 6월 말 고점 뒤에도 8월 초 지수는 높은 구간에 머물렀다. 연율화된 기대변동성은 일간 위험 계산과 같지 않지만, 위험예산이 압박받는 방향을 보는 신호로는 쓸 수 있다.\n\n@@CHK@@단일종목 레버리지 기본예탁금|1,000만원|현금 예탁금 시행 후|3,000만원|레버리지 ETF 거래 단위|20주@@한국 금융당국의 단일종목 레버리지 규정 변경을 연합뉴스 영문 보도로 교차 확인했다. 변동성이 높은 시기에 레버리지 진입 요건도 함께 높아진 사례다.@@2026-07-24 · Yonhap English\n\n이 정책 변화가 VKOSPI 하락의 단독 원인이라고 단정할 수는 없다. 다만 레버리지 수요를 제한하는 규칙과 위험예산을 맞추는 기관의 보유량 축소가 같은 시장에서 동시에 나타날 수 있다는 점은 확인할 만하다. 변동성 지표를 보지 않으면 매도 주체의 행동을 모두 전망 변경으로 읽게 된다.\n\n## 다음 외국인 흐름에서 볼 것\n\n이 논리는 외국인 순매도를 전부 설명하지 않는다. 환율, 실적, 정책, 현금 회수도 별도 변수다. 그래도 VKOSPI가 높은 구간에서 외국인 매도가 확대되고 변동성이 내려간 뒤 매도가 둔화되는지 함께 보면, 기계적 위험 축소와 전망 변화의 차이를 좁힐 수 있다. 다음 확인 대상은 외국인 순매수, VKOSPI, 원달러 환율의 방향이 같은 날에 어떻게 움직이는지다.",
+    "en": "The core point is that part of foreign selling can come from a risk-limit adjustment rather than a change in the fundamentals of Korean companies. Meru describes VaR as a loss budget that a portfolio is allowed to absorb. When volatility rises, the same equity holding is calculated as a larger risk. The fund can cut its position to stay inside a preset limit even when its view on the company has not changed.\n\nVaR shows a loss boundary for a chosen horizon and confidence level. cVaR, or Expected Shortfall, adds the average loss in the worst tail beyond that boundary. These measures are less a promise about the future than a common language for sizing portfolios.\n\n@@REF@@An IMF analysis explains how VaR informs decisions to maintain, reduce, or increase positions, and how models that react quickly to higher volatility can create procyclical capital requirements|https://www.elibrary.imf.org/view/journals/004/2009/009/article-A001-en.xml\n\nThe IMF describes VaR as a common language for maximum likely losses and for management decisions about whether positions should be maintained, reduced, or increased. Its 2009 analysis notes that a fast response to higher volatility can make capital requirements move in the same direction as the stress, pushing institutions toward simultaneous contraction. If this mechanism is active, foreign net selling cannot be read only as a long-term view on Korean equities.\n\n## The stretch that squeezed risk budgets\n\nThe original post says VKOSPI rose from 30.6 on January 2 to 93.8 on June 30. The index remained elevated in early August after the late-June peak. An annualized implied-volatility index is not the same thing as daily risk in a portfolio, but it can signal the direction in which a risk budget is being squeezed.\n\n@@CHK@@Single-stock leveraged ETF deposit|10 million won|Cash-deposit rule|30 million won|Leveraged ETF trade unit|20 shares@@Yonhap English independently confirmed the Korean authorities' rule change. It is an example of leverage-entry requirements rising during a high-volatility regime.@@2026-07-24 · Yonhap English\n\nThe rule change alone cannot establish why VKOSPI fell. It does show that a market can have both a constraint on leveraged demand and institutions reducing holdings to fit a risk budget. Without the volatility signal, an observer may read every sale as a fresh change in the seller's fundamental view.\n\n## What to watch in the next foreign flow\n\nThis mechanism does not explain every foreign sale. Currency moves, earnings, policy, and cash repatriation remain separate variables. Still, comparing foreign net flows with VKOSPI and the won-dollar rate can help distinguish mechanical risk reduction from a changed outlook. The next check is whether foreign buying or selling, VKOSPI, and the won-dollar direction move together on the same days.",
+    "ja": "この文章の核心は、外国人の売りの一部が韓国企業のファンダメンタルズ変化ではなく、リミット調整から生じうるという点だ。メルはVaRを、ポートフォリオが受け入れられる損失予算として説明する。ボラティリティが上がれば、同じ株式保有額もより大きなリスクとして計算される。銘柄を嫌ったからではなく、決められた枠内に収めるため保有量を減らす構造だ。\n\nVaRは、選んだ期間と信頼水準で想定される損失の境界を示す。cVaR、つまりExpected Shortfallは、その境界を超える最悪の尾部で平均的にどの程度の損失になるかを補う。どちらも将来の正解を約束する指標というより、ポートフォリオの規模を調整する共通言語に近い。\n\n@@REF@@VaRがポジションの維持・縮小・拡大の判断に使われ、高いボラティリティに素早く反応するモデルが景気循環増幅的な資本要件を生みうるとするIMF分析|https://www.elibrary.imf.org/view/journals/004/2009/009/article-A001-en.xml\n\nIMFはVaRを、最大損失の可能な規模とポジションを維持するか、減らすか、増やすかを判断する共通言語として説明する。2009年の分析は、ボラティリティ上昇への速い反応が資本要件を同じ方向に動かし、金融機関の縮小を同時に促す可能性を指摘した。この仕組みが働けば、外国人の純売りを韓国株への長期見通しだけで読むことはできない。\n\n## リスク予算を圧迫したVKOSPIの局面\n\n原文は、VKOSPIが1月2日の30.6から6月30日の93.8へ上がったと整理する。6月末の高値の後も、8月初めの指数は高い水準に残った。年率表示の期待ボラティリティは日次のポートフォリオリスクと同じではないが、リスク予算が圧迫される方向を見る信号にはなる。\n\n@@CHK@@単一銘柄レバレッジETFの預託金|1,000万ウォン|現金預託ルール|3,000万ウォン|レバレッジETFの取引単位|20株@@韓国当局が変更した基準をYonhap Englishで独立確認した。高いボラティリティの局面でレバレッジへの参入条件も上がった例だ。@@2026-07-24 · Yonhap English\n\nこのルール変更だけでVKOSPIの低下原因を断定することはできない。ただ、レバレッジ需要を抑える規則と、リスク予算に合わせて保有量を減らす機関が同じ市場に同時に存在しうることは確認できる。ボラティリティを見なければ、すべての売りを見通しの変更として読んでしまう。\n\n## 次の外国人フローで見ること\n\nこの仕組みだけで外国人の売りをすべて説明することはできない。為替、業績、政策、資金回収も別の変数だ。それでも外国人の純フローをVKOSPIとウォン・ドル相場と比べれば、機械的なリスク縮小と見通しの変化を分ける手がかりになる。次に確認するのは、外国人の売買、VKOSPI、ウォン・ドルの方向が同じ日にどう動くかだ。"
+   },
+   "why": {
+    "ko": "변동성 상승이 외국인 매도의 일부를 위험예산 조정으로 증폭할 수 있다는 구조를 보여준다. 다만 모든 외국인 흐름을 설명하는 단일 원인으로 쓰면 안 된다.",
+    "en": "It shows how higher volatility can amplify part of foreign selling through risk-budget adjustments. It should not be used as a single explanation for every foreign flow.",
+    "ja": "ボラティリティ上昇が、リスク予算の調整を通じて外国人売りの一部を増幅しうる構造を示す。ただし全フローの単一原因として使うべきではない。"
+   },
+   "ask": {
+    "ko": "다음 외국인 수급에서 VKOSPI와 원달러 환율이 함께 움직이는지 확인한다면, 위험 한도 조정과 전망 변경을 어떻게 구분할 수 있을까?",
+    "en": "If VKOSPI and the won-dollar rate move with the next foreign-flow data, how should we separate risk-limit adjustments from a changed outlook?",
+    "ja": "次の外国人フローでVKOSPIとウォン・ドルが同時に動いたら、リスク枠の調整と見通しの変更をどう区別できるだろうか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original post",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르의 VKOSPI·VaR·외국인 매도 설명",
+      "en": "Meru's explanation of VKOSPI, VaR, and foreign selling",
+      "ja": "メルによるVKOSPI、VaR、外国人売りの説明"
+     },
+     "url": "https://blog.naver.com/ranto28/224371367594"
+    },
+    {
+     "name": {
+      "ko": "VaR와 경기순응성",
+      "en": "VaR and procyclicality",
+      "ja": "VaRと景気循環増幅性"
+     },
+     "desc": {
+      "ko": "변동성 상승에 반응하는 VaR 모델과 자본요구 분석",
+      "en": "Analysis of VaR models and capital requirements responding to higher volatility",
+      "ja": "ボラティリティ上昇に反応するVaRモデルと資本要件の分析"
+     },
+     "url": "https://www.elibrary.imf.org/view/journals/004/2009/009/article-A001-en.xml"
+    },
+    {
+     "name": {
+      "ko": "단일종목 레버리지 규정",
+      "en": "Single-stock leverage rule",
+      "ja": "単一銘柄レバレッジ規則"
+     },
+     "desc": {
+      "ko": "기본예탁금 기준 변경 교차 확인",
+      "en": "Cross-check of the deposit rule change",
+      "ja": "預託金ルール変更の照合"
+     },
+     "url": "https://en.yna.co.kr/view/AEN20260724002000320"
+    }
+   ],
+   "sourcesAsOf": "2026-08-08"
+  },
+  {
+   "date": "2026-08-07",
    "id": "serenity-unitree-agility-humanoid-valuation-gap",
    "related": [],
    "source": "Serenity (@aleabitoreddit)",
@@ -41126,6 +41339,302 @@
     "상하이 스타마켓",
     "科創板",
     "科创板"
+   ]
+  },
+  "VKOSPI": {
+   "kind": "term",
+   "sector": {
+    "en": "Market",
+    "ko": "시장",
+    "ja": "市場"
+   },
+   "desc": {
+    "en": "An implied-volatility index for KOSPI 200 options.",
+    "ko": "KOSPI 200 옵션에서 계산하는 기대변동성 지수.",
+    "ja": "KOSPI 200オプションから算出される期待ボラティリティ指数。"
+   },
+   "aliases": [
+    "VKOSPI",
+    "KOSPI Volatility",
+    "코스피 변동성지수",
+    "변동성 지수"
+   ]
+  },
+  "VALUE AT RISK": {
+   "kind": "term",
+   "sector": {
+    "en": "Risk",
+    "ko": "위험관리",
+    "ja": "リスク管理"
+   },
+   "desc": {
+    "en": "A loss threshold estimated for a chosen horizon and confidence level.",
+    "ko": "정해진 기간과 신뢰수준에서 추정한 손실 경계.",
+    "ja": "特定の期間と信頼水準で推定する損失の境界。"
+   },
+   "aliases": [
+    "VaR",
+    "Value at Risk",
+    "가치-위험",
+    "VaR한도"
+   ]
+  },
+  "EXPECTED SHORTFALL": {
+   "kind": "term",
+   "sector": {
+    "en": "Risk",
+    "ko": "위험관리",
+    "ja": "リスク管理"
+   },
+   "desc": {
+    "en": "The average loss in the tail beyond a chosen VaR threshold.",
+    "ko": "VaR 경계를 넘는 꼬리 구간의 평균 손실.",
+    "ja": "VaRの境界を超えるテール部分の平均損失。"
+   },
+   "aliases": [
+    "Expected Shortfall",
+    "cVaR",
+    "CVaR",
+    "조건부 VaR"
+   ]
+  },
+  "RISK BUDGET": {
+   "kind": "term",
+   "sector": {
+    "en": "Risk",
+    "ko": "위험관리",
+    "ja": "リスク管理"
+   },
+   "desc": {
+    "en": "A predefined amount of risk a portfolio is allowed to carry.",
+    "ko": "포트폴리오가 감당하도록 정해 둔 위험의 한도.",
+    "ja": "ポートフォリオが負担できるよう定めたリスクの上限。"
+   },
+   "aliases": [
+    "Risk Budget",
+    "위험예산",
+    "위험예산한도",
+    "리스크 예산"
+   ]
+  },
+  "PROCyclicality": {
+   "kind": "term",
+   "sector": {
+    "en": "Risk",
+    "ko": "금융",
+    "ja": "金融"
+   },
+   "desc": {
+    "en": "A mechanism that makes financial constraints reinforce the economic cycle.",
+    "ko": "금융 제약이 경기 변동을 같은 방향으로 증폭하는 현상.",
+    "ja": "金融上の制約が景気変動を同じ方向に増幅する現象。"
+   },
+   "aliases": [
+    "procyclicality",
+    "경기순응성",
+    "경기순응적"
+   ]
+  },
+  "SINGLE-STOCK LEVERAGED ETF": {
+   "kind": "term",
+   "sector": {
+    "en": "Market structure",
+    "ko": "시장구조",
+    "ja": "市場構造"
+   },
+   "desc": {
+    "en": "An ETF designed to deliver a multiple of one stock's daily return.",
+    "ko": "한 종목의 일간 수익률 배수를 추종하도록 설계된 ETF.",
+    "ja": "単一銘柄の日次リターンの倍数を目指すETF。"
+   },
+   "aliases": [
+    "single-stock leveraged ETF",
+    "단일종목 레버리지 ETF",
+    "레버리지 ETF"
+   ]
+  },
+  "PENSION FUNDS": {
+   "kind": "term",
+   "sector": {
+    "en": "Investors",
+    "ko": "투자자",
+    "ja": "投資家"
+   },
+   "desc": {
+    "en": "Long-horizon institutional investors that manage risk budgets.",
+    "ko": "위험예산을 관리하는 장기 기관투자가.",
+    "ja": "リスク予算を管理する長期機関投資家。"
+   },
+   "aliases": [
+    "pension funds",
+    "연기금",
+    "연기금등"
+   ]
+  },
+  "INTERNATIONAL MONETARY FUND": {
+   "kind": "org",
+   "sector": {
+    "en": "Institutions",
+    "ko": "기관",
+    "ja": "機関"
+   },
+   "desc": {
+    "en": "The international institution cited for its analysis of financial stability and risk management.",
+    "ko": "금융안정과 위험관리 분석을 인용한 국제기구.",
+    "ja": "金融安定とリスク管理の分析で引用した国際機関。"
+   },
+   "aliases": [
+    "IMF",
+    "국제통화기금",
+    "국제통화기금(IMF)"
+   ]
+  },
+  "GEMINI": {
+   "kind": "company",
+   "sector": {
+    "en": "AI",
+    "ko": "AI",
+    "ja": "AI"
+   },
+   "desc": {
+    "en": "Google's family of generative AI models.",
+    "ko": "구글의 생성형 AI 모델 제품군.",
+    "ja": "Googleの生成AIモデル群。"
+   },
+   "aliases": [
+    "Gemini",
+    "제미나이",
+    "ジェミニ"
+   ]
+  },
+  "GOOGLE CLOUD PLATFORM": {
+   "kind": "company",
+   "sector": {
+    "en": "Cloud",
+    "ko": "클라우드",
+    "ja": "クラウド"
+   },
+   "desc": {
+    "en": "Google's cloud computing platform and AI infrastructure business.",
+    "ko": "구글의 클라우드 컴퓨팅 플랫폼과 AI 인프라 사업.",
+    "ja": "Googleのクラウド計算基盤とAIインフラ事業。"
+   },
+   "aliases": [
+    "GCP",
+    "Google Cloud",
+    "Google Cloud Platform",
+    "구글 클라우드",
+    "グーグルクラウド"
+   ]
+  },
+  "DISCOVERY LOOP": {
+   "kind": "company",
+   "sector": {
+    "en": "AI",
+    "ko": "AI",
+    "ja": "AI"
+   },
+   "desc": {
+    "en": "The AI research company founded by former Google researchers in the source article.",
+    "ko": "원문에 등장하는 구글 출신 연구자들의 AI 연구 회사.",
+    "ja": "原文に登場するGoogle出身研究者のAI研究会社。"
+   },
+   "aliases": [
+    "Discovery Loop",
+    "디스커버리 루프",
+    "ディスカバリーループ"
+   ]
+  },
+  "JEFF DEAN": {
+   "kind": "person",
+   "sector": {
+    "en": "AI research",
+    "ko": "AI 연구",
+    "ja": "AI研究"
+   },
+   "desc": {
+    "en": "Google engineer and former Chief Scientist mentioned in the source analysis.",
+    "ko": "원문 분석에 등장하는 구글 엔지니어이자 전 수석 과학자.",
+    "ja": "原文分析に登場するGoogleのエンジニアで元チーフサイエンティスト。"
+   },
+   "aliases": [
+    "Jeff Dean",
+    "제프 딘",
+    "ジェフ・ディーン"
+   ]
+  },
+  "TOKENOMICS MODEL": {
+   "kind": "term",
+   "sector": {
+    "en": "AI finance",
+    "ko": "AI 금융",
+    "ja": "AI金融"
+   },
+   "desc": {
+    "en": "SemiAnalysis's model for tracking AI infrastructure economics.",
+    "ko": "SemiAnalysis가 AI 인프라 경제성을 추적하는 모델.",
+    "ja": "SemiAnalysisがAIインフラの経済性を追跡するモデル。"
+   },
+   "aliases": [
+    "Tokenomics Model",
+    "토크노믹스 모델",
+    "トークノミクスモデル"
+   ]
+  },
+  "KORAY KAVUKCUOGLU": {
+   "kind": "person",
+   "sector": {
+    "en": "AI research",
+    "ko": "AI 연구",
+    "ja": "AI研究"
+   },
+   "desc": {
+    "en": "The Google DeepMind leader discussed in the source article.",
+    "ko": "원문에 언급된 구글 딥마인드 리더.",
+    "ja": "原文で言及されるGoogle DeepMindのリーダー。"
+   },
+   "aliases": [
+    "Koray Kavukcuoglu",
+    "Koray Kavukcuoğlu",
+    "코라이 카부쿠오글루",
+    "コライ・カブクチュオール"
+   ]
+  },
+  "FRONTIER MODEL LAB": {
+   "kind": "term",
+   "sector": {
+    "en": "AI research",
+    "ko": "AI 연구",
+    "ja": "AI研究"
+   },
+   "desc": {
+    "en": "An AI lab competing at the leading edge of model capability.",
+    "ko": "최전선 모델 성능을 놓고 경쟁하는 AI 연구소.",
+    "ja": "最先端のモデル性能を競うAI研究所。"
+   },
+   "aliases": [
+    "frontier model lab",
+    "frontier lab",
+    "최전선 연구소",
+    "フロンティアラボ"
+   ]
+  },
+  "CLAUDE": {
+   "kind": "company",
+   "sector": {
+    "en": "AI",
+    "ko": "AI",
+    "ja": "AI"
+   },
+   "desc": {
+    "en": "Anthropic's family of generative AI models mentioned as a GCP platform workload.",
+    "ko": "GCP 플랫폼의 외부 모델 사례로 언급된 앤스로픽의 생성형 AI 모델군.",
+    "ja": "GCPプラットフォームの外部モデル例として言及されるAnthropicの生成AIモデル群。"
+   },
+   "aliases": [
+    "Claude",
+    "클로드",
+    "クロード"
    ]
   }
  }
