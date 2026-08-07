@@ -39,6 +39,18 @@ Shared handoff log for Codex and Claude.
 
 **Next**: Push to `main`, then verify the live app renders one `.gcard img` for the Bessent article.
 
+## 2026-08-07 Codex — Bessent 기사 깊이 보강
+
+**목표**: `pichai-gdm-reshuffle-dean-discovery-loop`와 비교해 짧았던 `bessent-wages-25th-percentile-lead`를 같은 수준의 근거·전개·판정 조건으로 확장한다.
+
+**변경**: ko/en/ja 본문을 2개 섹션·7문단에서 4개 섹션·10문단으로 확장. BLS 2025·2026년 2분기 백분위 비교, 백분위 경계와 동일인 임금상승률의 차이, 애틀랜타 연은 동일인 추적치, 명목·실질 중앙값, 파트타임 사각지대, 2026-10-21 재검증 조건을 추가했다. `REF 3`, `BAR 1`, `CMP 1`, `TIME 1`; BLS·애틀랜타 연은 이미지 카드 2개. `data/*`, 3개 언어 기사 페이지, RSS 3종, 새 본문에서 직접 연결된 Trump/Fed 엔티티 페이지와 dollar 테마 페이지를 재빌드했다.
+
+**검증**: `check_term_coverage.py --allow Wage,Growth,Tracker,Table` 통과(영문 공식 출처명·표 레이블이라 용어집 등록 제외), `check_source_dependence.py` 통과, 대상 편집 검사 `ok`, 주간 검사 `BLOCK 0`. JSON 파싱과 생성 페이지 구조 검증 예정. 전체 빌드 완료 후 무관한 sitemap·scoreboard·pycache 변경은 제외했다.
+
+**위험**: BLS 백분위와 애틀랜타 연은 동일인 추적치는 서로 다른 질문에 답하는 지표라 본문에서 직접 비교값이 아니라 측정 차이로 명시했다. 애틀랜타 연은 카드 이미지는 공식 호스팅 자산에 의존한다.
+
+**다음**: 최신 `main` 기준 deploy guard, 커밋·푸시, 실사이트에서 4개 섹션·카드 이미지 2개·CMP/TIME 렌더 확인.
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — about.html: Stacks 콘텐츠 무단 재배포 금지 조항 신설
 
 **요청**: june이 "우리 사이트 무단 복사나 베껴가서 무단으로 배포하거나 이런 위험은 없나? 누군가 우리꺼 베껴갈거 같아서"라고 우려 표명 → 위험 진단 후 "제일 급한거부터 처리해줘" 승인.
