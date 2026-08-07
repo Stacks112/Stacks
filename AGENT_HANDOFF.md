@@ -3029,3 +3029,22 @@ Next:
 **위험**: D1·예약 작업·GitHub Actions 수동 실행·토큰 출력 없음. 콘텐츠·정적 생성물만 변경.
 
 **다음**: 운영 배포 후 라이브 DOM에서 카드 수와 색인 링크 재확인.
+
+
+## 2026-08-07 Codex — 자동 발행 X 임베드·본문 깊이 게이트 수정 (production 반영)
+
+**목표**: D1 자동 발행 카드에서 X 원문 카드가 정적 글 페이지에 빠지고, 본문이 짧게 발행되는 문제를 함께 차단.
+
+**원인**: `build_pages.py`가 손글씨 `quote`를 먼저 렌더해 `embeds.json`의 X 원문을 무시했다. 자동 발행 큐에는 본문 분량·문단 깊이 게이트가 없었다.
+
+**변경**:
+- `.github/workflows/apply-pending.yml` — 병합 직후 `fetch_embeds.py` 실행, 새 X 카드의 embed 필수 검증, 한국어 700자·영어 800자·일본어 600자 및 5개 본문 문단 게이트, 빌드 커밋 성공 전 D1 행 삭제 금지.
+- `scripts/build_pages.py` — 앱과 정적 `/p/` 페이지에 동일한 `.xemb` 카드와 X 공식 위젯 enhancement를 적용. 위젯이 막혀도 자체 카드가 남음.
+- `scripts/card_quality.py`, `scripts/verify_publish_outputs.py` 신규 — 깊이 및 생성물 검증.
+- 현재 MTSI 테스트 글의 ko/en/ja 본문을 937/2,213/1,002자, 5개 이상 문단으로 확장하고 `data/`·정적 페이지를 재생성.
+
+**검증**: Python/YAML/JSON 문법, `git diff --check`, X embed·gist·3개 언어 정적 페이지 검증 통과. GitHub production `main` 커밋 `1ec636b` 반영. 원격 정적 페이지에 `.xreal`, `.xemb`, `widgets.js`와 확장 본문 확인.
+
+**위험**: X `widgets.js`는 외부 스크립트라 차단될 수 있으나 자체 정적 X 카드는 계속 표시된다. 짧은 신규 카드는 D1 큐에 남겨 다음 자동 발행 회차에서 다시 처리한다.
+
+**다음**: Pages/CDN 전파 후 라이브 MTSI URL에서 X 카드와 확장 본문을 다시 확인.
