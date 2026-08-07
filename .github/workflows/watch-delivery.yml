@@ -4,6 +4,8 @@ name: Watch auto-publish delivery
 # the other half of the publishing path: a failed apply run, Pages build, or
 # GitHub Pages deployment.
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: "*/10 * * * *"
   workflow_dispatch: {}
