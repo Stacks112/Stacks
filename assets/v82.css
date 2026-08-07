@@ -61,7 +61,7 @@
   #v82nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.9;}
   #v82nav button.on svg{stroke-width:2.5;}
   /* keep app sheets clear of the persistent nav */
-  #calSheet .me-card,#meSheet .me-card{max-height:80vh;}
+  #meSheet .me-card{max-height:80vh;}
 
   /* --- drawer (X-style profile panel, above nav) --- */
   body.v82-drawer-open{overflow:hidden;}
@@ -485,25 +485,6 @@
   .v82-sh .ti{font-size:18px; letter-spacing:-.01em;}
   .v82-screen{padding-top:56px;}   /* 헤더 48px + 여백 8px (기존 52+8) */
 
-  /* 2026-08-03 (june): 캘린더(#calSheet)도 같은 상단바로. 여기만 "제목 + 오른쪽 원형 ✕"
-     구조라 혼자 달랐다. 마크업·닫기 동작은 그대로 두고 flex order로 버튼을 왼쪽에 보내고
-     글리프만 ←로 바꾼다. 수치는 #v82subbar / .v82-sh 와 동일. */
-  /* .me-card는 모달 카드라 padding 20/22/24 + 1px border를 갖는다. 전체화면으로 펼친
-     모바일에서는 그 안쪽 여백이 헤더까지 밀어서 ←가 다른 화면보다 23px 안으로 들어갔다. */
-  html.rbeta #calSheet .me-card{padding:0; border:0;}
-  html.rbeta #calSheet .me-head{
-    height:48px; gap:6px; padding:0 6px; margin:0; justify-content:flex-start;
-    background:rgba(255,255,255,.86); backdrop-filter:blur(12px);
-  }
-  html.rbeta[data-theme="dark"] #calSheet .me-head{background:rgba(0,0,0,.86);}
-  html.rbeta #calSheet .me-head #calHeadTitle{
-    order:2; font-size:18px; font-weight:800; letter-spacing:-.01em;
-  }
-  html.rbeta #calSheet .me-head .cfs-close{
-    order:1; width:auto; height:auto; border:0; border-radius:0; background:none;
-    color:var(--text); cursor:pointer; padding:4px 10px; line-height:1; font-size:0;
-  }
-  html.rbeta #calSheet .me-head .cfs-close::before{content:"←"; font-size:22px; line-height:1;}
 }
 
 /* --- 2026-08-04 (june): 주간 쏠림 추이 (모바일 탐색 → 지금 쏠린 곳 상단)

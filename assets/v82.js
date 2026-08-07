@@ -1194,15 +1194,22 @@
     var btns = wrap.querySelectorAll(".v82cal-strip-btn");
     for (var b = 0; b < btns.length; b++){ btns[b].onclick = function(){ v82CalPickDay(this.dataset.date); }; }
   }
-  function v82CalPickDay(dateStr){
+  function v82CalPickDay(dateStr, behavior){
     try {
       var strip = $("v82calStrip");
       if (strip){
         var btns = strip.querySelectorAll(".v82cal-strip-btn");
         for (var i = 0; i < btns.length; i++) btns[i].classList.toggle("sel", btns[i].dataset.date === dateStr);
       }
-      var target = document.querySelector('#v82calGroups [data-date="' + dateStr + '"]');
-      if (target && target.scrollIntoView) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      var body = $("v82calGroups");
+      var target = body && body.querySelector('[data-date="' + dateStr + '"]');
+      /* 이벤트 없는 날짜에는 day-head가 없을 수 있다. 그 날짜가 속한 주의
+         divider를 대신 잡아 월간 셀 탭도 항상 해당 주로 이동하게 한다. */
+      if (!target && body && typeof tcalSunday === "function"){
+        var d = new Date(dateStr + "T00:00:00");
+        target = body.querySelector('[data-week-start="' + tcalYmd(tcalSunday(d)) + '"]');
+      }
+      if (target && target.scrollIntoView) target.scrollIntoView({ behavior: behavior || "smooth", block: "start" });
     } catch (e) {}
   }
   function v82CalGoToday(){
@@ -1326,10 +1333,8 @@
       cellBtns[ci].onclick = function(){ v82CalMonthCellTap(this.dataset.date); };
     }
   }
-  /* 날짜 셀(또는 칩) 탭 → 주간뷰로 전환 + 그 날짜가 속한 주로 스크롤. 이번 주보다
-     과거인 날짜를 탭하면 주간뷰가 애초에 "이번 주부터"만 그리므로(위 v82CalRenderGroups
-     주석 참고) 스크롤 대상이 없어 조용히 무시된다 — 주간뷰 범위를 넓히면 그쪽 설계를
-     건드리게 되어 하지 않았다(남은 리스크로 보고). */
+  /* 날짜 셀(또는 칩) 탭 → 주간뷰로 전환 + 그 날짜가 속한 주로 스크롤. 주간뷰는
+     이번 달 시작 주부터 미래 4주까지 그리므로 현재 날짜보다 앞선 월간 셀도 찾을 수 있다. */
   function v82CalMonthCellTap(dateStr){
     v82CalOpenWeek();
     v82CalPickDay(dateStr);
@@ -1349,21 +1354,30 @@
        화살표가 없다 = 이번 주 고정 설계). */
     try { if (typeof V83CAL !== "undefined" && V83CAL) V83CAL.anchor = todayStr; } catch (e) {}
     var rows = v82CalRows();
-    var groups = (typeof tcalWeekGroups === "function") ? tcalWeekGroups(rows) : [];
-    /* tcalWeekGroups()는 지난 2주+이번 주+앞으로 4주(총 7그룹, 과거→미래 순)를
-       준다. 모바일 주간뷰는 과거 주는 보여주지 않고 이번 주부터 시작한다
-       (index 2 = 이번 주) — 이 slice(2)가 그 판단이다. */
-    groups = groups.slice(2);
-    var nonEmpty = groups.filter(function(g){ return g.rows && g.rows.length > 0; });
+    /* 공용 tcalWeekGroups()는 현재 주 기준 과거 2주만 보존한다. 모바일 월간 셀에서
+       이번 달 초 날짜를 탭할 수 있어야 하므로, 이번 달 1일이 속한 일요일부터
+       현재 주+미래 4주까지 모바일 전용 그룹을 만든다. */
+    var monthStart = new Date(todayD.getFullYear(), todayD.getMonth(), 1);
+    var startSun = tcalSunday(monthStart);
+    var currentSun = tcalSunday(todayD);
+    var lastSun = new Date(currentSun.getTime() + 4 * 7 * 86400000);
+    var monthStartStr = tcalYmd(monthStart), lastStr = tcalYmd(new Date(lastSun.getTime() + 6 * 86400000));
+    var groups = [];
+    for (var w = 0, gs = startSun; gs <= lastSun; w++, gs = new Date(startSun.getTime() + w * 7 * 86400000)){
+      var ge = new Date(gs.getTime() + 6 * 86400000), gsStr = tcalYmd(gs), geStr = tcalYmd(ge);
+      var gRows = rows.filter(function(r){ return r.date >= monthStartStr && r.date >= gsStr && r.date <= geStr && r.date <= lastStr; })
+        .sort(function(a, b){ return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0); });
+      groups.push({ start: gs, end: ge, rows: gRows });
+    }
     var html = "";
-    if (!nonEmpty.length){
+    if (!groups.length){
       var TS = (typeof TCAL_STR !== "undefined" && (TCAL_STR[LANG] || TCAL_STR.ko)) || {};
       html = '<div class="v82cal-empty">' + esc(TS.weekNoData || "") + '</div>';
     } else {
-      nonEmpty.forEach(function(g){
+      groups.forEach(function(g){
         var label = (typeof tcalWeekLabel === "function") ? tcalWeekLabel(g.start) : "";
-        html += '<div class="v82cal-wk-divider"><span>' + esc(label) + '</span></div>';
-        html += v82CalWeekRowsHtml(g, todayStr);
+        html += '<div class="v82cal-wk-divider" data-week-start="' + tcalYmd(g.start) + '"><span>' + esc(label) + '</span></div>';
+        if (g.rows.length) html += v82CalWeekRowsHtml(g, todayStr);
       });
     }
     body.innerHTML = html;
@@ -1458,6 +1472,9 @@
     v82CalRenderSummary();
     v82CalRenderBody();
     showScreen("v82cal");
+    /* 렌더 직후 현재 주를 먼저 보여준다. 월간 셀 탭은 이후 v82CalPickDay()가
+       선택한 날짜/주로 다시 이동한다. */
+    setTimeout(function(){ v82CalPickDay(tcalYmd(new Date()), "auto"); }, 0);
     setActive();
   }
   function closeCalScreen(){
@@ -2320,12 +2337,9 @@
 
   /* ---------- bottom nav ---------- */
   function closeAppSheets(){
-    try { var cal=$("calSheet"); if(cal && !cal.hidden && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
     /* 2026-08-05: 지표 상세(#v82ind)는 캘린더(#v82cal) 위에 겹쳐 열리므로, 안쪽(위)
        레이어부터 닫는다 — 순서를 바꾸면 v82cal만 닫히고 v82ind가 화면을 계속 덮는다. */
     try { var vi=$("v82ind"); if(vi && vi.classList.contains("on") && typeof v82IndClose==="function"){ v82IndClose(false); } } catch(e){}
-    /* 2026-08-05: 캘린더가 이제 모달(#calSheet)이 아니라 .v82-screen(#v82cal)이라
-       위 체크만으로는 안 걸린다 — "cal.hidden 아님" 대신 ".on" 클래스를 본다. */
     try { var vc=$("v82cal"); if(vc && vc.classList.contains("on") && typeof closeCal==="function"){ closeCal(); silentBack(); } } catch(e){}
     try { var me=$("meSheet"); if(me && !me.hidden && typeof closeMe==="function"){ closeMe(); silentBack(); } } catch(e){}
   }
@@ -2360,7 +2374,6 @@
     else if ($("v82hub") && $("v82hub").classList.contains("on")) cur = "explore";
     else if ($("v82notif") && $("v82notif").classList.contains("on")) cur = "notif";
     else { try { if (THEME_VIEW || SB_VIEW) cur = "explore"; } catch(e){} }
-    try { var cal=$("calSheet"); if (cal && !cal.hidden) cur = "cal"; } catch(e){}
     try { var vcal=$("v82cal"); if (vcal && vcal.classList.contains("on")) cur = "cal"; } catch(e){}
     var bs = nav.querySelectorAll("button");
     for (var i = 0; i < bs.length; i++) bs[i].classList.toggle("on", bs[i].dataset.v === cur);
@@ -2372,7 +2385,6 @@
     if (SILENT){ SILENT = false; return true; }
     if (!mq.matches) return false;
     var cfs = $("chartFS"); if (cfs && !cfs.hidden) return false;
-    var cal = $("calSheet"); if (cal && !cal.hidden) return false;
     /* 2026-08-05: 지표 상세(#v82ind, z45)는 캘린더(#v82cal, z40) 위에 겹쳐서 열리고,
        기사 상세(#v82detail, z13600)는 지표 상세의 "함께 읽으면 좋은 글"에서 그 위에
        또 열릴 수 있다 — 안쪽(가장 위) 레이어부터 닫아야 한다. 아래 vcal 체크가 먼저
@@ -2384,10 +2396,7 @@
     var dtOv = $("v82detail");
     if (dtOv && dtOv.classList.contains("on")){ if (typeof closeDetail === "function" && closeDetail(true)) return true; }
     var vind = $("v82ind"); if (vind && vind.classList.contains("on")){ if (typeof v82IndClose === "function") v82IndClose(true); return true; }
-    /* 2026-08-05: 새 주간뷰 캘린더(.v82-screen #v82cal)의 실제 브라우저 뒤로가기 처리.
-       다른 5개 셸 화면(find/hub/notif/list/picker)과 동일하게 여기서 직접 닫는다 —
-       옛 #calSheet 체크(바로 위)는 이제 절대 안 걸리므로(모달을 더 이상 열지 않음)
-       이 분기가 없으면 하드웨어 뒤로가기로 화면이 안 닫힌다. */
+    /* 새 주간뷰 캘린더(.v82-screen #v82cal)는 다른 셸 화면과 같은 방식으로 닫는다. */
     var vcal = $("v82cal"); if (vcal && vcal.classList.contains("on")){ hideScreen("v82cal"); setActive(); return true; }
     var me = $("meSheet"); if (me && !me.hidden) return false;
     /* 탐색 서브뷰가 최우선: 지금쏠린곳(허브 내부) / 테마논쟁·적중기록(피드) → 뒤로가기는 허브로 */
@@ -2418,7 +2427,6 @@
       var ov=document.getElementById("twcOv"); if (ov&&!ov.hidden) return true;
       var fs=document.getElementById("imgFS"); if (fs&&!fs.hidden) return true;
       var cf=$("chartFS"); if (cf&&!cf.hidden) return true;
-      var cal=$("calSheet"); if (cal&&!cal.hidden) return true;
       var me=$("meSheet"); if (me&&!me.hidden) return true;
       var dw=$("v82drawer"); if (dw&&dw.classList.contains("on")) return true;
       return false;

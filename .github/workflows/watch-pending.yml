@@ -1,0 +1,73 @@
+name: Watch auto-publish queue
+
+# apply-pending.yml is intentionally tolerant of a transient D1 read failure:
+# it exits and retries on the next 10-minute run.  This companion workflow is
+# the durable alarm for the other case: a card remains in D1 long enough that
+# repeated retries, a short-card hold, or a failed build needs attention.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: watch-pending
+  cancel-in-progress: false
+
+env:
+  CF_ACCOUNT_ID: "898876c2b7fe1652e72736e182ad610b"
+  CF_DATABASE_ID: "ddc4f84e-badf-4ff2-9b4e-f07c378784cf"
+  MAX_AGE_MINUTES: "30"
+  INCIDENT_TITLE: "[auto-publish] pending queue delayed"
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check D1 pending queue
+        id: check
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python scripts/watch_pending.py 2>&1 | tee pending_watch.log
+
+      - name: Open or update incident issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "자동 발행 큐 감시가 지연 또는 오류를 감지했습니다."
+            echo
+            echo '```'
+            cat pending_watch.log 2>/dev/null || echo "(감시 로그 없음)"
+            echo '```'
+            echo
+            echo "실행: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } > issue.md
+          existing=$(gh issue list --state open --search "${INCIDENT_TITLE} in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file issue.md
+          else
+            gh issue create --title "$INCIDENT_TITLE" --body-file issue.md
+          fi
+
+      - name: Close incident after recovery
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --state open --search "${INCIDENT_TITLE} in:title" --json number --jq '.[].number' \
+            | while read -r number; do
+                [ -z "$number" ] && continue
+                gh issue comment "$number" --body "D1 pending 큐가 정상 상태로 돌아왔습니다. 실행: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                gh issue close "$number"
+              done

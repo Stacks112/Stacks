@@ -1029,13 +1029,6 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   html.rbeta #v82tabs .v82fsw-t{flex:1;background:none;border:0;color:var(--muted);font-family:inherit;font-size:15px;font-weight:700;padding:13px 0 12px;position:relative;cursor:pointer;}
   html.rbeta #v82tabs .v82fsw-t.on{color:var(--text);}
   html.rbeta #v82tabs .v82fsw-t.on::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-1px;width:54px;height:3px;border-radius:3px;background:var(--accent);}
-  /* calendar as a full page (like 찾기/탐색) instead of a popup card —
-     z-index 40 (same layer as .v82-screen) so the bottom nav (13500) stays visible */
-  html.rbeta #calSheet{z-index:40;}
-  html.rbeta #calSheet .me-backdrop{display:none;}
-  html.rbeta #calSheet .me-card{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;border-radius:0;box-shadow:none;transform:none;display:flex;flex-direction:column;background:var(--bg);}
-  html.rbeta #calSheet .me-head{flex:0 0 auto;height:52px;box-sizing:border-box;display:flex;align-items:center;padding:0 16px;border-bottom:1px solid var(--line);background:var(--bg);}
-  html.rbeta #calSheet #calBody{flex:1;min-height:0;overflow-y:auto;padding:10px 16px calc(78px + env(safe-area-inset-bottom));}
   /* 찾기: Twitter-style discover sections */
   html.rbeta #v82findDisco{margin-top:6px;}
   html.rbeta .v82fd-sec{margin:0 0 28px;}
@@ -2203,8 +2196,6 @@ html[data-lang="ko"] .ws-title{font-family:var(--ui-font);letter-spacing:0;font-
 /* My activity sheet */
 #meSheet{position:fixed;inset:0;z-index:13000;}
 #meSheet[hidden]{display:none;}
-#calSheet{position:fixed;inset:0;z-index:13000;}
-#calSheet[hidden]{display:none;}
 .me-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(2px);}
 .me-card{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
@@ -5828,21 +5819,11 @@ const INDICATORS = [
 let INDICATOR_VIEW = null;
 
 /* ---------------- events calendar (v77) ---------------- */
-var CAL_Y=null, CAL_M=null, CAL_SEL=null;
 const CAL_STR={ en:{title:"Calendar",list:"Upcoming",none:"No events this month.",all:"All"}, ko:{title:"\uC774\uBCA4\uD2B8 \uCE98\uB9B0\uB354",list:"\uB2E4\uAC00\uC624\uB294 \uC77C\uC815",none:"\uC774\uBC88 \uB2EC \uC774\uBCA4\uD2B8\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",all:"전체"}, ja:{title:"\u30A4\u30D9\u30F3\u30C8\u30AB\u30EC\u30F3\u30C0\u30FC",list:"\u4ECA\u5F8C\u306E\u4E88\u5B9A",none:"\u4ECA\u6708\u306E\u30A4\u30D9\u30F3\u30C8\u306F\u3042\u308A\u307E\u305B\u3093\u3002",all:"すべて"} };
 function calLocale(){ return LANG==="ko"?"ko-KR":LANG==="ja"?"ja-JP":"en-US"; }
-/* 2026-08-05 (모바일 주간뷰): 모바일(<1024px)에서는 이제 옛 모달(#calSheet) 대신
-   .v82-screen 기반 풀스크린 화면(#v82cal, assets/v82.js)을 연다 — 실제 구현은
-   전부 v82.js의 openCalScreen()/closeCalScreen()에 있고, 여기 두 함수는 그쪽으로
-   위임만 한다(과제 지시: index.html 쪽 변경은 최소화). 데스크톱(v83)은 이 함수를
-   전혀 안 쓴다(setTab("cal") → renderV83CalPage 경로) — window.v82CalOpen이 없는
-   세션(v82.js 미로딩)에서는 조용히 아무 일도 안 한다. 아래는 그대로 둔다(삭제하지
-   않음): renderCal()/calShift()/calPick()과 #calSheet DOM, rbeta CSS — 이제 아무
-   경로도 안 부르는 죽은 코드지만 정리는 별도 작업으로 남겨둔다. */
+/* 모바일은 v82.js 풀스크린 캘린더로, 데스크톱은 v83 캘린더로 분기한다. */
 function openCal(){ if (typeof window.v82CalOpen==="function") window.v82CalOpen(); if(typeof track==="function") track("calendar/open"); }
 function closeCal(){ if (typeof window.v82CalClose==="function") window.v82CalClose(); }
-function calShift(delta){ CAL_M+=delta; if(CAL_M<0){CAL_M=11;CAL_Y--;} else if(CAL_M>11){CAL_M=0;CAL_Y++;} CAL_SEL=null; renderCal(); }
-function calPick(dstr){ CAL_SEL=(dstr&&CAL_SEL!==dstr)?dstr:null; renderCal(); }
 function eventRelatedSet(e){
   var ids=new Set();
   if(e.itemId) ids.add(e.itemId);
@@ -5875,41 +5856,6 @@ function evGo(evid){
   render();
   var f=document.getElementById("feed"); if(f&&f.scrollIntoView) f.scrollIntoView({behavior:"smooth",block:"start"});
 }
-function renderCal(){
-  var body=document.getElementById("calBody"), head=document.getElementById("calHeadTitle"); if(!body) return;
-  var CS=CAL_STR[LANG]||CAL_STR.en, loc=calLocale(); head.textContent=CS.title;
-  var first=new Date(CAL_Y,CAL_M,1), startDow=first.getDay(), dim=new Date(CAL_Y,CAL_M+1,0).getDate();
-  var todayISO=new Date(); todayISO.setHours(0,0,0,0);
-  var byDay={}; (typeof EVENTS!=="undefined"?EVENTS:[]).forEach(function(e){ var d=new Date(e.date+"T00:00:00"); if(d.getFullYear()===CAL_Y&&d.getMonth()===CAL_M){ (byDay[d.getDate()]=byDay[d.getDate()]||[]).push(e); } });
-  var wd = LANG==="ko"?["\uC77C","\uC6D4","\uD654","\uC218","\uBAA9","\uAE08","\uD1A0"] : LANG==="ja"?["\u65E5","\u6708","\u706B","\u6C34","\u6728","\u91D1","\u571F"] : ["S","M","T","W","T","F","S"];
-  var monthLbl=new Date(CAL_Y,CAL_M,1).toLocaleDateString(loc,{year:"numeric",month:"long"});
-  var html='<div class="cal-nav"><button class="cal-arrow" onclick="calShift(-1)">\u2039</button><b>'+monthLbl+'</b><button class="cal-arrow" onclick="calShift(1)">\u203A</button></div>';
-  html+='<div class="cal-grid">'+wd.map(function(w){return '<span class="cal-wd">'+w+'</span>';}).join("");
-  for(var i=0;i<startDow;i++) html+='<span class="cal-cell cal-empty"></span>';
-  for(var dnum=1;dnum<=dim;dnum++){
-    var evs=byDay[dnum]||[]; var cellD=new Date(CAL_Y,CAL_M,dnum); var isToday=cellD.getTime()===todayISO.getTime();
-    var dots=evs.slice(0,3).map(function(e){return '<i class="cal-dot ck-'+(e.kind||"x")+'"></i>';}).join("");
-    var dstr=CAL_Y+"-"+String(CAL_M+1).padStart(2,"0")+"-"+String(dnum).padStart(2,"0");
-    html+='<span class="cal-cell'+(isToday?" cal-today":"")+(evs.length?" cal-has":"")+(CAL_SEL===dstr?" cal-sel":"")+'"'+(evs.length?' onclick="calPick(\''+dstr+'\')"':'')+'><span class="cal-dnum">'+dnum+'</span>'+(dots?'<span class="cal-dots">'+dots+'</span>':'')+'</span>';
-  }
-  html+='</div>';
-  var monthEvs=[]; Object.keys(byDay).forEach(function(k){ byDay[k].forEach(function(e){monthEvs.push(e);}); });
-  monthEvs.sort(function(a,b){return a.date<b.date?-1:1;});
-  var listEvs=monthEvs, selLbl=CS.list;
-  if(CAL_SEL){
-    listEvs=monthEvs.filter(function(e){ return e.date===CAL_SEL; });
-    selLbl=new Date(CAL_SEL+"T00:00:00").toLocaleDateString(loc,{month:"long",day:"numeric",weekday:"short"});
-  }
-  html+='<div class="cal-list-h">'+selLbl+(CAL_SEL?'<button class="cal-back" onclick="calPick(null)">\u2715 '+CS.all+'</button>':'')+'</div>';
-  if(!listEvs.length){ html+='<div class="cal-none">'+CS.none+'</div>'; }
-  else { html+=listEvs.map(function(e){
-      var d=new Date(e.date+"T00:00:00"); var dd=d.toLocaleDateString(loc,{month:"short",day:"numeric",weekday:"short"});
-      var lbl=(e.label&&(e.label[LANG]||e.label.en))||(e.title&&(e.title[LANG]||e.title.en))||"";
-      return '<div class="cal-li cal-li-link" onclick="evGo(\''+e.id+'\')"><span class="cal-li-d ck-'+(e.kind||"x")+'">'+dd+'</span><span class="cal-li-t">'+esc(lbl)+'</span></div>';
-    }).join(""); }
-  body.innerHTML=html;
-}
-
 /* ---------------- theme debate boards + author record pages (v76) ----------------
    THEMES: curated market questions matched by keyword over title/gist/tags.
    THEME_VIEW: null | "index" | theme key.  RECORD_SRC: author name for the
@@ -8398,7 +8344,7 @@ function renderV83CalPage(list, S){
   list.appendChild(wrapEl);
 }
 /* ---------------- v83.12: 왼쪽 미니 달력 (컴팩트, 토스 스타일) ----------------
-   기존 openCal()/renderCal()(모달)와 v83RenderCal()(우측 레일 미리보기)은 전혀
+   v83RenderCal()(우측 레일 미리보기)은 전혀
    건드리지 않는다 — 여기서 쓰는 클래스(tcal-mini-*)는 전부 새로 만든 이름이라
    그 둘의 CSS/DOM과 겹치지 않는다. */
 function tcalMiniCalHtml(){
@@ -11321,7 +11267,6 @@ window.addEventListener("popstate", function(ev){
   if (typeof window.v82Pop === "function" && window.v82Pop()) return;
   const cfs = document.getElementById("chartFS");
   if (cfs && !cfs.hidden){ closeChartFS(); return; }
-  const _cal=document.getElementById("calSheet"); if(_cal && !_cal.hidden){ closeCal(); return; }
     const me = document.getElementById("meSheet");
   if (me && !me.hidden){ closeMe(); return; }
   if (document.getElementById("entityRailPanel")){ closeEntityRail(); return; }
@@ -13990,13 +13935,6 @@ bootData();
       <button class="cfs-close" onclick="closeMe()" aria-label="close">✕</button>
     </div>
     <div id="meBody"></div>
-  </div>
-</div>
-<div id="calSheet" hidden>
-  <div class="me-backdrop" onclick="closeCal()"></div>
-  <div class="me-card">
-    <div class="me-head"><b id="calHeadTitle"></b><button class="cfs-close" onclick="closeCal()" aria-label="close">✕</button></div>
-    <div id="calBody"></div>
   </div>
 </div>
 <div id="chartFS" hidden>

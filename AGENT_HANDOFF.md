@@ -3202,3 +3202,36 @@ Next:
 
 **다음**: 배포 승인 시 production checkout에서 배포 가드 실행 후 `stacksdaily.com`의
 데스크톱·모바일 기간 탭, 드래그 날짜 범위, 선택 해제를 재검증한다.
+## 2026-08-07 Codex — 자동 발행 감시·모바일 캘린더·13F 역참조·구형 코드 제거
+
+**목표**: 예약 자동 발행 큐가 멈추거나 오래 대기할 때 알아차릴 수 있게 하고, 모바일
+캘린더의 과거 날짜 탭 오류를 고치며, 회사 페이지에서 최신 13F 보유 투자자를 역으로
+보여주고, 사용하지 않는 구형 캘린더 구현을 제거한다.
+
+**변경 파일**:
+- `.github/workflows/watch-pending.yml`, `scripts/watch_pending.py` — 10분마다 D1
+  `pending_cards`를 읽어 30분 초과 대기·조회 오류를 GitHub Issue로 남기고, 정상화 시
+  자동으로 닫는다. 읽기 전용이며 기존 `CLOUDFLARE_API_TOKEN`을 재사용한다.
+- `assets/v82.js` — 모바일 월간 셀 탭 시 이번 달 시작 주부터 현재 주+미래 4주 범위를
+  렌더하고, 날짜 이벤트가 없어도 주 구분선으로 이동하게 수정했다.
+- `scripts/build_pages.py` — `portfolios.json`의 현재 SEC 13F 롱 포지션을
+  `entity_key`별로 역색인해 회사 정적 페이지에 투자자·펀드·분기·포트폴리오 비중·변동을
+  표시하고 `#investor-<slug>`로 연결했다. `e/`, `e/en/`, `e/ja/` 84개 생성 페이지를
+  갱신했다.
+- `index.html`, `assets/v82.css` — `#calSheet`, `renderCal`, `calShift`, `calPick`과
+  관련 DOM/CSS/분기 코드를 제거했다. 데스크톱 v83 캘린더와 모바일 v82 캘린더는 유지한다.
+
+**검증**:
+- `python3 -m py_compile scripts/watch_pending.py scripts/build_pages.py` 통과.
+- 감시 스크립트 모의 테스트: 빈 큐 exit 0, 오래된 큐 exit 1.
+- 13F 역색인 28종목, 생성 페이지 보유자 수 일치 확인.
+- `ruby` YAML 파싱, 회사 페이지 HTML 파싱, `git diff --check` 통과.
+- 구형 캘린더 식별자·DOM 검색 결과 없음. JS 런타임(`node`)이 이 환경에 없어 `node --check`는
+  실행하지 못했다.
+
+**위험**: 13F는 최신 SEC 공시 기준 미국 상장 롱 포지션만 보여주며 공매도·현금·비공개
+  포지션은 반영하지 않는다. 감시 기능은 30분 기준으로 Issue를 열고, 기존 큐 처리 자체는
+  변경하지 않는다. production 배포·push는 아직 하지 않았다.
+
+**다음**: 배포 후 GitHub Actions에서 `watch-pending` 수동 실행 1회와 모바일 캘린더 과거
+  날짜 탭, `/e/google.html`의 보유자 링크를 실제 화면에서 확인한다.

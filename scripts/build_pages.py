@@ -1913,22 +1913,84 @@ ENT_UI = {
     "ko": dict(ceo="대표", founded="설립", listed="상장", hq="본사", exchange="거래소",
                website="웹사이트", profile="프로필 ↗",
                relatedN="관련 글 {n}건", preds="예측 · 적중 기록 {n}건",
+               holders="이 종목을 보유한 투자 고수", holderSub="최신 SEC 13F 공시 기준 · 미국 상장 주식 롱 포지션",
+               holderPeriod="{period} 공시", holderValue="포트폴리오 비중 {weight}",
+               holderCount="{n}명", holderChanges={"hold": "보유", "new": "신규·매수", "add": "신규·매수", "increase": "늘림", "trim": "줄임"},
                metafb="{name} 관련 투자 읽을거리 모음",
                title="{name} · 관련 글 {n}건 · " + SITE),
     "en": dict(ceo="CEO", founded="Founded", listed="Listed", hq="HQ", exchange="Exchange",
                website="Website", profile="Profile ↗",
                relatedN="{n} related posts", preds="Predictions & track record ({n})",
+               holders="Notable investors holding this stock", holderSub="Latest SEC 13F filing · U.S. long equity positions",
+               holderPeriod="{period} filing", holderValue="{weight} of portfolio",
+               holderCount="{n} investors", holderChanges={"hold": "Held", "new": "New / bought", "add": "New / bought", "increase": "Increased", "trim": "Trimmed"},
                metafb="Investing reads about {name}, curated by " + SITE + ".",
                title="{name} · {n} related posts · " + SITE),
     "ja": dict(ceo="代表", founded="設立", listed="上場", hq="本社", exchange="取引所",
                website="ウェブサイト", profile="プロフィール ↗",
                relatedN="関連記事 {n}件", preds="予測・的中記録 {n}件",
+               holders="この銘柄を保有する著名投資家", holderSub="最新のSEC 13F提出 · 米国上場株のロングポジション",
+               holderPeriod="{period}提出", holderValue="ポートフォリオ比率 {weight}",
+               holderCount="{n}人", holderChanges={"hold": "保有", "new": "新規・購入", "add": "新規・購入", "increase": "買い増し", "trim": "削減"},
                metafb="{name} に関する投資の読み物。",
                title="{name} · 関連記事 {n}件 · " + SITE),
 }
 
 
-def entity_page(key, e, ent_items, lang="ko"):
+def load_13f_holder_index():
+    """Build entity_key -> current 13F holders for static company pages."""
+    try:
+        with open(os.path.join(ROOT, "portfolios.json"), encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    out = {}
+    for investor in data.get("investors", []):
+        if not isinstance(investor, dict) or not investor.get("slug"):
+            continue
+        rows = investor.get("all_holdings") or investor.get("holdings") or []
+        for holding in rows:
+            if not isinstance(holding, dict):
+                continue
+            key = holding.get("entity_key")
+            if (not key or holding.get("change") == "exit"
+                    or holding.get("put_call") in ("PUT", "CALL")):
+                continue
+            out.setdefault(key, []).append({
+                "slug": investor["slug"],
+                "name": investor.get("name") or {},
+                "manager": investor.get("manager") or {},
+                "period": investor.get("period") or "",
+                "filed": investor.get("filed") or "",
+                "weight": holding.get("weight"),
+                "change": holding.get("change") or "hold",
+            })
+    for key in out:
+        out[key].sort(key=lambda x: (x.get("weight") is not None, x.get("weight") or 0), reverse=True)
+    return out
+
+
+def _13f_period_label(period, lang):
+    try:
+        year, month, _ = (int(x) for x in str(period).split("-")[:3])
+        quarter = ((month - 1) // 3) + 1
+    except (TypeError, ValueError):
+        return str(period or "")
+    if lang == "en":
+        return "Q%d %d" % (quarter, year)
+    if lang == "ja":
+        return "%d年第%d四半期" % (year, quarter)
+    return "%d년 %d분기" % (year, quarter)
+
+
+def _13f_weight(weight):
+    try:
+        return "%.1f%%" % (float(weight) * 100)
+    except (TypeError, ValueError):
+        return "—"
+
+
+def entity_page(key, e, ent_items, lang="ko", holder_index=None):
     L = REC_UI[lang]
     U = ENT_UI[lang]
     disc = UI[lang]
@@ -1995,6 +2057,43 @@ def entity_page(key, e, ent_items, lang="ko"):
                        f'<a href="{E(art_href(i["id"]))}">{E(_title(i))}</a>'
                        f'<span class="d">{E(nt)}</span></li>')
         preds_html = f'<h2>{E(U["preds"].format(n=len(_preds)))}</h2><ul class="preds">{"".join(_li)}</ul>'
+
+    holders = (holder_index or {}).get(key, []) if kind == "company" else []
+    holders_html = ""
+    if holders:
+        _holder_rows = []
+        for h in holders:
+            manager = _loc(h.get("manager")) or _loc(h.get("name"))
+            fund = _loc(h.get("name"))
+            detail = E(fund) if fund and fund != manager else ""
+            period = _13f_period_label(h.get("period"), lang)
+            change = E(U["holderChanges"].get(h.get("change"), h.get("change") or ""))
+            meta = E(U["holderPeriod"].format(period=period))
+            if h.get("weight") is not None:
+                meta += " · " + E(U["holderValue"].format(weight=_13f_weight(h.get("weight"))))
+            if change:
+                meta += " · " + change
+            href = BASE + "#investor-" + urllib.parse.quote(str(h.get("slug") or ""), safe="")
+            _holder_rows.append(
+                f'<li><a class="holder-name" href="{E(href)}">{E(manager)}</a>'
+                + (f'<span class="holder-fund">{detail}</span>' if detail else "")
+                + f'<span class="d">{meta}</span></li>'
+            )
+        holders_html = (f'<section class="holder-box"><h2>{E(U["holders"])} '
+                        f'<span class="holder-count">{E(U["holderCount"].format(n=len(holders)))}</span></h2>'
+                        f'<p class="holder-sub">{E(U["holderSub"])}</p><ul class="holders">'
+                        + "".join(_holder_rows) + "</ul></section>")
+    holder_css = """
+.holder-box{margin:26px 0 4px;padding:16px 0 2px;border-top:1px solid #ECEDF1}
+.holder-box h2{margin:0;font-size:16px}
+.holder-count{font-size:12px;font-weight:600;color:#8E93A0;margin-left:5px}
+.holder-sub{margin:3px 0 4px;font-size:12px;color:#8E93A0}
+.holders{margin:0}
+.holders li{padding:10px 0}
+.holder-name{font-weight:700;text-decoration:none}
+.holder-fund{display:block;font-size:12px;color:#8E93A0;margin-top:2px}
+@media(prefers-color-scheme:dark){.holder-box{border-color:#26272E}}
+""" if holders else ""
 
     about = {"@type": "Organization" if kind == "company" else ("DefinedTerm" if kind == "term" else "Person"), "name": name}
     if kind == "company" and ticker:
@@ -2072,7 +2171,7 @@ ul{{list-style:none;padding:0}}
 li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
 @media(prefers-color-scheme:dark){{li{{border-color:#26272E}}}}
 .d{{display:block;font-size:12px;color:#8E93A0;margin-top:3px}}
-footer{{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}}
+{holder_css}footer{{margin-top:34px;padding-top:18px;border-top:1px solid #ECEDF1;font-size:12px;color:#8E93A0}}
 @media(prefers-color-scheme:dark){{footer{{border-color:#26272E}}}}
 footer a{{color:#8E93A0}}
 </style>
@@ -2086,7 +2185,7 @@ footer a{{color:#8E93A0}}
 {facts_html}
 {prof}
 {tally_html}
-{preds_html}
+{preds_html}{holders_html}
 <h2>{E(U["relatedN"].format(n=len(ent_items)))}</h2>
 <ul>{rows}</ul>
 <footer>
@@ -2957,6 +3056,7 @@ def main():
     print("[pages] " + " · ".join(f"{lg}:{len(written[lg])}" for lg in LANGS))
 
     # write per-entity pages in ko/en/ja (only entities that actually have articles)
+    holder_index = load_13f_holder_index()
     for _ed in ("e", "e/en", "e/ja"):
         os.makedirs(_ed, exist_ok=True)
     ent_slugs = {}
@@ -2969,7 +3069,7 @@ def main():
         for _lg in LANGS:
             _ep = f"e/{slug}.html" if _lg == "ko" else f"e/{_lg}/{slug}.html"
             with open(_ep, "w", encoding="utf-8") as f:
-                f.write(entity_page(key, entities[key], its, _lg))
+                f.write(entity_page(key, entities[key], its, _lg, holder_index=holder_index))
     for _ed in ("e", "e/en", "e/ja"):
         for fn in os.listdir(_ed):
             if fn.endswith(".html") and fn[:-5] not in ent_slugs:
