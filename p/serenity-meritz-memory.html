@@ -53,6 +53,23 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
+.xreal{margin:0 0 20px}
+.xemb{padding:12px 14px;border:1px solid #ECEDF1;border-radius:14px;background:#fff}
+.xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4b5563,#1f2937);color:#fff;font-weight:800;font-size:14px}
+.xemb-nm{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.xemb-nm b{font-size:13.5px;font-weight:800;color:#17181C}
+.xemb-nm span{font-size:12px;color:#8E93A0}
+.xemb-logo{margin-left:auto;font-size:15px;font-weight:900;color:#17181C;opacity:.7;text-decoration:none}
+.xemb-body p{margin:0 0 7px;font-size:14px;line-height:1.6;color:#17181C}
+.xemb-body p:last-child{margin-bottom:0}
+.xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
+.xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
+.xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
+.xreal-slot{display:none}
+.xreal.x-on>.xemb{display:none}
+.xreal.x-on>.xreal-slot{display:block}
+.xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -225,7 +242,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/aleabitoreddit/status/2077955479742173422" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <figure class="srcq"><blockquote cite="https://x.com/aleabitoreddit/status/2077955479742173422" lang="en"><p>Kim Sunwoo of Meritz Securities: &quot;This Is Not the Time to Sell Samsung Electronics and $SKHY&quot;</p><p>They claim markets are excessively misunderstanding the situation with semis. And that DRAM shortage will intensify in the second half of this year.</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/aleabitoreddit/status/2077955479742173422" rel="nofollow noopener" target="_blank">Serenity · 2026.07.17</a></figcaption></figure><p class="gist">세레니티가 소개한 메리츠증권 김선우 연구원의 리포트 요지는 간단하다. 시장이 반도체를 과도하게 오해하고 있고, D램 부족은 오히려 올해 하반기부터 더 심해진다는 것이다.
+  <div class="xreal" data-xid="2077955479742173422"><div class="xemb"><div class="xemb-top"><div class="xemb-av">S</div><div class="xemb-nm"><b>Serenity</b><span>@aleabitoreddit</span></div><a class="xemb-logo" href="https://x.com/aleabitoreddit/status/2077955479742173422" target="_blank" rel="noopener nofollow" aria-label="X">𝕏</a></div><div class="xemb-body"><p>Kim Sunwoo of Meritz Securities: &quot;This Is Not the Time to Sell Samsung Electronics and $SKHY&quot;</p><p>They claim markets are excessively misunderstanding the situation with semis. And that DRAM shortage will intensify in the second half of this year.</p><p>- H2 2026: &quot;suppliers can fulfill…</p></div><div class="xemb-d"><a href="https://x.com/aleabitoreddit/status/2077955479742173422" target="_blank" rel="noopener nofollow">July 17, 2026</a></div></div><div class="xreal-slot"></div></div><p class="gist">세레니티가 소개한 메리츠증권 김선우 연구원의 리포트 요지는 간단하다. 시장이 반도체를 과도하게 오해하고 있고, D램 부족은 오히려 올해 하반기부터 더 심해진다는 것이다.
 
 숫자가 인상적이다. 2026년 하반기에는 공급사들이 D램 수요의 75~80%밖에 못 채우고, 2027년에는 충족률이 60%대까지 떨어질 것으로 본다. 리포트에 첨부된 시장 전망 기준으로 SK하이닉스의 2027년 예상 PER은 3.5배, 삼성전자는 3.9배다. 부족이 심해지는데 밸류에이션은 역사적 저점 수준이라는 얘기다.
 
@@ -240,5 +257,32 @@ e.preventDefault();location.href=B+d;},false);})();
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>
   </footer>
 </div>
+<script>
+(function(){
+  var hosts = document.querySelectorAll('.xreal[data-xid]');
+  if (!hosts.length) return;
+  var sc = document.createElement('script');
+  sc.async = true;
+  sc.src = 'https://platform.twitter.com/widgets.js';
+  sc.onload = function(){
+    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet) return;
+    Array.prototype.forEach.call(hosts, function(host){
+      var id = host.getAttribute('data-xid');
+      var slot = host.querySelector('.xreal-slot');
+      if (!id || !slot) return;
+      try {
+        Promise.resolve(twttr.widgets.createTweet(id, slot, {
+          dnt: true, conversation: 'none', align: 'left'
+        })).then(function(node){
+          if (node) host.classList.add('x-on');
+          else slot.innerHTML = '';
+        }).catch(function(){ slot.innerHTML = ''; });
+      } catch (e) { slot.innerHTML = ''; }
+    });
+  };
+  sc.onerror = function(){};
+  document.head.appendChild(sc);
+}());
+</script>
 </body>
 </html>

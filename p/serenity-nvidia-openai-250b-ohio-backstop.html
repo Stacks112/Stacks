@@ -53,6 +53,23 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
+.xreal{margin:0 0 20px}
+.xemb{padding:12px 14px;border:1px solid #ECEDF1;border-radius:14px;background:#fff}
+.xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4b5563,#1f2937);color:#fff;font-weight:800;font-size:14px}
+.xemb-nm{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.xemb-nm b{font-size:13.5px;font-weight:800;color:#17181C}
+.xemb-nm span{font-size:12px;color:#8E93A0}
+.xemb-logo{margin-left:auto;font-size:15px;font-weight:900;color:#17181C;opacity:.7;text-decoration:none}
+.xemb-body p{margin:0 0 7px;font-size:14px;line-height:1.6;color:#17181C}
+.xemb-body p:last-child{margin-bottom:0}
+.xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
+.xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
+.xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
+.xreal-slot{display:none}
+.xreal.x-on>.xemb{display:none}
+.xreal.x-on>.xreal-slot{display:block}
+.xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -240,7 +257,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/aleabitoreddit/status/2081548360818004299" target="_blank" rel="noopener nofollow">원문 보기 ↗</a>
     
   </div>
-  <figure class="srcq"><blockquote cite="https://x.com/aleabitoreddit/status/2081548360818004299" lang="ko"><p>엔비디아가 오픈AI 데이터센터 자금 2,500억달러어치를 보증하는 방안을 논의 중이다.</p><p>오픈AI는 엔비디아 칩을 최대 3,500억달러까지 사들이는 별도 계약도 논의하고 있다.</p><p>이 순환금융이 장기적으로 건전한 것인지는 잘 모르겠다.</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/aleabitoreddit/status/2081548360818004299" rel="nofollow noopener" target="_blank">Serenity · 2026.07.27</a> · 영어 원문 옮김</figcaption></figure><p class="gist">엔비디아가 오픈AI의 오하이오 데이터센터 건설 자금 중 2500억달러를 지급보증하는 방안을 논의하고 있다고 월스트리트저널이 26일 보도했다.
+  <div class="xreal" data-xid="2081548360818004299"><div class="xemb"><div class="xemb-top"><div class="xemb-av">S</div><div class="xemb-nm"><b>Serenity</b><span>@aleabitoreddit</span></div><a class="xemb-logo" href="https://x.com/aleabitoreddit/status/2081548360818004299" target="_blank" rel="noopener nofollow" aria-label="X">𝕏</a></div><div class="xemb-body"><p>Nvidia in talks to backstop $250B worth of OpenAI DC financing.</p><p>- Softbank’s SB energy develops 10 GW Ohio campus</p><p>- OpenAI signs long term lease</p><p>- $NVDA guarantees $250B in financing</p></div><div class="xemb-d"><a href="https://x.com/aleabitoreddit/status/2081548360818004299" target="_blank" rel="noopener nofollow">July 27, 2026</a></div></div><div class="xreal-slot"></div></div><p class="gist">엔비디아가 오픈AI의 오하이오 데이터센터 건설 자금 중 2500억달러를 지급보증하는 방안을 논의하고 있다고 월스트리트저널이 26일 보도했다.
 사업비 총액이 5000억달러에 달해, 지금까지 발표된 단일 데이터센터 프로젝트 가운데 가장 크다.
 이 소식을 반도체·AI 시장을 추적하는 세레니티가 정리해 전했다.</p><h2 class="gsub">오하이오에 무슨 시설이 들어서나</h2><p class="gist">소프트뱅크의 에너지 자회사 SB에너지가 오하이오 남부 파이크턴에 10기가와트 규모 데이터센터 단지를 짓는다.
 이 부지는 옛 우라늄 농축 시설 자리다.
@@ -278,5 +295,32 @@ e.preventDefault();location.href=B+d;},false);})();
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>
   </footer>
 </div>
+<script>
+(function(){
+  var hosts = document.querySelectorAll('.xreal[data-xid]');
+  if (!hosts.length) return;
+  var sc = document.createElement('script');
+  sc.async = true;
+  sc.src = 'https://platform.twitter.com/widgets.js';
+  sc.onload = function(){
+    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet) return;
+    Array.prototype.forEach.call(hosts, function(host){
+      var id = host.getAttribute('data-xid');
+      var slot = host.querySelector('.xreal-slot');
+      if (!id || !slot) return;
+      try {
+        Promise.resolve(twttr.widgets.createTweet(id, slot, {
+          dnt: true, conversation: 'none', align: 'left'
+        })).then(function(node){
+          if (node) host.classList.add('x-on');
+          else slot.innerHTML = '';
+        }).catch(function(){ slot.innerHTML = ''; });
+      } catch (e) { slot.innerHTML = ''; }
+    });
+  };
+  sc.onerror = function(){};
+  document.head.appendChild(sc);
+}());
+</script>
 </body>
 </html>

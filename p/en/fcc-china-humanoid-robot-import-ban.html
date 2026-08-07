@@ -53,6 +53,23 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
+.xreal{margin:0 0 20px}
+.xemb{padding:12px 14px;border:1px solid #ECEDF1;border-radius:14px;background:#fff}
+.xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4b5563,#1f2937);color:#fff;font-weight:800;font-size:14px}
+.xemb-nm{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.xemb-nm b{font-size:13.5px;font-weight:800;color:#17181C}
+.xemb-nm span{font-size:12px;color:#8E93A0}
+.xemb-logo{margin-left:auto;font-size:15px;font-weight:900;color:#17181C;opacity:.7;text-decoration:none}
+.xemb-body p{margin:0 0 7px;font-size:14px;line-height:1.6;color:#17181C}
+.xemb-body p:last-child{margin-bottom:0}
+.xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
+.xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
+.xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
+.xreal-slot{display:none}
+.xreal.x-on>.xemb{display:none}
+.xreal.x-on>.xreal-slot{display:block}
+.xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -240,7 +257,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/aleabitoreddit/status/2082175588555702410" target="_blank" rel="noopener nofollow">Read the original ↗</a>
     
   </div>
-  <figure class="srcq"><blockquote cite="https://x.com/aleabitoreddit/status/2082175588555702410" lang="en"><p>FCC set to ban Chinese imports of humanoid and quadruped robots per Reuters.</p><p>To protect American Humanoid/Robotics programs.</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/aleabitoreddit/status/2082175588555702410" rel="nofollow noopener" target="_blank">Serenity (@aleabitoreddit) · 2026.07.28</a></figcaption></figure><h2 class="gsub">Did the robot ban actually target robots</h2><p class="gist">On July 28, the US Federal Communications Commission (FCC) moved to block imports of new Chinese humanoid and quadruped robots.
+  <div class="xreal" data-xid="2082175588555702410"><div class="xemb"><div class="xemb-top"><div class="xemb-av">S</div><div class="xemb-nm"><b>Serenity</b><span>@aleabitoreddit</span></div><a class="xemb-logo" href="https://x.com/aleabitoreddit/status/2082175588555702410" target="_blank" rel="noopener nofollow" aria-label="X">𝕏</a></div><div class="xemb-body"><p>FCC set to ban Chinese imports of humanoid and quadruped robots per Reuters.</p><p>To protect American Humanoid/Robotics programs.</p><p>Agility Robotics ( $CCXI ) and other US humanoid players should be happy to hear this.</p></div><div class="xemb-d"><a href="https://x.com/aleabitoreddit/status/2082175588555702410" target="_blank" rel="noopener nofollow">July 28, 2026</a></div></div><div class="xreal-slot"></div></div><h2 class="gsub">Did the robot ban actually target robots</h2><p class="gist">On July 28, the US Federal Communications Commission (FCC) moved to block imports of new Chinese humanoid and quadruped robots.
 As Serenity&#x27;s post said, Reuters had the exclusive.</p><div class="gcardw"><a class="gcard" href="https://finance.yahoo.com/news/exclusive-trump-administration-ban-chinese-183301640.html" rel="noopener" target="_blank"><img src="https://s.yimg.com/lo/mysterio/api/24DCD3ECBCB78D92D59295058DDEEE0C65CE2A6C4EDC39FB90DE966739844A90/subgraphmysterio/resizefill_w1200_h800;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Freuters.com%2F945ae1e632611d7e0bc773fbca4ac874" alt="" loading="lazy"><span class="gcard-t">Trump administration to ban new Chinese robots and inverters (Yahoo Finance, 2026-07-28)</span></a><div class="gcard-src">출처: finance.yahoo.com</div></div><p class="gist">But the actual measure doesn&#x27;t stop at robots.
 An inverter is the device that turns the direct current from solar panels or batteries into the alternating current the grid runs on.
 Inverters were added to the ban too.
@@ -268,5 +285,32 @@ What to watch next is how wide the FCC&#x27;s exemption list turns out to be, an
     <a href="../../">Stacks home</a> · <a href="../../articles.html">All articles</a> · <a href="../../about.html">About</a> · <a href="../../feed-en.xml">RSS</a>
   </footer>
 </div>
+<script>
+(function(){
+  var hosts = document.querySelectorAll('.xreal[data-xid]');
+  if (!hosts.length) return;
+  var sc = document.createElement('script');
+  sc.async = true;
+  sc.src = 'https://platform.twitter.com/widgets.js';
+  sc.onload = function(){
+    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet) return;
+    Array.prototype.forEach.call(hosts, function(host){
+      var id = host.getAttribute('data-xid');
+      var slot = host.querySelector('.xreal-slot');
+      if (!id || !slot) return;
+      try {
+        Promise.resolve(twttr.widgets.createTweet(id, slot, {
+          dnt: true, conversation: 'none', align: 'left'
+        })).then(function(node){
+          if (node) host.classList.add('x-on');
+          else slot.innerHTML = '';
+        }).catch(function(){ slot.innerHTML = ''; });
+      } catch (e) { slot.innerHTML = ''; }
+    });
+  };
+  sc.onerror = function(){};
+  document.head.appendChild(sc);
+}());
+</script>
 </body>
 </html>

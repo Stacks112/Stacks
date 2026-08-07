@@ -53,6 +53,23 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
+.xreal{margin:0 0 20px}
+.xemb{padding:12px 14px;border:1px solid #ECEDF1;border-radius:14px;background:#fff}
+.xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4b5563,#1f2937);color:#fff;font-weight:800;font-size:14px}
+.xemb-nm{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.xemb-nm b{font-size:13.5px;font-weight:800;color:#17181C}
+.xemb-nm span{font-size:12px;color:#8E93A0}
+.xemb-logo{margin-left:auto;font-size:15px;font-weight:900;color:#17181C;opacity:.7;text-decoration:none}
+.xemb-body p{margin:0 0 7px;font-size:14px;line-height:1.6;color:#17181C}
+.xemb-body p:last-child{margin-bottom:0}
+.xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
+.xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
+.xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
+.xreal-slot{display:none}
+.xreal.x-on>.xemb{display:none}
+.xreal.x-on>.xreal-slot{display:block}
+.xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -240,7 +257,7 @@ e.preventDefault();location.href=B+d;},false);})();
     <a class="btn src" href="https://x.com/jukan05/status/2080881951909826930" target="_blank" rel="noopener nofollow">Read the original ↗</a>
     
   </div>
-  <figure class="srcq"><blockquote cite="https://x.com/jukan05/status/2080881951909826930" lang="en"><p>Korean Memory Giants Cautious on 3D ICs as China’s CXMT Accelerates Niche Strategy</p></blockquote><figcaption class="srcq-c"><a href="https://x.com/jukan05/status/2080881951909826930" rel="nofollow noopener" target="_blank">Jukan · 2026.07.25</a></figcaption></figure><p class="gist">The chip industry&#x27;s race to boost AI performance is shifting from process shrinks to 3D stacking, which fuses logic and memory in one package, and Samsung Electronics and SK hynix are staying cautious about commercializing it while China&#x27;s ChangXin Memory Technologies (CXMT) moves to claim the niche, semiconductor analyst Jukan reports.</p><h2 class="gsub">What actually separates 3D IC from HBM</h2><p class="gist">HBM stacks DRAM on a base logic die that mostly handles input/output and signal routing, then connects to a separate compute chip through an interposer, essentially a standardized off-the-shelf product. &quot;True&quot; 3D IC, or memory-on-logic, uses hybrid bonding and through-silicon vias to attach DRAM directly onto the compute logic die itself, eliminating the interposer and shortening data paths. Reported gains run around 22% performance and 36% power, but it comes with a thermal mismatch between DRAM (tolerant to roughly 80°C) and logic (120-125°C), tricky bonding yields, and, crucially, a design that&#x27;s specific to each customer rather than a standard catalog part.</p><h2 class="gsub">CXMT&#x27;s 3D IC push is a workaround, not pure innovation</h2><p class="gist">CXMT is blocked from the HBM market outright by US export controls. TSMC controls roughly 90% of global CoWoS packaging capacity and won&#x27;t service leading Chinese AI firms, and HBM-specific manufacturing and packaging tools were added to export controls in December 2024. CXMT&#x27;s 3D IC move reads more like &quot;can&#x27;t grow in HBM, so open a different niche instead.&quot; CXMT is reportedly already ahead of rivals in producing several 3D DRAM sample chips, though that &quot;ahead&quot; claim is specifically a comparison against Korea&#x27;s Samsung and SK hynix, not a verified claim against the whole world including Micron or Winbond.</p><div class="gcardw"><a class="gcard" href="https://wccftech.com/cxmt-custom-dram-us-sanctions-hbm/" rel="noopener" target="_blank"><img src="https://cdn.wccftech.com/wp-content/uploads/2026/07/CXMT-3.jpg" alt="" loading="lazy"><span class="gcard-t">China&#x27;s CXMT Is Betting On Customized DRAM To Circumvent U.S. Sanctions On HBM (wccftech, 2026-07-24)</span></a><div class="gcard-src">출처: wccftech.com</div></div><h2 class="gsub">The real reason Samsung and SK hynix are cautious</h2><p class="gist">Industry officials say custom, 3D-stacked DRAM is a fundamentally different business from the standardized, mass-produced DRAM that Samsung and SK hynix are built around, since every customer wants a different memory configuration and stacking method, making it hard to run profitably at scale.
+  <div class="xreal" data-xid="2080881951909826930"><div class="xemb"><div class="xemb-top"><div class="xemb-av">J</div><div class="xemb-nm"><b>Jukan</b><span>@jukan05</span></div><a class="xemb-logo" href="https://x.com/jukan05/status/2080881951909826930" target="_blank" rel="noopener nofollow" aria-label="X">𝕏</a></div><div class="xemb-body"><p>Korean Memory Giants Cautious on 3D ICs as China’s CXMT Accelerates Niche Strategy</p><p>The race to improve AI semiconductor performance is shifting away from process-node miniaturization and toward advanced stacking technologies that vertically integrate chips. This comes as 3D…</p></div><div class="xemb-d"><a href="https://x.com/jukan05/status/2080881951909826930" target="_blank" rel="noopener nofollow">July 25, 2026</a></div></div><div class="xreal-slot"></div></div><p class="gist">The chip industry&#x27;s race to boost AI performance is shifting from process shrinks to 3D stacking, which fuses logic and memory in one package, and Samsung Electronics and SK hynix are staying cautious about commercializing it while China&#x27;s ChangXin Memory Technologies (CXMT) moves to claim the niche, semiconductor analyst Jukan reports.</p><h2 class="gsub">What actually separates 3D IC from HBM</h2><p class="gist">HBM stacks DRAM on a base logic die that mostly handles input/output and signal routing, then connects to a separate compute chip through an interposer, essentially a standardized off-the-shelf product. &quot;True&quot; 3D IC, or memory-on-logic, uses hybrid bonding and through-silicon vias to attach DRAM directly onto the compute logic die itself, eliminating the interposer and shortening data paths. Reported gains run around 22% performance and 36% power, but it comes with a thermal mismatch between DRAM (tolerant to roughly 80°C) and logic (120-125°C), tricky bonding yields, and, crucially, a design that&#x27;s specific to each customer rather than a standard catalog part.</p><h2 class="gsub">CXMT&#x27;s 3D IC push is a workaround, not pure innovation</h2><p class="gist">CXMT is blocked from the HBM market outright by US export controls. TSMC controls roughly 90% of global CoWoS packaging capacity and won&#x27;t service leading Chinese AI firms, and HBM-specific manufacturing and packaging tools were added to export controls in December 2024. CXMT&#x27;s 3D IC move reads more like &quot;can&#x27;t grow in HBM, so open a different niche instead.&quot; CXMT is reportedly already ahead of rivals in producing several 3D DRAM sample chips, though that &quot;ahead&quot; claim is specifically a comparison against Korea&#x27;s Samsung and SK hynix, not a verified claim against the whole world including Micron or Winbond.</p><div class="gcardw"><a class="gcard" href="https://wccftech.com/cxmt-custom-dram-us-sanctions-hbm/" rel="noopener" target="_blank"><img src="https://cdn.wccftech.com/wp-content/uploads/2026/07/CXMT-3.jpg" alt="" loading="lazy"><span class="gcard-t">China&#x27;s CXMT Is Betting On Customized DRAM To Circumvent U.S. Sanctions On HBM (wccftech, 2026-07-24)</span></a><div class="gcard-src">출처: wccftech.com</div></div><h2 class="gsub">The real reason Samsung and SK hynix are cautious</h2><p class="gist">Industry officials say custom, 3D-stacked DRAM is a fundamentally different business from the standardized, mass-produced DRAM that Samsung and SK hynix are built around, since every customer wants a different memory configuration and stacking method, making it hard to run profitably at scale.
 
 But that&#x27;s not the whole story. TrendForce reports Samsung is planning a 50% HBM capacity surge in 2026, and SK hynix is aiming to double its DRAM capacity in the second half of 2026 to catch up with Samsung. Both companies&#x27; capex and engineering headcount are already fully mobilized around expanding HBM4 and HBM4E. It&#x27;s less that they&#x27;re refusing 3D IC and more that they have no spare bandwidth for it right now. Samsung is in fact building a hybrid-bonding mass-production line at Pyeongtaek, but full-scale deployment isn&#x27;t expected until 2029-2030, and SK hynix is separately hiring 3D-stacked DRAM design engineers in the US.</p><div class="gcardw"><a class="gcard" href="https://www.trendforce.com/news/2026/07/22/news-samsung-reportedly-builds-hybrid-bonding-mass-production-line-full-scale-deployment-seen-in-2029-2030/" rel="noopener" target="_blank"><img src="https://img.trendforce.com/blog/wp-content/uploads/2026/07/22144509/BESI-hybrid-bonding-tool-20260722-624x407.jpg" alt="" loading="lazy"><span class="gcard-t">[News] Samsung Reportedly Builds Hybrid Bonding Mass Production Line; Full-Scale Deployment Seen in 2029-2030 (TrendForce, 2026-07-22)</span></a><div class="gcard-src">출처: trendforce.com</div></div><p class="gist">Taiwan&#x27;s Winbond also gets named alongside CXMT in this niche, but its core business has traditionally been specialty memory: low-power DRAM and NOR flash for automotive and industrial customers. Its role in 3D IC is a newer addition, tied to a recent TSMC deal to supply DRAM for wafer-on-wafer stacking.</p><h2 class="gsub">So what&#x27;s the thing to actually watch</h2><p class="gist">The question comes down to one thing: is skipping the niche 3D IC market a missed opportunity for Samsung and SK hynix, or just the right call for now.
 
@@ -255,5 +272,32 @@ If Samsung&#x27;s Pyeongtaek line comes online on schedule in 2029-2030, the cau
     <a href="../../">Stacks home</a> · <a href="../../articles.html">All articles</a> · <a href="../../about.html">About</a> · <a href="../../feed-en.xml">RSS</a>
   </footer>
 </div>
+<script>
+(function(){
+  var hosts = document.querySelectorAll('.xreal[data-xid]');
+  if (!hosts.length) return;
+  var sc = document.createElement('script');
+  sc.async = true;
+  sc.src = 'https://platform.twitter.com/widgets.js';
+  sc.onload = function(){
+    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet) return;
+    Array.prototype.forEach.call(hosts, function(host){
+      var id = host.getAttribute('data-xid');
+      var slot = host.querySelector('.xreal-slot');
+      if (!id || !slot) return;
+      try {
+        Promise.resolve(twttr.widgets.createTweet(id, slot, {
+          dnt: true, conversation: 'none', align: 'left'
+        })).then(function(node){
+          if (node) host.classList.add('x-on');
+          else slot.innerHTML = '';
+        }).catch(function(){ slot.innerHTML = ''; });
+      } catch (e) { slot.innerHTML = ''; }
+    });
+  };
+  sc.onerror = function(){};
+  document.head.appendChild(sc);
+}());
+</script>
 </body>
 </html>
