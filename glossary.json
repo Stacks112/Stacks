@@ -1923,5 +1923,174 @@
    "en": "It grades how likely companies and governments are to repay their debt. A downgrade raises what the borrower must pay to issue new debt, and a fall below investment grade forces pension funds that may only hold investment-grade paper to sell. A rating change is therefore itself an event that moves funding costs. Its index arm builds and licenses the S&P 500 and other benchmarks.",
    "ja": "企業や国家の返済能力に格付けを与える。格下げされれば新規借入時の金利が上がり、投資適格を下回れば投資適格しか保有できない年金基金は強制的に売却する。したがって格付け変更はそれ自体が資金調達コストを動かす事件だ。指数部門はS&P500などの株価指数を算出し使用料を得る。"
   }
+ },
+ "K자형 경제": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "K-shaped economy",
+   "K-shaped recovery",
+   "K자형 경제",
+   "K자형 회복",
+   "K字型経済",
+   "K字型回復"
+  ],
+  "desc": {
+   "ko": "경제가 회복될 때 고소득층은 나아지지만 저소득층은 뒤처져 격차가 벌어지는 모습.",
+   "en": "A recovery in which higher-income groups improve while lower-income groups fall behind, widening the gap.",
+   "ja": "景気回復で高所得層は改善する一方、低所得層は取り残され、格差が広がる姿。"
+  }
+ },
+ "백분위": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "percentile",
+   "25th percentile",
+   "75th percentile",
+   "백분위",
+   "25분위",
+   "75분위",
+   "パーセンタイル",
+   "第25百分位",
+   "第75百分位"
+  ],
+  "desc": {
+   "ko": "값을 낮은 순서로 세웠을 때 특정 비율에 해당하는 위치. 25분위는 아래 25%와 위 75%를 가르는 지점이다.",
+   "en": "A position in a ranked set of values. The 25th percentile is the cutoff between the bottom 25% and the upper 75%.",
+   "ja": "値を低い順に並べたときの位置。第25百分位は下位25%と上位75%を分ける境目。"
+  }
+ },
+ "중앙값": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "중앙값",
+   "중간값",
+   "median",
+   "中央値"
+  ],
+  "desc": {
+   "ko": "값을 낮은 순서로 세웠을 때 정확히 가운데에 놓이는 값. 평균과는 다르다.",
+   "en": "The value exactly in the middle after observations are ranked. It is not the same as the average.",
+   "ja": "値を小さい順に並べたとき、ちょうど中央に来る値。平均とは異なる。"
+  }
+ },
+ "명목임금": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "명목임금",
+   "명목 임금",
+   "명목 주급",
+   "nominal wage",
+   "nominal pay",
+   "名目賃金",
+   "名目週給"
+  ],
+  "desc": {
+   "ko": "물가 변화를 빼지 않은 임금의 돈 액수. 급여명세서에 적히는 금액이다.",
+   "en": "The money amount of pay before removing inflation—the number shown on a paycheck.",
+   "ja": "物価変動を差し引く前の賃金額。給与明細に記される金額。"
+  }
+ },
+ "실질임금": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "실질임금",
+   "실질 임금",
+   "실질 주급",
+   "물가를 뺀 주급",
+   "real wage",
+   "real pay",
+   "inflation-adjusted pay",
+   "実質賃金",
+   "実質週給"
+  ],
+  "desc": {
+   "ko": "임금에서 물가 상승 영향을 빼 실제로 살 수 있는 양으로 다시 계산한 값.",
+   "en": "Pay after removing inflation, showing how much a worker can actually buy.",
+   "ja": "賃金から物価上昇の影響を除き、実際に買える量で計算し直した値。"
+  }
+ },
+ "구성효과": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "구성효과",
+   "구성 효과",
+   "구성 변화",
+   "composition effect",
+   "composition change",
+   "構成効果",
+   "構成変化"
+  ],
+  "desc": {
+   "ko": "개인의 값이 그대로여도 조사 대상 집단의 비중이 달라져 전체 통계가 움직이는 현상.",
+   "en": "A change in an overall statistic caused by who is in the group, even when individual values change little.",
+   "ja": "個人の値がほぼ変わらなくても、集団の構成比が変わって全体の統計が動く現象。"
+  }
+ },
+ "임금상승 추적기": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "임금상승 추적기",
+   "임금 상승 추적기",
+   "Wage Growth Tracker",
+   "賃金上昇トラッカー"
+  ],
+  "desc": {
+   "ko": "애틀랜타 연은이 같은 사람의 시급을 12개월 간격으로 비교해 임금 상승률을 계산하는 자료.",
+   "en": "An Atlanta Fed measure that compares the same person's hourly wage 12 months apart.",
+   "ja": "アトランタ連銀が同じ人の時給を12カ月間隔で比べ、賃金上昇率を計算する資料。"
+  }
+ },
+ "구매력": {
+  "kind": "term",
+  "sector": {
+   "ko": "용어",
+   "en": "Glossary",
+   "ja": "用語"
+  },
+  "aliases": [
+   "구매력",
+   "purchasing power",
+   "購買力"
+  ],
+  "desc": {
+   "ko": "같은 돈으로 살 수 있는 상품과 서비스의 양. 물가가 오르면 줄어든다.",
+   "en": "The amount of goods and services the same money can buy. It falls when prices rise.",
+   "ja": "同じ金額で買える商品やサービスの量。物価が上がると低下する。"
+  }
  }
 }
