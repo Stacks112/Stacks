@@ -12,6 +12,7 @@
   };
   var COMPARE_KEY = "stk_inv_compare";
   var selected = null;
+  var SERIES_P = {};
 
   var COPY = {
     ko:{
@@ -25,7 +26,12 @@
       weight:"비중", newBuy:"신규", add:"추가", trim:"축소", exit:"청산",
       discTitle:"수익률을 읽는 법", disc:"이 값은 실제 펀드 수익률이 아니라 13F 공개일에 공시된 주식 수를 그대로 보유했다고 가정한 공개 포트폴리오 추정치입니다. 옵션·공매도·현금·채권·해외 상장 자산은 제외됩니다.",
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
-      coverage:"시세 {p}%", mismatch:"분기 다름"
+      coverage:"시세 {p}%", mismatch:"분기 다름",
+      holdGraphTitle:"그대로 들고 있었다면",
+      holdGraphSub:"13F 공시일에 공개된 주식 수를 그대로 보유했다고 가정한 누적 성과입니다. 각 투자자의 공시일을 100으로 맞췄습니다.",
+      holdGraphStart:"공시일=100", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
+      holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · 공시 이후 가격 데이터 기준 · 실제 펀드 수익률 아님",
+      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음"
     },
     en:{
       tickerHelp:"Stacks investor ticker", pickTitle:"Compare investors", pickSub:"Choose 2–4 investors to compare their public portfolios side by side.",
@@ -38,7 +44,12 @@
       weight:"Weight", newBuy:"New", add:"Added", trim:"Trimmed", exit:"Exited",
       discTitle:"How to read returns", disc:"These are not actual fund returns. They estimate the public portfolio as if the disclosed share counts were held from the 13F filing date. Options, shorts, cash, bonds and non-U.S.-listed assets are excluded.",
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
-      coverage:"Prices {p}%", mismatch:"Different period"
+      coverage:"Prices {p}%", mismatch:"Different period",
+      holdGraphTitle:"If held unchanged",
+      holdGraphSub:"Estimated cumulative performance assuming the disclosed share counts were held from each 13F filing date. Each investor is rebased to 100 on its filing date.",
+      holdGraphStart:"Filing=100", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
+      holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · based on prices after disclosure · not actual fund returns",
+      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data"
     },
     ja:{
       tickerHelp:"Stacks投資家ティッカー", pickTitle:"投資家を比較", pickSub:"2〜4人を選び、公開ポートフォリオを横並びで比較します。",
@@ -51,7 +62,12 @@
       weight:"比率", newBuy:"新規", add:"追加", trim:"縮小", exit:"清算",
       discTitle:"リターンの見方", disc:"これは実際のファンド収益率ではなく、13F公開日に開示株数をそのまま保有したと仮定する公開ポートフォリオ推定値です。オプション・空売り・現金・債券・米国外上場資産は除外されます。",
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
-      coverage:"価格 {p}%", mismatch:"四半期が異なります"
+      coverage:"価格 {p}%", mismatch:"四半期が異なります",
+      holdGraphTitle:"そのまま保有していたら",
+      holdGraphSub:"13F開示日に公表された株数をそのまま保有したと仮定した累積推定成績です。各投資家の開示日を100に揃えています。",
+      holdGraphStart:"開示日=100", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
+      holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・開示後の価格データ基準・実際のファンド収益率ではありません",
+      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし"
     }
   };
 
@@ -150,6 +166,14 @@
   function metric(label, value){ return '<div><dt>' + esc(label) + '</dt><dd>' + value + '</dd></div>'; }
   function num(v){ return typeof v === "number" ? String(v) : "—"; }
 
+  /* Keep one in-flight promise per investor so the summary cards and the
+     comparison chart never request the same portfolio prices twice. */
+  function compareSeries(inv){
+    var key = (inv && inv.slug || "") + "|" + (inv && inv.filed || "");
+    if (!SERIES_P[key]) SERIES_P[key] = invComputeValueSeries(inv);
+    return SERIES_P[key];
+  }
+
   function valuePctAt(res, epoch){
     if (!res || !res.calendar || !res.values || res.calendar.length < 2 || epoch == null) return null;
     var i = 0; while (i < res.calendar.length - 1 && res.calendar[i] < epoch) i++;
@@ -169,7 +193,7 @@
   }
   function fillPerformance(card, inv){
     var c = C(), filed = typeof invFiledEpoch === "function" ? invFiledEpoch(inv.filed) : null;
-    return Promise.all([invComputeValueSeries(inv), quote1y("spy.us").catch(function(){ return null; })]).then(function(rows){
+    return Promise.all([compareSeries(inv), quote1y("spy.us").catch(function(){ return null; })]).then(function(rows){
       if (!card.isConnected) return;
       var res = rows[0], spy = rows[1], lastEpoch = res && res.calendar && res.calendar.length ? res.calendar[res.calendar.length-1] : null;
       var since = valuePctAt(res, filed), age = filed != null && lastEpoch != null ? lastEpoch - filed : 0;
@@ -183,6 +207,112 @@
     }).catch(function(){
       ["since","3m","1y","spy"].forEach(function(k){ setPerf(card,k,null,k === "3m" || k === "1y" ? c.building : "—"); });
     });
+  }
+
+  var GRAPH_COLORS = ["#2F80ED", "#12B76A", "#F79009", "#9B51E0"];
+  function graphColor(i){ return GRAPH_COLORS[i % GRAPH_COLORS.length]; }
+  function normalizeGraphSeries(inv, res){
+    if (!res || !res.calendar || !res.values || res.calendar.length < 2 || res.filedIdx == null) return null;
+    var start = Math.max(0, res.filedIdx), base = Number(res.values[start]);
+    if (!(base > 0)) return null;
+    var points = [];
+    for (var i = start; i < res.calendar.length; i++){
+      var t = Number(res.calendar[i]), v = Number(res.values[i]);
+      if (isFinite(t) && isFinite(v) && v > 0) points.push({ t: t, v: (v / base) * 100 });
+    }
+    if (points.length < 2) return null;
+    return { inv: inv, points: points, start: points[0].t, end: points[points.length - 1].t };
+  }
+  function graphPointAt(points, target){
+    if (!points || !points.length) return null;
+    var lo = 0, hi = points.length - 1;
+    if (target <= points[0].t) return points[0];
+    if (target >= points[hi].t) return points[hi];
+    while (lo < hi){
+      var mid = (lo + hi) >> 1;
+      if (points[mid].t < target) lo = mid + 1; else hi = mid;
+    }
+    var a = points[lo - 1], b = points[lo];
+    return Math.abs(a.t - target) <= Math.abs(b.t - target) ? a : b;
+  }
+  function graphPct(v){
+    if (typeof v !== "number" || !isFinite(v)) return "—";
+    var chg = v - 100;
+    return (chg >= 0 ? "+" : "") + chg.toFixed(1) + "%";
+  }
+  function graphDays(c, elapsed){ return c.holdGraphDays.replace("{n}", Math.max(0, Math.round(elapsed / 86400))); }
+  function graphLegend(legend, rows, c){
+    legend.innerHTML = rows.map(function(row, i){
+      var inv = row.inv, coverage = row.res && typeof row.res.coverage === "number" ? Math.round(row.res.coverage * 100) : null;
+      return '<span class="inv-compare-legend-item' + (row.series ? "" : " muted") + '">'
+        + '<i style="background:' + graphColor(i) + '"></i><b>' + esc(tickerLabel(inv)) + '</b>'
+        + '<span>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</span>'
+        + '<small>' + (coverage == null ? esc(c.holdGraphNoPrice) : esc(c.holdGraphCoverage.replace("{p}", coverage))) + '</small></span>';
+    }).join("");
+  }
+  function paintCompareGraph(chart, legend, rows, c){
+    graphLegend(legend, rows, c);
+    var series = rows.map(function(row, i){
+      if (!row.series) return null;
+      row.series.color = graphColor(i); return row.series;
+    }).filter(Boolean);
+    if (!series.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    var maxElapsed = Math.max.apply(null, series.map(function(s){ return s.end - s.start; }));
+    if (!(maxElapsed > 0)){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    var all = [100]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
+    var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all), span = mx - mn;
+    if (span < 8){ var center = (mn + mx) / 2; mn = center - 5; mx = center + 5; }
+    else { mn -= span * .08; mx += span * .08; }
+    var W = 960, H = 310, pL = 52, pR = 22, pT = 18, pB = 34, pw = W - pL - pR, ph = H - pT - pB;
+    function X(frac){ return pL + Math.max(0, Math.min(1, frac)) * pw; }
+    function Y(v){ return pT + (1 - (v - mn) / (mx - mn)) * ph; }
+    var grid = "", ylab = "";
+    for (var g = 0; g <= 4; g++){
+      var yv = mn + ((mx - mn) * g) / 4, yy = Y(yv);
+      grid += '<line x1="' + pL + '" y1="' + yy.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + yy.toFixed(1) + '" class="inv-compare-grid"/>';
+      ylab += '<text x="' + (pL - 8) + '" y="' + (yy + 4).toFixed(1) + '" text-anchor="end" class="inv-compare-axis">' + Math.round(yv) + '</text>';
+    }
+    var baseY = Y(100);
+    var lines = series.map(function(s){
+      var pts = s.points.map(function(p){ return X((p.t - s.start) / maxElapsed).toFixed(1) + "," + Y(p.v).toFixed(1); }).join(" ");
+      return '<polyline points="' + pts + '" fill="none" stroke="' + s.color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    }).join("");
+    chart.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="100%" role="img" aria-label="' + esc(c.holdGraphSub) + '">'
+      + grid + '<line x1="' + pL + '" y1="' + baseY.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + baseY.toFixed(1) + '" class="inv-compare-baseline"/>'
+      + lines + ylab
+      + '<text x="' + pL + '" y="' + (H - 9) + '" text-anchor="start" class="inv-compare-axis">' + esc(c.holdGraphStart) + '</text>'
+      + '<text x="' + (pL + pw) + '" y="' + (H - 9) + '" text-anchor="end" class="inv-compare-axis">' + esc(c.holdGraphNow) + '</text>'
+      + '<line class="inv-compare-hover-line" y1="' + pT + '" y2="' + (pT + ph) + '" visibility="hidden"/>'
+      + series.map(function(s){ return '<circle class="inv-compare-hover-dot" data-color="' + s.color + '" r="4" fill="' + s.color + '" visibility="hidden"/>'; }).join("")
+      + '</svg><div class="inv-compare-chart-tip" hidden></div>';
+    var svg = chart.querySelector("svg"), tip = chart.querySelector(".inv-compare-chart-tip"), hover = chart.querySelector(".inv-compare-hover-line"), dots = Array.prototype.slice.call(chart.querySelectorAll(".inv-compare-hover-dot"));
+    function leave(){ hover.setAttribute("visibility", "hidden"); dots.forEach(function(d){ d.setAttribute("visibility", "hidden"); }); tip.hidden = true; }
+    function move(ev){
+      var rect = svg.getBoundingClientRect(), frac = (ev.clientX - rect.left) / rect.width;
+      frac = Math.max(0, Math.min(1, (frac * W - pL) / pw));
+      var elapsed = frac * maxElapsed, x = X(frac);
+      hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
+      var html = '<b>' + esc(graphDays(c, elapsed)) + '</b>';
+      series.forEach(function(s, i){
+        var target = s.start + elapsed;
+        if (target > s.end + 86400){ dots[i].setAttribute("visibility", "hidden"); return; }
+        var p = graphPointAt(s.points, target);
+        if (!p) return;
+        dots[i].setAttribute("cx", X((p.t - s.start) / maxElapsed).toFixed(1)); dots[i].setAttribute("cy", Y(p.v).toFixed(1)); dots[i].setAttribute("visibility", "visible");
+        html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(graphPct(p.v)) + '</b></span>';
+      });
+      tip.innerHTML = html; tip.hidden = false; tip.style.left = (x / W * 100) + "%";
+    }
+    svg.addEventListener("pointermove", move); svg.addEventListener("pointerleave", leave);
+  }
+  function compareGraphSection(investors){
+    var c = C(), sec = document.createElement("section"); sec.className = "inv-performance-section";
+    sec.innerHTML = '<div class="inv-performance-head"><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p></div>'
+      + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-legend"></div><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
+    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend");
+    invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ return { inv: inv, res: null, series: null }; }); })
+      .then(function(rows){ if (sec.isConnected) paintCompareGraph(chart, legend, rows, c); });
+    return sec;
   }
 
   function overlapSection(investors){
@@ -243,6 +373,7 @@
     var grid=document.createElement("div");grid.className="inv-compare-summary-grid";
     var cards=chosen.map(function(inv){var card=summaryCard(inv);grid.appendChild(card);return{inv:inv,card:card};});list.appendChild(grid);
     invMapLimit(cards,2,function(x){return fillPerformance(x.card,x.inv);});
+    list.appendChild(compareGraphSection(chosen));
     list.appendChild(overlapSection(chosen)); list.appendChild(topHoldingsSection(chosen)); list.appendChild(sectorSection(chosen));
     var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
   }
