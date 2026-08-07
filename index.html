@@ -12559,11 +12559,14 @@ function renderFeed(animate){
           _ac = dailyPredictionResultEl(_it, S, 0);
           if (_ac){
             _ac.classList.add("v83expanded");
-            if (typeof linkifyEntities === "function") linkifyEntities(_ac);
           }
         } catch (e) { _ac = null; }
       }
       if (!_ac) _ac = cardEl(_it, S, 0);
+      /* The feed path linkifies every card after appending it. The article
+         detail is rendered from a fresh card, so apply the same entity and
+         glossary indexing here as well. */
+      if (typeof linkifyEntities === "function") linkifyEntities(_ac);
       _ac.classList.remove("collapsed");
       _ac.classList.add("v83one");
       list.appendChild(_ac);
