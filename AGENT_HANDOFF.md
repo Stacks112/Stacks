@@ -15,7 +15,7 @@ GitHub Pages 빌드 실패, `github-pages` deployment 실패를 GitHub Issue로 
 
 **위험**: 현재 실패를 “최근 실행 결과” 기준으로 판단한다. 실행 중인 workflow는 잠시 정상으로 보고, 완료된 실패·취소·타임아웃과 Pages의 error/failure/inactive 상태만 Issue 대상으로 삼는다.
 
-**다음**: production `main` 반영 후 workflow 수동 실행으로 정상 상태 로그와 Pages deployment 조회를 확인한다.
+**결과**: production `main` 커밋 `889b72c1d`에 반영 완료. push-triggered 실제 실행 `31188066064` 성공. 로그에서 `apply-pending` 성공, Pages workflow 진행 중, Pages deployment 성공, `DELIVERY_STATUS=ok`, `DELIVERY_FAILURE_COUNT=0`을 확인했다.
 
 ## 2026-08-07 Codex — 회사 상세 화면에 13F 보유자 표시 추가
 
