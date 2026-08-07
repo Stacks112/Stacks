@@ -12,7 +12,8 @@ name: 13F portfolio refresh
 # 동작한다. 첫 fetch가 전체 CUSIP를 all_holdings에 저장하고, mapper가 새 CUSIP를
 # 채운 뒤 두 번째 fetch가 그 매핑을 적용한다.
 # 실패 처리도 스크립트 자체가 이미 한다: 투자자 1곳이 실패해도 나머지는 계속
-# 진행하고, 전원 실패면 portfolios.json을 아예 건드리지 않고 그대로 둔다
+# 진행하고, 최신 5개 분기 스냅샷도 함께 갱신한다. 전원 실패면 portfolios.json을
+# 아예 건드리지 않고 그대로 둔다
 # (scripts/fetch_13f.py 하단 `any_ok` 체크 참고). 이 워크플로가 추가로 하는 일은
 # "전원 실패"를 조용히 넘기지 않고 실패로 남기는 것뿐이다 — 스크립트는 그 경우도
 # exit 0로 끝내므로, 러너 쪽에서 [ok]/[fail] 로그를 세어 판단한다.

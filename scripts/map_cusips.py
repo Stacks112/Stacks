@@ -118,23 +118,27 @@ def normalize_name(raw: str, *, core: bool = False) -> str:
 
 
 def collect_positions(portfolios: dict) -> dict[str, str]:
-    """Return CUSIP -> representative issuer from current portfolio data."""
+    """Return CUSIP -> representative issuer from current and historical 13F data."""
     positions: dict[str, str] = {}
     for investor in portfolios.get("investors", []):
         if not isinstance(investor, dict):
             continue
-        rows = investor.get("all_holdings") or investor.get("holdings") or []
-        for holding in rows:
-            if not isinstance(holding, dict):
-                continue
-            cusip = str(holding.get("cusip") or "").strip().upper()
-            issuer = str(holding.get("issuer") or "").strip()
-            if not cusip:
-                continue
-            # Prefer a non-empty, non-placeholder name if the same CUSIP is
-            # present in more than one investor or as an option row.
-            if cusip not in positions or (issuer and not positions[cusip]):
-                positions[cusip] = issuer
+        row_sets = [investor.get("all_holdings") or investor.get("holdings") or []]
+        for snapshot in investor.get("snapshots") or []:
+            if isinstance(snapshot, dict):
+                row_sets.append(snapshot.get("all_holdings") or snapshot.get("holdings") or [])
+        for rows in row_sets:
+            for holding in rows:
+                if not isinstance(holding, dict):
+                    continue
+                cusip = str(holding.get("cusip") or "").strip().upper()
+                issuer = str(holding.get("issuer") or "").strip()
+                if not cusip:
+                    continue
+                # Prefer a non-empty, non-placeholder name if the same CUSIP is
+                # present in more than one investor or as an option row.
+                if cusip not in positions or (issuer and not positions[cusip]):
+                    positions[cusip] = issuer
     return positions
 
 

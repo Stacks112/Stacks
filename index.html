@@ -6525,7 +6525,62 @@ function invFiledEpoch(filed){
    상세화면 진입 시 캐시 히트로 재사용해 즉시 그릴 수 있다. eligible 종목이 아예
    없으면(옵션 제외 후 티커 있는 보유종목 0개) 네트워크 조회 없이 즉시 "데이터
    없음" 모양의 결과를 resolve한다 - 에러가 아니다. */
+function invComputeHistoricalValueSeries(inv, snapshots){
+  var ordered = (snapshots || []).map(function(s){ return { snapshot:s, filed:invFiledEpoch(s && s.filed) }; })
+    .filter(function(x){ return x.snapshot && x.filed != null; })
+    .sort(function(a,b){ return a.filed - b.filed; });
+  if (ordered.length < 2) return null;
+  var tickers = {};
+  ordered.forEach(function(entry){
+    var rows = (entry.snapshot.all_holdings || entry.snapshot.holdings || []);
+    rows.forEach(function(h){
+      if (h && h.ticker && h.put_call !== "PUT" && h.put_call !== "CALL" && h.change !== "exit") tickers[h.ticker] = true;
+    });
+  });
+  var eligible = Object.keys(tickers);
+  if (!eligible.length) return Promise.resolve({ calendar:null, values:null, filedIdx:null, coverage:0 });
+  var slug = (inv && inv.slug) || "";
+  var cacheKey = slug + "|" + (inv.filed || "") + "|history|" + ordered.length + "|" + eligible.length;
+  if (Object.prototype.hasOwnProperty.call(INV_VALUE_CACHE, cacheKey)) return Promise.resolve(INV_VALUE_CACHE[cacheKey]);
+  return invMapLimit(eligible, 5, function(ticker){
+    return quote1y(ticker).then(function(q){ return { ticker:ticker, q:(q && !q.error) ? q : null }; });
+  }).then(function(rows){
+    var quotes = {}, best = null;
+    rows.forEach(function(r){
+      if (r && r.q && r.q.t && r.q.t.length > 1){ quotes[r.ticker] = r.q; if (!best || r.q.t.length > best.t.length) best = r.q; }
+    });
+    if (!best) return { calendar:null, values:null, filedIdx:null, coverage:0 };
+    var rawCalendar = best.t.slice(), calendar = [], values = [], active = 0;
+    rawCalendar.forEach(function(t){
+      if (t < ordered[0].filed) return;
+      while (active < ordered.length - 1 && ordered[active + 1].filed <= t) active++;
+      var total = 0, holdings = ordered[active].snapshot.all_holdings || ordered[active].snapshot.holdings || [];
+      holdings.forEach(function(h){
+        if (!h || h.change === "exit" || h.put_call === "PUT" || h.put_call === "CALL" || !h.ticker || typeof h.shares !== "number") return;
+        var q = quotes[h.ticker], price = invValueAt(q, t);
+        if (price != null) total += price * h.shares;
+      });
+      if (total > 0){ calendar.push(t); values.push(total); }
+    });
+    if (calendar.length < 2) return { calendar:null, values:null, filedIdx:null, coverage:0 };
+    var current = ordered[ordered.length - 1].snapshot;
+    var currentRows = (current.all_holdings || current.holdings || []).filter(function(h){ return h && h.change !== "exit" && h.put_call !== "PUT" && h.put_call !== "CALL"; });
+    var totalW = currentRows.reduce(function(sum,h){ return sum + (h.weight || 0); }, 0);
+    var pricedW = currentRows.reduce(function(sum,h){ return sum + (h.ticker && quotes[h.ticker] ? (h.weight || 0) : 0); }, 0);
+    var staticCov = typeof current.ticker_coverage_pct === "number" ? current.ticker_coverage_pct : 0;
+    var filedEpoch = invFiledEpoch(inv.filed) || ordered[ordered.length - 1].filed, filedIdx = null;
+    for (var i = 0; i < calendar.length; i++){ if (calendar[i] >= filedEpoch){ filedIdx = i; break; } }
+    if (filedIdx == null) filedIdx = calendar.length - 1;
+    var result = { calendar:calendar, values:values, filedIdx:filedIdx, coverage:totalW > 0 ? pricedW / totalW : staticCov, historical:true };
+    INV_VALUE_CACHE[cacheKey] = result;
+    return result;
+  }).catch(function(){ return { calendar:null, values:null, filedIdx:null, coverage:0 }; });
+}
 function invComputeValueSeries(inv){
+  if (inv && Array.isArray(inv.snapshots) && inv.snapshots.length > 1){
+    var historical = invComputeHistoricalValueSeries(inv, inv.snapshots);
+    if (historical) return historical;
+  }
   /* all_holdings is the full current 13F book; holdings remains the compact
      top-25-plus-exits list used by the table. Older snapshots have no
      all_holdings, so keep the visible list as a backward-compatible fallback. */
@@ -14588,6 +14643,6 @@ bootData();
   armInvestorDrawerWatch();
 })();
 </script>
-<script src="assets/investor-compare.js?v=periods-20260807"></script>
+<script src="assets/investor-compare.js?v=history-20260807"></script>
 </body>
 </html>

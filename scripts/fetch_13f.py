@@ -1,11 +1,12 @@
 """Stacks 13F sync — runs on GitHub Actions (schedule: quarterly-ish, e.g. weekly is fine).
 
-Pulls the two most recent 13F-HR filings for a fixed roster of well-known
+Pulls the five most recent 13F-HR filings for a fixed roster of well-known
 institutional investors from SEC EDGAR, aggregates each filing's
 information-table rows by CUSIP (a single issuer is very often split across
 many rows — one per internal manager/account — and must be summed, not left
 as separate rows), diffs the aggregated holdings against the prior quarter,
-and writes a single snapshot to portfolios.json.
+and writes the latest snapshot plus quarterly historical snapshots to
+portfolios.json.
 
 Data source: SEC EDGAR (data.sec.gov + www.sec.gov/Archives). No scraping of
 disallowed endpoints (cgi-bin/browse-edgar is robots-disallowed and is never
@@ -36,6 +37,7 @@ from datetime import datetime, timezone
 UA = "Stacks/1.0 (stacksdaily.com; contact@stacksdaily.com)"
 REQUEST_SLEEP = 0.2  # SEC asks for <=10 req/s; this keeps us well under that
 TOP_N = 25
+HISTORY_FILINGS = 5  # latest quarter plus enough prior SEC snapshots for ~1 year
 
 # Product identifiers used by the Stacks comparison screen. They deliberately
 # live outside exchange ticker space and are rendered as INV:<code> in the UI.
@@ -336,8 +338,8 @@ def find_child_text(el, name: str):
     return None
 
 
-def find_two_recent_13f_hr(cik: str):
-    """Return up to 2 most recent 13F-HR filings (excluding /A amendments),
+def find_recent_13f_hr(cik: str, limit: int = 2):
+    """Return up to ``limit`` recent 13F-HR filings (excluding /A amendments),
     most recent first, as dicts with reportDate/filingDate/accessionNumber.
     """
     data = json.loads(http_get(f"https://data.sec.gov/submissions/CIK{cik}.json"))
@@ -351,12 +353,17 @@ def find_two_recent_13f_hr(cik: str):
                 "filingDate": recent["filingDate"][i],
                 "accessionNumber": recent["accessionNumber"][i],
             })
-            if len(out) == 2:
+            if len(out) == limit:
                 break
     # Older filers may need the paginated "files" list if fewer than 2 were
     # found in "recent" (recent caps at 1000 entries; not an issue for any
-    # of our roster today, but keep this from silently returning 0/1).
+    # of our roster today, but keep this from silently returning fewer rows).
     return out
+
+
+def find_two_recent_13f_hr(cik: str):
+    """Backward-compatible two-filing wrapper used by older callers/tests."""
+    return find_recent_13f_hr(cik, 2)
 
 
 def find_infotable_url(cik_int: str, accession_nodash: str) -> str:
@@ -848,39 +855,61 @@ def load_sector_map():
     return out
 
 
-def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
-    slug = investor["slug"]
-    cik = investor["cik"]
-    cik_int = str(int(cik))
-    filings = find_two_recent_13f_hr(cik)
-    if not filings:
-        raise ValueError("no 13F-HR filings found")
-    latest = filings[0]
-    prev_merged = None
-    prev_unavailable_reason = None
-    if len(filings) > 1:
-        try:
-            prev_accession_nodash = filings[1]["accessionNumber"].replace("-", "")
-            prev_url = find_infotable_url(cik_int, prev_accession_nodash)
-            prev_rows = fix_value_units(parse_infotable(http_get(prev_url)), filer_label=f"{slug} (prev quarter)")
-            prev_groups = group_by_cusip(prev_rows)
-            prev_merged = merge_share_classes(prev_groups, cusip_map)
-        except Exception as e:  # noqa: BLE001 - the prior-quarter comparison is
-            # best-effort; a fetch/parse failure there must not blank out this
-            # quarter's own holdings, which are otherwise perfectly fine.
-            prev_unavailable_reason = f"{type(e).__name__}: {e}"
-            print(f"[warn] {slug}: previous-quarter fetch failed, activity comparison unavailable ({prev_unavailable_reason})")
-
-    accession_nodash = latest["accessionNumber"].replace("-", "")
+def fetch_filing_snapshot(slug: str, cik_int: str, filing: dict, cusip_map: dict,
+                          sector_map: dict, prev_merged, *, unavailable_reason=None):
+    """Fetch and normalize one SEC filing into a portable quarterly snapshot."""
+    accession_nodash = filing["accessionNumber"].replace("-", "")
     infotable_url = find_infotable_url(cik_int, accession_nodash)
     rows = fix_value_units(parse_infotable(http_get(infotable_url)), filer_label=slug)
     groups = group_by_cusip(rows)
     merged = merge_share_classes(groups, cusip_map)
     holdings, all_holdings, total_value, holdings_count = compute_holdings(merged, prev_merged, sector_map)
-    activity = compute_activity(merged, prev_merged, unavailable_reason=prev_unavailable_reason)
-    sector_alloc = compute_sector_alloc(merged, sector_map)
-    ticker_coverage_pct = compute_ticker_coverage(merged)
+    return {
+        "period": filing["reportDate"],
+        "filed": filing["filingDate"],
+        "accession": filing["accessionNumber"],
+        "source_url": f"https://www.sec.gov/Archives/edgar/data/{cik_int}/{accession_nodash}/",
+        "total_value": total_value,
+        "holdings_count": holdings_count,
+        "holdings": holdings,
+        "all_holdings": all_holdings,
+        "activity": compute_activity(merged, prev_merged, unavailable_reason=unavailable_reason),
+        "sector_alloc": compute_sector_alloc(merged, sector_map),
+        "ticker_coverage_pct": compute_ticker_coverage(merged),
+    }, merged
 
+
+def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
+    slug = investor["slug"]
+    cik = investor["cik"]
+    cik_int = str(int(cik))
+    filings = find_recent_13f_hr(cik, HISTORY_FILINGS)
+    if not filings:
+        raise ValueError("no 13F-HR filings found")
+
+    # Process oldest to newest so every snapshot gets a real prior-quarter
+    # comparison. Five filings cover roughly one year plus one quarter anchor,
+    # which lets the graph start at the selected window without inventing a
+    # current portfolio backward in time.
+    snapshots = []
+    prev_merged = None
+    for filing in reversed(filings):
+        try:
+            snapshot, merged = fetch_filing_snapshot(
+                slug, cik_int, filing, cusip_map, sector_map, prev_merged
+            )
+            snapshots.append(snapshot)
+            prev_merged = merged
+        except Exception as e:  # noqa: BLE001 - latest failure remains fatal; older history is best-effort
+            if filing is filings[0]:
+                raise
+            print(f"[warn] {slug}: historical filing {filing['reportDate']} fetch failed "
+                  f"({type(e).__name__}: {e})")
+
+    if not snapshots:
+        raise ValueError("no 13F-HR snapshots could be parsed")
+
+    latest = snapshots[-1]
     now = datetime.now(timezone.utc).isoformat()
     return {
         "slug": investor["slug"],
@@ -890,25 +919,14 @@ def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
         "name": investor["name"],
         "manager": investor["manager"],
         "entity_key": investor["entity_key"],
-        "period": latest["reportDate"],
-        "filed": latest["filingDate"],
-        "accession": latest["accessionNumber"],
-        "source_url": f"https://www.sec.gov/Archives/edgar/data/{cik_int}/{accession_nodash}/",
-        "total_value": total_value,
-        "holdings_count": holdings_count,
-        "holdings": holdings,
-        # Keep the visible top-25-plus-exits list above for a compact UI, but
-        # retain every current position for the full portfolio value chart
-        # and the next CUSIP-mapping pass. This is especially important for
-        # ARK/Duquesne, where the stored top-N list was not the whole book.
-        "all_holdings": all_holdings,
-        "activity": activity,
-        "sector_alloc": sector_alloc,
-        "ticker_coverage_pct": ticker_coverage_pct,
+        **latest,
         "desc": investor["desc"],
         "checked_at": now,
         "ok": True,
         "error": None,
+        # Full SEC snapshots power historical graph rebalancing. Keep latest
+        # holdings duplicated at the top level for the existing UI and tools.
+        "snapshots": snapshots,
     }
 
 

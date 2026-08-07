@@ -24,14 +24,14 @@
       overlap:"함께 보유한 종목", overlapSub:"선택한 투자자 중 2명 이상이 함께 보유한 미국 상장 롱 포지션입니다.", noOverlap:"겹치는 종목이 없습니다.", heldBy:"{n}명 보유",
       topHoldings:"상위 보유종목 비교", sectors:"섹터 비중 비교", sectorCoverage:"분류 커버리지", noSector:"분류된 섹터 데이터가 없습니다.",
       weight:"비중", newBuy:"신규", add:"추가", trim:"축소", exit:"청산",
-      discTitle:"수익률을 읽는 법", disc:"이 값은 실제 펀드 수익률이 아니라 13F 공개일에 공시된 주식 수를 그대로 보유했다고 가정한 공개 포트폴리오 추정치입니다. 옵션·공매도·현금·채권·해외 상장 자산은 제외됩니다.",
+      discTitle:"수익률을 읽는 법", disc:"이 값은 실제 펀드 수익률이 아니라 SEC에 공개된 분기별 13F 스냅샷을 공시일 기준으로 이어 붙인 포트폴리오 추정치입니다. 옵션·공매도·현금·채권·해외 상장 자산은 제외됩니다.",
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
       coverage:"시세 {p}%", mismatch:"분기 다름",
-      holdGraphTitle:"그대로 들고 있었다면",
-      holdGraphSub:"13F 공시 주식 수를 그대로 보유했다고 가정한 누적 성과입니다. 선택 기간의 시작점을 100으로 맞춥니다.",
+      holdGraphTitle:"공개 포트폴리오의 흐름",
+      holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 100으로 맞춥니다.",
       holdGraphDrag:"그래프를 마우스로 드래그하면 선택한 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
       holdGraphStart:"공시일=100", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
-      holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · 공시 이후 가격 데이터 기준 · 실제 펀드 수익률 아님",
+      holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님",
       holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음",
       holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph6m:"6개월", holdGraphYtd:"연중"
     },
@@ -44,14 +44,14 @@
       overlap:"Shared holdings", overlapSub:"U.S.-listed long positions held by at least two selected investors.", noOverlap:"No shared holdings.", heldBy:"Held by {n}",
       topHoldings:"Top holdings comparison", sectors:"Sector allocation comparison", sectorCoverage:"Classification coverage", noSector:"No classified sector data.",
       weight:"Weight", newBuy:"New", add:"Added", trim:"Trimmed", exit:"Exited",
-      discTitle:"How to read returns", disc:"These are not actual fund returns. They estimate the public portfolio as if the disclosed share counts were held from the 13F filing date. Options, shorts, cash, bonds and non-U.S.-listed assets are excluded.",
+      discTitle:"How to read returns", disc:"These are not actual fund returns. They estimate a public portfolio by chaining quarterly 13F snapshots from each SEC filing date. Options, shorts, cash, bonds and non-U.S.-listed assets are excluded.",
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
       coverage:"Prices {p}%", mismatch:"Different period",
-      holdGraphTitle:"If held unchanged",
-      holdGraphSub:"Estimated cumulative performance assuming the disclosed share counts were held unchanged. Each investor is rebased to 100 at the start of the selected period.",
+      holdGraphTitle:"Public portfolio path",
+      holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor is rebased to 100 at the start of the selected period.",
       holdGraphDrag:"Drag across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Filing=100", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
-      holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · based on prices after disclosure · not actual fund returns",
+      holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns",
       holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data",
       holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph6m:"6M", holdGraphYtd:"YTD"
     },
@@ -64,14 +64,14 @@
       overlap:"共通保有銘柄", overlapSub:"選択した投資家のうち2人以上が保有する米国上場ロングポジションです。", noOverlap:"共通銘柄はありません。", heldBy:"{n}人保有",
       topHoldings:"上位保有銘柄比較", sectors:"セクター比率比較", sectorCoverage:"分類カバレッジ", noSector:"分類済みセクターデータがありません。",
       weight:"比率", newBuy:"新規", add:"追加", trim:"縮小", exit:"清算",
-      discTitle:"リターンの見方", disc:"これは実際のファンド収益率ではなく、13F公開日に開示株数をそのまま保有したと仮定する公開ポートフォリオ推定値です。オプション・空売り・現金・債券・米国外上場資産は除外されます。",
+      discTitle:"リターンの見方", disc:"これは実際のファンド収益率ではなく、SECに公開された四半期ごとの13Fスナップショットを開示日からつないだ公開ポートフォリオ推定値です。オプション・空売り・現金・債券・米国外上場資産は除外されます。",
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
       coverage:"価格 {p}%", mismatch:"四半期が異なります",
-      holdGraphTitle:"そのまま保有していたら",
-      holdGraphSub:"13F開示株式数をそのまま保有したと仮定した累積推定成績です。選択期間の開始点を100に揃えます。",
+      holdGraphTitle:"公開ポートフォリオの推移",
+      holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を100に揃えます。",
       holdGraphDrag:"グラフをドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開示日=100", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
-      holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・開示後の価格データ基準・実際のファンド収益率ではありません",
+      holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません",
       holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし",
       holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph6m:"6か月", holdGraphYtd:"年初来"
     }
@@ -226,8 +226,10 @@
   function graphColor(i){ return GRAPH_COLORS[i % GRAPH_COLORS.length]; }
   function graphPeriodLabel(c, period){ return c[period.copy] || period.key; }
   function normalizeGraphSeries(inv, res){
-    if (!res || !res.calendar || !res.values || res.calendar.length < 2 || res.filedIdx == null) return null;
-    var start = Math.max(0, res.filedIdx), base = Number(res.values[start]);
+    /* Keep full quote1y history. filedIdx remains source for filing-based
+       summary metrics; graph periods must include prices before disclosure. */
+    if (!res || !res.calendar || !res.values || res.calendar.length < 2) return null;
+    var start = 0, base = Number(res.values[start]);
     if (!(base > 0)) return null;
     var points = [];
     for (var i = start; i < res.calendar.length; i++){
@@ -273,10 +275,14 @@
   function graphRangeLabel(c, days){ return c.holdGraphRange.replace("{n}", Math.max(1, Math.round(days))); }
   function graphWindow(period, series){
     var end = Math.min.apply(null, series.map(function(s){ return s.end; }));
-    var endDate = new Date(end * 1000), start;
-    if (period.ytd) start = Date.UTC(endDate.getUTCFullYear(), 0, 1) / 1000;
-    else start = end - period.days * 86400;
-    return { start:start, end:end };
+    var endDate = new Date(end * 1000), requestedStart;
+    if (period.ytd) requestedStart = Date.UTC(endDate.getUTCFullYear(), 0, 1) / 1000;
+    else requestedStart = end - period.days * 86400;
+    /* Do not leave an empty left half when the selected period begins before
+       13F prices become observable. Align all lines to latest common data
+       start; the x-axis then describes the range actually drawn. */
+    var commonStart = Math.max.apply(null, series.map(function(s){ return s.start; }));
+    return { start:Math.max(requestedStart, commonStart), end:end };
   }
   function graphDateAt(start, end, frac){ return graphDate(start + (end - start) * Math.max(0, Math.min(1, frac))); }
   function graphAxisLabels(start, end, H, X){

@@ -1,3 +1,30 @@
+## 2026-08-07 Codex — SEC 13F 과거 1년 스냅샷 추가
+
+**목표**: 6개월·연중 그래프 앞부분을 최신 포트폴리오 역산으로 채우지 않고, SEC 과거
+13F 제출본으로 계산한다.
+
+**변경 파일**:
+- `scripts/fetch_13f.py` — 투자자별 최신 5개 13F-HR를 SEC에서 수집해 `snapshots`로 저장.
+- `portfolios.json` — 16명×5개, 총 80개 분기 스냅샷 추가. 현재 기준 2025-03-31~2026-03-31
+  제출본이며, Scion처럼 최신 제출이 늦은 투자자는 SEC가 제공하는 최신 이력까지 저장.
+- `index.html` — 분기 스냅샷을 SEC 공시일에 맞춰 이어 붙이는 역사 시계열·리밸런싱 계산 추가.
+- `assets/investor-compare.js` — 그래프 전체 가격 이력 사용, SEC 스냅샷 기반 안내 문구,
+  캐시 버전 갱신.
+- `scripts/map_cusips.py`, `.github/workflows/13f-refresh.yml` — 과거 스냅샷 CUSIP도 다음
+  자동 매핑·갱신 대상에 포함.
+
+**검증**:
+- SEC 실제 요청 성공: 16/16 투자자, 각 최신 13F-HR 정상 파싱.
+- `portfolios.json` JSON 파싱·16명·80개 스냅샷 확인.
+- `python -m py_compile scripts/fetch_13f.py scripts/map_cusips.py` 통과.
+- `node --check assets/investor-compare.js`, 인라인 JavaScript 7개 블록 파싱, `git diff --check` 통과.
+
+**위험**: SEC 13F는 공시 대상 미국 롱 포지션만 보여주며 실제 펀드 수익률이 아니다. 과거
+스냅샷의 미매핑 CUSIP은 가격 계산에서 제외된다(현재 과거 보유가치 기준 약 4.5%). 아직
+production 배포하지 않았다.
+
+**다음**: 배포 요청 시 production `main` 동기화 후 deploy guard, live 6개월·연중 확인.
+
 ## 2026-08-07 Codex — 투자자 비교 그래프 상단 이동 + 드래그 기간 수익률
 
 **목표**: 투자자 비교 화면에서 `그대로 들고 있었다면` 그래프를 맨 위로 올리고,
