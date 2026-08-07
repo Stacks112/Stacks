@@ -272,7 +272,7 @@
     if (!start || !end || end.t <= start.t || !(start.v > 0)) return null;
     return { start: start, end: end, pct: (end.v / start.v - 1) * 100, days: (end.t - start.t) / 86400 };
   }
-  function graphRangeLabel(c, days){ return c.holdGraphRange.replace("{n}", Math.max(1, Math.round(days))); }
+  function graphRangeLabel(c, elapsed){ return c.holdGraphRange.replace("{n}", Math.max(1, Math.round(elapsed / 86400))); }
   function graphWindow(period, series){
     var end = Math.min.apply(null, series.map(function(s){ return s.end; }));
     var endDate = new Date(end * 1000), requestedStart;
@@ -480,7 +480,7 @@
     sec.appendChild(compareTable([c.sectors].concat(investors.map(function(i){return tickerLabel(i);})),rows));return sec;
   }
   function compareTable(headers,rows){
-    var wrap=document.createElement("div");wrap.className="inv-compare-table-wrap";
+    var wrap=document.createElement("div");wrap.className="inv-compare-table-wrap"+(headers[0]==="#"?" inv-top-holdings-table":"");
     wrap.innerHTML='<table class="inv-compare-table"><thead><tr>'+headers.map(function(h){return'<th>'+esc(h)+'</th>';}).join("")+'</tr></thead><tbody>'
       +rows.map(function(r){return'<tr>'+r.map(function(v){return'<td>'+v+'</td>';}).join("")+'</tr>';}).join("")+'</tbody></table>';
     return wrap;

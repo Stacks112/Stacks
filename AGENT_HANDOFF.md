@@ -1,3 +1,23 @@
+## 2026-08-07 Codex — 투자자 비교 모바일·일수 표시 수정
+
+**목표**: 드래그 선택 기간이 `457236일`처럼 표시되는 오류와 모바일 상위종목 비교표의
+가로 overflow를 수정한다.
+
+**변경 파일**:
+- `assets/investor-compare.js` — 초 단위 선택 구간을 실제 일수로 변환하고, 상위종목 표에
+  모바일 전용 class를 부여.
+- `assets/investor-compare.css` — 모바일 표를 화면 너비에 맞추고 종목명·헤더 줄바꿈 허용.
+- `index.html` — JS/CSS cache-bust 버전 갱신.
+
+**검증**:
+- `node --check assets/investor-compare.js` 통과.
+- 인라인 JavaScript 7개 블록 파싱 통과.
+- `git diff --check` 통과.
+
+**위험**: 모바일 표는 가로 스크롤 대신 셀 내부 줄바꿈을 사용한다. production 배포 전.
+
+**다음**: production `main` 동기화 후 deploy guard, commit/push, live HTML 확인.
+
 ## 2026-08-07 Codex — SEC 13F 과거 1년 스냅샷 추가
 
 **목표**: 6개월·연중 그래프 앞부분을 최신 포트폴리오 역산으로 채우지 않고, SEC 과거
