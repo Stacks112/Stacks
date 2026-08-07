@@ -89,6 +89,23 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
+.xreal{margin:0 0 20px}
+.xemb{padding:12px 14px;border:1px solid #ECEDF1;border-radius:14px;background:#fff}
+.xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4b5563,#1f2937);color:#fff;font-weight:800;font-size:14px}
+.xemb-nm{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.xemb-nm b{font-size:13.5px;font-weight:800;color:#17181C}
+.xemb-nm span{font-size:12px;color:#8E93A0}
+.xemb-logo{margin-left:auto;font-size:15px;font-weight:900;color:#17181C;opacity:.7;text-decoration:none}
+.xemb-body p{margin:0 0 7px;font-size:14px;line-height:1.6;color:#17181C}
+.xemb-body p:last-child{margin-bottom:0}
+.xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
+.xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
+.xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
+.xreal-slot{display:none}
+.xreal.x-on>.xemb{display:none}
+.xreal.x-on>.xreal-slot{display:block}
+.xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -157,7 +174,7 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 
 
 def block_css_for(body):
-    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"', 'class="gcard', 'class="dbk')):
+    if not any(k in body for k in ('class="gsub"', 'class="srcq"', 'class="xemb"', 'class="xreal"', 'class="chk"', 'class="cmp"', 'class="gimg"', 'class="gref"', 'class="gcard', 'class="dbk')):
         return ""
     return BLOCK_CSS
 
@@ -488,6 +505,70 @@ def pick_quote_lines(raw, lang, slang):
                 return got, cand
         return [], ""
     return [l for l in (raw or []) if l], slang
+
+
+X_LIVE_SCRIPT = """<script>
+(function(){
+  var hosts = document.querySelectorAll('.xreal[data-xid]');
+  if (!hosts.length) return;
+  var sc = document.createElement('script');
+  sc.async = true;
+  sc.src = 'https://platform.twitter.com/widgets.js';
+  sc.onload = function(){
+    if (!window.twttr || !twttr.widgets || !twttr.widgets.createTweet) return;
+    Array.prototype.forEach.call(hosts, function(host){
+      var id = host.getAttribute('data-xid');
+      var slot = host.querySelector('.xreal-slot');
+      if (!id || !slot) return;
+      try {
+        Promise.resolve(twttr.widgets.createTweet(id, slot, {
+          dnt: true, conversation: 'none', align: 'left'
+        })).then(function(node){
+          if (node) host.classList.add('x-on');
+          else slot.innerHTML = '';
+        }).catch(function(){ slot.innerHTML = ''; });
+      } catch (e) { slot.innerHTML = ''; }
+    });
+  };
+  sc.onerror = function(){};
+  document.head.appendChild(sc);
+}());
+</script>"""
+
+
+def x_embed_block(item):
+    """Render the same X evidence card as the app, with an official widget
+    enhancement when the reader's browser can load widgets.js.
+
+    The static card is intentionally the fallback. X's script can be blocked by
+    privacy tools, regional networks, or a slow third-party connection; the
+    source must still be visible and linked in those cases.
+    """
+    e = EMBEDS.get(item.get("id"), {}) or {}
+    lines = [l for l in (e.get("lines") or []) if l]
+    if not lines:
+        return ""
+    href = safe_href(e.get("url") or item.get("sourceUrl"), "")
+    m = re.search(r"/status/(\d+)", e.get("url") or item.get("sourceUrl") or "")
+    xid = m.group(1) if m else ""
+    name = e.get("name") or item.get("source") or ""
+    handle = e.get("handle") or ""
+    date = e.get("date") or item.get("date") or ""
+    url_attr = E(href or "#")
+    head = ('<div class="xemb-top"><div class="xemb-av">%s</div>'
+            '<div class="xemb-nm"><b>%s</b><span>%s</span></div>'
+            '<a class="xemb-logo" href="%s" target="_blank" rel="noopener nofollow" aria-label="X">𝕏</a></div>'
+            % (E(str(name)[:1] or "?"), E(name), E(handle), url_attr))
+    body = '<div class="xemb-body">%s%s</div>' % (
+        "".join("<p>%s</p>" % E(line) for line in lines),
+        ('<div class="xemb-q">%s</div>' % E(e.get("quoted"))) if e.get("quoted") else "",
+    )
+    tail = ('<div class="xemb-d"><a href="%s" target="_blank" rel="noopener nofollow">%s</a></div>'
+            % (url_attr, E(date)))
+    card = '<div class="xemb">%s%s%s</div>' % (head, body, tail)
+    if not xid:
+        return card
+    return '<div class="xreal" data-xid="%s">%s<div class="xreal-slot"></div></div>' % (E(xid), card)
 
 
 def quote_block(item, lang):
@@ -1600,9 +1681,13 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
         gist = _bd.expand_img_markers(gist, lang)
     except Exception:
         pass
-    body_blocks = quote_block(item, lang) + gist_blocks(gist)
+    # X cards use the fetched oEmbed evidence first, exactly like the app.
+    # Hand-written quote.lines remains the safe fallback when X is unavailable.
+    source_block = x_embed_block(item) or quote_block(item, lang)
+    body_blocks = source_block + gist_blocks(gist)
     block_css = block_css_for(body_blocks)
     block_css = (block_css + "\n") if block_css else ""
+    x_script = X_LIVE_SCRIPT if 'class="xreal"' in source_block else ""
     _extra = split_block(item, lang, U) + sum3_block(item, lang, U)
     if _extra:
         body_blocks += _extra
@@ -1798,6 +1883,7 @@ footer a{{color:#8E93A0}}
     <a href="{REL}">{E(U['home'])}</a> · <a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a> · <a href="{feed_rel}">RSS</a>
   </footer>
 </div>
+{x_script}
 </body>
 </html>
 """

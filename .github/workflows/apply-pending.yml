@@ -51,6 +51,7 @@ jobs:
         run: |
           python - <<'PY'
           import json, os, re, urllib.request, urllib.error
+          from scripts.card_quality import depth_report
 
           ACCOUNT = os.environ["CF_ACCOUNT_ID"]
           DB      = os.environ["CF_DATABASE_ID"]
@@ -88,6 +89,11 @@ jobs:
 
           with open("items.json", encoding="utf-8") as f:
               data = json.load(f)
+          try:
+              with open("embeds.json", encoding="utf-8") as f:
+                  cached_embeds = json.load(f) or {}
+          except (FileNotFoundError, ValueError):
+              cached_embeds = {}
 
           have     = {it.get("id") for it in data["items"]}
           entities = data.setdefault("entities", {})
@@ -104,10 +110,29 @@ jobs:
               if not isinstance(item, dict) or not item.get("id"):
                   print("skip malformed row:", rid)
                   continue
-              applied.append(rid)                  # 이미 반영된 것도 큐에서는 지운다
               if item["id"] in have:
-                  print("already published, dequeue only:", item["id"])
+                  # A previous run may have pushed items.json and then failed
+                  # before its generated X data was built. Keep that row for a
+                  # repair build until the embed is present.
+                  source_url = item.get("sourceUrl") or ""
+                  is_x = re.match(r"^https?://(?:www\\.)?(?:x|twitter)\\.com/[^/]+/status/\\d+", source_url, re.I)
+                  applied.append(rid)
+                  if is_x and not (cached_embeds.get(item["id"]) or {}).get("lines"):
+                      added.append(item["id"])
+                      t = item.get("title")
+                      titles.append(t.get("ko") if isinstance(t, dict) else str(t))
+                      print("published item needs X embed repair:", item["id"])
+                  else:
+                      print("already published, dequeue only:", item["id"])
                   continue
+              depth_errors = depth_report(item)
+              if depth_errors:
+                  # Do not dequeue a short card. The source session can revise
+                  # the payload, and the next scheduled run will try again.
+                  print("hold short card %s: %s" %
+                        (item["id"], "; ".join(depth_errors)))
+                  continue
+              applied.append(rid)
               data["items"].insert(0, item)        # 마지막에 넣은 것이 맨 앞 = 최신
               have.add(item["id"])
               added.append(item["id"])
@@ -122,7 +147,7 @@ jobs:
           out.write("dequeue=%s\n" % " ".join(applied))
 
           if not added:
-              print("nothing new to publish")
+              print("nothing new or repairable to publish")
               out.write("added=\n")
               out.close()
               raise SystemExit(0)
@@ -191,16 +216,44 @@ jobs:
       - name: Build pages and data so the cards actually render
         id: build
         if: steps.merge.outputs.added != '' && steps.push.outcome == 'success'
+        env:
+          ADDED: ${{ steps.merge.outputs.added }}
         run: |
           pip install requests pillow --quiet
           # The D1 merge adds the new item immediately before this build.
           # Fetch its X/oEmbed payload here so build_pages.py and
           # build_data.py both receive the new item.embed in the same run.
           python scripts/fetch_embeds.py
+          # A successful HTTP job is not enough. X can return a transient
+          # error while the script intentionally keeps historical backfills
+          # non-fatal. New/repair cards must have their evidence before the
+          # queue is ever allowed to clear.
+          python - <<'PY'
+          import json, os, re
+          ids = os.environ.get("ADDED", "").split()
+          with open("items.json", encoding="utf-8") as fh:
+              items = {x["id"]: x for x in json.load(fh)["items"]}
+          try:
+              with open("embeds.json", encoding="utf-8") as fh:
+                  embeds = json.load(fh) or {}
+          except (FileNotFoundError, ValueError):
+              embeds = {}
+          xre = re.compile(r"^https?://(?:www\\.)?(?:x|twitter)\\.com/[^/]+/status/\\d+", re.I)
+          missing = []
+          for iid in ids:
+              item = items.get(iid) or {}
+              if xre.match(item.get("sourceUrl") or "") and not (embeds.get(iid) or {}).get("lines"):
+                  missing.append(iid)
+          if missing:
+              raise SystemExit("required X embeds missing: " + ", ".join(missing))
+          print("required X embeds fetched for", ", ".join(ids))
+          PY
           python scripts/build_pages.py
           python scripts/build_data.py
+          python scripts/verify_publish_outputs.py $ADDED
 
       - name: Commit build output
+        id: build_push
         if: steps.build.outcome == 'success'
         run: |
           git config user.name "stacks-publish-bot"
@@ -228,7 +281,7 @@ jobs:
       - name: Clear applied rows from the queue
         # 커밋이 실제로 성공했을 때만 큐를 비운다. 새로 반영할 것이 없어
         # dequeue 만 있는 경우(이미 발행된 잔여 행 정리)도 여기서 처리된다.
-        if: always() && steps.merge.outputs.dequeue != '' && steps.push.outcome != 'failure'
+        if: always() && steps.merge.outputs.dequeue != '' && steps.push.outcome != 'failure' && (steps.build.outcome == 'skipped' || (steps.build.outcome == 'success' && steps.build_push.outcome == 'success'))
         env:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           DEQUEUE: ${{ steps.merge.outputs.dequeue }}

@@ -79,6 +79,13 @@ API 키 불필요)이다. 이 루틴이 feeds/를 읽어 카드를 만들고 커
   루틴이 대시를 만들어도 발행 직전 제거됨. 생성 단계에서도 안 만드는 게 최선이니
   v4.3 루틴 프롬프트 [4]에도 "em dash 금지, 쉼표/문장분리 사용"을 넣을 것.
 
+- **★ 본문 깊이 게이트 (2026-08-07).** 자동 발행 카드의 `gist`는 언어별로
+  한국어 700자, 영어 800자, 일본어 600자 이상이어야 하며, 각 언어에 의미 있는
+  본문 문단이 최소 5개 있어야 한다. 짧은 카드는 D1 큐에서 보류하고 화면에 내보내지
+  않는다. 이 기준은 제목·원문 인용·표 데이터가 아니라 Stacks가 작성한 설명 본문에만
+  적용한다. 목적은 짧게 압축된 원문을 그대로 재게시하는 것이 아니라, 맥락·반론·다음
+  확인 지점을 갖춘 읽을거리를 만드는 것이다.
+
 - **용어 색인은 적극적으로.** 조금이라도 낯설거나 의미가 함축된 용어면 설명을 단다.
   구조: 큐레이션 사전 `glossary.json`(3개국어 term) → build_pages가 items.json의
   `entities`로 병합 → 앱(linkifyEntities 툴팁) + SEO 페이지가 자동 링크. 용어를 더
@@ -199,6 +206,10 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
 - `feed-sync.yml` — "Sync source feeds". `fetch_feeds.py` 실행 → `feeds/*.json` 커밋.
 - `draft-cards.yml` — "Stacks Scout". **수동 예비용(workflow_dispatch 전용, 스케줄
   없음).** ANTHROPIC_API_KEY 시크릿 필요. 라이브 발행자는 v4.3 루틴(발행 규칙 참조).
+- `apply-pending.yml` — D1 `pending_cards` 자동 병합. 새 카드에는
+  `scripts/card_quality.py`의 3개 언어 깊이 게이트를 적용하고, X 카드에는
+  `fetch_embeds.py`와 `verify_publish_outputs.py`를 적용한다. 생성물 검증이 실패하면
+  D1 행을 삭제하지 않고 다음 회차에 재시도한다.
 - `og-assets.yml` — "OG card images". 6h 주기 + items.json/build_pages.py push 시.
   Noto CJK 폰트 설치(runner에 기본 없음 — 없으면 OG PNG 전부 스킵됨) 후
   fetch_og_assets.py + build_pages.py 실행, 생성물(t/·r/·p/·e/·week/·og/·sitemap 등) 커밋.
@@ -214,6 +225,8 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
 - `scout.py` — feeds/ → Claude → 3개국어 stance 카드 → items.json (직접 발행). 단독 발행자.
   소스별 상한(PER_SOURCE_CAP)으로 특정 소스 편중 방지.
 - `deploy_guard.py` — **업로드 전/후 덮어쓰기 검사.** 위 "배포 전 필수" 참조. 읽기 전용.
+- `card_quality.py` — 자동 발행 `gist`의 3개 언어 최소 분량·문단 수 검사.
+- `verify_publish_outputs.py` — 새 카드의 `core.json`, gist 청크, 정적 페이지와 X 카드 생성 여부 검사.
 - `clobber_check.py` — 푸시가 남의 최근 작업을 지웠는지 CI에서 판정. 읽기 전용.
 - `build_data.py` — items.json → `data/` (프론트 로딩 분할). **items.json은 안 건드린다.**
   런타임이 전체 3개국어 본문을 훑어야만 계산할 수 있던 값들을 여기서 미리 계산해 넣는다.
@@ -488,8 +501,9 @@ pill, 가운데 카드가 위로 튀어나오고 좌우로 회전·겹침, ipcIn
 | `embed{name,handle,date,url,lines}` | `fetch_embeds.py` → `embeds.json` → `build_data.py` (X 전용) | `.xemb` |
 | `split` | 발행 루틴이 작성 (선택) | `.splitb` |
 
-`embed`가 있으면 그것을, 없으면 `quote`를 쓴다. X 카드에도 `quote`를 같이 넣어 두면
-oEmbed 실패·원문 삭제 때 폴백이 된다.
+`embed`가 있으면 그것을, 없으면 `quote`를 쓴다. 앱과 `/p/` 정적 글 페이지 모두
+같은 `.xemb`를 렌더링하며, 브라우저가 X 공식 위젯을 불러오지 못해도 자체 X 카드가
+남는다. X 카드에도 `quote`를 같이 넣어 두면 oEmbed 실패·원문 삭제 때 폴백이 된다.
 
 **gist 안의 줄머리 마커** — 새 블록 종류마다 스키마를 바꾸지 않으려고 텍스트에 넣는다.
 
