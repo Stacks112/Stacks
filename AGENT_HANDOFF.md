@@ -14,9 +14,11 @@
 - 인라인 JavaScript 7개 블록 파싱 통과.
 - `git diff --check` 통과.
 
-**위험**: 모바일 표는 가로 스크롤 대신 셀 내부 줄바꿈을 사용한다. production 배포 전.
+**위험**: 모바일 표는 가로 스크롤 대신 셀 내부 줄바꿈을 사용한다. production `main` 커밋
+`fc835907a` 반영 완료. live HTML에서 `mobile-20260807`·`days-mobile-20260807` asset과
+`investor-compare.css` 모바일 class, 일수 계산 수정 확인.
 
-**다음**: production `main` 동기화 후 deploy guard, commit/push, live HTML 확인.
+**다음**: 없음.
 
 ## 2026-08-07 Codex — SEC 13F 과거 1년 스냅샷 추가
 
