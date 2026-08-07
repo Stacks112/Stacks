@@ -20,10 +20,11 @@
 - `node --check assets/investor-compare.js`, 인라인 JavaScript 7개 블록 파싱, `git diff --check` 통과.
 
 **위험**: SEC 13F는 공시 대상 미국 롱 포지션만 보여주며 실제 펀드 수익률이 아니다. 과거
-스냅샷의 미매핑 CUSIP은 가격 계산에서 제외된다(현재 과거 보유가치 기준 약 4.5%). 아직
-production 배포하지 않았다.
+스냅샷의 미매핑 CUSIP은 가격 계산에서 제외된다(현재 과거 보유가치 기준 약 4.5%).
+production `main` 커밋 `aa94b4ab1`에 반영했고, live HTML에서 `history-20260807` 자산 버전을
+확인했다.
 
-**다음**: 배포 요청 시 production `main` 동기화 후 deploy guard, live 6개월·연중 확인.
+**다음**: 없음.
 
 ## 2026-08-07 Codex — 투자자 비교 그래프 상단 이동 + 드래그 기간 수익률
 
