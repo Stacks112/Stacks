@@ -28,11 +28,12 @@
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
       coverage:"시세 {p}%", mismatch:"분기 다름",
       holdGraphTitle:"그대로 들고 있었다면",
-      holdGraphSub:"13F 공시일에 공개된 주식 수를 그대로 보유했다고 가정한 누적 성과입니다. 각 투자자의 공시일을 100으로 맞췄습니다.",
+      holdGraphSub:"13F 공시 주식 수를 그대로 보유했다고 가정한 누적 성과입니다. 선택 기간의 시작점을 100으로 맞춥니다.",
       holdGraphDrag:"그래프를 마우스로 드래그하면 선택한 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
       holdGraphStart:"공시일=100", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · 공시 이후 가격 데이터 기준 · 실제 펀드 수익률 아님",
-      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음"
+      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음",
+      holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph6m:"6개월", holdGraphYtd:"연중"
     },
     en:{
       tickerHelp:"Stacks investor ticker", pickTitle:"Compare investors", pickSub:"Choose 2–4 investors to compare their public portfolios side by side.",
@@ -47,11 +48,12 @@
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
       coverage:"Prices {p}%", mismatch:"Different period",
       holdGraphTitle:"If held unchanged",
-      holdGraphSub:"Estimated cumulative performance assuming the disclosed share counts were held from each 13F filing date. Each investor is rebased to 100 on its filing date.",
+      holdGraphSub:"Estimated cumulative performance assuming the disclosed share counts were held unchanged. Each investor is rebased to 100 at the start of the selected period.",
       holdGraphDrag:"Drag across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Filing=100", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · based on prices after disclosure · not actual fund returns",
-      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data"
+      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data",
+      holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph6m:"6M", holdGraphYtd:"YTD"
     },
     ja:{
       tickerHelp:"Stacks投資家ティッカー", pickTitle:"投資家を比較", pickSub:"2〜4人を選び、公開ポートフォリオを横並びで比較します。",
@@ -66,11 +68,12 @@
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
       coverage:"価格 {p}%", mismatch:"四半期が異なります",
       holdGraphTitle:"そのまま保有していたら",
-      holdGraphSub:"13F開示日に公表された株数をそのまま保有したと仮定した累積推定成績です。各投資家の開示日を100に揃えています。",
+      holdGraphSub:"13F開示株式数をそのまま保有したと仮定した累積推定成績です。選択期間の開始点を100に揃えます。",
       holdGraphDrag:"グラフをドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開示日=100", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・開示後の価格データ基準・実際のファンド収益率ではありません",
-      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし"
+      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし",
+      holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph6m:"6か月", holdGraphYtd:"年初来"
     }
   };
 
@@ -213,7 +216,15 @@
   }
 
   var GRAPH_COLORS = ["#2F80ED", "#12B76A", "#F79009", "#9B51E0"];
+  var GRAPH_PERIODS = [
+    { key:"1d", days:1, copy:"holdGraph1d" },
+    { key:"5d", days:5, copy:"holdGraph5d" },
+    { key:"1m", days:30, copy:"holdGraph1m" },
+    { key:"6m", days:182, copy:"holdGraph6m" },
+    { key:"ytd", ytd:true, copy:"holdGraphYtd" }
+  ];
   function graphColor(i){ return GRAPH_COLORS[i % GRAPH_COLORS.length]; }
+  function graphPeriodLabel(c, period){ return c[period.copy] || period.key; }
   function normalizeGraphSeries(inv, res){
     if (!res || !res.calendar || !res.values || res.calendar.length < 2 || res.filedIdx == null) return null;
     var start = Math.max(0, res.filedIdx), base = Number(res.values[start]);
@@ -252,14 +263,30 @@
     if (typeof LANG !== "undefined" && LANG === "ja") return m + "月" + day + "日";
     return y + "." + String(m).padStart(2,"0") + "." + String(day).padStart(2,"0");
   }
-  function graphRangeForSeries(series, a, b, maxElapsed){
+  function graphRangeForSeries(series, a, b, maxElapsed, windowStart){
     var lo = Math.min(a, b), hi = Math.max(a, b);
-    var start = graphPointAt(series.points, series.start + lo * maxElapsed);
-    var end = graphPointAt(series.points, series.start + hi * maxElapsed);
+    var start = graphPointAt(series.points, windowStart + lo * maxElapsed);
+    var end = graphPointAt(series.points, windowStart + hi * maxElapsed);
     if (!start || !end || end.t <= start.t || !(start.v > 0)) return null;
     return { start: start, end: end, pct: (end.v / start.v - 1) * 100, days: (end.t - start.t) / 86400 };
   }
   function graphRangeLabel(c, days){ return c.holdGraphRange.replace("{n}", Math.max(1, Math.round(days))); }
+  function graphWindow(period, series){
+    var end = Math.min.apply(null, series.map(function(s){ return s.end; }));
+    var endDate = new Date(end * 1000), start;
+    if (period.ytd) start = Date.UTC(endDate.getUTCFullYear(), 0, 1) / 1000;
+    else start = end - period.days * 86400;
+    return { start:start, end:end };
+  }
+  function graphDateAt(start, end, frac){ return graphDate(start + (end - start) * Math.max(0, Math.min(1, frac))); }
+  function graphAxisLabels(start, end, H, X){
+    var labels = "", count = 4;
+    for (var i = 0; i <= count; i++){
+      var frac = i / count, anchor = i === 0 ? "start" : i === count ? "end" : "middle";
+      labels += '<text x="' + X(frac).toFixed(1) + '" y="' + (H - 9) + '" text-anchor="' + anchor + '" class="inv-compare-axis">' + esc(graphDateAt(start, end, frac)) + '</text>';
+    }
+    return labels;
+  }
   function graphLegend(legend, rows, c){
     legend.innerHTML = rows.map(function(row, i){
       var inv = row.inv, coverage = row.res && typeof row.res.coverage === "number" ? Math.round(row.res.coverage * 100) : null;
@@ -269,15 +296,24 @@
         + '<small>' + (coverage == null ? esc(c.holdGraphNoPrice) : esc(c.holdGraphCoverage.replace("{p}", coverage))) + '</small></span>';
     }).join("");
   }
-  function paintCompareGraph(chart, legend, rows, c, clearBtn){
+  function paintCompareGraph(chart, legend, rows, c, period, clearBtn, rangeReadout){
+    if (clearBtn) clearBtn.hidden = true;
+    if (rangeReadout) rangeReadout.hidden = true;
     graphLegend(legend, rows, c);
-    var series = rows.map(function(row, i){
-      if (!row.series) return null;
-      row.series.color = graphColor(i); return row.series;
+    var fullSeries = rows.map(function(row){ return row.series; }).filter(Boolean);
+    if (!fullSeries.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    var window = graphWindow(period, fullSeries), windowStart = window.start, windowEnd = window.end;
+    var maxElapsed = windowEnd - windowStart;
+    if (!(maxElapsed > 0)){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    var series = fullSeries.map(function(s, i){
+      var first = graphPointAt(s.points, windowStart), last = graphPointAt(s.points, windowEnd);
+      if (!first || !last || last.t <= first.t || !(first.v > 0)) return null;
+      var points = s.points.filter(function(p){ return p.t >= first.t && p.t <= last.t; });
+      if (!points.length || points[0].t !== first.t) points.unshift(first);
+      if (points[points.length - 1].t !== last.t) points.push(last);
+      return { inv:s.inv, points:points.map(function(p){ return { t:p.t, v:(p.v / first.v) * 100 }; }), start:first.t, end:last.t, color:graphColor(i) };
     }).filter(Boolean);
     if (!series.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
-    var maxElapsed = Math.max.apply(null, series.map(function(s){ return s.end - s.start; }));
-    if (!(maxElapsed > 0)){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
     var all = [100]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all), span = mx - mn;
     if (span < 8){ var center = (mn + mx) / 2; mn = center - 5; mx = center + 5; }
@@ -293,15 +329,14 @@
     }
     var baseY = Y(100);
     var lines = series.map(function(s){
-      var pts = s.points.map(function(p){ return X((p.t - s.start) / maxElapsed).toFixed(1) + "," + Y(p.v).toFixed(1); }).join(" ");
+      var pts = s.points.map(function(p){ return X((p.t - windowStart) / maxElapsed).toFixed(1) + "," + Y(p.v).toFixed(1); }).join(" ");
       return '<polyline points="' + pts + '" fill="none" stroke="' + s.color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
     }).join("");
     chart.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="100%" role="img" aria-label="' + esc(c.holdGraphSub) + '">'
       + grid + '<rect class="inv-compare-selection" y="' + pT + '" height="' + ph + '" visibility="hidden"/> '
       + '<line x1="' + pL + '" y1="' + baseY.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + baseY.toFixed(1) + '" class="inv-compare-baseline"/>'
       + lines + ylab
-      + '<text x="' + pL + '" y="' + (H - 9) + '" text-anchor="start" class="inv-compare-axis">' + esc(c.holdGraphStart) + '</text>'
-      + '<text x="' + (pL + pw) + '" y="' + (H - 9) + '" text-anchor="end" class="inv-compare-axis">' + esc(c.holdGraphNow) + '</text>'
+      + graphAxisLabels(windowStart, windowEnd, H, X)
       + '<line class="inv-compare-hover-line" y1="' + pT + '" y2="' + (pT + ph) + '" visibility="hidden"/>'
       + series.map(function(s){ return '<circle class="inv-compare-hover-dot" data-color="' + s.color + '" r="4" fill="' + s.color + '" visibility="hidden"/>'; }).join("")
       + '</svg><div class="inv-compare-chart-tip" hidden></div>';
@@ -324,11 +359,11 @@
       hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
       var html = '<b>' + esc(graphDays(c, elapsed)) + '</b>';
       series.forEach(function(s, i){
-        var target = s.start + elapsed;
-        if (target > s.end + 86400){ dots[i].setAttribute("visibility", "hidden"); return; }
+        var target = windowStart + elapsed;
+        if (target < s.start - 86400 || target > s.end + 86400){ dots[i].setAttribute("visibility", "hidden"); return; }
         var p = graphPointAt(s.points, target);
         if (!p) return;
-        dots[i].setAttribute("cx", X((p.t - s.start) / maxElapsed).toFixed(1)); dots[i].setAttribute("cy", Y(p.v).toFixed(1)); dots[i].setAttribute("visibility", "visible");
+        dots[i].setAttribute("cx", X((p.t - windowStart) / maxElapsed).toFixed(1)); dots[i].setAttribute("cy", Y(p.v).toFixed(1)); dots[i].setAttribute("visibility", "visible");
         html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(graphPct(p.v)) + '</b></span>';
       });
       tip.innerHTML = html; tip.hidden = false; tip.style.left = (x / W * 100) + "%";
@@ -338,20 +373,23 @@
       var lo = Math.min(a, b), hi = Math.max(a, b), x1 = X(lo), x2 = X(hi);
       selectionRect.setAttribute("x", x1.toFixed(1)); selectionRect.setAttribute("width", Math.max(1, x2 - x1).toFixed(1)); selectionRect.setAttribute("visibility", "visible");
       hideHover();
-      var html = '<b>' + esc(c.holdGraphSelected) + ' · ' + esc(graphRangeLabel(c, (hi - lo) * maxElapsed)) + '</b>';
+      var startLabel = graphDateAt(windowStart, windowEnd, lo), endLabel = graphDateAt(windowStart, windowEnd, hi);
+      var rangeText = startLabel + ' – ' + endLabel;
+      if (rangeReadout){ rangeReadout.textContent = rangeText; rangeReadout.hidden = false; }
+      var html = '<b>' + esc(rangeText) + '</b><small>' + esc(c.holdGraphSelected) + ' · ' + esc(graphRangeLabel(c, (hi - lo) * maxElapsed)) + '</small>';
       var any = false;
       series.forEach(function(s){
-        var r = graphRangeForSeries(s, lo, hi, maxElapsed);
+        var r = graphRangeForSeries(s, lo, hi, maxElapsed, windowStart);
         if (!r){ html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>—</b></span>'; return; }
         any = true;
-        html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <em>' + esc(graphDate(r.start.t) + "–" + graphDate(r.end.t)) + '</em> <b>' + esc(rangePct(r.pct)) + '</b></span>';
+        html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(rangePct(r.pct)) + '</b></span>';
       });
       if (!any) html += '<span>' + esc(c.holdGraphNoData) + '</span>';
       tip.innerHTML = html; tip.hidden = false; tip.style.left = Math.max(14, Math.min(86, ((x1 + x2) / 2) / W * 100)) + "%";
       if (clearBtn) clearBtn.hidden = false;
     }
     function clearSelection(){
-      selection = null; selectionRect.setAttribute("visibility", "hidden"); if (clearBtn) clearBtn.hidden = true; hideHover();
+      selection = null; selectionRect.setAttribute("visibility", "hidden"); if (clearBtn) clearBtn.hidden = true; if (rangeReadout) rangeReadout.hidden = true; hideHover();
     }
     function startDrag(ev){
       if (ev.button != null && ev.button !== 0) return;
@@ -373,15 +411,27 @@
     svg.addEventListener("pointercancel", function(){ if (dragging){ dragging = false; clearSelection(); } });
     svg.addEventListener("pointerleave", leave);
     svg.addEventListener("dblclick", clearSelection);
-    if (clearBtn) clearBtn.addEventListener("click", clearSelection);
+    if (clearBtn) clearBtn.onclick = clearSelection;
   }
   function compareGraphSection(investors){
     var c = C(), sec = document.createElement("section"); sec.className = "inv-performance-section";
+    var periodButtons = GRAPH_PERIODS.map(function(period){
+      var active = period.key === "ytd";
+      return '<button type="button" role="tab" aria-selected="' + (active ? "true" : "false") + '" class="inv-compare-period' + (active ? " on" : "") + '" data-period="' + period.key + '">' + esc(graphPeriodLabel(c, period)) + '</button>';
+    }).join("");
     sec.innerHTML = '<div class="inv-performance-head"><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p><small class="inv-compare-drag-hint">' + esc(c.holdGraphDrag) + '</small></div>'
-      + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
-    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear");
+      + '<div class="inv-compare-periods" role="tablist" aria-label="' + esc(c.holdGraphTitle) + '">' + periodButtons + '</div>'
+      + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-selection-label" aria-live="polite" hidden></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
+    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear"), rangeReadout = sec.querySelector(".inv-compare-selection-label"), rows = null, activePeriod = "ytd";
+    sec.querySelectorAll(".inv-compare-period").forEach(function(button){
+      button.addEventListener("click", function(){
+        activePeriod = button.getAttribute("data-period") || "ytd";
+        sec.querySelectorAll(".inv-compare-period").forEach(function(other){ var on = other === button; other.classList.toggle("on", on); other.setAttribute("aria-selected", on ? "true" : "false"); });
+        if (rows) paintCompareGraph(chart, legend, rows, c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[4], clearBtn, rangeReadout);
+      });
+    });
     invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ return { inv: inv, res: null, series: null }; }); })
-      .then(function(rows){ if (sec.isConnected) paintCompareGraph(chart, legend, rows, c, clearBtn); });
+      .then(function(result){ rows = result; if (sec.isConnected) paintCompareGraph(chart, legend, rows, c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[4], clearBtn, rangeReadout); });
     return sec;
   }
 
