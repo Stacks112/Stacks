@@ -3093,3 +3093,9 @@ Next:
 
 다음:
 - targeted checks 후 commit/push, Pages와 운영 URL 확인.
+## 2026-08-07 Codex — Bessent 정적 페이지 이미지 메타 복구
+
+- 운영 확인에서 `og:image` 누락 발견.
+- `p/bessent-wages-25th-percentile-lead.html` 및 `p/en`, `p/ja`에 OG/Twitter 이미지 메타 복구.
+- 기존 `og/bessent-wages-25th-percentile-lead.png` 존재 확인.
+- Pages 1차 배포는 성공했으며, 이 후속 수정 push 후 정적 페이지를 다시 확인함.
