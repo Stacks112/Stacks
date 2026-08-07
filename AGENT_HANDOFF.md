@@ -3565,3 +3565,21 @@ Next:
 - Node.js 20 deprecation 경고는 GitHub Actions 런타임 경고로 기능과 무관.
 
 **다음**: 클릭 데이터가 쌓인 다음 주간 실행에서 엔티티별 순위 확인.
+
+## 2026-08-08 Codex — GoatCounter 경로 수집 보강·실브라우저 확인
+
+**변경 파일**:
+- `scripts/analytics_report.py` — `/paths` 전체 페이지를 읽고 `entity/click/` 경로를
+  prefix로 식별한 뒤 `stats/hits`의 `include_paths` 청크로 조회.
+- `tests/test_analytics_report.py` — 경로 목록·페이지네이션·include_paths 계약 추가.
+
+**검증**:
+- analytics 테스트 6개, Python 문법 검사, `git diff --check` 통과.
+- workflow `31228327671`, `31228420326`, `31228529705`, `31228661530` 모두 성공.
+- 실 Chrome에서 표시 엔티티 `데이터센터` 클릭 및 툴팁 노출 확인.
+- 최신 리포트도 `0 entities / 0 raw paths`; API 인증·수집 단계는 성공.
+
+**판단/다음**: 현재 자동화·확장 제어 브라우저 클릭이 GoatCounter 집계에서 제외된
+상태로 보인다. 코드 변경은 완료됐으므로 일반 Chrome에서 엔티티를 한 번 직접 클릭한
+뒤 다음 주간 실행에서 순위 행을 확인한다. Node.js 20 deprecation 경고와 stats 단계의
+HTTP 400 알림은 기존 주간 digest 경고이며 analytics 단계는 성공했다.
