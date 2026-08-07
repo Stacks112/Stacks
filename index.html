@@ -6281,13 +6281,7 @@ function investorCardEl(inv, S){
      "&"가 든 이름에서 "&amp;"가 그대로 보이는 이중 이스케이프가 된다. */
   if (prof && prof.wiki){
     var photoEl = b.querySelector(".inv-card-photo");
-    var photoFallback = prof.photo || null;
-    var photoPromise = prof.wiki ? wikiPhoto(prof.wiki) : Promise.resolve(null);
-    photoPromise.then(function(src){
-      var chosen = src || photoFallback;
-      if (!chosen || !photoEl || !b.isConnected) return;
-      swapInPhoto(photoEl, chosen, rawName, chosen !== photoFallback ? photoFallback : null);
-    });
+    b.__invPhoto = { el: photoEl, wiki: prof.wiki, fallback: prof.photo || null, name: rawName };
   }
   return b;
 }
@@ -6315,6 +6309,48 @@ function investorCardFillSpark(cardEl, inv){
       empty();
     }
   }).catch(empty);
+}
+function investorCardLoadPhoto(cardEl){
+  var meta = cardEl && cardEl.__invPhoto;
+  if (!meta || meta.started) return Promise.resolve();
+  meta.started = true;
+  return wikiPhoto(meta.wiki).then(function(src){
+    var chosen = src || meta.fallback;
+    if (!chosen || !meta.el || !cardEl.isConnected) return;
+    swapInPhoto(meta.el, chosen, meta.name, chosen !== meta.fallback ? meta.fallback : null);
+  });
+}
+function investorCardHydrate(card){
+  if (!card || !card.el || card.el.__invHydrated) return Promise.resolve();
+  card.el.__invHydrated = true;
+  investorCardLoadPhoto(card.el);
+  return investorCardFillSpark(card.el, card.inv);
+}
+var INV_CARD_IO = null;
+function observeInvestorCards(cards){
+  if (!cards || !cards.length) return;
+  var pending = cards.slice();
+  if (INV_CARD_IO){ INV_CARD_IO.disconnect(); INV_CARD_IO = null; }
+  if (!window.IntersectionObserver){
+    var idle = window.requestIdleCallback || function(fn){ return window.setTimeout(fn, 1200); };
+    idle(function(){ invMapLimit(pending, 2, investorCardHydrate); });
+    return;
+  }
+  var remaining = pending.length, io;
+  io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      remaining--;
+      investorCardHydrate(entry.target.__invCard);
+    });
+    if (remaining <= 0){ io.disconnect(); if (INV_CARD_IO === io) INV_CARD_IO = null; }
+  }, { rootMargin: "0px 0px" });
+  INV_CARD_IO = io;
+  pending.forEach(function(card){
+    card.el.__invCard = card;
+    io.observe(card.el);
+  });
 }
 /* put_call: "PUT"|"CALL"|undefined. 13F에서 옵션 포지션의 "shares"는 실제
    보유 주식수가 아니라 계약이 커버하는 기초자산 주식수라, 종목명만 봐서는
@@ -6818,7 +6854,7 @@ function renderInvestorsIndex(list, S, investors){
      목록의 투자자 수(현재 11)만큼 한꺼번에 시작하면 순간 동시 요청이 쌓일 수 있어,
      투자자 레벨에서도 동시 2~3개까지만 진행되도록 같은 invMapLimit 패턴으로
      스로틀한다(끝까지 순차 대기는 아니고, 2~3개가 항상 동시 진행되는 정도). */
-  invMapLimit(cards, 3, function(c){ return investorCardFillSpark(c.el, c.inv); });
+  observeInvestorCards(cards);
 }
 /* async, called fire-and-forget from renderFeed exactly like renderScoreboard —
    appends a loading placeholder synchronously, then fills in once
