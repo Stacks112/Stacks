@@ -5,13 +5,31 @@ import sys
 from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.analytics_report import aggregate_hits, api_url, build_report, parse_entity_path
+from scripts.analytics_report import aggregate_hits, api_url, build_report, event_path_ids, parse_entity_path
 
 
 class AnalyticsReportTests(unittest.TestCase):
     def test_api_url_uses_goatcounter_hit_limit(self):
         query = parse_qs(urlparse(api_url("https://stacks.goatcounter.com", date(2026, 8, 1), date(2026, 8, 8))).query)
         self.assertEqual(query["limit"], ["100"])
+
+    def test_api_url_repeats_include_paths(self):
+        query = parse_qs(urlparse(api_url(
+            "https://stacks.goatcounter.com",
+            date(2026, 8, 1),
+            date(2026, 8, 8),
+            [101, 202],
+        )).query)
+        self.assertEqual(query["include_paths"], ["101", "202"])
+        self.assertEqual(query["limit"], ["100"])
+
+    def test_event_path_ids_select_entity_events_only(self):
+        self.assertEqual(event_path_ids([
+            {"id": 101, "event": True, "path": "entity/click/inline/company/nvidia"},
+            {"id": 102, "event": True, "path": "read/article-1"},
+            {"id": 103, "event": False, "path": "entity/click/inline/company/apple"},
+            {"id": 104, "path": "entity/click/inline/company/tesla"},
+        ]), [101])
 
     def test_parse_only_entity_click_paths(self):
         self.assertEqual(

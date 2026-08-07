@@ -31,6 +31,7 @@ ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
 OUT_DIR = os.environ.get("OUT_DIR", "stats")
 DAYS = max(1, int(os.environ.get("GOATCOUNTER_DAYS", "7")))
 EVENT_PREFIX = "entity/click/"
+PATH_CHUNK_SIZE = 100
 
 
 def slug_tag(value):
@@ -44,18 +45,19 @@ def date_range(today=None, days=DAYS):
     return start, end
 
 
-def api_url(site, start, end):
-    query = urllib.parse.urlencode({
-        "limit": 100,
-        "start": start.isoformat() + "T00:00:00Z",
-        "end": end.isoformat() + "T00:00:00Z",
-    })
-    return site.rstrip("/") + "/api/v0/stats/hits?" + query
+def api_url(site, start, end, include_paths=()):
+    params = [
+        ("limit", 100),
+        ("start", start.isoformat() + "T00:00:00Z"),
+        ("end", end.isoformat() + "T00:00:00Z"),
+    ]
+    params.extend(("include_paths", path_id) for path_id in include_paths)
+    return site.rstrip("/") + "/api/v0/stats/hits?" + urllib.parse.urlencode(params)
 
 
-def fetch_hits(site, token, start, end):
+def api_get(url, token):
     req = urllib.request.Request(
-        api_url(site, start, end),
+        url,
         headers={
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -64,8 +66,57 @@ def fetch_hits(site, token, start, end):
         },
     )
     with urllib.request.urlopen(req, timeout=30) as response:
-        payload = json.loads(response.read().decode("utf-8"))
-    return payload.get("hits", []) if isinstance(payload, dict) else []
+        return json.loads(response.read().decode("utf-8"))
+
+
+def paths_url(site, after=None):
+    params = [("limit", 200)]
+    if after is not None:
+        params.append(("after", after))
+    return site.rstrip("/") + "/api/v0/paths?" + urllib.parse.urlencode(params)
+
+
+def fetch_paths(site, token):
+    paths = []
+    after = None
+    while True:
+        payload = api_get(paths_url(site, after), token)
+        if not isinstance(payload, dict):
+            break
+        page = payload.get("paths", [])
+        if not isinstance(page, list):
+            break
+        paths.extend(page)
+        if not payload.get("more") or not page:
+            break
+        next_after = page[-1].get("id") if isinstance(page[-1], dict) else None
+        if next_after is None or next_after == after:
+            break
+        after = next_after
+    return paths
+
+
+def event_path_ids(paths):
+    return [
+        path["id"]
+        for path in paths or []
+        if isinstance(path, dict)
+        and path.get("event") is True
+        and str(path.get("path") or "").startswith(EVENT_PREFIX)
+        and path.get("id") is not None
+    ]
+
+
+def fetch_hits(site, token, start, end, path_ids):
+    hits = []
+    for offset in range(0, len(path_ids), PATH_CHUNK_SIZE):
+        payload = api_get(
+            api_url(site, start, end, path_ids[offset:offset + PATH_CHUNK_SIZE]),
+            token,
+        )
+        if isinstance(payload, dict):
+            hits.extend(payload.get("hits", []))
+    return hits
 
 
 def parse_entity_path(path):
@@ -158,7 +209,8 @@ def main():
         return 0
     start, end = date_range()
     try:
-        hits = fetch_hits(SITE, API_KEY, start, end)
+        path_ids = event_path_ids(fetch_paths(SITE, API_KEY))
+        hits = fetch_hits(SITE, API_KEY, start, end, path_ids)
     except (OSError, ValueError, urllib.error.URLError) as exc:
         print("[warn] GoatCounter analytics unavailable: %s" % exc)
         return 0
