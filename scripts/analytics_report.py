@@ -101,7 +101,6 @@ def event_path_ids(paths):
         path["id"]
         for path in paths or []
         if isinstance(path, dict)
-        and path.get("event") is True
         and str(path.get("path") or "").startswith(EVENT_PREFIX)
         and path.get("id") is not None
     ]

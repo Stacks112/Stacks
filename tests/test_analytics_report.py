@@ -27,9 +27,9 @@ class AnalyticsReportTests(unittest.TestCase):
         self.assertEqual(event_path_ids([
             {"id": 101, "event": True, "path": "entity/click/inline/company/nvidia"},
             {"id": 102, "event": True, "path": "read/article-1"},
-            {"id": 103, "event": False, "path": "entity/click/inline/company/apple"},
+            {"id": 103, "event": False, "path": "read/article-2"},
             {"id": 104, "path": "entity/click/inline/company/tesla"},
-        ]), [101])
+        ]), [101, 104])
 
     def test_parse_only_entity_click_paths(self):
         self.assertEqual(
