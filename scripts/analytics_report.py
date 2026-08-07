@@ -46,7 +46,7 @@ def date_range(today=None, days=DAYS):
 
 def api_url(site, start, end):
     query = urllib.parse.urlencode({
-        "limit": 1000,
+        "limit": 100,
         "start": start.isoformat() + "T00:00:00Z",
         "end": end.isoformat() + "T00:00:00Z",
     })
