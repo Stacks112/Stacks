@@ -3116,3 +3116,10 @@ Next:
 
 - Added a published-data query version so existing service-worker caches cannot return stale article summaries after a release.
 - Pending: commit/push and verify the live reader.
+
+## 2026-08-07 Codex - production verification complete
+
+- Production commits: `73eaf8406` content/X visibility, `d143f9e10` service-worker cache refresh, and `5729ae5af` versioned data requests.
+- Live reader verified: Bessent background present, `src-fold=0`, X host mounted (`xreal=1`, `xseen=1`, `x-on=true`).
+- Static page verified with `og:image` and `twitter:card=summary_large_image`.
+- No D1 writes, scheduled-task changes, Actions dispatch, token output, commit/push of unrelated workspace changes, or `items.json` changes outside the target card.
