@@ -358,6 +358,14 @@
       frac = Math.max(0, Math.min(1, (frac * W - pL) / pw));
       return frac;
     }
+    function placeTip(frac){
+      var host = chart.clientWidth || 0, tipWidth = tip.offsetWidth || 132;
+      if (!host) return;
+      var half = Math.min(tipWidth / 2 + 6, Math.max(10, host / 2 - 4));
+      var center = host * Math.max(0, Math.min(1, frac));
+      center = Math.max(half, Math.min(host - half, center));
+      tip.style.left = center.toFixed(1) + "px";
+    }
     function move(ev){
       var frac = fracAt(ev);
       var elapsed = frac * maxElapsed, x = X(frac);
@@ -372,7 +380,7 @@
         dots[i].setAttribute("cx", X((p.t - windowStart) / maxElapsed).toFixed(1)); dots[i].setAttribute("cy", Y(p.v).toFixed(1)); dots[i].setAttribute("visibility", "visible");
         html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(graphPct(p.v)) + '</b></span>';
       });
-      tip.innerHTML = html; tip.hidden = false; tip.style.left = (x / W * 100) + "%";
+      tip.innerHTML = html; tip.hidden = false; placeTip(x / W);
     }
     function rangePct(v){ return typeof v === "number" && isFinite(v) ? (v >= 0 ? "+" : "") + v.toFixed(1) + "%" : "—"; }
     function showSelection(a, b){
@@ -391,7 +399,7 @@
         html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(rangePct(r.pct)) + '</b></span>';
       });
       if (!any) html += '<span>' + esc(c.holdGraphNoData) + '</span>';
-      tip.innerHTML = html; tip.hidden = false; tip.style.left = Math.max(14, Math.min(86, ((x1 + x2) / 2) / W * 100)) + "%";
+      tip.innerHTML = html; tip.hidden = false; placeTip(((x1 + x2) / 2) / W);
       if (clearBtn) clearBtn.hidden = false;
     }
     function clearSelection(){
@@ -406,6 +414,7 @@
     function dragMove(ev){ if (dragging) { showSelection(dragStart, fracAt(ev)); ev.preventDefault(); } else move(ev); }
     function endDrag(ev){
       if (!dragging) return;
+      ev.preventDefault();
       var end = fracAt(ev), distance = Math.abs(end - dragStart); dragging = false;
       try { svg.releasePointerCapture(ev.pointerId); } catch(e) {}
       if (distance < 0.008){ clearSelection(); move(ev); return; }
@@ -417,6 +426,7 @@
     svg.addEventListener("pointercancel", function(){ if (dragging){ dragging = false; clearSelection(); } });
     svg.addEventListener("pointerleave", leave);
     svg.addEventListener("dblclick", clearSelection);
+    svg.addEventListener("contextmenu", function(ev){ ev.preventDefault(); });
     if (clearBtn) clearBtn.onclick = clearSelection;
   }
   function compareGraphSection(investors){
