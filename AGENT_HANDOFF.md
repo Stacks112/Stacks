@@ -3489,3 +3489,24 @@ Next:
 - 코드·ads.txt 누락 문제는 현재 없음. AdSense Ads.txt 표시는 마지막 스캔 결과가 오래된 상태로 판단.
 - 사이트 심사는 Google 검토 대기라 즉시 수정할 항목 없음. 계정 화면에서 재검토 요청/사이트 삭제는 실행하지 않음.
 - 작업 중 다른 에이전트 변경이 있어 기존 dirty worktree는 보존.
+## 2026-08-08 Codex — 모바일 캘린더 회귀 CI 실패 수정·production 반영
+
+**문제**: `isMobile: true`에서 Chromium 레이아웃 뷰포트가 390px 시각 뷰포트보다 넓어져
+고정 캘린더 헤더의 월별보기 버튼이 화면 밖으로 밀리고 회귀 테스트가 클릭 타임아웃.
+
+**변경 파일**:
+- `playwright.config.mjs` — 390px viewport와 touch 입력은 유지하고 `isMobile: false`로
+  설정해 반응형 레이아웃 회귀를 실제 화면 폭에서 검사.
+- `AGENT_HANDOFF.md` — 원인·검증·배포 기록.
+
+**검증**:
+- 모바일 캘린더 Playwright 3개 통과.
+- 전체 Playwright(`test:calendar` + `test:feed-detail`) 7개 통과.
+- `python tests/test_frontend_contracts.py` 6개 통과.
+- `python tests/test_analytics_report.py` 3개 통과.
+- Python 문법 검사, `git diff --check`, `deploy_guard` 통과.
+- production `main` 커밋 `e6194f3` push 완료.
+
+**위험/다음**:
+- 앱 런타임 코드는 변경하지 않음. 실제 모바일 브라우저 표시 확인은 Pages 배포 후 수행.
+- push 후 Mobile calendar regression, Pages deployment, live smoke 결과 확인.
