@@ -3292,3 +3292,29 @@ Next:
 
 **다음**: 배포 후 GitHub Actions에서 `watch-pending` 수동 실행 1회와 모바일 캘린더 과거
   날짜 탭, `/e/google.html`의 보유자 링크를 실제 화면에서 확인한다.
+## 2026-08-08 Codex — 13F 최신성 표시·모바일 캘린더 회귀 테스트 추가
+
+**목표**: 앱과 회사 페이지에서 13F 기준 분기를 명확히 보여주고, 다음 분기 공시 기한이 지나면
+`업데이트 대기`를 표시한다. 모바일 캘린더의 월간 날짜 탭·빈 날짜 탭·뒤로가기를 실제 브라우저
+테스트로 고정한다.
+
+**변경 파일**:
+- `index.html` — 앱 회사 상세의 13F 기준 분기·업데이트 대기 배지·다국어 문구 추가.
+- `scripts/build_pages.py` 및 `e/**/*.html` — 정적 회사 페이지에도 같은 기준 분기와 배지 추가.
+- `package.json`, `playwright.config.mjs`, `tests/mobile-calendar.spec.mjs` — 390px 모바일 뷰포트
+  기준 Playwright 회귀 테스트 추가.
+- `.github/workflows/calendar-regression.yml` — main 반영 시 Chromium 모바일 테스트 자동 실행.
+- `AGENT_HANDOFF.md` — 작업 기록 추가.
+
+**판정 기준**: 현재 보이는 2026 Q1은 다음 분기(Q2)의 SEC 13F 제출 기한인 45일 창이 끝나기
+전까지 최신 공시로 취급한다. 그 이후 새 분기 자료가 없으면 `업데이트 대기`를 표시한다.
+
+**검증**:
+- 13F 마감 경계(2026-08-14, Q1 기준) 계산 테스트 통과.
+- 정적 한국어·영어·일본어 회사 페이지 표시 확인.
+- Python 및 Playwright 테스트 설정 문법 검사, `git diff --check` 통과.
+- GitHub Actions 모바일 브라우저 테스트와 Pages 배포 결과는 push 후 확인해 아래에 기록한다.
+
+**결과**: 배포 확인 후 업데이트.
+
+## 2026-08-07 Codex — 피드 상세 페이지 엔터티 색인 누락 수정
