@@ -13180,6 +13180,8 @@ if (window.matchMedia && window.matchMedia("(hover: hover)").matches){
    items.json on every publish; items.json itself is untouched and remains the
    publisher's single source of truth. */
 const DATA_DIR = "data/";
+const DATA_VER = "fadfc00af";
+const dataUrl = name => DATA_DIR + name + "?v=" + DATA_VER;
 let GIST_CHUNKS = 0;
 let GISTS_IN = false;
 
@@ -13201,7 +13203,7 @@ async function getJSON(url, fresh){
    layout. Oldest-last, so what the reader is looking at fills in first. */
 async function loadGists(){
   for (let c = 0; c < GIST_CHUNKS; c++){
-    const part = await getJSON(DATA_DIR + "gist." + LANG + "." + c + ".json");
+    const part = await getJSON(dataUrl("gist." + LANG + "." + c + ".json"));
     if (!part) continue;
     Object.keys(part).forEach(id => {
       const it = ITEMS.find(x => x.id === id);
@@ -13235,7 +13237,7 @@ async function loadGists(){
 let ELONG_IN = false, ELONG_P = null;
 function ensureElong(){
   if (ELONG_IN) return Promise.resolve();
-  if (!ELONG_P) ELONG_P = getJSON(DATA_DIR + "elong.json").then(m => {
+  if (!ELONG_P) ELONG_P = getJSON(dataUrl("elong.json")).then(m => {
     if (m) Object.keys(m).forEach(k => { if (ENTITIES[k]) ENTITIES[k].longDesc = m[k]; });
     ELONG_IN = true;
   });
@@ -13243,7 +13245,7 @@ function ensureElong(){
 }
 
 async function bootData(){
-  const j = await getJSON(DATA_DIR + "core.json", true)
+  const j = await getJSON(dataUrl("core.json"), true)
          || await getJSON("items.json", true);   /* last resort: the raw file */
   if (j){
     ITEMS = j.items || [];

@@ -3111,3 +3111,8 @@ Next:
 
 - Bumped the service-worker cache from `stacks-v31` to `stacks-v32` after live verification found stale cached `data/core.json` content.
 - Pending: commit/push the cache invalidation and recheck the live reader.
+
+## 2026-08-07 Codex - version data requests
+
+- Added a published-data query version so existing service-worker caches cannot return stale article summaries after a release.
+- Pending: commit/push and verify the live reader.
