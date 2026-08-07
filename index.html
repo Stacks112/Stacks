@@ -2735,6 +2735,7 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .xreal.x-on > .xemb{display:none;}
 .xreal-slot{min-height:0;}
 .xreal-slot iframe{max-width:100% !important;}
+.xreal-slot iframe.x-direct{display:block;width:100%;height:380px;border:0;border-radius:12px;background:var(--card);}
 .xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
 
 /* Long X posts can overwhelm the reading before the article starts. Articles
@@ -12778,6 +12779,25 @@ function xEmbedScan(){
   }, { rootMargin: "600px 0px" });
   hosts.forEach(h => { h.setAttribute("data-xseen", "1"); XOBS.observe(h); });
 }
+function xDirectMount(host, id){
+  const slot = host.querySelector(".xreal-slot") || (() => {
+    const el = document.createElement("div");
+    el.className = "xreal-slot";
+    host.appendChild(el);
+    return el;
+  })();
+  slot.innerHTML = "";
+  const frame = document.createElement("iframe");
+  frame.className = "x-direct";
+  frame.title = "X post";
+  frame.loading = "eager";
+  frame.scrolling = "no";
+  frame.referrerPolicy = "strict-origin-when-cross-origin";
+  frame.src = "https://platform.twitter.com/embed/Tweet.html?id=" + encodeURIComponent(id) + "&dnt=true&lang=" + encodeURIComponent(LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"));
+  frame.addEventListener("load", () => host.classList.add("x-on"), { once: true });
+  frame.addEventListener("error", () => frame.remove(), { once: true });
+  slot.appendChild(frame);
+}
 async function xEmbedMount(host){
   if (host.__xdone) return;
   host.__xdone = true;
@@ -12786,8 +12806,8 @@ async function xEmbedMount(host){
   let tw;
   /* Any failure here is silent on purpose: the text block is already on
      screen and is a complete card without this. */
-  try { tw = await xWidgets(); } catch (e) { return; }
-  if (!tw || !tw.widgets || typeof tw.widgets.createTweet !== "function") return;
+  try { tw = await xWidgets(); } catch (e) { xDirectMount(host, id); return; }
+  if (!tw || !tw.widgets || typeof tw.widgets.createTweet !== "function") { xDirectMount(host, id); return; }
   const slot = document.createElement("div");
   slot.className = "xreal-slot";
   host.appendChild(slot);
@@ -12800,8 +12820,8 @@ async function xEmbedMount(host){
       lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
     });
     if (el) host.classList.add("x-on");
-    else slot.remove();
-  } catch (e) { slot.remove(); }
+    else xDirectMount(host, id);
+  } catch (e) { xDirectMount(host, id); }
 }
 setInterval(xEmbedScan, 1200);
 
