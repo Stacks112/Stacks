@@ -1,3 +1,22 @@
+## 2026-08-07 Codex — 자동 발행 빌드·배포 실패 감시 추가
+
+**목표**: 기존 D1 pending 큐 지연 감시에 더해 `apply-pending` 실행 실패,
+GitHub Pages 빌드 실패, `github-pages` deployment 실패를 GitHub Issue로 알린다.
+
+**변경 파일**:
+- `.github/workflows/watch-delivery.yml` — 10분 주기·수동 실행 감시, 실패 시 Issue 생성/갱신, 정상화 시 자동 종료.
+- `scripts/watch_delivery.py` — GitHub Actions 최신 실행과 Pages deployment status를 읽는 read-only 검사.
+- `AGENT_HANDOFF.md` — 작업 기록 추가.
+
+**검증**:
+- Python 문법·기존 빌드 스크립트 컴파일 통과.
+- 성공/실패 가상 workflow run 헬퍼 테스트 통과.
+- `git diff --check` 통과.
+
+**위험**: 현재 실패를 “최근 실행 결과” 기준으로 판단한다. 실행 중인 workflow는 잠시 정상으로 보고, 완료된 실패·취소·타임아웃과 Pages의 error/failure/inactive 상태만 Issue 대상으로 삼는다.
+
+**다음**: production `main` 반영 후 workflow 수동 실행으로 정상 상태 로그와 Pages deployment 조회를 확인한다.
+
 ## 2026-08-07 Codex — 회사 상세 화면에 13F 보유자 표시 추가
 
 **목표**: 정적 회사 페이지에만 있던 SEC 13F 보유자 정보를 앱 내부 회사 상세 카드에서도

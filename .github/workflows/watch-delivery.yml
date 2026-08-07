@@ -1,0 +1,72 @@
+name: Watch auto-publish delivery
+
+# The queue watcher catches a stuck D1 row.  This companion watcher catches
+# the other half of the publishing path: a failed apply run, Pages build, or
+# GitHub Pages deployment.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  actions: read
+  contents: read
+  deployments: read
+  issues: write
+
+concurrency:
+  group: watch-delivery
+  cancel-in-progress: false
+
+env:
+  WATCH_BRANCH: main
+  WATCH_PAGE_ENVIRONMENT: github-pages
+  INCIDENT_TITLE: "[auto-publish] build/deployment failure"
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check publishing workflows and Pages deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/watch_delivery.py 2>&1 | tee delivery_watch.log
+
+      - name: Open or update incident issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "자동 발행 파이프라인 감시가 빌드 또는 배포 실패를 감지했습니다."
+            echo
+            echo '```'
+            cat delivery_watch.log 2>/dev/null || echo "(감시 로그 없음)"
+            echo '```'
+            echo
+            echo "실행: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } > issue.md
+          existing=$(gh issue list --state open --search "${INCIDENT_TITLE} in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file issue.md
+          else
+            gh issue create --title "$INCIDENT_TITLE" --body-file issue.md
+          fi
+
+      - name: Close incident after recovery
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --state open --search "${INCIDENT_TITLE} in:title" --json number --jq '.[].number' \
+            | while read -r number; do
+                [ -z "$number" ] && continue
+                gh issue comment "$number" --body "자동 발행 빌드·배포가 정상 상태로 돌아왔습니다. 실행: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                gh issue close "$number"
+              done
