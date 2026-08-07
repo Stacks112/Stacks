@@ -1,3 +1,41 @@
+## 2026-08-07 Codex — 투자자 티커·포트폴리오 비교 v1
+
+**목표**: 13F 투자자를 주식 종목처럼 식별하는 Stacks 전용 티커를 부여하고,
+독자가 2~4명의 공개 포트폴리오를 같은 화면에서 비교할 수 있게 한다.
+
+**변경 파일**:
+- `assets/investor-compare.js` 신규 — 투자자 선택·비교 화면, 공통 종목, 상위 보유,
+  섹터, 집중도, 회전율, 분기 활동, 공시 후 추정 수익률과 S&P 500 대비 계산.
+- `assets/investor-compare.css` 신규 — 데스크톱·모바일 비교 UI.
+- `index.html` — 비교 자산 로드 및 `INVESTOR_VIEW="compare"` 라우팅.
+- `scripts/fetch_13f.py` — 16명 티커를 다음 자동 수집에도 보존.
+- `portfolios.json` — 현재 16명에 고유 티커 추가.
+
+**티커**: `INV:BUFFETT`, `INV:ACKMAN`, `INV:WOOD`, `INV:DRUCK`,
+`INV:TEPPER`, `INV:ASCHEN`, `INV:LOEB`, `INV:KLARMAN`, `INV:HOHN`,
+`INV:LAFFONT`, `INV:SOROS`, `INV:ICAHN`, `INV:COLEMAN`, `INV:HALVORSEN`,
+`INV:MARKS`, `INV:BURRY`.
+
+**수익률 원칙**: 실제 펀드 수익률로 표시하지 않는다. 13F 공개일에 공시 주식 수를
+그대로 보유했다고 가정한 공개 포트폴리오 추정치이며 옵션은 제외한다. 3개월·1년은
+공개 후 해당 기간이 실제로 지난 경우만 표시하고, 그 전에는 `데이터 축적 중`으로
+표시해 look-ahead bias를 막는다.
+
+**검증**:
+- `node --check assets/investor-compare.js`, 기존 인라인 스크립트 7개 파싱 통과.
+- `python3 -m py_compile scripts/fetch_13f.py`, `portfolios.json` JSON 파싱,
+  `git diff --check` 통과.
+- 투자자 16명/티커 16개 고유성, 기본 비교(BUFFETT·ACKMAN)의 공통 종목·집중도·
+  섹터 데이터 계산 확인.
+- `scripts/deploy_guard.py` 대상 5개 파일에서 원격 `main`과 충돌 없음 확인.
+
+**위험**: 이 실행 환경에는 Playwright 브라우저 바이너리가 없고 다운로드 CDN의
+시계 인증서 오류가 있어 자동 클릭 스모크는 실행하지 못했다. 코드·데이터·라우팅 정적
+검증은 통과했으며, 배포 후 라이브 자산과 비교 화면을 다시 확인한다.
+
+**다음**: 분기별 과거 13F 스냅샷을 누적하면 공시 후 3개월·1년 추정 수익률 랭킹과
+분기 리밸런싱 기반 장기 추적 성과를 추가할 수 있다.
+
 ## 2026-08-07 Codex — 자동 발행 X 임베드 누락 수정
 
 **목표**: D1 자동 발행으로 추가된 AAOI 카드에서 X 원문 임베드가 보이지 않는 문제를 수정하고 라이브 데이터까지 확인.
