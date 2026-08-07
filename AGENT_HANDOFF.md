@@ -3048,3 +3048,27 @@ Next:
 **위험**: X `widgets.js`는 외부 스크립트라 차단될 수 있으나 자체 정적 X 카드는 계속 표시된다. 짧은 신규 카드는 D1 큐에 남겨 다음 자동 발행 회차에서 다시 처리한다.
 
 **다음**: Pages/CDN 전파 후 라이브 MTSI URL에서 X 카드와 확장 본문을 다시 확인.
+
+## 2026-08-07 Codex (restore blank production feed)
+
+Goal:
+- Restore the production feed after the latest data artifacts became unreadable.
+
+Changed:
+- `C:\Users\dream\Downloads\Stacks-main\data\core.json`
+- `C:\Users\dream\Downloads\Stacks-main\items.json`
+- Restored both generated JSON artifacts from the last known-good parent `f14604e7a` of malformed publish commit `1ec636be5`.
+
+Verified:
+- Both JSON files parse successfully.
+- `data/core.json`: 283 items, 12 gist chunks; newest item is `serenity-mtsi-indium-phosphide-dfb-shortage`.
+- `items.json`: 283 items.
+- `git diff --check -- data/core.json items.json` passed.
+- `scripts/deploy_guard.py data/core.json items.json` passed against `origin/main` `556559f30`.
+
+Risks:
+- The malformed publish truncated both JSON files at about 1 MB, so `bootData()` fell back to an empty item list. Restored artifacts are the prior known-good full dataset.
+- Existing untracked production preview files were untouched.
+
+Next:
+- Commit/push the two-file data repair, then verify the live JSON and feed in a clean browser profile.
