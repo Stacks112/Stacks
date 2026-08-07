@@ -3072,3 +3072,24 @@ Risks:
 
 Next:
 - Commit/push the two-file data repair, then verify the live JSON and feed in a clean browser profile.
+## 2026-08-07 Codex — Bessent 가독성 개선 운영 배포
+
+목표:
+- `bessent-wages-25th-percentile-lead` 가독성 개선본 운영 반영.
+
+변경:
+- `items.json`, `index.html`, `assets/v82.css`
+- `data/core.json`, `data/gist.*.0.json`, `data/manifest.json`
+- `p/bessent-wages-25th-percentile-lead.html` 및 `p/en`, `p/ja` 페이지
+- 최신 원격 283개 카드·복구 데이터 보존, Bessent 카드만 교체.
+
+검증:
+- `items.json` JSON 파싱 통과.
+- Bessent 카드: `BAR=1`, `CMP=0`, `TIME=0`, `REF=2`, `foldSource=true`.
+- `build_data.py` 통과.
+
+위험:
+- 운영 배포 전.
+
+다음:
+- targeted checks 후 commit/push, Pages와 운영 URL 확인.

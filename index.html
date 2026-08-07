@@ -217,6 +217,7 @@ const STRINGS = {
     dltNoteTheme: "Same theme, this author before",
     adLabel: "Ad",
     fromSource: "From the source",
+    sourceFold: "View the original X post and chart",
     chkLabel: "📊 We looked it up",
     splitLabel: "How to tell which",
     sum3Label: "In three lines",
@@ -396,6 +397,7 @@ const STRINGS = {
     dltNoteTheme: "같은 주제, 이 필진의 이전 글",
     adLabel: "광고",
     fromSource: "원문에서",
+    sourceFold: "X 원문과 그래프 보기",
     chkLabel: "📊 확인해보면",
     splitLabel: "구분 기준",
     sum3Label: "세 줄 요약",
@@ -575,6 +577,7 @@ const STRINGS = {
     dltNoteTheme: "同じテーマ、この筆者の以前の記事",
     adLabel: "広告",
     fromSource: "原文から",
+    sourceFold: "Xの原文とグラフを見る",
     chkLabel: "📊 確認すると",
     splitLabel: "見分ける基準",
     sum3Label: "3行まとめ",
@@ -2734,6 +2737,18 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .xreal-slot iframe{max-width:100% !important;}
 .xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
 
+/* Long X posts can overwhelm the reading before the article starts. Articles
+   that opt in with foldSource keep the source available behind one compact
+   row; the live X widget mounts only after the reader opens it. */
+.src-fold{margin:12px 0 4px;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.src-fold>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:12px 14px;cursor:pointer;list-style:none;color:var(--text);font-size:13px;font-weight:750;}
+.src-fold>summary::-webkit-details-marker{display:none;}
+.src-fold>summary .fold-arrow{font-family:var(--mono-font);font-size:14px;color:var(--muted);
+  line-height:1;transition:transform .15s ease;}
+.src-fold[open]>summary .fold-arrow{transform:rotate(45deg);}
+.src-fold>.xreal,.src-fold>.xemb{margin:0 12px 12px;}
+
 
 .gist.rich{white-space:normal;}
 .gist.rich .gp{white-space:pre-line;margin:0 0 14px;}
@@ -4257,7 +4272,7 @@ function srcBlockHtml(item){
     const id = ((e.url || item.sourceUrl || "").match(/status\/(\d+)/) || [])[1];
     const open = id ? '<div class="xreal" data-xid="' + id + '">' : ""; /* every X post tries the live embed; the static box below is the fallback until x-on (was gated on item.xembed, which only 5 cards carried) */
     const close = open ? "</div>" : "";
-    return open + '<div class="xemb">' +
+    const block = open + '<div class="xemb">' +
       '<div class="xemb-top">' +
         '<div class="xemb-av">' + esc(String(e.name || "?").charAt(0)) + "</div>" +
         '<div class="xemb-nm"><b>' + esc(e.name || "") + "</b><span>" + esc(e.handle || "") + "</span></div>" +
@@ -4269,6 +4284,11 @@ function srcBlockHtml(item){
       "</div>" +
       '<div class="xemb-d"><a href="' + url + '" target="_blank" rel="noopener">' + esc(e.date || "") + "</a></div>" +
     "</div>" + close;
+    if (item.foldSource){
+      return '<details class="src-fold"><summary><span>' + esc(S.sourceFold) +
+        '</span><span class="fold-arrow">+</span></summary>' + block + '</details>';
+    }
+    return block;
   }
   const q = item.quote;
   const slang = String(item.sourceLang || "").toLowerCase();
@@ -12711,7 +12731,10 @@ function xWidgets(){
 }
 let XOBS = null;
 function xEmbedScan(){
-  const hosts = document.querySelectorAll(".xreal:not([data-xseen])");
+  const hosts = [...document.querySelectorAll(".xreal:not([data-xseen])")].filter(h => {
+    const fold = h.closest(".src-fold");
+    return !fold || fold.open;
+  });
   if (!hosts.length) return;
   if (!("IntersectionObserver" in window)){
     hosts.forEach(h => { h.setAttribute("data-xseen", "1"); xEmbedMount(h); });
@@ -14108,7 +14131,8 @@ bootData();
   html.v83 #feedList .card-body > *{ order:90; }
   html.v83 #feedList .card-body > .srcq,
   html.v83 #feedList .card-body > .xreal,
-  html.v83 #feedList .card-body > .xemb{ order:10; }   /* ← 원문 먼저 */
+  html.v83 #feedList .card-body > .xemb,
+  html.v83 #feedList .card-body > .src-fold{ order:10; }   /* ← 원문 먼저 */
   html.v83 #feedList .card-body > .gist-fold{ order:20; }
   html.v83 #feedList .card-body > .splitb{ order:25; }   /* ← 해석의 마지막 문단, '왜 중요한가' 위 */
   html.v83 #feedList .card-body > .why{ order:30; }

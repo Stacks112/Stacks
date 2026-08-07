@@ -333,7 +333,8 @@
   .card .card-body > *{order:90;}
   .card .card-body > .srcq,
   .card .card-body > .xreal,
-  .card .card-body > .xemb{order:10;}        /* 원문 — 우리 해석보다 먼저 */
+  .card .card-body > .xemb,
+  .card .card-body > .src-fold{order:10;}        /* 원문 — 우리 해석보다 먼저 */
   .card .card-body > .gist-fold{order:20;}
   /* 구분 기준은 우리 해석의 마지막 문단이라 '왜 중요한가' 바로 위에 붙인다.
      반대편(.opp)은 아래에서 92로 내려가 있으므로 그 밑에 두면 멀어진다. */
