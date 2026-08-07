@@ -3523,7 +3523,8 @@ Next:
 - `tests/feed-detail.spec.mjs` — 13F → 테마 → 13F → 홈 전환에서 우측 레일 상태,
   `#investor-berkshire` 딥링크·보유 표 렌더를 Playwright로 추가.
 - `tests/test_frontend_contracts.py` — 13F 렌더/레일 게이트와 모바일 캘린더 토글 계약 추가.
-- `.github/workflows/feed-detail-regression.yml` — 브라우저 테스트 전 frontend contract 검사 추가.
+- `.github/workflows/feed-detail-regression.yml` — 브라우저 테스트 전 frontend contract 검사와
+  13F 관련 자산·`portfolios.json` 변경 트리거 추가.
 - `AGENT_HANDOFF.md` — 작업·검증 기록.
 
 **검증**:

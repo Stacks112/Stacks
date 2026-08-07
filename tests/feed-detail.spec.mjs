@@ -82,6 +82,7 @@ test.describe("13F investor view state", () => {
     await page.goto(`/?v83beta${hash}`, { waitUntil: "domcontentloaded" });
     await expect(page.locator(".inv-grid, .inv-table").first()).toBeVisible();
     await expect(page.locator("#v83rail")).toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("html")).toHaveClass(/inv-wide/);
     await expect(page.locator("#v83rail .v83-search")).toBeVisible();
   }
 
@@ -90,6 +91,7 @@ test.describe("13F investor view state", () => {
 
     await page.locator('#v83nav .v83-link[data-k="themes"]').click();
     await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
     await expect(page.locator("#v83rail .v83-search")).toBeVisible();
 
     await page.locator('#v83nav .v83-link[data-k="investors"]').click();
@@ -98,6 +100,7 @@ test.describe("13F investor view state", () => {
 
     await page.locator("#feedList > .v83post-head.v83navback .v83post-back").click();
     await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
   });
 
   test("13F deep link renders the investor detail", async ({ page }) => {
