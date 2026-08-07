@@ -33,5 +33,8 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: Run frontend contract tests
+        run: python3 tests/test_frontend_contracts.py
+
       - name: Run feed/detail regression tests
         run: npm run test:feed-detail -- --reporter=line

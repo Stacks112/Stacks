@@ -3513,3 +3513,25 @@ Next:
   Pages deployment `31225246601` 모두 성공.
 - `stacksdaily.com`와 `ads.txt` live smoke HTTP 200 확인. 주간 클릭 리포트는
   `GOATCOUNTER_API_KEY` GitHub secret 등록 후 생성.
+## 2026-08-08 Codex — 실브라우저 상세·13F 상태 회귀 확대
+
+**목표**: 피드 상세 왕복·딥링크 기존 스위트를 실제 브라우저로 재확인하고,
+13F 전환 뒤 우측 레일 재노출과 13F 딥링크를 자동 검사한다. 모바일 캘린더 회귀도
+같은 로컬 스위트에서 함께 확인한다.
+
+**변경 파일**:
+- `tests/feed-detail.spec.mjs` — 13F → 테마 → 13F → 홈 전환에서 우측 레일 상태,
+  `#investor-berkshire` 딥링크·보유 표 렌더를 Playwright로 추가.
+- `tests/test_frontend_contracts.py` — 13F 렌더/레일 게이트와 모바일 캘린더 토글 계약 추가.
+- `.github/workflows/feed-detail-regression.yml` — 브라우저 테스트 전 frontend contract 검사 추가.
+- `AGENT_HANDOFF.md` — 작업·검증 기록.
+
+**검증**:
+- `npm test` — 모바일 캘린더 3개, 피드 상세·13F 6개 통과.
+- 13F 전용 실브라우저 2개 통과.
+- `python tests/test_frontend_contracts.py` 8개, `test_analytics_report.py` 3개 통과.
+- Python 문법 검사, `git diff --check` 통과.
+
+**위험/다음**:
+- 실제 배포 후 `feed-detail-regression`, `calendar-regression`, Pages 결과 확인.
+- 주간 엔티티 클릭 리포트는 `GOATCOUNTER_API_KEY` GitHub secret 등록 뒤 활성화.

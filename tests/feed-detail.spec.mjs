@@ -74,3 +74,35 @@ test.describe("feed article detail round trip", () => {
     });
   });
 });
+
+test.describe("13F investor view state", () => {
+  test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
+
+  async function openInvestors(page, hash = "#investors") {
+    await page.goto(`/?v83beta${hash}`, { waitUntil: "domcontentloaded" });
+    await expect(page.locator(".inv-grid, .inv-table").first()).toBeVisible();
+    await expect(page.locator("#v83rail")).toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("#v83rail .v83-search")).toBeVisible();
+  }
+
+  test("13F transitions restore the right rail", async ({ page }) => {
+    await openInvestors(page);
+
+    await page.locator('#v83nav .v83-link[data-k="themes"]').click();
+    await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("#v83rail .v83-search")).toBeVisible();
+
+    await page.locator('#v83nav .v83-link[data-k="investors"]').click();
+    await expect(page.locator(".inv-grid")).toBeVisible();
+    await expect(page.locator("#v83rail")).toHaveClass(/inv-rail-hide/);
+
+    await page.locator("#feedList > .v83post-head.v83navback .v83post-back").click();
+    await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+  });
+
+  test("13F deep link renders the investor detail", async ({ page }) => {
+    await openInvestors(page, "#investor-berkshire");
+    await expect(page.locator("#feedList .inv-table")).toBeVisible();
+    await expect(page.locator("#feedList .series-head-name")).toContainText("›");
+  });
+});

@@ -73,6 +73,17 @@ class FrontendContracts(unittest.TestCase):
         self.assertNotIn("https://stacksdaily.com/this-week.html", sitemap)
         self.assertIn("https://stacksdaily.com/week/", sitemap)
 
+    def test_investor_rail_gate_matches_render_dispatch(self):
+        self.assertIn("function invViewActive()", INDEX)
+        self.assertIn('if (invViewActive()){ renderInvestors(list,S);', INDEX)
+        self.assertIn('_railEl.classList.toggle("inv-rail-hide", invViewActive())', INDEX)
+        self.assertIn('document.documentElement.classList.toggle("inv-wide", invViewActive())', INDEX)
+
+    def test_mobile_calendar_toggle_contract(self):
+        self.assertIn('id = "v82cal-h"', V82)
+        self.assertIn('class="v82cal-month-btn"', V82)
+        self.assertIn('"v82cal-month-mode"', V82)
+
 
 if __name__ == "__main__":
     unittest.main()
