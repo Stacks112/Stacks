@@ -3124,7 +3124,6 @@ Next:
 - Static page verified with `og:image` and `twitter:card=summary_large_image`.
 - No D1 writes, scheduled-task changes, Actions dispatch, token output, commit/push of unrelated workspace changes, or `items.json` changes outside the target card.
 
-
 ## 2026-08-07 Codex — 투자자 비교 그래프 기간 탭·드래그 날짜 표시 개선
 
 **목표**: `#investors` 비교 그래프를 첨부한 Google Finance 스타일처럼 기간별로
@@ -3146,22 +3145,9 @@ Next:
 - 로컬 시세 렌더는 API CORS가 `https://stacksdaily.com`만 허용해 localhost에서 확인 불가.
   라이브 기존 비교 화면은 시세 그래프가 정상 로드되는 상태를 확인했다.
 
-**배포 상태**: production commit `c6efc0fe7`를 `main`에 push했다. live HTML이
-`periods-20260807` 캐시 버전을 로드하고, live CSS/JS에서 기간 탭·YTD·날짜 범위 마커를
-확인했다. 기존 untracked 파일은 보존했다.
-
-
-**위험**: 기간별 그래프는 기존 최근 1년 가격 API 범위와 투자자별 시세 커버리지에 의존한다.
-1일 구간은 휴장일·주말에 가장 가까운 거래일 포인트를 사용한다.
-
-**다음**: 없음.
+**위험**: 아직 production 배포하지 않았다. 기간별 그래프는 기존 최근 1년 가격 API 범위와
+투자자별 시세 커버리지에 의존한다. 1일 구간은 휴장일·주말에 가장 가까운 거래일 포인트를
+사용한다.
 
 **다음**: 배포 승인 시 production checkout에서 배포 가드 실행 후 `stacksdaily.com`의
 데스크톱·모바일 기간 탭, 드래그 날짜 범위, 선택 해제를 재검증한다.
-
-## 2026-08-07 Codex - make the X embed resilient
-
-- Diagnosis: the visible block was the intended fallback card; the official `widgets.js` widget had not mounted.
-- Added a direct official `platform.twitter.com/embed/Tweet.html` iframe fallback to both the app renderer and static-page renderer.
-- The text card remains visible if both official loading paths fail; no fold wrapper is used.
-- Pending: commit/push and verify the production article. 3fb900e26 (fix(embed): show official X iframe fallback)
