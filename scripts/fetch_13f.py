@@ -37,6 +37,27 @@ UA = "Stacks/1.0 (stacksdaily.com; contact@stacksdaily.com)"
 REQUEST_SLEEP = 0.2  # SEC asks for <=10 req/s; this keeps us well under that
 TOP_N = 25
 
+# Product identifiers used by the Stacks comparison screen. They deliberately
+# live outside exchange ticker space and are rendered as INV:<code> in the UI.
+INVESTOR_TICKERS = {
+    "berkshire": "BUFFETT",
+    "pershing-square": "ACKMAN",
+    "ark": "WOOD",
+    "duquesne": "DRUCK",
+    "appaloosa": "TEPPER",
+    "situational-awareness": "ASCHEN",
+    "third-point": "LOEB",
+    "baupost": "KLARMAN",
+    "tci": "HOHN",
+    "coatue": "LAFFONT",
+    "soros": "SOROS",
+    "carl-icahn": "ICAHN",
+    "tiger-global": "COLEMAN",
+    "viking": "HALVORSEN",
+    "oaktree": "MARKS",
+    "scion": "BURRY",
+}
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 PORTFOLIOS_PATH = os.path.join(ROOT, "portfolios.json")
@@ -863,6 +884,7 @@ def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
     now = datetime.now(timezone.utc).isoformat()
     return {
         "slug": investor["slug"],
+        "ticker": INVESTOR_TICKERS[investor["slug"]],
         "cik": cik,
         "filer": investor["filer"],
         "name": investor["name"],
@@ -930,6 +952,7 @@ def main():
             prev = prev_by_slug.get(slug)
             if prev is not None:
                 prev = dict(prev)
+                prev["ticker"] = INVESTOR_TICKERS[slug]
                 prev["checked_at"] = now
                 prev["ok"] = False
                 prev["error"] = err
@@ -937,6 +960,7 @@ def main():
             else:
                 results.append({
                     "slug": slug,
+                    "ticker": INVESTOR_TICKERS[slug],
                     "cik": investor["cik"],
                     "filer": investor["filer"],
                     "name": investor["name"],
