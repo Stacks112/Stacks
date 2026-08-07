@@ -3536,3 +3536,16 @@ Next:
 **위험/다음**:
 - 실제 배포 후 `feed-detail-regression`, `calendar-regression`, Pages 결과 확인.
 - 주간 엔티티 클릭 리포트는 `GOATCOUNTER_API_KEY` GitHub secret 등록 뒤 활성화.
+## 2026-08-08 Codex — 13F 반응형·모바일 비교 회귀 추가
+
+**변경 파일**:
+- `tests/feed-detail.spec.mjs` — 1024·1180px 13F 레일 상태, 390px 모바일 드로어 진입·비교·뒤로가기 회귀 추가.
+
+**검증**:
+- Playwright 전체 11개 통과: 모바일 캘린더 3개, feed/detail·13F 8개.
+- `py -3 tests/test_frontend_contracts.py` — 8개 통과.
+- `git diff --check`, `scripts/deploy_guard.py` 통과.
+- Feed detail CI `31226931504`, Pages `31226930937`, auto-publish `31226931441` 성공.
+- production `main` 커밋 `5bcead3` 반영. `https://stacksdaily.com`·`ads.txt` HTTP 200, investor compare·entity click 코드 확인.
+
+**위험/다음**: Windows 로컬 config의 `python3` 서버 명령은 없어 `py -3` fallback 사용. `GOATCOUNTER_API_KEY` 등록 후 엔티티 클릭 주간 리포트 검증.
