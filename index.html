@@ -5363,7 +5363,6 @@ function renderEntityDebate(list, items, S){
     groups[k].forEach((item, idx) => {
       const el = cardEl(item, S, idx);
       list.appendChild(el);
-      linkifyEntities(el);
     });
   });
 }
@@ -10284,7 +10283,6 @@ function openStacksPost(id, ev){
       if (pred && it && pred.parentNode && pred.classList.contains("prediction-result-card")){
         var plain = cardEl(it, STRINGS[LANG], 0);
         pred.parentNode.replaceChild(plain, pred);
-        if (typeof linkifyEntities === "function") linkifyEntities(plain);
         if (typeof hydrateImages === "function") hydrateImages();
         if (typeof applyEngageCounts === "function") applyEngageCounts();
         if (typeof setupViewObserver === "function") setupViewObserver();
@@ -12381,7 +12379,7 @@ function appendFeedPage(S){
   for (let idx = start; idx < end; idx++){
     if(start===0&&idx===2&&dailyResult&&!document.querySelector(".prediction-result-card")){
       var resultCard=dailyPredictionResultEl(dailyResult,S,idx-start);
-      if(resultCard){ list.appendChild(resultCard); linkifyEntities(resultCard); }
+      if(resultCard){ list.appendChild(resultCard); }
     }
     if(dailyResult&&CUR_ITEMS[idx].id===dailyResult.id) continue;
     if (READ_DIV_IDX >= 0 && idx === READ_DIV_IDX && !document.getElementById("readDivider")){
@@ -12392,7 +12390,6 @@ function appendFeedPage(S){
     }
     const el = cardEl(CUR_ITEMS[idx], S, idx - start);
     list.appendChild(el);
-    linkifyEntities(el);
     if (feedAdsAllowed() && feedAdAfter(idx) && idx < CUR_ITEMS.length - 1) appendFeedAd(list, S);
   }
   SHOWN = end;
@@ -12563,10 +12560,6 @@ function renderFeed(animate){
         } catch (e) { _ac = null; }
       }
       if (!_ac) _ac = cardEl(_it, S, 0);
-      /* The feed path linkifies every card after appending it. The article
-         detail is rendered from a fresh card, so apply the same entity and
-         glossary indexing here as well. */
-      if (typeof linkifyEntities === "function") linkifyEntities(_ac);
       _ac.classList.remove("collapsed");
       _ac.classList.add("v83one");
       list.appendChild(_ac);
@@ -12818,6 +12811,9 @@ function cardEl(item, S, idx){
       </div>
     `;
     queueSince(item);
+    /* Every card, including feed, prediction, related and detail cards, enters
+       the same entity/glossary indexing queue at the factory boundary. */
+    linkifyEntities(el);
     return el;
   }
 }
