@@ -292,6 +292,8 @@ const STRINGS = {
     entArticles: "View {n} related articles →",
     entRelated: "Related posts",
     fCeo: "CEO", fFounded: "Founded", fListed: "Listed", fHq: "HQ", fWeb: "Website",
+    holderTitle: "Notable investors holding this stock", holderSub: "Latest SEC 13F filing · U.S. long equity positions", holderPeriod: "{period} filing", holderWeight: "{weight} of portfolio", holderCount: "{n} investors",
+    holderChanges: { hold: "Held", held: "Held", new: "New / bought", add: "New / bought", increase: "Increased", trim: "Trimmed" },
     watchUnread: "{n} unread",
     fsChart: "Pro chart",
     fsHint: "Open the full-screen pro chart",
@@ -472,6 +474,8 @@ const STRINGS = {
     entArticles: "관련 글 {n}개 보기 →",
     entRelated: "관련 글 보기",
     fCeo: "CEO", fFounded: "설립", fListed: "상장", fHq: "본사", fWeb: "웹사이트",
+    holderTitle: "이 종목을 보유한 투자 고수", holderSub: "최신 SEC 13F 공시 기준 · 미국 상장 주식 롱 포지션", holderPeriod: "{period} 공시", holderWeight: "포트폴리오 비중 {weight}", holderCount: "{n}명",
+    holderChanges: { hold: "보유", held: "보유", new: "신규·매수", add: "신규·매수", increase: "늘림", trim: "줄임" },
     watchUnread: "안 읽은 글 {n}",
     fsChart: "전문 차트",
     fsHint: "전체 화면 전문 차트 열기",
@@ -652,6 +656,8 @@ const STRINGS = {
     entArticles: "関連記事{n}件を見る →",
     entRelated: "関連記事",
     fCeo: "CEO", fFounded: "設立", fListed: "上場", fHq: "本社", fWeb: "サイト",
+    holderTitle: "この銘柄を保有する著名投資家", holderSub: "最新のSEC 13F提出 · 米国上場株のロングポジション", holderPeriod: "{period}提出", holderWeight: "ポートフォリオ比率 {weight}", holderCount: "{n}人",
+    holderChanges: { hold: "保有", held: "保有", new: "新規・購入", add: "新規・購入", increase: "買い増し", trim: "削減" },
     watchUnread: "未読{n}件",
     fsChart: "プロチャート",
     fsHint: "フルスクリーンのプロチャートを開く",
@@ -1597,12 +1603,26 @@ html[data-lang="ko"] .fsq-note{font-family:var(--ui-font);}
 }
 .eh-facts .f a{color:var(--accent);text-decoration:none;}
 .eh-facts .f a:hover{text-decoration:underline;}
+.eh-holders{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+.eh-holders-head{display:flex;align-items:baseline;gap:6px;font-size:14px;}
+.eh-holders-head b{font-weight:800;}
+.eh-holders-count{font-size:11px;color:var(--muted);font-weight:700;}
+.eh-holders-sub{margin:3px 0 5px;font-size:11px;color:var(--muted);line-height:1.45;}
+html[data-lang="ko"] .eh-holders-sub{font-family:var(--ui-font);}
+.eh-holder-list{display:flex;flex-direction:column;}
+.eh-holder-row{padding:8px 0;border-bottom:1px solid var(--line);}
+.eh-holder-row:last-child{border-bottom:0;}
+.eh-holder-name{font-size:13px;font-weight:700;color:var(--text);}
+.eh-holder-fund{font-size:11.5px;color:var(--muted);margin-top:1px;}
+.eh-holder-meta{font-size:11px;color:var(--muted);margin-top:2px;}
 /* entity profile shown inside the right rail (desktop) */
 .entity-head.in-rail{position:relative;margin:0 0 24px;}
 .entity-head.in-rail .eh-name{font-size:17px;}
 .entity-head.in-rail .ehq-head b{font-size:20px;}
 .entity-head.in-rail .eh-desc{font-size:12.5px;}
 .entity-head.in-rail .eh-facts{grid-template-columns:1fr 1fr;}
+.entity-head.in-rail .eh-holders{margin-top:12px;padding-top:10px;}
+.entity-head.in-rail .eh-holder-row{padding:7px 0;}
 .eh-x{
   position:absolute;top:10px;right:12px;width:26px;height:26px;
   border:0;border-radius:50%;background:var(--bg);color:var(--muted);
@@ -7552,6 +7572,56 @@ function linkifyDrain(){
   }
   LINKIFY_T = LINKIFY_Q.length ? setTimeout(linkifyDrain, 0) : null;
 }
+/* The company profile uses the same reverse index as the static company
+   pages. Keep this lookup small and local to the profile so the main feed
+   does not wait for portfolios.json. */
+function entity13fPeriodLabel(period){
+  var bits = String(period || "").split("-");
+  var year = parseInt(bits[0], 10), month = parseInt(bits[1], 10);
+  if (!year || !month) return String(period || "");
+  var quarter = Math.floor((month - 1) / 3) + 1;
+  if (LANG === "en") return "Q" + quarter + " " + year;
+  if (LANG === "ja") return year + "年第" + quarter + "四半期";
+  return year + "년 " + quarter + "분기";
+}
+function entity13fHolderRows(key, data){
+  var rows = [];
+  (data && data.investors || []).forEach(function(inv){
+    var holdings = inv.all_holdings || inv.holdings || [];
+    for (var i = 0; i < holdings.length; i++){
+      var holding = holdings[i];
+      if (!holding || holding.entity_key !== key || holding.change === "exit" || holding.put_call === "PUT" || holding.put_call === "CALL") continue;
+      rows.push({ inv: inv, holding: holding });
+      break;
+    }
+  });
+  rows.sort(function(a, b){ return (b.holding.weight || 0) - (a.holding.weight || 0); });
+  return rows;
+}
+function entity13fHolderHtml(key, data, S){
+  var rows = entity13fHolderRows(key, data);
+  if (!rows.length) return "";
+  var changes = S.holderChanges || {};
+  var list = rows.map(function(row){
+    var inv = row.inv, holding = row.holding;
+    var manager = locVal(inv.manager) || locVal(inv.name) || "";
+    var fund = locVal(inv.name) || "";
+    var period = entity13fPeriodLabel(inv.period);
+    var weight = (typeof holding.weight === "number") ? (holding.weight * 100).toFixed(1) + "%" : "—";
+    var change = changes[holding.change] || holding.change || "";
+    var meta = String(S.holderPeriod || "{period}").replace("{period}", period);
+    if (S.holderWeight) meta += " · " + String(S.holderWeight).replace("{weight}", weight);
+    if (change) meta += " · " + change;
+    return '<div class="eh-holder-row"><div class="eh-holder-name">' + esc(manager) + "</div>"
+      + (fund && fund !== manager ? '<div class="eh-holder-fund">' + esc(fund) + "</div>" : "")
+      + '<div class="eh-holder-meta">' + esc(meta) + "</div></div>";
+  }).join("");
+  var count = String(S.holderCount || "{n}").replace("{n}", rows.length);
+  return '<section class="eh-holders"><div class="eh-holders-head"><b>' + esc(S.holderTitle || "") + "</b>"
+    + '<span class="eh-holders-count">' + esc(count) + "</span></div>"
+    + '<p class="eh-holders-sub">' + esc(S.holderSub || "") + "</p>"
+    + '<div class="eh-holder-list">' + list + "</div></section>";
+}
 /* shared builder for the entity profile card.
    mode "feed": back button + shown above the filtered article list.
    mode "rail": ✕ button + "view N articles" link, shown in the right
@@ -7612,12 +7682,22 @@ function entityHeadEl(key, S, count, mode){
     + ((e.longDesc || e.desc) ? '<p class="eh-desc">' + (e.longDesc ? e.longDesc[LANG] : e.desc[LANG]) + "</p>" : "")
     + chart
     + factsHtml
+    + (isCo ? '<div class="eh-holder-slot" hidden></div>' : "")
     + '<div class="eh-actions">'
       + ((isCo || e.kind === "person") ? '<button class="tip-follow' + (WATCH.has(key) ? " on" : "") + '" data-k="' + esc(key) + '" onclick="toggleWatch(\'' + safe + '\', event)">'
           + (WATCH.has(key) ? STRINGS[LANG].watchOn : STRINGS[LANG].watchFollow) + "</button>" : "")
       + (e.url && !isCo ? '<a class="eh-link" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + (S.profile || "Profile ↗") + "</a>" : "")
       + railLink
     + "</div>";
+  if (isCo){
+    const holderMount = h.querySelector(".eh-holder-slot");
+    loadPortfolios().then(function(data){
+      if (!holderMount) return;
+      var holderHtml = entity13fHolderHtml(key, data, S);
+      holderMount.innerHTML = holderHtml;
+      holderMount.hidden = !holderHtml;
+    });
+  }
   /* The long profile blurbs are 180 KB across 182 entities and only ever show
      on an entity page, so they ship separately. The short desc paints now and
      the long one replaces it when data/elong.json lands. */
