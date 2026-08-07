@@ -1,3 +1,32 @@
+## 2026-08-08 Codex — 상세 회귀 테스트·본문 색인 확대·엔티티 클릭 분석 배포 준비
+
+**목표**: 다음 개선 3건을 한 번에 반영한다. 데스크톱·모바일 상세 흐름을 자동 회귀로
+보호하고, 카드 색인을 원문·근거 영역까지 넓히며, 어떤 엔티티가 클릭되는지 분석한다.
+
+**변경 파일**:
+- `index.html` — `.srcq`, `.xemb-body`, `.gradec`, `.srcs-list`까지 기업·인물·전문용어
+  색인을 확장. 인라인·칩·용어·논쟁 제목 클릭을 `entity/click/{surface}/{kind}/{slug}`로
+  GoatCounter에 기록.
+- `tests/feed-detail.spec.mjs` — 데스크톱·모바일 목록 → 상세 → 뒤로가기와 `?c=` 새로고침
+  딥링크 회귀 4건 추가.
+- `package.json` — 기본 테스트에 상세 회귀 스위트 포함.
+- `tests/test_frontend_contracts.py` — 확장 색인 선택자와 엔티티 이벤트 계약 검사 추가.
+- `AGENT_HANDOFF.md` — 작업·검증·배포 기록.
+
+**검증**:
+- `python3 tests/test_frontend_contracts.py` — 4개 통과.
+- `git diff --check` 통과.
+- 실제 브라우저 수동 스모크: 데스크톱·모바일 목록 → 상세 → 뒤로가기 통과, `?c=` 딥링크
+  통과. 데스크톱 상세에서 전체 엔티티 링크 13개, 원문 영역 4개, 판정/출처 영역 3개 확인.
+- Playwright 실행 스크립트는 `tests/feed-detail.spec.mjs`에 저장했으며, 현재 작업 환경에는
+  로컬 npm/Playwright 실행 바이너리가 없어 CLI 스위트 자체 실행은 못 했다.
+
+**위험**: GoatCounter가 차단되거나 비운영 호스트이면 이벤트는 기존 `track()` 정책대로
+  조용히 무시된다. 모바일 용어/엔티티는 첫 탭과 두 번째 탭이 각각 클릭 이벤트로 집계된다.
+
+**다음**: `scripts/deploy_guard.py` 통과 후 production `main`에 push하고 Pages·라이브 HTML을
+  확인한다.
+
 ## 2026-08-08 Codex — 카드 색인 공통화·회귀 검사·상세 딥링크 검증 배포
 
 **목표**: 피드와 상세의 색인 로직을 하나로 통합하고, 목록·데스크톱 상세·모바일 상세 및 상세 딥링크의 회귀를 막는다.

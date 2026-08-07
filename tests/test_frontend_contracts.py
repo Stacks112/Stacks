@@ -29,6 +29,18 @@ class FrontendContracts(unittest.TestCase):
         self.assertNotIn("linkifyEntities(resultCard)", INDEX)
         self.assertNotIn("linkifyEntities(plain)", INDEX)
 
+    def test_reader_facing_evidence_blocks_are_indexed(self):
+        self.assertIn(
+            'h3, .gist, .why p, .srcq, .xemb-body, .gradec, .srcs-list',
+            INDEX,
+        )
+        self.assertIn('track("entity/click/"', INDEX)
+        self.assertIn('trackEntityClick(tag, "chip")', INDEX)
+        self.assertIn('trackEntityClick(key, "inline")', INDEX)
+        self.assertIn('trackEntityClick(key, "glossary")', INDEX)
+        self.assertIn("entityClickFeed", INDEX)
+        self.assertIn("debate", INDEX)
+
     def test_all_detail_paths_use_the_card_factory(self):
         detail = INDEX[INDEX.index("/* v83.3: single-article page"):]
         self.assertIn("if (!_ac) _ac = cardEl(_it, S, 0);", detail)

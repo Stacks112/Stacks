@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "test": "npm run test:calendar",
-    "test:calendar": "playwright test tests/mobile-calendar.spec.mjs"
+    "test": "npm run test:calendar && npm run test:feed-detail",
+    "test:calendar": "playwright test tests/mobile-calendar.spec.mjs",
+    "test:feed-detail": "playwright test tests/feed-detail.spec.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.55.0"

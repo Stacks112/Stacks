@@ -4479,6 +4479,7 @@ function glossTip(key){
   return '<span class="entity-tip gloss-tip"><span class="tip-sector">' + sector + '</span>' + g.def[LANG] + hint + '</span>';
 }
 function glossTap(el, key){
+  trackEntityClick(key, "glossary");
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (hoverable){ el.classList.toggle("show"); return; }   /* 데스크톱 hover: 토글만(기존 동작) */
   if (!el.classList.contains("show")){
@@ -5149,7 +5150,7 @@ function debateTitleHtml(key){
   const S = STRINGS[LANG], e = key && ENTITIES[key];
   if (!e) return S.debateTitle;
   const nm = entName(key), safe = key.replace(/'/g, "\\'");
-  const span = '<span class="debate-ent has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); entityFeedView(\'' + safe + '\')">' + esc(nm) + entityTip(key) + "</span>";
+  const span = '<span class="debate-ent has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); entityClickFeed(\'' + safe + '\',\'debate\')">' + esc(nm) + entityTip(key) + "</span>";
   const tmpl = (e.kind === "person") ? S.debatePerson : S.debateCo;
   const p = (LANG === "ko" && e.kind !== "person") ? koEulReul(nm) : "";
   return tmpl.replace("{name}", () => span).replace("{p}", p);
@@ -7315,6 +7316,7 @@ function chipHtml(tag){
 /* mobile: first tap shows the tooltip, second tap searches the name.
    desktop: hover shows the tooltip, so a click searches immediately. */
 function chipTap(el, tag){
+  trackEntityClick(tag, "chip");
   loadQuote(tag);
   const hoverable = window.matchMedia && window.matchMedia("(hover: hover)").matches;
   if (!hoverable && !el.classList.contains("show")){
@@ -7509,7 +7511,9 @@ function dedupScope(node, container){
 }
 function linkifyPass(card, RE, A2K, makeSpan){
   if (!RE) return;
-  card.querySelectorAll("h3, .gist, .why p").forEach(container => {
+  /* Keep the index on reader-facing prose, including the source quote and
+     evidence blocks that are rendered outside .gist. */
+  card.querySelectorAll("h3, .gist, .why p, .srcq, .xemb-body, .gradec, .srcs-list").forEach(container => {
     const usedBy = new Map(); /* one link per key per paragraph, not per card */
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
       acceptNode(n){
@@ -7812,7 +7816,19 @@ function fitTip(el){
     }
   });
 }
+function trackEntityClick(key, surface){
+  try {
+    if (!key || typeof track !== "function") return;
+    const kind = (typeof ENTITIES !== "undefined" && ENTITIES[key] && ENTITIES[key].kind) || "term";
+    track("entity/click/" + String(surface || "inline") + "/" + kind + "/" + slugTag(key));
+  } catch (e) {}
+}
+function entityClickFeed(key, surface){
+  trackEntityClick(key, surface || "entity");
+  entityFeedView(key);
+}
 function entityTap(el, key){
+  trackEntityClick(key, "inline");
   /* stage5 */
   if (window.matchMedia && window.matchMedia("(min-width:1024px)").matches
       && typeof showEntityRail === "function" && ENTITIES[key]){
