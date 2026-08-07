@@ -193,6 +193,10 @@ jobs:
         if: steps.merge.outputs.added != '' && steps.push.outcome == 'success'
         run: |
           pip install requests pillow --quiet
+          # The D1 merge adds the new item immediately before this build.
+          # Fetch its X/oEmbed payload here so build_pages.py and
+          # build_data.py both receive the new item.embed in the same run.
+          python scripts/fetch_embeds.py
           python scripts/build_pages.py
           python scripts/build_data.py
 
