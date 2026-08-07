@@ -26,6 +26,54 @@ Shared handoff log for Codex and Claude.
 
 **다음**: 최신 `main` 기준 deploy guard 후 커밋·푸시하고, 실사이트에서 새 첫 문장과 카드 렌더를 확인한다.
 
+## 2026-08-07 Codex — 유명 투자자 5명 추가 (로컬, 미배포)
+
+**요청**: june이 13F 투자자 목록에 유명 투자자를 더 추가하자고 요청.
+
+**추가한 투자자**: 칼 아이칸(Icahn Enterprises), 체이스 콜먼(Tiger Global),
+안드레아스 할보르센(Viking Global), 하워드 막스(Oaktree Capital Management),
+마이클 버리(Scion Asset Management).
+
+**변경 파일**:
+- `scripts/fetch_13f.py` — SEC CIK/filing 로스터와 KO/EN/JA 설명 5건 추가.
+- `portfolios.json` — SEC 최신 수집본으로 16명 전체 재생성. 새 4명은 2026-03-31
+  보고기간, Scion은 SEC에서 확인되는 최신 2025-09-30 보고기간으로 표시.
+- `cusip_map.json` — 새 포지션 포함 누락 CUSIP 155건 중 97건을 OpenFIGI·SEC 고유명 매칭으로 추가.
+- `index.html` — 5명 인물 위키 매핑 및 운용사 도메인 로고/이니셜 폴백 추가.
+
+**제품 판단**: Ken Griffin(Citadel)·Jim Simons(Renaissance)은 현재 13F가 각각
+1만 건 이상·수천 건으로 지나치게 커서, Bridgewater를 제외했던 “유명 투자자의
+읽을 수 있는 공개 포트폴리오” 기준에 따라 이번 추가에서 제외했다.
+
+**검증**: SEC 수집 성공 16/16, 새 투자자 현재 보유 수
+Icahn 12 / Tiger Global 54 / Viking 77 / Oaktree 53 / Scion 8. 새 투자자
+티커 식별 커버리지는 각각 100.0% / 99.8% / 95.5% / 88.8% / 80.7%이며,
+미확인 CUSIP은 잘못된 티커를 만들지 않고 남겼다. Python 문법·JSON·diff 검사 통과.
+
+**상태/다음**: production에는 아직 반영하지 않음. 배포 전 최신 `origin/main` 기준
+rebase, `deploy_guard.py` 검증, 13F 목록·상세·스파크라인·사진 폴백 브라우저 확인 필요.
+
+## 2026-08-07 Codex — 인물·회사 이미지 매핑 복구 (로컬, 미배포)
+
+**문제**: 13F 확장 배포 뒤 인물 사진과 운용사 로고가 일부 사라짐. 원인은
+`jukan.png`·`schiff.png`·`bilello.png`가 레포에 없는 상대경로였고, 13F 운용사
+로고는 Google favicon 404 때 배지 전체를 제거하는 구조였음.
+
+**변경 파일**:
+- `index.html` — 세 stale avatar 경로의 런타임 폴백, 13F 11개 운용사 로고 약자 폴백,
+  기업 디렉터리 로고 실패 시 이니셜 폴백.
+- `scripts/build_pages.py` — `sources.json`의 정상 avatar URL을 기준으로 없는 상대경로를
+  빌드 시 자동 교정. 정상 URL·실제 로컬 파일은 보존.
+- `items.json`, `data/core.json` — 현재 세 카드의 잘못된 상대경로를 정상 URL로 교정.
+
+**검증**: JSON 파싱, `python3 -m py_compile scripts/build_pages.py scripts/build_data.py`,
+inline JS 7개 블록 파싱, `git diff --check`, source-media 자동 교정 테스트 통과.
+전체 `build_pages.py` 실행도 성공했으나 범위를 벗어난 생성 페이지 변경은 되돌리고 위 네
+파일만 남김.
+
+**상태/다음**: production에는 아직 반영하지 않음. 원격 `main`이 로컬 작업 기준보다
+앞서 있으므로 배포 전 최신 `origin/main` 기준 rebase와 `deploy_guard.py --verify` 필요.
+
 ## 2026-08-07 Codex — 13F CUSIP 매핑 자동화 + 전체 포지션 가치차트 기반
 
 **목표**: `ticker_coverage_pct`가 50% 미만이던 13F 화면을 숫자만 조작하지 않고, SEC 전체 포지션 기준으로 CUSIP→티커 매핑과 가치차트 대표성을 바로잡는다.

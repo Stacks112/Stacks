@@ -3518,6 +3518,7 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 .inv-card-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;}
 .inv-card-logo-badge{position:absolute;right:-3px;bottom:-3px;width:20px;height:20px;border-radius:50%;background:var(--bg-soft);box-shadow:0 0 0 2px var(--bg-soft);overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .inv-card-logo-badge img{width:100%;height:100%;object-fit:contain;display:block;}
+.inv-card-logo-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;letter-spacing:-.04em;color:var(--text);background:var(--bg-soft);}
 .inv-card-names{display:flex;flex-direction:column;gap:2px;}
 .inv-card-photos .inv-card-names{flex:1;min-width:0;}
 .inv-card-spark{width:100%;height:44px;margin-top:2px;border-radius:8px;overflow:hidden;position:relative;}
@@ -6149,33 +6150,47 @@ function queueInvestorSince(container, holdings, filed){
 /* v86: 인물 사진(위키피디아)·운용사 로고(favicon) 매핑, slug 기준. wiki는
    en.wikipedia.org 문서 제목(wikiPhoto가 그대로 사용), domain은 logoUrl(구글
    favicon)에 넘길 회사 도메인. 전부 실제 https://en.wikipedia.org/api/rest_v1/
-   page/summary/<wiki> 조회로 인물·설명 일치를 확인한 값이다(2026-08-05).
+   page/summary/<wiki> 조회로 인물·설명 일치를 확인한 값이다(2026-08-07).
    듀케인·아팔루사는 패밀리오피스라 공개 마케팅 도메인이 확인되지 않아 domain을
    비워둔다 - 존재하지 않는 도메인을 넣으면 구글 favicon이 에러 대신 의미 없는
    기본 아이콘을 돌려줄 수 있어(onerror 미발생), 아예 없는 편이 낫다. wiki/domain
    둘 다 없거나 slug가 매핑에 없으면 investorCardEl이 사진 영역 전체를 생략한다. */
 var INV_PROFILE = {
-  "berkshire": { wiki: "Warren_Buffett", domain: "berkshirehathaway.com" },
-  "pershing-square": { wiki: "Bill_Ackman", domain: "pershingsquareholdings.com" },
-  "ark": { wiki: "Cathie_Wood", domain: "ark-invest.com" },
-  "duquesne": { wiki: "Stanley_Druckenmiller" },
-  "appaloosa": { wiki: "David_Tepper" },
-  "situational-awareness": { wiki: "Leopold_Aschenbrenner", domain: "situationalawarenesslp.com" },
-  "third-point": { wiki: "Daniel_S._Loeb", domain: "thirdpoint.com" },
-  "baupost": { wiki: "Seth_Klarman", domain: "baupost.com" },
-  "tci": { wiki: "Chris_Hohn", domain: "tcifund.com" },
-  "coatue": { wiki: "Philippe_Laffont", domain: "coatue.com" },
-  "soros": { wiki: "George_Soros" }
+  "berkshire": { wiki: "Warren_Buffett", domain: "berkshirehathaway.com", logoLabel: "BH" },
+  "pershing-square": { wiki: "Bill_Ackman", domain: "pershingsquareholdings.com", logoLabel: "PS" },
+  "ark": { wiki: "Cathie_Wood", domain: "ark-invest.com", logoLabel: "ARK" },
+  "duquesne": { wiki: "Stanley_Druckenmiller", logoLabel: "DUQ" },
+  "appaloosa": { wiki: "David_Tepper", logoLabel: "APP" },
+  "situational-awareness": { wiki: "Leopold_Aschenbrenner", domain: "situationalawarenesslp.com", logoLabel: "SA" },
+  "third-point": { wiki: "Daniel_S._Loeb", domain: "thirdpoint.com", logoLabel: "TP" },
+  "baupost": { wiki: "Seth_Klarman", domain: "baupost.com", logoLabel: "BP" },
+  "tci": { wiki: "Chris_Hohn", domain: "tcifund.com", logoLabel: "TCI" },
+  "coatue": { wiki: "Philippe_Laffont", domain: "coatue.com", logoLabel: "CT" },
+  "soros": { wiki: "George_Soros", logoLabel: "SFM" },
+  "carl-icahn": { wiki: "Carl_Icahn", domain: "icahnenterprises.com", logoLabel: "IE" },
+  "tiger-global": { wiki: "Chase_Coleman_III", domain: "tigerglobal.com", logoLabel: "TG" },
+  "viking": { wiki: "Andreas_Halvorsen", domain: "vikingglobal.com", logoLabel: "VG" },
+  "oaktree": { wiki: "Howard_Marks_(investor)", domain: "oaktreecapital.com", logoLabel: "OC" },
+  "scion": { wiki: "Michael_Burry", logoLabel: "SC" }
 };
 /* 이니셜 폴백 원 색상을 slug 기준 해시로 10갈래(.ic0~.ic9, CSS)에 분산시킨다.
    전에는 전 투자자가 같은 고정 그라디언트를 써서, 사진이 아직 안 뜬 순간이나
    위키 조회가 실패한 경우 이름 첫 글자가 같은 두 투자자(ARK/Appaloosa 둘 다 "A")가
-   색까지 같아 구분이 안 됐다(2026-08-05 스크린샷 리뷰로 확인). 현재 11개 slug
-   기준 10갈래에서 전부 서로 다른 칸에 떨어진다(검증 완료). */
+   색까지 같아 구분이 안 됐다(2026-08-05 스크린샷 리뷰로 확인). 현재 16개 slug
+   기준 10갈래에서 일부 색상은 공유할 수 있지만 사진·이름·회사 배지로 구분된다. */
 function invAvatarClass(key){
   var s = String(key || ""), h = 0;
   for (var i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; }
   return "ic" + (h % 10);
+}
+function invLogoBadgeHtml(prof, rawName){
+  if (!prof || !prof.logoLabel) return "";
+  var label = esc(prof.logoLabel || initial(rawName || "?"));
+  var img = prof.domain
+    ? '<img src="' + logoUrl(prof.domain) + '" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false">'
+    : "";
+  return '<span class="inv-card-logo-badge">' + img
+    + '<span class="inv-card-logo-fallback"' + (prof.domain ? ' hidden' : '') + '>' + label + '</span></span>';
 }
 function investorCardEl(inv, S){
   var b = document.createElement("button");
@@ -6196,9 +6211,7 @@ function investorCardEl(inv, S){
   if (prof && (prof.wiki || prof.domain)){
     var initCh = esc(initial(rawName || "?"));
     var avatarCls = "inv-card-photo " + invAvatarClass(slug);
-    var logoHtml = prof.domain
-      ? '<span class="inv-card-logo-badge"><img src="' + logoUrl(prof.domain) + '" alt="" onerror="this.parentNode.remove()"></span>'
-      : "";
+    var logoHtml = invLogoBadgeHtml(prof, rawName);
     topHtml = '<div class="inv-card-photos"><div class="inv-card-photo-wrap">'
       + '<div class="' + avatarCls + '" data-init="' + initCh + '">' + initCh + "</div>"
       + logoHtml + "</div>" + namesHtml + "</div>";
@@ -7101,8 +7114,8 @@ function entityPhotoEnhance(head, key){
     const src = ITEMS.find(function(i){ return i.source === key; });
     if (!src) return;
     if (src.wiki && typeof wikiPhoto === "function"){
-      wikiPhoto(src.wiki).then(function(u){ put(u || src.avatarImg); });
-    } else if (src.avatarImg){ put(src.avatarImg); }
+      wikiPhoto(src.wiki).then(function(u){ put(u || avatarSrcForItem(src)); });
+    } else if (avatarSrcForItem(src)){ put(avatarSrcForItem(src)); }
   } catch (e) {}
 }
 function ceoEnhance(root){
@@ -8956,6 +8969,19 @@ var AVATAR_TW = {
   "エミン・ユルマズ (Emin Yurumazu)": "yurumazu",
   "後藤達也 (Tatsuya Goto)": "goto_finance"
 };
+/* A few older cards carried a relative avatar filename that was never added to
+   the repository. Keep this repair map in the front end as a last line of
+   defence; build_pages.py also normalizes the source data before publishing. */
+var AVATAR_FALLBACKS = {
+  "jukan.png": "https://unavatar.io/twitter/jukan05?fallback=false",
+  "schiff.png": "https://unavatar.io/twitter/PeterSchiff?fallback=false",
+  "bilello.png": "https://unavatar.io/twitter/charliebilello?fallback=false"
+};
+function avatarSrcForItem(item){
+  var raw = item && item.avatarImg ? String(item.avatarImg) : "";
+  var key = raw.replace(/^\.\//, "");
+  return AVATAR_FALLBACKS[key] || raw;
+}
 function v83DirEntries(kind){
   var entries = [];
   if (kind === "company"){
@@ -8972,7 +8998,8 @@ function v83DirEntries(kind){
     ITEMS.forEach(function(i){
       var s0 = srcInfo[i.source] = srcInfo[i.source] || { cat: i.category, n: 0, avatar: null, wiki: null };
       s0.n++;
-      if (!s0.avatar && i.avatarImg) s0.avatar = i.avatarImg;
+      var itemAvatar = avatarSrcForItem(i);
+      if (!s0.avatar && itemAvatar) s0.avatar = itemAvatar;
       if (!s0.wiki && i.wiki) s0.wiki = i.wiki;
     });
     Object.keys(srcInfo).forEach(function(k){
@@ -8999,7 +9026,7 @@ function v83DirGrid(list, entries, T){
     var safe = String(x.key).replace(/'/g, "\\'");
     var cover;
     if (x.img && x.imgKind === "face") cover = '<img class="v83dc-face" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.remove()">';
-    else if (x.img) cover = '<img class="v83dc-logo" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.remove()">';
+    else if (x.img) cover = '<img class="v83dc-logo" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="v83dc-init" hidden>' + esc(initial(x.name || "?")) + '</span>';
     else cover = '<span class="v83dc-init">' + esc(initial(x.name || "?")) + '</span>';
     return '<button class="v83dc" data-ent="' + esc(x.key) + '" onclick="entityFeedView(\'' + safe + '\')">'
       + '<span class="v83dc-cover">' + cover + '</span>'
@@ -9292,16 +9319,17 @@ function hydrateImagesNow(){
     const els = document.querySelectorAll('[data-avatar="' + item.id + '"]');
     if (!els.length || !item.wiki) return;
     wikiPhoto(item.wiki).then(src => {
-      const chosen = src || item.avatarImg;
+      const fallback = avatarSrcForItem(item);
+      const chosen = src || fallback;
       if (!chosen) return;
-      els.forEach(el => swapInPhoto(el, chosen, item.source, src ? item.avatarImg : null));
+      els.forEach(el => swapInPhoto(el, chosen, item.source, src ? fallback : null));
     });
   });
 }
 
 function avatarHtml(item, extraClass){
   const cls = extraClass ? extraClass + " avatar" : "avatar";
-  const a = item.avatarImg, isUrl = a && /^https?:\/\//.test(a);
+  const a = avatarSrcForItem(item), isUrl = a && /^https?:\/\//.test(a);
   if (a && (isUrl || !item.wiki)){
     return `<div class="${cls} photo" data-init="${esc(initial(item.source))}" data-lang="${esc(item.sourceLang.toLowerCase())}"><img src="${esc(a)}" alt="${esc(item.source)}" loading="lazy" onerror="avatarFail(this)"></div>`;
   }
@@ -12904,7 +12932,7 @@ if ("serviceWorker" in navigator){
 
 /* Ask the worker to store the local avatar files so offline shows faces, not letters. */
 function warmCache(){
-  const files = ITEMS.map(i => i.avatarImg).filter(Boolean);
+  const files = ITEMS.map(i => avatarSrcForItem(i)).filter(Boolean);
   const unique = files.filter((f, i) => files.indexOf(f) === i);
   unique.forEach(f => { fetch(f, { cache: "no-cache" }).catch(() => {}); });
 }
@@ -13398,8 +13426,9 @@ function buildIntroCards(){
   /* ---- screen builders ---- */
   function scrRead(it){
     var st = itemStance(it), sm = st ? stanceMeta(st) : null, cov = it.cover || {};
-    var av = it.avatarImg
-      ? '<img class="psr-av" src="' + esc(it.avatarImg) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+    var itemAvatar = avatarSrcForItem(it);
+    var av = itemAvatar
+      ? '<img class="psr-av" src="' + esc(itemAvatar) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
       : '<span class="psr-av"></span>';
     return '<div class="ph-scr">' + phStatus(true)
       + '<div class="psr-cover" style="--cf:' + esc(cov.from || "#1f2937") + ';--ct:' + esc(cov.to || "#0b1220") + '">'
@@ -13455,7 +13484,8 @@ function buildIntroCards(){
     var pt = pcnt.bull + pcnt.bear + pcnt.watch || 1;
     var wB = Math.round(pcnt.bull / pt * 100), wW = Math.round(pcnt.watch / pt * 100), wR = Math.max(0, 100 - wB - wW);
     var takes = profItems.filter(function(i){ return tx(i.why) || tx(i.gist); }).slice(0, 2).map(function(i){
-      var av = i.avatarImg ? '<img src="' + esc(i.avatarImg) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+      var itemAvatar = avatarSrcForItem(i);
+      var av = itemAvatar ? '<img src="' + esc(itemAvatar) + '" alt="" onerror="this.style.visibility=\'hidden\'">'
         : '<span class="psr-av" style="width:20px;height:20px"></span>';
       return '<div class="psp-take">' + av + '<span>' + esc((tx(i.why) || tx(i.gist)).slice(0, 110)) + '</span></div>';
     }).join("");
@@ -13521,7 +13551,8 @@ function buildIntroFeatured(){
   var cardsHtml = hot.map(function(it){
     var cov = it.cover || {}, ci = null; try { ci = coverImg(it); } catch (e) {}
     var img = (ci && ci.url) ? '<img src="' + esc(ci.url) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '';
-    var av = it.avatarImg ? '<img src="' + esc(it.avatarImg) + '" alt="" onerror="this.style.display=\'none\'">' : '';
+    var itemAvatar = avatarSrcForItem(it);
+    var av = itemAvatar ? '<img src="' + esc(itemAvatar) + '" alt="" onerror="this.style.display=\'none\'">' : '';
     var st = itemStance(it), sm = st ? stanceMeta(st) : null;
     var lbl = cov.label ? '<span class="feat-lbl">' + esc(cov.label) + '</span>' : '';
     var idJs = String(it.id).replace(/'/g, "\\'");
@@ -13615,8 +13646,9 @@ function buildIntroRanks(){
      and says so in a footnote. No live scoring, no worker calls. */
   var pool = [], seen = {};
   ITEMS.forEach(function(i){
-    if (i.category !== "investor" || !i.avatarImg) return; var n = dispName(i.source);
-    if (seen[n]) return; seen[n] = 1; pool.push({ name: n, av: i.avatarImg });
+    var itemAvatar = avatarSrcForItem(i);
+    if (i.category !== "investor" || !itemAvatar) return; var n = dispName(i.source);
+    if (seen[n]) return; seen[n] = 1; pool.push({ name: n, av: itemAvatar });
   });
   for (var a = pool.length - 1; a > 0; a--){ var j = Math.floor(Math.random() * (a + 1)); var t = pool[a]; pool[a] = pool[j]; pool[j] = t; }
   var pick = pool.slice(0, 4);
@@ -13665,11 +13697,12 @@ function buildIntroHow(){
   /* a RANDOM investor for the "follow" example — changes on every refresh */
   var src = null;
   try {
-    var withAv = ITEMS.filter(function(i){ return i.avatarImg; });
+    var withAv = ITEMS.filter(function(i){ return avatarSrcForItem(i); });
     if (withAv.length) src = withAv[Math.floor(Math.random() * withAv.length)];
   } catch (e) {}
-  var av = (src && src.avatarImg)
-    ? '<span class="ihc-av"><img src="' + esc(src.avatarImg) + '" alt="" onerror="this.remove()"></span>'
+  var srcAvatar = src ? avatarSrcForItem(src) : "";
+  var av = srcAvatar
+    ? '<span class="ihc-av"><img src="' + esc(srcAvatar) + '" alt="" onerror="this.remove()"></span>'
     : '<span class="ihc-av">★</span>';
   var fname = src ? esc(dispName(src.source)) : (PH.howFollowName || "Top investor");
   var role = (PH.howRole || "Investor");

@@ -18,8 +18,11 @@ import html
 import json
 import re
 import hashlib
+import os
 import urllib.parse
 from datetime import datetime, timezone
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 BASE = "https://stacksdaily.com/"
 SITE = "Stacks"
@@ -2652,9 +2655,44 @@ def _ping_indexnow(items):
         print("[indexnow] skip: " + str(e))
 
 
+def _normalize_source_media(doc):
+    """Repair stale per-card avatar paths from the source registry.
+
+    The publisher occasionally left an old relative filename on one card even
+    though the same source had a valid avatar URL in sources.json. Keep
+    items.json as the publisher's input, but self-heal that metadata during the
+    normal build so the app, SEO pages, and OG cards all use the same source of
+    truth. Existing local files and valid URLs are preserved.
+    """
+    try:
+        srcmeta = json.load(open(os.path.join(ROOT, "sources.json"), encoding="utf-8"))
+    except Exception:
+        return False
+    by_source = {}
+    for rec in srcmeta.values():
+        if isinstance(rec, dict) and rec.get("source"):
+            by_source.setdefault(rec["source"], rec)
+    changed = False
+    for item in doc.get("items", []):
+        rec = by_source.get(item.get("source"))
+        if not rec:
+            continue
+        avatar = item.get("avatarImg") or ""
+        is_url = isinstance(avatar, str) and avatar.startswith(("http://", "https://"))
+        exists = bool(avatar) and os.path.exists(os.path.join(ROOT, avatar))
+        replacement = rec.get("avatarImg") or ""
+        if replacement and avatar and (not is_url and not exists) and replacement != avatar:
+            item["avatarImg"] = replacement
+            changed = True
+    return changed
+
+
 def main():
     import os
     d = json.load(open("items.json", encoding="utf-8"))
+    if _normalize_source_media(d):
+        json.dump(d, open("items.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("[media] stale source avatar paths normalized from sources.json")
     # --- Stacks house rule: em/en dashes are BANNED site-wide. Strip them at
     # build time so the site self-heals no matter what the generator produced. ---
     def _dedash(t, lang):

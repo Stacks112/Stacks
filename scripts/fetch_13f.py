@@ -205,6 +205,80 @@ INVESTORS = [
             "ja": "ジョージ・ソロスが設立した投資運用会社。グローバルマクロとイベントドリブンの視点で株式・債券・通貨などを運用する。13Fは公開された米国株ポジションの一部のみを示す。",
         },
     },
+    {
+        # CIK/filer name verified against data.sec.gov/submissions/CIK0000921669.json
+        # (2026-08-07): latest 13F period 2026-03-31.
+        "slug": "carl-icahn",
+        "cik": "0000921669",
+        "filer": "ICAHN CARL C",
+        "name": {"ko": "아이칸 엔터프라이즈", "en": "Icahn Enterprises", "ja": "アイカーン・エンタープライジズ"},
+        "manager": {"ko": "칼 아이칸", "en": "Carl Icahn", "ja": "カール・アイカーン"},
+        "entity_key": None,
+        "desc": {
+            "ko": "칼 아이칸이 지배하는 투자회사로, 행동주의 투자와 기업 지배구조·자본배분 변화 요구로 잘 알려져 있다. 13F는 다양한 전략 중 공개된 미국 상장주식 포지션만 보여준다.",
+            "en": "An investment company controlled by Carl Icahn, known for activist campaigns and pushing companies to change governance and capital allocation. Its 13F shows only the public U.S. equity portion of a broader set of strategies.",
+            "ja": "カール・アイカーンが支配する投資会社。アクティビスト投資や企業のガバナンス・資本配分の変更要求で知られる。13Fは幅広い戦略のうち公開された米国上場株ポジションのみを示す。",
+        },
+    },
+    {
+        # CIK/filer name verified against data.sec.gov/submissions/CIK0001167483.json
+        # (2026-08-07): latest 13F period 2026-03-31.
+        "slug": "tiger-global",
+        "cik": "0001167483",
+        "filer": "TIGER GLOBAL MANAGEMENT LLC",
+        "name": {"ko": "타이거 글로벌", "en": "Tiger Global", "ja": "タイガー・グローバル"},
+        "manager": {"ko": "체이스 콜먼", "en": "Chase Coleman", "ja": "チェース・コールマン"},
+        "entity_key": None,
+        "desc": {
+            "ko": "체이스 콜먼이 이끄는 글로벌 성장주 투자사로, 인터넷·소프트웨어·소비자 플랫폼 기업에 장기적으로 투자해 왔다. 13F는 공개된 미국 주식 포트폴리오만 보여준다.",
+            "en": "A global growth investor led by Chase Coleman that has backed internet, software and consumer-platform companies across public and private markets. Its 13F shows only the public U.S. equity portfolio.",
+            "ja": "チェース・コールマン率いるグローバル成長株投資会社。インターネット、ソフトウェア、消費者向けプラットフォーム企業に公開・非公開市場の両方で投資してきた。13Fは公開された米国株ポートフォリオのみを示す。",
+        },
+    },
+    {
+        # CIK/filer name verified against data.sec.gov/submissions/CIK0001103804.json
+        # (2026-08-07): latest 13F period 2026-03-31.
+        "slug": "viking",
+        "cik": "0001103804",
+        "filer": "VIKING GLOBAL INVESTORS LP",
+        "name": {"ko": "바이킹 글로벌", "en": "Viking Global", "ja": "バイキング・グローバル"},
+        "manager": {"ko": "안드레아스 할보르센", "en": "Andreas Halvorsen", "ja": "アンドレアス・ハルヴォルセン"},
+        "entity_key": None,
+        "desc": {
+            "ko": "안드레아스 할보르센이 공동 설립한 글로벌 롱·숏 투자사로, 기업의 펀더멘털과 산업 변화에 기반해 소수의 고확신 포지션을 운용한다. 13F는 공개된 미국 주식 롱 포지션만 보여준다.",
+            "en": "A global long-short investment firm co-founded by Andreas Halvorsen, building high-conviction positions around company fundamentals and industry change. Its 13F shows only disclosed U.S. equity long positions.",
+            "ja": "アンドレアス・ハルヴォルセンが共同設立したグローバル・ロングショート投資会社。企業のファンダメンタルズと産業の変化を軸に、高い確信度のポジションを運用する。13Fは公開された米国株ロングポジションのみを示す。",
+        },
+    },
+    {
+        # CIK/filer name verified against the 2026-03-31 Oaktree 13F filing.
+        "slug": "oaktree",
+        "cik": "0000949509",
+        "filer": "OAKTREE CAPITAL MANAGEMENT LP",
+        "name": {"ko": "오크트리 캐피털", "en": "Oaktree Capital Management", "ja": "オークツリー・キャピタル・マネジメント"},
+        "manager": {"ko": "하워드 막스", "en": "Howard Marks", "ja": "ハワード・マークス"},
+        "entity_key": None,
+        "desc": {
+            "ko": "하워드 막스가 공동 설립한 대체투자 운용사로, 리스크·사이클·안전마진을 중시하는 투자 철학으로 유명하다. 13F는 채권·사모·부실채권 등 전체 전략 중 공개된 미국 주식 부분만 보여준다.",
+            "en": "An alternative investment firm co-founded by Howard Marks, known for its focus on risk, cycles and margin of safety. Its 13F captures only the public U.S. equity portion of a broader credit, private-market and distressed-investing platform.",
+            "ja": "ハワード・マークスが共同設立したオルタナティブ投資会社。リスク、サイクル、安全余裕度を重視する投資哲学で知られる。13Fはクレジット、プライベート市場、不良債権など幅広い戦略のうち公開された米国株部分のみを示す。",
+        },
+    },
+    {
+        # Scion's latest available 13F is 2025-09-30 as of 2026-08-07;
+        # the UI exposes the filing period so the staleness is explicit.
+        "slug": "scion",
+        "cik": "0001649339",
+        "filer": "Scion Asset Management, LLC",
+        "name": {"ko": "사이온 애셋 매니지먼트", "en": "Scion Asset Management", "ja": "サイオン・アセット・マネジメント"},
+        "manager": {"ko": "마이클 버리", "en": "Michael Burry", "ja": "マイケル・バーリ"},
+        "entity_key": None,
+        "desc": {
+            "ko": "마이클 버리가 이끄는 투자사로, 영화 ‘빅쇼트’로 널리 알려진 역발상·가치투자 스타일을 추구한다. SEC에 공개된 최신 13F는 회사 전체 전략이 아닌 보고 대상 미국 주식 포지션만 보여준다.",
+            "en": "An investment firm led by Michael Burry, widely known for the contrarian and value-oriented style portrayed in The Big Short. Its latest available SEC 13F shows only reportable U.S. equity positions, not the firm's full strategy.",
+            "ja": "『マネー・ショート 華麗なる大逆転』で広く知られるマイケル・バーリ率いる投資会社。逆張り・バリュー投資を志向し、SECで公開された最新13Fは会社全体の戦略ではなく報告対象の米国株ポジションのみを示す。",
+        },
+    },
 ]
 
 
@@ -497,9 +571,9 @@ def merge_share_classes(groups: dict, cusip_map: dict):
     ★ putCall rides along inside the key. Common stock, puts and calls on the
     same ticker/CUSIP must never merge into one bucket (a long stock position
     and a put on the same name are opposite bets), so every key here is really
-    a (identity, putCall) pair. For the five original investors putCall is
-    always None on every row, so this collapses back to exactly the old
-    ("T", ticker) / ("C", cusip) keying - no behavior change for them.
+    a (identity, putCall) pair. For filings without options putCall is always
+    None on every row, so this collapses back to the old ("T", ticker) /
+    ("C", cusip) keying - no behavior change for those portfolios.
     """
     by_ticker = {}
     standalone = []
