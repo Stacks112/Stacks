@@ -6159,19 +6159,33 @@ var INV_PROFILE = {
   "berkshire": { wiki: "Warren_Buffett", domain: "berkshirehathaway.com", logoLabel: "BH" },
   "pershing-square": { wiki: "Bill_Ackman", domain: "pershingsquareholdings.com", logoLabel: "PS" },
   "ark": { wiki: "Cathie_Wood", domain: "ark-invest.com", logoLabel: "ARK" },
-  "duquesne": { wiki: "Stanley_Druckenmiller", logoLabel: "DUQ" },
+  "duquesne": { wiki: "Stanley_Druckenmiller", photo: "https://unavatar.io/twitter/Druckenmiller?fallback=false", logoLabel: "DUQ" },
   "appaloosa": { wiki: "David_Tepper", logoLabel: "APP" },
   "situational-awareness": { wiki: "Leopold_Aschenbrenner", domain: "situationalawarenesslp.com", logoLabel: "SA" },
-  "third-point": { wiki: "Daniel_S._Loeb", domain: "thirdpoint.com", logoLabel: "TP" },
+  "third-point": { wiki: "Daniel_S._Loeb", photo: "https://unavatar.io/twitter/DanielSLoeb?fallback=false", domain: "thirdpoint.com", logoLabel: "TP" },
   "baupost": { wiki: "Seth_Klarman", domain: "baupost.com", logoLabel: "BP" },
   "tci": { wiki: "Chris_Hohn", domain: "tcifund.com", logoLabel: "TCI" },
-  "coatue": { wiki: "Philippe_Laffont", domain: "coatue.com", logoLabel: "CT" },
+  "coatue": { wiki: "Philippe_Laffont", photo: "https://unavatar.io/twitter/PhilippeLaffont?fallback=false", domain: "coatue.com", logoLabel: "CT" },
   "soros": { wiki: "George_Soros", logoLabel: "SFM" },
   "carl-icahn": { wiki: "Carl_Icahn", domain: "icahnenterprises.com", logoLabel: "IE" },
-  "tiger-global": { wiki: "Chase_Coleman_III", domain: "tigerglobal.com", logoLabel: "TG" },
+  "tiger-global": { wiki: "Chase_Coleman_III", photo: "https://unavatar.io/twitter/ChaseColemanIII?fallback=false", domain: "tigerglobal.com", logoLabel: "TG" },
   "viking": { wiki: "Andreas_Halvorsen", domain: "vikingglobal.com", logoLabel: "VG" },
   "oaktree": { wiki: "Howard_Marks_(investor)", domain: "oaktreecapital.com", logoLabel: "OC" },
-  "scion": { wiki: "Michael_Burry", logoLabel: "SC" }
+  "scion": { wiki: "Michael_Burry", photo: "https://unavatar.io/twitter/MichaelJBurry?fallback=false", logoLabel: "SC" }
+};
+var INV_LOGO_FALLBACK = {
+  "berkshire": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Berkshire-Hathaway-Logo.svg/330px-Berkshire-Hathaway-Logo.svg.png",
+  "pershing-square": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Pershing_Square_Holdings_logo.svg/330px-Pershing_Square_Holdings_logo.svg.png",
+  "ark": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Ark_Invest_logo.svg/330px-Ark_Invest_logo.svg.png",
+  "situational-awareness": "https://framerusercontent.com/images/orQrgnab9OSqus2jDb9X85Ff2ow.jpg",
+  "third-point": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Third_Point_LLC_Logo.svg/330px-Third_Point_LLC_Logo.svg.png",
+  "baupost": "https://upload.wikimedia.org/wikipedia/commons/9/90/Baupost_group_logo.png",
+  "coatue": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Coatue-logo.png/330px-Coatue-logo.png",
+  "soros": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Soros_Fund_Mgmt_logo.svg/330px-Soros_Fund_Mgmt_logo.svg.png",
+  "carl-icahn": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Icahn_Enterprises_Logo.gif/330px-Icahn_Enterprises_Logo.gif",
+  "tiger-global": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Tiger_Global.png/330px-Tiger_Global.png",
+  "viking": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Viking_Global_Investors_logo.png/330px-Viking_Global_Investors_logo.png",
+  "scion": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Scion_Asset_Management.png/330px-Scion_Asset_Management.png"
 };
 /* 이니셜 폴백 원 색상을 slug 기준 해시로 10갈래(.ic0~.ic9, CSS)에 분산시킨다.
    전에는 전 투자자가 같은 고정 그라디언트를 써서, 사진이 아직 안 뜬 순간이나
@@ -6183,14 +6197,30 @@ function invAvatarClass(key){
   for (var i = 0; i < s.length; i++){ h = (h * 31 + s.charCodeAt(i)) >>> 0; }
   return "ic" + (h % 10);
 }
-function invLogoBadgeHtml(prof, rawName){
+function invLogoBadgeHtml(prof, rawName, slug){
   if (!prof || !prof.logoLabel) return "";
   var label = esc(prof.logoLabel || initial(rawName || "?"));
-  var img = prof.domain
-    ? '<img src="' + logoUrl(prof.domain) + '" alt="" onerror="this.hidden=true;this.nextElementSibling.hidden=false">'
+  var curated = (typeof INV_LOGO_FALLBACK !== "undefined" && slug) ? (INV_LOGO_FALLBACK[slug] || "") : "";
+  var primary = curated || (prof.domain ? logoUrl(prof.domain) : "");
+  var fallback = (curated && prof.domain) ? logoUrl(prof.domain) : "";
+  var img = primary
+    ? '<img src="' + esc(primary) + '" alt=""' + (fallback ? ' data-fb="' + esc(fallback) + '"' : '') + ' onerror="invLogoFail(this)">'
     : "";
   return '<span class="inv-card-logo-badge">' + img
-    + '<span class="inv-card-logo-fallback"' + (prof.domain ? ' hidden' : '') + '>' + label + '</span></span>';
+    + '<span class="inv-card-logo-fallback"' + (primary ? ' hidden' : '') + '>' + label + '</span></span>';
+}
+function invLogoFail(img){
+  try {
+    var fb = img.getAttribute("data-fb");
+    if (fb && !img.getAttribute("data-fb-tried")){
+      img.setAttribute("data-fb-tried", "1");
+      img.src = fb;
+      return;
+    }
+    img.hidden = true;
+    var fallback = img.nextElementSibling;
+    if (fallback) fallback.hidden = false;
+  } catch (e) {}
 }
 function investorCardEl(inv, S){
   var b = document.createElement("button");
@@ -6211,7 +6241,7 @@ function investorCardEl(inv, S){
   if (prof && (prof.wiki || prof.domain)){
     var initCh = esc(initial(rawName || "?"));
     var avatarCls = "inv-card-photo " + invAvatarClass(slug);
-    var logoHtml = invLogoBadgeHtml(prof, rawName);
+    var logoHtml = invLogoBadgeHtml(prof, rawName, slug);
     topHtml = '<div class="inv-card-photos"><div class="inv-card-photo-wrap">'
       + '<div class="' + avatarCls + '" data-init="' + initCh + '">' + initCh + "</div>"
       + logoHtml + "</div>" + namesHtml + "</div>";
@@ -6230,9 +6260,12 @@ function investorCardEl(inv, S){
      "&"가 든 이름에서 "&amp;"가 그대로 보이는 이중 이스케이프가 된다. */
   if (prof && prof.wiki){
     var photoEl = b.querySelector(".inv-card-photo");
-    wikiPhoto(prof.wiki).then(function(src){
-      if (!src || !photoEl || !b.isConnected) return;
-      swapInPhoto(photoEl, src, rawName);
+    var photoFallback = prof.photo || null;
+    var photoPromise = prof.wiki ? wikiPhoto(prof.wiki) : Promise.resolve(null);
+    photoPromise.then(function(src){
+      var chosen = src || photoFallback;
+      if (!chosen || !photoEl || !b.isConnected) return;
+      swapInPhoto(photoEl, chosen, rawName, chosen !== photoFallback ? photoFallback : null);
     });
   }
   return b;
@@ -8967,7 +9000,8 @@ var AVATAR_TW = {
   "Marc Rubinstein (Net Interest)": "MarcRuby",
   "SemiAnalysis": "dylan522p",
   "エミン・ユルマズ (Emin Yurumazu)": "yurumazu",
-  "後藤達也 (Tatsuya Goto)": "goto_finance"
+  "後藤達也 (Tatsuya Goto)": "goto_finance",
+  "唐鎌大輔 (Mizuho)": "kanhan0110"
 };
 /* A few older cards carried a relative avatar filename that was never added to
    the repository. Keep this repair map in the front end as a last line of
@@ -8989,7 +9023,8 @@ function v83DirEntries(kind){
       var e = ENTITIES[k]; if (!e || e.kind !== "company") return;
       var n = ITEMS.filter(function(i){ return itemEntities(i).has(k); }).length;
       if (!n) return; /* only companies that actually have coverage */
-      entries.push({ key: k, name: entName(k), img: e.logo ? logoUrl(e.logo) : null, imgKind: "logo",
+      var logoDomain = entityLogoDomain(e);
+      entries.push({ key: k, name: entName(k), img: logoDomain ? logoUrl(logoDomain) : null, logoFallback: logoDomain ? entityLogoFallbackUrl(logoDomain) : null, imgKind: "logo",
         meta: [(e.sector && (e.sector[LANG] || e.sector.en)) || "", e.ticker ? String(e.ticker).toUpperCase() : ""].filter(Boolean).join(" · "),
         desc: (e.desc && (e.desc[LANG] || e.desc.en)) || "", n: n });
     });
@@ -9026,7 +9061,7 @@ function v83DirGrid(list, entries, T){
     var safe = String(x.key).replace(/'/g, "\\'");
     var cover;
     if (x.img && x.imgKind === "face") cover = '<img class="v83dc-face" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.remove()">';
-    else if (x.img) cover = '<img class="v83dc-logo" src="' + esc(x.img) + '" alt="" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="v83dc-init" hidden>' + esc(initial(x.name || "?")) + '</span>';
+    else if (x.img) cover = '<img class="v83dc-logo" src="' + esc(x.img) + '" data-fb="' + esc(x.logoFallback || "") + '" alt="" loading="lazy" onerror="entityLogoFail(this)"><span class="v83dc-init" hidden>' + esc(initial(x.name || "?")) + '</span>';
     else cover = '<span class="v83dc-init">' + esc(initial(x.name || "?")) + '</span>';
     return '<button class="v83dc" data-ent="' + esc(x.key) + '" onclick="entityFeedView(\'' + safe + '\')">'
       + '<span class="v83dc-cover">' + cover + '</span>'
@@ -9143,6 +9178,28 @@ async function wikiPhoto(title){
   }
 }
 const logoUrl = domain => "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=128";
+function domainFromWebsite(v){
+  try { return new URL(v).hostname.replace(/^www\./, ""); } catch (e) { return ""; }
+}
+function entityLogoDomain(e){
+  return e ? (e.logo || domainFromWebsite(e.website)) : "";
+}
+function entityLogoFallbackUrl(domain){
+  return domain ? "https://icons.duckduckgo.com/ip3/" + encodeURIComponent(domain) + ".ico" : "";
+}
+function entityLogoFail(img){
+  try {
+    var fb = img.getAttribute("data-fb");
+    if (fb && !img.getAttribute("data-fb-tried")){
+      img.setAttribute("data-fb-tried", "1");
+      img.src = fb;
+      return;
+    }
+    img.hidden = true;
+    var fallback = img.nextElementSibling;
+    if (fallback) fallback.hidden = false;
+  } catch (e) {}
+}
 
 /* ---------------- card cover images (content-driven, no meaningless gradient) ----------------
    Priority: (1) primary company entity logo, (2) curated topic/index/org image
@@ -9201,7 +9258,7 @@ function coverImg(item){
     const mkUp = mk ? String(mk).toUpperCase() : null;
     const mkTagged = mk && (tagset[mkUp] ||
       (ENTITIES[mk] && (ENTITIES[mk].aliases||[]).some(a => tagset[String(a).toUpperCase()])));
-    const companyLogo = () => (mk && ENTITIES[mk] && ENTITIES[mk].logo) ? logoUrl(ENTITIES[mk].logo) : null;
+    const companyLogo = () => { const e = mk && ENTITIES[mk]; const d = entityLogoDomain(e); return d ? logoUrl(d) : null; };
     /* a mentioned person is the subject → lead with their photo */
     const personFace = () => {
       if (mk && ENTITIES[mk] && ENTITIES[mk].kind === "person"){
