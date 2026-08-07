@@ -4284,10 +4284,6 @@ function srcBlockHtml(item){
       "</div>" +
       '<div class="xemb-d"><a href="' + url + '" target="_blank" rel="noopener">' + esc(e.date || "") + "</a></div>" +
     "</div>" + close;
-    if (item.foldSource){
-      return '<details class="src-fold"><summary><span>' + esc(S.sourceFold) +
-        '</span><span class="fold-arrow">+</span></summary>' + block + '</details>';
-    }
     return block;
   }
   const q = item.quote;
@@ -12767,10 +12763,7 @@ function xWidgets(){
 }
 let XOBS = null;
 function xEmbedScan(){
-  const hosts = [...document.querySelectorAll(".xreal:not([data-xseen])")].filter(h => {
-    const fold = h.closest(".src-fold");
-    return !fold || fold.open;
-  });
+  const hosts = [...document.querySelectorAll(".xreal:not([data-xseen])")];
   if (!hosts.length) return;
   if (!("IntersectionObserver" in window)){
     hosts.forEach(h => { h.setAttribute("data-xseen", "1"); xEmbedMount(h); });

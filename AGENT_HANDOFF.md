@@ -3099,3 +3099,10 @@ Next:
 - `p/bessent-wages-25th-percentile-lead.html` 및 `p/en`, `p/ja`에 OG/Twitter 이미지 메타 복구.
 - 기존 `og/bessent-wages-25th-percentile-lead.png` 존재 확인.
 - Pages 1차 배포는 성공했으며, 이 후속 수정 push 후 정적 페이지를 다시 확인함.
+## 2026-08-07 Codex — restore Bessent context and keep X embed visible
+
+- Added the missing background for Scott Bessent's August 6 X statement and the K-shaped-economy dispute.
+- Set the Bessent source embed to remain visible; removed the renderer's fold gate and immediate-mount filter.
+- Regenerated `data/core.json`, `data/gist.ko.0.json`, `data/manifest.json`, and the Korean static article page.
+- Checks passed: JSON parse, term coverage, source dependence, editorial round, weekly editorial, and deploy guard.
+- Pending: commit/push and production Pages verification.
