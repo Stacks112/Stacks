@@ -108,4 +108,46 @@ test.describe("13F investor view state", () => {
     await expect(page.locator("#feedList .inv-table")).toBeVisible();
     await expect(page.locator("#feedList .series-head-name")).toContainText("›");
   });
+
+  test.describe("responsive widths", () => {
+    test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
+
+    test("13F rail state survives 1024px and 1180px theme transitions", async ({ page }) => {
+      for (const width of [1024, 1180]) {
+        await page.setViewportSize({ width, height: 900 });
+        await openInvestors(page);
+
+        await page.locator('#v83nav .v83-link[data-k="themes"]').click();
+        await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+        await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
+        await expect(page.locator("#v83rail .v83-search")).toBeVisible();
+      }
+    });
+  });
+
+  test.describe("mobile drawer and compare", () => {
+    test.use({ viewport: { width: 390, height: 844 }, isMobile: false, hasTouch: true });
+
+    test("mobile drawer opens 13F compare and returns to the list", async ({ page }) => {
+      await page.goto("/?v82beta", { waitUntil: "domcontentloaded" });
+      await expect(page.locator("#v82av")).toBeVisible();
+
+      await page.locator("#v82av").click();
+      const investorMenuItem = page.locator('#v82drawer [data-act="investors"]');
+      await expect(investorMenuItem).toBeVisible();
+      await investorMenuItem.click();
+
+      await expect(page.locator("#v82drawer")).not.toHaveClass(/on/);
+      await expect(page.locator("#feedList .inv-grid")).toBeVisible();
+
+      await expect(page.locator('.inv-select-chip[aria-pressed="true"]')).toHaveCount(2);
+      await expect(page.locator(".inv-compare-go")).toBeEnabled();
+      await page.locator(".inv-compare-go").click();
+      await expect(page).toHaveURL(/#investor-compare$/);
+      await expect(page.locator(".inv-compare-summary-grid")).toBeVisible();
+
+      await page.goBack();
+      await expect(page.locator("#feedList .inv-grid")).toBeVisible();
+    });
+  });
 });
