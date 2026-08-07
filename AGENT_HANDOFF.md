@@ -2,6 +2,31 @@
 
 Shared handoff log for Codex and Claude.
 
+## 2026-08-07 Codex — 13F CUSIP 매핑 자동화 + 전체 포지션 가치차트 기반
+
+**목표**: `ticker_coverage_pct`가 50% 미만이던 13F 화면을 숫자만 조작하지 않고, SEC 전체 포지션 기준으로 CUSIP→티커 매핑과 가치차트 대표성을 바로잡는다.
+
+**변경 파일**:
+- `scripts/map_cusips.py` 신규 — OpenFIGI `ID_CUSIP` 1차 매핑, SEC `company_tickers_exchange.json`의 고유 issuer-name 보완, 결과 캐시.
+- `scripts/fetch_13f.py` — `all_holdings` 전체 포지션 보존, PUT/CALL 제외 커버리지, `LEN/B`·`MOG/A` 클래스 티커 정규화.
+- `cusip_map.json` — 현재 전체 SEC 스냅샷의 누락 CUSIP 자동·수동 보완.
+- `portfolios.json` — 6개 투자자 전체 363개 현재 포지션과 새 커버리지 재생성.
+- `index.html` — 가치차트·스파크라인이 top-25가 아닌 `all_holdings`를 사용하고 옵션을 분모에서 제외. `티커 매핑률`과 `시세 조회 성공률`을 별도 표시.
+- `.github/workflows/13f-refresh.yml` — fetch → CUSIP 매핑 → 매핑 적용 재-fetch, 두 JSON 커밋.
+
+**검증**:
+- SEC 13F 6곳 재수집 성공: Berkshire 28, Pershing 10, ARK 182, Duquesne 70, Appaloosa 31, Situational Awareness 42.
+- 현재 스냅샷에서 비옵션 포지션 매핑 누락 0건; 6개 투자자 모두 `ticker_coverage_pct: 1.0`.
+- 옵션은 커버리지·가치차트 분모에서 제외하고, 화면용 compact `holdings`는 top-25+exit로 유지.
+- `python3 -m py_compile`, JSON 파싱, `node --check`(inline JS), YAML 파싱, `git diff --check` 통과.
+- 커밋·푸시·자동 배포는 하지 않음.
+
+**남은 위험**:
+- 매핑률 100%는 식별 성공률이며 시세 조회 성공률과 다르다. 특히 `bitf.us`는 현재 Yahoo 응답이 없어 실제 차트 가격 커버리지는 별도 낮아질 수 있다. 프론트는 fetch 후 실제 가격 응답 기준으로 다시 계산한다.
+- 무인증 OpenFIGI는 분당 25회·요청당 10건 제한이라 새 CUSIP가 많으면 매핑 단계가 느릴 수 있다. `OPENFIGI_API_KEY` 시크릿이 있으면 상한이 높아진다.
+
+**다음**: 배포 승인 시 production deploy guard를 먼저 실행한 뒤 배포하고, 실제 투자자 상세 차트에서 가격 커버리지 문구와 전체 포지션 반영을 확인한다.
+
 ## 2026-08-05 Claude (Cowork, claude-sonnet-5) — about.html: Stacks 콘텐츠 무단 재배포 금지 조항 신설
 
 **요청**: june이 "우리 사이트 무단 복사나 베껴가서 무단으로 배포하거나 이런 위험은 없나? 누군가 우리꺼 베껴갈거 같아서"라고 우려 표명 → 위험 진단 후 "제일 급한거부터 처리해줘" 승인.

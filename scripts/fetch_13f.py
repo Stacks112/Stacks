@@ -137,6 +137,74 @@ INVESTORS = [
             "ja": "元OpenAI研究者のレオポルド・アッシェンブレナーが、2024年のエッセイ『Situational Awareness』でAGI到来が近いと論じた後に設立したヘッジファンド。AIインフラ・半導体・電力関連銘柄に集中し、コール・プットオプションで方向性を強く表現するため、普通株の行だけを見てもポジションの本当の強気・弱気は読み取れない。",
         },
     },
+    # Added 2026-08-07: active, recognizable managers with a current
+    # 2026-03-31 13F-HR and a concentrated enough public-equity book to fit
+    # this product. CIKs and filer names were checked against SEC submissions.
+    {
+        "slug": "third-point",
+        "cik": "0001040273",
+        "filer": "Third Point LLC",
+        "name": {"ko": "서드포인트", "en": "Third Point", "ja": "サード・ポイント"},
+        "manager": {"ko": "대니얼 로엡", "en": "Daniel Loeb", "ja": "ダニエル・ローブ"},
+        "entity_key": None,
+        "desc": {
+            "ko": "대니얼 로엡이 이끄는 이벤트 드리븐·행동주의 투자사로, 기업 분할·경영 개선·자본 배분 변화 같은 촉매가 있는 종목에 집중한다. 13F는 공개된 미국 주식 포지션만 보여준다.",
+            "en": "An event-driven and activist investment firm led by Daniel Loeb, focused on catalysts such as spin-offs, operational change and shifts in capital allocation. Its 13F shows only the firm's reportable U.S. equity positions.",
+            "ja": "ダニエル・ローブ率いるイベントドリブン・アクティビスト投資会社。スピンオフや経営改善、資本配分の変化などのカタリストに注目する。13Fは報告対象の米国株ポジションのみを示す。",
+        },
+    },
+    {
+        "slug": "baupost",
+        "cik": "0001061768",
+        "filer": "BAUPOST GROUP LLC/MA",
+        "name": {"ko": "바우포스트", "en": "Baupost", "ja": "バウポスト"},
+        "manager": {"ko": "세스 클라먼", "en": "Seth Klarman", "ja": "セス・クラーマン"},
+        "entity_key": None,
+        "desc": {
+            "ko": "세스 클라먼이 이끄는 가치투자 운용사로, 안전마진과 부실·특수상황 투자에 초점을 둔다. 13F는 전체 전략 중 공개된 미국 상장주식 부분만 보여준다.",
+            "en": "A value-oriented investment firm led by Seth Klarman, focused on margin of safety and distressed or special situations. Its 13F captures only the public U.S. equity portion of a broader strategy.",
+            "ja": "セス・クラーマン率いるバリュー投資会社。安全余裕度とディストレスト・特殊状況投資を重視する。13Fは幅広い戦略のうち公開された米国上場株部分のみを示す。",
+        },
+    },
+    {
+        "slug": "tci",
+        "cik": "0001647251",
+        "filer": "TCI Fund Management Ltd",
+        "name": {"ko": "TCI 펀드", "en": "TCI Fund Management", "ja": "TCIファンド・マネジメント"},
+        "manager": {"ko": "크리스 혼", "en": "Chris Hohn", "ja": "クリス・ホーン"},
+        "entity_key": None,
+        "desc": {
+            "ko": "크리스 혼이 설립한 장기 행동주의 투자사로, 지속 가능한 경쟁우위를 가진 소수의 대형 기업에 집중하고 지배구조·자본배분 개선을 요구한다.",
+            "en": "A long-term activist investment firm founded by Chris Hohn, concentrating on a small number of high-quality companies with durable competitive advantages and pushing for better governance and capital allocation.",
+            "ja": "クリス・ホーンが設立した長期アクティビスト投資会社。持続的な競争優位を持つ少数の大型企業に集中し、ガバナンスと資本配分の改善を求める。",
+        },
+    },
+    {
+        "slug": "coatue",
+        "cik": "0001135730",
+        "filer": "COATUE MANAGEMENT LLC",
+        "name": {"ko": "코투", "en": "Coatue", "ja": "コートゥー"},
+        "manager": {"ko": "필리프 라퐁", "en": "Philippe Laffont", "ja": "フィリップ・ラフォン"},
+        "entity_key": None,
+        "desc": {
+            "ko": "필리프 라퐁이 이끄는 기술·성장주 중심 투자 플랫폼으로, 공개시장과 비공개시장에서 기술·미디어·통신·소비재 기업에 투자한다.",
+            "en": "A technology- and growth-focused investment platform led by Philippe Laffont, investing across public and private markets in technology, media, communications and consumer companies.",
+            "ja": "フィリップ・ラフォン率いるテクノロジー・成長株中心の投資プラットフォーム。公開市場と未公開市場の両方で、テクノロジー、メディア、通信、消費関連企業に投資する。",
+        },
+    },
+    {
+        "slug": "soros",
+        "cik": "0001029160",
+        "filer": "SOROS FUND MANAGEMENT LLC",
+        "name": {"ko": "소로스 펀드", "en": "Soros Fund Management", "ja": "ソロス・ファンド・マネジメント"},
+        "manager": {"ko": "조지 소로스", "en": "George Soros", "ja": "ジョージ・ソロス"},
+        "entity_key": None,
+        "desc": {
+            "ko": "조지 소로스가 설립한 투자 운용사로, 글로벌 매크로와 이벤트 드리븐 관점에서 주식·채권·통화 등 여러 자산을 운용한다. 13F는 공개된 미국 주식 포지션 일부만 보여준다.",
+            "en": "An investment firm founded by George Soros that has historically combined global macro and event-driven views across equities, bonds and currencies. Its 13F shows only part of the firm's public U.S. equity positions.",
+            "ja": "ジョージ・ソロスが設立した投資運用会社。グローバルマクロとイベントドリブンの視点で株式・債券・通貨などを運用する。13Fは公開された米国株ポジションの一部のみを示す。",
+        },
+    },
 ]
 
 
@@ -356,6 +424,7 @@ def group_by_cusip(rows):
 
 
 VALID_TICKER_SUFFIXES = (".us", ".ks", ".kq", ".jp", ".t")
+VALID_TICKER_RE = re.compile(r"^[A-Za-z0-9]+(?:[.-][A-Za-z0-9]+)*$")
 
 # nameOfIssuer occasionally embeds a share-class marker itself (not just in
 # titleOfClass); strip it before using the name as a merged/representative
@@ -376,6 +445,8 @@ def normalize_ticker(raw):
     - A bare alphanumeric symbol (e.g. "AMD", "BAC") gets ".us" appended,
       since every filer in INVESTORS is a US institutional manager and every
       13F holding is, by definition, a US-listed reportable security.
+    - A class separator in a ticker (e.g. "LEN.B") is retained and gets the
+      .us suffix. This is needed for OpenFIGI's class-level CUSIP results.
     - Anything else (dual-listing notations like "688981 / 0981", stray
       whitespace, etc.) is not a usable single ticker and is dropped (None)
       rather than guessed at.
@@ -383,12 +454,18 @@ def normalize_ticker(raw):
     if not raw:
         return None
     t = raw.strip()
-    if not t or "/" in t or " " in t:
+    if not t or " " in t:
+        return None
+    # OpenFIGI uses LEN/B and MOG/A for US share classes. Yahoo accepts the
+    # equivalent LEN-B/MOG-A form after the worker removes the .us suffix.
+    if t.count("/") == 1 and re.fullmatch(r"[A-Za-z0-9]+/[A-Za-z0-9]+", t):
+        t = t.replace("/", "-")
+    elif "/" in t:
         return None
     low = t.lower()
     if low.endswith(VALID_TICKER_SUFFIXES):
         return low
-    if re.fullmatch(r"[A-Za-z0-9]+", t):
+    if VALID_TICKER_RE.fullmatch(t):
         return f"{low}.us"
     return None
 
@@ -471,39 +548,53 @@ def merge_share_classes(groups: dict, cusip_map: dict):
     return merged
 
 
+def holding_record(key, g: dict, prev_merged, sector_map: dict, *, value=None, shares=None, change=None, prev_shares=None):
+    """Serialize one merged position for either the full or visible list."""
+    if value is None:
+        value = g["value"]
+    if shares is None:
+        shares = g["shares"]
+    if change is None and prev_merged is not None:
+        prev = prev_merged.get(key)
+        if prev is None:
+            change = "new"
+        else:
+            prev_shares = prev["shares"]
+            if shares > prev["shares"]:
+                change = "add"
+            elif shares < prev["shares"]:
+                change = "trim"
+            else:
+                change = "hold"
+    return {
+        "cusip": g["cusip"],
+        "issuer": g["issuer"],
+        "ticker": g["ticker"],
+        "entity_key": g["entity_key"],
+        "put_call": g.get("put_call"),  # "PUT" / "CALL" / None (common stock)
+        "sector": sector_map.get(g["entity_key"]) if g.get("entity_key") else None,
+        "value": value,
+        "shares": shares,
+        "weight": None,
+        "change": change,
+        "prev_shares": prev_shares,
+    }
+
+
 def compute_holdings(merged: dict, prev_merged, sector_map: dict):
     total_value = sum(g["value"] for g in merged.values())
     ranked = sorted(merged.items(), key=lambda kv: -kv[1]["value"])
+    all_holdings = []
+    for key, g in ranked:
+        row = holding_record(key, g, prev_merged, sector_map)
+        row["weight"] = round(g["value"] / total_value, 4) if total_value else 0
+        all_holdings.append(row)
+
     holdings = []
     seen_keys = set()
-    for key, g in ranked[:TOP_N]:
+    for idx, (key, g) in enumerate(ranked[:TOP_N]):
         seen_keys.add(key)
-        change, prev_shares = None, None
-        if prev_merged is not None:
-            prev = prev_merged.get(key)
-            if prev is None:
-                change = "new"
-            else:
-                prev_shares = prev["shares"]
-                if g["shares"] > prev["shares"]:
-                    change = "add"
-                elif g["shares"] < prev["shares"]:
-                    change = "trim"
-                else:
-                    change = "hold"
-        holdings.append({
-            "cusip": g["cusip"],
-            "issuer": g["issuer"],
-            "ticker": g["ticker"],
-            "entity_key": g["entity_key"],
-            "put_call": g.get("put_call"),  # "PUT" / "CALL" / None (common stock)
-            "sector": sector_map.get(g["entity_key"]) if g.get("entity_key") else None,
-            "value": g["value"],
-            "shares": g["shares"],
-            "weight": round(g["value"] / total_value, 4) if total_value else 0,
-            "change": change,
-            "prev_shares": prev_shares,
-        })
+        holdings.append(all_holdings[idx])
     # Positions that were in the *previous* quarter's top-N but vanished
     # entirely this quarter get an explicit exit row appended.
     if prev_merged is not None:
@@ -512,20 +603,10 @@ def compute_holdings(merged: dict, prev_merged, sector_map: dict):
             if key in seen_keys or key in merged:
                 continue
             prev = prev_merged[key]
-            holdings.append({
-                "cusip": prev["cusip"],
-                "issuer": prev["issuer"],
-                "ticker": prev["ticker"],
-                "entity_key": prev["entity_key"],
-                "put_call": prev.get("put_call"),
-                "sector": sector_map.get(prev["entity_key"]) if prev.get("entity_key") else None,
-                "value": 0,
-                "shares": 0,
-                "weight": 0,
-                "change": "exit",
-                "prev_shares": prev["shares"],
-            })
-    return holdings, total_value, len(merged)
+            exit_row = dict(prev)
+            exit_row.update({"value": 0, "shares": 0, "weight": 0, "change": "exit", "prev_shares": prev["shares"]})
+            holdings.append(exit_row)
+    return holdings, all_holdings, total_value, len(merged)
 
 
 def compute_activity(merged: dict, prev_merged, unavailable_reason=None):
@@ -607,16 +688,17 @@ def compute_activity(merged: dict, prev_merged, unavailable_reason=None):
 
 
 def compute_ticker_coverage(merged: dict):
-    """Fraction of total portfolio value held in positions that have a
-    resolvable ticker (cusip_map hit), independent of `sector_alloc.covered_pct`
-    - a company can carry a known sector without a mapped ticker (or vice
-    versa), and only ticker-mapped positions can be priced for the frontend's
-    portfolio value chart, so this tells the chart how representative it is.
+    """Fraction of non-option portfolio value with a resolvable ticker.
+
+    PUT/CALL rows are deliberately excluded: their 13F ``shares`` field is
+    the contract's underlying share count, not a common-stock share count, so
+    multiplying it by a stock close would create a fictional portfolio value.
     """
-    total_value = sum(g["value"] for g in merged.values())
+    eligible = [g for g in merged.values() if not g.get("put_call")]
+    total_value = sum(g["value"] for g in eligible)
     if not total_value:
         return 0.0
-    ticker_value = sum(g["value"] for g in merged.values() if g.get("ticker"))
+    ticker_value = sum(g["value"] for g in eligible if g.get("ticker"))
     return round(ticker_value / total_value, 4)
 
 
@@ -699,7 +781,7 @@ def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
     rows = fix_value_units(parse_infotable(http_get(infotable_url)), filer_label=slug)
     groups = group_by_cusip(rows)
     merged = merge_share_classes(groups, cusip_map)
-    holdings, total_value, holdings_count = compute_holdings(merged, prev_merged, sector_map)
+    holdings, all_holdings, total_value, holdings_count = compute_holdings(merged, prev_merged, sector_map)
     activity = compute_activity(merged, prev_merged, unavailable_reason=prev_unavailable_reason)
     sector_alloc = compute_sector_alloc(merged, sector_map)
     ticker_coverage_pct = compute_ticker_coverage(merged)
@@ -719,6 +801,11 @@ def fetch_one(investor: dict, cusip_map: dict, sector_map: dict):
         "total_value": total_value,
         "holdings_count": holdings_count,
         "holdings": holdings,
+        # Keep the visible top-25-plus-exits list above for a compact UI, but
+        # retain every current position for the full portfolio value chart
+        # and the next CUSIP-mapping pass. This is especially important for
+        # ARK/Duquesne, where the stored top-N list was not the whole book.
+        "all_holdings": all_holdings,
         "activity": activity,
         "sector_alloc": sector_alloc,
         "ticker_coverage_pct": ticker_coverage_pct,

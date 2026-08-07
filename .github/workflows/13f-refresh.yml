@@ -6,8 +6,11 @@ name: 13F portfolio refresh
 # 낸다 — 그래서 그 달의 8~19일을 통째로 덮어 하루 1회 확인한다. 나머지 8개월은
 # 이 워크플로 자체가 돌지 않는다.
 #
-# scripts/fetch_13f.py는 표준 라이브러리만 쓰고(추가 pip 설치 불필요), SEC가
-# 요구하는 User-Agent도 스크립트 안에 하드코딩돼 있다 — 시크릿·env 불필요.
+# scripts/fetch_13f.py와 scripts/map_cusips.py는 표준 라이브러리만 쓰고(추가
+# pip 설치 불필요), SEC가 요구하는 User-Agent도 스크립트 안에 하드코딩돼 있다.
+# OpenFIGI는 OPENFIGI_API_KEY 시크릿이 있으면 사용하고, 없어도 무인증 제한 안에서
+# 동작한다. 첫 fetch가 전체 CUSIP를 all_holdings에 저장하고, mapper가 새 CUSIP를
+# 채운 뒤 두 번째 fetch가 그 매핑을 적용한다.
 # 실패 처리도 스크립트 자체가 이미 한다: 투자자 1곳이 실패해도 나머지는 계속
 # 진행하고, 전원 실패면 portfolios.json을 아예 건드리지 않고 그대로 둔다
 # (scripts/fetch_13f.py 하단 `any_ok` 체크 참고). 이 워크플로가 추가로 하는 일은
@@ -46,6 +49,14 @@ jobs:
             echo "fail_count=$(grep -c '^\[fail\]' fetch_13f.log || true)"
           } >> "$GITHUB_OUTPUT"
 
+      - name: Fill missing CUSIP mappings
+        env:
+          OPENFIGI_API_KEY: ${{ secrets.OPENFIGI_API_KEY }}
+        run: python3 scripts/map_cusips.py
+
+      - name: Rebuild portfolios with new mappings
+        run: python3 scripts/fetch_13f.py 2>&1 | tee -a fetch_13f.log
+
       - name: Fail loudly if every investor failed
         # fetch_13f.py exits 0 even when every investor failed (it leaves
         # portfolios.json untouched on purpose - see its `any_ok` check) so
@@ -63,15 +74,15 @@ jobs:
 
       - name: Commit and push (if changed)
         run: |
-          if git diff --quiet -- portfolios.json; then
-            echo "no changes to portfolios.json"
+          if git diff --quiet -- portfolios.json cusip_map.json; then
+            echo "no changes to portfolios.json or cusip_map.json"
             exit 0
           fi
           git config user.name  "stacks-13f-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add portfolios.json
+          git add portfolios.json cusip_map.json
           updated=$(grep '^\[ok\]' fetch_13f.log | sed -E 's/^\[ok\] ([a-z0-9-]+):.*/\1/' | paste -sd, -)
-          git commit -m "chore: refresh 13F portfolios${updated:+ ($updated)}"
+          git commit -m "chore: refresh 13F portfolios and CUSIP mappings${updated:+ ($updated)}"
           # Why not a plain `git pull --rebase`: every file this job writes is
           # GENERATED (feeds, sitemap, data/manifest.json, p/, e/, og/). When
           # another workflow pushes first, both sides have rewritten the same
