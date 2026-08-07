@@ -2,12 +2,17 @@ import unittest
 from datetime import date
 from pathlib import Path
 import sys
+from urllib.parse import parse_qs, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.analytics_report import aggregate_hits, build_report, parse_entity_path
+from scripts.analytics_report import aggregate_hits, api_url, build_report, parse_entity_path
 
 
 class AnalyticsReportTests(unittest.TestCase):
+    def test_api_url_uses_goatcounter_hit_limit(self):
+        query = parse_qs(urlparse(api_url("https://stacks.goatcounter.com", date(2026, 8, 1), date(2026, 8, 8))).query)
+        self.assertEqual(query["limit"], ["100"])
+
     def test_parse_only_entity_click_paths(self):
         self.assertEqual(
             parse_entity_path("entity/click/inline/company/nvidia"),

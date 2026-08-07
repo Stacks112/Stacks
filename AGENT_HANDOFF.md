@@ -3549,3 +3549,19 @@ Next:
 - production `main` 커밋 `5bcead3` 반영. `https://stacksdaily.com`·`ads.txt` HTTP 200, investor compare·entity click 코드 확인.
 
 **위험/다음**: Windows 로컬 config의 `python3` 서버 명령은 없어 `py -3` fallback 사용. `GOATCOUNTER_API_KEY` 등록 후 엔티티 클릭 주간 리포트 검증.
+## 2026-08-08 Codex — GoatCounter 엔티티 클릭 리포트 활성화
+
+**원인**: `scripts/analytics_report.py`가 GoatCounter `stats/hits` API 최대치 100을 넘는 `limit=1000`을 보내 리포트 단계가 `HTTP 404`로 건너뛰고 있었다.
+
+**변경 파일**:
+- `scripts/analytics_report.py` — API `limit`을 100으로 조정.
+- `tests/test_analytics_report.py` — URL limit 계약 테스트 추가.
+
+**검증**:
+- 로컬 analytics 테스트 4개 통과.
+- workflow `31227756079` 성공.
+- `stats/analytics-2026-08-08.md` 생성·main 반영 커밋 `ed24290`.
+- API raw paths 100개 수집, 해당 기간 엔티티 클릭 0건. 파이프라인 정상.
+- Node.js 20 deprecation 경고는 GitHub Actions 런타임 경고로 기능과 무관.
+
+**다음**: 클릭 데이터가 쌓인 다음 주간 실행에서 엔티티별 순위 확인.
