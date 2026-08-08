@@ -68,6 +68,17 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('position:absolute', INDEX)
         self.assertIn('position:absolute', pages)
 
+    def test_feed_x_cards_render_widget_not_source_teaser(self):
+        start = INDEX.index("function srcBlockHtml(item, full)")
+        end = INDEX.index("window.expandArticleSource", start)
+        source_block = INDEX[start:end]
+        self.assertLess(
+            source_block.index("if (e && (e.lines || []).length)"),
+            source_block.index("if (!full)"),
+        )
+        self.assertIn('class="xreal"', source_block)
+        self.assertIn('class="srcq srcq-teaser"', source_block)
+
     def test_x_embed_binds_rendered_before_create(self):
         start = INDEX.index("async function xEmbedMount(host)")
         end = INDEX.index("setInterval(xEmbedScan", start)

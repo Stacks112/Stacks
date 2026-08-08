@@ -3864,6 +3864,20 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 **Validation**: `tests.test_frontend_contracts`, static-page scan, `deploy_guard.py`, and `git diff --check` passed. Dirty local worktrees were left untouched.
 
 **Next**: none.
+
+## 2026-08-08 Codex feed X widget branch fix
+
+**Change**: `srcBlockHtml(item, full)` now routes X items with fetched embed
+lines through the live `.xreal` widget branch before the compact feed source
+teaser. Non-X source teasers remain unchanged, so `원문에서 Serenity` no
+longer appears on X feed cards.
+
+**Validation**: Local mobile Chrome DOM shows the Serenity card with
+`data-xid="2085823672569467005"` and no `.srcq-teaser` in that card. The new
+feed contract passes. Existing full contract suite still has one unrelated
+baseline failure in `test_all_detail_paths_use_the_card_factory`.
+
+**Next**: deploy, then verify the live mobile feed and real X iframe.
 ## 2026-08-08 Codex X fallback visibility restore
 
 **Change**: Keep `.xemb` static X evidence visible after `x-on`; live widget failures no longer hide the only visible fallback. Propagate CSS to all static X pages.

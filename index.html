@@ -4369,12 +4369,6 @@ function gistRich(item){
 function srcBlockHtml(item, full){
   const S = STRINGS[LANG] || STRINGS.en;
   const e = item.embed;
-  if (!full){
-    const url = safeUrl((e && e.url) || item.sourceUrl);
-    const label = (e && e.name) || (item.quote && item.quote.cite) || item.source || "";
-    return '<div class="srcq srcq-teaser"><div class="srcq-h">' + esc(S.fromSource) + '</div>' +
-      '<div class="srcq-c"><a href="' + url + '" target="_blank" rel="noopener">' + esc(label) + '</a></div></div>';
-  }
   if (e && (e.lines || []).length){
     const url = safeUrl(e.url || item.sourceUrl);
     const id = ((e.url || item.sourceUrl || "").match(/status\/(\d+)/) || [])[1];
@@ -4393,6 +4387,12 @@ function srcBlockHtml(item, full){
       '<div class="xemb-d"><a href="' + url + '" target="_blank" rel="noopener">' + esc(e.date || "") + "</a></div>" +
     "</div>" + close;
     return block;
+  }
+  if (!full){
+    const url = safeUrl((e && e.url) || item.sourceUrl);
+    const label = (e && e.name) || (item.quote && item.quote.cite) || item.source || "";
+    return '<div class="srcq srcq-teaser"><div class="srcq-h">' + esc(S.fromSource) + '</div>' +
+      '<div class="srcq-c"><a href="' + url + '" target="_blank" rel="noopener">' + esc(label) + '</a></div></div>';
   }
   const q = item.quote;
   const slang = String(item.sourceLang || "").toLowerCase();
