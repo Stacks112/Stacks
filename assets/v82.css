@@ -172,6 +172,7 @@
   /* 라이브 트윗이 실제로 붙은 경우에만 정적 박스를 감춘다(중복 방지) */
   .card.v82c.card-lab .xreal.x-on > .xemb{display:none !important;}
   .card.v82c.card-lab .gist{max-height:92px;min-height:0;}
+  .card.v82c.v82clip .gist .gcardw{display:none;}
   .card.v82c .card-thumb{display:none;}
   /* Twitter-style media: full-width image at the bottom of the card body */
   .card.v82c .card-thumb-img{display:flex !important;width:100%;height:auto;margin:12px 0 2px;

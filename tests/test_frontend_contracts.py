@@ -14,6 +14,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 V82 = (ROOT / "assets" / "v82.js").read_text(encoding="utf-8")
+V82_CSS = (ROOT / "assets" / "v82.css").read_text(encoding="utf-8")
 ITEMS = json.loads((ROOT / "items.json").read_text(encoding="utf-8"))
 SECURITY_POLICY = json.loads(
     (ROOT / "ops" / "cloudflare-response-headers.json").read_text(encoding="utf-8")
@@ -176,6 +177,11 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('aria-label="Email"', INDEX)
         self.assertIn("data-nle aria-label=\"'+t.ph+'\"", (ROOT / "assets" / "v83tw.js").read_text(encoding="utf-8"))
         self.assertIn("@media (min-width:1024px){ .engage .eg{min-width:44px;min-height:44px;justify-content:center;} }", INDEX)
+
+    def test_lighthouse_a11y_regressions_have_static_guards(self):
+        self.assertIn("color:#005FCC;border:1px solid #005FCC", INDEX)
+        self.assertIn('html[data-theme="dark"] .new-pill{color:#6CAEFF;border-color:#6CAEFF;}', INDEX)
+        self.assertIn(".card.v82c.v82clip .gist .gcardw{display:none;}", V82_CSS)
 
     def test_onesignal_tags_retry_and_reconcile(self):
         self.assertIn("const OS_TAG_DELAYS = [300, 1000, 3000]", INDEX)
