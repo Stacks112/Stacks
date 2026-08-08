@@ -1,6 +1,138 @@
 {
  "items": [
   {
+   "date": "2026-08-08",
+   "id": "jukan-korean-pcb-q2-socamm-vera-rubin",
+   "related": [
+    "jukan-vera-socamm2-second-halving-64gb",
+    "serenity-substrate-ddr5-wf6-squeeze",
+    "semianalysis-gemini-gcp-tpu-financialization"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "wiki": null,
+   "sourceUrl": "https://x.com/jukan05/status/2085939743632892184",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#0F766E",
+    "label": "AI PCB / Q3"
+   },
+   "tags": [
+    "PCB",
+    "SOCAMM",
+    "AI SUPPLY CHAIN"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "대덕전자·심텍·티엘비 이익이 함께 뛰었다, AI 기판 주문이 옮겨갈 자리가 생겼다",
+    "en": "Daeduck, Simmtech and TLB Profit Jumped Together as AI Substrate Orders Find New Capacity",
+    "ja": "大徳電子・シムテック・TLBの利益がそろって伸びた、AI基板の注文が移る余地が生まれている"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "엔비디아의 차세대 AI 플랫폼인 베라 루빈 GPU와 베라 CPU의 출하가 다가오면서 SOCAMM PCB 수요 전망이 강해지고 있으며, 관련 제품을 공급하는 심텍과 티엘비의 실적 기대도 높아지고 있다.",
+      "대만의 유니마이크론을 포함한 주요 업체들이 고부가 ABF 기판에 생산능력을 배분하고 BT 기판 비중을 줄이면서, 그 주문 일부가 대덕전자와 심텍으로 옮겨갈 수 있다는 관측이 나온다."
+     ],
+     "en": [
+      "With NVIDIA's next-generation AI platform — the Vera Rubin GPU and Vera CPU — approaching shipment, the demand outlook for SOCAMM PCBs is strengthening, lifting earnings expectations for Simmtech and TLB, both of which supply related products.",
+      "As major players including Taiwan's Unimicron prioritize capacity allocation toward high-value ABF substrates and scale back their BT substrate exposure, there is growing speculation that some of that order flow could shift to Daeduck Electronics and Simmtech."
+     ],
+     "ja": [
+      "NVIDIAの次世代AIプラットフォームであるVera Rubin GPUとVera CPUの出荷が近づき、SOCAMM用PCBの需要見通しが強まり、関連製品を供給するシムテックとTLBの業績期待も高まっている。",
+      "台湾のユニマイクロンなど大手メーカーが高付加価値のABF基板へ生産能力を振り向け、BT基板の比率を下げるなか、その注文の一部が大徳電子とシムテックへ移る可能性があるとの見方が出ている。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026-08-08"
+   },
+   "sum3": {
+    "ko": "AI 서버는 GPU뿐 아니라 칩과 메인보드를 잇는 기판이 있어야 완성된다.\nJukan이 전한 한국 PCB 3사의 2분기 실적은 매출과 영업이익이 모두 크게 늘었고, 대덕전자는 고부가 기판 증설도 진행 중이다.\n베라 루빈과 소캠 출하가 실제 주문으로 이어지는지는 3분기 이익과 생산능력에서 판가름 날 가능성이 크다.",
+    "en": "An AI server needs substrates and printed circuit boards that connect its chips, not just GPUs.\nJukan reports sharp second-quarter revenue and operating-profit growth at three Korean board makers, while Daeduck is also expanding high-value substrate capacity.\nWhether Vera Rubin and SOCAMM shipments become real orders will likely show up in third-quarter profit and production volume.",
+    "ja": "AIサーバーにはGPUだけでなく、チップとメインボードをつなぐ基板とプリント基板が必要だ。\nJukanは韓国の基板メーカー3社で第2四半期の売上高と営業利益が大きく伸び、大徳電子は高付加価値基板の能力も増やしていると伝えた。\nベラ・ルービンとSOCAMMの出荷が実際の注文になるかは、第3四半期の利益と生産量に表れる可能性が高い。"
+   },
+   "gist": {
+    "ko": "AI 서버 한 대는 GPU만 꽂는다고 완성되지 않는다.\nGPU와 CPU를 메인보드에 연결하는 작은 기판과, 서버 전체에 신호와 전원을 보내는 여러 층의 회로기판이 함께 들어간다.\n이 기판이 있어야 칩의 계산 결과가 다른 부품으로 전달되고 전원도 안정적으로 공급된다.\n\n그래서 AI 서버가 늘면 GPU 회사뿐 아니라 칩을 보드에 연결하는 패키지 기판과 서버용 인쇄회로기판 업체에도 주문이 번진다.\n\nJukan(@jukan05)이 8일 한국 언론 보도를 바탕으로 정리한 수치가 이 흐름을 보여준다.\n대덕전자는 2분기 매출 4,010억원과 영업이익 703억원으로, 지난해 같은 기간보다 각각 63%와 3,599% 늘었다.\n심텍은 매출 5,146억원과 영업이익 629억원으로 51%와 1,035% 증가했다.\n티엘비도 매출 882억원, 영업이익 128억원으로 38%와 86% 성장했다.\n\n대덕전자 수치는 금융감독원 공시를 정리한 자료에서도 같은 금액으로 확인된다.\n\n@@REF@@대덕전자 2분기 매출 4,010억원·영업이익 703억원 (AWAKEPLUS, 2026-07-31)|https://www.awakeplus.co.kr/data/view/20260731800759\n\n세 회사는 같은 기판 업종에 있지만 맡은 자리가 다르다.\n대덕전자는 고성능 칩과 메인보드를 잇는 FC-BGA와 다층 기판을 만든다.\n심텍은 패키지 기판과 메모리 모듈용 PCB를 만들고, 티엘비는 서버 DDR5와 기업용 SSD에 들어가는 PCB를 만든다.\n\n## 왜 지금 기판 주문이 움직이나\n\n대덕전자는 7월 반도체 생산시설에 올해만 7,100억원을 투자하겠다고 밝혔다.\n고성능 칩에 쓰이는 고부가 패키지 기판의 공급이 수요를 따라가지 못할 것으로 보고 생산능력을 늘리는 계획이다.\nAI 가속기에 쓰이는 다층 기판 사업도 함께 키우고 있다.\n\n@@REF@@대덕전자, 반도체 기판 생산시설에 올해 7,100억원 투자 (서울경제, 2026-07-21)|https://en.sedaily.com/finance/2026/07/21/daeduck-electronics-to-invest-710-billion-won-in-chip\n\n이 배경에서 Jukan은 대만 대형 업체들이 고가 ABF 기판에 생산 여력을 집중하면서, 메모리·시스템 반도체용 기판 주문 일부가 대덕전자와 심텍으로 옮겨갈 수 있다고 봤다.\n확정된 수주 발표가 아니라 생산능력 배분 변화에 대한 관측이다.\n\n@@FLOW@@AI 서버 증설|GPU·CPU 출하 증가|패키지 기판·서버 PCB 주문|기판 업체 매출·이익@@칩이 늘어도 연결 기판이 부족하면 서버 완제품 출하가 늦어진다.\n\n## 베라 루빈과 소캠이 나오는 이유\n\n또 하나의 배경은 엔비디아의 차세대 AI 플랫폼 베라 루빈이다.\n엔비디아는 5월 31일 베라 루빈이 본격 양산 단계에 들어갔고, 생산 출하는 올가을 시작될 예정이라고 발표했다.\n\n@@REF@@엔비디아, 베라 루빈 플랫폼 본격 양산과 올가을 생산 출하 예정 발표 (NVIDIA, 2026-05-31)|https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx\n\n베라 루빈은 GPU만의 제품명이 아니다.\nCPU인 베라와 GPU인 루빈을 함께 묶은 서버 플랫폼이고, CPU 옆에는 소캠이라는 카드형 저전력 메모리 모듈이 들어간다.\n소캠은 서버 CPU가 쓸 데이터를 가까운 자리에서 받아주는 부품이다.\n\n@@IMG@@dram-module|서버에 꽂는 메모리 모듈의 예시. 소캠은 CPU 옆에 꽂히는 더 작은 카드형 메모리다.\n\nJukan은 심텍과 티엘비가 소캠 관련 제품을 공급하는 만큼, 베라 루빈 출하가 다가오면 두 회사의 기판 주문도 늘 수 있다고 봤다.\n다만 엔비디아의 출하 일정이 곧바로 한국 업체의 매출로 잡힌다는 뜻은 아니다.\n실제 고객 주문과 생산 수율, 납품 시점이 모두 이어져야 한다.\n\n## 3분기에 봐야 할 것\n\n이번 실적이 일시적인 반등인지 AI 기판 수요가 이어지는 신호인지는 3분기에서 갈린다.\n\n첫째는 세 회사의 영업이익이 2분기 수준을 유지하는지다.\n둘째는 고부가 패키지 기판과 소캠 관련 제품의 생산량이 실제로 늘어나는지다.\n셋째는 베라 루빈의 생산 출하가 예정대로 시작되고, 그 출하가 한국 업체의 매출과 이익으로 연결되는지다.\n\n대덕전자·심텍·티엘비의 숫자가 3분기에도 좋아지면 AI 투자가 칩을 연결하는 기판 업체까지 밀어 올린다는 뜻에 가까워진다.\n반대로 주문은 늘었는데 생산능력이나 납품이 따라오지 못하면, 이번 2분기 실적은 공급망 병목이 만든 일시적인 고점일 수 있다.",
+    "en": "An AI server is not complete when a GPU is plugged in.\nSubstrates connect the GPU and CPU to the main board, while multilayer printed circuit boards carry signals and power across the server.\nThat makes board suppliers part of the AI-server buildout, not just GPU makers.\n\nJukan (@jukan05) summarized Korean press reports on August 8.\nDaeduck Electronics posted second-quarter revenue of KRW 401.0 billion and operating profit of KRW 70.3 billion, up 63% and 3,599% year over year.\nSimmtech reported revenue of KRW 514.6 billion and operating profit of KRW 62.9 billion, up 51% and 1,035%.\nTLB reported revenue of KRW 88.2 billion and operating profit of KRW 12.8 billion, up 38% and 86%.\n\nThe Daeduck figures also appear in a filing summary.\n\n@@REF@@Daeduck Electronics second-quarter revenue KRW 401.0 billion and operating profit KRW 70.3 billion (AWAKEPLUS, 2026-07-31)|https://www.awakeplus.co.kr/data/view/20260731800759\n\nThe three companies make different parts of the same supply chain.\nDaeduck makes FC-BGA and multilayer boards that connect high-performance chips to main boards.\nSimmtech makes package substrates and memory-module PCBs, while TLB makes PCBs for server DDR5 and enterprise SSDs.\n\n## Why substrate orders are moving now\n\nDaeduck said in July that it would invest KRW 710 billion in semiconductor facilities this year.\nIt expects high-value substrates for powerful chips to remain short and is also expanding the multilayer boards used in AI accelerators.\n\n@@REF@@Daeduck Electronics to invest KRW 710 billion in semiconductor substrate facilities this year (Seoul Economic Daily, 2026-07-21)|https://en.sedaily.com/finance/2026/07/21/daeduck-electronics-to-invest-710-billion-won-in-chip\n\nJukan argues that some memory and system-semiconductor substrate orders could move to Daeduck and Simmtech as large Taiwanese suppliers direct more capacity toward high-value ABF substrates.\nThis is a possible shift, not a confirmed order.\n\n@@FLOW@@AI server expansion|More GPU and CPU shipments|More package-substrate and server-PCB orders|Higher revenue and profit for board suppliers@@A server can be delayed even when chips are available if the boards that connect them are short.\n\n## Why Vera Rubin and SOCAMM enter the story\n\nThe timing point is Nvidia's next AI platform, Vera Rubin.\nNvidia said on May 31 that it was ramping into full production and that production shipments would begin this fall.\n\n@@REF@@Nvidia says Vera Rubin is ramping into full production, with production shipments starting this fall (NVIDIA, 2026-05-31)|https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx\n\nVera Rubin is a server platform combining the Vera CPU with the Rubin GPU.\nIt uses a small, low-power memory card called SOCAMM beside the CPU to keep the server's data close to the processor.\n\n@@IMG@@dram-module|An example of a server memory module. SOCAMM is a smaller card-shaped memory module placed beside the server CPU.\n\nJukan expects Simmtech and TLB substrate orders to benefit because both supply related SOCAMM products.\nBut Nvidia's schedule does not automatically become Korean revenue: customer orders, production yields and delivery dates must line up.\n\n## What to watch in the third quarter\n\nThe third quarter will show whether this is a one-quarter rebound or a durable demand signal.\n\nWatch three things: whether all three companies hold their second-quarter profit, whether output of high-value substrates and SOCAMM products rises, and whether Vera Rubin shipments start on schedule and become supplier revenue.\n\nIf Daeduck, Simmtech and TLB keep improving, the AI buildout is reaching the less visible layer that connects chips.\nIf orders rise but capacity or delivery does not, the second-quarter results may have been a temporary peak created by a supply-chain bottleneck.",
+    "ja": "AIサーバーはGPUを差し込めば完成するものではない。\nGPUとCPUをメインボードにつなぐ小さな基板が必要で、サーバー全体に信号と電力を送る多層のプリント基板も入る。\nこの基板があるからこそ、チップは計算結果を他の部品へ送り、安定した電力を受け取れる。\n\nだからAIサーバーが増えると、GPUメーカーだけが恩恵を受けるわけではない。\nチップを基板につなぐパッケージ基板や、サーバー内部のプリント基板を作る企業にも注文が波及する。\n\nJukan（@jukan05）は8日、韓国メディアの報道をもとにこの流れを数字でまとめた。\n大徳電子は第2四半期の売上高4010億ウォン、営業利益703億ウォンで、前年同期比63%増、3599%増だった。\nシムテックは売上高5146億ウォン、営業利益629億ウォンで、51%増、1035%増となった。\nTLBも売上高882億ウォン、営業利益128億ウォンで、38%増、86%増だった。\n\n大徳電子の数字は、金融監督院の開示をまとめた資料でも売上高4010億ウォン、営業利益703億ウォンと確認できる。\n\n@@REF@@大徳電子、第2四半期売上高4010億ウォン・営業利益703億ウォン（AWAKEPLUS、2026-07-31）|https://www.awakeplus.co.kr/data/view/20260731800759\n\n3社は同じ基板業界にいるが、担当する部品は異なる。\n大徳電子は高性能チップとメインボードをつなぐFC-BGAと多層基板を作る。\nシムテックはパッケージ基板とメモリーモジュール用PCBを、TLBはサーバーDDR5と企業向けSSD用のPCBを作る。\n\n## なぜ今、基板の注文が動くのか\n\n大徳電子は7月、今年だけで半導体生産設備に7100億ウォンを投資すると明らかにした。\n高性能チップ向けの高付加価値基板は、需要に対して供給が足りなくなるとみて、生産能力を増やす計画だ。\nAIアクセラレーターに使われる多層基板の事業も拡大している。\n\n@@REF@@大徳電子、半導体基板の生産設備に今年7100億ウォンを投資（ソウル経済、2026-07-21）|https://en.sedaily.com/finance/2026/07/21/daeduck-electronics-to-invest-710-billion-won-in-chip\n\nこの背景から、Jukanは台湾の大手基板メーカーが高価格帯のABF基板へ生産余力を振り向けることで、メモリー・システム半導体向けの基板注文の一部が大徳電子とシムテックへ移る可能性があるとみている。\n確定した受注発表ではなく、生産能力の配分が変わった場合に起こり得る注文移動の見立てだ。\n\n@@FLOW@@AIサーバーの増設|GPU・CPUの出荷増加|パッケージ基板・サーバーPCBの注文|基板メーカーの売上高・利益@@チップが増えても、つなぐ基板が不足すれば完成したサーバーの出荷は遅れる。\n\n## なぜベラ・ルービンとソキャムが出てくるのか\n\nもう一つの背景は、NVIDIAの次世代AIプラットフォーム、ベラ・ルービンだ。\nNVIDIAは5月31日、ベラ・ルービンが本格量産へ移行し、生産品の出荷を今秋から始める予定だと発表した。\n\n@@REF@@NVIDIA、ベラ・ルービンの本格量産と今秋からの生産品出荷を発表（NVIDIA、2026-05-31）|https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx\n\nベラ・ルービンはGPUだけの商品名ではない。\nCPUのVeraとGPUのRubinを組み合わせたサーバープラットフォームで、CPUの隣にはSOCAMMという小型・低消費電力のメモリーカードが入る。\nSOCAMMはサーバーCPUが使うデータを、プロセッサーの近くで受け渡す部品だ。\n\n@@IMG@@dram-module|サーバーに挿すメモリーモジュールの例。SOCAMMはサーバーCPUの隣に置く、より小さなカード型メモリーだ。\n\nJukanは、シムテックとTLBがSOCAMM関連製品を供給しているため、ベラ・ルービンの出荷が近づけば両社の基板注文も増える可能性があるとみる。\nただし、NVIDIAの出荷日程がそのまま韓国企業の売上になるわけではない。\n顧客の注文、生産歩留まり、納品時期がすべてつながる必要がある。\n\n## 第3四半期に見るもの\n\n今回の実績が一時的な反発なのか、AI基板需要が続く合図なのかは、第3四半期で分かれる。\n\n一つ目は、3社の営業利益が第2四半期の水準を保てるかだ。\n二つ目は、高付加価値パッケージ基板とSOCAMM関連製品の生産量が実際に増えるかだ。\n三つ目は、ベラ・ルービンの生産品出荷が予定どおり始まり、韓国の供給企業の売上高と利益につながるかだ。\n\n大徳電子・シムテック・TLBの数字が第3四半期も改善すれば、AI投資がチップを設計する企業だけでなく、チップをつなぐ見えにくい層まで押し上げていることになる。\n注文は増えても生産能力や納品が追いつかなければ、今回の第2四半期実績は供給網のボトルネックが作った一時的な高値だった可能性が残る。"
+   },
+   "why": {
+    "ko": "이번 카드는 AI 서버의 다음 병목이 GPU가 아니라 연결 기판이 될 수 있는지, 그리고 강한 2분기 실적이 3분기에도 이어질지를 함께 보는 글이다.",
+    "en": "This card asks whether the next AI-server bottleneck could be the boards that connect chips rather than the GPUs themselves, and whether the strong second quarter can continue into the third.",
+    "ja": "このカードは、AIサーバーの次のボトルネックがGPUではなくチップをつなぐ基板になるのか、そして強い第2四半期が第3四半期にも続くのかを見る。"
+   },
+   "ask": {
+    "ko": "대덕전자·심텍·티엘비의 강한 2분기 실적은 AI 기판 수요의 시작일까, 공급이 풀리면 금세 꺾일 일시적 호황일까?",
+    "en": "Are Daeduck, Simmtech and TLB showing the start of durable AI-substrate demand, or a temporary boom that will fade when supply loosens?",
+    "ja": "大徳電子・シムテック・TLBの強い第2四半期はAI基板需要の始まりなのか、それとも供給が緩めばすぐに弱まる一時的な好況なのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-08 · 한국 PCB·기판 업체의 2분기 실적, 주문 이동과 SOCAMM 수요에 대한 분석",
+      "en": "Jukan (@jukan05) · 2026-08-08 · Analysis of Korean board makers' second-quarter results, order shifts and SOCAMM demand",
+      "ja": "Jukan（@jukan05）・2026-08-08・韓国の基板メーカーの第2四半期実績、注文移動、SOCAMM需要の分析"
+     },
+     "url": "https://x.com/jukan05/status/2085939743632892184"
+    },
+    {
+     "name": {
+      "ko": "AWAKEPLUS",
+      "en": "AWAKEPLUS",
+      "ja": "AWAKEPLUS"
+     },
+     "desc": {
+      "ko": "2026-07-31 · 대덕전자 2분기 매출 4,010억원·영업이익 703억원 공시 요약",
+      "en": "2026-07-31 · Filing summary showing Daeduck's second-quarter revenue of KRW 401.0 billion and operating profit of KRW 70.3 billion",
+      "ja": "2026-07-31・大徳電子の第2四半期売上高4010億ウォン・営業利益703億ウォンの開示要約"
+     },
+     "url": "https://www.awakeplus.co.kr/data/view/20260731800759"
+    },
+    {
+     "name": {
+      "ko": "서울경제",
+      "en": "Seoul Economic Daily",
+      "ja": "ソウル経済"
+     },
+     "desc": {
+      "ko": "2026-07-21 · 대덕전자의 반도체 기판 생산시설 올해 7,100억원 투자와 고부가 기판·AI 가속기용 다층 기판 사업",
+      "en": "2026-07-21 · Daeduck's KRW 710 billion investment in semiconductor substrate facilities and high-value substrate and AI-accelerator board plans",
+      "ja": "2026-07-21・大徳電子の半導体基板設備への7100億ウォン投資、高付加価値基板とAIアクセラレーター向け多層基板計画"
+     },
+     "url": "https://en.sedaily.com/finance/2026/07/21/daeduck-electronics-to-invest-710-billion-won-in-chip"
+    },
+    {
+     "name": {
+      "ko": "엔비디아",
+      "en": "NVIDIA",
+      "ja": "NVIDIA"
+     },
+     "desc": {
+      "ko": "2026-05-31 · 베라 루빈 플랫폼의 본격 양산과 올가을 생산 출하 예정",
+      "en": "2026-05-31 · Vera Rubin ramping into full production and production shipments scheduled to begin this fall",
+      "ja": "2026-05-31・ベラ・ルービンの本格量産と今秋からの生産品出荷予定"
+     },
+     "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-08 조회 · 대덕전자 2분기 숫자는 2026-07-31 공시 요약, 대덕전자 증설 계획은 2026-07-21 보도, 베라 루빈 일정은 2026-05-31 엔비디아 발표를 기준으로 했다. 심텍·티엘비 실적과 주문 이동은 Jukan이 2026-08-08 한국 언론 보도를 바탕으로 전한 수치와 관측이다.",
+    "en": "Checked 2026-08-08 · Daeduck's second-quarter figures come from the 2026-07-31 filing summary; its capacity plan from the 2026-07-21 report; and Vera Rubin timing from Nvidia's 2026-05-31 announcement. Simmtech and TLB results and the possible order shift are figures and analysis Jukan attributed to Korean press reports on 2026-08-08.",
+    "ja": "2026-08-08確認・大徳電子の第2四半期数字は2026-07-31の開示要約、増設計画は2026-07-21の報道、ベラ・ルービンの日程はNVIDIAの2026-05-31発表を基準にした。シムテックとTLBの実績、注文移動の可能性はJukanが2026-08-08に韓国メディア報道をもとに伝えた数字と見立てである。"
+   },
+   "ts": "2026-08-08T08:24:47.363269Z"
+  },
+  {
    "date": "2026-08-07",
    "id": "semianalysis-spacex-10gw-300b-revenue-gap",
    "related": [
@@ -8571,15 +8703,15 @@
      "ko": "8월 6일 발표되는 연준 H.4.1(8월 5일 기준)에서 외국 통화당국의 국채 담보 달러 차입 잔액이 0에서 늘어나면 FIMA 경로가 실제로 열린 것으로, 계속 0이면 원문의 예상이 빗나간 것으로 채점한다. 판정 결과: 2026년 8월 6일 H.4.1에서 외국 통화당국 레포 잔액이 0으로 유지되어 빗나감.",
      "en": "Score on the Fed's H.4.1 released August 6 (as of August 5): dollars borrowed by foreign monetary authorities against Treasuries moving off zero counts as the FIMA route opening, staying at zero counts as the original expectation missing. Result: foreign official repurchase agreements remained at $0, so the FIMA route did not open.",
      "ja": "8月6日公表のFRB H.4.1(8月5日基準)で、外国の通貨当局による国債担保のドル借入残高がゼロから増えればFIMA経路が実際に開いたとし、ゼロのままなら原文の想定が外れたと採点する。判定結果: 外国当局のレポ残高は0のままで、予想は外れた。"
-     },
-     "gradedOn": "2026-08-08",
-     "evidence": [
-      {
-       "q": "Federal Reserve H.4.1 August 6 2026 foreign official repurchase agreements",
-       "found": "Foreign official repurchase agreements remained $0 for the week ended August 5, 2026."
-      }
-     ],
-     "due": "2026-08-06",
+    },
+    "gradedOn": "2026-08-08",
+    "evidence": [
+     {
+      "q": "Federal Reserve H.4.1 August 6 2026 foreign official repurchase agreements",
+      "found": "Foreign official repurchase agreements remained $0 for the week ended August 5, 2026."
+     }
+    ],
+    "due": "2026-08-06",
     "card": {
      "metric": {
       "ko": "연준 H.4.1 · 외국 통화당국 국채담보 달러 차입 잔액",
@@ -15668,15 +15800,15 @@
      "en": "Check whether the August 5, 2026 US Treasury quarterly refunding statement drops the \"at least\" language guaranteeing stable auction sizes, which would signal more Treasury issuance ahead. Result: the August 3 third-quarter documents dropped that language and raised July-September net marketable borrowing to $739 billion, $68 billion above May.",
      "ko": "2026년 8월5일 미국 재무부 분기 자금조달 계획 발표에서 입찰 규모를 '최소한' 안정적으로 유지하겠다는 문구가 빠지는지 확인, 빠지면 국채 발행 확대 신호로 해석. 판정 결과: 3분기 자료에서 해당 문구가 빠졌고 7~9월 순시장성 차입 추정액이 7,390억달러로 5월보다 680억달러 늘어 적중.",
      "ja": "2026年8月5日の米財務省四半期資金調達計画発表で、入札規模を「少なくとも」安定的に維持するという文言が消えるかどうかを確認する。消えれば国債発行拡大のシグナルとなる。判定結果: 第3四半期資料で文言が消え、7-9月の純市場性借入見積もりは5月より680億ドル増の7390億ドルとなり、的中。"
-     },
-     "gradedOn": "2026-08-08",
-     "evidence": [
-      {
-       "q": "US Treasury third-quarter 2026 quarterly refunding August 3 2026 auction sizes at least",
-       "found": "Treasury's August 3 release omitted the 'at least' language and estimated $739 billion of July-September net marketable borrowing, $68 billion above May."
-      }
-     ],
-     "due": "2026-08-06"
+    },
+    "gradedOn": "2026-08-08",
+    "evidence": [
+     {
+      "q": "US Treasury third-quarter 2026 quarterly refunding August 3 2026 auction sizes at least",
+      "found": "Treasury's August 3 release omitted the 'at least' language and estimated $739 billion of July-September net marketable borrowing, $68 billion above May."
+     }
+    ],
+    "due": "2026-08-06"
    },
    "ts": "2026-07-24T21:50:00.000+00:00",
    "quote": {
@@ -17485,15 +17617,15 @@
      "en": "Check within roughly two weeks whether the US actually carries out the strike on Iran that Trump described as bigger than ever before, or whether the rhetoric fades without action as it has before. Result: AP reported on August 2 that Trump scrapped the planned Sunday attack, so no strike occurred within the window.",
      "ko": "약 2주 안에 트럼프가 '역대 최대'라 말한 대이란 공격이 실제로 벌어지는지, 아니면 이전처럼 발언에 그치고 마는지 확인한다. 판정 결과: AP가 8월 2일 일요일 예정 공격 계획을 철회했다고 보도해 기간 내 실제 공격은 없어 빗나감.",
      "ja": "約2週間以内に、トランプ氏が「史上最大」と語った対イラン攻撃が実際に行われるか、それともこれまでのように発言だけで終わるかを確認する。判定結果: APは8月2日、日曜日に予定されていた攻撃計画を撤回したと報じ、期間内に攻撃はなく予想は外れた。"
-     },
-     "gradedOn": "2026-08-08",
-     "evidence": [
-      {
-       "q": "AP August 2 2026 Trump biggest attack since World War II scrapped",
-       "found": "AP reported that Trump scrapped the planned Sunday attack and held off on ordering new strikes."
-      }
-     ]
     },
+    "gradedOn": "2026-08-08",
+    "evidence": [
+     {
+      "q": "AP August 2 2026 Trump biggest attack since World War II scrapped",
+      "found": "AP reported that Trump scrapped the planned Sunday attack and held off on ordering new strikes."
+     }
+    ]
+   },
    "ts": "2026-07-24T00:47:30.327651+00:00",
    "sum3": {
     "en": "Trump told Axios he's close to deciding on a massive Iran attack, calling it bigger than ever before, in quotes confirmed by multiple outlets.\nBrent crude broke above $100 a barrel and the 10-year Treasury yield topped 4.70% this week as the conflict escalated.\nA widely cited $900 billion Nasdaq loss actually traces to a $797 billion Magnificent Seven selloff driven mainly by AI-spending jitters, not Iran alone.",
@@ -42032,6 +42164,105 @@
     "클로드",
     "クロード"
    ]
+  },
+  "대덕전자": {
+   "kind": "company",
+   "ticker": "353200.ks",
+   "sector": {
+    "ko": "PCB·반도체 기판",
+    "en": "PCB and semiconductor substrates",
+    "ja": "PCB・半導体基板"
+   },
+   "desc": {
+    "ko": "반도체 패키지 기판과 다층 인쇄회로기판을 만드는 한국 기업.",
+    "en": "Korean maker of semiconductor package substrates and multilayer printed circuit boards.",
+    "ja": "半導体パッケージ基板と多層プリント基板を作る韓国企業。"
+   },
+   "aliases": [
+    "대덕전자",
+    "Daeduck Electronics",
+    "Daeduck",
+    "大徳電子"
+   ],
+   "logo": "daeduck.com",
+   "exchange": "KOSPI",
+   "website": "https://www.daeduck.com",
+   "hq": {
+    "ko": "경기 안산",
+    "en": "Ansan, South Korea",
+    "ja": "韓国・安山"
+   },
+   "longDesc": {
+    "ko": "대덕전자는 반도체 패키지 기판과 다층 인쇄회로기판을 함께 생산한다. FC-BGA와 FC-CSP처럼 고성능 칩을 메인보드에 연결하는 기판, AI 가속기용 다층 기판이 주요 제품군이다. 패키지 기판과 서버용 회로기판의 수요가 함께 늘 때 제품 구성이 넓다는 점이 특징이다.",
+    "en": "Daeduck Electronics makes both semiconductor package substrates and multilayer printed circuit boards. Its product range includes substrates such as FC-BGA and FC-CSP that connect powerful chips to main boards, as well as multilayer boards for AI accelerators. The mix gives it exposure to both package-substrate and server-board demand.",
+    "ja": "大徳電子は半導体パッケージ基板と多層プリント基板を生産する。FC-BGAやFC-CSPのように高性能チップをメインボードへつなぐ基板と、AIアクセラレーター向けの多層基板が主な製品群だ。パッケージ基板とサーバー基板の需要が同時に増える局面で製品の幅が強みになる。"
+   }
+  },
+  "심텍": {
+   "kind": "company",
+   "ticker": "222800.ks",
+   "sector": {
+    "ko": "반도체 기판·메모리 PCB",
+    "en": "Semiconductor substrates and memory PCBs",
+    "ja": "半導体基板・メモリーPCB"
+   },
+   "desc": {
+    "ko": "메모리 모듈 PCB와 반도체 패키지 기판을 만드는 한국 기업.",
+    "en": "Korean maker of memory-module PCBs and semiconductor package substrates.",
+    "ja": "メモリーモジュールPCBと半導体パッケージ基板を作る韓国企業。"
+   },
+   "aliases": [
+    "심텍",
+    "Simmtech",
+    "SIMMTECH",
+    "シムテック"
+   ],
+   "logo": "simmtech.com",
+   "exchange": "KOSDAQ",
+   "website": "https://www.simmtech.com",
+   "hq": {
+    "ko": "충북 청주",
+    "en": "Cheongju, South Korea",
+    "ja": "韓国・清州"
+   },
+   "longDesc": {
+    "ko": "심텍은 메모리 반도체용 모듈 PCB와 반도체 패키지 기판을 생산한다. 서버 메모리와 고부가 패키지 제품의 비중이 높아지면 매출뿐 아니라 제품 구성과 수익성의 변화가 함께 나타날 수 있다. AI 서버용 메모리 모듈과 차세대 패키지 규격의 확산이 주요 관찰 대상이다.",
+    "en": "Simmtech makes memory-semiconductor module PCBs and semiconductor package substrates. A higher mix of server memory and advanced package products can change both revenue and profitability. The spread of AI-server memory modules and next-generation package standards is a key area to watch.",
+    "ja": "シムテックはメモリー半導体向けモジュールPCBと半導体パッケージ基板を生産する。サーバーメモリーや高付加価値パッケージの比率が高まると、売上高だけでなく製品構成と収益性も変わり得る。AIサーバー用メモリーモジュールと次世代パッケージ規格の普及が観察点だ。"
+   }
+  },
+  "TLB": {
+   "kind": "company",
+   "ticker": "356860.ks",
+   "sector": {
+    "ko": "서버·메모리 PCB",
+    "en": "Server and memory PCBs",
+    "ja": "サーバー・メモリーPCB"
+   },
+   "desc": {
+    "ko": "서버 DDR5와 기업용 SSD에 들어가는 PCB를 만드는 한국 기업.",
+    "en": "Korean maker of PCBs for server DDR5 and enterprise SSDs.",
+    "ja": "サーバーDDR5と企業向けSSD用のPCBを作る韓国企業。"
+   },
+   "aliases": [
+    "티엘비",
+    "TLB",
+    "TLB Co., Ltd.",
+    "ティーエルビー"
+   ],
+   "logo": "tlbpcb.com",
+   "exchange": "KOSDAQ",
+   "website": "https://www.tlbpcb.com",
+   "hq": {
+    "ko": "경기 안산",
+    "en": "Ansan, South Korea",
+    "ja": "韓国・安山"
+   },
+   "longDesc": {
+    "ko": "TLB는 서버용 메모리 모듈과 기업용 SSD에 쓰이는 PCB를 생산한다. 서버 성능이 높아지고 메모리 규격이 바뀌면 모듈용 기판의 층수와 사양, 제품 믹스가 함께 변한다. SOCAMM 관련 제품이 실제 양산과 매출로 연결되는지가 AI 서버 공급망에서 중요한 관찰점이다.",
+    "en": "TLB makes PCBs used in server memory modules and enterprise SSDs. As server performance rises and memory standards change, the layer count, specifications and product mix of module boards can change with them. Whether SOCAMM-related products reach mass production and revenue is an important point in the AI-server supply chain.",
+    "ja": "TLBはサーバー用メモリーモジュールと企業向けSSDに使われるPCBを生産する。サーバー性能が高まりメモリー規格が変わると、モジュール基板の層数や仕様、製品構成も変化する。SOCAMM関連製品が実際の量産と売上高につながるかがAIサーバー供給網の重要な観察点だ。"
+   }
   }
  }
 }
