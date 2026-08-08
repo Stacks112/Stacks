@@ -61,6 +61,7 @@ class FrontendContracts(unittest.TestCase):
             app_embed.index("await tw.widgets.createTweet"),
         )
         self.assertIn("slot.contains(e.target)", app_embed)
+        self.assertIn('if (!el || !slot.querySelector("iframe")) { abandon(); return; }\n    reveal();', app_embed)
 
         pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
         start = pages.index("X_LIVE_SCRIPT =")
@@ -70,6 +71,7 @@ class FrontendContracts(unittest.TestCase):
             static_embed.index("Promise.resolve(twttr.widgets.createTweet"),
         )
         self.assertIn("slot.contains(e.target)", static_embed)
+        self.assertIn("if (!node || !slot.querySelector('iframe')) { abandon(); return; }\n          reveal();", static_embed)
 
     def test_judgment_record_filter_and_evidence_contracts(self):
         self.assertIn('.jr-quick', INDEX)

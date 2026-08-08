@@ -302,7 +302,9 @@ Iran risk was real background noise all week. But before crediting it for any on
           slot.innerHTML = '';
         }
         /* Bind before createTweet: X can emit rendered before its promise
-           resolves. Match by slot so one widget cannot reveal another card. */
+           resolves. Match by slot so one widget cannot reveal another card.
+           The promise resolution below is a safe fallback for X builds that
+           emit too early. */
         if (!twttr.events || !twttr.events.bind) return;
         twttr.events.bind('rendered', function(e){
           if (!e || !e.target || !slot.contains(e.target)) return;
@@ -312,8 +314,10 @@ Iran risk was real background noise all week. But before crediting it for any on
           dnt: true, conversation: 'none', align: 'left'
         })).then(function(node){
           if (!node || !slot.querySelector('iframe')) { abandon(); return; }
+          reveal();
           /* iframe load can be an X error document. The rendered event above
-             may hide the static fallback; failed embeds keep their source. */
+             or the successful promise may hide the static fallback; failed
+             embeds keep their source. */
           setTimeout(abandon, 5000);
         }).catch(function(){ slot.innerHTML = ''; });
       } catch (e) { slot.innerHTML = ''; }

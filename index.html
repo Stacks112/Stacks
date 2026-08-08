@@ -13378,7 +13378,8 @@ async function xEmbedMount(host){
       host.classList.remove("x-on");
     };
     /* Bind before createTweet: X can emit rendered before its promise resolves.
-       Match by slot so one widget cannot reveal another card. */
+       Match by slot so one widget cannot reveal another card. The promise
+       resolution below is a safe fallback for X builds that emit too early. */
     if (!tw.events || typeof tw.events.bind !== "function") return;
     tw.events.bind("rendered", e => {
       if (!e || !e.target || !slot.contains(e.target)) return;
@@ -13392,8 +13393,10 @@ async function xEmbedMount(host){
       lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
     });
     if (!el || !slot.querySelector("iframe")) { abandon(); return; }
+    reveal();
     /* iframe load only proves that an error document loaded. The rendered
-       event above is what may hide the complete static fallback. */
+       event above or the successful promise is what may hide the complete
+       static fallback. */
     setTimeout(abandon, 5000);
   } catch (e) { slot.replaceChildren(); }
 }
