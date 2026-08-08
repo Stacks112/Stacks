@@ -2615,6 +2615,7 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     # site-level context. this-week.html is a human-facing alias whose canonical
     # points at the dated archive below, so only the canonical URL belongs here.
     urls = [(BASE, now, "1.0", None),
+            (BASE + "record.html", now, "0.8", None),
             (BASE + "calendar.html", now, "0.7", None),
             (BASE + "articles.html", now, "0.6", None),
             (BASE + "about.html", now, "0.6", None),
@@ -2846,6 +2847,69 @@ def build_extra_pages(items, og):
     """Generate t/{theme}.html + r/{author}.html (+ share cards). Returns
     (theme_slugs, record_slugs)."""
     import os, urllib.parse
+    # --- track-record hub ---
+    # The interactive view remains on index.html#record. This crawlable page
+    # gives search engines a real URL and a useful first batch of records.
+    tracked = [i for i in items if (i.get("outcome") or {}).get("status")]
+    pending = sorted(
+        [i for i in tracked if (i.get("outcome") or {}).get("status") == "pending"],
+        key=lambda x: (x.get("outcome") or {}).get("due") or "9999"
+    )
+    done = sorted(
+        [i for i in tracked if (i.get("outcome") or {}).get("status") in ("hit", "miss")],
+        key=lambda x: (x.get("outcome") or {}).get("due") or x.get("date", ""),
+        reverse=True,
+    )
+    hit_done = [i for i in done if (i.get("outcome") or {}).get("status") == "hit"]
+    miss_done = [i for i in done if (i.get("outcome") or {}).get("status") == "miss"]
+    hits = len(hit_done)
+    misses = len(miss_done)
+    def _record_rows(its, status, limit):
+        labels = {"pending": "검증 중", "hit": "적중", "miss": "빗나감"}
+        classes = {"pending": "wa", "hit": "bl", "miss": "be"}
+        rows = []
+        for i in its[:limit]:
+            o = i.get("outcome") or {}
+            due = o.get("due") or "판정 예정일 미정"
+            label = labels[status]
+            row_cls = classes[status]
+            if status == "pending" and o.get("due"):
+                try:
+                    late = (datetime.now(timezone.utc).date()
+                            - datetime.fromisoformat(o["due"]).date()).days
+                    if late > 0:
+                        label, row_cls = f"지연 D+{late}", "be"
+                except (TypeError, ValueError):
+                    pass
+            title = (i.get("title") or {}).get("ko") or (i.get("title") or {}).get("en", "")
+            rows.append(
+                f'<li><b class="{row_cls}">{label}</b> '
+                f'<a href="./p/{E(i["id"])}.html">{E(title)}</a>'
+                f'<span class="d">{E(dispname(i.get("source", "")))} · 전망일 {E(i.get("date", ""))} · 판정 예정일 {E(due)}</span></li>'
+            )
+        return "".join(rows)
+    record_url = BASE + "record.html"
+    record_lead = (
+        f"검증 중 {len(pending)}건, 판정 완료 {len(done)}건. "
+        f"적중 {hits}건 · 빗나감 {misses}건. 각 전망의 판정 기준과 결과를 공개합니다."
+    )
+    record_body = (
+        f'<div class="tally"><b class="wa">검증 중 {len(pending)}</b>'
+        f'<b class="bl">적중 {hits}</b><b class="be">빗나감 {misses}</b></div>'
+        + f"<h2>검증 중인 전망 {len(pending)}건</h2><ul>"
+        + _record_rows(pending, "pending", 30) + "</ul>"
+        + f"<h2>판정 완료 {len(done)}건</h2><ul>"
+        + _record_rows(hit_done, "hit", 20) + _record_rows(miss_done, "miss", 20) + "</ul>"
+    )
+    record_html = _hub_page(record_url, f"판정 기록 · {SITE}", clip(record_lead, 160),
+                            "TRACK RECORD", "판정 기록", record_lead, record_body,
+                            BASE + "#record")
+    record_html = (record_html.replace('href="../favicon-32.png"', 'href="favicon-32.png"')
+                   .replace('href="../articles.html"', 'href="articles.html"')
+                   .replace('href="../feed.xml"', 'href="feed.xml"')
+                   .replace('href="../"', 'href="./"'))
+    open("record.html", "w", encoding="utf-8").write(record_html)
+
     # --- themes ---
     os.makedirs("t", exist_ok=True)
     theme_slugs = []
