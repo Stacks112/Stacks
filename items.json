@@ -2,6 +2,124 @@
  "items": [
   {
    "date": "2026-08-07",
+   "id": "bilello-july-jobs-labor-force-exit",
+   "related": [
+    "elerian-ism-services-employment-back-below-50",
+    "bessent-wages-25th-percentile-lead",
+    "macro-week-2026-08-02"
+   ],
+   "source": "Charlie Bilello",
+   "sourceUrl": "https://x.com/charliebilello/status/2085776887230406880",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/charliebilello?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#B45309",
+    "label": "JULY JOBS"
+   },
+   "tags": [
+    "US JOBS",
+    "UNEMPLOYMENT",
+    "LABOR FORCE"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "실업률은 4.1%로 내렸다, 취업자는 8만7,000명 줄었다",
+    "en": "Unemployment Fell to 4.1%, but Employment Fell by 87,000",
+    "ja": "失業率は4.1%に下がったが、就業者は8万7000人減った"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "The US Unemployment Rate moved down to 4.1% in July. Normally, that would be good news.",
+      "But it didn’t fall because people who were unemployed found jobs. Instead, 264k people simply left the labor force, pushing the participation rate down to 61.4% (lowest since February 2021)."
+     ],
+     "ko": [
+      "미국의 실업률은 7월에 4.1%로 내려갔다. 보통이라면 좋은 소식이다.",
+      "하지만 실업자들이 일자리를 찾아서 내려간 것이 아니다. 대신 26만4,000명이 경제활동인구에서 빠졌고, 참가율은 61.4%로 낮아졌다. 2021년 2월 이후 최저다."
+     ],
+     "ja": [
+      "米国の失業率は7月に4.1%へ低下した。通常なら良い知らせだ。",
+      "しかし、失業者が仕事を見つけたために下がったのではない。26万4000人が労働力人口から外れ、労働参加率は61.4%へ低下した。2021年2月以来の低さだ。"
+     ]
+    },
+    "cite": "Charlie Bilello · 2026.08.07"
+   },
+   "sum3": {
+    "ko": "미국의 7월 비농업 일자리는 2만3,000개 줄었지만 실업률은 4.1%로 내려갔다.\n겉으로는 고용이 나아진 듯하지만 경제활동인구 26만4,000명이 계산의 분모에서 빠졌다.\n다음 판단은 실업률보다 참가율·고용률·수정 뒤 월별 고용이 함께 회복하는지에서 갈린다.",
+    "en": "US nonfarm payrolls fell by 23,000 in July, yet the unemployment rate declined to 4.1%.\nThe headline looks healthier, but 264,000 people left the labor force and therefore left the denominator.\nThe next test is whether participation, the employment ratio, and revised monthly payrolls recover together.",
+    "ja": "米国の7月の非農業部門雇用者数は2万3000人減ったが、失業率は4.1%へ低下した。\n表面上は改善に見えるが、26万4000人が労働力人口を離れ、計算の分母から外れた。\n次の判断は失業率より、参加率・就業率・改定後の雇用がそろって回復するかで分かれる。"
+   },
+   "gist": {
+    "ko": "미국의 7월 고용보고서는 한 방향으로 읽히지 않는다. 실업률은 낮아졌지만 비농업 일자리는 마이너스로 돌아섰다. 찰리 빌렐로는 실업자가 취업해서 실업률이 내려간 것이 아니라 노동시장 밖으로 나간 사람이 많았다는 점을 짚었다.\n\n@@REF@@미국 7월 고용보고서 (미국 노동통계국, 2026-08-07)|https://www.bls.gov/news.release/empsit.nr0.htm\n\n## 실업률의 분모가 줄었다\n\n실업률은 일할 수 있는 모든 성인을 분모로 삼지 않는다. 취업자와 최근 4주 안에 적극적으로 구직한 실업자를 합친 경제활동인구만 분모다. 일자리를 원해도 최근에 구직하지 않았거나 바로 일할 수 없는 사람은 실업자가 아니라 비경제활동인구로 분류된다.\n\n@@FLOW@@일자리 없음|처음에는 실업자로 집계|구직 중단|최근 4주 적극적으로 찾지 않음|노동시장 밖|실업률 계산에서 빠짐@@실업률은 일자리가 없는 사람 전부가 아니라 경제활동인구 안에서 실업자가 차지하는 비율이다.\n\n7월 표를 보면 경제활동인구는 26만4,000명 줄었다. 취업자도 8만7,000명 감소했지만, 실업자는 17만8,000명 줄었다. 취업자가 늘지 않았는데 실업자가 더 크게 감소하면서 실업률은 0.1%포인트 내려갔다. 비경제활동인구는 반대로 38만1,000명 늘었다.\n\n@@REF@@7월 경제활동 상태 요약표 (미국 노동통계국, 2026-08-07)|https://www.bls.gov/news.release/empsit.a.htm\n\n## 두 조사는 다른 것을 센다\n\n비농업 일자리 2만3,000개 감소는 사업체 조사에서 나왔다. 취업자 8만7,000명 감소와 실업률 4.1%는 가구 조사에서 나왔다. 하나는 회사 급여명부의 일자리 수를 세고, 다른 하나는 사람의 취업·구직 상태를 묻는다. 표본과 개념이 달라 한 달 수치가 똑같이 움직이지 않아도 오류는 아니다.\n\n이번 보고서의 약화 신호는 실업률 하나보다 넓다. 경제활동참가율은 1월 이후 0.7%포인트, 고용률은 0.5%포인트 낮아졌다. 7월 이전 12개월의 비농업 고용 증가는 월평균 3만4,000개에 그쳤고, 5월과 6월 수치는 합쳐 10만3,000개 하향 수정됐다.\n\n## 다음 고용보고서에서 볼 것\n\n참가율이 다시 오르면서 취업자와 비농업 고용이 함께 늘면 이번 실업률 하락은 더 건강한 노동시장과 함께 나온 숫자가 된다. 참가율과 고용률이 낮은 채 월별 일자리도 약하면, 실업률이 안정돼 보여도 노동시장은 안쪽에서 줄어드는 중일 수 있다. 이번 수치는 강세나 침체를 확정하기보다 세 지표가 함께 돌아서는지를 보는 편이 맞다.",
+    "en": "The July US employment report does not point in one direction. The unemployment rate declined, but nonfarm payroll growth turned negative. Charlie Bilello’s point is that the rate did not fall because unemployed people moved into jobs. It fell while many people moved out of the labor force.\n\n@@REF@@US Employment Situation for July (Bureau of Labor Statistics, 2026-08-07)|https://www.bls.gov/news.release/empsit.nr0.htm\n\n## The denominator became smaller\n\nThe unemployment rate does not use every working-age adult as its denominator. It uses the labor force, which combines employed people with unemployed people who have actively looked for work during the previous four weeks. Someone may still want a job, but if that person has not looked recently or is not available to start, the survey classifies that person as outside the labor force rather than unemployed.\n\n@@FLOW@@No job|Initially counted as unemployed|Stops searching|No active search in the past four weeks|Outside the labor force|Leaves the unemployment-rate calculation@@The rate measures unemployed people inside the labor force, not every person without a job.\n\nThe July table shows the labor force shrinking by 264,000. Employment also fell by 87,000, but the number of unemployed people fell by 178,000. Because unemployment declined more than employment did, the unemployment rate slipped by 0.1 percentage point even without an increase in employed people. The number outside the labor force rose by 381,000.\n\n@@REF@@July household employment-status summary (Bureau of Labor Statistics, 2026-08-07)|https://www.bls.gov/news.release/empsit.a.htm\n\n## Two surveys count different things\n\nThe 23,000 decline in nonfarm payrolls comes from the establishment survey. The 87,000 decline in employment and the 4.1% unemployment rate come from the household survey. One counts jobs reported on employer payrolls. The other asks people about their employment and job-search status. Different samples and concepts mean the two monthly changes do not have to match.\n\nThe weakening signal extends beyond one unemployment-rate print. Since January, labor-force participation has fallen by 0.7 percentage point and the employment-population ratio by 0.5 point. Payroll growth averaged only 34,000 a month during the preceding year, while May and June were revised down by a combined 103,000.\n\n## What to watch next month\n\nIf participation rebounds while household employment and payrolls rise together, the lower unemployment rate will sit beside a healthier labor market. If participation and the employment ratio remain low while payrolls stay weak, a stable unemployment rate can coexist with a labor market that is shrinking underneath it. This report does not settle expansion versus recession. It makes the joint direction of those three measures more useful than the headline alone.",
+    "ja": "米国の7月雇用統計は一方向に読めない。失業率は低下したが、非農業部門雇用者数はマイナスに転じた。チャーリー・ビレロが指摘したのは、失業者が就職したために率が下がったのではなく、多くの人が労働力人口から外れる中で下がったという点だ。\n\n@@REF@@米国7月雇用統計 (米労働統計局, 2026-08-07)|https://www.bls.gov/news.release/empsit.nr0.htm\n\n## 分母が小さくなった\n\n失業率の分母は、働ける年齢の人すべてではない。就業者と、過去4週間に積極的に仕事を探した失業者を合わせた労働力人口だけを使う。仕事を望んでいても最近探していない人や、すぐ働けない人は失業者ではなく、非労働力人口に分類される。\n\n@@FLOW@@仕事がない|最初は失業者として集計|求職をやめる|過去4週間に積極的な求職なし|労働市場の外|失業率の計算から外れる@@失業率は仕事がない人全員ではなく、労働力人口の中にいる失業者の割合だ。\n\n7月の表では、労働力人口が26万4000人減った。就業者も8万7000人減ったが、失業者は17万8000人減った。就業者が増えていないのに失業者の減少幅がより大きかったため、失業率は0.1ポイント下がった。非労働力人口は反対に38万1000人増えた。\n\n@@REF@@7月の就業状態サマリー (米労働統計局, 2026-08-07)|https://www.bls.gov/news.release/empsit.a.htm\n\n## 二つの調査は別物を数える\n\n非農業部門の2万3000人減少は事業所調査から出た。就業者の8万7000人減少と失業率4.1%は家計調査から出た。一方は企業の給与台帳に載る雇用を数え、もう一方は個人の就業と求職の状態を尋ねる。標本と概念が違うため、月ごとの変化が同じでなくても誤りではない。\n\n弱さの信号は失業率だけではない。1月以降、労働参加率は0.7ポイント、就業率は0.5ポイント低下した。7月までの12か月間の非農業部門雇用者数は月平均3万4000人の増加にとどまり、5月と6月は合計10万3000人下方修正された。\n\n## 次の雇用統計で見るもの\n\n参加率が戻り、就業者と非農業部門雇用者数がそろって増えれば、今回の失業率低下はより健全な労働市場と並ぶ数字になる。参加率と就業率が低いまま雇用の伸びも弱ければ、失業率が安定して見えても、労働市場は内側で縮んでいる可能性がある。今回の統計だけで景気拡大か後退かは決まらない。三つの指標が同じ方向へ動くかを見る方が、見出しだけを読むより有用だ。"
+   },
+   "why": {
+    "ko": "실업률은 노동시장을 떠난 사람을 분모에서 빼므로, 참가율·고용률·비농업 고용을 함께 봐야 고용의 실제 방향이 보인다.",
+    "en": "Because the unemployment rate removes people who leave the labor force from its denominator, participation, the employment ratio, and payrolls reveal the direction more clearly together.",
+    "ja": "失業率は労働力人口を離れた人を分母から外すため、参加率・就業率・非農業部門雇用を合わせて見る必要がある。"
+   },
+   "ask": {
+    "ko": "7월 실업률 하락은 고용 개선일까, 노동시장의 분모가 줄어든 결과일까?",
+    "en": "Was July’s lower unemployment rate an improvement, or mainly the result of a smaller labor-force denominator?",
+    "ja": "7月の失業率低下は雇用改善なのか、それとも労働力人口という分母が縮んだ結果なのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Charlie Bilello · 2026-08-07",
+      "en": "Charlie Bilello · 2026-08-07",
+      "ja": "Charlie Bilello · 2026-08-07"
+     },
+     "url": "https://x.com/charliebilello/status/2085776887230406880"
+    },
+    {
+     "name": {
+      "ko": "미국 7월 고용보고서",
+      "en": "US July employment report",
+      "ja": "米国7月雇用統計"
+     },
+     "desc": {
+      "ko": "비농업 고용·실업률·수정치와 두 조사 설명 · 2026-08-07",
+      "en": "Payrolls, unemployment, revisions, and the two-survey explanation · 2026-08-07",
+      "ja": "非農業部門雇用、失業率、改定値、二調査の説明 · 2026-08-07"
+     },
+     "url": "https://www.bls.gov/news.release/empsit.nr0.htm"
+    },
+    {
+     "name": {
+      "ko": "가구조사 요약표",
+      "en": "Household survey summary",
+      "ja": "家計調査サマリー"
+     },
+     "desc": {
+      "ko": "경제활동인구·취업자·실업자·비경제활동인구의 7월 변화 · 2026-08-07",
+      "en": "July changes in the labor force, employment, unemployment, and people outside the labor force · 2026-08-07",
+      "ja": "労働力人口、就業者、失業者、非労働力人口の7月変化 · 2026-08-07"
+     },
+     "url": "https://www.bls.gov/news.release/empsit.a.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-08 조회 · 미국 노동통계국 2026년 7월 계절조정치 기준",
+    "en": "Checked 2026-08-08 · based on seasonally adjusted BLS data for July 2026",
+    "ja": "2026-08-08確認 · 米労働統計局の2026年7月季節調整値に基づく"
+   },
+   "ts": "2026-08-08T12:52:00+00:00"
+  },
+  {
+   "date": "2026-08-07",
    "id": "meru-treasury-refunding-long-term-issuance-aug-2026",
    "related": [
     "meru-treasury-yield-deficit-not-just-oil"
@@ -42875,6 +42993,83 @@
     "en": "A short-maturity Treasury bill whose issuance can be adjusted more easily as near-term funding needs change.",
     "ja": "満期が短く、直近の資金需要に合わせて発行量を調整しやすい国債。"
    }
+  },
+  "실업률": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "경제활동인구 가운데 적극적으로 구직 중인 실업자가 차지하는 비율.",
+    "en": "The share of the labor force that is unemployed and actively seeking work.",
+    "ja": "労働力人口のうち、失業して積極的に求職している人の割合。"
+   },
+   "longDesc": {
+    "ko": "분모는 취업자와 실업자를 합친 경제활동인구다. 구직을 멈춘 사람은 일자리가 없어도 분모와 분자에서 함께 빠질 수 있어, 실업률 하락이 언제나 고용 개선을 뜻하지는 않는다.",
+    "en": "Its denominator is the labor force, the sum of employed and unemployed people. Someone who stops actively searching can leave both numerator and denominator, so a lower rate does not always mean stronger employment.",
+    "ja": "分母は就業者と失業者を合わせた労働力人口だ。積極的な求職をやめた人は分子と分母の両方から外れるため、失業率の低下が必ずしも雇用改善を意味しない。"
+   },
+   "aliases": [
+    "실업률",
+    "unemployment rate",
+    "jobless rate",
+    "失業率"
+   ]
+  },
+  "경제활동참가율": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "생산가능인구 가운데 취업했거나 적극적으로 구직하는 사람이 차지하는 비율.",
+    "en": "The share of the working-age population that is employed or actively looking for work.",
+    "ja": "生産年齢人口のうち、就業中または積極的に求職している人の割合。"
+   },
+   "longDesc": {
+    "ko": "실업률의 분모가 얼마나 넓은지를 보여준다. 참가율이 떨어지면 일자리를 구하지 못한 사람이 실업자에서 빠져 실업률이 낮아질 수 있으므로, 고용률과 함께 봐야 한다.",
+    "en": "It shows how broad the unemployment rate’s denominator is. When participation falls, people without jobs can cease to count as unemployed, so the measure is best read alongside the employment-population ratio.",
+    "ja": "失業率の分母がどれほど広いかを示す。参加率が低下すると、仕事がなくても失業者に数えられない人が増え得るため、就業率と合わせて読む必要がある。"
+   },
+   "aliases": [
+    "경제활동참가율",
+    "경제활동 참가율",
+    "참가율",
+    "labor force participation rate",
+    "participation rate",
+    "労働参加率",
+    "労働力率"
+   ]
+  },
+  "비농업 고용": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "미국 사업체 급여명부를 바탕으로 집계한 농업 외 일자리 수.",
+    "en": "US jobs outside farming measured from employer payroll records.",
+    "ja": "米国の事業所の給与台帳から集計する、農業以外の雇用者数。"
+   },
+   "longDesc": {
+    "ko": "기업과 정부 사업체가 보고한 급여명부의 일자리를 세며, 가구조사에서 계산하는 취업자 수와는 표본과 개념이 다르다. 월별 경기와 기업의 채용 방향을 읽는 핵심 지표지만 뒤에 수정될 수 있다.",
+    "en": "It counts jobs reported on private and government payrolls and differs in sample and concept from household-survey employment. It is a key gauge of hiring and the business cycle, but monthly estimates can be revised.",
+    "ja": "企業と政府の給与台帳に載る雇用を数え、家計調査の就業者数とは標本と概念が異なる。採用と景気の方向を示す重要指標だが、月次値は後で改定される。"
+   },
+   "aliases": [
+    "비농업 고용",
+    "비농업 일자리",
+    "nonfarm payroll",
+    "nonfarm payrolls",
+    "nonfarm payroll employment",
+    "非農業部門雇用者数"
+   ]
   }
  }
 }
