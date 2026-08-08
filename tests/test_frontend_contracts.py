@@ -51,9 +51,22 @@ class FrontendContracts(unittest.TestCase):
     def test_x_embed_keeps_a_hidden_slot_when_live_widget_fails(self):
         self.assertIn('const slot = host.querySelector(".xreal-slot") || document.createElement("div");', INDEX)
         self.assertIn("slot.replaceChildren();", INDEX)
-        self.assertIn('.xreal.x-on > .xemb{display:block;}', INDEX)
+        self.assertIn('.xreal.x-on > .xemb{display:none;}', INDEX)
         pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
-        self.assertIn('.xreal.x-on>.xemb{display:block}', pages)
+        self.assertIn('.xreal.x-on>.xemb{display:none}', pages)
+
+        app_x_iframe_css = next(
+            line for line in INDEX.splitlines()
+            if line.startswith('.xreal.x-on>.xreal-slot iframe{')
+        )
+        static_x_iframe_css = next(
+            line for line in pages.splitlines()
+            if line.startswith('.xreal.x-on>.xreal-slot iframe{')
+        )
+        self.assertNotIn('height:auto', app_x_iframe_css.replace(' ', ''))
+        self.assertNotIn('height:auto', static_x_iframe_css.replace(' ', ''))
+        self.assertIn('position:absolute', INDEX)
+        self.assertIn('position:absolute', pages)
 
     def test_x_embed_binds_rendered_before_create(self):
         start = INDEX.index("async function xEmbedMount(host)")
@@ -66,7 +79,9 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("slot.contains(e.target)", app_embed)
         self.assertIn('if (!el || !slot.querySelector("iframe")) { abandon(); return; }\n    reveal();', app_embed)
         self.assertIn('slot.querySelector(".twitter-tweet-rendered")', app_embed)
+        self.assertIn('frame.getBoundingClientRect().height <= 1', app_embed)
         self.assertIn('frame.style.visibility = "visible"', app_embed)
+        self.assertNotIn('frame.style.removeProperty("height")', app_embed)
 
         pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
         start = pages.index("X_LIVE_SCRIPT =")
@@ -78,7 +93,9 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("slot.contains(e.target)", static_embed)
         self.assertIn("if (!node || !slot.querySelector('iframe')) { abandon(); return; }\n          reveal();", static_embed)
         self.assertIn("slot.querySelector('.twitter-tweet-rendered')", static_embed)
+        self.assertIn("frame.getBoundingClientRect().height <= 1", static_embed)
         self.assertIn("frame.style.visibility = 'visible'", static_embed)
+        self.assertNotIn("frame.style.removeProperty('height')", static_embed)
 
     def test_judgment_record_filter_and_evidence_contracts(self):
         self.assertIn('.jr-quick', INDEX)

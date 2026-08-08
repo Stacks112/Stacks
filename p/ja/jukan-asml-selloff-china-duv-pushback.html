@@ -54,7 +54,7 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
-.xreal{margin:0 0 20px}
+.xreal{margin:0 0 20px;position:relative}
 .xemb{padding:12px 14px;border:1px solid #ECEDF1;border-radius:14px;background:#fff}
 .xemb-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .xemb-av{width:34px;height:34px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4b5563,#1f2937);color:#fff;font-weight:800;font-size:14px}
@@ -67,11 +67,11 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
 .xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
 .xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
-.xreal-slot{display:block;height:0;overflow:hidden;visibility:hidden}
-.xreal.x-on>.xemb{display:block}
-.xreal.x-on>.xreal-slot{display:flow-root;height:auto;overflow:visible;visibility:visible}
+.xreal-slot{display:block;height:auto;overflow:visible;visibility:hidden;position:absolute;top:0;left:-10000px;width:100%;opacity:0}
+.xreal.x-on>.xemb{display:none}
+.xreal.x-on>.xreal-slot{position:relative;top:auto;left:auto;width:auto;opacity:1;display:flow-root;height:auto;overflow:visible;visibility:visible}
 .xreal-slot iframe{max-width:100%!important}
-.xreal.x-on>.xreal-slot iframe{position:relative!important;visibility:visible!important;width:100%!important;height:auto!important}
+.xreal.x-on>.xreal-slot iframe{position:relative!important;visibility:visible!important;width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -316,16 +316,14 @@ ASMLの好調な業績が次の四半期も続き、中国の量産が来年20�
       try {
         var settled = false;
         function reveal(){
-          if (settled) return;
-          settled = true;
           var frame = slot.querySelector('iframe');
-          if (frame) {
-            frame.style.position = 'relative';
-            frame.style.visibility = 'visible';
-            frame.style.width = '100%';
-            frame.style.removeProperty('height');
-          }
+          if (settled || !frame || !slot.querySelector('.twitter-tweet-rendered') || frame.getBoundingClientRect().height <= 1) return false;
+          settled = true;
+          frame.style.position = 'relative';
+          frame.style.visibility = 'visible';
+          frame.style.width = '100%';
           host.classList.add('x-on');
+          return true;
         }
         function abandon(){
           if (settled) return;
@@ -335,9 +333,8 @@ ASMLの好調な業績が次の四半期も続き、中国の量産が来年20�
         var readyTicks = 0;
         var readyPoll = setInterval(function(){
           if (settled) { clearInterval(readyPoll); return; }
-          if (slot.querySelector('iframe') && slot.querySelector('.twitter-tweet-rendered')) {
+          if (reveal()) {
             clearInterval(readyPoll);
-            reveal();
             return;
           }
           if (++readyTicks >= 50) clearInterval(readyPoll);

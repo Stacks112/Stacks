@@ -3873,3 +3873,18 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 **Risk**: Live iframe and fallback may coexist while X marks a widget rendered; fallback remains intentional recovery content.
 
 **Next**: none.
+## 2026-08-08 Codex — X iframe height correction
+
+**Change**: Removed the forced `height:auto !important` rule from the X iframe CSS in `index.html` and `scripts/build_pages.py`. Removed runtime `frame.style.removeProperty('height')` from both X mount scripts so the X widget's own computed height survives on mobile.
+
+**Validation**: Updated `tests/test_frontend_contracts.py` to reject both height overrides and height removal. `p/` pages intentionally not regenerated yet.
+
+**Next**: Recheck the live mobile X embed before propagating the fix to generated `p/` pages.
+
+## 2026-08-08 Codex X blank-frame hardening
+
+**Change**: Render X in a measurable off-screen slot, add `x-on` only after the iframe reports non-zero height; failed/zero-height widgets keep the static X card and their empty slot is cleared after timeout. Fallback hides only after verified live render.
+
+**Validation**: Reproduced 390px mobile blank iframe locally; patched capture shows static X card without blank block. Propagate the runtime/CSS change to generated pages before deploy.
+
+**Next**: none.

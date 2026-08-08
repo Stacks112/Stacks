@@ -2812,12 +2812,12 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
    is near the viewport, and the text block stays in place as the visible
    fallback until X actually paints — so a blocked or slow platform.twitter.com
    costs nothing and leaves no hole. */
-.xreal{margin:12px 0 4px;}
-.xreal.x-on > .xemb{display:block;}
-.xreal-slot{min-height:0;display:block;height:0;overflow:hidden;visibility:hidden;}
-.xreal.x-on>.xreal-slot{display:flow-root;height:auto;overflow:visible;visibility:visible;}
+.xreal{margin:12px 0 4px;position:relative;}
+.xreal.x-on > .xemb{display:none;}
+.xreal-slot{min-height:0;display:block;height:auto;overflow:visible;visibility:hidden;position:absolute;top:0;left:-10000px;width:100%;opacity:0;}
+.xreal.x-on>.xreal-slot{position:relative;top:auto;left:auto;width:auto;opacity:1;display:flow-root;height:auto;overflow:visible;visibility:visible;}
 .xreal-slot iframe{max-width:100% !important;}
-.xreal.x-on>.xreal-slot iframe{position:relative !important;visibility:visible !important;width:100% !important;height:auto !important;}
+.xreal.x-on>.xreal-slot iframe{position:relative !important;visibility:visible !important;width:100% !important;}
 .xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
 
 /* Long X posts can overwhelm the reading before the article starts. Articles
@@ -13368,16 +13368,16 @@ async function xEmbedMount(host){
   try {
     let settled = false;
     const reveal = () => {
-      if (settled) return;
-      settled = true;
       const frame = slot.querySelector("iframe");
+      if (settled || !frame || !slot.querySelector(".twitter-tweet-rendered") || frame.getBoundingClientRect().height <= 1) return false;
+      settled = true;
       if (frame) {
         frame.style.position = "relative";
         frame.style.visibility = "visible";
         frame.style.width = "100%";
-        frame.style.removeProperty("height");
       }
       host.classList.add("x-on");
+      return true;
     };
     const abandon = () => {
       if (settled) return;
@@ -13388,9 +13388,8 @@ async function xEmbedMount(host){
     let readyTicks = 0;
     const readyPoll = setInterval(() => {
       if (settled) { clearInterval(readyPoll); return; }
-      if (slot.querySelector("iframe") && slot.querySelector(".twitter-tweet-rendered")) {
+      if (reveal()) {
         clearInterval(readyPoll);
-        reveal();
         return;
       }
       if (++readyTicks >= 50) clearInterval(readyPoll);
