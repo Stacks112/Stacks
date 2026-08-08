@@ -29,7 +29,7 @@
       coverage:"시세 {p}%", mismatch:"분기 다름",
       holdGraphTitle:"공개 포트폴리오의 흐름",
       holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 0%로 맞춘 상대 성과입니다.",
-      holdGraphDrag:"그래프를 마우스로 드래그하면 선택한 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
+      holdGraphDrag:"차트 위를 손가락으로 누른 채 좌우로 움직이면 선택 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
       holdGraphStart:"시작점=0%", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님",
       holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음",
@@ -49,7 +49,7 @@
       coverage:"Prices {p}%", mismatch:"Different period",
       holdGraphTitle:"Public portfolio path",
       holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor starts at 0% for the selected period.",
-      holdGraphDrag:"Drag across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
+      holdGraphDrag:"Press and hold, then drag horizontally across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Start=0%", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns",
       holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data",
@@ -69,7 +69,7 @@
       coverage:"価格 {p}%", mismatch:"四半期が異なります",
       holdGraphTitle:"公開ポートフォリオの推移",
       holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を0%に揃えた相対成績です。",
-      holdGraphDrag:"グラフをドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
+      holdGraphDrag:"グラフを長押しして左右にドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開始点=0%", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません",
       holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし",
@@ -323,7 +323,7 @@
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all), span = mx - mn;
     if (span < 8){ var center = (mn + mx) / 2; mn = center - 5; mx = center + 5; }
     else { mn -= span * .08; mx += span * .08; }
-    var W = 960, H = 310, pL = 52, pR = 22, pT = 18, pB = 34, pw = W - pL - pR, ph = H - pT - pB;
+    var W = 960, H = 310, pL = 88, pR = 22, pT = 18, pB = 34, pw = W - pL - pR, ph = H - pT - pB;
     function X(frac){ return pL + Math.max(0, Math.min(1, frac)) * pw; }
     function Y(v){ return pT + (1 - (v - mn) / (mx - mn)) * ph; }
     var grid = "", ylab = "";
@@ -343,12 +343,13 @@
       + lines + ylab
       + graphAxisLabels(windowStart, windowEnd, H, X)
       + '<line class="inv-compare-hover-line" y1="' + pT + '" y2="' + (pT + ph) + '" visibility="hidden"/>'
+      + '<line class="inv-compare-hover-line inv-compare-hover-hline" x1="' + pL + '" x2="' + (pL + pw) + '" visibility="hidden"/>'
       + series.map(function(s){ return '<circle class="inv-compare-hover-dot" data-color="' + s.color + '" r="4" fill="' + s.color + '" visibility="hidden"/>'; }).join("")
       + '</svg><div class="inv-compare-chart-tip" hidden></div>';
-    var svg = chart.querySelector("svg"), tip = chart.querySelector(".inv-compare-chart-tip"), hover = chart.querySelector(".inv-compare-hover-line"), selectionRect = chart.querySelector(".inv-compare-selection"), dots = Array.prototype.slice.call(chart.querySelectorAll(".inv-compare-hover-dot"));
+    var svg = chart.querySelector("svg"), tip = chart.querySelector(".inv-compare-chart-tip"), hover = chart.querySelector(".inv-compare-hover-line"), hoverH = chart.querySelector(".inv-compare-hover-hline"), selectionRect = chart.querySelector(".inv-compare-selection"), dots = Array.prototype.slice.call(chart.querySelectorAll(".inv-compare-hover-dot"));
     var selection = null, dragging = false, dragStart = 0;
     function hideHover(){
-      hover.setAttribute("visibility", "hidden"); dots.forEach(function(d){ d.setAttribute("visibility", "hidden"); });
+      hover.setAttribute("visibility", "hidden"); hoverH.setAttribute("visibility", "hidden"); dots.forEach(function(d){ d.setAttribute("visibility", "hidden"); });
       if (!selection) tip.hidden = true;
     }
     function leave(){ if (!dragging && !selection) hideHover(); else if (!dragging) hideHover(); }
@@ -371,14 +372,17 @@
       hideHover();
       hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
       var html = '<b>' + esc(graphDays(c, elapsed)) + '</b>';
+      var hoverY = null;
       series.forEach(function(s, i){
         var target = windowStart + elapsed;
         if (target < s.start - 86400 || target > s.end + 86400){ dots[i].setAttribute("visibility", "hidden"); return; }
         var p = graphPointAt(s.points, target);
         if (!p) return;
         dots[i].setAttribute("cx", X((p.t - windowStart) / maxElapsed).toFixed(1)); dots[i].setAttribute("cy", Y(p.v).toFixed(1)); dots[i].setAttribute("visibility", "visible");
+        if (hoverY == null) hoverY = Y(p.v);
         html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(graphPct(p.v)) + '</b></span>';
       });
+      if (hoverY != null){ hoverH.setAttribute("y1", hoverY.toFixed(1)); hoverH.setAttribute("y2", hoverY.toFixed(1)); hoverH.setAttribute("visibility", "visible"); }
       tip.innerHTML = html; tip.hidden = false; placeTip(x / W);
     }
     function rangePct(v){ return typeof v === "number" && isFinite(v) ? (v >= 0 ? "+" : "") + v.toFixed(1) + "%" : "—"; }

@@ -232,6 +232,33 @@ test.describe("13F investor view state", () => {
     await expect.poll(() => page.locator("#invValRange").evaluate(el => el.hidden)).toBe(true);
   });
 
+  test("investor comparison chart keeps hover crosshair and drag selection", async ({ page }) => {
+    await page.route("**/quote?*", route => {
+      const now = Math.floor(Date.now() / 86400) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * 0.1);
+      return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page);
+    await page.locator(".inv-compare-go").click();
+    await expect(page).toHaveURL(/#investor-compare$/);
+    const graph = page.locator("#feedList .inv-performance-section .inv-compare-chart").first();
+    await expect(graph.locator("svg")).toBeVisible();
+    const axisBoxes = await graph.locator("svg .inv-compare-axis").evaluateAll(nodes => nodes.map(node => node.getBBox().x));
+    expect(axisBoxes.length).toBeGreaterThan(0);
+    expect(Math.min(...axisBoxes)).toBeGreaterThanOrEqual(0);
+    const box = await graph.locator("svg").boundingBox();
+    expect(box).not.toBeNull();
+    await page.mouse.move(box.x + box.width * 0.25, box.y + box.height * 0.5);
+    await expect(graph.locator(".inv-compare-hover-line:not(.inv-compare-hover-hline)")).toHaveAttribute("visibility", "visible");
+    await expect(graph.locator(".inv-compare-hover-hline")).toHaveAttribute("visibility", "visible");
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width * 0.7, box.y + box.height * 0.5);
+    await page.mouse.up();
+    await expect(graph.locator(".inv-compare-selection")).toHaveAttribute("visibility", "visible");
+    await expect(graph.locator(".inv-compare-chart-tip")).toContainText("%");
+  });
+
   test.describe("responsive widths", () => {
     test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
 
