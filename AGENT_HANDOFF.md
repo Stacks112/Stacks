@@ -3671,3 +3671,15 @@ Lighthouse 데스크톱·모바일 재검증.
 - `npm.cmd test` — 캘린더 3개 + feed/detail 10개, 총 13개 통과.
 - `py -3 tests/test_frontend_contracts.py` — 9개 통과.
 - `git diff --check` 통과.
+
+**production 보완**:
+- 실데이터가 로드되는 live Lighthouse에서 `since-p` 주가 변화 배지의 대비 위반을
+  추가 발견해 `615dbef`에서 up/down 색상 클래스로 보완.
+- `615dbef` Pages `31232886992` 성공. live `https://stacksdaily.com/?deploy=615dbef`
+  HTTP 200 및 새 색상 규칙 반영 확인.
+- production Chrome Lighthouse 데스크톱·모바일 모두 Accessibility 100,
+  Best Practices 100, SEO 100, 실패 0.
+- Feed detail `31232887673`, calendar `31232887652`, Clobber `31232887661`,
+  Email `31232887668`, watch delivery `31232887640` 성공.
+- OG `31232887641`은 이전 OG 실행 `31232760731` 종료 대기 중이며, Pages·홈 화면
+  배포와는 독립적이다.
