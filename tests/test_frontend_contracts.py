@@ -47,6 +47,17 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("entityClickFeed", INDEX)
         self.assertIn("debate", INDEX)
 
+    def test_judgment_record_filter_and_evidence_contracts(self):
+        self.assertIn('.jr-quick', INDEX)
+        self.assertIn('data-jr-quick', INDEX)
+        self.assertIn('s[0]', INDEX)
+        self.assertIn("aria-pressed=\"'+(quickFilter===s[0]?'true':'false')+'\"", INDEX)
+        self.assertIn("var quickPool=function(key)", INDEX)
+        self.assertIn('data-jr-search="', INDEX)
+        self.assertIn('class="jr-evidence"', INDEX)
+        self.assertIn("Array.isArray(i.outcome.evidence)", INDEX)
+        self.assertIn("safeUrl(e.url)", INDEX)
+
     def test_linkify_queue_prioritizes_visible_cards_during_idle_time(self):
         self.assertIn("requestIdleCallback(linkifyDrain", INDEX)
         self.assertIn("__linkifyPending", INDEX)
