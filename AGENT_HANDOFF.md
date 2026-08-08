@@ -3857,3 +3857,10 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 **변경**: 투자자 상세의 13F 포트폴리오 가치 차트를 투자자 비교 차트와 동일한 1일·5일·1개월·6개월·연중 기간 탭, pointer drag 선택, 기간·수익률 표시, 선택 해제 버튼으로 통일했다.
 
 **검증**: 인라인 JS 문법, frontend contracts 12개, 13F 상세 차트 드래그 회귀, 전체 feed-detail 회귀 12개, strict paywall 20/20, `git diff --check`.
+## 2026-08-08 Codex X embed render-order fix
+
+**Change**: Bound the X `rendered` event before `createTweet` in `index.html` and `scripts/build_pages.py`, scoped the event to each card slot, and propagated the fix to all 579 static X pages. Added a frontend contract test.
+
+**Validation**: `tests.test_frontend_contracts`, static-page scan, `deploy_guard.py`, and `git diff --check` passed. Dirty local worktrees were left untouched.
+
+**Next**: none.

@@ -314,30 +314,30 @@ SOCAMMはサーバーCPUが使うデータを、プロセッサーの近くで�
       var slot = host.querySelector('.xreal-slot');
       if (!id || !slot) return;
       try {
+        var settled = false;
+        function reveal(){
+          if (settled) return;
+          settled = true;
+          host.classList.add('x-on');
+        }
+        function abandon(){
+          if (settled) return;
+          settled = true;
+          slot.innerHTML = '';
+        }
+        /* Bind before createTweet: X can emit rendered before its promise
+           resolves. Match by slot so one widget cannot reveal another card. */
+        if (!twttr.events || !twttr.events.bind) return;
+        twttr.events.bind('rendered', function(e){
+          if (!e || !e.target || !slot.contains(e.target)) return;
+          reveal();
+        });
         Promise.resolve(twttr.widgets.createTweet(id, slot, {
           dnt: true, conversation: 'none', align: 'left'
         })).then(function(node){
-          if (!node) { slot.innerHTML = ''; return; }
-          var frame = slot.querySelector('iframe');
-          if (!frame) { slot.innerHTML = ''; return; }
-          var settled = false;
-          function reveal(){
-            if (settled) return;
-            settled = true;
-            host.classList.add('x-on');
-          }
-          function abandon(){
-            if (settled) return;
-            settled = true;
-            slot.innerHTML = '';
-          }
-          /* iframe load can be an X error document. Only X's rendered event
+          if (!node || !slot.querySelector('iframe')) { abandon(); return; }
+          /* iframe load can be an X error document. The rendered event above
              may hide the static fallback; failed embeds keep their source. */
-          if (!twttr.events || !twttr.events.bind) { abandon(); return; }
-          twttr.events.bind('rendered', function(e){
-            if (e && e.target && e.target !== frame) return;
-            if (e && e.target === frame) reveal();
-          });
           setTimeout(abandon, 5000);
         }).catch(function(){ slot.innerHTML = ''; });
       } catch (e) { slot.innerHTML = ''; }

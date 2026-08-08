@@ -13365,16 +13365,6 @@ async function xEmbedMount(host){
   try { tw = await xWidgets(); } catch (e) { return; }
   if (!tw || !tw.widgets || typeof tw.widgets.createTweet !== "function") return;
   try {
-    const el = await tw.widgets.createTweet(id, slot, {
-      theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light",
-      dnt: true,
-      conversation: "none",
-      align: "left",
-      lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
-    });
-    if (!el) { slot.replaceChildren(); return; }
-    const frame = slot.querySelector("iframe");
-    if (!frame) { slot.replaceChildren(); return; }
     let settled = false;
     const reveal = () => {
       if (settled) return;
@@ -13387,14 +13377,23 @@ async function xEmbedMount(host){
       slot.replaceChildren();
       host.classList.remove("x-on");
     };
-    /* iframe load only proves that an error document loaded. Trust X's
-       rendered event instead; otherwise a blocked/error iframe can hide the
-       complete static fallback and leave a tall blank slot. */
-    if (!tw.events || typeof tw.events.bind !== "function") { abandon(); return; }
+    /* Bind before createTweet: X can emit rendered before its promise resolves.
+       Match by slot so one widget cannot reveal another card. */
+    if (!tw.events || typeof tw.events.bind !== "function") return;
     tw.events.bind("rendered", e => {
-      if (e && e.target && e.target !== frame) return;
-      if (e && e.target === frame) reveal();
+      if (!e || !e.target || !slot.contains(e.target)) return;
+      reveal();
     });
+    const el = await tw.widgets.createTweet(id, slot, {
+      theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light",
+      dnt: true,
+      conversation: "none",
+      align: "left",
+      lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
+    });
+    if (!el || !slot.querySelector("iframe")) { abandon(); return; }
+    /* iframe load only proves that an error document loaded. The rendered
+       event above is what may hide the complete static fallback. */
     setTimeout(abandon, 5000);
   } catch (e) { slot.replaceChildren(); }
 }

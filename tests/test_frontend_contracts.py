@@ -52,6 +52,25 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('const slot = host.querySelector(".xreal-slot") || document.createElement("div");', INDEX)
         self.assertIn("slot.replaceChildren();", INDEX)
 
+    def test_x_embed_binds_rendered_before_create(self):
+        start = INDEX.index("async function xEmbedMount(host)")
+        end = INDEX.index("setInterval(xEmbedScan", start)
+        app_embed = INDEX[start:end]
+        self.assertLess(
+            app_embed.index('tw.events.bind("rendered"'),
+            app_embed.index("await tw.widgets.createTweet"),
+        )
+        self.assertIn("slot.contains(e.target)", app_embed)
+
+        pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
+        start = pages.index("X_LIVE_SCRIPT =")
+        static_embed = pages[start:pages.index("\n\n\ndef x_embed_block", start)]
+        self.assertLess(
+            static_embed.index("twttr.events.bind('rendered'"),
+            static_embed.index("Promise.resolve(twttr.widgets.createTweet"),
+        )
+        self.assertIn("slot.contains(e.target)", static_embed)
+
     def test_judgment_record_filter_and_evidence_contracts(self):
         self.assertIn('.jr-quick', INDEX)
         self.assertIn('data-jr-quick', INDEX)
