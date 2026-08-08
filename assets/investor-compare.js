@@ -499,6 +499,12 @@
     return wrap;
   }
 
+  function afterCompareFirstPaint(fn){
+    if (typeof requestAnimationFrame === "function"){
+      requestAnimationFrame(function(){ requestAnimationFrame(fn); });
+    } else setTimeout(fn, 0);
+  }
+
   function renderCompare(list, S, investors){
     ensureSelection(investors);
     var c=C(), chosen=selArray().map(function(slug){return investors.find(function(x){return x.slug===slug;});}).filter(Boolean).slice(0,4);
@@ -508,13 +514,21 @@
     head.innerHTML='<button class="series-close" onclick="openInvestors()">← '+esc(c.edit)+'</button><div class="series-head-name">⇄ '+esc(c.title)+'</div>'
       +'<p class="series-head-desc">'+chosen.map(function(i){return esc(tickerLabel(i));}).join(" · ")+'</p>';
     list.appendChild(head);
-    list.appendChild(compareGraphSection(chosen));
-    if(periods.size>1){var warn=document.createElement("div");warn.className="inv-period-warning";warn.innerHTML='<b>'+esc(c.mismatch)+'</b><span>'+esc(c.periodWarn)+'</span>';list.appendChild(warn);}
-    var grid=document.createElement("div");grid.className="inv-compare-summary-grid";
-    var cards=chosen.map(function(inv){var card=summaryCard(inv);grid.appendChild(card);return{inv:inv,card:card};});list.appendChild(grid);
-    invMapLimit(cards,2,function(x){return fillPerformance(x.card,x.inv);});
-    list.appendChild(overlapSection(chosen)); list.appendChild(topHoldingsSection(chosen)); list.appendChild(sectorSection(chosen));
-    var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
+    var loading=document.createElement("div"); loading.className="ehq-loading"; loading.textContent=c.loading; list.appendChild(loading);
+    /* Let the comparison header paint before building its tables and chart.
+       On mobile, this synchronous DOM work was part of the navigation tap's
+       INP even though the data work itself is asynchronous. */
+    afterCompareFirstPaint(function(){
+      if (!loading.isConnected) return;
+      loading.remove();
+      list.appendChild(compareGraphSection(chosen));
+      if(periods.size>1){var warn=document.createElement("div");warn.className="inv-period-warning";warn.innerHTML='<b>'+esc(c.mismatch)+'</b><span>'+esc(c.periodWarn)+'</span>';list.appendChild(warn);}
+      var grid=document.createElement("div");grid.className="inv-compare-summary-grid";
+      var cards=chosen.map(function(inv){var card=summaryCard(inv);grid.appendChild(card);return{inv:inv,card:card};});list.appendChild(grid);
+      invMapLimit(cards,2,function(x){return fillPerformance(x.card,x.inv);});
+      list.appendChild(overlapSection(chosen)); list.appendChild(topHoldingsSection(chosen)); list.appendChild(sectorSection(chosen));
+      var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
+    });
   }
 
   /* Patch the existing 13F renderers without duplicating their SEC/photo/chart logic. */
