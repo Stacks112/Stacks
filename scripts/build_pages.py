@@ -2704,7 +2704,7 @@ def robots():
 # Keys and keyword patterns MUST stay in sync with THEMES in index.html.
 THEMES = {
     "rates":   {"icon": "🏛️", "ko": "금리·인플레", "en": "Rates & inflation", "ja": "金利・インフレ", "flags": re.I,
-                "kw": r"기준금리|인플레|국채|연준|\bFed\b|FOMC|inflation|interest rates?|rate (?:cut|hike)|treasur|bond yield|\byields?\b|利上げ|利下げ|インフレ|国債|中央銀行"},
+                "kw": r"기준금리|인플레|국채|연준|Federal Reserve|FOMC|Fed (?:rate|rates|funds?|cut|cuts|hike|hikes|meeting|minutes|chair)|inflation|interest rates?|rate (?:cut|hike)|Treasury (?:yield|yields|bond|bonds|note|notes|bill|bills|market|curve|auction|issuance|debt)|U\.?S\.? Treasur(?:y|ies)|bond yield|利上げ|利下げ|インフレ|国債|中央銀行"},
     "dollar":  {"icon": "💵", "ko": "달러·환율", "en": "Dollar & FX", "ja": "ドル・為替", "flags": re.I,
                 "kw": r"달러|환율|원화|엔화|\bdollar\b|\bDXY\b|debasement|exchange rate|\byen\b|為替|円安|円高|ドル|통화"},
     "aicapex": {"icon": "⚡", "ko": "AI 투자 사이클", "en": "AI capex", "ja": "AI設備投資", "flags": 0,
