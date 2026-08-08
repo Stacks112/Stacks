@@ -102,7 +102,7 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('.prediction-result-verdict span{font-size:10.5px;opacity:1;}', INDEX)
         self.assertIn('class="foot-copy" style="margin-top:8px;font-size:11px;opacity:1"', INDEX)
         self.assertIn('html.v83 #railFoot .rf-c{ display:block; margin-top:3px; opacity:1; }', INDEX)
-        self.assertIn('.since .since-p.up{color:#087A45;}', INDEX)
+        self.assertIn('.since .since-p.up{color:#06703D;}', INDEX)
         self.assertIn("+ '<b class=\"since-p ' + (up ? \"up\" : \"down\") + '\">'", INDEX)
 
 
