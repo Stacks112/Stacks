@@ -47,6 +47,10 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("entityClickFeed", INDEX)
         self.assertIn("debate", INDEX)
 
+    def test_x_embed_keeps_a_hidden_slot_when_live_widget_fails(self):
+        self.assertIn('const slot = host.querySelector(".xreal-slot") || document.createElement("div");', INDEX)
+        self.assertIn("slot.replaceChildren();", INDEX)
+
     def test_judgment_record_filter_and_evidence_contracts(self):
         self.assertIn('.jr-quick', INDEX)
         self.assertIn('data-jr-quick', INDEX)

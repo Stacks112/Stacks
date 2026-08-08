@@ -13207,6 +13207,9 @@ function xEmbedScan(){
 async function xEmbedMount(host){
   if (host.__xdone) return;
   host.__xdone = true;
+  const slot = host.querySelector(".xreal-slot") || document.createElement("div");
+  slot.className = "xreal-slot";
+  if (!slot.parentNode) host.appendChild(slot);
   const id = (host.getAttribute("data-xid") || "").replace(/\D/g, "");
   if (!id) return;
   let tw;
@@ -13214,9 +13217,6 @@ async function xEmbedMount(host){
      screen and is a complete card without this. */
   try { tw = await xWidgets(); } catch (e) { return; }
   if (!tw || !tw.widgets || typeof tw.widgets.createTweet !== "function") return;
-  const slot = document.createElement("div");
-  slot.className = "xreal-slot";
-  host.appendChild(slot);
   try {
     const el = await tw.widgets.createTweet(id, slot, {
       theme: document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light",
@@ -13225,9 +13225,9 @@ async function xEmbedMount(host){
       align: "left",
       lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
     });
-    if (!el) { slot.remove(); return; }
+    if (!el) { slot.replaceChildren(); return; }
     const frame = slot.querySelector("iframe");
-    if (!frame) { slot.remove(); return; }
+    if (!frame) { slot.replaceChildren(); return; }
     let settled = false;
     const reveal = () => {
       if (settled) return;
@@ -13249,7 +13249,7 @@ async function xEmbedMount(host){
       if (e && e.target === frame) reveal();
     });
     setTimeout(abandon, 5000);
-  } catch (e) { slot.remove(); }
+  } catch (e) { slot.replaceChildren(); }
 }
 setInterval(xEmbedScan, 1200);
 
