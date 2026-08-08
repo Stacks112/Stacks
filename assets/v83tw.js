@@ -227,7 +227,13 @@ function alignFsw(){
 function alignFswSoon(){
   if (FSW_PEND) return;
   FSW_PEND = true;
-  try { requestAnimationFrame(function(){ FSW_PEND = false; alignFsw(); }); }
+  try {
+    requestAnimationFrame(function(){
+      /* Let the shell's DOM writes paint first; the second frame avoids
+         forcing layout while the feed and right rail are still mounting. */
+      requestAnimationFrame(function(){ FSW_PEND = false; alignFsw(); });
+    });
+  }
   catch (e){ FSW_PEND = false; alignFsw(); }
 }
 window.addEventListener("resize", alignFswSoon);
@@ -242,19 +248,18 @@ function fswObserve(){
     if (FSW_RO || !window.ResizeObserver) return;
     var c = document.getElementById("v83center");
     if (!c) return;
-    FSW_RO = new ResizeObserver(function(){ alignFsw(); });
+    FSW_RO = new ResizeObserver(function(){ alignFswSoon(); });
     FSW_RO.observe(c);
   } catch (e){}
 }
-(function retryAlign(n, stable){
-  var w = FSW_W;
-  alignFsw();
+(function retryAlign(n){
+  alignFswSoon();
   fswObserve();
-  stable = (w === FSW_W) ? stable + 1 : 0;
-  if (FSW_RO && stable >= 1) return;   /* observer has it from here */
-  /* fallback path (no ResizeObserver): 3 consecutive no-ops means settled. */
-  if (n > 0 && stable < 3) setTimeout(function(){ retryAlign(n - 1, stable); }, 400);
-})(12, 0);
+  /* ResizeObserver handles later geometry changes. Keep a short fallback
+     retry only for browsers without it, and always read after a frame so
+     feed mutations cannot force synchronous layout. */
+  if (!FSW_RO && n > 0) setTimeout(function(){ retryAlign(n - 1); }, 400);
+})(12);
 try {
   new MutationObserver(alignFswSoon)
     .observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
