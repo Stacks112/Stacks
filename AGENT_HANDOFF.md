@@ -3793,3 +3793,22 @@ guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자�
 - `#calendar`: 캘린더 화면 전환 정상, desktop horizontal overflow 없음.
 
 **다음**: 코드 변경 없이 회귀 기준 유지. 다음 우선순위는 mobile/desktop Lighthouse 재측정이다.
+
+## 2026-08-08 Codex — production Lighthouse 재측정
+
+**점수**:
+- desktop/mobile Lighthouse: Accessibility 100, SEO 100, Agentic Browsing 100.
+- Best Practices 73 양쪽 동일. 실패 3개는 `errors-in-console`,
+  `third-party-cookies`, `inspector-issues`.
+- 실패 원인은 앱 핵심 로직보다 `unavatar.io` avatar 요청 실패와 Wikimedia·OneSignal·Clarity
+  third-party cookie. 현재 fallback/이니셜로 화면은 유지된다.
+
+**Core Web Vitals trace**:
+- desktop: LCP 1,323ms, CLS 0.02.
+- mobile 390×844: LCP 791ms, CLS 0.00.
+- RenderBlocking·Cache 추정 절감 0ms. Critical path 최대 865ms.
+- mobile forced reflow 197ms: `assets/v82.js` `applyCompact`, `index.html` `linkifyDistance`.
+  현재 trace 추정 절감 0ms라 즉시 수정하지 않는다.
+
+**다음**: P2로 runtime `unavatar.io` 의존을 local avatar/이니셜 fallback으로 줄일지 검토한다.
+third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
