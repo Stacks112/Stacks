@@ -3630,3 +3630,23 @@ GoatCounter 리포트의 실제 entity 행만 확인한다.
 
 **다음**: 2026-08-11 전후 Clarity INP/dead-click 재확인. GoatCounter는 실제
 entity 행이 생겼으므로 다음 주부터 추세만 관찰한다.
+
+## 2026-08-08 Codex — P1 X fallback·모바일 가로 overflow 수정 (미배포)
+
+**목표**: X 위젯 실패 시 빈 공간이 생기는 문제와 모바일 390px 가로 스크롤을 제거한다.
+
+**변경 파일**:
+- `index.html` — X iframe `load` 확인 전 정적 fallback 유지, 실패 시 iframe 제거,
+  float 컨테이너를 `flow-root`로 격리. 숨겨진 `.entity-tip`을 `display:none`으로 처리.
+- `scripts/build_pages.py` — 정적 entity 페이지의 X 위젯에도 같은 fallback 보호 적용.
+- `tests/feed-detail.spec.mjs` — blank X widget fallback 회귀와 모바일 `scrollWidth` 회귀 추가.
+
+**검증**:
+- `npm test` — 캘린더 3개 + feed/detail 10개, 총 13개 통과.
+- `py -3 tests/test_frontend_contracts.py` — 8개 통과.
+- `py -3 tests/test_analytics_report.py` — 6개 통과.
+- `py -3 -m py_compile scripts/build_pages.py` 통과.
+- `git diff --check` 통과.
+- `py -3 scripts/deploy_guard.py` 통과. 원격 `main`에 로컬보다 최신 커밋 1개 있어 아직 push/배포하지 않음.
+
+**위험/다음**: 배포 전 `origin/main` fetch/rebase 후 live X fallback·모바일 overflow smoke 확인.

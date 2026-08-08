@@ -1071,7 +1071,7 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
   padding:9px 12px;border-radius:10px;text-align:left;
   opacity:0;visibility:hidden;transform:translateY(3px);
   transition:opacity .15s ease,transform .15s ease;
-  pointer-events:none;z-index:6;white-space:normal;letter-spacing:0;
+  display:none;pointer-events:none;z-index:6;white-space:normal;letter-spacing:0;
 }
 .entity-tip .tip-sector{
   display:block;font-family:var(--mono-font);font-size:9px;
@@ -1083,7 +1083,7 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
 }
 .entity-tip.tip-cursor-below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--black);}
 .has-tip:hover .entity-tip,.has-tip.show .entity-tip{
-  opacity:1;visibility:visible;transform:translateY(0);
+  display:block;opacity:1;visibility:visible;transform:translateY(0);
 }
 .tip-quote{display:block;margin-top:8px;min-height:0;}
 .tip-quote svg{display:block;}
@@ -2748,7 +2748,8 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
    costs nothing and leaves no hole. */
 .xreal{margin:12px 0 4px;}
 .xreal.x-on > .xemb{display:none;}
-.xreal-slot{min-height:0;}
+.xreal-slot{min-height:0;display:none;}
+.xreal.x-on>.xreal-slot{display:flow-root;}
 .xreal-slot iframe{max-width:100% !important;}
 .xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
 
@@ -12954,8 +12955,25 @@ async function xEmbedMount(host){
       align: "left",
       lang: LANG === "ja" ? "ja" : (LANG === "ko" ? "ko" : "en"),
     });
-    if (el) host.classList.add("x-on");
-    else slot.remove();
+    if (!el) { slot.remove(); return; }
+    const frame = slot.querySelector("iframe");
+    if (!frame) { slot.remove(); return; }
+    let settled = false;
+    const reveal = () => {
+      if (settled) return;
+      settled = true;
+      host.classList.add("x-on");
+    };
+    const abandon = () => {
+      if (settled) return;
+      settled = true;
+      slot.remove();
+    };
+    frame.addEventListener("load", () => requestAnimationFrame(() => {
+      const r = frame.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) reveal(); else abandon();
+    }), { once: true });
+    setTimeout(abandon, 5000);
   } catch (e) { slot.remove(); }
 }
 setInterval(xEmbedScan, 1200);

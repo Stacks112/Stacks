@@ -45,8 +45,47 @@ test.describe("feed article detail round trip", () => {
     });
   });
 
+  test("blank X widget keeps static fallback visible", async ({ page }) => {
+    await page.route("**/platform.twitter.com/widgets.js", route => route.fulfill({
+      contentType: "application/javascript",
+      body: `window.twttr = { widgets: { createTweet: (id, slot) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "twitter-tweet twitter-tweet-rendered";
+        const iframe = document.createElement("iframe");
+        iframe.style.width = "550px";
+        iframe.style.height = "816px";
+        wrapper.appendChild(iframe);
+        slot.appendChild(wrapper);
+        return Promise.resolve(wrapper);
+      } } };`,
+    }));
+    await waitForFeed(page);
+    const x = page.locator("#feedList .xreal").first();
+    await expect(x).toBeVisible();
+    await x.scrollIntoViewIfNeeded();
+    await expect(x).toHaveAttribute("data-xseen", "1");
+    await page.waitForTimeout(300);
+    const state = await x.evaluate(el => ({
+      on: el.classList.contains("x-on"),
+      fallback: getComputedStyle(el.querySelector(".xemb")).display,
+      slot: getComputedStyle(el.querySelector(".xreal-slot")).display,
+    }));
+    expect(state.on).toBe(false);
+    expect(state.fallback).toBe("block");
+    expect(state.slot).toBe("none");
+  });
+
   test.describe("mobile", () => {
     test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+
+    test("home stays within the mobile viewport", async ({ page }) => {
+      await waitForFeed(page);
+      const size = await page.evaluate(() => ({
+        clientWidth: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+      }));
+      expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
+    });
 
     test("list → detail → back keeps the feed and indexes the detail", async ({ page }) => {
       await waitForFeed(page);
