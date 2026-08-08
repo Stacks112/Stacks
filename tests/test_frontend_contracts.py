@@ -78,6 +78,10 @@ class FrontendContracts(unittest.TestCase):
         )
         self.assertIn('class="xreal"', source_block)
         self.assertIn('class="srcq srcq-teaser"', source_block)
+        self.assertIn(
+            'html.v83 #feedList .card-body > [data-source-shell]{ order:10; }',
+            INDEX,
+        )
 
     def test_x_embed_binds_rendered_before_create(self):
         start = INDEX.index("async function xEmbedMount(host)")
