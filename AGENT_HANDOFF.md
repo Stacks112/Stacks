@@ -3865,6 +3865,18 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 
 **Next**: none.
 
+## 2026-08-08 Codex X feed position fix
+
+**Change**: Give the `[data-source-shell]` wrapper the same mobile source
+order as its X content in both the inline feed CSS and `assets/v82.css`.
+Bump the `v82.css` cache key so the default `rbeta` feed receives the fix.
+
+**Validation**: Targeted X contracts pass. Production mobile Chrome shows the
+Serenity card with the rendered X iframe directly below the feed title,
+`order:10`, and no `srcq-teaser`.
+
+**Next**: none.
+
 ## 2026-08-08 Codex feed X widget deployment verification
 
 **Production**: Commit `3aa75729` pushed to `main`. Live `index.html` has the
