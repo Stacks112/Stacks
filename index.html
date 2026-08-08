@@ -4388,15 +4388,15 @@ function srcBlockHtml(item, full){
     "</div>" + close;
     return block;
   }
-  if (!full){
+  const q = item.quote;
+  const slang = String(item.sourceLang || "").toLowerCase();
+  const picked = q && quoteLines(q.lines, LANG, slang);
+  if (!full && !picked){
     const url = safeUrl((e && e.url) || item.sourceUrl);
     const label = (e && e.name) || (item.quote && item.quote.cite) || item.source || "";
     return '<div class="srcq srcq-teaser"><div class="srcq-h">' + esc(S.fromSource) + '</div>' +
       '<div class="srcq-c"><a href="' + url + '" target="_blank" rel="noopener">' + esc(label) + '</a></div></div>';
   }
-  const q = item.quote;
-  const slang = String(item.sourceLang || "").toLowerCase();
-  const picked = q && quoteLines(q.lines, LANG, slang);
   if (picked){
     /* Only say "translated" when what is on screen actually is one. A card
        whose translation for this language is missing falls back to the

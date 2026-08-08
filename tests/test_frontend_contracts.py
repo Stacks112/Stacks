@@ -74,7 +74,7 @@ class FrontendContracts(unittest.TestCase):
         source_block = INDEX[start:end]
         self.assertLess(
             source_block.index("if (e && (e.lines || []).length)"),
-            source_block.index("if (!full)"),
+            source_block.index("if (!full && !picked)"),
         )
         self.assertIn('class="xreal"', source_block)
         self.assertIn('class="srcq srcq-teaser"', source_block)
@@ -86,6 +86,16 @@ class FrontendContracts(unittest.TestCase):
             '.card .card-body > [data-source-shell]{order:10;}',
             V82_CSS,
         )
+
+    def test_feed_source_quotes_render_without_detail_mode(self):
+        start = INDEX.index("function srcBlockHtml(item, full)")
+        end = INDEX.index("window.expandArticleSource", start)
+        source_block = INDEX[start:end]
+        self.assertLess(
+            source_block.index("const picked = q && quoteLines(q.lines, LANG, slang);"),
+            source_block.index("if (!full && !picked)"),
+        )
+        self.assertIn("if (picked){", source_block)
 
     def test_x_embed_binds_rendered_before_create(self):
         start = INDEX.index("async function xEmbedMount(host)")
