@@ -548,5 +548,6 @@
     };
   }
   window.renderInvestorCompare=renderCompare;
+  window.__stacksInvestorComparePaintDeferred = true;
   window.invTickerLabel=tickerLabel;
 })();
