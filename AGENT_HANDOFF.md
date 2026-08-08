@@ -1,16 +1,18 @@
-## 2026-08-08 Codex — 판정 기록 8개 개선 배포 준비
+## 2026-08-08 Codex — 판정 기록 8개 개선 배포 완료
 
 **변경**: `index.html` 판정 기록에 기본 탭 개선, 지연 표시, 검색·더 보기,
 탭 접근성, 적중·빗나감 통계를 추가했다. `record.html` 정적 SEO 허브와
 `sitemap.xml` URL을 생성하고, `scripts/build_pages.py`에 재생성 규칙을 넣었다.
 OneSignal 태그는 옵트인 구독자만 처리한다.
 
-**검증**: 인라인 JavaScript 문법, `build_pages.py` 문법, 기록 페이지 정적 검사,
-`git diff --check` 통과. 배포 전 production `main` 기준으로 확인했다.
+**검증**: 인라인 JavaScript 문법, `build_pages.py` 문법, 계약 테스트 18개,
+Playwright 17개, `git diff --check` 통과. `pages build and deployment` 성공.
+실제 `https://stacksdaily.com/#record`에서 4개 탭, 기본 `검증 중 140`, 20개 카드,
+검색·더 보기 확인. `record.html`·sitemap도 200/URL 확인.
 
 **위험**: 기존 미추적 `scripts/__pycache__/`, `test-results/`는 보존했다.
 
-**다음**: GitHub `main` push 후 `https://stacksdaily.com`에서 기록 페이지 확인.
+**다음**: none.
 
 ## 2026-08-08 Codex — 유료글 고지 분기·편집 게이트·배지 접근성
 
