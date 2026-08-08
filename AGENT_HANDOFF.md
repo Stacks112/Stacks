@@ -3707,3 +3707,28 @@ Lighthouse 데스크톱·모바일 재검증.
 
 **다음**: stats digest의 별도 `/counts` endpoint HTTP 400 원인과 OG PNG 규격
 guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자체는 운영 상태다.
+
+## 2026-08-08 Codex — weekly stats notify 400·OG PNG guard 수정
+
+**원인**:
+- live `/counts`는 `200 {"data":{}}` 정상. 댓글 0건이라 빈 집계였고 endpoint 문제는
+  아니었다.
+- 실제 `400`은 stats digest 뒤 `/notify`에 빈 `STATS_NOTIFY_TAG`가 전달된 결과다.
+  `worker/index.js`는 빈 tag를 400으로 거부한다.
+
+**변경**:
+- `scripts/stats.py` — 빈 `STATS_NOTIFY_TAG`를 `owner`로 보정. 다음 workflow부터
+  불필요한 notify 400 제거.
+- `.github/workflows/og-assets.yml` — 빌드 직후 PNG 존재 여부·손상 여부·1200×630
+  규격을 검사하는 Pillow guard 추가.
+- 현재 `og/` 326개 PNG header 검사 통과.
+
+**검증**:
+- stats tag fallback self-check 통과.
+- `py -3 -m py_compile scripts/stats.py` 통과.
+- `py -3 tests/test_analytics_report.py` 6개, `py -3 tests/test_frontend_contracts.py`
+  9개 통과.
+- `git diff --check` 통과.
+
+**다음**: main push 후 Pages·workflow 성공 확인. 다음 주 stats 실행에서 notify 400
+재발 여부, OG 정기 실행에서 guard 로그를 확인한다.

@@ -58,6 +58,25 @@ jobs:
           rm -f og/*.png
           python scripts/build_pages.py
           python scripts/build_data.py
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          cards = sorted(Path("og").glob("*.png"))
+          bad = []
+          for path in cards:
+              try:
+                  with Image.open(path) as image:
+                      size = image.size
+                      image.verify()
+                  if size != (1200, 630):
+                      bad.append(f"{path}: {size}")
+              except Exception as exc:
+                  bad.append(f"{path}: {exc}")
+          if not cards or bad:
+              raise SystemExit("invalid OG PNGs: " + "; ".join(bad[:10]))
+          print(f"validated {len(cards)} OG PNGs at 1200x630")
+          PY
 
       - name: Commit card images (if any)
         run: |

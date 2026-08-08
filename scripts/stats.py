@@ -43,7 +43,7 @@ LLM_MODEL = os.environ.get("STATS_LLM_MODEL", "claude-3-5-sonnet-latest")
 ITEMS_PATH = os.environ.get("ITEMS_PATH", "items.json")
 SITE = os.environ.get("SITE_URL", "https://stacksdaily.com").rstrip("/")
 OUT_DIR = os.environ.get("OUT_DIR", "stats")
-NOTIFY_TAG = os.environ.get("STATS_NOTIFY_TAG", "owner")
+NOTIFY_TAG = os.environ.get("STATS_NOTIFY_TAG", "").strip() or "owner"
 
 TOP_N = 5
 
