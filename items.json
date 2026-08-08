@@ -143,9 +143,9 @@
    ],
    "stance": "watch",
    "title": {
-    "ko": "제미나이가 흔들린다는 말, GCP에는 왜 호재가 될까?",
-    "en": "If Gemini Is Wobbling, Why Is That Good for GCP?",
-    "ja": "Geminiが揺らぐという話は、なぜGCPに追い風なのか？"
+    "ko": "구글은 왜 딥마인드의 장기 연구와 제미나이 개발을 두 사람에게 나눴을까?",
+    "en": "Why Did Google Split DeepMind's Long-Term Research from Gemini Delivery?",
+    "ja": "GoogleはなぜDeepMindの長期研究とGemini開発を二人に分けたのか？"
    },
    "quote": {
     "lines": {
@@ -165,24 +165,24 @@
     "cite": "SemiAnalysis · 2026.08.07"
    },
    "sum3": {
-    "ko": "SemiAnalysis는 딥마인드의 인재 이탈과 제미나이 경쟁력 약화를 GCP의 외부 TPU 매출 확대와 연결한다.\n구글이 경쟁 모델에도 컴퓨트를 파는 구조는 클라우드 성장에는 도움이 되지만, 내부 모델 개발과 자원 배분의 긴장을 키운다.\n투자자는 제미나이 순위보다 GCP 성장률, TPU 백로그, API 사용량이 함께 움직이는지를 봐야 한다.",
-    "en": "SemiAnalysis connects DeepMind talent departures and Gemini's weakening position to GCP's expanding external TPU business.\nSelling compute to rival model labs can support cloud growth while increasing the tension over internal model resources.\nInvestors should track GCP growth, TPU backlog, and API usage together rather than model rankings alone.",
-    "ja": "SemiAnalysisは、DeepMindの人材流出とGeminiの競争力低下を、GCPの外部TPU事業の拡大と結びつける。\n競合モデルの研究所にも計算資源を売る構造は、クラウド成長を支える一方で、社内モデルへの資源配分との緊張を高める。\n投資家はモデル順位だけでなく、GCP成長率、TPUバックログ、API利用量を同時に見る必要がある。"
+    "ko": "구글은 딥마인드에서 먼 미래를 보는 연구와 당장 출시할 제미나이 제품을 서로 다른 책임자에게 맡겼다.\n이 선택은 사람뿐 아니라 한정된 AI 서버와 예산을 장기 연구와 판매용 클라우드 사이에 어떻게 나눌지도 바꾼다.\n앞으로 제미나이 출시 속도, Google Cloud의 매출과 이익, 투자 뒤 남는 현금이 개편의 결과를 보여줄 것이다.",
+    "en": "Google has put long-horizon DeepMind research and the delivery of Gemini products under different leaders.\nThe change can affect not only people, but also how limited AI servers and budgets are divided between research and customer-facing cloud services.\nGemini release speed, Google Cloud revenue and profit, and cash left after investment will show the result over time.",
+    "ja": "Googleは、DeepMindの長期研究と、すぐに届けるGemini製品を別々の責任者に任せた。\nこの変更は人の配置だけでなく、限られたAIサーバーと予算を長期研究と顧客向けクラウドにどう分けるかにも影響する。\n今後はGeminiの公開速度、Google Cloudの売上と利益、投資後に残る現金に結果が表れる。"
    },
    "gist": {
-    "ko": "이번 글은 구글의 딥마인드 리더십 개편을 다시 전하는 카드가 아니다. 이미 공개된 인사 변화가 구글의 돈과 컴퓨트 배분을 어디로 밀어낼지, 그리고 그 방향이 알파벳 투자자에게 어떤 숫자로 나타날지를 다룬다.\n\nSemiAnalysis의 해석은 선명하다. 딥마인드는 핵심 연구 인력이 빠져나가며 최전선 모델 경쟁에서 뒤처지고 있고, 그 빈자리를 GCP가 외부 고객에게 TPU와 클라우드 서비스를 파는 사업으로 채울 수 있다는 주장이다. 구글 클라우드가 앤스로픽 같은 경쟁 모델 회사에 컴퓨트를 공급하면 단기 매출은 커지지만, 같은 컴퓨트 자원을 제미나이 연구에 남겨둘 선택지는 줄어든다.\n\n## 모델 경쟁과 클라우드 장부가 갈라지는 지점\n\n원문은 제프 딘, 산제이 게마왓, 쿠옥 레, 오리올 비냘스의 이탈을 인재 문제의 신호로 묶는다. 이 인사 자체는 이미 알려진 사건이다. 이번 카드의 새 정보는 그 다음 단계인 자원 배분이다. SemiAnalysis는 2026년 3분기부터 2027년 4분기까지 TPU 출하량의 20% 이상이 앤스로픽으로 향한다고 추정한다.\n\n@@REF@@구글은 TPU 8t를 학습용, TPU 8i를 추론용으로 소개하면서 두 제품을 구글 클라우드의 고객 선택지로 제시했고, 자체 제미나이 모델도 TPU에서 구동된다고 설명했다@@https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/\n\n구글의 공식 설명은 GCP가 자체 모델을 위한 내부 인프라이면서 외부 고객에게 판매하는 플랫폼이라는 점을 보여준다. 클로드 같은 경쟁 모델을 올릴 수 있는 플랫폼이 커지면 모델 승패와 클라우드 매출의 방향이 분리될 수 있다. 이 구조는 제미나이의 약세가 곧바로 알파벳 전체의 약세가 되지는 않게 만들지만, 장기적으로는 구글이 어떤 사업을 우선하는지 다시 묻게 한다.\n\n@@CHK@@TPU 8t 최대 규모|9,600개|공유 메모리|2페타바이트|TPU 8i 단일 팟|1,152개@@구글 클라우드의 공식 제품 설명에서 학습용과 추론용 TPU의 규모를 확인했다. SemiAnalysis의 TPU 출하 전망과는 다른 출처의 실물 인프라 수치다.@@2026-04-22 · Google Cloud\n\n## 외부 TPU 매출의 장점과 대가\n\nSemiAnalysis는 GCP가 제3자 AI 인프라에서 2027년 730억달러 이상의 연환산 매출을 만들고, TPU 시스템 판매까지 합치면 외부 매출 규모가 훨씬 커질 수 있다고 추정한다. 이 숫자는 구글이 공시한 실적이 아니라 분석 모델의 전망이므로 그대로 실적 가이던스로 읽으면 안 된다. 다만 고객이 먼저 컴퓨트를 사겠다는 계약이 쌓이면, 모델 성능 순위와 별개로 클라우드 장부가 커지는 경로는 분명해진다.\n\n문제는 자원의 기회비용이다. 구글은 TPU를 많이 팔수록 설비투자 회수와 GCP 성장률을 앞당길 수 있다. 동시에 경쟁 모델 회사에 장기적으로 TPU를 배정하면, 제미나이가 필요할 때 되찾을 수 있는 여유가 줄어든다. 플랫폼 회사로서의 중립성이 수익을 만들면서도, 연구소로서의 집중력을 흩뜨릴 수 있는 구조다.\n\n## 다음 실적에서 확인할 것\n\n다음 질문은 제미나이가 당장 1위로 돌아오느냐가 아니다. GCP 성장률과 TPU 백로그가 계속 올라가는 동안 제미나이 API 사용량과 핵심 연구자 유지율이 어떻게 변하는지가 더 중요하다. GCP의 외부 매출, TPU 출하·백로그, 제미나이 1차 API 토큰 증가율을 한 표에 놓으면 구글이 모델 우선 전략을 회복하는지 인프라 우선 전략을 굳히는지 구분할 수 있다.",
-    "en": "This is not another card about Google's DeepMind leadership reshuffle. The question is where the change pushes Google's money and compute allocation, and which numbers would show that direction to Alphabet investors.\n\nSemiAnalysis makes a clear case. DeepMind is falling behind in frontier-model competition as key researchers leave, while GCP can fill the gap by selling TPUs and cloud services to outside customers. Supplying compute to rival model companies such as Anthropic can lift near-term cloud revenue, while reducing the pool of compute that Google can keep available for Gemini research.\n\n## Where model competition splits from the cloud ledger\n\nThe original post groups the departures of Jeff Dean, Sanjay Ghemawat, Quoc Le, and Oriol Vinyals into a signal about talent. That reshuffle is already known. The new information here is the next step: resource allocation. SemiAnalysis estimates that more than 20% of TPU shipments from the third quarter of 2026 through the fourth quarter of 2027 will go directly to Anthropic.\n\n@@REF@@Google presents TPU 8t for training and TPU 8i for inference as choices for Google Cloud customers, while explaining that its own Gemini models run on TPUs@@https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/\n\nGoogle's official description shows GCP as both internal infrastructure for its own models and a platform sold to outside customers. If the platform grows by hosting rival models such as Claude, model rankings and cloud revenue can move in different directions. That protects Alphabet from turning Gemini's weakness directly into a group-wide earnings problem, while forcing investors to ask which business Google is choosing to prioritize over time.\n\n@@CHK@@TPU 8t maximum scale|9,600 chips|Shared memory|2 petabytes|TPU 8i single pod|1,152 chips@@The figures come from Google Cloud's official product description of its training and inference TPUs. They are independent infrastructure figures, separate from SemiAnalysis's shipment forecast.@@2026-04-22 · Google Cloud\n\n## The benefit and cost of external TPU revenue\n\nSemiAnalysis estimates that GCP could reach more than $73 billion in third-party AI infrastructure annualized revenue by 2027, with TPU system sales taking the external figure much higher. These are model estimates, not Alphabet guidance, so they should not be read as a reported forecast. The investable point is the path: once customers commit to buying compute, the cloud ledger can expand even while the model leaderboard moves against Gemini.\n\nThe tradeoff is the opportunity cost of capacity. Selling more TPUs can speed up infrastructure payback and GCP growth. Long-term allocations to competing model labs also reduce the spare capacity Google can reclaim when Gemini needs it. Platform neutrality can create revenue while dispersing the focus of the research lab.\n\n## What to check in the next results\n\nThe next question is not whether Gemini immediately returns to number one. It is whether Gemini API usage and retention of key researchers change while GCP growth and TPU backlog keep rising. Put external GCP revenue, TPU shipments and backlog, and first-party Gemini API token growth in one table. The combination will show whether Google is rebuilding a model-first strategy or committing more deeply to an infrastructure-first one.",
-    "ja": "これは、GoogleのDeepMindリーダー交代をもう一度伝えるカードではない。変化がGoogleの資金と計算資源の配分をどこへ押し、Alphabetの投資家にどの数字として現れるのかを扱う。\n\nSemiAnalysisの見立ては明快だ。DeepMindは主要な研究者が離れ、最先端モデル競争で後れを取っている。その空白をGCPが外部顧客へTPUとクラウドサービスを売る事業で埋められるという主張だ。Anthropicのような競合モデル企業に計算資源を供給すれば短期のクラウド売上は伸びるが、Geminiの研究に残せる計算資源の余地は小さくなる。\n\n## モデル競争とクラウドの帳簿が分かれる地点\n\n原文は、ジェフ・ディーン、サンジェイ・ゲマワット、クオック・レ、オリオール・ビニャルスの離脱を、人材問題の信号としてまとめる。この人事変更自体はすでに知られている。今回の新しい情報は、その次の段階である資源配分だ。SemiAnalysisは、2026年第3四半期から2027年第4四半期までのTPU出荷量の20%以上がAnthropicへ直接向かうと推定する。\n\n@@REF@@GoogleはTPU 8tを学習用、TPU 8iを推論用としてGoogle Cloudの顧客向け選択肢に示し、自社のGeminiモデルもTPUで動くと説明している@@https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/\n\nGoogleの公式説明は、GCPが自社モデルの内部インフラであると同時に、外部顧客へ売るプラットフォームであることを示す。Claudeのような競合モデルを載せてプラットフォームが成長すれば、モデルの順位とクラウド売上は別々の方向に動きうる。Geminiの弱さがAlphabet全体の業績問題へ直結するのを防ぐ一方、Googleが長期的にどの事業を優先するかを投資家に問い直させる構造だ。\n\n@@CHK@@TPU 8t最大規模|9,600個|共有メモリ|2ペタバイト|TPU 8i単一ポッド|1,152個@@学習用と推論用のTPU規模はGoogle Cloudの公式製品説明で確認した。SemiAnalysisの出荷見通しとは別の出典によるインフラ数値だ。@@2026-04-22 · Google Cloud\n\n## 外部TPU売上の利点と代償\n\nSemiAnalysisは、GCPが2027年までに第三者向けAIインフラで730億ドル超の年換算売上を作り、TPUシステム販売まで含めれば外部売上の規模はさらに大きくなると推定する。これはAlphabetの公表実績ではなく分析モデルの予測なので、会社のガイダンスとして読んではいけない。ただ、顧客が計算資源を買う契約を積み上げれば、モデルの順位とは別にクラウドの帳簿が膨らむ道筋は見える。\n\n代償は容量の機会費用だ。TPUを多く売れば、設備投資の回収とGCPの成長を早められる。競合モデル研究所への長期配分は、Geminiが必要になったときに取り戻せる余力も減らす。プラットフォームの中立性が売上を作る一方で、研究所の集中力を分散させる構造になりうる。\n\n## 次の決算で確認すること\n\n次の問いは、Geminiがすぐ1位へ戻るかではない。GCPの成長率とTPUバックログが上がり続ける間に、Gemini APIの利用量と主要研究者の定着率がどう変わるかだ。外部GCP売上、TPUの出荷・バックログ、Geminiの自社APIトークン増加率を同じ表に置けば、Googleがモデル優先戦略を立て直すのか、インフラ優先戦略をさらに固めるのかを見分けられる。"
+    "ko": "순다르 피차이는 데미스 하사비스가 장기적인 차세대 AI와 과학 연구에 집중하고, 코라이 카바쿠올루가 제미나이의 기술 개발과 앱·개발자용 서비스를 이끄는 새로운 딥마인드 운영 체제를 발표했다.\n\n@@REF@@하사비스는 딥마인드 의장과 알파벳 최고과학자를 맡고, 카바쿠올루는 딥마인드의 일상 운영과 제미나이 제품 개발을 이끈다|https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/\n\n이 개편의 의미를 이해하려면 구글의 AI 조직이 지금의 구조를 갖추게 된 과정부터 볼 필요가 있다.\n\n## 한 회사에 연구팀이 둘\n\n딥마인드는 2010년 영국에서 설립된 AI 연구소다. 구글은 2014년 이 회사를 인수했지만, 딥마인드는 런던을 중심으로 독립적인 연구 문화를 유지했다.\n\n구글 내부에는 별도로 ‘구글 브레인’이라는 AI 연구팀이 있었다. 딥마인드는 구글이 인수한 외부 회사였고, 구글 브레인은 구글 안에서 직접 만든 팀이었다.\n\n출발점과 책임자가 달랐기 때문에 같은 구글에 속한 뒤에도 두 조직은 따로 운영됐다.\n\n2022년 말 ChatGPT가 등장하면서 상황이 달라졌다. 연구 성과를 논문으로 발표하는 일과 새로운 AI를 빠르게 제품으로 만드는 일을 더 가깝게 묶어야 했다.\n\n구글은 2023년 두 조직을 합쳐 Google DeepMind를 만들었다. 흩어져 있던 연구 인력과 서버 자원을 한곳에 모아 결정과 제품 개발을 빠르게 하려는 선택이었다.\n\n@@TIME@@2010|영국에서 딥마인드 설립|2014|구글이 딥마인드 인수|2023|딥마인드와 구글 브레인을 통합|2026-08-05|장기 연구와 제품 운영의 책임자를 분리@@서로 다른 두 연구팀을 합친 지 3년 만에, 구글은 한 조직 안의 역할을 다시 나눴다.@@Google DeepMind · Google · Reuters\n\n## 연구와 제품이 한 조직에\n\n두 조직을 합친 뒤 딥마인드가 맡는 일은 크게 늘었다. 새로운 AI를 연구하는 일에 더해 제미나이를 개발하고, 검색과 스마트폰 앱, 기업용 서비스에 적용하는 일까지 책임져야 했다.\n\n제미나이는 이용자의 질문을 이해하고 답을 만드는 AI 프로그램이다. 이를 실제 서비스로 내놓으려면 앱을 만들고 오류를 고치며, 이용자가 몰려도 빠르게 작동할 서버를 확보해야 한다.\n\n기업이 구글의 서버와 AI를 빌려 쓰고 이용료를 내는 Google Cloud와의 협력도 중요해졌다. 장기 연구와 당장의 제품 출시를 한 책임자가 함께 챙겨야 하는 구조가 된 것이다.\n\n## 책임자를 나눈 이유\n\n구글은 이번 개편을 결정한 구체적인 이유를 공개하지 않았다. 다만 개편 당시에는 최신 제미나이의 주요 모델 출시가 계획보다 늦어졌고, 제미나이 개발을 이끌던 연구자 여러 명이 회사를 떠났다.\n\n@@REF@@Reuters는 출시 지연과 핵심 연구자 이탈이 겹친 상황에서 하사비스가 장기 연구를, 카바쿠올루가 일상 운영과 제품화를 맡게 됐다고 전했다|https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/\n\n하사비스는 딥마인드 의장과 알파벳 최고과학자로서 여러 종류의 문제를 사람처럼 폭넓게 해결하는 AI와 과학 연구에 집중한다. AI로 신약을 찾는 회사인 이소모픽랩스의 경영도 계속 맡는다.\n\n카바쿠올루는 딥마인드의 일상 운영을 책임진다. 새로운 AI 모델을 개발하고 제미나이 앱과 개발자용 서비스를 실제로 내놓는 조직이 그의 관리 아래 들어간다.\n\n하사비스가 딥마인드를 떠나는 것은 아니다. 장기 연구의 방향은 하사비스가 잡고, 연구 결과를 제미나이와 Google Cloud의 제품으로 만드는 과정은 카바쿠올루가 책임지는 구조다.\n\n## 사람만 나눈 개편은 아니다\n\nAI를 개발하려면 연구자와 함께 AI용 반도체, 서버, 데이터센터가 필요하다. 업계에서는 이러한 장비가 제공하는 계산 능력을 ‘컴퓨트’라고 부른다.\n\n사용할 수 있는 서버는 한정돼 있다. 장기 연구에 서버를 더 배정하면 당장 출시할 제미나이 제품이나 외부 고객에게 제공할 여유가 줄어들 수 있다.\n\n원문인 SemiAnalysis는 이 지점을 투자 문제로 본다. 구글이 직접 설계한 AI용 반도체인 TPU를 앤스로픽 같은 외부 AI 회사에 팔면 Google Cloud 매출은 늘지만, 같은 장비를 제미나이 연구에 쓸 여유는 줄어들 수 있다는 주장이다.\n\nSemiAnalysis는 2026년 3분기부터 2027년 4분기까지 전체 TPU 출하량의 20% 이상이 앤스로픽에 직접 판매될 것으로 추정한다. 또 2027년 제3자 AI 인프라의 연환산 매출이 730억달러를 넘을 수 있다고 보지만, 이는 알파벳의 공식 전망이 아니라 분석 모델의 추정치다.\n\n## 돈을 쓴 만큼 성과가 나오나\n\n알파벳은 2026년 2분기에 서버와 데이터센터 등을 마련하는 데 449억달러를 사용했다. 사업 운영과 투자를 마친 뒤 남는 현금은 59억달러 적자를 기록했다.\n\n같은 분기 Google Cloud 매출은 248억달러로 1년 전보다 82% 늘었고, 영업이익은 88억달러였다. AI에 쓴 돈이 클라우드의 매출과 이익으로 돌아오기 시작했다는 뜻이다.\n\n@@CHK@@서버·데이터센터 투자|449억달러|투자 뒤 남은 현금|-59억달러|Google Cloud 매출|248억달러|전년 대비 성장률|82%|Google Cloud 영업이익|88억달러|Google Cloud 수주잔고|5,140억달러@@2026년 2분기에는 AI 투자 비용과 Cloud의 성장 결과가 함께 커졌다.@@2026-07-22 · Alphabet 2026 Q2 earnings\n\n이번 개편의 성패는 카바쿠올루가 제미나이 출시 속도를 높이고, 늘어난 서버와 데이터센터 비용을 Google Cloud의 매출과 이익으로 바꿀 수 있느냐에 달려 있다.\n\n앞으로 제미나이가 계획대로 출시되고 Google Cloud의 매출과 이익이 계속 늘어난다면, 역할을 나눈 선택이 성과를 냈다고 볼 수 있다. 투자 비용만 늘고 제품 출시가 계속 늦어진다면, 책임자를 나눈 것만으로는 문제가 해결되지 않았다는 뜻이다.\n\n이번 개편의 핵심은 딥마인드의 인사 구조 자체가 아니다. 구글이 장기 연구와 당장 매출을 만드는 제품 사이에서 사람과 예산, AI 서버를 어떻게 나눌지가 핵심이다.\n\n그 선택의 결과는 앞으로 제미나이 출시 속도와 Google Cloud의 매출·이익, 서버와 데이터센터에 투자한 뒤 남는 현금에 나타날 것이다.",
+    "en": "Sundar Pichai announced a new operating structure for DeepMind: Demis Hassabis will focus on long-term frontier AI and scientific research, while Koray Kavukcuoglu will lead Gemini engineering, the app, and developer services.\n\n@@REF@@Hassabis becomes Chair of DeepMind and Chief Scientist of Alphabet, while Kavukcuoglu takes day-to-day leadership and Gemini product delivery|https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/\n\nTo understand why that matters, it helps to start with how Google ended up with its current AI organization.\n\n## Two research teams inside Google\n\nDeepMind was founded in Britain in 2010. Google acquired it in 2014, but the lab continued to operate from London with its own research culture.\n\nGoogle also had a separate internal AI research team. DeepMind began as an outside company that Google bought; the other research team was built inside Google.\n\nDifferent origins and leaders kept the two groups separate even after they belonged to the same company.\n\nThe arrival of ChatGPT in late 2022 changed the pressure on Google. Publishing research was no longer enough; new AI had to become a product and reach users quickly.\n\nGoogle combined the teams into Google DeepMind in 2023. The goal was to put researchers and computing resources in one organization so decisions and product work could move faster.\n\n@@TIME@@2010|DeepMind founded in Britain|2014|Google acquires DeepMind|2023|DeepMind and Google's internal AI team combine|2026-08-05|Long-term research and product operations get separate leaders@@Three years after combining two research groups, Google divided responsibilities inside the merged organization.@@Google DeepMind · Google · Reuters\n\n## Research and products under one roof\n\nAfter the merger, DeepMind's job became much larger. It had to research new AI, build Gemini, and help put the system into Search, mobile apps, and business products.\n\nGemini is the AI program that understands a request and produces an answer. Turning it into a service also requires apps, bug fixes, and enough servers to respond quickly when many people use it.\n\nCoordination with Google Cloud became central. Google Cloud is the business where companies pay to use Google's servers and AI, so one leader was overseeing both long-term research and products that had to ship now.\n\n## Why Google split the roles\n\nGoogle did not disclose a specific trigger for the change. At the time, however, a major new Gemini model was running behind its planned release and several people who had led Gemini development were leaving.\n\n@@REF@@Reuters reported that the delayed model launch and senior departures formed the backdrop to Hassabis taking long-term research while Kavukcuoglu assumed daily operations and commercialization|https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/\n\nHassabis will serve as Chair of DeepMind and Chief Scientist of Alphabet. He will concentrate on broad, human-level AI and scientific work while continuing to run the AI drug-discovery company he leads.\n\nKavukcuoglu will run DeepMind day to day. Model engineering, the Gemini app, and developer products will sit under his operational leadership.\n\nHassabis is not leaving DeepMind. He will set the long-range research direction, while Kavukcuoglu is responsible for turning research into Gemini and Google Cloud products.\n\n## More than a people reshuffle\n\nAI development needs researchers, specialized chips, servers, and data centers. The industry calls the processing capacity supplied by that equipment compute.\n\nThat capacity is limited. Servers assigned to long-term experiments cannot simultaneously serve a Gemini launch or an outside customer.\n\nSemiAnalysis turns this constraint into an investment question. Selling Google's own TPU AI chips to outside labs such as Anthropic can increase Google Cloud revenue, but it can also reduce the spare capacity available to Gemini.\n\nSemiAnalysis estimates that more than 20% of TPU shipments from the third quarter of 2026 through the fourth quarter of 2027 will be sold directly to Anthropic. It also models more than $73 billion of annualized third-party AI infrastructure revenue in 2027, but that is an analyst estimate, not Alphabet guidance.\n\n## Is the spending producing results?\n\nAlphabet spent $44.9 billion on servers, data centers, and other capital projects in the second quarter of 2026. Cash left after operating the business and making those investments was negative $5.9 billion.\n\nIn the same quarter, Google Cloud revenue reached $24.8 billion, up 82% from a year earlier, and operating income reached $8.8 billion. The investment bill and the Google Cloud payoff are rising together.\n\n@@CHK@@Servers and data centers|$44.9B|Free cash flow|-$5.9B|Google Cloud revenue|$24.8B|Year-over-year growth|82%|Google Cloud operating income|$8.8B|Google Cloud backlog|$514B@@Alphabet's second quarter shows both the cost of AI infrastructure and the growth it is producing in Google Cloud.@@2026-07-22 · Alphabet 2026 Q2 earnings\n\nThe reorganization will succeed if Kavukcuoglu can speed up Gemini releases and turn the larger server bill into Google Cloud revenue and profit.\n\nIf Gemini ships on schedule while Google Cloud revenue and profit continue to grow, the split will look productive. If investment keeps rising while launches keep slipping, changing the reporting lines will not have solved the problem.\n\nThe central issue is not the DeepMind organization chart itself. It is how Google divides people, budgets, and AI servers between long-term research and products that must earn money now.\n\nThe effects should appear over time in Gemini release speed, Google Cloud revenue and profit, and the cash left after building more servers and data centers.",
+    "ja": "スンダー・ピチャイは、デミス・ハサビスが長期の次世代AIと科学研究に集中し、コライ・カブクチュオールがGeminiの技術開発、アプリ、開発者向けサービスを率いる新しいDeepMindの運営体制を発表した。\n\n@@REF@@ハサビスはDeepMind会長とAlphabet最高科学責任者に就き、カブクチュオールは日々の運営とGemini製品の開発を率いる|https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/\n\nこの変更の意味を知るには、GoogleのAI組織が現在の形になった過程から見る必要がある。\n\n## Googleの中に研究組織が二つ\n\nDeepMindは2010年に英国で設立されたAI研究所だ。Googleは2014年に買収したが、研究所はロンドンを拠点に独自の研究文化を保った。\n\nGoogle社内にはグーグル・ブレインという別のAI研究チームがあった。DeepMindは買収した社外企業、グーグル・ブレインはGoogle内部で作った組織だった。\n\n出発点と責任者が違ったため、同じGoogleに入った後も二つの組織は別々に運営された。\n\n2022年末にChatGPTが登場し、求められる仕事が変わった。研究成果を論文にするだけでなく、新しいAIを早く製品にして利用者へ届ける必要が強まった。\n\nGoogleは2023年に両組織を統合し、Google DeepMindを作った。研究者と計算資源を一つの組織に集め、判断と製品開発を速めるためだった。\n\n@@TIME@@2010|英国でDeepMind設立|2014|GoogleがDeepMindを買収|2023|DeepMindとグーグル・ブレインを統合|2026-08-05|長期研究と製品運営の責任者を分ける@@二つの研究組織を統合して3年後、Googleは一つの組織の中で役割を分け直した。@@Google DeepMind · Google · Reuters\n\n## 研究組織が製品も担う\n\n統合後、DeepMindの仕事は大きく増えた。新しいAIの研究に加え、Geminiを開発し、検索、スマートフォンのアプリ、企業向けサービスに組み込むところまで担うようになった。\n\nGeminiは利用者の質問を理解して答えを作るAIプログラムだ。実際のサービスにするには、アプリを作り、不具合を直し、多くの利用者が集まっても速く動くサーバーを確保しなければならない。\n\n企業がGoogleのサーバーとAIを借りて料金を払うGoogle Cloudとの連携も重要になった。長期研究と、すぐに出す製品を一人の責任者が同時に見る構造になった。\n\n## 責任者を分けた理由\n\nGoogleは今回の変更を決めた具体的な理由を公表していない。ただ、当時はGeminiの主要モデルが予定より遅れ、開発を率いた研究者が相次いで退社していた。\n\n@@REF@@Reutersは、モデル公開の遅れと幹部研究者の退社が重なる中、ハサビスが長期研究を、カブクチュオールが日常運営と製品化を担うと報じた|https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/\n\nハサビスはDeepMind会長とAlphabet最高科学責任者として、人間のように幅広い問題を解くAIと科学研究に集中する。AIで新薬を探すハサビスが率いる創薬会社の経営も続ける。\n\nカブクチュオールはDeepMindの日常運営を担う。新しいモデルの開発、Geminiアプリ、開発者向けサービスを実際に出す組織が彼の管理下に入る。\n\nハサビスがDeepMindを離れるわけではない。長期研究の方向はハサビスが決め、研究をGeminiとGoogle Cloudの製品にする過程はカブクチュオールが担う。\n\n## 人だけを分けた変更ではない\n\nAIの開発には研究者だけでなく、専用半導体、サーバー、データセンターが必要だ。業界では、こうした設備が提供する計算能力をコンピュートと呼ぶ。\n\n使えるサーバーには限りがある。長期研究へ多く回せば、すぐに出すGemini製品や外部顧客に提供できる余裕が減る。\n\n原文のSemiAnalysisは、この制約を投資の問題として見る。Googleが設計したAI半導体TPUをAnthropicのような外部企業へ売ればGoogle Cloudの売上は増えるが、Gemini研究に使える余裕は小さくなるという見方だ。\n\nSemiAnalysisは、2026年第3四半期から2027年第4四半期までのTPU出荷量の20%以上がAnthropicへ直接販売されると推定する。2027年の第三者向けAI基盤の年換算売上が730億ドルを超えるとも見るが、これはAlphabetの公式見通しではなく分析モデルの推定だ。\n\n## 投資に見合う成果は出るか\n\nAlphabetは2026年第2四半期に、サーバーやデータセンターなどへ449億ドルを使った。事業運営と投資を終えた後に残る現金は59億ドルの赤字だった。\n\n同じ四半期のGoogle Cloud売上は248億ドルで前年同期比82%増え、営業利益は88億ドルだった。AIへの支出とGoogle Cloudからの回収が同時に大きくなっている。\n\n@@CHK@@サーバー・データセンター投資|449億ドル|投資後に残る現金|-59億ドル|Google Cloud売上|248億ドル|前年同期比成長率|82%|Google Cloud営業利益|88億ドル|Google Cloud受注残|5,140億ドル@@2026年第2四半期には、AI基盤の費用とGoogle Cloudの成長成果が同時に拡大した。@@2026-07-22 · Alphabet 2026 Q2 earnings\n\n今回の変更が成功するかは、カブクチュオールがGeminiの公開を速め、増えたサーバーとデータセンターの費用をGoogle Cloudの売上と利益へ変えられるかにかかっている。\n\nGeminiが予定通り公開され、Google Cloudの売上と利益が伸び続ければ、役割分担は成果を出したと評価できる。投資だけが増え、公開の遅れが続けば、責任者を分けただけでは問題を解けなかったことになる。\n\n今回の中心はDeepMindの人事構造そのものではない。Googleが長期研究と、すぐに売上を作る製品の間で、人、予算、AIサーバーをどう分けるかが中心だ。\n\nその結果は今後、Geminiの公開速度、Google Cloudの売上と利益、サーバーとデータセンターへ投資した後に残る現金に表れる。"
    },
    "why": {
-    "ko": "구글의 모델 경쟁력과 클라우드 매출이 서로 다른 방향으로 움직일 수 있는 자원 배분 구조를 보여준다. GCP 성장만으로 제미나이의 장기 경쟁력까지 확인할 수는 없다.",
-    "en": "It shows how Google's model position and cloud revenue can move in different directions because of resource allocation. GCP growth alone does not prove long-term Gemini competitiveness.",
-    "ja": "資源配分によって、Googleのモデル競争力とクラウド売上が別の方向へ動きうる構造を示す。GCPの成長だけでGeminiの長期競争力までは確認できない。"
+    "ko": "구글이 장기 연구와 당장 매출을 만드는 제품 사이에서 사람과 예산, AI 서버를 어떻게 나눌지가 바뀐다. 개편의 결과는 앞으로 제미나이 출시 속도와 Google Cloud의 매출·이익, 투자 뒤 남는 현금에 나타날 것이다.",
+    "en": "The change affects how Google divides people, budgets, and AI servers between long-term research and products that generate revenue now. Its result should appear over time in Gemini release speed, Google Cloud revenue and profit, and cash left after investment.",
+    "ja": "Googleが長期研究と、すぐに売上を作る製品の間で、人、予算、AIサーバーをどう分けるかが変わる。その結果は今後、Geminiの公開速度、Google Cloudの売上と利益、投資後に残る現金に表れる。"
    },
    "ask": {
-    "ko": "GCP 성장과 TPU 백로그가 계속 늘어나는 동안 제미나이 API 사용량과 핵심 연구자 유지율이 약해진다면, 구글은 모델 회사에서 인프라 플랫폼으로 이동했다고 봐야 할까?",
-    "en": "If GCP growth and TPU backlog keep rising while Gemini API usage and key-researcher retention weaken, should Google be judged as moving from a model company toward an infrastructure platform?",
-    "ja": "GCPの成長とTPUバックログが増え続ける一方でGemini APIの利用量と主要研究者の定着率が弱まるなら、Googleはモデル企業からインフラ基盤へ移ったと見るべきだろうか。"
+    "ko": "제미나이 출시가 빨라지고 Google Cloud의 매출과 이익이 계속 늘어날까, 아니면 투자 비용만 늘고 제품 지연이 이어질까?",
+    "en": "Will Gemini releases speed up while Google Cloud revenue and profit keep growing, or will investment costs rise while product delays continue?",
+    "ja": "Geminiの公開は速まり、Google Cloudの売上と利益も伸び続けるのか。それとも投資費用だけが増え、製品の遅れが続くのか。"
    },
    "sources": [
     {
@@ -193,27 +193,70 @@
      },
      "desc": {
       "ko": "Gemini 리더십 변화와 GCP TPU 사업에 대한 SemiAnalysis 분석",
-      "en": "SemiAnalysis analysis of the Gemini leadership change and GCP TPU business",
-      "ja": "Geminiのリーダー交代とGCPのTPU事業に関するSemiAnalysis分析"
+      "en": "SemiAnalysis analysis of Gemini leadership and GCP's TPU business",
+      "ja": "Geminiの指揮体制とGCPのTPU事業に関するSemiAnalysis分析"
      },
      "url": "https://newsletter.semianalysis.com/p/gemini-is-cooked-but-gcp-is-cooking"
     },
     {
      "name": {
-      "ko": "Google Cloud TPU 설명",
-      "en": "Google Cloud TPU overview",
-      "ja": "Google Cloud TPUの説明"
+      "ko": "구글 공식 발표",
+      "en": "Google announcement",
+      "ja": "Google公式発表"
      },
      "desc": {
-      "ko": "TPU 8t·8i의 학습·추론 용도와 규모",
-      "en": "Training and inference roles and scale of TPU 8t and 8i",
-      "ja": "TPU 8t・8iの学習・推論用途と規模"
+      "ko": "딥마인드 책임자 역할과 새 운영 체제",
+      "en": "New DeepMind leadership roles and operating structure",
+      "ja": "DeepMindの新しい責任分担と運営体制"
      },
-     "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/"
+     "url": "https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/"
+    },
+    {
+     "name": {
+      "ko": "Google DeepMind 통합 발표",
+      "en": "Google DeepMind merger announcement",
+      "ja": "Google DeepMind統合発表"
+     },
+     "desc": {
+      "ko": "2023년 딥마인드와 구글 브레인 통합 배경",
+      "en": "Why DeepMind and グーグル・ブレイン were combined in 2023",
+      "ja": "2023年にDeepMindとグーグル・ブレインを統合した背景"
+     },
+     "url": "https://deepmind.google/blog/announcing-google-deepmind/"
+    },
+    {
+     "name": {
+      "ko": "개편 배경 보도",
+      "en": "Reshuffle background",
+      "ja": "再編の背景報道"
+     },
+     "desc": {
+      "ko": "모델 출시 지연, 연구자 이탈, 새 역할 분담",
+      "en": "Model delay, researcher departures, and new responsibilities",
+      "ja": "モデル公開の遅れ、研究者の退社、新しい役割分担"
+     },
+     "url": "https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/"
+    },
+    {
+     "name": {
+      "ko": "알파벳 2026년 2분기 실적",
+      "en": "Alphabet Q2 2026 earnings",
+      "ja": "Alphabet 2026年第2四半期決算"
+     },
+     "desc": {
+      "ko": "설비투자, 잉여현금흐름, Google Cloud 매출·이익·수주잔고",
+      "en": "Capital spending, free cash flow, and Google Cloud revenue, profit, and backlog",
+      "ja": "設備投資、フリーキャッシュフロー、Google Cloudの売上・利益・受注残"
+     },
+     "url": "https://abc.xyz/investor/events/event-details/default.aspx"
     }
    ],
-   "sourcesAsOf": "2026-08-08",
-   "ts": "2026-08-07T16:31:16.687991+00:00"
+   "sourcesAsOf": {
+    "ko": "2026-08-08 조회 · SemiAnalysis의 TPU 출하량과 2027년 매출 수치는 회사 가이던스가 아닌 분석 모델의 추정치다. 알파벳 실적 수치는 2026-07-22 공식 실적 발표 기준이다.",
+    "en": "Checked 2026-08-08. SemiAnalysis's TPU shipment and 2027 revenue figures are model estimates, not company guidance. Alphabet figures come from the official results published 2026-07-22.",
+    "ja": "2026-08-08確認 · SemiAnalysisのTPU出荷量と2027年売上は会社の見通しではなく分析モデルの推定。Alphabetの数値は2026-07-22の公式決算発表に基づく。"
+   },
+   "ts": "2026-08-08T00:50:00+00:00"
   },
   {
    "date": "2026-08-08",
