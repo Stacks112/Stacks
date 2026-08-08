@@ -3605,3 +3605,28 @@ HTTP 400 알림은 기존 주간 digest 경고이며 analytics 단계는 성공�
 
 **다음**: 코드 변경은 완료. 일반 Chrome 엔티티 클릭 1건이 집계된 뒤 주간
 GoatCounter 리포트의 실제 entity 행만 확인한다.
+
+## 2026-08-08 Codex — CI 런타임·production smoke·성능 backlog 재검토
+
+**변경 파일**:
+- `.github/workflows/*.yml` — `actions/checkout`, `actions/setup-python`,
+  `actions/setup-node`를 최신 Node 24 호환 major `v7`로 정리.
+- `AGENT_HANDOFF.md` — 네 작업 결과와 남은 모니터링 기록.
+
+**검증**:
+- production feed→detail→back, `?c=` 딥링크 통과.
+- production 13F→테마→13F→뒤로가기에서 우측 레일 복구 확인.
+- 실 Chrome entity 클릭 후 workflow `31229936431` 성공.
+- `stats/analytics-2026-08-08.md`: `AAOI` inline 클릭 1건 확인.
+- production article SEO: HTTP 200, canonical·description·og:title 존재.
+
+**성능 판단**:
+- Clarity INP 530ms 이슈는 기존 2026-08-03 수정이 이미 배포되어 field data
+  재측정 대기 중. 다음 판독 창은 2026-08-11 전후.
+- `today/scrollpast` 증가는 의도된 자동 dismiss 이벤트라 코드 변경하지 않음.
+- article SEO 페이지는 현재 canonical·description이 정상이라 추가 수정하지 않음.
+- 연결 Chrome이 mobile viewport override를 제공하지 않아 모바일은 로컬
+  `npm test`의 3개 calendar + 8개 feed/detail 회귀로 보완.
+
+**다음**: 2026-08-11 전후 Clarity INP/dead-click 재확인. GoatCounter는 실제
+entity 행이 생겼으므로 다음 주부터 추세만 관찰한다.
