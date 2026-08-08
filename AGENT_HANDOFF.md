@@ -3859,7 +3859,7 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 **검증**: 인라인 JS 문법, frontend contracts 12개, 13F 상세 차트 드래그 회귀, 전체 feed-detail 회귀 12개, strict paywall 20/20, `git diff --check`.
 ## 2026-08-08 Codex X embed render-order fix
 
-**Change**: Bound the X `rendered` event before `createTweet` in `index.html` and `scripts/build_pages.py`, scoped the event to each card slot, added a successful-promise reveal fallback, and propagated the fix to all 579 static X pages. Added a frontend contract test.
+**Change**: Bound the X `rendered` event before `createTweet` in `index.html` and `scripts/build_pages.py`, scoped the event to each card slot, added promise/DOM-ready reveal fallbacks plus iframe visibility normalization, and propagated the fix to all 579 static X pages. Added a frontend contract test.
 
 **Validation**: `tests.test_frontend_contracts`, static-page scan, `deploy_guard.py`, and `git diff --check` passed. Dirty local worktrees were left untouched.
 

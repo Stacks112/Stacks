@@ -2817,6 +2817,7 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
 .xreal-slot{min-height:0;display:block;height:0;overflow:hidden;visibility:hidden;}
 .xreal.x-on>.xreal-slot{display:flow-root;height:auto;overflow:visible;visibility:visible;}
 .xreal-slot iframe{max-width:100% !important;}
+.xreal.x-on>.xreal-slot iframe{position:relative !important;visibility:visible !important;width:100% !important;height:auto !important;}
 .xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
 
 /* Long X posts can overwhelm the reading before the article starts. Articles
@@ -13369,6 +13370,13 @@ async function xEmbedMount(host){
     const reveal = () => {
       if (settled) return;
       settled = true;
+      const frame = slot.querySelector("iframe");
+      if (frame) {
+        frame.style.position = "relative";
+        frame.style.visibility = "visible";
+        frame.style.width = "100%";
+        frame.style.removeProperty("height");
+      }
       host.classList.add("x-on");
     };
     const abandon = () => {
@@ -13377,9 +13385,19 @@ async function xEmbedMount(host){
       slot.replaceChildren();
       host.classList.remove("x-on");
     };
+    let readyTicks = 0;
+    const readyPoll = setInterval(() => {
+      if (settled) { clearInterval(readyPoll); return; }
+      if (slot.querySelector("iframe") && slot.querySelector(".twitter-tweet-rendered")) {
+        clearInterval(readyPoll);
+        reveal();
+        return;
+      }
+      if (++readyTicks >= 50) clearInterval(readyPoll);
+    }, 100);
     /* Bind before createTweet: X can emit rendered before its promise resolves.
        Match by slot so one widget cannot reveal another card. The promise
-       resolution below is a safe fallback for X builds that emit too early. */
+       and DOM-ready fallbacks cover X builds that emit too early or not at all. */
     if (!tw.events || typeof tw.events.bind !== "function") return;
     tw.events.bind("rendered", e => {
       if (!e || !e.target || !slot.contains(e.target)) return;
@@ -13395,7 +13413,7 @@ async function xEmbedMount(host){
     if (!el || !slot.querySelector("iframe")) { abandon(); return; }
     reveal();
     /* iframe load only proves that an error document loaded. The rendered
-       event above or the successful promise is what may hide the complete
+       event, successful promise, or rendered DOM marker may hide the complete
        static fallback. */
     setTimeout(abandon, 5000);
   } catch (e) { slot.replaceChildren(); }

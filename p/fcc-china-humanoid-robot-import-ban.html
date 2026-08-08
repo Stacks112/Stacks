@@ -70,7 +70,7 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .xreal-slot{display:block;height:0;overflow:hidden;visibility:hidden}
 .xreal.x-on>.xemb{display:none}
 .xreal.x-on>.xreal-slot{display:flow-root;height:auto;overflow:visible;visibility:visible}
-.xreal-slot iframe{max-width:100%!important}
+.xreal-slot iframe{max-width:100%!important}.xreal.x-on>.xreal-slot iframe{position:relative!important;visibility:visible!important;width:100%!important;height:auto!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
 .chk-c{flex:1 1 33%;min-width:110px;padding:12px 10px;text-align:center;border-right:1px solid #ECEDF1}
@@ -307,6 +307,13 @@ FCC는 기존에 내준 인증도 취소할 권한을 갖고 있다.
         function reveal(){
           if (settled) return;
           settled = true;
+          var frame = slot.querySelector('iframe');
+          if (frame) {
+            frame.style.position = 'relative';
+            frame.style.visibility = 'visible';
+            frame.style.width = '100%';
+            frame.style.removeProperty('height');
+          }
           host.classList.add('x-on');
         }
         function abandon(){
@@ -314,10 +321,20 @@ FCC는 기존에 내준 인증도 취소할 권한을 갖고 있다.
           settled = true;
           slot.innerHTML = '';
         }
+        var readyTicks = 0;
+        var readyPoll = setInterval(function(){
+          if (settled) { clearInterval(readyPoll); return; }
+          if (slot.querySelector('iframe') && slot.querySelector('.twitter-tweet-rendered')) {
+            clearInterval(readyPoll);
+            reveal();
+            return;
+          }
+          if (++readyTicks >= 50) clearInterval(readyPoll);
+        }, 100);
         /* Bind before createTweet: X can emit rendered before its promise
            resolves. Match by slot so one widget cannot reveal another card.
-           The promise resolution below is a safe fallback for X builds that
-           emit too early. */
+           The promise and DOM-ready fallbacks cover X builds that emit too
+           early or not at all. */
         if (!twttr.events || !twttr.events.bind) return;
         twttr.events.bind('rendered', function(e){
           if (!e || !e.target || !slot.contains(e.target)) return;
@@ -328,9 +345,9 @@ FCC는 기존에 내준 인증도 취소할 권한을 갖고 있다.
         })).then(function(node){
           if (!node || !slot.querySelector('iframe')) { abandon(); return; }
           reveal();
-          /* iframe load can be an X error document. The rendered event above
-             or the successful promise may hide the static fallback; failed
-             embeds keep their source. */
+          /* iframe load can be an X error document. The rendered event, the
+             successful promise, or the rendered DOM marker may hide the
+             static fallback; failed embeds keep their source. */
           setTimeout(abandon, 5000);
         }).catch(function(){ slot.innerHTML = ''; });
       } catch (e) { slot.innerHTML = ''; }
