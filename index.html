@@ -6673,7 +6673,8 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
   else requestedStart = end - period.days * 86400;
   var startIdx = 0;
   while (startIdx < calendar.length - 1 && calendar[startIdx] < requestedStart) startIdx++;
-  var chartCalendar = calendar.slice(startIdx), chartValues = values.slice(startIdx);
+  var chartCalendar = [], chartValues = [], sourceCalendar = calendar.slice(startIdx), sourceValues = values.slice(startIdx);
+  sourceCalendar.forEach(function(t, i){ var v = Number(sourceValues[i]); if (isFinite(t) && isFinite(v) && v > 0){ chartCalendar.push(t); chartValues.push(v); } });
   if (chartCalendar.length < 2){ box.innerHTML = '<div class="ehq-loading">-</div>'; return null; }
   var first = chartValues[0], last = chartValues[chartValues.length - 1];
   var chg = last - first, pct = first ? (chg / first) * 100 : 0, up = chg >= 0;
@@ -6699,7 +6700,8 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
   }
   var pts = chartValues.map(function(v, i){ return X(i / (chartValues.length - 1)).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
   var area = pL + "," + (pT + ph) + " " + pts + " " + (pL + pw) + "," + (pT + ph);
-  var localFiled = filedIdx == null ? null : filedIdx - startIdx, filedLine = "", filedLabel = "";
+  var filedTime = filedIdx == null ? null : calendar[filedIdx], localFiled = null, filedLine = "", filedLabel = "";
+  if (filedTime != null){ for (var fi = 0; fi < chartCalendar.length; fi++){ if (chartCalendar[fi] >= filedTime){ localFiled = fi; break; } } }
   if (localFiled != null && localFiled >= 0 && localFiled < chartCalendar.length){
     var fx = X(localFiled / (chartCalendar.length - 1)).toFixed(1);
     filedLine = '<line x1="' + fx + '" y1="' + pT + '" x2="' + fx + '" y2="' + (pT + ph) + '" class="inv-filed-vl"/>';
@@ -6734,7 +6736,8 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
     var frac = fracAt(ev), i = indexAt(frac), x = X(frac);
     hideHover(); hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
     dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", Y(chartValues[i]).toFixed(1)); dot.setAttribute("visibility", "visible");
-    tip.innerHTML = '<b>' + esc(invMoneyFmt(chartValues[i])) + '</b><small>' + esc(dateAt(frac)) + '</small>'; tip.hidden = false; placeTip(frac);
+    var hoverPct = first ? (chartValues[i] / first - 1) * 100 : null, hoverPctText = hoverPct == null ? "—" : (hoverPct >= 0 ? "+" : "") + hoverPct.toFixed(1) + "%";
+    tip.innerHTML = '<b>' + esc(dateAt(frac)) + '</b><span><i style="background:' + col + '"></i><b>' + esc(hoverPctText) + '</b></span>'; tip.hidden = false; placeTip(frac);
   }
   function showSelection(a, b){
     var lo = Math.min(a, b), hi = Math.max(a, b), x1 = X(lo), x2 = X(hi), start = indexAt(lo), finish = indexAt(hi);
@@ -6742,8 +6745,8 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
     var days = Math.max(1, Math.round((chartCalendar[finish] - chartCalendar[start]) / 86400)), rangePct = chartValues[start] ? (chartValues[finish] / chartValues[start] - 1) * 100 : null;
     var rangeText = dateAt(lo) + " – " + dateAt(hi);
     var rangePctText = rangePct == null ? "—" : (rangePct >= 0 ? "+" : "") + rangePct.toFixed(1) + "%";
-    if (rangeReadout){ rangeReadout.innerHTML = '<b>' + esc(rangeText) + '</b><small>' + esc((S.invChartSelected || "") + " · " + (S.invChartRange || "").replace("{n}", days) + " · " + rangePctText) + '</small>'; rangeReadout.hidden = false; }
-    tip.innerHTML = '<b>' + esc(rangePctText) + '</b><small>' + esc(rangeText) + '</small>'; tip.hidden = false; placeTip((x1 + x2) / 2 / W);
+    if (rangeReadout){ rangeReadout.textContent = rangeText + " · " + rangePctText; rangeReadout.hidden = false; }
+    tip.innerHTML = '<b>' + esc(rangeText) + '</b><small>' + esc((S.invChartSelected || "") + " · " + (S.invChartRange || "").replace("{n}", days)) + '</small><span><i style="background:' + col + '"></i><b>' + esc(rangePctText) + '</b></span>'; tip.hidden = false; placeTip((x1 + x2) / 2 / W);
     if (clearBtn) clearBtn.hidden = false;
   }
   function clearSelection(){ selection = null; selectionRect.setAttribute("visibility", "hidden"); if (clearBtn) clearBtn.hidden = true; if (rangeReadout) rangeReadout.hidden = true; hideHover(); }
