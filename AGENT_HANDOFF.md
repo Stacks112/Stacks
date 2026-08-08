@@ -3600,6 +3600,8 @@ HTTP 400 알림은 기존 주간 digest 경고이며 analytics 단계는 성공�
 - `py -3 tests/test_frontend_contracts.py` — 8개 통과.
 - `py -3 tests/test_analytics_report.py` — 6개 통과.
 - `py -3 scripts/deploy_guard.py`, `git diff --check` 통과.
+- `feed-detail-regression` `31229188988`, `calendar-regression` `31229188983` 성공.
+- production `https://stacksdaily.com` 및 `ads.txt` HTTP 200 확인.
 
 **다음**: 코드 변경은 완료. 일반 Chrome 엔티티 클릭 1건이 집계된 뒤 주간
 GoatCounter 리포트의 실제 entity 행만 확인한다.
