@@ -3732,3 +3732,19 @@ guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자�
 
 **다음**: main push 후 Pages·workflow 성공 확인. 다음 주 stats 실행에서 notify 400
 재발 여부, OG 정기 실행에서 guard 로그를 확인한다.
+
+## 2026-08-08 Codex — OG PNG guard 실제 실행 확인
+
+**결과**:
+- 수동 실행 OG workflow `31236874225`가 `03c0389` / `main`에서 성공.
+- 실제 guard 로그: `validated 326 OG PNGs at 1200x630`.
+- 재생성된 feed/data/manifest 결과는 `bbedf1e`로 main에 push됨.
+- Pages `31237199165`가 `bbedf1e` 배포 성공.
+
+**production 확인**:
+- `https://stacksdaily.com/?deploy=bbedf1e` HTTP 200.
+- live OG PNG HTTP 200, `image/png`, 실제 규격 1200×630.
+- `https://api.stacksdaily.com/counts` HTTP 200.
+
+**다음**: 다음 stats workflow 실행 후 `/notify` 400 재발 여부를 확인한다. OG guard는
+수동·예약·입력 파일 변경 실행에서 계속 보호한다.
