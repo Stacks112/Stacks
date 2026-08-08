@@ -65,6 +65,8 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("var trendMarkup=function", INDEX)
         self.assertIn('class="jr-trend"', INDEX)
         self.assertIn("trendSub", INDEX)
+        self.assertIn("gradedDateLabel", INDEX)
+        self.assertIn("i.outcome.gradedOn", INDEX)
 
     def test_linkify_queue_prioritizes_visible_cards_during_idle_time(self):
         self.assertIn("requestIdleCallback(linkifyDrain", INDEX)

@@ -164,6 +164,12 @@ test.describe("track record state", () => {
     }));
     expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
   });
+
+  test("completed cards expose the grading date", async ({ page }) => {
+    await page.goto("/?v83beta#record", { waitUntil: "domcontentloaded" });
+    await page.locator('[data-jr-tab="done"]').click();
+    await expect(page.locator('.jr-panel[data-jr-panel="done"] .jr-card').first()).toContainText(/판정일|Graded|判定日/);
+  });
 });
 
 test.describe("13F investor view state", () => {
