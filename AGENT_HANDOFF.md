@@ -3583,3 +3583,23 @@ Next:
 상태로 보인다. 코드 변경은 완료됐으므로 일반 Chrome에서 엔티티를 한 번 직접 클릭한
 뒤 다음 주간 실행에서 순위 행을 확인한다. Node.js 20 deprecation 경고와 stats 단계의
 HTTP 400 알림은 기존 주간 digest 경고이며 analytics 단계는 성공했다.
+
+## 2026-08-08 Codex — Windows 로컬 회귀 실행 복구
+
+**원인**: Windows `python3` alias가 Playwright 정적 서버를 시작하지 못해 `npm test`가
+`webServer` timeout으로 끝났고, `deploy_guard.py`는 `cp949` 출력으로 Unicode 배너에서
+실패했다.
+
+**변경 파일**:
+- `playwright.config.mjs` — Windows는 `py -3`, 그 외 환경은 `python3`로 서버 실행.
+- `scripts/deploy_guard.py` — stdout/stderr를 UTF-8로 재설정.
+- `AGENT_HANDOFF.md` — 검증·다음 단계 기록.
+
+**검증**:
+- `npm test` — 캘린더 3개 + 피드/상세/13F 8개 통과.
+- `py -3 tests/test_frontend_contracts.py` — 8개 통과.
+- `py -3 tests/test_analytics_report.py` — 6개 통과.
+- `py -3 scripts/deploy_guard.py`, `git diff --check` 통과.
+
+**다음**: 코드 변경은 완료. 일반 Chrome 엔티티 클릭 1건이 집계된 뒤 주간
+GoatCounter 리포트의 실제 entity 행만 확인한다.

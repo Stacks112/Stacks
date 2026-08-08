@@ -50,6 +50,10 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8")
+
 REMOTE = "origin"
 BRANCH = "main"
 
