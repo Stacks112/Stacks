@@ -5258,7 +5258,7 @@ function debateTitleHtml(key){
 
 /* ---------------- 13F 포트폴리오 가치 차트 / 활동 요약 / 매수·매도 상위 / 섹터 배분 문자열 (v85) ---------------- */
 (function(){ var X={
-  en:{ invChartTitle:"Portfolio value if held", invChartMapCov:"Ticker mapping {p}% (options excluded)", invChartPriceCov:"Price data coverage {p}% (options excluded)", invChartPriceCovLoading:"Calculating price coverage…",
+  en:{ invChartTitle:"Portfolio value if held", invChartSub:"Estimated public-portfolio value, chained from quarterly SEC snapshots.", invChartDrag:"Drag across the chart to inspect the selected period.", invChartSelected:"Selected period", invChartRange:"{n} selected days", invChartClear:"Clear selection", invChartNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns", invChart1d:"1D", invChart5d:"5D", invChart1m:"1M", invChart6m:"6M", invChartYtd:"YTD", invChartMapCov:"Ticker mapping {p}% (options excluded)", invChartPriceCov:"Price data coverage {p}% (options excluded)", invChartPriceCovLoading:"Calculating price coverage…",
        invChartNoTicker:"No holdings could be matched to a ticker, so this chart can't be shown.", invChartFail:"Price data unavailable",
        invChartLowCov:"Price data coverage is under 50%, so this line may not represent the full portfolio.", invChartFiled:"Filed",
        invActNew:"New buys", invActAdd:"Added", invActExit:"Exited", invActTrim:"Trimmed", invActTop10:"Top-10 weight",
@@ -5266,7 +5266,7 @@ function debateTitleHtml(key){
        invActNoData:"No prior-quarter activity data for this filing.",
        invMoverBuy:"Top buys", invMoverSell:"Top sells", invMoverNone:"None this quarter",
        invSectorTitle:"Sector allocation", invSectorCov:"Based on {p}% of the portfolio" },
-  ko:{ invChartTitle:"그대로 들고 있었다면", invChartMapCov:"티커 매핑 {p}% · 옵션 제외", invChartPriceCov:"시세 조회 성공 {p}% · 옵션 제외", invChartPriceCovLoading:"시세 커버리지 계산 중…",
+  ko:{ invChartTitle:"그대로 들고 있었다면", invChartSub:"분기별 SEC 13F 공개 스냅샷을 이어 붙인 포트폴리오 추정 평가액입니다.", invChartDrag:"차트를 드래그하면 선택 기간의 평가액과 수익률을 확인할 수 있습니다.", invChartSelected:"선택 기간", invChartRange:"선택 {n}일", invChartClear:"선택 해제", invChartNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님", invChart1d:"1일", invChart5d:"5일", invChart1m:"1개월", invChart6m:"6개월", invChartYtd:"연중", invChartMapCov:"티커 매핑 {p}% · 옵션 제외", invChartPriceCov:"시세 조회 성공 {p}% · 옵션 제외", invChartPriceCovLoading:"시세 커버리지 계산 중…",
        invChartNoTicker:"티커에 매핑된 종목이 없어 이 차트를 표시할 수 없습니다.", invChartFail:"시세를 불러오지 못했습니다",
        invChartLowCov:"시세 조회 성공률이 50% 미만이라 실제 포트폴리오를 온전히 대표하지 못할 수 있습니다.", invChartFiled:"공시일",
        invActNew:"신규 매수", invActAdd:"추가 매수", invActExit:"청산", invActTrim:"축소", invActTop10:"상위10 비중",
@@ -5274,7 +5274,7 @@ function debateTitleHtml(key){
        invActNoData:"직전 분기 대비 활동 데이터가 없습니다.",
        invMoverBuy:"매수 상위", invMoverSell:"매도 상위", invMoverNone:"이번 분기 없음",
        invSectorTitle:"섹터 배분", invSectorCov:"전체의 {p}% 집계 기준" },
-  ja:{ invChartTitle:"そのまま保有していたら", invChartMapCov:"ティッカー紐付け {p}%・オプション除外", invChartPriceCov:"価格データ取得 {p}%・オプション除外", invChartPriceCovLoading:"価格データの網羅率を計算中…",
+  ja:{ invChartTitle:"そのまま保有していたら", invChartSub:"SECの四半期13F公開スナップショットをつないだ公開ポートフォリオ推定評価額です。", invChartDrag:"グラフをドラッグすると、選択期間の評価額とリターンを確認できます。", invChartSelected:"選択期間", invChartRange:"選択 {n}日", invChartClear:"選択を解除", invChartNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません", invChart1d:"1日", invChart5d:"5日", invChart1m:"1か月", invChart6m:"6か月", invChartYtd:"年初来", invChartMapCov:"ティッカー紐付け {p}%・オプション除外", invChartPriceCov:"価格データ取得 {p}%・オプション除外", invChartPriceCovLoading:"価格データの網羅率を計算中…",
        invChartNoTicker:"ティッカーに一致する銘柄がなく、このチャートは表示できません。", invChartFail:"価格データを取得できませんでした",
        invChartLowCov:"価格データの取得率が50%未満のため、実際のポートフォリオを正確に反映していない可能性があります。", invChartFiled:"開示日",
        invActNew:"新規買い", invActAdd:"追加買い", invActExit:"清算", invActTrim:"縮小", invActTop10:"上位10比率",
@@ -6650,82 +6650,121 @@ function invComputeValueSeries(inv){
     return { calendar: null, values: null, filedIdx: null, coverage: 0 };
   });
 }
-function invPaintValueChart(box, calendar, values, filedIdx, S){
+var INV_VALUE_PERIODS = [
+  { key:"1d", days:1, copy:"invChart1d" },
+  { key:"5d", days:5, copy:"invChart5d" },
+  { key:"1m", days:30, copy:"invChart1m" },
+  { key:"6m", days:182, copy:"invChart6m" },
+  { key:"ytd", ytd:true, copy:"invChartYtd" }
+];
+function invValueGraphDate(t){
+  var d = new Date(Number(t) * 1000), m = d.getUTCMonth() + 1, day = d.getUTCDate(), y = d.getUTCFullYear();
+  if (typeof LANG !== "undefined" && LANG === "en") return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m - 1] + " " + day;
+  if (typeof LANG !== "undefined" && LANG === "ja") return m + "月" + day + "日";
+  return y + "." + String(m).padStart(2,"0") + "." + String(day).padStart(2,"0");
+}
+function invValueGraphPeriod(S, period){ return S[period.copy] || period.key; }
+function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn, rangeReadout){
   if (!box) return null;
   if (!calendar || calendar.length < 2){ box.innerHTML = '<div class="ehq-loading">-</div>'; return null; }
-  var first = values[0], last = values[values.length - 1];
+  period = period || INV_VALUE_PERIODS[4];
+  var end = calendar[calendar.length - 1], endDate = new Date(end * 1000), requestedStart;
+  if (period.ytd) requestedStart = Date.UTC(endDate.getUTCFullYear(), 0, 1) / 1000;
+  else requestedStart = end - period.days * 86400;
+  var startIdx = 0;
+  while (startIdx < calendar.length - 1 && calendar[startIdx] < requestedStart) startIdx++;
+  var chartCalendar = calendar.slice(startIdx), chartValues = values.slice(startIdx);
+  if (chartCalendar.length < 2){ box.innerHTML = '<div class="ehq-loading">-</div>'; return null; }
+  var first = chartValues[0], last = chartValues[chartValues.length - 1];
   var chg = last - first, pct = first ? (chg / first) * 100 : 0, up = chg >= 0;
   var col = up ? "#12B76A" : "#F04438";
-  var W = Math.max(320, Math.round(box.clientWidth || 960));
-  var H = Math.max(180, Math.round(box.clientHeight || 260));
-  var pL = 10, pR = 74, pT = 16, pB = 30;
+  var W = 960, H = 310, pL = 52, pR = 74, pT = 18, pB = 34;
   var pw = W - pL - pR, ph = H - pT - pB;
-  var mn = Math.min.apply(null, values), mx = Math.max.apply(null, values);
+  var mn = Math.min.apply(null, chartValues), mx = Math.max.apply(null, chartValues);
   var span = (mx - mn) || 1; mn -= span * 0.08; mx += span * 0.08;
-  function X(i){ return pL + (i / (calendar.length - 1)) * pw; }
+  function X(frac){ return pL + Math.max(0, Math.min(1, frac)) * pw; }
   function Y(v){ return pT + (1 - (v - mn) / (mx - mn)) * ph; }
-  function fmtX(i){ var d = new Date(calendar[i] * 1000); return String(d.getFullYear()).slice(2) + "." + (d.getMonth() + 1) + "." + d.getDate(); }
+  function indexAt(frac){ return Math.round(Math.max(0, Math.min(1, frac)) * (chartCalendar.length - 1)); }
+  function dateAt(frac){ return invValueGraphDate(chartCalendar[indexAt(frac)]); }
   var grid = "", ylab = "";
   for (var g = 0; g <= 4; g++){
     var v = mn + ((mx - mn) * g) / 4, y = Y(v);
-    grid += '<line x1="' + pL + '" y1="' + y.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + y.toFixed(1) + '" class="ehq-grid"/>';
-    ylab += '<text x="' + (pL + pw + 8) + '" y="' + (y + 4).toFixed(1) + '" class="ehq-ylab">' + invMoneyFmt(v) + "</text>";
+    grid += '<line x1="' + pL + '" y1="' + y.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + y.toFixed(1) + '" class="inv-compare-grid"/>';
+    ylab += '<text x="' + (pL + pw + 8) + '" y="' + (y + 4).toFixed(1) + '" class="inv-compare-axis">' + invMoneyFmt(v) + "</text>";
   }
-  var xlab = "";
-  var nx = Math.min(6, Math.max(3, Math.round(W / 160)));
+  var xlab = "", nx = 4;
   for (var g2 = 0; g2 <= nx; g2++){
-    var i2 = Math.round(((calendar.length - 1) * g2) / nx);
-    var anchor = g2 === 0 ? "start" : g2 === nx ? "end" : "middle";
-    xlab += '<text x="' + X(i2).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="' + anchor + '" class="ehq-xlab">' + fmtX(i2) + "</text>";
+    var frac2 = g2 / nx, anchor = g2 === 0 ? "start" : g2 === nx ? "end" : "middle";
+    xlab += '<text x="' + X(frac2).toFixed(1) + '" y="' + (H - 9) + '" text-anchor="' + anchor + '" class="inv-compare-axis">' + dateAt(frac2) + "</text>";
   }
-  var pts = values.map(function(v, i){ return X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
+  var pts = chartValues.map(function(v, i){ return X(i / (chartValues.length - 1)).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
   var area = pL + "," + (pT + ph) + " " + pts + " " + (pL + pw) + "," + (pT + ph);
-  var filedLine = "", filedLabel = "";
-  if (filedIdx != null && filedIdx >= 0 && filedIdx < calendar.length){
-    var fx = X(filedIdx).toFixed(1);
+  var localFiled = filedIdx == null ? null : filedIdx - startIdx, filedLine = "", filedLabel = "";
+  if (localFiled != null && localFiled >= 0 && localFiled < chartCalendar.length){
+    var fx = X(localFiled / (chartCalendar.length - 1)).toFixed(1);
     filedLine = '<line x1="' + fx + '" y1="' + pT + '" x2="' + fx + '" y2="' + (pT + ph) + '" class="inv-filed-vl"/>';
     filedLabel = '<text x="' + fx + '" y="' + (pT - 4) + '" text-anchor="middle" class="inv-filed-lab">' + esc(S.invChartFiled || "") + "</text>";
   }
+  var baseY = Y(first);
   box.innerHTML =
-    '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">'
-    + '<defs><linearGradient id="invVg" x1="0" y1="0" x2="0" y2="1">'
-    + '<stop offset="0%" stop-color="' + col + '" stop-opacity=".22"/>'
-    + '<stop offset="100%" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>'
-    + grid
-    + '<polygon points="' + area + '" fill="url(#invVg)"/>'
-    + '<polyline points="' + pts + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linejoin="round"/>'
+    '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" height="100%" role="img" aria-label="' + esc(S.invChartSub || "") + '">'
+    + '<defs><linearGradient id="invVg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="' + col + '" stop-opacity=".22"/><stop offset="100%" stop-color="' + col + '" stop-opacity="0"/></linearGradient></defs>'
+    + grid + '<polygon points="' + area + '" fill="url(#invVg)"/>'
+    + '<line x1="' + pL + '" y1="' + baseY.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + baseY.toFixed(1) + '" class="inv-compare-baseline"/>'
+    + '<polyline points="' + pts + '" fill="none" stroke="' + col + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>'
     + filedLine + filedLabel
-    + '<line id="invVlL" y1="' + pT + '" y2="' + (pT + ph) + '" class="ehq-vl" visibility="hidden"/>'
-    + '<circle id="invVlD" r="4" fill="' + col + '" stroke="#fff" stroke-width="1.5" visibility="hidden"/>'
-    + ylab + xlab + "</svg>"
-    + '<div class="ehq-tip" id="invVlTip" hidden></div>';
-  var svg = box.querySelector("svg");
-  var tip = box.querySelector("#invVlTip");
+    + '<rect class="inv-compare-selection" y="' + pT + '" height="' + ph + '" visibility="hidden"/>'
+    + '<line class="inv-compare-hover-line" y1="' + pT + '" y2="' + (pT + ph) + '" visibility="hidden"/>'
+    + '<circle class="inv-value-hover-dot" r="4" fill="' + col + '" stroke="#fff" stroke-width="1.5" visibility="hidden"/>'
+    + ylab + xlab + "</svg><div class=\"inv-compare-chart-tip\" hidden></div>";
+  var svg = box.querySelector("svg"), tip = box.querySelector(".inv-compare-chart-tip"), hover = box.querySelector(".inv-compare-hover-line"), selectionRect = box.querySelector(".inv-compare-selection"), dot = box.querySelector(".inv-value-hover-dot");
+  var dragging = false, dragStart = 0, selection = null;
+  function fracAt(ev){
+    var rect = svg.getBoundingClientRect(), frac = (ev.clientX - rect.left) / rect.width;
+    return Math.max(0, Math.min(1, (frac * W - pL) / pw));
+  }
+  function placeTip(frac){
+    var host = box.clientWidth || 0, tipWidth = tip.offsetWidth || 132;
+    if (!host) return;
+    var half = Math.min(tipWidth / 2 + 6, Math.max(10, host / 2 - 4)), center = host * Math.max(0, Math.min(1, frac));
+    center = Math.max(half, Math.min(host - half, center)); tip.style.left = center.toFixed(1) + "px";
+  }
+  function hideHover(){ hover.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); if (!selection) tip.hidden = true; }
   function move(ev){
-    var rect = svg.getBoundingClientRect();
-    var cx = (ev.touches ? ev.touches[0].clientX : ev.clientX) - rect.left;
-    var frac = Math.max(0, Math.min(1, (cx / rect.width * W - pL) / pw));
-    var i = Math.round(frac * (calendar.length - 1));
-    var vl = box.querySelector("#invVlL"), dot = box.querySelector("#invVlD");
-    if (!vl || !dot) return;
-    vl.setAttribute("x1", X(i)); vl.setAttribute("x2", X(i)); vl.setAttribute("visibility", "visible");
-    dot.setAttribute("cx", X(i)); dot.setAttribute("cy", Y(values[i])); dot.setAttribute("visibility", "visible");
-    if (tip){
-      tip.hidden = false;
-      tip.textContent = invMoneyFmt(values[i]) + " · " + fmtX(i);
-      tip.style.left = (X(i) / W * 100) + "%";
-      tip.style.top = (Y(values[i]) / H * 100) + "%";
-    }
+    var frac = fracAt(ev), i = indexAt(frac), x = X(frac);
+    hideHover(); hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", Y(chartValues[i]).toFixed(1)); dot.setAttribute("visibility", "visible");
+    tip.innerHTML = '<b>' + esc(invMoneyFmt(chartValues[i])) + '</b><small>' + esc(dateAt(frac)) + '</small>'; tip.hidden = false; placeTip(frac);
   }
-  function leave(){
-    ["invVlL", "invVlD"].forEach(function(id){ var el = box.querySelector("#" + id); if (el) el.setAttribute("visibility", "hidden"); });
-    if (tip) tip.hidden = true;
+  function showSelection(a, b){
+    var lo = Math.min(a, b), hi = Math.max(a, b), x1 = X(lo), x2 = X(hi), start = indexAt(lo), finish = indexAt(hi);
+    selectionRect.setAttribute("x", x1.toFixed(1)); selectionRect.setAttribute("width", Math.max(1, x2 - x1).toFixed(1)); selectionRect.setAttribute("visibility", "visible"); hideHover();
+    var days = Math.max(1, Math.round((chartCalendar[finish] - chartCalendar[start]) / 86400)), rangePct = chartValues[start] ? (chartValues[finish] / chartValues[start] - 1) * 100 : null;
+    var rangeText = dateAt(lo) + " – " + dateAt(hi);
+    if (rangeReadout){ rangeReadout.innerHTML = '<b>' + esc(rangeText) + '</b><small>' + esc((S.invChartSelected || "") + " · " + (S.invChartRange || "").replace("{n}", days) + " · " + (rangePct == null ? "—" : (rangePct >= 0 ? "+" : "") + rangePct.toFixed(1) + "%")) + '</small>'; rangeReadout.hidden = false; }
+    tip.innerHTML = '<b>' + esc(rangeText) + '</b><small>' + esc(invMoneyFmt(chartValues[start]) + " → " + invMoneyFmt(chartValues[finish])) + '</small>'; tip.hidden = false; placeTip((x1 + x2) / 2 / W);
+    if (clearBtn) clearBtn.hidden = false;
   }
-  svg.addEventListener("mousemove", move);
-  svg.addEventListener("touchmove", move, { passive: true });
-  svg.addEventListener("mouseleave", leave);
-  svg.addEventListener("touchend", leave);
-  return { pct: pct, up: up };
+  function clearSelection(){ selection = null; selectionRect.setAttribute("visibility", "hidden"); if (clearBtn) clearBtn.hidden = true; if (rangeReadout) rangeReadout.hidden = true; hideHover(); }
+  function startDrag(ev){
+    if (ev.button != null && ev.button !== 0) return;
+    dragging = true; dragStart = fracAt(ev); selection = null; if (clearBtn) clearBtn.hidden = true;
+    try { svg.setPointerCapture(ev.pointerId); } catch(e) {}
+    showSelection(dragStart, dragStart); ev.preventDefault();
+  }
+  function dragMove(ev){ if (dragging){ showSelection(dragStart, fracAt(ev)); ev.preventDefault(); } else move(ev); }
+  function endDrag(ev){
+    if (!dragging) return;
+    ev.preventDefault(); var endFrac = fracAt(ev), distance = Math.abs(endFrac - dragStart); dragging = false;
+    try { svg.releasePointerCapture(ev.pointerId); } catch(e) {}
+    if (distance < 0.008){ clearSelection(); move(ev); return; }
+    selection = { a:Math.min(dragStart, endFrac), b:Math.max(dragStart, endFrac) }; showSelection(selection.a, selection.b);
+  }
+  svg.addEventListener("pointerdown", startDrag); svg.addEventListener("pointermove", dragMove); svg.addEventListener("pointerup", endDrag);
+  svg.addEventListener("pointercancel", function(){ if (dragging){ dragging = false; clearSelection(); } }); svg.addEventListener("pointerleave", function(){ if (!dragging && !selection) hideHover(); });
+  svg.addEventListener("dblclick", clearSelection); svg.addEventListener("contextmenu", function(ev){ ev.preventDefault(); });
+  if (clearBtn) clearBtn.onclick = clearSelection;
+  return { pct:pct, up:up };
 }
 /* v86: 목록 카드용 미니 스파크라인 - invPaintValueChart의 축소판. 축·그리드·
    숫자라벨·hover 툴팁·공시일 세로선을 전부 빼고 선 + 옅은 그라디언트 영역만
@@ -6757,7 +6796,7 @@ function invPaintSparkline(box, values){
     + "</svg>";
 }
 function invValueChartSection(inv, S){
-  var wrap = document.createElement("div"); wrap.className = "inv-value-card";
+  var wrap = document.createElement("section"); wrap.className = "inv-value-card inv-performance-section";
   var sourceHoldings = (inv && (inv.all_holdings || inv.holdings)) || [];
   var reals = sourceHoldings.filter(function(h){ return h && h.change !== "exit" && h.put_call !== "PUT" && h.put_call !== "CALL"; });
   var totalW = reals.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
@@ -6769,11 +6808,20 @@ function invValueChartSection(inv, S){
   }
   var eligibleW = eligible.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
   var staticCov = (typeof inv.ticker_coverage_pct === "number") ? inv.ticker_coverage_pct : (totalW > 0 ? eligibleW / totalW : null);
+  var periodButtons = INV_VALUE_PERIODS.map(function(period){
+    var active = period.key === "ytd";
+    return '<button type="button" role="tab" aria-selected="' + (active ? "true" : "false") + '" class="inv-compare-period' + (active ? " on" : "") + '" data-period="' + period.key + '">' + esc(invValueGraphPeriod(S, period)) + "</button>";
+  }).join("");
+  var invLabel = (inv.ticker || String(inv.slug || "INV").toUpperCase()), invName = locVal(inv.manager) || locVal(inv.name) || inv.slug;
   wrap.innerHTML =
-    '<div class="inv-value-head"><b>' + esc(S.invChartTitle || "") + '</b><span class="inv-value-chg" id="invValChg">···</span></div>'
+    '<div class="inv-performance-head"><h3>' + esc(S.invChartTitle || "") + '<span class="inv-value-chg" id="invValChg">···</span></h3><p>' + esc(S.invChartSub || "") + '</p><small class="inv-compare-drag-hint">' + esc(S.invChartDrag || "") + '</small></div>'
     + '<div class="inv-value-cov" id="invValMapCov">' + (staticCov != null ? esc((S.invChartMapCov || "").replace("{p}", Math.round(staticCov * 100))) : "") + "</div>"
     + '<div class="inv-value-cov" id="invValPriceCov">' + esc(S.invChartPriceCovLoading || "") + "</div>"
-    + '<div class="inv-value-chart" id="invValChart"><div class="ehq-loading">···</div></div>'
+    + '<div class="inv-compare-periods" role="tablist" aria-label="' + esc(S.invChartTitle || "") + '">' + periodButtons + '</div>'
+    + '<div class="inv-value-chart inv-compare-chart" id="invValChart"><div class="ehq-loading">···</div></div>'
+    + '<div class="inv-compare-selection-label" id="invValRange" aria-live="polite" hidden></div>'
+    + '<div class="inv-compare-legend"><span class="inv-compare-legend-item"><i style="background:#12B76A"></i><b>' + esc("INV:" + invLabel) + '</b><span>' + esc(invName) + '</span><small>' + esc(S.invChartNote || "") + '</small></span></div>'
+    + '<button type="button" class="inv-compare-clear" id="invValClear" hidden>' + esc(S.invChartClear || "") + '</button>'
     + '<div class="inv-value-warn" id="invValWarn" hidden></div>';
   var slug = inv.slug;
   /* v86: 시세 fetch + 계산은 invComputeValueSeries(inv)로 위임(카드 스파크라인과
@@ -6782,13 +6830,26 @@ function invValueChartSection(inv, S){
      체감 동작은 기존의 "즉시 동기 페인트"와 동일하다(2026-08-05 Playwright로
      회귀 검증). */
   function stillHere(){ return ((typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null) === slug; }
+  var currentRes = null, activePeriod = "ytd";
+  var clearBtn = wrap.querySelector("#invValClear"), rangeReadout = wrap.querySelector("#invValRange");
+  wrap.querySelectorAll(".inv-compare-period").forEach(function(button){
+    button.addEventListener("click", function(){
+      activePeriod = button.getAttribute("data-period") || "ytd";
+      wrap.querySelectorAll(".inv-compare-period").forEach(function(other){ var on = other === button; other.classList.toggle("on", on); other.setAttribute("aria-selected", on ? "true" : "false"); });
+      if (currentRes) paint(currentRes);
+    });
+  });
+  function paint(res){
+    var box = wrap.querySelector("#invValChart"), chgEl = wrap.querySelector("#invValChg");
+    if (!box || !res || !res.calendar || res.calendar.length < 2){ if (box) box.innerHTML = '<div class="ehq-loading">' + esc(S.invChartFail || "") + "</div>"; if (chgEl) chgEl.textContent = ""; return; }
+    var r = invPaintValueChart(box, res.calendar, res.values, res.filedIdx, S, INV_VALUE_PERIODS.find(function(period){ return period.key === activePeriod; }) || INV_VALUE_PERIODS[4], clearBtn, rangeReadout);
+    if (chgEl && r){ chgEl.style.color = r.up ? "#12B76A" : "#F04438"; chgEl.textContent = (r.up ? "▲ " : "▼ ") + (r.up ? "+" : "") + r.pct.toFixed(1) + "%"; }
+  }
   function doPaint(res){
     if (!stillHere()) return; /* 사용자가 이미 화면을 떠났다 */
-    var box = wrap.querySelector("#invValChart");
-    var chgEl = wrap.querySelector("#invValChg");
     var priceCovEl = wrap.querySelector("#invValPriceCov");
     var warnEl = wrap.querySelector("#invValWarn");
-    if (!box) return;
+    currentRes = res;
     /* 커버리지·경고는 fetch 성공 여부와 무관하게 항상 "실제로 그려진(또는 그려지지
        못한) 값"을 반영한다 - 가격 조회가 전부 실패해도 정적 추정치(staticCov)를
        그대로 남겨두면 대표성이 없는 차트를 있는 것처럼 보이게 할 위험이 있다. */
@@ -6797,16 +6858,7 @@ function invValueChartSection(inv, S){
       if ((res.coverage || 0) < 0.5){ warnEl.hidden = false; warnEl.textContent = "⚠ " + (S.invChartLowCov || ""); }
       else warnEl.hidden = true;
     }
-    if (!res || !res.calendar || res.calendar.length < 2){
-      box.innerHTML = '<div class="ehq-loading">' + esc(S.invChartFail || "") + "</div>";
-      if (chgEl) chgEl.textContent = "";
-      return;
-    }
-    var r = invPaintValueChart(box, res.calendar, res.values, res.filedIdx, S);
-    if (chgEl && r){
-      chgEl.style.color = r.up ? "#12B76A" : "#F04438";
-      chgEl.textContent = (r.up ? "▲ " : "▼ ") + (r.up ? "+" : "") + r.pct.toFixed(1) + "%";
-    }
+    paint(res);
   }
   invComputeValueSeries(inv).then(doPaint).catch(function(){ doPaint(null); });
   return wrap;

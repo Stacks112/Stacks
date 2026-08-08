@@ -3822,3 +3822,13 @@ guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자�
 
 **다음**: P2로 runtime `unavatar.io` 의존을 local avatar/이니셜 fallback으로 줄일지 검토한다.
 third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
+## 2026-08-08 Codex — 유료글 공개 미리보기 인용 보강
+
+**변경**: `quote.lines`가 없던 유료글 8건에 출처 페이지에서 확인 가능한 짧은 공개 미리보기 인용과 출처 날짜를 추가했다. The Diff는 공개 목차, 에민·유르마즈는 공개 제목 수준만 확인되어 그 범위로 제한했다.
+
+**검증**: 유료글 20건 전체 `quote.lines` 커버리지, strict paywall gate BLOCK 0, 앱용 `data/core.json` 8건 전파, 정적 3개 언어 기사 페이지 재생성, `git diff --check`를 확인한다.
+## 2026-08-08 Codex — 투자자 상세 차트 기간·드래그 통일
+
+**변경**: 투자자 상세의 13F 포트폴리오 가치 차트를 투자자 비교 차트와 동일한 1일·5일·1개월·6개월·연중 기간 탭, pointer drag 선택, 기간·수익률 표시, 선택 해제 버튼으로 통일했다.
+
+**검증**: 인라인 JS 문법, frontend contracts 12개, 13F 상세 차트 드래그 회귀, 전체 feed-detail 회귀 12개, strict paywall 20/20, `git diff --check`.

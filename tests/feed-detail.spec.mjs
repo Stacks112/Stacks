@@ -171,6 +171,31 @@ test.describe("13F investor view state", () => {
     await expect(page.locator("#feedList .series-head-name")).toContainText("›");
   });
 
+  test("investor value chart matches compare period and drag behavior", async ({ page }) => {
+    await page.route("**/quote?*", route => {
+      const now = Math.floor(Date.now() / 86400) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * 0.1);
+      return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page, "#investor-berkshire");
+    await expect(page.locator("#invValChart svg")).toBeVisible();
+    await expect(page.locator(".inv-value-card .inv-compare-period")).toHaveCount(5);
+    await page.locator('.inv-value-card .inv-compare-period[data-period="6m"]').click();
+    await expect(page.locator('.inv-value-card .inv-compare-period[data-period="6m"]')).toHaveAttribute("aria-selected", "true");
+
+    const chart = await page.locator("#invValChart svg").boundingBox();
+    expect(chart).not.toBeNull();
+    await page.mouse.move(chart.x + chart.width * 0.25, chart.y + chart.height * 0.5);
+    await page.mouse.down();
+    await page.mouse.move(chart.x + chart.width * 0.7, chart.y + chart.height * 0.5);
+    await page.mouse.up();
+    await expect.poll(() => page.locator("#invValRange").evaluate(el => !el.hidden)).toBe(true);
+    await expect(page.locator("#invValClear")).toBeVisible();
+    await page.locator("#invValClear").click();
+    await expect.poll(() => page.locator("#invValRange").evaluate(el => el.hidden)).toBe(true);
+  });
+
   test.describe("responsive widths", () => {
     test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
 
