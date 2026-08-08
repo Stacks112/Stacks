@@ -3345,6 +3345,7 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .theme-card:hover{filter:brightness(1.03);}
 .tg-ic{font-size:20px;}
 .tg-name{font-weight:800;font-size:14.5px;color:var(--text);}
+.tg-q{font-size:11.5px;line-height:1.4;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .tg-n{font-family:var(--mono-font);font-size:11px;color:var(--muted);}
 .tg-bar{display:flex;width:100%;height:6px;border-radius:4px;overflow:hidden;gap:2px;}
 .tg-seg{display:block;height:100%;}
@@ -3354,6 +3355,9 @@ html[data-theme="dark"] .sp-bull{color:#6EE7B7;} html[data-theme="dark"] .sp-bea
 .tg-counts .tg-bull{color:#12B76A;}.tg-counts .tg-bear{color:#F04438;}
 .theme-load-more{display:block;width:100%;margin:8px 0 18px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:12px;font-weight:700;line-height:1.2;cursor:pointer;}
 .theme-load-more:hover{border-color:var(--text);}
+.theme-question{margin:5px 0 0;color:var(--muted);font-size:12.5px;line-height:1.45;}
+.theme-link-reason{display:inline-flex;align-items:center;width:max-content;margin:0 0 10px;padding:3px 8px;border-radius:999px;background:var(--bg-soft);color:var(--muted);font-size:11px;font-weight:700;}
+@media (max-width:700px){.wrap.theme-page #feedList{padding-bottom:20px;}}
 .bw-strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px;}
 .bw-cell{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;min-width:0;overflow:hidden;}
 .bw-lb{font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;}
@@ -6054,6 +6058,16 @@ kw:/\uAE30\uC900\uAE08\uB9AC|\uC778\uD50C\uB808|\uAD6D\uCC44|\uC5F0\uC900|Federa
   japan:   { icon:"\uD83D\uDDFE", label:{en:"Japan", ko:"\uC77C\uBCF8 \uC2DC\uC7A5", ja:"\u65E5\u672C\u5E02\u5834"},
              kw:/\uC77C\uBCF8|\uB2DB\uCF00\uC774|\uC5D4\uC800|\bJapan(?:ese)?\b|\bNikkei\b|\bBOJ\b|\u65E5\u9280|\u65E5\u672C\u682A|\u6771\u8A3C|\u65E5\u7D4C/ }
 };
+const THEME_META = {
+  rates:   { q:{en:"Will inflation keep rates higher for longer?",ko:"\uBB3C\uAC00\uAC00 \uAE08\uB9AC\uB97C \uB354 \uC624\uB798 \uB192\uAC8C \uBB36\uC5B4\uB458\uAE4C?",ja:"\u30A4\u30F3\u30D5\u30EC\u306F\u9AD8\u91D1\u5229\u3092\u9577\u5F15\u304B\u305B\u308B\u304B"}, reason:{en:"Rate impact",ko:"\uAE08\uB9AC \uC601\uD5A5",ja:"\u91D1\u5229\u306E\u5F71\u97FF"} },
+  dollar:  { q:{en:"Will currency moves change the trade-off?",ko:"\uD658\uC728 \uBCC0\uD654\uAC00 \uD22C\uC790 \uD310\uB2E8\uC744 \uBC14\uAFC0\uAE4C?",ja:"\u70BA\u66FF\u306E\u52D5\u304D\u306F\u6295\u8CC7\u5224\u65AD\u3092\u5909\u3048\u308B\u304B"}, reason:{en:"FX impact",ko:"\uD658\uC728 \uC601\uD5A5",ja:"\u70BA\u66FF\u306E\u5F71\u97FF"} },
+  aicapex: { q:{en:"Can AI investment earn its cost of capital?",ko:"AI \uD22C\uC790\uAC00 \uBE44\uC6A9\uC744 \uB118\uC5B4 \uC124\uB4DD\uB825\uC744 \uB9CC\uB4E4 \uC218 \uC788\uC744\uAE4C?",ja:"AI\u6295\u8CC7\u306F\u8CC7\u672C\u30B3\u30B9\u30C8\u3092\u56DE\u53CE\u3067\u304D\u308B\u304B"}, reason:{en:"AI investment link",ko:"AI \uD22C\uC790 \uC5F0\uACB0",ja:"AI\u6295\u8CC7\u306E\u95A2\u9023"} },
+  semis:   { q:{en:"Who captures the next chip-cycle gains?",ko:"\uB2E4\uC74C \uBC18\uB3C4\uCCB4 \uC0AC\uC774\uD074\uC758 \uC218\uD61C\uC790\uB294 \uB204\uAD6C\uC77C\uAE4C?",ja:"\u6B21\u306E\u534A\u5C0E\u4F53\u30B5\u30A4\u30AF\u30EB\u306E\u53D7\u76CA\u8005\u306F\u8AB0\u304B"}, reason:{en:"Semiconductor link",ko:"\uBC18\uB3C4\uCCB4 \uC5F0\uACB0",ja:"\u534A\u5C0E\u4F53\u306E\u95A2\u9023"} },
+  energy:  { q:{en:"Can supply constraints keep energy prices elevated?",ko:"\uACF5\uAE09 \uC81C\uC57D\uC774 \uC5D0\uB108\uC9C0 \uAC00\uACA9\uC744 \uB192\uAC8C \uC720\uC9C0\uD560\uAE4C?",ja:"\u4F9B\u7D66\u5236\u7D04\u306F\u30A8\u30CD\u30EB\u30AE\u4FA1\u683C\u3092\u9AD8\u6B62\u307E\u308A\u306B\u3059\u308B\u304B"}, reason:{en:"Energy link",ko:"\uC5D0\uB108\uC9C0 \uC5F0\uACB0",ja:"\u30A8\u30CD\u30EB\u30AE\u306E\u95A2\u9023"} },
+  crypto:  { q:{en:"Is the next move driven by adoption or liquidity?",ko:"\uB2E4\uC74C \uC6C0\uC9C1\uC784\uC740 \uCC44\uD0DD\uC77C\uAE4C, \uC720\uB3D9\uC131\uC77C\uAE4C?",ja:"\u6B21\u306E\u52D5\u304D\u306F\u666E\u53CA\u3068\u6D41\u52D5\u6027\u306E\u3069\u3061\u3089\u304B"}, reason:{en:"Crypto link",ko:"\uD06C\uB9BD\uD1A0 \uC5F0\uACB0",ja:"\u6697\u53F7\u8CC7\u7523\u306E\u95A2\u9023"} },
+  trade:   { q:{en:"Can tariffs redraw the supply-chain map?",ko:"\uAD00\uC138\uAC00 \uACF5\uAE09\uB9DD\uC744 \uB2E4\uC2DC \uADF8\uB9B4\uAE4C?",ja:"\u95A2\u7A0E\u306F\u30B5\u30D7\u30E9\u30A4\u30C1\u30A7\u30FC\u30F3\u5730\u56F3\u3092\u63CF\u304D\u76F4\u3059\u304B"}, reason:{en:"Trade link",ko:"\uBB34\uC5ED \uC5F0\uACB0",ja:"\u8CBF\u6613\u306E\u95A2\u9023"} },
+  japan:   { q:{en:"Can Japan's policy shift unlock a new cycle?",ko:"\uC77C\uBCF8 \uC815\uCC45 \uBCC0\uD654\uAC00 \uC0C8 \uC0AC\uC774\uD074\uC744 \uC5F4 \uC5B4\uC904\uAE4C?",ja:"\u65E5\u672C\u306E\u653F\u7B56\u8EE2\u63DB\u306F\u65B0\u3057\u3044\u30B5\u30A4\u30AF\u30EB\u3092\u958B\u304F\u304B"}, reason:{en:"Japan link",ko:"\uC77C\uBCF8 \uC5F0\uACB0",ja:"\u65E5\u672C\u306E\u95A2\u9023"} }
+};
 function themeHay(i){
   var g=i.gist||{};
   return [i.title&&i.title.en||"", i.title&&i.title.ko||"", i.title&&i.title.ja||"", g.en||"", (i.tags||[]).join(" ")].join(" ");
@@ -6067,6 +6081,24 @@ function themeItems(k){
   return ITEMS.filter(function(i){
     return i.themes ? i.themes.indexOf(k) >= 0 : th.kw.test(themeHay(i));
   });
+}
+function themeMeta(k){ return THEME_META[k] || {}; }
+function themeText(k,field){
+  var v=(themeMeta(k)[field] || {});
+  return v[LANG] || v.en || "";
+}
+function themeLinkReason(item,k){
+  var ts=Array.isArray(item.themes) ? item.themes : [];
+  return ts.length>1 ? themeText(k,"reason") : "";
+}
+function themeCardEl(item,S,idx){
+  var el=cardEl(item,S,idx), reason=themeLinkReason(item,THEME_VIEW);
+  if(reason){
+    var note=document.createElement("div"); note.className="theme-link-reason";
+    note.textContent=reason;
+    var body=el.querySelector(".card-body"); if(body) body.insertBefore(note,body.firstChild);
+  }
+  return el;
 }
 function openThemes(){
   THEME_VIEW="index"; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
@@ -6147,6 +6179,7 @@ function fallbackCopyRec(url,done){
 }
 function renderThemes(list,S){
   THEME_PAGE=null;
+  var neutral=LANG==="ko"?"\uC911\uB9BD":LANG==="ja"?"\u4E2D\u7ACB":"Neutral";
   var head=document.createElement("div"); head.className="series-header sb-header";
   if(THEME_VIEW==="index"){
     head.innerHTML='<button class="series-close" onclick="closeThemes()">\u2190 '+S.seriesClose+'</button>'
@@ -6161,10 +6194,11 @@ function renderThemes(list,S){
     if(THEME_SORT==="count") themeKeys.sort(function(a,b){ return (b.items.length-a.items.length)||(a.index-b.index); });
     else if(THEME_SORT==="recent") themeKeys.sort(function(a,b){ return (b.latest<a.latest? -1 : b.latest>a.latest? 1 : 0)||(b.items.length-a.items.length)||(a.index-b.index); });
     var tools=document.createElement("div"); tools.className="theme-tools";
+    var sortLabels=LANG==="ko"?["\uCD94\uCC9C\uC21C","\uD65C\uBC1C\uD55C \uC21C","\uCD5C\uC2E0 \uC21C"]:LANG==="ja"?["\u304A\u3059\u3059\u3081","\u6D3B\u767A\u306A\u9806","\u6700\u65B0\u9806"]:["Featured","Most active","Newest"];
     tools.innerHTML='<label for="themeSort">'+esc(S.thSort)+'</label><select id="themeSort" aria-label="'+esc(S.thSort)+'">'
-      +'<option value="featured">'+esc(S.thSortFeatured)+'</option>'
-      +'<option value="count">'+esc(S.thSortCount)+'</option>'
-      +'<option value="recent">'+esc(S.thSortRecent)+'</option></select>';
+      +'<option value="featured">'+esc(sortLabels[0])+'</option>'
+      +'<option value="count">'+esc(sortLabels[1])+'</option>'
+      +'<option value="recent">'+esc(sortLabels[2])+'</option></select>';
     var sortSelect=tools.querySelector("select");
     sortSelect.value=THEME_SORT;
     sortSelect.onchange=function(){ setThemeSort(this.value); };
@@ -6174,14 +6208,16 @@ function renderThemes(list,S){
       var k=t.key, th=THEMES[k], its=t.items;
       var n={bull:0,bear:0,watch:0}; its.forEach(function(i){ n[(itemStance(i)||"watch")]++; });
       var countLabel=LANG==="ko"?("의견 "+its.length+"개"):LANG==="ja"?("意見 "+its.length+"件"):its.length+" opinions";
-      var countAria=th.label[LANG]+", "+countLabel+", "+S.stanceBull+" "+n.bull+", "+S.stanceWatch+" "+n.watch+", "+S.stanceBear+" "+n.bear;
+      var countAria=th.label[LANG]+", "+countLabel+", "+S.stanceBull+" "+n.bull+", "+neutral+" "+n.watch+", "+S.stanceBear+" "+n.bear;
+      var question=themeText(k,"q");
       function seg(c,cls){ return c?'<i class="tg-seg '+cls+'" style="flex:'+c+'"></i>':""; }
       return '<button class="theme-card" aria-label="'+esc(countAria)+'" onclick="openTheme(\''+k+'\')">'
         +'<span class="tg-ic">'+th.icon+'</span>'
         +'<span class="tg-name">'+th.label[LANG]+'</span>'
+        +'<span class="tg-q">'+esc(question)+'</span>'
         +'<span class="tg-n">'+countLabel+'</span>'
         +'<span class="tg-bar">'+seg(n.bull,"ds-bull")+seg(n.watch,"ds-watch")+seg(n.bear,"ds-bear")+'</span>'
-        +'<span class="tg-counts"><span class="tg-bull">'+S.stanceBull+' '+n.bull+'</span> <span class="tg-watch">'+S.stanceWatch+' '+n.watch+'</span> <span class="tg-bear">'+S.stanceBear+' '+n.bear+'</span></span>'
+        +'<span class="tg-counts"><span class="tg-bull">'+S.stanceBull+' '+n.bull+'</span> <span class="tg-watch">'+neutral+' '+n.watch+'</span> <span class="tg-bear">'+S.stanceBear+' '+n.bear+'</span></span>'
         +'</button>';
     }).join("");
     list.appendChild(grid);
@@ -6191,7 +6227,8 @@ function renderThemes(list,S){
   if(!th){ THEME_VIEW="index"; renderThemes(list,S); return; }
   var its=themeItems(THEME_VIEW).sort(function(a,b){ return a.date<b.date?1:-1; });
   head.innerHTML='<button class="series-close" onclick="openThemes()">\u2190 '+S.thAll+'</button>'
-    +'<div class="series-head-name">'+th.icon+" "+th.label[LANG]+'</div>';
+    +'<div class="series-head-name">'+th.icon+" "+th.label[LANG]+'</div>'
+    +'<p class="theme-question">'+esc(themeText(THEME_VIEW,"q"))+'</p>';
   var _tf=themeFollowSet().has(THEME_VIEW);
   head.innerHTML += '<button class="th-follow'+(_tf?" on":"")+'" onclick="toggleThemeFollow(\''+THEME_VIEW+'\')">'+(_tf?"\u2713 "+S.thFollowing:"\uD83D\uDD14 "+S.thFollow)+'</button>';
   list.appendChild(head);
@@ -6200,10 +6237,10 @@ function renderThemes(list,S){
   function seg2(c,cls,lb){ return c?'<div class="debate-seg '+cls+'" style="flex:'+c+'"><span>'+lb+'</span><b>'+c+'</b></div>':""; }
   var themeDebateTitle=LANG==="ko"?"\uC774 \uD14C\uB9C8\uB97C \uB458\uB7EC\uC2FC \uB17C\uC7C1":LANG==="ja"?"\u3053\u306E\u30C6\u30FC\u30DE\u3092\u3081\u3050\u308B\u8AD6\u4E89":"The debate around this theme";
   bar.innerHTML='<div class="debate-title">'+themeDebateTitle+'</div><div class="debate-track">'
-    +seg2(n.bull,"ds-bull",S.stanceBull)+seg2(n.watch,"ds-watch",S.stanceWatch)+seg2(n.bear,"ds-bear",S.stanceBear)+'</div>'+skewBadgeHtml(its)+receiptsStripHtml(its);
+    +seg2(n.bull,"ds-bull",S.stanceBull)+seg2(n.watch,"ds-watch",neutral)+seg2(n.bear,"ds-bear",S.stanceBear)+'</div>'+skewBadgeHtml(its)+receiptsStripHtml(its);
   list.appendChild(bar);
   if(!its.length){ var em=document.createElement("div"); em.className="empty"; em.textContent=S.thEmpty; list.appendChild(em); return; }
-  var groups=[["bull",S.stanceBull,"dg-bull"],["bear",S.stanceBear,"dg-bear"],["watch",S.stanceWatch,"dg-watch"]];
+  var groups=[["bull",S.stanceBull,"dg-bull"],["bear",S.stanceBear,"dg-bear"],["watch",neutral,"dg-watch"]];
   var states=[];
   groups.forEach(function(g){
     var gi=its.filter(function(i){ return (itemStance(i)||"watch")===g[0]; });
@@ -6219,7 +6256,7 @@ function renderThemes(list,S){
   states.forEach(function(state,stateIx){
     var nextHeader=states[stateIx+1]&&states[stateIx+1].header;
     while(remaining>0 && state.shown<state.items.length){
-      list.insertBefore(cardEl(state.items[state.shown],S,state.shown),nextHeader||null); state.shown++; remaining--;
+      list.insertBefore(themeCardEl(state.items[state.shown],S,state.shown),nextHeader||null); state.shown++; remaining--;
     }
   });
   if(remaining<=0 && states.some(function(state){ return state.shown<state.items.length; })){
@@ -6235,7 +6272,7 @@ function loadMoreThemeCards(){
     var state=page.groups[page.groupIndex];
     if(state.shown>=state.items.length){ page.groupIndex++; continue; }
     var nextHeader=page.groups[page.groupIndex+1]&&page.groups[page.groupIndex+1].header;
-    page.list.insertBefore(cardEl(state.items[state.shown],page.S,state.shown),nextHeader||page.button);
+    page.list.insertBefore(themeCardEl(state.items[state.shown],page.S,state.shown),nextHeader||page.button);
     state.shown++; added++;
   }
   if(page.groups.every(function(state){ return state.shown>=state.items.length; })){ page.button.remove(); THEME_PAGE=null; }
@@ -13462,6 +13499,17 @@ function refreshInstallUI(){
 const miniInstall = document.getElementById("miniInstall");
 const miniInstallText = document.getElementById("miniInstallText");
 const miniInstallBtn = document.getElementById("miniInstallBtn");
+function installVisitReady(){
+  try {
+    var visits=Number(store.get("stk_install_visits",0))||0;
+    if(!sessionStorage.getItem("stk_install_session")){
+      sessionStorage.setItem("stk_install_session","1");
+      visits++;
+      store.set("stk_install_visits",visits);
+    }
+    return visits>=2;
+  } catch(e){ return false; }
+}
 
 function refreshMiniInstall(){
   try {
@@ -13470,6 +13518,7 @@ function refreshMiniInstall(){
     const S = STRINGS[LANG];
     const dismissed = store.get("stk_hide_install", false);
     if (isStandalone() || dismissed){ miniInstall.hidden = true; return; }
+    if (!installVisitReady()){ miniInstall.hidden = true; return; }
     if (deferredPrompt){
       miniInstallText.textContent = "Stacks";
       miniInstallBtn.textContent = S.install;
@@ -14557,8 +14606,8 @@ bootData();
     padding:0 16px !important; column-gap:0 !important;
   }
   html.v83 .wrap.theme-page{
-    grid-template-columns:minmax(88px,275px) minmax(0,660px) minmax(280px,350px) !important;
-    max-width:1317px !important;
+    grid-template-columns:minmax(88px,275px) minmax(0,760px) minmax(280px,350px) !important;
+    max-width:1417px !important;
   }
   @media (min-width:1024px) and (max-width:1264px){
     html.v83 .wrap.theme-page{
