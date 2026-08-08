@@ -3865,6 +3865,18 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 
 **Next**: none.
 
+## 2026-08-08 Codex feed X widget deployment verification
+
+**Production**: Commit `3aa75729` pushed to `main`. Live `index.html` has the
+X widget branch before the compact source teaser. Mobile Chrome verified the
+feed widget as `xreal x-on` with a rendered X iframe; the Serenity deep link
+also rendered `xreal x-on` with no `srcq-teaser`.
+
+**Note**: The existing feed/detail contract workflow still reports its
+pre-existing card-factory assertion; the new X feed contract passes.
+
+**Next**: none.
+
 ## 2026-08-08 Codex feed X widget branch fix
 
 **Change**: `srcBlockHtml(item, full)` now routes X items with fetched embed
