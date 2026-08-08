@@ -3774,3 +3774,22 @@ guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자�
 
 **다음**: 피드 상세 실브라우저 회귀 테스트를 실행한다. 피드 → 상세 → 뒤로가기,
 딥링크, 13F 전환 후 우측 패널, 모바일 캘린더를 확인한다.
+
+## 2026-08-08 Codex — feed detail·mobile calendar 실제 회귀 확인
+
+**CI**:
+- Feed detail workflow `31237764196`가 `eeb5ce1` / `main`에서 성공.
+- frontend contracts 9/9, feed/detail Playwright 10/10 통과.
+- 목록→상세→뒤로가기, desktop/mobile `?c=` detail, X fallback, 13F rail 복원,
+  13F 딥링크, 1024/1180px 전환, mobile drawer/compare 모두 통과.
+- Mobile calendar workflow `31238020109` 성공. 월별 날짜 선택, 빈 날짜 주간 fallback,
+  날짜 선택 후 뒤로가기로 닫기 3/3 통과.
+
+**production Chrome**:
+- `stacksdaily.com` 목록→상세→뒤로가기: detail 1개, 원래 feed 6개 복원.
+- article deep link: 지정 article detail 1개, entity/gloss link 38개 렌더.
+- `#investors`→themes→`#investors`→back: 13F rail hide/show 상태 정상.
+- `#investor-berkshire`: investor table 렌더, 우측 rail hide 정상.
+- `#calendar`: 캘린더 화면 전환 정상, desktop horizontal overflow 없음.
+
+**다음**: 코드 변경 없이 회귀 기준 유지. 다음 우선순위는 mobile/desktop Lighthouse 재측정이다.
