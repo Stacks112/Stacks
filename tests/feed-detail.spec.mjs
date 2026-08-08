@@ -149,6 +149,23 @@ test.describe("feed article detail round trip", () => {
   });
 });
 
+test.describe("track record state", () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: "block" });
+
+  test("people breakdown keeps the monthly accuracy trend inside the viewport", async ({ page }) => {
+    await page.goto("/?v83beta#record", { waitUntil: "domcontentloaded" });
+    await expect(page.locator(".jr-page")).toBeVisible();
+    await page.locator('[data-jr-tab="people"]').click();
+    await expect(page.locator(".jr-panel[data-jr-panel=\"people\"]")).toBeVisible();
+    await expect(page.locator(".jr-trend")).toBeVisible();
+    const size = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+    expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
+  });
+});
+
 test.describe("13F investor view state", () => {
   test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false, serviceWorkers: "block" });
 

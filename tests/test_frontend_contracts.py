@@ -61,6 +61,10 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("var topicRows=topics.map", INDEX)
         self.assertIn('class="jr-breakdown-title"', INDEX)
         self.assertIn("topicBreakdown", INDEX)
+        self.assertIn("var byMonth={};", INDEX)
+        self.assertIn("var trendMarkup=function", INDEX)
+        self.assertIn('class="jr-trend"', INDEX)
+        self.assertIn("trendSub", INDEX)
 
     def test_linkify_queue_prioritizes_visible_cards_during_idle_time(self):
         self.assertIn("requestIdleCallback(linkifyDrain", INDEX)
