@@ -4,8 +4,10 @@ name: Apply pending cards
 #
 # 예약(Cowork) 세션은 클라우드 git 프록시 때문에 저장소에 push 를 못 한다
 # (미해결 이슈 anthropics/claude-code#76248 — PAT 를 넣어도 403, api.github.com 도 403).
-# 그래서 세션은 완성한 카드를 Cloudflare D1 의 pending_cards 테이블에 INSERT 만 하고,
-# 이 워크플로가 10분마다 큐를 비워 items.json 에 병합·커밋한다.
+# 그래서 세션은 완성한 카드를 Cloudflare D1 의 pending_cards 테이블에 INSERT 만 한다.
+# stacks-comments Worker가 5분마다 큐를 감시해 이 workflow를 자동 dispatch하고,
+# 이 워크플로가 큐를 비워 items.json 에 병합·커밋한다. 아래 10분 schedule은
+# Worker 또는 GitHub dispatch가 일시적으로 멈췄을 때의 예비 안전망이다.
 # 그 뒤는 og-assets.yml 이 이어받아 p/ e/ og/ sitemap feed 를 굽는다.
 #
 # D1 은 Cloudflare API 로 직접 읽는다. 필요한 시크릿 CLOUDFLARE_API_TOKEN 은
