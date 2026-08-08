@@ -6103,20 +6103,21 @@ function themeCardEl(item,S,idx){
 function openThemes(){
   THEME_VIEW="index"; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
   pushView(); try{ if(location.hash.indexOf("#theme-")===0||location.hash.indexOf("#record-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
-  track("themes"); renderFeed(false);
+  track("themes"); renderFeed(false); syncThemeSubbar();
   window.scrollTo(0,0); if(typeof refreshMiniInstall==="function") refreshMiniInstall();
   var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function openTheme(k){
   THEME_VIEW=k; SB_VIEW=false; RECORD_SRC=null; SERIES_VIEW=null; ENTITY_VIEW=null; STANCE_FILTER=null; if (typeof INVESTOR_VIEW !== "undefined") INVESTOR_VIEW=null;
   pushView(); try{ history.replaceState(history.state,"","#theme-"+k); }catch(e){}
-  track("theme/"+k); renderFeed(false);
+  track("theme/"+k); renderFeed(false); syncThemeSubbar();
   window.scrollTo(0,0); if(typeof refreshMiniInstall==="function") refreshMiniInstall();
   var f=document.getElementById("feed"); if(f&&f.scrollIntoView)f.scrollIntoView({behavior:"smooth",block:"start"});
 }
 function closeThemes(){
   THEME_VIEW=null;
   try{ if(location.hash.indexOf("#theme-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){}
+  try{ var nav=document.querySelector("nav"); if(nav) nav.classList.remove("nav-sub"); }catch(e){}
   renderFeed(false); if(typeof refreshMiniInstall==="function") refreshMiniInstall();
 }
 
@@ -6176,6 +6177,16 @@ function recShare(){
 function fallbackCopyRec(url,done){
   try{ var ta=document.createElement("textarea"); ta.value=url; ta.style.position="fixed"; ta.style.opacity="0";
   document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); done(); }catch(e){}
+}
+function syncThemeSubbar(){
+  try{
+    if(!window.matchMedia || !window.matchMedia("(max-width:1023px)").matches) return;
+    var nav=document.querySelector("nav"), ti=document.querySelector("#v82subbar .ti");
+    if(!nav || !ti) return;
+    var S=STRINGS[LANG]||STRINGS.en, th=THEMES[THEME_VIEW], label=th&&th.label;
+    ti.textContent=THEME_VIEW==="index"?S.thTitle:(label&&(label[LANG]||label.en)||S.thTitle);
+    nav.classList.add("nav-sub");
+  }catch(e){}
 }
 function renderThemes(list,S){
   THEME_PAGE=null;
