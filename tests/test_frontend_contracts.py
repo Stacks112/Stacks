@@ -82,6 +82,10 @@ class FrontendContracts(unittest.TestCase):
             'html.v83 #feedList .card-body > [data-source-shell]{ order:10; }',
             INDEX,
         )
+        self.assertIn(
+            '.card .card-body > [data-source-shell]{order:10;}',
+            V82_CSS,
+        )
 
     def test_x_embed_binds_rendered_before_create(self):
         start = INDEX.index("async function xEmbedMount(host)")
