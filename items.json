@@ -8566,13 +8566,20 @@
     "ja": "米国がユーロを売って円を買った今回の共同介入は、円安を巻き戻す転換点だろうか、それとも弾薬のない合図にとどまるだろうか?"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "note": {
-     "ko": "8월 6일 발표되는 연준 H.4.1(8월 5일 기준)에서 외국 통화당국의 국채 담보 달러 차입 잔액이 0에서 늘어나면 FIMA 경로가 실제로 열린 것으로, 계속 0이면 원문의 예상이 빗나간 것으로 채점한다.",
-     "en": "Score on the Fed's H.4.1 released August 6 (as of August 5): dollars borrowed by foreign monetary authorities against Treasuries moving off zero counts as the FIMA route opening, staying at zero counts as the original expectation missing.",
-     "ja": "8月6日公表のFRB H.4.1(8月5日基準)で、外国の通貨当局による国債担保のドル借入残高がゼロから増えればFIMA経路が実際に開いたとし、ゼロのままなら原文の想定が外れたと採点する。"
-    },
-    "due": "2026-08-06",
+     "ko": "8월 6일 발표되는 연준 H.4.1(8월 5일 기준)에서 외국 통화당국의 국채 담보 달러 차입 잔액이 0에서 늘어나면 FIMA 경로가 실제로 열린 것으로, 계속 0이면 원문의 예상이 빗나간 것으로 채점한다. 판정 결과: 2026년 8월 6일 H.4.1에서 외국 통화당국 레포 잔액이 0으로 유지되어 빗나감.",
+     "en": "Score on the Fed's H.4.1 released August 6 (as of August 5): dollars borrowed by foreign monetary authorities against Treasuries moving off zero counts as the FIMA route opening, staying at zero counts as the original expectation missing. Result: foreign official repurchase agreements remained at $0, so the FIMA route did not open.",
+     "ja": "8月6日公表のFRB H.4.1(8月5日基準)で、外国の通貨当局による国債担保のドル借入残高がゼロから増えればFIMA経路が実際に開いたとし、ゼロのままなら原文の想定が外れたと採点する。判定結果: 外国当局のレポ残高は0のままで、予想は外れた。"
+     },
+     "gradedOn": "2026-08-08",
+     "evidence": [
+      {
+       "q": "Federal Reserve H.4.1 August 6 2026 foreign official repurchase agreements",
+       "found": "Foreign official repurchase agreements remained $0 for the week ended August 5, 2026."
+      }
+     ],
+     "due": "2026-08-06",
     "card": {
      "metric": {
       "ko": "연준 H.4.1 · 외국 통화당국 국채담보 달러 차입 잔액",
@@ -15656,13 +15663,20 @@
     "ja": "IEEPAの数字は訂正が必要だが、期待インフレ率の横ばいと実質金利の上昇という核心データはそのままだ。これで、今回の金利急騰を原油ではなく構造的な需給問題と見るメルの診断を、なお信頼できると思うか。"
    },
    "outcome": {
-    "status": "pending",
+    "status": "hit",
     "note": {
-     "en": "Check whether the August 5, 2026 US Treasury quarterly refunding statement drops the \"at least\" language guaranteeing stable auction sizes, which would signal more Treasury issuance ahead.",
-     "ko": "2026년 8월5일 미국 재무부 분기 자금조달 계획 발표에서 입찰 규모를 '최소한' 안정적으로 유지하겠다는 문구가 빠지는지 확인, 빠지면 국채 발행 확대 신호로 해석.",
-     "ja": "2026年8月5日の米財務省四半期資金調達計画発表で、入札規模を「少なくとも」安定的に維持するという文言が消えるかどうかを確認する。消えれば国債発行拡大のシグナルとなる。"
-    },
-    "due": "2026-08-06"
+     "en": "Check whether the August 5, 2026 US Treasury quarterly refunding statement drops the \"at least\" language guaranteeing stable auction sizes, which would signal more Treasury issuance ahead. Result: the August 3 third-quarter documents dropped that language and raised July-September net marketable borrowing to $739 billion, $68 billion above May.",
+     "ko": "2026년 8월5일 미국 재무부 분기 자금조달 계획 발표에서 입찰 규모를 '최소한' 안정적으로 유지하겠다는 문구가 빠지는지 확인, 빠지면 국채 발행 확대 신호로 해석. 판정 결과: 3분기 자료에서 해당 문구가 빠졌고 7~9월 순시장성 차입 추정액이 7,390억달러로 5월보다 680억달러 늘어 적중.",
+     "ja": "2026年8月5日の米財務省四半期資金調達計画発表で、入札規模を「少なくとも」安定的に維持するという文言が消えるかどうかを確認する。消えれば国債発行拡大のシグナルとなる。判定結果: 第3四半期資料で文言が消え、7-9月の純市場性借入見積もりは5月より680億ドル増の7390億ドルとなり、的中。"
+     },
+     "gradedOn": "2026-08-08",
+     "evidence": [
+      {
+       "q": "US Treasury third-quarter 2026 quarterly refunding August 3 2026 auction sizes at least",
+       "found": "Treasury's August 3 release omitted the 'at least' language and estimated $739 billion of July-September net marketable borrowing, $68 billion above May."
+      }
+     ],
+     "due": "2026-08-06"
    },
    "ts": "2026-07-24T21:50:00.000+00:00",
    "quote": {
@@ -17465,14 +17479,21 @@
     "ja": "トランプ氏自らが「史上最大」と呼ぶ攻撃が実際に行われれば、数週間続くイラン戦争の激化ですでに神経質になっている原油・海運・リスク資産市場に新たな衝撃を与えかねない。"
    },
    "outcome": {
-    "status": "pending",
+    "status": "miss",
     "due": "2026-08-06",
     "note": {
-     "en": "Check within roughly two weeks whether the US actually carries out the strike on Iran that Trump described as bigger than ever before, or whether the rhetoric fades without action as it has before.",
-     "ko": "약 2주 안에 트럼프가 '역대 최대'라 말한 대이란 공격이 실제로 벌어지는지, 아니면 이전처럼 발언에 그치고 마는지 확인한다.",
-     "ja": "約2週間以内に、トランプ氏が「史上最大」と語った対イラン攻撃が実際に行われるか、それともこれまでのように発言だけで終わるかを確認する。"
-    }
-   },
+     "en": "Check within roughly two weeks whether the US actually carries out the strike on Iran that Trump described as bigger than ever before, or whether the rhetoric fades without action as it has before. Result: AP reported on August 2 that Trump scrapped the planned Sunday attack, so no strike occurred within the window.",
+     "ko": "약 2주 안에 트럼프가 '역대 최대'라 말한 대이란 공격이 실제로 벌어지는지, 아니면 이전처럼 발언에 그치고 마는지 확인한다. 판정 결과: AP가 8월 2일 일요일 예정 공격 계획을 철회했다고 보도해 기간 내 실제 공격은 없어 빗나감.",
+     "ja": "約2週間以内に、トランプ氏が「史上最大」と語った対イラン攻撃が実際に行われるか、それともこれまでのように発言だけで終わるかを確認する。判定結果: APは8月2日、日曜日に予定されていた攻撃計画を撤回したと報じ、期間内に攻撃はなく予想は外れた。"
+     },
+     "gradedOn": "2026-08-08",
+     "evidence": [
+      {
+       "q": "AP August 2 2026 Trump biggest attack since World War II scrapped",
+       "found": "AP reported that Trump scrapped the planned Sunday attack and held off on ordering new strikes."
+      }
+     ]
+    },
    "ts": "2026-07-24T00:47:30.327651+00:00",
    "sum3": {
     "en": "Trump told Axios he's close to deciding on a massive Iran attack, calling it bigger than ever before, in quotes confirmed by multiple outlets.\nBrent crude broke above $100 a barrel and the 10-year Treasury yield topped 4.70% this week as the conflict escalated.\nA widely cited $900 billion Nasdaq loss actually traces to a $797 billion Magnificent Seven selloff driven mainly by AI-spending jitters, not Iran alone.",

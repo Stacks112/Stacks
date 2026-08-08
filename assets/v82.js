@@ -2259,10 +2259,11 @@
           g.appendChild(mb);
         }
       }
-      /* mark clipped only when the gist actually overflows (an inline-expanded
-         card stays open, Twitter-style, and is never re-clipped) */
+      /* build_data already marks long summaries with gclip/item.clip. Reuse
+         that state instead of reading scrollHeight after DOM writes; the old
+         measurement forced a synchronous reflow for every mobile card. */
       var gi = c.querySelector(".gist");
-      if (gi && !c.classList.contains("v82expanded")) c.classList.toggle("v82clip", gi.scrollHeight - gi.clientHeight > 6);
+      if (gi && !c.classList.contains("v82expanded")) c.classList.toggle("v82clip", !!(it && it.clip) || c.classList.contains("gclip"));
     }
   }
   function plainFeed(){
@@ -2554,8 +2555,10 @@
     var cards = document.querySelectorAll("#feedList .card.v82c");
     for (var i = 0; i < cards.length; i++){
       var c = cards[i], g = c.querySelector(".gist");
-      if (g && !c.classList.contains("v82expanded"))
-        c.classList.toggle("v82clip", g.scrollHeight - g.clientHeight > 6);
+      if (g && !c.classList.contains("v82expanded")) {
+        var it = itemOf(c);
+        c.classList.toggle("v82clip", !!(it && it.clip) || c.classList.contains("gclip"));
+      }
     }
   }, 1000);
   /* watch intro/onboard so the nav hides during the splash */
