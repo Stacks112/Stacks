@@ -1920,6 +1920,7 @@ footer a{{color:#8E93A0}}
 {applink}
 </head>
 <body>
+<main>
 <div class="wrap">
   <div class="topbar">
     <a class="brand" href="{REL}">◆ {SITE}</a>
@@ -1945,6 +1946,7 @@ footer a{{color:#8E93A0}}
   </footer>
 </div>
 {x_script}
+</main>
 </body>
 </html>
 """
@@ -2269,6 +2271,7 @@ footer a{{color:#8E93A0}}
 {applink}
 </head>
 <body>
+<main>
 <a class="top" href="{pfx}">◆ {SITE}</a>
 <div class="sector">{E(sector)}</div>
 <h1>{E(name)}{tk}</h1>
@@ -2283,6 +2286,7 @@ footer a{{color:#8E93A0}}
   {E(disc["disc"])}<br>
   <a href="{pfx}">{E(disc["home"])}</a> · <a href="{pfx}articles.html">{E(disc["allp"])}</a> · <a href="{pfx}{FEED_FILE[lang]}">RSS</a>
 </footer>
+</main>
 </body>
 </html>
 """
@@ -2318,9 +2322,11 @@ li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
 {applink}
 </head>
 <body>
+<main>
 <h1><a href="./" style="text-decoration:none">◆ {SITE}</a> 전체 글</h1>
 <p style="color:#8E93A0">{E(TAGLINE['ko'])}</p>
 <ul>{rows}</ul>
+</main>
 </body>
 </html>
 """
@@ -2440,6 +2446,7 @@ footer a{{color:#8E93A0}}
 {applink}
 </head>
 <body>
+<main>
 <a class="top" href="../">◆ {SITE}</a>
 <div class="kicker">이번 주 · {wk_label}</div>
 <h1>이번 주 Stacks</h1>
@@ -2453,6 +2460,7 @@ footer a{{color:#8E93A0}}
   요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
+</main>
 </body>
 </html>
 """
@@ -2576,6 +2584,7 @@ footer a{{color:#8E93A0}}
 {applink}
 </head>
 <body>
+<main>
 <a class="top" href="./">◆ {SITE}</a>
 <div class="kicker">경제 캘린더 · {today.isoformat()} 갱신</div>
 <h1>실적 발표·경제 일정 캘린더</h1>
@@ -2588,6 +2597,7 @@ footer a{{color:#8E93A0}}
   요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="./">{SITE} 홈</a> · <a href="articles.html">전체 글</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="feed.xml">RSS</a>
 </footer>
+</main>
 </body>
 </html>
 """
@@ -2801,6 +2811,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
 {applink}
 </head>
 <body>
+<main>
 <a class="top" href="../">◆ {SITE}</a>
 <div class="kicker">{E(kicker)}</div>
 <h1>{h1}</h1>
@@ -2811,6 +2822,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
   요약·해설은 Stacks의 창작물이며, 투자 자문이 아닌 정보 제공·논평입니다. 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
   <a href="../">{SITE} 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../feed.xml">RSS</a>
 </footer>
+</main>
 </body>
 </html>
 """

@@ -30,7 +30,7 @@ window.stkNlHtml = function(){
   return '<div class="stk-nl-set">'
     + '<div class="stk-nl-h">'+t.h+'</div>'
     + '<div class="stk-nl-d">'+t.d+'</div>'
-    + '<input type="email" data-nle placeholder="'+t.ph+'" value="'+em.replace(/"/g,"&quot;")+'">'
+    + '<input type="email" data-nle aria-label="'+t.ph+'" placeholder="'+t.ph+'" value="'+em.replace(/"/g,"&quot;")+'">'
     + '<div class="stk-nl-langs">'+chip("ko",t.lko)+chip("en",t.len)+chip("ja",t.lja)+'</div>'
     + '<button type="button" class="stk-nl-save" data-nlsave>'+t.save+'</button>'
     + '<div class="stk-nl-msg" data-nlmsg hidden></div>'

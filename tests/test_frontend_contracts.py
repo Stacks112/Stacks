@@ -14,6 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 V82 = (ROOT / "assets" / "v82.js").read_text(encoding="utf-8")
 ITEMS = json.loads((ROOT / "items.json").read_text(encoding="utf-8"))
+SECURITY_POLICY = json.loads(
+    (ROOT / "ops" / "cloudflare-response-headers.json").read_text(encoding="utf-8")
+)
 
 
 class FrontendContracts(unittest.TestCase):
@@ -133,6 +136,50 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('return isUnavatarUrl(raw) ? "" : raw;', INDEX)
         self.assertIn("&& !isUnavatarUrl(av)", INDEX)
         self.assertNotIn("https://unavatar.io/", INDEX)
+
+    def test_keyboard_and_form_accessibility_contracts(self):
+        self.assertIn("function activateKey(e)", INDEX)
+        self.assertIn('span.setAttribute("role", "button")', INDEX)
+        self.assertIn('span.setAttribute("tabindex", "0")', INDEX)
+        self.assertIn('span.setAttribute("onkeydown", "activateKey(event)")', INDEX)
+        self.assertIn('role="button" tabindex="0" onkeydown="activateKey(event)"', INDEX)
+        self.assertIn('id="v83Search"', INDEX)
+        self.assertIn('aria-label="Search"', INDEX)
+        self.assertIn('aria-label="Email"', INDEX)
+        self.assertIn("data-nle aria-label=\"'+t.ph+'\"", (ROOT / "assets" / "v83tw.js").read_text(encoding="utf-8"))
+
+    def test_onesignal_tags_retry_and_reconcile(self):
+        self.assertIn("const OS_TAG_DELAYS = [300, 1000, 3000]", INDEX)
+        self.assertIn("async function osApplyTag(OS, key, on)", INDEX)
+        self.assertIn("await OS.User.addTag(key, \"1\")", INDEX)
+        self.assertIn("await OS.User.removeTag(key)", INDEX)
+        self.assertIn('await osApplyTag(OneSignal, "daily", true)', INDEX)
+        self.assertIn('for (const key of WATCH)', INDEX)
+
+    def test_initial_data_is_chunked_and_idle_loaded(self):
+        self.assertIn("let ITEM_BY_ID = new Map()", INDEX)
+        self.assertIn("async function loadGists(maxChunks = 1)", INDEX)
+        self.assertIn("scheduleGistPrefetch();", INDEX)
+        self.assertIn("requestIdleCallback(run", INDEX)
+        self.assertIn("const neededChunk = Math.floor", INDEX)
+
+    def test_static_pages_have_main_landmarks(self):
+        pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
+        self.assertEqual(pages.count("<main>"), 6)
+        self.assertEqual(pages.count("</main>"), 6)
+
+    def test_cloudflare_security_policy_is_complete(self):
+        headers = SECURITY_POLICY["headers"]
+        for name in (
+            "Strict-Transport-Security",
+            "X-Content-Type-Options",
+            "X-Frame-Options",
+            "Referrer-Policy",
+            "Permissions-Policy",
+            "Content-Security-Policy-Report-Only",
+        ):
+            self.assertIn(name, headers)
+        self.assertIn("http_response_headers_transform", (ROOT / "scripts" / "apply_cloudflare_response_headers.mjs").read_text(encoding="utf-8"))
 
 if __name__ == "__main__":
     unittest.main()

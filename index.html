@@ -1017,6 +1017,8 @@ html.v83 .series-header.sb-header .series-head-desc{font-size:12.5px!important;l
 .chip-click{cursor:pointer;}
 .chip-click:hover{border-color:var(--text);color:var(--text);}
 .has-tip{position:relative;cursor:pointer;}
+.has-tip:focus-visible,.ent-link:focus-visible,.gloss-link:focus-visible,
+.chip-click:focus-visible,.event-chip:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 .gloss-link{border-bottom:1px dotted var(--muted);cursor:pointer;}
 .gloss-link:hover{border-bottom-color:var(--accent);color:var(--accent);}
 /* ================= readability beta (?rbeta) =================
@@ -1920,6 +1922,8 @@ html{overscroll-behavior-y:contain;}
   font-family:var(--mono-font);font-size:10px;letter-spacing:0.15em;
   text-transform:uppercase;color:var(--muted);margin-bottom:6px;
 }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .gist{font-size:14.5px;color:var(--text);white-space:pre-line;}
 html[data-lang="ko"] .gist{font-family:var(--ui-font);line-height:1.75;}
 html[data-lang="ja"] .gist{line-height:1.85;}
@@ -3845,7 +3849,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
     <div class="filter-row">
       <div class="search-box" id="searchBox">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="searchInput" type="search" autocomplete="off" oninput="onSearch(this.value)">
+        <input id="searchInput" type="search" aria-label="Search" autocomplete="off" oninput="onSearch(this.value)">
         <button class="search-clear" id="searchClear" onclick="clearSearch()" hidden>&times;</button>
       </div>
       <select class="company-filter" id="companyFilter" onchange="filterByEntity(this.value)"></select>
@@ -3864,7 +3868,8 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
       <p class="nl-sub" id="nlSub"></p>
       <form class="nl-form" id="nlForm" hidden onsubmit="nlSubmit(event);return false;">
         <div class="nl-row">
-          <input type="email" id="nlEmail" name="email" autocomplete="email" required>
+          <label class="sr-only" for="nlEmail">Email</label>
+          <input type="email" id="nlEmail" name="email" aria-label="Email" autocomplete="email" required>
           <button type="submit" class="nl-btn" id="nlBtn"></button>
         </div>
         <label class="nl-consent"><input type="checkbox" id="nlAgree"> <span id="nlAgreeText"></span></label>
@@ -4555,10 +4560,18 @@ function glossTap(el, key){
   }
   const f = document.getElementById("feed"); if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+function activateKey(e){
+  if (!e || (e.key !== "Enter" && e.key !== " ")) return;
+  e.preventDefault();
+  if (e.currentTarget && typeof e.currentTarget.click === "function") e.currentTarget.click();
+}
 function makeGlossSpan(text, key){
   const safe = key.replace(/'/g, "\\'");
   const span = document.createElement("span");
   span.className = "gloss-link has-tip";
+  span.setAttribute("role", "button");
+  span.setAttribute("tabindex", "0");
+  span.setAttribute("onkeydown", "activateKey(event)");
   span.setAttribute("onclick", "event.stopPropagation(); glossTap(this,'" + safe + "')");
   span.innerHTML = esc(text) + glossTip(key);
   return span;
@@ -5153,7 +5166,7 @@ const SINCE_CACHE = {};
 function sinceOneHtml(k, r){
   const up = r.pct >= 0, safe = k.replace(/'/g, "\\'");
   return '<span class="since-one">'
-    + '<b class="since-k since-k-link has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + safe + '\')">' + esc(k) + entityTip(k) + '</b>'
+    + '<b class="since-k since-k-link has-tip" role="button" tabindex="0" onkeydown="activateKey(event)" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + safe + '\')">' + esc(k) + entityTip(k) + '</b>'
     + '<b class="since-p ' + (up ? "up" : "down") + '">'
     + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b></span>";
 }
@@ -7420,10 +7433,10 @@ function chipHtml(tag){
   const tip = entityTip(tag);
   if (!tip){
     const safe0 = tag.replace(/'/g, "\\'");
-    return '<span class="chip chip-click" onclick="tagTap(\'' + safe0 + '\')">' + esc(tag) + '</span>';
+    return '<span class="chip chip-click" role="button" tabindex="0" onkeydown="activateKey(event)" onclick="tagTap(\'' + safe0 + '\')">' + esc(tag) + '</span>';
   }
   const safe = tag.replace(/'/g, "\\'");
-  return '<span class="chip has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="chipTap(this, \'' + safe + '\')">' + esc(tag) + tip + '</span>';
+  return '<span class="chip has-tip" role="button" tabindex="0" onkeydown="activateKey(event)" onmouseenter="loadQuote(\'' + safe + '\')" onclick="chipTap(this, \'' + safe + '\')">' + esc(tag) + tip + '</span>';
 }
 /* mobile: first tap shows the tooltip, second tap searches the name.
    desktop: hover shows the tooltip, so a click searches immediately. */
@@ -7602,6 +7615,9 @@ function makeEntSpan(text, key){
   const safe = key.replace(/'/g, "\\'");
   const span = document.createElement("span");
   span.className = "ent-link has-tip";
+  span.setAttribute("role", "button");
+  span.setAttribute("tabindex", "0");
+  span.setAttribute("onkeydown", "activateKey(event)");
   span.setAttribute("onmouseenter", "loadQuote('" + safe + "')");
   span.setAttribute("onclick", "event.stopPropagation(); entityTap(this,'" + safe + "')");
   span.innerHTML = esc(text) + entityTip(key);
@@ -8369,7 +8385,8 @@ function mountV83(){
   }
 
   var search = document.createElement("div"); search.className = "v83-search";
-  search.innerHTML = '<input type="search" placeholder="' + v83T("search") + '">';
+  search.innerHTML = '<label class="sr-only" for="v83Search">' + esc(v83T("search")) + '</label>'
+    + '<input id="v83Search" type="search" aria-label="' + esc(v83T("search")) + '" placeholder="' + v83T("search") + '">';
   var si = search.querySelector("input");
   if (si) si.addEventListener("input", function(){
     var r = document.getElementById("searchInput");
@@ -9711,11 +9728,29 @@ let SERIES_VIEW = null;
    pushes ("new episode in a story you follow") from the worker's
    /notify route or the OneSignal dashboard (Audience > by tag). */
 function slugTag(k){ return String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g, "_").replace(/^_+|_+$/g, ""); }
+const OS_TAG_DELAYS = [300, 1000, 3000];
+async function osApplyTag(OS, key, on){
+  if (!OS || !OS.User || !key) return false;
+  for (let attempt = 0; attempt < OS_TAG_DELAYS.length; attempt++){
+    try {
+      if (on) await OS.User.addTag(key, "1");
+      else await OS.User.removeTag(key);
+      return true;
+    } catch (e){
+      if (attempt === OS_TAG_DELAYS.length - 1){
+        console.warn("OneSignal tag sync failed", key, e);
+        return false;
+      }
+      await new Promise(resolve => setTimeout(resolve, OS_TAG_DELAYS[attempt]));
+    }
+  }
+  return false;
+}
 function osTag(key, on){
   if (!ONESIGNAL_APP_ID) return;
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   window.OneSignalDeferred.push(async (OS) => {
-    try { if (on) OS.User.addTag(key, "1"); else OS.User.removeTag(key); } catch (e) {}
+    await osApplyTag(OS, key, on);
   });
 }
 /* ---- retention nudge (2026-08-03, june 승인) ----
@@ -10253,11 +10288,11 @@ function renderEvents(){
   const al = evtAlerts();
   bar.innerHTML = '<button class="ev-cal-btn" onclick="openCal()">📅</button><span class="ev-title" onclick="openCal()" style="cursor:pointer">' + S.eventsTitle + "</span>"
     + evs.map(x =>
-        '<span class="event-chip" role="button" tabindex="0" onclick="evGo(\'' + x.ev.id + '\')">'
+        '<span class="event-chip" role="button" tabindex="0" onkeydown="activateKey(event)" onclick="evGo(\'' + x.ev.id + '\')">'
         + '<span class="ev-d">' + (x.days === 0 ? S.dToday : "D-" + x.days) + "</span>"
         + '<span class="ev-label">' + x.ev.label[LANG] + "</span>"
         + '<span class="ev-date">' + x.ev.date.slice(5).replace("-", ".") + "</span>"
-        + '<span class="ev-bell' + (al[x.ev.id] ? " on" : "") + '" role="button" tabindex="0" aria-label="alert" onclick="toggleEvtAlert(\'' + x.ev.id + '\', event)">' + svgIcon("bell") + "</span>"
+        + '<span class="ev-bell' + (al[x.ev.id] ? " on" : "") + '" role="button" tabindex="0" aria-label="alert" onkeydown="activateKey(event)" onclick="toggleEvtAlert(\'' + x.ev.id + '\', event)">' + svgIcon("bell") + "</span>"
         + "</span>").join("");
   /* v83.1: keep the rail mini calendar in sync (chips are CSS-hidden in v83) */
   try { if (typeof V83 !== "undefined" && V83 && V83.mounted && typeof v83RenderCal === "function") v83RenderCal(); } catch (e) {}
@@ -11772,8 +11807,16 @@ if (ONESIGNAL_APP_ID){
       serviceWorkerPath: (base + "OneSignalSDKWorker.js").replace(/^\//, ""),
       serviceWorkerParam: { scope: base + "onesignal/" }
     });
-    /* tag every subscriber so the daily brief can broadcast to all */
-    try { OneSignal.User.addTag("daily", "1"); } catch (e) {}
+    /* tag every subscriber so the daily brief can broadcast to all. Reconcile
+       saved interests too: a follow can be clicked before the SDK finishes
+       loading, so the deferred queue must not be the only source of truth. */
+    await osApplyTag(OneSignal, "daily", true);
+    try {
+      for (const key of WATCH) await osApplyTag(OneSignal, "c_" + slugTag(key), true);
+      for (const sid of FOLLOWED) await osApplyTag(OneSignal, "s_" + sid, true);
+      const events = ((store.get("stk_notif", {}) || {}).events) || {};
+      for (const id of Object.keys(events)) await osApplyTag(OneSignal, "evt_" + id, !!events[id]);
+    } catch (e) {}
   });
   afterCritical(() => {
     const os = document.createElement("script");
@@ -12576,6 +12619,12 @@ function appendFeedPage(S){
     list.appendChild(el);
     if (feedAdsAllowed() && feedAdAfter(idx) && idx < CUR_ITEMS.length - 1) appendFeedAd(list, S);
   }
+  /* Keep the next visible page's full summaries close without making the
+     whole archive part of the critical path. The idle prefetch normally wins;
+     a fast scroll still pulls the exact chunk before it is needed. */
+  const neededChunk = Math.floor(Math.max(0, end - 1) / 24);
+  const queuedChunks = (loadGists.next && loadGists.next[LANG]) || 0;
+  if (start > 0 && neededChunk >= queuedChunks) loadGists(neededChunk - queuedChunks + 1);
   SHOWN = end;
   hydrateImages();
   applyEngageCounts();
@@ -12929,7 +12978,7 @@ function cardEl(item, S, idx){
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
-          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` onclick="entityTap(this, '${(item.source||"").replace(/'/g,"")}')"` : ""}>${esc(dispName(item.source))}${entityTip(item.source)}</span>
+          <span class="src-name${ENTITIES[item.source] ? " has-tip" : ""}"${ENTITIES[item.source] ? ` role="button" tabindex="0" onkeydown="activateKey(event)" onclick="entityTap(this, '${(item.source||"").replace(/'/g,"")}')"` : ""}>${esc(dispName(item.source))}${entityTip(item.source)}</span>
           <span class="src-date">${esc(typeof relDate==="function"?relDate(item):fmt(item.date))} · ${esc(item.sourceLang)}${NEW_IDS.has(item.id) ? '<span class="new-pill">NEW</span>' : ''}</span>
         </div>
         <div class="chips">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}</div>
@@ -13462,6 +13511,7 @@ const DATA_VER = "fadfc00af";
 const dataUrl = name => DATA_DIR + name + "?v=" + DATA_VER;
 let GIST_CHUNKS = 0;
 let GISTS_IN = false;
+let ITEM_BY_ID = new Map();
 
 async function getJSON(url, fresh){
   try {
@@ -13479,14 +13529,19 @@ async function getJSON(url, fresh){
    re-rendered: the preview is swapped for the full text inside the existing
    <p class="gist">, and .gist is height-clamped by CSS, so the swap moves no
    layout. Oldest-last, so what the reader is looking at fills in first. */
-async function loadGists(){
-  for (let c = 0; c < GIST_CHUNKS; c++){
-    const part = await getJSON(dataUrl("gist." + LANG + "." + c + ".json"));
+async function loadGists(maxChunks = 1){
+  const lang = LANG;
+  loadGists.next = loadGists.next || {};
+  const start = loadGists.next[lang] || 0;
+  const end = Math.min(start + maxChunks, GIST_CHUNKS);
+  loadGists.next[lang] = end;
+  for (let c = start; c < end; c++){
+    const part = await getJSON(dataUrl("gist." + lang + "." + c + ".json"));
     if (!part) continue;
     Object.keys(part).forEach(id => {
-      const it = ITEMS.find(x => x.id === id);
+      const it = ITEM_BY_ID.get(id) || ITEMS.find(x => x.id === id);
       if (!it || !part[id]) return;
-      it.gist[LANG] = part[id];
+      it.gist[lang] = part[id];
       const host = document.getElementById("sig-" + id);
       const node = host && host.querySelector(".gist");
       if (!node) return;
@@ -13511,6 +13566,19 @@ async function loadGists(){
   GISTS_IN = true;
   if (typeof v83ClipScan === "function") { try { v83ClipScan(); } catch (e) {} }
 }
+function scheduleGistPrefetch(){
+  const run = () => {
+    if ((loadGists.next && loadGists.next[LANG] || 0) >= GIST_CHUNKS) return;
+    loadGists(1).then(() => {
+      if (typeof requestIdleCallback === "function") requestIdleCallback(run, { timeout: 1500 });
+      else setTimeout(run, 900);
+    });
+  };
+  /* requestIdleCallback can fire immediately on a quiet desktop. Keep a
+     hard post-paint grace period so the first interaction never competes with
+     archive hydration. */
+  setTimeout(run, 2500);
+}
 
 let ELONG_IN = false, ELONG_P = null;
 function ensureElong(){
@@ -13527,6 +13595,7 @@ async function bootData(){
          || await getJSON("items.json", true);   /* last resort: the raw file */
   if (j){
     ITEMS = j.items || [];
+    ITEM_BY_ID = new Map(ITEMS.map(i => [i.id, i]));
     ITEMS.forEach(i => { if (i.source === "SemiAnalysis") i.avatarImg = "semianalysis.png"; });
     SERIES = {};   /* series feature retired: ignore j.series so no series tag/view/follow renders */
     EVENTS = j.events || [];
@@ -13551,7 +13620,8 @@ async function bootData(){
   applyDash();
   window.matchMedia("(min-width:1024px)").addEventListener("change", applyDash);
   handleDeepLink();
-  loadGists();   /* full summaries, after the paint - deliberately not awaited */
+  loadGists();   /* newest summaries, after the paint - deliberately not awaited */
+  scheduleGistPrefetch();
   Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts(), loadVoteCounts()])
     .then(() => { renderHotRail(); renderToday(); applyVoteCounts(); }); /* re-rank with real stats */
   if (!showIntro()) maybeOnboard();

@@ -79,6 +79,18 @@ test.describe("feed article detail round trip", () => {
     expect(state.slotHeight).toBe("0px");
   });
 
+  test("cold load defers archive gist chunks", async ({ page }) => {
+    const laterChunks = [];
+    page.on("request", request => {
+      const match = request.url().match(/gist\.[^./]+\.(\d+)\.json/);
+      if (match && Number(match[1]) > 0) laterChunks.push(Number(match[1]));
+    });
+    await page.goto("/?v83beta", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#feedList article.card").first()).toBeVisible();
+    await page.waitForTimeout(1200);
+    expect(laterChunks).toEqual([]);
+  });
+
   test.describe("mobile", () => {
     test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 
