@@ -4365,9 +4365,15 @@ function gistRich(item){
    (item.embed, filled in by scripts/fetch_embeds.py from X's oEmbed endpoint)
    and a plain excerpt (item.quote, written by the publishing routine for every
    other source). Both link back to the author. */
-function srcBlockHtml(item){
+function srcBlockHtml(item, full){
   const S = STRINGS[LANG] || STRINGS.en;
   const e = item.embed;
+  if (!full){
+    const url = safeUrl((e && e.url) || item.sourceUrl);
+    const label = (e && e.name) || (item.quote && item.quote.cite) || item.source || "";
+    return '<div class="srcq srcq-teaser"><div class="srcq-h">' + esc(S.fromSource) + '</div>' +
+      '<div class="srcq-c"><a href="' + url + '" target="_blank" rel="noopener">' + esc(label) + '</a></div></div>';
+  }
   if (e && (e.lines || []).length){
     const url = safeUrl(e.url || item.sourceUrl);
     const id = ((e.url || item.sourceUrl || "").match(/status\/(\d+)/) || [])[1];
@@ -4407,6 +4413,17 @@ function srcBlockHtml(item){
   }
   return "";
 }
+
+window.expandArticleSource = function(card){
+  try {
+    const id = (card && card.id || "").replace(/^sig-/, "");
+    const item = ITEMS.find(x => x.id === id);
+    const shell = card && card.querySelector("[data-source-shell]");
+    if (!item || !shell || shell.dataset.sourceExpanded === "1") return;
+    shell.innerHTML = srcBlockHtml(item, true);
+    shell.dataset.sourceExpanded = "1";
+  } catch (e) {}
+};
 
 /* quote.lines has two shapes. A bare array is the older one: a single copy of
    the author's own words in the source language, shown on all three language
@@ -13043,7 +13060,7 @@ function renderFeed(animate){
           }
         } catch (e) { _ac = null; }
       }
-      if (!_ac) _ac = cardEl(_it, S, 0);
+      if (!_ac) _ac = cardEl(_it, S, 0, true);
       _ac.classList.remove("collapsed");
       _ac.classList.add("v83one");
       list.appendChild(_ac);
@@ -13187,7 +13204,7 @@ function renderFeed(animate){
   appendFeedPage(S);
 }
 
-function cardEl(item, S, idx){
+function cardEl(item, S, idx, detail){
   {
     idx = idx || 0;
     const showOrig = item.sourceLang.toLowerCase() !== LANG;
@@ -13241,7 +13258,7 @@ function cardEl(item, S, idx){
       ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}<span class="chips-end">${item.paywall ? `<span class="paywall-badge" role="button" tabindex="0" aria-label="${esc(S.paywallLabel + '. ' + paywallDisclosure(item, S))}" onclick="event.stopPropagation(); this.classList.toggle('show')" onkeydown="togglePaywallBadge(this, event)">${S.paywallLabel}<span class="paywall-tip">${paywallTipText(item, S)}</span></span><span class="paywall-note paywall-note-inline">${paywallDisclosure(item, S)}</span>` : ""}<a class="chips-orig" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation(); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a></span></div>` : ""}
       ${"" /* card cover image retired 2026-07-27 — bottom image removed, lab layout for all cards */}
       ${"" /* series feature retired: no series tag on cards */}
-      ${srcBlockHtml(item)}
+      <div data-source-shell>${srcBlockHtml(item, !!detail)}</div>
       <details class="gist-fold" open>
         <summary><span class="fold-label">${S.gist}</span><span class="fold-arrow">+</span></summary>
         <div class="gist rich">${gistRich(item)}</div>
