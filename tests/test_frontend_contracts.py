@@ -115,6 +115,7 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('id = "v82cal-h"', V82)
         self.assertIn('class="v82cal-month-btn"', V82)
         self.assertIn('"v82cal-month-mode"', V82)
+        self.assertIn('v82CalPickDay(tcalYmd(new Date()), "auto");', V82)
 
     def test_home_accessibility_contracts(self):
         self.assertIn('<main class="wrap">', INDEX)

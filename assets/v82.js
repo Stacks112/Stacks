@@ -1474,7 +1474,7 @@
     showScreen("v82cal");
     /* 렌더 직후 현재 주를 먼저 보여준다. 월간 셀 탭은 이후 v82CalPickDay()가
        선택한 날짜/주로 다시 이동한다. */
-    setTimeout(function(){ v82CalPickDay(tcalYmd(new Date()), "auto"); }, 0);
+    v82CalPickDay(tcalYmd(new Date()), "auto");
     setActive();
   }
   function closeCalScreen(){
