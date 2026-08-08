@@ -18,19 +18,24 @@ routes = [
 ]
 
 # D1 binding must match the binding the worker already uses (env.DB).
-# Secrets set in the dashboard (ONESIGNAL_REST_KEY, NOTIFY_SECRET, ADMIN_KEY)
-# persist across deploys; wrangler does not touch them.
+# Secrets set in the dashboard (ONESIGNAL_REST_KEY, NOTIFY_SECRET, ADMIN_KEY,
+# PUBLISH_GITHUB_TOKEN) persist across deploys; wrangler does not touch them.
+# PUBLISH_GITHUB_TOKEN is a fine-grained GitHub token scoped only to
+# Stacks112/Stacks with Actions: write permission. Never put its value in this
+# file or in the repository.
 [[d1_databases]]
 binding = "DB"
 database_name = "stacks-comments"
 database_id = "ddc4f84e-badf-4ff2-9b4e-f07c378784cf"
 
-# Cron trigger (v10.0): weekdays 23:00/23:05/23:10/23:15 UTC = KST Tue-Sat 08:00.
-# Four firings, not one, because the Workers Free plan allows only 50
+# Cron triggers:
+# - Every five minutes: inspect pending_cards and dispatch apply-pending.yml.
+# - Weekdays 23:00/23:05/23:10/23:15 UTC = KST Tue-Sat 08:00: surge alerts.
+# Four surge firings, not one, because the Workers Free plan allows only 50
 # subrequests per invocation and pricing all followed companies needs ~79.
 # index.js derives the role from the minute: index = minute / 5, so
 #   :00 -> shard 0, :05 -> shard 1, :10 -> shard 2, :15 -> push-only sweeper.
 # The number of SCANNING minutes here MUST equal SURGE_SHARDS in index.js, and
 # the last minute must stay past it so the sweeper exists.
 [triggers]
-crons = ["0,5,10,15 23 * * 1-5"]
+crons = ["*/5 * * * *", "0,5,10,15 23 * * 1-5"]

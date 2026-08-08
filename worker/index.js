@@ -1,3 +1,5 @@
+import { dispatchPendingCards, PUBLISH_DISPATCH_CRON } from "./publish-dispatch.js";
+
 /* Stacks comments worker (v9.0 = v8.2 + security hardening)
    v9.0 CHANGES (2026-07-25 security pass, no feature removed):
      * /subscribe is POST-only, double opt-in (/confirm), per-IP send cap,
@@ -92,6 +94,7 @@ const SURGE_TOP_N = 3;     // at most this many pushes per UTC day (ranked globa
 const SURGE_SHARDS = 3;     // MUST match the number of cron minutes in wrangler.toml
 const SURGE_SCAN_MAX = 40;  // hard ceiling on price lookups per invocation
 const SURGE_SCAN_KEEP_DAYS = 7;  // surge_scan rows older than this are pruned
+const SURGE_CRON = "0,5,10,15 23 * * 1-5";
 
 /* ---- security config (v9.0) ---- */
 /* every push/notification link must live on one of these origins */
@@ -1666,7 +1669,9 @@ export default {
     return json({ error: "method not allowed" }, 405, origin);
   },
 
-  /* ---------- CRON: surge alerts ----------
+  /* ---------- CRON: publish dispatch + surge alerts ----------
+     Publish dispatch runs every five minutes and hands a non-empty D1 queue
+     to apply-pending.yml. The surge trigger below remains independent.
      Cron Trigger: "0,5,10,15 23 * * 1-5", starting KST Tue-Sat 08:00.
      Each firing prices one shard of the followed companies into surge_scan;
      the run that completes the day's scan pushes the biggest movers
@@ -1680,6 +1685,18 @@ export default {
      shards is "add a minute to the cron and bump SURGE_SHARDS", and the last
      minute always stays the sweeper. A cron must never throw. */
   async scheduled(event, env, ctx) {
+    if (event.cron === PUBLISH_DISPATCH_CRON) {
+      ctx.waitUntil((async () => {
+        try {
+          await dispatchPendingCards(env);
+        } catch (e) {
+          console.log(JSON.stringify({ event: "publish_dispatch_cron_failed" }));
+        }
+      })());
+      return;
+    }
+
+    if (event.cron !== SURGE_CRON) return;
     ctx.waitUntil((async () => {
       try {
         if (!env.DB || !env.ONESIGNAL_REST_KEY) return;
