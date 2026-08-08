@@ -189,6 +189,13 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("scheduleGistPrefetch();", INDEX)
         self.assertIn("requestIdleCallback(run", INDEX)
         self.assertIn("const neededChunk = Math.floor", INDEX)
+        self.assertIn('dataUrl("entities.json")', INDEX)
+        self.assertIn('dataUrl("events.json")', INDEX)
+        core = json.loads((ROOT / "data" / "core.json").read_text(encoding="utf-8"))
+        self.assertNotIn("entities", core)
+        self.assertNotIn("events", core)
+        self.assertTrue((ROOT / "data" / "entities.json").exists())
+        self.assertTrue((ROOT / "data" / "events.json").exists())
 
     def test_static_pages_have_main_landmarks(self):
         pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")

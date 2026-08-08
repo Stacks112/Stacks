@@ -778,8 +778,12 @@ def main():
 
     sizes["core.json"] = write(os.path.join(OUT, "core.json"), {
         "gen": gen, "chunks": n_chunks, "chunk": CHUNK,
-        "items": core, "events": events, "entities": ents_lite,
+        "items": core,
     })
+    # These registries are not needed to paint the first feed cards. Keep them
+    # out of the blocking payload; the app hydrates them after first paint.
+    sizes["entities.json"] = write(os.path.join(OUT, "entities.json"), ents_lite)
+    sizes["events.json"] = write(os.path.join(OUT, "events.json"), events)
 
     for lang in LANGS:
         for ci in range(n_chunks):

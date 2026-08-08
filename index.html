@@ -5185,8 +5185,9 @@ function sinceCalc(q, dateStr){
 }
 function sinceItem(item){ /* -> promise of {pct,...}|null */
   const k = itemMainKey(item);
-  if (!k || !COMMENTS_API) return Promise.resolve(null);
-  return quote1y(ENTITIES[k].ticker).then(q => sinceCalc(q, item.date));
+  const e = k && ENTITIES[k];
+  if (!e || !e.ticker || !COMMENTS_API) return Promise.resolve(null);
+  return quote1y(e.ticker).then(q => sinceCalc(q, item.date));
 }
 function tvFmt(v, cur){
   var sym = cur === "KRW" ? "\u20A9" : cur === "JPY" ? "\u00A5" : cur === "EUR" ? "\u20AC" : "$";
@@ -5218,9 +5219,11 @@ function queueSince(item){
      of them and looking like a verdict on that one. A ticker whose quote the
      worker cannot serve simply drops out; the rest still render. */
   Promise.all(keys.map(k =>
-    quote1y(ENTITIES[k].ticker)
+    ENTITIES[k] && ENTITIES[k].ticker
+      ? quote1y(ENTITIES[k].ticker)
       .then(q => ({ k: k, r: sinceCalc(q, item.date) }))
       .catch(() => ({ k: k, r: null }))
+      : Promise.resolve({ k: k, r: null })
   )).then(rows => {
     /* The lead company is the claim the badge makes: this is who the post is
        about. If its quote will not resolve - a market that has not printed a
@@ -13628,7 +13631,7 @@ if (window.matchMedia && window.matchMedia("(hover: hover)").matches){
    items.json on every publish; items.json itself is untouched and remains the
    publisher's single source of truth. */
 const DATA_DIR = "data/";
-const DATA_VER = "fadfc00af";
+const DATA_VER = "fadfc00af-aux1";
 const dataUrl = name => DATA_DIR + name + "?v=" + DATA_VER;
 let GIST_CHUNKS = 0;
 let GISTS_IN = false;
@@ -13644,6 +13647,32 @@ async function getJSON(url, fresh){
     /* offline or fetch blocked: try the HTTP cache before giving up */
     try { return await (await fetch(url)).json(); } catch (e2) { return null; }
   }
+}
+
+let AUX_DATA_P = null;
+async function loadAuxData(){
+  if (AUX_DATA_P) return AUX_DATA_P;
+  AUX_DATA_P = Promise.all([
+    getJSON(dataUrl("entities.json")),
+    getJSON(dataUrl("events.json"))
+  ]).then(([entities, events]) => {
+    if (entities) ENTITIES = entities;
+    if (events) EVENTS = events;
+    buildEntityMatcher();
+    buildGlossMatcher();
+    document.querySelectorAll("article.card").forEach(card => {
+      try { linkifyEntities(card); } catch (e) {}
+    });
+    /* A slow aux request may outlive the initial deep-link timer. Retry only
+       when that view has not opened yet; never reset an active user view. */
+    const hasView = document.querySelector(
+      ".jr-page,.inv-grid,.inv-table,.v83one,#v82cal.on,#v82detail.on,#v82ind.on"
+    );
+    if (!hasView && (STK_BOOT.h || STK_BOOT.s.includes("c=") || STK_BOOT.s.includes("e="))) {
+      handleDeepLink();
+    }
+  }).catch(() => {});
+  return AUX_DATA_P;
 }
 
 /* The full summaries land after the card is already on screen. Nothing is
@@ -13719,8 +13748,6 @@ async function bootData(){
     ITEM_BY_ID = new Map(ITEMS.map(i => [i.id, i]));
     ITEMS.forEach(i => { if (i.source === "SemiAnalysis") i.avatarImg = "semianalysis.png"; });
     SERIES = {};   /* series feature retired: ignore j.series so no series tag/view/follow renders */
-    EVENTS = j.events || [];
-    ENTITIES = j.entities || {};
     GIST_CHUNKS = j.chunks || 0;
   }
   /* newest first; same-day entries keep file order */
@@ -13746,6 +13773,11 @@ async function bootData(){
   Promise.all([loadCommentCounts(), loadLikeCounts(), loadViewCounts(), loadVoteCounts()])
     .then(() => { renderHotRail(); renderToday(); applyVoteCounts(); }); /* re-rank with real stats */
   if (!showIntro()) maybeOnboard();
+  /* Entity/calendar registries are post-paint data. Hydrate them once they
+     land so source tips, entity rails and calendar events remain featured. */
+  const afterPaint = () => loadAuxData();
+  if (typeof requestAnimationFrame === "function") requestAnimationFrame(afterPaint);
+  else setTimeout(afterPaint, 0);
 }
 
 /* ---------------- dark mode toggle ---------------- */
