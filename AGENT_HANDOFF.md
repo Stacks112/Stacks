@@ -3865,6 +3865,14 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 
 **Next**: none.
 
+## 2026-08-09 Codex source quote feed fix
+
+**Change**: Render `quote.lines` in the feed source block for non-X articles. Source-only items keep the compact teaser; X embed routing is unchanged.
+
+**Validation**: Targeted frontend contracts 4/4 passed, production Pages deployment succeeded for commit `2852fc93`, and live mobile Chrome showed the SemiAnalysis quote below the feed title with no source teaser.
+
+**Next**: none.
+
 ## 2026-08-08 Codex X feed position fix
 
 **Change**: Give the `[data-source-shell]` wrapper the same mobile source
