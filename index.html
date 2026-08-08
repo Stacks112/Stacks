@@ -1992,7 +1992,7 @@ html[data-theme="dark"] .since .since-p.down{color:#FDA29B;}
 .jr-head{padding:18px 14px 14px;border-bottom:1px solid var(--line);}
 .jr-head h2{margin:0;font-size:20px;letter-spacing:-.025em;color:var(--text);}
 .jr-head p{margin:6px 0 0;font-size:12px;line-height:1.55;color:var(--muted);}
-.jr-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding:12px 14px;}
+.jr-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;padding:12px 14px;}
 .jr-stat{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card);}
 .jr-stat strong{display:block;font-size:16px;color:var(--text);}
 .jr-stat span{display:block;margin-top:3px;font-size:10px;color:var(--muted);}
@@ -2004,8 +2004,15 @@ html[data-theme="dark"] .since .since-p.down{color:#FDA29B;}
 .jr-panel[hidden]{display:none;}
 .jr-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;font-size:12px;color:var(--text);}
 .jr-section-title span{font-size:10px;font-weight:500;color:var(--muted);}
+.jr-panel-body{display:flex;flex-direction:column;gap:9px;}
+.jr-filter{display:flex;align-items:center;margin:0 0 2px;}
+.jr-filter input{width:100%;border:1px solid var(--line);border-radius:9px;background:var(--bg-soft);color:var(--text);padding:8px 10px;font:500 11px/1.2 var(--ui-font);}
+.jr-filter input::placeholder{color:var(--muted);}
+.jr-more{align-self:center;border:1px solid var(--line);border-radius:999px;background:var(--bg-soft);color:var(--text);padding:8px 14px;font:700 11px/1 var(--ui-font);cursor:pointer;}
+.jr-meta-label{color:var(--text);font-weight:700;}
 .jr-card{border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--card);}
 .jr-card+.jr-card{margin-top:9px;}
+.jr-panel-body .jr-card+.jr-card{margin-top:0;}
 .jr-card-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
 .jr-person{min-width:0;flex:1;font-size:11px;font-weight:800;color:var(--text);}
 .jr-person small{display:block;margin-top:2px;font-size:10px;font-weight:500;color:var(--muted);}
@@ -4001,16 +4008,23 @@ function setLang(l){
    selected language. document.title also drives the browser tab label. */
 function applyMetaLang(S){
   if (!S) S = STRINGS[LANG] || STRINGS.en;
-  if (S.metaTitle) document.title = S.metaTitle;
+  var recordHub = typeof SB_VIEW !== "undefined" && SB_VIEW && !RECORD_SRC;
+  if (recordHub){
+    document.title = (S.sbTitle || S.record || "Track record") + " | " + (S.appName || "Stacks");
+  } else if (S.metaTitle) document.title = S.metaTitle;
   var md = document.getElementById("metaDesc"); if (md && S.metaDesc) md.setAttribute("content", S.metaDesc);
+  if (recordHub && md && S.sbSub) md.setAttribute("content", S.sbSub);
   var ot = document.getElementById("ogTitle"); if (ot && S.metaTitle) ot.setAttribute("content", S.metaTitle);
+  if (recordHub && ot) ot.setAttribute("content", document.title);
   var od = document.getElementById("ogDesc"); if (od && S.metaDesc) od.setAttribute("content", S.metaDesc);
+  if (recordHub && od && S.sbSub) od.setAttribute("content", S.sbSub);
   /* canonical: ?l=ko / ?l=ja self-reference (so hreflang alternates are valid);
      only an explicit language link gets a language-specific canonical. */
   var canon = document.getElementById("canonLink");
   if (canon){
     var requested = langParam();
-    canon.setAttribute("href", (requested === "ko") ? "https://stacksdaily.com/?l=ko"
+    canon.setAttribute("href", recordHub ? "https://stacksdaily.com/record.html"
+      : (requested === "ko") ? "https://stacksdaily.com/?l=ko"
       : (requested === "ja") ? "https://stacksdaily.com/?l=ja" : "https://stacksdaily.com/");
   }
 }
@@ -6705,7 +6719,7 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
   for (var g = 0; g <= 4; g++){
     var v = mn + ((mx - mn) * g) / 4, y = Y(v);
     grid += '<line x1="' + pL + '" y1="' + y.toFixed(1) + '" x2="' + (pL + pw) + '" y2="' + y.toFixed(1) + '" class="inv-compare-grid"/>';
-    ylab += '<text x="' + (pL + pw + 8) + '" y="' + (y + 4).toFixed(1) + '" class="inv-compare-axis">' + invMoneyFmt(v) + "</text>";
+    ylab += '<text x="' + (pL - 8) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="end" class="inv-compare-axis">' + invMoneyFmt(v) + "</text>";
   }
   var xlab = "", nx = 4;
   for (var g2 = 0; g2 <= nx; g2++){
@@ -7038,32 +7052,39 @@ function closeScoreboard(){ SB_VIEW = false; RECORD_SRC = null; try{ if(location
 function renderJudgmentRecord(list){
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var C={
-    ko:{title:"판정 기록",sub:"검증 중인 전망부터 적중과 빗나감까지, 판정 기준과 결과를 전부 공개합니다.",pending:"검증 중",done:"판정 완료",hits:"적중",rate:"판정 적중률",today:"오늘 판정",people:"인물별",near:"판정일 가까운 순",latest:"최신 판정순",minimum:"판정된 전망 기준",emptyToday:"오늘 판정 예정인 전망이 없습니다.",emptyDone:"아직 판정 완료된 전망이 없습니다.",rule:"판정 기준·근거",open:"글 보기 →",calls:"건"},
-    en:{title:"Track record",sub:"Every tracked forecast, hit and miss, with its decision rule and result.",pending:"Tracking",done:"Decided",hits:"Hits",rate:"Hit rate",today:"Due today",people:"By person",near:"Nearest due first",latest:"Latest decisions",minimum:"Decided forecasts only",emptyToday:"No forecasts are due today.",emptyDone:"No completed decisions yet.",rule:"Rule and evidence",open:"Open →",calls:"calls"},
-    ja:{title:"判定記録",sub:"検証中の見通しから的中・外れまで、判定基準と結果をすべて公開します。",pending:"検証中",done:"判定完了",hits:"的中",rate:"的中率",today:"今日の判定",people:"人物別",near:"判定日が近い順",latest:"最新判定順",minimum:"判定済み予測のみ",emptyToday:"本日判定予定の見通しはありません。",emptyDone:"判定完了の見通しはまだありません。",rule:"判定基準・根拠",open:"記事を見る →",calls:"件"}
+    ko:{title:"판정 기록",sub:"검증 중인 전망부터 적중과 빗나감까지, 판정 기준과 결과를 전부 공개합니다.",pending:"검증 중",done:"판정 완료",hits:"적중",misses:"빗나감",rate:"판정 적중률",today:"오늘 판정",people:"인물별",near:"판정일 가까운 순",latest:"최신 판정순",minimum:"판정된 전망 기준",emptyToday:"오늘 판정 예정인 전망이 없습니다.",emptyDone:"아직 판정 완료된 전망이 없습니다.",rule:"판정 기준·근거",open:"글 보기 →",calls:"건",forecastDate:"전망일",dueDate:"판정 예정일",delayed:"판정 지연",more:"더 보기",search:"필진·전망 검색",noResults:"조건에 맞는 전망이 없습니다."},
+    en:{title:"Track record",sub:"Every tracked forecast, hit and miss, with its decision rule and result.",pending:"Tracking",done:"Decided",hits:"Hits",misses:"Misses",rate:"Hit rate",today:"Due today",people:"By person",near:"Nearest due first",latest:"Latest decisions",minimum:"Decided forecasts only",emptyToday:"No forecasts are due today.",emptyDone:"No completed decisions yet.",rule:"Rule and evidence",open:"Open →",calls:"calls",forecastDate:"Forecast",dueDate:"Decision due",delayed:"Delayed",more:"Show more",search:"Search source or forecast",noResults:"No forecasts match."},
+    ja:{title:"判定記録",sub:"検証中の見通しから的中・外れまで、判定基準と結果をすべて公開します。",pending:"検証中",done:"判定完了",hits:"的中",misses:"外れ",rate:"的中率",today:"今日の判定",people:"人物別",near:"判定日が近い順",latest:"最新判定順",minimum:"判定済み予測のみ",emptyToday:"本日判定予定の見通しはありません。",emptyDone:"判定完了の見通しはまだありません。",rule:"判定基準・根拠",open:"記事を見る →",calls:"件",forecastDate:"予測日",dueDate:"判定予定日",delayed:"判定遅延",more:"もっと見る",search:"筆者・見通しを検索",noResults:"一致する見通しはありません。"}
   }[lang];
   var all=ITEMS.filter(function(i){ return i.outcome&&i.outcome.status; });
   var pending=all.filter(function(i){ return i.outcome.status==="pending"; }).sort(function(a,b){ return String(a.outcome.due||"9999").localeCompare(String(b.outcome.due||"9999")); });
   var done=all.filter(function(i){ return i.outcome.status==="hit"||i.outcome.status==="miss"; }).sort(function(a,b){ return String(b.outcome.due||b.date).localeCompare(String(a.outcome.due||a.date)); });
   var hits=done.filter(function(i){ return i.outcome.status==="hit"; }).length;
+  var misses=done.filter(function(i){ return i.outcome.status==="miss"; }).length;
   var today=todayStr();
   var todayItems=all.filter(function(i){ return i.outcome.due===today; });
+  var defaultKey=todayItems.length?"today":(pending.length?"tracking":"done");
+  var pageSize=20, pageCounts={today:pageSize,tracking:pageSize,done:pageSize}, queries={};
   var byPerson={};
   all.forEach(function(i){ var p=byPerson[i.source]||(byPerson[i.source]={source:i.source,total:0,pending:0,hit:0,miss:0}); p.total++; p[i.outcome.status]=(p[i.outcome.status]||0)+1; });
   var people=Object.keys(byPerson).map(function(k){ return byPerson[k]; }).sort(function(a,b){ var ag=a.hit+a.miss,bg=b.hit+b.miss; return bg-ag||b.total-a.total||a.source.localeCompare(b.source); });
-  var statusLabel=function(i){ if(i.outcome.status==="hit") return C.hits; if(i.outcome.status==="miss") return lang==="ko"?"빗나감":lang==="ja"?"外れ":"Miss"; var due=i.outcome.due?new Date(i.outcome.due+"T00:00:00"):null; var now=new Date(); now.setHours(0,0,0,0); var d=due?Math.round((due-now)/86400000):null; return d===0?C.today:(d!=null&&d>0?"D-"+d:C.pending); };
-  var cards=function(items,empty){ if(!items.length) return '<div class="jr-empty">'+esc(empty)+'</div>'; return items.map(function(i){ var note=(i.outcome.note&&(i.outcome.note[lang]||i.outcome.note.ko||i.outcome.note.en))||""; var title=i.title[lang]||i.title.en||""; var status=i.outcome.status; return '<article class="jr-card"><div class="jr-card-top"><span class="daily-forecast-avatar">'+esc(Array.from(i.source||"S")[0])+'</span><span class="jr-person">'+esc(i.source)+'<small>'+esc(fmt(i.date))+' · '+esc(i.outcome.due?fmt(i.outcome.due):C.pending)+'</small></span><span class="jr-verdict '+esc(status)+'">'+esc(statusLabel(i))+'</span></div><p class="jr-call">'+esc(title)+'</p><p class="jr-rule"><b>'+esc(C.rule)+'</b> · '+esc(note)+'</p><div class="jr-card-foot"><span>'+esc(i.outcome.due?fmt(i.outcome.due):"")+'</span><button type="button" data-jr-open="'+esc(i.id)+'">'+esc(C.open)+'</button></div></article>'; }).join(""); };
-  var personRows=people.map(function(p){ var graded=p.hit+p.miss; var rate=graded?Math.round(p.hit/graded*100)+"%":"-"; return '<div class="jr-person-row"><span><b>'+esc(p.source)+'</b><small>'+esc(C.hits)+' '+p.hit+' · '+esc(C.pending)+' '+p.pending+(p.miss?' · '+(lang==="ko"?"빗나감 ":"Miss ")+p.miss:"")+'</small></span><span class="jr-person-rate">'+rate+'</span><span class="jr-person-calls">'+p.total+' '+esc(C.calls)+'</span></div>'; }).join("");
+  var textFor=function(i){ return ((i.title&&((i.title[lang]||i.title.en)||""))+" "+(i.source||"")).toLowerCase(); };
+  var statusLabel=function(i){ if(i.outcome.status==="hit") return C.hits; if(i.outcome.status==="miss") return C.misses; var due=i.outcome.due?new Date(i.outcome.due+"T00:00:00Z"):null; var now=new Date(); now.setUTCHours(0,0,0,0); var d=due?Math.round((due-now)/86400000):null; return d===0?C.today:(d!=null&&d>0?"D-"+d:(d!=null?C.delayed+" D+"+Math.abs(d):C.pending)); };
+  var personRows=people.map(function(p){ var graded=p.hit+p.miss; var rate=graded?Math.round(p.hit/graded*100)+"%":"-"; return '<div class="jr-person-row"><span><b>'+esc(p.source)+'</b><small>'+esc(C.hits)+' '+p.hit+' · '+esc(C.misses)+' '+p.miss+' · '+esc(C.pending)+' '+p.pending+'</small></span><span class="jr-person-rate">'+rate+'</span><span class="jr-person-calls">'+p.total+' '+esc(C.calls)+'</span></div>'; }).join("");
   var wrap=document.createElement("section"); wrap.className="jr-page"; wrap.setAttribute("aria-label",C.title);
+  var tab=function(key,label,count){ var active=key===defaultKey; return '<button id="jr-tab-'+key+'" type="button" role="tab" data-jr-tab="'+key+'" aria-selected="'+(active?"true":"false")+'" aria-controls="jr-panel-'+key+'" tabindex="'+(active?"0":"-1")+'">'+esc(label)+(count==null?"":" "+count)+'</button>'; };
+  var panel=function(key,label,sub){ var active=key===defaultKey; return '<div id="jr-panel-'+key+'" class="jr-panel" role="tabpanel" aria-labelledby="jr-tab-'+key+'" tabindex="0" data-jr-panel="'+key+'"'+(active?"":" hidden")+'><h3 class="jr-section-title">'+esc(label)+'<span>'+esc(sub)+'</span></h3><div class="jr-panel-body" data-jr-body="'+key+'"></div></div>'; };
   wrap.innerHTML='<header class="jr-head"><h2>'+esc(C.title)+'</h2><p>'+esc(C.sub)+'</p></header>'
-    +'<div class="jr-stats"><div class="jr-stat"><strong>'+pending.length+'</strong><span>'+esc(C.pending)+'</span></div><div class="jr-stat"><strong>'+done.length+'</strong><span>'+esc(C.done)+'</span></div><div class="jr-stat"><strong>'+hits+'</strong><span>'+esc(C.hits)+'</span></div><div class="jr-stat"><strong>'+(done.length?Math.round(hits/done.length*100)+"%":"-")+'</strong><span>'+esc(C.rate)+(done.length?' · '+done.length+esc(C.calls):'')+'</span></div></div>'
-    +'<div class="jr-tabs" role="tablist" aria-label="'+esc(C.title)+'"><button type="button" role="tab" data-jr-tab="today" aria-selected="true">'+esc(C.today)+' '+todayItems.length+'</button><button type="button" role="tab" data-jr-tab="tracking" aria-selected="false">'+esc(C.pending)+' '+pending.length+'</button><button type="button" role="tab" data-jr-tab="done" aria-selected="false">'+esc(C.done)+' '+done.length+'</button><button type="button" role="tab" data-jr-tab="people" aria-selected="false">'+esc(C.people)+'</button></div>'
-    +'<div class="jr-panel" data-jr-panel="today"><h3 class="jr-section-title">'+esc(C.today)+'<span>'+esc(fmt(today))+'</span></h3>'+cards(todayItems,C.emptyToday)+'</div>'
-    +'<div class="jr-panel" data-jr-panel="tracking" hidden><h3 class="jr-section-title">'+esc(C.pending)+'<span>'+esc(C.near)+'</span></h3>'+cards(pending.slice(0,30),C.emptyToday)+'</div>'
-    +'<div class="jr-panel" data-jr-panel="done" hidden><h3 class="jr-section-title">'+esc(C.done)+'<span>'+esc(C.latest)+'</span></h3>'+cards(done,C.emptyDone)+'</div>'
-    +'<div class="jr-panel" data-jr-panel="people" hidden><h3 class="jr-section-title">'+esc(C.people)+'<span>'+esc(C.minimum)+'</span></h3><div class="jr-card">'+personRows+'</div></div>';
-  wrap.querySelectorAll("[data-jr-tab]").forEach(function(btn){ btn.onclick=function(){ var key=btn.getAttribute("data-jr-tab"); wrap.querySelectorAll("[data-jr-tab]").forEach(function(b){ b.setAttribute("aria-selected",b===btn?"true":"false"); }); wrap.querySelectorAll("[data-jr-panel]").forEach(function(p){ p.hidden=p.getAttribute("data-jr-panel")!==key; }); }; });
-  wrap.querySelectorAll("[data-jr-open]").forEach(function(btn){ btn.onclick=function(){ openFromCard(btn.getAttribute("data-jr-open")); }; });
+    +'<div class="jr-stats"><div class="jr-stat"><strong>'+pending.length+'</strong><span>'+esc(C.pending)+'</span></div><div class="jr-stat"><strong>'+done.length+'</strong><span>'+esc(C.done)+'</span></div><div class="jr-stat"><strong>'+hits+'</strong><span>'+esc(C.hits)+'</span></div><div class="jr-stat"><strong>'+misses+'</strong><span>'+esc(C.misses)+'</span></div><div class="jr-stat"><strong>'+(done.length?Math.round(hits/done.length*100)+"%":"-")+'</strong><span>'+esc(C.rate)+(done.length?' · '+done.length+esc(C.calls):'')+'</span></div></div>'
+    +'<div class="jr-tabs" role="tablist" aria-label="'+esc(C.title)+'" aria-orientation="horizontal">'+tab("today",C.today,todayItems.length)+tab("tracking",C.pending,pending.length)+tab("done",C.done,done.length)+tab("people",C.people,null)+'</div>'
+    +panel("today",C.today,fmt(today))+panel("tracking",C.pending,C.near)+panel("done",C.done,C.latest)+panel("people",C.people,C.minimum);
+  var panelItems={today:todayItems,tracking:pending,done:done};
+  function filterMarkup(key){ return (key==="tracking"||key==="done")?'<label class="jr-filter"><span class="sr-only">'+esc(C.search)+'</span><input type="search" data-jr-search="'+key+'" placeholder="'+esc(C.search)+'" value="'+esc(queries[key]||"")+'"></label>':''; }
+  function cards(items,empty,key){ var q=(queries[key]||"").trim().toLowerCase(); var pool=q?items.filter(function(i){ return textFor(i).indexOf(q)>=0; }):items; if(!pool.length) return '<div class="jr-empty">'+esc(q?C.noResults:empty)+'</div>'; var n=pageCounts[key]||pageSize; var out=pool.slice(0,n).map(function(i){ var note=(i.outcome.note&&(i.outcome.note[lang]||i.outcome.note.ko||i.outcome.note.en))||""; var title=(i.title&&((i.title[lang]||i.title.en)||"")); var status=i.outcome.status; var due=i.outcome.due?fmt(i.outcome.due):C.pending; return '<article class="jr-card"><div class="jr-card-top"><span class="daily-forecast-avatar">'+esc(Array.from(i.source||"S")[0])+'</span><span class="jr-person">'+esc(i.source)+'<small><span class="jr-meta-label">'+esc(C.forecastDate)+'</span> '+esc(fmt(i.date))+' · <span class="jr-meta-label">'+esc(C.dueDate)+'</span> '+esc(due)+'</small></span><span class="jr-verdict '+esc(status)+'">'+esc(statusLabel(i))+'</span></div><p class="jr-call">'+esc(title)+'</p><p class="jr-rule"><b>'+esc(C.rule)+'</b> · '+esc(note)+'</p><div class="jr-card-foot"><span>'+esc(due)+'</span><button type="button" data-jr-open="'+esc(i.id)+'">'+esc(C.open)+'</button></div></article>'; }).join(""); if(pool.length>n) out+='<button type="button" class="jr-more" data-jr-more="'+key+'">'+esc(C.more)+' ('+(pool.length-n)+')</button>'; return out; }
+  function renderPanel(key){ var body=wrap.querySelector('[data-jr-body="'+key+'"]'); if(!body) return; if(key==="people"){ body.innerHTML='<div class="jr-card">'+personRows+'</div>'; return; } body.innerHTML=filterMarkup(key)+cards(panelItems[key],key==="done"?C.emptyDone:C.emptyToday,key); var search=body.querySelector('[data-jr-search]'); if(search) search.addEventListener("input",function(){ queries[key]=search.value; pageCounts[key]=pageSize; renderPanel(key); }); var more=body.querySelector('[data-jr-more]'); if(more) more.addEventListener("click",function(){ pageCounts[key]=(pageCounts[key]||pageSize)+pageSize; renderPanel(key); }); body.querySelectorAll("[data-jr-open]").forEach(function(btn){ btn.addEventListener("click",function(){ openFromCard(btn.getAttribute("data-jr-open")); }); }); }
+  function activate(btn,focus){ var key=btn.getAttribute("data-jr-tab"); wrap.querySelectorAll("[data-jr-tab]").forEach(function(b){ var active=b===btn; b.setAttribute("aria-selected",active?"true":"false"); b.setAttribute("tabindex",active?"0":"-1"); }); wrap.querySelectorAll("[data-jr-panel]").forEach(function(p){ p.hidden=p.getAttribute("data-jr-panel")!==key; }); renderPanel(key); if(focus) btn.focus(); }
+  var tabs=Array.from(wrap.querySelectorAll("[data-jr-tab]")); tabs.forEach(function(btn){ btn.addEventListener("click",function(){ activate(btn,false); }); btn.addEventListener("keydown",function(ev){ var idx=tabs.indexOf(btn), next=null; if(ev.key==="ArrowRight") next=tabs[(idx+1)%tabs.length]; else if(ev.key==="ArrowLeft") next=tabs[(idx+tabs.length-1)%tabs.length]; else if(ev.key==="Home") next=tabs[0]; else if(ev.key==="End") next=tabs[tabs.length-1]; if(next){ ev.preventDefault(); activate(next,true); } }); });
+  renderPanel(defaultKey);
   list.appendChild(wrap);
 }
 async function renderScoreboard(list, S){
@@ -9734,6 +9755,7 @@ function slugTag(k){ return String(k).toLowerCase().replace(/[^a-z0-9가-힣]+/g
 const OS_TAG_DELAYS = [300, 1000, 3000];
 async function osApplyTag(OS, key, on){
   if (!OS || !OS.User || !key) return false;
+  if (!(OS.User.PushSubscription && OS.User.PushSubscription.optedIn)) return false;
   for (let attempt = 0; attempt < OS_TAG_DELAYS.length; attempt++){
     try {
       if (on) await OS.User.addTag(key, "1");
@@ -9751,6 +9773,8 @@ async function osApplyTag(OS, key, on){
 }
 function osTag(key, on){
   if (!ONESIGNAL_APP_ID) return;
+  key = String(key || "").trim();
+  if (!key) return;
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   window.OneSignalDeferred.push(async (OS) => {
     await osApplyTag(OS, key, on);

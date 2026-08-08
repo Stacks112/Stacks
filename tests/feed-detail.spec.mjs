@@ -219,6 +219,7 @@ test.describe("13F investor view state", () => {
     await page.mouse.down();
     await page.mouse.move(chart.x + chart.width * 0.7, chart.y + chart.height * 0.5);
     await page.mouse.up();
+    await expect(page.locator("#invValChart .inv-compare-selection")).toHaveAttribute("visibility", "visible");
     await expect.poll(() => page.locator("#invValRange").evaluate(el => !el.hidden)).toBe(true);
     await expect(page.locator("#invValRange")).toHaveText(/\+\d+\.\d+%/);
     await expect(page.locator("#invValChart .inv-compare-chart-tip")).toContainText("%");
