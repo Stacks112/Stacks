@@ -1960,6 +1960,10 @@ html[data-lang="ko"] .why p{font-family:var(--ui-font);}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 html[data-lang="ko"] #toast{font-family:var(--ui-font);}
 .since .since-p{font-weight:800;}
+.since .since-p.up{color:#087A45;}
+.since .since-p.down{color:#B42318;}
+html[data-theme="dark"] .since .since-p.up{color:#6EE7B7;}
+html[data-theme="dark"] .since .since-p.down{color:#FDA29B;}
 .since-share{
   margin-left:4px;border:none;background:none;cursor:pointer;
   color:var(--muted);padding:2px;line-height:0;border-radius:6px;display:inline-flex;align-items:center;
@@ -5110,7 +5114,7 @@ function sinceOneHtml(k, r){
   const up = r.pct >= 0, safe = k.replace(/'/g, "\\'");
   return '<span class="since-one">'
     + '<b class="since-k since-k-link has-tip" onmouseenter="loadQuote(\'' + safe + '\')" onclick="event.stopPropagation(); chipTap(this, \'' + safe + '\')">' + esc(k) + entityTip(k) + '</b>'
-    + '<b class="since-p" style="color:' + (up ? "#12B76A" : "#F04438") + '">'
+    + '<b class="since-p ' + (up ? "up" : "down") + '">'
     + (up ? "▲ " : "▼ ") + (up ? "+" : "") + r.pct.toFixed(1) + "%</b></span>";
 }
 function queueSince(item){
