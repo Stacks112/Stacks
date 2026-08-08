@@ -57,6 +57,10 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('class="jr-evidence"', INDEX)
         self.assertIn("Array.isArray(i.outcome.evidence)", INDEX)
         self.assertIn("safeUrl(e.url)", INDEX)
+        self.assertIn("var byTopic={};", INDEX)
+        self.assertIn("var topicRows=topics.map", INDEX)
+        self.assertIn('class="jr-breakdown-title"', INDEX)
+        self.assertIn("topicBreakdown", INDEX)
 
     def test_linkify_queue_prioritizes_visible_cards_during_idle_time(self):
         self.assertIn("requestIdleCallback(linkifyDrain", INDEX)
