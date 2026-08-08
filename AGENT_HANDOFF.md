@@ -3748,3 +3748,19 @@ guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자�
 
 **다음**: 다음 stats workflow 실행 후 `/notify` 400 재발 여부를 확인한다. OG guard는
 수동·예약·입력 파일 변경 실행에서 계속 보호한다.
+
+## 2026-08-08 Codex — stats notify·엔티티 리포트 실제 실행 확인
+
+**결과**:
+- stats workflow `31237506160`가 `da79c18` / `main`에서 성공.
+- `/notify` 로그 `[ok] 📊 주간 성과 다이제스트`; 400 재발 없음. 빈 secret tag는 코드 fallback `owner`가 처리.
+- `counts`만 빈 집계 경고. 현재 댓글 0건이므로 정상.
+- `stats/analytics-2026-08-08.md`: 엔티티 1개, raw path 1개. `AAOI` 클릭 1건(`inline`).
+- stats 변경 커밋 `8cf9d2b` push. Pages `31237522926` 성공.
+
+**production 확인**:
+- stats digest·analytics report 모두 live HTTP 200.
+- `https://api.stacksdaily.com/counts` HTTP 200.
+
+**다음**: 피드 상세 실브라우저 회귀 테스트를 실행한다. 피드 → 상세 → 뒤로가기,
+딥링크, 13F 전환 후 우측 패널, 모바일 캘린더를 확인한다.
