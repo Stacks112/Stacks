@@ -51,6 +51,9 @@ class FrontendContracts(unittest.TestCase):
     def test_x_embed_keeps_a_hidden_slot_when_live_widget_fails(self):
         self.assertIn('const slot = host.querySelector(".xreal-slot") || document.createElement("div");', INDEX)
         self.assertIn("slot.replaceChildren();", INDEX)
+        self.assertIn('.xreal.x-on > .xemb{display:block;}', INDEX)
+        pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
+        self.assertIn('.xreal.x-on>.xemb{display:block}', pages)
 
     def test_x_embed_binds_rendered_before_create(self):
         start = INDEX.index("async function xEmbedMount(host)")

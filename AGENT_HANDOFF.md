@@ -3864,3 +3864,12 @@ third-party cookie는 OneSignal·Clarity 사용 목적 확인 뒤 판단한다.
 **Validation**: `tests.test_frontend_contracts`, static-page scan, `deploy_guard.py`, and `git diff --check` passed. Dirty local worktrees were left untouched.
 
 **Next**: none.
+## 2026-08-08 Codex X fallback visibility restore
+
+**Change**: Keep `.xemb` static X evidence visible after `x-on`; live widget failures no longer hide the only visible fallback. Propagate CSS to all static X pages.
+
+**Validation**: X embed contract, static-page scan, deploy guard, live browser check.
+
+**Risk**: Live iframe and fallback may coexist while X marks a widget rendered; fallback remains intentional recovery content.
+
+**Next**: none.
