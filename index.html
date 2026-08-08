@@ -6730,9 +6730,10 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
     + filedLine + filedLabel
     + '<rect class="inv-compare-selection" y="' + pT + '" height="' + ph + '" visibility="hidden"/>'
     + '<line class="inv-compare-hover-line" y1="' + pT + '" y2="' + (pT + ph) + '" visibility="hidden"/>'
+    + '<line class="inv-compare-hover-line inv-value-hover-hline" x1="' + pL + '" x2="' + (pL + pw) + '" visibility="hidden"/>'
     + '<circle class="inv-value-hover-dot" r="4" fill="' + col + '" stroke="#fff" stroke-width="1.5" visibility="hidden"/>'
     + ylab + xlab + "</svg><div class=\"inv-compare-chart-tip\" hidden></div>";
-  var svg = box.querySelector("svg"), tip = box.querySelector(".inv-compare-chart-tip"), hover = box.querySelector(".inv-compare-hover-line"), selectionRect = box.querySelector(".inv-compare-selection"), dot = box.querySelector(".inv-value-hover-dot");
+  var svg = box.querySelector("svg"), tip = box.querySelector(".inv-compare-chart-tip"), hover = box.querySelector(".inv-compare-hover-line"), hoverH = box.querySelector(".inv-value-hover-hline"), selectionRect = box.querySelector(".inv-compare-selection"), dot = box.querySelector(".inv-value-hover-dot");
   var dragging = false, dragStart = 0, selection = null;
   function fracAt(ev){
     var rect = svg.getBoundingClientRect(), frac = (ev.clientX - rect.left) / rect.width;
@@ -6744,13 +6745,14 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
     var half = Math.min(tipWidth / 2 + 6, Math.max(10, host / 2 - 4)), center = host * Math.max(0, Math.min(1, frac));
     center = Math.max(half, Math.min(host - half, center)); tip.style.left = center.toFixed(1) + "px";
   }
-  function hideHover(){ hover.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); if (!selection) tip.hidden = true; }
+  function hideHover(){ hover.setAttribute("visibility", "hidden"); hoverH.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); if (!selection) tip.hidden = true; }
   function move(ev){
     var frac = fracAt(ev), i = indexAt(frac), x = X(frac);
     hideHover(); hover.setAttribute("x1", x.toFixed(1)); hover.setAttribute("x2", x.toFixed(1)); hover.setAttribute("visibility", "visible");
-    dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", Y(chartValues[i]).toFixed(1)); dot.setAttribute("visibility", "visible");
+    var y = Y(chartValues[i]); hoverH.setAttribute("y1", y.toFixed(1)); hoverH.setAttribute("y2", y.toFixed(1)); hoverH.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", y.toFixed(1)); dot.setAttribute("visibility", "visible");
     var hoverPct = first ? (chartValues[i] / first - 1) * 100 : null, hoverPctText = hoverPct == null ? "—" : (hoverPct >= 0 ? "+" : "") + hoverPct.toFixed(1) + "%";
-    tip.innerHTML = '<b>' + esc(dateAt(frac)) + '</b><span><i style="background:' + col + '"></i><b>' + esc(hoverPctText) + '</b></span>'; tip.hidden = false; placeTip(frac);
+    tip.innerHTML = '<b>' + esc(dateAt(frac)) + '</b><small>' + esc(invMoneyFmt(chartValues[i])) + '</small><span><i style="background:' + col + '"></i><b>' + esc(hoverPctText) + '</b></span>'; tip.hidden = false; placeTip(frac);
   }
   function showSelection(a, b){
     var lo = Math.min(a, b), hi = Math.max(a, b), x1 = X(lo), x2 = X(hi), start = indexAt(lo), finish = indexAt(hi);

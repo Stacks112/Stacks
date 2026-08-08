@@ -209,6 +209,13 @@ test.describe("13F investor view state", () => {
     const chart = await page.locator("#invValChart svg").boundingBox();
     expect(chart).not.toBeNull();
     await page.mouse.move(chart.x + chart.width * 0.25, chart.y + chart.height * 0.5);
+    await expect(page.locator("#invValChart .inv-compare-hover-line:not(.inv-value-hover-hline)")).toHaveAttribute("visibility", "visible");
+    await expect(page.locator("#invValChart .inv-value-hover-hline")).toHaveAttribute("visibility", "visible");
+    await expect(page.locator("#invValChart .inv-value-hover-dot")).toHaveAttribute("visibility", "visible");
+    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toBeVisible();
+    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toContainText("$");
+    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toContainText("%");
+    await expect(page.locator("#invValChart .inv-compare-chart-tip")).not.toContainText(/\d{1,2}:\d{2}/);
     await page.mouse.down();
     await page.mouse.move(chart.x + chart.width * 0.7, chart.y + chart.height * 0.5);
     await page.mouse.up();
