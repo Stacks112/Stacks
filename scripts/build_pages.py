@@ -648,6 +648,10 @@ def quote_block(item, lang):
         note = TRANSLATED_NOTE.get(lang, TRANSLATED_NOTE["en"]).get(slang)
         if note:
             tail += " · " + E(note)
+    if item.get("paywall"):
+        partial = UI.get(lang, UI["en"]).get("partial")
+        if partial:
+            tail += " · " + E(partial)
     return ('<figure class="srcq"><blockquote%s%s>%s</blockquote>'
             '<figcaption class="srcq-c">%s</figcaption></figure>'
             % (cattr, lattr, body, tail))
@@ -1179,7 +1183,8 @@ def publisher_ld():
 # (p/{id}.html, p/en/{id}.html, p/ja/{id}.html) and the three are tied together
 # with reciprocal hreflang.
 UI = {
-    "ko": dict(app="Stacks 앱에서 보기 →", src="원문 보기 ↗", paid="$ 원문은 유료 구독",
+    "ko": dict(app="Stacks 앱에서 보기 →", src="원문 보기 ↗", paid="유료글 · 원문은 유료 구독",
+               partial="공개된 일부 원문을 인용해 작성",
                origlang="원문", ents="관련 종목·인물", related="관련 글",
                other="다른 언어로 읽기", why="투자 포인트", ask="짚어볼 점",
                sum3="세 줄 요약", split="구분 기준",
@@ -1189,7 +1194,9 @@ UI = {
                     "각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, "
                     "투자 판단과 그 책임은 이용자 본인에게 있습니다."),
     "en": dict(app="Open in the Stacks app →", src="Read the original ↗",
-               paid="$ Original is paywalled", origlang="original",
+               paid="PAYWALLED · Original requires a subscription",
+               partial="Written using a quoted excerpt from the publicly visible source text",
+               origlang="original",
                ents="Companies & people", related="Related",
                other="Read this in another language", why="Why it matters",
                sum3="In three lines", split="How to tell which",
@@ -1198,7 +1205,8 @@ UI = {
                disc="Summaries and commentary are original work by " + SITE + ". Copyright in the "
                     "source material remains with its author; every item credits the source and "
                     "links to the original. This is information and commentary, not investment advice."),
-    "ja": dict(app="Stacksアプリで見る →", src="元記事を読む ↗", paid="$ 元記事は有料購読",
+    "ja": dict(app="Stacksアプリで見る →", src="元記事を読む ↗", paid="有料記事 · 元記事は有料購読",
+               partial="公開部分の原文を引用して作成",
                origlang="原文", ents="関連銘柄・人物", related="関連記事",
                other="他の言語で読む", why="Why it matters", ask="考えるべき点",
                sum3="3行まとめ", split="見分ける基準",
