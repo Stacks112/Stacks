@@ -3683,3 +3683,27 @@ Lighthouse 데스크톱·모바일 재검증.
   Email `31232887668`, watch delivery `31232887640` 성공.
 - OG `31232887641`은 이전 OG 실행 `31232760731` 종료 대기 중이며, Pages·홈 화면
   배포와는 독립적이다.
+
+## 2026-08-08 Codex — GoatCounter 엔티티 리포트·OG 이미지 파이프라인 확인
+
+**결과**:
+- `GOATCOUNTER_API_KEY`가 실제 주간 workflow `31229936431`에 주입되어
+  `stats/analytics-2026-08-08.md`를 생성했다. `AAOI` company 클릭 1건,
+  위치는 `inline` 1건이며 stats-bot 커밋은 `7d3b2a4`다.
+- 최신 OG workflow `31234888580` 성공. fetch → 카드/커버 재생성 → 페이지/data
+  빌드 → push가 완료됐고 최신 main은 `2ee51b3`다. `og/` PNG 326개를 확인했고
+  전부 1200×630이다. 생성 카드 1장을 시각 확인해 한글 잘림·대비 문제도 없었다.
+
+**회귀 수정**:
+- `tests/feed-detail.spec.mjs`의 X fallback 테스트가 숨겨진 prediction 카드를
+  첫 대상으로 잡아 데이터 순서 변경 때 오탐했다. 일반 lab 카드만 선택하도록
+  selector를 좁혔다. 제품 코드 버그가 아니라 테스트 대상 선택 버그다.
+
+**검증**:
+- `npm.cmd test` — calendar 3개 + feed/detail 10개, 총 13개 통과.
+- `py -3 tests/test_analytics_report.py` — 6개 통과.
+- `py -3 tests/test_frontend_contracts.py` — 9개 통과.
+- `git diff --check` 통과.
+
+**다음**: stats digest의 별도 `/counts` endpoint HTTP 400 원인과 OG PNG 규격
+guard를 후속 점검한다. GoatCounter 엔티티 리포트와 OG 생성 자체는 운영 상태다.

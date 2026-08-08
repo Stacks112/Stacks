@@ -60,7 +60,9 @@ test.describe("feed article detail round trip", () => {
       } } };`,
     }));
     await waitForFeed(page);
-    const x = page.locator("#feedList .xreal").first();
+    // X fallback is intentionally visible on lab cards; other compact feed
+    // cards hide their evidence block by design.
+    const x = page.locator("#feedList .card.card-lab:not(.prediction-result-card) .xreal").first();
     await expect(x).toBeVisible();
     await x.scrollIntoViewIfNeeded();
     await expect(x).toHaveAttribute("data-xseen", "1");
