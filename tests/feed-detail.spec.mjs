@@ -202,6 +202,9 @@ test.describe("13F investor view state", () => {
     });
     await openInvestors(page, "#investor-berkshire");
     await expect(page.locator("#invValChart svg")).toBeVisible();
+    const axisBoxes = await page.locator("#invValChart svg .inv-compare-axis").evaluateAll(nodes => nodes.map(node => node.getBBox().x));
+    expect(axisBoxes.length).toBeGreaterThan(0);
+    expect(Math.min(...axisBoxes)).toBeGreaterThanOrEqual(0);
     await expect(page.locator(".inv-value-card .inv-compare-period")).toHaveCount(6);
     await page.locator('.inv-value-card .inv-compare-period[data-period="6m"]').click();
     await expect(page.locator('.inv-value-card .inv-compare-period[data-period="6m"]')).toHaveAttribute("aria-selected", "true");

@@ -5285,7 +5285,7 @@ function debateTitleHtml(key){
 
 /* ---------------- 13F 포트폴리오 가치 차트 / 활동 요약 / 매수·매도 상위 / 섹터 배분 문자열 (v85) ---------------- */
 (function(){ var X={
-  en:{ invChartTitle:"Portfolio value if held", invChartSub:"Estimated public-portfolio value, chained from quarterly SEC snapshots.", invChartDrag:"Drag across the chart to see the selected period return.", invChartSelected:"Selected period", invChartRange:"{n} selected days", invChartClear:"Clear selection", invChartNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns", invChart1d:"1D", invChart5d:"5D", invChart1m:"1M", invChart6m:"6M", invChartYtd:"YTD", invChart1y:"1Y", invChartMapCov:"Ticker mapping {p}% (options excluded)", invChartPriceCov:"Price data coverage {p}% (options excluded)", invChartPriceCovLoading:"Calculating price coverage…",
+  en:{ invChartTitle:"Portfolio value if held", invChartSub:"Estimated public-portfolio value, chained from quarterly SEC snapshots.", invChartDrag:"Press and hold, then drag horizontally across the chart to see the selected period return.", invChartSelected:"Selected period", invChartRange:"{n} selected days", invChartClear:"Clear selection", invChartNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns", invChart1d:"1D", invChart5d:"5D", invChart1m:"1M", invChart6m:"6M", invChartYtd:"YTD", invChart1y:"1Y", invChartMapCov:"Ticker mapping {p}% (options excluded)", invChartPriceCov:"Price data coverage {p}% (options excluded)", invChartPriceCovLoading:"Calculating price coverage…",
        invChartNoTicker:"No holdings could be matched to a ticker, so this chart can't be shown.", invChartFail:"Price data unavailable",
        invChartLowCov:"Price data coverage is under 50%, so this line may not represent the full portfolio.", invChartFiled:"Filed",
        invActNew:"New buys", invActAdd:"Added", invActExit:"Exited", invActTrim:"Trimmed", invActTop10:"Top-10 weight",
@@ -5293,7 +5293,7 @@ function debateTitleHtml(key){
        invActNoData:"No prior-quarter activity data for this filing.",
        invMoverBuy:"Top buys", invMoverSell:"Top sells", invMoverNone:"None this quarter",
        invSectorTitle:"Sector allocation", invSectorCov:"Based on {p}% of the portfolio" },
-  ko:{ invChartTitle:"그대로 들고 있었다면", invChartSub:"분기별 SEC 13F 공개 스냅샷을 이어 붙인 포트폴리오 추정 평가액입니다.", invChartDrag:"차트를 드래그하면 선택 기간의 수익률을 확인할 수 있습니다.", invChartSelected:"선택 기간", invChartRange:"선택 {n}일", invChartClear:"선택 해제", invChartNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님", invChart1d:"1일", invChart5d:"5일", invChart1m:"1개월", invChart6m:"6개월", invChartYtd:"연중", invChart1y:"1년", invChartMapCov:"티커 매핑 {p}% · 옵션 제외", invChartPriceCov:"시세 조회 성공 {p}% · 옵션 제외", invChartPriceCovLoading:"시세 커버리지 계산 중…",
+  ko:{ invChartTitle:"그대로 들고 있었다면", invChartSub:"분기별 SEC 13F 공개 스냅샷을 이어 붙인 포트폴리오 추정 평가액입니다.", invChartDrag:"차트 위를 손가락으로 누른 채 좌우로 움직이면 선택 기간의 수익률을 확인할 수 있습니다.", invChartSelected:"선택 기간", invChartRange:"선택 {n}일", invChartClear:"선택 해제", invChartNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님", invChart1d:"1일", invChart5d:"5일", invChart1m:"1개월", invChart6m:"6개월", invChartYtd:"연중", invChart1y:"1년", invChartMapCov:"티커 매핑 {p}% · 옵션 제외", invChartPriceCov:"시세 조회 성공 {p}% · 옵션 제외", invChartPriceCovLoading:"시세 커버리지 계산 중…",
        invChartNoTicker:"티커에 매핑된 종목이 없어 이 차트를 표시할 수 없습니다.", invChartFail:"시세를 불러오지 못했습니다",
        invChartLowCov:"시세 조회 성공률이 50% 미만이라 실제 포트폴리오를 온전히 대표하지 못할 수 있습니다.", invChartFiled:"공시일",
        invActNew:"신규 매수", invActAdd:"추가 매수", invActExit:"청산", invActTrim:"축소", invActTop10:"상위10 비중",
@@ -5301,7 +5301,7 @@ function debateTitleHtml(key){
        invActNoData:"직전 분기 대비 활동 데이터가 없습니다.",
        invMoverBuy:"매수 상위", invMoverSell:"매도 상위", invMoverNone:"이번 분기 없음",
        invSectorTitle:"섹터 배분", invSectorCov:"전체의 {p}% 집계 기준" },
-  ja:{ invChartTitle:"そのまま保有していたら", invChartSub:"SECの四半期13F公開スナップショットをつないだ公開ポートフォリオ推定評価額です。", invChartDrag:"グラフをドラッグすると、選択期間のリターンを確認できます。", invChartSelected:"選択期間", invChartRange:"選択 {n}日", invChartClear:"選択を解除", invChartNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません", invChart1d:"1日", invChart5d:"5日", invChart1m:"1か月", invChart6m:"6か月", invChartYtd:"年初来", invChart1y:"1年", invChartMapCov:"ティッカー紐付け {p}%・オプション除外", invChartPriceCov:"価格データ取得 {p}%・オプション除外", invChartPriceCovLoading:"価格データの網羅率を計算中…",
+  ja:{ invChartTitle:"そのまま保有していたら", invChartSub:"SECの四半期13F公開スナップショットをつないだ公開ポートフォリオ推定評価額です。", invChartDrag:"グラフを長押しして左右にドラッグすると、選択期間のリターンを確認できます。", invChartSelected:"選択期間", invChartRange:"選択 {n}日", invChartClear:"選択を解除", invChartNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません", invChart1d:"1日", invChart5d:"5日", invChart1m:"1か月", invChart6m:"6か月", invChartYtd:"年初来", invChart1y:"1年", invChartMapCov:"ティッカー紐付け {p}%・オプション除外", invChartPriceCov:"価格データ取得 {p}%・オプション除外", invChartPriceCovLoading:"価格データの網羅率を計算中…",
        invChartNoTicker:"ティッカーに一致する銘柄がなく、このチャートは表示できません。", invChartFail:"価格データを取得できませんでした",
        invChartLowCov:"価格データの取得率が50%未満のため、実際のポートフォリオを正確に反映していない可能性があります。", invChartFiled:"開示日",
        invActNew:"新規買い", invActAdd:"追加買い", invActExit:"清算", invActTrim:"縮小", invActTop10:"上位10比率",
@@ -6707,7 +6707,7 @@ function invPaintValueChart(box, calendar, values, filedIdx, S, period, clearBtn
   var first = chartValues[0], last = chartValues[chartValues.length - 1];
   var chg = last - first, pct = first ? (chg / first) * 100 : 0, up = chg >= 0;
   var col = up ? "#12B76A" : "#F04438";
-  var W = 960, H = 310, pL = 52, pR = 74, pT = 18, pB = 34;
+  var W = 960, H = 310, pL = 88, pR = 74, pT = 18, pB = 34;
   var pw = W - pL - pR, ph = H - pT - pB;
   var mn = Math.min.apply(null, chartValues), mx = Math.max.apply(null, chartValues);
   var span = (mx - mn) || 1; mn -= span * 0.08; mx += span * 0.08;
