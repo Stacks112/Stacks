@@ -13878,8 +13878,14 @@ async function bootData(){
     SERIES = {};   /* series feature retired: ignore j.series so no series tag/view/follow renders */
     GIST_CHUNKS = j.chunks || 0;
   }
-  /* newest first; same-day entries keep file order */
-  ITEMS.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  /* newest publication first; ties keep file order */
+  const pubTime = i => {
+    const t = i && i.ts, n = Number(t);
+    if ((typeof t === "number" && Number.isFinite(t)) || (typeof t === "string" && t.trim() && Number.isFinite(n))) return n < 1e12 ? n * 1000 : n;
+    const d = Date.parse(t);
+    return Number.isFinite(d) ? d : Date.parse(i && i.date) || 0;
+  };
+  ITEMS.sort((a, b) => pubTime(b) - pubTime(a));
   /* missing translations fall back to English */
   ITEMS.forEach(i => ["title", "gist", "why"].forEach(k => {
     ["ko", "ja"].forEach(l => { if (!i[k][l]) i[k][l] = i[k].en; });
