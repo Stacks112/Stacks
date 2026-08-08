@@ -3631,7 +3631,7 @@ GoatCounter 리포트의 실제 entity 행만 확인한다.
 **다음**: 2026-08-11 전후 Clarity INP/dead-click 재확인. GoatCounter는 실제
 entity 행이 생겼으므로 다음 주부터 추세만 관찰한다.
 
-## 2026-08-08 Codex — P1 X fallback·모바일 가로 overflow 수정 (미배포)
+## 2026-08-08 Codex — P1 X fallback·모바일 가로 overflow 수정 (배포 완료)
 
 **목표**: X 위젯 실패 시 빈 공간이 생기는 문제와 모바일 390px 가로 스크롤을 제거한다.
 
@@ -3647,6 +3647,27 @@ entity 행이 생겼으므로 다음 주부터 추세만 관찰한다.
 - `py -3 tests/test_analytics_report.py` — 6개 통과.
 - `py -3 -m py_compile scripts/build_pages.py` 통과.
 - `git diff --check` 통과.
-- `py -3 scripts/deploy_guard.py` 통과. 원격 `main`에 로컬보다 최신 커밋 1개 있어 아직 push/배포하지 않음.
+- `py -3 scripts/deploy_guard.py` 통과.
+- 커밋 `09c04a9`를 `main`에 push. Feed detail `31232181997`, calendar `31232182040`,
+  Clobber `31232181996`, Email `31232181994`, watch delivery `31232182016` 모두 성공.
+- `https://stacksdaily.com/?deploy=09c04a9` HTTP 200 및 X fallback·모바일 overflow 패치의
+  핵심 문자열을 live에서 확인. Pages 실행은 이전 실행과 경합해 취소됐지만 live 응답에는
+  `09c04a9` 변경이 반영됨.
 
-**위험/다음**: 배포 전 `origin/main` fetch/rebase 후 live X fallback·모바일 overflow smoke 확인.
+**다음**: P2 접근성(홈 `main` 랜드마크, engagement 버튼 이름, 상태·푸터 대비) 수정 및
+Lighthouse 데스크톱·모바일 재검증.
+
+## 2026-08-08 Codex — P2 접근성 계약·Lighthouse 회귀 수정
+
+**변경 파일**:
+- `index.html` — 홈 콘텐츠를 `main` 랜드마크로 승격, 조회수·좋아요·댓글 버튼의
+  숫자를 accessible name에 동기화, 예측 결과·푸터·13F 레일 푸터 대비 개선,
+  자동 언어 선택 시 홈페이지 canonical을 루트로 유지.
+- `tests/test_frontend_contracts.py` — 위 접근성 계약 6개 추가.
+
+**검증**:
+- Lighthouse 로컬 데스크톱·모바일: Accessibility 100, Best Practices 100,
+  SEO 100, 실패 0.
+- `npm.cmd test` — 캘린더 3개 + feed/detail 10개, 총 13개 통과.
+- `py -3 tests/test_frontend_contracts.py` — 9개 통과.
+- `git diff --check` 통과.

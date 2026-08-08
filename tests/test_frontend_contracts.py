@@ -84,6 +84,18 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('class="v82cal-month-btn"', V82)
         self.assertIn('"v82cal-month-mode"', V82)
 
+    def test_home_accessibility_contracts(self):
+        self.assertIn('<main class="wrap">', INDEX)
+        self.assertIn('id="eg-view-${item.id}"', INDEX)
+        self.assertIn('function egLabel(buttonId, label, val)', INDEX)
+        self.assertIn('aria-label="${esc(S.views + (VIEW_COUNTS[item.id] ?', INDEX)
+        self.assertIn('egLabel("lk-" + id, (STRINGS[LANG] || STRINGS.en).like', INDEX)
+        self.assertIn('egLabel("eg-view-" + id, (STRINGS[LANG] || STRINGS.en).views', INDEX)
+        self.assertIn('var requested = langParam();', INDEX)
+        self.assertIn('.prediction-result-verdict span{font-size:10.5px;opacity:1;}', INDEX)
+        self.assertIn('class="foot-copy" style="margin-top:8px;font-size:11px;opacity:1"', INDEX)
+        self.assertIn('html.v83 #railFoot .rf-c{ display:block; margin-top:3px; opacity:1; }', INDEX)
+
 
 if __name__ == "__main__":
     unittest.main()

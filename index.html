@@ -2094,13 +2094,17 @@ html[data-lang="ko"] .mine-banner{font-family:var(--ui-font);}
 .prediction-result-card .avatar.photo{background:var(--text);padding:7px;box-sizing:border-box;}
 .prediction-result-card .avatar.photo img{object-fit:contain;}
 .prediction-result-badge{margin-left:auto;flex:0 0 auto;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900;white-space:nowrap;}
-.prediction-result-badge.hit{background:rgba(18,183,106,.1);color:#0E9F5E;}
-.prediction-result-badge.miss{background:rgba(240,68,56,.09);color:#E04438;}
+.prediction-result-badge.hit{background:rgba(18,183,106,.1);color:#087A45;}
+.prediction-result-badge.miss{background:rgba(240,68,56,.09);color:#B42318;}
 .prediction-result-verdict{margin:0 0 12px;padding:11px 13px;border:1px solid;border-radius:12px;font-size:12px;line-height:1.5;}
-.prediction-result-verdict.hit{background:rgba(18,183,106,.09);border-color:rgba(18,183,106,.35);color:#0E9F5E;}
-.prediction-result-verdict.miss{background:rgba(240,68,56,.08);border-color:rgba(240,68,56,.3);color:#E04438;}
+.prediction-result-verdict.hit{background:rgba(18,183,106,.09);border-color:rgba(18,183,106,.35);color:#087A45;}
+.prediction-result-verdict.miss{background:rgba(240,68,56,.08);border-color:rgba(240,68,56,.3);color:#B42318;}
 .prediction-result-verdict b{display:block;font-size:15px;}
-.prediction-result-verdict span{font-size:10.5px;opacity:.8;}
+.prediction-result-verdict span{font-size:10.5px;opacity:1;}
+html[data-theme="dark"] .prediction-result-badge.hit,
+html[data-theme="dark"] .prediction-result-verdict.hit{color:#6EE7B7;}
+html[data-theme="dark"] .prediction-result-badge.miss,
+html[data-theme="dark"] .prediction-result-verdict.miss{color:#FDA29B;}
 .prediction-result-meta{margin-top:16px;display:grid;gap:16px;}
 .prediction-result-meta h4{margin:0 0 7px;font-size:13px;color:var(--text);}
 .prediction-result-rule{padding:10px 11px;border-radius:11px;background:var(--bg-soft);font-size:12px;line-height:1.65;color:var(--text);}
@@ -3779,7 +3783,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   </div>
 </nav>
 
-<div class="wrap">
+<main class="wrap">
   <section class="hero">
     <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
     <div class="app-name" id="appName">Stacks</div>
@@ -3850,7 +3854,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
       <a class="support-btn" id="supportBtn" target="_blank" rel="noopener" hidden></a>
     </div>
   </section>
-</div>
+</main>
 
 <div class="intro" id="intro" hidden>
   <header class="intro-topbar">
@@ -3922,7 +3926,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
     <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
-    <p class="foot-copy" style="margin-top:8px;font-size:11px;opacity:.7">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
+    <p class="foot-copy" style="margin-top:8px;font-size:11px;opacity:1">© 2026 Stacks · stacksdaily.com · All rights reserved. 무단 복제·재배포 금지.</p>
     <p style="margin-top:8px">Portraits of public figures and topic images via Wikipedia / Wikimedia Commons, licensed under their respective free licenses and credited to their authors there. Donald J. Trump: official portrait, a public domain work of the US federal government. Mark Zuckerberg: photo from a 2020 European Commission meeting, licensed CC BY 4.0. Satya Nadella and Tim Cook: photos licensed under Creative Commons, credited to their authors on Wikimedia Commons. Other avatars belong to their respective authors.</p>
   </div>
 </footer>
@@ -3977,11 +3981,12 @@ function applyMetaLang(S){
   var ot = document.getElementById("ogTitle"); if (ot && S.metaTitle) ot.setAttribute("content", S.metaTitle);
   var od = document.getElementById("ogDesc"); if (od && S.metaDesc) od.setAttribute("content", S.metaDesc);
   /* canonical: ?l=ko / ?l=ja self-reference (so hreflang alternates are valid);
-     English / no-param map to the bare root. */
+     only an explicit language link gets a language-specific canonical. */
   var canon = document.getElementById("canonLink");
   if (canon){
-    canon.setAttribute("href", (LANG === "ko") ? "https://stacksdaily.com/?l=ko"
-      : (LANG === "ja") ? "https://stacksdaily.com/?l=ja" : "https://stacksdaily.com/");
+    var requested = langParam();
+    canon.setAttribute("href", (requested === "ko") ? "https://stacksdaily.com/?l=ko"
+      : (requested === "ja") ? "https://stacksdaily.com/?l=ja" : "https://stacksdaily.com/");
   }
 }
 
@@ -10616,11 +10621,19 @@ function egSet(spanId, val){
   const e = document.getElementById(spanId);
   if (e) e.textContent = val ? fmtCount(val) : "";
 }
+function egLabel(buttonId, label, val){
+  const e = document.getElementById(buttonId);
+  if (e) e.setAttribute("aria-label", val ? label + " " + fmtCount(val) : label);
+}
 function applyEngageCounts(){
+  const S = STRINGS[LANG] || STRINGS.en;
   ITEMS.forEach(i => {
     egSet("cn-" + i.id, COMMENT_COUNTS[i.id]);
     egSet("ln-" + i.id, LIKE_COUNTS[i.id]);
     egSet("vn-" + i.id, VIEW_COUNTS[i.id]);
+    egLabel("cbtn-" + i.id, S.comments, COMMENT_COUNTS[i.id]);
+    egLabel("lk-" + i.id, S.like, LIKE_COUNTS[i.id]);
+    egLabel("eg-view-" + i.id, S.views, VIEW_COUNTS[i.id]);
   });
   if (typeof applyVoteCounts === "function") applyVoteCounts();
 }
@@ -10715,10 +10728,12 @@ async function castVote(id, dir){
 function bumpCommentCount(id){
   COMMENT_COUNTS[id] = (COMMENT_COUNTS[id] || 0) + 1;
   egSet("cn-" + id, COMMENT_COUNTS[id]);
+  egLabel("cbtn-" + id, (STRINGS[LANG] || STRINGS.en).comments, COMMENT_COUNTS[id]);
 }
 function decCommentCount(id){
   COMMENT_COUNTS[id] = Math.max(0, (COMMENT_COUNTS[id] || 0) - 1);
   egSet("cn-" + id, COMMENT_COUNTS[id]);
+  egLabel("cbtn-" + id, (STRINGS[LANG] || STRINGS.en).comments, COMMENT_COUNTS[id]);
 }
 
 /* Like: optimistic toggle + persist locally + tell the worker. */
@@ -10730,6 +10745,7 @@ async function toggleLike(id){
   const btn = document.getElementById("lk-" + id);
   if (btn) btn.classList.toggle("on", on);
   egSet("ln-" + id, LIKE_COUNTS[id]);
+  egLabel("lk-" + id, (STRINGS[LANG] || STRINGS.en).like, LIKE_COUNTS[id]);
   if (on) track("like/" + id);
   if (!COMMENTS_API) return;
   try {
@@ -10740,7 +10756,11 @@ async function toggleLike(id){
     });
     if (res.ok){
       const j = await res.json();
-      if (j && typeof j.count === "number"){ LIKE_COUNTS[id] = j.count; egSet("ln-" + id, LIKE_COUNTS[id]); }
+      if (j && typeof j.count === "number"){
+        LIKE_COUNTS[id] = j.count;
+        egSet("ln-" + id, LIKE_COUNTS[id]);
+        egLabel("lk-" + id, (STRINGS[LANG] || STRINGS.en).like, LIKE_COUNTS[id]);
+      }
     }
   } catch (e) {}
 }
@@ -10752,6 +10772,7 @@ async function recordView(id){
   store.set("stk_viewed", [...VIEWED]);
   VIEW_COUNTS[id] = (VIEW_COUNTS[id] || 0) + 1;
   egSet("vn-" + id, VIEW_COUNTS[id]);
+  egLabel("eg-view-" + id, (STRINGS[LANG] || STRINGS.en).views, VIEW_COUNTS[id]);
   if (!COMMENTS_API) return;
   try {
     const res = await fetch(COMMENTS_API + "/view", {
@@ -10761,7 +10782,11 @@ async function recordView(id){
     });
     if (res.ok){
       const j = await res.json();
-      if (j && typeof j.count === "number"){ VIEW_COUNTS[id] = j.count; egSet("vn-" + id, VIEW_COUNTS[id]); }
+      if (j && typeof j.count === "number"){
+        VIEW_COUNTS[id] = j.count;
+        egSet("vn-" + id, VIEW_COUNTS[id]);
+        egLabel("eg-view-" + id, (STRINGS[LANG] || STRINGS.en).views, VIEW_COUNTS[id]);
+      }
     }
   } catch (e) {}
 }
@@ -12880,9 +12905,9 @@ function cardEl(item, S, idx){
         <span class="lang-note">${langNote}</span>
       </div>`}
       <div class="engage" data-eg="${item.id}">
-        ${COMMENTS_API ? `<button class="eg eg-comment" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')" aria-label="${S.comments}" title="${S.comments}">${svgIcon("comment")}<span class="eg-n" id="cn-${item.id}">${COMMENT_COUNTS[item.id] ? fmtCount(COMMENT_COUNTS[item.id]) : ""}</span></button>` : ""}
-        <button class="eg eg-like${LIKES.has(item.id) ? " on" : ""}" id="lk-${item.id}" onclick="toggleLike('${item.id}')" aria-label="${S.like}" title="${S.like}">${svgIcon("like")}<span class="eg-n" id="ln-${item.id}">${LIKE_COUNTS[item.id] ? fmtCount(LIKE_COUNTS[item.id]) : ""}</span></button>
-        <button class="eg eg-view" onclick="openFromCard('${item.id}', event)" aria-label="${S.views}" title="${S.views}">${svgIcon("view")}<span class="eg-n" id="vn-${item.id}">${VIEW_COUNTS[item.id] ? fmtCount(VIEW_COUNTS[item.id]) : ""}</span></button>
+        ${COMMENTS_API ? `<button class="eg eg-comment" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')" aria-label="${esc(S.comments + (COMMENT_COUNTS[item.id] ? " " + fmtCount(COMMENT_COUNTS[item.id]) : ""))}" title="${S.comments}">${svgIcon("comment")}<span class="eg-n" id="cn-${item.id}">${COMMENT_COUNTS[item.id] ? fmtCount(COMMENT_COUNTS[item.id]) : ""}</span></button>` : ""}
+        <button class="eg eg-like${LIKES.has(item.id) ? " on" : ""}" id="lk-${item.id}" onclick="toggleLike('${item.id}')" aria-label="${esc(S.like + (LIKE_COUNTS[item.id] ? " " + fmtCount(LIKE_COUNTS[item.id]) : ""))}" title="${S.like}">${svgIcon("like")}<span class="eg-n" id="ln-${item.id}">${LIKE_COUNTS[item.id] ? fmtCount(LIKE_COUNTS[item.id]) : ""}</span></button>
+        <button class="eg eg-view" id="eg-view-${item.id}" onclick="openFromCard('${item.id}', event)" aria-label="${esc(S.views + (VIEW_COUNTS[item.id] ? " " + fmtCount(VIEW_COUNTS[item.id]) : ""))}" title="${S.views}">${svgIcon("view")}<span class="eg-n" id="vn-${item.id}">${VIEW_COUNTS[item.id] ? fmtCount(VIEW_COUNTS[item.id]) : ""}</span></button>
         <span class="eg-spacer"></span>
         ${TTS_OK ? `<button class="eg eg-listen${ttsId === item.id ? " on" : ""}" id="ls-${item.id}" onclick="toggleListen('${item.id}')" aria-label="${S.listen}" title="${S.listen}">${svgIcon(ttsId === item.id ? "stop" : "listen")}</button>` : ""}
         <button class="eg eg-bm${BM.has(item.id) ? " on" : ""}" id="bm-${item.id}" onclick="toggleBookmark('${item.id}')" aria-label="${S.bmAdd}" title="${S.bmAdd}">${svgIcon("bookmark")}</button>
@@ -14569,7 +14594,7 @@ bootData();
     font-size:12.5px; line-height:1.8; color:var(--muted); }
   html.v83 #railFoot a{ color:var(--muted); text-decoration:none; margin-right:11px; white-space:nowrap; }
   html.v83 #railFoot a:hover{ text-decoration:underline; }
-  html.v83 #railFoot .rf-c{ display:block; margin-top:3px; opacity:.85; }
+  html.v83 #railFoot .rf-c{ display:block; margin-top:3px; opacity:1; }
 }
 </style>
 <script id="railfoot-js">
