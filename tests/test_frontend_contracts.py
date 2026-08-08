@@ -7,6 +7,7 @@ rendering contracts that caused the recent regressions.
 
 import json
 from pathlib import Path
+import re
 import unittest
 
 
@@ -83,6 +84,7 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('if (invViewActive()){ renderInvestors(list,S);', INDEX)
         self.assertIn('_railEl.classList.toggle("inv-rail-hide", invViewActive())', INDEX)
         self.assertIn('document.documentElement.classList.toggle("inv-wide", invViewActive())', INDEX)
+        self.assertIn('serviceWorkers: "block"', (ROOT / "tests" / "feed-detail.spec.mjs").read_text(encoding="utf-8"))
 
     def test_mobile_calendar_toggle_contract(self):
         self.assertIn('id = "v82cal-h"', V82)
@@ -167,6 +169,16 @@ class FrontendContracts(unittest.TestCase):
         pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
         self.assertEqual(pages.count("<main>"), 6)
         self.assertEqual(pages.count("</main>"), 6)
+        for path in (
+            ROOT / "about.html",
+            ROOT / "privacy.html",
+            ROOT / "week" / "2026-w29.html",
+            ROOT / "week" / "2026-w30.html",
+            ROOT / "week" / "2026-w31.html",
+        ):
+            html = path.read_text(encoding="utf-8")
+            self.assertEqual(len(re.findall(r"<main(?:\s|>)", html)), 1, path.name)
+            self.assertEqual(len(re.findall(r"<h1(?:\s|>)", html)), 1, path.name)
 
     def test_cloudflare_security_policy_is_complete(self):
         headers = SECURITY_POLICY["headers"]

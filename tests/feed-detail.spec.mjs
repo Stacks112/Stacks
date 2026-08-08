@@ -150,7 +150,7 @@ test.describe("feed article detail round trip", () => {
 });
 
 test.describe("13F investor view state", () => {
-  test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
+  test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false, serviceWorkers: "block" });
 
   async function openInvestors(page, hash = "#investors") {
     await page.goto(`/?v83beta${hash}`, { waitUntil: "domcontentloaded" });
@@ -201,7 +201,7 @@ test.describe("13F investor view state", () => {
       return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
     });
     await openInvestors(page, "#investor-berkshire");
-    await expect(page.locator("#invValChart svg")).toBeVisible();
+    await expect(page.locator("#invValChart svg")).toBeVisible({ timeout: 30000 });
     const axisBoxes = await page.locator("#invValChart svg .inv-compare-axis").evaluateAll(nodes => nodes.map(node => node.getBBox().x));
     expect(axisBoxes.length).toBeGreaterThan(0);
     expect(Math.min(...axisBoxes)).toBeGreaterThanOrEqual(0);

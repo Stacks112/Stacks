@@ -1177,8 +1177,9 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
 .img-fs-x:hover{background:rgba(255,255,255,.26);}
 .title-orig{font-size:12.5px;color:var(--muted);margin-bottom:6px;font-family:var(--ui-font);}
 /* inline company/person mentions inside the text */
-.ent-link{
-  position:relative;cursor:pointer;font-weight:600;color:inherit;
+.ent-link,.gloss-link{
+  display:inline-block;min-width:24px;min-height:24px;padding:4px 2px;margin:-4px -2px;
+  position:relative;cursor:pointer;font-weight:600;color:inherit;line-height:16px;vertical-align:baseline;
   text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;
   text-decoration-color:var(--muted);white-space:normal;
 }
@@ -1961,7 +1962,7 @@ html[data-lang="ko"] .why p{font-family:var(--ui-font);}
 }
 .since .since-share{margin-left:auto;}
 .since .since-k{color:var(--text);font-weight:700;letter-spacing:.02em;}
-.since .since-k-link{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
+.since .since-k-link{display:inline-flex;align-items:center;min-width:24px;min-height:24px;padding:4px 2px;margin:-4px -2px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:var(--muted);}
 .since .since-k-link:hover{color:var(--accent);text-decoration-color:var(--accent);}
 /* clickable/hoverable entity name inside the debate-board title */
 .debate-ent{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;text-decoration-color:currentColor;position:relative;}
@@ -7735,18 +7736,24 @@ function linkifyDistance(card){
 }
 function linkifyDrain(deadline){
   var t0 = performance.now();
-  while (LINKIFY_Q.length && performance.now() - t0 < 6){
-    var best = 0, bestDistance = linkifyDistance(LINKIFY_Q[0]);
-    for (var i = 1; i < LINKIFY_Q.length; i++){
-      var distance = linkifyDistance(LINKIFY_Q[i]);
-      if (distance < bestDistance){ best = i; bestDistance = distance; }
+  /* Read every card position before replacing any text. Replacing a text node
+     can invalidate layout; reading the next card after that write forced a
+     synchronous reflow on the 900KB feed. The order may be one frame stale,
+     but visibility priority is unchanged and the write phase stays batched. */
+  var ranked = LINKIFY_Q.map(function(card){
+    return { card: card, distance: linkifyDistance(card) };
+  }).sort(function(a, b){ return a.distance - b.distance; });
+  LINKIFY_Q.length = 0;
+  for (var ri = 0; ri < ranked.length; ri++){
+    if (performance.now() - t0 >= 6 || (deadline && deadline.timeRemaining && deadline.timeRemaining() < 1)){
+      for (; ri < ranked.length; ri++) LINKIFY_Q.push(ranked[ri].card);
+      break;
     }
-    var c = LINKIFY_Q.splice(best, 1)[0];
+    var c = ranked[ri].card;
     if (c){
       c.__linkifyPending = false;
       if (c.isConnected){ try { linkifyEntitiesNow(c); } catch (e) {} }
     }
-    if (deadline && deadline.timeRemaining && deadline.timeRemaining() < 1) break;
   }
   LINKIFY_T = null;
   if (LINKIFY_Q.length) linkifySchedule();

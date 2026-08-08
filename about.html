@@ -48,7 +48,7 @@ footer a{color:var(--muted);}
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap">
   <a class="back" href="/" data-back>&larr; Stacks</a>
   <div class="langbar">
     <button data-set="ko">한국어</button>
@@ -56,9 +56,10 @@ footer a{color:var(--muted);}
     <button data-set="ja">日本語</button>
   </div>
 
+  <h1 data-page-title>Stacks 소개</h1>
+
   <!-- ================= KOREAN ================= -->
   <div class="about" data-lang="ko">
-  <h1>Stacks 소개</h1>
   <p class="date">최종 수정: 2026년 8월 5일</p>
 
   <p>Stacks(stacksdaily.com)는 전 세계 투자 필진의 글을 한자리에 모아,<br>언어 장벽 없이 비교해 읽을 수 있게 만드는 서비스입니다.<br>한국어·영어·일본어로 운영합니다.</p>
@@ -104,7 +105,6 @@ footer a{color:var(--muted);}
 
   <!-- ================= ENGLISH ================= -->
   <div class="about" data-lang="en">
-  <h1>About Stacks</h1>
   <p class="date">Last updated: August 5, 2026</p>
 
   <p>Stacks (stacksdaily.com) gathers investing writers from around the world in one place<br>so their arguments can be read and compared without a language barrier.<br>The site runs in Korean, English and Japanese.</p>
@@ -150,7 +150,6 @@ footer a{color:var(--muted);}
 
   <!-- ================= JAPANESE ================= -->
   <div class="about" data-lang="ja">
-  <h1>Stacksについて</h1>
   <p class="date">最終更新: 2026年8月5日</p>
 
   <p>Stacks(stacksdaily.com)は、世界中の投資関連の書き手の記事を一か所に集め、<br>言語の壁なしに読み比べられるようにするサービスです。<br>韓国語・英語・日本語で運営しています。</p>
@@ -195,7 +194,7 @@ footer a{color:var(--muted);}
   </div>
 
   <footer>© Stacks · <a href="privacy.html" data-privacy>개인정보처리방침</a></footer>
-</div>
+</main>
 
 <script>
 (function(){
@@ -229,6 +228,8 @@ footer a{color:var(--muted);}
     if (back){ back.textContent = BACK[l] || BACK.ko; back.setAttribute("href", "/?l=" + l); }
     var pv = document.querySelector("[data-privacy]");
     if (pv){ pv.textContent = PRIV[l] || PRIV.ko; }
+    var title = document.querySelector("[data-page-title]");
+    if (title){ title.textContent = TITLE[l] || TITLE.ko; }
     try{ localStorage.setItem("stk_lang", l); }catch(e){}
     document.title = (TITLE[l] || TITLE.ko) + " · Stacks";
   }

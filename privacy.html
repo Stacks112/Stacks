@@ -38,7 +38,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
 </style>
 </head>
 <body>
-<div class="wrap">
+<main class="wrap">
   <a class="back" href="/" data-back>&larr; Stacks</a>
   <div class="langbar">
     <button data-set="ko">한국어</button>
@@ -46,9 +46,10 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
     <button data-set="ja">日本語</button>
   </div>
 
+  <h1 data-page-title>개인정보처리방침</h1>
+
   <!-- ================= KOREAN ================= -->
   <div class="policy" data-lang="ko">
-  <h1>개인정보처리방침</h1>
   <p class="date">시행일: 2026년 7월 27일</p>
   <p>Stacks(stacksdaily.com, 이하 "서비스")는 전 세계 투자 관련 글을 요약·해설해 제공하는 큐레이션 서비스입니다. 서비스는 이용자의 개인정보를 소중히 여기며, 관련 법령을 준수합니다. 본 방침은 서비스가 어떤 정보를 왜 수집하고, 어떻게 보관·처리하는지를 설명합니다.</p>
 
@@ -102,7 +103,6 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
 
   <!-- ================= ENGLISH ================= -->
   <div class="policy" data-lang="en">
-  <h1>Privacy Policy</h1>
   <p class="date">Effective date: July 27, 2026</p>
   <p>Stacks (stacksdaily.com, the "Service") is a curation service that summarizes and explains investing-related writing from around the world. We value your privacy and comply with applicable laws. This policy explains what information we collect and why, and how we store and process it.</p>
 
@@ -156,7 +156,6 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
 
   <!-- ================= JAPANESE ================= -->
   <div class="policy" data-lang="ja">
-  <h1>プライバシーポリシー</h1>
   <p class="date">施行日: 2026年7月27日</p>
   <p>Stacks(stacksdaily.com、以下「本サービス」)は、世界中の投資関連の記事を要約・解説して提供するキュレーションサービスです。本サービスは利用者の個人情報を大切に扱い、関連法令を遵守します。本ポリシーは、本サービスがどのような情報をなぜ収集し、どのように保管・処理するかを説明します。</p>
 
@@ -209,7 +208,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
   </div>
 
   <footer>© Stacks</footer>
-</div>
+</main>
 
 <script>
 (function(){
@@ -239,6 +238,8 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
     }
     var back = document.querySelector("[data-back]");
     if (back){ back.textContent = BACK[l] || BACK.ko; back.setAttribute("href", "/?l=" + l); }
+    var title = document.querySelector("[data-page-title]");
+    if (title){ title.textContent = l === "ja" ? "プライバシーポリシー" : l === "en" ? "Privacy Policy" : "개인정보처리방침"; }
     try{ localStorage.setItem("stk_lang", l); }catch(e){}
     document.title = (l==="ja" ? "プライバシーポリシー" : l==="en" ? "Privacy Policy" : "개인정보처리방침") + " · Stacks";
   }
