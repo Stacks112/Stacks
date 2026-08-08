@@ -1110,7 +1110,7 @@ html.rbeta .gloss-link{border-bottom-color:rgba(130,140,160,.4);}
    which is what let it overflow). A body-level bottom sheet replaces it. */
 @media (hover: none){
   .has-tip:hover .entity-tip,
-  .has-tip.show .entity-tip{opacity:0 !important;visibility:hidden !important;}
+  .has-tip.show .entity-tip{display:none !important;opacity:0 !important;visibility:hidden !important;}
 }
 @media (hover: hover){
   .has-tip:hover .entity-tip{opacity:0 !important;visibility:hidden !important;}
@@ -2772,8 +2772,8 @@ html[data-theme="dark"] .opp{background:linear-gradient(180deg,rgba(255,255,255,
    costs nothing and leaves no hole. */
 .xreal{margin:12px 0 4px;}
 .xreal.x-on > .xemb{display:none;}
-.xreal-slot{min-height:0;display:none;}
-.xreal.x-on>.xreal-slot{display:flow-root;}
+.xreal-slot{min-height:0;display:block;height:0;overflow:hidden;visibility:hidden;}
+.xreal.x-on>.xreal-slot{display:flow-root;height:auto;overflow:visible;visibility:visible;}
 .xreal-slot iframe{max-width:100% !important;}
 .xreal-note{margin-top:6px;font-size:11px;color:var(--muted);}
 
@@ -13036,12 +13036,17 @@ async function xEmbedMount(host){
     const abandon = () => {
       if (settled) return;
       settled = true;
-      slot.remove();
+      slot.replaceChildren();
+      host.classList.remove("x-on");
     };
-    frame.addEventListener("load", () => requestAnimationFrame(() => {
-      const r = frame.getBoundingClientRect();
-      if (r.width > 0 && r.height > 0) reveal(); else abandon();
-    }), { once: true });
+    /* iframe load only proves that an error document loaded. Trust X's
+       rendered event instead; otherwise a blocked/error iframe can hide the
+       complete static fallback and leave a tall blank slot. */
+    if (!tw.events || typeof tw.events.bind !== "function") { abandon(); return; }
+    tw.events.bind("rendered", e => {
+      if (e && e.target && e.target !== frame) return;
+      if (e && e.target === frame) reveal();
+    });
     setTimeout(abandon, 5000);
   } catch (e) { slot.remove(); }
 }

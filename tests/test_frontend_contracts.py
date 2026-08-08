@@ -5,6 +5,7 @@ HTML app and the repository does not require a browser runner to validate the
 rendering contracts that caused the recent regressions.
 """
 
+import json
 from pathlib import Path
 import unittest
 
@@ -12,6 +13,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 V82 = (ROOT / "assets" / "v82.js").read_text(encoding="utf-8")
+ITEMS = json.loads((ROOT / "items.json").read_text(encoding="utf-8"))
 
 
 class FrontendContracts(unittest.TestCase):
@@ -112,6 +114,19 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("def paywall_gate(items, strict=False):", editorial)
         self.assertIn("--paywall-strict", editorial)
         self.assertIn("quote.lines가 없다", editorial)
+
+    def test_entity_websites_are_absolute_and_generated_links_are_safe(self):
+        for key, entity in (ITEMS.get("entities") or {}).items():
+            website = entity.get("website")
+            if website:
+                self.assertRegex(website, r"^https?://", key)
+
+        pages = list((ROOT / "e").glob("**/*morgan-stanley.html"))
+        self.assertEqual(len(pages), 3)
+        for page in pages:
+            html = page.read_text(encoding="utf-8")
+            self.assertNotIn('href="morganstanley.com"', html)
+            self.assertIn('href="https://morganstanley.com"', html)
 
 if __name__ == "__main__":
     unittest.main()

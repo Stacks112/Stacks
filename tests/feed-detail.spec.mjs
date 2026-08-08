@@ -71,10 +71,12 @@ test.describe("feed article detail round trip", () => {
       on: el.classList.contains("x-on"),
       fallback: getComputedStyle(el.querySelector(".xemb")).display,
       slot: getComputedStyle(el.querySelector(".xreal-slot")).display,
+      slotHeight: getComputedStyle(el.querySelector(".xreal-slot")).height,
     }));
     expect(state.on).toBe(false);
     expect(state.fallback).toBe("block");
-    expect(state.slot).toBe("none");
+    expect(state.slot).toBe("block");
+    expect(state.slotHeight).toBe("0px");
   });
 
   test.describe("mobile", () => {
@@ -87,6 +89,25 @@ test.describe("feed article detail round trip", () => {
         scrollWidth: document.documentElement.scrollWidth,
       }));
       expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
+    });
+
+    test("inline entity tooltip stays out of the mobile layout", async ({ page }) => {
+      await waitForFeed(page);
+      const id = await firstCardId(page);
+      await page.goto(`/?c=${id.slice(4)}`, { waitUntil: "domcontentloaded" });
+      const link = page.locator("#v82detail.on .ent-link, #v82detail.on .gloss-link").first();
+      await expect(link).toBeVisible();
+      const state = await link.evaluate(el => {
+        const tip = el.querySelector(":scope > .entity-tip");
+        return {
+          touch: matchMedia("(hover: none)").matches,
+          display: tip ? getComputedStyle(tip).display : "missing",
+          clientWidth: document.documentElement.clientWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+        };
+      });
+      expect(state.scrollWidth).toBeLessThanOrEqual(state.clientWidth + 1);
+      if (state.touch) expect(state.display).toBe("none");
     });
 
     test("list → detail → back keeps the feed and indexes the detail", async ({ page }) => {

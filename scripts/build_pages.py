@@ -67,6 +67,14 @@ def safe_href(u, fallback="#"):
     return s if re.match(r"^https?://", s, re.I) else fallback
 
 
+def website_href(u):
+    """Normalize publisher-owned bare domains before writing an href."""
+    s = str(u or "").strip()
+    if s and not re.match(r"^https?://", s, re.I):
+        s = "https://" + s.lstrip("/")
+    return safe_href(s, "")
+
+
 NAME_ALIAS = {"메르": "메르 (ranto28)"}
 def dispname(x):
     return NAME_ALIAS.get(x, x)
@@ -103,9 +111,9 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .xemb-q{margin-top:8px;padding:9px 11px;border:1px solid #ECEDF1;border-radius:11px;font-size:12.5px;line-height:1.55;color:#5B6070}
 .xemb-d{margin-top:9px;font-size:11.5px;color:#8E93A0}
 .xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
-.xreal-slot{display:none}
+.xreal-slot{display:block;height:0;overflow:hidden;visibility:hidden}
 .xreal.x-on>.xemb{display:none}
-.xreal.x-on>.xreal-slot{display:flow-root}
+.xreal.x-on>.xreal-slot{display:flow-root;height:auto;overflow:visible;visibility:visible}
 .xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
@@ -539,12 +547,13 @@ X_LIVE_SCRIPT = """<script>
             settled = true;
             slot.innerHTML = '';
           }
-          frame.addEventListener('load', function(){
-            requestAnimationFrame(function(){
-              var r = frame.getBoundingClientRect();
-              if (r.width > 0 && r.height > 0) reveal(); else abandon();
-            });
-          }, {once: true});
+          /* iframe load can be an X error document. Only X's rendered event
+             may hide the static fallback; failed embeds keep their source. */
+          if (!twttr.events || !twttr.events.bind) { abandon(); return; }
+          twttr.events.bind('rendered', function(e){
+            if (e && e.target && e.target !== frame) return;
+            if (e && e.target === frame) reveal();
+          });
           setTimeout(abandon, 5000);
         }).catch(function(){ slot.innerHTML = ''; });
       } catch (e) { slot.innerHTML = ''; }
@@ -2092,8 +2101,9 @@ def entity_page(key, e, ent_items, lang="ko", holder_index=None):
         if e.get(k):
             facts.append(f"<span><b>{E(lbl)}</b> {E(_loc(e[k]))}</span>")
     if e.get("website"):
-        w = e["website"]
-        facts.append(f'<span><b>{E(U["website"])}</b> <a href="{E(w)}" target="_blank" rel="noopener nofollow">{E(w.replace("https://","").replace("www.",""))}</a></span>')
+        w = website_href(e["website"])
+        label = re.sub(r"^https?://(www\.)?", "", w, flags=re.I)
+        facts.append(f'<span><b>{E(U["website"])}</b> <a href="{E(w)}" target="_blank" rel="noopener nofollow">{E(label)}</a></span>')
     facts_html = f'<p class="facts">{" · ".join(facts)}</p>' if facts else ""
     metadesc = clip(desc or U["metafb"].format(name=name), 160)
     rows = "".join(
