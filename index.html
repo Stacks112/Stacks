@@ -6195,19 +6195,19 @@ var INV_PROFILE = {
   "berkshire": { wiki: "Warren_Buffett", domain: "berkshirehathaway.com", logoLabel: "BH" },
   "pershing-square": { wiki: "Bill_Ackman", domain: "pershingsquareholdings.com", logoLabel: "PS" },
   "ark": { wiki: "Cathie_Wood", domain: "ark-invest.com", logoLabel: "ARK" },
-  "duquesne": { wiki: "Stanley_Druckenmiller", photo: "https://unavatar.io/twitter/Druckenmiller?fallback=false", logoLabel: "DUQ" },
+  "duquesne": { wiki: "Stanley_Druckenmiller", logoLabel: "DUQ" },
   "appaloosa": { wiki: "David_Tepper", logoLabel: "APP" },
   "situational-awareness": { wiki: "Leopold_Aschenbrenner", domain: "situationalawarenesslp.com", logoLabel: "SA" },
-  "third-point": { wiki: "Daniel_S._Loeb", photo: "https://unavatar.io/twitter/DanielSLoeb?fallback=false", domain: "thirdpoint.com", logoLabel: "TP" },
+  "third-point": { wiki: "Daniel_S._Loeb", domain: "thirdpoint.com", logoLabel: "TP" },
   "baupost": { wiki: "Seth_Klarman", domain: "baupost.com", logoLabel: "BP" },
   "tci": { wiki: "Chris_Hohn", domain: "tcifund.com", logoLabel: "TCI" },
-  "coatue": { wiki: "Philippe_Laffont", photo: "https://unavatar.io/twitter/PhilippeLaffont?fallback=false", domain: "coatue.com", logoLabel: "CT" },
+  "coatue": { wiki: "Philippe_Laffont", domain: "coatue.com", logoLabel: "CT" },
   "soros": { wiki: "George_Soros", logoLabel: "SFM" },
   "carl-icahn": { wiki: "Carl_Icahn", domain: "icahnenterprises.com", logoLabel: "IE" },
-  "tiger-global": { wiki: "Chase_Coleman_III", photo: "https://unavatar.io/twitter/ChaseColemanIII?fallback=false", domain: "tigerglobal.com", logoLabel: "TG" },
+  "tiger-global": { wiki: "Chase_Coleman_III", domain: "tigerglobal.com", logoLabel: "TG" },
   "viking": { wiki: "Andreas_Halvorsen", domain: "vikingglobal.com", logoLabel: "VG" },
   "oaktree": { wiki: "Howard_Marks_(investor)", domain: "oaktreecapital.com", logoLabel: "OC" },
-  "scion": { wiki: "Michael_Burry", photo: "https://unavatar.io/twitter/MichaelJBurry?fallback=false", logoLabel: "SC" }
+  "scion": { wiki: "Michael_Burry", logoLabel: "SC" }
 };
 var INV_LOGO_FALLBACK = {
   "berkshire": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Berkshire-Hathaway-Logo.svg/330px-Berkshire-Hathaway-Logo.svg.png",
@@ -9303,30 +9303,10 @@ function v83DirStr(){
   };
   return s[LANG] || s.ko;
 }
-/* v83.6: 소스명에 @핸들이 없는 저자들의 공개 X(트위터) 계정 — 프로필 사진용.
-   (item.avatarImg가 이미 있으면 그쪽이 우선. 메르·唐鎌大輔는 공개 프로필 사진이
-   없어 이니셜 유지.) */
-var AVATAR_TW = {
-  "Doomberg": "DoombergT",
-  "Howard Marks (Oaktree)": "HowardMarksBook",
-  "Marc Rubinstein (Net Interest)": "MarcRuby",
-  "SemiAnalysis": "dylan522p",
-  "エミン・ユルマズ (Emin Yurumazu)": "yurumazu",
-  "後藤達也 (Tatsuya Goto)": "goto_finance",
-  "唐鎌大輔 (Mizuho)": "kanhan0110"
-};
-/* A few older cards carried a relative avatar filename that was never added to
-   the repository. Keep this repair map in the front end as a last line of
-   defence; build_pages.py also normalizes the source data before publishing. */
-var AVATAR_FALLBACKS = {
-  "jukan.png": "https://unavatar.io/twitter/jukan05?fallback=false",
-  "schiff.png": "https://unavatar.io/twitter/PeterSchiff?fallback=false",
-  "bilello.png": "https://unavatar.io/twitter/charliebilello?fallback=false"
-};
+function isUnavatarUrl(url){ return /^https?:\/\/unavatar\.io\//i.test(String(url || "")); }
 function avatarSrcForItem(item){
   var raw = item && item.avatarImg ? String(item.avatarImg) : "";
-  var key = raw.replace(/^\.\//, "");
-  return AVATAR_FALLBACKS[key] || raw;
+  return isUnavatarUrl(raw) ? "" : raw;
 }
 function v83DirEntries(kind){
   var entries = [];
@@ -9353,11 +9333,6 @@ function v83DirEntries(kind){
       if (srcInfo[k].cat !== kind) return;
       var e = ENTITIES[k] || {};
       var av = srcInfo[k].avatar;
-      /* v83.5: 트위터 계정 소스는 핸들에서 트위터 프로필 사진을 바로 가져온다
-         (avatarImg가 비어 있던 인물 카드 커버 채우기 — june 지시) */
-      if (!av){ var hm = String(k).match(/@([A-Za-z0-9_]{2,20})/); if (hm) av = "https://unavatar.io/twitter/" + hm[1] + "?fallback=false"; }
-      /* v83.6: 이름에 핸들이 없는 저자들의 알려진 X 계정 매핑 (june 지시) */
-      if (!av && typeof AVATAR_TW !== "undefined" && AVATAR_TW[k]) av = "https://unavatar.io/twitter/" + AVATAR_TW[k] + "?fallback=false";
       entries.push({ key: k, name: entName(k), img: av, imgKind: "face", wiki: srcInfo[k].wiki,
         meta: (e.sector && (e.sector[LANG] || e.sector.en)) || "",
         desc: (e.desc && (e.desc[LANG] || e.desc.en)) || "", n: srcInfo[k].n });
@@ -9575,7 +9550,7 @@ function coverImg(item){
     const personFace = () => {
       if (mk && ENTITIES[mk] && ENTITIES[mk].kind === "person"){
         const av = ENTITIES[mk].avatarImg;
-        if (av && /^https?:\/\//.test(av)) return { url:av, fb:null, mode:"face", badge:null };
+        if (av && /^https?:\/\//.test(av) && !isUnavatarUrl(av)) return { url:av, fb:null, mode:"face", badge:null };
       }
       return null;
     };

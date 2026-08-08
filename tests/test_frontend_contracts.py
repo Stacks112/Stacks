@@ -128,5 +128,11 @@ class FrontendContracts(unittest.TestCase):
             self.assertNotIn('href="morganstanley.com"', html)
             self.assertIn('href="https://morganstanley.com"', html)
 
+    def test_runtime_avatar_path_skips_unavatar(self):
+        self.assertIn("function isUnavatarUrl(url)", INDEX)
+        self.assertIn('return isUnavatarUrl(raw) ? "" : raw;', INDEX)
+        self.assertIn("&& !isUnavatarUrl(av)", INDEX)
+        self.assertNotIn("https://unavatar.io/", INDEX)
+
 if __name__ == "__main__":
     unittest.main()

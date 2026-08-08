@@ -148,6 +148,16 @@ test.describe("13F investor view state", () => {
     await expect(page.locator("#v83rail .v83-search")).toBeVisible();
   }
 
+  test("13F view does not request unavatar images", async ({ page }) => {
+    const unavatarRequests = [];
+    page.on("request", request => {
+      if (request.url().includes("unavatar.io")) unavatarRequests.push(request.url());
+    });
+    await openInvestors(page);
+    await page.waitForTimeout(300);
+    expect(unavatarRequests).toEqual([]);
+  });
+
   test("13F transitions restore the right rail", async ({ page }) => {
     await openInvestors(page);
 
