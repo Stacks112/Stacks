@@ -174,6 +174,7 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('aria-label="Search"', INDEX)
         self.assertIn('aria-label="Email"', INDEX)
         self.assertIn("data-nle aria-label=\"'+t.ph+'\"", (ROOT / "assets" / "v83tw.js").read_text(encoding="utf-8"))
+        self.assertIn("@media (min-width:1024px){ .engage .eg{min-width:44px;min-height:44px;justify-content:center;} }", INDEX)
 
     def test_onesignal_tags_retry_and_reconcile(self):
         self.assertIn("const OS_TAG_DELAYS = [300, 1000, 3000]", INDEX)
