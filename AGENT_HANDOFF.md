@@ -1,3 +1,13 @@
+## 2026-08-08 Codex — 유료글 고지 분기·편집 게이트·배지 접근성
+
+**변경**: 인용문이 있는 유료글과 공개 미리보기만 있는 유료글의 고지를 분리했다.
+`check_editorial.py --paywall-strict`로 `quote.lines` 누락을 BLOCK 처리할 수 있게 했고,
+유료글 배지에 `role`, `aria-label`, Enter/Space 키보드 동작, focus 표시를 추가했다.
+
+**검증**: 인라인 JS 문법, paywall 분기 self-check, 프런트 계약 테스트 11개,
+Playwright 회귀 13개 통과. 현재 기존 유료글 중 인용문 없는 8개는 일반 모드 WARN,
+strict 모드 BLOCK 대상이다.
+
 ## 2026-08-08 Codex — SemiAnalysis 프로필·유료글 고지 배포
 
 **변경**: `semianalysis.png`를 SemiAnalysis 프로필 이미지로 등록하고 표기명을

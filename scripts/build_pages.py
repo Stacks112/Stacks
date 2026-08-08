@@ -86,6 +86,7 @@ BLOCK_CSS = """:root{--s1:#2563EB;--s2:#F59E0B;--s3:#0D9488;--s4:#7C3AED;--track
 h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;border-left:3px solid #3B82F6}
 .srcq{margin:0 0 20px;padding:12px 16px;border-left:3px solid #3B82F6;background:#F6F7F9;border-radius:0 10px 10px 0}
 .srcq blockquote{margin:0;quotes:none}
+.srcq-paywall{margin:0 0 8px;font-size:12.5px;font-weight:600;color:#8E93A0}
 .srcq p{margin:0 0 6px;font-size:15px;line-height:1.62;color:#3E414B}
 .srcq-c{font-size:12.5px;color:#8E93A0}
 .srcq-c a{color:#8E93A0}
@@ -588,6 +589,22 @@ def x_embed_block(item):
     if not xid:
         return card
     return '<div class="xreal" data-xid="%s">%s<div class="xreal-slot"></div></div>' % (E(xid), card)
+
+
+def _has_lines(raw):
+    if isinstance(raw, dict):
+        return any(_has_lines(value) for value in raw.values())
+    if isinstance(raw, (list, tuple)):
+        return any(str(value).strip() for value in raw)
+    return bool(str(raw).strip()) if raw else False
+
+
+def has_public_excerpt(item):
+    q = item.get("quote") or {}
+    if _has_lines(q.get("lines")):
+        return True
+    e = EMBEDS.get(item.get("id"), {}) or {}
+    return _has_lines(e.get("lines"))
 
 
 def quote_block(item, lang):
@@ -1185,6 +1202,7 @@ def publisher_ld():
 UI = {
     "ko": dict(app="Stacks 앱에서 보기 →", src="원문 보기 ↗", paid="유료글 · 원문은 유료 구독",
                partial="공개된 일부 원문을 인용해 작성",
+               preview="공개된 미리보기만 바탕으로 작성",
                origlang="원문", ents="관련 종목·인물", related="관련 글",
                other="다른 언어로 읽기", why="투자 포인트", ask="짚어볼 점",
                sum3="세 줄 요약", split="구분 기준",
@@ -1196,6 +1214,7 @@ UI = {
     "en": dict(app="Open in the Stacks app →", src="Read the original ↗",
                paid="PAYWALLED · Original requires a subscription",
                partial="Written using a quoted excerpt from the publicly visible source text",
+               preview="Written using the publicly visible preview, not the full article",
                origlang="original",
                ents="Companies & people", related="Related",
                other="Read this in another language", why="Why it matters",
@@ -1207,6 +1226,7 @@ UI = {
                     "links to the original. This is information and commentary, not investment advice."),
     "ja": dict(app="Stacksアプリで見る →", src="元記事を読む ↗", paid="有料記事 · 元記事は有料購読",
                partial="公開部分の原文を引用して作成",
+               preview="公開されているプレビューだけをもとに作成",
                origlang="原文", ents="関連銘柄・人物", related="関連記事",
                other="他の言語で読む", why="Why it matters", ask="考えるべき点",
                sum3="3行まとめ", split="見分ける基準",
@@ -1796,7 +1816,11 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     ) if og_img else ""
     tw_card = "summary_large_image" if og_img else "summary"
 
-    paywall = f'<span class="paid">{E(U["paid"])}</span>' if item.get("paywall") else ""
+    paywall = ""
+    if item.get("paywall"):
+        paywall = f'<span class="paid">{E(U["paid"])}</span>'
+        if not has_public_excerpt(item):
+            paywall += f'<span class="paid-note">{E(U["preview"])}</span>'
     og_locale = (f'<meta property="og:locale" content="{OG_LOCALE[lang]}">'
                  + "".join(f'<meta property="og:locale:alternate" content="{OG_LOCALE[lg]}">'
                            for lg in others))
@@ -1862,6 +1886,7 @@ h1{{font-size:26px;line-height:1.3;letter-spacing:-.02em;margin:.2em 0 .6em}}
 .btn.src{{background:#F6F7F9;color:#17181C;border:1px solid #ECEDF1}}
 @media(prefers-color-scheme:dark){{.btn.app{{background:#1E1F26;color:#fff}}.btn.src{{background:#141519;color:#ECEDF1;border-color:#2E3037}}}}
 .paid{{font-size:12px;color:#8E93A0;align-self:center}}
+.paid-note{{flex:1 0 100%;font-size:12px;color:#8E93A0}}
 .related{{margin-top:30px;font-size:14px}}
 .related ul{{padding-left:18px}}
 .ent-nav{{margin-top:28px}}

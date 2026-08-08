@@ -99,5 +99,19 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("+ '<b class=\"since-p ' + (up ? \"up\" : \"down\") + '\">'", INDEX)
 
 
+    def test_paywall_disclosure_and_keyboard_contracts(self):
+        self.assertIn("paywallPreviewNote", INDEX)
+        self.assertIn("function hasPublicExcerpt(item)", INDEX)
+        self.assertIn("function paywallDisclosure(item, S)", INDEX)
+        self.assertIn('role="button" tabindex="0" aria-label=', INDEX)
+        self.assertIn('onkeydown="togglePaywallBadge(this, event)"', INDEX)
+        self.assertIn("function togglePaywallBadge(el, e)", INDEX)
+
+    def test_paywall_editorial_gate_contract(self):
+        editorial = (ROOT / "scripts" / "check_editorial.py").read_text(encoding="utf-8")
+        self.assertIn("def paywall_gate(items, strict=False):", editorial)
+        self.assertIn("--paywall-strict", editorial)
+        self.assertIn("quote.lines가 없다", editorial)
+
 if __name__ == "__main__":
     unittest.main()

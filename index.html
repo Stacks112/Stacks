@@ -250,7 +250,9 @@ const STRINGS = {
     freeOnly: "Free only",
     paywallLabel: "PAYWALLED",
     paywallSourceNote: "Written using a quoted excerpt from the publicly visible source text.",
+    paywallPreviewNote: "Written using the publicly visible preview, not the full article.",
     paywallTip: "The full article requires a paid subscription. This summary uses a quoted excerpt from the publicly visible source text.",
+    paywallPreviewTip: "The full article requires a paid subscription. This summary uses the publicly visible preview, not the full article.",
     comments: "Comments",
     cNickname: "Name",
     cContent: "Write a comment",
@@ -434,7 +436,9 @@ const STRINGS = {
     freeOnly: "무료만",
     paywallLabel: "유료글",
     paywallSourceNote: "공개된 일부 원문을 인용해 작성했습니다.",
+    paywallPreviewNote: "공개된 미리보기만 바탕으로 작성했습니다.",
     paywallTip: "전체 글은 유료 구독이 필요합니다. 공개된 일부 원문을 인용해 작성했습니다.",
+    paywallPreviewTip: "전체 글은 유료 구독이 필요합니다. 공개된 미리보기만 바탕으로 작성했습니다.",
     comments: "댓글",
     cNickname: "이름",
     cContent: "댓글을 남겨보세요",
@@ -618,7 +622,9 @@ const STRINGS = {
     freeOnly: "無料のみ",
     paywallLabel: "有料記事",
     paywallSourceNote: "公開部分の原文を引用して作成しています。",
+    paywallPreviewNote: "公開されているプレビューだけをもとに作成しています。",
     paywallTip: "全文は有料購読が必要です。公開部分の原文を引用して作成しています。",
+    paywallPreviewTip: "全文は有料購読が必要です。公開されているプレビューだけをもとに作成しています。",
     comments: "コメント",
     cNickname: "名前",
     cContent: "コメントを書く",
@@ -2489,6 +2495,7 @@ html[data-lang="ko"] .search-box input{font-family:var(--ui-font);}
 .paywall-badge.show .paywall-tip{
   opacity:1;visibility:visible;transform:translateY(0);
 }
+.paywall-badge:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 /* ---------- comments ---------- */
 .comment-toggle{
   font-size:12.5px;font-weight:600;color:var(--muted);
@@ -4326,7 +4333,7 @@ function srcBlockHtml(item){
     const note = (picked.lang && slang && picked.lang !== slang)
       ? (S["trFrom" + slang.toUpperCase()] || "") : "";
     return '<div class="srcq">' +
-      (item.paywall ? '<div class="srcq-paywall">' + esc(S.paywallSourceNote) + "</div>" : "") +
+      (item.paywall ? '<div class="srcq-paywall">' + esc(paywallDisclosure(item, S)) + "</div>" : "") +
       '<div class="srcq-h">“” ' + esc(S.fromSource) + "</div>" +
       picked.lines.map(l => "<p>" + esc(l) + "</p>").join("") +
       '<div class="srcq-c"><a href="' + safeUrl(item.sourceUrl) + '" target="_blank" rel="noopener">' +
@@ -4356,6 +4363,29 @@ function quoteLines(raw, lang, slang){
     if (v && v.length) return {lines: v, lang: order[i]};
   }
   return null;
+}
+
+function hasPublicExcerpt(item){
+  const e = item && item.embed;
+  if (e && Array.isArray(e.lines) && e.lines.some(Boolean)) return true;
+  const raw = item && item.quote && item.quote.lines;
+  if (Array.isArray(raw)) return raw.some(Boolean);
+  if (raw && typeof raw === "object"){
+    return Object.keys(raw).some(k => Array.isArray(raw[k]) && raw[k].some(Boolean));
+  }
+  return false;
+}
+function paywallDisclosure(item, S){
+  return hasPublicExcerpt(item) ? S.paywallSourceNote : S.paywallPreviewNote;
+}
+function paywallTipText(item, S){
+  return hasPublicExcerpt(item) ? S.paywallTip : S.paywallPreviewTip;
+}
+function togglePaywallBadge(el, e){
+  if (e.key !== "Enter" && e.key !== " ") return;
+  e.preventDefault();
+  e.stopPropagation();
+  el.classList.toggle("show");
 }
 
 /* What would have to happen for either reading to be right. Deliberately the
@@ -12877,7 +12907,7 @@ function cardEl(item, S, idx){
       <!-- lab(item.lab): 실험 카드 한정. 원문제목과 커버를 DOM에서 뺀다. 원문 보기 줄은 order:5로 헤드라인 밑 -->
       <div class="card-body">
       ${(showOrig && !item.lab) ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
-      ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}<span class="chips-end">${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="event.stopPropagation(); this.classList.toggle('show')">${S.paywallLabel}<span class="paywall-tip">${S.paywallTip}</span></span><span class="paywall-note paywall-note-inline">${S.paywallSourceNote}</span>` : ""}<a class="chips-orig" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation(); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a></span></div>` : ""}
+      ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}<span class="chips-end">${item.paywall ? `<span class="paywall-badge" role="button" tabindex="0" aria-label="${esc(S.paywallLabel + '. ' + paywallDisclosure(item, S))}" onclick="event.stopPropagation(); this.classList.toggle('show')" onkeydown="togglePaywallBadge(this, event)">${S.paywallLabel}<span class="paywall-tip">${paywallTipText(item, S)}</span></span><span class="paywall-note paywall-note-inline">${paywallDisclosure(item, S)}</span>` : ""}<a class="chips-orig" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation(); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a></span></div>` : ""}
       ${"" /* card cover image retired 2026-07-27 — bottom image removed, lab layout for all cards */}
       ${"" /* series feature retired: no series tag on cards */}
       ${srcBlockHtml(item)}
@@ -12915,7 +12945,7 @@ function cardEl(item, S, idx){
       </div>` : ""}
       ${`<div class="cta-row">
         <a class="original-link" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
-        ${item.paywall ? `<span class="paywall-badge" tabindex="0" onclick="this.classList.toggle('show')">${S.paywallLabel}<span class="paywall-tip">${S.paywallTip}</span></span><span class="paywall-note">${S.paywallSourceNote}</span>` : ""}
+        ${item.paywall ? `<span class="paywall-badge" role="button" tabindex="0" aria-label="${esc(S.paywallLabel + '. ' + paywallDisclosure(item, S))}" onclick="this.classList.toggle('show')" onkeydown="togglePaywallBadge(this, event)">${S.paywallLabel}<span class="paywall-tip">${paywallTipText(item, S)}</span></span><span class="paywall-note">${paywallDisclosure(item, S)}</span>` : ""}
         <span class="lang-note">${langNote}</span>
       </div>`}
       <div class="engage" data-eg="${item.id}">

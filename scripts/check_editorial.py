@@ -10,6 +10,7 @@
 사용:
   python3 scripts/check_editorial.py --ids id1,id2
   python3 scripts/check_editorial.py --ids id1 --warn-only     # 롤아웃 기간
+  python3 scripts/check_editorial.py --ids id1 --paywall-strict # 유료글 인용 게이트
   python3 scripts/check_editorial.py --weekly                  # 주간 목록 규칙만
 
 종료코드: BLOCK 이 하나라도 있으면 1, 아니면 0. --warn-only 면 항상 0.
@@ -57,6 +58,25 @@ def lang_text(v, lang="ko"):
     if isinstance(v, str): return v if lang == "ko" else ""
     if isinstance(v, dict): return v.get(lang) or ""
     return ""
+
+
+def _has_quote_lines(item):
+    raw = (item.get("quote") or {}).get("lines")
+    if isinstance(raw, dict):
+        return any(isinstance(v, list) and any(str(x).strip() for x in v)
+                   for v in raw.values())
+    return isinstance(raw, list) and any(str(x).strip() for x in raw)
+
+
+def paywall_gate(items, strict=False):
+    """Require a public quote for paywalled cards before strict publishing."""
+    level = BLOCK if strict else WARN
+    out = []
+    for item in items:
+        if item.get("paywall") and not _has_quote_lines(item):
+            out.append((level, "P1", "%s: paywall 카드에 quote.lines가 없다. 공개 원문 인용을 추가한다."
+                        % (item.get("id") or "?")))
+    return out
 
 # ── 개별 규칙 ─────────────────────────────────────────────────────────
 CLICHE = re.compile(r"(결국|남는) 질문은 하나(다|입니다)")
@@ -290,6 +310,8 @@ def main():
     ap.add_argument("--ids", default="")
     ap.add_argument("--items", default="items.json")
     ap.add_argument("--warn-only", action="store_true")
+    ap.add_argument("--paywall-strict", action="store_true",
+                    help="paywall 카드에 quote.lines가 없으면 BLOCK 처리")
     ap.add_argument("--weekly", action="store_true")
     ap.add_argument("--round", action="store_true",
                     help="sources.json 의 _CAPS(회차 총량·필진별·카테고리별 상한)까지 검사. "
@@ -325,6 +347,15 @@ def main():
         for lv, num, msg in res:
             print("   [%s] #%s %s" % (lv, num, msg))
             if lv == BLOCK: hard += 1
+
+    paywall_items = [by[i] for i in ids if i in by] if ids else items
+    print("\n■ 유료글 원문 인용 게이트%s" % (" (strict)" if a.paywall_strict else ""))
+    paywall_res = paywall_gate(paywall_items, a.paywall_strict)
+    if not paywall_res:
+        print("   ok")
+    for lv, num, msg in paywall_res:
+        print("   [%s] #%s %s" % (lv, num, msg))
+        if lv == BLOCK: hard += 1
 
     if a.round and ids:
         sel = [by[i] for i in ids if i in by]
