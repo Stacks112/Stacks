@@ -68,7 +68,7 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .xemb-d a{color:#8E93A0;text-decoration:underline;text-underline-offset:2px}
 .xreal-slot{display:none}
 .xreal.x-on>.xemb{display:none}
-.xreal.x-on>.xreal-slot{display:block}
+.xreal.x-on>.xreal-slot{display:flow-root}
 .xreal-slot iframe{max-width:100%!important}
 .chk{margin:16px 0;border:1px solid #ECEDF1;border-radius:12px;overflow:hidden}
 .chk-g{display:flex;flex-wrap:wrap}
@@ -354,8 +354,27 @@ SK실트론도 새 설비를 단계적으로 가동하고 있지만,
         Promise.resolve(twttr.widgets.createTweet(id, slot, {
           dnt: true, conversation: 'none', align: 'left'
         })).then(function(node){
-          if (node) host.classList.add('x-on');
-          else slot.innerHTML = '';
+          if (!node) { slot.innerHTML = ''; return; }
+          var frame = slot.querySelector('iframe');
+          if (!frame) { slot.innerHTML = ''; return; }
+          var settled = false;
+          function reveal(){
+            if (settled) return;
+            settled = true;
+            host.classList.add('x-on');
+          }
+          function abandon(){
+            if (settled) return;
+            settled = true;
+            slot.innerHTML = '';
+          }
+          frame.addEventListener('load', function(){
+            requestAnimationFrame(function(){
+              var r = frame.getBoundingClientRect();
+              if (r.width > 0 && r.height > 0) reveal(); else abandon();
+            });
+          }, {once: true});
+          setTimeout(abandon, 5000);
         }).catch(function(){ slot.innerHTML = ''; });
       } catch (e) { slot.innerHTML = ''; }
     });
