@@ -2,6 +2,174 @@
  "items": [
   {
    "date": "2026-08-07",
+   "id": "semianalysis-spacex-10gw-300b-revenue-gap",
+   "related": [
+    "kobeissi-spacex-nvidia-starmind-power-before-compute",
+    "jukan-microsoft-capex-175b-lease-reclass",
+    "jukan-foxconn-spacex-gb300"
+   ],
+   "source": "SemiAnalysis",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": null,
+   "wiki": null,
+   "sourceUrl": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B1220",
+    "to": "#B45309",
+    "label": "10GW / $300B"
+   },
+   "tags": [
+    "SPACEX",
+    "AI POWER",
+    "MICROSOFT"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "스페이스X는 내년에 AI 서버 전력을 10기가와트로 늘리겠다고 했다, 공개된 가정으로는 연 3,000억달러가 나오지 않는다",
+    "en": "SpaceX Says It Will Reach 10 Gigawatts Next Year, but the Published Assumptions Do Not Add Up to $300 Billion a Year",
+    "ja": "スペースXは来年AIサーバー用電力を10ギガワットへ増やすというが、公表された前提では年3000億ドルにならない"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "그는 2027년 한 해에만 6~8기가와트를 추가로 건설해 공급하겠다는 목표를 ‘보수적으로’ 제시했고, 그 수치가 10기가와트를 크게 넘을 가능성도 있다고 했다.",
+      "이 계획은 스페이스X가 2027년 말까지 연간 환산 매출 3,000억달러에 이르는 길을 열 수 있다."
+     ],
+     "en": [
+      "He “conservatively” aims to build & deliver an incremental 6-8GW in 2027 alone, with potential for that number to be well above +10GW.",
+      "The implications of this are a path to $300B of ARR by the end of 2027 for SpaceX."
+     ],
+     "ja": [
+      "彼は2027年だけで6〜8ギガワットを追加で建設・供給する目標を「控えめに」掲げ、その数字が10ギガワットを大きく上回る可能性もあるとしている。",
+      "この計画は、スペースXが2027年末までに年間換算売上高3000億ドルへ至る道を開く可能性がある。"
+     ]
+    },
+    "cite": "SemiAnalysis · 2026.08.07"
+   },
+   "sum3": {
+    "ko": "AI 서버를 빌려주는 사업은 반도체만 확보한다고 커지지 않는다. 서버를 켤 전기와 냉각 시설을 먼저 준비해야 한다.\n스페이스X는 이 부족한 전력을 빨리 마련해 다른 AI 회사에 빌려주는 사업에서 큰 매출이 나올 것으로 기대한다.\n다만 세미애널리시스가 공개한 증설량·대여 비중·가격을 곱하면 900억~2,000억달러로, 3,000억달러 전망에는 설명되지 않은 빈칸이 남는다.",
+    "en": "SpaceX says it expects to expand AI computing power from roughly 2 gigawatts to nearly 10 gigawatts by the end of 2027.\nSemiAnalysis argues that fast construction and scarcity pricing could put the company on a path to $300 billion of annualized revenue.\nYet its stated additions, sales share, and price range multiply to $90 billion to $200 billion, leaving another assumption to fill the gap.",
+    "ja": "スペースXは、AIサーバー用電力を現在の約2ギガワットから2027年末までに10ギガワット近くへ増やすと説明した。\nSemiAnalysisは、建設の速さと高い貸出価格を根拠に年間換算売上高3000億ドルへの道があるとみる。\nしかし記事にある増設量、販売比率、価格を掛けると900億〜2000億ドルで、追加の容量か販売比率が必要になる。"
+   },
+   "gist": {
+    "ko": "AI 서비스는 화면 속 모델만으로 돌아가지 않는다.\n이용자가 질문을 보낼 때마다 계산용 반도체가 움직이고, 그 반도체를 켤 전기와 열을 식힐 냉각 시설이 함께 필요하다.\n\n이 전력 부족을 사업 기회로 본 스페이스X는 2027년 말까지 AI 서버가 쓸 수 있는 전력을 10기가와트 가까이 늘리겠다고 밝혔다.\n10기가와트는 계산 속도가 아니라, 서버와 냉각 장치가 동시에 끌어 쓸 수 있는 전력의 크기다.\n\n@@REF@@스페이스X의 첫 상장사 실적, AI 서버 전력을 2027년 말 10기가와트 가까이 늘린다 (Reuters, 2026-08-04)|https://www.reuters.com/business/media-telecom/spacex-quarterly-revenue-surges-debut-results-strong-growth-its-starlink-2026-08-04/\n\n세미애널리시스는 스페이스X가 이 서버를 다른 AI 회사에 빌려주면, 2027년 말 큰 매출을 만들 수 있다고 분석했다.\n연간 환산 매출은 한 달이나 한 분기의 계약 금액이 같은 속도로 1년 이어진다고 가정해 계산한 값이다. 아직 실제로 1년 동안 벌어들인 돈은 아니다.\n\n## 왜 전기가 먼저 나오나\n\nAI 모델은 GPU라는 계산용 반도체에서 돌아간다.\nGPU를 더 꽂으면 답변을 더 많이 만들 수 있지만, 전력과 냉각 시설도 같은 속도로 늘어야 한다.\n\n기가와트는 발전소와 데이터센터의 전력 규모를 나타낼 때 쓰는 단위다.\n1기가와트는 1,000메가와트이므로, 10기가와트를 채우려면 여러 지역에서 발전 설비와 서버 건물을 동시에 준비해야 한다.\n\n@@IMG@@datacenter-inside|AI 모델이 실제로 돌아가는 데이터센터 내부. 칩을 늘리는 일은 서버 랙, 전기 설비, 냉각 장치를 함께 늘리는 일이다.\n\n일반 데이터센터는 전력망 연결 허가를 기다리는 데 오랜 시간이 걸린다.\n스페이스X는 데이터센터 옆에서 가스를 태워 전기를 만드는 발전기를 설치해 이 대기 시간을 줄여 왔다. 이 방식은 빠르지만 발전기와 연료, 배출 허가까지 회사가 직접 마련해야 한다.\n\n## 스페이스X가 파는 것\n\n스페이스X는 일론 머스크가 운영하던 인공지능 회사를 합쳤다.\n그래서 회사는 로켓과 위성 인터넷뿐 아니라, 다른 회사가 AI 모델을 돌릴 수 있도록 서버 사용 시간을 빌려주는 사업도 한다.\n\n앤스로픽과 구글을 포함한 여러 회사는 이미 스페이스X의 데이터센터를 쓰는 고객이다.\n로이터는 이 계약들이 AI 부문 매출을 키웠지만, 계약 금액 가운데 아직 매출로 잡히지 않은 부분도 있다고 보도했다.\n\n@@FLOW@@전력과 서버|스페이스X가 데이터센터를 짓는다|모델 실행|고객사가 AI 모델을 돌린다|이용료|처리한 질문과 계약 용량에 따라 돈을 받는다@@빠르게 확보한 전력을 실제 고객의 사용료로 바꿀 수 있어야 높은 임대 가격이 이어진다.\n\n스페이스X가 10기가와트를 모두 자체 AI 모델에 쓸 필요는 없다.\n내부에서 남는 서버를 빌려주면 건설비를 먼저 회수할 수 있고, 필요할 때 다시 자체 모델에 돌릴 수도 있다.\n\n## 마이크로소프트가 나온 이유\n\n마이크로소프트는 오픈AI에 투자한 회사이면서, 오픈AI 모델을 기업 고객에게 제공하는 회사다.\n오픈AI와의 계약이 바뀌면서 이 사업의 돈 흐름도 달라졌다.\n\n2026년 4월 발표된 계약에서 마이크로소프트는 2032년까지 오픈AI 모델을 자사 제품에 쓸 권리를 유지했다.\n동시에 마이크로소프트가 오픈AI에 내던 매출 일부는 더 이상 지급하지 않게 됐다.\n\n@@REF@@마이크로소프트는 오픈AI 모델 사용권을 2032년까지 유지하고, 오픈AI에 내던 매출 일부는 종료했다 (OpenAI, 2026-04-27)|https://openai.com/index/next-phase-of-microsoft-partnership/\n\n이 구조에서는 마이크로소프트가 서버를 확보해 오픈AI 모델을 더 많이 제공할수록, 고객에게 받은 돈을 더 많이 남길 수 있다.\n세미애널리시스가 마이크로소프트를 스페이스X의 큰 고객 후보로 본 이유다.\n\n그러나 두 회사가 3기가와트 계약을 맺었다는 발표는 아직 없다.\n마이크로소프트가 가장 큰 고객이 될 것이라는 부분은 확인된 계약이 아니라 분석가의 예상이다.\n\n## 목표 매출 계산의 빈칸\n\n기가와트 하나는 1,000메가와트다.\n글이 제시한 연간 가격은 메가와트당 3,000만~5,000만달러다.\n2027년에 새로 만드는 6~8기가와트 중 절반만 빌려준다는 가정도 붙었다.\n세 수치를 곱하면 연간 환산 매출은 900억~2,000억달러다.\n이 목표에 닿으려면 판매 용량이 더 많거나 가격이 제시 범위보다 높아야 한다.\n\n공개된 가정만으로는 목표 금액이 완성되지 않는다.\n스페이스X가 10기가와트를 크게 넘겨 짓거나, 새 용량의 절반보다 훨씬 많이 빌려주거나, 다른 AI 매출을 더해야 한다.\n\n@@CHK@@2026년 1분기 AI 매출|8억1,800만달러|AI 영업손실|24억6,900만달러|AI 설비투자|77억2,300만달러@@AI 사업은 고객을 받기 시작했지만, 출발점에서는 벌어들인 돈보다 서버와 시설에 쓴 돈이 훨씬 컸다. 빠른 증설은 먼저 현금 부담으로 나타난다.@@2026-06-03 · SpaceX SEC 등록신고서, 2026년 1분기\n\n높은 임대 가격도 영구적이지 않다.\n전력이 부족한 동안에는 빨리 쓸 수 있는 서버가 비싸지만, 경쟁사의 데이터센터가 늘어나면 같은 서버를 더 싼 값에 빌릴 수 있다.\n\n## 2027년 스페이스X의 시험\n\n스페이스X가 2027년에 10기가와트를 실제로 켤 수 있을까, 켠 서버를 높은 값에 계속 빌려줄 수 있을까?\n건물을 완성해도 전력과 GPU가 제때 들어오지 않으면 쓸 수 있는 용량은 목표보다 작아진다.\n\n10기가와트가 실제 가동 용량으로 잡히고 장기 고객 매출이 함께 늘면, 빠른 건설이 사업 경쟁력으로 이어진 셈이다.\n용량이 목표에 못 미치거나 고객이 짧은 계약을 끝내면, 이 매출 전망은 실적보다 전력 부족이 오래 간다는 가정에 더 가까웠던 것으로 판정할 수 있다.\n\n스페이스X 투자자에게 중요한 숫자는 발표한 전력 규모와 실제로 고객에게 빌려준 전력, 그리고 건설비를 내고 남은 현금이다.\n제시된 매출은 아직 실적이 아니라, 이 세 조건이 모두 맞을 때 가능한 계산이다.",
+    "en": "An AI service does not run on a model alone.\nEvery user question activates computing chips, and those chips need electricity and cooling equipment to carry away their heat.\n\nSpaceX sees that power shortage as a business opportunity. It says it expects to have close to 10 gigawatts of power available for AI computing by the end of 2027.\nTen gigawatts is not a measure of calculation speed. It is the amount of electricity that servers and cooling equipment can draw at the same time.\n\n@@REF@@SpaceX expects AI computing capacity to approach 10 gigawatts by the end of 2027 (Reuters, 2026-08-04)|https://www.reuters.com/business/media-telecom/spacex-quarterly-revenue-surges-debut-results-strong-growth-its-starlink-2026-08-04/\n\nSemiAnalysis argues that renting those servers to other AI companies could put SpaceX on a path to $300 billion of annualized revenue by the end of 2027.\nAnnualized revenue takes a month or quarter of contracts and assumes they continue at the same pace for a full year. It is not revenue already collected over twelve months.\n\n## Why power comes first\n\nAI models run on computing chips called GPUs.\nAdding more GPUs can produce more answers, but the power supply and cooling system must expand with them.\n\nA gigawatt is a unit used for power plants and large data centers.\nOne gigawatt equals 1,000 megawatts, so reaching 10 gigawatts requires power equipment and server buildings to come together across several sites.\n\n@@IMG@@datacenter-inside|Inside the data center where an AI model actually runs. More chips also require more server racks, electrical equipment, and cooling.\n\nA conventional data center can spend years waiting for a grid connection.\nSpaceX has shortened that wait by installing generators beside its sites and producing electricity from natural gas. This can move faster, but the company must secure the generators, fuel supply, and emissions permits itself.\n\n## What SpaceX sells\n\nSpaceX combined with an artificial-intelligence company formerly run by Elon Musk.\nThat means the company sells rocket launches and satellite internet while also renting server capacity to companies that need to run AI models.\n\nCompanies including Anthropic and Google already use SpaceX data centers.\nReuters reported that these contracts lifted AI revenue, though part of their contracted value has not yet been recognized as revenue.\n\n@@FLOW@@Power and servers|SpaceX builds the data center|Model execution|A customer runs its AI model|Usage fees|The customer pays for questions processed and capacity reserved@@Fast construction matters only if powered servers turn into paying customer use at premium prices.\n\nSpaceX does not need to reserve all 10 gigawatts for its own models.\nRenting spare servers can recover construction spending sooner, while short contracts leave room to take the capacity back for internal use.\n\n## Why Microsoft enters the story\n\nMicrosoft both invests in OpenAI and sells access to OpenAI models to business customers.\nA revised agreement changed how money moves through that relationship.\n\nThe April 2026 agreement keeps Microsoft's right to use OpenAI models and products through 2032.\nIt also ends the share of Microsoft's revenue that it had been paying to OpenAI.\n\n@@REF@@Microsoft keeps OpenAI model rights through 2032 and stops paying a revenue share to OpenAI (OpenAI, 2026-04-27)|https://openai.com/index/next-phase-of-microsoft-partnership/\n\nThat structure may let Microsoft keep more customer revenue when it secures servers and sells more OpenAI-powered services.\nIt explains why SemiAnalysis names Microsoft as a likely large buyer of SpaceX capacity.\n\nNo three-gigawatt agreement between the two companies has been announced.\nMicrosoft becoming the largest customer is an analyst forecast, not a signed deal.\n\n## The missing step in $300 billion\n\nOne gigawatt contains 1,000 megawatts.\nThe article uses an annual price of $30 million to $50 million per megawatt.\nIt also assumes that half of the six to eight incremental gigawatts built in 2027 are rented out.\nMultiplying those inputs produces $90 billion to $200 billion of annualized revenue.\nReaching $300 billion requires more capacity to be sold or a price above the stated range.\n\nThe published assumptions do not complete the $300 billion bridge.\nSpaceX would need to build well beyond 10 gigawatts, rent much more than half of the new capacity, or add other AI revenue.\n\n@@CHK@@Q1 2026 AI revenue|$818M|AI operating loss|$2.469B|AI capital spending|$7.723B@@The AI business had started attracting customers, but it was still spending far more on servers and facilities than it generated in revenue. Rapid expansion hits cash before it produces durable earnings.@@2026-06-03 · SpaceX SEC registration statement, Q1 2026\n\nScarcity pricing will not last forever.\nServers available immediately command a premium while power is tight, but competing data centers can push rental prices down as they open.\n\n## SpaceX's 2027 test\n\nCan SpaceX switch on 10 gigawatts in 2027 and keep those servers rented at premium prices?\nA completed building does not count as usable capacity if power or GPUs arrive late.\n\nIf 10 gigawatts show up as operating capacity and long-term customer revenue grows with it, construction speed has become a business advantage.\nIf capacity misses the target or customers end short contracts, the $300 billion figure depended more on a lasting power shortage than on revenue already secured.\n\nFor SpaceX investors, the useful numbers are announced power, power actually rented to customers, and cash left after construction spending.\nThe $300 billion figure remains a scenario that needs all three to work, not current revenue.",
+    "ja": "AIサービスは画面の中のモデルだけでは動かない。\n利用者が質問を送るたびに計算用半導体が動き、その半導体を動かす電気と、熱を逃がす冷却設備が必要になる。\n\nスペースXは、この電力不足を事業機会とみている。2027年末までにAIサーバーが使える電力を10ギガワット近くへ増やすと説明した。\n10ギガワットは計算速度ではなく、サーバーと冷却設備が同時に使える電力の大きさだ。\n\n@@REF@@スペースX、2027年末までにAI計算能力を10ギガワット近くへ増やす見通し (Reuters, 2026-08-04)|https://www.reuters.com/business/media-telecom/spacex-quarterly-revenue-surges-debut-results-strong-growth-its-starlink-2026-08-04/\n\nSemiAnalysisは、このサーバーを他のAI企業へ貸し出せば、2027年末に年間換算売上高3000億ドルへ至る可能性があると分析した。\n年間換算売上高とは、1か月や1四半期の契約額が同じ速さで1年間続くと仮定した数字だ。すでに12か月かけて得た売上ではない。\n\n## なぜ電力が先なのか\n\nAIモデルはGPUと呼ばれる計算用半導体で動く。\nGPUを増やせば回答を多く作れるが、電力と冷却設備も同じ速さで増やす必要がある。\n\nギガワットは発電所や大規模データセンターの電力を表す単位だ。\n1ギガワットは1000メガワットなので、10ギガワットを満たすには複数の地域で発電設備とサーバー棟を同時に用意しなければならない。\n\n@@IMG@@datacenter-inside|AIモデルが実際に動くデータセンターの内部。半導体を増やすには、サーバーラック、電気設備、冷却装置も一緒に増やす必要がある。\n\n一般的なデータセンターは、送電網への接続許可を何年も待つことがある。\nスペースXは施設の隣に天然ガスを燃やす発電機を置き、この待ち時間を短くしてきた。この方法は速いが、発電機、燃料、排出許可を会社が自ら用意しなければならない。\n\n## スペースXが売るもの\n\nスペースXは、イーロン・マスクが運営していた人工知能会社を統合した。\nそのため同社はロケットと衛星通信に加え、他社がAIモデルを動かすためのサーバー能力も貸している。\n\nAnthropicやGoogleを含む複数の企業は、すでにスペースXのデータセンターを使う顧客だ。\nReutersは、これらの契約がAI部門の売上を押し上げた一方、契約額の一部はまだ売上として計上されていないと報じた。\n\n@@FLOW@@電力とサーバー|スペースXがデータセンターを建てる|モデル実行|顧客企業がAIモデルを動かす|利用料|処理した質問と確保した容量に応じて支払う@@早く確保した電力を顧客の利用料へ変えられてこそ、高い貸出価格が続く。\n\nスペースXが10ギガワットすべてを自社のAIモデルに使う必要はない。\n余ったサーバーを貸せば建設費を早く回収でき、短期契約なら必要なときに自社利用へ戻す余地も残る。\n\n## マイクロソフトが出る理由\n\nマイクロソフトはOpenAIへの投資家であり、OpenAIのモデルを企業顧客へ提供する会社でもある。\n契約の変更によって、この事業のお金の流れが変わった。\n\n2026年4月の契約で、マイクロソフトは2032年までOpenAIのモデルと製品を使う権利を維持した。\n同時に、マイクロソフトがOpenAIへ支払っていた売上の一部は終了した。\n\n@@REF@@マイクロソフト、OpenAIモデルの利用権を2032年まで維持し、OpenAIへの売上分配を終了 (OpenAI, 2026-04-27)|https://openai.com/index/next-phase-of-microsoft-partnership/\n\nこの仕組みでは、マイクロソフトがサーバーを確保してOpenAIモデルのサービスを増やすほど、顧客から受け取った売上を多く残せる可能性がある。\nSemiAnalysisがマイクロソフトをスペースXの大口顧客候補とみる理由だ。\n\nただし、両社が3ギガワットの契約を結んだという発表はまだない。\nマイクロソフトが最大の顧客になるという部分は、成立した契約ではなく分析家の予想だ。\n\n## 3000億ドルの空欄\n\n1ギガワットは1000メガワットだ。\n記事が置いた年間価格は1メガワット当たり3000万〜5000万ドルである。\n2027年に新設する6〜8ギガワットの半分だけを貸すという前提もある。\nこの三つを掛けると、年間換算売上高は900億〜2000億ドルになる。\n3000億ドルへ届くには、販売容量を増やすか、示された範囲より高い価格が必要だ。\n\n公表された前提だけでは3000億ドルの計算は完成しない。\nスペースXが10ギガワットを大きく超えて建設するか、新しい容量の半分より多くを貸すか、別のAI売上を加える必要がある。\n\n@@CHK@@2026年1〜3月AI売上高|8億1800万ドル|AI営業損失|24億6900万ドル|AI設備投資|77億2300万ドル@@AI事業は顧客を得始めたが、出発点では売上よりサーバーと施設への支出がはるかに大きかった。急速な増設は先に現金負担として表れる。@@2026-06-03 · スペースXSEC登録届出書、2026年1〜3月\n\n高い貸出価格も永久には続かない。\n電力が不足する間はすぐ使えるサーバーに高い値段が付くが、競合のデータセンターが増えれば同じサーバーを安く借りられる。\n\n## 2027年のスペースX試験\n\nスペースXは2027年に10ギガワットを実際に稼働させ、そのサーバーを高い価格で貸し続けられるだろうか。\n建物が完成しても、電力やGPUの到着が遅れれば使える容量は目標を下回る。\n\n10ギガワットが稼働容量として計上され、長期顧客の売上も増えれば、建設の速さが事業の強さにつながったと判断できる。\n容量が目標を下回るか顧客が短期契約を終えれば、3000億ドルは確保済みの売上よりも電力不足が長く続くという前提に依存していたと判断できる。\n\nスペースXの投資家に重要なのは、発表した電力、実際に顧客へ貸した電力、建設費を払った後に残る現金だ。\n年3000億ドルはまだ売上ではなく、この三つがそろったときに成り立つ想定である。"
+   },
+   "why": {
+    "ko": "스페이스X의 10기가와트 계획은 건설 속도만으로 평가할 수 없다. 실제 가동 전력, 고객에게 빌려준 비중, 건설비를 내고 남은 현금이 함께 늘어야 연 3,000억달러 주장이 실적으로 이어진다.",
+    "en": "SpaceX's 10-gigawatt plan cannot be judged by construction speed alone. Operating power, the share rented to customers, and cash left after construction all have to rise for the $300 billion claim to turn into results.",
+    "ja": "スペースXの10ギガワット計画は建設速度だけでは評価できない。実際の稼働電力、顧客へ貸した比率、建設費を払った後の現金がそろって増えてこそ、年3000億ドルという主張が業績につながる。"
+   },
+   "ask": {
+    "ko": "스페이스X는 2027년에 10기가와트를 실제로 가동하고 높은 임대 가격을 유지할 수 있을까, 아니면 전력과 고객 가운데 한쪽이 먼저 부족해질까?",
+    "en": "Can SpaceX operate 10 gigawatts in 2027 and keep premium rental prices, or will either power delivery or paying customers fall short first?",
+    "ja": "スペースXは2027年に10ギガワットを実際に稼働させ、高い貸出価格を維持できるのか。それとも電力か顧客のどちらかが先に不足するのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 연간 보고에서 스페이스X의 실제 가동 AI 전력이 10기가와트에 도달했는지 채점한다.",
+     "en": "Grade whether SpaceX reports at least 10 gigawatts of operating AI compute capacity for year-end 2027.",
+     "ja": "2027年の年次報告で、スペースXの実稼働AI計算能力が10ギガワットに達したかを判定する。"
+    },
+    "due": "2028-03-31",
+    "card": {
+     "metric": {
+      "ko": "2027년 말 스페이스X의 실제 가동 AI 전력",
+      "en": "SpaceX operating AI compute capacity at year-end 2027",
+      "ja": "2027年末のスペースX実稼働AI計算能力"
+     },
+     "now": {
+      "ko": "회사 발표 기준 2026년 말 2기가와트 초과 예상",
+      "en": "Company expects more than 2 gigawatts by year-end 2026",
+      "ja": "会社発表では2026年末に2ギガワット超を見込む"
+     },
+     "when": {
+      "ko": "2028년 1분기, 2027년 연간 보고",
+      "en": "Q1 2028, in the 2027 annual report",
+      "ja": "2028年1〜3月、2027年の年次報告"
+     },
+     "hit": {
+      "ko": "10기가와트 이상 가동 → 증설 목표 달성",
+      "en": "At least 10 gigawatts operating → expansion target met",
+      "ja": "10ギガワット以上が稼働 → 増設目標を達成"
+     },
+     "miss": {
+      "ko": "10기가와트 미만 가동 → 증설 목표 미달",
+      "en": "Less than 10 gigawatts operating → expansion target missed",
+      "ja": "10ギガワット未満が稼働 → 増設目標に未達"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "SemiAnalysis · 2026-08-07 · 스페이스X의 2027년 10기가와트 건설 가능성과 연간 환산 매출 3,000억달러 분석",
+      "en": "SemiAnalysis · 2026-08-07 · Analysis of SpaceX's 2027 10-gigawatt build and a path to $300 billion of annualized revenue",
+      "ja": "SemiAnalysis · 2026-08-07 · スペースXの2027年10ギガワット建設と年間換算売上高3000億ドルへの道を分析"
+     },
+     "url": "https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real"
+    },
+    {
+     "name": {
+      "ko": "로이터",
+      "en": "Reuters",
+      "ja": "Reuters"
+     },
+     "desc": {
+      "ko": "2026-08-04 · 스페이스X 첫 상장사 실적, 2026년 2기가와트 초과·2027년 말 10기가와트 근접 목표, AI 설비투자와 기존 고객 계약",
+      "en": "2026-08-04 · SpaceX's first public earnings, more than 2 gigawatts in 2026, close to 10 by end-2027, AI capital spending, and existing customers",
+      "ja": "2026-08-04 · スペースX初の上場後決算、2026年2ギガワット超・2027年末10ギガワット近くの目標、AI設備投資と既存顧客"
+     },
+     "url": "https://www.reuters.com/business/media-telecom/spacex-quarterly-revenue-surges-debut-results-strong-growth-its-starlink-2026-08-04/"
+    },
+    {
+     "name": {
+      "ko": "오픈AI",
+      "en": "OpenAI",
+      "ja": "OpenAI"
+     },
+     "desc": {
+      "ko": "2026-04-27 · 마이크로소프트의 오픈AI 모델 사용권과 양사 매출 배분 변경을 설명한 공식 발표",
+      "en": "2026-04-27 · Official announcement explaining Microsoft's OpenAI model rights and the revised revenue-sharing terms",
+      "ja": "2026-04-27 · マイクロソフトのOpenAIモデル利用権と売上分配の変更を説明した公式発表"
+     },
+     "url": "https://openai.com/index/next-phase-of-microsoft-partnership/"
+    },
+    {
+     "name": {
+      "ko": "미국 증권거래위원회",
+      "en": "US SEC",
+      "ja": "米国証券取引委員会"
+     },
+     "desc": {
+      "ko": "2026-06-03 · 스페이스X 등록신고서의 2026년 1분기 AI 매출, 영업손실, 설비투자",
+      "en": "2026-06-03 · SpaceX registration statement with Q1 2026 AI revenue, operating loss, and capital spending",
+      "ja": "2026-06-03 · スペースX登録届出書に記載された2026年1〜3月のAI売上高、営業損失、設備投資"
+     },
+     "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/spaceexplorationtechnologib.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-08 조회 · 10기가와트는 회사의 2027년 말 목표, 3,000억달러는 SemiAnalysis의 연간 환산 매출 추정",
+    "en": "Checked 2026-08-08 · 10 gigawatts is SpaceX's year-end 2027 target; $300 billion is SemiAnalysis's annualized revenue estimate",
+    "ja": "2026-08-08確認 · 10ギガワットは会社の2027年末目標、3000億ドルはSemiAnalysisの年間換算売上高の推定"
+   },
+   "ts": "2026-08-08T01:12:19.179898+00:00"
+  },
+  {
+   "date": "2026-08-07",
    "id": "kobeissi-productivity-rises-labor-share-record-low",
    "related": [],
    "source": "The Kobeissi Letter (@KobeissiLetter)",
