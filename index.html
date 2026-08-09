@@ -3828,10 +3828,15 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   (function watchFeed(){
     var fl = document.getElementById("feedList");
     if (!fl) { setTimeout(watchFeed, 50); return; }
-    if (fl.children.length) { relSoon(); return; }
+    /* The crawlable static home section is intentionally present before
+       the app fetches data. Do not release the first-paint reservation for
+       that fallback; wait for a real app card so the static-to-dynamic swap
+       does not reintroduce layout shift. */
+    function hasRealFeed(){ return !!fl.querySelector("article.card"); }
+    if (hasRealFeed()) { relSoon(); return; }
     try {
       var mo = new MutationObserver(function(){
-        if (fl.children.length){ mo.disconnect(); relSoon(); }
+        if (hasRealFeed()){ mo.disconnect(); relSoon(); }
       });
       mo.observe(fl, { childList: true });
     } catch(e){ rel(); }
