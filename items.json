@@ -2,6 +2,208 @@
  "items": [
   {
    "date": "2026-08-09",
+   "id": "serenity-sivers-win-capacity-assumption-gap",
+   "related": [
+    "serenity-mtsi-indium-phosphide-dfb-shortage",
+    "serenity-aaoi-demand-capacity-1_6t-ramp",
+    "serenity-lumilens-stealth-7b-optical-interconnect"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2086247069900300393",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#0369A1",
+    "label": "$427M ≠ GUIDE"
+   },
+   "tags": [
+    "SIVERS",
+    "PHOTONICS",
+    "CAPACITY"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "시버스 매출 4억2,700만달러 전망은 회사 가이던스가 아니다",
+    "en": "The $427 million Sivers revenue projection is not company guidance",
+    "ja": "シバースの売上高4億2,700万ドル予測は会社ガイダンスではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Using 10% of Win's wafer capacity as a low-end allocation (65% yield assumption, $50-$75 ASP):",
+      "Sivers would support $341-$512M worth of annual array revenue."
+     ],
+     "ko": [
+      "윈의 웨이퍼 생산능력 중 10%를 낮은 배정치로 두고 수율 65%, 평균판매단가 50~75달러를 가정하면,",
+      "시버스는 연간 3억4,100만~5억1,200만달러의 레이저 배열 매출을 뒷받침할 수 있다."
+     ],
+     "ja": [
+      "WINのウエハー生産能力の10%を低めの割当量とし、歩留まり65%、平均販売単価50～75ドルを仮定すると、",
+      "シバースは年間3億4,100万～5億1,200万ドルのレーザーアレイ売上高を支えられる。"
+     ]
+    },
+    "cite": "Serenity · 2026.08.09"
+   },
+   "sum3": {
+    "ko": "세레니티의 연 매출 중간값은 시버스가 제시한 전망이 아니라, 윈 세미컨덕터 웨이퍼의 10%를 배정받는다는 가정에서 나온 계산이다.\n공식 협력 발표에는 배정률·수율·평균판매단가가 없고, 시버스의 1분기 매출은 6,190만스웨덴크로나, 기회 파이프라인은 7억9,900만달러였다.\n8월 27일 2분기 보고서에서 생산 배정과 제품 매출 전망이 수치로 공개되는지가 이 모델을 가를 첫 시험이다.",
+    "en": "Serenity's $427 million annual-revenue midpoint is not guidance from Sivers. It comes from assuming the company receives 10% of WIN Semiconductors' wafer capacity.\nThe official partnership release gives no allocation, yield, or average selling price; Sivers reported Q1 revenue of SEK 61.9 million and an opportunity pipeline of $799 million.\nThe first test is whether the August 27 Q2 report quantifies foundry allocation and product-revenue expectations.",
+    "ja": "セレニティの年間売上高中間値4億2,700万ドルはシバースの会社予想ではなく、WINセミコンダクターズのウエハー能力の10%を割り当てられるという仮定から出た計算だ。\n公式提携発表には割当率、歩留まり、平均販売単価がなく、シバースの1～3月期売上高は6,190万スウェーデンクローナ、案件パイプラインは7億9,900万ドルだった。\n8月27日の4～6月期報告で生産割当と製品売上高見通しが数値で示されるかが、このモデルを分ける最初の試験になる。"
+   },
+   "gist": {
+    "ko": "세레니티가 계산한 시버스의 연 매출 중간값은 현재 레이저 공급 부족이 이어지면 새 생산능력이 시장에 흡수될 수 있다는 논리에서 나왔다. 계산은 매력적이지만 회사가 낸 가이던스와 투자자가 만든 생산모델은 구분해야 한다.\n\n## 계산의 출발점\n\n모델은 시버스가 대만 윈 세미컨덕터의 웨이퍼 생산능력 10%를 배정받는다고 가정한다. 여기에 수율 65%를 넣는다. 레이저 배열 한 개당 평균판매단가는 50~75달러로 둔다. 세 값을 곱하면 연 매출 3억4,100만~5억1,200만달러가 나온다. 그 범위의 중간값이 4억2,700만달러다.\n\n@@FLOW@@윈 생산능력 10% 배정|회사가 공개하지 않은 모델 가정|수율 65%|웨이퍼에서 판매 가능한 배열의 비율|평균판매단가 50~75달러|배열 하나의 가정 가격|연 매출 3억4,100만~5억1,200만달러|세 가정을 곱한 결과@@마지막 숫자를 믿으려면 앞의 세 가정이 모두 맞아야 한다. 하나가 절반이면 계산 결과도 크게 줄어든다.\n\n## 공식 발표에 없는 세 숫자\n\n시버스와 윈은 2025년 3월 DFB 레이저와 레이저 배열을 대량생산하기 위한 협력을 발표했다.\n\n윈이 외부 생산 파트너라는 사실은 확인되지만, 발표문은 시버스에 배정할 웨이퍼 비율, 양산 수율, 제품 가격을 공개하지 않았다.\n\n@@REF@@시버스와 윈은 DFB 레이저 대량생산 협력을 발표했지만 배정률·수율·제품 가격은 밝히지 않았다 (시버스 세미컨덕터스, 2025-03-25)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-announces-collaboration-with-win-semiconductor-to-scale-high-volume-dfb-laser-production/\n\n공개된 최신 실적의 크기도 따로 봐야 한다. 시버스의 2026년 1분기 매출은 6,190만스웨덴크로나였고 조정 EBITDA는 1,380만크로나 적자였다. 회사가 밝힌 7억9,900만달러 파이프라인은 협의 중인 전체 기회 금액이지 확정 주문이나 연간 매출 전망이 아니다.\n\n@@REF@@시버스의 2026년 1분기 매출은 6,190만크로나, 기회 파이프라인은 7억9,900만달러였다 (시버스 세미컨덕터스, 2026-05-29)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-ab-publ-publishes-interim-report-q1-january-march-2026/\n\n## 주식 수가 바뀐 여름\n\n매출 모델을 현재 기업가치와 나누는 계산에는 또 다른 분모가 있다. 시버스는 4월 이후 자금조달과 부채의 주식 전환을 연달아 결정했다. 생산 확대에 쓸 돈은 늘었지만 기존 한 주가 차지하는 몫도 달라졌다.\n\n@@BAR@@4월 유상증자 결정|862만주|8.62|6월 유상증자 결정|1,228만주|12.28|7월 전환사채 주식 전환|2,285만주|22.85@@세 발표를 단순 합치면 신규 주식은 약 4,375만주다. 자금조달 조건과 실제 등록 시점은 다르지만, 예전 주식 수로 계산한 기업가치 배수는 그대로 사용할 수 없다.@@시버스 세미컨덕터스 공시, 2026년 4~7월\n\n@@REF@@시버스는 4월 862만주의 유상증자를 결정했다 (시버스 세미컨덕터스, 2026-04-16)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-har-beslutat-om-en-riktad-nyemission-av-aktier-om-cirka-125-msek/\n\n@@REF@@시버스는 6월 1,228만주의 유상증자를 결정했다 (시버스 세미컨덕터스, 2026-07-01)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-har-beslutat-om-en-riktad-nyemission-av-aktier-om-cirka-700-msek/\n\n@@REF@@1,200만달러 전환사채가 7월 2,285만주의 보통주로 전환됐다 (시버스 세미컨덕터스, 2026-07-03)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-langivare-bootstrap-europe-pakallar-konvertering-av-befintligt-lan/\n\n## 8월 27일에 확인할 값\n\n핵심 질문은 레이저 수요가 강한지가 아니다. 이미 여러 업체가 공급 부족을 말하고 있다. 시버스가 윈에서 실제로 얼마나 많은 웨이퍼를 받고, 그중 얼마나 판매 가능한 제품으로 만들며, 어떤 가격에 파는지가 질문이다.\n\n시버스의 2분기 보고서는 8월 27일로 예정돼 있다. 그때 웨이퍼 배정률이나 수율, 2027~2028년 제품 매출 전망 중 하나라도 수치로 나오면 이 매출 모델을 회사 자료와 연결할 수 있다. 아무 수치도 없다면 이 전망은 공급 부족이라는 사실 위에 세 개의 미확인 가정을 쌓은 투자자 시나리오로 남는다.\n\n@@REF@@시버스의 2026년 2분기 보고서는 8월 27일 발표 예정이다 (시버스 세미컨덕터스, 2026-07-09)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-updates-financial-reporting-calendar/",
+    "en": "Serenity models a $427 million midpoint for Sivers' annual revenue. The thesis is that new capacity can be absorbed while laser supply remains tight. The arithmetic is attractive, but company guidance and an investor-built capacity model are different things.\n\n## Where $427 million starts\n\nThe model assumes Sivers receives 10% of WIN Semiconductors' wafer capacity. It then applies a 65% yield and a $50 to $75 average selling price per laser array, producing annual revenue of $341 million to $512 million. The midpoint is $427 million.\n\n@@FLOW@@10% of WIN capacity|An allocation not disclosed by the company|65% yield|The share of arrays that become saleable|$50 to $75 average price|The assumed price of each array|$341 million to $512 million annual revenue|The result of multiplying the three assumptions@@The final number requires all three assumptions to hold. Halving any one of them materially reduces the result.\n\n## Three numbers missing from the release\n\nSivers and WIN announced a partnership in March 2025 to scale DFB lasers and laser arrays. WIN's role as an outsourced manufacturing partner is confirmed. The release does not disclose Sivers' wafer allocation, production yield, or product price.\n\n@@REF@@Sivers and WIN announced a DFB-laser production partnership without disclosing allocation, yield, or pricing (Sivers Semiconductors, 2025-03-25)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-announces-collaboration-with-win-semiconductor-to-scale-high-volume-dfb-laser-production/\n\nThe latest reported scale is also separate from the model. Sivers recorded Q1 2026 revenue of SEK 61.9 million and adjusted EBITDA of negative SEK 13.8 million. Its $799 million opportunity pipeline is the value of potential engagements, not booked orders or annual revenue guidance.\n\n@@REF@@Sivers reported Q1 revenue of SEK 61.9 million and a $799 million opportunity pipeline (Sivers Semiconductors, 2026-05-29)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-ab-publ-publishes-interim-report-q1-january-march-2026/\n\n## The share count changed this summer\n\nDividing modeled revenue by today's market value introduces another denominator. Since April, Sivers has announced equity financing and a debt conversion into shares. The company gained capital to fund expansion, while each existing share represents a smaller portion of the business.\n\n@@BAR@@April directed issue decision|8.62 million shares|8.62|June directed issue decision|12.28 million shares|12.28|July convertible-debt conversion|22.85 million shares|22.85@@The three announcements total about 43.75 million new shares. Terms and registration dates differ, but a valuation multiple using the old share count cannot simply carry forward.@@Sivers Semiconductors disclosures, April to July 2026\n\n@@REF@@Sivers decided on a 12.28 million-share directed issue in June (Sivers Semiconductors, 2026-07-01)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-har-beslutat-om-en-riktad-nyemission-av-aktier-om-cirka-700-msek/\n\n@@REF@@A $12 million convertible loan was converted into 22.85 million ordinary shares in July (Sivers Semiconductors, 2026-07-03)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-langivare-bootstrap-europe-pakallar-konvertering-av-befintligt-lan/\n\n## The numbers due on August 27\n\nThe core question is not whether laser demand is strong. Several suppliers already describe shortages. It is how many wafers Sivers actually receives from WIN, how many become saleable products, and at what price.\n\nSivers' Q2 report is scheduled for August 27. A quantified wafer allocation, yield, or 2027 to 2028 product-revenue outlook would connect the $427 million model to company evidence. Without one, it remains an investor scenario that stacks three unverified assumptions on top of a real supply shortage.\n\n@@REF@@Sivers will publish its Q2 2026 report on August 27 (Sivers Semiconductors, 2026-07-09)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-updates-financial-reporting-calendar/",
+    "ja": "セレニティが計算したシバースの年間売上高中間値は4億2,700万ドルだ。レーザー不足が続けば、新しい生産能力は市場に吸収されるという論理である。計算は魅力的だが、会社ガイダンスと投資家が作った生産モデルは分けて読む必要がある。\n\n## 4億2,700万ドルの出発点\n\nモデルは、シバースが台湾WINセミコンダクターズのウエハー生産能力の10%を割り当てられると仮定する。そこへ歩留まり65%とレーザーアレイ1個当たり50～75ドルの平均販売単価を入れ、年間売上高3億4,100万～5億1,200万ドルを導く。中間値が4億2,700万ドルだ。\n\n@@FLOW@@WIN生産能力の10%割当|会社が開示していないモデル仮定|歩留まり65%|販売可能なアレイになる割合|平均販売単価50～75ドル|アレイ1個の仮定価格|年間売上高3億4,100万～5億1,200万ドル|三つの仮定を掛けた結果@@最後の数字を信じるには、前の三つの仮定がすべて成立する必要がある。一つが半分になれば結果も大きく減る。\n\n## 公式発表にない三つの数字\n\nシバースとWINは2025年3月、DFBレーザーとレーザーアレイを量産するための提携を発表した。WINが外部生産パートナーであることは確認できる。しかし発表文は、シバースへのウエハー割当率、量産歩留まり、製品価格を開示していない。\n\n@@REF@@シバースとWINはDFBレーザー量産提携を発表したが、割当率、歩留まり、価格は開示していない (シバース・セミコンダクターズ、2025-03-25)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-announces-collaboration-with-win-semiconductor-to-scale-high-volume-dfb-laser-production/\n\n最新の実績規模もモデルとは別に見る必要がある。シバースの2026年1～3月期売上高は6,190万スウェーデンクローナ、調整後EBITDAは1,380万クローナの赤字だった。会社が示した7億9,900万ドルの案件パイプラインは交渉中の機会総額であり、確定注文や年間売上高見通しではない。\n\n@@REF@@シバースの1～3月期売上高は6,190万クローナ、案件パイプラインは7億9,900万ドル (シバース・セミコンダクターズ、2026-05-29)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-ab-publ-publishes-interim-report-q1-january-march-2026/\n\n## 夏に変わった株式数\n\nモデル売上高を現在の企業価値で割る計算には、もう一つの分母がある。シバースは4月以降、資金調達と債務の株式転換を相次いで決めた。生産拡大に使える資金は増えた一方、既存1株が占める持分は変わった。\n\n@@BAR@@4月の第三者割当決定|862万株|8.62|6月の第三者割当決定|1,228万株|12.28|7月の転換社債株式転換|2,285万株|22.85@@三つの発表を単純合算すると新株は約4,375万株になる。条件と登録時期は異なるが、古い株式数で計算した企業価値倍率をそのまま使うことはできない。@@シバース・セミコンダクターズ開示、2026年4～7月\n\n@@REF@@シバースは6月に1,228万株の第三者割当を決定した (シバース・セミコンダクターズ、2026-07-01)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-har-beslutat-om-en-riktad-nyemission-av-aktier-om-cirka-700-msek/\n\n@@REF@@1,200万ドルの転換社債が7月に2,285万株の普通株へ転換された (シバース・セミコンダクターズ、2026-07-03)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-langivare-bootstrap-europe-pakallar-konvertering-av-befintligt-lan/\n\n## 8月27日に確かめる数字\n\n中心の問いはレーザー需要が強いかではない。複数の供給会社がすでに不足を語っている。シバースがWINから実際に何枚のウエハーを受け取り、そのうち何枚を販売可能な製品にし、どの価格で売るかが問題だ。\n\nシバースの4～6月期報告は8月27日に予定されている。その時にウエハー割当率、歩留まり、2027～2028年製品売上高見通しのいずれかが数値で示されれば、4億2,700万ドルのモデルを会社資料につなげられる。何も示されなければ、この予測は実在する供給不足の上に三つの未確認仮定を積んだ投資家シナリオのままだ。\n\n@@REF@@シバースの2026年4～6月期報告は8月27日発表予定 (シバース・セミコンダクタース、2026-07-09)|https://www.sivers-semiconductors.com/press/sivers-semiconductors-updates-financial-reporting-calendar/"
+   },
+   "why": {
+    "ko": "레이저 공급 부족은 실제여도 시버스가 얻을 매출 규모는 웨이퍼 배정·수율·판매가격에 달렸다. 세 값이 회사 자료에 없는 상태에서 4억2,700만달러를 가이던스처럼 읽으면 생산 가능성과 확정 매출을 혼동하게 된다. 여기에 신규 주식까지 반영해야 기업가치 배수의 분모도 맞는다.",
+    "en": "The laser shortage can be real while Sivers' revenue still depends on wafer allocation, yield, and price. Reading $427 million like guidance before the company supplies those inputs confuses possible capacity with booked revenue. New shares must also be reflected in the denominator of any valuation multiple.",
+    "ja": "レーザー不足が実在しても、シバースの売上高はウエハー割当、歩留まり、販売価格に左右される。会社資料に三つの値がないまま4億2,700万ドルをガイダンスのように読むと、生産可能性と確定売上高を混同する。企業価値倍率の分母には新株も反映する必要がある。"
+   },
+   "ask": {
+    "ko": "8월 27일 보고서에 웨이퍼 배정률·수율·제품 매출 전망 가운데 하나라도 숫자로 나올까?",
+    "en": "Will the August 27 report quantify wafer allocation, yield, or product-revenue guidance?",
+    "ja": "8月27日の報告書で、ウエハー割当率、歩留まり、製品売上高見通しのいずれかが数値で示されるだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-08-27",
+    "note": {
+     "ko": "시버스 2분기 보고서와 발표자료에서 윈 웨이퍼 배정률, 양산 수율, 2027~2028년 제품 매출 전망을 확인한다.",
+     "en": "Check Sivers' Q2 report and presentation for WIN wafer allocation, production yield, or 2027 to 2028 product-revenue guidance.",
+     "ja": "シバースの4～6月期報告と説明資料で、WINのウエハー割当率、量産歩留まり、2027～2028年製品売上高見通しを確認する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "윈 배정률·양산 수율·제품 매출 전망의 정량 공개",
+      "en": "Quantified WIN allocation, production yield, or product-revenue guidance",
+      "ja": "WIN割当率、量産歩留まり、製品売上高見通しの定量開示"
+     },
+     "now": {
+      "ko": "10% 배정·65% 수율·50~75달러 가격은 투자자 모델 가정",
+      "en": "10% allocation, 65% yield, and $50 to $75 pricing are investor-model assumptions",
+      "ja": "10%割当、65%歩留まり、50～75ドル価格は投資家モデルの仮定"
+     },
+     "when": {
+      "ko": "2026년 8월 27일",
+      "en": "August 27, 2026",
+      "ja": "2026年8月27日"
+     },
+     "hit": {
+      "ko": "보고서나 발표자료가 세 항목 중 하나 이상을 수치로 공개",
+      "en": "The report or presentation quantifies at least one of the three inputs",
+      "ja": "報告書または説明資料が三項目のうち一つ以上を数値で開示"
+     },
+     "miss": {
+      "ko": "세 항목 모두 정량 공개 없이 생산 확대 방향만 반복",
+      "en": "All three remain unquantified and the company only reiterates the direction of capacity expansion",
+      "ja": "三項目すべて定量開示がなく、生産拡大の方向だけを繰り返す"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original post",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "시버스의 윈 생산능력 배정 모델",
+      "en": "The WIN-capacity allocation model for Sivers",
+      "ja": "シバースのWIN生産能力割当モデル"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2086247069900300393"
+    },
+    {
+     "name": {
+      "ko": "시버스 세미컨덕터스",
+      "en": "Sivers Semiconductors",
+      "ja": "シバース・セミコンダクターズ"
+     },
+     "desc": {
+      "ko": "윈 세미컨덕터와 DFB 레이저 대량생산 협력",
+      "en": "The WIN partnership for high-volume DFB laser production",
+      "ja": "WINとのDFBレーザー量産提携"
+     },
+     "url": "https://www.sivers-semiconductors.com/press/sivers-semiconductors-announces-collaboration-with-win-semiconductor-to-scale-high-volume-dfb-laser-production/"
+    },
+    {
+     "name": {
+      "ko": "시버스 세미컨덕터스",
+      "en": "Sivers Semiconductors",
+      "ja": "シバース・セミコンダクターズ"
+     },
+     "desc": {
+      "ko": "2026년 1분기 실적과 기회 파이프라인",
+      "en": "Q1 2026 results and opportunity pipeline",
+      "ja": "2026年1～3月期業績と案件パイプライン"
+     },
+     "url": "https://www.sivers-semiconductors.com/press/sivers-semiconductors-ab-publ-publishes-interim-report-q1-january-march-2026/"
+    },
+    {
+     "name": {
+      "ko": "시버스 세미컨덕터스",
+      "en": "Sivers Semiconductors",
+      "ja": "シバース・セミコンダクターズ"
+     },
+     "desc": {
+      "ko": "4월 유상증자 결정",
+      "en": "The April directed share issue",
+      "ja": "4月の第三者割当増資"
+     },
+     "url": "https://www.sivers-semiconductors.com/press/sivers-semiconductors-har-beslutat-om-en-riktad-nyemission-av-aktier-om-cirka-125-msek/"
+    },
+    {
+     "name": {
+      "ko": "시버스 세미컨덕터스",
+      "en": "Sivers Semiconductors",
+      "ja": "シバース・セミコンダクターズ"
+     },
+     "desc": {
+      "ko": "6월 유상증자 결정",
+      "en": "The June directed share issue",
+      "ja": "6月の第三者割当増資"
+     },
+     "url": "https://www.sivers-semiconductors.com/press/sivers-semiconductors-har-beslutat-om-en-riktad-nyemission-av-aktier-om-cirka-700-msek/"
+    },
+    {
+     "name": {
+      "ko": "시버스 세미컨덕터스",
+      "en": "Sivers Semiconductors",
+      "ja": "シバース・セミコンダクターズ"
+     },
+     "desc": {
+      "ko": "전환사채의 주식 전환",
+      "en": "Conversion of convertible debt into shares",
+      "ja": "転換社債の株式転換"
+     },
+     "url": "https://www.sivers-semiconductors.com/press/sivers-semiconductors-langivare-bootstrap-europe-pakallar-konvertering-av-befintligt-lan/"
+    },
+    {
+     "name": {
+      "ko": "시버스 세미컨덕터스",
+      "en": "Sivers Semiconductors",
+      "ja": "シバース・セミコンダクターズ"
+     },
+     "desc": {
+      "ko": "2분기 보고서 발표일",
+      "en": "Q2 report publication date",
+      "ja": "4～6月期報告書の発表日"
+     },
+     "url": "https://www.sivers-semiconductors.com/press/sivers-semiconductors-updates-financial-reporting-calendar/"
+    }
+   ],
+   "sourcesAsOf": "2026-08-09",
+   "ts": "2026-08-09T03:44:05+00:00"
+  },
+  {
+   "date": "2026-08-09",
    "id": "macro-week-2026-08-09",
    "related": [
     "macro-week-2026-08-02",
@@ -43740,6 +43942,54 @@
     "ko": "버크셔 해서웨이는 보험·철도·에너지·제조·소매 사업과 대규모 상장주식 포트폴리오를 함께 보유한다. 보험에서 들어온 자금과 자회사 이익은 단기 국채로 보유하거나 기업 인수, 주식 투자, 자사주 매입에 쓸 수 있다. 어떤 경로에 돈을 배분하는지가 회사 가치 평가의 핵심이다.",
     "ja": "バークシャー・ハサウェイは保険、鉄道、エネルギー、製造、小売事業と大規模な上場株式ポートフォリオを保有する。保険フロートと子会社の利益は、短期国債での保有、企業買収、株式投資、自社株買いに配分できる。どの経路へ資本を振り向けるかが企業価値評価の中心となる。"
    }
+  },
+  "WIN SEMICONDUCTORS": {
+   "kind": "company",
+   "ticker": "3105.TWO",
+   "sector": {
+    "ko": "화합물 반도체 파운드리",
+    "en": "Compound-semiconductor foundry",
+    "ja": "化合物半導体ファウンドリー"
+   },
+   "desc": {
+    "ko": "대만에서 광통신용 레이저와 무선통신용 화합물 반도체를 위탁생산하는 파운드리.",
+    "en": "A Taiwanese foundry manufacturing compound semiconductors for wireless and optical devices.",
+    "ja": "無線・光デバイス向け化合物半導体を受託生産する台湾のファウンドリー。"
+   },
+   "aliases": [
+    "WIN Semiconductors",
+    "WIN",
+    "WIN Semiconductor",
+    "WIN Semi",
+    "윈 세미컨덕터",
+    "윈 세미컨덕터스",
+    "WINセミコンダクターズ"
+   ],
+   "logo": "winfoundry.com",
+   "exchange": "TPEx",
+   "website": "https://www.winfoundry.com",
+   "hq": {
+    "ko": "대만 타오위안",
+    "en": "Taoyuan, Taiwan",
+    "ja": "台湾・桃園"
+   }
+  },
+  "DFB 레이저": {
+   "kind": "term",
+   "desc": {
+    "ko": "레이저 내부 격자가 특정 파장을 선택하도록 만든 분포귀환형 반도체 레이저.",
+    "en": "A distributed-feedback semiconductor laser whose internal grating selects a specific wavelength.",
+    "ja": "内部回折格子で特定波長を選択する分布帰還型半導体レーザー。"
+   },
+   "aliases": [
+    "DFB",
+    "DFB laser",
+    "DFB lasers",
+    "DFB 레이저",
+    "분포귀환형 레이저",
+    "分布帰還型レーザー",
+    "DFBレーザー"
+   ]
   }
  }
 }
