@@ -3845,6 +3845,26 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 <link rel="stylesheet" href="assets/investor-compare.css?v=drag-mobile-20260807">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
+<style id="static-home-feed-css">
+.static-home-feed{margin:22px 0 8px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);}
+.static-home-head{margin-bottom:14px;}
+.static-home-head h2{margin:0 0 5px;font-size:20px;line-height:1.25;letter-spacing:-.02em;}
+.static-home-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;}
+.static-home-card{padding:15px 0;border-top:1px solid var(--line);}
+.static-home-card:first-of-type{border-top:0;padding-top:0;}
+.static-home-card:last-of-type{padding-bottom:4px;}
+.static-home-card h3{margin:0 0 7px;font-size:17px;line-height:1.4;letter-spacing:-.02em;}
+.static-home-card h3 a{color:var(--text);text-decoration:none;}
+.static-home-card h3 a:hover{color:var(--accent);}
+.static-home-card p{margin:6px 0;color:var(--text);font-size:13px;line-height:1.65;}
+.static-home-card .static-home-why{color:var(--muted);}
+.static-home-card .static-home-meta{margin-top:9px;color:var(--muted);font-size:11px;}
+.static-home-card .static-home-meta a{color:inherit;}
+.static-home-all{margin:16px 0 0;font-size:13px;}
+.static-home-all a{color:var(--accent);font-weight:700;}
+.static-home-empty{color:var(--muted);font-size:13px;}
+@media (max-width:640px){.static-home-feed{padding:17px 15px;}.static-home-card h3{font-size:16px;}}
+</style>
 </head>
 <body>
 <nav>
@@ -3912,7 +3932,17 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
       <button class="unread-filter" id="freeFilter" onclick="toggleFreeOnly()"></button>
       <button class="unread-filter" id="unreadFilter" onclick="toggleUnreadOnly()"></button>
     </div>
-    <div id="feedList"></div>
+    <div id="feedList">
+<!-- STATIC_HOME_FEED_START -->
+<section class="static-home-feed" aria-labelledby="static-home-title">
+  <div class="static-home-head">
+    <h2 id="static-home-title">Latest investing reads</h2>
+    <p>Original investment writing, summarized and explained by Stacks.</p>
+  </div>
+  <p class="static-home-empty">Loading the latest reads…</p>
+</section>
+<!-- STATIC_HOME_FEED_END -->
+</div>
   </section>
 
   <section class="nl" id="nlSec" hidden>
