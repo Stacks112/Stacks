@@ -1,3 +1,20 @@
+## 2026-08-09 Codex — 얇은 작성자 기록 허브 정리 구현
+
+실제 점검:
+- main 사이트맵 1,738개 URL을 분석했다.
+- 테마 허브 8개는 최소 19건, 주간 아카이브 4개는 각 10건으로 이번 변경 대상이 아니었다.
+- 작성자 기록 허브 28개 중 글 1~2건인 얇은 페이지가 확인됐다. 예: r/camillo.html, r/thediff.html, r/lynalden.html, r/demis-hassabis-demishassabis.html, r/satya-nadella-satyanadella.html, r/mizuho.html, r/mark-zuckerberg-finkd.html, r/tim-cook-tim-cook.html, r/tesuta.html, r/emin.html, r/howard-marks-oaktree.html.
+
+변경:
+- scripts/build_pages.py에 RECORD_MIN_ARTICLES = 3을 추가했다.
+- 글 3건 미만의 작성자 기록 페이지는 내부 링크를 위해 계속 생성하되 noindex,follow를 붙인다.
+- 글 3건 이상인 작성자 기록 페이지만 sitemap.xml에 포함한다.
+- 같은 안전망을 향후 3건 미만으로 줄어드는 테마 허브에도 적용했다.
+- tests/test_frontend_contracts.py에 페이지 유지·색인 제외 계약 검사를 추가했다.
+- items.json, D1 큐, 자동 발행 규칙은 변경하지 않았다.
+
+검증 상태: PR 병합 후 자동 생성물 재생성·Pages 운영 URL 검증을 진행한다.
+
 ## 2026-08-09 Codex — 홈 최신 글 정적 노출 production 검증 완료
 
 **결과**:
