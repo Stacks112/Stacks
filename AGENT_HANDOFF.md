@@ -1,3 +1,29 @@
+## 2026-08-09 Codex — 13F 투자자 비교 UX 통합 배포
+
+**목표**: 별도 대시보드처럼 보이던 기존 13F 비교 화면을 Stacks의 3단 셸과 카드 문법에
+통합하고, `13F 포트폴리오` 목록 → 비교 선택 → 비교 → 투자자 상세 → 비교 복귀 흐름을
+한 화면 체계로 연결한다.
+
+**변경**:
+- `assets/investor-compare.js` — 투자자 검색, 카드별 비교 추가, 고정 비교 바, 우측 선택·13F
+  안내 레일, 선택 투자자 스트립, 상세 비교 버튼·비교 복귀를 추가했다. 기존 SEC 13F·시세
+  계산·드래그 차트는 재사용하고 비교 차트에 S&P 500 토글과 1개월/3개월/6개월/YTD/1년
+  구간을 추가했다.
+- `assets/investor-compare.css` — 기존 Stacks 3단 셸 안에서 한 열 투자자 목록, 우측 레일,
+  고정 비교 바와 모바일 대응을 구현했다.
+- `index.html` — 13F 화면에서 독립 확장 레이아웃 대신 `inv-lab-active` 통합 상태를 사용하고
+  자산 캐시 버전을 갱신했다.
+- 회귀 테스트는 13F 레일 상태, 16개 투자자 카드, 검색·고정 바·모바일 선택 흐름을 검사한다.
+
+**검증**:
+- `node --check assets/investor-compare.js`, 인라인 JavaScript 12개 블록 문법 검사 통과.
+- `npx playwright test tests/feed-detail.spec.mjs` — 17/17 통과(데스크톱·모바일·딥링크·차트 드래그 포함).
+- `python3 tests/test_frontend_contracts.py` — 이번 변경 계약 포함 24개 통과. 기존 main의
+  `test_all_detail_paths_use_the_card_factory` 1건은 별도 SEO 브랜치에서 다루는 선행 불일치다.
+- `git diff --check`, `scripts/deploy_guard.py` 통과. 기준과 원격 main은 모두 `c25ac12`.
+
+**안전 범위**: `items.json`, D1 큐, 자동 발행 워크플로와 `portfolios.json` 데이터는 수정하지 않았다.
+
 ## 2026-08-09 Codex — 얇은 작성자 기록 허브 정리 구현
 
 실제 점검:

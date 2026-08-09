@@ -196,7 +196,8 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn("function invViewActive()", INDEX)
         self.assertIn('if (invViewActive()){ renderInvestors(list,S);', INDEX)
         self.assertIn('_railEl.classList.toggle("inv-rail-hide", invViewActive())', INDEX)
-        self.assertIn('document.documentElement.classList.toggle("inv-wide", invViewActive())', INDEX)
+        self.assertIn('document.documentElement.classList.toggle("inv-lab-active", invViewActive())', INDEX)
+        self.assertIn('document.documentElement.classList.remove("inv-wide")', INDEX)
         self.assertIn('serviceWorkers: "block"', (ROOT / "tests" / "feed-detail.spec.mjs").read_text(encoding="utf-8"))
 
     def test_mobile_calendar_toggle_contract(self):

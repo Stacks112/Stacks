@@ -18,6 +18,10 @@
     ko:{
       tickerHelp:"Stacks 투자자 티커", pickTitle:"투자자 비교", pickSub:"2~4명을 골라 포트폴리오를 나란히 비교하세요.",
       compare:"선택한 투자자 비교", selected:"{n}명 선택", min:"2명 이상 선택하세요.", max:"최대 4명까지 비교할 수 있어요.",
+      search:"투자자, 운용사, 티커 검색", openPortfolio:"포트폴리오 보기", addCompare:"+ 비교 추가", inCompare:"✓ 비교 중", fullCompare:"최대 4명",
+      entrySub:"보유종목·섹터·공개 포트폴리오 흐름을 같은 화면에서 비교합니다.", oneMore:"한 명 더 고르면 비교할 수 있어요.", ready:"보유종목과 수익률을 나란히 봅니다.",
+      topHolding:"상위 보유", snapshot:"이번 스냅샷", read13f:"13F 읽는 법", read13fSub:"분기 말 미국 상장 롱 포지션을 최대 45일 뒤 공개합니다.",
+      read13f1:"현금·공매도·채권 제외", read13f2:"실제 매수가격은 알 수 없음", read13f3:"같은 기준일끼리 비교", investorsLabel:"투자자", periodLabel:"기준", sourceLabel:"출처", railEmpty:"투자자 카드에서 비교에 추가하세요.",
       title:"투자자 포트폴리오 비교", edit:"선택 바꾸기", periodWarn:"기준 분기가 다른 투자자가 포함돼 있습니다. 수익률과 보유 비중을 같은 시점의 성과처럼 직접 비교하지 마세요.",
       reported:"13F 기준", total:"공개 평가액", holdings:"보유 종목", top5:"상위 5종목", turnover:"회전율", changes:"분기 변화",
       since:"공시 후", threeM:"최근 3개월", oneY:"최근 1년", vsSpy:"S&P 500 대비", loading:"계산 중", building:"데이터 축적 중",
@@ -27,17 +31,21 @@
       discTitle:"수익률을 읽는 법", disc:"이 값은 실제 펀드 수익률이 아니라 SEC에 공개된 분기별 13F 스냅샷을 공시일 기준으로 이어 붙인 포트폴리오 추정치입니다. 옵션·공매도·현금·채권·해외 상장 자산은 제외됩니다.",
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
       coverage:"시세 {p}%", mismatch:"분기 다름",
-      holdGraphTitle:"공개 포트폴리오의 흐름",
+      holdGraphTitle:"그대로 들고 있었다면",
       holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 0%로 맞춘 상대 성과입니다.",
       holdGraphDrag:"차트 위를 손가락으로 누른 채 좌우로 움직이면 선택 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
       holdGraphStart:"시작점=0%", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님",
-      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음",
-      holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph6m:"6개월", holdGraphYtd:"연중"
+      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음", benchmark:"S&P 500 비교", benchmarkNote:"기준지수",
+      holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph3m:"3개월", holdGraph6m:"6개월", holdGraphYtd:"연중", holdGraph1y:"1년"
     },
     en:{
       tickerHelp:"Stacks investor ticker", pickTitle:"Compare investors", pickSub:"Choose 2–4 investors to compare their public portfolios side by side.",
       compare:"Compare selected", selected:"{n} selected", min:"Select at least two investors.", max:"You can compare up to four investors.",
+      search:"Search investor, firm or ticker", openPortfolio:"View portfolio", addCompare:"+ Add to compare", inCompare:"✓ Comparing", fullCompare:"Max 4",
+      entrySub:"Compare holdings, sectors and public-portfolio paths in one place.", oneMore:"Choose one more investor to compare.", ready:"Compare holdings and returns side by side.",
+      topHolding:"Top holding", snapshot:"This snapshot", read13f:"How to read 13F", read13fSub:"U.S.-listed long positions are disclosed up to 45 days after quarter-end.",
+      read13f1:"Excludes cash, shorts and bonds", read13f2:"Actual purchase prices are unknown", read13f3:"Compare matching report dates", investorsLabel:"Investors", periodLabel:"As of", sourceLabel:"Source", railEmpty:"Add investors from a portfolio card.",
       title:"Investor portfolio comparison", edit:"Change selection", periodWarn:"The selection includes different reporting periods. Do not read returns and weights as same-date results.",
       reported:"13F period", total:"Reported value", holdings:"Holdings", top5:"Top-5 weight", turnover:"Turnover", changes:"Quarterly changes",
       since:"Since filing", threeM:"Last 3 months", oneY:"Last year", vsSpy:"vs. S&P 500", loading:"Calculating", building:"Building history",
@@ -47,17 +55,21 @@
       discTitle:"How to read returns", disc:"These are not actual fund returns. They estimate a public portfolio by chaining quarterly 13F snapshots from each SEC filing date. Options, shorts, cash, bonds and non-U.S.-listed assets are excluded.",
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
       coverage:"Prices {p}%", mismatch:"Different period",
-      holdGraphTitle:"Public portfolio path",
+      holdGraphTitle:"If you held it",
       holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor starts at 0% for the selected period.",
       holdGraphDrag:"Press and hold, then drag horizontally across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Start=0%", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns",
-      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data",
-      holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph6m:"6M", holdGraphYtd:"YTD"
+      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data", benchmark:"Compare S&P 500", benchmarkNote:"Benchmark",
+      holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph3m:"3M", holdGraph6m:"6M", holdGraphYtd:"YTD", holdGraph1y:"1Y"
     },
     ja:{
       tickerHelp:"Stacks投資家ティッカー", pickTitle:"投資家を比較", pickSub:"2〜4人を選び、公開ポートフォリオを横並びで比較します。",
       compare:"選択した投資家を比較", selected:"{n}人選択", min:"2人以上選択してください。", max:"比較できるのは最大4人です。",
+      search:"投資家・運用会社・ティッカーを検索", openPortfolio:"ポートフォリオを見る", addCompare:"+ 比較に追加", inCompare:"✓ 比較中", fullCompare:"最大4人",
+      entrySub:"保有銘柄・セクター・公開ポートフォリオの推移を同じ画面で比較します。", oneMore:"もう1人選ぶと比較できます。", ready:"保有銘柄とリターンを横並びで比較します。",
+      topHolding:"最大保有", snapshot:"今回のスナップショット", read13f:"13Fの見方", read13fSub:"四半期末の米国上場ロングポジションを最大45日後に開示します。",
+      read13f1:"現金・空売り・債券は対象外", read13f2:"実際の買付価格は不明", read13f3:"同じ基準日同士で比較", investorsLabel:"投資家", periodLabel:"基準", sourceLabel:"出典", railEmpty:"投資家カードから比較に追加してください。",
       title:"投資家ポートフォリオ比較", edit:"選択を変更", periodWarn:"基準四半期が異なる投資家が含まれています。リターンや比率を同一時点の成績として直接比較しないでください。",
       reported:"13F基準", total:"公開評価額", holdings:"保有銘柄", top5:"上位5銘柄", turnover:"回転率", changes:"四半期変化",
       since:"開示後", threeM:"直近3か月", oneY:"直近1年", vsSpy:"S&P 500比", loading:"計算中", building:"データ蓄積中",
@@ -67,13 +79,13 @@
       discTitle:"リターンの見方", disc:"これは実際のファンド収益率ではなく、SECに公開された四半期ごとの13Fスナップショットを開示日からつないだ公開ポートフォリオ推定値です。オプション・空売り・現金・債券・米国外上場資産は除外されます。",
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
       coverage:"価格 {p}%", mismatch:"四半期が異なります",
-      holdGraphTitle:"公開ポートフォリオの推移",
+      holdGraphTitle:"そのまま保有していたら",
       holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を0%に揃えた相対成績です。",
       holdGraphDrag:"グラフを長押しして左右にドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開始点=0%", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません",
-      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし",
-      holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph6m:"6か月", holdGraphYtd:"年初来"
+      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし", benchmark:"S&P 500と比較", benchmarkNote:"ベンチマーク",
+      holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph3m:"3か月", holdGraph6m:"6か月", holdGraphYtd:"年初来", holdGraph1y:"1年"
     }
   };
 
@@ -117,48 +129,139 @@
     names.appendChild(t);
   }
 
-  function makePicker(investors){
-    ensureSelection(investors);
+  function chosenInvestors(investors){
+    return selArray().map(function(slug){ return investors.find(function(inv){ return inv.slug === slug; }); }).filter(Boolean).slice(0,4);
+  }
+  function topHolding(inv){
+    return holdings(inv).slice().sort(function(a,b){ return (b.weight || 0) - (a.weight || 0); })[0] || null;
+  }
+  function holdingTicker(holding){
+    return String((holding && (holding.ticker || holding.issuer)) || "—").replace(/\.us$/i, "").toUpperCase();
+  }
+  function shortInitial(inv){
+    var raw = locVal(inv && inv.manager) || locVal(inv && inv.name) || (inv && inv.slug) || "?";
+    try { return typeof initial === "function" ? initial(raw) : raw.trim().slice(0,2).toUpperCase(); }
+    catch(e){ return raw.trim().slice(0,2).toUpperCase(); }
+  }
+  function goCompare(message){
+    if (selected.size < 2){ if (message) message.textContent = C().min; return; }
+    if (typeof openInvestor === "function") openInvestor("compare");
+  }
+  function toggleSelection(slug, investors, message){
+    if (selected.has(slug)) selected.delete(slug);
+    else if (selected.size >= 4){ if (message) message.textContent = C().max; return false; }
+    else selected.add(slug);
+    saveSelection();
+    if (message) message.textContent = "";
+    syncSelection(investors);
+    return true;
+  }
+  function selectionLabel(button, on, full){
     var c = C();
-    var box = document.createElement("section"); box.className = "inv-compare-picker";
-    box.innerHTML = '<div class="inv-compare-picker-head"><div><b>' + esc(c.pickTitle) + '</b><p>' + esc(c.pickSub) + '</p></div>'
-      + '<span class="inv-compare-count"></span></div><div class="inv-select-chips"></div>'
-      + '<div class="inv-compare-actions"><span class="inv-compare-msg" aria-live="polite"></span>'
-      + '<button type="button" class="inv-compare-go"></button></div>';
-    var chips = box.querySelector(".inv-select-chips");
-    investors.forEach(function(inv){
-      var b = document.createElement("button"); b.type = "button"; b.className = "inv-select-chip"; b.setAttribute("aria-pressed", selected.has(inv.slug) ? "true" : "false");
-      b.innerHTML = '<span class="inv-select-code">' + esc(tickerLabel(inv)) + '</span><span>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</span>';
-      b.addEventListener("click", function(){
-        var msg = box.querySelector(".inv-compare-msg");
-        if (selected.has(inv.slug)) selected.delete(inv.slug);
-        else if (selected.size >= 4){ msg.textContent = c.max; return; }
-        else selected.add(inv.slug);
-        saveSelection(); refresh(); msg.textContent = "";
-      });
-      chips.appendChild(b);
+    button.textContent = on ? c.inCompare : (full ? c.fullCompare : c.addCompare);
+    button.classList.toggle("on", on);
+    button.setAttribute("aria-pressed", on ? "true" : "false");
+    button.disabled = !on && full;
+  }
+  function renderCompareBar(investors){
+    var old = document.querySelector(".inv-compare-bar"); if (old) old.remove();
+    if ((typeof INVESTOR_VIEW === "undefined" ? null : INVESTOR_VIEW) !== "index" || !selected.size) return;
+    var c = C(), chosen = chosenInvestors(investors), list = document.getElementById("feedList");
+    if (!list || !chosen.length) return;
+    var bar = document.createElement("aside"); bar.className = "inv-compare-bar"; bar.setAttribute("aria-label", c.pickTitle);
+    var avatars = document.createElement("div"); avatars.className = "inv-compare-bar-avatars";
+    chosen.forEach(function(inv, i){
+      var b = document.createElement("button"); b.type = "button"; b.title = (locVal(inv.manager) || locVal(inv.name) || inv.slug) + " ×";
+      b.innerHTML = '<span>' + esc(shortInitial(inv)) + '</span><i style="background:' + graphColor(i) + '"></i>';
+      b.addEventListener("click", function(){ toggleSelection(inv.slug, investors); }); avatars.appendChild(b);
     });
-    function refresh(){
-      var n = selected.size;
-      box.querySelector(".inv-compare-count").textContent = c.selected.replace("{n}",n);
-      var go = box.querySelector(".inv-compare-go"); go.textContent = c.compare; go.disabled = n < 2;
-      chips.querySelectorAll(".inv-select-chip").forEach(function(b, i){
-        var on = selected.has(investors[i].slug); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on ? "true" : "false");
+    var copy = document.createElement("div"); copy.className = "inv-compare-bar-copy";
+    copy.innerHTML = '<b>' + esc(c.selected.replace("{n}", selected.size)) + '</b><span>' + esc(selected.size < 2 ? c.oneMore : c.ready) + '</span>';
+    var go = document.createElement("button"); go.type = "button"; go.className = "inv-bar-go"; go.textContent = c.compare; go.disabled = selected.size < 2; go.addEventListener("click", function(){ goCompare(); });
+    bar.appendChild(avatars); bar.appendChild(copy); bar.appendChild(go); list.appendChild(bar);
+  }
+  function renderInvestorRail(investors){
+    var rail = document.getElementById("v83rail"); if (!rail) return;
+    var old = rail.querySelector(".inv-lab-rail"); if (old) old.remove();
+    if (typeof invViewActive === "function" && !invViewActive()) return;
+    var c = C(), chosen = chosenInvestors(investors), wrap = document.createElement("div"); wrap.className = "inv-lab-rail";
+    var pick = document.createElement("section"); pick.className = "inv-rail-card inv-rail-selection";
+    pick.innerHTML = '<h2>' + esc(c.pickTitle) + '<small>' + selected.size + '/4</small></h2><div class="inv-rail-rows"></div>';
+    var rows = pick.querySelector(".inv-rail-rows");
+    if (!chosen.length){ var empty = document.createElement("p"); empty.textContent = c.railEmpty; rows.appendChild(empty); }
+    chosen.forEach(function(inv, i){
+      var row = document.createElement("div"); row.className = "inv-rail-row";
+      var open = document.createElement("button"); open.type = "button"; open.className = "inv-rail-open";
+      open.innerHTML = '<i style="background:' + graphColor(i) + '"></i><span><b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(tickerLabel(inv)) + '</small></span>';
+      open.addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); });
+      var remove = document.createElement("button"); remove.type = "button"; remove.className = "inv-rail-remove"; remove.textContent = "×"; remove.setAttribute("aria-label", (locVal(inv.manager) || inv.slug) + " ×");
+      remove.addEventListener("click", function(){
+        toggleSelection(inv.slug, investors);
+        if ((typeof INVESTOR_VIEW === "undefined" ? null : INVESTOR_VIEW) === "compare"){
+          if (selected.size < 2 && typeof openInvestors === "function") openInvestors();
+          else if (typeof renderFeed === "function") renderFeed(false);
+        }
       });
-    }
-    box.querySelector(".inv-compare-go").addEventListener("click", function(){
-      if (selected.size < 2){ box.querySelector(".inv-compare-msg").textContent = c.min; return; }
-      if (typeof openInvestor === "function") openInvestor("compare");
+      row.appendChild(open); row.appendChild(remove); rows.appendChild(row);
     });
-    refresh();
+    var go = document.createElement("button"); go.type = "button"; go.className = "inv-rail-compare"; go.textContent = c.compare; go.disabled = selected.size < 2; go.addEventListener("click", function(){ goCompare(); }); pick.appendChild(go);
+    var guide = document.createElement("section"); guide.className = "inv-rail-card";
+    guide.innerHTML = '<h2>' + esc(c.read13f) + '</h2><p>' + esc(c.read13fSub) + '</p><ul><li>' + esc(c.read13f1) + '</li><li>' + esc(c.read13f2) + '</li><li>' + esc(c.read13f3) + '</li></ul>';
+    var snap = document.createElement("section"); snap.className = "inv-rail-card";
+    var period = investors.length ? invFmtDate(investors[0].period) : "—";
+    snap.innerHTML = '<h2>' + esc(c.snapshot) + '</h2><dl><div><dt>' + esc(c.investorsLabel) + '</dt><dd>' + investors.length + '</dd></div><div><dt>' + esc(c.periodLabel) + '</dt><dd>' + esc(period) + '</dd></div><div><dt>' + esc(c.sourceLabel) + '</dt><dd>SEC 13F</dd></div></dl>';
+    wrap.appendChild(pick); wrap.appendChild(guide); wrap.appendChild(snap); rail.appendChild(wrap);
+  }
+  function syncSelection(investors){
+    var c = C(), full = selected.size >= 4;
+    document.querySelectorAll("[data-inv-select]").forEach(function(button){
+      var slug = button.getAttribute("data-inv-select"), on = selected.has(slug); selectionLabel(button, on, full);
+    });
+    document.querySelectorAll(".inv-compare-count").forEach(function(el){ el.textContent = c.selected.replace("{n}", selected.size); });
+    document.querySelectorAll("[data-inv-go]").forEach(function(button){ button.disabled = selected.size < 2; });
+    renderInvestorRail(investors); renderCompareBar(investors);
+  }
+
+  function makePicker(investors, grid){
+    ensureSelection(investors);
+    var c = C(), box = document.createElement("section"); box.className = "inv-hub-tools";
+    box.innerHTML = '<div class="inv-compare-entry"><span class="inv-compare-entry-icon">⇄</span><div><b>' + esc(c.pickTitle) + '</b><p>' + esc(c.entrySub) + '</p></div>'
+      + '<button type="button" class="inv-compare-go" data-inv-go>' + esc(c.compare) + '</button><span class="inv-compare-count"></span><span class="inv-compare-msg" aria-live="polite"></span></div>'
+      + '<label class="inv-hub-search"><span aria-hidden="true">⌕</span><input type="search" placeholder="' + esc(c.search) + '" aria-label="' + esc(c.search) + '"></label>';
+    var msg = box.querySelector(".inv-compare-msg");
+    box.querySelector(".inv-compare-go").addEventListener("click", function(){ goCompare(msg); });
+    box.querySelector("input").addEventListener("input", function(ev){
+      var q = String(ev.target.value || "").trim().toLocaleLowerCase();
+      grid.querySelectorAll(".inv-hub-card").forEach(function(card){ card.hidden = !!q && String(card.getAttribute("data-search") || "").indexOf(q) < 0; });
+    });
     return box;
+  }
+  function upgradeHubCards(grid, investors){
+    Array.prototype.slice.call(grid.children).forEach(function(card, i){
+      var inv = investors[i]; if (!inv || !card.classList.contains("inv-card")) return;
+      var article = document.createElement("article"); article.className = "inv-hub-card"; article.setAttribute("data-slug", inv.slug);
+      article.setAttribute("data-search", [tickerLabel(inv), locVal(inv.manager), locVal(inv.name), inv.slug].join(" ").toLocaleLowerCase());
+      grid.insertBefore(article, card); article.appendChild(card); card.classList.add("inv-hub-person");
+      var name = card.querySelector(".inv-card-name"), manager = card.querySelector(".inv-card-manager");
+      if (name) name.textContent = locVal(inv.manager) || locVal(inv.name) || inv.slug;
+      if (manager) manager.textContent = locVal(inv.name) || "";
+      var top = topHolding(inv), metrics = document.createElement("div"); metrics.className = "inv-hub-metrics";
+      metrics.innerHTML = '<span><small>' + esc(C().total) + '</small><b>' + esc(invMoneyFmt(inv.total_value)) + '</b></span>'
+        + '<span><small>' + esc(C().topHolding) + '</small><b>' + esc(holdingTicker(top)) + '</b></span>'
+        + '<span><small>' + esc(C().weight) + '</small><b>' + esc(top ? pct(top.weight,1) : "—") + '</b></span>';
+      var actions = document.createElement("div"); actions.className = "inv-hub-actions";
+      var open = document.createElement("button"); open.type = "button"; open.className = "inv-hub-open"; open.textContent = C().openPortfolio; open.addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); });
+      var add = document.createElement("button"); add.type = "button"; add.className = "inv-hub-select"; add.setAttribute("data-inv-select", inv.slug);
+      add.addEventListener("click", function(){ toggleSelection(inv.slug, investors, document.querySelector(".inv-compare-msg")); });
+      actions.appendChild(open); actions.appendChild(add); article.appendChild(metrics); article.appendChild(actions);
+    });
   }
 
   function summaryCard(inv){
     var c = C(), a = inv.activity || {};
     var card = document.createElement("article"); card.className = "inv-compare-card"; card.setAttribute("data-slug", inv.slug);
-    card.innerHTML = '<div class="inv-compare-card-head"><span class="inv-ticker">' + esc(tickerLabel(inv)) + '</span>'
-      + '<b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(locVal(inv.name) || "") + '</small></div>'
+    card.innerHTML = '<button type="button" class="inv-compare-card-head"><span class="inv-ticker">' + esc(tickerLabel(inv)) + '</span>'
+      + '<b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(locVal(inv.name) || "") + '</small></button>'
       + '<dl class="inv-compare-metrics">'
       + metric(c.reported, esc(invFmtDate(inv.period))) + metric(c.total, esc(invMoneyFmt(inv.total_value)))
       + metric(c.holdings, String(inv.holdings_count == null ? "—" : inv.holdings_count)) + metric(c.top5, pct(topWeight(inv,5),1))
@@ -167,6 +270,7 @@
       + metric(c.vsSpy, '<span data-perf="spy">' + esc(c.loading) + '</span>') + '</dl>'
       + '<div class="inv-quarter-changes"><span>' + esc(c.newBuy) + ' <b>' + num(a.new_count) + '</b></span><span>' + esc(c.add) + ' <b>' + num(a.added_count) + '</b></span>'
       + '<span>' + esc(c.trim) + ' <b>' + num(a.reduced_count) + '</b></span><span>' + esc(c.exit) + ' <b>' + num(a.exited_count) + '</b></span></div>';
+    card.querySelector(".inv-compare-card-head").addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); });
     return card;
   }
   function metric(label, value){ return '<div><dt>' + esc(label) + '</dt><dd>' + value + '</dd></div>'; }
@@ -217,11 +321,11 @@
 
   var GRAPH_COLORS = ["#2F80ED", "#12B76A", "#F79009", "#9B51E0"];
   var GRAPH_PERIODS = [
-    { key:"1d", days:1, copy:"holdGraph1d" },
-    { key:"5d", days:5, copy:"holdGraph5d" },
     { key:"1m", days:30, copy:"holdGraph1m" },
+    { key:"3m", days:91, copy:"holdGraph3m" },
     { key:"6m", days:182, copy:"holdGraph6m" },
-    { key:"ytd", ytd:true, copy:"holdGraphYtd" }
+    { key:"ytd", ytd:true, copy:"holdGraphYtd" },
+    { key:"1y", days:365, copy:"holdGraph1y" }
   ];
   function graphColor(i){ return GRAPH_COLORS[i % GRAPH_COLORS.length]; }
   function graphPeriodLabel(c, period){ return c[period.copy] || period.key; }
@@ -296,9 +400,9 @@
     legend.innerHTML = rows.map(function(row, i){
       var inv = row.inv, coverage = row.res && typeof row.res.coverage === "number" ? Math.round(row.res.coverage * 100) : null;
       return '<span class="inv-compare-legend-item' + (row.series ? "" : " muted") + '">'
-        + '<i style="background:' + graphColor(i) + '"></i><b>' + esc(tickerLabel(inv)) + '</b>'
+        + '<i style="background:' + (row.color || graphColor(i)) + '"></i><b>' + esc(row.label || tickerLabel(inv)) + '</b>'
         + '<span>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</span>'
-        + '<small>' + (coverage == null ? esc(c.holdGraphNoPrice) : esc(c.holdGraphCoverage.replace("{p}", coverage))) + '</small></span>';
+        + '<small>' + (row.benchmark ? esc(c.benchmarkNote) : (coverage == null ? esc(c.holdGraphNoPrice) : esc(c.holdGraphCoverage.replace("{p}", coverage)))) + '</small></span>';
     }).join("");
   }
   function paintCompareGraph(chart, legend, rows, c, period, clearBtn, rangeReadout){
@@ -316,7 +420,7 @@
       var points = s.points.filter(function(p){ return p.t >= first.t && p.t <= last.t; });
       if (!points.length || points[0].t !== first.t) points.unshift(first);
       if (points[points.length - 1].t !== last.t) points.push(last);
-      return { inv:s.inv, points:points.map(function(p){ var index = (p.v / first.v) * 100; return { t:p.t, v:index - 100, index:index }; }), start:first.t, end:last.t, color:graphColor(i) };
+      return { inv:s.inv, label:s.label, benchmark:s.benchmark, points:points.map(function(p){ var index = (p.v / first.v) * 100; return { t:p.t, v:index - 100, index:index }; }), start:first.t, end:last.t, color:s.color || graphColor(i) };
     }).filter(Boolean);
     if (!series.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
     var all = [0]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
@@ -335,7 +439,7 @@
     var baseY = Y(0);
     var lines = series.map(function(s){
       var pts = s.points.map(function(p){ return X((p.t - windowStart) / maxElapsed).toFixed(1) + "," + Y(p.v).toFixed(1); }).join(" ");
-      return '<polyline points="' + pts + '" fill="none" stroke="' + s.color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+      return '<polyline points="' + pts + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.benchmark ? '2' : '2.5') + '"' + (s.benchmark ? ' stroke-dasharray="7 6"' : '') + ' stroke-linejoin="round" stroke-linecap="round"/>';
     }).join("");
     chart.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="100%" role="img" aria-label="' + esc(c.holdGraphSub) + '">'
       + grid + '<rect class="inv-compare-selection" y="' + pT + '" height="' + ph + '" visibility="hidden"/> '
@@ -380,7 +484,7 @@
         if (!p) return;
         dots[i].setAttribute("cx", X((p.t - windowStart) / maxElapsed).toFixed(1)); dots[i].setAttribute("cy", Y(p.v).toFixed(1)); dots[i].setAttribute("visibility", "visible");
         if (hoverY == null) hoverY = Y(p.v);
-        html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(graphPct(p.v)) + '</b></span>';
+        html += '<span><i style="background:' + s.color + '"></i>' + esc(s.label || tickerLabel(s.inv)) + ' <b>' + esc(graphPct(p.v)) + '</b></span>';
       });
       if (hoverY != null){ hoverH.setAttribute("y1", hoverY.toFixed(1)); hoverH.setAttribute("y2", hoverY.toFixed(1)); hoverH.setAttribute("visibility", "visible"); }
       tip.innerHTML = html; tip.hidden = false; placeTip(x / W);
@@ -397,9 +501,9 @@
       var any = false;
       series.forEach(function(s){
         var r = graphRangeForSeries(s, lo, hi, maxElapsed, windowStart);
-        if (!r){ html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>—</b></span>'; return; }
+        if (!r){ html += '<span><i style="background:' + s.color + '"></i>' + esc(s.label || tickerLabel(s.inv)) + ' <b>—</b></span>'; return; }
         any = true;
-        html += '<span><i style="background:' + s.color + '"></i>' + esc(tickerLabel(s.inv)) + ' <b>' + esc(rangePct(r.pct)) + '</b></span>';
+        html += '<span><i style="background:' + s.color + '"></i>' + esc(s.label || tickerLabel(s.inv)) + ' <b>' + esc(rangePct(r.pct)) + '</b></span>';
       });
       if (!any) html += '<span>' + esc(c.holdGraphNoData) + '</span>';
       tip.innerHTML = html; tip.hidden = false; placeTip(((x1 + x2) / 2) / W);
@@ -438,19 +542,28 @@
       var active = period.key === "ytd";
       return '<button type="button" role="tab" aria-selected="' + (active ? "true" : "false") + '" class="inv-compare-period' + (active ? " on" : "") + '" data-period="' + period.key + '">' + esc(graphPeriodLabel(c, period)) + '</button>';
     }).join("");
-    sec.innerHTML = '<div class="inv-performance-head"><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p><small class="inv-compare-drag-hint">' + esc(c.holdGraphDrag) + '</small></div>'
+    sec.innerHTML = '<div class="inv-performance-head inv-performance-head-row"><div><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p><small class="inv-compare-drag-hint">' + esc(c.holdGraphDrag) + '</small></div><label class="inv-benchmark-toggle"><input type="checkbox" checked><span>' + esc(c.benchmark) + '</span></label></div>'
       + '<div class="inv-compare-periods" role="tablist" aria-label="' + esc(c.holdGraphTitle) + '">' + periodButtons + '</div>'
       + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-selection-label" aria-live="polite" hidden></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
-    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear"), rangeReadout = sec.querySelector(".inv-compare-selection-label"), rows = null, activePeriod = "ytd";
+    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear"), rangeReadout = sec.querySelector(".inv-compare-selection-label"), benchmarkToggle = sec.querySelector(".inv-benchmark-toggle input"), rows = null, activePeriod = "ytd";
+    function visibleRows(){ return (rows || []).filter(function(row){ return !row.benchmark || benchmarkToggle.checked; }); }
     sec.querySelectorAll(".inv-compare-period").forEach(function(button){
       button.addEventListener("click", function(){
         activePeriod = button.getAttribute("data-period") || "ytd";
         sec.querySelectorAll(".inv-compare-period").forEach(function(other){ var on = other === button; other.classList.toggle("on", on); other.setAttribute("aria-selected", on ? "true" : "false"); });
-        if (rows) paintCompareGraph(chart, legend, rows, c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[4], clearBtn, rangeReadout);
+        if (rows) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout);
       });
     });
-    invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ return { inv: inv, res: null, series: null }; }); })
-      .then(function(result){ rows = result; if (sec.isConnected) paintCompareGraph(chart, legend, rows, c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[4], clearBtn, rangeReadout); });
+    benchmarkToggle.addEventListener("change", function(){ if (rows) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout); });
+    Promise.all([
+      invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ return { inv: inv, res: null, series: null }; }); }),
+      quote1y("spy.us").then(function(q){
+        var inv = { slug:"spy", ticker:"SP500", manager:{ ko:"S&P 500", en:"S&P 500", ja:"S&P 500" } };
+        var res = q && q.t && q.closes ? { calendar:q.t, values:q.closes, coverage:1 } : null;
+        var series = normalizeGraphSeries(inv, res); if (series){ series.benchmark = true; series.label = "S&P 500"; series.color = "#8E93A0"; }
+        return { inv:inv, res:res, series:series, benchmark:true, label:"S&P 500", color:"#8E93A0" };
+      }).catch(function(){ return null; })
+    ]).then(function(result){ rows = result[0].concat(result[1] ? [result[1]] : []); if (sec.isConnected) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout); });
     return sec;
   }
 
@@ -505,15 +618,27 @@
     } else setTimeout(fn, 0);
   }
 
+  function selectedStrip(investors){
+    var strip = document.createElement("div"); strip.className = "inv-selected-strip";
+    investors.forEach(function(inv, i){
+      var b = document.createElement("button"); b.type = "button";
+      b.innerHTML = '<i style="background:' + graphColor(i) + '"></i><span>' + esc(tickerLabel(inv)) + '</span><b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b>';
+      b.addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); }); strip.appendChild(b);
+    });
+    return strip;
+  }
+
   function renderCompare(list, S, investors){
     ensureSelection(investors);
-    var c=C(), chosen=selArray().map(function(slug){return investors.find(function(x){return x.slug===slug;});}).filter(Boolean).slice(0,4);
+    var c=C(), chosen=chosenInvestors(investors);
     if(chosen.length<2){ if(typeof openInvestors==="function") openInvestors(); return; }
+    renderInvestorRail(investors);
     var periods=new Set(chosen.map(function(i){return i.period||"";}));
     var head=document.createElement("div");head.className="series-header sb-header";
     head.innerHTML='<button class="series-close" onclick="openInvestors()">← '+esc(c.edit)+'</button><div class="series-head-name">⇄ '+esc(c.title)+'</div>'
       +'<p class="series-head-desc">'+chosen.map(function(i){return esc(tickerLabel(i));}).join(" · ")+'</p>';
     list.appendChild(head);
+    list.appendChild(selectedStrip(chosen));
     var loading=document.createElement("div"); loading.className="ehq-loading"; loading.textContent=c.loading; list.appendChild(loading);
     /* Let the comparison header paint before building its tables and chart.
        On mobile, this synchronous DOM work was part of the navigation tap's
@@ -532,19 +657,42 @@
   }
 
   /* Patch the existing 13F renderers without duplicating their SEC/photo/chart logic. */
+  var detailReturn = "index";
+  if (typeof window.openInvestor === "function"){
+    var originalOpenInvestor = window.openInvestor;
+    window.openInvestor = function(slug){
+      if (slug !== "compare") detailReturn = ((typeof INVESTOR_VIEW !== "undefined" && INVESTOR_VIEW === "compare") ? "compare" : "index");
+      return originalOpenInvestor(slug);
+    };
+  }
   if(typeof window.investorCardEl==="function"){
     var originalCard=window.investorCardEl;
     window.investorCardEl=function(inv,S){var card=originalCard(inv,S);injectTicker(card,inv);return card;};
   }
   if(typeof window.renderInvestorDetail==="function"){
     var originalDetail=window.renderInvestorDetail;
-    window.renderInvestorDetail=function(list,S,inv){originalDetail(list,S,inv);var head=list.querySelector(".series-header");injectTicker(head,inv);};
+    window.renderInvestorDetail=function(list,S,inv){
+      originalDetail(list,S,inv);
+      var head=list.querySelector(".series-header"); injectTicker(head,inv);
+      if (head){
+        var back = head.querySelector(".series-close");
+        if (back){ back.onclick = function(){ if (detailReturn === "compare" && selected.size >= 2) window.openInvestor("compare"); else openInvestors(); }; }
+        var add = document.createElement("button"); add.type = "button"; add.className = "inv-profile-compare"; add.setAttribute("data-inv-select", inv.slug);
+        add.addEventListener("click", function(){ toggleSelection(inv.slug, (PORTFOLIOS_DATA && PORTFOLIOS_DATA.investors) || [], null); });
+        head.appendChild(add);
+      }
+      var all = (PORTFOLIOS_DATA && PORTFOLIOS_DATA.investors) || [];
+      ensureSelection(all);
+      syncSelection(all);
+    };
   }
   if(typeof window.renderInvestorsIndex==="function"){
     var originalIndex=window.renderInvestorsIndex;
     window.renderInvestorsIndex=function(list,S,investors){
       originalIndex(list,S,investors);
-      var grid=list.querySelector(".inv-grid"); if(grid&&grid.parentNode) grid.parentNode.insertBefore(makePicker(investors),grid);
+      var grid=list.querySelector(".inv-grid");
+      if(grid&&grid.parentNode){ upgradeHubCards(grid,investors); grid.parentNode.insertBefore(makePicker(investors,grid),grid); }
+      syncSelection(investors);
     };
   }
   window.renderInvestorCompare=renderCompare;
