@@ -3848,7 +3848,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 })();
 </script>
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=cd109415">
-<link rel="stylesheet" href="assets/investor-compare.css?v=drag-mobile-20260807">
+<link rel="stylesheet" href="assets/investor-compare.css?v=integrated-20260809">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 <style id="static-home-feed-css">
@@ -13095,11 +13095,10 @@ function renderFeed(animate){
        묶어두면 리셋이 또 새더라도 화면과 레일이 어긋나지 않는다. */
     const _railEl = document.getElementById("v83rail");
     if (_railEl) _railEl.classList.toggle("inv-rail-hide", invViewActive());
-    /* v84.4: same single gate widens the desktop 3-col shell for the 13F view
-       (see the html.inv-wide CSS appended after xparity-css). One toggle call,
-       same invViewActive() already proven correct for the rail-hide class, so
-       leaving the 13F view resets this exactly the way it already resets that. */
-    document.documentElement.classList.toggle("inv-wide", invViewActive());
+    /* Investor Lab now stays inside the normal Stacks three-column shell. The
+       same render gate exposes its comparison rail and resets it on exit. */
+    document.documentElement.classList.toggle("inv-lab-active", invViewActive());
+    document.documentElement.classList.remove("inv-wide");
   } catch (e) {}
   if (typeof renderToday === "function") renderToday();
   refreshFilterBtn();
@@ -15372,7 +15371,7 @@ bootData();
   armInvestorDrawerWatch();
 })();
 </script>
-<script src="assets/investor-compare.js?v=relative0-20260808"></script>
+<script src="assets/investor-compare.js?v=integrated-20260809"></script>
 <script src="assets/investor-compare-paint.js?v=defer-20260808"></script>
 </body>
 </html>

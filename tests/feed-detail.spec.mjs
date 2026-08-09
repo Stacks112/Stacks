@@ -179,8 +179,10 @@ test.describe("13F investor view state", () => {
     await page.goto(`/?v83beta${hash}`, { waitUntil: "domcontentloaded" });
     await expect(page.locator(".inv-grid, .inv-table").first()).toBeVisible();
     await expect(page.locator("#v83rail")).toHaveClass(/inv-rail-hide/);
-    await expect(page.locator("html")).toHaveClass(/inv-wide/);
+    await expect(page.locator("html")).toHaveClass(/inv-lab-active/);
+    await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
     await expect(page.locator("#v83rail .v83-search")).toBeVisible();
+    await expect(page.locator("#v83rail .inv-lab-rail")).toBeVisible();
   }
 
   test("13F view does not request unavatar images", async ({ page }) => {
@@ -198,15 +200,18 @@ test.describe("13F investor view state", () => {
 
     await page.locator('#v83nav .v83-link[data-k="themes"]').click();
     await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("html")).not.toHaveClass(/inv-lab-active/);
     await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
     await expect(page.locator("#v83rail .v83-search")).toBeVisible();
 
     await page.locator('#v83nav .v83-link[data-k="investors"]').click();
     await expect(page.locator(".inv-grid")).toBeVisible();
     await expect(page.locator("#v83rail")).toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("html")).toHaveClass(/inv-lab-active/);
 
     await page.locator("#feedList > .v83post-head.v83navback .v83post-back").click();
     await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+    await expect(page.locator("html")).not.toHaveClass(/inv-lab-active/);
     await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
   });
 
@@ -263,6 +268,10 @@ test.describe("13F investor view state", () => {
       return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
     });
     await openInvestors(page);
+    await expect(page.locator(".inv-hub-search input")).toBeVisible();
+    await expect(page.locator(".inv-hub-card")).toHaveCount(16);
+    await expect(page.locator(".inv-compare-bar")).toBeVisible();
+    await expect(page.locator("#v83rail .inv-rail-selection")).toBeVisible();
     await page.locator(".inv-compare-go").click();
     await expect(page).toHaveURL(/#investor-compare$/);
     const graph = page.locator("#feedList .inv-performance-section .inv-compare-chart").first();
@@ -289,9 +298,11 @@ test.describe("13F investor view state", () => {
       for (const width of [1024, 1180]) {
         await page.setViewportSize({ width, height: 900 });
         await openInvestors(page);
+        await expect(page.locator("#v83rail .inv-lab-rail")).toBeVisible();
 
         await page.locator('#v83nav .v83-link[data-k="themes"]').click();
         await expect(page.locator("#v83rail")).not.toHaveClass(/inv-rail-hide/);
+        await expect(page.locator("html")).not.toHaveClass(/inv-lab-active/);
         await expect(page.locator("html")).not.toHaveClass(/inv-wide/);
         await expect(page.locator("#v83rail .v83-search")).toBeVisible();
       }
@@ -313,7 +324,7 @@ test.describe("13F investor view state", () => {
       await expect(page.locator("#v82drawer")).not.toHaveClass(/on/);
       await expect(page.locator("#feedList .inv-grid")).toBeVisible();
 
-      await expect(page.locator('.inv-select-chip[aria-pressed="true"]')).toHaveCount(2);
+      await expect(page.locator('.inv-hub-select[aria-pressed="true"]')).toHaveCount(2);
       await expect(page.locator(".inv-compare-go")).toBeEnabled();
       await page.locator(".inv-compare-go").click();
       await expect(page).toHaveURL(/#investor-compare$/);
