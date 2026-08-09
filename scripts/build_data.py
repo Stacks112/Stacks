@@ -44,6 +44,7 @@ import os
 import re
 import sys
 import hashlib
+from html import escape as html_escape
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,6 +55,9 @@ OUT = os.path.join(ROOT, "data")
 LANGS = ("ko", "en", "ja")
 GIST_PREVIEW = 150      # characters kept in core; enough for the clamped card
 CHUNK = 24              # items per gist chunk
+STATIC_HOME_START = "<!-- STATIC_HOME_FEED_START -->"
+STATIC_HOME_END = "<!-- STATIC_HOME_FEED_END -->"
+STATIC_HOME_COUNT = 10
 MAIN_KEYS = 4           # companies the "since this post" badge may price
 OPP_WINDOW_DAYS = 45    # how far apart two opposing takes may sit
 OPP_MAX = 2
@@ -679,11 +683,82 @@ def pick(d, lang):
     return d.get(lang) or d.get("en") or ""
 
 
+def static_home_text(value, limit):
+    """Return a compact English excerpt for the crawlable home feed."""
+    text = truncate(pick(value, "en"), limit)
+    return re.sub(r"\s+", " ", str(text or "")).strip()
+
+
+def static_home_block(items):
+    """Build the server-visible latest-reads section inside index.html."""
+    out = [
+        STATIC_HOME_START,
+        '<section class="static-home-feed" aria-labelledby="static-home-title">',
+        '  <div class="static-home-head">',
+        '    <h2 id="static-home-title">Latest investing reads</h2>',
+        '    <p>Original investment writing, summarized and explained by Stacks.</p>',
+        '  </div>',
+    ]
+    count = 0
+    for item in items:
+        if count >= STATIC_HOME_COUNT:
+            break
+        item_id = str(item.get("id") or "")
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", item_id):
+            continue
+        title = static_home_text(item.get("title"), 180)
+        gist = static_home_text(item.get("gist"), 420)
+        why = static_home_text(item.get("why"), 360)
+        if not title:
+            continue
+        title_bag = item.get("title") or {}
+        lang = "en" if isinstance(title_bag, dict) and title_bag.get("en") else "ko"
+        page = "p/en" if lang == "en" else "p"
+        page_url = "%s/%s.html" % (page, item_id)
+        source = str(item.get("source") or "Stacks")
+        source_url = str(item.get("sourceUrl") or "")
+        source_link = (
+            '<a href="%s" target="_blank" rel="noopener">%s</a>'
+            % (html_escape(source_url, quote=True), html_escape(source))
+            if re.match(r"^https?://", source_url, re.I)
+            else html_escape(source)
+        )
+        date = str(item.get("date") or "")
+        out.extend([
+            '  <article class="static-home-card">',
+            '    <h3><a href="%s">%s</a></h3>' % (html_escape(page_url, quote=True), html_escape(title)),
+            '    %s' % ('<p class="static-home-excerpt" lang="en">%s</p>' % html_escape(gist) if gist else ""),
+            '    %s' % ('<p class="static-home-why" lang="en"><strong>Why it matters.</strong> %s</p>' % html_escape(why) if why else ""),
+            '    <p class="static-home-meta">%s · <time datetime="%s">%s</time></p>' % (source_link, html_escape(date, quote=True), html_escape(date)),
+            '  </article>',
+        ])
+        count += 1
+    if not count:
+        out.append('  <p class="static-home-empty">No reads are available yet.</p>')
+    out.extend([
+        '  <p class="static-home-all"><a href="articles.html">Browse all Stacks reads →</a></p>',
+        '</section>',
+        STATIC_HOME_END,
+    ])
+    return "\n".join(out)
+
+
+def update_static_home(src, items):
+    """Replace only the marked home section and preserve the file's EOL style."""
+    start = src.find(STATIC_HOME_START)
+    end = src.find(STATIC_HOME_END, start + len(STATIC_HOME_START))
+    if start < 0 or end < 0:
+        die("static home markers missing from index.html")
+    end += len(STATIC_HOME_END)
+    eol = "\r\n" if "\r\n" in src else "\n"
+    block = static_home_block(items).replace("\n", eol)
+    return src[:start] + block + src[end:]
+
 def main():
     print("build_data: reading items.json")
     with open(ITEMS, encoding="utf-8") as f:
         data = json.load(f)
-    with open(INDEX, encoding="utf-8") as f:
+    with open(INDEX, encoding="utf-8", newline="") as f:
         src = f.read()
 
     items = data.get("items") or []
@@ -711,6 +786,12 @@ def main():
 
     # newest first, so chunk 0 is what the reader sees first
     ordered = sorted(items, key=lambda i: str(i.get("date") or ""), reverse=True)
+
+    updated_src = update_static_home(src, ordered)
+    if updated_src != src:
+        with open(INDEX, "w", encoding="utf-8", newline="") as f:
+            f.write(updated_src)
+        src = updated_src
 
     gen = hashlib.sha256(
         json.dumps(data, ensure_ascii=False, sort_keys=True).encode()
