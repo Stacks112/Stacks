@@ -189,7 +189,7 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('robots=None if theme_indexable else "noindex,follow"', pages)
         self.assertIn('robots=None if record_indexable else "noindex,follow"', pages)
         self.assertIn('robots_meta = (f\'<meta name="robots" content="{E(robots)}">\' if robots else "")', pages)
-        self.assertIn("if len(t_items) >= THEME_MIN_ARTICLES:", pages)
+        self.assertIn("theme_indexable = len(t_items) >= THEME_MIN_ARTICLES", pages)
         self.assertIn("if record_indexable:", pages)
 
     def test_investor_rail_gate_matches_render_dispatch(self):
