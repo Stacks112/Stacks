@@ -4,7 +4,7 @@ Reads items.json and produces, for search engines and syndication:
   p/{id}.html   one crawlable article page per item (title, summary in
                 all 3 languages, structured data) that also links into
                 the app for humans.
-  articles.html a plain hub page linking every article (crawl entry).
+  articles*.html language-specific hubs linking every article (crawl entries).
   sitemap.xml   every page with lastmod, for Google/Naver.
   robots.txt    allow all + sitemap pointer.
   feed.xml      Stacks' own RSS (enables feed readers + no-code auto-
@@ -48,6 +48,29 @@ def LD(obj):
     return (json.dumps(obj, ensure_ascii=False)
             .replace("<", "\\u003c").replace(">", "\\u003e")
             .replace("&", "\\u0026"))
+
+
+def breadcrumb_script(crumbs):
+    """Return a safe BreadcrumbList JSON-LD block for a crawlable page.
+
+    Breadcrumbs are emitted as a separate JSON-LD node so the page's primary
+    Article/CollectionPage graph keeps its existing shape. URLs are generated
+    from the same canonical constants used by the page, which prevents a
+    breadcrumb from quietly pointing at a query-string or legacy alias.
+    """
+    rows = []
+    for pos, (name, url) in enumerate(crumbs, 1):
+        if not name or not url:
+            continue
+        rows.append({"@type": "ListItem", "position": pos,
+                     "name": str(name), "item": str(url)})
+    if not rows:
+        return ""
+    return '<script type="application/ld+json">%s</script>' % LD({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": rows,
+    })
 
 
 HEX_RE = re.compile(r"^#[0-9A-Fa-f]{3,8}$")
@@ -1310,6 +1333,18 @@ LANG_DIR = {"ko": "p", "en": "p/en", "ja": "p/ja"}
 LANG_REL = {"ko": "../", "en": "../../", "ja": "../../"}
 OG_LOCALE = {"ko": "ko_KR", "en": "en_US", "ja": "ja_JP"}
 FEED_FILE = {"ko": "feed.xml", "en": "feed-en.xml", "ja": "feed-ja.xml"}
+ARTICLE_HUB_FILE = {"ko": "articles.html", "en": "articles-en.html", "ja": "articles-ja.html"}
+
+
+def article_hub_hreflang():
+    """Reciprocal language annotations shared by the three article hubs."""
+    tags = "".join(
+        '<link rel="alternate" hreflang="%s" href="%s">'
+        % (lg, E(BASE + ARTICLE_HUB_FILE[lg]))
+        for lg in LANGS
+    )
+    return tags + '<link rel="alternate" hreflang="x-default" href="%s">' % E(
+        BASE + ARTICLE_HUB_FILE["en"])
 
 
 def page_url(iid, lang):
@@ -1648,7 +1683,7 @@ if(u.origin!==location.origin)return null;
 var p=u.pathname.replace(/^\\/+/,""),m;
 if((m=p.match(/^p\\/(en|ja)\\/([^\\/]+)\\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
 if((m=p.match(/^p\\/([^\\/]+)\\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
-if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+if(p===""||p==="index.html"||p==="articles.html"||p==="articles-en.html"||p==="articles-ja.html")return "?l="+L;
 return null;}
 document.addEventListener("click",function(e){
 if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
@@ -1683,8 +1718,9 @@ def latest_block(cur_id, lang, U, skip=(), limit=8):
     if not rows:
         return ""
     return ('<nav class="latest"><h3>%s</h3><ul>%s</ul>'
-            '<a class="latest-all" href="%sarticles.html">%s</a></nav>'
-            % (E(U["latest"]), rows, LANG_REL[lang], E(U["allmore"])))
+            '<a class="latest-all" href="%s%s">%s</a></nav>'
+            % (E(U["latest"]), rows, LANG_REL[lang], ARTICLE_HUB_FILE[lang],
+               E(U["allmore"])))
 
 
 def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titles=None):
@@ -1700,6 +1736,11 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
     cov = item.get("cover", {}) or {}
     grad = f"linear-gradient(135deg,{hexcolor(cov.get('from'), '#111')},{hexcolor(cov.get('to'), '#333')})"
     title = item["title"].get(lang) or item["title"].get("ko") or item["title"]["en"]
+    breadcrumb = breadcrumb_script([
+        (SITE, BASE),
+        (U["allp"], BASE + ARTICLE_HUB_FILE[lang]),
+        (title, url),
+    ])
     gist = (item.get("gist") or {}).get(lang) or ""
     why = (item.get("why") or {}).get(lang) or ""
     ask = (item.get("ask") or {}).get(lang) or ""
@@ -1888,6 +1929,7 @@ def page_html(item, ent_links=None, og_img=None, lang="ko", langs=None, rel_titl
 <link rel="icon" href="{REL}favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="{feed_rel}">
 <script type="application/ld+json">{LD(ld)}</script>
+{breadcrumb}
 <script src="{REL}assets/manual-overrides.js" defer></script>
 <style>
 :root{{color-scheme:light dark}}
@@ -1949,7 +1991,7 @@ footer a{{color:#8E93A0}}
 <div class="wrap">
   <div class="topbar">
     <a class="brand" href="{REL}">◆ {SITE}</a>
-    <nav class="sitenav"><a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{REL}this-week.html">{E(U['week'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a></nav>
+    <nav class="sitenav"><a href="{REL}{ARTICLE_HUB_FILE[lang]}">{E(U['allp'])}</a> · <a href="{REL}this-week.html">{E(U['week'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a></nav>
   </div>
   <div class="cover"><span class="label">{E(cov.get('label',''))}</span></div>
   <div class="meta">{E(dispname(item.get('source','')))} · {E(item.get('date',''))} · {E(U['origlang'])}: {E(item.get('sourceLang',''))}</div>
@@ -1967,7 +2009,7 @@ footer a{{color:#8E93A0}}
   {latest_html}
   <footer>
     {E(U['disc'])}<br>
-    <a href="{REL}">{E(U['home'])}</a> · <a href="{REL}articles.html">{E(U['allp'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a> · <a href="{feed_rel}">RSS</a>
+    <a href="{REL}">{E(U['home'])}</a> · <a href="{REL}{ARTICLE_HUB_FILE[lang]}">{E(U['allp'])}</a> · <a href="{REL}about.html">{E(U['about'])}</a> · <a href="{feed_rel}">RSS</a>
   </footer>
 </div>
 {x_script}
@@ -2239,6 +2281,7 @@ def entity_page(key, e, ent_items, lang="ko", holder_index=None):
     thin_robots = ("" if len(ent_items) >= ENTITY_MIN_ARTICLES
                    else '\n<meta name="robots" content="noindex,follow">')
     hreflang = ent_hreflang(slug, LANGS)
+    breadcrumb = breadcrumb_script([(SITE, BASE), (name, url)])
     og_locale = (f'<meta property="og:locale" content="{OG_LOCALE[lang]}">'
                  + "".join(f'<meta property="og:locale:alternate" content="{OG_LOCALE[lg]}">'
                            for lg in LANGS if lg != lang))
@@ -2262,6 +2305,7 @@ def entity_page(key, e, ent_items, lang="ko", holder_index=None):
 <link rel="icon" href="{pfx}favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="{pfx}{FEED_FILE[lang]}">
 <script type="application/ld+json">{LD(ld)}</script>
+{breadcrumb}
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
@@ -2309,7 +2353,7 @@ footer a{{color:#8E93A0}}
 <ul>{rows}</ul>
 <footer>
   {E(disc["disc"])}<br>
-  <a href="{pfx}">{E(disc["home"])}</a> · <a href="{pfx}articles.html">{E(disc["allp"])}</a> · <a href="{pfx}{FEED_FILE[lang]}">RSS</a>
+  <a href="{pfx}">{E(disc["home"])}</a> · <a href="{pfx}{ARTICLE_HUB_FILE[lang]}">{E(disc["allp"])}</a> · <a href="{pfx}{FEED_FILE[lang]}">RSS</a>
 </footer>
 </main>
 </body>
@@ -2317,25 +2361,46 @@ footer a{{color:#8E93A0}}
 """
 
 
-def articles_index(items):
+def articles_index(items, lang="ko"):
+    """Language-specific crawl hub for the article editions.
+
+    The old English hub was a hand-written snapshot and Japanese had no hub at
+    all. Generate all three from the same item set so navigation, canonical
+    URLs, RSS, and hreflang stay in lockstep with the article pages.
+    """
+    hub_file = ARTICLE_HUB_FILE[lang]
+    title = {"ko": "전체 글", "en": "All articles", "ja": "記事一覧"}[lang]
     rows = "".join(
-        f'<li><a href="p/{E(i["id"])}.html">{E(i["title"].get("ko") or i["title"]["en"])}</a>'
+        f'<li><a href="{E(page_url(i["id"], lang)[len(BASE):])}">'
+        f'{E((i.get("title") or {}).get(lang) or (i.get("title") or {}).get("ko") or (i.get("title") or {}).get("en", ""))}</a>'
         f' <span class="d">{E(dispname(i.get("source","")))} · {E(i.get("date",""))}</span></li>'
-        for i in items
+        for i in items if lang in item_langs(i)
     )
-    applink = app_link_js("ko")
+    url = BASE + hub_file
+    desc = f"{TAGLINE[lang]}. {title}."
+    ld = {
+        "@context": "https://schema.org", "@type": "CollectionPage",
+        "name": f"{title} · {SITE}", "description": desc, "url": url,
+        "publisher": publisher_ld(), "isPartOf": {"@id": BASE + "#website"},
+        "inLanguage": lang,
+    }
+    breadcrumb = breadcrumb_script([(SITE, BASE), (title, url)])
+    applink = app_link_js(lang)
     return f"""<!DOCTYPE html>
-<html lang="ko">
+<html lang="{lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>전체 글 · {SITE}</title>
-<meta name="description" content="{E(TAGLINE['ko'])}. 전체 글 목록.">
-<link rel="canonical" href="{BASE}articles.html">
+<title>{E(title)} · {SITE}</title>
+<meta name="description" content="{E(desc)}">
+<link rel="canonical" href="{E(url)}">
+{article_hub_hreflang()}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1656582515648973" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" title="Stacks" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" title="Stacks" href="{FEED_FILE[lang]}">
+<script type="application/ld+json">{LD(ld)}</script>
+{breadcrumb}
 <style>
-body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
+body{{font-family:-apple-system,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
 a{{color:inherit}}
 h1{{font-size:22px}}
@@ -2348,8 +2413,8 @@ li{{padding:12px 0;border-bottom:1px solid #ECEDF1}}
 </head>
 <body>
 <main>
-<h1><a href="./" style="text-decoration:none">◆ {SITE}</a> 전체 글</h1>
-<p style="color:#8E93A0">{E(TAGLINE['ko'])}</p>
+<h1><a href="./" style="text-decoration:none">◆ {SITE}</a> {E(title)}</h1>
+<p style="color:#8E93A0">{E(TAGLINE[lang])}</p>
 <ul>{rows}</ul>
 </main>
 </body>
@@ -2418,6 +2483,7 @@ def week_page(items, entities, item_ents, canonical_slug):
         },
     }
     applink = app_link_js("ko")
+    breadcrumb = breadcrumb_script([(SITE, BASE), ("이번 주", dated_url)])
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -2440,6 +2506,7 @@ def week_page(items, entities, item_ents, canonical_slug):
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{LD(ld)}</script>
+{breadcrumb}
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
@@ -2561,6 +2628,7 @@ def calendar_page(events, items, ent_indexable):
         },
     }
     applink = app_link_js("ko")
+    breadcrumb = breadcrumb_script([(SITE, BASE), ("경제 캘린더", url)])
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -2579,6 +2647,7 @@ def calendar_page(events, items, ent_indexable):
 <link rel="icon" href="favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="feed.xml">
 <script type="application/ld+json">{LD(ld)}</script>
+{breadcrumb}
 <style>
 body{{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}}
 @media(prefers-color-scheme:dark){{body{{background:#0E0F12;color:#ECEDF1}}}}
@@ -2642,9 +2711,10 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     urls = [(BASE, now, "1.0", None),
             (BASE + "record.html", now, "0.8", None),
             (BASE + "calendar.html", now, "0.7", None),
-            (BASE + "articles.html", now, "0.6", None),
             (BASE + "about.html", now, "0.6", None),
             (BASE + "privacy.html", now, "0.3", None)]
+    for lg in LANGS:
+        urls.append((BASE + ARTICLE_HUB_FILE[lg], now, "0.6", ("A", None)))
     for i in items:
         lgs = item_langs(i)
         alts = lgs if len(lgs) > 1 else None
@@ -2664,6 +2734,11 @@ def sitemap(items, entity_slugs=None, week_slugs=None, theme_slugs=None, record_
     def _alt(a):
         if not a:
             return ""
+        if a[0] == "A":
+            out = "".join(
+                f'<xhtml:link rel="alternate" hreflang="{lg}" href="{E(BASE + ARTICLE_HUB_FILE[lg])}"/>'
+                for lg in LANGS)
+            return out + f'<xhtml:link rel="alternate" hreflang="x-default" href="{E(BASE + ARTICLE_HUB_FILE["en"])}"/>'
         if a[0] == "E":
             eslug = a[1]
             eout = "".join(
@@ -2804,6 +2879,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
         "name": title, "description": metadesc, "url": url, "inLanguage": "ko",
         "publisher": publisher_ld(), "isPartOf": {"@id": BASE + "#website"},
     })
+    breadcrumb = breadcrumb_script([(SITE, BASE), (title, url)])
     og_tags = ""
     tw = "summary"
     if og_id and os.path.exists(f"og/{og_id}.png"):
@@ -2835,6 +2911,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{hub_ld}</script>
+{breadcrumb}
 <style>{_HUB_CSS}</style>
 {applink}
 </head>
@@ -3036,7 +3113,8 @@ def _ping_indexnow(items):
     """Notify IndexNow (Bing, Naver, Yandex...) of recent URLs so new cards are
     discovered fast. Google does NOT use IndexNow (submit via Search Console)."""
     key = "stacks-f26ebf24-6bfbfb6a-bce6cc32-30287033"
-    urls = [BASE, BASE + "articles.html"] + [BASE + "p/" + i["id"] + ".html" for i in items[:12]]
+    urls = ([BASE] + [BASE + ARTICLE_HUB_FILE[lg] for lg in LANGS]
+            + [BASE + "p/" + i["id"] + ".html" for i in items[:12]])
     import urllib.request
     payload = json.dumps({"host": "stacksdaily.com", "key": key,
                           "keyLocation": BASE + key + ".txt", "urlList": urls}).encode("utf-8")
@@ -3284,7 +3362,9 @@ def main():
             if fn.endswith(".html") and fn[:-5] not in ent_slugs:
                 os.remove(f"{_ed}/{fn}")
 
-    open("articles.html", "w", encoding="utf-8").write(articles_index(items))
+    for _lg in LANGS:
+        open(ARTICLE_HUB_FILE[_lg], "w", encoding="utf-8").write(
+            articles_index(items, _lg))
 
     # theme debate + author record hub pages (SEO for #theme-/#record- views)
     theme_slugs, record_slugs = build_extra_pages(items, og)
