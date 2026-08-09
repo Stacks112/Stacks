@@ -1078,6 +1078,12 @@ MIN_RATE_N = 5  # 적중률을 공개할 최소 채점 표본
 # 기준 미만은 noindex,follow + 사이트맵 제외. 글이 쌓이면 자동으로 색인에 돌아온다.
 ENTITY_MIN_ARTICLES = 3
 
+# Author/theme hubs are useful internal navigation targets even before they have
+# enough history to deserve independent search results. Keep those pages live
+# for readers, but do not present one- or two-item shells as indexable content.
+RECORD_MIN_ARTICLES = 3
+THEME_MIN_ARTICLES = 3
+
 
 def week_window(items):
     """(wk_items, label) for the last 7 days, same rule week_page() uses."""
@@ -2318,6 +2324,7 @@ def articles_index(items):
         for i in items
     )
     applink = app_link_js("ko")
+    robots_meta = (f'<meta name="robots" content="{E(robots)}">' if robots else "")
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -2563,6 +2570,7 @@ def calendar_page(events, items, ent_indexable):
 <title>실적 발표 일정·경제 캘린더{(" · " + ", ".join(ern_names[:3])) if ern_names else ""} | {SITE}</title>
 <meta name="description" content="{E(metadesc)}">
 <link rel="canonical" href="{E(url)}">
+{robots_meta}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{SITE}">
 <meta property="og:title" content="실적 발표 일정·경제 캘린더 | {SITE}">
@@ -2791,7 +2799,7 @@ footer a{color:#8E93A0}
 """
 
 
-def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=None):
+def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=None, robots=None):
     import os
     hub_ld = LD({
         "@context": "https://schema.org", "@type": "CollectionPage",
@@ -2931,12 +2939,18 @@ def build_extra_pages(items, og):
 
     # --- themes ---
     os.makedirs("t", exist_ok=True)
+    # theme_slugs is sitemap-only; theme_written keeps thin pages reachable
+    # from the app while excluding them from search-engine discovery.
     theme_slugs = []
+    theme_written = []
     for key, th in THEMES.items():
         t_items = sorted(theme_matches(items, key), key=lambda x: x.get("date", ""), reverse=True)
         if not t_items:
             continue
-        theme_slugs.append(key)
+        theme_written.append(key)
+        theme_indexable = len(t_items) >= THEME_MIN_ARTICLES
+        if theme_indexable:
+            theme_slugs.append(key)
         b = sum(1 for i in t_items if i.get("stance") == "bull")
         r = sum(1 for i in t_items if i.get("stance") == "bear")
         w = len(t_items) - b - r
@@ -2953,10 +2967,11 @@ def build_extra_pages(items, og):
         _pseudo_og(og, "theme-" + key, th["en"].upper(),
                    f"{th['icon']} {th['ko']} 강세 {b} · 약세 {r}")
         html_out = _hub_page(url, title, metadesc, "THEME DEBATE", f"{th['icon']} {E(th['ko'])}",
-                             lead, body, app_url, og_id="theme-" + key)
+                             lead, body, app_url, og_id="theme-" + key,
+                             robots=None if theme_indexable else "noindex,follow")
         open(f"t/{key}.html", "w", encoding="utf-8").write(html_out)
     for fn in os.listdir("t"):
-        if fn.endswith(".html") and fn[:-5] not in theme_slugs:
+        if fn.endswith(".html") and fn[:-5] not in theme_written:
             os.remove(f"t/{fn}")
 
     # --- author record pages ---
@@ -2972,12 +2987,18 @@ def build_extra_pages(items, og):
     by_author = {}
     for i in items:
         by_author.setdefault(i.get("source", ""), []).append(i)
+    # record_slugs is sitemap-only; record_written preserves internal links to
+    # thin author pages while their robots meta keeps them out of the index.
     record_slugs = []
+    record_written = []
     for name, its in by_author.items():
         if not name:
             continue
         slug = name2slug.get(name) or slugify(name)
-        record_slugs.append(slug)
+        record_written.append(slug)
+        record_indexable = len(its) >= RECORD_MIN_ARTICLES
+        if record_indexable:
+            record_slugs.append(slug)
         its = sorted(its, key=lambda x: x.get("date", ""), reverse=True)
         calls = [i for i in its if i.get("stance") in ("bull", "bear")]
         hits = sum(1 for i in its if (i.get("outcome") or {}).get("status") == "hit")
@@ -3001,10 +3022,11 @@ def build_extra_pages(items, og):
                    f"{dispname(name)} 적중 기록", avatar_local=av_local,
                    frm="#111827", to="#334155")
         html_out = _hub_page(url, title, metadesc, "TRACK RECORD", E(dispname(name)),
-                             lead, body, app_url, og_id="record-" + slug)
+                             lead, body, app_url, og_id="record-" + slug,
+                             robots=None if record_indexable else "noindex,follow")
         open(f"r/{slug}.html", "w", encoding="utf-8").write(html_out)
     for fn in os.listdir("r"):
-        if fn.endswith(".html") and fn[:-5] not in record_slugs:
+        if fn.endswith(".html") and fn[:-5] not in record_written:
             os.remove(f"r/{fn}")
     print(f"[extra] {len(theme_slugs)} theme pages + {len(record_slugs)} record pages")
     return theme_slugs, record_slugs
