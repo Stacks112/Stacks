@@ -2324,7 +2324,6 @@ def articles_index(items):
         for i in items
     )
     applink = app_link_js("ko")
-    robots_meta = (f'<meta name="robots" content="{E(robots)}">' if robots else "")
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -2570,7 +2569,6 @@ def calendar_page(events, items, ent_indexable):
 <title>실적 발표 일정·경제 캘린더{(" · " + ", ".join(ern_names[:3])) if ern_names else ""} | {SITE}</title>
 <meta name="description" content="{E(metadesc)}">
 <link rel="canonical" href="{E(url)}">
-{robots_meta}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{SITE}">
 <meta property="og:title" content="실적 발표 일정·경제 캘린더 | {SITE}">
@@ -2816,6 +2814,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
                    f'<meta name="twitter:image" content="{E(img)}">')
         tw = "summary_large_image"
     applink = app_link_js("ko")
+    robots_meta = (f'<meta name="robots" content="{E(robots)}">' if robots else "")
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -2824,6 +2823,7 @@ def _hub_page(url, title, metadesc, kicker, h1, lead, body_html, app_url, og_id=
 <title>{E(title)}</title>
 <meta name="description" content="{E(metadesc)}">
 <link rel="canonical" href="{E(url)}">
+{robots_meta}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{SITE}">
 <meta property="og:title" content="{E(title)}">
