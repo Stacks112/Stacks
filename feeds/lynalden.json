@@ -1,7 +1,7 @@
 {
  "source": "lynalden",
  "fetched_at": "2026-08-08T22:59:42.508885+00:00",
- "checked_at": "2026-08-09T15:02:31.421409+00:00",
+ "checked_at": "2026-08-09T17:05:48.353022+00:00",
  "ok": false,
  "url_used": "https://www.lynalden.com/feed/",
  "keep_days": 30,
@@ -9,7 +9,7 @@
  "foreign_count": 0,
  "newest_published": "2026-07-15T14:16:27+00:00",
  "kept_count": 1,
- "error": "ConnectTimeout: HTTPSConnectionPool(host='www.lynalden.com', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.lynalden.com', port=443) at 0x7fd2d6682330>, 'Connection to www.lynalden.com timed out. (connect timeout=25)'))",
+ "error": "ParseError: not well-formed (invalid token): line 1, column 115",
  "items": [
   {
    "title": "An Alternative to Private Equity: Introducing ORANGE JUICE",
