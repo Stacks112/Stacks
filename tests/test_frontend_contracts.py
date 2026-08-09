@@ -179,6 +179,19 @@ class FrontendContracts(unittest.TestCase):
         self.assertNotIn("https://stacksdaily.com/this-week.html", sitemap)
         self.assertIn("https://stacksdaily.com/week/", sitemap)
 
+    def test_thin_hub_pages_are_kept_for_navigation_but_not_indexed(self):
+        pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
+
+        self.assertIn("RECORD_MIN_ARTICLES = 3", pages)
+        self.assertIn("THEME_MIN_ARTICLES = 3", pages)
+        self.assertIn("theme_written", pages)
+        self.assertIn("record_written", pages)
+        self.assertIn('robots=None if theme_indexable else "noindex,follow"', pages)
+        self.assertIn('robots=None if record_indexable else "noindex,follow"', pages)
+        self.assertIn('robots_meta = (f\'<meta name="robots" content="{E(robots)}">\' if robots else "")', pages)
+        self.assertIn("theme_indexable = len(t_items) >= THEME_MIN_ARTICLES", pages)
+        self.assertIn("if record_indexable:", pages)
+
     def test_investor_rail_gate_matches_render_dispatch(self):
         self.assertIn("function invViewActive()", INDEX)
         self.assertIn('if (invViewActive()){ renderInvestors(list,S);', INDEX)
