@@ -179,6 +179,22 @@ class FrontendContracts(unittest.TestCase):
         self.assertNotIn("https://stacksdaily.com/this-week.html", sitemap)
         self.assertIn("https://stacksdaily.com/week/", sitemap)
 
+    def test_static_seo_generator_keeps_breadcrumbs_and_language_hubs_in_lockstep(self):
+        pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
+
+        self.assertIn("def breadcrumb_script(crumbs):", pages)
+        self.assertIn('"@type": "BreadcrumbList"', pages)
+        self.assertIn("ARTICLE_HUB_FILE =", pages)
+        self.assertIn('"ja": "articles-ja.html"', pages)
+        self.assertIn("def article_hub_hreflang():", pages)
+        self.assertIn("if a[0] == \"A\":", pages)
+        self.assertIn("open(ARTICLE_HUB_FILE[_lg]", pages)
+        self.assertIn("if(p===\"\"||p===\"index.html\"||p===\"articles.html\"||p===\"articles-en.html\"||p===\"articles-ja.html\")", pages)
+
+        # Every crawlable generator family must place the common breadcrumb
+        # block next to its primary JSON-LD, not only on article pages.
+        self.assertGreaterEqual(pages.count("{breadcrumb}"), 6)
+
     def test_thin_hub_pages_are_kept_for_navigation_but_not_indexed(self):
         pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
 
