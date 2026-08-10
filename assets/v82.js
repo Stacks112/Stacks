@@ -92,6 +92,7 @@
         recentQ:"最近の検索",recentClear:"すべて消去",recentDel:"削除",
         calToday:"今日",calMonthView:"月別",calWeekView:"週別",calMonthSoon:"月別表示は近日公開予定です。",calEarnings:"決算",calActual:"実績",calAiSummary:"今週のAI要約"}
   };
+  V82S.ko.skewAsOf = "기준일 {date}"; V82S.en.skewAsOf = "As of {date}"; V82S.ja.skewAsOf = "基準日 {date}";
   function T(){ var l = (typeof LANG !== "undefined" && V82S[LANG]) ? LANG : "ko"; return V82S[l]; }
   function $(id){ return document.getElementById(id); }
   var SILENT = false;
@@ -693,7 +694,7 @@
   function skewSubHtml(){
     var t = T(), rows = skewData(skewLocalIsoDate(6), skewLocalIsoDate(0)), html = "";
     html += '<div class="v82-skew-sub" style="margin-top:2px">' + t.skewSub + '</div>';
-    html += '<div class="v82-skew-method">' + esc(t.skewMethod) + '</div>';
+    html += '<div class="v82-skew-method">' + esc(t.skewMethod + " · " + t.skewAsOf.replace("{date}", skewLocalIsoDate(0))) + '</div>';
     html += skewTrendHtml();
     if (!rows.length){
       html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';

@@ -1837,6 +1837,7 @@ html{overscroll-behavior-y:contain;}
   .sktr-meta{ margin-left:auto; display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:700; white-space:nowrap; }
   .sktr-meta b{ font-family:var(--mono-font); font-size:12px; }
   .sktr-meta b.sk-bull{ color:#12B76A; } .sktr-meta b.sk-bear{ color:#F04438; } .sktr-meta b.sk-mix{ color:#B7791F; }
+  .sktr-sample{ color:var(--muted); font-size:10px; font-weight:700; }
   .skew-source-toggle{ flex:0 0 auto; padding:2px 0; border:0; background:none; font:inherit; font-size:10px; color:var(--accent); cursor:pointer; text-decoration:underline; text-underline-offset:2px; white-space:nowrap; }
   .skew-source-detail{ margin:0 4px 8px 136px; padding:9px 11px; border:1px solid var(--line); border-radius:10px; background:var(--bg-soft); }
   .skew-source-title{ display:block; margin-bottom:5px; font-size:11px; color:var(--muted); }
@@ -3857,7 +3858,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   setTimeout(relRail, 6500);
 })();
 </script>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-source-link-20260810">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-trust-20260810">
 <link rel="stylesheet" href="assets/investor-compare.css?v=integrated-20260809">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
@@ -9592,6 +9593,7 @@ function v83SkewRows(days){
     var cells = days.map(function(){ return { bull: 0, bear: 0 }; });
     var bull = 0, bear = 0;
     var scoped = (items || []).filter(function(it){ return it.date >= lo && it.date <= hi; });
+    var consensus = skewConsensus(scoped);
     scoped.forEach(function(it){
       var st = itemStance(it);
       if (st !== "bull" && st !== "bear") return;
@@ -9602,7 +9604,8 @@ function v83SkewRows(days){
     if (!bull && !bear) return null;
     return { kind: kind, key: key, label: label, icon: icon,
       cells: cells.map(function(c){ return c.bull && c.bear ? "mix" : c.bull ? "bull" : c.bear ? "bear" : null; }),
-      bull: bull, bear: bear, items: scoped };
+      bull: bull, bear: bear, sourceDir: consensus.sourceDir, sourceSplit: consensus.sourceSplit,
+      lowSample: consensus.lowSample, items: scoped };
   }
   var themes = [], ents = [];
   try {
@@ -9627,6 +9630,8 @@ function v83SkewRows(days){
 }
 function renderV83SkewPage(list, S){
   var T = v83SkewPageStr();
+  T.asOf = T.asOf || (LANG === "en" ? "As of {date}" : LANG === "ja" ? "基準日 {date}" : "기준일 {date}");
+  T.smallSample = T.smallSample || (LANG === "en" ? "small sample" : LANG === "ja" ? "少数サンプル" : "표본 적음");
   var mkDays = function(n){
     var out = [];
     for (var d = n - 1; d >= 0; d--) out.push(skewLocalIsoDate(d));
@@ -9640,7 +9645,7 @@ function renderV83SkewPage(list, S){
   list.appendChild(head);
   var method = document.createElement("p");
   method.className = "skew-method";
-  method.textContent = T.method;
+  method.textContent = T.method + " · " + T.asOf.replace("{date}", skewLocalIsoDate(0));
   list.appendChild(method);
   if (!data.themes.length && !data.ents.length){
     var em = document.createElement("div"); em.className = "empty"; em.textContent = T.none; list.appendChild(em); return;
@@ -9718,7 +9723,8 @@ function renderV83SkewPage(list, S){
       return '<i class="sktr-c' + (c ? " sc-" + c : "") + '" title="' + lbl + '"></i>';
     }).join("");
     var tot = r.bull + r.bear, pct = tot ? Math.round(Math.max(r.bull, r.bear) / tot * 100) : 0;
-    var side = r.bull > r.bear ? "bull" : r.bear > r.bull ? "bear" : "mix";
+  var side = r.bull > r.bear ? "bull" : r.bear > r.bull ? "bear" : "mix";
+  var sampleNote = r.lowSample ? '<span class="sktr-sample">' + esc(T.smallSample) + '</span>' : '';
     var sourceCfg = { cls:"skew-source-detail", title:T.sourceTitle, empty:T.sourceEmpty, original:T.sourceOriginal,
       bull:T.bull, bear:T.bear, mix:T.mix, postUnit:LANG === "en" ? "calls" : LANG === "ja" ? "件" : "글" };
     var sourceCount = skewSourceBreakdown(r.items).length;
@@ -9728,7 +9734,7 @@ function renderV83SkewPage(list, S){
       + '<span class="sktr-name">' + (r.icon ? r.icon + " " : "") + esc(r.label) + '</span>'
       + '<span class="sktr-strip">' + strip + '</span>'
       + '<span class="sktr-meta"><i class="ws-bull">▲' + r.bull + '</i><i class="ws-bear">▼' + r.bear + '</i>'
-      + '<b class="sk-' + side + '">' + pct + '%</b>' + shift + '</span>'
+      + '<b class="sk-' + side + '">' + pct + '%</b>' + sampleNote + shift + '</span>'
       + '</button>' + sourceToggle + '</div>' + skewSourceDetailHtml(r.items, sourceCfg) + '</div>';
   };
   var wrapEl = document.createElement("div");
@@ -14871,7 +14877,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=p1-source-link-20260810"></script>
+<script src="assets/v82.js?v=p1-skew-trust-20260810"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 

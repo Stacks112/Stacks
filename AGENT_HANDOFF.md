@@ -4344,3 +4344,20 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: `deploy_guard --verify index.html` still reports pre-existing historical line differences from older generated-page commits; the staged production diff was inspected and contained only the intended click-tracking attribute.
 
 **Next**: watch GoatCounter event volume and periodically repeat source URL coverage/HTTP audits.
+
+## 2026-08-10 Codex Skew trust cues (local)
+
+**Change**:
+- Added a dynamic `As of YYYY-MM-DD` label to the desktop and mobile Skew methodology line.
+- Added the existing `small sample` warning to desktop daily rows so desktop and mobile expose the same confidence cue.
+- Bumped v82 asset query versions to `p1-skew-trust-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. No production deployment in this turn.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed, including date and desktop sample-warning assertions.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check`: passed.
+
+**Risk**: The first local run exposed a render regression from attaching the new labels to the wrong string object; that was corrected and the full focused suite passed afterward.
+
+**Next**: deploy the trust-cue slice after review, then repeat desktop/mobile live smoke and confirm the date/sample labels render with current data.
