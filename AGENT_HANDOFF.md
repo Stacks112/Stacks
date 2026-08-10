@@ -4396,7 +4396,8 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 - Skew-focused Playwright tests: 5/5 passed.
 - `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
 - `node --check assets/v82.js` and `git diff --check`: passed.
+- Local visual preview at 1280px and 390px showed no clipping or horizontal overflow.
 
-**Risk**: This is a local preview slice only. Review the longer mobile warning text before explicit production deployment.
+**Risk**: This is a local preview slice only. The longer mobile warning text was visually reviewed and remains production-unreleased.
 
-**Next**: review the local Skew preview, then deploy this small trust-cue slice only after approval.
+**Next**: deploy this small trust-cue slice only after explicit production approval.
