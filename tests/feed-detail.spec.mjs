@@ -496,6 +496,7 @@ test.describe("13F investor view state", () => {
       await expect(toggle).toHaveAttribute("aria-expanded", "true");
       await expect(page.locator(".skew-source-detail").first()).toBeVisible();
       await expect(page.locator(".skew-source-line").first()).toBeVisible();
+      await expect(page.locator(".skew-source-line").first()).toHaveText(/\d{4}-\d{2}-\d{2}/);
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("target", "_blank");
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("onclick", /skew\/source-original/);
@@ -512,6 +513,7 @@ test.describe("13F investor view state", () => {
       await expect(toggle).toHaveAttribute("aria-expanded", "true");
       await expect(page.locator("#v82hub .v82-skew-source-detail").first()).toBeVisible();
       await expect(page.locator("#v82hub .skew-source-line").first()).toBeVisible();
+      await expect(page.locator("#v82hub .skew-source-line").first()).toHaveText(/\d{4}-\d{2}-\d{2}/);
       await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("target", "_blank");
       await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
       await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("onclick", /skew\/source-original/);

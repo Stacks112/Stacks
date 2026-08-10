@@ -4401,3 +4401,20 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: This is a local preview slice only. The longer mobile warning text was visually reviewed and remains production-unreleased.
 
 **Next**: deploy this small trust-cue slice only after explicit production approval.
+
+## 2026-08-10 Codex Skew source freshness cue (local)
+
+**Change**:
+- Added the latest directional-post date to each expanded source detail row on desktop and mobile.
+- Kept the latest-original link tied to that same newest directional post.
+- Bumped v82 asset query versions to `p1-skew-source-date-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. Production deployment was not performed.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed, including desktop/mobile source dates.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js` and `git diff --check`: passed.
+
+**Risk**: Local preview only; date labels use the existing item `date` field and appear only when it is a valid `YYYY-MM-DD` value.
+
+**Next**: review this source-freshness cue, then deploy the accumulated Skew trust slice only after explicit approval.
