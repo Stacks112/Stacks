@@ -4435,3 +4435,21 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: Local preview only; a missing/unsafe source URL is now explicit instead of silently hiding the original action.
 
 **Next**: review the accumulated Skew trust preview, then deploy only after explicit production approval.
+
+## 2026-08-10 Codex Skew trust slice production deployment
+
+**Status**: Deployed frontend commits `c0242a010` and `fbd3f8981` to `origin/main`; the latest main also contains the automatic `Sync source feeds` child commit `8370337af`.
+
+**Live verification**:
+- GitHub Pages run `31360263594` completed successfully.
+- `p1-skew-source-missing-20260810` is live on `https://stacksdaily.com/#skew`.
+- Desktop and mobile smoke passed: rows, sample cue, source freshness date, original-link tracking, and 390px overflow.
+
+**Validation**:
+- Production-copy frontend contract tests: 27/27 passed.
+- Production `v82.js` syntax, diff check, and deploy guard passed.
+- Only `index.html` and `assets/v82.js` were manually staged for the production commits.
+
+**Risk**: Existing production-copy untracked user artifacts were preserved. No manual change was made to `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration; the feed-sync commit was automatic and outside this slice.
+
+**Next**: monitor live source-link events and sample coverage; no urgent Skew deployment blocker remains.
