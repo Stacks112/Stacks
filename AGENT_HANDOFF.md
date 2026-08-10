@@ -4286,3 +4286,23 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: Source links use the existing `safeUrl()` guard and open in a new tab. Production deployment is requested in the current turn; deploy only the five intended frontend/test/document files after rebasing production copy to latest `origin/main`.
 
 **Next**: deploy and verify desktop/mobile `https://stacksdaily.com/#skew`, source expansion, latest-original link, hash retention, and 390px overflow.
+
+## 2026-08-10 Codex skew P1 source original links production deployment
+
+**Status**: Production copy deployed as `9c0053c92`; pushed to `origin/main`. Live propagation completed.
+
+**Live verification**:
+- `https://stacksdaily.com/#skew` passed desktop and mobile smoke checks.
+- Expanded source details expose the latest safe `http(s)` original link with `target="_blank"`.
+- `#skew` hash is retained after expansion and 390px mobile horizontal overflow is 0px.
+- Deployed `v82.js` and `v82.css` assets return HTTP 200 with `p1-source-link-20260810`.
+
+**Validation**:
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed in the production copy.
+- Skew-focused Playwright tests: 5/5 passed locally.
+- Production-copy JS syntax and diff checks passed.
+- Full Playwright was unavailable in the production copy because `@playwright/test` is not installed there; direct live desktop/mobile smoke passed instead.
+
+**Risk**: No `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration changed. Existing production-copy untracked user artifacts were preserved.
+
+**Next**: monitor source-link click-through and source-data coverage before selecting the next Skew P1 slice.
