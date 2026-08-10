@@ -5550,7 +5550,7 @@ function skewSourceDetailHtml(items, cfg){
     var latest = c.items.slice().sort(function(a,b){ return String(b.date || "").localeCompare(String(a.date || "")); })[0];
     var sourceUrl = latest && safeUrl(latest.sourceUrl);
     var original = sourceUrl && sourceUrl !== "#"
-      ? '<a class="skew-source-original" href="' + sourceUrl + '" target="_blank" rel="noopener">' + esc(cfg.original) + '</a>' : '';
+      ? '<a class="skew-source-original" href="' + sourceUrl + '" target="_blank" rel="noopener" onclick="track(\'skew/source-original\')">' + esc(cfg.original) + '</a>' : '';
     html += '<div class="skew-source-line"><span><b>' + esc(dispName(c.label)) + '</b>'
       + '<small>' + esc(side) + ' ' + c.pct + '% · ' + (c.bull + c.bear) + ' ' + esc(cfg.postUnit) + '</small></span>'
       + '<span class="skew-source-actions"><span class="skew-source-counts">' + esc(cfg.bull) + ' ' + c.bull + ' · ' + esc(cfg.bear) + ' ' + c.bear + '</span>' + original + '</span></div>';
