@@ -4361,3 +4361,21 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: The first local run exposed a render regression from attaching the new labels to the wrong string object; that was corrected and the full focused suite passed afterward.
 
 **Next**: deploy the trust-cue slice after review, then repeat desktop/mobile live smoke and confirm the date/sample labels render with current data.
+
+## 2026-08-10 Codex Skew trust cues production deployment
+
+**Status**: Production copy fast-forwarded to `afd5f3304`; trust-cue commit `b34bacdf2` pushed to `origin/main`.
+
+**Live verification**:
+- `p1-skew-trust-20260810` propagated to `https://stacksdaily.com/#skew`.
+- Desktop and mobile both show the as-of date and small-sample cue.
+- Source-link tracking, data rows, and mobile overflow checks passed.
+
+**Validation**:
+- Production-copy frontend contract tests: 27/27 passed.
+- Skew-focused Playwright tests: 5/5 passed locally.
+- Production `v82.js` syntax, diff, and deploy-guard checks passed.
+
+**Risk**: No `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration changed. Existing production-copy untracked user artifacts were preserved.
+
+**Next**: monitor sample-warning coverage and `skew/source-original` event volume before selecting the next Skew slice.
