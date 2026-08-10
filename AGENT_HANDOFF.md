@@ -4306,3 +4306,22 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: No `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration changed. Existing production-copy untracked user artifacts were preserved.
 
 **Next**: monitor source-link click-through and source-data coverage before selecting the next Skew P1 slice.
+
+## 2026-08-10 Codex source-link monitoring audit (local)
+
+**Audit**:
+- `items.json`: 305/305 items have valid `http(s)` `sourceUrl`; the recent 7-day window has 57/57 valid links. No missing, invalid, or duplicate URLs found.
+- Live `#skew`: desktop rendered 13 source groups and mobile 9; both exposed 6 unique original links, all returned HTTP 200 with no redirects and no 390px overflow.
+- Skew original links had no analytics event, so click-through was not measurable.
+
+**Change**:
+- Added GoatCounter event `skew/source-original` to desktop/mobile Skew original links.
+- Added desktop/mobile regression assertions for the event attribute.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. No production deployment in this turn.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check`: passed.
+
+**Next**: deploy the small tracking change only after approval, then verify `skew/source-original` events in GoatCounter and continue periodic URL audits.

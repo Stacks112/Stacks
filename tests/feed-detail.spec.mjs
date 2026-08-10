@@ -493,6 +493,7 @@ test.describe("13F investor view state", () => {
       await expect(page.locator(".skew-source-line").first()).toBeVisible();
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("target", "_blank");
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
+      await expect(page.locator(".skew-source-original").first()).toHaveAttribute("onclick", /skew\/source-original/);
     });
 
     test("mobile skew rows expand source detail without leaving the page", async ({ page }) => {
@@ -508,6 +509,7 @@ test.describe("13F investor view state", () => {
       await expect(page.locator("#v82hub .skew-source-line").first()).toBeVisible();
       await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("target", "_blank");
       await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
+      await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("onclick", /skew\/source-original/);
     });
   });
 });
