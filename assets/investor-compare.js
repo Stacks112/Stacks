@@ -21,7 +21,7 @@
       search:"투자자, 운용사, 티커 검색", openPortfolio:"포트폴리오 보기", addCompare:"+ 비교 추가", inCompare:"✓ 비교 중", fullCompare:"최대 4명",
       entrySub:"보유종목·섹터·공개 포트폴리오 흐름을 같은 화면에서 비교합니다.", oneMore:"한 명 더 고르면 비교할 수 있어요.", ready:"보유종목과 수익률을 나란히 봅니다.",
       topHolding:"상위 보유", snapshot:"이번 스냅샷", read13f:"13F 읽는 법", read13fSub:"분기 말 미국 상장 롱 포지션을 최대 45일 뒤 공개합니다.",
-      read13f1:"현금·공매도·채권 제외", read13f2:"실제 매수가격은 알 수 없음", read13f3:"같은 기준일끼리 비교", investorsLabel:"투자자", periodLabel:"기준", sourceLabel:"출처", railEmpty:"투자자 카드에서 비교에 추가하세요.",
+      read13f1:"현금·공매도·채권 제외", read13f2:"실제 매수가격은 알 수 없음", read13f3:"같은 기준일끼리 비교", investorsLabel:"투자자", periodLabel:"기준", sourceLabel:"출처", railEmpty:"투자자 카드에서 비교에 추가하세요.", nextFiling:"다음 공시", nextFilingRow:"{date} (D-{n})", nextFilingToday:"{date} (D-DAY)", nextFilingWaiting:"공시 접수 중 · 반영 대기",
       title:"투자자 포트폴리오 비교", edit:"선택 바꾸기", periodWarn:"기준 분기가 다른 투자자가 포함돼 있습니다. 수익률과 보유 비중을 같은 시점의 성과처럼 직접 비교하지 마세요.",
       reported:"13F 기준", total:"공개 평가액", holdings:"보유 종목", top5:"상위 5종목", turnover:"회전율", changes:"분기 변화",
       since:"공시 후", threeM:"최근 3개월", oneY:"최근 1년", vsSpy:"S&P 500 대비", loading:"계산 중", building:"데이터 축적 중",
@@ -45,7 +45,7 @@
       search:"Search investor, firm or ticker", openPortfolio:"View portfolio", addCompare:"+ Add to compare", inCompare:"✓ Comparing", fullCompare:"Max 4",
       entrySub:"Compare holdings, sectors and public-portfolio paths in one place.", oneMore:"Choose one more investor to compare.", ready:"Compare holdings and returns side by side.",
       topHolding:"Top holding", snapshot:"This snapshot", read13f:"How to read 13F", read13fSub:"U.S.-listed long positions are disclosed up to 45 days after quarter-end.",
-      read13f1:"Excludes cash, shorts and bonds", read13f2:"Actual purchase prices are unknown", read13f3:"Compare matching report dates", investorsLabel:"Investors", periodLabel:"As of", sourceLabel:"Source", railEmpty:"Add investors from a portfolio card.",
+      read13f1:"Excludes cash, shorts and bonds", read13f2:"Actual purchase prices are unknown", read13f3:"Compare matching report dates", investorsLabel:"Investors", periodLabel:"As of", sourceLabel:"Source", railEmpty:"Add investors from a portfolio card.", nextFiling:"Next filing", nextFilingRow:"{date} (D-{n})", nextFilingToday:"{date} (D-DAY)", nextFilingWaiting:"Filing pending · not yet reflected",
       title:"Investor portfolio comparison", edit:"Change selection", periodWarn:"The selection includes different reporting periods. Do not read returns and weights as same-date results.",
       reported:"13F period", total:"Reported value", holdings:"Holdings", top5:"Top-5 weight", turnover:"Turnover", changes:"Quarterly changes",
       since:"Since filing", threeM:"Last 3 months", oneY:"Last year", vsSpy:"vs. S&P 500", loading:"Calculating", building:"Building history",
@@ -69,7 +69,7 @@
       search:"投資家・運用会社・ティッカーを検索", openPortfolio:"ポートフォリオを見る", addCompare:"+ 比較に追加", inCompare:"✓ 比較中", fullCompare:"最大4人",
       entrySub:"保有銘柄・セクター・公開ポートフォリオの推移を同じ画面で比較します。", oneMore:"もう1人選ぶと比較できます。", ready:"保有銘柄とリターンを横並びで比較します。",
       topHolding:"最大保有", snapshot:"今回のスナップショット", read13f:"13Fの見方", read13fSub:"四半期末の米国上場ロングポジションを最大45日後に開示します。",
-      read13f1:"現金・空売り・債券は対象外", read13f2:"実際の買付価格は不明", read13f3:"同じ基準日同士で比較", investorsLabel:"投資家", periodLabel:"基準", sourceLabel:"出典", railEmpty:"投資家カードから比較に追加してください。",
+      read13f1:"現金・空売り・債券は対象外", read13f2:"実際の買付価格は不明", read13f3:"同じ基準日同士で比較", investorsLabel:"投資家", periodLabel:"基準", sourceLabel:"出典", railEmpty:"投資家カードから比較に追加してください。", nextFiling:"次回開示", nextFilingRow:"{date}（D-{n}）", nextFilingToday:"{date}（D-DAY）", nextFilingWaiting:"開示受付中・反映待ち",
       title:"投資家ポートフォリオ比較", edit:"選択を変更", periodWarn:"基準四半期が異なる投資家が含まれています。リターンや比率を同一時点の成績として直接比較しないでください。",
       reported:"13F基準", total:"公開評価額", holdings:"保有銘柄", top5:"上位5銘柄", turnover:"回転率", changes:"四半期変化",
       since:"開示後", threeM:"直近3か月", oneY:"直近1年", vsSpy:"S&P 500比", loading:"計算中", building:"データ蓄積中",
@@ -180,6 +180,29 @@
     var go = document.createElement("button"); go.type = "button"; go.className = "inv-bar-go"; go.textContent = c.compare; go.disabled = selected.size < 2; go.addEventListener("click", function(){ goCompare(); });
     bar.appendChild(avatars); bar.appendChild(copy); bar.appendChild(go); list.appendChild(bar);
   }
+  /* Freshness row (2026-08-10). entity13fFreshness() (index.html) already turns a
+     period into the SEC due date (quarter-end + 45d) - reused, not reimplemented.
+     D-day is re-measured in UTC so the label does not drift near local midnight. */
+  function invLatestPeriod(investors){
+    var latest = "";
+    (investors || []).forEach(function(inv){ var p = String(inv && inv.period || ""); if (p > latest) latest = p; });
+    return latest;
+  }
+  function invNextFilingRowHtml(investors, c){
+    try {
+      var freshness = (typeof entity13fFreshness === "function") ? entity13fFreshness(invLatestPeriod(investors)) : null;
+      if (!freshness || !freshness.due) return "";
+      var due = freshness.due, dueUTC = Date.UTC(due.getFullYear(), due.getMonth(), due.getDate());
+      var now = new Date(), todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      var diffDays = Math.round((dueUTC - todayUTC) / 86400000);
+      var dueIso = due.getFullYear() + "-" + String(due.getMonth() + 1).padStart(2, "0") + "-" + String(due.getDate()).padStart(2, "0");
+      var dueLabel = invFmtDate(dueIso), text;
+      if (diffDays < 0) text = c.nextFilingWaiting;
+      else if (diffDays === 0) text = c.nextFilingToday.replace("{date}", dueLabel);
+      else text = c.nextFilingRow.replace("{date}", dueLabel).replace("{n}", diffDays);
+      return '<div><dt>' + esc(c.nextFiling) + '</dt><dd>' + esc(text) + '</dd></div>';
+    } catch (e) { return ""; }
+  }
   function renderInvestorRail(investors){
     var rail = document.getElementById("v83rail"); if (!rail) return;
     var old = rail.querySelector(".inv-lab-rail"); if (old) old.remove();
@@ -208,8 +231,8 @@
     var guide = document.createElement("section"); guide.className = "inv-rail-card";
     guide.innerHTML = '<h2>' + esc(c.read13f) + '</h2><p>' + esc(c.read13fSub) + '</p><ul><li>' + esc(c.read13f1) + '</li><li>' + esc(c.read13f2) + '</li><li>' + esc(c.read13f3) + '</li></ul>';
     var snap = document.createElement("section"); snap.className = "inv-rail-card";
-    var period = investors.length ? invFmtDate(investors[0].period) : "—";
-    snap.innerHTML = '<h2>' + esc(c.snapshot) + '</h2><dl><div><dt>' + esc(c.investorsLabel) + '</dt><dd>' + investors.length + '</dd></div><div><dt>' + esc(c.periodLabel) + '</dt><dd>' + esc(period) + '</dd></div><div><dt>' + esc(c.sourceLabel) + '</dt><dd>SEC 13F</dd></div></dl>';
+    var period = investors.length ? invFmtDate(invLatestPeriod(investors)) : "—";
+    snap.innerHTML = '<h2>' + esc(c.snapshot) + '</h2><dl><div><dt>' + esc(c.investorsLabel) + '</dt><dd>' + investors.length + '</dd></div><div><dt>' + esc(c.periodLabel) + '</dt><dd>' + esc(period) + '</dd></div><div><dt>' + esc(c.sourceLabel) + '</dt><dd>SEC 13F</dd></div>' + invNextFilingRowHtml(investors, c) + '</dl>';
     wrap.appendChild(pick); wrap.appendChild(guide); wrap.appendChild(snap); rail.appendChild(wrap);
   }
   function syncSelection(investors){
@@ -601,8 +624,14 @@
       });
     });
     benchmarkToggle.addEventListener("change", function(){ if (rows) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout); });
+    var invDone = 0;
+    function invProgress(){
+      invDone++;
+      var lo = chart.querySelector(".ehq-loading");
+      if (lo) lo.textContent = c.loading + " (" + invDone + "/" + investors.length + ")";
+    }
     Promise.all([
-      invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ return { inv: inv, res: null, series: null }; }); }),
+      invMapLimit(investors, 2, function(inv){ return compareSeries(inv).then(function(res){ invProgress(); return { inv: inv, res: res, series: normalizeGraphSeries(inv, res) }; }).catch(function(){ invProgress(); return { inv: inv, res: null, series: null }; }); }),
       quote1y("spy.us").then(function(q){
         var inv = { slug:"spy", ticker:"SP500", manager:{ ko:"S&P 500", en:"S&P 500", ja:"S&P 500" } };
         var res = q && q.t && q.closes ? { calendar:q.t, values:q.closes, coverage:1 } : null;
