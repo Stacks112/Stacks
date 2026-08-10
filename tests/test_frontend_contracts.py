@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 V82 = (ROOT / "assets" / "v82.js").read_text(encoding="utf-8")
 V82_CSS = (ROOT / "assets" / "v82.css").read_text(encoding="utf-8")
+INVESTOR_COMPARE = (ROOT / "assets" / "investor-compare.js").read_text(encoding="utf-8")
 ITEMS = json.loads((ROOT / "items.json").read_text(encoding="utf-8"))
 SECURITY_POLICY = json.loads(
     (ROOT / "ops" / "cloudflare-response-headers.json").read_text(encoding="utf-8")
@@ -155,7 +156,7 @@ class FrontendContracts(unittest.TestCase):
 
     def test_all_detail_paths_use_the_card_factory(self):
         detail = INDEX[INDEX.index("/* v83.3: single-article page"):]
-        self.assertIn("if (!_ac) _ac = cardEl(_it, S, 0);", detail)
+        self.assertRegex(detail, r"if \(!_ac\) _ac = cardEl\(_it, S, 0(?:, true)?\);")
         self.assertIn("list.appendChild(_ac);", detail)
 
         self.assertIn("window.v82OpenCard = function(id)", V82)
@@ -199,6 +200,19 @@ class FrontendContracts(unittest.TestCase):
         self.assertIn('document.documentElement.classList.toggle("inv-lab-active", invViewActive())', INDEX)
         self.assertIn('document.documentElement.classList.remove("inv-wide")', INDEX)
         self.assertIn('serviceWorkers: "block"', (ROOT / "tests" / "feed-detail.spec.mjs").read_text(encoding="utf-8"))
+
+    def test_investor_price_failure_states_are_explicit(self):
+        self.assertIn('function priceState(res, c)', INVESTOR_COMPARE)
+        self.assertIn('data-price-status="loading"', INVESTOR_COMPARE)
+        self.assertIn('data-price-coverage', INVESTOR_COMPARE)
+        self.assertIn('c.pricePartial.replace("{p}"', INVESTOR_COMPARE)
+        self.assertIn('c.priceUnavailable', INVESTOR_COMPARE)
+        self.assertIn('c.benchmarkUnavailable', INVESTOR_COMPARE)
+        self.assertIn('return { inv:inv, res:null, series:null, benchmark:true', INVESTOR_COMPARE)
+        self.assertIn('function valuePriceState(res)', INDEX)
+        self.assertIn('invChartPriceCovPartial', INDEX)
+        self.assertIn('invChartPriceCovUnavailable', INDEX)
+        self.assertIn('id="invValPriceCov" data-price-status="loading" role="status"', INDEX)
 
     def test_mobile_calendar_toggle_contract(self):
         self.assertIn('id = "v82cal-h"', V82)

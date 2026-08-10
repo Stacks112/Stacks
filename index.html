@@ -3666,7 +3666,7 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 .inv-value-card{margin:14px 0 18px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--bg-soft);}
 .inv-value-head{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:800;color:var(--text);}
 .inv-value-chg{font-family:var(--mono-font);font-size:13px;font-weight:800;margin-left:auto;white-space:nowrap;}
-.inv-value-cov{font-size:11.5px;color:var(--muted);margin:4px 0 8px;}
+.inv-value-cov{font-size:11.5px;color:var(--muted);margin:4px 0 8px;}.inv-value-cov[data-price-status="partial"]{color:#B54708}.inv-value-cov[data-price-status="unavailable"]{color:#B42318}html[data-theme="dark"] .inv-value-cov[data-price-status="partial"]{color:#FBBF24}html[data-theme="dark"] .inv-value-cov[data-price-status="unavailable"]{color:#FDA29B}
 .inv-value-chart{position:relative;height:260px;width:100%;}
 .inv-value-warn{margin-top:8px;font-size:12px;font-weight:700;color:#B45309;background:rgba(245,158,11,.14);border-radius:10px;padding:8px 10px;}
 .inv-value-nodata{font-size:12.5px;color:var(--muted);padding:8px 0;}
@@ -5403,6 +5403,11 @@ function debateTitleHtml(key){
   ko:{ gqTitle:"채점 대기 큐", gqToday:"오늘 채점", gqLate:"지연 {n}일", gqTBD:"시점 미정" },
   ja:{ gqTitle:"採点待ちキュー", gqToday:"本日採点", gqLate:"遅延{n}日", gqTBD:"時期未定" }
 }; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
+(function(){ var PRICE_COPY={
+  en:{ invChartPriceCovPartial:"Partial price coverage {p}% · some holdings excluded", invChartPriceCovUnavailable:"Price data unavailable · chart cannot be shown" },
+  ko:{ invChartPriceCovPartial:"시세 부분 연결 {p}% · 일부 종목 제외", invChartPriceCovUnavailable:"시세 조회 실패 · 차트를 표시할 수 없습니다" },
+  ja:{ invChartPriceCovPartial:"価格データ一部取得 {p}%・一部銘柄を除外", invChartPriceCovUnavailable:"価格データを取得できず、グラフを表示できません" }
+}; try{ for(var l in PRICE_COPY){ if(STRINGS[l]) for(var k in PRICE_COPY[l]) STRINGS[l][k]=PRICE_COPY[l][k]; } }catch(e){} })();
 
 /* ---------------- consensus skew + receipts aggregate (v79) ---------------- */
 (function(){ var X={
@@ -7096,7 +7101,7 @@ function invPaintSparkline(box, values){
     + "</svg>";
 }
 function invValueChartSection(inv, S){
-  var wrap = document.createElement("section"); wrap.className = "inv-value-card inv-performance-section";
+  var wrap = document.createElement("section"); wrap.className = "inv-value-card inv-performance-section"; wrap.setAttribute("data-price-status", "loading");
   var sourceHoldings = (inv && (inv.all_holdings || inv.holdings)) || [];
   var reals = sourceHoldings.filter(function(h){ return h && h.change !== "exit" && h.put_call !== "PUT" && h.put_call !== "CALL"; });
   var totalW = reals.reduce(function(s, h){ return s + (h.weight || 0); }, 0);
@@ -7116,7 +7121,7 @@ function invValueChartSection(inv, S){
   wrap.innerHTML =
     '<div class="inv-performance-head"><h3>' + esc(S.invChartTitle || "") + '<span class="inv-value-chg" id="invValChg">···</span></h3><p>' + esc(S.invChartSub || "") + '</p><small class="inv-compare-drag-hint">' + esc(S.invChartDrag || "") + '</small></div>'
     + '<div class="inv-value-cov" id="invValMapCov">' + (staticCov != null ? esc((S.invChartMapCov || "").replace("{p}", Math.round(staticCov * 100))) : "") + "</div>"
-    + '<div class="inv-value-cov" id="invValPriceCov">' + esc(S.invChartPriceCovLoading || "") + "</div>"
+    + '<div class="inv-value-cov" id="invValPriceCov" data-price-status="loading" role="status" aria-live="polite">' + esc(S.invChartPriceCovLoading || "") + "</div>"
     + '<div class="inv-compare-periods" role="tablist" aria-label="' + esc(S.invChartTitle || "") + '">' + periodButtons + '</div>'
     + '<div class="inv-value-chart inv-compare-chart" id="invValChart"><div class="ehq-loading">···</div></div>'
     + '<div class="inv-compare-selection-label" id="invValRange" aria-live="polite" hidden></div>'
@@ -7139,9 +7144,14 @@ function invValueChartSection(inv, S){
       if (currentRes) paint(currentRes);
     });
   });
+  function valuePriceState(res){
+    var coverage = res && typeof res.coverage === "number" && isFinite(res.coverage) ? Math.max(0, Math.min(1, res.coverage)) : null;
+    var ready = !!(res && res.calendar && res.values && res.calendar.length > 1 && res.values.length > 1);
+    return { key:!ready || !(coverage > 0) ? "unavailable" : (coverage < 0.999 ? "partial" : "ok"), coverage:coverage };
+  }
   function paint(res){
     var box = wrap.querySelector("#invValChart"), chgEl = wrap.querySelector("#invValChg");
-    if (!box || !res || !res.calendar || res.calendar.length < 2){ if (box) box.innerHTML = '<div class="ehq-loading">' + esc(S.invChartFail || "") + "</div>"; if (chgEl) chgEl.textContent = ""; return; }
+    if (!box || !res || !res.calendar || !res.values || res.calendar.length < 2){ if (box){ box.setAttribute("data-price-status", "unavailable"); box.innerHTML = '<div class="inv-compare-chart-empty" role="status" aria-live="polite" data-price-status="unavailable">' + esc(S.invChartFail || "") + "</div>"; } if (chgEl) chgEl.textContent = ""; return; }
     var r = invPaintValueChart(box, res.calendar, res.values, res.filedIdx, S, INV_VALUE_PERIODS.find(function(period){ return period.key === activePeriod; }) || INV_VALUE_PERIODS[4], clearBtn, rangeReadout);
     if (chgEl && r){ chgEl.style.color = r.up ? "#12B76A" : "#F04438"; chgEl.textContent = (r.up ? "▲ " : "▼ ") + (r.up ? "+" : "") + r.pct.toFixed(1) + "%"; }
   }
@@ -7149,13 +7159,25 @@ function invValueChartSection(inv, S){
     if (!stillHere()) return; /* 사용자가 이미 화면을 떠났다 */
     var priceCovEl = wrap.querySelector("#invValPriceCov");
     var warnEl = wrap.querySelector("#invValWarn");
+    var priceState = valuePriceState(res);
     currentRes = res;
+    wrap.setAttribute("data-price-status", priceState.key);
+    if (priceState.coverage == null) wrap.removeAttribute("data-price-coverage");
+    else wrap.setAttribute("data-price-coverage", String(Math.round(priceState.coverage * 100)));
     /* 커버리지·경고는 fetch 성공 여부와 무관하게 항상 "실제로 그려진(또는 그려지지
        못한) 값"을 반영한다 - 가격 조회가 전부 실패해도 정적 추정치(staticCov)를
        그대로 남겨두면 대표성이 없는 차트를 있는 것처럼 보이게 할 위험이 있다. */
-    if (res && priceCovEl) priceCovEl.textContent = (S.invChartPriceCov || "").replace("{p}", Math.round((res.coverage || 0) * 100));
-    if (res && warnEl){
-      if ((res.coverage || 0) < 0.5){ warnEl.hidden = false; warnEl.textContent = "⚠ " + (S.invChartLowCov || ""); }
+    if (priceCovEl){
+      priceCovEl.setAttribute("data-price-status", priceState.key);
+      if (priceState.coverage == null) priceCovEl.removeAttribute("data-price-coverage");
+      else priceCovEl.setAttribute("data-price-coverage", String(Math.round(priceState.coverage * 100)));
+      priceCovEl.textContent = priceState.key === "ok" ? (S.invChartPriceCov || "").replace("{p}", Math.round(priceState.coverage * 100))
+        : priceState.key === "partial" ? (S.invChartPriceCovPartial || S.invChartPriceCov || "").replace("{p}", Math.round(priceState.coverage * 100))
+        : (S.invChartPriceCovUnavailable || S.invChartFail || "");
+    }
+    if (warnEl){
+      if (priceState.key === "unavailable"){ warnEl.hidden = false; warnEl.textContent = "⚠ " + (S.invChartPriceCovUnavailable || S.invChartFail || ""); }
+      else if (((res && res.coverage) || 0) < 0.5){ warnEl.hidden = false; warnEl.textContent = "⚠ " + (S.invChartLowCov || ""); }
       else warnEl.hidden = true;
     }
     paint(res);

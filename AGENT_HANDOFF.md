@@ -4008,3 +4008,116 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Validation**: Reproduced 390px mobile blank iframe locally; patched capture shows static X card without blank block. Propagate the runtime/CSS change to generated pages before deploy.
 
 **Next**: none.
+
+## 2026-08-10 Codex — investor comparison production midpoint audit
+
+**Scope**: Read-only audit of production investor comparison, local `origin/main`, PR #40/#41/#42, and 13F payload. No code, `items.json`, D1 queue, auto-publishing data, or Worker config changed.
+
+**Status**:
+- `origin/main` and GitHub `main`: `6a412dd28` (`chore: brief push state [skip ci]`); local checkout detached, clean before audit.
+- PR #40 merged; PR #41 still Draft; PR #42 merged as `50af6d9`.
+- Live `https://stacksdaily.com/#investors` and `#investor-compare` render.
+
+**Production verification**:
+- Live `portfolios.json`: generated `2026-08-09T22:32:33.301706+00:00`, 16 investors. Berkshire, Pershing Square, ARK, and Duquesne core fields/top holdings match local payload.
+- Live compare cards match source totals/holdings: `$263.10B/28`, `$13.71B/10`, `$12.86B/182`, `$3.38B/70`; 100% price coverage displayed.
+- S&P arithmetic matches runtime values: Berkshire `+6.3% / +3.0%`, Ackman `+1.8% / -1.5%`, ARK `+3.6% / -1.0%`, Duquesne `+14.1% / +10.8%`.
+- Period switch and drag verified: 6-month tab selected; desktop drag `2026.03.02 – 2026.07.10` matched runtime returns (Berkshire `+8.9%`, Ackman `-0.0%`, ARK `+8.9%`, Duquesne `-14.6%`, S&P 500 `+10.0%`).
+- Selection verified 2→4, max-4 disable, remove/reselect; compare → investor detail → compare returned to `#investor-compare` with 4/4 preserved.
+- Mobile 390×844: no horizontal overflow (`documentElement.scrollWidth=375`), compare chart/table rendered, 6-month drag worked. Investor cards use initials/no broken image nodes; detail view also had no broken image nodes.
+- Live console showed one unrelated Twitter embed `appendChild` error; no investor/price error surfaced.
+
+**Local verification**:
+- `node --check assets/investor-compare.js` passed.
+- `py -3 tests/test_frontend_contracts.py`: 25 run, 1 pre-existing failure: `test_all_detail_paths_use_the_card_factory`.
+- `npx.cmd playwright test tests/feed-detail.spec.mjs` unavailable: local `@playwright/test` package missing. Production browser checks above completed through connected browser.
+- `git diff --check` passed.
+
+**Next priority**: fix/verify failure-state copy and observability for unavailable/partial price data; add deterministic tests for S&P baseline, period boundary, drag nearest-point behavior, and mobile 2→4/detail return. Keep large UI changes in a separate preview. Do not start full article exploration page or touch publishing/data paths.
+## 2026-08-10 Codex investor price-state copy and observability
+
+**Change**:
+- `assets/investor-compare.js` now distinguishes `ok`, `partial`, and `unavailable` price states. Cards and legends expose `data-price-status` plus coverage, and S&P 500 failures remain visible instead of disappearing.
+- `assets/investor-compare.css` adds restrained partial/unavailable status colors.
+- `index.html` applies the same explicit state to the investor detail value chart, including an accessible live status and failure copy.
+- `tests/test_frontend_contracts.py` and `tests/feed-detail.spec.mjs` add deterministic contracts for partial and unavailable quote states.
+
+**Validation**:
+- Local Chrome with all quote requests failed: cards showed `시세 조회 실패`, S&P legend showed `S&P 500 시세 조회 실패`, and the chart showed `비교 가능한 시세 데이터가 부족합니다.` with `data-price-status="unavailable"`.
+- Local Chrome with only `aapl.us` and `spy.us` available: card showed `시세 부분 연결 22% · 일부 종목 제외`; the graph reported `partial` with benchmark `ok`; mobile layout had no horizontal overflow.
+- `node --check assets/investor-compare.js` passed.
+- Extracted investor-detail inline script `node --check` passed; `node --check tests/feed-detail.spec.mjs` passed.
+- `py -3 tests/test_frontend_contracts.py`: 26 run, 1 pre-existing failure: `test_all_detail_paths_use_the_card_factory`.
+- `git diff --check` passed.
+
+**Risk**: UI/copy and DOM observability only. No `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed. Production was not deployed.
+
+**Next**: review the preview locally, then decide whether to deploy; keep the article exploration page and publishing/data paths out of scope.
+## 2026-08-10 Codex investor comparison deterministic regression tests
+
+**Change**:
+- `tests/feed-detail.spec.mjs` adds S&P baseline assertion (dashed benchmark + positive vs-SPY arithmetic), detail 1D/1Y period boundary point-count assertion, midpoint nearest-point tooltip assertion, and mobile 2→4 selection/detail→compare return assertion.
+
+**Validation**:
+- Local Chrome synthetic 370-day quotes: 1D polyline 2 points; 1Y 366 points; S&P scenario rendered one dashed benchmark and both cards `+7.4%` vs S&P.
+- Local mobile simulation: selected 4, 12 non-selected disabled, 4 compare cards, detail returned to `#investor-compare`, `scrollWidth == clientWidth`.
+- `node --check tests/feed-detail.spec.mjs` passed.
+- `node --check assets/investor-compare.js` passed.
+- Investor-detail inline script syntax check passed through `vm.Script`.
+- `git diff --check` passed.
+- `py -3 tests/test_frontend_contracts.py`: 26 run, 1 pre-existing failure: `test_all_detail_paths_use_the_card_factory`.
+- Playwright suite not runnable locally: `@playwright/test` missing.
+
+**Risk**: Test-only change in this step; no production/data config changed. The S&P fixture uses current default selected investors/tickers and passed in the local current fixture.
+
+**Next**: run the new Playwright cases in CI or an environment with `@playwright/test`; review fixture stability before any production deploy.
+## 2026-08-10 Codex investor comparison standalone preview
+
+**Change**:
+- Added `preview/investor-compare-states.html`, a production-isolated Stacks-style preview for the investor comparison flow.
+- Preview modes: healthy, partial quote coverage, and full quote failure; each keeps the status copy, S&P 500 benchmark state, and unavailable-data message visible.
+- Preview interactions: 2–4 selection, max-4 disable, remove/reselect, 1D/1M/3M/6M/1Y period switching, nearest-point pointer tooltip, 2–4 series plus dashed S&P line, detail entry, detail→compare return, dark theme.
+
+**Validation**:
+- Local browser: 6 candidates, 4 selected, 2 max-limit controls disabled; remove then reselect returned to 4 selected.
+- Local browser: healthy comparison rendered 4 series + 1 dashed benchmark, 181 points at 6M; partial mode rendered partial status; unavailable mode rendered 0 data series, 1 benchmark placeholder, and explicit failure copy.
+- Local browser: 1D rendered 2 points; 1Y rendered 366 points; detail returned to `#compare` with 4 cards preserved.
+- Local browser: dark theme toggle and desktop no-overflow check passed.
+- Preview inline script compiled through `vm.Script`; `git diff --check` passed.
+
+**Risk**: Preview-only file; no production frontend, `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed. Preview uses representative sample values and does not claim to be a live data view.
+
+**Next**: review the preview visually; run repository Playwright specs in CI when `@playwright/test` is available; deploy production only after explicit approval.
+
+## 2026-08-10 Codex investor comparison regression stabilization
+
+**Change**:
+- `tests/feed-detail.spec.mjs` now scopes value-chart assertions to the visible chart and compare actions to the visible control, avoiding duplicate shell nodes during deep-link rendering.
+- Synthetic quote fixtures now convert `Date.now()` milliseconds to seconds correctly (`/ 86400000 * 86400`).
+- Nearest-point tooltip coverage uses actual polyline midpoint/end points instead of fractional axis positions.
+
+**Validation**:
+- Investor comparison focused scenarios: 4/4 passed — period boundary/nearest point, partial/unavailable price states, S&P 500 baseline arithmetic, and mobile 2-to-4 selection/detail/compare return.
+- Existing investor chart regressions: 2/2 passed — value-chart period/drag and comparison-chart hover/drag.
+- Full `tests/feed-detail.spec.mjs`: 16/21 passed; all 11 investor-comparison tests passed. Five unrelated feed-detail tests still fail because the current first-card/detail fixture has no `.ent-link`/`.gloss-link` target expected by the legacy assertions.
+- `node --check assets/investor-compare.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check` passed.
+- `py -3 tests/test_frontend_contracts.py`: 26 run, 1 existing failure: `test_all_detail_paths_use_the_card_factory`.
+
+**Risk**: Regression-test and observability work only in this step. No production deployment, `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed.
+
+**Next**: resolve the unrelated feed-detail fixture/contract mismatch separately, then rerun the full suite in CI or a longer-lived environment before any explicit production deploy.
+
+## 2026-08-10 Codex full investor comparison verification
+
+**Change**:
+- Feed-detail Playwright helpers now choose the first card with an actual `.ent-link`/`.gloss-link`, keeping detail and tooltip checks aligned with the live feed fixture.
+- The frontend contract accepts the current detail fallback call `cardEl(_it, S, 0, true)` while still requiring the shared card factory.
+
+**Validation**:
+- `npx.cmd playwright test tests/feed-detail.spec.mjs --reporter=list`: 21/21 passed in 1.2 minutes.
+- `py -3 tests/test_frontend_contracts.py`: 26/26 passed.
+- `node --check assets/investor-compare.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check` passed.
+
+**Risk**: Test selector/contract maintenance plus the previously audited investor price-state UI. No `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed.
+
+**Next**: deploy the reviewed investor price-state UI and regression coverage from the latest `origin/main`; verify the live site after push.

@@ -5,8 +5,10 @@ async function waitForFeed(page) {
   await expect(page.locator("#feedList article.card").first()).toBeVisible();
 }
 
-async function firstCardId(page) {
-  return page.locator("#feedList article.card").first().getAttribute("id");
+async function firstLinkedCardId(page) {
+  const card = page.locator("#feedList article.card").filter({ has: page.locator(".ent-link, .gloss-link") }).first();
+  await expect(card).toBeVisible();
+  return card.getAttribute("id");
 }
 
 async function assertDetail(page, selector, id) {
@@ -21,7 +23,7 @@ test.describe("feed article detail round trip", () => {
 
     test("list → detail → back keeps the feed and indexes the detail", async ({ page }) => {
       await waitForFeed(page);
-      const id = await firstCardId(page);
+      const id = await firstLinkedCardId(page);
       expect(id).toMatch(/^sig-/);
       const itemId = id.slice(4);
 
@@ -37,7 +39,7 @@ test.describe("feed article detail round trip", () => {
 
     test("?c= reload opens the same desktop detail", async ({ page }) => {
       await waitForFeed(page);
-      const id = await firstCardId(page);
+      const id = await firstLinkedCardId(page);
       const itemId = id.slice(4);
 
       await page.goto(`/?c=${itemId}`, { waitUntil: "domcontentloaded" });
@@ -105,7 +107,7 @@ test.describe("feed article detail round trip", () => {
 
     test("inline entity tooltip stays out of the mobile layout", async ({ page }) => {
       await waitForFeed(page);
-      const id = await firstCardId(page);
+      const id = await firstLinkedCardId(page);
       await page.goto(`/?c=${id.slice(4)}`, { waitUntil: "domcontentloaded" });
       const link = page.locator("#v82detail.on .ent-link, #v82detail.on .gloss-link").first();
       await expect(link).toBeVisible();
@@ -124,7 +126,7 @@ test.describe("feed article detail round trip", () => {
 
     test("list → detail → back keeps the feed and indexes the detail", async ({ page }) => {
       await waitForFeed(page);
-      const id = await firstCardId(page);
+      const id = await firstLinkedCardId(page);
       expect(id).toMatch(/^sig-/);
       const itemId = id.slice(4);
 
@@ -140,7 +142,7 @@ test.describe("feed article detail round trip", () => {
 
     test("?c= reload opens the same mobile detail", async ({ page }) => {
       await waitForFeed(page);
-      const id = await firstCardId(page);
+      const id = await firstLinkedCardId(page);
       const itemId = id.slice(4);
 
       await page.goto(`/?c=${itemId}`, { waitUntil: "domcontentloaded" });
@@ -221,40 +223,122 @@ test.describe("13F investor view state", () => {
     await expect(page.locator("#feedList .series-head-name")).toContainText("›");
   });
 
-  test("investor value chart matches compare period and drag behavior", async ({ page }) => {
+  test("investor value chart honors period boundaries and nearest points", async ({ page }) => {
     await page.route("**/quote?*", route => {
-      const now = Math.floor(Date.now() / 86400) * 86400;
+      const now = Math.floor(Date.now() / 86400000) * 86400;
       const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
       const closes = t.map((_, i) => 100 + i * 0.1);
       return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
     });
     await openInvestors(page, "#investor-berkshire");
-    await expect(page.locator("#invValChart svg")).toBeVisible({ timeout: 30000 });
-    const axisBoxes = await page.locator("#invValChart svg .inv-compare-axis").evaluateAll(nodes => nodes.map(node => node.getBBox().x));
+    const valueChart = page.locator("#invValChart:visible").first();
+    await expect(valueChart.locator("svg")).toBeVisible({ timeout: 30000 });
+    await page.locator('.inv-value-card .inv-compare-period[data-period="1d"]').click();
+    await expect.poll(() => valueChart.locator("polyline").evaluate(el => el.getAttribute("points").trim().split(/\s+/).length)).toBe(2);
+    await page.locator('.inv-value-card .inv-compare-period[data-period="1y"]').click();
+    await expect.poll(() => valueChart.locator("polyline").evaluate(el => el.getAttribute("points").trim().split(/\s+/).length)).toBeGreaterThan(360);
+
+    const svg = valueChart.locator("svg").first();
+    const dateAxisLabels = await svg.locator(".inv-compare-axis").filter({ hasText: /^\d{4}\.\d{2}\.\d{2}$/ }).allTextContents();
+    expect(dateAxisLabels).toHaveLength(5);
+    const middlePoint = await svg.evaluate(node => {
+      const points = node.querySelector("polyline").getAttribute("points").trim().split(/\s+/).map(value => value.split(",").map(Number));
+      const point = node.createSVGPoint();
+      point.x = points[Math.floor(points.length / 2)][0];
+      point.y = points[Math.floor(points.length / 2)][1];
+      const screen = point.matrixTransform(node.getScreenCTM());
+      return { x: screen.x, y: screen.y };
+    });
+    await page.mouse.move(middlePoint.x, middlePoint.y);
+    await expect(valueChart.locator(".inv-compare-chart-tip")).toBeVisible();
+    await expect(valueChart.locator(".inv-compare-chart-tip b").first()).toHaveText(/^\d{4}\.\d{2}\.\d{2}$/);
+    const lastPoint = await svg.evaluate(node => {
+      const points = node.querySelector("polyline").getAttribute("points").trim().split(/\s+/).map(value => value.split(",").map(Number));
+      const point = node.createSVGPoint(); point.x = points.at(-1)[0]; point.y = points.at(-1)[1];
+      const screen = point.matrixTransform(node.getScreenCTM()); return { x: screen.x, y: screen.y };
+    });
+    await page.mouse.move(lastPoint.x, lastPoint.y);
+    await expect(valueChart.locator(".inv-compare-chart-tip b").first()).toHaveText(dateAxisLabels.at(-1));
+  });
+
+  test("investor price failures and partial coverage stay visible", async ({ page }) => {
+    await page.route("**/quote?*", async route => {
+      const symbol = new URL(route.request().url()).searchParams.get("s");
+      if (symbol !== "spy.us" && symbol !== "aapl.us") {
+        await route.abort();
+        return;
+      }
+      const now = Math.floor(Date.now() / 86400000) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * 0.1);
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page);
+    await page.locator(".inv-compare-go:visible").first().click();
+    await expect(page).toHaveURL(/#investor-compare$/);
+    await expect(page.locator('.inv-price-status[data-price-status="partial"]').first()).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.inv-price-status[data-price-status="unavailable"]').first()).toBeVisible();
+    await expect(page.locator('.inv-compare-legend-item[data-price-status="unavailable"] small').last()).toContainText("시세");
+    await expect(page.locator(".inv-compare-chart")).toHaveAttribute("data-price-status", "partial");
+    await expect(page.locator(".inv-compare-chart")).toHaveAttribute("data-price-benchmark", "ok");
+  });
+
+  test("S&P baseline stays in comparison arithmetic", async ({ page }) => {
+    await page.route("**/quote?*", async route => {
+      const symbol = new URL(route.request().url()).searchParams.get("s");
+      const slope = symbol === "spy.us" ? 0.1 : 0.3;
+      const now = Math.floor(Date.now() / 86400000) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * slope);
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page);
+    await page.locator(".inv-compare-go:visible").first().click();
+    await expect(page).toHaveURL(/#investor-compare$/);
+    const graph = page.locator(".inv-performance-section .inv-compare-chart").first();
+    await expect(graph.locator('polyline[stroke-dasharray="7 6"]')).toHaveCount(1);
+    await expect(page.locator('.inv-performance-section .inv-compare-legend-item[data-price-status="ok"] small').last()).toContainText("기준지수");
+    const vsSpy = await page.locator('.inv-compare-card [data-perf="spy"]').allTextContents();
+    expect(vsSpy.length).toBe(2);
+    expect(vsSpy.every(value => /^[+]\d+\.\d+%$/.test(value))).toBe(true);
+  });
+
+  test("investor value chart matches compare period and drag behavior", async ({ page }) => {
+    await page.route("**/quote?*", route => {
+      const now = Math.floor(Date.now() / 86400000) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * 0.1);
+      return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page, "#investor-berkshire");
+    const valueChart = page.locator("#invValChart:visible").first();
+    const valueSvg = valueChart.locator("svg").first();
+    await expect(valueSvg).toBeVisible({ timeout: 30000 });
+    const axisBoxes = await valueSvg.locator(".inv-compare-axis").evaluateAll(nodes => nodes.map(node => node.getBBox().x));
     expect(axisBoxes.length).toBeGreaterThan(0);
     expect(Math.min(...axisBoxes)).toBeGreaterThanOrEqual(0);
     await expect(page.locator(".inv-value-card .inv-compare-period")).toHaveCount(6);
     await page.locator('.inv-value-card .inv-compare-period[data-period="6m"]').click();
     await expect(page.locator('.inv-value-card .inv-compare-period[data-period="6m"]')).toHaveAttribute("aria-selected", "true");
 
-    const chart = await page.locator("#invValChart svg").boundingBox();
+    const chart = await valueSvg.boundingBox();
     expect(chart).not.toBeNull();
     await page.mouse.move(chart.x + chart.width * 0.25, chart.y + chart.height * 0.5);
-    await expect(page.locator("#invValChart .inv-compare-hover-line:not(.inv-value-hover-hline)")).toHaveAttribute("visibility", "visible");
-    await expect(page.locator("#invValChart .inv-value-hover-hline")).toHaveAttribute("visibility", "visible");
-    await expect(page.locator("#invValChart .inv-value-hover-dot")).toHaveAttribute("visibility", "visible");
-    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toBeVisible();
-    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toContainText("$");
-    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toContainText("%");
-    await expect(page.locator("#invValChart .inv-compare-chart-tip")).not.toContainText(/\d{1,2}:\d{2}/);
+    await expect(valueChart.locator(".inv-compare-hover-line:not(.inv-value-hover-hline)")).toHaveAttribute("visibility", "visible");
+    await expect(valueChart.locator(".inv-value-hover-hline")).toHaveAttribute("visibility", "visible");
+    await expect(valueChart.locator(".inv-value-hover-dot")).toHaveAttribute("visibility", "visible");
+    await expect(valueChart.locator(".inv-compare-chart-tip")).toBeVisible();
+    await expect(valueChart.locator(".inv-compare-chart-tip")).toContainText("$");
+    await expect(valueChart.locator(".inv-compare-chart-tip")).toContainText("%");
+    await expect(valueChart.locator(".inv-compare-chart-tip")).not.toContainText(/\d{1,2}:\d{2}/);
     await page.mouse.down();
     await page.mouse.move(chart.x + chart.width * 0.7, chart.y + chart.height * 0.5);
     await page.mouse.up();
-    await expect(page.locator("#invValChart .inv-compare-selection")).toHaveAttribute("visibility", "visible");
+    await expect(valueChart.locator(".inv-compare-selection")).toHaveAttribute("visibility", "visible");
     await expect.poll(() => page.locator("#invValRange").evaluate(el => !el.hidden)).toBe(true);
     await expect(page.locator("#invValRange")).toHaveText(/\+\d+\.\d+%/);
-    await expect(page.locator("#invValChart .inv-compare-chart-tip")).toContainText("%");
-    await expect(page.locator("#invValChart .inv-compare-chart-tip")).not.toContainText("$");
+    await expect(valueChart.locator(".inv-compare-chart-tip")).toContainText("%");
+    await expect(valueChart.locator(".inv-compare-chart-tip")).not.toContainText("$");
     await expect(page.locator("#invValClear")).toBeVisible();
     await page.locator("#invValClear").click();
     await expect.poll(() => page.locator("#invValRange").evaluate(el => el.hidden)).toBe(true);
@@ -262,7 +346,7 @@ test.describe("13F investor view state", () => {
 
   test("investor comparison chart keeps hover crosshair and drag selection", async ({ page }) => {
     await page.route("**/quote?*", route => {
-      const now = Math.floor(Date.now() / 86400) * 86400;
+      const now = Math.floor(Date.now() / 86400000) * 86400;
       const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
       const closes = t.map((_, i) => 100 + i * 0.1);
       return route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
@@ -311,6 +395,28 @@ test.describe("13F investor view state", () => {
 
   test.describe("mobile drawer and compare", () => {
     test.use({ viewport: { width: 390, height: 844 }, isMobile: false, hasTouch: true });
+
+    test("mobile keeps a 2-to-4 selection through detail and compare return", async ({ page }) => {
+      await page.goto("/?v82beta", { waitUntil: "domcontentloaded" });
+      await page.locator("#v82av").click();
+      await page.locator('#v82drawer [data-act="investors"]').click();
+      await expect(page.locator('.inv-hub-select[aria-pressed="true"]')).toHaveCount(2);
+
+      await page.locator('.inv-hub-select[aria-pressed="false"]').nth(0).click();
+      await page.locator('.inv-hub-select[aria-pressed="false"]').nth(0).click();
+      await expect(page.locator('.inv-hub-select[aria-pressed="true"]')).toHaveCount(4);
+      await expect(page.locator('.inv-hub-select[aria-pressed="false"]:disabled')).toHaveCount(12);
+
+      await page.locator(".inv-compare-go").click();
+      await expect(page).toHaveURL(/#investor-compare$/);
+      await expect(page.locator(".inv-compare-card")).toHaveCount(4);
+      await page.locator(".inv-compare-card-head").first().click();
+      await expect(page).toHaveURL(/#investor-(?!compare)/);
+      await expect(page.locator(".inv-value-card")).toBeVisible();
+      await page.locator("#v82subbar .bk:visible, .series-close:visible").first().click();
+      await expect(page).toHaveURL(/#investor-compare$/);
+      await expect(page.locator(".inv-compare-card")).toHaveCount(4);
+    });
 
     test("mobile drawer opens 13F compare and returns to the list", async ({ page }) => {
       await page.goto("/?v82beta", { waitUntil: "domcontentloaded" });

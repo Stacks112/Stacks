@@ -30,13 +30,13 @@
       weight:"비중", newBuy:"신규", add:"추가", trim:"축소", exit:"청산",
       discTitle:"수익률을 읽는 법", disc:"이 값은 실제 펀드 수익률이 아니라 SEC에 공개된 분기별 13F 스냅샷을 공시일 기준으로 이어 붙인 포트폴리오 추정치입니다. 옵션·공매도·현금·채권·해외 상장 자산은 제외됩니다.",
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
-      coverage:"시세 {p}%", mismatch:"분기 다름",
+      coverage:"시세 {p}%", priceUnavailable:"시세 조회 실패", pricePartial:"시세 부분 연결 {p}% · 일부 종목 제외", benchmarkUnavailable:"S&P 500 시세 조회 실패", mismatch:"분기 다름",
       holdGraphTitle:"그대로 들고 있었다면",
       holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 0%로 맞춘 상대 성과입니다.",
       holdGraphDrag:"차트 위를 손가락으로 누른 채 좌우로 움직이면 선택 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
-      holdGraphStart:"시작점=0%", holdGraphNow:"현재", holdGraphNoData:"비교할 시세 데이터가 없습니다.",
+      holdGraphStart:"시작점=0%", holdGraphNow:"현재", holdGraphNoData:"비교 가능한 시세 데이터가 부족합니다.",
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님",
-      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 없음", benchmark:"S&P 500 비교", benchmarkNote:"기준지수",
+      holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 조회 실패", benchmark:"S&P 500 비교", benchmarkNote:"기준지수",
       holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph3m:"3개월", holdGraph6m:"6개월", holdGraphYtd:"연중", holdGraph1y:"1년"
     },
     en:{
@@ -54,13 +54,13 @@
       weight:"Weight", newBuy:"New", add:"Added", trim:"Trimmed", exit:"Exited",
       discTitle:"How to read returns", disc:"These are not actual fund returns. They estimate a public portfolio by chaining quarterly 13F snapshots from each SEC filing date. Options, shorts, cash, bonds and non-U.S.-listed assets are excluded.",
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
-      coverage:"Prices {p}%", mismatch:"Different period",
+      coverage:"Prices {p}%", priceUnavailable:"Price data unavailable", pricePartial:"Partial price coverage: {p}% · some holdings excluded", benchmarkUnavailable:"S&P 500 price data unavailable", mismatch:"Different period",
       holdGraphTitle:"If you held it",
       holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor starts at 0% for the selected period.",
       holdGraphDrag:"Press and hold, then drag horizontally across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Start=0%", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns",
-      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"No price data", benchmark:"Compare S&P 500", benchmarkNote:"Benchmark",
+      holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"Price data unavailable", benchmark:"Compare S&P 500", benchmarkNote:"Benchmark",
       holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph3m:"3M", holdGraph6m:"6M", holdGraphYtd:"YTD", holdGraph1y:"1Y"
     },
     ja:{
@@ -78,13 +78,13 @@
       weight:"比率", newBuy:"新規", add:"追加", trim:"縮小", exit:"清算",
       discTitle:"リターンの見方", disc:"これは実際のファンド収益率ではなく、SECに公開された四半期ごとの13Fスナップショットを開示日からつないだ公開ポートフォリオ推定値です。オプション・空売り・現金・債券・米国外上場資産は除外されます。",
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
-      coverage:"価格 {p}%", mismatch:"四半期が異なります",
+      coverage:"価格 {p}%", priceUnavailable:"価格データを取得できません", pricePartial:"価格データ一部取得 {p}%・一部銘柄を除外", benchmarkUnavailable:"S&P 500の価格データを取得できません", mismatch:"四半期が異なります",
       holdGraphTitle:"そのまま保有していたら",
       holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を0%に揃えた相対成績です。",
       holdGraphDrag:"グラフを長押しして左右にドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開始点=0%", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません",
-      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データなし", benchmark:"S&P 500と比較", benchmarkNote:"ベンチマーク",
+      holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データを取得できません", benchmark:"S&P 500と比較", benchmarkNote:"ベンチマーク",
       holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph3m:"3か月", holdGraph6m:"6か月", holdGraphYtd:"年初来", holdGraph1y:"1年"
     }
   };
@@ -260,8 +260,9 @@
   function summaryCard(inv){
     var c = C(), a = inv.activity || {};
     var card = document.createElement("article"); card.className = "inv-compare-card"; card.setAttribute("data-slug", inv.slug);
+    card.setAttribute("data-price-status", "loading");
     card.innerHTML = '<button type="button" class="inv-compare-card-head"><span class="inv-ticker">' + esc(tickerLabel(inv)) + '</span>'
-      + '<b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(locVal(inv.name) || "") + '</small></button>'
+      + '<b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(locVal(inv.name) || "") + '</small><span class="inv-price-cov inv-price-status" data-price-status="loading" role="status" aria-live="polite">' + esc(c.loading) + '</span></button>'
       + '<dl class="inv-compare-metrics">'
       + metric(c.reported, esc(invFmtDate(inv.period))) + metric(c.total, esc(invMoneyFmt(inv.total_value)))
       + metric(c.holdings, String(inv.holdings_count == null ? "—" : inv.holdings_count)) + metric(c.top5, pct(topWeight(inv,5),1))
@@ -301,21 +302,46 @@
     el.textContent = typeof value === "number" && isFinite(value) ? signedPct(value) : fallback;
     el.className = "inv-perf" + perfClass(value);
   }
+  function priceState(res, c){
+    var coverage = res && typeof res.coverage === "number" && isFinite(res.coverage) ? Math.max(0, Math.min(1, res.coverage)) : null;
+    var hasSeries = !!(res && res.calendar && res.values && res.calendar.length > 1 && res.values.length > 1);
+    if (!hasSeries || !(coverage > 0)) return { key:"unavailable", coverage:coverage, text:c.priceUnavailable };
+    if (coverage < 0.999) return { key:"partial", coverage:coverage, text:c.pricePartial.replace("{p}", Math.round(coverage * 100)) };
+    return { key:"ok", coverage:coverage, text:c.coverage.replace("{p}", Math.round(coverage * 100)) };
+  }
+  function quoteReady(q){ return !!(q && !q.error && q.t && q.closes && q.t.length > 1 && q.closes.length > 1); }
+  function setPriceStatus(card, res, c){
+    var state = priceState(res, c), el = card.querySelector("[data-price-status]");
+    card.setAttribute("data-price-status", state.key);
+    if (state.coverage == null) card.removeAttribute("data-price-coverage");
+    else card.setAttribute("data-price-coverage", String(Math.round(state.coverage * 100)));
+    if (!el){
+      el = document.createElement("span"); el.className = "inv-price-cov inv-price-status"; el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite");
+      card.querySelector(".inv-compare-card-head").appendChild(el);
+    }
+    el.className = "inv-price-cov inv-price-status";
+    el.textContent = state.text;
+    el.setAttribute("data-price-status", state.key);
+    if (state.coverage == null) el.removeAttribute("data-price-coverage");
+    else el.setAttribute("data-price-coverage", String(Math.round(state.coverage * 100)));
+  }
   function fillPerformance(card, inv){
     var c = C(), filed = typeof invFiledEpoch === "function" ? invFiledEpoch(inv.filed) : null;
     return Promise.all([compareSeries(inv), quote1y("spy.us").catch(function(){ return null; })]).then(function(rows){
       if (!card.isConnected) return;
       var res = rows[0], spy = rows[1], lastEpoch = res && res.calendar && res.calendar.length ? res.calendar[res.calendar.length-1] : null;
+      var state = priceState(res, c), hasSeries = state.key !== "unavailable";
       var since = valuePctAt(res, filed), age = filed != null && lastEpoch != null ? lastEpoch - filed : 0;
       var r3 = age >= 90*86400 ? valuePctAt(res, lastEpoch - 90*86400) : null;
       var r1 = age >= 365*86400 ? valuePctAt(res, lastEpoch - 365*86400) : null;
       var spySince = quotePctAt(spy, filed);
-      setPerf(card,"since",since,"—"); setPerf(card,"3m",r3,c.building); setPerf(card,"1y",r1,c.building);
-      setPerf(card,"spy",typeof since === "number" && typeof spySince === "number" ? since-spySince : null,"—");
-      var cov = document.createElement("span"); cov.className = "inv-price-cov"; cov.textContent = c.coverage.replace("{p}",Math.round(((res&&res.coverage)||0)*100));
-      card.querySelector(".inv-compare-card-head").appendChild(cov);
+      setPerf(card,"since",since,hasSeries ? "—" : c.priceUnavailable); setPerf(card,"3m",r3,hasSeries ? c.building : c.priceUnavailable); setPerf(card,"1y",r1,hasSeries ? c.building : c.priceUnavailable);
+      setPerf(card,"spy",typeof since === "number" && typeof spySince === "number" ? since-spySince : null,!quoteReady(spy) ? c.benchmarkUnavailable : (hasSeries ? "—" : c.priceUnavailable));
+      setPriceStatus(card, res, c);
     }).catch(function(){
-      ["since","3m","1y","spy"].forEach(function(k){ setPerf(card,k,null,k === "3m" || k === "1y" ? c.building : "—"); });
+      if (!card.isConnected) return;
+      ["since","3m","1y","spy"].forEach(function(k){ setPerf(card,k,null,c.priceUnavailable); });
+      setPriceStatus(card, null, c);
     });
   }
 
@@ -398,22 +424,42 @@
   }
   function graphLegend(legend, rows, c){
     legend.innerHTML = rows.map(function(row, i){
-      var inv = row.inv, coverage = row.res && typeof row.res.coverage === "number" ? Math.round(row.res.coverage * 100) : null;
-      return '<span class="inv-compare-legend-item' + (row.series ? "" : " muted") + '">'
+      var inv = row.inv, state = row.benchmark
+        ? (row.series ? { key:"ok", coverage:1, text:c.benchmarkNote } : { key:"unavailable", coverage:null, text:c.benchmarkUnavailable })
+        : priceState(row.res, c);
+      var coverageAttr = state.coverage == null ? "" : ' data-price-coverage="' + Math.round(state.coverage * 100) + '"';
+      return '<span class="inv-compare-legend-item' + (row.series ? "" : " muted") + '" data-price-status="' + state.key + '"' + coverageAttr + '>'
         + '<i style="background:' + (row.color || graphColor(i)) + '"></i><b>' + esc(row.label || tickerLabel(inv)) + '</b>'
         + '<span>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</span>'
-        + '<small>' + (row.benchmark ? esc(c.benchmarkNote) : (coverage == null ? esc(c.holdGraphNoPrice) : esc(c.holdGraphCoverage.replace("{p}", coverage)))) + '</small></span>';
+        + '<small>' + esc(state.text) + '</small></span>';
     }).join("");
+  }
+  function graphStatus(rows){
+    var hasSeries = rows.some(function(row){ return !!row.series; });
+    var partial = rows.some(function(row){ return row.benchmark ? !row.series : !row.series || priceState(row.res, C()).key !== "ok"; });
+    var benchmark = rows.find(function(row){ return row.benchmark; });
+    return { key:!hasSeries ? "unavailable" : (partial ? "partial" : "ok"), benchmark:!benchmark ? "hidden" : (benchmark.series ? "ok" : "unavailable") };
+  }
+  function setGraphStatus(chart, rows){
+    var state = graphStatus(rows);
+    chart.setAttribute("data-price-status", state.key);
+    chart.setAttribute("data-price-benchmark", state.benchmark);
+    chart.setAttribute("aria-busy", "false");
+  }
+  function emptyCompareChart(chart, rows, c){
+    setGraphStatus(chart, rows);
+    chart.innerHTML = '<div class="inv-compare-chart-empty" role="status" aria-live="polite" data-price-status="unavailable">' + esc(c.holdGraphNoData) + '</div>';
   }
   function paintCompareGraph(chart, legend, rows, c, period, clearBtn, rangeReadout){
     if (clearBtn) clearBtn.hidden = true;
     if (rangeReadout) rangeReadout.hidden = true;
     graphLegend(legend, rows, c);
+    setGraphStatus(chart, rows);
     var fullSeries = rows.map(function(row){ return row.series; }).filter(Boolean);
-    if (!fullSeries.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    if (!fullSeries.length){ emptyCompareChart(chart, rows, c); return; }
     var window = graphWindow(period, fullSeries), windowStart = window.start, windowEnd = window.end;
     var maxElapsed = windowEnd - windowStart;
-    if (!(maxElapsed > 0)){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    if (!(maxElapsed > 0)){ emptyCompareChart(chart, rows, c); return; }
     var series = fullSeries.map(function(s, i){
       var first = graphPointAt(s.points, windowStart), last = graphPointAt(s.points, windowEnd);
       if (!first || !last || last.t <= first.t || !(first.v > 0)) return null;
@@ -422,7 +468,7 @@
       if (points[points.length - 1].t !== last.t) points.push(last);
       return { inv:s.inv, label:s.label, benchmark:s.benchmark, points:points.map(function(p){ var index = (p.v / first.v) * 100; return { t:p.t, v:index - 100, index:index }; }), start:first.t, end:last.t, color:s.color || graphColor(i) };
     }).filter(Boolean);
-    if (!series.length){ chart.innerHTML = '<div class="inv-compare-chart-empty">' + esc(c.holdGraphNoData) + '</div>'; return; }
+    if (!series.length){ emptyCompareChart(chart, rows, c); return; }
     var all = [0]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all), span = mx - mn;
     if (span < 8){ var center = (mn + mx) / 2; mn = center - 5; mx = center + 5; }
@@ -544,7 +590,7 @@
     }).join("");
     sec.innerHTML = '<div class="inv-performance-head inv-performance-head-row"><div><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p><small class="inv-compare-drag-hint">' + esc(c.holdGraphDrag) + '</small></div><label class="inv-benchmark-toggle"><input type="checkbox" checked><span>' + esc(c.benchmark) + '</span></label></div>'
       + '<div class="inv-compare-periods" role="tablist" aria-label="' + esc(c.holdGraphTitle) + '">' + periodButtons + '</div>'
-      + '<div class="inv-compare-chart"><div class="ehq-loading">···</div></div><div class="inv-compare-selection-label" aria-live="polite" hidden></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
+      + '<div class="inv-compare-chart" data-price-status="loading" data-price-benchmark="loading" aria-busy="true"><div class="ehq-loading">···</div></div><div class="inv-compare-selection-label" aria-live="polite" hidden></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
     var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear"), rangeReadout = sec.querySelector(".inv-compare-selection-label"), benchmarkToggle = sec.querySelector(".inv-benchmark-toggle input"), rows = null, activePeriod = "ytd";
     function visibleRows(){ return (rows || []).filter(function(row){ return !row.benchmark || benchmarkToggle.checked; }); }
     sec.querySelectorAll(".inv-compare-period").forEach(function(button){
@@ -562,7 +608,10 @@
         var res = q && q.t && q.closes ? { calendar:q.t, values:q.closes, coverage:1 } : null;
         var series = normalizeGraphSeries(inv, res); if (series){ series.benchmark = true; series.label = "S&P 500"; series.color = "#8E93A0"; }
         return { inv:inv, res:res, series:series, benchmark:true, label:"S&P 500", color:"#8E93A0" };
-      }).catch(function(){ return null; })
+      }).catch(function(){
+        var inv = { slug:"spy", ticker:"SP500", manager:{ ko:"S&P 500", en:"S&P 500", ja:"S&P 500" } };
+        return { inv:inv, res:null, series:null, benchmark:true, label:"S&P 500", color:"#8E93A0" };
+      })
     ]).then(function(result){ rows = result[0].concat(result[1] ? [result[1]] : []); if (sec.isConnected) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout); });
     return sec;
   }
