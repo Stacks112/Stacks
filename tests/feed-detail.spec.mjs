@@ -478,11 +478,17 @@ test.describe("13F investor view state", () => {
           { id: "d", source: "other", stance: "bear" },
         ]);
         const thin = skewConsensus([{ id: "e", source: "one", stance: "bull" }]);
-        return { tie, thin };
+        const missing = skewSourceDetailHtml([{ id: "f", source: "missing", date: "2026-08-10", stance: "bull", sourceUrl: "javascript:alert(1)" }], {
+          title: "By source", empty: "No detail", original: "Latest original", originalMissing: "No original link",
+          latest: "latest", bull: "Bull", bear: "Bear", mix: "Split", postUnit: "posts"
+        });
+        return { tie, thin, missing };
       });
       expect(result.tie.side).toBe("mix");
       expect(result.tie.lowSample).toBe(true);
       expect(result.thin.lowSample).toBe(true);
+      expect(result.missing).toContain("No original link");
+      expect(result.missing).not.toContain("skew-source-original");
     });
 
     test("desktop skew rows expand source detail without leaving the page", async ({ page }) => {

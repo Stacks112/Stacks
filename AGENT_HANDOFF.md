@@ -4418,3 +4418,20 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: Local preview only; date labels use the existing item `date` field and appear only when it is a valid `YYYY-MM-DD` value.
 
 **Next**: review this source-freshness cue, then deploy the accumulated Skew trust slice only after explicit approval.
+
+## 2026-08-10 Codex Skew missing-original cue (local)
+
+**Change**:
+- Added a localized `No original link` fallback when a source's newest directional post has no safe `http(s)` URL.
+- Preserved the existing `skew/source-original` tracking only for real external links.
+- Added muted styling and bumped v82 asset query versions to `p1-skew-source-missing-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. Production deployment was not performed.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed, including an unsafe-URL fallback fixture and desktop/mobile source details.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js` and `git diff --check`: passed.
+
+**Risk**: Local preview only; a missing/unsafe source URL is now explicit instead of silently hiding the original action.
+
+**Next**: review the accumulated Skew trust preview, then deploy only after explicit production approval.

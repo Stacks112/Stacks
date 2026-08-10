@@ -1846,6 +1846,7 @@ html{overscroll-behavior-y:contain;}
   .skew-source-line small{ color:var(--muted); font-size:10px; }
   .skew-source-actions{ flex:0 0 auto; display:flex; align-items:center; gap:8px; color:var(--muted); font-family:var(--mono-font); font-size:10px; }
   .skew-source-original{ color:var(--accent); font-family:inherit; font-size:10px; white-space:nowrap; }
+  .skew-source-unavailable{ color:var(--muted); font-family:inherit; font-size:10px; white-space:nowrap; }
   .sktr-flip{ font-size:10.5px; font-weight:800; padding:2px 7px; border-radius:999px; border:1px solid var(--line); }
   .sktr-flip.sk-bull{ color:#12B76A; } .sktr-flip.sk-bear{ color:#F04438; }
   .sktr-keep{ font-size:10.5px; color:var(--muted); font-weight:600; }
@@ -3858,7 +3859,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   setTimeout(relRail, 6500);
 })();
 </script>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-source-date-20260810">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-source-missing-20260810">
 <link rel="stylesheet" href="assets/investor-compare.css?v=integrated-20260809">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
@@ -5552,7 +5553,8 @@ function skewSourceDetailHtml(items, cfg){
     var latestDate = latest && /^\d{4}-\d{2}-\d{2}$/.test(String(latest.date || "")) ? String(latest.date) : "";
     var sourceUrl = latest && safeUrl(latest.sourceUrl);
     var original = sourceUrl && sourceUrl !== "#"
-      ? '<a class="skew-source-original" href="' + sourceUrl + '" target="_blank" rel="noopener" onclick="track(\'skew/source-original\')">' + esc(cfg.original) + '</a>' : '';
+      ? '<a class="skew-source-original" href="' + sourceUrl + '" target="_blank" rel="noopener" onclick="track(\'skew/source-original\')">' + esc(cfg.original) + '</a>'
+      : '<span class="skew-source-unavailable">' + esc(cfg.originalMissing || "No original link") + '</span>';
     html += '<div class="skew-source-line"><span><b>' + esc(dispName(c.label)) + '</b>'
       + '<small>' + esc(side) + ' ' + c.pct + '% · ' + (c.bull + c.bear) + ' ' + esc(cfg.postUnit)
       + (latestDate ? ' · ' + esc(cfg.latest || '') + ' ' + esc(latestDate) : '') + '</small></span>'
@@ -9636,6 +9638,7 @@ function renderV83SkewPage(list, S){
   T.smallSample = T.smallSample || (LANG === "en" ? "small sample" : LANG === "ja" ? "少数サンプル" : "표본 적음");
   T.sampleDetail = T.sampleDetail || (LANG === "en" ? "{posts} calls · {sources} sources" : LANG === "ja" ? "{posts}件 · 出典 {sources}" : "글 {posts}개 · 출처 {sources}곳");
   T.sourceLatest = T.sourceLatest || (LANG === "en" ? "latest" : LANG === "ja" ? "最新" : "최신");
+  T.sourceMissing = T.sourceMissing || (LANG === "en" ? "No original link" : LANG === "ja" ? "原文リンクなし" : "원문 연결 없음");
   var mkDays = function(n){
     var out = [];
     for (var d = n - 1; d >= 0; d--) out.push(skewLocalIsoDate(d));
@@ -9732,7 +9735,7 @@ function renderV83SkewPage(list, S){
     .replace("{posts}", String(r.bull + r.bear))
     .replace("{sources}", String(r.sourceCount || r.sourceDir || 0));
   var sampleNote = r.lowSample ? '<span class="sktr-sample" title="' + esc(sampleDetail) + '">' + esc(T.smallSample) + ' · ' + esc(sampleDetail) + '</span>' : '';
-    var sourceCfg = { cls:"skew-source-detail", title:T.sourceTitle, empty:T.sourceEmpty, original:T.sourceOriginal, latest:T.sourceLatest,
+    var sourceCfg = { cls:"skew-source-detail", title:T.sourceTitle, empty:T.sourceEmpty, original:T.sourceOriginal, originalMissing:T.sourceMissing, latest:T.sourceLatest,
       bull:T.bull, bear:T.bear, mix:T.mix, postUnit:LANG === "en" ? "calls" : LANG === "ja" ? "件" : "글" };
     var sourceCount = skewSourceBreakdown(r.items).length;
     var sourceToggle = '<button type="button" class="skew-source-toggle" aria-expanded="false"'
@@ -14884,7 +14887,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=p1-skew-source-date-20260810"></script>
+<script src="assets/v82.js?v=p1-skew-source-missing-20260810"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 
