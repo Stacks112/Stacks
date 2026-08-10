@@ -693,6 +693,8 @@
   }
   function skewSubHtml(){
     var t = T(), rows = skewData(skewLocalIsoDate(6), skewLocalIsoDate(0)), html = "";
+    var sourceLatest = t.sourceLatest || (LANG === "en" ? "latest" : LANG === "ja" ? "最新" : "최신");
+    var sourceMissing = t.sourceMissing || (LANG === "en" ? "No original link" : LANG === "ja" ? "原文リンクなし" : "원문 연결 없음");
     html += '<div class="v82-skew-sub" style="margin-top:2px">' + t.skewSub + '</div>';
     html += '<div class="v82-skew-method">' + esc(t.skewMethod + " · " + t.skewAsOf.replace("{date}", skewLocalIsoDate(0))) + '</div>';
     html += skewTrendHtml();
@@ -713,7 +715,7 @@
         var sourceToggle = '<button type="button" class="v82-skew-source-toggle" aria-expanded="false"'
           + ' onclick="toggleSkewSources(this,event)">' + esc(sourceCount + " " + t.sourceUnit) + '</button>';
         var sourceCfg = { cls:"skew-source-detail v82-skew-source-detail", title:t.sourceTitle || t.sourceUnit,
-          empty:t.sourceEmpty || "", original:t.sourceOriginal || "", bull:t.bull, bear:t.bear, mix:t.mix, postUnit:t.postUnit };
+          empty:t.sourceEmpty || "", original:t.sourceOriginal || "", originalMissing:sourceMissing, latest:sourceLatest, bull:t.bull, bear:t.bear, mix:t.mix, postUnit:t.postUnit };
         html += '<div class="v82-skew-row-wrap"><div class="v82-skew-row-line"><button class="v82-skew-row" data-i="' + idx + '">'
           + '<div class="v82-skew-top"><span class="v82-skew-name">' + (o.icon ? o.icon + " " : "") + esc(o.label) + '</span>'
           + '<span class="v82-skew-lean ' + o.side + '">' + esc(leanLb) + '</span></div>'
