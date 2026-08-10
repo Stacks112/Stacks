@@ -479,5 +479,35 @@ test.describe("13F investor view state", () => {
       expect(result.tie.lowSample).toBe(true);
       expect(result.thin.lowSample).toBe(true);
     });
+
+    test("desktop skew rows expand source detail without leaving the page", async ({ page }) => {
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.goto("/?v83beta#skew", { waitUntil: "domcontentloaded" });
+      const toggle = page.locator(".skew-source-toggle").first();
+      await expect(toggle).toBeVisible();
+      await expect(toggle).toHaveRole("button");
+      await toggle.click();
+      await expect(page).toHaveURL(/#skew$/);
+      await expect(toggle).toHaveAttribute("aria-expanded", "true");
+      await expect(page.locator(".skew-source-detail").first()).toBeVisible();
+      await expect(page.locator(".skew-source-line").first()).toBeVisible();
+      await expect(page.locator(".skew-source-original").first()).toHaveAttribute("target", "_blank");
+      await expect(page.locator(".skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
+    });
+
+    test("mobile skew rows expand source detail without leaving the page", async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/?v82beta#skew", { waitUntil: "domcontentloaded" });
+      const toggle = page.locator("#v82hub .v82-skew-source-toggle").first();
+      await expect(toggle).toBeVisible();
+      await expect(toggle).toHaveRole("button");
+      await toggle.click();
+      await expect(page).toHaveURL(/#skew$/);
+      await expect(toggle).toHaveAttribute("aria-expanded", "true");
+      await expect(page.locator("#v82hub .v82-skew-source-detail").first()).toBeVisible();
+      await expect(page.locator("#v82hub .skew-source-line").first()).toBeVisible();
+      await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("target", "_blank");
+      await expect(page.locator("#v82hub .skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
+    });
   });
 });

@@ -37,7 +37,7 @@
         trRank:"쏠림 순위 · 최근 7일",trAll:"최근 7일 · 테마와 종목",trN:"{n}건",trNew:"NEW",trKeep:"=",
         themesSec:"테마 논쟁",recordSec:"판정 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
-        bull:"강세",bear:"약세",mix:"엇갈림",sourceUnit:"출처",postUnit:"글",smallSample:"표본 적음",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
+        bull:"강세",bear:"약세",mix:"엇갈림",sourceUnit:"출처",postUnit:"글",smallSample:"표본 적음",sourceTitle:"출처별 의견",sourceEmpty:"출처 정보가 없어요.",sourceOriginal:"최근 원문 ↗",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
         bm:"북마크",follows:"팔로우 내역",shares:"공유 내역",nlLabel:"이번 주 베스트 메일",
         community:"커뮤니티",communitySec:"커뮤니티",communitySoon:"준비 중",
         communityDesc:"특정 논객이나 회사를 함께 쫓는 커뮤니티를 만들거나 팔로우하고, 인용해서 덧글을 남기고, 직접 글도 쓰며 서로 소통하는 공간이에요. 곧 찾아옵니다.",
@@ -59,7 +59,7 @@
         trRank:"Skew ranking · last 7 days",trAll:"Last 7 days · themes and tickers",trN:"{n} posts",trN1:"1 post",trNew:"NEW",trKeep:"=",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
         ntNew:"New",ntGrade:"Graded",ntSkew:"Skew alert",noAlerts:"No new alerts.",
-        bull:"Bull",bear:"Bear",mix:"Split",sourceUnit:"sources",postUnit:"posts",smallSample:"small sample",openThemes:"Open theme debates",openRecord:"Open author track record",
+        bull:"Bull",bear:"Bear",mix:"Split",sourceUnit:"sources",postUnit:"posts",smallSample:"small sample",sourceTitle:"By source",sourceEmpty:"No source detail is available.",sourceOriginal:"Latest original ↗",openThemes:"Open theme debates",openRecord:"Open author track record",
         bm:"Bookmarks",follows:"Following",shares:"Share history",nlLabel:"Weekly best by email",
         community:"Community",communitySec:"Community",communitySoon:"Coming soon",
         communityDesc:"A space to create or follow communities around a given author or company, quote-and-comment, post your own takes, and talk with others. Coming soon.",
@@ -81,7 +81,7 @@
         trRank:"傾きランキング · 直近7日",trAll:"直近7日 · テーマと銘柄",trN:"{n}件",trNew:"NEW",trKeep:"=",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
         ntNew:"新着",ntGrade:"採点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
-        bull:"強気",bear:"弱気",mix:"交錯",sourceUnit:"著者",postUnit:"記事",smallSample:"少数サンプル",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
+        bull:"強気",bear:"弱気",mix:"交錯",sourceUnit:"著者",postUnit:"記事",smallSample:"少数サンプル",sourceTitle:"出典別の意見",sourceEmpty:"出典情報はありません。",sourceOriginal:"最新原文 ↗",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
         bm:"ブックマーク",follows:"フォロー履歴",shares:"共有履歴",nlLabel:"今週のベストをメール",
         community:"コミュニティ",communitySec:"コミュニティ",communitySoon:"準備中",
         communityDesc:"特定の論客や企業を一緒に追うコミュニティを作ったりフォローし、引用してコメントを残し、自分でも投稿して交流できる場です。近日公開。",
@@ -547,7 +547,7 @@
       var c = summarize(items); if (c.articleDir < min) return;
       out.push({ kind:kind, key:key, label:label, icon:icon || "", bull:c.articleBull, bear:c.articleBear,
         sourceBull:c.sourceBull, sourceBear:c.sourceBear, sourceDir:c.sourceDir, sourceCount:c.sourceCount,
-        articleDir:c.articleDir, pct:c.pct, side:c.side, lowSample:c.lowSample });
+        articleDir:c.articleDir, pct:c.pct, side:c.side, lowSample:c.lowSample, items:items.slice() });
     };
     try {
       Object.keys(THEMES).forEach(function(k){ add("theme", k, THEMES[k].label[LANG], THEMES[k].icon, themeItems(k).filter(inWindow), 1); });
@@ -705,11 +705,17 @@
         var leanLb = (o.side === "bull" ? t.bull : o.side === "bear" ? t.bear : t.mix) + " " + Math.round(o.pct * 100) + "%"
           + (o.lowSample ? " · " + t.smallSample : "");
         var stat = (o.sourceDir || 0) + " " + t.sourceUnit + " · " + (o.articleDir || 0) + " " + t.postUnit;
-        html += '<button class="v82-skew-row" data-i="' + idx + '">'
+        var sourceCount = skewSourceBreakdown(o.items).length;
+        var sourceToggle = '<button type="button" class="v82-skew-source-toggle" aria-expanded="false"'
+          + ' onclick="toggleSkewSources(this,event)">' + esc(sourceCount + " " + t.sourceUnit) + '</button>';
+        var sourceCfg = { cls:"skew-source-detail v82-skew-source-detail", title:t.sourceTitle || t.sourceUnit,
+          empty:t.sourceEmpty || "", original:t.sourceOriginal || "", bull:t.bull, bear:t.bear, mix:t.mix, postUnit:t.postUnit };
+        html += '<div class="v82-skew-row-wrap"><div class="v82-skew-row-line"><button class="v82-skew-row" data-i="' + idx + '">'
           + '<div class="v82-skew-top"><span class="v82-skew-name">' + (o.icon ? o.icon + " " : "") + esc(o.label) + '</span>'
           + '<span class="v82-skew-lean ' + o.side + '">' + esc(leanLb) + '</span></div>'
           + '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + rp + '%"></i></div>'
-          + '<div class="v82-skew-cts"><span>' + esc(stat) + '</span><span>' + t.bull + ' ' + o.sourceBull + ' · ' + t.bear + ' ' + o.sourceBear + '</span></div></button>';
+          + '<div class="v82-skew-cts"><span>' + esc(stat) + '</span><span>' + t.bull + ' ' + o.sourceBull + ' · ' + t.bear + ' ' + o.sourceBear + '</span></div></button>'
+          + sourceToggle + '</div>' + skewSourceDetailHtml(o.items, sourceCfg) + '</div>';
       });
     }
     return html;
@@ -718,7 +724,7 @@
     var hub = $("v82hub"); if (!hub) return;
     var head = hub.querySelector(".v82-inner");
     if (!head){ head = document.createElement("div"); head.className = "v82-inner"; hub.appendChild(head); }
-    var rows = skewData();
+    var rows = skewData(skewLocalIsoDate(6), skewLocalIsoDate(0));
     head.innerHTML = skewSubHtml();
     var srows = head.querySelectorAll(".v82-skew-row");
     for (var i = 0; i < srows.length; i++){

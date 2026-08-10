@@ -4230,3 +4230,59 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: P1 changes are limited to ranking order, explanatory copy, CSS, and tests. Automated publishing/data paths remain untouched.
 
 **Next**: monitor ranking trust signals and decide whether the next P1 slice should add per-row source drill-down.
+
+## 2026-08-10 Codex skew P1 source drill-down (local)
+
+**Change**:
+- Added per-row source breakdown on the desktop and mobile `#skew` views: source names, bull/bear/split side, directional percentage, and post count.
+- Added keyboard-capable source detail toggles that stop row navigation and preserve the `#skew` URL state.
+- Kept source grouping aligned with consensus logic, including the item fallback when source metadata is absent.
+- Fixed the mobile row data mapping to use the same recent 7-day window as the rendered rows; all source details now use that scoped window.
+- Bumped v82 asset query versions to `p1-source-drill-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. No production deployment in this turn.
+
+**Validation**:
+- `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`: passed.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- Skew-focused Playwright tests: 5/5 passed, including desktop/mobile source expansion.
+- Full `tests/feed-detail.spec.mjs` was exercised but remains timing-sensitive in unrelated existing feed/13F assertions (25/26 and 23/26 runs); source-drilldown tests passed in both full runs and focused execution.
+- `git diff --check`: passed.
+
+**Risk**: Local-only frontend/test changes. The source toggle is nested within the existing row action markup and should receive a later accessibility review before broadening the interaction model.
+
+**Next**: review source-label clarity on the live page, then explicitly approve a production deployment before pushing this slice.
+
+## 2026-08-10 Codex skew P1 source toggle accessibility (local)
+
+**Change**:
+- Moved desktop/mobile source-detail toggles outside the row navigation buttons; toggles are now native `button` elements instead of nested interactive spans.
+- Preserved source detail expansion, `#skew` URL state, and row navigation behavior while adding native keyboard semantics and `aria-expanded` assertions.
+- Bumped v82 asset query versions to `p1-source-a11y-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. No production deployment in this turn.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check`: passed.
+
+**Risk**: Local-only markup/CSS/JS/test changes. Full feed-detail regression remains timing-sensitive in unrelated feed/13F tests as recorded in the prior handoff.
+
+**Next**: inspect source labels and original-link behavior on the production page, then explicitly approve deployment of the accumulated local P1 slice.
+
+## 2026-08-10 Codex skew P1 source original links (local)
+
+**Change**:
+- Added a `Latest original ↗` link to each expanded source row when the newest directional item has a safe `http(s)` `sourceUrl`.
+- Stored the grouped items inside the existing source breakdown so the link follows the newest post in that source group.
+- Added Korean/English/Japanese labels and regression checks for external-target safety.
+- Bumped v82 asset query versions to `p1-source-link-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed, including desktop/mobile latest-original links.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check`: passed.
+
+**Risk**: Source links use the existing `safeUrl()` guard and open in a new tab. Production deployment is requested in the current turn; deploy only the five intended frontend/test/document files after rebasing production copy to latest `origin/main`.
+
+**Next**: deploy and verify desktop/mobile `https://stacksdaily.com/#skew`, source expansion, latest-original link, hash retention, and 390px overflow.
