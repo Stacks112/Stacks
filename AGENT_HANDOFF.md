@@ -4153,3 +4153,18 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: SEO/generated-output deployment plus an unlinked preview page. The live article exploration experience remains unchanged until the preview is reviewed and explicitly approved for replacement.
 
 **Next**: push the reviewed SEO/generated output and preview to `origin/main`, then verify the live localized hubs, breadcrumbs, sitemap, and preview URL.
+
+## 2026-08-10 Codex SEO production deployment
+
+**Status**: Pushed `4d0b888797b5906027f18318283a7a6fa65cbf9a` to `origin/main`. GitHub Pages build/deployment completed successfully.
+
+**Live verification**:
+- `https://stacksdaily.com/articles.html`, `/articles-en.html`, and `/articles-ja.html`: HTTP 200 with `BreadcrumbList` and localized `hreflang` links.
+- Sample article and entity pages: HTTP 200 with breadcrumbs and hreflang.
+- `https://stacksdaily.com/sitemap.xml`: HTTP 200 with localized hreflang entries.
+- `https://stacksdaily.com/preview/article-exploration.html`: HTTP 200. Production article hubs remain unchanged in layout; the redesign is preview-only.
+- Local regression baseline remains green: frontend contracts 27/27, investor/feed-detail Playwright 21/21, preview browser checks passed.
+
+**Risk**: SEO output and an unlinked exploration preview were deployed. The preview uses sample data and is not wired into production navigation. `items.json` and publishing/data/Worker paths were not changed by this deployment.
+
+**Next**: review the exploration preview and approve or reject a later production replacement separately. PR #41 remains a draft reference; its changes are now present on `main`.
