@@ -451,6 +451,7 @@ test.describe("13F investor view state", () => {
       await expect(page.locator(".skew-method")).toContainText("계산 기준");
       await expect(page.locator(".skew-method")).toHaveText(/\d{4}-\d{2}-\d{2}/);
       await expect(page.locator(".sktr-sample").first()).toBeVisible();
+      await expect(page.locator(".sktr-sample").first()).toHaveText(/\d/);
       await expect(page.locator(".skr-row .skr-side").first()).not.toHaveClass(/sk-mix/);
     });
 
@@ -462,6 +463,7 @@ test.describe("13F investor view state", () => {
       await expect(page.locator("#v82hub .v82-hub-sec").filter({ hasText: "최근 7일" })).toBeVisible();
       await expect(page.locator("#v82hub .v82-skew-method")).toContainText("계산 기준");
       await expect(page.locator("#v82hub .v82-skew-method")).toHaveText(/\d{4}-\d{2}-\d{2}/);
+      await expect(page.locator("#v82hub .v82-skew-lean").filter({ hasText: "표본 적음" }).first()).toHaveText(/\d/);
       await expect(page.locator("#v82hub .v82-tr-row .sd").first()).not.toHaveClass(/mix/);
     });
 

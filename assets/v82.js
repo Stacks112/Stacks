@@ -37,7 +37,7 @@
         trRank:"쏠림 순위 · 최근 7일",trAll:"최근 7일 · 테마와 종목",trN:"{n}건",trNew:"NEW",trKeep:"=",
         themesSec:"테마 논쟁",recordSec:"판정 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
-        bull:"강세",bear:"약세",mix:"엇갈림",sourceUnit:"출처",postUnit:"글",smallSample:"표본 적음",sourceTitle:"출처별 의견",sourceEmpty:"출처 정보가 없어요.",sourceOriginal:"최근 원문 ↗",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
+        bull:"강세",bear:"약세",mix:"엇갈림",sourceUnit:"출처",postUnit:"글",smallSample:"표본 적음",sampleDetail:"글 {posts}개 · 출처 {sources}곳",sourceTitle:"출처별 의견",sourceEmpty:"출처 정보가 없어요.",sourceOriginal:"최근 원문 ↗",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
         bm:"북마크",follows:"팔로우 내역",shares:"공유 내역",nlLabel:"이번 주 베스트 메일",
         community:"커뮤니티",communitySec:"커뮤니티",communitySoon:"준비 중",
         communityDesc:"특정 논객이나 회사를 함께 쫓는 커뮤니티를 만들거나 팔로우하고, 인용해서 덧글을 남기고, 직접 글도 쓰며 서로 소통하는 공간이에요. 곧 찾아옵니다.",
@@ -59,7 +59,7 @@
         trRank:"Skew ranking · last 7 days",trAll:"Last 7 days · themes and tickers",trN:"{n} posts",trN1:"1 post",trNew:"NEW",trKeep:"=",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
         ntNew:"New",ntGrade:"Graded",ntSkew:"Skew alert",noAlerts:"No new alerts.",
-        bull:"Bull",bear:"Bear",mix:"Split",sourceUnit:"sources",postUnit:"posts",smallSample:"small sample",sourceTitle:"By source",sourceEmpty:"No source detail is available.",sourceOriginal:"Latest original ↗",openThemes:"Open theme debates",openRecord:"Open author track record",
+        bull:"Bull",bear:"Bear",mix:"Split",sourceUnit:"sources",postUnit:"posts",smallSample:"small sample",sampleDetail:"{posts} posts · {sources} sources",sourceTitle:"By source",sourceEmpty:"No source detail is available.",sourceOriginal:"Latest original ↗",openThemes:"Open theme debates",openRecord:"Open author track record",
         bm:"Bookmarks",follows:"Following",shares:"Share history",nlLabel:"Weekly best by email",
         community:"Community",communitySec:"Community",communitySoon:"Coming soon",
         communityDesc:"A space to create or follow communities around a given author or company, quote-and-comment, post your own takes, and talk with others. Coming soon.",
@@ -81,7 +81,7 @@
         trRank:"傾きランキング · 直近7日",trAll:"直近7日 · テーマと銘柄",trN:"{n}件",trNew:"NEW",trKeep:"=",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
         ntNew:"新着",ntGrade:"採点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
-        bull:"強気",bear:"弱気",mix:"交錯",sourceUnit:"著者",postUnit:"記事",smallSample:"少数サンプル",sourceTitle:"出典別の意見",sourceEmpty:"出典情報はありません。",sourceOriginal:"最新原文 ↗",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
+        bull:"強気",bear:"弱気",mix:"交錯",sourceUnit:"著者",postUnit:"記事",smallSample:"少数サンプル",sampleDetail:"記事{posts}件 · 出典{sources}",sourceTitle:"出典別の意見",sourceEmpty:"出典情報はありません。",sourceOriginal:"最新原文 ↗",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
         bm:"ブックマーク",follows:"フォロー履歴",shares:"共有履歴",nlLabel:"今週のベストをメール",
         community:"コミュニティ",communitySec:"コミュニティ",communitySoon:"準備中",
         communityDesc:"特定の論客や企業を一緒に追うコミュニティを作ったりフォローし、引用してコメントを残し、自分でも投稿して交流できる場です。近日公開。",
@@ -703,8 +703,11 @@
       html += '<div class="v82-hub-sec">' + esc(t.trAll) + '</div>';
       rows.forEach(function(o, idx){
         var dir = o.sourceDir || 0, bp = dir ? Math.round((o.sourceBull || 0) / dir * 100) : 0, rp = 100 - bp;
+        var sampleDetail = (t.sampleDetail || "{posts} posts · {sources} sources")
+          .replace("{posts}", String(o.articleDir || 0))
+          .replace("{sources}", String(o.sourceCount || o.sourceDir || 0));
         var leanLb = (o.side === "bull" ? t.bull : o.side === "bear" ? t.bear : t.mix) + " " + Math.round(o.pct * 100) + "%"
-          + (o.lowSample ? " · " + t.smallSample : "");
+          + (o.lowSample ? " · " + t.smallSample + " · " + sampleDetail : "");
         var stat = (o.sourceDir || 0) + " " + t.sourceUnit + " · " + (o.articleDir || 0) + " " + t.postUnit;
         var sourceCount = skewSourceBreakdown(o.items).length;
         var sourceToggle = '<button type="button" class="v82-skew-source-toggle" aria-expanded="false"'

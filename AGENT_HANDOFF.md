@@ -4379,3 +4379,24 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: No `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration changed. Existing production-copy untracked user artifacts were preserved.
 
 **Next**: monitor sample-warning coverage and `skew/source-original` event volume before selecting the next Skew slice.
+
+## 2026-08-10 Codex Skew sample denominator cue (local)
+
+**Audit**:
+- Live desktop had 13/13 rows marked `small sample`; mobile had 9/9. Six unique original URLs were reachable, with zero overflow at 390px.
+- GoatCounter dashboard volume remains unavailable without authenticated API access; source-link event requests were verified in the prior deployment smoke.
+
+**Change**:
+- Added the directional-call count and source count beside every low-sample warning on desktop and mobile.
+- Added localized `글·출처`, `posts·sources`, and `記事·出典` labels plus numeric regression assertions.
+- Bumped v82 asset query versions to `p1-skew-sample-20260810`.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration. Production deployment was not performed.
+
+**Validation**:
+- Skew-focused Playwright tests: 5/5 passed.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `node --check assets/v82.js` and `git diff --check`: passed.
+
+**Risk**: This is a local preview slice only. Review the longer mobile warning text before explicit production deployment.
+
+**Next**: review the local Skew preview, then deploy this small trust-cue slice only after approval.

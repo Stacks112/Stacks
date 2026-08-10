@@ -3858,7 +3858,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   setTimeout(relRail, 6500);
 })();
 </script>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-trust-20260810">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-sample-20260810">
 <link rel="stylesheet" href="assets/investor-compare.css?v=integrated-20260809">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
@@ -9605,7 +9605,7 @@ function v83SkewRows(days){
     return { kind: kind, key: key, label: label, icon: icon,
       cells: cells.map(function(c){ return c.bull && c.bear ? "mix" : c.bull ? "bull" : c.bear ? "bear" : null; }),
       bull: bull, bear: bear, sourceDir: consensus.sourceDir, sourceSplit: consensus.sourceSplit,
-      lowSample: consensus.lowSample, items: scoped };
+      lowSample: consensus.lowSample, sourceCount: consensus.sourceCount, items: scoped };
   }
   var themes = [], ents = [];
   try {
@@ -9632,6 +9632,7 @@ function renderV83SkewPage(list, S){
   var T = v83SkewPageStr();
   T.asOf = T.asOf || (LANG === "en" ? "As of {date}" : LANG === "ja" ? "基準日 {date}" : "기준일 {date}");
   T.smallSample = T.smallSample || (LANG === "en" ? "small sample" : LANG === "ja" ? "少数サンプル" : "표본 적음");
+  T.sampleDetail = T.sampleDetail || (LANG === "en" ? "{posts} calls · {sources} sources" : LANG === "ja" ? "{posts}件 · 出典 {sources}" : "글 {posts}개 · 출처 {sources}곳");
   var mkDays = function(n){
     var out = [];
     for (var d = n - 1; d >= 0; d--) out.push(skewLocalIsoDate(d));
@@ -9724,7 +9725,10 @@ function renderV83SkewPage(list, S){
     }).join("");
     var tot = r.bull + r.bear, pct = tot ? Math.round(Math.max(r.bull, r.bear) / tot * 100) : 0;
   var side = r.bull > r.bear ? "bull" : r.bear > r.bull ? "bear" : "mix";
-  var sampleNote = r.lowSample ? '<span class="sktr-sample">' + esc(T.smallSample) + '</span>' : '';
+  var sampleDetail = (T.sampleDetail || "{posts} calls · {sources} sources")
+    .replace("{posts}", String(r.bull + r.bear))
+    .replace("{sources}", String(r.sourceCount || r.sourceDir || 0));
+  var sampleNote = r.lowSample ? '<span class="sktr-sample" title="' + esc(sampleDetail) + '">' + esc(T.smallSample) + ' · ' + esc(sampleDetail) + '</span>' : '';
     var sourceCfg = { cls:"skew-source-detail", title:T.sourceTitle, empty:T.sourceEmpty, original:T.sourceOriginal,
       bull:T.bull, bear:T.bear, mix:T.mix, postUnit:LANG === "en" ? "calls" : LANG === "ja" ? "件" : "글" };
     var sourceCount = skewSourceBreakdown(r.items).length;
@@ -14877,7 +14881,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=p1-skew-trust-20260810"></script>
+<script src="assets/v82.js?v=p1-skew-sample-20260810"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 
