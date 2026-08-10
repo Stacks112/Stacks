@@ -4215,4 +4215,18 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 
 **Risk**: P1 changes only ranking order, explanatory copy, CSS, and regression tests. No `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed.
 
-**Next**: push P1 to production and verify the methodology copy and ranking order live on desktop/mobile.
+**Next**: monitor ranking trust signals and decide whether the next P1 slice should add per-row source drill-down.
+
+## 2026-08-10 Codex skew P1 production deployment
+
+**Status**: Pushed `af08b3812` to `origin/main`; GitHub Pages propagated.
+
+**Live verification**:
+- Desktop and mobile `https://stacksdaily.com/#skew` served `p1-skew-20260810`.
+- Methodology copy rendered in Korean on both shells.
+- First desktop/mobile ranking item was directional, not `mix`, when directional candidates existed.
+- Mobile preserved `#skew` and stayed within 390px width.
+
+**Risk**: P1 changes are limited to ranking order, explanatory copy, CSS, and tests. Automated publishing/data paths remain untouched.
+
+**Next**: monitor ranking trust signals and decide whether the next P1 slice should add per-row source drill-down.
