@@ -4325,3 +4325,22 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 - `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check`: passed.
 
 **Next**: deploy the small tracking change only after approval, then verify `skew/source-original` events in GoatCounter and continue periodic URL audits.
+
+## 2026-08-10 Codex source-link click tracking production deployment
+
+**Status**: Deployed `index.html` as production commit `fca43be1c` after fast-forwarding production copy to remote `main` commit `974fc6e53`. Pushed to `origin/main`.
+
+**Live verification**:
+- The live HTML contains the `skew/source-original` event attribute.
+- Desktop and mobile `https://stacksdaily.com/#skew` source-link clicks each generated a GoatCounter request for `skew/source-original`.
+- Original hrefs remained valid `http(s)` links and opened in a new tab.
+- No data or auto-publishing paths changed; the production copy's existing untracked user artifacts were preserved.
+
+**Validation**:
+- Production copy `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- Live tracking smoke: desktop/mobile passed.
+- The production diff was one line in `index.html`; normal `deploy_guard` passed.
+
+**Risk**: `deploy_guard --verify index.html` still reports pre-existing historical line differences from older generated-page commits; the staged production diff was inspected and contained only the intended click-tracking attribute.
+
+**Next**: watch GoatCounter event volume and periodically repeat source URL coverage/HTTP audits.
