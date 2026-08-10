@@ -18,6 +18,7 @@
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "실질임금", "description": "임금에서 물가 상승 영향을 빼 실제로 살 수 있는 양으로 다시 계산한 값.", "url": "https://stacksdaily.com/e/real-wage.html", "about": {"@type": "DefinedTerm", "name": "실질임금"}, "publisher": {"@type": "Organization", "@id": "https://stacksdaily.com/#org", "name": "Stacks", "alternateName": ["Stacks Daily", "StacksDaily", "stacksdaily.com", "스택스", "스택스데일리", "スタックス"], "url": "https://stacksdaily.com/", "logo": {"@type": "ImageObject", "url": "https://stacksdaily.com/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://x.com/Stacks0g"]}, "isPartOf": {"@id": "https://stacksdaily.com/#website"}, "inLanguage": "ko", "mainEntity": {"@type": "ItemList", "numberOfItems": 2, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://stacksdaily.com/p/bessent-wages-25th-percentile-lead.html", "name": "낮은 임금 구간이 더 빨리 올랐다, 물가를 빼면 증가는 작았다"}, {"@type": "ListItem", "position": 2, "url": "https://stacksdaily.com/p/potus-cpi-june.html", "name": "트럼프, 6월 CPI로 승리 세리머니, '6년 만의 최대 월간 물가 하락'"}]}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stacks", "item": "https://stacksdaily.com/"}, {"@type": "ListItem", "position": 2, "name": "실질임금", "item": "https://stacksdaily.com/e/real-wage.html"}]}</script>
 <style>
 body{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}
 @media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}}
@@ -57,7 +58,7 @@ if(u.origin!==location.origin)return null;
 var p=u.pathname.replace(/^\/+/,""),m;
 if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
 if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
-if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+if(p===""||p==="index.html"||p==="articles.html"||p==="articles-en.html"||p==="articles-ja.html")return "?l="+L;
 return null;}
 document.addEventListener("click",function(e){
 if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;

@@ -4135,3 +4135,21 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: Production UI/test/preview deployment only. `items.json`, 13F source payload, D1 queue, auto-publishing data, and Worker configuration were not changed.
 
 **Next**: monitor price-provider failures and review PR #41 status separately; article exploration page remains out of scope.
+
+## 2026-08-10 Codex SEO crawl structure and article exploration preview
+
+**Change**:
+- Applied PR #41 SEO crawl structure commits on latest `origin/main`: localized article hubs, BreadcrumbList JSON-LD, article/entity breadcrumbs, sitemap hreflang alignment, and regression contract.
+- Regenerated 304 article pages across ko/en/ja, 667 entity pages, 8 theme pages, 14 record pages, localized feeds, sitemap, robots, and week/calendar outputs.
+- Added `preview/article-exploration.html` as a separate Stacks-style exploration redesign preview. It includes search, topic/language filters, sort, save state, theme toggle, responsive mobile layout, and sample-only data. Production `articles.html` was not replaced.
+- `items.json`, `portfolios.json`, 13F payloads, D1 queue, auto-publishing data, and Worker configuration unchanged.
+
+**Validation**:
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- `git -c core.whitespace=cr-at-eol diff --check`: passed. Generated HTML retains the repository's CRLF convention.
+- Preview browser checks: search 12→1, AI topic filter 3, dark theme toggle, mobile 390px no horizontal overflow.
+- Generated pages contain breadcrumbs and localized hreflang: `articles.html`, `articles-en.html`, `articles-ja.html`, sample `p/` and `e/` pages.
+
+**Risk**: SEO/generated-output deployment plus an unlinked preview page. The live article exploration experience remains unchanged until the preview is reviewed and explicitly approved for replacement.
+
+**Next**: push the reviewed SEO/generated output and preview to `origin/main`, then verify the live localized hubs, breadcrumbs, sitemap, and preview URL.

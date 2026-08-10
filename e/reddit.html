@@ -18,6 +18,7 @@
 <link rel="icon" href="../favicon-32.png">
 <link rel="alternate" type="application/rss+xml" title="Stacks" href="../feed.xml">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "REDDIT", "description": "이용자가 만든 글과 댓글이 주제별 게시판에 쌓이는 구조라, 검색 결과에 잘 잡히는 문서가 많다. 그래서 사람이 들어오는 길이 앱을 직접 여는 쪽과 검색을 거쳐 오는 쪽으로 나뉘고, 뒤쪽 비중이 큰 편이다. 최근에는 이 축적된 글이 인공지능 학습용 자료로도 팔리면서 광고 외의 매출원이…", "url": "https://stacksdaily.com/e/reddit.html", "about": {"@type": "Organization", "name": "REDDIT", "tickerSymbol": "RDDT"}, "publisher": {"@type": "Organization", "@id": "https://stacksdaily.com/#org", "name": "Stacks", "alternateName": ["Stacks Daily", "StacksDaily", "stacksdaily.com", "스택스", "스택스데일리", "スタックス"], "url": "https://stacksdaily.com/", "logo": {"@type": "ImageObject", "url": "https://stacksdaily.com/icon-512.png", "width": 512, "height": 512}, "sameAs": ["https://x.com/Stacks0g"]}, "isPartOf": {"@id": "https://stacksdaily.com/#website"}, "inLanguage": "ko", "mainEntity": {"@type": "ItemList", "numberOfItems": 1, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://stacksdaily.com/p/serenity-reddit-2q26-google-referral-not-dau.html", "name": "매출과 이익, 가이던스를 다 넘긴 레딧의 주가를 끌어내린 것은 이용자 수가 아니었다"}]}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Stacks", "item": "https://stacksdaily.com/"}, {"@type": "ListItem", "position": 2, "name": "REDDIT", "item": "https://stacksdaily.com/e/reddit.html"}]}</script>
 <style>
 body{font-family:-apple-system,"Segoe UI","Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:24px 20px 60px;line-height:1.6;color:#17181C;background:#fff}
 @media(prefers-color-scheme:dark){body{background:#0E0F12;color:#ECEDF1}}
@@ -57,7 +58,7 @@ if(u.origin!==location.origin)return null;
 var p=u.pathname.replace(/^\/+/,""),m;
 if((m=p.match(/^p\/(en|ja)\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[2])+"&l="+m[1];
 if((m=p.match(/^p\/([^\/]+)\.html$/)))return "?c="+encodeURIComponent(m[1])+"&l=ko";
-if(p===""||p==="index.html"||p==="articles.html")return "?l="+L;
+if(p===""||p==="index.html"||p==="articles.html"||p==="articles-en.html"||p==="articles-ja.html")return "?l="+L;
 return null;}
 document.addEventListener("click",function(e){
 if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
