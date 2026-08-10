@@ -4121,3 +4121,17 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: Test selector/contract maintenance plus the previously audited investor price-state UI. No `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed.
 
 **Next**: deploy the reviewed investor price-state UI and regression coverage from the latest `origin/main`; verify the live site after push.
+
+## 2026-08-10 Codex investor comparison production deployment
+
+**Status**: Pushed `bab439a0758b146090c60f9e95b2db298ae5520d` to `origin/main`; GitHub Pages propagated to `https://stacksdaily.com`.
+
+**Live verification**:
+- `index.html` contains the unavailable-price copy and `assets/investor-compare.js` exposes the price-state code.
+- Desktop live flow: 16 investor cards, 2 initially selected, 2 comparison cards, chart status `ok`, benchmark status `ok`, detail→compare returned with 2 cards preserved.
+- Mobile live flow at 390px: 2 investors selected; `scrollWidth=390`, `clientWidth=390`.
+- Standalone preview responds at `/preview/investor-compare-states.html` with HTTP 200.
+
+**Risk**: Production UI/test/preview deployment only. `items.json`, 13F source payload, D1 queue, auto-publishing data, and Worker configuration were not changed.
+
+**Next**: monitor price-provider failures and review PR #41 status separately; article exploration page remains out of scope.
