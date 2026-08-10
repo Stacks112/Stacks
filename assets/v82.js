@@ -33,10 +33,10 @@
         trMove:"지난주와 이번 주, 쏠림이 이렇게 옮겨갔습니다.",
         trSame:"지난주에 이어 이번 주도 같은 곳에 쏠려 있습니다.",
         trOnly:"이번 주 논의가 가장 뜨거운 곳입니다.",
-        trRank:"쏠림 순위 · 최근 7일",trAll:"전체 기간 · 테마와 종목",trN:"{n}건",trNew:"NEW",trKeep:"=",
+        trRank:"쏠림 순위 · 최근 7일",trAll:"최근 7일 · 테마와 종목",trN:"{n}건",trNew:"NEW",trKeep:"=",
         themesSec:"테마 논쟁",recordSec:"판정 기록",people:"논객",company:"회사",
         ntNew:"새 글",ntGrade:"채점",ntSkew:"쏠림 알림",noAlerts:"새로운 알림이 없습니다.",
-        bull:"강세",bear:"약세",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
+        bull:"강세",bear:"약세",mix:"엇갈림",sourceUnit:"출처",postUnit:"글",smallSample:"표본 적음",openThemes:"테마 논쟁 보기",openRecord:"저자 판정 기록 보기",
         bm:"북마크",follows:"팔로우 내역",shares:"공유 내역",nlLabel:"이번 주 베스트 메일",
         community:"커뮤니티",communitySec:"커뮤니티",communitySoon:"준비 중",
         communityDesc:"특정 논객이나 회사를 함께 쫓는 커뮤니티를 만들거나 팔로우하고, 인용해서 덧글을 남기고, 직접 글도 쓰며 서로 소통하는 공간이에요. 곧 찾아옵니다.",
@@ -54,10 +54,10 @@
         trMove:"Here is how the lean moved between last week and this week.",
         trSame:"Same place as last week — the lean has not moved.",
         trOnly:"Where the argument is hottest this week.",
-        trRank:"Skew ranking · last 7 days",trAll:"All time · themes and tickers",trN:"{n} posts",trN1:"1 post",trNew:"NEW",trKeep:"=",
+        trRank:"Skew ranking · last 7 days",trAll:"Last 7 days · themes and tickers",trN:"{n} posts",trN1:"1 post",trNew:"NEW",trKeep:"=",
         themesSec:"Theme debates",recordSec:"Track record",people:"Authors",company:"Companies",
         ntNew:"New",ntGrade:"Graded",ntSkew:"Skew alert",noAlerts:"No new alerts.",
-        bull:"Bull",bear:"Bear",openThemes:"Open theme debates",openRecord:"Open author track record",
+        bull:"Bull",bear:"Bear",mix:"Split",sourceUnit:"sources",postUnit:"posts",smallSample:"small sample",openThemes:"Open theme debates",openRecord:"Open author track record",
         bm:"Bookmarks",follows:"Following",shares:"Share history",nlLabel:"Weekly best by email",
         community:"Community",communitySec:"Community",communitySoon:"Coming soon",
         communityDesc:"A space to create or follow communities around a given author or company, quote-and-comment, post your own takes, and talk with others. Coming soon.",
@@ -75,10 +75,10 @@
         trMove:"先週と今週で、傾きはこう動きました。",
         trSame:"先週に続き今週も同じところに傾いています。",
         trOnly:"今週、議論が最も熱い場所。",
-        trRank:"傾きランキング · 直近7日",trAll:"全期間 · テーマと銘柄",trN:"{n}件",trNew:"NEW",trKeep:"=",
+        trRank:"傾きランキング · 直近7日",trAll:"直近7日 · テーマと銘柄",trN:"{n}件",trNew:"NEW",trKeep:"=",
         themesSec:"テーマ論争",recordSec:"的中記録",people:"論客",company:"企業",
         ntNew:"新着",ntGrade:"採点",ntSkew:"傾きアラート",noAlerts:"新しい通知はありません。",
-        bull:"強気",bear:"弱気",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
+        bull:"強気",bear:"弱気",mix:"交錯",sourceUnit:"著者",postUnit:"記事",smallSample:"少数サンプル",openThemes:"テーマ論争を見る",openRecord:"著者の的中記録を見る",
         bm:"ブックマーク",follows:"フォロー履歴",shares:"共有履歴",nlLabel:"今週のベストをメール",
         community:"コミュニティ",communitySec:"コミュニティ",communitySoon:"準備中",
         communityDesc:"特定の論客や企業を一緒に追うコミュニティを作ったりフォローし、引用してコメントを残し、自分でも投稿して交流できる場です。近日公開。",
@@ -530,24 +530,29 @@
   }
 
   /* ---------- EXPLORE hub (skew diagram + themes + record) ---------- */
-  function skewData(){
+  function skewData(lo, hi){
     var out = [];
+    var inWindow = function(it){ return (!lo || it.date >= lo) && (!hi || it.date <= hi); };
+    var summarize = function(items){
+      if (typeof skewConsensus === "function") return skewConsensus(items);
+      var t = stanceTally(items), d = t.bull + t.bear;
+      return { side:t.bull > t.bear ? "bull" : t.bear > t.bull ? "bear" : "mix", pct:d ? Math.max(t.bull,t.bear)/d : 0,
+        sourceBull:t.bull, sourceBear:t.bear, sourceDir:d, sourceCount:d, sourceSplit:0,
+        articleBull:t.bull, articleBear:t.bear, articleDir:d, lowSample:d < 5 };
+    };
+    var add = function(kind, key, label, icon, items, min){
+      var c = summarize(items); if (c.articleDir < min) return;
+      out.push({ kind:kind, key:key, label:label, icon:icon || "", bull:c.articleBull, bear:c.articleBear,
+        sourceBull:c.sourceBull, sourceBear:c.sourceBear, sourceDir:c.sourceDir, sourceCount:c.sourceCount,
+        articleDir:c.articleDir, pct:c.pct, side:c.side, lowSample:c.lowSample });
+    };
     try {
-      Object.keys(THEMES).forEach(function(k){
-        var t = stanceTally(themeItems(k)); var dir = t.bull + t.bear;
-        if (dir < 1) return;
-        out.push({ kind:"theme", key:k, label:THEMES[k].label[LANG], icon:THEMES[k].icon, bull:t.bull, bear:t.bear });
-      });
+      Object.keys(THEMES).forEach(function(k){ add("theme", k, THEMES[k].label[LANG], THEMES[k].icon, themeItems(k).filter(inWindow), 1); });
       var byEnt = {};
-      ITEMS.forEach(function(it){ if(!itemStance(it)) return; itemEntities(it).forEach(function(e){ if(ENTITIES[e]&&ENTITIES[e].kind==="company"){ (byEnt[e]=byEnt[e]||[]).push(it); } }); });
-      Object.keys(byEnt).forEach(function(e){
-        var t = stanceTally(byEnt[e]); var dir = t.bull + t.bear;
-        if (dir < 3) return;
-        out.push({ kind:"ent", key:e, label:entName(e), icon:"", bull:t.bull, bear:t.bear });
-      });
+      ITEMS.forEach(function(it){ if(!itemStance(it) || !inWindow(it)) return; itemEntities(it).forEach(function(e){ if(ENTITIES[e]&&ENTITIES[e].kind==="company"){ (byEnt[e]=byEnt[e]||[]).push(it); } }); });
+      Object.keys(byEnt).forEach(function(e){ add("ent", e, entName(e), "", byEnt[e], 3); });
     } catch(e){}
-    out.forEach(function(o){ var d=o.bull+o.bear; o.pct = d? Math.max(o.bull,o.bear)/d : 0; o.side = o.bull>=o.bear?"bull":"bear"; });
-    out.sort(function(a,b){ return (b.pct-a.pct) || ((b.bull+b.bear)-(a.bull+a.bear)); });
+    out.sort(function(a,b){ return (a.lowSample-b.lowSample) || (b.pct-a.pct) || (b.articleDir-a.articleDir); });
     return out;
   }
   function renderHub(){
@@ -635,16 +640,24 @@
     if (typeof v83ThemeAttention !== "function") return "";
     var t = T(), h = "";
     try {
-      var d0 = new Date(); d0.setHours(0, 0, 0, 0);
-      var iso = function(off){ return new Date(d0.getTime() - off * 86400000).toISOString().slice(0, 10); };
+      var iso = function(off){
+        if (typeof skewLocalIsoDate === "function") return skewLocalIsoDate(off);
+        var d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - off);
+        return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+      };
       var nowA = v83ThemeAttention(iso(6), iso(0));      /* 최근 7일 */
       var prevA = v83ThemeAttention(iso(13), iso(7));    /* 그 전 7일 */
       if (!nowA.length) return "";
-      var sideLb = function(c){ return c.side === "bull" ? t.bull : t.bear; };
+      var sideLb = function(c){ return c.side === "bull" ? t.bull : c.side === "bear" ? t.bear : t.mix; };
+      var statLb = function(c){
+        var sources = c.sourceDir || c.sourceCount || 0, posts = c.dir || c.articleDir || 0;
+        return sources + " " + t.sourceUnit + " · " + posts + " " + t.postUnit
+          + (c.lowSample ? " · " + t.smallSample : "");
+      };
       var chip = function(lb, c, now){
         return '<span class="v82-tr-chip' + (now ? " now" : "") + '"><small>' + esc(lb) + '</small>'
           + '<b>' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</b>'
-          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span></span>';
+          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '% · ' + esc(statLb(c)) + '</span></span>';
       };
       var topNow = nowA[0], topPrev = prevA.length ? prevA[0] : null;
       h += '<div class="v82-tr">';
@@ -666,7 +679,7 @@
           + '<span class="rk">' + (i + 1) + '</span>'
           + '<span class="nm">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
           + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span>'
-          + '<span class="n">' + esc(String(c.dir === 1 && t.trN1 ? t.trN1 : t.trN).replace("{n}", c.dir)) + '</span>'
+          + '<span class="n">' + esc(statLb(c)) + '</span>'
           + mv + '</button>';
       }).join("") + '</div>';
       h += '</div>';
@@ -674,22 +687,24 @@
     return h;
   }
   function skewSubHtml(){
-    var t = T(), rows = skewData(), html = "";
+    var t = T(), rows = skewData(skewLocalIsoDate(6), skewLocalIsoDate(0)), html = "";
     html += '<div class="v82-skew-sub" style="margin-top:2px">' + t.skewSub + '</div>';
     html += skewTrendHtml();
     if (!rows.length){
       html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';
     } else {
-      /* 위 블록은 최근 7일 창이고 아래 목록은 전체 기간이다 — 창이 다르므로 라벨을 붙인다 */
+      /* 데스크톱과 모바일 모두 최근 7일 창을 사용한다. */
       html += '<div class="v82-hub-sec">' + esc(t.trAll) + '</div>';
       rows.forEach(function(o, idx){
-        var dir = o.bull + o.bear, bp = dir ? Math.round(o.bull / dir * 100) : 0, rp = 100 - bp;
-        var leanLb = (o.side === "bull" ? t.bull : t.bear) + " " + Math.round(o.pct * 100) + "%";
+        var dir = o.sourceDir || 0, bp = dir ? Math.round((o.sourceBull || 0) / dir * 100) : 0, rp = 100 - bp;
+        var leanLb = (o.side === "bull" ? t.bull : o.side === "bear" ? t.bear : t.mix) + " " + Math.round(o.pct * 100) + "%"
+          + (o.lowSample ? " · " + t.smallSample : "");
+        var stat = (o.sourceDir || 0) + " " + t.sourceUnit + " · " + (o.articleDir || 0) + " " + t.postUnit;
         html += '<button class="v82-skew-row" data-i="' + idx + '">'
           + '<div class="v82-skew-top"><span class="v82-skew-name">' + (o.icon ? o.icon + " " : "") + esc(o.label) + '</span>'
           + '<span class="v82-skew-lean ' + o.side + '">' + esc(leanLb) + '</span></div>'
           + '<div class="v82-skew-track"><i class="b" style="width:' + bp + '%"></i><i class="r" style="width:' + rp + '%"></i></div>'
-          + '<div class="v82-skew-cts"><span>' + t.bull + ' ' + o.bull + '</span><span>' + t.bear + ' ' + o.bear + '</span></div></button>';
+          + '<div class="v82-skew-cts"><span>' + esc(stat) + '</span><span>' + t.bull + ' ' + o.sourceBull + ' · ' + t.bear + ' ' + o.sourceBear + '</span></div></button>';
       });
     }
     return html;
@@ -722,13 +737,14 @@
       };
     }
   }
-  function openSkewSub(){
+  function openSkewSub(fromHistory){
     HUB_SUB = "skew";
     renderSkewSub();
     setHeadTitle("v82hub", T().skewTitle);
     var hub = $("v82hub"); if (hub) hub.scrollTop = 0;
-    if (typeof pushView === "function") pushView();
+    if (!fromHistory && typeof pushView === "function") pushView();
     setActive();
+    if (typeof stkSyncUrlSoon === "function") stkSyncUrlSoon();
   }
   function closeHubSub(fromPop){
     HUB_SUB = null;
@@ -803,6 +819,13 @@
     showScreen("v82hub");
     setActive();
   }
+  window.v82OpenSkew = function(fromHistory){
+    if (!mq.matches) return false;
+    openHub();
+    openSkewSub(!!fromHistory);
+    return true;
+  };
+  window.v82HubSub = function(){ return HUB_SUB; };
   function closeHub(fromPop){
     if (!hideScreen("v82hub")) return false;
     if (!fromPop) silentBack();

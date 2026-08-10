@@ -4168,3 +4168,25 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 **Risk**: SEO output and an unlinked exploration preview were deployed. The preview uses sample data and is not wired into production navigation. `items.json` and publishing/data/Worker paths were not changed by this deployment.
 
 **Next**: review the exploration preview and approve or reject a later production replacement separately. PR #41 remains a draft reference; its changes are now present on `main`.
+
+## 2026-08-10 Codex skew P0 correction
+
+**Change**:
+- Fixed mobile `#skew` deep links and mobile skew history/URL state; desktop and mobile now use the same recent-7-day window.
+- Added local-calendar date calculation to remove UTC/KST day-boundary drift.
+- Added source-level consensus, neutral `50:50` handling, low-sample labeling, and explicit source/post counts.
+- Kept low-sample rows visible but marked and deprioritized them in skew ranking; added neutral-state styling.
+- Added regression coverage for desktop/mobile deep links and neutral/low-sample consensus behavior.
+- Bumped the v82 asset query versions so deployed browsers do not retain the pre-fix JS/CSS cache.
+- Did not touch `items.json`, 13F payloads, D1 queue, auto-publishing data, or Worker configuration.
+
+**Validation**:
+- `node --check assets/v82.js`: passed.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- Skew-focused Playwright tests: 3/3 passed.
+- Full `tests/feed-detail.spec.mjs`: 24/24 passed. An earlier run briefly hit the timing-sensitive archive-gist deferral assertion; the isolated case and the final full run both passed.
+- `git diff --check`: passed.
+
+**Risk**: P0 frontend logic/UI and regression-test changes are local only; production was not deployed in this step. The skew source field is used as the author/source grouping key, with item-id fallback when absent.
+
+**Next**: review the local P0 result, then explicitly approve production deployment. After deployment, recheck `https://stacksdaily.com/#skew` on desktop and mobile.

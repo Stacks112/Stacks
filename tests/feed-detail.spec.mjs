@@ -440,4 +440,40 @@ test.describe("13F investor view state", () => {
       await expect(page.locator("#feedList .inv-grid")).toBeVisible();
     });
   });
+
+  test.describe("skew page state", () => {
+    test("desktop #skew deep link renders the weekly page", async ({ page }) => {
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.goto("/?v83beta#skew", { waitUntil: "domcontentloaded" });
+      await expect(page).toHaveURL(/#skew$/);
+      await expect(page.locator(".v83skew-page").first()).toBeVisible();
+      await expect(page.locator(".skr-row").first()).toBeVisible();
+    });
+
+    test("mobile #skew deep link opens the same weekly basis", async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/?v82beta#skew", { waitUntil: "domcontentloaded" });
+      await expect(page).toHaveURL(/#skew$/);
+      await expect(page.locator("#v82hub.on")).toBeVisible();
+      await expect(page.locator("#v82hub .v82-hub-sec").filter({ hasText: "최근 7일" })).toBeVisible();
+    });
+
+    test("ties stay neutral and small samples are marked", async ({ page }) => {
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.goto("/?v83beta", { waitUntil: "domcontentloaded" });
+      const result = await page.evaluate(() => {
+        const tie = skewConsensus([
+          { id: "a", source: "same", stance: "bull" },
+          { id: "b", source: "same", stance: "bear" },
+          { id: "c", source: "other", stance: "bull" },
+          { id: "d", source: "other", stance: "bear" },
+        ]);
+        const thin = skewConsensus([{ id: "e", source: "one", stance: "bull" }]);
+        return { tie, thin };
+      });
+      expect(result.tie.side).toBe("mix");
+      expect(result.tie.lowSample).toBe(true);
+      expect(result.thin.lowSample).toBe(true);
+    });
+  });
 });
