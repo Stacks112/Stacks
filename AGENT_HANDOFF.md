@@ -4187,6 +4187,32 @@ baseline failure in `test_all_detail_paths_use_the_card_factory`.
 - Full `tests/feed-detail.spec.mjs`: 24/24 passed. An earlier run briefly hit the timing-sensitive archive-gist deferral assertion; the isolated case and the final full run both passed.
 - `git diff --check`: passed.
 
-**Risk**: P0 frontend logic/UI and regression-test changes are local only; production was not deployed in this step. The skew source field is used as the author/source grouping key, with item-id fallback when absent.
+**Risk**: P0 frontend logic/UI and regression-test changes use the `source` field as the author/source grouping key, with item-id fallback when absent. Production deployment completed separately below.
 
-**Next**: review the local P0 result, then explicitly approve production deployment. After deployment, recheck `https://stacksdaily.com/#skew` on desktop and mobile.
+**Next**: monitor the live skew page for source-label clarity and mobile history behavior.
+
+## 2026-08-10 Codex skew P0 production deployment
+
+**Status**: Pushed `37e9c8b0c` to `origin/main`; GitHub Pages propagated.
+
+**Live verification**:
+- `https://stacksdaily.com/#skew` desktop rendered the skew page and hero.
+- Mobile `https://stacksdaily.com/#skew` preserved the hash, opened the hub, showed the recent-7-day section, and had no horizontal overflow at 390px.
+- Live HTML served the `p0-skew-20260810` asset versions after propagation.
+
+## 2026-08-10 Codex skew P1 ranking semantics
+
+**Change**:
+- Reordered skew ranking by reliable directional signal first, low-sample directional signal second, and split/50:50 last.
+- Added localized methodology copy to desktop and mobile: recent 7-day window, one vote per source, small-sample threshold, and neutral tie handling.
+- Added focused assertions that the first ranking item is not split when directional candidates exist.
+
+**Validation**:
+- `node --check assets/v82.js`, `node --check tests/feed-detail.spec.mjs`, and `git diff --check`: passed.
+- `py -3 tests/test_frontend_contracts.py`: 27/27 passed.
+- Skew-focused Playwright tests: 3/3 passed.
+- Full `tests/feed-detail.spec.mjs`: 24/24 passed.
+
+**Risk**: P1 changes only ranking order, explanatory copy, CSS, and regression tests. No `items.json`, 13F payload, D1 queue, auto-publishing data, or Worker configuration changed.
+
+**Next**: push P1 to production and verify the methodology copy and ranking order live on desktop/mobile.

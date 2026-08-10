@@ -229,6 +229,7 @@
   /* --- skew diagram (지금 쏠린 곳) --- */
   .v82-skew-h{font-size:16px;font-weight:800;margin:2px 0 4px;}
   .v82-skew-sub{font-size:12.5px;color:var(--muted);margin:0 0 16px;line-height:1.5;}
+  .v82-skew-method{font-size:10.5px;color:var(--muted);margin:-8px 0 12px;line-height:1.5;}
   .v82-skew-row{width:100%;background:none;border:none;text-align:left;cursor:pointer;padding:12px 2px;
     border-bottom:1px solid var(--line);font-family:inherit;color:var(--text);}
   .v82-skew-top{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}

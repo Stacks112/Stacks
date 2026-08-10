@@ -1819,6 +1819,7 @@ html{overscroll-behavior-y:contain;}
   .v83dc-n{ margin-top:auto; padding-top:8px; font-size:11px; font-weight:800; color:var(--accent); }
   .v83dir-group{ padding:16px 14px 0; font-size:12px; font-weight:800; color:var(--muted);
     letter-spacing:.08em; text-transform:uppercase; }
+  .skew-method{ margin:2px 20px 0; color:var(--muted); font-size:11px; line-height:1.5; }
   /* v83.4: "지금 쏠린 곳" full page */
   .v83skew-page{ padding:10px 20px 26px; }
   /* v83.5: 테마별 주간 추이 rows */
@@ -3847,7 +3848,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   setTimeout(relRail, 6500);
 })();
 </script>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p0-skew-20260810">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-20260810">
 <link rel="stylesheet" href="assets/investor-compare.css?v=integrated-20260809">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
@@ -9484,19 +9485,25 @@ function v83SkewPageStr(){
           bull: "강세", bear: "약세", mix: "엇갈림", none: "이 기간엔 방향성 있는 글이 없어요.",
           lastWk: "지난주", nowLb: "지금", heroSame: "지난주에 이어 이번 주도 여기에 쏠려 있어요.",
           heroMove: "지난주와 지금, 쏠림이 이렇게 이동했어요.", heroOnly: "지금 논쟁이 가장 뜨거운 곳이에요.",
-          rank: "쏠림 랭킹 · 이번 주 vs 지난주", rankN: "글 {n}건", mvNew: "NEW", mvKeep: "유지" },
+          rank: "쏠림 랭킹 · 이번 주 vs 지난주", rankN: "글 {n}건",
+          method: "계산 기준: 최근 7일 방향성 글 · 출처별 1표 · 글 5개 또는 출처 3곳 미만은 표본 적음 · 50:50은 엇갈림",
+          mvNew: "NEW", mvKeep: "유지" },
     en: { sub: "Day by day over the last {d} days: which side directional calls leaned. Green=bull, red=bear, yellow=split.",
           themes: "Daily · themes", ents: "Daily · companies", flipTo: "→ flipped {s}", keep: "holding {s}",
           bull: "bullish", bear: "bearish", mix: "split", none: "No directional calls in this window.",
           lastWk: "Last week", nowLb: "Now", heroSame: "The crowd is still parked here.",
           heroMove: "Where the crowd moved between last week and now.", heroOnly: "Where the debate is hottest right now.",
-          rank: "Lean ranking · this week vs last", rankN: "{n} calls", mvNew: "NEW", mvKeep: "=" },
+          rank: "Lean ranking · this week vs last", rankN: "{n} calls",
+          method: "Method: directional calls from the last 7 days · one vote per source · fewer than 5 calls or 3 sources is a small sample · 50:50 stays split",
+          mvNew: "NEW", mvKeep: "=" },
     ja: { sub: "直近{d}日、方向性のある記事がどちらに偏ったか。緑=強気、赤=弱気、黄=交錯。",
           themes: "日別 · テーマ", ents: "日別 · 企業", flipTo: "→ {s}へ転換", keep: "{s}維持",
           bull: "強気", bear: "弱気", mix: "交錯", none: "この期間、方向性のある記事はありません。",
           lastWk: "先週", nowLb: "今", heroSame: "先週に続き今週もここに偏っています。",
           heroMove: "先週と今、偏りはこう動きました。", heroOnly: "今、議論が最も熱い場所。",
-          rank: "偏りランキング · 今週 vs 先週", rankN: "記事{n}件", mvNew: "NEW", mvKeep: "=" }
+          rank: "偏りランキング · 今週 vs 先週", rankN: "記事{n}件",
+          method: "集計基準: 直近7日の方向性記事 · 出典ごとに1票 · 記事5件または出典3件未満は少数サンプル · 50:50は交錯",
+          mvNew: "NEW", mvKeep: "=" }
   };
   return s[LANG] || s.ko;
 }
@@ -9515,7 +9522,8 @@ function v83ThemeAttention(lo, hi){
         side: c.side, pct: Math.round(c.pct * 100), lowSample: c.lowSample });
     });
   } catch (e) {}
-  out.sort(function(a, b){ return (a.lowSample - b.lowSample) || (b.dir - a.dir) || (b.pct - a.pct); });
+  var rankBucket = function(c){ return c.side === "mix" ? 2 : c.lowSample ? 1 : 0; };
+  out.sort(function(a, b){ return (rankBucket(a) - rankBucket(b)) || (b.pct - a.pct) || (b.dir - a.dir); });
   return out;
 }
 function v83SkewRows(days){
@@ -9572,6 +9580,10 @@ function renderV83SkewPage(list, S){
   head.className = "v83dir-head";
   head.innerHTML = '<b>' + esc(S.skewSecTitle) + '</b><p>' + esc(T.sub.replace("{d}", span)) + '</p>';
   list.appendChild(head);
+  var method = document.createElement("p");
+  method.className = "skew-method";
+  method.textContent = T.method;
+  list.appendChild(method);
   if (!data.themes.length && !data.ents.length){
     var em = document.createElement("div"); em.className = "empty"; em.textContent = T.none; list.appendChild(em); return;
   }
@@ -14796,7 +14808,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=p0-skew-20260810"></script>
+<script src="assets/v82.js?v=p1-skew-20260810"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 

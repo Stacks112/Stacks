@@ -29,6 +29,7 @@
         me:"내 정보",record:"판정 기록",alerts:"알림 설정",appearance:"화면 테마",events:"다가오는 이벤트",
         dwProfile:"프로필",dwFollowing:"팔로잉",dwShared:"공유한 글",
         skewTitle:"지금 쏠린 곳",skewSub:"테마·종목별로 강세/약세 의견이 어디로 쏠려 있는지 한눈에 봅니다.",
+        skewMethod:"계산 기준: 최근 7일 방향성 글 · 출처별 1표 · 글 5개 또는 출처 3곳 미만은 표본 적음 · 50:50은 엇갈림",
         trWk:"지난주 → 이번 주",trLast:"지난주",trNow:"이번 주",
         trMove:"지난주와 이번 주, 쏠림이 이렇게 옮겨갔습니다.",
         trSame:"지난주에 이어 이번 주도 같은 곳에 쏠려 있습니다.",
@@ -50,6 +51,7 @@
         me:"My page",record:"Track record",alerts:"Notifications",appearance:"Appearance",events:"Upcoming events",
         dwProfile:"Profile",dwFollowing:"Following",dwShared:"Shared posts",
         skewTitle:"Where the crowd is leaning",skewSub:"See at a glance which way bull/bear opinion tilts, by theme and ticker.",
+        skewMethod:"Method: directional calls from the last 7 days · one vote per source · fewer than 5 calls or 3 sources is a small sample · 50:50 stays split",
         trWk:"Last week → this week",trLast:"Last week",trNow:"This week",
         trMove:"Here is how the lean moved between last week and this week.",
         trSame:"Same place as last week — the lean has not moved.",
@@ -71,6 +73,7 @@
         me:"マイページ",record:"的中記録",alerts:"通知設定",appearance:"テーマ",events:"今後のイベント",
         dwProfile:"プロフィール",dwFollowing:"フォロー中",dwShared:"共有した記事",
         skewTitle:"今の傾き",skewSub:"テーマ・銘柄ごとに強気/弱気の意見がどちらに傾いているか一目で。",
+        skewMethod:"集計基準: 直近7日の方向性記事 · 出典ごとに1票 · 記事5件または出典3件未満は少数サンプル · 50:50は交錯",
         trWk:"先週 → 今週",trLast:"先週",trNow:"今週",
         trMove:"先週と今週で、傾きはこう動きました。",
         trSame:"先週に続き今週も同じところに傾いています。",
@@ -552,7 +555,8 @@
       ITEMS.forEach(function(it){ if(!itemStance(it) || !inWindow(it)) return; itemEntities(it).forEach(function(e){ if(ENTITIES[e]&&ENTITIES[e].kind==="company"){ (byEnt[e]=byEnt[e]||[]).push(it); } }); });
       Object.keys(byEnt).forEach(function(e){ add("ent", e, entName(e), "", byEnt[e], 3); });
     } catch(e){}
-    out.sort(function(a,b){ return (a.lowSample-b.lowSample) || (b.pct-a.pct) || (b.articleDir-a.articleDir); });
+    var rankBucket = function(o){ return o.side === "mix" ? 2 : o.lowSample ? 1 : 0; };
+    out.sort(function(a,b){ return (rankBucket(a)-rankBucket(b)) || (b.pct-a.pct) || (b.articleDir-a.articleDir); });
     return out;
   }
   function renderHub(){
@@ -689,6 +693,7 @@
   function skewSubHtml(){
     var t = T(), rows = skewData(skewLocalIsoDate(6), skewLocalIsoDate(0)), html = "";
     html += '<div class="v82-skew-sub" style="margin-top:2px">' + t.skewSub + '</div>';
+    html += '<div class="v82-skew-method">' + esc(t.skewMethod) + '</div>';
     html += skewTrendHtml();
     if (!rows.length){
       html += '<div class="v82-empty">아직 쏠림을 계산할 데이터가 부족합니다.</div>';

@@ -448,6 +448,8 @@ test.describe("13F investor view state", () => {
       await expect(page).toHaveURL(/#skew$/);
       await expect(page.locator(".v83skew-page").first()).toBeVisible();
       await expect(page.locator(".skr-row").first()).toBeVisible();
+      await expect(page.locator(".skew-method")).toContainText("계산 기준");
+      await expect(page.locator(".skr-row .skr-side").first()).not.toHaveClass(/sk-mix/);
     });
 
     test("mobile #skew deep link opens the same weekly basis", async ({ page }) => {
@@ -456,6 +458,8 @@ test.describe("13F investor view state", () => {
       await expect(page).toHaveURL(/#skew$/);
       await expect(page.locator("#v82hub.on")).toBeVisible();
       await expect(page.locator("#v82hub .v82-hub-sec").filter({ hasText: "최근 7일" })).toBeVisible();
+      await expect(page.locator("#v82hub .v82-skew-method")).toContainText("계산 기준");
+      await expect(page.locator("#v82hub .v82-tr-row .sd").first()).not.toHaveClass(/mix/);
     });
 
     test("ties stay neutral and small samples are marked", async ({ page }) => {
