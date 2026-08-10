@@ -1824,7 +1824,8 @@ html{overscroll-behavior-y:contain;}
   .v83skew-page{ padding:10px 20px 26px; }
   /* v83.5: 테마별 주간 추이 rows */
   .v83skew-page .sktr-g{ padding:14px 0 8px; }
-  .sktr-row{ display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:none; border:0;
+  .skew-row-line{ display:flex; align-items:center; gap:8px; min-width:0; }
+  .sktr-row{ display:flex; align-items:center; gap:12px; flex:1 1 auto; min-width:0; width:auto; text-align:left; background:none; border:0;
     border-bottom:1px solid var(--line); padding:11px 4px; cursor:pointer; font-family:inherit; color:var(--text); border-radius:8px; }
   .sktr-row:hover{ background:var(--bg-soft); }
   .sktr-name{ flex:0 0 132px; font-size:13.5px; font-weight:800; letter-spacing:-.01em; }
@@ -1836,6 +1837,14 @@ html{overscroll-behavior-y:contain;}
   .sktr-meta{ margin-left:auto; display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:700; white-space:nowrap; }
   .sktr-meta b{ font-family:var(--mono-font); font-size:12px; }
   .sktr-meta b.sk-bull{ color:#12B76A; } .sktr-meta b.sk-bear{ color:#F04438; } .sktr-meta b.sk-mix{ color:#B7791F; }
+  .skew-source-toggle{ flex:0 0 auto; padding:2px 0; border:0; background:none; font:inherit; font-size:10px; color:var(--accent); cursor:pointer; text-decoration:underline; text-underline-offset:2px; white-space:nowrap; }
+  .skew-source-detail{ margin:0 4px 8px 136px; padding:9px 11px; border:1px solid var(--line); border-radius:10px; background:var(--bg-soft); }
+  .skew-source-title{ display:block; margin-bottom:5px; font-size:11px; color:var(--muted); }
+  .skew-source-line{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:5px 0; border-top:1px solid var(--line); font-size:11px; }
+  .skew-source-line > span:first-child{ min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .skew-source-line small{ color:var(--muted); font-size:10px; }
+  .skew-source-actions{ flex:0 0 auto; display:flex; align-items:center; gap:8px; color:var(--muted); font-family:var(--mono-font); font-size:10px; }
+  .skew-source-original{ color:var(--accent); font-family:inherit; font-size:10px; white-space:nowrap; }
   .sktr-flip{ font-size:10.5px; font-weight:800; padding:2px 7px; border-radius:999px; border:1px solid var(--line); }
   .sktr-flip.sk-bull{ color:#12B76A; } .sktr-flip.sk-bear{ color:#F04438; }
   .sktr-keep{ font-size:10.5px; color:var(--muted); font-weight:600; }
@@ -3848,7 +3857,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   setTimeout(relRail, 6500);
 })();
 </script>
-<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-skew-20260810">
+<link id="v82css" rel="stylesheet" href="assets/v82.css?v=p1-source-link-20260810">
 <link rel="stylesheet" href="assets/investor-compare.css?v=integrated-20260809">
 <link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
@@ -5487,12 +5496,15 @@ function skewLocalIsoDate(offset){
   var d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - Number(offset || 0));
   return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
 }
+function skewSourceKey(item){
+  var raw = String(item && (item.source || item.author) || "").trim();
+  return (raw ? raw.toLowerCase() : "item:" + String(item && (item.id || item.date) || "unknown"));
+}
 function skewConsensus(items){
   var raw = stanceTally(items), bySource = {};
   (items || []).forEach(function(i){
     var s = itemStance(i); if (s !== "bull" && s !== "bear") return;
-    var source = String(i.source || i.author || "").trim().toLowerCase();
-    if (!source) source = "item:" + String(i.id || i.date || (i.title && (i.title.ko || i.title.en)) || "unknown");
+    var source = skewSourceKey(i);
     var cell = bySource[source] || (bySource[source] = { bull: 0, bear: 0 });
     cell[s]++;
   });
@@ -5512,6 +5524,49 @@ function skewConsensus(items){
     articleBull: raw.bull, articleBear: raw.bear, articleDir: articleDir,
     lowSample: articleDir < 5 || sourceDir < 3 || sourceSplit > 0
   };
+}
+function skewSourceBreakdown(items){
+  var by = {};
+  (items || []).forEach(function(i){
+    var s = itemStance(i); if (s !== "bull" && s !== "bear") return;
+    var key = skewSourceKey(i), raw = String(i.source || i.author || "").trim();
+    var c = by[key] || (by[key] = { key:key, label:raw || "Unknown source", bull:0, bear:0, items:[] });
+    c[s]++;
+    c.items.push(i);
+  });
+  return Object.keys(by).map(function(k){
+    var c = by[k], dir = c.bull + c.bear;
+    c.side = c.bull > c.bear ? "bull" : c.bear > c.bull ? "bear" : "mix";
+    c.pct = dir ? Math.round(Math.max(c.bull, c.bear) / dir * 100) : 0;
+    return c;
+  }).sort(function(a,b){ return (b.bull + b.bear) - (a.bull + a.bear) || a.label.localeCompare(b.label); });
+}
+function skewSourceDetailHtml(items, cfg){
+  var rows = skewSourceBreakdown(items), cls = cfg.cls || "skew-source-detail";
+  if (!rows.length) return '<div class="' + cls + '" hidden><span>' + esc(cfg.empty) + '</span></div>';
+  var html = '<div class="' + cls + '" hidden><b class="skew-source-title">' + esc(cfg.title) + '</b>';
+  rows.forEach(function(c){
+    var side = c.side === "bull" ? cfg.bull : c.side === "bear" ? cfg.bear : cfg.mix;
+    var latest = c.items.slice().sort(function(a,b){ return String(b.date || "").localeCompare(String(a.date || "")); })[0];
+    var sourceUrl = latest && safeUrl(latest.sourceUrl);
+    var original = sourceUrl && sourceUrl !== "#"
+      ? '<a class="skew-source-original" href="' + sourceUrl + '" target="_blank" rel="noopener">' + esc(cfg.original) + '</a>' : '';
+    html += '<div class="skew-source-line"><span><b>' + esc(dispName(c.label)) + '</b>'
+      + '<small>' + esc(side) + ' ' + c.pct + '% · ' + (c.bull + c.bear) + ' ' + esc(cfg.postUnit) + '</small></span>'
+      + '<span class="skew-source-actions"><span class="skew-source-counts">' + esc(cfg.bull) + ' ' + c.bull + ' · ' + esc(cfg.bear) + ' ' + c.bear + '</span>' + original + '</span></div>';
+  });
+  return html + '</div>';
+}
+function toggleSkewSources(el, ev){
+  if (ev){ ev.preventDefault(); ev.stopPropagation(); }
+  var root = el;
+  while (root && !(root.classList && (root.classList.contains("skew-row-wrap") || root.classList.contains("v82-skew-row-wrap")))) root = root.parentNode;
+  if (!root) return;
+  var detail = root.querySelector(".skew-source-detail");
+  if (!detail) return;
+  var open = !!detail.hidden;
+  detail.hidden = !open;
+  el.setAttribute("aria-expanded", open ? "true" : "false");
 }
 function skewInfo(items){
   var c = skewConsensus(items);
@@ -9487,6 +9542,7 @@ function v83SkewPageStr(){
           heroMove: "지난주와 지금, 쏠림이 이렇게 이동했어요.", heroOnly: "지금 논쟁이 가장 뜨거운 곳이에요.",
           rank: "쏠림 랭킹 · 이번 주 vs 지난주", rankN: "글 {n}건",
           method: "계산 기준: 최근 7일 방향성 글 · 출처별 1표 · 글 5개 또는 출처 3곳 미만은 표본 적음 · 50:50은 엇갈림",
+          sourceToggle: "출처 {n}곳", sourceTitle: "출처별 의견", sourceEmpty: "출처 정보가 없어요.", sourceOriginal: "최근 원문 ↗",
           mvNew: "NEW", mvKeep: "유지" },
     en: { sub: "Day by day over the last {d} days: which side directional calls leaned. Green=bull, red=bear, yellow=split.",
           themes: "Daily · themes", ents: "Daily · companies", flipTo: "→ flipped {s}", keep: "holding {s}",
@@ -9495,6 +9551,7 @@ function v83SkewPageStr(){
           heroMove: "Where the crowd moved between last week and now.", heroOnly: "Where the debate is hottest right now.",
           rank: "Lean ranking · this week vs last", rankN: "{n} calls",
           method: "Method: directional calls from the last 7 days · one vote per source · fewer than 5 calls or 3 sources is a small sample · 50:50 stays split",
+          sourceToggle: "{n} sources", sourceTitle: "By source", sourceEmpty: "No source detail is available.", sourceOriginal: "Latest original ↗",
           mvNew: "NEW", mvKeep: "=" },
     ja: { sub: "直近{d}日、方向性のある記事がどちらに偏ったか。緑=強気、赤=弱気、黄=交錯。",
           themes: "日別 · テーマ", ents: "日別 · 企業", flipTo: "→ {s}へ転換", keep: "{s}維持",
@@ -9503,6 +9560,7 @@ function v83SkewPageStr(){
           heroMove: "先週と今、偏りはこう動きました。", heroOnly: "今、議論が最も熱い場所。",
           rank: "偏りランキング · 今週 vs 先週", rankN: "記事{n}件",
           method: "集計基準: 直近7日の方向性記事 · 出典ごとに1票 · 記事5件または出典3件未満は少数サンプル · 50:50は交錯",
+          sourceToggle: "出典{n}件", sourceTitle: "出典別の意見", sourceEmpty: "出典情報はありません。", sourceOriginal: "最新原文 ↗",
           mvNew: "NEW", mvKeep: "=" }
   };
   return s[LANG] || s.ko;
@@ -9533,10 +9591,10 @@ function v83SkewRows(days){
   function mkRow(kind, key, label, icon, items){
     var cells = days.map(function(){ return { bull: 0, bear: 0 }; });
     var bull = 0, bear = 0;
-    items.forEach(function(it){
+    var scoped = (items || []).filter(function(it){ return it.date >= lo && it.date <= hi; });
+    scoped.forEach(function(it){
       var st = itemStance(it);
       if (st !== "bull" && st !== "bear") return;
-      if (it.date < lo || it.date > hi) return;
       var ix = dset[it.date]; if (ix === undefined) return;
       cells[ix][st]++;
       if (st === "bull") bull++; else bear++;
@@ -9544,7 +9602,7 @@ function v83SkewRows(days){
     if (!bull && !bear) return null;
     return { kind: kind, key: key, label: label, icon: icon,
       cells: cells.map(function(c){ return c.bull && c.bear ? "mix" : c.bull ? "bull" : c.bear ? "bear" : null; }),
-      bull: bull, bear: bear };
+      bull: bull, bear: bear, items: scoped };
   }
   var themes = [], ents = [];
   try {
@@ -9661,12 +9719,17 @@ function renderV83SkewPage(list, S){
     }).join("");
     var tot = r.bull + r.bear, pct = tot ? Math.round(Math.max(r.bull, r.bear) / tot * 100) : 0;
     var side = r.bull > r.bear ? "bull" : r.bear > r.bull ? "bear" : "mix";
-    return '<button class="sktr-row" onclick="' + oc + '">'
+    var sourceCfg = { cls:"skew-source-detail", title:T.sourceTitle, empty:T.sourceEmpty, original:T.sourceOriginal,
+      bull:T.bull, bear:T.bear, mix:T.mix, postUnit:LANG === "en" ? "calls" : LANG === "ja" ? "件" : "글" };
+    var sourceCount = skewSourceBreakdown(r.items).length;
+    var sourceToggle = '<button type="button" class="skew-source-toggle" aria-expanded="false"'
+      + ' onclick="toggleSkewSources(this,event)">' + esc(T.sourceToggle.replace("{n}", sourceCount)) + '</button>';
+    return '<div class="skew-row-wrap"><div class="skew-row-line"><button class="sktr-row" onclick="' + oc + '">'
       + '<span class="sktr-name">' + (r.icon ? r.icon + " " : "") + esc(r.label) + '</span>'
       + '<span class="sktr-strip">' + strip + '</span>'
       + '<span class="sktr-meta"><i class="ws-bull">▲' + r.bull + '</i><i class="ws-bear">▼' + r.bear + '</i>'
       + '<b class="sk-' + side + '">' + pct + '%</b>' + shift + '</span>'
-      + '</button>';
+      + '</button>' + sourceToggle + '</div>' + skewSourceDetailHtml(r.items, sourceCfg) + '</div>';
   };
   var wrapEl = document.createElement("div");
   wrapEl.className = "v83skew-page";
@@ -14808,7 +14871,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=p1-skew-20260810"></script>
+<script src="assets/v82.js?v=p1-source-link-20260810"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 

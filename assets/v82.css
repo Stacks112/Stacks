@@ -230,8 +230,13 @@
   .v82-skew-h{font-size:16px;font-weight:800;margin:2px 0 4px;}
   .v82-skew-sub{font-size:12.5px;color:var(--muted);margin:0 0 16px;line-height:1.5;}
   .v82-skew-method{font-size:10.5px;color:var(--muted);margin:-8px 0 12px;line-height:1.5;}
-  .v82-skew-row{width:100%;background:none;border:none;text-align:left;cursor:pointer;padding:12px 2px;
+  .v82-skew-row-line{display:flex;align-items:flex-start;gap:8px;min-width:0;}
+  .v82-skew-row{flex:1 1 auto;min-width:0;width:auto;background:none;border:none;text-align:left;cursor:pointer;padding:12px 2px;
     border-bottom:1px solid var(--line);font-family:inherit;color:var(--text);}
+  .v82-skew-row-wrap{border-bottom:1px solid var(--line);}
+  .v82-skew-row-wrap .v82-skew-row{border-bottom:0;}
+  .v82-skew-source-toggle{flex:0 0 auto;margin-top:11px;padding:2px 0;border:0;background:none;font:inherit;font-size:10.5px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
+  .v82-skew-source-detail{margin:-2px 2px 8px;padding:8px 9px;}
   .v82-skew-top{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}
   .v82-skew-name{font-size:14px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .v82-skew-lean{font-size:12px;font-weight:800;font-family:var(--mono-font);}
