@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v86 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
+<!-- STACKS BUILD v87 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
 <html lang="en" class="stkboot stkbootr">
 <head>
 <meta charset="UTF-8">
@@ -3665,6 +3665,9 @@ html[data-theme="dark"] .th-follow.on{background:#fff;color:#111;}
 .inv-bar-name{font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .inv-bar-track{background:var(--track);border-radius:6px;height:16px;overflow:hidden;}
 .inv-bar-fill{display:block;background:var(--accent);height:100%;border-radius:6px;min-width:3px;}
+.inv-bar-fill-put{background:#E04438;}
+.inv-bar-fill-call{background:#0E9F5E;}
+.inv-opt-note{font-size:11.5px;color:var(--muted);margin:-4px 0 14px;line-height:1.5;}
 .inv-bar-pct{font-family:var(--mono-font);font-size:12px;font-weight:700;color:var(--muted);text-align:right;min-width:44px;}
 .inv-table-wrap{overflow-x:auto;margin:14px 0;}
 .inv-table{width:100%;border-collapse:collapse;font-size:13px;}
@@ -4118,7 +4121,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v86</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v87</p>
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
     <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
@@ -5494,6 +5497,7 @@ function debateTitleHtml(key){
        invActValueChg:"Value vs. prior Q", invActTurnover:"Turnover", invActOptions:"Option positions",
        invActNoData:"No prior-quarter activity data for this filing.",
        invMoverBuy:"Top buys", invMoverSell:"Top sells", invMoverNone:"None this quarter",
+       invOptNote:"PUT and CALL rows are option positions, not shares held. 13F reports the value of the shares those contracts cover, which is not the amount actually invested.",
        invSectorTitle:"Sector allocation", invSectorCov:"Based on {p}% of the portfolio" },
   ko:{ invChartTitle:"그대로 들고 있었다면", invChartSub:"분기별 SEC 13F 공개 스냅샷을 이어 붙인 포트폴리오 추정 평가액입니다.", invChartDrag:"차트 위를 손가락으로 누른 채 좌우로 움직이면 선택 기간의 수익률을 확인할 수 있습니다.", invChartSelected:"선택 기간", invChartRange:"선택 {n}일", invChartClear:"선택 해제", invChartNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님", invChart1d:"1일", invChart5d:"5일", invChart1m:"1개월", invChart6m:"6개월", invChartYtd:"연중", invChart1y:"1년", invChartMapCov:"티커 매핑 {p}% · 옵션 제외", invChartPriceCov:"시세 조회 성공 {p}% · 옵션 제외", invChartPriceCovLoading:"시세 커버리지 계산 중…",
        invChartNoTicker:"티커에 매핑된 종목이 없어 이 차트를 표시할 수 없습니다.", invChartFail:"시세를 불러오지 못했습니다",
@@ -5502,6 +5506,7 @@ function debateTitleHtml(key){
        invActValueChg:"평가액(전분기比)", invActTurnover:"회전율", invActOptions:"옵션 포지션",
        invActNoData:"직전 분기 대비 활동 데이터가 없습니다.",
        invMoverBuy:"매수 상위", invMoverSell:"매도 상위", invMoverNone:"이번 분기 없음",
+       invOptNote:"PUT · CALL 은 주식 보유가 아니라 옵션 포지션입니다. 13F 금액은 계약이 커버하는 주식 가치라 실제 투입 금액과 다릅니다.",
        invSectorTitle:"섹터 배분", invSectorCov:"전체의 {p}% 집계 기준" },
   ja:{ invChartTitle:"そのまま保有していたら", invChartSub:"SECの四半期13F公開スナップショットをつないだ公開ポートフォリオ推定評価額です。", invChartDrag:"グラフを長押しして左右にドラッグすると、選択期間のリターンを確認できます。", invChartSelected:"選択期間", invChartRange:"選択 {n}日", invChartClear:"選択を解除", invChartNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません", invChart1d:"1日", invChart5d:"5日", invChart1m:"1か月", invChart6m:"6か月", invChartYtd:"年初来", invChart1y:"1年", invChartMapCov:"ティッカー紐付け {p}%・オプション除外", invChartPriceCov:"価格データ取得 {p}%・オプション除外", invChartPriceCovLoading:"価格データの網羅率を計算中…",
        invChartNoTicker:"ティッカーに一致する銘柄がなく、このチャートは表示できません。", invChartFail:"価格データを取得できませんでした",
@@ -5510,6 +5515,7 @@ function debateTitleHtml(key){
        invActValueChg:"評価額(前四半期比)", invActTurnover:"回転率", invActOptions:"オプションポジション",
        invActNoData:"前四半期比の活動データがありません。",
        invMoverBuy:"買い上位", invMoverSell:"売り上位", invMoverNone:"今四半期はなし",
+       invOptNote:"PUT・CALL は株式の保有ではなくオプションポジションです。13F の金額は契約がカバーする株式の価値で、実際の投入額とは異なります。",
        invSectorTitle:"セクター配分", invSectorCov:"全体の{p}%集計基準" }
 }; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
 
@@ -7406,11 +7412,23 @@ function renderInvestorDetail(list, S, inv){
         var barPct = Math.max(2, (h.weight || 0) / maxW * 100);
         var plainLabel = esc(h.issuer || "");
         var label = plainLabel + invPutCallBadgeHtml(h.put_call);
+        /* An option row is not a share position, but the bar used to be drawn in
+           the same accent as every long holding, so the longest bar on Burry or
+           Soros read as their biggest stock. Colour it like the PUT/CALL badge
+           instead so the two cannot be scanned as the same thing. */
+        var optCls = (h.put_call === "PUT") ? " inv-bar-fill-put"
+          : (h.put_call === "CALL") ? " inv-bar-fill-call" : "";
         return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + plainLabel + '">' + label + "</span>"
-          + '<span class="inv-bar-track"><span class="inv-bar-fill" style="width:' + barPct.toFixed(1) + '%"></span></span>'
+          + '<span class="inv-bar-track"><span class="inv-bar-fill' + optCls + '" style="width:' + barPct.toFixed(1) + '%"></span></span>'
           + '<span class="inv-bar-pct">' + pct.toFixed(1) + "%</span></div>";
       }).join("");
       list.appendChild(bars);
+    }
+    if (allHoldings.some(function(h){ return h && (h.put_call === "PUT" || h.put_call === "CALL"); })){
+      var optNote = document.createElement("p");
+      optNote.className = "inv-opt-note";
+      optNote.textContent = S.invOptNote || "";
+      list.appendChild(optNote);
     }
 
     /* v85: 매수/매도 상위는 비중 막대 다음 - "무엇이 얼마나 큰가"를 본 뒤
