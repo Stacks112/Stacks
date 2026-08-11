@@ -1,16 +1,34 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-11T05:37:13.457921+00:00",
- "checked_at": "2026-08-11T05:37:13.457921+00:00",
+ "fetched_at": "2026-08-11T07:46:57.509095+00:00",
+ "checked_at": "2026-08-11T07:46:57.509095+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 4,
- "newest_published": "2026-08-11T05:26:00+00:00",
+ "newest_published": "2026-08-11T06:52:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "According to Chinese media reports, CXMT’s 17nm DDR5 yield has already exceeded 90%. CXMT products are currently available in relatively large volumes in the spot market in South China, allowing brands to procure chips based on their specific pricing and specification requirements. However, major U.S. PC makers have imposed strict policies. Dell reportedly prohibits the use of CXMT chips altogether, while HP permits their use only in products sold in mainland China. Acer and ASUS are said to be more flexible in their procurement decisions and able to adopt CXMT chips without difficulty. The two companies mainly use CXMT chips in notebook models sold in mainland China and emerging markets, se",
+   "link": "https://x.com/jukan05/status/2087069621320917361",
+   "published": "2026-08-11T06:52:00+00:00",
+   "content": "According to Chinese media reports, CXMT’s 17nm DDR5 yield has already exceeded 90%.\n\nCXMT products are currently available in relatively large volumes in the spot market in South China, allowing brands to procure chips based on their specific pricing and specification requirements.\n\nHowever, major U.S. PC makers have imposed strict policies. Dell reportedly prohibits the use of CXMT chips altogether, while HP permits their use only in products sold in mainland China.\n\nAcer and ASUS are said to be more flexible in their procurement decisions and able to adopt CXMT chips without difficulty.\n\nThe two companies mainly use CXMT chips in notebook models sold in mainland China and emerging markets, seeking an optimal balance between price and specifications.\n\nHowever, the number of models using CXMT chips and the volumes involved remain quite limited, reportedly due to concerns about provoking a backlash from the world’s three largest memory manufacturers.\n— Jukan (@jukan05) Aug 11, 2026"
+  },
+  {
+   "title": "In its Micron report, UBS said NVIDIA’s decision to lower the HBM specifications for Vera Rubin Ultra would actually increase the number of VR300 units entering the supply chain, raising total HBM consumption in 2027 from 58.7 billion Gb to 61.5 billion Gb. As I said previously, high-spec HBM4/4E is currently a bottleneck that is constraining shipments.",
+   "link": "https://x.com/jukan05/status/2087064956760097167",
+   "published": "2026-08-11T06:33:00+00:00",
+   "content": "In its Micron report, UBS said NVIDIA’s decision to lower the HBM specifications for Vera Rubin Ultra would actually increase the number of VR300 units entering the supply chain, raising total HBM consumption in 2027 from 58.7 billion Gb to 61.5 billion Gb.\n\nAs I said previously, high-spec HBM4/4E is currently a bottleneck that is constraining shipments.Jukan (@jukan05)People are not looking at the supply side nearly enough.\n\nWhat matters right now is that making HBM in greater volume and with more superior specs cuts commodity DRAM supply far too much.\n\nThis also affects SOCAMM2 supply, which will affect total Rubin rack shipments.\n\nIn other words, cutting HBM to increase SOCAMM2 supply and raise total Rubin rack shipments is the rational move, and that fits Nvidia's interest.\n\nThe resulting performance loss is solved at the NPO layer and addressed at the cluster level.—  https://x.com/jukan05/status/2086073288242123134 \n— Jukan (@jukan05) Aug 11, 2026"
+  },
+  {
+   "title": "Samsung Electronics to Adopt High-NA EUV Technology Starting at 1nm Samsung Electronics plans to introduce a major innovation in lithography technology beginning with its 1-nanometer process, which could enter mass production as early as 2030. The company intends to deploy High-NA EUV, a next-generation extreme ultraviolet lithography technology, in volume production at the 1nm node and is currently focused on developing the technology required for commercialization. Park Chang-min, a Master at Samsung Electronics, disclosed the company’s lithography technology roadmap on August 11 at the 2026 Next-Generation Lithography + Patterning Conference (NGL 2026), held at the Suwon Convention Center",
+   "link": "https://x.com/jukan05/status/2087062450608984103",
+   "published": "2026-08-11T06:23:00+00:00",
+   "content": "Samsung Electronics to Adopt High-NA EUV Technology Starting at 1nm\n\nSamsung Electronics plans to introduce a major innovation in lithography technology beginning with its 1-nanometer process, which could enter mass production as early as 2030. The company intends to deploy High-NA EUV, a next-generation extreme ultraviolet lithography technology, in volume production at the 1nm node and is currently focused on developing the technology required for commercialization.\n\nPark Chang-min, a Master at Samsung Electronics, disclosed the company’s lithography technology roadmap on August 11 at the 2026 Next-Generation Lithography + Patterning Conference (NGL 2026), held at the Suwon Convention Center in Gyeonggi Province. Lithography is the process of transferring circuit patterns onto semiconductor wafers.\n\nSamsung Electronics has used EUV lithography in volume production since introducing it at advanced foundry nodes of 8nm and below. EUV has a wavelength of 13.5nm, approximately one-thirteenth that of argon fluoride (ArF), the conventional light source used in semiconductor lithography.\n\nThis allows ultrafine patterns that require multiple exposures, or multi-patterning, with ArF to be produced with fewer exposures—or even a single exposure. Reducing the number of patterning steps can lower manufacturing costs and improve productivity.\n\nSamsung Electronics is also intensifying its development of High-NA EUV, the next generation of EUV technology. The company is targeting the 1nm, or A10, process for its full-scale deployment in volume production. The “A” refers to angstroms, with one angstrom equal to 0.1nm.\n\n“We had hoped to apply High-NA EUV to volume production at the 2nm and 1.4nm nodes, but the technology still requires further refinement,” Park said. “We believe High-NA EUV will become necessary from A10 and below, and we are jointly developing the technology with various partners.”\n\nBased on this roadmap, Samsung Electronics is expected to begin using High-NA EUV in mass production around 2030. The company has already commercialized its 2nm process and plans to begin volume production of its 1.4nm SF1.4 process in 2029. It is reportedly preparing to start mass production of SF1.4+, an enhanced version of the 1.4nm process, as well as its 1nm process in 2030.\n\nHigh-NA EUV increases the numerical aperture, or NA, of the optical system from the current 0.33 to 0.55. Numerical aperture measures an optical system’s ability to collect and focus light. A higher NA improves resolution, making it easier to create finer circuit patterns.\n\nHigh-NA EUV can enable single-patterning for ultrafine features that would otherwise require multi-patterning with conventional EUV. This can improve cost efficiency. Because the pattern can be created in a single exposure, it also provides greater flexibility in circuit design.\n\nHowever, High-NA EUV is extremely technically challenging, and the equipment is highly expensive. Related technologies and materials, including masks and pellicles, must also advance. The industry therefore expects EUV multi-patterning and High-NA EUV single-patterning to be used in parallel at future process nodes.\n\n“Multi-patterning based on 0.33-NA EUV will remain the mainstream approach through the 1.4nm and 1nm nodes,” Park said. “For the process generations that follow, I believe High-NA patterning will become the mainstream.”\n\n $ASML \n— Jukan (@jukan05) Aug 11, 2026"
+  },
   {
    "title": "From JPMorgan APAC Tech Comments SK hynix: Investors generally expect SK hynix’s shareholder returns to be at least equivalent to 50% of Samsung Electronics’ level, following management’s indication that it would provide an update by the end of 3Q. The market also expects FY27 HBM contract pricing to increase by more than 50%, driven by tight supply-demand conditions in commodity D5. However, our analyst Jay is taking a more conservative view, forecasting an annual contract price increase of less than 40%, given NVIDIA’s strategic importance and SK hynix’s ability to reprice annually. Investors also asked about the announced $38.1bn capex plan, which is primarily allocated to production from",
    "link": "https://x.com/jukan05/status/2087047941227938038",
@@ -82,24 +100,6 @@
    "link": "https://x.com/jukan05/status/2086739356136747233",
    "published": "2026-08-10T09:00:00+00:00",
    "content": "The fact that you’re so busy mocking me that you can’t even tell I was joking tells me this memory trade still hasn’t bottomed.\n— Jukan (@jukan05) Aug 10, 2026"
-  },
-  {
-   "title": "> > TrendForce: iPhone 18 Pro Costs Expected to Surge by Nearly 40%; Apple May Adjust Its Gross Margin Strategy to Stabilize Shipments • According to TrendForce’s latest smartphone industry research, rising component prices—particularly for memory—are expected to drive up the bill of materials for Apple’s upcoming iPhone 18 series. • TrendForce estimates that the cost of the 256GB iPhone 18 Pro will be approximately 38% higher in Q3 than that of the comparable new model launched during the same period in 2025. With memory prices expected to continue rising in 2027, the cost increase for the 256GB iPhone 18 Pro could widen further. • Based on Apple’s recent pricing strategy for its new MacBoo",
-   "link": "https://x.com/jukan05/status/2086706485346578495",
-   "published": "2026-08-10T06:49:00+00:00",
-   "content": ">> TrendForce: iPhone 18 Pro Costs Expected to Surge by Nearly 40%; Apple May Adjust Its Gross Margin Strategy to Stabilize Shipments\n\n• According to TrendForce’s latest smartphone industry research, rising component prices—particularly for memory—are expected to drive up the bill of materials for Apple’s upcoming iPhone 18 series.\n\n• TrendForce estimates that the cost of the 256GB iPhone 18 Pro will be approximately 38% higher in Q3 than that of the comparable new model launched during the same period in 2025. With memory prices expected to continue rising in 2027, the cost increase for the 256GB iPhone 18 Pro could widen further.\n\n• Based on Apple’s recent pricing strategy for its new MacBook models, TrendForce said Apple may absorb part of the cost increase through lower gross margins, limiting price hikes for the iPhone 18 Pro series to stabilize shipments.\n\n• TrendForce also noted that Apple may reassess the pricing of older iPhone models. It cannot rule out the possibility that Apple will raise the prices of previous-generation models alongside the launch of the new series to cushion the impact of rising memory prices.\n\n $AAPL \n— Jukan (@jukan05) Aug 10, 2026"
-  },
-  {
-   "title": "TSMC July Revenue: NT$467,580mn (+5.6% MoM, +44.7% YoY) $TSM",
-   "link": "https://x.com/jukan05/status/2086688959158178138",
-   "published": "2026-08-10T05:39:00+00:00",
-   "content": "TSMC July Revenue: NT$467,580mn\n(+5.6% MoM, +44.7% YoY)\n\n $TSM \n— Jukan (@jukan05) Aug 10, 2026"
-  },
-  {
-   "title": "TrendForce: NVIDIA, AMD, and other foreign suppliers are expected to see their combined shipment share in China shrink to roughly 10% in 2026.",
-   "link": "https://x.com/jukan05/status/2086666728210301252",
-   "published": "2026-08-10T04:11:00+00:00",
-   "content": "TrendForce: NVIDIA, AMD, and other foreign suppliers are expected to see their combined shipment share in China shrink to roughly 10% in 2026.\n— Jukan (@jukan05) Aug 10, 2026"
   }
  ]
 }
