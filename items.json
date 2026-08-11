@@ -2,6 +2,158 @@
  "items": [
   {
    "date": "2026-08-11",
+   "id": "jukan-samsung-high-na-euv-a10-2030",
+   "related": [
+    "jukan-samsung-hbm4-yield-80-share-target",
+    "kuo-tsmc-apple-2nm-wip-rumor-rebuttal"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2087062450608984103",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0f172a",
+    "to": "#1e3a8a",
+    "label": "0.55"
+   },
+   "tags": [
+    "SAMSUNG",
+    "LITHOGRAPHY",
+    "FOUNDRY"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "장비는 이미 샀는데, 삼성은 2030년에 쓰겠다고 했다",
+    "en": "Samsung already bought the tools, and then said it would use them in 2030",
+    "ja": "装置はすでに買った、それでもサムスンは2030年に使うと言った"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "We had hoped to apply High-NA EUV to volume production at the 2nm and 1.4nm nodes, but the technology still requires further refinement.",
+      "We believe High-NA EUV will become necessary from A10 and below, and we are jointly developing the technology with various partners."
+     ],
+     "ko": [
+      "2나노와 1.4나노 양산에 하이NA EUV를 적용하려 했으나, 기술이 아직 더 다듬어져야 한다.",
+      "하이NA EUV는 A10 이하부터 필요해진다고 보고 있으며, 여러 파트너와 함께 기술을 개발하고 있다."
+     ],
+     "ja": [
+      "2ナノと1.4ナノの量産にハイNA EUVを適用しようとしたが、技術はまだ詰める必要がある。",
+      "ハイNA EUVはA10以下から必要になるとみており、さまざまなパートナーと共同で技術を開発している。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.11"
+   },
+   "sum3": {
+    "ko": "삼성전자가 하이NA EUV의 양산 적용 시점을 2나노에서 1나노 공정으로 미뤘다.\n겉으로 보면 2030년을 향한 로드맵을 한 장 더 공개한 것으로 읽힌다.\n그런데 이 장비 두 대는 지난해 10월에 이미 2나노 양산용으로 계약된 것이었다.",
+    "en": "Samsung has moved the node at which it puts High-NA EUV into volume production from 2nm out to 1nm.\nRead plainly, it looks like one more page of a roadmap pointing at 2030.\nBut those two machines were contracted last October for 2nm volume production.",
+    "ja": "サムスン電子がハイNA EUVの量産適用時期を2ナノから1ナノ工程へ後ろ倒しした。\n表向きは2030年に向けたロードマップをもう一枚示しただけに見える。\nだがこの2台は昨年10月、すでに2ナノの量産用として契約されたものだった。"
+   },
+   "gist": {
+    "ko": "삼성전자가 차세대 노광장비인 하이NA EUV를 1나노 공정부터 양산에 쓰겠다고 밝혔다.\n2나노와 1.4나노에 넣으려던 계획을 뒤로 미룬 것이고, 1나노 양산은 2030년 무렵으로 잡혀 있다.\n\n8월 11일 수원컨벤션센터에서 열린 차세대 리소그래피 학회에서 이 회사의 박창민 마스터가 로드맵을 공개했다.\n그는 2나노와 1.4나노 양산에 하이NA를 적용하려 했으나 기술을 더 다듬어야 한다고 말했다.\n\n## 노광이 무엇이길래\n\n노광은 웨이퍼 위에 회로 무늬를 빛으로 옮겨 새기는 공정이다.\n쓰는 빛의 파장이 짧을수록 가는 선을 그릴 수 있다.\n지금까지 쓰던 불화아르곤은 파장이 193나노미터이고, EUV는 13.5나노미터로 약 13분의 1이다.\n불화아르곤으로 여러 번 나눠 찍어야 하던 무늬를 EUV는 한 번에 찍는다.\n찍는 횟수가 줄면 원가가 내려가고 생산량이 올라간다.\n\n하이NA는 그 EUV의 다음 판이다.\nNA는 렌즈가 빛을 얼마나 넓게 받아 모으는지를 나타내는 값이고, 이 값이 커질수록 더 가는 선이 그려진다.\n\n@@CHK@@하이NA EUV 개구수|0.55|기존 EUV 개구수|0.33|삼성이 계약한 하이NA 장비|2대@@렌즈를 키운 만큼 공정 전체를 다시 맞춰야 한다. 장비를 이미 두 대 들여놓고도 양산 적용을 미뤘다는 이번 로드맵과 어긋나지 않는다.@@ASML 사양 · 트렌드포스 2025-10-16 보도 인용 · 2026-08-11 조회\n\n## 장비는 이미 계약돼 있었다\n\n미뤄진 것은 구매가 아니다.\n\n지난해 10월 대만 조사기관 트렌드포스는 삼성이 ASML의 하이NA 장비 EXE:5200B 두 대를 약 1조1,000억원에 사기로 했다고 전했다.\n그때 전해진 용도는 2나노 파운드리 양산이었고, 엑시노스 2600과 테슬라의 AI 칩이 이름으로 함께 올랐다.\n\n@@REF@@삼성, ASML 하이NA EUV 2대 구매 추진, 2026년 상반기 양산 목표 (트렌드포스, 2025-10-16)|https://www.trendforce.com/news/2025/10/16/news-samsung-reportedly-purchasing-two-asml-high-na-euv-tools-for-mass-production-by-1h26/\n\n그 보도대로면 올해 상반기에 두 번째 장비가 들어와 2나노 양산에 붙어야 했다.\n이번 발표는 그 자리를 A10으로 옮긴다. A는 옹스트롬이고 A10이 곧 1나노다.\n같은 장비가 연구와 시험 단계에 더 머문다는 뜻으로 읽힌다.\n\n## 인텔은 14A에 넣는다\n\n같은 장비를 두고 경쟁사들의 시계는 서로 다르게 간다.\n\n@@CMP@@인텔의 판단|하이NA는 14A에서 이미 쓸 만하다. 장비 주문을 두 대로 늘리고 2027년 리스크 생산, 2028년 양산 일정을 그 위에 세웠다.|삼성의 판단|장비는 사 두되 양산 공정에는 A10부터 넣는다. 그 아래로 내려가기 전에는 기술을 더 다듬어야 한다고 본다.\n\n같은 장비를 앞에 두고 준비가 됐는지에 대한 판단이 갈리고 있는 것이다.\n\nTSMC는 셋 중 가장 뒤에 서 있다. 값이 아직 비싸다는 이유로 도입을 미뤘다고 전해졌고, 트렌드포스는 이 회사가 1.4나노부터 상용 배치를 계획한다고 적었다.\n\n@@REF@@ASML은 몇 달 안에 첫 하이NA 제품을 예상하고, TSMC는 비용을 이유로 도입을 미뤘다 (AnySilicon, 2026-05-26)|https://anysilicon.com/news/asml-expects-first-high-na-euv-chips-within-months-as-tsmc-delays-adoption-over-cost-concerns/\n\n한 대에 수천억원인 장비를 언제 양산 라인에 세우느냐는 원가와 수율을 동시에 건드린다.\n먼저 넣으면 배우는 시간을 벌지만 그 값을 팔리는 칩에 얹어야 하고, 늦게 넣으면 값은 아끼지만 배움도 늦는다.\n\n## 2030년까지 남은 두 번의 갈림길\n\n삼성은 2나노를 이미 양산하고 있고 1.4나노는 2029년, 1나노는 2030년으로 잡아 두었다.\n그 사이에 하이NA가 먼저 들어가면 이번 발표는 앞당겨진 것이고,\n2030년에도 들어가지 않으면 장비를 산 시점과 쓰는 시점의 거리가 다섯 해를 넘긴다.\n어느 쪽이든 판단의 근거는 학회에서 나온 말이 아니라 라인에 세워진 장비의 수가 될 것이다.",
+    "en": "Samsung Electronics says it will use High-NA EUV, the next generation of lithography tools, in volume production starting at its 1nm process.\nThat pushes back a plan to bring the tool in at 2nm and 1.4nm, and 1nm volume production is set for around 2030.\n\nPark Chang-min, a Master at the company, laid out the roadmap on August 11 at a next-generation lithography conference in Suwon.\nHe said Samsung had hoped to apply High-NA in volume production at 2nm and 1.4nm, but that the technology still needs more refinement.\n\n## What lithography actually does\n\nLithography prints circuit patterns onto a wafer with light.\nThe shorter the wavelength, the finer the line it can draw.\nArgon fluoride, the workhorse source, has a wavelength of 193 nanometers, while EUV is 13.5, roughly one thirteenth of it.\nPatterns that argon fluoride has to print in several passes can be printed by EUV in one.\nFewer passes means lower cost and higher output.\n\nHigh-NA is the next version of that EUV tool.\nNA describes how widely the optics gather and focus light, and the larger it is, the finer the line.\n\n@@CHK@@High-NA EUV numerical aperture|0.55|Current EUV numerical aperture|0.33|High-NA tools Samsung has contracted|2@@Widening the optics means re-tuning the process around it. That is consistent with a roadmap in which two tools are already bought and volume use is still deferred.@@ASML specifications · TrendForce report of 2025-10-16 · retrieved 2026-08-11\n\n## The tools were already under contract\n\nWhat moved is not the purchase.\n\nLast October the Taiwanese research firm TrendForce reported that Samsung had agreed to buy two of ASML's High-NA machines, the EXE:5200B, for about 1.1 trillion won.\nThe stated use at the time was 2nm foundry production, with the Exynos 2600 and Tesla's AI chip named alongside it.\n\n@@REF@@Samsung reportedly purchasing two ASML High-NA EUV tools for mass production by 1H26 (TrendForce, 2025-10-16)|https://www.trendforce.com/news/2025/10/16/news-samsung-reportedly-purchasing-two-asml-high-na-euv-tools-for-mass-production-by-1h26/\n\nOn that reporting, the second machine should have arrived this half and gone onto a 2nm line.\nThis week's roadmap moves that seat to A10. The A stands for angstrom, and A10 is 1nm.\nIt reads as the same tools staying in research and pilot work for longer.\n\n## Intel is putting it into 14A\n\nThe clocks of the three big logic makers are not running together.\n\n@@CMP@@Intel's read|High-NA is good enough at 14A already. It raised its order to two tools and set risk production in 2027 and volume manufacturing in 2028 on top of them.|Samsung's read|Buy the tools, but hold volume use until A10. Below that node the technology still has to be refined.\n\nThe same machine sits in front of both, and what splits is the judgment of whether it is ready.\n\nTSMC stands furthest back. It has been reported to be holding off on cost grounds, and TrendForce wrote that the company plans commercial deployment from 1.4nm.\n\n@@REF@@ASML expects first High-NA EUV chips within months as TSMC delays adoption over cost concerns (AnySilicon, 2026-05-26)|https://anysilicon.com/news/asml-expects-first-high-na-euv-chips-within-months-as-tsmc-delays-adoption-over-cost-concerns/\n\nWhen a tool that costs hundreds of millions of dollars goes onto a production line touches cost and yield at the same time.\nGo early and you buy learning time, but the bill has to ride on the chips you sell. Go late and you save the money and lose the learning.\n\n## Two forks between here and 2030\n\nSamsung is already in volume production at 2nm, with 1.4nm set for 2029 and 1nm for 2030.\nIf High-NA goes into a line before that, this week's statement will have been pulled forward,\nand if it is still not in a line in 2030, the gap between buying the tools and using them will have passed five years.\nEither way the evidence will be the number of machines standing on a line, not what is said at a conference.",
+    "ja": "サムスン電子が、次世代の露光装置であるハイNA EUVを1ナノ工程から量産に使うと明らかにした。\n2ナノと1.4ナノに入れる計画を後ろへずらしたもので、1ナノの量産は2030年ごろに置かれている。\n\n8月11日に水原コンベンションセンターで開かれた次世代リソグラフィ学会で、同社の朴昌珉マスターがロードマップを示した。\n2ナノと1.4ナノの量産にハイNAを適用しようとしたが、技術をさらに詰める必要があると述べている。\n\n## 露光とは何をする工程か\n\n露光はウェハーの上に回路の模様を光で写し取る工程だ。\n使う光の波長が短いほど細い線が引ける。\nこれまで使われてきたフッ化アルゴンは波長193ナノメートル、EUVは13.5ナノメートルで、およそ13分の1にあたる。\nフッ化アルゴンなら何度も分けて焼く模様を、EUVは一度で焼ける。\n焼く回数が減れば原価が下がり、生産量が上がる。\n\nハイNAはそのEUVの次の版だ。\nNAはレンズが光をどれだけ広く集められるかを表す値で、大きいほど細い線が引ける。\n\n@@CHK@@ハイNA EUVの開口数|0.55|従来EUVの開口数|0.33|サムスンが契約したハイNA装置|2台@@レンズを大きくした分だけ工程全体を合わせ直す必要がある。装置を2台入れながら量産適用を先送りしたという今回のロードマップと矛盾しない。@@ASML仕様 · トレンドフォース2025-10-16報道の引用 · 2026-08-11閲覧\n\n## 装置はすでに契約されていた\n\nずれたのは購入ではない。\n\n昨年10月、台湾の調査会社トレンドフォースは、サムスンがASMLのハイNA装置EXE:5200Bを2台、約1兆1,000億ウォンで購入すると伝えた。\nそのとき示された用途は2ナノのファウンドリ量産で、Exynos 2600とテスラのAIチップが名前として並んでいた。\n\n@@REF@@サムスン、ASMLのハイNA EUVを2台購入か、2026年上半期の量産が目標 (トレンドフォース、2025-10-16)|https://www.trendforce.com/news/2025/10/16/news-samsung-reportedly-purchasing-two-asml-high-na-euv-tools-for-mass-production-by-1h26/\n\nその報道どおりなら、今年上半期に2台目が入り2ナノの量産に付くはずだった。\n今回の発表はその席をA10へ移す。Aはオングストロームで、A10が1ナノにあたる。\n同じ装置が研究と試作の段階により長くとどまるという意味に読める。\n\n## インテルは14Aに入れる\n\n同じ装置を前にして、各社の時計は別々に動いている。\n\n@@CMP@@インテルの読み|ハイNAは14Aですでに使える。装置の注文を2台に増やし、2027年のリスク生産、2028年の量産をその上に置いた。|サムスンの読み|装置は買っておくが、量産工程にはA10から入れる。その下へ進む前に技術をさらに詰める必要があると見る。\n\n同じ機械が目の前にあり、分かれているのは準備ができているかという判断のほうだ。\n\nTSMCは三社で最も後ろに立つ。値段が高いことを理由に導入を遅らせたと伝えられ、トレンドフォースは同社が1.4ナノから商用配備を計画していると記した。\n\n@@REF@@ASMLは数か月内に最初のハイNA製品を見込み、TSMCはコストを理由に導入を遅らせた (AnySilicon、2026-05-26)|https://anysilicon.com/news/asml-expects-first-high-na-euv-chips-within-months-as-tsmc-delays-adoption-over-cost-concerns/\n\n一台で数百億円規模の装置をいつ量産ラインに立てるかは、原価と歩留まりを同時に動かす。\n先に入れれば学ぶ時間を買えるが、その代金は売る製品に乗せることになる。遅く入れれば費用は抑えられるが、学びも遅れる。\n\n## 2030年までに残る二つの分かれ道\n\nサムスンは2ナノをすでに量産しており、1.4ナノは2029年、1ナノは2030年に置いている。\nその前にハイNAがラインへ入れば今回の発表は前倒しされたことになり、\n2030年になっても入らなければ、装置を買った時点と使う時点の距離は5年を超える。\nどちらにせよ判断の根拠は学会での発言ではなく、ラインに立った装置の台数になる。"
+   },
+   "why": {
+    "ko": "장비를 사는 일과 그 장비로 칩을 파는 일 사이에는 몇 해가 놓인다. 삼성은 2나노용으로 계약한 하이NA를 양산에는 A10부터 쓰겠다고 말했고, 인텔은 같은 장비로 2028년 양산을 잡아 두었다. 미세공정 경쟁의 순서가 장비 도입이 아니라 도입 시점에서 갈린다는 뜻이다.",
+    "en": "Years sit between buying a tool and selling chips made with it. Samsung contracted High-NA for 2nm and now says volume use starts at A10, while Intel has set 2028 volume manufacturing on the same machine. The race at the leading edge turns less on who owns the tool than on when it goes onto a line.",
+    "ja": "装置を買うことと、その装置で作ったチップを売ることの間には数年が横たわる。サムスンは2ナノ用に契約したハイNAを量産ではA10から使うと述べ、インテルは同じ装置で2028年の量産を置いている。微細化競争の順位は装置の保有ではなく投入の時期で分かれるということだ。"
+   },
+   "ask": {
+    "ko": "하이NA를 먼저 넣어 배우는 쪽과, 값이 내려갈 때까지 기다리는 쪽 중 어느 선택이 2030년에 이겨 있을까?",
+    "en": "By 2030, which choice will have won, going in early with High-NA to learn, or waiting for the price to come down?",
+    "ja": "2030年に勝っているのは、ハイNAを先に入れて学ぶ側か、値が下がるまで待つ側か。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2030-12-31",
+    "note": {
+     "ko": "삼성이 하이NA EUV를 양산 라인에 처음 세우는 공정이 A10인지, 그보다 위 공정인지로 채점한다.",
+     "en": "Score on whether the first Samsung process to run High-NA EUV in volume is A10 or a node above it.",
+     "ja": "サムスンがハイNA EUVを量産ラインに初めて据える工程がA10か、それより上の工程かで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "삼성전자가 하이NA EUV를 처음 양산에 적용하는 공정",
+      "en": "The first Samsung process to use High-NA EUV in volume production",
+      "ja": "サムスン電子がハイNA EUVを初めて量産適用する工程"
+     },
+     "now": {
+      "ko": "2026-08-11 발표 기준 A10, 즉 1나노. 장비 2대는 2025년 10월 계약",
+      "en": "A10, that is 1nm, as stated on 2026-08-11. Two tools contracted in October 2025",
+      "ja": "2026-08-11の発表時点でA10すなわち1ナノ。装置2台は2025年10月に契約"
+     },
+     "when": {
+      "ko": "2030년 전후, 1나노 양산 시작 시점",
+      "en": "Around 2030, when 1nm volume production begins",
+      "ja": "2030年前後、1ナノの量産開始時点"
+     },
+     "hit": {
+      "ko": "A10에서 처음 양산 적용 확인 → 이번 로드맵대로",
+      "en": "First volume use confirmed at A10 → the roadmap held",
+      "ja": "A10で初の量産適用を確認 → 今回のロードマップどおり"
+     },
+     "miss": {
+      "ko": "1.4나노 이하 공정에서 먼저 양산 적용되거나 2030년까지 양산 적용이 없음 → 어긋남",
+      "en": "Volume use starts at 1.4nm or above first, or there is none by 2030 → the roadmap missed",
+      "ja": "1.4ナノ以上の工程で先に量産適用されるか、2030年まで量産適用がない → 外れ"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original post",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-11 · 삼성의 하이NA EUV 로드맵 보도를 옮긴 게시물",
+      "en": "Jukan (@jukan05) · 2026-08-11 · the post relaying the report on Samsung's High-NA EUV roadmap",
+      "ja": "Jukan(@jukan05) · 2026-08-11 · サムスンのハイNA EUVロードマップ報道を伝えた投稿"
+     },
+     "url": "https://x.com/jukan05/status/2087062450608984103"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "삼성의 EXE:5200B 2대 구매와 약 1조1,000억원, 2나노 양산 용도 · 2025-10-16",
+      "en": "Samsung buying two EXE:5200B tools for about 1.1 trillion won for 2nm production · 2025-10-16",
+      "ja": "サムスンのEXE:5200B2台購入と約1兆1,000億ウォン、2ナノ量産用途 · 2025-10-16"
+     },
+     "url": "https://www.trendforce.com/news/2025/10/16/news-samsung-reportedly-purchasing-two-asml-high-na-euv-tools-for-mass-production-by-1h26/"
+    },
+    {
+     "name": {
+      "ko": "AnySilicon",
+      "en": "AnySilicon",
+      "ja": "AnySilicon"
+     },
+     "desc": {
+      "ko": "개구수 0.33과 0.55, 인텔 14A 도입과 TSMC의 비용 이유 연기 · 2026-05-26",
+      "en": "Numerical apertures of 0.33 and 0.55, Intel's 14A adoption and TSMC's cost-driven delay · 2026-05-26",
+      "ja": "開口数0.33と0.55、インテルの14A採用とTSMCのコストを理由とした先送り · 2026-05-26"
+     },
+     "url": "https://anysilicon.com/news/asml-expects-first-high-na-euv-chips-within-months-as-tsmc-delays-adoption-over-cost-concerns/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-11 조회 · 장비 계약 금액과 용도는 트렌드포스의 2025년 10월 보도이며 삼성전자가 공식 확인한 값은 아니다. 개구수는 ASML 사양이다.",
+    "en": "Retrieved 2026-08-11 · the contract amount and intended use come from TrendForce's October 2025 report and have not been confirmed by Samsung. The apertures are ASML specifications.",
+    "ja": "2026-08-11取得 · 装置の契約額と用途はトレンドフォースの2025年10月報道であり、サムスン電子が公式に確認した数値ではない。開口数はASMLの仕様である。"
+   }
+  },
+  {
+   "date": "2026-08-11",
    "id": "meru-honma-sakata-five-candlestick-1868",
    "related": [],
    "source": "메르",
@@ -48891,6 +49043,56 @@
     "플로팅게이트",
     "フローティングゲート"
    ]
+  },
+  "하이NA EUV": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "High-NA EUV",
+    "High-NA",
+    "하이NA EUV",
+    "하이NA",
+    "ハイNA EUV",
+    "ハイNA"
+   ],
+   "desc": {
+    "ko": "렌즈의 개구수를 0.33에서 0.55로 키운 차세대 극자외선 노광장비.",
+    "en": "The next generation of EUV lithography tool, with the optics widened from 0.33 to 0.55.",
+    "ja": "レンズの開口数を0.33から0.55へ広げた次世代の極端紫外線露光装置。"
+   },
+   "longDesc": {
+    "ko": "빛을 모으는 렌즈를 키워 기존 EUV보다 더 가는 회로를 한 번에 새길 수 있는 노광장비다. 여러 번 나눠 찍던 공정을 줄여 원가와 생산량을 함께 개선할 수 있지만, 장비 한 대 값이 기존 EUV보다 훨씬 비싸고 공정 전체를 다시 맞춰야 해서 도입 시점을 두고 인텔과 삼성전자, TSMC의 판단이 갈린다.",
+    "en": "A lithography tool whose wider optics print finer circuits in a single pass than standard EUV. It can cut the number of printing passes and so improve both cost and output, but each machine is far more expensive than a standard EUV tool and the process around it has to be re-tuned, which is why Intel, Samsung and TSMC differ on when to adopt it.",
+    "ja": "光を集めるレンズを大きくし、従来のEUVより細い回路を一度で焼ける露光装置。焼く回数を減らして原価と生産量を同時に改善できるが、装置1台の価格が従来EUVよりはるかに高く、工程全体を合わせ直す必要があるため、導入時期をめぐってインテル、サムスン電子、TSMCの判断が分かれている。"
+   }
+  },
+  "개구수": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "aliases": [
+    "numerical aperture",
+    "개구수",
+    "NA",
+    "開口数"
+   ],
+   "desc": {
+    "ko": "렌즈가 빛을 얼마나 넓게 받아 모으는지를 나타내는 값. 클수록 가는 선을 그린다.",
+    "en": "A measure of how widely a lens gathers and focuses light. The larger it is, the finer the line.",
+    "ja": "レンズが光をどれだけ広く集められるかを示す値。大きいほど細い線が引ける。"
+   },
+   "longDesc": {
+    "ko": "반도체 노광장비의 성능을 가르는 값 가운데 하나다. 값이 커지면 같은 파장의 빛으로도 더 가는 회로를 새길 수 있어, 노광장비 세대를 나누는 기준으로 쓰인다.",
+    "en": "One of the numbers that decides what a lithography tool can do. A larger value prints finer circuits with light of the same wavelength, which is why it is used to separate one generation of tool from the next.",
+    "ja": "半導体露光装置の性能を分ける値のひとつ。値が大きくなると同じ波長の光でもより細い回路を焼けるため、露光装置の世代を分ける基準として使われる。"
+   }
   }
  }
 }
