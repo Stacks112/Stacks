@@ -2,6 +2,162 @@
  "items": [
   {
    "date": "2026-08-11",
+   "id": "kobeissi-hyperscaler-2_6t-offbalance-lease-commitments",
+   "related": [
+    "bilello-hyperscaler-capex-789b-nvidia-500b-financing",
+    "serenity-hyperscaler-capex-745b-debt-funded",
+    "kobeissi-oracle-cds-record"
+   ],
+   "source": "The Kobeissi Letter (@KobeissiLetter)",
+   "sourceUrl": "https://x.com/KobeissiLetter/status/2087163948558594466",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/KobeissiLetter?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0b1120",
+    "to": "#1d4ed8",
+    "label": "2.6조$"
+   },
+   "tags": [
+    "CAPEX",
+    "LEASE",
+    "ORACLE"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "2조6천억달러는 어느 회사 대차대조표에도 없다",
+    "en": "The $2.6 trillion is on nobody's balance sheet",
+    "ja": "2兆6千億ドルは、どの会社の貸借対照表にもない"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "하이퍼스케일러들은 데이터센터 리스와 장비 구매를 합쳐 사상 최대인 2조6천억달러의 미래 지출을 약정했다.",
+      "이 의무는 규모와 기간이 엄청난데도 회사의 대차대조표에는 나타나지 않고, 제한된 회계 각주로만 공시된다."
+     ],
+     "en": [
+      "Hyperscalers have committed a record $2.6 trillion in future spending across data center leases and equipment purchases.",
+      "These obligations do not appear on company balance sheets and are disclosed only in limited accounting footnotes, despite their enormous size and duration."
+     ],
+     "ja": [
+      "ハイパースケーラーは、データセンターのリースと設備購入を合わせて過去最大の2兆6千億ドルの将来支出を約定した。",
+      "この義務は規模も期間も巨大でありながら、会社の貸借対照表には現れず、限られた会計注記でのみ開示される。"
+     ]
+    },
+    "cite": "The Kobeissi Letter (@KobeissiLetter) · 2026.08.11"
+   },
+   "sum3": {
+    "ko": "빅테크가 데이터센터 리스와 장비 구매로 약정한 미래 지출이 2조6천억달러로 집계됐다.\n겉으로 보면 설비투자 경쟁이 한 단계 더 커진 이야기다.\n그런데 이 돈은 대차대조표가 아니라 각주에 있고, 회사마다 그 안의 성격이 전혀 다르다.",
+    "en": "Future spending that Big Tech has committed to across data center leases and equipment purchases has been tallied at $2.6 trillion.\nOn the surface this reads as the capex race moving up another notch.\nBut the money sits in the footnotes rather than on the balance sheet, and what it consists of differs sharply by company.",
+    "ja": "ビッグテックがデータセンターのリースと設備購入で約定した将来支出が2兆6千億ドルと集計された。\n表面だけ見れば、設備投資競争がもう一段大きくなった話だ。\nしかしこの資金は貸借対照表ではなく注記にあり、その中身は会社ごとにまったく異なる。"
+   },
+   "gist": {
+    "ko": "빅테크의 데이터센터 리스와 장비 구매 약정이 2조6천억달러로 집계됐다.\n아직 시작되지 않은 리스와, 이미 맺어 둔 장비·서비스 구매 계약이 함께 들어간 숫자다.\n\n@@REF@@AI 데이터센터 경쟁이 빅테크에 1조달러 리스 부담을 쌓았다 (로이터, 2026-08-04)|https://www.spokesman.com/stories/2026/aug/04/ai-data-center-race-builds-1-trillion-lease-burden/|https://thumb.spokesman.com/zw5bGhdpxEOO2N9WVlgoyQIbI9c=/1200x630/smart/media.spokesman.com/photos/2026/08/04/6a72250ab3abd.image.jpg\n\n로이터가 다섯 곳의 공시를 모아 센 아직 개시되지 않은 리스만 1조달러를 넘는다.\n여기에 장비 구매 약정을 더한 것이 이번 2조6천억달러다.\n\n@@IMG@@datacenter-inside|약정의 대부분은 아직 이런 건물이 서기 전에 맺어진 계약이다. 건물이 완성되어 쓸 수 있게 되는 날부터 회계 처리가 달라진다.\n\n## 각주에 남는 이유는 개시일에 있다\n\n리스는 계약서에 도장을 찍는 날이 아니라 빌린 물건을 실제로 쓸 수 있게 되는 날을 기준으로 장부에 올라간다.\n회계 기준이 정한 이 날을 개시일이라고 부른다.\n데이터센터가 아직 공사 중이면 쓸 수 있게 된 것이 없으니, 20년치 임대료를 약속해 두었더라도 부채로 잡히지 않고 각주의 약정 항목에만 적힌다.\n쉽게 말해 입주 전에 계약서만 쓴 집이다. 월세를 낼 의무는 이미 생겼지만, 아직 열쇠를 받지 않았다.\n\n## 같은 2조6천억달러 안에 다른 것이 들어 있다\n\n@@SHARE@@아직 개시되지 않은 리스|2,600억달러|260|무조건적 구매약정|약 320억달러|32@@오라클의 약정은 대부분 장비가 아니라 아직 열쇠를 받지 않은 건물이다. 리스는 해지가 어렵고 기간이 길어서 구매약정보다 되돌리기 어렵다.@@오라클 2026회계연도 연차보고서(2026-05-31 종료) 각주\n\n오라클의 약정 합계는 약 2,920억달러다.\n2026회계연도 매출이 674억달러였으니 연매출의 네 배가 넘고, 같은 해 영업활동 현금흐름 320억달러와 견주면 아홉 해치다.\n알파벳도 약정 규모는 훨씬 크지만, 최근 1년 매출 4,459억달러에 견주면 두 해치가 되지 않는다.\n같은 표에 올라 있어도 회사가 그 무게를 견디는 조건이 다르다는 뜻이다.\n\n## 8,110억달러를 공시에서 찾으면\n\n@@CHK@@알파벳 장기 구매약정|7,070억달러|알파벳 미개시 리스|852억달러|오라클 미개시 리스|2,600억달러@@알파벳의 미개시 리스와 오라클의 두 항목은 공시 수치와 그대로 맞았다. 널리 인용되는 알파벳 구매약정 8,110억달러는 같은 각주에서 확인되지 않았다.@@알파벳 2026년 2분기 분기보고서(6월 30일 기준) 및 오라클 2026회계연도 연차보고서, SEC EDGAR 2026-08-11 조회\n\n8,110억달러는 애널리스트 추정을 인용한 수치로 여러 매체에 실렸다.\n우리가 같은 항목을 분기보고서 각주에서 찾았을 때 나온 값은 7,070억달러였다.\n어느 쪽이 틀렸다기보다, 무엇을 약정에 넣느냐가 집계마다 다를 수 있다는 신호로 읽는 편이 맞다.\n\n@@REF@@하이퍼스케일러, AI 하드웨어와 메모리 확보에 2조달러 가까이 약정 (톰스하드웨어, 2026-08-10)|https://www.tomshardware.com/tech-industry/semiconductors/hyperscalers-commit-nearly-usd2-trillion-to-secure-ai-hardware-and-memory-google-leads-usd811-billion-spending-surge-while-apple-trails-at-usd57-billion|https://cdn.mos.cms.futurecdn.net/gEU6zYwUfEZmF4NMheNezJ-2560-80.jpg\n\n이 기사도 같은 8,110억달러를 쓰면서 합계는 2조달러 가까이로 적었다. 오라클을 빼고 센 숫자다.\n\n## 오라클의 2,600억달러가 열쇠를 받는 날\n\n각주에 있던 약정은 사라지는 것이 아니라 시차를 두고 대차대조표로 넘어온다.\n건물이 완성되어 쓸 수 있게 되는 순간 사용권자산과 리스부채가 동시에 잡히고, 그때부터 부채비율과 신용지표가 그 무게를 반영한다.\n오라클은 이미 7월에 신용등급이 투자적격 맨 아래 칸으로 내려갔다.\n\n다음 분기부터 오라클의 리스부채가 늘고 미개시 리스 잔액이 줄면 약정이 예정대로 장부로 옮겨오는 것이고, 미개시 잔액이 그대로 남거나 더 커지면 건물이 아직 서지 않았다는 뜻이 된다.",
+    "en": "Data center lease and equipment purchase commitments at Big Tech have been tallied at $2.6 trillion.\nThe figure combines leases that have not yet started with equipment and services contracts already signed.\n\n@@REF@@AI data-center race builds $1 trillion lease burden for Big Tech (Reuters, 2026-08-04)|https://www.spokesman.com/stories/2026/aug/04/ai-data-center-race-builds-1-trillion-lease-burden/|https://thumb.spokesman.com/zw5bGhdpxEOO2N9WVlgoyQIbI9c=/1200x630/smart/media.spokesman.com/photos/2026/08/04/6a72250ab3abd.image.jpg\n\nAdding up the disclosures of five companies, Reuters found more than $1 trillion in leases that have not yet commenced.\nPut the equipment commitments on top of that and you arrive at the $2.6 trillion.\n\n@@IMG@@datacenter-inside|Most of these commitments were signed before a building like this existed. The accounting changes on the day the building is finished and available to use.\n\n## Why it stays in the footnotes\n\nA lease lands on the books not when the contract is signed but when the asset actually becomes available to use.\nAccounting rules call that day the commencement date.\nWhile a data center is still under construction there is nothing available to use, so twenty years of promised rent shows up in a commitments footnote rather than as debt.\nThink of a house you have signed for but not moved into: the obligation to pay exists, the keys have not changed hands.\n\n## The same $2.6 trillion holds different things\n\n@@SHARE@@Leases not yet commenced|$260 billion|260|Unconditional purchase obligations|about $32 billion|32@@Oracle's commitments are mostly buildings it does not hold the keys to, not equipment. Leases run long and are hard to cancel, which makes them harder to unwind than purchase orders.@@Oracle FY2026 annual report, fiscal year ended 2026-05-31, commitments footnotes\n\nOracle's commitments total roughly $292 billion.\nRevenue for fiscal 2026 was $67.4 billion, so the commitments run past four years of sales, and against $32.0 billion of operating cash flow that year they run about nine years.\nAlphabet's total is far larger in dollars, yet against $445.9 billion of revenue over the past twelve months it does not reach two years.\nSitting in the same tally does not mean the two carry the weight on the same terms.\n\n## Looking for the $811 billion in the filings\n\n@@CHK@@Alphabet long-term purchase commitments|$707.0 billion|Alphabet leases not yet commenced|$85.2 billion|Oracle leases not yet commenced|$260.0 billion@@Alphabet's uncommenced leases and both Oracle lines matched the filings exactly. The widely quoted $811 billion of Alphabet purchase commitments was not found in the same footnote.@@Alphabet Q2 2026 10-Q for the quarter ended June 30 and Oracle FY2026 10-K, SEC EDGAR, retrieved 2026-08-11\n\nThe $811 billion has run in several outlets, sourced to an analyst estimate.\nWhen we looked for the same line in the quarterly filing, the number that came back was $707.0 billion.\nRather than one side being wrong, read it as a sign that what counts as a commitment varies from tally to tally.\n\n@@REF@@Hyperscalers commit nearly $2 trillion to secure AI hardware and memory (Tom's Hardware, 2026-08-10)|https://www.tomshardware.com/tech-industry/semiconductors/hyperscalers-commit-nearly-usd2-trillion-to-secure-ai-hardware-and-memory-google-leads-usd811-billion-spending-surge-while-apple-trails-at-usd57-billion|https://cdn.mos.cms.futurecdn.net/gEU6zYwUfEZmF4NMheNezJ-2560-80.jpg\n\nThat piece uses the same $811 billion while putting the group total near $2 trillion, counted without Oracle.\n\n## The day Oracle's $260 billion gets its keys\n\nCommitments parked in a footnote do not disappear. They move onto the balance sheet on a delay.\nThe moment a building is finished and available, a right-of-use asset and a lease liability appear together, and from then on leverage and credit metrics carry that weight.\nOracle's rating was already cut in July to the bottom rung of investment grade.\n\nIf lease liabilities rise and the uncommenced balance falls from next quarter, the commitments are moving onto the books on schedule. If the uncommenced balance holds or grows, the buildings are not standing yet.",
+    "ja": "ビッグテックのデータセンターのリースと設備購入の約定が、2兆6千億ドルと集計された。\nまだ開始されていないリースと、すでに結んである設備・サービスの購入契約を合わせた数字だ。\n\n@@REF@@AIデータセンター競争がビッグテックに1兆ドルのリース負担を積み上げた (ロイター、2026-08-04)|https://www.spokesman.com/stories/2026/aug/04/ai-data-center-race-builds-1-trillion-lease-burden/|https://thumb.spokesman.com/zw5bGhdpxEOO2N9WVlgoyQIbI9c=/1200x630/smart/media.spokesman.com/photos/2026/08/04/6a72250ab3abd.image.jpg\n\nロイターが5社の開示を集めて数えた、まだ開始されていないリースだけで1兆ドルを超える。\nここに設備の購入約定を足したものが今回の2兆6千億ドルだ。\n\n@@IMG@@datacenter-inside|約定の多くは、こうした建物が建つ前に結ばれた契約だ。建物が完成して使えるようになる日から、会計上の扱いが変わる。\n\n## 注記に残る理由は開始日にある\n\nリースは契約書に判を押す日ではなく、借りた物を実際に使えるようになる日を基準に帳簿へ載る。\n会計基準が定めるこの日を開始日と呼ぶ。\nデータセンターがまだ工事中なら使えるようになった物はないので、20年分の賃料を約束していても負債には計上されず、注記の約定欄にだけ書かれる。\nたとえるなら、入居前に契約書だけ交わした家だ。家賃を払う義務はすでに生じているが、鍵はまだ受け取っていない。\n\n## 同じ2兆6千億ドルの中に違うものが入っている\n\n@@SHARE@@まだ開始されていないリース|2,600億ドル|260|無条件の購入約定|約320億ドル|32@@オラクルの約定は、大半が設備ではなく、まだ鍵を受け取っていない建物だ。リースは解約が難しく期間も長いため、購入約定より巻き戻しにくい。@@オラクル2026会計年度(2026-05-31終了)の年次報告書の注記\n\nオラクルの約定合計はおよそ2,920億ドルだ。\n2026会計年度の売上高は674億ドルなので年商の4倍を超え、同じ年の営業活動キャッシュフロー320億ドルと比べれば9年分にあたる。\nアルファベットも約定の規模はずっと大きいが、直近1年の売上高4,459億ドルと比べれば2年分に届かない。\n同じ表に並んでいても、その重さを支える条件は会社ごとに違うという意味になる。\n\n## 8,110億ドルを開示で探すと\n\n@@CHK@@アルファベットの長期購入約定|7,070億ドル|アルファベットの未開始リース|852億ドル|オラクルの未開始リース|2,600億ドル@@アルファベットの未開始リースとオラクルの2項目は開示の数値とそのまま一致した。広く引用されるアルファベットの購入約定8,110億ドルは、同じ注記では確認できなかった。@@アルファベット2026年第2四半期報告書(6月30日基準)およびオラクル2026会計年度年次報告書、SEC EDGAR 2026-08-11時点\n\n8,110億ドルはアナリスト推計を引用した数値として複数の媒体に載っている。\n同じ項目を四半期報告書の注記で探したとき出てきた値は7,070億ドルだった。\nどちらかが誤りというより、何を約定に含めるかが集計ごとに違いうる、という合図として読むほうが妥当だ。\n\n@@REF@@ハイパースケーラー、AIハードとメモリの確保に2兆ドル近くを約定 (トムズハードウェア、2026-08-10)|https://www.tomshardware.com/tech-industry/semiconductors/hyperscalers-commit-nearly-usd2-trillion-to-secure-ai-hardware-and-memory-google-leads-usd811-billion-spending-surge-while-apple-trails-at-usd57-billion|https://cdn.mos.cms.futurecdn.net/gEU6zYwUfEZmF4NMheNezJ-2560-80.jpg\n\nこの記事も同じ8,110億ドルを使いながら、合計は2兆ドル近くと書いている。オラクルを除いて数えた数字だ。\n\n## オラクルの2,600億ドルが鍵を受け取る日\n\n注記にあった約定は消えるのではなく、時間差で貸借対照表へ移ってくる。\n建物が完成して使えるようになった瞬間に使用権資産とリース負債が同時に立ち、そこから先は負債比率や信用指標がその重さを映す。\nオラクルはすでに7月、格付けが投資適格の最下段まで下がった。\n\n次の四半期からオラクルのリース負債が増え、未開始リースの残高が減れば、約定は予定どおり帳簿へ移っている。未開始の残高がそのまま残るか、さらに増えるなら、建物はまだ建っていないということだ。"
+   },
+   "why": {
+    "ko": "각주에 있는 약정은 오늘의 부채비율에는 잡히지 않지만, 건물이 완성되는 순간 한꺼번에 대차대조표로 넘어온다. 지금 재무제표만 보고 판단하면 그 시차를 놓친다.",
+    "en": "Commitments in a footnote do not show up in today's leverage, yet they move onto the balance sheet all at once when the buildings are finished. Reading only the current statements misses that lag.",
+    "ja": "注記にある約定は今日の負債比率には表れないが、建物が完成した瞬間にまとめて貸借対照表へ移る。いまの財務諸表だけを見ると、その時間差を見落とす。"
+   },
+   "ask": {
+    "ko": "각주에만 적힌 2조6천억달러를 부채로 봐야 할까, 아니면 아직 시작하지 않았으니 지금 판단할 대상이 아닐까?",
+    "en": "Should $2.6 trillion sitting only in footnotes be read as debt, or is it not yet something to judge because none of it has started?",
+    "ja": "注記にだけ書かれた2兆6千億ドルを負債とみるべきか、まだ始まっていない以上いま判断する対象ではないのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "The Kobeissi Letter(@KobeissiLetter) · 2026-08-11",
+      "en": "The Kobeissi Letter (@KobeissiLetter), 2026-08-11",
+      "ja": "The Kobeissi Letter(@KobeissiLetter) · 2026-08-11"
+     },
+     "url": "https://x.com/KobeissiLetter/status/2087163948558594466"
+    },
+    {
+     "name": {
+      "ko": "리스 부담 집계",
+      "en": "Lease burden tally",
+      "ja": "リース負担の集計"
+     },
+     "desc": {
+      "ko": "로이터 · 2026-08-04",
+      "en": "Reuters, 2026-08-04",
+      "ja": "ロイター · 2026-08-04"
+     },
+     "url": "https://www.spokesman.com/stories/2026/aug/04/ai-data-center-race-builds-1-trillion-lease-burden/"
+    },
+    {
+     "name": {
+      "ko": "알파벳 분기보고서",
+      "en": "Alphabet quarterly filing",
+      "ja": "アルファベットの四半期報告書"
+     },
+     "desc": {
+      "ko": "2026년 2분기 10-Q(6월 30일 기준) 각주 · SEC EDGAR 2026-08-11 조회",
+      "en": "Q2 2026 10-Q for the quarter ended June 30, commitments and lease footnotes, SEC EDGAR, retrieved 2026-08-11",
+      "ja": "2026年第2四半期10-Q(6月30日基準)の注記 · SEC EDGAR 2026-08-11時点"
+     },
+     "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm"
+    },
+    {
+     "name": {
+      "ko": "오라클 연차보고서",
+      "en": "Oracle annual filing",
+      "ja": "オラクルの年次報告書"
+     },
+     "desc": {
+      "ko": "2026회계연도 10-K(5월 31일 종료) 각주 · SEC EDGAR 2026-08-11 조회",
+      "en": "FY2026 10-K for the year ended May 31, commitments footnotes, SEC EDGAR, retrieved 2026-08-11",
+      "ja": "2026会計年度10-K(5月31日終了)の注記 · SEC EDGAR 2026-08-11時点"
+     },
+     "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm"
+    },
+    {
+     "name": {
+      "ko": "리스 개시일 기준",
+      "en": "Lease commencement date rule",
+      "ja": "リース開始日の基準"
+     },
+     "desc": {
+      "ko": "딜로이트 리스 회계 해설(ASC 842 개시일) · 2026-08-11 조회",
+      "en": "Deloitte roadmap on lease accounting, commencement date under ASC 842, retrieved 2026-08-11",
+      "ja": "デロイトのリース会計解説(ASC 842の開始日) · 2026-08-11時点"
+     },
+     "url": "https://dart.deloitte.com/USDART/home/codification/broad-transactions/asc842-10/roadmap-leasing/chapter-5-commencement-date-lease-term/5-1-commencement-date-a-lease"
+    },
+    {
+     "name": {
+      "ko": "오라클 실적",
+      "en": "Oracle results",
+      "ja": "オラクルの実績"
+     },
+     "desc": {
+      "ko": "오라클 2026회계연도 4분기·연간 실적 발표 · 2026-06-10",
+      "en": "Oracle Q4 and FY2026 results release, 2026-06-10",
+      "ja": "オラクル2026会計年度第4四半期・通年決算発表 · 2026-06-10"
+     },
+     "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-11 조회 · 알파벳 수치는 6월 30일 기준 분기보고서, 오라클 수치는 5월 31일 종료 회계연도 보고서 기준이다.",
+    "en": "Retrieved 2026-08-11. Alphabet figures are from the quarter ended June 30 and Oracle figures from the fiscal year ended May 31.",
+    "ja": "2026-08-11時点 · アルファベットの数値は6月30日基準の四半期報告書、オラクルの数値は5月31日終了の会計年度報告書による。"
+   }
+  },
+  {
+   "date": "2026-08-11",
    "id": "jukan-cxmt-17nm-ddr5-yield-90-sourcing-gap",
    "related": [
     "jukan-cxmt-hp-asus-acer-adoption-not-price",
@@ -49443,6 +49599,29 @@
     "en": "One of the numbers that decides what a lithography tool can do. A larger value prints finer circuits with light of the same wavelength, which is why it is used to separate one generation of tool from the next.",
     "ja": "半導体露光装置の性能を分ける値のひとつ。値が大きくなると同じ波長の光でもより細い回路を焼けるため、露光装置の世代を分ける基準として使われる。"
    }
+  },
+  "부채비율": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "How much of a company's assets are funded by debt rather than by its own capital.",
+    "ko": "회사가 가진 자산 가운데 빚으로 마련한 몫이 얼마나 되는지를 나타내는 비율.",
+    "ja": "会社の資産のうち、借金でまかなった割合がどれくらいかを示す比率。"
+   },
+   "longDesc": {
+    "en": "Lenders and rating agencies watch this ratio because it sets how much room a company has before new borrowing gets expensive. Obligations that sit in footnotes rather than on the balance sheet do not enter the ratio until they are recognised, so a company can look less levered than its signed commitments imply.",
+    "ko": "대출을 해 주는 쪽과 신용평가사가 이 비율을 본다. 새로 빚을 낼 때 값이 얼마나 비싸질지가 여기서 갈리기 때문이다. 대차대조표가 아니라 각주에 적힌 의무는 인식되기 전까지 이 비율에 들어오지 않아, 이미 도장을 찍은 약정에 비해 회사가 덜 빌린 것처럼 보일 수 있다.",
+    "ja": "貸し手と格付け会社はこの比率を見る。新たに借りるときの調達コストがここで変わるからだ。貸借対照表ではなく注記に載る義務は、認識されるまでこの比率に入ってこないため、すでに署名した約定に比べて借金が少なく見えることがある。"
+   },
+   "aliases": [
+    "debt-to-equity ratio",
+    "부채비율",
+    "負債比率"
+   ]
   }
  }
 }
