@@ -698,10 +698,34 @@
     return wrap;
   }
 
+  var CMP_PAINT_VIS_BOUND = false;
+  var CMP_PAINT_PENDING = [];
+  function cmpPaintFlushPending(){
+    CMP_PAINT_PENDING.splice(0).forEach(function(job){ job(); });
+  }
+  /* A hidden tab never fires rAF, so the deferred build below would stall
+     forever at the "계산 중" placeholder. Same failure and same fallback as
+     observeInvestorCards() in index.html: resume on visibilitychange, plus a
+     one-shot 3s safety net. This unsticks the render; it does not speed it up. */
   function afterCompareFirstPaint(fn){
-    if (typeof requestAnimationFrame === "function"){
-      requestAnimationFrame(function(){ requestAnimationFrame(fn); });
-    } else setTimeout(fn, 0);
+    if (typeof requestAnimationFrame !== "function"){ setTimeout(fn, 0); return; }
+    var done = false;
+    function run(){
+      if (done) return;
+      done = true;
+      var i = CMP_PAINT_PENDING.indexOf(run);
+      if (i >= 0) CMP_PAINT_PENDING.splice(i, 1);
+      fn();
+    }
+    CMP_PAINT_PENDING.push(run);
+    requestAnimationFrame(function(){ requestAnimationFrame(run); });
+    if (!CMP_PAINT_VIS_BOUND){
+      CMP_PAINT_VIS_BOUND = true;
+      document.addEventListener("visibilitychange", function(){
+        if (document.visibilityState === "visible") cmpPaintFlushPending();
+      });
+    }
+    setTimeout(run, 3000);
   }
 
   function selectedStrip(investors){
