@@ -17,6 +17,22 @@ async function assertDetail(page, selector, id) {
   await expect(page.locator(selector).first().locator(".ent-link, .gloss-link").first()).toBeVisible();
 }
 
+async function clickHeadline(page, id) {
+  const h3 = page.locator(`#${id} h3`);
+  await expect(h3).toBeVisible();
+  const x = await h3.evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    for (let dx = 2; dx < r.width - 2; dx += 3) {
+      const hit = document.elementFromPoint(r.left + dx, r.top + r.height / 2);
+      if (hit && el.contains(hit) && !hit.closest(".ent-link, .gloss-link")) return dx;
+    }
+    return null;
+  });
+  const box = await h3.boundingBox();
+  if (x === null) throw new Error("headline has no clickable non-entity spot");
+  await h3.click({ position: { x, y: box.height / 2 } });
+}
+
 test.describe("feed article detail round trip", () => {
   test.describe("desktop", () => {
     test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
@@ -27,7 +43,7 @@ test.describe("feed article detail round trip", () => {
       expect(id).toMatch(/^sig-/);
       const itemId = id.slice(4);
 
-      await page.locator(`#${id} h3`).click();
+      await clickHeadline(page, id);
       await expect(page).toHaveURL(new RegExp(`\\?c=${itemId}(?:&|$)`));
       await assertDetail(page, "#feedList article.card.v83one", id);
 
