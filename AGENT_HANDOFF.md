@@ -1,3 +1,43 @@
+## 2026-08-11 Cowork(Opus) — 마무리 청소: 남은 시세 fetch 3곳 타임아웃 + 죽은 셔임 파일 제거 (v89)
+
+**커밋**: `984e9d6`(index.html, +20/−11) -> `42a5664`(`assets/investor-compare-paint.js` 삭제). BUILD v88 -> v89.
+**CI**: Feed detail regression ✅ · Clobber guard ✅ · Email render guard ✅ · pages build ✅ · Watch auto-publish ✅.
+
+### 1. 시세 fetch 타임아웃 통일
+
+v86 이 `quote1y` 만 고쳤는데, 같은 결함이 3곳 더 있었다. 이번에 넷을 하나의 상수로 묶었다.
+
+- `loadQuote`(카드 호버 스파크라인) · `fsqLoad`(전체화면 차트) · `ehqLoad`(엔티티 차트)에 `quote1y` 와 **같은 AbortController 패턴** 적용.
+- 상수를 `Q1Y_TIMEOUT_MS`(quote1y 바로 위, `const`) 에서 **`QUOTE_TIMEOUT_MS`(loadQuote 바로 앞, `var`)** 로 옮기고 이름을 일반화했다.
+  ⚠ **`const` 로 두면 안 된다.** 세 함수가 선언보다 앞에 있어 TDZ 에 걸린다. `var` 는 호이스팅되어 안전하다. 선언 위치가 네 함수 모두보다 앞인지 줄번호로 확인했다.
+- 각 함수의 기존 구조(try/catch, 캐시 대입, 조용한 실패)는 그대로 두고 `finally { clearTimeout }` 만 얹었다.
+
+**이 3곳은 `quote1y` 와 위험도가 다르다.** 캐시에 값을 넣지 프라미스를 넣지 않아 **다른 체인을 막지는 않았다** — 그 차트 하나만 영원히 로딩으로 남는 문제였다.
+그래도 사용자 입장에서는 로딩이 안 끝나는 것이라 같이 정리했다.
+
+### 2. `assets/investor-compare-paint.js` 삭제
+
+v85 회차에서 **라이브에서 실행조차 되지 않는 죽은 파일**로 확인된 것이다
+(`investor-compare.js:785` 가 `__stacksInvestorComparePaintDeferred` 를 무조건 세팅하고, 로드 순서상 셔임이 3번째 줄에서 조기 return).
+
+저장소 전수 grep 으로 **코드 참조가 index.html 의 script 태그 하나뿐**임을 확인한 뒤 태그와 파일을 함께 지웠다.
+`tests/` · `scripts/` · `.github/workflows/` · `ops/` 어디에도 참조가 없었다. 매 로드마다 받던 694바이트 요청이 사라진다.
+
+### 검증
+
+- `node --check` 통과. **node 하네스로 네 함수 각각** (a) 영원히 pending 하는 fetch → 타임아웃 시각에 settle 되고 기존과 동일하게 `{error:true}` 로 낙착, (b) 정상 응답 → 기존과 같은 결과이고 타이머 해제로 프로세스가 안 매달림. **8개 서브테스트 전부 PASS.**
+- CRLF 15,702 -> 15,711(순증 9줄과 정확히 일치, LF 단독 0). 커밋 전후 SHA-256 대조 **바이트 완전 일치**(`a5bfe996…`, 994,813바이트).
+- 라이브: BUILD v89, `QUOTE_TIMEOUT_MS = 10000`, `Q1Y_TIMEOUT_MS` 소멸, 네 함수 전부 `AbortController` 포함, paint script 태그 0개 확인.
+- 회귀 스위트: 1회차 26/26, 2회차 24/26. **실패 2건을 `--repeat-each=5` 로 재현했더니 "hover crosshair" 가 5회 중 2회 실패했고, 패치 전 원본에서도 똑같이 2회 실패**했다. 즉 기존 flaky 이고 이번 변경과 무관하다(이 대조를 한 것이 이번 회차의 수확이다).
+
+### 다음 회차가 알아야 할 것
+
+- **이중 렌더 flaky 는 여전히 미해결이다.** `.inv-value-card` · `.inv-hub-search input` · `.inv-compare-period` 가 순간적으로 2개가 된다. 패치 전 원본에서도 재현되므로 **오래된 경합**이다. CI 를 산발적으로 흔든다.
+- 타임아웃 상수는 이제 `QUOTE_TIMEOUT_MS` 하나다. 조정하려면 그 줄만 고치면 된다.
+- `investor-compare.js:785` 의 `__stacksInvestorComparePaintDeferred = true` 는 **이제 아무도 안 읽는다.** 지워도 되지만 이번엔 에셋을 안 건드리려고 남겼다.
+
+---
+
 ## 2026-08-11 Cowork(Opus) — 13F 종목명을 읽히는 이름으로 (v88) + ★ 엔티티 로더도 백그라운드 탭에서 안 돈다는 발견
 
 **커밋**: `c66b410`(index.html, +40/−6, 단일 파일). BUILD v87 -> v88.
