@@ -14,6 +14,11 @@
   var MAX_COMPARE = 4;
   var selected = null;
   var SERIES_P = {};
+  /* Observes .inv-compare-entry so the fixed bottom bar (renderCompareBar)
+     can hide itself while the inline CTA is already on screen. Rebuilt on
+     every renderCompareBar() call, so the previous instance is disconnected
+     first. */
+  var compareBarEntryObserver = null;
 
   var COPY = {
     ko:{
@@ -173,6 +178,7 @@
   }
   function renderCompareBar(investors){
     var old = document.querySelector(".inv-compare-bar"); if (old) old.remove();
+    if (compareBarEntryObserver){ compareBarEntryObserver.disconnect(); compareBarEntryObserver = null; }
     if ((typeof INVESTOR_VIEW === "undefined" ? null : INVESTOR_VIEW) !== "index" || !selected.size) return;
     var c = C(), chosen = chosenInvestors(investors), list = document.getElementById("feedList");
     if (!list || !chosen.length) return;
@@ -187,6 +193,18 @@
     copy.innerHTML = '<b>' + esc(c.selected.replace("{n}", selected.size)) + '</b><span>' + esc(selected.size < 2 ? c.oneMore : c.ready) + '</span>';
     var go = document.createElement("button"); go.type = "button"; go.className = "inv-bar-go"; go.textContent = c.compare; go.disabled = selected.size < 2; go.addEventListener("click", function(){ goCompare(); });
     bar.appendChild(avatars); bar.appendChild(copy); bar.appendChild(go); list.appendChild(bar);
+    /* Default is visible. Only an actual "the inline CTA is on screen"
+       callback may hide it - if IntersectionObserver is missing, or the
+       callback simply never fires (backgrounded tabs have a documented
+       history of never running rAF/paint work here), the bar stays usable. */
+    var entry = document.querySelector(".inv-compare-entry");
+    if (entry && typeof IntersectionObserver === "function"){
+      compareBarEntryObserver = new IntersectionObserver(function(entries){
+        var hit = entries[entries.length - 1];
+        bar.classList.toggle("inv-compare-bar-idle", !!(hit && hit.isIntersecting));
+      });
+      compareBarEntryObserver.observe(entry);
+    }
   }
   /* Freshness row (2026-08-10). entity13fFreshness() (index.html) already turns a
      period into the SEC due date (quarter-end + 45d) - reused, not reimplemented.
@@ -235,7 +253,14 @@
       });
       row.appendChild(open); row.appendChild(remove); rows.appendChild(row);
     });
-    var go = document.createElement("button"); go.type = "button"; go.className = "inv-rail-compare"; go.textContent = c.compare; go.disabled = selected.size < 2; go.addEventListener("click", function(){ goCompare(); }); pick.appendChild(go);
+    /* On the hub this button would be a third simultaneous copy of the same
+       CTA (inline .inv-compare-go + fixed .inv-bar-go already cover it); on
+       the detail/compare screens it is the only compare CTA in the rail, so
+       it stays there. The selection chips above stay unconditional either
+       way so the rail is never left empty. */
+    if ((typeof INVESTOR_VIEW === "undefined" ? null : INVESTOR_VIEW) !== "index"){
+      var go = document.createElement("button"); go.type = "button"; go.className = "inv-rail-compare"; go.textContent = c.compare; go.disabled = selected.size < 2; go.addEventListener("click", function(){ goCompare(); }); pick.appendChild(go);
+    }
     var guide = document.createElement("section"); guide.className = "inv-rail-card";
     guide.innerHTML = '<h2>' + esc(c.read13f) + '</h2><p>' + esc(c.read13fSub) + '</p><ul><li>' + esc(c.read13f1) + '</li><li>' + esc(c.read13f2) + '</li><li>' + esc(c.read13f3) + '</li></ul>';
     var snap = document.createElement("section"); snap.className = "inv-rail-card";
@@ -267,24 +292,110 @@
     });
     return box;
   }
+  /* 허브 랭킹 표 정렬 상태. 기본은 공개 평가액 내림차순(dir=-1 오름/-1 내림 대신
+     "1=오름, -1=내림"으로 부호를 정해 hubCompareRows의 dir*(av-bv) 공식과 맞춘다). */
+  var HUB_SORT = { key: "total_value", dir: -1 };
+  function hubSortValue(inv, key){
+    if (key === "total_value") return (typeof inv.total_value === "number" && isFinite(inv.total_value)) ? inv.total_value : null;
+    if (key === "holdings_count") return (typeof inv.holdings_count === "number" && isFinite(inv.holdings_count)) ? inv.holdings_count : null;
+    if (key === "top5") { var w = topWeight(inv, 5); return isFinite(w) ? w : null; }
+    if (key === "turnover") { var t = inv.activity && inv.activity.turnover_pct; return (typeof t === "number" && isFinite(t)) ? t : null; }
+    return null;
+  }
+  /* 값이 없는 항목은 오름차순/내림차순 관계없이 항상 맨 뒤로 보낸다(요구사항: "정렬에서
+     항상 뒤로"). -Infinity로 치환하는 트릭은 내림차순에서만 뒤로 가므로 쓰지 않고,
+     null 여부를 직접 분기해 방향과 무관하게 뒤로 보낸다. */
+  function hubCompareRows(a, b){
+    var av = hubSortValue(a.inv, HUB_SORT.key), bv = hubSortValue(b.inv, HUB_SORT.key);
+    var an = av == null, bn = bv == null;
+    if (an && bn) return 0;
+    if (an) return 1;
+    if (bn) return -1;
+    return HUB_SORT.dir * (av - bv);
+  }
+  function hubApplySort(table, rows){
+    var tbody = table.querySelector("tbody");
+    rows.slice().sort(hubCompareRows).forEach(function(r){ tbody.appendChild(r.tr); });
+    table.querySelectorAll("thead button[data-sort]").forEach(function(btn){
+      var key = btn.getAttribute("data-sort"), th = btn.parentNode, on = key === HUB_SORT.key;
+      th.setAttribute("aria-sort", on ? (HUB_SORT.dir === 1 ? "ascending" : "descending") : "none");
+      btn.classList.toggle("on", on);
+    });
+  }
   function upgradeHubCards(grid, investors){
-    Array.prototype.slice.call(grid.children).forEach(function(card, i){
-      var inv = investors[i]; if (!inv || !card.classList.contains("inv-card")) return;
-      var article = document.createElement("article"); article.className = "inv-hub-card"; article.setAttribute("data-slug", inv.slug);
-      article.setAttribute("data-search", [tickerLabel(inv), locVal(inv.manager), locVal(inv.name), inv.slug].join(" ").toLocaleLowerCase());
-      grid.insertBefore(article, card); article.appendChild(card); card.classList.add("inv-hub-person");
+    var c = C();
+    var items = Array.prototype.slice.call(grid.children).map(function(card, i){
+      var inv = investors[i];
+      return (inv && card.classList.contains("inv-card")) ? { inv: inv, card: card } : null;
+    }).filter(Boolean);
+    if (!items.length) return;
+
+    var table = document.createElement("table"); table.className = "inv-hub-table";
+    var thead = document.createElement("thead"), headRow = document.createElement("tr");
+    var COLS = [
+      { label: c.investorsLabel, key: null, num: false },
+      { label: c.total, key: "total_value", num: true },
+      { label: c.holdings, key: "holdings_count", num: true },
+      { label: c.top5, key: "top5", num: true },
+      { label: c.turnover, key: "turnover", num: true },
+      { label: c.topHolding, key: null, num: true },
+      { label: "", key: null, num: false }
+    ];
+    COLS.forEach(function(col){
+      var th = document.createElement("th");
+      if (col.num) th.className = "num";
+      if (col.key){
+        var btn = document.createElement("button"); btn.type = "button"; btn.setAttribute("data-sort", col.key);
+        btn.textContent = col.label; th.appendChild(btn); th.setAttribute("aria-sort", "none");
+      } else {
+        th.textContent = col.label;
+      }
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow); table.appendChild(thead);
+
+    var tbody = document.createElement("tbody");
+    var rows = items.map(function(item){
+      var inv = item.inv, card = item.card;
+      var tr = document.createElement("tr"); tr.className = "inv-hub-card"; tr.setAttribute("data-slug", inv.slug);
+      tr.setAttribute("data-search", [tickerLabel(inv), locVal(inv.manager), locVal(inv.name), inv.slug].join(" ").toLocaleLowerCase());
+
+      card.classList.add("inv-hub-person");
       var name = card.querySelector(".inv-card-name"), manager = card.querySelector(".inv-card-manager");
       if (name) name.textContent = locVal(inv.manager) || locVal(inv.name) || inv.slug;
       if (manager) manager.textContent = locVal(inv.name) || "";
-      var top = topHolding(inv), metrics = document.createElement("div"); metrics.className = "inv-hub-metrics";
-      metrics.innerHTML = '<span><small>' + esc(C().total) + '</small><b>' + esc(invMoneyFmt(inv.total_value)) + '</b></span>'
-        + '<span><small>' + esc(C().topHolding) + '</small><b>' + esc(holdingTicker(top)) + '</b></span>'
-        + '<span><small>' + esc(C().weight) + '</small><b>' + esc(top ? pct(top.weight,1) : "—") + '</b></span>';
-      var actions = document.createElement("div"); actions.className = "inv-hub-actions";
-      var open = document.createElement("button"); open.type = "button"; open.className = "inv-hub-open"; open.textContent = C().openPortfolio; open.addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); });
+      var nameTd = document.createElement("td"); nameTd.appendChild(card); tr.appendChild(nameTd);
+
+      var totalTd = document.createElement("td"); totalTd.className = "num"; totalTd.textContent = invMoneyFmt(inv.total_value); tr.appendChild(totalTd);
+      var holdingsTd = document.createElement("td"); holdingsTd.className = "num"; holdingsTd.textContent = inv.holdings_count == null ? "—" : String(inv.holdings_count); tr.appendChild(holdingsTd);
+      var top5Td = document.createElement("td"); top5Td.className = "num"; top5Td.textContent = pct(topWeight(inv, 5), 1); tr.appendChild(top5Td);
+      var turnoverTd = document.createElement("td"); turnoverTd.className = "num"; turnoverTd.textContent = pct(inv.activity && inv.activity.turnover_pct, 1); tr.appendChild(turnoverTd);
+
+      var top = topHolding(inv);
+      var topTd = document.createElement("td"); topTd.className = "num";
+      topTd.textContent = top ? (holdingTicker(top) + " " + pct(top.weight, 1)) : "—";
+      tr.appendChild(topTd);
+
+      var selectTd = document.createElement("td");
       var add = document.createElement("button"); add.type = "button"; add.className = "inv-hub-select"; add.setAttribute("data-inv-select", inv.slug);
       add.addEventListener("click", function(){ toggleSelection(inv.slug, investors, document.querySelector(".inv-compare-msg")); });
-      actions.appendChild(open); actions.appendChild(add); article.appendChild(metrics); article.appendChild(actions);
+      selectTd.appendChild(add); tr.appendChild(selectTd);
+
+      return { inv: inv, tr: tr };
+    });
+    rows.forEach(function(r){ tbody.appendChild(r.tr); });
+    table.appendChild(tbody);
+
+    Array.prototype.slice.call(grid.children).forEach(function(child){ grid.removeChild(child); });
+    grid.appendChild(table);
+
+    hubApplySort(table, rows);
+    headRow.querySelectorAll("button[data-sort]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var key = btn.getAttribute("data-sort");
+        if (HUB_SORT.key === key) HUB_SORT.dir = -HUB_SORT.dir; else { HUB_SORT.key = key; HUB_SORT.dir = -1; }
+        hubApplySort(table, rows);
+      });
     });
   }
 
