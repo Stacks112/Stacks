@@ -1,3 +1,62 @@
+## 2026-08-11 Cowork(Opus) — 데스크톱 `#skew` 텍스트 겹침 P0 수정
+
+**요청**: june "stacksdaily.com/#skew 를 UI/UX 측면에서 개선할 방법은 없을까?"
+진단 후 june이 범위를 **"P0 버그만 먼저"** 로 확정했고, 배포도 명시적으로 승인했다.
+
+**변경 파일**: `index.html` 만 (커밋 `8530edb`, 부모 `b43d5c2`, +4/-3)
+
+- `.sktr-meta` 에 `min-width:0` — flex item 의 `min-width:auto`(=min-content)와 자식들의
+  `white-space:nowrap` 때문에 폭이 모자라도 안 줄어들던 것을 해제.
+- `.sktr-sample` 에 `min-width:0; overflow:hidden; text-overflow:ellipsis` — 폭이 모자랄 때
+  방향 라벨(`.sktr-flip`/`.sktr-keep`)이 아니라 **가장 덜 중요한 표본 메타가 먼저** 줄도록.
+- `renderV83SkewPage` 의 `rowHtml`: `.sktr-sample` 에서 `· 출처 N곳` 제거
+  (`var samplePosts = sampleDetail.split(" · ")[0];`). `title` 툴팁에는 전체 문자열 유지.
+
+**왜 세 번째가 근본 수정인가**: `.sktr-sample` 의 출처 수(`r.sourceCount`)와 바로 옆
+`.skew-source-toggle` 의 출처 수(`skewSourceBreakdown(r.items).length`)는 **같은 배열·같은 필터·
+같은 그룹 키**로 계산된다(`skewConsensus` <-> `skewSourceBreakdown`). 구조적으로 항상 같은 값이
+8px 간격으로 두 번 찍히고 있었고, 그 중복 약 50px 이 29px 오버플로의 원인이었다.
+
+**검증**:
+- 배포 전: `deploy_guard.py index.html` 종료코드 0, `git diff --numstat` = `4 3`,
+  인라인 `<script>` 블록 7/7 `node --check` 통과, CRLF 보존 확인(15,604 / lone LF 0).
+- 배포: GitHub `/upload/main`. 브라우저에서 라이브 raw fetch -> baseSha 대조 ->
+  치환 3건(각 등장 1회 확인) -> targetSha 대조 -> File attach. 커밋 클릭 직전
+  `api.github.com/commits/main` 으로 HEAD 재확인.
+- 배포 후: `contents?ref=8530edb` base64 의 SHA-256 이 로컬 최종본과 **바이트 완전 일치**
+  (`35f93773…0dd7ec4a`, 987,862 bytes). **Clobber guard success.**
+- 라이브(1440px, `?cb=` 로드): **겹침 7건 -> 0건.** `.sktr-sample` = `표본 적음 · 글 4개`
+  (title = `글 4개 · 출처 3곳`), `.sktr-meta` computed `min-width:0px`,
+  `→ 약세 전환` 라벨은 잘리지 않고 온전(70px, scrollWidth <= clientWidth).
+
+**작업 중 origin 이 두 번 움직였다**: `a9fd834`(13F 투자자 비교 FIFO) · `b43d5c2`(v82 13F
+스파크라인). 리베이스해서 그 위에 얹었고 두 커밋 모두 보존된다. 커밋 후 `af30150`(v83 13F
+캐시버스터)도 들어왔다. **`index.html` 락은 잡지 않았다** — `WORK-LOCK.md` 가 대형 문서라
+`project_write` 전체 교체 사고 이력이 있어, 대신 deploy_guard + 업로드 직전 baseSha 대조 +
+클릭 직전 HEAD 재확인 + clobber guard 로 갈음했다.
+
+**남은 위험 / 다음 단계**:
+1. **`Feed detail regression` 워크플로가 최소 12커밋째 계속 failure 다** (2026-08-10 03:11
+   `af08b38` 이후 성공 기록 없음 — 내 커밋 이전인 `a9fd834`·`b43d5c2` 에서도 failure).
+   **내 변경이 깬 것이 아니다.** 하지만 회귀 가드가 열흘 가까이 빨간불이라 지금 아무도
+   보호받지 못하고 있다. 누가 언제 깼는지 추적 필요.
+2. **모바일(v82) `#skew` 는 손대지 않았다.** 같은 중복이 모바일에서는 **더 심하다** —
+   `v82.js` 의 `.v82-skew-cts`(stat) + `.v82-skew-lean`(sampleDetail) + 토글로 출처 수가
+   한 행에 **3번**, 글 수가 **2번** 나온다. 이번에 못 고친 이유는 검증 수단이 없어서다
+   (`X-Frame-Options: DENY` 로 동일 오리진 iframe 차단, `resize_window` 는 이 환경에서도 무효).
+   로컬 클론 + `python3 -m http.server` + Playwright 390px(`isMobile:true`) 경로가 필요하다.
+3. **탭 타깃 44px 은 일부러 보류했다.** `.skew-source-toggle`(36x20px)은 데스크톱 전용이라
+   마우스 조작이고, 터치에서 실제 문제인 건 모바일 전용 `.v82-skew-source-toggle` 이다.
+   양쪽을 같이 고치는 게 맞아서 모바일 검증 수단이 생길 때로 미뤘다.
+4. **P1 이하 진단은 전부 `claude/design-2026-08-11-skew-page-ux-audit.md` 에 있다** —
+   3중 중복, 표본 역설(근거 가장 많은 행이 꼴찌), 타이포 12종·조합 23종, 점 그리드 축·범례
+   부재, `#skew` URL 이 모바일에서 무시되는 문제. **june 결정: 글 3건 미만은 "표본 부족"
+   그룹으로 하단에 접는다**(착수는 게이트 이후 또는 별도 지시).
+5. **게이트 주의**: `decision-2026-08-04-september-gate.md` §4 는 9/6 까지 4가지만 하라고 한다.
+   이번 건은 라이브 렌더 버그 수정으로 판단해 june 승인 아래 진행했다. P1 이하는 게이트 이후.
+
+**안전 범위**: `items.json`, D1 큐, 자동 발행 워크플로, `scripts/`, `assets/` 는 건드리지 않았다.
+
 ## 2026-08-09 Codex — 13F 투자자 비교 UX 통합 배포
 
 **목표**: 별도 대시보드처럼 보이던 기존 13F 비교 화면을 Stacks의 3단 셸과 카드 문법에
