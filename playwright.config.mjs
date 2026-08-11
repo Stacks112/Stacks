@@ -8,6 +8,8 @@ export default defineConfig({
   reporter: "line",
   use: {
     baseURL: "http://127.0.0.1:4173",
+    locale: "ko-KR",
+    timezoneId: "Asia/Seoul",
     viewport: { width: 390, height: 844 },
     // Chromium's mobile emulation uses a wider layout viewport than the 390px
     // visual viewport here, which puts fixed header controls off-screen.
