@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v83 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
+<!-- STACKS BUILD v84 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
 <html lang="en" class="stkboot stkbootr">
 <head>
 <meta charset="UTF-8">
@@ -1721,6 +1721,16 @@ html{overscroll-behavior-y:contain;}
     display:grid;
     grid-template-columns:minmax(200px,240px) minmax(0,600px) minmax(280px,340px);
     gap:0; max-width:1240px; margin:0 auto; padding:0 8px; align-items:start;
+  }
+  /* v84: 13F 화면 전용 셸 폭 재배분. inv-wide 처럼 레일을 absolute 로 띄우지 않고
+     3열 구조를 유지한 채 트랙만 재배분하므로 레일이 본문을 가리지 않는다.
+     클래스 게이트 없는 기존 !important 오버라이드를 이기려면 추가 클래스와 !important 가 필요하다. */
+  html.v83.inv-shell .wrap{
+    grid-template-columns:minmax(200px,240px) minmax(624px,900px) minmax(280px,320px) !important;
+    max-width:1400px !important;
+  }
+  @media (max-width:1264px){
+    html.v83.inv-shell .wrap{ grid-template-columns:88px minmax(620px,700px) minmax(220px,300px) !important; }
   }
   html.v83 .hero{display:none;}
   #v83nav{ grid-column:1; position:sticky; top:64px; height:calc(100vh - 64px);
@@ -4108,7 +4118,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v83</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v84</p>
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
     <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
@@ -13350,6 +13360,7 @@ function renderFeed(animate){
     /* Investor Lab now stays inside the normal Stacks three-column shell. The
        same render gate exposes its comparison rail and resets it on exit. */
     document.documentElement.classList.toggle("inv-lab-active", invViewActive());
+    document.documentElement.classList.toggle("inv-shell", invViewActive());
     document.documentElement.classList.remove("inv-wide");
   } catch (e) {}
   if (typeof renderToday === "function") renderToday();
@@ -15623,7 +15634,7 @@ bootData();
   armInvestorDrawerWatch();
 })();
 </script>
-<script src="assets/investor-compare.js?v=6d4c877c"></script>
+<script src="assets/investor-compare.js?v=0136ebc6"></script>
 <script src="assets/investor-compare-paint.js?v=defer-20260808"></script>
 </body>
 </html>
