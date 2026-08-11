@@ -2,6 +2,162 @@
  "items": [
   {
    "date": "2026-08-11",
+   "id": "jukan-cxmt-17nm-ddr5-yield-90-sourcing-gap",
+   "related": [
+    "jukan-cxmt-hp-asus-acer-adoption-not-price",
+    "jukan-cxmt-refuses-apple-dram-discount",
+    "jukan-goldman-china-dram-catchup"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2087069621320917361",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0f172a",
+    "to": "#b91c1c",
+    "label": "90%"
+   },
+   "tags": [
+    "CXMT",
+    "DRAM",
+    "CHINA"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "CXMT 수율 90%라는 숫자는 누가 센 걸까",
+    "en": "Who actually counted CXMT's 90% yield?",
+    "ja": "CXMTの歩留まり90%という数字は、誰が数えたのか"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "중국 매체 보도에 따르면, CXMT의 17나노 DDR5 수율은 이미 90%를 넘었다.",
+      "델은 CXMT 칩 사용을 전면 금지한 것으로 전해졌고, HP는 중국 본토에서 판매되는 제품에만 사용을 허용한다."
+     ],
+     "en": [
+      "According to Chinese media reports, CXMT’s 17nm DDR5 yield has already exceeded 90%.",
+      "Dell reportedly prohibits the use of CXMT chips altogether, while HP permits their use only in products sold in mainland China."
+     ],
+     "ja": [
+      "中国メディアの報道によれば、CXMTの17nm DDR5の歩留まりはすでに90%を超えた。",
+      "デルはCXMTチップの使用を全面的に禁じているとされ、HPは中国本土で販売する製品にのみ使用を認めている。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.11"
+   },
+   "sum3": {
+    "ko": "중국산 D램이 원가 경쟁 구간에 들어섰다는 근거로 수율 90%가 인용되고 있다.\n숫자대로라면 값을 깎아도 남는 구간이라, 메모리 3사의 가격 결정력이 흔들린다는 이야기가 된다.\n그런데 이 수치를 처음 적은 곳은 중국 매체 한 곳이고, 그 기사도 어디서 받은 자료인지 밝히지 않았다.",
+    "en": "A 90 percent yield is being cited as evidence that Chinese DRAM has entered the cost-competitive band.\nTaken at face value it means a price cut still leaves a margin, which is where the three big memory makers start losing pricing power.\nBut the figure was first written down by a single Chinese outlet, and that article never says where it came from.",
+    "ja": "中国製DRAMが原価競争の圏内に入った根拠として、歩留まり90%が引用されている。\n数字どおりなら値を下げても利益が残る水準で、メモリ3社の価格決定力が揺らぐという話になる。\nところがこの数値を最初に書いたのは中国メディア1社で、その記事も出どころを明かしていない。"
+   },
+   "gist": {
+    "ko": "중국 창신메모리(CXMT)의 17나노 DDR5 수율이 90%를 넘었다는 이야기가 나왔다.\n회사 발표가 아니라 중국 매체 보도를 옮긴 것이다.\n\n@@IMG@@dram-module|노트북과 서버에 꽂히는 D램 모듈. 이번 이야기의 무대는 이 모듈 위에 올라가는 칩을 누가 만드느냐다.\n\n수율은 웨이퍼 한 장에서 쓸 수 있는 칩이 몇 개나 나오는지를 가리킨다.\n그 선을 넘겼다는 말은 열 개 중 아홉 개가 팔 수 있는 물건으로 나온다는 뜻이고, 그쯤 되면 값을 깎아도 남는 장사가 된다.\nD램에서 수율은 원가 그 자체다.\n\n## 숫자를 따라가면 어디서 멈추나\n\n이 수치의 출처를 거슬러 올라가면 8월 10일 중국 매체 콰이커지의 기사 한 건에서 멈춘다.\n기사는 조사기관 자료도 회사 발표도 인용하지 않고 자료에 나타난다고만 적었고, 그 기사가 시나와 넷이즈로 퍼졌다.\n트렌드포스나 세미애널리시스처럼 D램 생산을 따로 집계하는 곳에서 같은 수치를 확인해 준 사례는 아직 없다.\n원문 게시물이 중국 매체 보도에 따르면이라는 말로 시작하는 이유이기도 하다.\n\n@@CHK@@DDR5 16Gb 현물 세션평균|52.13달러|CXMT 웨이퍼 투입 점유율(2025년 말)|약 13%|같은 지표 2026년 말 전망|약 17%@@수율 수치는 확인되지 않았지만, 이 회사가 늘리고 있는 물량 자체는 별도 집계로 잡힌다. 값이 이 수준까지 오른 구간에서는 새 공급자가 들어설 자리가 생긴다.@@현물가는 트렌드포스 2026-08-11 조회 · 점유율은 세미애널리시스 2026-06-23\n\n## 델을 두고 취재가 갈린다\n\n@@CMP@@중국 매체의 전언|델은 CXMT 칩 사용을 전면 금지했고, HP는 중국 본토 판매 제품에만 허용한다.|2월 영어권 취재|델과 HP가 나란히 CXMT D램의 적격심사를 진행 중이라고 톰스하드웨어가 전했다.\n\n같은 회사를 두고 반년 사이에 반대 방향의 이야기가 나온 셈이다.\n둘 다 사실일 수 있다. 적격심사를 하다가 접었다면 두 보도는 순서대로 맞는다.\n\n@@REF@@PC 제조사들이 중국산 메모리 채택을 검토 중, HP와 델은 CXMT D램 적격심사 (톰스하드웨어, 2026-02-05)|https://www.tomshardware.com/pc-components/dram/leading-pc-manufacturers-considering-using-chinese-memory-chips-report-claims-hp-and-dell-qualifying-cxmt-dram-acer-and-asus-asking-chinese-partners-to-source-locally-made-memory-chips\n\n이 기사는 2월 시점에 델이 CXMT를 배제한 것이 아니라 심사 대상에 올려 두고 있었다고 전한다.\n\n@@REF@@HP·에이수스·에이서가 CXMT D램의 제한적 사용을 시작한 것으로 전해져 (트렌드포스, 2026-08-04)|https://www.trendforce.com/news/2026/08/04/news-cxmt-reportedly-eyes-second-beijing-12-inch-dram-fab-hp-asus-and-acer-said-to-begin-limited-use/|https://img.trendforce.com/blog/wp-content/uploads/2026/07/16103937/CXMT-20260716-624x349.jpg\n\n일주일 전 트렌드포스가 확인한 것은 세 곳의 제한적 채택까지이고, 델은 이 집계에 등장하지 않는다.\n금지든 심사 중단이든 회사가 밝힌 것은 없다.\n\n## 콰이커지의 숫자가 값에 닿는 자리\n\n채택이 늘지 않는 이유로 원문이 든 것은 값이나 품질이 아니라, 세계 3대 메모리 업체의 반발을 살 수 있다는 우려다.\n노트북 한 대에 들어가는 칩을 어디서 사느냐가 그 회사와 삼성, SK하이닉스, 마이크론의 관계 전체에 걸리는 문제라는 뜻이다.\n그래서 그 수치가 사실로 확인되더라도 값이 곧장 움직이지는 않는다.\n\n갈리는 지점은 여기다.\n델이나 HP의 글로벌 판매 모델 사양표에 CXMT 칩이 올라오면 이번 금지 전언이 무너지고 값 경쟁이 시작된 것이 확인된다.\n연말까지도 중국 본토와 신흥시장 모델에만 머물면, 반발 우려라는 제약이 수율보다 세다는 쪽이 맞는다.",
+    "en": "Word has gone around that ChangXin Memory Technologies, or CXMT, has pushed the yield on its 17nm DDR5 past 90 percent.\nThis is not a company disclosure. It is a Chinese press report being passed along.\n\n@@IMG@@dram-module|The DRAM module that slots into a laptop or a server. The fight here is over who makes the chips that sit on it.\n\nYield means how many usable chips come off a single wafer.\nPast that line, nine out of every ten come off saleable, and at that point a price cut still leaves a margin.\nIn DRAM, yield is the cost structure itself.\n\n## Where the number stops when you trace it\n\nFollow the figure back and it ends at one article, published August 10 by the Chinese outlet Kuai Keji.\nThe piece cites no research house and no company statement, saying only that data shows it, and it was picked up from there by Sina and NetEase.\nNo firm that separately tracks DRAM output, such as TrendForce or SemiAnalysis, has confirmed the same number.\nThat is also why the original post opens with the words according to Chinese media reports.\n\n@@CHK@@DDR5 16Gb spot, session average|$52.13|CXMT share of global DRAM wafer starts, end-2025|about 13%|Same measure, end-2026 estimate|about 17%@@The yield figure is unconfirmed, but the volume this company is adding does show up in separate counts. At this price level, room opens for a new supplier.@@Spot price from TrendForce, retrieved 2026-08-11. Wafer share from SemiAnalysis, 2026-06-23\n\n## Two accounts of Dell\n\n@@CMP@@What the Chinese report says|Dell bans CXMT chips outright, and HP allows them only in machines sold in mainland China.|What February reporting said|Tom's Hardware reported that Dell and HP were both running qualification on CXMT DRAM.\n\nSo two opposite accounts of the same company landed within six months.\nBoth can be true. If a qualification was started and then dropped, the two reports line up in sequence.\n\n@@REF@@Leading PC makers weigh Chinese memory chips, with HP and Dell qualifying CXMT DRAM (Tom's Hardware, 2026-02-05)|https://www.tomshardware.com/pc-components/dram/leading-pc-manufacturers-considering-using-chinese-memory-chips-report-claims-hp-and-dell-qualifying-cxmt-dram-acer-and-asus-asking-chinese-partners-to-source-locally-made-memory-chips\n\nThat piece has Dell holding CXMT inside its qualification pipeline in February rather than shutting it out.\n\n@@REF@@HP, Asus and Acer said to begin limited use of CXMT DRAM (TrendForce, 2026-08-04)|https://www.trendforce.com/news/2026/08/04/news-cxmt-reportedly-eyes-second-beijing-12-inch-dram-fab-hp-asus-and-acer-said-to-begin-limited-use/|https://img.trendforce.com/blog/wp-content/uploads/2026/07/16103937/CXMT-20260716-624x349.jpg\n\nWhat TrendForce confirmed a week ago goes as far as limited adoption at three brands, and Dell does not appear in that count.\nNeither a ban nor a halted qualification has come from the company itself.\n\n## Where the Kuai Keji number touches the price\n\nThe reason the original post gives for the limited volumes is neither price nor quality. It is the risk of provoking the world's three largest memory makers.\nWhere a brand sources the chips for one laptop line hangs on its whole relationship with Samsung, SK hynix and Micron.\nSo even a confirmed yield figure would not move prices straight away.\n\nHere is where it splits.\nIf CXMT chips turn up in the spec sheet of a globally sold Dell or HP model, the reported ban falls apart and price competition has started.\nIf they stay confined to mainland China and emerging-market models through year-end, the fear of a backlash is binding harder than the yield.",
+    "ja": "中国の長鑫存儲(CXMT)の17nm DDR5の歩留まりが90%を超えた、という話が出てきた。\n会社の発表ではなく、中国メディアの報道を伝えたものだ。\n\n@@IMG@@dram-module|ノートPCやサーバーに挿さるDRAMモジュール。今回の話の舞台は、この上に載るチップを誰が作るかだ。\n\n歩留まりは、ウエハー1枚から使えるチップが何個取れるかを指す。\nその線を超えたという言葉は、10個のうち9個が売り物として出てくるという意味で、そこまで来れば値を下げても利益が残る。\nDRAMにおいて歩留まりは原価そのものだ。\n\n## 数字をたどるとどこで止まるか\n\nこの数値の出どころをさかのぼると、8月10日の中国メディア快科技の記事1本で止まる。\n記事は調査機関の資料も会社発表も引かず、資料が示すとだけ書いており、それが新浪やネットイースに転載された。\nトレンドフォースやセミアナリシスのようにDRAM生産を別途集計する先が同じ数値を確認した例はまだない。\n元の投稿が中国メディアの報道によればという言葉で始まる理由でもある。\n\n@@CHK@@DDR5 16Gb現物のセッション平均|52.13ドル|CXMTのウエハー投入シェア(2025年末)|約13%|同じ指標の2026年末見通し|約17%@@歩留まりの数値は未確認だが、この会社が増やしている数量自体は別の集計に表れている。価格がこの水準まで来た区間では、新しい供給者が入る余地が生まれる。@@現物価格はトレンドフォース2026-08-11時点 · シェアはセミアナリシス2026-06-23\n\n## デルをめぐって取材が割れる\n\n@@CMP@@中国メディアの伝え方|デルはCXMTチップの使用を全面禁止し、HPは中国本土向け製品にのみ認めている。|2月の英語圏の取材|デルとHPがそろってCXMT DRAMの適格審査を進めていると、トムズハードウェアが伝えた。\n\n同じ会社について、半年のあいだに逆向きの話が出たことになる。\n両方とも事実でありうる。適格審査を進めた末にやめたのなら、二つの報道は順番どおりに整合する。\n\n@@REF@@PCメーカーが中国製メモリの採用を検討、HPとデルはCXMT DRAMを適格審査 (トムズハードウェア、2026-02-05)|https://www.tomshardware.com/pc-components/dram/leading-pc-manufacturers-considering-using-chinese-memory-chips-report-claims-hp-and-dell-qualifying-cxmt-dram-acer-and-asus-asking-chinese-partners-to-source-locally-made-memory-chips\n\nこの記事は2月時点で、デルがCXMTを排除したのではなく審査の対象に置いていたと伝えている。\n\n@@REF@@HP・エイスース・エイサーがCXMT DRAMの限定的な使用を開始と伝えられる (トレンドフォース、2026-08-04)|https://www.trendforce.com/news/2026/08/04/news-cxmt-reportedly-eyes-second-beijing-12-inch-dram-fab-hp-asus-and-acer-said-to-begin-limited-use/|https://img.trendforce.com/blog/wp-content/uploads/2026/07/16103937/CXMT-20260716-624x349.jpg\n\n1週間前にトレンドフォースが確認したのは3社の限定的な採用までで、デルはこの集計に出てこない。\n禁止にせよ審査の中断にせよ、会社が明らかにしたものはない。\n\n## 快科技の数字が価格に届く場所\n\n採用が伸びない理由として原文が挙げたのは、価格でも品質でもなく、世界3大メモリメーカーの反発を招きうるという懸念だ。\nノートPC1機種のチップをどこから買うかが、その会社とサムスン、SKハイニックス、マイクロンとの関係全体に関わるという意味になる。\nだからその数値が事実と確認されても、価格がすぐに動くわけではない。\n\n分かれ目はここだ。\nデルやHPの世界販売モデルの仕様表にCXMTチップが載れば、今回の禁止の伝聞は崩れ、価格競争が始まったことが確認される。\n年末になっても中国本土と新興市場向けモデルにとどまるなら、反発への懸念という制約のほうが歩留まりより強い、ということになる。"
+   },
+   "why": {
+    "ko": "중국산 D램이 어느 브랜드의 어느 모델까지 들어왔는지가, 삼성과 SK하이닉스, 마이크론의 가격 결정력이 언제부터 깎이는지를 정한다.",
+    "en": "How far Chinese DRAM has reached into which brands and which models decides when Samsung, SK hynix and Micron start losing pricing power.",
+    "ja": "中国製DRAMがどのブランドのどの機種まで入ったかが、サムスンとSKハイニックス、マイクロンの価格決定力が削られ始める時期を決める。"
+   },
+   "ask": {
+    "ko": "1차 출처가 확인되지 않은 수율 90%라는 숫자가 이미 메모리 가격 전망에 쓰이고 있다. 이 숫자를 근거로 삼아도 되는 걸까?",
+    "en": "A 90 percent yield figure with no confirmed primary source is already feeding memory price forecasts. Should anyone be leaning on it?",
+    "ja": "一次情報が確認できない歩留まり90%という数字が、すでにメモリ価格の見通しに使われている。この数字を根拠にしてよいのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-11",
+      "en": "Jukan (@jukan05), 2026-08-11",
+      "ja": "Jukan(@jukan05) · 2026-08-11"
+     },
+     "url": "https://x.com/jukan05/status/2087069621320917361"
+    },
+    {
+     "name": {
+      "ko": "수율 수치의 1차 보도",
+      "en": "First report of the yield figure",
+      "ja": "歩留まり数値の一次報道"
+     },
+     "desc": {
+      "ko": "콰이커지 · 2026-08-10 (중국어)",
+      "en": "Kuai Keji, 2026-08-10, in Chinese",
+      "ja": "快科技 · 2026-08-10(中国語)"
+     },
+     "url": "https://news.mydrivers.com/1/1142/1142658.htm"
+    },
+    {
+     "name": {
+      "ko": "델·HP 적격심사 보도",
+      "en": "Report on Dell and HP qualification",
+      "ja": "デル・HPの適格審査報道"
+     },
+     "desc": {
+      "ko": "톰스하드웨어 · 2026-02-05",
+      "en": "Tom's Hardware, 2026-02-05",
+      "ja": "トムズハードウェア · 2026-02-05"
+     },
+     "url": "https://www.tomshardware.com/pc-components/dram/leading-pc-manufacturers-considering-using-chinese-memory-chips-report-claims-hp-and-dell-qualifying-cxmt-dram-acer-and-asus-asking-chinese-partners-to-source-locally-made-memory-chips"
+    },
+    {
+     "name": {
+      "ko": "제한적 채택 집계",
+      "en": "Limited-adoption report",
+      "ja": "限定採用の集計"
+     },
+     "desc": {
+      "ko": "트렌드포스 · 2026-08-04",
+      "en": "TrendForce, 2026-08-04",
+      "ja": "トレンドフォース · 2026-08-04"
+     },
+     "url": "https://www.trendforce.com/news/2026/08/04/news-cxmt-reportedly-eyes-second-beijing-12-inch-dram-fab-hp-asus-and-acer-said-to-begin-limited-use/"
+    },
+    {
+     "name": {
+      "ko": "현물가",
+      "en": "Spot price",
+      "ja": "現物価格"
+     },
+     "desc": {
+      "ko": "트렌드포스 D램 현물 시세 · 2026-08-11 조회",
+      "en": "TrendForce DRAM spot page, retrieved 2026-08-11",
+      "ja": "トレンドフォースのDRAM現物ページ · 2026-08-11時点"
+     },
+     "url": "https://www.trendforce.com/price/dram/dram_spot"
+    },
+    {
+     "name": {
+      "ko": "웨이퍼 투입 점유율",
+      "en": "Wafer start share",
+      "ja": "ウエハー投入シェア"
+     },
+     "desc": {
+      "ko": "세미애널리시스 · 2026-06-23",
+      "en": "SemiAnalysis, 2026-06-23",
+      "ja": "セミアナリシス · 2026-06-23"
+     },
+     "url": "https://newsletter.semianalysis.com/p/chinas-cxmt-is-set-to-challenge-dram"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-11 조회 · 현물가는 같은 날 세션 평균이고, 웨이퍼 투입 점유율은 세미애널리시스의 추정치다.",
+    "en": "Retrieved 2026-08-11. The spot price is that day's session average, and the wafer start share is a SemiAnalysis estimate.",
+    "ja": "2026-08-11時点 · 現物価格は同日のセッション平均、ウエハー投入シェアはセミアナリシスの推計。"
+   }
+  },
+  {
+   "date": "2026-08-11",
    "id": "meru-bok-gold-restart-krw-domestic-13-years",
    "related": [
     "meru-korea-won-strength-surplus-vs-cash-outflow",
