@@ -153,6 +153,47 @@ h2.gsub{font-size:19px;line-height:1.4;margin:1.6em 0 .5em;padding-left:9px;bord
 .sum3>b{color:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;margin-bottom:12px}
 .sum3 li{padding-left:16px;margin:0 0 11px;font-size:15.5px;line-height:1.7}
 .sum3 li:before{color:inherit;left:2px}
+.rec,.oc,.opp,.dlt{margin-top:26px}
+.rec h3,.oc h3,.opp h3,.dlt h3{font-size:14px;margin:0 0 10px}
+.rec-s{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.rec-s span{display:inline-block;padding:7px 12px;border-radius:10px;background:#F6F7F9;border:1px solid #ECEDF1;font-size:12px;color:#8E93A0}
+.rec-s b{display:block;font-size:17px;color:#17181C;line-height:1.25}
+.rec-s .bl b{color:#1C7A42}.rec-s .be b{color:#B02525}
+.rec-l,.opp ul,.dlt ul{list-style:none;margin:0;padding:0;font-size:14px}
+.rec-l li,.opp li,.dlt li{display:flex;gap:8px;align-items:baseline;padding:8px 0;border-top:1px solid #ECEDF1}
+.rec-l li:first-child,.opp li:first-child,.dlt li:first-child{border-top:0}
+.rec-l i,.opp i,.dlt i{flex:none;font-style:normal;font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bl{background:#E8F5EC;color:#1C7A42}.be{background:#FDEAEA;color:#B02525}.wa{background:#EEF1F5;color:#4B5563}
+.rec-l a,.opp a,.dlt a{color:#17181C;text-decoration:none;flex:1}
+.rec-l a:hover,.opp a:hover,.dlt a:hover{text-decoration:underline}
+.rec-l time,.opp time,.dlt time{flex:none;font-size:12px;color:#8E93A0}
+.rec-m{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#17181C}
+.oc p{margin:0;padding:12px 14px;border-radius:12px;background:#F6F7F9;font-size:14.5px}
+.oc i{display:inline-block;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:8px;background:#FFF4E0;color:#A16207}
+.oc-hit i{background:#E8F5EC;color:#1C7A42}.oc-miss i{background:#FDEAEA;color:#B02525}
+@media(prefers-color-scheme:dark){.rec-s span{background:#141519;border-color:#2E3037}
+  .rec-s b,.rec-l a,.opp a,.dlt a,.rec-m{color:#ECEDF1}
+  .rec-l li,.opp li,.dlt li{border-color:#26272E}.oc p{background:#1A1B21}}
+.occ{border:1px solid #ECEDF1;border-radius:12px;background:#F6F7F9;overflow:hidden}
+.occ h3{display:flex;align-items:center;gap:9px;margin:0;padding:11px 14px;border-bottom:1px solid #ECEDF1}
+.occ h3 i{font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4E0;color:#A16207}
+.occ.oc-hit h3 i{background:#E8F5EC;color:#1C7A42}.occ.oc-miss h3 i{background:#FDEAEA;color:#B02525}
+.occ-r{display:flex;gap:12px;padding:8px 14px;border-bottom:1px solid #ECEDF1;font-size:14px;line-height:1.6}
+.occ-r:last-child{border-bottom:0}
+.occ-r .k{flex:0 0 64px;font-size:12.5px;font-weight:700;color:#8E93A0;padding-top:2px}
+.occ-r .v{flex:1}
+.occ-r .v .hit{color:#1C7A42;font-weight:700}.occ-r .v .miss{color:#B02525;font-weight:700}
+.srcs{margin-top:26px;border:1px solid #ECEDF1;border-radius:12px;padding:14px 16px}
+.srcs h3{font-size:12.5px;letter-spacing:.03em;color:#8E93A0;margin:0 0 10px}
+.srcs ol{margin:0;padding-left:18px}
+.srcs li{font-size:13.5px;line-height:1.7;margin-bottom:5px;color:#5B6070;border:0;padding:0}
+.srcs li b{color:#17181C}
+.srcs a{color:inherit;text-decoration:none}.srcs a:hover{text-decoration:underline}
+.srcs-a{margin:11px 0 0;font-size:12px;color:#8E93A0}
+@media(prefers-color-scheme:dark){
+  .occ{background:#141519;border-color:#2E3037}.occ h3,.occ-r{border-color:#2E3037}
+  .occ.oc-hit h3 i{background:rgba(14,159,94,.14)}.occ.oc-miss h3 i{background:rgba(224,68,56,.14)}
+  .srcs{border-color:#2E3037}.srcs li b{color:#ECEDF1}}
 .why,.ask{background:#F6F7F9;border-radius:12px;padding:12px 14px;font-size:14.5px}
 .ask{margin-top:10px}
 @media(prefers-color-scheme:dark){.why,.ask{background:#1A1B21}}
@@ -250,11 +291,11 @@ e.preventDefault();location.href=B+d;},false);})();
 챙길 것은 오래 쓰는 틀이다.
 신흥국이나 지정학 위험에 노출된 사업을 평가할 때,
 그 위험을 막연한 불안이 아니라 할인율의 숫자로 바꿔 값에 반영하는 방법이다.</p><div class="gcardw"><a class="gcard" href="https://aswathdamodaran.substack.com/p/country-risk-determinants-measures" rel="noopener" target="_blank"><img src="https://substackcdn.com/image/fetch/$s_!wC4J!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F45d8df41-15aa-426e-bbc3-ec3a2e72a6f9_2262x2078.jpeg" alt="" loading="lazy"><span class="gcard-t">국가위험 2026년판 전문 (Aswath Damodaran · Substack)</span></a><div class="gcard-src">출처: aswathdamodaran.substack.com</div></div><div class="sum3"><b>세 줄 요약</b><ul><li>뉴욕대 밸류에이션 교수 다모다란의 연례 국가위험 업데이트(2026년판, 블로그 전문 무료).</li><li>핵심 주장은 하나다. 기업의 진짜 위험은 어디에 상장했느냐가 아니라 어디서 사업하느냐에 달렸고, &#x27;분산하면 사라진다&#x27;던 옛 교과서는 틀렸다.</li><li>위험이 높은 곳에서 벌면 할인율이 올라가 같은 이익도 값이 낮아진다. 그는 이걸 미국 성숙시장 프리미엄 4.2%에서 시작해 나라별로 쌓아 계산한다.</li></ul></div><p class="why"><b>투자 포인트</b> · 기업의 적정가치는 상장지가 아니라 사업하는 곳에 달려 있으므로, 국가위험은 할인율 안에 들어가야 한다.</p><p class="ask"><b>짚어볼 점</b> · 지정학 위험에 노출된 기업에 투자자는 더 큰 할인을 요구해야 할까, 아니면 국가위험은 이미 가격에 반영돼 있을까?</p>
-  
+  <section class="rec"><h3>이 필진의 기록</h3><div class="rec-s"><span><b>3</b>글</span><span><b>0</b>방향성 콜</span></div><a class="rec-m" href="../r/damodaran.html" data-app="?l=ko#record-Aswath%20Damodaran%20%28Musings%20on%20Markets%29">전체 기록 보기 →</a></section>
   <nav class="otherlang">다른 언어로 읽기: <a href="https://stacksdaily.com/p/en/damodaran-country-risk-2026.html" hreflang="en" lang="en">English</a> · <a href="https://stacksdaily.com/p/ja/damodaran-country-risk-2026.html" hreflang="ja" lang="ja">日本語</a></nav>
   <nav class="ent-nav"><h3>관련 종목·인물</h3><div class="ent-chips"><a class="ent-chip" href="../e/aswath-damodaran-musings-on-markets.html">Aswath Damodaran (Musings on Markets)</a><a class="ent-chip" href="../e/country-risk-premium.html">COUNTRY RISK PREMIUM</a><a class="ent-chip" href="../e/s-p500.html">S&amp;P500</a><a class="ent-chip" href="../e/government-bond.html">국채</a><a class="ent-chip" href="../e/multiple.html">멀티플</a><a class="ent-chip" href="../e/fiscal-deficit.html">재정적자</a><a class="ent-chip" href="../e/investment-grade.html">투자등급</a></div></nav>
   <nav class="related"><h3>관련 글</h3><ul><li><a href="meru-taiwan-flashpoint.html">대만 앞바다라는 화약고: 중국이 &#x27;포위망&#x27;으로 읽는 일본·필리핀 해상경계 협상</a></li><li><a href="karakama-nikkei.html">&#x27;닛케이 7만은 일본이 강해진 증거가 아니다&#x27;: 통화 약세국 주가 급등의 불편한 산수</a></li></ul></nav>
-  <nav class="latest"><h3>최신 글</h3><ul><li><a href="serenity-riot-rockdale-191mw-20y-lease-anthropic.html">191메가와트, 20년, 그리고 2027년 12월</a><time>08-11</time></li><li><a href="jukan-skhynix-spc2-kioxia-top-shareholder.html">SK하이닉스가 키옥시아 최대주주가 됐다, 의결권은 한 표도 없이</a><time>08-11</time></li><li><a href="hanke-hormuz-six-crossings-sunday-control-vs-traffic.html">일요일 하루 호르무즈를 지난 배는 여섯 척이었다</a><time>08-10</time></li><li><a href="jukan-intel-15b-equity-raise-semianalysis-call.html">6월 11일, 세미애널리시스는 인텔에 지금 주식을 팔라고 썼다</a><time>08-10</time></li><li><a href="meru-nps-domestic-equity-29-percent-minutes-sealed.html">국민연금이 회의록을 2030년까지 덮은 이유는 뭘까</a><time>08-10</time></li><li><a href="bilello-hyperscaler-capex-789b-nvidia-500b-financing.html">AI 설비투자 전망이 반년 만에 1.7배가 됐다, 그런데 그 돈을 대는 쪽이 달라졌다</a><time>08-10</time></li><li><a href="kuo-tsmc-apple-2nm-wip-rumor-rebuttal.html">TSMC 재고 87일을 만든 것이 애플 칩이라는 증거는 없다</a><time>08-10</time></li><li><a href="jukan-iphone18-pro-bom-38-percent-memory-share.html">아이폰 18 프로 원가가 38% 오른다, 그런데 값은 그만큼 오르지 않을 수 있다</a><time>08-10</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
+  <nav class="latest"><h3>최신 글</h3><ul><li><a href="damodaran-conviction-concentration-leverage.html">펀드를 무너뜨린 것은 AI 전망이 아니었다</a><time>08-11</time></li><li><a href="serenity-riot-rockdale-191mw-20y-lease-anthropic.html">191메가와트, 20년, 그리고 2027년 12월</a><time>08-11</time></li><li><a href="jukan-skhynix-spc2-kioxia-top-shareholder.html">SK하이닉스가 키옥시아 최대주주가 됐다, 의결권은 한 표도 없이</a><time>08-11</time></li><li><a href="hanke-hormuz-six-crossings-sunday-control-vs-traffic.html">일요일 하루 호르무즈를 지난 배는 여섯 척이었다</a><time>08-10</time></li><li><a href="jukan-intel-15b-equity-raise-semianalysis-call.html">6월 11일, 세미애널리시스는 인텔에 지금 주식을 팔라고 썼다</a><time>08-10</time></li><li><a href="meru-nps-domestic-equity-29-percent-minutes-sealed.html">국민연금이 회의록을 2030년까지 덮은 이유는 뭘까</a><time>08-10</time></li><li><a href="bilello-hyperscaler-capex-789b-nvidia-500b-financing.html">AI 설비투자 전망이 반년 만에 1.7배가 됐다, 그런데 그 돈을 대는 쪽이 달라졌다</a><time>08-10</time></li><li><a href="kuo-tsmc-apple-2nm-wip-rumor-rebuttal.html">TSMC 재고 87일을 만든 것이 애플 칩이라는 증거는 없다</a><time>08-10</time></li></ul><a class="latest-all" href="../articles.html">전체 글 보기 →</a></nav>
   <footer>
     요약·해설은 Stacks의 창작물입니다. 원문의 저작권은 원저작자에게 있으며, 각 항목은 출처를 표기하고 원문으로 링크합니다. 투자 자문이 아니며, 투자 판단과 그 책임은 이용자 본인에게 있습니다.<br>
     <a href="../">Stacks 홈</a> · <a href="../articles.html">전체 글</a> · <a href="../about.html">소개</a> · <a href="../feed.xml">RSS</a>
