@@ -370,7 +370,10 @@ test.describe("13F investor view state", () => {
     await openInvestors(page);
     await expect(page.locator(".inv-hub-search input")).toBeVisible();
     await expect(page.locator(".inv-hub-card")).toHaveCount(16);
+    await expect(page.locator(".inv-compare-bar")).toBeHidden();
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await expect(page.locator(".inv-compare-bar")).toBeVisible();
+    await page.evaluate(() => window.scrollTo(0, 0));
     await expect(page.locator("#v83rail .inv-rail-selection")).toBeVisible();
     await page.locator(".inv-compare-go").click();
     await expect(page).toHaveURL(/#investor-compare$/);
