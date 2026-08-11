@@ -2,6 +2,124 @@
  "items": [
   {
    "date": "2026-08-11",
+   "id": "damodaran-conviction-concentration-leverage",
+   "related": [
+    "netinterest-situational-awareness-67-percent-comeback",
+    "serenity-situational-awareness-citadel-unwind",
+    "kobeissi-chip-leveraged-etf-record-assets-decay"
+   ],
+   "source": "Aswath Damodaran (Musings on Markets)",
+   "sourceUrl": "https://aswathdamodaran.blogspot.com/2026/08/the-situational-awareness-blow-up.html",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/AswathDamodaran?fallback=false",
+   "wiki": "Aswath_Damodaran",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#4C1D95",
+    "label": "76%"
+   },
+   "tags": [
+    "CONVICTION",
+    "LEVERAGE",
+    "HEDGEFUND"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "펀드를 무너뜨린 것은 AI 전망이 아니었다",
+    "en": "It was not the AI call that broke the fund",
+    "ja": "ファンドを壊したのはAIの見立てではなかった"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "What the market gives easily, it also takes away just as easily, and if you put into place strategies that are designed to deliver outsized returns, you have to live with the reality that you can have outsized losses.",
+      "I am not as convinced that investing conviction is a net plus."
+     ],
+     "ko": [
+      "시장이 쉽게 준 것은 그만큼 쉽게 거두어 간다. 남다른 수익이 나오도록 설계된 전략을 쓰기로 했다면, 남다른 손실도 날 수 있다는 현실을 함께 안고 가야 한다.",
+      "나는 투자에서의 확신이 이득 쪽으로 남는다고는 그다지 확신하지 않는다."
+     ],
+     "ja": [
+      "市場が易々と与えたものは、同じくらい易々と取り上げる。並外れた収益が出るよう設計された戦略を使うと決めたなら、並外れた損失も起こりうるという現実を併せて背負うことになる。",
+      "私は、投資における確信が差し引きでプラスに残るとはあまり確信していない。"
+     ]
+    },
+    "cite": "Aswath Damodaran (Musings on Markets) · 2026.08.11"
+   },
+   "sum3": {
+    "ko": "AI 인프라에 집중 투자하던 헤지펀드가 7월에 무너진 일을 두고 데모다란이 글을 냈다.\n겉으로 보면 AI가 이긴다는 판단이 틀렸는지를 따지는 이야기로 읽힌다.\n그런데 그가 따지는 것은 판단의 옳고 그름이 아니라, 확신이 종목 수를 줄이고 빌린 돈을 늘리는 쪽으로 번역되는 경로다.",
+    "en": "Damodaran has written about the July collapse of a hedge fund that concentrated on artificial intelligence infrastructure.\nOn the surface it reads as an argument over whether the call that AI would win was wrong.\nWhat he actually examines is not whether the call was right, but the path by which conviction gets translated into fewer positions and more borrowed money.",
+    "ja": "AIインフラに集中投資していたヘッジファンドが7月に崩れた件について、ダモダランが文章を出した。\n表面だけ見れば、AIが勝つという見立てが誤りだったかを問う話に読める。\nだが彼が問うているのは見立ての正誤ではなく、確信が銘柄数を減らし借入を増やす方向へ翻訳されていく経路だ。"
+   },
+   "gist": {
+    "ko": "AI가 이긴다는 판단이 틀려서 그 펀드가 무너진 것이 아니다.\n그 판단을 몇 개 종목과 빌린 돈으로 옮긴 방식이 무너뜨렸다.\n데모다란이 7월의 붕괴를 놓고 내놓은 글의 요지가 이것이다.\n\n@@REF@@애셴브레너의 AI 헤지펀드가 마진콜 끝에 무너지다 (쿼츠, 2026-07-31)|https://finance.yahoo.com/markets/stocks/articles/leopold-aschenbrenners-ai-hedge-fund-174426079.html|https://s.yimg.com/lo/mysterio/api/75BCD7384CEA4844C1E457D79F684C39C3BCD256B7C960A07F618BF68AB4D8C8/subgraphmysterio/resizefill_w1200_h675;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Fquartz_855%2Fd72ee76079cf1c292eb50a666bc6b2a0\n\n이 보도가 전한 규모는 7월 초 450억달러였던 운용자산이 한 달 만에 100억달러로 줄었다는 것이다.\n그 아래 담보를 쥐고 있던 곳은 뱅크오브아메리카, 골드만삭스, 제이피모건이었다.\n\n## 확신이 돈으로 번역되는 두 통로\n\n데모다란이 말하는 확신은 성격이 아니라 절차다.\n어떤 자산이 잘못 매겨져 있다고 보고, 시장이 그 값을 고칠 것이라 보고, 그 교정이 내가 들고 있는 기간 안에 일어난다고 보는 세 단계를 모두 세게 믿는 상태다.\n\n세 단계를 다 믿으면 확신은 두 곳에서만 돈으로 바뀐다.\n하나는 한 종목에 얼마를 넣느냐이고, 다른 하나는 그 돈에 빚을 얼마나 얹느냐다.\n같은 판단이라도 이 둘을 크게 잡으면 결과가 달라진다.\n\n그가 함께 짚는 것은 수수료 구조다.\n운용자산의 2%와 수익의 20%를 받는 방식은 장기 투자자에게 넘기 어려운 벽이면서, 운용하는 쪽에는 위험을 더 크게 잡을 이유가 된다.\n\n## 상위 다섯 종목이 76%였다\n\n@@SHARE@@블룸에너지|22.8%|22.8|샌디스크|18.8%|18.8|코어위브|14.4%|14.4|나머지 21개 종목|44.0%|44.0@@공시된 미국 롱 포지션 26개 가운데 상위 다섯 개를 합치면 76%를 넘었다. 확신이 종목 수를 줄인다는 말이 여기서 눈으로 보인다.@@스팟감마 2026-07-30 집계(공시 보유 기준) · 2026-08-11 조회\n\n@@REF@@마진콜의 해부, 200억달러 규모 AI 포트폴리오가 한 번의 거래로 정리된 과정 (스팟감마, 2026-07-30)|https://spotgamma.com/situational-awareness-unwind-margin-call-ai/|https://spotgamma.com/wp-content/uploads/2026/07/images.webp\n\n이 집계는 총노출이 자기 돈의 네 배까지 갔다고 전한다.\n한쪽에서 종목을 줄이고 다른 쪽에서 빚을 얹으면, 값이 조금 밀릴 때 팔아야 할 양이 한자리에 몰린다.\n\n## 2026년 7월이 시험한 것은 판단이 아니었다\n\n데모다란은 나이로 설명하는 방식을 받아들이지 않는다.\n\n@@CMP@@시장의 읽기|스물다섯 살에게 경험이 없었다. 나이와 함께 온다는 지혜가 없어서 무너졌다는 것이다.|데모다란의 읽기|나이는 설명이 못 된다. 확신이 종목 수를 줄이고 빚을 늘리는 쪽으로 번역된 것이 무너진 경로다.\n\n같은 붕괴를 두고 한쪽은 사람을 보고, 다른 쪽은 확신이 자금으로 옮겨 가는 통로를 본다.\n\n그래서 자기 포트폴리오에서 확인할 것도 판단의 세기가 아니다.\n한 종목이 전체에서 차지하는 비중과, 그 자리에 빌린 돈이 얹혀 있는지 두 가지다.\n둘 다 작으면 판단이 틀려도 다음 판단을 할 자리가 남고, 둘 다 크면 판단이 맞아도 중간에 팔려 나갈 수 있다.\n7월에 시험대에 오른 것은 AI에 대한 전망이 아니라 그 전망을 담은 그릇의 크기였다.",
+    "en": "The fund did not break because the call that AI would win was wrong.\nIt broke because of how that call was carried, in a few positions and with borrowed money.\nThat is the argument Damodaran makes about the July collapse.\n\n@@REF@@Aschenbrenner's AI hedge fund collapses after margin calls (Quartz, 2026-07-31)|https://finance.yahoo.com/markets/stocks/articles/leopold-aschenbrenners-ai-hedge-fund-174426079.html|https://s.yimg.com/lo/mysterio/api/75BCD7384CEA4844C1E457D79F684C39C3BCD256B7C960A07F618BF68AB4D8C8/subgraphmysterio/resizefill_w1200_h675;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Fquartz_855%2Fd72ee76079cf1c292eb50a666bc6b2a0\n\nThat report puts the scale at $45 billion of assets at the start of July, down to about $10 billion a month later.\nThe firms holding the collateral underneath were Bank of America, Goldman Sachs and JPMorgan Chase.\n\n## The two channels conviction runs through\n\nThe conviction Damodaran describes is a procedure rather than a personality.\nIt is the state of believing strongly in three things at once: that an asset is mispriced, that the market will correct it, and that the correction arrives inside the period you plan to hold it.\n\nBelieve all three and conviction turns into money in only two places.\nOne is how much goes into a single position, the other is how much debt sits on top of that money.\nThe same judgment produces a different outcome once those two are set large.\n\nHe also points at the fee structure.\nCharging 2% of assets and 20% of gains is a handicap a long term investor struggles to clear, and on the manager's side it is a reason to carry more risk.\n\n## The top five holdings were over 76%\n\n@@SHARE@@Bloom Energy|22.8%|22.8|SanDisk|18.8%|18.8|CoreWeave|14.4%|14.4|The other 21 positions|44.0%|44.0@@Across 26 disclosed US long positions, the top five together came to more than 76%. This is what it looks like when conviction cuts down the number of names.@@SpotGamma tally of 2026-07-30, based on disclosed holdings · retrieved 2026-08-11\n\n@@REF@@Anatomy of a margin call, how a $20 billion AI book was unwound in one trade (SpotGamma, 2026-07-30)|https://spotgamma.com/situational-awareness-unwind-margin-call-ai/|https://spotgamma.com/wp-content/uploads/2026/07/images.webp\n\nThat tally reports gross exposure reaching four times the fund's own capital.\nCut the number of names on one side and add debt on the other, and a small move in price puts all of the forced selling in one place.\n\n## What July 2026 tested was not the judgment\n\nDamodaran does not accept the explanation that runs through age.\n\n@@CMP@@The common reading|A 25 year old had no experience. He broke because he lacked the wisdom that supposedly comes with years.|Damodaran's reading|Age explains nothing. The path to the break was conviction translating into fewer names and more debt.\n\nOne side of the same collapse looks at the person, the other looks at the channel through which conviction moves into capital.\n\nSo what to check in your own portfolio is not the strength of the judgment either.\nIt is two things: what share one position takes of the whole, and whether borrowed money is sitting on that position.\nWith both small, a wrong call still leaves room for the next one. With both large, a right call can still be sold out from under you.\nWhat went on trial in July was not the outlook for AI but the size of the vessel that outlook was poured into.",
+    "ja": "AIが勝つという見立てが誤っていたからそのファンドが崩れたのではない。\nその見立てを、少数の銘柄と借りた資金で運んだやり方が崩したのだ。\nダモダランが7月の崩壊について書いた文章の要旨はこれだ。\n\n@@REF@@アッシェンブレナーのAIヘッジファンド、マージンコールの末に崩れる (クオーツ, 2026-07-31)|https://finance.yahoo.com/markets/stocks/articles/leopold-aschenbrenners-ai-hedge-fund-174426079.html|https://s.yimg.com/lo/mysterio/api/75BCD7384CEA4844C1E457D79F684C39C3BCD256B7C960A07F618BF68AB4D8C8/subgraphmysterio/resizefill_w1200_h675;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Fquartz_855%2Fd72ee76079cf1c292eb50a666bc6b2a0\n\nこの報道が伝えた規模は、7月初めに450億ドルだった運用資産が1か月で100億ドルまで減ったというものだ。\nその下で担保を握っていたのはバンク・オブ・アメリカ、ゴールドマン・サックス、JPモルガンだった。\n\n## 確信が資金に翻訳される二つの通路\n\nダモダランの言う確信は、性格ではなく手順だ。\nある資産の値付けが誤っていると見て、市場がそれを直すと見て、その修正が自分の保有期間の中で起きると見る。この三段階をすべて強く信じている状態を指す。\n\n三段階を信じ切ると、確信が資金に変わる場所は二つしかない。\n一つは一銘柄にいくら入れるか、もう一つはその資金にどれだけ借入を乗せるかだ。\n同じ判断でも、この二つを大きく取れば結果は変わる。\n\n彼が併せて指摘するのは報酬の構え方だ。\n運用資産の2%と収益の20%を受け取る方式は、長期の投資家には越えにくい壁である一方、運用する側にはリスクを大きく取る理由になる。\n\n## 上位5銘柄が76%を超えていた\n\n@@SHARE@@ブルーム・エナジー|22.8%|22.8|サンディスク|18.8%|18.8|コアウィーブ|14.4%|14.4|残り21銘柄|44.0%|44.0@@開示された米国ロングの26銘柄のうち、上位5つを合わせると76%を超えていた。確信が銘柄数を減らすという言葉が、ここで目に見える。@@スポットガンマ2026-07-30集計(開示保有ベース) · 2026-08-11取得\n\n@@REF@@マージンコールの解剖、200億ドル規模のAIポートフォリオが一度の取引で処理された過程 (スポットガンマ, 2026-07-30)|https://spotgamma.com/situational-awareness-unwind-margin-call-ai/|https://spotgamma.com/wp-content/uploads/2026/07/images.webp\n\nこの集計は、総エクスポージャーが自己資金の4倍に達したと伝えている。\n一方で銘柄を絞り、もう一方で借入を乗せると、値が少し押しただけで売らねばならない量が一か所に集まる。\n\n## 2026年7月が試したのは見立てではなかった\n\nダモダランは、年齢で説明するやり方を受け入れない。\n\n@@CMP@@市場の読み|25歳に経験がなかった。年齢とともに来るはずの知恵がなくて崩れた、という話だ。|ダモダランの読み|年齢は説明にならない。確信が銘柄数を減らし借入を増やす方向へ翻訳されたことが、崩れた経路だ。\n\n同じ崩壊を前に、一方は人を見て、もう一方は確信が資金へ移っていく通路を見る。\n\nだから自分の資産で確かめるべきものも、判断の強さではない。\n一銘柄が全体に占める比率と、その位置に借りた資金が乗っているかどうかの二つだ。\n両方が小さければ判断が外れても次の判断をする余地が残り、両方が大きければ判断が当たっても途中で売らされうる。\n7月に試されたのはAIの見通しではなく、その見通しを入れた器の大きさだった。"
+   },
+   "why": {
+    "ko": "확신이 세다는 말은 판단이 옳다는 뜻이 아니라 포지션이 크고 빚이 얹혀 있다는 뜻이다. 이 구분이 없으면 같은 전망을 가진 두 투자자가 왜 한쪽만 살아남는지 설명되지 않는다. AI 관련 종목을 크게 들고 있는 개인 투자자에게도 점검할 자리는 전망이 아니라 비중과 레버리지다.",
+    "en": "Strong conviction does not mean the judgment is right. It means the position is large and debt is sitting on it. Without that distinction there is no way to explain why, of two investors with the same outlook, only one survives. For anyone holding a large AI position, the place to check is weighting and leverage rather than the outlook.",
+    "ja": "確信が強いという言葉は、判断が正しいという意味ではなく、ポジションが大きく借入が乗っているという意味だ。この区別がないと、同じ見通しを持つ二人の投資家のうち、なぜ片方だけが生き残るのかを説明できない。AI関連銘柄を大きく持つ個人にとっても、点検すべきは見通しではなく比率とレバレッジだ。"
+   },
+   "ask": {
+    "ko": "같은 종목을 같은 이유로 보는 두 사람이 있는데 한 사람은 자산의 5%를, 다른 사람은 40%에 빚까지 얹어 들고 있다. 시장이 반대로 20% 움직이면 두 사람의 다음 선택지는 완전히 달라진다. 확신이 강하다는 것은 판단이 옳다는 뜻일까, 그저 물러설 자리를 줄여 놓았다는 뜻일까?",
+    "en": "Two people hold the same stock for the same reason, but one has 5% of their assets in it and the other has 40% with debt on top. If the market moves 20% the wrong way, their next options are nothing alike. Does strong conviction mean the judgment is right, or only that the room to step back has been removed?",
+    "ja": "同じ銘柄を同じ理由で見ている二人がいて、一人は資産の5%を、もう一人は40%に借入まで乗せて持っている。市場が逆に20%動けば、二人の次の選択肢はまったく違う。確信が強いとは判断が正しいという意味なのか、それとも退く余地を削っただけなのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Aswath Damodaran, Musings on Markets · 2026-08-11",
+      "en": "Aswath Damodaran, Musings on Markets · 2026-08-11",
+      "ja": "Aswath Damodaran, Musings on Markets · 2026-08-11"
+     },
+     "url": "https://aswathdamodaran.blogspot.com/2026/08/the-situational-awareness-blow-up.html"
+    },
+    {
+     "name": {
+      "ko": "보도",
+      "en": "Report",
+      "ja": "報道"
+     },
+     "desc": {
+      "ko": "쿼츠 · 2026-07-31 · 운용자산 감소와 담보를 쥔 증권사 출처",
+      "en": "Quartz · 2026-07-31 · source for the drop in assets and the prime brokers",
+      "ja": "クオーツ · 2026-07-31 · 運用資産の減少と担保を握る証券会社の出所"
+     },
+     "url": "https://finance.yahoo.com/markets/stocks/articles/leopold-aschenbrenners-ai-hedge-fund-174426079.html"
+    },
+    {
+     "name": {
+      "ko": "집계",
+      "en": "Tally",
+      "ja": "集計"
+     },
+     "desc": {
+      "ko": "스팟감마 · 2026-07-30 · 종목별 비중과 총노출 배수 출처",
+      "en": "SpotGamma · 2026-07-30 · source for position weights and gross exposure",
+      "ja": "スポットガンマ · 2026-07-30 · 銘柄別比率と総エクスポージャー倍率の出所"
+     },
+     "url": "https://spotgamma.com/situational-awareness-unwind-margin-call-ai/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-11 조회 · 종목별 비중은 스팟감마가 2026-07-30에 공시 보유 기준으로 집계한 값이고, 운용자산 수치는 쿼츠의 2026-07-31 보도 기준이다.",
+    "en": "Retrieved 2026-08-11 · position weights follow SpotGamma's 2026-07-30 tally of disclosed holdings, and the asset figures follow Quartz reporting of 2026-07-31.",
+    "ja": "2026-08-11取得 · 銘柄別比率はスポットガンマが2026-07-30に開示保有ベースで集計した値、運用資産の数値はクオーツの2026-07-31報道に基づく。"
+   }
+  },
+  {
+   "date": "2026-08-11",
    "id": "serenity-riot-rockdale-191mw-20y-lease-anthropic",
    "related": [
     "kobeissi-anthropic-volta-bitdeer-tydal-term-gap",
