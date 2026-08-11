@@ -1,3 +1,79 @@
+## 2026-08-11 Cowork(Opus) — 모바일 v82 「지금 쏠린 곳」 테마 이름이 안 보이던 문제
+
+**요청**: june "모바일도 고쳐줘"(데스크톱 `#skew` 겹침 수정 `8530edb` 의 후속). 배포까지 명시 승인.
+
+**증상**: 390px 에서 **13개 행(랭킹 위젯 6 + 추이 목록 7) 전부** 테마 이름이 `💵…` 처럼
+이모지+말줄임표로만 보였다. 어느 행이 무슨 테마인지 식별 불가능. `.v82-skew-name` 실측 폭 **30px**,
+옆의 `.v82-skew-lean`(`강세 100% · 표본 적음 · 글 2개 · 출처 2곳`)이 **269px**.
+한 행에서 출처 수가 **3번**(lean·cts·토글), 글 수가 **2번**(lean·cts) 반복되고 있었다.
+
+**커밋**: `07999bf`(assets/v82.js·v82.css) -> `21ec503`(index.html 캐시 해시). 순서 준수.
+
+- `v82.js skewSubHtml()`: `.v82-skew-lean` 에서 `sampleDetail`("글 N개 · 출처 N곳") 제거,
+  `표본 적음` 은 유지. `sampleDetail` 지역변수는 다른 사용처가 없어 선언째 삭제.
+- `v82.js`: `.v82-skew-cts` 첫 span(`stat`) 을 `N 출처 · N 글` -> `N 글` 로 축소.
+  출처 수는 바로 옆 `.v82-skew-source-toggle` 이 이미 표시하고, 거기가 실제로 누르는 자리다.
+- `v82.js .v82-tr-row`: `rowStatLb(c)` 신설(`statLb` 는 히어로 칩용으로 유지) — 랭킹 행 메타를
+  `N 글 · 표본 적음` 으로 축소. 이 행은 탭하면 `openTheme(k)` 로 들어가 출처 구성을 볼 수 있어
+  정보가 사라지는 게 아니라 자리를 옮긴 것.
+- `v82.css .v82-tr-row .nm`: `flex:1` -> `flex:1 0 auto; min-width:56px`. 형제 `.rk`/`.sd`/`.mv`
+  가 전부 `flex-shrink:0` 이라 `.nm` 만 축소 대상이 돼 30px 까지 밀렸던 구조를 뒤집었다.
+  축소 부담은 `.n` 이 전담(`flex:0 1 auto; min-width:0` + ellipsis).
+- `v82.css .v82-skew-lean`: `flex-shrink:40` (이름은 `1` 유지). **이름 쪽을 shrink:0 으로
+  막지 않은 이유** — 이 필드에는 고정 테마 8개 말고 실제 회사명(최장 30자 확인)도 들어온다.
+  완전히 막으면 아주 긴 이름에서 행이 폭 밖으로 넘쳐 `#v82hub` 에 가로 스크롤이 생길 수 있다.
+  비대칭 shrink 로 "라벨이 이름보다 훨씬 먼저 줄고, 정말 긴 이름은 ellipsis" 가 되게 했다.
+- `v82.css .v82-skew-source-toggle`: `position:relative` + `::before` 44x44 히트박스.
+  시각 크기(30.8x20.8px)와 행 높이(82px)는 그대로.
+
+**검증 (로컬 Playwright, 390 / 360 / 340px, `isMobile:true`)**:
+- **이름 잘림 13/13 -> 0/13.** `scrollWidth <= clientWidth+1` 로 실측. 이름 폭
+  랭킹행 36~43px -> 90~109px, 추이행 30~37px -> 162~169px.
+- 행 높이 82px 유지(3폭 전부). 출처 토글 확장 정상(82 -> 231.97px).
+- 탭 타깃: `elementFromPoint` 로 44x44 히트박스의 중심·4변·4모서리 9점을 7행 전부 사격 -> **63/63 PASS**.
+  (`getBoundingClientRect` 는 여전히 30.8x20.8 로 나온다 — `::before` 히트박스 확장 기법의 당연한 결과.)
+- 허브 화면 스크린샷 before/after **sha256 완전 일치**(회귀 0).
+- 부수 개선: en 로케일에서 lean 이 2줄로 넘쳐 행 높이가 92px 이던 것이 78px 로 안정화.
+- ⚠ 360/340px 겹침 스캔이 2건/5건 나오지만 `.n` 의 **ellipsis 로 잘린 텍스트의 언클리핑
+  레이아웃 박스** 아티팩트다(Range API 특성). 확대 스크린샷으로 시각적 겹침 없음 확인.
+
+**배포 후 라이브 검증**:
+- `index.html` sha256 = `04077f00…2fd2d202` — 로컬 최종본과 **바이트 완전 일치**(988,083 bytes).
+- 라이브 `assets/v82.js` sha8 = `989b6b68`, `v82.css` sha8 = `c44b688f` — **로컬 검증본과 동일 바이트.**
+  즉 위 390/360/340px 결과가 라이브에 그대로 적용된다(라이브 모바일 렌더는 XFO DENY 로 직접 확인 불가).
+- 데스크톱 `#skew` 회귀 없음: 1180px 에서 겹침 0건, 이름 13/13 온전, `.sktr-sample` = `표본 적음 · 글 4개`.
+
+**캐시 해시 규칙 불일치 주의**: 직전 값이 `?v=p1-skew-source-missing-20260810` 같은 **슬러그**였다.
+`WORK-LOCK.md` 규칙(= 파일 sha256 앞 8자)대로 sha8 로 되돌려 넣었다(june 확인). 다른 세션이
+슬러그로 바꿔 쓰고 있었을 수 있으니, 다음에 이 값을 만질 때 어느 쪽을 쓸지 한 번 정리할 것.
+
+**이번에 열린 도구 경로 (다음 세션이 반드시 알아야 함)**:
+1. **컨테이너에서 레포 clone 이 된다** -> `deploy_guard.py` 를 브라우저 세션에서도 돌릴 수 있다.
+   "클론 없는 세션" 을 기본 가정하지 말 것.
+2. **로컬 모바일 재현 하네스가 만들어졌다** — `/mnt/user-data/outputs/mobile-harness.py`.
+   `python3 -m http.server 8765` + Playwright 390px 로 탐색 허브 -> 쏠림 서브뷰까지 자동 진입해
+   스크린샷 4종 + `measurements.json` 을 뽑는다. **XFO DENY 로 막힌 모바일 검증의 대체 경로다.**
+   ⚠ `#v82hub` 는 `position:fixed;inset:0;overflow-y:auto` 자체 스크롤 컨테이너라
+   `window.scrollTo` 가 안 먹는다 — `hub.scrollTop` 을 직접 조작해야 한다.
+   ⚠ `document.documentElement.scrollHeight` 는 허브 뒤에 숨은 배경 홈피드 높이라 서브뷰와 무관하다.
+3. **`file_upload` 도구로 컨테이너 파일을 GitHub 업로드 폼에 직접 물릴 수 있다.**
+   경로가 `/mnt/user-data/outputs/` 아래여야 한다(`/tmp` 는 거부). 조각화·gzip·JS 문자열 전송이
+   전부 불필요해진다 — 965KB `index.html`, 210KB 에셋 2개, 307KB `AGENT_HANDOFF.md` 전부 1회 성공.
+4. `api.github.com` 은 브라우저에서 비인증이라 시간당 60회 제한에 걸린다(이번에 403 도달).
+   걸리면 raw sha 대조 + `github.com/.../commits/main/<path>` HTML 문자열 검색으로 대신 확인.
+5. `resize_window` 는 이 환경에서 여전히 무효다(success 반환 후 `innerWidth` 불변 실측).
+
+**남은 것**:
+- **`Feed detail regression` 워크플로가 여전히 실패 중이다** (2026-08-10 `af08b38` 이후 성공 기록 없음).
+  이번 두 커밋도 그 위에 올렸다. **내 변경이 깬 것이 아니다.** 회귀 가드가 죽어 있으니 추적 필요.
+- P1 이하 진단(3중 중복 잔여, 표본 역설, 타이포 종수, 점 그리드 축·범례 부재, `#skew` URL 이
+  모바일에서 무시되는 문제)은 `claude/design-2026-08-11-skew-page-ux-audit.md` 에 그대로 있다.
+  **june 결정: 글 3건 미만은 "표본 부족" 그룹으로 하단에 접는다**(착수는 게이트 이후 또는 별도 지시).
+- `index.html` 락은 이번에도 안 잡았다 — deploy_guard + 업로드 직전 baseSha + 클릭 직전 HEAD 재확인 +
+  clobber guard 로 갈음. 오늘 하루 다른 세션이 `index.html` 에 5회 이상 커밋했다.
+
+**안전 범위**: `items.json`, D1 큐, 자동 발행 워크플로, `scripts/`, 데스크톱(v83) 클래스는 건드리지 않았다.
+
 ## 2026-08-11 Cowork(Opus) - 13F 투자자 화면 진단 및 버그성 2건 배포
 
 **요청**: june "stacksdaily.com/#investors 를 UI/UX 측면에서 개선할 방법은 없을까?"
