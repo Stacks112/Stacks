@@ -1,3 +1,70 @@
+## 2026-08-11 Cowork(Opus) — `quote1y` 무제한 fetch 차단: 멈춘 요청 하나가 큐 전체를 세우던 문제 (v86)
+
+**커밋**: `899dfdb`(index.html, +14/−4, 단일 파일). BUILD v85 -> v86. 에셋 무변경이라 `?v=` 갱신 없음.
+**CI 전부 success** — 특히 같은 날 복구한 `Feed detail regression` 이 **제품 변경에 대해 실제로 동작해 통과한 첫 사례**다.
+
+### 무엇이 문제였나
+
+`Q1Y[t]`(index.html:5308)는 **프라미스 자체를 캐시**하는데 그 안의 `fetch` 에 타임아웃도 AbortController 도 없었다.
+요청 하나가 응답도 에러도 없이 매달리면 그 프라미스는 세션 내내 pending 이고, `invMapLimit`(6959)이 그 슬롯을 놓지 못해 **큐 전체가 그 자리에서 멈춘다.**
+`try/catch` 는 네트워크 예외만 잡고 "응답이 안 온다" 는 상태는 못 잡는다.
+
+**영향 범위가 13F 만이 아니다** (호출부 전수):
+
+- `queueSince`(5378) — 피드 카드의 종가 대비 등락 배지. 홈·상세·관련 카드 전부
+- `queueInvestorSince`(6574) — 13F 목록 카드의 신규 매수 후 수익률
+- `invComputeValueSeries`(7085) · `invComputeHistoricalValueSeries`(7015) — 13F 상세 가치 차트·스파크라인
+- `investor-compare.js:361` · `:643` — **`quote1y("spy.us")` 가 단일 장애점이다.** 벤치마크라 두 곳이 공유하므로 SPY 하나가 막히면 비교 그래프와 모든 실적 카드가 통째로 멈춘다
+
+v84 기록의 "계산 중 (3/4) 에서 정지" 의 나머지 절반이 이것일 가능성이 있다(v85 가 고친 rAF 게이트와는 별개 경로).
+
+### 고침
+
+`AbortController` + `setTimeout` 10초. 타임아웃되면 **기존 `{error:true}` 경로로 떨어진다.**
+그 상태를 표시하는 UI 는 이미 있다 — `investor-compare.js` 의 `priceState()`/`setPriceStatus()` 가
+`data-price-status="unavailable"` + `시세 조회 실패` 를 렌더한다. **새 UI 0줄.**
+
+`AbortSignal.timeout()` 은 쓰지 않았다. 이 코드베이스는 `?.`·`??` 조차 0건일 만큼 보수적이라 2022년 API 는 지원 폭을 불필요하게 좁힌다.
+`AbortController` 는 이 리포의 **첫 사용 사례**다(사전 grep 0건).
+
+**실패를 계속 캐시하는 동작은 그대로 뒀다.** 타임아웃 시 `Q1Y[t]` 를 지워 재시도를 허용할 수도 있으나,
+원 설계 의도가 세션 내 영구 캐시이고(6564·7082 주석), 재시도를 열면 죽은 티커에 매 진입마다 요청이 반복된다.
+이번엔 큐가 반드시 전진하는 쪽을 택했다.
+
+### 10초를 고른 근거 — 추측이 아니라 실측
+
+라이브 `api.stacksdaily.com/quote` 를 브라우저에서 직접 계측했다.
+
+| 조건 | 결과 |
+|---|---|
+| 순차 8건 | p50 258ms · p95 308ms · 최대 308ms |
+| 인기 티커 20건 동시 | 벽시계 560ms · p95 551ms · 최대 551ms |
+| 비인기 티커 22건 동시 | 벽시계 404ms · p95 392ms · **최대 402ms** |
+
+관측 최악값의 **약 18배**다. 정상 요청을 죽일 수 없으면서 멈춤은 10초에서 끊긴다.
+22건이 404ms 에 전부 끝나는 것으로 **HTTP/2 멀티플렉싱**도 확인됐다(호스트당 6개 제한 없음).
+앞선 조사가 "확인 불가" 로 남겼던 항목이 이걸로 풀렸다.
+
+### 검증
+
+- **node 하네스**: 패치 전은 5초가 지나도 settle 안 됨 / 패치 후는 301ms 에 `{error:true}` 반환(타임아웃 300ms 로 낮춘 사본) / 정상 응답 시 결과 동일하고 `finally` 의 `clearTimeout` 덕에 프로세스가 매달리지 않음.
+- `node --check` 통과. CRLF 15,640 -> 15,650(추가 10줄과 정확히 일치, LF 단독 0).
+- 커밋 전 에디터 doc 을 CRLF 로 환산해 origin `56dbc5f7…`(990,405바이트)와 대조하고, dispatch 결과 `3977813e…`(991,240바이트)가 로컬 검증본과 일치함을 확인한 뒤 커밋. 커밋 후 `api.github.com/contents` 로 재확인 — **바이트 완전 일치**.
+- CI: **Feed detail regression ✅** · Clobber guard ✅ · Email render guard ✅ · Mobile calendar regression ✅ · pages build ✅ · Watch auto-publish ✅.
+- 라이브(hidden 탭, 강제 페인트 없이): BUILD v86, `Q1Y_TIMEOUT_MS = 10000`, `quote1y` 에 `AbortController`·`signal` 존재. 비교 화면이 20초 내에 표 3개 + 폴리라인 5개로 완주 — **v85 의 rAF 폴백도 함께 정상 동작 확인**.
+
+### 다음 회차가 알아야 할 것
+
+- **같은 결함이 3곳 더 있다**: `loadQuote`(4779) · `fsqLoad`(4914) · `ehqLoad`(5045). 전부 타임아웃이 없다.
+  다만 이들은 캐시에 **값**을 넣지 프라미스를 넣지 않아 **다른 체인을 막지는 않는다** — 그 차트 하나만 계속 로딩 상태로 남는다.
+  범위를 넓히지 않으려 이번엔 안 건드렸다. 고칠 때는 `fetchWithTimeout` 공통 헬퍼로 빼는 편이 낫다.
+- **`index.html` 은 CI 가 주기적으로 재생성한다.** 자동발행 회차의 `chore: build pages for auto-published cards` 커밋이 홈의 정적 최신 10개 블록을 다시 굽는다.
+  그래서 라이브 바이트 수가 레포와 다를 수 있고(오늘 실측 938바이트 차) 베이스가 수시로 움직인다.
+  **커밋 직전에 에디터 doc 해시를 origin 과 대조하는 절차가 그래서 중요하다.**
+- 타임아웃 상수는 `Q1Y_TIMEOUT_MS` 하나로 뽑아 뒀다. 조정이 필요하면 그 줄만 고치면 된다.
+
+---
+
 ## 2026-08-11 Cowork(Opus) — 회귀 가드 복구: `Feed detail regression` 상시 red 종료 (7 fail -> 0)
 
 **커밋**: `6985249`(playwright.config.mjs) -> `40a653d`(tests) -> `27216b7`(playwright.config.mjs) -> `bcaab9d`(tests).
