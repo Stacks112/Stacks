@@ -1,3 +1,75 @@
+## 2026-08-11 Cowork(Opus) — 비교 화면 백그라운드 탭 정지 해제 (v85)
+
+**커밋**: `da67763`(assets/investor-compare.js, +27/−3) -> `4f0a666`(index.html, +3/−3, 캐시 해시 `0136ebc6`->`cf0da680`, BUILD v84->v85).
+Clobber guard 둘 다 success. 앞 회차(v84)가 "다음 후보"로 남긴 항목을 처리한 것이다.
+
+### ★ 앞 회차 진단이 범인 파일을 잘못 짚었다 (다음 세션이 되풀이하지 않도록)
+
+v84 기록은 `assets/investor-compare-paint.js` 의 rAF 셔임을 원인으로 지목했으나, **그 파일은 라이브에서 죽어 있다.**
+
+- `investor-compare.js:785` 가 `window.__stacksInvestorComparePaintDeferred = true;` 를 IIFE 최상위에서 **조건 없이** 실행한다.
+- `index.html` 로드 순서는 `investor-compare.js`(15637줄) -> `investor-compare-paint.js`(15638줄).
+- `-paint.js` 3번째 줄이 그 플래그를 보고 즉시 `return` 한다.
+- 라이브 실측: `window.__stacksInvestorComparePaintShim` 이 `undefined`. **셔임이 한 번도 적용된 적이 없다.**
+- 그 파일을 고쳤다면 v83 의 `?v=` 누락과 똑같이 사용자에게 아무것도 전달되지 않았을 것이다.
+
+**진짜 정지 지점은 `investor-compare.js` 의 `afterCompareFirstPaint`(구 701~705줄)** 이다. 이름만 다른 똑같은 이중 rAF 셔임이고,
+`renderCompare` 가 구 732줄에서 이걸로 `compareGraphSection` 빌드를 미룬다. 주석에 적힌 대로 모바일 INP 대책으로 들어간 코드다.
+
+### 증상도 기록과 달랐다
+
+백그라운드 탭 콜드 진입 실측(스크린샷 없이 25초 관찰):
+
+- 멈추는 지점은 `계산 중 (3/4)` 가 **아니라 카운터 없는 `계산 중`** 이다. 헤더와 선택 스트립만 그려지고 표 0개, 요약 카드 0개, 차트 SVG 20px(빈 상태).
+- 스크린샷 1장(강제 페인트) 직후 전부 진행됐고 **그때 비로소** `계산 중 (1/4)` 카운터가 나타났다. 탭은 그 시점에도 계속 `hidden` 이었다.
+- hidden 유지한 채 약 3분 뒤 폴리라인 5개 + 표 3개까지 완주.
+- 즉 **rAF 게이트는 이 한 곳뿐**이고, 그 뒤 fetch·Promise 경로(`invMapLimit`·`quote1y`·`paintCompareGraph`)에는 rAF 가 없어 hidden 에서도 정상 동작한다.
+  v84 가 본 `(3/4)` 는 페인트를 유도한 뒤의 정상 진행이었을 것이다.
+
+### 패치 (`assets/investor-compare.js` 한 곳)
+
+`observeInvestorCards()`(index.html 6809~6818)의 v82 관용구를 그대로 옮겼다.
+
+- `CMP_PAINT_VIS_BOUND` 플래그로 리스너 중복 등록 방지
+- `document.visibilityState === "visible"` 일 때만 `CMP_PAINT_PENDING` 큐 flush
+- 3초 안전망 타이머 1회
+- 추가로 **`done` 가드**를 얹었다. rAF 와 폴백이 둘 다 발화해도 원본이 두 번 실행되지 않는다. `run()` 은 실행 시 자기 자신을 큐에서 제거해 누수도 없다.
+
+**보이는 탭에서는 rAF 가 항상 먼저 이겨서 기존 동작과 동일하다**(3초 타이머는 no-op). 회귀 위험이 구조적으로 0인 형태다.
+속도를 올리는 패치가 아니라 멈춤만 푸는 패치다.
+
+### 검증
+
+- `node --check` 통과. `CMP_PAINT*`·`cmpPaintFlushPending`·`done`·`run` 원본 충돌 0건. `visibilitychange` 리스너는 이 파일에 이 1건뿐.
+- **배포 무결성 (커밋 전 대조)**: 에디터 doc 을 SHA-256 으로 원본과 대조 — `investor-compare.js` 는 `0136ebc6…`(62,520바이트) 일치로 베이스 미이동 확인,
+  dispatch 후 `cf0da680…`(63,484바이트)가 로컬 검증본과 **완전 일치**. `index.html` 은 CM doc 을 CRLF 로 환산해 `2003c0c2…`(990,451바이트) 일치 확인 후,
+  3곳 치환 결과가 사전 계산해 둔 `1deb29be…`와 일치. 커밋 후 `api.github.com/contents` base64 로 둘 다 재확인 — **바이트 완전 일치**, 각각 단일 파일 변경.
+- **라이브 실측 (전부 hidden 탭, 강제 페인트 없이)**:
+  - 수정 전: 25초 경과에도 표 0 / 요약 없음 / 차트 없음
+  - 수정 후: 13.8초에 요약 카드 4장 + 표 3개, 18.8초에 차트 폴리라인 5개, 로딩 소멸. BUILD v85 확인
+  - **3초 안전망 경로**: 렌더 시작 약 6.1초 -> 표 등장 약 9.1초 (정확히 +3초)
+  - **visibilitychange 경로**: `visibilityState` 를 임시로 visible 로 덮고 이벤트 1회 발생 -> **20ms 만에** 표 등장(안전망 3,000ms 대비). 테스트 후 override 원복 확인
+  - **이중 실행 없음**: 강제 페인트로 rAF 를 먼저 발화시킨 뒤 3초 타이머까지 지나게 둬도 header 1 / strip 1 / summary grid 1(카드 4) / table 3 / section 3 / disclaimer 1 / polyline 5
+- CI: Clobber guard ✅ · pages build ✅ · Email render guard ✅ · Mobile calendar regression ✅ · Watch auto-publish ✅.
+  **`Feed detail regression` 은 실패했으나 무관하다** — 최근 15회 전수 failure 인 기존 red 다(2026-08-10 `a791bc9` 이전부터 계속). 여전히 수리 또는 비활성 판단 대기.
+
+### 다음 회차가 알아야 할 것
+
+- **`assets/investor-compare-paint.js` 는 죽은 파일이다.** 694바이트를 매 로드마다 받아 3번째 줄에서 return 한다. 이번엔 범위를 넓히지 않으려고 손대지 않았다.
+  정리하려면 index.html 15638줄의 script 태그와 파일을 함께 지우면 된다. june 승인 필요.
+- **`curl` 로 raw.githubusercontent.com 에서 index.html 전문(990KB)이 정상적으로 받아진다.** v84 기록의 "curl/wget/python requests 금지" 는 이 환경에서 사실이 아니었다.
+  잘리는 것은 WebFetch 뿐이다. 브라우저 페이지 컨텍스트 fetch 로 우회할 필요가 없어 시간이 크게 절약된다.
+- **GitHub 웹 에디터에서 EditorView 진입점은 `.cm-content` 의 `cmTile` 이다.** `cmView` 는 이제 `undefined` 다. `cmTile` 에서 BFS 4스텝이면 `state.doc` + `dispatch` 객체가 나온다.
+- **커밋 전에 에디터 doc 의 SHA-256 을 원본과 대조하는 것을 권한다.** index.html 은 CM doc 에 CR 문자가 없으므로 개행을 CRLF 로 환산해 재면 파일 해시와 정확히 맞는다(990,451바이트 실측 일치).
+  clobber 위험을 커밋 전에 0으로 만들 수 있고, dispatch 결과가 로컬 검증본과 같은지도 같은 방법으로 확인된다. AGENT_HANDOFF.md 는 LF 라 환산이 필요 없다.
+- **백그라운드 탭을 검증할 때 스크린샷은 그 자체가 강제 페인트다.** 이번 회차는 검증 구간에서 스크린샷을 쓰지 않고 `javascript_tool` 폴링만 썼다.
+  한 장이라도 찍으면 rAF 가 풀려 버그가 사라진 것처럼 보인다. v84 가 증상을 다르게 기록한 원인도 이것으로 보인다.
+- 4명 콜드 비교가 `/quote` 174건이라 수 분 걸리는 것은 그대로다. 성능은 이번에도 손대지 않았다.
+- **미조치로 남긴 구조적 취약점**: `quote1y`(index.html 5309~)의 `fetch` 에 타임아웃·AbortController 가 없고 `Q1Y[t]` 가 **pending 프라미스 자체를 캐시**한다.
+  한 티커 요청이 응답을 못 받으면 그 세션 내내 영구 pending 이고 `invMapLimit`(6959~) 큐가 그 자리에서 멈춘다. 이번 증상의 원인은 아니었지만(코드로 확인) 기록해 둔다.
+
+---
+
 ## 2026-08-11 Cowork(Opus) - 13F 남은 2건 배포 (v84)
 
 같은 날 앞 회차(v83)의 후속. 진단만 하고 남겨뒀던 2건을 마저 배포했다.
