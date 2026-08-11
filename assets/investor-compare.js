@@ -127,6 +127,7 @@
     t.className = "inv-ticker";
     t.textContent = tickerLabel(inv);
     t.title = C().tickerHelp;
+    names.appendChild(document.createTextNode(" "));
     names.appendChild(t);
   }
 
