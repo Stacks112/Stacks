@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v87 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
+<!-- STACKS BUILD v88 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
 <html lang="en" class="stkboot stkbootr">
 <head>
 <meta charset="UTF-8">
@@ -4121,7 +4121,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v87</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v88</p>
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
     <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
@@ -6833,6 +6833,40 @@ function observeInvestorCards(cards){
     invHydratePendingInViewport();
   }, 3000);
 }
+/* SEC issuer strings arrive filer-formatted: 83% are all caps and 207 of them
+   end in INC, 83 in CORP, and so on. Those suffixes carry no meaning here and
+   they eat the width the actual name needs, which is why two different rows
+   could both render as "TAIWAN SEMICONDUCTOR M...". Strip the suffix, and when
+   Stacks already has an entity for the row use that entity's own name for the
+   reader's language. Acronym brands stay in English on purpose: the Korean
+   alias for TSMC, ASML and AMD is a phonetic transliteration nobody reads. */
+var INV_NAME_SUFFIX = /[\s,]+(INC|CORP|CORPORATION|CO|LTD|PLC|LP|NV|SA|AG|THE)\.?$/i;
+function invStripSuffix(s){
+  var out = String(s || "").trim().replace(/[.,]+$/, "");
+  for (var i = 0; i < 3 && INV_NAME_SUFFIX.test(out); i++) out = out.replace(INV_NAME_SUFFIX, "").trim();
+  out = out.replace(/[\s&,.\-]+$/, "").trim();
+  return out || String(s || "").trim();
+}
+function invEntityName(key, lang){
+  var e = (typeof ENTITIES !== "undefined") ? ENTITIES[key] : null;
+  if (!e || !e.aliases || !e.aliases.length) return "";
+  var latin = "";
+  for (var i = 0; i < e.aliases.length; i++){
+    if (/^[\x20-\x7E]+$/.test(String(e.aliases[i] || ""))){ latin = e.aliases[i]; break; }
+  }
+  if (!latin) latin = String(e.aliases[0] || "");
+  if (lang === "en") return latin;
+  if (/^[A-Z0-9.&-]{1,5}$/.test(latin)) return latin;
+  var re = (lang === "ja") ? /[ぁ-んァ-ヶ一-龠]/ : /[가-힣]/;
+  for (var j = 0; j < e.aliases.length; j++){ if (re.test(e.aliases[j])) return e.aliases[j]; }
+  return latin;
+}
+function invDisplayName(h){
+  var lang = (typeof LANG !== "undefined") ? LANG : "en";
+  var ent = (h && h.entity_key) ? invEntityName(h.entity_key, lang) : "";
+  return ent || invStripSuffix(h && h.issuer);
+}
+
 /* put_call: "PUT"|"CALL"|undefined. 13F에서 옵션 포지션의 "shares"는 실제
    보유 주식수가 아니라 계약이 커버하는 기초자산 주식수라, 종목명만 봐서는
    보통주와 구분이 안 된다 - 이름 옆에 항상 눈에 띄는 배지를 붙인다. */
@@ -6842,7 +6876,7 @@ function invPutCallBadgeHtml(pc){
 }
 function investorHoldingRowHtml(h, S){
   var hasEnt = !!(h.entity_key && typeof ENTITIES !== "undefined" && ENTITIES[h.entity_key]);
-  var label = esc(h.issuer || "") + invPutCallBadgeHtml(h.put_call);
+  var label = esc(invDisplayName(h)) + invPutCallBadgeHtml(h.put_call);
   var nameCell = hasEnt
     ? '<span class="inv-name-link" data-ent="' + esc(h.entity_key) + '">' + label + "</span>"
     : "<span>" + label + "</span>";
@@ -6897,7 +6931,7 @@ function invActivityHtml(activity, S){
    붙는다 - exit는 가격 정보 없이 매도 규모를 매길 수 없어 별도 지표를 만드는
    대신 이 순서를 그대로 "정리된 포지션" 하단부로 쓴다. */
 function invMoverRowHtml(h, S){
-  var label = esc(h.issuer || "") + invPutCallBadgeHtml(h.put_call);
+  var label = esc(invDisplayName(h)) + invPutCallBadgeHtml(h.put_call);
   var w = (typeof h.weight === "number") ? (h.weight * 100).toFixed(2) + "%" : "—";
   return '<div class="inv-mover-row"><span class="inv-mover-name">' + label + "</span>"
     + '<span class="inv-mover-w">' + w + "</span>" + invChangeBadgeHtml(h.change, S) + "</div>";
@@ -7410,7 +7444,7 @@ function renderInvestorDetail(list, S, inv){
       bars.innerHTML = top15.map(function(h){
         var pct = (h.weight || 0) * 100;
         var barPct = Math.max(2, (h.weight || 0) / maxW * 100);
-        var plainLabel = esc(h.issuer || "");
+        var plainLabel = esc(invDisplayName(h));
         var label = plainLabel + invPutCallBadgeHtml(h.put_call);
         /* An option row is not a share position, but the bar used to be drawn in
            the same accent as every long holding, so the longest bar on Burry or
@@ -7418,7 +7452,7 @@ function renderInvestorDetail(list, S, inv){
            instead so the two cannot be scanned as the same thing. */
         var optCls = (h.put_call === "PUT") ? " inv-bar-fill-put"
           : (h.put_call === "CALL") ? " inv-bar-fill-call" : "";
-        return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + plainLabel + '">' + label + "</span>"
+        return '<div class="inv-bar-row"><span class="inv-bar-name" title="' + esc(h.issuer || "") + '">' + label + "</span>"
           + '<span class="inv-bar-track"><span class="inv-bar-fill' + optCls + '" style="width:' + barPct.toFixed(1) + '%"></span></span>'
           + '<span class="inv-bar-pct">' + pct.toFixed(1) + "%</span></div>";
       }).join("");
