@@ -11,13 +11,14 @@
     "scion":"BURRY"
   };
   var COMPARE_KEY = "stk_inv_compare";
+  var MAX_COMPARE = 4;
   var selected = null;
   var SERIES_P = {};
 
   var COPY = {
     ko:{
       tickerHelp:"Stacks 투자자 티커", pickTitle:"투자자 비교", pickSub:"2~4명을 골라 포트폴리오를 나란히 비교하세요.",
-      compare:"선택한 투자자 비교", selected:"{n}명 선택", min:"2명 이상 선택하세요.", max:"최대 4명까지 비교할 수 있어요.",
+      compare:"선택한 투자자 비교", selected:"{n}명 선택", min:"2명 이상 선택하세요.", max:"최대 4명까지 비교할 수 있어요.", swapped:"최대 4명이라 오래된 선택을 교체했어요: {out} → {in}",
       search:"투자자, 운용사, 티커 검색", openPortfolio:"포트폴리오 보기", addCompare:"+ 비교 추가", inCompare:"✓ 비교 중", fullCompare:"최대 4명",
       entrySub:"보유종목·섹터·공개 포트폴리오 흐름을 같은 화면에서 비교합니다.", oneMore:"한 명 더 고르면 비교할 수 있어요.", ready:"보유종목과 수익률을 나란히 봅니다.",
       topHolding:"상위 보유", snapshot:"이번 스냅샷", read13f:"13F 읽는 법", read13fSub:"분기 말 미국 상장 롱 포지션을 최대 45일 뒤 공개합니다.",
@@ -41,7 +42,7 @@
     },
     en:{
       tickerHelp:"Stacks investor ticker", pickTitle:"Compare investors", pickSub:"Choose 2–4 investors to compare their public portfolios side by side.",
-      compare:"Compare selected", selected:"{n} selected", min:"Select at least two investors.", max:"You can compare up to four investors.",
+      compare:"Compare selected", selected:"{n} selected", min:"Select at least two investors.", max:"You can compare up to four investors.", swapped:"Four is the limit, so the oldest pick was replaced: {out} → {in}",
       search:"Search investor, firm or ticker", openPortfolio:"View portfolio", addCompare:"+ Add to compare", inCompare:"✓ Comparing", fullCompare:"Max 4",
       entrySub:"Compare holdings, sectors and public-portfolio paths in one place.", oneMore:"Choose one more investor to compare.", ready:"Compare holdings and returns side by side.",
       topHolding:"Top holding", snapshot:"This snapshot", read13f:"How to read 13F", read13fSub:"U.S.-listed long positions are disclosed up to 45 days after quarter-end.",
@@ -65,7 +66,7 @@
     },
     ja:{
       tickerHelp:"Stacks投資家ティッカー", pickTitle:"投資家を比較", pickSub:"2〜4人を選び、公開ポートフォリオを横並びで比較します。",
-      compare:"選択した投資家を比較", selected:"{n}人選択", min:"2人以上選択してください。", max:"比較できるのは最大4人です。",
+      compare:"選択した投資家を比較", selected:"{n}人選択", min:"2人以上選択してください。", max:"比較できるのは最大4人です。", swapped:"最大4人のため、最も古い選択を入れ替えました: {out} → {in}",
       search:"投資家・運用会社・ティッカーを検索", openPortfolio:"ポートフォリオを見る", addCompare:"+ 比較に追加", inCompare:"✓ 比較中", fullCompare:"最大4人",
       entrySub:"保有銘柄・セクター・公開ポートフォリオの推移を同じ画面で比較します。", oneMore:"もう1人選ぶと比較できます。", ready:"保有銘柄とリターンを横並びで比較します。",
       topHolding:"最大保有", snapshot:"今回のスナップショット", read13f:"13Fの見方", read13fSub:"四半期末の米国上場ロングポジションを最大45日後に開示します。",
@@ -108,12 +109,12 @@
     if (!selected){
       var saved = [];
       try { saved = store.get(COMPARE_KEY, []); } catch(e) {}
-      selected = new Set((Array.isArray(saved) ? saved : []).filter(function(s){ return valid.has(s); }).slice(0,4));
+      selected = new Set((Array.isArray(saved) ? saved : []).filter(function(s){ return valid.has(s); }).slice(0,MAX_COMPARE));
       if (selected.size < 2){
         selected = new Set(["berkshire","pershing-square"].filter(function(s){ return valid.has(s); }));
       }
     } else {
-      selected = new Set(selArray().filter(function(s){ return valid.has(s); }).slice(0,4));
+      selected = new Set(selArray().filter(function(s){ return valid.has(s); }).slice(0,MAX_COMPARE));
     }
     saveSelection();
   }
@@ -130,7 +131,7 @@
   }
 
   function chosenInvestors(investors){
-    return selArray().map(function(slug){ return investors.find(function(inv){ return inv.slug === slug; }); }).filter(Boolean).slice(0,4);
+    return selArray().map(function(slug){ return investors.find(function(inv){ return inv.slug === slug; }); }).filter(Boolean).slice(0,MAX_COMPARE);
   }
   function topHolding(inv){
     return holdings(inv).slice().sort(function(a,b){ return (b.weight || 0) - (a.weight || 0); })[0] || null;
@@ -147,21 +148,27 @@
     if (selected.size < 2){ if (message) message.textContent = C().min; return; }
     if (typeof openInvestor === "function") openInvestor("compare");
   }
+  function investorLabel(slug, investors){
+    var inv = (investors || []).find(function(i){ return i.slug === slug; });
+    return inv ? (locVal(inv.manager) || locVal(inv.name) || inv.slug) : slug;
+  }
   function toggleSelection(slug, investors, message){
+    var swappedOut = null;
     if (selected.has(slug)) selected.delete(slug);
-    else if (selected.size >= 4){ if (message) message.textContent = C().max; return false; }
-    else selected.add(slug);
+    else {
+      if (selected.size >= MAX_COMPARE){ swappedOut = selected.values().next().value; selected.delete(swappedOut); }
+      selected.add(slug);
+    }
     saveSelection();
-    if (message) message.textContent = "";
+    if (message) message.textContent = swappedOut ? C().swapped.replace("{out}", investorLabel(swappedOut, investors)).replace("{in}", investorLabel(slug, investors)) : "";
     syncSelection(investors);
     return true;
   }
-  function selectionLabel(button, on, full){
+  function selectionLabel(button, on){
     var c = C();
-    button.textContent = on ? c.inCompare : (full ? c.fullCompare : c.addCompare);
+    button.textContent = on ? c.inCompare : c.addCompare;
     button.classList.toggle("on", on);
     button.setAttribute("aria-pressed", on ? "true" : "false");
-    button.disabled = !on && full;
   }
   function renderCompareBar(investors){
     var old = document.querySelector(".inv-compare-bar"); if (old) old.remove();
@@ -209,7 +216,7 @@
     if (typeof invViewActive === "function" && !invViewActive()) return;
     var c = C(), chosen = chosenInvestors(investors), wrap = document.createElement("div"); wrap.className = "inv-lab-rail";
     var pick = document.createElement("section"); pick.className = "inv-rail-card inv-rail-selection";
-    pick.innerHTML = '<h2>' + esc(c.pickTitle) + '<small>' + selected.size + '/4</small></h2><div class="inv-rail-rows"></div>';
+    pick.innerHTML = '<h2>' + esc(c.pickTitle) + '<small>' + selected.size + '/' + MAX_COMPARE + '</small></h2><div class="inv-rail-rows"></div>';
     var rows = pick.querySelector(".inv-rail-rows");
     if (!chosen.length){ var empty = document.createElement("p"); empty.textContent = c.railEmpty; rows.appendChild(empty); }
     chosen.forEach(function(inv, i){
@@ -236,9 +243,9 @@
     wrap.appendChild(pick); wrap.appendChild(guide); wrap.appendChild(snap); rail.appendChild(wrap);
   }
   function syncSelection(investors){
-    var c = C(), full = selected.size >= 4;
+    var c = C();
     document.querySelectorAll("[data-inv-select]").forEach(function(button){
-      var slug = button.getAttribute("data-inv-select"), on = selected.has(slug); selectionLabel(button, on, full);
+      var slug = button.getAttribute("data-inv-select"), on = selected.has(slug); selectionLabel(button, on);
     });
     document.querySelectorAll(".inv-compare-count").forEach(function(el){ el.textContent = c.selected.replace("{n}", selected.size); });
     document.querySelectorAll("[data-inv-go]").forEach(function(button){ button.disabled = selected.size < 2; });
