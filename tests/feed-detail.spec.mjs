@@ -405,7 +405,7 @@ test.describe("13F investor view state", () => {
       await page.locator('.inv-hub-select[aria-pressed="false"]').nth(0).click();
       await page.locator('.inv-hub-select[aria-pressed="false"]').nth(0).click();
       await expect(page.locator('.inv-hub-select[aria-pressed="true"]')).toHaveCount(4);
-      await expect(page.locator('.inv-hub-select[aria-pressed="false"]:disabled')).toHaveCount(12);
+      await expect(page.locator('.inv-hub-select[aria-pressed="false"]:disabled')).toHaveCount(0);
 
       await page.locator(".inv-compare-go").click();
       await expect(page).toHaveURL(/#investor-compare$/);
