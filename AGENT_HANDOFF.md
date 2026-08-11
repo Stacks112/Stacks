@@ -1,3 +1,46 @@
+## 2026-08-11 Cowork(Opus) - 13F 남은 2건 배포 (v84)
+
+같은 날 앞 회차(v83)의 후속. 진단만 하고 남겨뒀던 2건을 마저 배포했다.
+
+**변경 파일**: `assets/investor-compare.js` (헤더 공백), `index.html` (셸 폭 재배분 + 캐시버스터 + BUILD v84)
+
+### 1. 상세 헤더 티커 공백 복원 (investor-compare.js)
+
+- 증상: "투자자 › 버크셔 해서웨이INV:BUFFETT" 로 붙어서 렌더
+- **원인**: 데스크톱에 실제로 보이는 헤더는 `.series-head-name` 이 아니라 `<span class="v83post-title">` 이고, index.html 의 `detect(fl)` 이 `clean(n.textContent)` 로 채운다. 티커가 별도 span 이라 textContent 평탄화 과정에서 공백이 사라진다
+- `.series-head-name` 은 **인라인 `display:none`** 이라 항상 숨김이다. 그래서 `.series-head-name>.inv-ticker{margin-left:8px}` CSS 는 화면에 닿지 않는 죽은 규칙이었다. 620px 미디어쿼리의 자식 규칙도 마찬가지
+- 수정: `injectTicker()` 에서 티커 span 앞에 공백 텍스트 노드를 함께 붙인다. textContent 로 평탄화돼도 공백이 살아남는다
+- `detect()` 는 series, directory, journal, read-library, entity 등 최소 5개 페이지 유형이 공유하는 범용 함수라 index.html 쪽 수정은 회귀 범위가 넓어 피했다
+- 카드 그리드 경로(`.inv-card-names`, flex column)는 공백만 있는 텍스트 런이 익명 flex item 으로 렌더되지 않아 카드 높이 66.77px 그대로임을 실측 확인
+- **라이브 검증**: "투자자 › 버크셔 해서웨이 INV:BUFFETT" 로 공백 복원 확인
+
+### 2. 13F 셸 폭 재배분 (index.html, `inv-shell` 신설)
+
+- 증상: 비교 화면 `.inv-compare-table-wrap` 598/620 오버플로, 요약 카드 141px 압착
+- **핵심 발견**: `.wrap` 에는 grid-template-columns 규칙이 3개 있고, 그중 **클래스 게이트 없는 `!important` 오버라이드**(`minmax(88px,275px) 602px minmax(280px,350px) !important; max-width:1257px !important`, `@media(min-width:1024px)`)가 모든 v83 데스크톱 페이지에 무조건 적용되고 있었다. 주석은 "캘린더 넓힘 모드용"이라고 되어 있지만 실제로는 가드가 없다. 라이브 실측 273/602/350 이 바로 이 값이다
+- 즉 문제의 원인은 기본 규칙의 600px 이 아니라 이 숨은 602px 고정이었다. 새 규칙도 추가 클래스 + `!important` 로 특이도를 높여야 이긴다 (기존 `inv-wide` 주석이 같은 문제를 다룬 전례)
+- **`inv-wide` 는 쓰지 않았다.** `#v83center{grid-column:span 2}` 라서 `#v83rail` 이 absolute 로 본문 위에 얹히고, 레일 세로 0~729px 구간의 본문(목록의 "비중" 값, 상세/비교 차트 우측 약 310px)을 가린다. 실측 확인함. 3열 구조를 유지한 채 트랙만 재배분하는 쪽을 택했다
+- 신설 규칙:
+  - `html.v83.inv-shell .wrap{grid-template-columns:minmax(200px,240px) minmax(624px,900px) minmax(280px,320px)!important; max-width:1400px!important}`
+  - `@media(max-width:1264px)` 에서 `88px minmax(620px,700px) minmax(220px,300px)!important` (좌측 88px 는 기존 사이트가 그 구간에 이미 쓰는 값)
+- 토글은 `cal-wide` 와 동일한 관용구로 `renderFeed()` 에서 `invViewActive()` 게이트. `remove("inv-wide")` 줄은 그대로 남겨뒀다
+- **라이브 검증 (1600px 뷰포트)**: 그리드 240/808/320, max-width 1400px, 표 3개 전부 804/804 (오버플로 0), 요약 카드 192.4px x4, 카드 이름 높이 26px 균일(줄바꿈 없음), 레일 sticky 유지, 겹침 false, 가로 스크롤 false. 4번째 컬럼 INV:ASCHEN 이 잘리지 않고 완전히 보임을 스크린샷으로 육안 확인
+- 화면 전환 검증: 목록/상세 inv-shell 켜짐, 홈 이동 시 제거, 뒤로가기 복원, 비교 진입 시 `INVESTOR_VIEW="compare"` 로 유지
+
+### 캐시버스터
+
+`investor-compare.js` 를 고쳤으므로 index.html 의 `?v=` 를 `6d4c877c` 에서 `0136ebc6` 으로 함께 갱신했다(sha256[:8]). 앞 회차에서 이걸 빠뜨려 FIFO 패치가 사용자에게 전달되지 않았던 전례가 있으니 **assets 를 고치면 반드시 같은 라운드에 갱신할 것**.
+
+### 다음 회차가 알아야 할 것
+
+- **비교 화면 렌더가 백그라운드 탭에서 멈춘다.** `investor-compare-paint.js` 가 페인트 타이밍(rAF)에 렌더를 미루는 셔임이라, `document.hidden` 상태에서는 "계산 중 (3/4)" 에서 진행이 서지 않는다. 강제 페인트를 한 번 유도하면 즉시 이어진다. 스파크라인과 정확히 같은 메커니즘이다. **v82 에서 스파크라인에 넣은 visibilitychange 폴백을 비교 화면 렌더에도 적용하는 것이 다음 후보다**
+- 4명 콜드 비교는 `/quote` 174건에 여전히 수 분이 걸린다. 성능은 손대지 않았다
+- 우측 레일 하한을 기존 350px 에서 320px(narrow 구간 220px)로 좁혔다. 620px 표 확보를 우선한 트레이드오프다
+- 진짜 1024~1264px 뷰포트에서의 시각 확인은 `resize_window` 가 이 환경에서 실제 뷰포트를 바꾸지 못해 확인 불가. `.wrap` 고정폭 근사로 산술만 검증했다
+- 남은 UI 제안(허브 랭킹 테이블, CTA 3중 제거, 비교표 전치, 상세 히어로 숫자)은 앞 회차 기록 참조. 미착수
+
+---
+
 ## 2026-08-11 Cowork(Opus) — 쏠림 랭킹: 출처 1곳 100% 표기 제거 + 순 마진 정렬
 
 **커밋**: `dd2a937`(assets/v82.js) -> `f86b5f6`(index.html, 캐시 해시 `989b6b68`->`70f2d061`).
