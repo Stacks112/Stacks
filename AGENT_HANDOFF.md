@@ -1,3 +1,70 @@
+## 2026-08-11 Cowork(Opus) — 회귀 가드 복구: `Feed detail regression` 상시 red 종료 (7 fail -> 0)
+
+**커밋**: `6985249`(playwright.config.mjs) -> `40a653d`(tests) -> `27216b7`(playwright.config.mjs) -> `bcaab9d`(tests).
+**결과: 이 워크플로가 2026-08-09 이후 처음으로 success 다**(run `31487637641`, 전 스텝 통과, 81초).
+**제품 코드(index.html, assets/)는 한 줄도 안 고쳤다. 전부 테스트 쪽 문제였다.**
+
+### 배경
+
+이 워크플로가 2026-08-09부터 모든 커밋에서 실패해 회귀 가드로서 무가치한 상태였다(2026-08-10 회차부터 미결 항목).
+오늘만 6번 배포했는데 가드가 죽어 있었다. june 승인 아래 착수, CI 결과를 보며 3라운드에 걸쳐 끝냈다.
+
+### 실패 4종 (전부 테스트가 낡았거나 환경에 의존한 것)
+
+수정 전 `4f0a666`: **7 failed / 19 passed**
+
+**1. 로케일 미고정 (226·264·286·445·455, 5건)**
+`index.html:4150` 의 `geoLang()` 은 `navigator.language` 와 타임존으로 언어를 정한다. CI 러너는 UTC · en-US 라 항상 `en` 이 나온다.
+그런데 테스트는 `시세`·`기준지수`·`최근 7일` 같은 한국어를 하드코딩 단언한다.
+`geoLang()` 자체는 2026-07-23 `976d711` 부터 있던 의도된 로직이고, red 는 08-09 `50af6d9` 가 **한국어를 단언하는 13F 테스트를 처음 추가**하면서 시작됐다.
+즉 제품 회귀가 아니라 새 테스트가 환경을 고정하지 않은 것이다. 고침: `locale: "ko-KR"` + `timezoneId: "Asia/Seoul"`.
+
+**2. FIFO 변경으로 낡은 단언 (399:5)**
+같은 날 `a9fd834` 가 "4명 채우면 나머지 12개 disabled" 를 의도적으로 제거했는데 테스트가 `toHaveCount(12)` 를 붙들고 있었다. `0` 으로 교체.
+
+중간 결과 `40a653d`: **2 failed / 24 passed**. 남은 2건은 원인이 완전히 달랐다.
+
+**3. ★ h3 중심점 클릭이 개체링크에 막힌다 (24:5)**
+`page.locator("#id h3").click()` 은 요소의 **기하학적 중심**을 클릭한다.
+그날 발행된 최신 카드 제목 "미국이 조인 다롄 공장을 SK하이닉스가 다시 세우는 이유는 뭘까" 는 중심점이 정확히 `SK하이닉스` 개체링크 위였다.
+그 span 의 `onclick` 이 `event.stopPropagation()`(index.html:8163)이라 h3 의 `openFromCard`(13613)에 도달하지 못한다.
+`elementFromPoint` 직접 계측으로 확인했고, **제품은 설계대로 동작한다**(개체명 클릭은 용어 설명을 연다). 데이터도 정상이었다.
+즉 **매일 새 카드가 발행되는 사이트에서 이 테스트는 제목 길이와 개체명 위치에 따라 언제든 터지는 시한폭탄**이었다.
+고침: `clickHeadline()` 헬퍼 신설 — h3 안을 3px 간격으로 훑어 `.ent-link`/`.gloss-link` 가 아닌 첫 지점을 찾아 거기를 클릭한다.
+⚠ **처음엔 `firstLinkedCardId` 가 h3 에 링크 없는 카드를 고르게 하려다 모바일 테스트 3개(99·118·134)를 결정적으로 깨뜨렸다**(모바일 초기 렌더 카드 중 매치 0건). 로컬에서 잡아 되돌렸다.
+**카드 선택을 바꾸지 말고 클릭 지점만 바꿔야 한다.**
+
+**4. ★ 서비스워커가 `page.route()` 를 무력화한다 (50:3)**
+`.xreal-slot` 높이가 `0px` 기대인데 CI 는 `20px`. 로컬에선 3/3 통과라 오래 못 잡았다.
+원인은 **사이트의 서비스워커가 fetch 를 가로채서 `page.route()` 의 mock 이 적용조차 되지 않은 것**이다.
+계측으로 확인: SW 활성 시 mock 의 `window.twttr` 대입이 3초 넘게 안 일어나고, SW 차단 시 500ms 내 발생한다.
+고침: `playwright.config.mjs` 에 `serviceWorkers: "block"`.
+**테스트의 mock 자체는 원본 그대로 뒀다** — `route.abort()` 로 바꾸면 "스크립트가 아예 안 뜬다" 는 다른 상황을 시뮬레이션하게 되므로 되돌렸다.
+mock 이 실제로 적용된 뒤에도 `.xreal-slot` 은 0px 다. `xEmbedMount` 가 `tw.events` 가 없으면 `createTweet` 호출 전에 조기 종료하기 때문(계측에서 `createTweet` 호출 0회 확인).
+
+### 부수 효과 — 산발적 flaky 가 같이 사라졌다
+
+진단 중 `strict mode violation: locator(...) resolved to 2 elements` 류 flaky 를 5건(170·211·226·347·474·483 계열) 관찰했고 SPA 렌더 경합을 의심했다.
+`serviceWorkers: "block"` 이후 전체 스위트 3회 중 2회가 26/26, 1회만 무관한 1건으로 줄었다.
+서비스워커가 같은 자원을 두 번 서빙하며 이중 렌더를 유발했을 가능성이 있으나 **단정하지 않는다 — 반복 횟수가 부족하다.**
+
+### 검증
+
+- 로컬(2코어 샌드박스): 최종안으로 전체 스위트 3회 → 26/26 · 26/26 · 25/26(무관한 `186:3 completed cards expose the grading date` 1건).
+- **CI `bcaab9d`: 전 스텝 success.** `Run frontend contract tests`(27개)와 `Run feed/detail regression tests` 둘 다 통과.
+- 커밋 4건 전부 **커밋 전** 에디터 doc 의 SHA-256 을 origin 과 대조해 베이스 미이동을 확인하고, dispatch 결과가 로컬 검증본과 일치하는지 확인한 뒤 커밋했다. 커밋 후 `api.github.com/contents` 로 재확인 — 전부 **바이트 완전 일치**, 각 커밋 단일 파일.
+
+### 다음 회차가 알아야 할 것
+
+- **이제 이 가드는 진짜 게이트다. red 가 뜨면 무시하지 말 것.** 2026-08-09~08-11 처럼 상시 red 로 두면 그 사이 배포는 전부 무방비다.
+- **`clickHeadline` 패턴을 기억할 것.** 이 사이트는 제목에도 `linkifyPass`(index.html:8186)가 개체링크를 심는다. 카드 제목을 클릭하는 테스트를 새로 쓸 때 `.click()` 을 그냥 쓰면 그날 발행된 카드에 따라 무작위로 터진다.
+- **`serviceWorkers: "block"` 이 config 에 들어갔다.** 앞으로 `page.route()` mock 이 정상 동작한다. 반대로 서비스워커 자체의 동작(오프라인 캐시 등)을 검증하려면 그 테스트에서만 되돌려야 한다.
+- **로컬 통과가 CI 통과를 보장하지 않는다.** 이 샌드박스의 `/opt/pw-browsers/chromium-1187` 은 실제로 1194(Chromium 141)로 심볼릭 링크돼 있고 CI 는 `npx playwright install` 로 정식 1187(Chromium 140)을 받는다. 실제로 50:3 은 로컬 3/3 통과였는데 CI 는 실패였다.
+- **CI 로그 읽는 법.** GitHub Actions 로그는 가상 스크롤이라 `innerText` 로 전부 안 잡힌다. 다만 실패 요약은 잡히므로 `^\d+\)\s+tests/` 와 `Expected|Received|Error:|Locator:` 로 필터하면 실패 테스트 이름과 에러가 나온다. 브라우저 도구가 URL·쿼리스트링이 든 출력을 차단하니 `?`·`=`·`://` 를 치환해 반환해야 한다.
+- **제품 코드는 한 줄도 안 고쳤다.** 이번 회차를 보고 "13F 화면에 회귀가 있었다" 고 오해하지 말 것.
+
+---
+
 ## 2026-08-11 Cowork(Opus) — 비교 화면 백그라운드 탭 정지 해제 (v85)
 
 **커밋**: `da67763`(assets/investor-compare.js, +27/−3) -> `4f0a666`(index.html, +3/−3, 캐시 해시 `0136ebc6`->`cf0da680`, BUILD v84->v85).
