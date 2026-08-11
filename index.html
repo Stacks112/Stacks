@@ -9651,9 +9651,34 @@ function v83ThemeAttention(lo, hi){
         side: c.side, pct: Math.round(c.pct * 100), lowSample: c.lowSample });
     });
   } catch (e) {}
-  var rankBucket = function(c){ return c.side === "mix" ? 2 : c.lowSample ? 1 : 0; };
-  out.sort(function(a, b){ return (rankBucket(a) - rankBucket(b)) || (b.pct - a.pct) || (b.dir - a.dir); });
+  /* 2026-08-11 (june 승인): 이전엔 side(엇갈림 뒤로)/lowSample 버킷을 먼저 걸고 그 안에서
+     pct(출처 기준 %) 내림차순으로 정렬했다. 그런데 pct는 max(sourceBull,sourceBear)/sourceDir라
+     출처가 1곳이면 무조건 100%가 나와, 표본이 두터운 테마(출처 3곳)가 표본 1곳짜리에 밀렸다.
+     "쏠림 랭킹"이 확신도가 아니라 표본 부족을 정렬하던 버그.
+     1차 키를 sourceDir로만 두면 mix(50:50)도 출처만 많으면 상위로 올라온다 — 실측(2026-07-29
+     ~08-04 주)에서 AI capex(2:2, mix, pct 50)가 2위까지 올라왔다. "지금 쏠린 곳"인데 가장 안
+     쏠린 행이 상위인 건 화면 개념이 깨진 것. 그래서 1차 키를 "순 마진"
+     |sourceBull-sourceBear|로 바꾼다 — 몇 출처가 순수하게 한쪽으로 기울었는지를 직접 재는
+     값이라 이 화면의 전제(쏠림)를 그대로 반영하고, mix(마진 0)는 자동으로 맨 아래로 간다.
+     2차 sourceDir desc(마진이 같으면 출처 많은 쪽 = 더 두꺼운 표본이 위로), 3차 pct desc,
+     4차 글 수(articleDir=dir) desc. 숨기는 행은 없다(12주 재현에서 임계값 접기는 7/12주 빈
+     화면이라 폐기됨) — nowA/prevA 둘 다 이 함수 하나로만 나오므로 순위변동 배지(▲▼=)도
+     새 기준으로 자동으로 짝이 맞는다. */
+  out.sort(function(a, b){
+    var mA = Math.abs(a.bull - a.bear), mB = Math.abs(b.bull - b.bear);
+    return (mB - mA) || (b.sourceDir - a.sourceDir) || (b.pct - a.pct) || (b.dir - a.dir);
+  });
   return out;
+}
+/* 2026-08-11 (june 승인): 쏠림 랭킹/히어로 칩의 강세·약세 표기. 출처(sourceDir) 1곳이면
+   "그 사람 의견"일 뿐 비율이 아니므로 숫자를 아예 안 붙인다. 출처 2곳 이상이면 분수로:
+   분자=max(sourceBull,sourceBear), 분모=sourceDir — skewConsensus()의 pct와 정확히 같은
+   분자·분모(둘 다 sourceBull/sourceBear/sourceDir 기준, articleDir 아님)라 화면에 거짓
+   숫자가 나가지 않는다. c는 v83ThemeAttention()이 만든 원소({bull,bear,sourceDir,...}). */
+function v83SkewShare(c){
+  var dir = (c && c.sourceDir) || 0;
+  if (dir <= 1) return "";
+  return " " + Math.max(c.bull || 0, c.bear || 0) + "/" + dir;
 }
 function v83SkewRows(days){
   /* returns {themes:[row], ents:[row]}; row = {kind,key,label,icon,cells:[side|null],bull,bear} */
@@ -9741,7 +9766,7 @@ function renderV83SkewPage(list, S){
     var chip = function(lb, c, now){
       return '<span class="skh-chip' + (now ? " skh-now" : "") + '"><small>' + esc(lb) + '</small>'
         + '<b>' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</b>'
-        + '<span class="skh-side sk-' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '% · ' + esc(statLb(c)) + '</span></span>';
+        + '<span class="skh-side sk-' + c.side + '">' + esc(sideLb(c)) + v83SkewShare(c) + ' · ' + esc(statLb(c)) + '</span></span>';
     };
     if (nowA.length){
       var topNow = nowA[0], topPrev = prevA.length ? prevA[0] : null;
@@ -9772,7 +9797,7 @@ function renderV83SkewPage(list, S){
             return '<button class="skr-row" onclick="openTheme(\'' + String(c.key).replace(/'/g, "\\'") + '\')">'
               + '<span class="skr-rk">' + (i + 1) + '</span>'
               + '<span class="skr-name">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
-              + '<span class="skr-side sk-' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span>'
+              + '<span class="skr-side sk-' + c.side + '">' + esc(sideLb(c)) + v83SkewShare(c) + '</span>'
               + '<span class="skr-n">' + esc(statLb(c)) + '</span>'
               + mv + '</button>';
           }).join("") + '</div>';
@@ -14954,7 +14979,7 @@ bootData();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=989b6b68"></script>
+<script src="assets/v82.js?v=70f2d061"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 
