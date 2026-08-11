@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v88 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
+<!-- STACKS BUILD v89 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
 <html lang="en" class="stkboot stkbootr">
 <head>
 <meta charset="UTF-8">
@@ -4121,7 +4121,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v88</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v89</p>
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
     <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
@@ -4779,19 +4779,26 @@ function makeGlossSpan(text, key){
    First hover fetches ~30 daily closes through the worker's /quote
    proxy, draws a small sparkline, and caches it for the session. */
 const QUOTES = {};
+/* One stalled /quote used to hang forever: fetch has no default timeout, so the
+   promise never settled and whatever awaited it stopped there. Measured latency
+   is under 550ms even at 20-way concurrency, so this ceiling only fires on a
+   request that is genuinely stuck. */
+var QUOTE_TIMEOUT_MS = 10000;
 async function loadQuote(key){
   const e = ENTITIES[key];
   if (!e || !e.ticker || !COMMENTS_API) return;
   const t = e.ticker;
   if (QUOTES[t] === undefined){
     QUOTES[t] = null; /* in flight */
+    const ctl = (typeof AbortController === "function") ? new AbortController() : null;
+    const timer = ctl ? setTimeout(function(){ ctl.abort(); }, QUOTE_TIMEOUT_MS) : null;
     try {
-      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=1d");
+      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=1d", ctl ? { signal: ctl.signal } : undefined);
       if (res.ok){
         const j = await res.json();
         if (j && j.closes && j.closes.length > 1) QUOTES[t] = j;
       }
-    } catch (err) {}
+    } catch (err) {} finally { if (timer) clearTimeout(timer); }
     if (!QUOTES[t]) QUOTES[t] = { error: true };
   }
   paintQuote(t);
@@ -4923,10 +4930,12 @@ async function fsqLoad(key, r){
   const box = document.getElementById("fsqChart");
   if (!QR[ck]){
     if (box) box.innerHTML = '<div class="ehq-loading">···</div>';
+    const ctl = (typeof AbortController === "function") ? new AbortController() : null;
+    const timer = ctl ? setTimeout(function(){ ctl.abort(); }, QUOTE_TIMEOUT_MS) : null;
     try {
-      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=" + r);
+      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=" + r, ctl ? { signal: ctl.signal } : undefined);
       if (res.ok){ const j = await res.json(); if (j && j.closes && j.closes.length > 1) QR[ck] = j; }
-    } catch (err) {}
+    } catch (err) {} finally { if (timer) clearTimeout(timer); }
     if (!QR[ck]) QR[ck] = { error: true };
   }
   if (FSQ.range !== r || FSQ.key !== key) return;
@@ -5054,13 +5063,15 @@ async function ehqLoad(key, r){
   const ck = e.ticker + "|" + r;
   if (!QR[ck]){
     if (box) box.innerHTML = '<div class="ehq-loading">···</div>';
+    const ctl = (typeof AbortController === "function") ? new AbortController() : null;
+    const timer = ctl ? setTimeout(function(){ ctl.abort(); }, QUOTE_TIMEOUT_MS) : null;
     try {
-      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(e.ticker) + "&r=" + r);
+      const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(e.ticker) + "&r=" + r, ctl ? { signal: ctl.signal } : undefined);
       if (res.ok){
         const j = await res.json();
         if (j && j.closes && j.closes.length > 1) QR[ck] = j;
       }
-    } catch (err) {}
+    } catch (err) {} finally { if (timer) clearTimeout(timer); }
     if (!QR[ck]) QR[ck] = { error: true };
   }
   if (EHQ_RANGE !== r) return; /* user already switched tabs */
@@ -5309,7 +5320,6 @@ function itemMainKey(item){
   return (item._mk = ks.length ? ks[0] : null);
 }
 const Q1Y = {}; /* ticker -> promise of the 1y quote (shared with QR) */
-const Q1Y_TIMEOUT_MS = 10000;
 function quote1y(t){
   if (!Q1Y[t]){
     Q1Y[t] = (async () => {
@@ -5323,7 +5333,7 @@ function quote1y(t){
          genuinely stuck request; it then falls through to the {error:true}
          the UI already renders as "시세 조회 실패". */
       const ctl = (typeof AbortController === "function") ? new AbortController() : null;
-      const timer = ctl ? setTimeout(function(){ ctl.abort(); }, Q1Y_TIMEOUT_MS) : null;
+      const timer = ctl ? setTimeout(function(){ ctl.abort(); }, QUOTE_TIMEOUT_MS) : null;
       try {
         const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=1y", ctl ? { signal: ctl.signal } : undefined);
         if (res.ok){
@@ -15697,6 +15707,5 @@ bootData();
 })();
 </script>
 <script src="assets/investor-compare.js?v=cf0da680"></script>
-<script src="assets/investor-compare-paint.js?v=defer-20260808"></script>
 </body>
 </html>
