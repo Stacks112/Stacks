@@ -2,6 +2,160 @@
  "items": [
   {
    "date": "2026-08-11",
+   "id": "serenity-riot-rockdale-191mw-20y-lease-anthropic",
+   "related": [
+    "kobeissi-anthropic-volta-bitdeer-tydal-term-gap",
+    "jukan-amd-anthropic-deal-tp640",
+    "serenity-hyperscaler-capex-745b-debt-funded"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2086988264448409739",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "docUrl": "https://www.riotplatforms.com/riot-platforms-reports-second-quarter-2026-financial-results-and-strategic-highlights/",
+   "cover": {
+    "from": "#0B1120",
+    "to": "#7C2D12",
+    "label": "191MW"
+   },
+   "tags": [
+    "DATACENTER",
+    "RIOT",
+    "ANTHROPIC"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "191메가와트, 20년, 그리고 2027년 12월",
+    "en": "191 megawatts, 20 years, and December 2027",
+    "ja": "191メガワット、20年、そして2027年12月"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Woah, $RIOT announced a $9.1B deal with Anthropic, with a possible contract extending to $16.1B, over 20Y.",
+      "In terms of timelines, seem like most of the Colo basket have their revenue inflections hit H2 2027?"
+     ],
+     "ko": [
+      "와, 라이엇이 앤스로픽과 91억달러 규모 계약을 발표했다. 20년에 걸쳐 최대 161억달러까지 늘어날 수 있는 계약이다.",
+      "시간표만 놓고 보면 임대형 데이터센터 종목 대부분의 매출 변곡점이 2027년 하반기에 몰려 있는 것 같다."
+     ],
+     "ja": [
+      "おっと、ライオットがアンソロピックと91億ドル規模の契約を発表した。20年かけて最大161億ドルまで伸びうる契約だ。",
+      "時間軸だけ見ると、賃貸型データセンター銘柄の多くは売上の変曲点が2027年下期に集まっているようだ。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.11"
+   },
+   "sum3": {
+    "ko": "비트코인 채굴로 알려진 회사가 텍사스 부지의 전력을 20년짜리 임대 수입으로 바꾸는 계약에 서명했다.\n겉으로 보면 채굴업에서 인공지능 임대업으로 갈아탄 성공담이다.\n그런데 빌리는 쪽의 이름은 회사가 밝힌 것이 아니라 보도로 알려졌고, 전기가 실제로 흐르는 날짜는 대부분 2027년 하반기 뒤에 있다.",
+    "en": "A company known for mining bitcoin has signed away the power at its Texas site as twenty years of rental income.\nOn the surface it is a success story about moving from mining into renting to artificial intelligence.\nBut the tenant's name came from reporting rather than from the company, and most of the dates on which power actually flows sit after the second half of 2027.",
+    "ja": "ビットコイン採掘で知られる会社が、テキサスの用地の電力を20年分の賃料収入に変える契約に署名した。\n表面だけ見れば、採掘業から人工知能向け賃貸業へ乗り換えた成功談だ。\nだが借りる側の名前は会社が明かしたものではなく報道で伝わり、電気が実際に流れる日付の多くは2027年下期より後にある。"
+   },
+   "gist": {
+    "ko": "라이엇 플랫폼스가 텍사스 록데일의 데이터센터 용량을 20년간 빌려주는 계약을 맺었다.\n임대 용량은 191메가와트다.\n\n@@REF@@라이엇 플랫폼스, 록데일에 91억달러·191메가와트 규모 인공지능 임대계약 체결 (블록스페이스, 2026-08-10)|https://blockspace.media/insight/riot-platforms-signs-ai-lease-rockdale-2026/|https://blockspace.media/wp-content/uploads/2025/07/8C17A4B38CAD1473DEB9CAE13679B526AE608D01A919A08CA1B14F99D73B8585.jpg\n\n메가와트는 데이터센터에서 방 넓이 대신 쓰는 단위다.\n전산장비에 실제로 넣어 줄 수 있는 전기의 양이고, 서버를 몇 대 꽂을 수 있는지가 여기서 정해진다.\n\n채굴장이 이 자리에 오는 데에는 이유가 있다.\n비트코인을 캐려면 전기를 대량으로 끌어와야 해서, 이런 회사들은 이미 송전망과 변전 설비, 장기 전력 계약을 손에 쥐고 있다.\n인공지능 연산에 쓰이는 것도 결국 같은 전기라서, 캐던 자리를 빌려주는 자리로 바꾸는 편이 새 부지를 처음부터 찾는 것보다 빠르다.\n\n@@IMG@@datacenter-racks|계약서에 적힌 191메가와트는 이런 랙을 몇 줄 세울 수 있는지를 정하는 숫자다. 임대료는 면적이 아니라 전기 용량으로 매겨진다.\n\n## 임차인 이름은 회사가 말하지 않았다\n\n원문은 상대가 앤스로픽이라고 적었다.\n다만 라이엇이 낸 실적 발표에는 임차인 이름이 없고, 앤스로픽이라는 이름은 블룸버그 보도로 알려졌다고 전해졌다.\n\n@@REF@@앤스로픽으로 알려진 고객과의 91억달러 계약에 라이엇 주가 시간외 25% 급등 (더블록, 2026-08-10)|https://www.theblock.co/news/business/2026-08-10-riot-platforms-ai-deal-anthropic-411358\n\n이 보도는 이름이 밝혀지기 전부터 시장이 임차인을 궁금해했고, 이름이 붙은 뒤에 주가가 움직였다고 짚는다.\n같은 계약이라도 빌리는 쪽이 누구냐에 따라 20년치 임대료를 받을 수 있느냐가 달라지기 때문이다.\n\n## 총액을 20년으로 나누면\n\n@@CHK@@20년 기본 계약금액|91억달러|연장 2회 포함 최대|161억달러|기본 기간 연평균 순영업이익|3억6,500만~4억1,100만달러@@총액은 커 보이지만 기간으로 나누면 연 4억달러 안팎이다. 회사가 스스로 낸 추정치이고, 계약 규모가 실적으로 번역되는 속도는 총액이 주는 인상보다 느리다.@@라이엇 플랫폼스 2026년 2분기 실적 발표(2026-08-10) · 2026-08-11 조회\n\n순영업이익은 임대료에서 그 시설을 돌리는 데 드는 비용을 뺀 값이다.\n이자와 감가상각을 빼기 전 숫자라, 주주에게 실제로 남는 금액은 이보다 적다.\n\n돈이 언제 들어오는지는 전기가 언제 들어가는지가 정한다.\n\n@@TIME@@2026-08-10|록데일 20년 임대계약 발표|>2026-11|AMD 몫 10메가와트 추가 가동|>2027-05|AMD 계약분 50메가와트 전량 가동|>2027-12|새 임차인 몫 첫 96메가와트 인도|>2028-06|계약 용량 전량 인도@@계약서는 어제 채워졌지만 전기가 들어가는 날짜는 대부분 내년 이후다. 원문이 임대형 데이터센터 종목의 매출 변곡점을 2027년 하반기로 본 근거가 이 줄에 있다.@@라이엇 플랫폼스 2026년 2분기 실적 발표(2026-08-10) · 2026-08-11 조회\n\n원문은 AMD가 기존 계약을 넓히는 선택권을 행사했다는 점도 함께 적었다.\n코르시카나 부지에서는 1기가와트 규모로 임차 의향서가 오갔고, 상대는 아직 밝혀지지 않았다.\n\n## 록데일에 전기가 들어가는 날\n\n앞으로 갈리는 지점은 인도 일정이다.\n2027년 12월까지 첫 96메가와트가 실제로 인도되면 이 회사의 매출은 채굴이 아니라 임대료로 성격이 바뀌고, 20년 계약은 그때부터 숫자로 나타나기 시작한다.\n일정이 밀리면 그동안 들어가는 것은 공사비와 이자뿐이다.\n계약을 위해 모건스탠리에서 5억7,300만달러를 임시로 빌린 상태라, 완공이 늦어질수록 비용이 먼저 쌓인다.\n채굴 회사가 임대 회사로 바뀌었는지는 계약서가 아니라 록데일에 전기가 들어간 날짜가 말해 준다.",
+    "en": "Riot Platforms signed a twenty year lease for data center capacity at Rockdale, Texas.\nThe leased capacity is 191 megawatts.\n\n@@REF@@Riot Platforms signs $9.1 billion, 191 MW AI lease at Rockdale (Blockspace, 2026-08-10)|https://blockspace.media/insight/riot-platforms-signs-ai-lease-rockdale-2026/|https://blockspace.media/wp-content/uploads/2025/07/8C17A4B38CAD1473DEB9CAE13679B526AE608D01A919A08CA1B14F99D73B8585.jpg\n\nA megawatt is the unit a data center uses instead of floor area.\nIt is the amount of electricity that can actually be delivered to computing equipment, and it sets how many servers can be plugged in.\n\nThere is a reason miners end up in this position.\nMining bitcoin means pulling in electricity at scale, so these companies already hold grid connections, substation equipment and long term power contracts.\nArtificial intelligence computing draws on the same electricity, so converting a site from mining to renting is faster than finding new land and starting over.\n\n@@IMG@@datacenter-racks|The 191 megawatts written into the lease is the number that decides how many rows of racks like these can stand. Rent here is priced on power, not on square feet.\n\n## The company did not name the tenant\n\nThe original post names Anthropic as the counterparty.\nRiot's own earnings release does not name a tenant, and the Anthropic name is reported to have come from Bloomberg.\n\n@@REF@@Riot stock jumps 25% after hours on a $9.1 billion deal reportedly with Anthropic (The Block, 2026-08-10)|https://www.theblock.co/news/business/2026-08-10-riot-platforms-ai-deal-anthropic-411358\n\nThat report notes the market was asking who the tenant was before the name appeared, and that the stock moved once it did.\nThe same contract carries a different chance of paying out over twenty years depending on who is on the other side of it.\n\n## Divide the headline by twenty years\n\n@@CHK@@Twenty year base contract|$9.1 billion|With both five year extensions|$16.1 billion|Average annual net operating income, base term|$365 to $411 million@@The total looks large, but split across the term it is about $400 million a year. These are the company's own estimates, and the speed at which a contract of this size turns into results is slower than the headline suggests.@@Riot Platforms second quarter 2026 results (2026-08-10) · retrieved 2026-08-11\n\nNet operating income is the rent left after the cost of running the facility.\nIt is measured before interest and depreciation, so what actually reaches shareholders is smaller than this.\n\nWhen the money arrives is decided by when the power does.\n\n@@TIME@@2026-08-10|Rockdale twenty year lease announced|>2026-11|A further 10 MW of AMD capacity energized|>2027-05|AMD's full 50 MW energized|>2027-12|First 96 MW delivered to the new tenant|>2028-06|Full contracted capacity delivered@@The paper was signed yesterday, but most of the dates on which power flows sit next year or later. This is the basis for the original post reading the revenue inflection for leased data centers as the second half of 2027.@@Riot Platforms second quarter 2026 results (2026-08-10) · retrieved 2026-08-11\n\nThe original post also records that AMD exercised its option to widen an existing agreement.\nAt the Corsicana site a letter of intent covers a gigawatt of capacity, and the counterparty there has not been named.\n\n## The day power reaches Rockdale\n\nWhat splits from here is the delivery schedule.\nIf the first 96 megawatts really are handed over by December 2027, this company's revenue changes character from mining to rent, and a twenty year contract starts showing up in the numbers.\nIf the schedule slips, what accrues in the meantime is construction cost and interest.\nRiot has taken $573 million of interim financing from Morgan Stanley for the build, so a later completion means the costs land first.\nWhether a miner has become a landlord is answered by the date power reaches Rockdale, not by the contract.",
+    "ja": "ライオット・プラットフォームズがテキサス州ロックデールのデータセンター容量を20年間貸す契約を結んだ。\n貸し出す容量は191メガワットだ。\n\n@@REF@@ライオット・プラットフォームズ、ロックデールで91億ドル・191メガワットの人工知能向け賃貸契約 (ブロックスペース, 2026-08-10)|https://blockspace.media/insight/riot-platforms-signs-ai-lease-rockdale-2026/|https://blockspace.media/wp-content/uploads/2025/07/8C17A4B38CAD1473DEB9CAE13679B526AE608D01A919A08CA1B14F99D73B8585.jpg\n\nメガワットは、データセンターで床面積の代わりに使う単位だ。\n計算機に実際に届けられる電気の量であり、サーバーを何台挿せるかがここで決まる。\n\n採掘会社がこの位置に来るのには理由がある。\nビットコインを掘るには電気を大量に引き込む必要があるため、こうした会社は送電網や変電設備、長期の電力契約を既に手にしている。\n人工知能の計算に使われるのも結局は同じ電気なので、掘っていた場所を貸す場所に変える方が、新しい用地を一から探すより速い。\n\n@@IMG@@datacenter-racks|契約書に書かれた191メガワットは、このようなラックを何列立てられるかを決める数字だ。賃料は面積ではなく電力容量で付く。\n\n## 借り手の名前を会社は言っていない\n\n原文は相手をアンソロピックだと記している。\nただしライオットが出した決算発表に借り手の名前はなく、アンソロピックという名前はブルームバーグの報道で伝わったという。\n\n@@REF@@アンソロピックとされる顧客との91億ドル契約でライオット株が時間外に25%急伸 (ザ・ブロック, 2026-08-10)|https://www.theblock.co/news/business/2026-08-10-riot-platforms-ai-deal-anthropic-411358\n\nこの報道は、名前が出る前から市場が借り手を知りたがっており、名前が付いてから株価が動いたと指摘する。\n同じ契約でも、借りる側が誰かによって20年分の賃料を受け取れるかどうかが変わるからだ。\n\n## 総額を20年で割ると\n\n@@CHK@@20年の基本契約額|91億ドル|延長2回を含む最大|161億ドル|基本期間の年平均純営業利益|3億6,500万~4億1,100万ドル@@総額は大きく見えるが、期間で割ると年4億ドル前後だ。会社自身が出した推計であり、契約規模が業績に翻訳される速さは総額の印象より遅い。@@ライオット・プラットフォームズ2026年第2四半期決算(2026-08-10) · 2026-08-11取得\n\n純営業利益は、賃料からその施設を動かす費用を引いた値だ。\n利息と減価償却を引く前の数字なので、株主に実際に残る金額はこれより小さい。\n\nお金がいつ入るかは、電気がいつ入るかが決める。\n\n@@TIME@@2026-08-10|ロックデールの20年賃貸契約を発表|>2026-11|AMD分10メガワットが追加稼働|>2027-05|AMD契約分50メガワットが全量稼働|>2027-12|新しい借り手向けの最初の96メガワットを引き渡し|>2028-06|契約容量を全量引き渡し@@契約書は昨日埋まったが、電気が入る日付の多くは来年以降だ。原文が賃貸型データセンター銘柄の売上変曲点を2027年下期と読んだ根拠がこの行にある。@@ライオット・プラットフォームズ2026年第2四半期決算(2026-08-10) · 2026-08-11取得\n\n原文はAMDが既存契約を広げる選択権を行使したことも併せて記している。\nコルシカナの用地では1ギガワット規模で賃借の意向書が交わされており、相手はまだ明かされていない。\n\n## ロックデールに電気が入る日\n\nこの先が分かれるのは引き渡しの日程だ。\n2027年12月までに最初の96メガワットが実際に引き渡されれば、この会社の売上は採掘ではなく賃料へ性格が変わり、20年契約はそこから数字に現れ始める。\n日程が遅れれば、その間に積み上がるのは工事費と利息だけだ。\n建設のためモルガン・スタンレーから5億7,300万ドルをつなぎで借りている状態なので、完成が遅いほど費用が先に乗る。\n採掘会社が賃貸会社に変わったかどうかは、契約書ではなくロックデールに電気が入った日付が答える。"
+   },
+   "why": {
+    "ko": "인공지능 데이터센터 계약은 총액이 먼저 발표되고 전기는 몇 년 뒤에 들어간다. 그 사이에 회사가 부담하는 것은 공사비와 이자이고, 계약 총액은 아직 매출이 아니다. 임대형 데이터센터 종목을 볼 때 계약 규모보다 인도 일정을 먼저 봐야 하는 이유다.",
+    "en": "Deals for artificial intelligence data centers announce a headline total first and energize the site years later. In between, the company carries construction cost and interest, and the contract value is not yet revenue. That is why the delivery schedule matters more than the headline when reading leased data center stocks.",
+    "ja": "人工知能向けデータセンターの契約は総額が先に発表され、電気は数年後に入る。その間に会社が背負うのは工事費と利息であり、契約総額はまだ売上ではない。賃貸型データセンター銘柄を見るとき、契約規模より引き渡し日程を先に見るべき理由だ。"
+   },
+   "ask": {
+    "ko": "라이엇은 20년 임대계약을 발표했지만 첫 96메가와트가 인도되는 시점은 2027년 12월이고, 그때까지 회사가 쥐는 것은 공사비와 임시로 빌린 5억7,300만달러다. 계약서가 걸린 벽과 전기가 들어간 랙 가운데 지금 이 회사의 값을 정해야 하는 것은 어느 쪽일까?",
+    "en": "Riot announced a twenty year lease, but the first 96 megawatts are not due until December 2027, and until then what the company holds is construction cost and $573 million of interim borrowing. Between a contract on the wall and a rack with power in it, which one should be pricing this company today?",
+    "ja": "ライオットは20年の賃貸契約を発表したが、最初の96メガワットの引き渡しは2027年12月であり、それまで会社が手にするのは工事費と、つなぎで借りた5億7,300万ドルだ。壁に掛かった契約書と電気の入ったラックのうち、今この会社の値段を決めるべきなのはどちらだろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "록데일의 첫 96메가와트가 2027년 12월까지 인도되는지를 확인한다.",
+     "en": "Check whether the first 96 megawatts at Rockdale are delivered by December 2027.",
+     "ja": "ロックデールの最初の96メガワットが2027年12月までに引き渡されるかを確認する。"
+    },
+    "due": "2027-12-31",
+    "card": {
+     "metric": {
+      "ko": "록데일 신규 임차인 몫 첫 96메가와트 인도",
+      "en": "Delivery of the first 96 MW to the new tenant at Rockdale",
+      "ja": "ロックデールの新規借り手向け最初の96メガワットの引き渡し"
+     },
+     "now": {
+      "ko": "가동 중인 임대 용량은 AMD 몫 25메가와트, 계약 용량은 241메가와트",
+      "en": "25 MW energized for AMD today, against 241 MW under contract",
+      "ja": "稼働中の賃貸容量はAMD分25メガワット、契約容量は241メガワット"
+     },
+     "when": {
+      "ko": "2027년 12월",
+      "en": "December 2027",
+      "ja": "2027年12月"
+     },
+     "hit": {
+      "ko": "2027년 12월까지 96메가와트 인도가 완료되면 적중",
+      "en": "The 96 MW handover completes by December 2027",
+      "ja": "2027年12月までに96メガワットの引き渡しが完了すれば的中"
+     },
+     "miss": {
+      "ko": "2027년 12월까지 인도가 완료되지 않으면 어긋남",
+      "en": "The handover is not complete by December 2027",
+      "ja": "2027年12月までに引き渡しが完了しなければ外れ"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity(@aleabitoreddit) · 2026-08-11",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-11",
+      "ja": "Serenity(@aleabitoreddit) · 2026-08-11"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2086988264448409739"
+    },
+    {
+     "name": {
+      "ko": "1차 자료",
+      "en": "Primary source",
+      "ja": "一次資料"
+     },
+     "desc": {
+      "ko": "라이엇 플랫폼스 2026년 2분기 실적 발표 · 계약금액·용량·인도 일정 출처",
+      "en": "Riot Platforms second quarter 2026 results · source of contract value, capacity and schedule",
+      "ja": "ライオット・プラットフォームズ2026年第2四半期決算 · 契約額・容量・日程の出所"
+     },
+     "url": "https://www.riotplatforms.com/riot-platforms-reports-second-quarter-2026-financial-results-and-strategic-highlights/"
+    },
+    {
+     "name": {
+      "ko": "보도",
+      "en": "Report",
+      "ja": "報道"
+     },
+     "desc": {
+      "ko": "블록스페이스 2026-08-10 · 더블록 2026-08-10",
+      "en": "Blockspace 2026-08-10 · The Block 2026-08-10",
+      "ja": "ブロックスペース2026-08-10 · ザ・ブロック2026-08-10"
+     },
+     "url": "https://blockspace.media/insight/riot-platforms-signs-ai-lease-rockdale-2026/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-11 조회 · 계약금액과 순영업이익 추정치는 라이엇이 2026-08-10에 낸 2분기 실적 발표 기준이다. 임차인 이름은 회사 발표가 아니라 보도로 알려진 내용이다.",
+    "en": "Retrieved 2026-08-11 · contract values and net operating income estimates follow Riot's second quarter release of 2026-08-10. The tenant's name comes from reporting, not from the company.",
+    "ja": "2026-08-11取得 · 契約額と純営業利益の推計はライオットが2026-08-10に出した第2四半期決算に基づく。借り手の名前は会社発表ではなく報道で伝わった内容だ。"
+   }
+  },
+  {
+   "date": "2026-08-11",
    "id": "jukan-skhynix-spc2-kioxia-top-shareholder",
    "related": [
     "jukan-skhynix-capital-return-q3-2026",
