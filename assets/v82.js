@@ -659,6 +659,14 @@
         return sources + " " + t.sourceUnit + " · " + posts + " " + t.postUnit
           + (c.lowSample ? " · " + t.smallSample : "");
       };
+      /* 2026-08-11: 순위 목록(.v82-tr-row)은 .v82-tr-chip(세로 배치, 폭 여유 있음)과 달리
+         한 줄에 순위·이름·강세율·통계·변동배지를 다 넣어야 해서 statLb 전체(출처+글)를 쓰면
+         테마 이름(.nm)이 밀려 잘렸다. 행 요약은 글 수 + 표본 적음만 남기고, 출처 구성은
+         행을 탭해 들어가는 테마 상세에서 보게 한다(다른 값을 없앤 게 아니라 자리만 옮김). */
+      var rowStatLb = function(c){
+        var posts = c.dir || c.articleDir || 0;
+        return posts + " " + t.postUnit + (c.lowSample ? " · " + t.smallSample : "");
+      };
       var chip = function(lb, c, now){
         return '<span class="v82-tr-chip' + (now ? " now" : "") + '"><small>' + esc(lb) + '</small>'
           + '<b>' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</b>'
@@ -684,7 +692,7 @@
           + '<span class="rk">' + (i + 1) + '</span>'
           + '<span class="nm">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
           + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span>'
-          + '<span class="n">' + esc(statLb(c)) + '</span>'
+          + '<span class="n">' + esc(rowStatLb(c)) + '</span>'
           + mv + '</button>';
       }).join("") + '</div>';
       h += '</div>';
@@ -705,12 +713,13 @@
       html += '<div class="v82-hub-sec">' + esc(t.trAll) + '</div>';
       rows.forEach(function(o, idx){
         var dir = o.sourceDir || 0, bp = dir ? Math.round((o.sourceBull || 0) / dir * 100) : 0, rp = 100 - bp;
-        var sampleDetail = (t.sampleDetail || "{posts} posts · {sources} sources")
-          .replace("{posts}", String(o.articleDir || 0))
-          .replace("{sources}", String(o.sourceCount || o.sourceDir || 0));
+        /* 2026-08-11: leanLb에 sampleDetail("글 N개 · 출처 N곳")까지 붙이면 같은 줄에서
+           출처/글 수가 아래 .v82-skew-cts, 오른쪽 소스 토글과 3중으로 겹쳐 .v82-skew-name이
+           30px까지 밀려 테마 이름이 안 보였다. "표본 적음" 표시는 유지하고 수치 중복만 뺀다. */
         var leanLb = (o.side === "bull" ? t.bull : o.side === "bear" ? t.bear : t.mix) + " " + Math.round(o.pct * 100) + "%"
-          + (o.lowSample ? " · " + t.smallSample + " · " + sampleDetail : "");
-        var stat = (o.sourceDir || 0) + " " + t.sourceUnit + " · " + (o.articleDir || 0) + " " + t.postUnit;
+          + (o.lowSample ? " · " + t.smallSample : "");
+        /* 출처 수는 오른쪽 .v82-skew-source-toggle 버튼이 이미 보여준다 — 여기서는 글 수만. */
+        var stat = (o.articleDir || 0) + " " + t.postUnit;
         var sourceCount = skewSourceBreakdown(o.items).length;
         var sourceToggle = '<button type="button" class="v82-skew-source-toggle" aria-expanded="false"'
           + ' onclick="toggleSkewSources(this,event)">' + esc(sourceCount + " " + t.sourceUnit) + '</button>';

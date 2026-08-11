@@ -235,11 +235,22 @@
     border-bottom:1px solid var(--line);font-family:inherit;color:var(--text);}
   .v82-skew-row-wrap{border-bottom:1px solid var(--line);}
   .v82-skew-row-wrap .v82-skew-row{border-bottom:0;}
-  .v82-skew-source-toggle{flex:0 0 auto;margin-top:11px;padding:2px 0;border:0;background:none;font:inherit;font-size:10.5px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
+  .v82-skew-source-toggle{position:relative;flex:0 0 auto;margin-top:11px;padding:2px 0;border:0;background:none;font:inherit;font-size:10.5px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;}
+  /* 2026-08-11: 시각 크기(패딩 포함 약 31x21px)는 그대로 두고, 44x44 히트박스만
+     ::before로 얹는다 — 행 높이(82px)·레이아웃에 영향 없는 탭 타깃 확장. */
+  .v82-skew-source-toggle::before{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%);}
   .v82-skew-source-detail{margin:-2px 2px 8px;padding:8px 9px;}
   .v82-skew-top{display:flex;align-items:baseline;gap:8px;margin-bottom:7px;}
-  .v82-skew-name{font-size:14px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .v82-skew-lean{font-size:12px;font-weight:800;font-family:var(--mono-font);}
+  /* 2026-08-11: 이름에 최소 폭을 보장해 우선권을 준다. flex-basis를 auto로 둬야(=flex:1의
+     기본값인 basis:0%를 쓰지 않아야) 라벨이 짧아 여유가 있을 때만 grow로 더 받는다.
+     shrink:1은 라벨과 "같은 비율로" 줄어든다는 뜻이라 영어처럼 이름·라벨이 둘 다 길 때는
+     이름도 같이 눌려 min-width 안쪽까지 잘렸다(실측으로 확인) — shrink는 작게(1) 남겨
+     min-width 바닥은 유지하되, 아래 라벨 쪽 shrink를 훨씬 크게 줘서 "라벨이 거의 다
+     먼저 줄고, 이름은 min-width 바닥에 닿기 전까지는 거의 안 줄게" 만든다. */
+  .v82-skew-name{font-size:14px;font-weight:700;flex:1 1 auto;min-width:112px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  /* shrink:40 — 이름(shrink:1)보다 훨씬 먼저·많이 줄어들게. min-width:0이라 바닥까지
+     줄어도(0까지) 자기 몫이 부족해지면 스스로 ellipsis로 잘린다. */
+  .v82-skew-lean{font-size:12px;font-weight:800;font-family:var(--mono-font);flex:0 40 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .v82-skew-lean.bull{color:#16A34A;}
   .v82-skew-lean.bear{color:#E5484D;}
   .v82-skew-lean.mix{color:#B7791F;}
@@ -523,10 +534,14 @@
   color:var(--text);text-align:left;}
 .v82-tr-row:last-child{border-bottom:none;}
 .v82-tr-row .rk{flex:0 0 16px;font-size:11px;font-weight:800;color:var(--muted);font-family:var(--mono-font);}
-.v82-tr-row .nm{flex:1;min-width:0;font-size:13.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+/* 2026-08-11: .rk/.sd/.mv는 전부 flex-shrink:0(고정)이라 폭이 부족하면 이름(.nm)이
+   basis:0%(flex:1의 기본값) 탓에 혼자 다 떠안고 30px까지 밀렸다. .nm은 shrink:0으로 바꿔
+   "자기 콘텐츠 폭"을 항상 확보하게 하고(테마 8개는 전부 짧아 안전), 대신 .n(글 수·표본 적음)
+   쪽에 shrink를 몰아줘 폭이 부족할 때는 .n이 먼저 ellipsis로 줄어들게 한다. */
+.v82-tr-row .nm{flex:1 0 auto;min-width:56px;font-size:13.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .v82-tr-row .sd{flex:0 0 auto;font-size:11px;font-weight:800;font-family:var(--mono-font);}
 .v82-tr-row .sd.mix{color:#B7791F;}
-.v82-tr-row .n{flex:0 0 auto;font-size:10.5px;color:var(--muted);font-family:var(--mono-font);}
+.v82-tr-row .n{flex:0 1 auto;min-width:0;font-size:10.5px;color:var(--muted);font-family:var(--mono-font);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .v82-tr-row .mv{flex:0 0 30px;text-align:right;font-size:10.5px;font-weight:800;
   font-family:var(--mono-font);color:var(--muted);}
 .v82-tr-row .mv.up{color:#16A34A;}
