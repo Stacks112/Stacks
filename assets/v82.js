@@ -667,10 +667,15 @@
         var posts = c.dir || c.articleDir || 0;
         return posts + " " + t.postUnit + (c.lowSample ? " · " + t.smallSample : "");
       };
+      /* 2026-08-11 (june 승인): 출처 1곳이면 %를 안 쓰고, 2곳 이상이면 분수(강세 2/3)로 —
+         v83SkewShare()가 index.html에 있고 데스크톱과 완전히 같은 계산(분자=max(sourceBull,
+         sourceBear), 분모=sourceDir)을 쓴다. 없으면(로드 순서·구버전) 조용히 숫자를 뺀다 —
+         거짓 %를 보여주는 것보다 낫다. */
+      var share = function(c){ return typeof v83SkewShare === "function" ? v83SkewShare(c) : ""; };
       var chip = function(lb, c, now){
         return '<span class="v82-tr-chip' + (now ? " now" : "") + '"><small>' + esc(lb) + '</small>'
           + '<b>' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</b>'
-          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '% · ' + esc(statLb(c)) + '</span></span>';
+          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + share(c) + ' · ' + esc(statLb(c)) + '</span></span>';
       };
       var topNow = nowA[0], topPrev = prevA.length ? prevA[0] : null;
       h += '<div class="v82-tr">';
@@ -691,7 +696,7 @@
         return '<button class="v82-tr-row" data-th="' + esc(c.key) + '">'
           + '<span class="rk">' + (i + 1) + '</span>'
           + '<span class="nm">' + (c.icon ? c.icon + " " : "") + esc(c.label) + '</span>'
-          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + ' ' + c.pct + '%</span>'
+          + '<span class="sd ' + c.side + '">' + esc(sideLb(c)) + share(c) + '</span>'
           + '<span class="n">' + esc(rowStatLb(c)) + '</span>'
           + mv + '</button>';
       }).join("") + '</div>';
