@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- STACKS BUILD v85 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
+<!-- STACKS BUILD v86 :: chart default 1D + event->filtered feed + hero hidden <1024 (zoom intro fix) + skew rail horizontal scroll -->
 <html lang="en" class="stkboot stkbootr">
 <head>
 <meta charset="UTF-8">
@@ -4118,7 +4118,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 
 <footer>
   <div class="wrap">
-    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v85</p>
+    <p id="buildTag" onclick="wrapupTap()" style="font-family:var(--mono-font);font-size:9px;letter-spacing:.1em;margin-bottom:8px;cursor:default;">STACKS BUILD v86</p>
     <p id="foot1"></p>
     <p id="foot2" style="margin-top:8px"></p>
     <p class="foot-links" style="margin-top:8px"><a id="footX" href="https://x.com/Stacks0g" target="_blank" rel="noopener">@Stacks0g</a> · <a href="this-week.html">이번 주 Stacks</a> · <a href="calendar.html">실적 캘린더</a> · <a href="articles.html">전체 글</a> · <a href="feed.xml">RSS</a> · <a href="privacy.html">개인정보처리방침</a></p>
@@ -5306,18 +5306,28 @@ function itemMainKey(item){
   return (item._mk = ks.length ? ks[0] : null);
 }
 const Q1Y = {}; /* ticker -> promise of the 1y quote (shared with QR) */
+const Q1Y_TIMEOUT_MS = 10000;
 function quote1y(t){
   if (!Q1Y[t]){
     Q1Y[t] = (async () => {
       const ck = t + "|1y";
       if (QR[ck] && !QR[ck].error) return QR[ck];
+      /* Q1Y caches the promise itself, so a request that never settled used to
+         pin its invMapLimit slot forever: the queue stopped advancing and the
+         13F value chart, the compare graph and the feed's since badges waited
+         on something that could not resolve. Measured /quote latency is under
+         550ms even at 20-way concurrency, so this ceiling only fires on a
+         genuinely stuck request; it then falls through to the {error:true}
+         the UI already renders as "시세 조회 실패". */
+      const ctl = (typeof AbortController === "function") ? new AbortController() : null;
+      const timer = ctl ? setTimeout(function(){ ctl.abort(); }, Q1Y_TIMEOUT_MS) : null;
       try {
-        const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=1y");
+        const res = await fetch(COMMENTS_API + "/quote?s=" + encodeURIComponent(t) + "&r=1y", ctl ? { signal: ctl.signal } : undefined);
         if (res.ok){
           const j = await res.json();
           if (j && j.closes && j.closes.length > 1){ QR[ck] = j; return j; }
         }
-      } catch (e) {}
+      } catch (e) {} finally { if (timer) clearTimeout(timer); }
       if (!QR[ck]) QR[ck] = { error: true };
       return QR[ck];
     })();
