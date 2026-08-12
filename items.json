@@ -2,6 +2,194 @@
  "items": [
   {
    "date": "2026-08-12",
+   "id": "jukan-nvidia-800vdc-rack-row-power-center-2027",
+   "related": [],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2087448903063130430",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#1e1b4b",
+    "to": "#4338ca",
+    "label": "2MW"
+   },
+   "tags": [
+    "NVIDIA",
+    "POWER",
+    "DATACENTER"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "8월 11일, 엔비디아가 랙 한 줄에 2메가와트를 흘리는 계획을 내놨다",
+    "en": "On August 11, Nvidia Laid Out a Plan to Push 2 Megawatts Down a Single Rack Row",
+    "ja": "8月11日、エヌビディアがラック1列に2メガワットを流す計画を示した"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "The product can be integrated directly into existing AC infrastructure and delivers 800VDC power to compute racks within the same rack row.",
+      "Since it does not require major retrofitting of existing buildings and power supply systems, it is expected to lower the upgrade threshold for existing AI data centers."
+     ],
+     "ko": [
+      "이 제품은 기존 교류 인프라에 그대로 통합할 수 있고, 같은 랙 열 안의 연산 랙에 800볼트 직류 전력을 공급한다.",
+      "기존 건물과 전력 공급 설비를 크게 뜯어고칠 필요가 없어, 이미 돌아가는 AI 데이터센터의 개조 문턱을 낮출 것으로 보인다."
+     ],
+     "ja": [
+      "この製品は既存の交流インフラにそのまま統合でき、同じラック列内の演算ラックへ800V直流の電力を供給する。",
+      "既存の建物や電力供給設備を大きく改修する必要がないため、すでに稼働中のAIデータセンターの改修のハードルを下げるとみられる。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.12"
+   },
+   "sum3": {
+    "ko": "엔비디아가 건물의 교류 배선을 그대로 두고 랙 열 안에서 직류 전력을 공급하는 전원 랙을 올해 하반기에 내놓는다.\n2027년에는 천장 배선으로 랙 한 줄 전체에 최대 2메가와트를 보내는 방식으로 넘어간다.\n순서가 뒤집혀 있다. 새 건물이 아니라 이미 돌아가는 데이터센터가 먼저다.",
+    "en": "Nvidia will ship a power rack in the second half of this year that leaves a building's AC wiring alone and delivers DC power inside the rack row.\nIn 2027 it moves to an overhead busway feeding a whole rack row with up to 2 megawatts.\nThe order is inverted. The first target is not new construction but data centers already running.",
+    "ja": "エヌビディアが、建物の交流配線をそのままにラック列内で直流電力を供給する電源ラックを今年下期に投入する。\n2027年には天井の配線でラック1列全体に最大2メガワットを送る方式へ移る。\n順序が逆になっている。狙いは新築ではなく、すでに稼働しているデータセンターだ。"
+   },
+   "gist": {
+    "ko": "엔비디아가 올해 하반기에 800볼트 직류 전원 랙을 내놓는다.\n건물의 전기 설비를 뜯지 않고 지금 깔려 있는 교류 배선에 그대로 물려 쓰는 물건이다.\n\n@@REF@@AI 연산 성능을 키우려면 새 전원 구조가 필요하다 (엔비디아 블로그, 2026-08-11)|https://blogs.nvidia.com/blog/800-vdc-power-architecture-ai-factory/|https://blogs.nvidia.com/wp-content/uploads/2026/08/800vdc.jpg\n\n이 내용은 대만 매체 보도로 먼저 돌았지만 출처는 엔비디아 자신이다.\n같은 로드맵이 8월 11일 회사 블로그에 그대로 올라와 있다.\n\n## 왜 전압을 올리나\n\n지금 랙 안에서는 54볼트 직류로 칩에 전기를 넣는다.\n전압이 낮으면 같은 전력을 보낼 때 전류가 커지고, 전류가 커지면 구리를 두껍게 깔아야 한다.\n\n쉽게 말해 같은 양의 물을 가는 관으로 보내려면 세게 밀어야 하고, 그러면 관이 뜨거워진다.\n압력을 올리면 관이 얇아도 같은 물이 지나간다.\n\n엔비디아가 든 숫자로는 1메가와트짜리 랙 하나의 버스바에 구리가 200킬로그램까지 들어간다.\n1기가와트 규모로 늘리면 20만 킬로그램이 된다.\n전압을 올리면 구리를 45% 덜 쓰고, 54볼트 방식과 견줘 발전소에서 칩까지의 전달 효율이 최대 5% 개선된다는 것이 회사 설명이다.\n\n@@REF@@800V 직류 구조가 차세대 AI 팩토리의 전력을 맡는다 (엔비디아 개발자 블로그, 2025-05-20)|https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/|https://developer-blogs.nvidia.com/wp-content/uploads/2025/05/800-V-Tech-blog-featured-image.jpg\n\n@@BAR@@GB200 NVL72 랙|약 120킬로와트|120|루빈 울트라 NVL576 랙|약 600킬로와트|600@@랙 하나가 먹는 전기가 이렇게 벌어지는 동안 건물의 배선은 그대로다. 전기 공사가 GPU 교체 속도를 못 따라간다는 말이 여기서 나온다.@@데이터센터다이내믹스 2025-03-18 · 랙 전력 사양 정리 ModulEdge, 2026-08-12 조회\n\n## 이미 돌아가는 건물이 먼저다\n\n하반기 제품에서 중요한 것은 성능이 아니라 개조 문턱이다.\n건물의 배전반을 새로 짜지 않고 랙 열 안에서 직류를 만들어 쓰기 때문에, 지난해 지은 데이터센터도 랙만 바꿔 끼우면 된다.\n\n다음 단계는 2027년이다.\n천장에 깐 직류 버스웨이가 랙 한 줄 전체에 최대 2메가와트를 밀어 넣는다.\n그다음은 시설 단계에서 계통 전력을 곧바로 직류로 바꾸는 방식이고, 여기서부터는 새로 짓는 건물의 이야기다.\n\n@@TIME@@2025년 5월|엔비디아가 800볼트 직류 구조를 공개|>2026년 하반기|MGX 규격에 맞는 전원 랙 출시, 기존 교류 설비에 그대로 통합|>2027년|천장 버스웨이로 랙 한 줄에 최대 2메가와트를 공급하는 로 파워 센터|>2027년 하반기|루빈 울트라 NVL576 랙 배치 예정@@랙이 먼저 커지고 건물 전기가 뒤따라간다. 이 순서가 하반기 제품을 개조용으로 만든 이유다.@@엔비디아 블로그 2026-08-11 · 엔비디아 개발자 블로그 2025-05-20 · 데이터센터다이내믹스 2025-03-18\n\n@@IMG@@datacenter-racks|랙 한 줄이 통째로 전기를 나눠 받는 단위가 된다. 지금까지 배전의 단위는 랙 하나였다.\n\n## 구글과 마이크로소프트가 같이 서 있는 이유\n\n이 규격은 엔비디아 혼자 만든 것이 아니다.\n구글, 마이크로소프트와 함께 오픈 컴퓨트 프로젝트를 통해 공개했고, 80곳이 넘는 장비 업체가 여기에 맞춰 제품을 만들고 있다는 것이 회사 설명이다.\n\n규격을 열어 둔다는 것은 엔비디아가 전원 장치를 직접 팔아 돈을 벌 생각이 아니라는 신호에 가깝다.\n그 돈은 인피니언, 나비타스, 텍사스인스트루먼트 같은 전력 반도체와 버티브, 슈나이더일렉트릭, 이튼 같은 배전 장비 쪽으로 흩어진다.\n투자자 입장에서 이 발표가 걸리는 지점은 엔비디아의 다음 GPU가 아니라, 그 GPU를 꽂기 위해 누가 무엇을 팔게 되느냐다.\n\n2027년 안에 로 파워 센터가 실제 데이터센터에 들어가면 이 규격이 표준이 된 것이고, 2027년이 지나도 랙 단위 하이브리드에 머물면 건물 쪽이 끝내 따라오지 못한 것이다.",
+    "en": "Nvidia will release an 800 volt DC power rack in the second half of this year.\nIt bolts onto the alternating current wiring a building already has, without tearing out the electrical plant.\n\n@@REF@@Why scaling AI compute performance requires a new power architecture (Nvidia blog, 2026-08-11)|https://blogs.nvidia.com/blog/800-vdc-power-architecture-ai-factory/|https://blogs.nvidia.com/wp-content/uploads/2026/08/800vdc.jpg\n\nThe roadmap circulated first through Taiwanese press, but the source is Nvidia itself.\nThe same plan went up on the company blog on August 11.\n\n## Why raise the voltage\n\nInside a rack today, chips are fed at 54 volts DC.\nLow voltage means high current for the same power, and high current means thick copper.\n\nPut simply, pushing the same water through a thin pipe takes pressure, and the pipe heats up.\nRaise the pressure and a thinner pipe carries the same flow.\n\nBy Nvidia's own count, the busbars in a single one megawatt rack can hold up to 200 kilograms of copper.\nScale that to a gigawatt and it is 200,000 kilograms.\nThe company says the higher voltage cuts copper use by 45% and improves end-to-end delivery efficiency by up to 5% against the 54 volt approach.\n\n@@REF@@Nvidia 800 VDC architecture will power the next generation of AI factories (Nvidia developer blog, 2025-05-20)|https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/|https://developer-blogs.nvidia.com/wp-content/uploads/2025/05/800-V-Tech-blog-featured-image.jpg\n\n@@BAR@@GB200 NVL72 rack|about 120 kW|120|Rubin Ultra NVL576 rack|about 600 kW|600@@While the draw of one rack opens up like this, the building's wiring stays where it was. That is where the line about electrical work not keeping up with GPU cycles comes from.@@DataCenterDynamics 2025-03-18, rack power specs via ModulEdge, retrieved 2026-08-12\n\n## Buildings already running come first\n\nWhat matters about the second half product is not performance, it is the retrofit threshold.\nBecause the conversion happens inside the rack row rather than at the building switchgear, a data center finished last year can swap racks and move on.\n\nThe next step lands in 2027.\nAn overhead DC busway pushes up to 2 megawatts into an entire rack row.\nAfter that comes facility-level conversion of grid power straight to DC, and that part is a story about new construction.\n\n@@TIME@@May 2025|Nvidia publishes the 800 volt DC architecture|>2H 2026|MGX-compatible power rack ships, integrating with existing AC plant|>2027|Row power center feeds a rack row up to 2 megawatts over an overhead busway|>2H 2027|Rubin Ultra NVL576 racks due to deploy@@The rack grows first and the building's power follows. That order is why the second half product is built as a retrofit.@@Nvidia blog 2026-08-11, Nvidia developer blog 2025-05-20, DataCenterDynamics 2025-03-18\n\n@@IMG@@datacenter-racks|A whole row becomes the unit that shares power. Until now the unit of distribution was a single rack.\n\n## Why Google and Microsoft are standing alongside\n\nNvidia did not write this specification alone.\nIt published through the Open Compute Project with Google and Microsoft, and says more than 80 equipment makers are already building to it.\n\nKeeping the spec open reads less like a plan to sell power gear and more like a plan to remove a constraint.\nThe money spreads instead to power silicon vendors such as Infineon, Navitas and Texas Instruments, and to distribution equipment makers such as Vertiv, Schneider Electric and Eaton.\nFor an investor the hook here is not Nvidia's next GPU. It is who gets to sell the parts needed to plug that GPU in.\n\nIf a row power center is running in a real data center inside 2027, this specification has become the standard. If 2027 passes and the rack-level hybrid is still the state of the art, the building side never caught up.",
+    "ja": "エヌビディアが今年下期に800V直流の電源ラックを投入する。\n建物の電気設備を取り替えず、いま敷かれている交流配線にそのままつないで使う製品だ。\n\n@@REF@@AI演算性能を伸ばすには新しい電源構造が要る (エヌビディア・ブログ, 2026-08-11)|https://blogs.nvidia.com/blog/800-vdc-power-architecture-ai-factory/|https://blogs.nvidia.com/wp-content/uploads/2026/08/800vdc.jpg\n\nこの内容は台湾メディアの報道として先に回ったが、出所はエヌビディア自身だ。\n同じロードマップが8月11日に同社ブログへ掲載されている。\n\n## なぜ電圧を上げるのか\n\nいまのラックの中では、54Vの直流でチップに電気を送っている。\n電圧が低いと同じ電力を送るのに電流が大きくなり、電流が大きくなれば銅を太く敷かねばならない。\n\n平たく言えば、同じ量の水を細い管で送るには強く押す必要があり、管は熱くなる。\n圧力を上げれば細い管でも同じ水が通る。\n\nエヌビディアの数字では、1メガワット級のラック1本のブスバーに銅が200キログラムまで入る。\n1ギガワット規模なら20万キログラムになる。\n電圧を上げれば銅の使用量を45%減らせ、54V方式と比べて発電側からチップまでの伝達効率が最大5%改善するというのが同社の説明だ。\n\n@@REF@@800V直流アーキテクチャが次世代AIファクトリーの電力を担う (エヌビディア開発者ブログ, 2025-05-20)|https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/|https://developer-blogs.nvidia.com/wp-content/uploads/2025/05/800-V-Tech-blog-featured-image.jpg\n\n@@BAR@@GB200 NVL72ラック|約120キロワット|120|ルービン・ウルトラ NVL576ラック|約600キロワット|600@@ラック1本が食う電気がこれだけ開く間、建物の配線は元のままだ。電気工事がGPUの更新速度に追いつかないという話はここから出てくる。@@データセンターダイナミクス 2025-03-18・ラック電力仕様はModulEdge、2026-08-12閲覧\n\n## すでに動いている建物が先だ\n\n下期の製品で重要なのは性能ではなく、改修のハードルのほうだ。\n建物の配電盤を組み直さずラック列の中で直流をつくるので、昨年建てたデータセンターでもラックを入れ替えるだけで済む。\n\n次の段階は2027年だ。\n天井に敷いた直流バスウェイが、ラック1列全体に最大2メガワットを送り込む。\nその次は施設レベルで系統電力を直接直流に変える方式で、ここからは新築の話になる。\n\n@@TIME@@2025年5月|エヌビディアが800V直流の構造を公開|>2026年下期|MGX規格に合う電源ラックを出荷、既存の交流設備にそのまま統合|>2027年|天井バスウェイでラック1列に最大2メガワットを供給するロー・パワー・センター|>2027年下期|ルービン・ウルトラ NVL576ラックの配備予定@@ラックが先に大きくなり、建物の電気が後から追う。この順序が下期製品を改修向けにした理由だ。@@エヌビディア・ブログ 2026-08-11・同開発者ブログ 2025-05-20・データセンターダイナミクス 2025-03-18\n\n@@IMG@@datacenter-racks|ラック1列がまるごと電気を分け合う単位になる。これまで配電の単位はラック1本だった。\n\n## グーグルとマイクロソフトが並んでいる理由\n\nこの規格はエヌビディア1社で書いたものではない。\nグーグル、マイクロソフトとともにオープン・コンピュート・プロジェクトを通じて公開し、80社を超える機器メーカーがこれに合わせて製品をつくっているというのが同社の説明だ。\n\n規格を開いておくのは、電源装置を自分で売って稼ぐつもりではないという合図に近い。\nその金はインフィニオン、ナビタス、テキサス・インスツルメンツといった電力半導体や、ヴァーティブ、シュナイダーエレクトリック、イートンといった配電機器のほうへ散っていく。\n投資家にとってこの発表が引っかかるのはエヌビディアの次のGPUではなく、そのGPUを挿すために誰が何を売ることになるかだ。\n\n2027年のうちにロー・パワー・センターが実際のデータセンターに入れば、この規格は標準になったことになる。2027年が過ぎてもラック単位のハイブリッドにとどまれば、建物の側が最後まで追いつけなかったということだ。"
+   },
+   "why": {
+    "ko": "랙 하나가 먹는 전기가 몇 년 사이 다섯 배로 벌어지는 동안 건물의 배전은 그대로여서, AI 데이터센터의 병목이 GPU 공급이 아니라 전기를 랙까지 끌어오는 설비로 옮겨가고 있다.",
+    "en": "Rack draw has widened roughly fivefold in a few years while building distribution stayed put, moving the bottleneck in AI data centers from GPU supply to the gear that carries power to the rack.",
+    "ja": "ラック1本の消費電力が数年で5倍に開く一方、建物の配電は据え置きのままで、AIデータセンターの詰まりがGPUの供給から電気をラックまで運ぶ設備へ移りつつある。"
+   },
+   "ask": {
+    "ko": "AI 데이터센터의 다음 병목이 GPU가 아니라 전기 배선이라면, 돈은 엔비디아와 전력 장비 업체 중 어느 쪽으로 더 갈까?",
+    "en": "If the next bottleneck in AI data centers is wiring rather than GPUs, does more of the money go to Nvidia or to the power equipment vendors?",
+    "ja": "AIデータセンターの次の詰まりがGPUではなく配線だとすれば、金はエヌビディアと電力機器メーカーのどちらへより多く向かうのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 12월 31일까지 로 파워 센터가 실제 데이터센터에 배치됐다는 확인이 나오는지로 채점한다.",
+     "en": "Score on whether a row power center is confirmed deployed in a real data center by December 31, 2027.",
+     "ja": "2027年12月31日までにロー・パワー・センターが実際のデータセンターに配備されたと確認できるかで採点する。"
+    },
+    "due": "2027-12-31",
+    "card": {
+     "metric": {
+      "ko": "로 파워 센터의 실제 배치 여부",
+      "en": "Whether the row power center actually deploys",
+      "ja": "ロー・パワー・センターが実際に配備されるか"
+     },
+     "now": {
+      "ko": "2026년 8월 현재 랙 단위 제품이 하반기 출시 예정, 로 파워 센터는 2027년 목표",
+      "en": "As of August 2026 the rack-level product is due in the second half, with the row power center targeted for 2027",
+      "ja": "2026年8月時点でラック単位の製品は下期出荷予定、ロー・パワー・センターは2027年目標"
+     },
+     "when": {
+      "ko": "2027년 12월 31일",
+      "en": "December 31, 2027",
+      "ja": "2027年12月31日"
+     },
+     "hit": {
+      "ko": "2027년 안에 로 파워 센터가 실제 데이터센터에 배치된다",
+      "en": "A row power center is deployed in a working data center within 2027",
+      "ja": "2027年内にロー・パワー・センターが実際のデータセンターへ配備される"
+     },
+     "miss": {
+      "ko": "2027년이 끝날 때까지 랙 단위 제품에 머문다",
+      "en": "It is still rack-level only when 2027 ends",
+      "ja": "2027年が終わるまでラック単位の製品にとどまる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan (@jukan05) · 2026-08-12",
+      "en": "Jukan (@jukan05) · 2026-08-12",
+      "ja": "Jukan (@jukan05) · 2026-08-12"
+     },
+     "url": "https://x.com/jukan05/status/2087448903063130430"
+    },
+    {
+     "name": {
+      "ko": "엔비디아 발표",
+      "en": "Nvidia announcement",
+      "ja": "エヌビディアの発表"
+     },
+     "desc": {
+      "ko": "엔비디아 블로그 · 2026-08-11",
+      "en": "Nvidia blog · 2026-08-11",
+      "ja": "エヌビディア・ブログ · 2026-08-11"
+     },
+     "url": "https://blogs.nvidia.com/blog/800-vdc-power-architecture-ai-factory/"
+    },
+    {
+     "name": {
+      "ko": "구리·효율 수치",
+      "en": "Copper and efficiency figures",
+      "ja": "銅と効率の数値"
+     },
+     "desc": {
+      "ko": "엔비디아 개발자 블로그 · 2025-05-20",
+      "en": "Nvidia developer blog · 2025-05-20",
+      "ja": "エヌビディア開発者ブログ · 2025-05-20"
+     },
+     "url": "https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/"
+    },
+    {
+     "name": {
+      "ko": "랙 전력 수치",
+      "en": "Rack power figures",
+      "ja": "ラック電力の数値"
+     },
+     "desc": {
+      "ko": "데이터센터다이내믹스 · 2025-03-18 · 루빈 울트라 NVL576 약 600킬로와트",
+      "en": "DataCenterDynamics · 2025-03-18 · Rubin Ultra NVL576 at about 600 kW",
+      "ja": "データセンターダイナミクス · 2025-03-18 · ルービン・ウルトラ NVL576は約600キロワット"
+     },
+     "url": "https://www.datacenterdynamics.com/en/news/nvidias-rubin-ultra-nvl576-rack-expected-to-be-600kw-coming-second-half-of-2027/"
+    },
+    {
+     "name": {
+      "ko": "규격 참여 업체",
+      "en": "Ecosystem partners",
+      "ja": "規格の参加企業"
+     },
+     "desc": {
+      "ko": "엔비디아 개발자 블로그 · 2025-10-13",
+      "en": "Nvidia developer blog · 2025-10-13",
+      "ja": "エヌビディア開発者ブログ · 2025-10-13"
+     },
+     "url": "https://developer.nvidia.com/blog/building-the-800-vdc-ecosystem-for-efficient-scalable-ai-factories/"
+    },
+    {
+     "name": {
+      "ko": "GB200 NVL72 랙 전력",
+      "en": "GB200 NVL72 rack power",
+      "ja": "GB200 NVL72のラック電力"
+     },
+     "desc": {
+      "ko": "ModulEdge 랙 사양 정리 · 2026-08-12 조회",
+      "en": "ModulEdge rack spec summary · retrieved 2026-08-12",
+      "ja": "ModulEdgeのラック仕様まとめ · 2026-08-12閲覧"
+     },
+     "url": "https://www.moduledge.com/blog/gb300-nvl72"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-12 조회 · 랙 전력은 공개된 사양 정리 기준의 근사치이며, 로 파워 센터와 DC 파워 블록의 시점은 엔비디아가 제시한 계획이다.",
+    "en": "Retrieved 2026-08-12. Rack power figures are approximations from published spec summaries, and the timing for the row power center and DC power block is Nvidia's stated plan.",
+    "ja": "2026-08-12閲覧。ラック電力は公開仕様のまとめに基づく概数であり、ロー・パワー・センターとDCパワーブロックの時期はエヌビディアが示した計画である。"
+   }
+  },
+  {
+   "date": "2026-08-12",
    "id": "jukan-ymtc-nand-third-by-bits-fifth-by-revenue",
    "related": [],
    "source": "Jukan (@jukan05)",
