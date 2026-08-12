@@ -13,7 +13,7 @@ html.inv-lab-active .inv-grid{display:grid;grid-template-columns:1fr;gap:0;margi
 /* 허브 랭킹 표(v90). .inv-table(index.html)의 시각 언어를 그대로 따른다: 얇은
    구분선, 작은 대문자 헤더, 숫자열 우측정렬+모노폰트. 행 높이를 줄이려고 이름
    셀 안 .inv-hub-person(사진 32px/이름 13.5px/회사명 11px)만 별도로 압축한다. */
-.inv-hub-table{width:100%;min-width:620px;border-collapse:collapse;font-size:13px}
+.inv-hub-table{width:100%;min-width:700px;border-collapse:collapse;font-size:13px}
 .inv-hub-table th{padding:6px 8px;border-bottom:1px solid var(--line);color:var(--muted);font-size:10.5px;font-weight:750;text-align:left;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
 .inv-hub-table th.num{text-align:right}
 .inv-hub-table th button{padding:0;border:0;background:transparent;color:inherit;font:inherit;font-size:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer}
@@ -23,6 +23,7 @@ html.inv-lab-active .inv-grid{display:grid;grid-template-columns:1fr;gap:0;margi
 .inv-hub-table th[aria-sort="descending"] button::after{content:"▼";opacity:1}
 .inv-hub-table td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
 .inv-hub-table td.num{text-align:right;font-family:var(--mono-font);white-space:nowrap}
+.inv-hub-ytd-note{margin:10px 0 0;color:var(--muted);font-size:10.5px;line-height:1.45}
 .inv-hub-card[hidden]{display:none}
 .inv-hub-person.inv-card{width:100%;padding:4px 2px;border:0;border-radius:0;background:transparent;cursor:pointer}
 .inv-hub-person.inv-card:hover{filter:none}
