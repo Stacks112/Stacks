@@ -1,3 +1,49 @@
+## 2026-08-12 Cowork(Opus) — 허브 정렬 캐럿(v93) + 허브 연중 수익률 열(v94) + 매일 도는 수익률 파이프라인
+
+**커밋**: `eea83f8`→`d678c1a`(v93) · `a5e6114`/`6b5ab3a`(파이프라인) · `ecbf671`→`61831f0`→`5dcb48c`→`e4f7a65`(v94). BUILD v92 → v94.
+**CI**: `e4f7a65` 에서 Feed detail regression ✅ · Clobber guard ✅ · Mobile calendar ✅ · Email render ✅. Pages 배포 완료.
+**라이브 확인**: `stacksdaily.com/#investors` 에서 BUILD v94, 연중 수익률 열 노출, 오름/내림 양방향 정렬 정상, 값 없는 3명은 양방향 모두 맨 뒤 유지.
+
+### 1. v93 — 정렬 캐럿 (CSS 전용)
+
+v90 이 이미 `aria-sort` 를 헤더에 세팅하고 있었는데 화면에는 정렬 가능하다는 표시가 없었다. JS 를 건드리지 않고 `.inv-hub-table th[aria-sort] button::after` 로만 캐럿을 붙였다. 기본 `↕`(opacity .35), 정렬 중인 열만 `▲`/`▼`. **접근성 상태를 이미 DOM 에 쓰고 있으면 시각 표시는 CSS 로 끝난다** — 상태를 두 곳에 중복 저장하지 마라.
+
+### 2. 파이프라인 — `scripts/investor_returns.py` + `.github/workflows/investor-returns.yml`
+
+허브에서 연중 수익률을 보여주려면 투자자 16명 × 보유 종목 전부의 1년 시세가 필요하다. 워커 `/quote` 는 **단일 심볼 전용**(sanitizer 가 콤마를 지운다)이라 배치 엔드포인트가 없고, 허브 진입마다 수백 건을 때릴 수는 없다. 그래서 **하루 한 번 미리 계산해 `data/investor-returns.json` 에 커밋**하는 구조로 갔다.
+
+- 자격 판정은 프런트 `invComputeValueSeries` 를 **그대로 포팅**했다: `all_holdings || holdings` → `change==="exit"` 제외 → PUT/CALL 제외 → 티커 필수. 커버리지 분모에는 **티커 없는 보유도 포함**한다(프런트와 동일). 여기서 한 줄이라도 어긋나면 화면과 숫자가 갈린다.
+- `COVERAGE_THRESHOLD = 0.90`. 시세를 90% 미만 확보하면 **숫자를 만들지 않고 `ytd_pct: null`** 을 쓴다. 현재 소로스 81.8% · 오크트리 85.4% · 사이언 80.7% 가 여기 걸려 16명 중 13명만 값이 있다.
+- `REGRESSION_TOLERANCE = 2`. 이전 대비 사용 가능 투자자가 2명 넘게 줄면 커밋을 거부한다. 1명짜리 일시적 커버리지 하락으로 파이프라인이 영구히 막히지 않게 여유를 뒀다.
+- 워크플로 첫 실행 버그를 리뷰에서 잡았다: `git diff --quiet` 는 **추적되지 않는 새 파일을 못 본다**. `git add` 를 먼저 하고 `git diff --cached --quiet` 로 게이트한다.
+- 분기 스냅샷을 `chain_scale` 로 이어붙이는 부분(`invComputeHistoricalValueSeries`)까지 포팅해야 개별 투자자 차트와 값이 맞는다(`d059dc1`).
+
+### 3. v94 — 허브 연중 수익률 열
+
+`loadHubReturns()` 가 `data/investor-returns.json` 을 읽어 숫자 열 중 **맨 앞**에 붙인다.
+- 값이 없으면 `—` 를 쓰고 `title` 에 커버리지 사유를 넣는다. **빈칸으로 두면 "0%" 로 읽힌다.**
+- `asOf` 가 5일 이상 지나면 열 전체를 비운다. 오래된 수익률은 없는 것보다 나쁘다.
+- 각주 고정 노출: "마지막 공시 보유를 그대로 들고 있었다고 가정한 추정치이며 실제 펀드 수익률이 아닙니다." 13F 는 분기 말 스냅샷이고 그 뒤 매매는 보이지 않는다. 이 문장 지우지 마라.
+- 정렬은 v90 의 `hubSortValue` 규칙을 그대로 탄다 — `null` 은 `-Infinity` 로 치환하지 않고 별도 분기라 **양방향 모두 뒤로** 간다.
+
+### 4. 남은 문제 — 연중 수익률이 사이트에서 세 갈래로 계산된다 (미해결)
+
+같은 "연중 수익률" 이 세 경로로 계산되고 **비교 화면 큰 수치만 값이 다르다**.
+1. `invComputeValueSeries` / `invComputeHistoricalValueSeries` (index.html, 개별 투자자 차트)
+2. `scripts/investor_returns.py` (파이프라인 → 이번 허브 열) — 1번과 **일치**
+3. `compareSeries` → `normalizeGraphSeries` → `graphRangeForSeries` (investor-compare.js, v92 히어로) — **혼자 다름**
+
+처음에 "파이프라인이 비교 화면과 안 맞는다" 고 보고했는데 **틀린 판정이었다**. 프런트의 `invComputeValueSeries` 를 직접 덤프해 보니 파이프라인이 1번과 거의 정확히 일치했고 **3번이 이상치**다. 측정표는 `claude/status-2026-08-12-ytd-three-way-discrepancy.md` 에 있다.
+june 의 결정으로 이번 회차는 **허브 열만 먼저 붙이고 3번은 별도로 잡기로** 했다. 다음 사람은 여기서 시작하면 된다: 정답은 1번이고, 3번을 1번에 맞춰야 한다. 반대로 하지 마라.
+
+### 5. 배포 절차 메모
+
+- 자산 파일(`assets/*`)은 **한 회차 안에서 끊김 없이 연속 커밋**해야 한다. v91 때 CSS 만 커밋된 상태에서 확장이 끊겨 `.inv-compare-card` 규칙이 지워진 채 v90 JS 가 그 마크업을 렌더하는 시간이 있었다.
+- `index.html` 은 CRLF 이고 **서러게이트 페어 29개**가 있어 CodeMirror 오프셋(UTF-16 코드 유닛)과 파이썬 인덱스(코드 포인트)가 다르다. 반드시 누적 매핑을 거쳐라. `assets/*` 와 `tests/*` 는 서러게이트가 없어 그대로 써도 된다.
+- 커밋 전 base 해시, 디스패치 후 target 해시, 커밋 후 `api.github.com/contents` 바이트 해시 — **세 번 다 확인**한다. 이번 회차 4개 파일 모두 바이트 일치 확인했다.
+
+---
+
 ## 2026-08-12 Cowork(Opus) — 13F 허브/비교 화면 4연속 개편 (v90·v91·v92) + 항상 빨간 회귀 가드 복구
 
 **커밋**: `ec22c3a`→`aace27d`(v90) · `e66fd97`(가드) · `b3398e5`→`56ee446`(v91) · `9a1f0f6`→`67a9a91`(v92). BUILD v89 → v92.
