@@ -30,6 +30,26 @@ name: Investor YTD returns
 # the full story. ubuntu-latest ships python3 already, so no setup-python
 # step is needed here for that local server.
 #
+# STACKS_WORKER_URL IS REQUIRED AGAIN - do not remove it a third time. When
+# the producer moved from investor_returns.py to investor_returns.mjs
+# (a6381e6d8), this secret was dropped from the step below on the assumption
+# that a locally-served page + a same-host quote request needed nothing
+# special. That assumption was wrong: CI run #5 showed every proxied
+# request from this runner to the PUBLIC https://api.stacksdaily.com/quote
+# gets 403 Forbidden - reproduced from a second datacenter IP too - even
+# with Origin/Referer spoofed to the real site, while an ordinary desktop
+# browser hitting the exact same URL gets 200. The public endpoint blocks
+# non-browser/datacenter traffic outright; no amount of header spoofing
+# from a CI runner fixes that. Runs #1-#2, on the retired Python producer,
+# were green from this exact same runner because that script (via
+# scripts/worker_url.py) called a private/allow-listed Worker URL from this
+# same secret instead of the public host. scripts/investor_returns.mjs now
+# does the same thing: when STACKS_WORKER_URL is set, it rewrites every
+# outgoing quote request to that base instead of api.stacksdaily.com. If
+# this is ever removed again "because it looks unused", re-run this
+# workflow first and read the "[fail] quote proxy (api.stacksdaily.com):
+# ... non2xx=..." line in investor_returns.log before touching it.
+#
 # Schedule: 22:30 UTC, weekdays. US cash-equity close is 21:00 UTC on EDT
 # (UTC-4, roughly mid-March to early November) and 22:00 UTC on EST
 # (UTC-5, the rest of the year); 22:30 UTC is after both year-round, with a
@@ -84,6 +104,13 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Price current 13F holdings and compute YTD returns
+        # See the file-header comment above ("STACKS_WORKER_URL IS REQUIRED
+        # AGAIN") for why this secret is back: the public
+        # api.stacksdaily.com host 403s CI/datacenter traffic (CI run #5),
+        # so scripts/investor_returns.mjs rewrites its quote requests to
+        # this private/allow-listed Worker URL instead.
+        env:
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
         run: |
           set -euo pipefail
           node scripts/investor_returns.mjs 2>&1 | tee investor_returns.log
