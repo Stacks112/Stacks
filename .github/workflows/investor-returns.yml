@@ -4,33 +4,45 @@ name: Investor YTD returns
 # "0 22 8-19 2,5,8,11 *"), and even then it carries zero market-price data
 # (scripts/fetch_13f.py never fetches a quote). The 13F investor hub table
 # still needs a daily-changing YTD return per investor, so this runs
-# scripts/investor_returns.py once a day after the US market closes to
-# price each investor's current 13F holdings and write the small summary
-# file data/investor-returns.json. This workflow touches ONLY that one file
-# - never index.html, never portfolios.json - so it is a pure data producer
+# scripts/investor_returns.mjs once a day after the US market closes to
+# compute each investor's YTD return and write the small summary file
+# data/investor-returns.json. This workflow touches ONLY that one file -
+# never index.html, never portfolios.json - so it is a pure data producer
 # for a UI change to be done separately.
+#
+# scripts/investor_returns.mjs (2026-08-12) drives a real headless Chromium
+# against the live site and calls window.invComputeValueSeries()/
+# window.quote1y() DIRECTLY - it is not a reimplementation of the frontend's
+# YTD math. The previous version, scripts/investor_returns.py, was a
+# careful line-by-line port of that same math and still silently drifted
+# from the live compare screen's own number for 2 of 16 investors (for a
+# reason nobody could pin down) - see scripts/investor_returns.mjs's header
+# comment for the full story. That is why this step now needs a browser
+# (setup-node + Playwright's Chromium), not just a Python interpreter.
 #
 # Schedule: 22:30 UTC, weekdays. US cash-equity close is 21:00 UTC on EDT
 # (UTC-4, roughly mid-March to early November) and 22:00 UTC on EST
 # (UTC-5, the rest of the year); 22:30 UTC is after both year-round, with a
-# 30-90 minute cushion for the Worker's own last close to actually be
-# available from Yahoo before we price against it.
+# 30-90 minute cushion for the site's own last close to actually be
+# available before we price against it.
 #
-# Failure safety (see scripts/investor_returns.py's module docstring for the
+# Failure safety (see scripts/investor_returns.mjs's module comment for the
 # full reasoning): the script itself refuses to write
 # data/investor-returns.json if the run raised (nothing written, working
-# tree == what git already has) or if it produced a usable ytd_pct for more
-# than REGRESSION_TOLERANCE (2) FEWER investors than the file already
-# committed had - a systemic regression, e.g. the Worker itself being down,
-# refuses to write and exits non-zero. A SMALL drop (1-2 investors dipping
-# under the coverage gate on an ordinary day, e.g. one flaky ticker) is
-# written anyway with those investors' ytd_pct: null and a warning logged -
-# it is not treated as a failure, because refusing to write over one flaky
-# ticker would wedge this pipeline and open a fresh issue every single day.
-# Either way the "Commit and push" step below only fires on a real content
-# diff, so a bad (non-written) run leaves the step with nothing to commit,
-# or the run fails outright before reaching it - it never blanks yesterday's
-# numbers.
+# tree == what git already has), if window.invComputeValueSeries never
+# appeared (site down/restructured), if fewer than 10 investors produced
+# any result, if investors disagree on their YTD start date, or if it
+# produced a usable ytd_pct for more than REGRESSION_TOLERANCE (2) FEWER
+# investors than the file already committed had - a systemic regression, IS
+# treated as the "do not touch the file" case: it refuses to write and
+# exits non-zero. A SMALL drop (1-2 investors dipping under the coverage
+# gate on an ordinary day, e.g. one flaky ticker) is written anyway with
+# those investors' ytd_pct: null and a warning logged - it is not treated
+# as a failure, because refusing to write over one flaky ticker would wedge
+# this pipeline and open a fresh issue every single day. Either way the
+# "Commit and push" step below only fires on a real content diff, so a bad
+# (non-written) run leaves the step with nothing to commit, or the run
+# fails outright before reaching it - it never blanks yesterday's numbers.
 
 on:
   schedule:
@@ -51,16 +63,20 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-node@v7
         with:
-          python-version: "3.12"
+          node-version: 22
+
+      - name: Install test runner
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Price current 13F holdings and compute YTD returns
-        env:
-          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
         run: |
           set -euo pipefail
-          python3 scripts/investor_returns.py 2>&1 | tee investor_returns.log
+          node scripts/investor_returns.mjs 2>&1 | tee investor_returns.log
 
       - name: Commit and push (if changed)
         run: |
@@ -71,7 +87,7 @@ jobs:
           # then diff the index against HEAD: a brand-new file shows up as a
           # staged addition, an ordinary unchanged day stages nothing new and
           # `--cached` stays quiet, and a run that chose not to write (see
-          # scripts/investor_returns.py) leaves the working file identical to
+          # scripts/investor_returns.mjs) leaves the working file identical to
           # what's already committed, which also stages nothing.
           if [ ! -f data/investor-returns.json ]; then
             echo "data/investor-returns.json does not exist (run did not produce one) - nothing to commit"
@@ -103,12 +119,12 @@ jobs:
 
       - name: Open or update an issue so failure survives being missed
         # No date in the title, deliberately - so a genuine multi-day outage
-        # (Worker down, systemic regression, etc.) comments on ONE open issue
+        # (site down, systemic regression, etc.) comments on ONE open issue
         # instead of opening a fresh one every single day it keeps failing.
         # Only a real, distinct failure ever reaches this step at all now
-        # (see fix in scripts/investor_returns.py: a 1-2 investor coverage
-        # dip is not a failure and never gets here), so daily noise was
-        # already ruled out before dedup even matters.
+        # (see scripts/investor_returns.mjs: a 1-2 investor coverage dip is
+        # not a failure and never gets here), so daily noise was already
+        # ruled out before dedup even matters.
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
