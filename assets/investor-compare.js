@@ -399,25 +399,108 @@
     });
   }
 
-  function summaryCard(inv){
-    var c = C(), a = inv.activity || {};
-    var card = document.createElement("article"); card.className = "inv-compare-card"; card.setAttribute("data-slug", inv.slug);
-    card.setAttribute("data-price-status", "loading");
-    card.innerHTML = '<button type="button" class="inv-compare-card-head"><span class="inv-ticker">' + esc(tickerLabel(inv)) + '</span>'
-      + '<b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(locVal(inv.name) || "") + '</small><span class="inv-price-cov inv-price-status" data-price-status="loading" role="status" aria-live="polite">' + esc(c.loading) + '</span></button>'
-      + '<dl class="inv-compare-metrics">'
-      + metric(c.reported, esc(invFmtDate(inv.period))) + metric(c.total, esc(invMoneyFmt(inv.total_value)))
-      + metric(c.holdings, String(inv.holdings_count == null ? "—" : inv.holdings_count)) + metric(c.top5, pct(topWeight(inv,5),1))
-      + metric(c.turnover, pct(a.turnover_pct,1)) + metric(c.since, '<span data-perf="since">' + esc(c.loading) + '</span>')
-      + metric(c.threeM, '<span data-perf="3m">' + esc(c.loading) + '</span>') + metric(c.oneY, '<span data-perf="1y">' + esc(c.loading) + '</span>')
-      + metric(c.vsSpy, '<span data-perf="spy">' + esc(c.loading) + '</span>') + '</dl>'
-      + '<div class="inv-quarter-changes"><span>' + esc(c.newBuy) + ' <b>' + num(a.new_count) + '</b></span><span>' + esc(c.add) + ' <b>' + num(a.added_count) + '</b></span>'
-      + '<span>' + esc(c.trim) + ' <b>' + num(a.reduced_count) + '</b></span><span>' + esc(c.exit) + ' <b>' + num(a.exited_count) + '</b></span></div>';
-    card.querySelector(".inv-compare-card-head").addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); });
-    return card;
+  /* Rows shown in the summary table, top to bottom. "perf" marks the four
+     rows whose value arrives async from fillPerformance() and which are
+     eligible for the (higher-is-better) winner highlight; the rest render
+     synchronously from the 13F snapshot and are never highlighted because
+     the product takes no stance on whether e.g. high turnover is good. */
+  var SUMMARY_METRIC_ROWS = [
+    { key:"reported", copy:"reported" }, { key:"total", copy:"total" },
+    { key:"holdings", copy:"holdings" }, { key:"top5", copy:"top5" }, { key:"turnover", copy:"turnover" },
+    { key:"since", copy:"since", perf:"since" }, { key:"threeM", copy:"threeM", perf:"3m" },
+    { key:"oneY", copy:"oneY", perf:"1y" }, { key:"vsSpy", copy:"vsSpy", perf:"spy" }
+  ];
+  var SUMMARY_CHANGE_ROWS = [
+    { key:"newBuy", copy:"newBuy", field:"new_count" }, { key:"add", copy:"add", field:"added_count" },
+    { key:"trim", copy:"trim", field:"reduced_count" }, { key:"exit", copy:"exit", field:"exited_count" }
+  ];
+  function summaryMetricHtml(c, key, inv){
+    var a = inv.activity || {};
+    if (key === "reported") return esc(invFmtDate(inv.period));
+    if (key === "total") return esc(invMoneyFmt(inv.total_value));
+    if (key === "holdings") return String(inv.holdings_count == null ? "—" : inv.holdings_count);
+    if (key === "top5") return pct(topWeight(inv, 5), 1);
+    if (key === "turnover") return pct(a.turnover_pct, 1);
+    return "—";
   }
-  function metric(label, value){ return '<div><dt>' + esc(label) + '</dt><dd>' + value + '</dd></div>'; }
   function num(v){ return typeof v === "number" ? String(v) : "—"; }
+
+  /* One <table>, metrics as rows / investors as columns, instead of one
+     repeated-label card per investor. Cells are addressed by investor slug
+     (model.cols / model.perf) rather than by a per-investor container
+     element, since a column no longer has one. */
+  function summaryTable(chosen){
+    var c = C();
+    var table = document.createElement("table"); table.className = "inv-compare-table inv-compare-summary-table";
+    var thead = document.createElement("thead"), headTr = document.createElement("tr");
+    headTr.appendChild(document.createElement("th"));
+    var cols = {}, slugs = [];
+    chosen.forEach(function(inv){
+      slugs.push(inv.slug);
+      var th = document.createElement("th"); th.className = "inv-compare-col"; th.scope = "col";
+      th.setAttribute("data-slug", inv.slug); th.setAttribute("data-price-status", "loading");
+      th.innerHTML = '<button type="button" class="inv-compare-card-head"><span class="inv-ticker">' + esc(tickerLabel(inv)) + '</span>'
+        + '<b>' + esc(locVal(inv.manager) || locVal(inv.name) || inv.slug) + '</b><small>' + esc(locVal(inv.name) || "") + '</small>'
+        + '<span class="inv-price-cov inv-price-status" data-price-status="loading" role="status" aria-live="polite">' + esc(c.loading) + '</span></button>';
+      th.querySelector(".inv-compare-card-head").addEventListener("click", function(){ if (typeof openInvestor === "function") openInvestor(inv.slug); });
+      headTr.appendChild(th);
+      cols[inv.slug] = { th: th, priceEl: th.querySelector(".inv-price-status") };
+    });
+    thead.appendChild(headTr); table.appendChild(thead);
+
+    var tbody = document.createElement("tbody"), perf = {};
+    chosen.forEach(function(inv){ perf[inv.slug] = {}; });
+    SUMMARY_METRIC_ROWS.forEach(function(row){
+      var tr = document.createElement("tr"); tr.setAttribute("data-row", row.key);
+      var rowTh = document.createElement("th"); rowTh.scope = "row"; rowTh.textContent = c[row.copy]; tr.appendChild(rowTh);
+      chosen.forEach(function(inv){
+        var td = document.createElement("td"); td.className = "num"; td.setAttribute("data-slug", inv.slug);
+        if (row.perf){
+          td.innerHTML = '<span data-perf="' + row.perf + '">' + esc(c.loading) + '</span>';
+          perf[inv.slug][row.perf] = { td: td, span: td.firstChild, value: null };
+        } else {
+          td.innerHTML = summaryMetricHtml(c, row.key, inv);
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    SUMMARY_CHANGE_ROWS.forEach(function(row){
+      var tr = document.createElement("tr"); tr.setAttribute("data-row", row.key);
+      var rowTh = document.createElement("th"); rowTh.scope = "row"; rowTh.textContent = c[row.copy]; tr.appendChild(rowTh);
+      chosen.forEach(function(inv){
+        var a = inv.activity || {}, td = document.createElement("td");
+        td.className = "num"; td.setAttribute("data-slug", inv.slug); td.textContent = num(a[row.field]);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    var wrap = document.createElement("div"); wrap.className = "inv-compare-table-wrap"; wrap.appendChild(table);
+    return { wrap: wrap, table: table, cols: cols, perf: perf, slugs: slugs };
+  }
+
+  /* Recomputes the single-winner highlight for one perf row (since/3m/1y/spy)
+     across every investor column. Only fires when >=2 columns have a finite
+     value; a tie highlights nobody. Re-run after every fillPerformance()
+     resolution so out-of-order arrivals still converge on the right winner. */
+  function updateRowWinner(model, key){
+    var best = null, winners = [], finite = 0;
+    model.slugs.forEach(function(slug){
+      var cell = model.perf[slug] && model.perf[slug][key]; if (!cell) return;
+      cell.td.classList.remove("inv-win");
+      if (typeof cell.value === "number" && isFinite(cell.value)){
+        finite++;
+        if (best === null || cell.value > best){ best = cell.value; winners = [slug]; }
+        else if (cell.value === best){ winners.push(slug); }
+      }
+    });
+    if (finite >= 2 && winners.length === 1){
+      var win = model.perf[winners[0]][key];
+      if (win) win.td.classList.add("inv-win");
+    }
+  }
 
   /* Keep one in-flight promise per investor so the summary cards and the
      comparison chart never request the same portfolio prices twice. */
@@ -439,10 +522,13 @@
     var first = q.closes[i], last = q.closes[q.closes.length - 1];
     return first ? last / first - 1 : null;
   }
-  function setPerf(card, key, value, fallback){
-    var el = card.querySelector('[data-perf="' + key + '"]'); if (!el) return;
-    el.textContent = typeof value === "number" && isFinite(value) ? signedPct(value) : fallback;
-    el.className = "inv-perf" + perfClass(value);
+  function setPerf(model, slug, key, value, fallback){
+    var cell = model.perf[slug] && model.perf[slug][key]; if (!cell) return;
+    var finite = typeof value === "number" && isFinite(value);
+    cell.span.textContent = finite ? signedPct(value) : fallback;
+    cell.span.className = "inv-perf" + perfClass(value);
+    cell.value = finite ? value : null;
+    updateRowWinner(model, key);
   }
   function priceState(res, c){
     var coverage = res && typeof res.coverage === "number" && isFinite(res.coverage) ? Math.max(0, Math.min(1, res.coverage)) : null;
@@ -452,14 +538,16 @@
     return { key:"ok", coverage:coverage, text:c.coverage.replace("{p}", Math.round(coverage * 100)) };
   }
   function quoteReady(q){ return !!(q && !q.error && q.t && q.closes && q.t.length > 1 && q.closes.length > 1); }
-  function setPriceStatus(card, res, c){
-    var state = priceState(res, c), el = card.querySelector("[data-price-status]");
-    card.setAttribute("data-price-status", state.key);
-    if (state.coverage == null) card.removeAttribute("data-price-coverage");
-    else card.setAttribute("data-price-coverage", String(Math.round(state.coverage * 100)));
+  function setPriceStatus(model, slug, res, c){
+    var col = model.cols[slug]; if (!col) return;
+    var state = priceState(res, c), el = col.priceEl;
+    col.th.setAttribute("data-price-status", state.key);
+    if (state.coverage == null) col.th.removeAttribute("data-price-coverage");
+    else col.th.setAttribute("data-price-coverage", String(Math.round(state.coverage * 100)));
     if (!el){
       el = document.createElement("span"); el.className = "inv-price-cov inv-price-status"; el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite");
-      card.querySelector(".inv-compare-card-head").appendChild(el);
+      col.th.querySelector(".inv-compare-card-head").appendChild(el);
+      col.priceEl = el;
     }
     el.className = "inv-price-cov inv-price-status";
     el.textContent = state.text;
@@ -467,23 +555,23 @@
     if (state.coverage == null) el.removeAttribute("data-price-coverage");
     else el.setAttribute("data-price-coverage", String(Math.round(state.coverage * 100)));
   }
-  function fillPerformance(card, inv){
-    var c = C(), filed = typeof invFiledEpoch === "function" ? invFiledEpoch(inv.filed) : null;
+  function fillPerformance(model, inv){
+    var c = C(), filed = typeof invFiledEpoch === "function" ? invFiledEpoch(inv.filed) : null, slug = inv.slug;
     return Promise.all([compareSeries(inv), quote1y("spy.us").catch(function(){ return null; })]).then(function(rows){
-      if (!card.isConnected) return;
+      if (!model.table.isConnected) return;
       var res = rows[0], spy = rows[1], lastEpoch = res && res.calendar && res.calendar.length ? res.calendar[res.calendar.length-1] : null;
       var state = priceState(res, c), hasSeries = state.key !== "unavailable";
       var since = valuePctAt(res, filed), age = filed != null && lastEpoch != null ? lastEpoch - filed : 0;
       var r3 = age >= 90*86400 ? valuePctAt(res, lastEpoch - 90*86400) : null;
       var r1 = age >= 365*86400 ? valuePctAt(res, lastEpoch - 365*86400) : null;
       var spySince = quotePctAt(spy, filed);
-      setPerf(card,"since",since,hasSeries ? "—" : c.priceUnavailable); setPerf(card,"3m",r3,hasSeries ? c.building : c.priceUnavailable); setPerf(card,"1y",r1,hasSeries ? c.building : c.priceUnavailable);
-      setPerf(card,"spy",typeof since === "number" && typeof spySince === "number" ? since-spySince : null,!quoteReady(spy) ? c.benchmarkUnavailable : (hasSeries ? "—" : c.priceUnavailable));
-      setPriceStatus(card, res, c);
+      setPerf(model,slug,"since",since,hasSeries ? "—" : c.priceUnavailable); setPerf(model,slug,"3m",r3,hasSeries ? c.building : c.priceUnavailable); setPerf(model,slug,"1y",r1,hasSeries ? c.building : c.priceUnavailable);
+      setPerf(model,slug,"spy",typeof since === "number" && typeof spySince === "number" ? since-spySince : null,!quoteReady(spy) ? c.benchmarkUnavailable : (hasSeries ? "—" : c.priceUnavailable));
+      setPriceStatus(model, slug, res, c);
     }).catch(function(){
-      if (!card.isConnected) return;
-      ["since","3m","1y","spy"].forEach(function(k){ setPerf(card,k,null,c.priceUnavailable); });
-      setPriceStatus(card, null, c);
+      if (!model.table.isConnected) return;
+      ["since","3m","1y","spy"].forEach(function(k){ setPerf(model,slug,k,null,c.priceUnavailable); });
+      setPriceStatus(model, slug, null, c);
     });
   }
 
@@ -870,8 +958,8 @@
       list.appendChild(compareGraphSection(chosen));
       if(periods.size>1){var warn=document.createElement("div");warn.className="inv-period-warning";warn.innerHTML='<b>'+esc(c.mismatch)+'</b><span>'+esc(c.periodWarn)+'</span>';list.appendChild(warn);}
       var grid=document.createElement("div");grid.className="inv-compare-summary-grid";
-      var cards=chosen.map(function(inv){var card=summaryCard(inv);grid.appendChild(card);return{inv:inv,card:card};});list.appendChild(grid);
-      invMapLimit(cards,2,function(x){return fillPerformance(x.card,x.inv);});
+      var summaryModel=summaryTable(chosen);grid.appendChild(summaryModel.wrap);list.appendChild(grid);
+      invMapLimit(chosen,2,function(inv){return fillPerformance(summaryModel,inv);});
       list.appendChild(overlapSection(chosen)); list.appendChild(topHoldingsSection(chosen)); list.appendChild(sectorSection(chosen));
       var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
     });
