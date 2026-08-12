@@ -697,6 +697,28 @@
     var a = points[lo - 1], b = points[lo];
     return Math.abs(a.t - target) <= Math.abs(b.t - target) ? a : b;
   }
+  /* Daily bars carry a ~14:30 UTC timestamp (mid-session snapshot), while
+     window-START targets (e.g. YTD's Date.UTC(y,0,1)) land on a midnight
+     boundary. Nearest-neighbour search (graphPointAt) then picks the prior
+     year's Dec 31 bar (~9.5h away) over the correct Jan 2 bar (~38.5h away),
+     silently adding a trading day of return to every start-of-window figure.
+     Use this ceiling search — first point with t >= target — for ANY window
+     START resolution. Must stay in lockstep with invPaintValueChart's
+     ceiling loop in index.html (`while (startIdx < calendar.length - 1 &&
+     calendar[startIdx] < requestedStart) startIdx++;`) — that is this
+     function's twin for the single-investor chart; keep both in sync.
+     END resolution should keep using graphPointAt (nearest-neighbour). */
+  function graphPointAtOrAfter(points, target){
+    if (!points || !points.length) return null;
+    var lo = 0, hi = points.length - 1;
+    if (target <= points[0].t) return points[0];
+    if (target > points[hi].t) return points[hi];
+    while (lo < hi){
+      var mid = (lo + hi) >> 1;
+      if (points[mid].t < target) lo = mid + 1; else hi = mid;
+    }
+    return points[lo];
+  }
   function graphPct(v){
     if (typeof v !== "number" || !isFinite(v)) return "—";
     return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
@@ -712,7 +734,7 @@
   }
   function graphRangeForSeries(series, a, b, maxElapsed, windowStart){
     var lo = Math.min(a, b), hi = Math.max(a, b);
-    var start = graphPointAt(series.points, windowStart + lo * maxElapsed);
+    var start = graphPointAtOrAfter(series.points, windowStart + lo * maxElapsed);
     var end = graphPointAt(series.points, windowStart + hi * maxElapsed);
     if (!start || !end || end.t <= start.t || !(start.index > 0)) return null;
     return { start: start, end: end, pct: (end.index / start.index - 1) * 100, days: (end.t - start.t) / 86400 };
@@ -809,7 +831,7 @@
     var maxElapsed = windowEnd - windowStart;
     if (!(maxElapsed > 0)){ emptyCompareChart(chart, rows, c, heroLabelEl, heroListEl, period); return; }
     var series = fullSeries.map(function(s, i){
-      var first = graphPointAt(s.points, windowStart), last = graphPointAt(s.points, windowEnd);
+      var first = graphPointAtOrAfter(s.points, windowStart), last = graphPointAt(s.points, windowEnd);
       if (!first || !last || last.t <= first.t || !(first.v > 0)) return null;
       var points = s.points.filter(function(p){ return p.t >= first.t && p.t <= last.t; });
       if (!points.length || points[0].t !== first.t) points.unshift(first);
