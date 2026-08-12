@@ -11,14 +11,24 @@ name: Investor YTD returns
 # for a UI change to be done separately.
 #
 # scripts/investor_returns.mjs (2026-08-12) drives a real headless Chromium
-# against the live site and calls window.invComputeValueSeries()/
-# window.quote1y() DIRECTLY - it is not a reimplementation of the frontend's
-# YTD math. The previous version, scripts/investor_returns.py, was a
-# careful line-by-line port of that same math and still silently drifted
-# from the live compare screen's own number for 2 of 16 investors (for a
-# reason nobody could pin down) - see scripts/investor_returns.mjs's header
-# comment for the full story. That is why this step now needs a browser
-# (setup-node + Playwright's Chromium), not just a Python interpreter.
+# and calls window.invComputeValueSeries()/window.quote1y() DIRECTLY - it is
+# not a reimplementation of the frontend's YTD math. The previous version,
+# scripts/investor_returns.py, was a careful line-by-line port of that same
+# math and still silently drifted from the live compare screen's own number
+# for 2 of 16 investors (for a reason nobody could pin down) - see
+# scripts/investor_returns.mjs's header comment for the full story. That is
+# why this step now needs a browser (setup-node + Playwright's Chromium),
+# not just a Python interpreter.
+#
+# The browser loads a LOCAL static server of this repo checkout (the script
+# spawns `python3 -m http.server`, same as playwright.config.mjs does for
+# the tests/ regression suite), not the live stacksdaily.com - the first
+# deployed version pointed at the live site and its first workflow_dispatch
+# run failed at the readiness gate ("window.invComputeValueSeries/
+# window.quote1y did not appear within 60000ms") even though the site was
+# not actually down; see scripts/investor_returns.mjs's header comment for
+# the full story. ubuntu-latest ships python3 already, so no setup-python
+# step is needed here for that local server.
 #
 # Schedule: 22:30 UTC, weekdays. US cash-equity close is 21:00 UTC on EDT
 # (UTC-4, roughly mid-March to early November) and 22:00 UTC on EST
