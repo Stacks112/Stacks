@@ -6,9 +6,43 @@ async function waitForFeed(page) {
 }
 
 async function firstLinkedCardId(page) {
-  const card = page.locator("#feedList article.card").filter({ has: page.locator(".ent-link, .gloss-link") }).first();
-  await expect(card).toBeVisible();
-  return card.getAttribute("id");
+  // The feed populates entity links progressively as cards render, so the
+  // scan below is wrapped in toPass(): it retries until a card with a truly
+  // visible entity link shows up instead of latching onto whatever partial
+  // state exists on the first pass.
+  let id;
+  await expect(async () => {
+    const cards = page.locator("#feedList article.card").filter({ has: page.locator(".ent-link, .gloss-link") });
+    const count = await cards.count();
+    let found = null;
+    for (let i = 0; i < count; i++) {
+      const card = cards.nth(i);
+      const hasVisibleLink = await card.evaluate((cardEl) => {
+        const links = cardEl.querySelectorAll(".ent-link, .gloss-link");
+        for (const link of links) {
+          const r = link.getBoundingClientRect();
+          if (r.width === 0 || r.height === 0) continue;
+          let closed = false;
+          for (let node = link.parentElement; node && node !== cardEl; node = node.parentElement) {
+            if (node.tagName === "DETAILS" && !node.hasAttribute("open")) {
+              closed = true;
+              break;
+            }
+          }
+          if (!closed) return true;
+        }
+        return false;
+      });
+      if (hasVisibleLink) {
+        found = card;
+        break;
+      }
+    }
+    expect(found, "no feed card has a visible entity link — the entity-link feature may actually be broken").not.toBeNull();
+    id = await found.getAttribute("id");
+  }).toPass({ timeout: 10_000 });
+  await expect(page.locator(`#${id}`)).toBeVisible();
+  return id;
 }
 
 async function assertDetail(page, selector, id) {
