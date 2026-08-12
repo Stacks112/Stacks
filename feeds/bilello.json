@@ -1,7 +1,7 @@
 {
  "source": "bilello",
  "fetched_at": "2026-08-12T08:00:50.235211+00:00",
- "checked_at": "2026-08-12T11:24:00.343230+00:00",
+ "checked_at": "2026-08-12T13:59:20.719631+00:00",
  "ok": false,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
@@ -9,7 +9,7 @@
  "foreign_count": 0,
  "newest_published": "2026-08-05T16:12:10+00:00",
  "kept_count": 3,
- "error": "ParseError: not well-formed (invalid token): line 1, column 115",
+ "error": "ConnectTimeout: HTTPSConnectionPool(host='bilello.blog', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='bilello.blog', port=443) at 0x7f9633ba8b00>, 'Connection to bilello.blog timed out. (connect timeout=25)'))",
  "items": [
   {
    "title": "The State of the Markets (August 2026)",
