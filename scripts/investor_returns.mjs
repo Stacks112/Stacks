@@ -78,19 +78,65 @@
 // This script is a build tool, not the ES5-constrained runtime code in
 // assets/investor-compare.js — modern Node ESM (top-level await, optional
 // chaining, etc.) is fine here.
+//
+// WHY IT SERVES THE REPO LOCALLY INSTEAD OF NAVIGATING TO THE PUBLIC SITE
+// (read before "simplifying" this back to the live URL):
+//
+// The first deployed version of this script pointed straight at
+// https://stacksdaily.com/ and its very first workflow_dispatch run failed
+// at the readiness gate below, with this exact console output:
+//
+//   [info] navigating to https://stacksdaily.com/
+//   [fail] window.invComputeValueSeries/window.quote1y did not appear within
+//   60000ms - site may be down or restructured; refusing to write
+//   .../data/investor-returns.json
+//
+// The gate did exactly its job (nothing was written, a failure issue was
+// opened) — but the site was NOT actually down: both globals are present
+// within a few seconds in an ordinary desktop browser hitting the same URL.
+// Something about headless Chromium reaching the public origin specifically
+// (bot/challenge behaviour, edge/CDN quirk, the site's own service worker
+// racing first paint — never root-caused) breaks it. Rather than chase that
+// through a black-box public edge, this script now serves the repo checkout
+// itself on localhost — the exact same `python3 -m http.server` pattern
+// playwright.config.mjs already uses for the regression tests in this repo,
+// which is proven to work in this repo's CI — and points the browser at
+// that instead. This is strictly better, not just a workaround: the
+// producer then computes against the code actually at HEAD rather than
+// whatever happens to be deployed, and it has zero dependency on the public
+// site being reachable from a runner at all. STACKS_SITE_URL (below) exists
+// purely so a human can point this at the live site for debugging; it is
+// not meant to be set in CI.
 
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawn } from "node:child_process";
 import { chromium } from "@playwright/test";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.dirname(HERE);
 const OUTPUT_PATH = path.join(ROOT, "data", "investor-returns.json");
 
-const SITE_URL = "https://stacksdaily.com/";
+// Debug escape hatch only — see the file-header comment above for why the
+// normal path serves the repo locally instead. Set STACKS_SITE_URL to point
+// this script at a live/staging origin by hand; when it is set, the local
+// `python3 -m http.server` below is never spawned.
+const STACKS_SITE_URL = process.env.STACKS_SITE_URL || null;
+// Deliberately NOT 4173: playwright.config.mjs's own webServer (used by the
+// regression tests in tests/) listens on 4173, and a developer running both
+// that test suite and this script at once should not collide on the same
+// port. Overridable via STACKS_SITE_PORT for anyone who needs a specific
+// port anyway. If a server is already answering on this port (e.g. this
+// script running twice, or a human's own `python3 -m http.server` left up
+// for debugging), that server is reused rather than spawning a second one —
+// mirroring playwright's own `reuseExistingServer` behaviour.
+const LOCAL_SERVER_PORT = Number(process.env.STACKS_SITE_PORT) || 4174;
+const LOCAL_SERVER_URL = `http://127.0.0.1:${LOCAL_SERVER_PORT}/`;
+const SITE_URL = STACKS_SITE_URL || LOCAL_SERVER_URL;
 const READY_TIMEOUT_MS = 60_000; // window.invComputeValueSeries/window.quote1y must appear within this
 const NAV_TIMEOUT_MS = 45_000;
+const LOCAL_SERVER_STARTUP_TIMEOUT_MS = 15_000;
 
 // Same constants/intent as the retired scripts/investor_returns.py — see
 // that file's git history for the full reasoning; summarized above.
@@ -271,6 +317,81 @@ async function computeInvestorInPage(inv) {
 /* eslint-enable no-undef */
 
 // --------------------------------------------------------------------------
+// Local static server for the repo checkout (see the file-header comment
+// for why this script serves the repo instead of navigating to the public
+// site). Mirrors playwright.config.mjs's webServer: same command, same
+// "reuse if already answering" behaviour.
+// --------------------------------------------------------------------------
+
+/** True if something is already answering HTTP on `url` (any status code
+ * counts - we only care whether a server is listening, not what it serves). */
+async function serverIsUp(url) {
+  try {
+    const res = await fetch(url, { method: "GET" });
+    void res;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function waitForServer(url, timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    if (await serverIsUp(url)) return true;
+    await new Promise((r) => setTimeout(r, 200));
+  }
+  return false;
+}
+
+/** Spawns `python3 -m http.server <port> --bind 127.0.0.1` with cwd=ROOT so
+ * it serves the repo checkout (index.html, portfolios.json, assets/, etc.)
+ * exactly the way playwright.config.mjs's webServer does for the regression
+ * tests. Reuses an already-answering server on the same port instead of
+ * spawning a second one. Returns { proc, url } - `proc` is null when an
+ * existing server was reused (nothing for this script to own/kill). Throws
+ * if a freshly spawned server never answers within
+ * LOCAL_SERVER_STARTUP_TIMEOUT_MS (and kills the child before throwing, so
+ * nothing is left running on that path either).
+ */
+async function startLocalServer() {
+  if (await serverIsUp(LOCAL_SERVER_URL)) {
+    console.log(`[info] reusing server already answering on ${LOCAL_SERVER_URL}`);
+    return { proc: null, url: LOCAL_SERVER_URL };
+  }
+  console.log(
+    `[info] starting local server: python3 -m http.server ${LOCAL_SERVER_PORT} --bind 127.0.0.1 (cwd=${ROOT})`
+  );
+  const proc = spawn(
+    "python3",
+    ["-m", "http.server", String(LOCAL_SERVER_PORT), "--bind", "127.0.0.1"],
+    { cwd: ROOT, stdio: ["ignore", "ignore", "ignore"] }
+  );
+  let spawnError = null;
+  proc.on("error", (e) => {
+    spawnError = e;
+  });
+  const up = await waitForServer(LOCAL_SERVER_URL, LOCAL_SERVER_STARTUP_TIMEOUT_MS);
+  if (!up) {
+    proc.kill();
+    const reason = spawnError ? `: ${spawnError.message}` : "";
+    throw new Error(
+      `local http.server did not answer on ${LOCAL_SERVER_URL} within ${LOCAL_SERVER_STARTUP_TIMEOUT_MS}ms${reason}`
+    );
+  }
+  return { proc, url: LOCAL_SERVER_URL };
+}
+
+/** Kills the child process from startLocalServer, if this run owns one
+ * (reused servers - proc:null - are left alone, they were not ours to
+ * manage). Safe to call more than once / on an already-exited process. */
+function stopLocalServer(localServer) {
+  if (localServer && localServer.proc && !localServer.proc.killed) {
+    localServer.proc.kill();
+  }
+}
+
+// --------------------------------------------------------------------------
 // main
 // --------------------------------------------------------------------------
 
@@ -278,142 +399,163 @@ async function main() {
   const prev = await loadJson(OUTPUT_PATH, null);
   const prevUsable = prev ? usableCount(prev.investors) : null;
 
-  const browser = await chromium.launch({ headless: true });
-  // NOTE: process.exitCode is set directly at each failure point below,
-  // not via a local variable read after the try/finally - a `return`
-  // inside `try` runs `finally` and then exits the function immediately,
-  // so any statement placed after the try/finally block would never run
-  // on those paths. Setting process.exitCode inline avoids that trap.
+  // usingLocalServer/localServer are read/set in the outer finally below to
+  // guarantee the spawned `python3 -m http.server` child never survives this
+  // function on ANY exit path - normal return, an early `return` on a gate
+  // failure, or an uncaught throw. See startLocalServer/stopLocalServer and
+  // the file-header comment for why this script serves the repo locally at
+  // all instead of navigating to the public site.
+  const usingLocalServer = !STACKS_SITE_URL;
+  let localServer = null;
+
   try {
-    const page = await browser.newPage();
-    page.setDefaultTimeout(NAV_TIMEOUT_MS);
-    console.log(`[info] navigating to ${SITE_URL}`);
-    await page.goto(SITE_URL, { waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT_MS });
+    if (usingLocalServer) {
+      localServer = await startLocalServer();
+    }
 
+    const browser = await chromium.launch({ headless: true });
+    // NOTE: process.exitCode is set directly at each failure point below,
+    // not via a local variable read after the try/finally - a `return`
+    // inside `try` runs `finally` and then exits the function immediately,
+    // so any statement placed after the try/finally block would never run
+    // on those paths. Setting process.exitCode inline avoids that trap.
     try {
-      await page.waitForFunction(
-        () =>
-          typeof window.invComputeValueSeries === "function" &&
-          typeof window.quote1y === "function",
-        { timeout: READY_TIMEOUT_MS }
-      );
-    } catch {
-      console.error(
-        `[fail] window.invComputeValueSeries/window.quote1y did not appear within ${READY_TIMEOUT_MS}ms - ` +
-          `site may be down or restructured; refusing to write ${OUTPUT_PATH}`
-      );
-      process.exitCode = 1;
-      return;
-    }
+      // serviceWorkers: "block" - the site registers a service worker and
+      // it must not interfere here (same setting playwright.config.mjs uses
+      // for the regression tests, for the same reason).
+      const context = await browser.newContext({ serviceWorkers: "block" });
+      const page = await context.newPage();
+      page.setDefaultTimeout(NAV_TIMEOUT_MS);
+      console.log(`[info] navigating to ${SITE_URL}`);
+      await page.goto(SITE_URL, { waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT_MS });
 
-    const portfolios = await page.evaluate(async () => {
-      const r = await fetch("/portfolios.json");
-      if (!r.ok) throw new Error(`portfolios.json fetch failed: HTTP ${r.status}`);
-      return r.json();
-    });
-    const investors = (portfolios && portfolios.investors) || [];
-    if (!investors.length) {
-      console.error("[fail] /portfolios.json has no investors - nothing to do");
-      process.exitCode = 1;
-      return;
-    }
-    console.log(`[info] investors=${investors.length}`);
-
-    const perInvestor = {}; // slug -> in-page result (ok:true|false)
-    for (const inv of investors) {
-      const slug = inv.slug;
-      let result;
       try {
-        result = await page.evaluate(computeInvestorInPage, inv);
-      } catch (e) {
-        result = { ok: false, reason: `page.evaluate threw: ${(e && e.message) || e}` };
-      }
-      perInvestor[slug] = result;
-      if (result.ok) {
-        console.log(
-          `[ok] ${slug}: ytd=${(result.ytd_pct * 100).toFixed(2)}% coverage=${(result.coverage_pct * 100).toFixed(1)}% ` +
-            `priced=${result.priced_holdings}/${result.eligible_holdings}`
+        await page.waitForFunction(
+          () =>
+            typeof window.invComputeValueSeries === "function" &&
+            typeof window.quote1y === "function",
+          { timeout: READY_TIMEOUT_MS }
         );
-      } else {
-        console.log(`[warn] ${slug}: no result (${result.reason})`);
+      } catch {
+        console.error(
+          `[fail] window.invComputeValueSeries/window.quote1y did not appear within ${READY_TIMEOUT_MS}ms - ` +
+            `site may be down or restructured; refusing to write ${OUTPUT_PATH}`
+        );
+        process.exitCode = 1;
+        return;
       }
-    }
 
-    const successful = Object.entries(perInvestor).filter(([, r]) => r.ok);
-    if (successful.length < MIN_INVESTORS_WITH_RESULT) {
-      console.error(
-        `[fail] only ${successful.length}/${investors.length} investors produced any result ` +
-          `(minimum ${MIN_INVESTORS_WITH_RESULT}) - refusing to write ${OUTPUT_PATH}`
-      );
-      process.exitCode = 1;
-      return;
-    }
+      const portfolios = await page.evaluate(async () => {
+        const r = await fetch("/portfolios.json");
+        if (!r.ok) throw new Error(`portfolios.json fetch failed: HTTP ${r.status}`);
+        return r.json();
+      });
+      const investors = (portfolios && portfolios.investors) || [];
+      if (!investors.length) {
+        console.error("[fail] /portfolios.json has no investors - nothing to do");
+        process.exitCode = 1;
+        return;
+      }
+      console.log(`[info] investors=${investors.length}`);
 
-    // Every successful investor must resolve to the SAME ytd_start date -
-    // see file header. Disagreement means something structural is wrong
-    // (e.g. different investors landing on different "latest calendar
-    // point" years), not ordinary per-investor noise.
-    const startDatesBySlug = {};
-    for (const [slug, r] of successful) {
-      startDatesBySlug[slug] = isoDateUTC(r.ytd_start_epoch);
-    }
-    const distinctDates = Array.from(new Set(Object.values(startDatesBySlug)));
-    if (distinctDates.length > 1) {
-      console.error(
-        `[fail] investors disagree on ytd_start date - refusing to write ${OUTPUT_PATH}:\n` +
-          JSON.stringify(startDatesBySlug, null, 1)
-      );
-      process.exitCode = 1;
-      return;
-    }
-    const ytdStart = distinctDates[0];
+      const perInvestor = {}; // slug -> in-page result (ok:true|false)
+      for (const inv of investors) {
+        const slug = inv.slug;
+        let result;
+        try {
+          result = await page.evaluate(computeInvestorInPage, inv);
+        } catch (e) {
+          result = { ok: false, reason: `page.evaluate threw: ${(e && e.message) || e}` };
+        }
+        perInvestor[slug] = result;
+        if (result.ok) {
+          console.log(
+            `[ok] ${slug}: ytd=${(result.ytd_pct * 100).toFixed(2)}% coverage=${(result.coverage_pct * 100).toFixed(1)}% ` +
+              `priced=${result.priced_holdings}/${result.eligible_holdings}`
+          );
+        } else {
+          console.log(`[warn] ${slug}: no result (${result.reason})`);
+        }
+      }
 
-    const newInvestors = {};
-    const gated = {};
-    for (const [slug, r] of Object.entries(perInvestor)) {
-      if (!r.ok) continue; // per-investor failure -> omit (UI treats missing as no-data)
-      const raw = {
-        ytd_pct: round4(r.ytd_pct),
-        coverage_pct: round4(r.coverage_pct),
-        priced_holdings: r.priced_holdings,
-        eligible_holdings: r.eligible_holdings,
+      const successful = Object.entries(perInvestor).filter(([, r]) => r.ok);
+      if (successful.length < MIN_INVESTORS_WITH_RESULT) {
+        console.error(
+          `[fail] only ${successful.length}/${investors.length} investors produced any result ` +
+            `(minimum ${MIN_INVESTORS_WITH_RESULT}) - refusing to write ${OUTPUT_PATH}`
+        );
+        process.exitCode = 1;
+        return;
+      }
+
+      // Every successful investor must resolve to the SAME ytd_start date -
+      // see file header. Disagreement means something structural is wrong
+      // (e.g. different investors landing on different "latest calendar
+      // point" years), not ordinary per-investor noise.
+      const startDatesBySlug = {};
+      for (const [slug, r] of successful) {
+        startDatesBySlug[slug] = isoDateUTC(r.ytd_start_epoch);
+      }
+      const distinctDates = Array.from(new Set(Object.values(startDatesBySlug)));
+      if (distinctDates.length > 1) {
+        console.error(
+          `[fail] investors disagree on ytd_start date - refusing to write ${OUTPUT_PATH}:\n` +
+            JSON.stringify(startDatesBySlug, null, 1)
+        );
+        process.exitCode = 1;
+        return;
+      }
+      const ytdStart = distinctDates[0];
+
+      const newInvestors = {};
+      const gated = {};
+      for (const [slug, r] of Object.entries(perInvestor)) {
+        if (!r.ok) continue; // per-investor failure -> omit (UI treats missing as no-data)
+        const raw = {
+          ytd_pct: round4(r.ytd_pct),
+          coverage_pct: round4(r.coverage_pct),
+          priced_holdings: r.priced_holdings,
+          eligible_holdings: r.eligible_holdings,
+        };
+        const withGate = applyCoverageGate(raw);
+        gated[slug] = withGate.ytd_pct === null && raw.ytd_pct !== null;
+        newInvestors[slug] = withGate;
+      }
+
+      const newUsable = usableCount(newInvestors);
+      console.log(`[info] usable ytd_pct count: new=${newUsable} previous=${prevUsable === null ? "n/a" : prevUsable}`);
+
+      const regression = checkRegression(newUsable, prevUsable);
+      if (!regression.ok) {
+        console.error(`::error::investor-returns ${regression.message}`);
+        process.exitCode = 1;
+        return;
+      }
+      if (regression.warn && regression.message) {
+        console.warn(`::warning::investor-returns: ${regression.message}`);
+      }
+
+      const out = {
+        as_of: nowIsoUtcMicros(),
+        ytd_start: ytdStart,
+        investors: newInvestors,
       };
-      const withGate = applyCoverageGate(raw);
-      gated[slug] = withGate.ytd_pct === null && raw.ytd_pct !== null;
-      newInvestors[slug] = withGate;
-    }
 
-    const newUsable = usableCount(newInvestors);
-    console.log(`[info] usable ytd_pct count: new=${newUsable} previous=${prevUsable === null ? "n/a" : prevUsable}`);
+      await fs.mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
+      await fs.writeFile(OUTPUT_PATH, JSON.stringify(out, null, 1) + "\n", "utf8");
+      console.log(`[info] wrote ${OUTPUT_PATH}`);
 
-    const regression = checkRegression(newUsable, prevUsable);
-    if (!regression.ok) {
-      console.error(`::error::investor-returns ${regression.message}`);
-      process.exitCode = 1;
-      return;
-    }
-    if (regression.warn && regression.message) {
-      console.warn(`::warning::investor-returns: ${regression.message}`);
-    }
-
-    const out = {
-      as_of: nowIsoUtcMicros(),
-      ytd_start: ytdStart,
-      investors: newInvestors,
-    };
-
-    await fs.mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
-    await fs.writeFile(OUTPUT_PATH, JSON.stringify(out, null, 1) + "\n", "utf8");
-    console.log(`[info] wrote ${OUTPUT_PATH}`);
-
-    console.log("\nslug,ytd_pct,coverage_pct,gated");
-    for (const [slug, r] of Object.entries(newInvestors)) {
-      const ytd = r.ytd_pct === null ? "null" : (r.ytd_pct * 100).toFixed(2) + "%";
-      const cov = (r.coverage_pct * 100).toFixed(1) + "%";
-      console.log(`${slug},${ytd},${cov},${gated[slug] ? "yes" : "no"}`);
+      console.log("\nslug,ytd_pct,coverage_pct,gated");
+      for (const [slug, r] of Object.entries(newInvestors)) {
+        const ytd = r.ytd_pct === null ? "null" : (r.ytd_pct * 100).toFixed(2) + "%";
+        const cov = (r.coverage_pct * 100).toFixed(1) + "%";
+        console.log(`${slug},${ytd},${cov},${gated[slug] ? "yes" : "no"}`);
+      }
+    } finally {
+      await browser.close();
     }
   } finally {
-    await browser.close();
+    stopLocalServer(localServer);
   }
 }
 
