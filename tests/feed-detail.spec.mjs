@@ -304,6 +304,112 @@ test.describe("13F investor view state", () => {
     await expect.poll(() => afterContent(holdingsBtn)).toBe('"▲"');
   });
 
+  // data/investor-returns.json is a daily-pipeline output, not something the
+  // hub computes itself (see the /quote-storm history above). These tests
+  // mock the route so they never depend on the live committed file's
+  // contents — they only assert on shapes: signed-percent pattern, dash for
+  // null/missing, sort-with-nulls-last, and stale/failed fail-quiet-to-dash.
+  function mockHubReturns(page, body) {
+    return page.route("**/data/investor-returns.json*", route =>
+      route.fulfill({ contentType: "application/json", body: JSON.stringify(body) })
+    );
+  }
+  const FRESH_RETURNS = {
+    as_of: new Date().toISOString(),
+    ytd_start: "2026-01-02",
+    investors: {
+      duquesne: { ytd_pct: 0.20, coverage_pct: 1, priced_holdings: 10, eligible_holdings: 10 },
+      "pershing-square": { ytd_pct: 0.12, coverage_pct: 1, priced_holdings: 10, eligible_holdings: 10 },
+      berkshire: { ytd_pct: 0.05, coverage_pct: 1, priced_holdings: 10, eligible_holdings: 10 },
+      ark: { ytd_pct: -0.03, coverage_pct: 1, priced_holdings: 10, eligible_holdings: 10 },
+      "third-point": { ytd_pct: null, coverage_pct: 0.5, priced_holdings: 5, eligible_holdings: 10 }
+      // baupost and the rest of the roster are absent entirely — also a dash case.
+    },
+  };
+  const NUMERIC_SLUGS_DESC = ["duquesne", "pershing-square", "berkshire", "ark"];
+
+  test("hub table renders a YTD return column: signed values, dash for null and for missing investors", async ({ page }) => {
+    await mockHubReturns(page, FRESH_RETURNS);
+    await openInvestors(page);
+    const table = page.locator(".inv-hub-table");
+    await expect(table).toBeVisible();
+    await expect(table.locator('th:has(button[data-sort="ytd_return"])')).toBeVisible();
+
+    const berkshireCell = table.locator('tr[data-slug="berkshire"] td:nth-child(2) span');
+    await expect(berkshireCell).toHaveText(/^\+\d+(\.\d)?%$/);
+
+    const nullCell = table.locator('tr[data-slug="third-point"] td:nth-child(2) span');
+    await expect(nullCell).toHaveText("—");
+    await expect(table.locator('tr[data-slug="third-point"] td:nth-child(2)')).toHaveAttribute("title", /50\.0%/);
+
+    const missingCell = table.locator('tr[data-slug="baupost"] td:nth-child(2) span');
+    await expect(missingCell).toHaveText("—");
+
+    await expect(page.locator(".inv-hub-ytd-note")).toContainText("2026.01.02");
+  });
+
+  test("clicking the YTD header sorts numerically and keeps dashes at the bottom in both directions", async ({ page }) => {
+    await mockHubReturns(page, FRESH_RETURNS);
+    await openInvestors(page);
+    const table = page.locator(".inv-hub-table");
+    // Wait for the async fill so the header click sorts real numbers, not
+    // the all-null placeholder state.
+    await expect(table.locator('tr[data-slug="berkshire"] td:nth-child(2) span')).toHaveText(/^\+/);
+
+    const ytdTh = table.locator('th:has(button[data-sort="ytd_return"])');
+    const ytdBtn = table.locator('button[data-sort="ytd_return"]');
+
+    await ytdBtn.click();
+    await expect(ytdTh).toHaveAttribute("aria-sort", "descending");
+    let slugs = await table.locator("tr.inv-hub-card").evaluateAll(trs => trs.map(tr => tr.getAttribute("data-slug")));
+    expect(slugs.slice(0, 4)).toEqual(NUMERIC_SLUGS_DESC);
+    expect(slugs.indexOf("third-point")).toBeGreaterThanOrEqual(4);
+    expect(slugs.indexOf("baupost")).toBeGreaterThanOrEqual(4);
+
+    await ytdBtn.click();
+    await expect(ytdTh).toHaveAttribute("aria-sort", "ascending");
+    slugs = await table.locator("tr.inv-hub-card").evaluateAll(trs => trs.map(tr => tr.getAttribute("data-slug")));
+    expect(slugs.slice(0, 4)).toEqual(NUMERIC_SLUGS_DESC.slice().reverse());
+    expect(slugs.indexOf("third-point")).toBeGreaterThanOrEqual(4);
+    expect(slugs.indexOf("baupost")).toBeGreaterThanOrEqual(4);
+  });
+
+  test("a stale or failed returns feed blanks the whole YTD column without breaking the rest of the table", async ({ page }) => {
+    const staleBody = { ...FRESH_RETURNS, as_of: new Date(Date.now() - 10 * 86400000).toISOString() };
+    await mockHubReturns(page, staleBody);
+    await openInvestors(page);
+    const table = page.locator(".inv-hub-table");
+    await expect(table).toBeVisible();
+
+    const totalCell = table.locator('tr[data-slug="berkshire"] td:nth-child(3)');
+    await expect(totalCell).not.toHaveText("—");
+    await expect(totalCell).not.toHaveText("");
+
+    await expect(async () => {
+      const texts = await table.locator("tr.inv-hub-card td:nth-child(2) span").allTextContents();
+      expect(texts.length).toBeGreaterThan(0);
+      expect(texts.every(t => t.trim() === "—")).toBe(true);
+    }).toPass({ timeout: 10_000 });
+
+    await expect(page.locator(".inv-hub-ytd-note")).toContainText("연중 수익률 데이터를 최신 상태로 불러오지 못해");
+  });
+
+  test("a failed (network-error) returns fetch also blanks the YTD column without breaking the table", async ({ page }) => {
+    await page.route("**/data/investor-returns.json*", route => route.abort());
+    await openInvestors(page);
+    const table = page.locator(".inv-hub-table");
+    await expect(table).toBeVisible();
+
+    const totalCell = table.locator('tr[data-slug="berkshire"] td:nth-child(3)');
+    await expect(totalCell).not.toHaveText("—");
+
+    await expect(async () => {
+      const texts = await table.locator("tr.inv-hub-card td:nth-child(2) span").allTextContents();
+      expect(texts.length).toBeGreaterThan(0);
+      expect(texts.every(t => t.trim() === "—")).toBe(true);
+    }).toPass({ timeout: 10_000 });
+  });
+
   test("investor value chart honors period boundaries and nearest points", async ({ page }) => {
     await page.route("**/quote?*", route => {
       const now = Math.floor(Date.now() / 86400000) * 86400;
