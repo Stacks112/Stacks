@@ -2,6 +2,202 @@
  "items": [
   {
    "date": "2026-08-11",
+   "id": "jukan-intel-memory-architecture-hint-vs-packaging-title",
+   "related": [
+    "jukan-samsung-high-na-euv-a10-2030",
+    "jukan-cxmt-17nm-ddr5-yield-90-sourcing-gap",
+    "jukan-skhynix-dalian-fab2-veu-license"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2087299980428206504",
+   "docUrl": "https://newsroom.intel.com/corporate/intel-announces-leadership-appointment-at-intel-foundry-to-accelerate-development-and-manufacturing",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0b1120",
+    "to": "#0369a1",
+    "label": "INTC"
+   },
+   "tags": [
+    "INTEL",
+    "MEMORY",
+    "PACKAGING"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "인텔이 메모리를 다시 본다, 데려온 사람의 직함은 패키징이다",
+    "en": "Intel is looking at memory again, and the man it hired has a packaging title",
+    "ja": "インテルがメモリーを再び見る、招いた人物の肩書はパッケージングだ"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Is Intel getting into a new memory architecture?",
+      "I used to [not] invest in memory because it's kind of commodity business, right?",
+      "But now [it has] become different. There's a lot of new technology come out."
+     ],
+     "ko": [
+      "인텔이 새로운 메모리 구조로 들어가고 있는 걸까?",
+      "나는 메모리가 일종의 범용품 사업이라 투자하지 않곤 했다, 그렇지 않나?",
+      "그런데 지금은 달라졌다. 새로운 기술이 많이 나오고 있다."
+     ],
+     "ja": [
+      "インテルは新しいメモリー構造に入っていくのだろうか。",
+      "私はメモリーが一種のコモディティ事業だから投資しないできた、そうだろう?",
+      "しかし今は変わった。新しい技術がたくさん出てきている。"
+     ]
+    },
+    "cite": "Jukan (@jukan05)가 옮긴 립부 탄 발언 · 2026.08.11"
+   },
+   "sum3": {
+    "ko": "인텔 최고경영자 립부 탄이 메모리의 새 구조를 살펴보는 것이 자기 프로젝트 가운데 하나라고 말한 것으로 전해졌다.\n겉으로 보면 낸드도 옵테인도 접었던 인텔이 메모리로 돌아오는 신호로 읽힌다.\n그런데 6월에 데려온 SK하이닉스 전 대표의 인텔 직함은 메모리가 아니라 파운드리의 패키징과 후공정이다.",
+    "en": "Intel chief executive Lip-Bu Tan is reported to have said that examining a new memory architecture is one of his pet projects.\nOn the surface that reads as a company which dropped both NAND and Optane finding its way back into memory.\nBut the former SK hynix chief he hired in June carries an Intel title in foundry packaging and back-end work, not memory.",
+    "ja": "インテルのリップブー・タン最高経営責任者が、メモリーの新しい構造を調べることは自分のプロジェクトの一つだと語ったと伝えられた。\n表面だけ見れば、NANDもオプテインも畳んだ会社がメモリーへ戻る合図に読める。\nしかし6月に招いたSKハイニックス元CEOのインテルでの肩書は、メモリーではなくファウンドリーのパッケージングと後工程だ。"
+   },
+   "gist": {
+    "ko": "인텔은 다섯 해에 걸쳐 메모리 사업에서 빠져나왔고, 이제 그 회사의 최고경영자가 메모리를 다시 보고 있다고 말했다.\n근거로 제시된 것은 제품이 아니라 사람 이름이다.\n\n@@REF@@인텔, SK하이닉스 전 대표 이석희를 첨단 패키징 총괄로 영입 (코리아헤럴드, 2026-06-19)|https://www.koreaherald.com/article/10781977|https://wimg.heraldcorp.com/news/cms/2026/06/19/news-p.v1.20260619.3566740071774595837e2db4bd414a61_T1.jpg\n\n립부 탄 인텔 최고경영자는 팟캐스트에서 메모리가 예전과 달라졌다며 새로운 구조를 살펴보는 것이 자기 프로젝트 가운데 하나라고 말한 것으로 전해졌다.\n그러면서 SK하이닉스를 이끌었던 이석희를 데려온 소식을 보지 않았느냐고 덧붙였다고 한다.\n아직 펼칠 준비가 되지 않았다는 말도 함께 나왔다.\n\n## 인텔이 메모리를 판 것은 언제였나\n\n@@TIME@@2020-10|인텔이 낸드 사업을 SK하이닉스에 약 90억달러에 넘기기로 발표|2022-07|옵테인 사업 정리, 5억5,900만달러 손실 인식|2025-03|낸드 매각 잔금 19억달러 수령, 사업 이관 완료|2026-06-18|SK하이닉스 전 대표 이석희를 인텔 파운드리 부사장으로 선임|>2026-08-11|립부 탄이 팟캐스트에서 메모리의 새 구조를 언급했다고 전해짐@@메모리에서 나가는 데 5년이 걸렸다. 돌아오는 이야기는 아직 발표문이 아니라 팟캐스트에 있다.@@인텔 뉴스룸 발표 및 톰스하드웨어·포브스 보도 · 2026-08-12 조회\n\n인텔은 한때 메모리로 시작한 회사였고, 낸드 공장과 옵테인이라는 새 방식의 메모리를 함께 가지고 있었다.\n낸드는 SK하이닉스에 넘겼고 그 공장이 지금의 솔리다임이다.\n옵테인은 사겠다는 곳이 모자라 접었다.\n두 결정 모두 메모리 값이 바닥이던 시절에 내려졌다.\n지금은 값이 반대로 움직이고 있다.\n\n## 데려온 사람의 직함\n\n인텔이 6월에 낸 발표문을 보면 이석희의 자리는 메모리가 아니다.\n\n@@REF@@인텔이 이석희를 데려와 파운드리 첨단 패키징을 맡겼다, 전담 조직으로 떼어 낸다 (톰스하드웨어, 2026-06-19)|https://www.tomshardware.com/tech-industry/intel-hires-former-sk-hynix-chief-seok-hee-lee-to-lead-intel-foundry-advanced-packaging\n\n발표문에 적힌 직책은 인텔 파운드리 부사장이고, 맡은 일은 첨단 패키징과 시스템 통합, 그리고 후공정 기술 개발과 생산이다.\n후공정이란 다 만든 칩을 자르고 쌓고 이어 붙여 하나의 부품으로 마무리하는 단계를 말한다.\nHBM처럼 D램을 여러 층으로 쌓아 연산 칩 옆에 붙이는 물건이 바로 이 단계에서 완성된다.\n메모리를 만드는 일과 메모리를 붙이는 일은 다르고, 발표문이 말한 것은 뒤쪽이다.\n\n@@IMG@@dram-module|인텔이 파는 물건은 이것이 아니다. 인텔이 팔려는 자리는 이 칩을 연산 칩 옆에 붙이는 공정 쪽이다.\n\n## 이 일을 맡은 부문의 살림\n\n@@CHK@@인텔 2분기 매출|161억달러|파운드리 부문 매출|58억달러|파운드리 부문 영업손실|21억달러@@메모리를 새로 시작할 여력이 어디에서 나오는지를 보려면 이 세 숫자를 같이 봐야 한다. 회사 전체는 매출이 늘었지만, 이석희가 들어간 부문은 아직 분기마다 손실을 낸다.@@인텔 2026년 2분기 실적발표(2026-07-23) · 2026-08-12 조회\n\n파운드리 부문의 손실 폭은 1년 전 32억달러에서 줄었다.\n줄어드는 중인 손실을 안고 새 메모리 사업을 벌이는 것과, 남이 만든 메모리를 잘 붙여 주는 값을 받는 것은 필요한 돈의 자릿수가 다르다.\n탄이 말한 새 구조가 후자 쪽이라면 이석희의 직함과 어긋나지 않는다.\n\n## 2027년 6월까지 나올 것과 나오지 않을 것\n\n지금 확인된 사실은 하나뿐이다.\n인텔의 공식 문서에 적힌 것은 패키징이고, 메모리라는 단어는 팟캐스트에만 있다.\n그래서 갈리는 지점은 분명하다.\n2027년 6월 말까지 인텔이 자사 메모리 제품이나 메모리 구조 프로그램을 공식 발표하면 탄의 언질은 실체가 되고, 그때까지 발표가 없으면 이번 발언은 패키징 사업을 크게 말한 것으로 남는다.\nSK하이닉스와 삼성전자 쪽에서 볼 때도 이 구분이 그대로 중요하다. 인텔이 경쟁자로 돌아오는 것과 고객으로 붙는 것은 전혀 다른 이야기다.",
+    "en": "Intel spent five years getting out of memory, and its chief executive now says he is looking at memory again.\nWhat he offered as evidence was not a product but a name.\n\n@@REF@@Intel hires former SK hynix chief Lee Seok-hee to lead advanced packaging (The Korea Herald, 2026-06-19)|https://www.koreaherald.com/article/10781977|https://wimg.heraldcorp.com/news/cms/2026/06/19/news-p.v1.20260619.3566740071774595837e2db4bd414a61_T1.jpg\n\nChief executive Lip-Bu Tan is reported to have said on a podcast that memory has become different from what it was, and that examining a new architecture is one of his pet projects.\nHe then asked, by way of evidence, whether people had seen the news that he had hired Seok-Hee Lee, who used to run SK hynix.\nHe is also reported to have said he is not ready to unfold it yet.\n\n## When did Intel actually sell its memory business\n\n@@TIME@@2020-10|Intel agrees to sell its NAND business to SK hynix for about $9 billion|2022-07|Optane wound down, with a $559 million exit charge|2025-03|Final $1.9 billion tranche received, NAND handover completed|2026-06-18|Seok-Hee Lee, former SK hynix chief, named an EVP of Intel Foundry|>2026-08-11|Lip-Bu Tan reported to have raised a new memory architecture on a podcast@@Leaving memory took five years. The story of coming back is still on a podcast rather than in a press release.@@Intel newsroom announcements plus Tom's Hardware and Forbes reporting, retrieved 2026-08-12\n\nIntel began life as a memory company, and it once held both a NAND fab and Optane, a different kind of memory of its own design.\nThe NAND business went to SK hynix and now trades as Solidigm.\nOptane was wound down for want of buyers.\nBoth decisions were taken when memory prices were on the floor.\nPrices are now moving the other way.\n\n## The title the new hire actually holds\n\nRead the June announcement and Lee's seat is not in memory.\n\n@@REF@@Intel hires former SK hynix chief Seok-Hee Lee to lead Intel Foundry advanced packaging (Tom's Hardware, 2026-06-19)|https://www.tomshardware.com/tech-industry/intel-hires-former-sk-hynix-chief-seok-hee-lee-to-lead-intel-foundry-advanced-packaging\n\nThe stated role is executive vice president of Intel Foundry, covering advanced packaging, system integration, and back-end technology development and manufacturing.\nThe back end is the stage where a finished wafer is cut, stacked and wired into a single usable part.\nAn HBM stack, where DRAM dies are piled up and set beside a compute chip, is completed at exactly this stage.\nMaking memory and attaching memory are different trades, and the announcement describes the second one.\n\n@@IMG@@dram-module|This is not what Intel sells. The seat Intel is bidding for is the process that fastens this chip alongside a compute die.\n\n## The books of the segment that took this on\n\n@@CHK@@Intel second-quarter revenue|$16.1 billion|Foundry segment revenue|$5.8 billion|Foundry segment operating loss|$2.1 billion@@To see where the room for a new memory effort would come from, these three have to be read together. The company as a whole grew, but the segment Lee joined still loses money every quarter.@@Intel second-quarter 2026 results announced 2026-07-23, retrieved 2026-08-12\n\nThe foundry loss has narrowed from $3.2 billion a year earlier.\nCarrying a shrinking loss while standing up a memory business is an order of magnitude apart from charging a fee to attach memory somebody else made.\nIf the new architecture Tan mentioned belongs to the second category, it sits comfortably with Lee's title.\n\n## What will and will not appear by June 2027\n\nOnly one thing is established right now.\nIntel's own documents say packaging, and the word memory appears only on a podcast.\nSo the dividing line is clear.\nIf Intel formally announces a memory product or a memory architecture programme by the end of June 2027, Tan's hint became something real; if nothing is announced by then, these remarks stand as a large way of describing a packaging business.\nThe distinction matters just as much from Seoul, because Intel returning as a rival and Intel arriving as a customer are entirely different stories for SK hynix and Samsung Electronics.",
+    "ja": "インテルは5年かけてメモリー事業から抜け出し、いまその会社の最高経営責任者がメモリーを再び見ていると語った。\n根拠として示されたのは製品ではなく人の名前だ。\n\n@@REF@@インテル、SKハイニックス元CEOの李錫熙氏を先端パッケージング統括に招へい (コリアヘラルド, 2026-06-19)|https://www.koreaherald.com/article/10781977|https://wimg.heraldcorp.com/news/cms/2026/06/19/news-p.v1.20260619.3566740071774595837e2db4bd414a61_T1.jpg\n\nリップブー・タン最高経営責任者はポッドキャストで、メモリーは以前とは変わったとし、新しい構造を調べることが自分のプロジェクトの一つだと語ったと伝えられた。\nそのうえで、SKハイニックスを率いていた李錫熙氏を招いた知らせを見なかったかと付け加えたという。\nまだ広げる準備はできていないという発言も一緒に伝わっている。\n\n## インテルがメモリーを売ったのはいつか\n\n@@TIME@@2020-10|インテルがNAND事業を約90億ドルでSKハイニックスに譲渡すると発表|2022-07|オプテイン事業を整理し、5億5900万ドルの損失を計上|2025-03|NAND売却の残金19億ドルを受領、事業移管が完了|2026-06-18|SKハイニックス元CEOの李錫熙氏をインテル ファウンドリーの副社長に選任|>2026-08-11|リップブー・タン氏がポッドキャストでメモリーの新しい構造に触れたと伝わる@@メモリーから出るのに5年かかった。戻る話はまだ発表文ではなくポッドキャストにある。@@インテル ニュースルームの発表およびトムズハードウェア・フォーブスの報道 · 2026-08-12時点\n\nインテルはかつてメモリーから始まった会社で、NANDの工場と独自方式のメモリーであるオプテインを併せ持っていた。\nNANDはSKハイニックスに渡り、その工場がいまのソリダイムだ。\nオプテインは買い手が足りず畳んだ。\nどちらの判断もメモリー価格が底にあった時期に下されている。\nいまは価格が反対に動いている。\n\n## 招いた人物の肩書\n\n6月の発表文を読むと、李錫熙氏の席はメモリーではない。\n\n@@REF@@インテルが李錫熙氏を迎え、ファウンドリーの先端パッケージングを任せた (トムズハードウェア, 2026-06-19)|https://www.tomshardware.com/tech-industry/intel-hires-former-sk-hynix-chief-seok-hee-lee-to-lead-intel-foundry-advanced-packaging\n\n記された職位はインテル ファウンドリーの副社長で、担当は先端パッケージングとシステム統合、そして後工程の技術開発と生産である。\n後工程とは、出来上がったチップを切り、積み、つなぎ合わせて一つの部品に仕上げる段階を指す。\nHBMのようにDRAMを何層も積んで演算チップの横に付ける物は、まさにこの段階で完成する。\nメモリーを作る仕事とメモリーを付ける仕事は別で、発表文が述べているのは後者だ。\n\n@@IMG@@dram-module|インテルが売る物はこれではない。インテルが狙う席は、このチップを演算チップの横に付ける工程のほうだ。\n\n## この仕事を任された部門の台所事情\n\n@@CHK@@インテルの第2四半期売上高|161億ドル|ファウンドリー部門の売上高|58億ドル|ファウンドリー部門の営業損失|21億ドル@@メモリーを新たに始める余力がどこから出るのかを見るには、この三つを一緒に読む必要がある。会社全体は増収だが、李錫熙氏が入った部門は四半期ごとに損失を出している。@@インテル2026年第2四半期決算(2026-07-23発表) · 2026-08-12時点\n\nファウンドリー部門の損失は1年前の32億ドルから縮んでいる。\n縮みつつある損失を抱えて新しいメモリー事業を立ち上げることと、他社が作ったメモリーをうまく付ける対価を受け取ることでは、必要な資金の桁が違う。\nタン氏の言う新しい構造が後者の側にあるなら、李錫熙氏の肩書とは食い違わない。\n\n## 2027年6月までに出るものと出ないもの\n\nいま確かなことは一つだけだ。\nインテルの公式文書に書かれているのはパッケージングであり、メモリーという言葉はポッドキャストの中にしかない。\nだから分かれ目ははっきりしている。\n2027年6月末までにインテルが自社のメモリー製品かメモリー構造のプログラムを正式に発表すればタン氏の示唆は実体になり、それまで発表がなければ今回の発言はパッケージング事業を大きく語ったものとして残る。\nこの区別はソウルから見ても同じだけ重い。インテルが競争相手として戻るのと、顧客として付くのとでは、SKハイニックスとサムスン電子にとってまるで違う話だからだ。"
+   },
+   "why": {
+    "ko": "인텔이 메모리를 만드는 쪽으로 돌아오느냐, 남이 만든 메모리를 붙여 주는 쪽으로 가느냐에 따라 SK하이닉스와 삼성전자에게 인텔은 경쟁자가 되기도 하고 고객이 되기도 한다. 지금 공식 문서에 적힌 것은 뒤쪽뿐이다.",
+    "en": "Whether Intel comes back as a maker of memory or settles for attaching memory made by others decides whether it is a rival or a customer to SK hynix and Samsung Electronics. Only the second is written into any official document today.",
+    "ja": "インテルがメモリーを作る側へ戻るのか、他社が作ったメモリーを付ける側へ進むのかで、SKハイニックスやサムスン電子にとってインテルは競争相手にも顧客にもなる。いま公式文書に書かれているのは後者だけだ。"
+   },
+   "ask": {
+    "ko": "메모리 값이 뛴 지금 인텔이 다시 메모리를 만들 이유가 생겼을까, 아니면 붙이는 자리를 지키는 편이 더 나을까?",
+    "en": "Now that memory prices have jumped, has Intel found a reason to make memory again, or is holding the attaching job the better trade?",
+    "ja": "メモリー価格が跳ねたいま、インテルが再びメモリーを作る理由はできたのか、それとも付ける席を守るほうが得なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 6월 말까지 인텔이 메모리 제품이나 메모리 구조 프로그램을 공식 발표하는지를 채점한다.",
+     "en": "We will score whether Intel formally announces a memory product or memory architecture programme by the end of June 2027.",
+     "ja": "2027年6月末までにインテルがメモリー製品かメモリー構造のプログラムを正式発表するかを採点する。"
+    },
+    "due": "2027-06-30",
+    "card": {
+     "metric": {
+      "ko": "인텔의 메모리 관련 공식 발표",
+      "en": "A formal Intel announcement on memory",
+      "ja": "インテルによるメモリー関連の公式発表"
+     },
+     "now": {
+      "ko": "2026-08-12 현재 0건. 공식 발표는 이석희 파운드리 부사장 선임뿐이고 담당은 패키징과 후공정이다",
+      "en": "Zero as of 2026-08-12. The only formal announcement is Seok-Hee Lee's appointment as a foundry EVP for packaging and back-end work",
+      "ja": "2026-08-12時点で0件。公式発表は李錫熙氏のファウンドリー副社長選任のみで、担当はパッケージングと後工程である"
+     },
+     "when": {
+      "ko": "2027년 6월 30일",
+      "en": "30 June 2027",
+      "ja": "2027年6月30日"
+     },
+     "hit": {
+      "ko": "그때까지 인텔이 자사 메모리 제품이나 메모리 구조 프로그램을 공식 발표하면 언질이 실체가 된 것",
+      "en": "If Intel formally announces a memory product or memory architecture programme by then, the hint became real",
+      "ja": "それまでにインテルが自社メモリー製品かメモリー構造のプログラムを正式発表すれば、示唆は実体になった"
+     },
+     "miss": {
+      "ko": "그때까지 공식 발표가 없으면 이번 발언은 패키징 사업을 크게 말한 것으로 남는다",
+      "en": "If nothing is formally announced by then, the remarks stand as a large way of describing a packaging business",
+      "ja": "それまでに公式発表がなければ、今回の発言はパッケージング事業を大きく語ったものとして残る"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-11 · 립부 탄의 팟캐스트 발언을 옮긴 게시물",
+      "en": "Jukan (@jukan05), 2026-08-11, relaying Lip-Bu Tan's remarks on a podcast",
+      "ja": "Jukan(@jukan05) · 2026-08-11 · リップブー・タン氏のポッドキャスト発言を伝えた投稿"
+     },
+     "url": "https://x.com/jukan05/status/2087299980428206504"
+    },
+    {
+     "name": {
+      "ko": "인텔 인사 발표문",
+      "en": "Intel appointment announcement",
+      "ja": "インテルの人事発表文"
+     },
+     "desc": {
+      "ko": "인텔 뉴스룸 · 2026-06-18 · 이석희의 직책과 담당 범위의 1차 출처",
+      "en": "Intel newsroom, 2026-06-18, primary source for Lee's title and remit",
+      "ja": "インテル ニュースルーム · 2026-06-18 · 李錫熙氏の職位と担当範囲の一次出所"
+     },
+     "url": "https://newsroom.intel.com/corporate/intel-announces-leadership-appointment-at-intel-foundry-to-accelerate-development-and-manufacturing"
+    },
+    {
+     "name": {
+      "ko": "영입 보도",
+      "en": "Hiring coverage",
+      "ja": "招へいの報道"
+     },
+     "desc": {
+      "ko": "톰스하드웨어 · 2026-06-19",
+      "en": "Tom's Hardware, 2026-06-19",
+      "ja": "トムズハードウェア · 2026-06-19"
+     },
+     "url": "https://www.tomshardware.com/tech-industry/intel-hires-former-sk-hynix-chief-seok-hee-lee-to-lead-intel-foundry-advanced-packaging"
+    },
+    {
+     "name": {
+      "ko": "옵테인 철수",
+      "en": "Optane wind-down",
+      "ja": "オプテインの撤収"
+     },
+     "desc": {
+      "ko": "포브스 · 2022-07-28 · 5억5,900만달러 손실 인식",
+      "en": "Forbes, 2022-07-28, the $559 million exit charge",
+      "ja": "フォーブス · 2022-07-28 · 5億5900万ドルの損失計上"
+     },
+     "url": "https://www.forbes.com/sites/tomcoughlin/2022/07/28/intel-winding-down-its-optane-memory-business/"
+    },
+    {
+     "name": {
+      "ko": "낸드 매각 완료",
+      "en": "NAND sale completion",
+      "ja": "NAND売却の完了"
+     },
+     "desc": {
+      "ko": "톰스하드웨어 · 잔금 19억달러 수령 · 2025-03",
+      "en": "Tom's Hardware, final $1.9 billion tranche, March 2025",
+      "ja": "トムズハードウェア · 残金19億ドルの受領 · 2025-03"
+     },
+     "url": "https://www.tomshardware.com/pc-components/ssds/intel-and-sk-hynix-close-nand-business-deal-intel-gets-usd1-9-billion-sk-hynix-gets-ip-and-employees"
+    },
+    {
+     "name": {
+      "ko": "인텔 2분기 실적",
+      "en": "Intel second-quarter results",
+      "ja": "インテル第2四半期決算"
+     },
+     "desc": {
+      "ko": "2026년 2분기 실적발표(2026-07-23) 보도 · 2026-08-12 조회",
+      "en": "Coverage of the second-quarter 2026 results announced 2026-07-23, retrieved 2026-08-12",
+      "ja": "2026年第2四半期決算(2026-07-23発表)の報道 · 2026-08-12時点"
+     },
+     "url": "https://finance.yahoo.com/markets/stocks/articles/intel-q2-2026-earnings-revenue-205531105.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-12 조회 · 립부 탄의 발언은 팟캐스트를 옮긴 게시물로 전해진 것이며 인텔의 공식 발표문에는 없다. 인텔 실적은 2026년 2분기 기준이다.",
+    "en": "Retrieved 2026-08-12. Lip-Bu Tan's remarks reach us through a post relaying a podcast and do not appear in any Intel announcement. Intel figures are for the second quarter of 2026.",
+    "ja": "2026-08-12時点 · リップブー・タン氏の発言はポッドキャストを伝えた投稿によるもので、インテルの公式発表文には存在しない。インテルの業績は2026年第2四半期基準である。"
+   }
+  },
+  {
+   "date": "2026-08-11",
    "id": "kobeissi-us-notional-volume-memory-turnover-thin-book",
    "related": [
     "bilello-sp500-cy2026-eps-15-to-30-percent",
@@ -50928,6 +51124,31 @@
     "매수매도 호가차",
     "ビッドアスク・スプレッド",
     "呼値の幅"
+   ]
+  },
+  "후공정": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "The stage after wafers are made, where chips are cut, stacked, wired and packaged into a usable part.",
+    "ko": "웨이퍼를 다 만든 다음, 칩을 자르고 쌓고 이어 붙여 쓸 수 있는 부품으로 마무리하는 단계다.",
+    "ja": "ウェハーを作り終えたあと、チップを切り、積み、つなぎ合わせて使える部品に仕上げる段階。"
+   },
+   "longDesc": {
+    "en": "For decades this was the cheap end of chipmaking, but stacking DRAM into HBM and setting it beside a compute die made it a bottleneck instead. A company that controls the back end can sell into memory economics without ever running a memory fab, which is why packaging leadership hires are now read as memory strategy.",
+    "ko": "오래도록 반도체에서 값싼 끝자락 취급을 받던 단계지만, D램을 쌓아 HBM으로 만들고 그것을 연산 칩 옆에 붙이는 일이 늘면서 병목으로 바뀌었다. 후공정을 쥐면 메모리 공장을 돌리지 않고도 메모리 경기에 올라탈 수 있다. 패키징 책임자 영입이 메모리 전략으로 읽히는 이유가 여기에 있다.",
+    "ja": "長く半導体の安い末端とされてきた段階だが、DRAMを積んでHBMにし、それを演算チップの横に付ける作業が増えて逆に隘路になった。後工程を握れば、メモリー工場を持たなくてもメモリー景気に乗ることができる。パッケージング責任者の招へいがメモリー戦略として読まれるのはそのためだ。"
+   },
+   "aliases": [
+    "back-end",
+    "back end",
+    "후공정",
+    "패키징 공정",
+    "後工程"
    ]
   }
  }
