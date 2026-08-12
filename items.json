@@ -1,6 +1,194 @@
 {
  "items": [
   {
+   "date": "2026-08-10",
+   "id": "kuo-tsmc-apple-2nm-wip-rumor-inventory-days",
+   "related": [],
+   "source": "郭明錤 (Ming-Chi Kuo)",
+   "sourceUrl": "https://x.com/mingchikuo/status/2086871774915080506",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/mingchikuo?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#374151",
+    "label": "$1B"
+   },
+   "tags": [
+    "TSMC",
+    "APPLE",
+    "MEMORY"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "TSMC 창고에 애플 칩 10억달러어치가 쌓여 있는 것은 아니다",
+    "en": "There Is No $1 Billion Pile of Apple Chips Sitting at TSMC",
+    "ja": "TSMCの倉庫にアップルのチップが10億ドル分眠っているわけではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "In other words, tight memory supply is real.",
+      "But my understanding is that there has been no dramatic scenario in which TSMC first built up US$1 billion of WIP and then had to wait for memory to arrive before packaging could proceed."
+     ],
+     "ko": [
+      "다시 말해 메모리 공급이 빠듯한 것은 사실이다.",
+      "다만 내가 파악한 바로는, TSMC가 먼저 10억달러어치의 반제품을 쌓아 놓고 메모리가 도착하기를 기다린 뒤에야 패키징으로 넘어갈 수 있었다는 극적인 상황은 없었다."
+     ],
+     "ja": [
+      "つまり、メモリ供給が逼迫しているのは事実だ。",
+      "ただし私が把握している限り、TSMCがまず10億ドル分の仕掛品を積み上げ、メモリの到着を待ってからでなければパッケージングに進めなかった、というドラマチックな展開はなかった。"
+     ]
+    },
+    "cite": "郭明錤 (Ming-Chi Kuo) · 2026.08.10"
+   },
+   "sum3": {
+    "ko": "TSMC의 재고일수가 2분기에 87일로 7일 늘었다.\n여기서 애플 2나노 칩이 포장을 기다리며 쌓여 있다는 이야기가 나왔다.\n그런데 애플은 프로세서를 석 달 앞서, 그때 쓸 수 있을 메모리 양에 맞춰 주문한다. 메모리가 막히면 줄어드는 것은 재고가 아니라 주문이다.",
+    "en": "TSMC's inventory days rose seven days to 87 in the second quarter.\nOut of that came the story that Apple 2nm chips are piled up waiting to be packaged.\nBut Apple books processors three months ahead, sized to the memory it expects to have. When memory tightens, what shrinks is the order, not the warehouse.",
+    "ja": "TSMCの在庫日数が第2四半期に7日増えて87日になった。\nそこから、アップルの2ナノ・チップがパッケージングを待って積み上がっているという話が出た。\nしかしアップルはプロセッサを3か月前に、そのとき使えるメモリの量に合わせて発注する。メモリが詰まったとき減るのは在庫ではなく発注のほうだ。"
+   },
+   "gist": {
+    "ko": "TSMC가 포장하지 못한 애플 2나노 프로세서 10억달러어치를 창고에 안고 있다는 보도가 나왔다.\nD램이 모자라 다음 공정으로 넘기지 못하고 있다는 이야기였다.\n\n@@REF@@TSMC가 애플 A20 프로 프로세서 10억달러어치를 쌓아두고 있다는 보도 (Wccftech, 2026-08-06)|https://wccftech.com/tsmc-holding-1-billion-apple-a20-pro-dram-delay/|https://cdn.wccftech.com/wp-content/uploads/2026/08/A20-Pro-7.jpg\n\n궈밍치는 이 이야기가 딛고 선 전제 하나를 걸고 넘어졌다.\n애플은 TSMC에 프로세서 생산을 최소 석 달 앞서 주문하고, 그때 쓸 수 있을 메모리 양을 미리 계산해 주문에 넣는다.\n그러니 메모리가 병목이면 애플이 주문을 줄이지, TSMC가 반제품을 잔뜩 만들어 놓고 기다릴 이유가 없다는 것이다.\n\n## 재고일수라는 근거\n\n보도가 든 근거는 TSMC가 7월 실적발표에서 한 말이었다.\n재고일수가 늘었고 그 이유가 2나노 양산 확대라는 대목이다.\n\n재고일수는 회사가 아직 팔지 않고 들고 있는 물건을 하루치 원가로 나눈 값이다.\n며칠치 물건을 창고에 쌓아 두고 있는지를 재는 숫자라고 보면 된다.\n\n@@CHK@@2026년 2분기 재고일수|87일|직전 분기 대비|+7일|1년 전(2025년 2분기)|76일@@재고가 늘어난 것 자체는 사실이다. 다만 TSMC가 밝힌 이유는 2나노 양산 확대뿐이고 특정 고객을 짚은 적은 없다. 궈밍치의 전제는 이 숫자와 어긋나지 않는다.@@TSMC 2025년 2분기·2026년 2분기 실적발표 콜 녹취, 2026-08-12 조회\n\n## 그 숫자에 무엇이 들어 있나\n\nTSMC가 말하는 재고에는 만들다 만 웨이퍼만 들어가는 것이 아니다.\n완제품과 원재료, 소모품, 예비부품이 모두 같은 칸에 들어간다.\n새 공정이 처음 올라올 때 이 숫자가 늘어나는 것도 올해만의 일이 아니다.\n그리고 올해 2나노 줄에 서 있는 회사는 애플 말고도 더 있다.\nAMD와 미디어텍도 같은 공정을 쓴다.\n\n@@IMG@@dram-module|서버에 꽂는 D램 막대. 이번 이야기에서 모자란 쪽은 프로세서가 아니라 이 물건이다.\n\n## 메모리가 모자란 것은 사실이다\n\n궈밍치도 메모리 부족 자체는 부정하지 않는다.\n오히려 애플이 그 때문에 올해 하드웨어 출하 계획을 줄였다고 말한다.\n\n@@REF@@애플, 메모리 부족으로 2026년 하드웨어 출하를 줄인다 (맥루머스, 2026-08-10)|https://www.macrumors.com/2026/08/10/apple-cutting-2026-hardware-shipments/|https://images.macrumors.com/t/qRmOexb-1DJ4BzULNReC0L_jgjA=/1800x/article-new/2026/04/iPhone-18-Pro-Rumored-Colors.jpg\n\n메모리 회사들이 값을 더 쳐주는 AI 데이터센터용 물량을 먼저 잡으면서 소비자 기기용이 뒤로 밀린 결과다.\n애플은 6월에 맥과 아이패드 값을 올렸고 9월 아이폰에도 같은 일이 예상된다는 이야기가 나온다.\n\n## 10월 TSMC 실적발표에서 갈린다\n\n두 이야기는 서로 다른 것을 말하고 있다.\n보도는 만들어 놓고 넘기지 못한 물건이 쌓였다고 했고, 궈밍치는 애초에 그만큼 만들지 않았다고 했다.\n\n이 차이는 작지 않다.\n앞이 맞으면 메모리가 풀리는 순간 밀려 있던 물량이 한꺼번에 쏟아지고, 뒤가 맞으면 나올 물량 자체가 이미 깎여 있는 것이다.\n같은 9월 아이폰을 두고도 기다리면 살 수 있다는 이야기와 애초에 만들 대수가 줄었다는 이야기로 갈린다.\n\n갈림길은 10월 3분기 실적발표다.\n재고일수가 이번 분기보다 내려오면 2나노 양산이 올라오는 동안의 일시적인 증가였다는 쪽이고, 더 오르면 무언가가 실제로 쌓이고 있다는 쪽이다.",
+    "en": "A report said TSMC is sitting on about $1 billion worth of Apple 2nm processors it cannot package, because there is not enough DRAM to move them to the next stage.\n\n@@REF@@TSMC reportedly sitting on $1 billion worth of Apple A20 Pro chips (Wccftech, 2026-08-06)|https://wccftech.com/tsmc-holding-1-billion-apple-a20-pro-dram-delay/|https://cdn.wccftech.com/wp-content/uploads/2026/08/A20-Pro-7.jpg\n\nMing-Chi Kuo went after the assumption the story rests on.\nApple books processor production at TSMC at least three months ahead, and it sizes that booking against how much memory it expects to have.\nSo if memory is the bottleneck, Apple trims the order. TSMC has no reason to build a mountain of half-finished parts and then wait.\n\n## The inventory-days evidence\n\nThe evidence cited was a line from TSMC's July earnings call.\nInventory days had gone up, and the company said the reason was the 2nm ramp.\n\nInventory days is what a company is holding but has not sold, divided by one day's cost of goods.\nRead it as how many days of stuff is sitting in the warehouse.\n\n@@CHK@@Inventory days, 2Q 2026|87 days|Change from prior quarter|+7 days|A year earlier (2Q 2025)|76 days@@The build-up itself is real. But the only reason TSMC gave was the 2nm ramp, and it never named a customer. Kuo's assumption does not conflict with these numbers.@@TSMC 2Q 2025 and 2Q 2026 earnings call transcripts, retrieved 2026-08-12\n\n## What sits inside that number\n\nTSMC's inventory line is not just half-built wafers.\nFinished goods, raw materials, supplies and spare parts all sit in the same box.\nInventory days also tend to rise whenever an advanced node first ramps, so this year is not special.\nAnd Apple is not alone in the 2nm queue this year.\nAMD and MediaTek are on the same process.\n\n@@IMG@@dram-module|A server memory stick. The part in short supply in this story is not the processor, it is this.\n\n## The memory shortage itself is real\n\nKuo does not dispute the shortage.\nHe says it is exactly why Apple has cut its hardware shipment plans for the year.\n\n@@REF@@Apple cutting back 2026 hardware shipments due to memory shortage (MacRumors, 2026-08-10)|https://www.macrumors.com/2026/08/10/apple-cutting-2026-hardware-shipments/|https://images.macrumors.com/t/qRmOexb-1DJ4BzULNReC0L_jgjA=/1800x/article-new/2026/04/iPhone-18-Pro-Rumored-Colors.jpg\n\nMemory makers took the better-paying AI data center orders first, and consumer device volume moved to the back of the line.\nApple raised Mac and iPad prices in June, and the same is expected for the September iPhone.\n\n## October is where the two stories split\n\nThe two accounts are describing different things.\nThe report says finished-but-stuck product piled up. Kuo says that much was never built.\n\nThe gap matters.\nIf the first is right, a wave of held-back units lands the moment memory loosens. If the second is right, the volume was already cut before it was made.\nFor the same September iPhone, one story says wait and you can buy it, the other says fewer were ever planned.\n\nThe split comes at the third quarter call in October.\nIf inventory days come down from this quarter, it was a temporary bulge while 2nm ramped. If they climb further, something really is piling up.",
+    "ja": "TSMCがパッケージングできないアップルの2ナノ・プロセッサを10億ドル分抱えている、という報道が出た。\nDRAMが足りず、次の工程に送れないでいるという話だ。\n\n@@REF@@TSMCがアップルA20 Proを10億ドル分抱えているとの報道 (Wccftech, 2026-08-06)|https://wccftech.com/tsmc-holding-1-billion-apple-a20-pro-dram-delay/|https://cdn.wccftech.com/wp-content/uploads/2026/08/A20-Pro-7.jpg\n\n郭明錤はこの話が立っている前提そのものに異を唱えた。\nアップルはTSMCへのプロセッサ生産を少なくとも3か月前に発注し、そのとき使えるメモリの量を見込んで数量を決める。\nならばメモリが詰まっているときに減るのは発注のほうで、TSMCが仕掛品を大量に積んで待つ理由はない、という理屈だ。\n\n## 在庫日数という根拠\n\n報道が根拠にしたのは、7月の決算説明会でのTSMCの発言だった。\n在庫日数が増えた、その理由は2ナノの立ち上げだ、という部分である。\n\n在庫日数とは、まだ売れずに抱えている在庫を1日分の原価で割った値だ。\n何日分のモノを倉庫に積んでいるかを測る数字だと思えばいい。\n\n@@CHK@@2026年第2四半期の在庫日数|87日|前四半期比|+7日|1年前(2025年第2四半期)|76日@@積み上がったこと自体は事実だ。ただしTSMCが挙げた理由は2ナノの立ち上げだけで、特定の顧客を名指ししたことはない。郭明錤の前提はこの数字と矛盾しない。@@TSMC 2025年第2四半期・2026年第2四半期の決算説明会記録、2026-08-12閲覧\n\n## その数字の中身\n\nTSMCのいう在庫は、作りかけのウェハーだけではない。\n完成品も原材料も消耗品も予備部品も、同じ箱に入っている。\n先端プロセスが立ち上がる時期に在庫日数が伸びるのも、今年に限った話ではない。\nそして今年2ナノの列に並んでいるのはアップルだけではない。\nAMDもメディアテックも同じプロセスを使う。\n\n@@IMG@@dram-module|サーバーに挿すDRAMモジュール。この話で足りていないのはプロセッサではなく、こちらだ。\n\n## メモリ不足そのものは事実だ\n\n郭明錤も不足自体は否定していない。\nむしろそれゆえにアップルが今年のハードウェア出荷計画を絞ったと述べている。\n\n@@REF@@アップル、メモリ不足で2026年のハードウェア出荷を縮小 (MacRumors, 2026-08-10)|https://www.macrumors.com/2026/08/10/apple-cutting-2026-hardware-shipments/|https://images.macrumors.com/t/qRmOexb-1DJ4BzULNReC0L_jgjA=/1800x/article-new/2026/04/iPhone-18-Pro-Rumored-Colors.jpg\n\nメモリ各社が単価の高いAIデータセンター向けを先に押さえ、消費者機器向けが後ろに回された結果だ。\nアップルは6月にMacとiPadを値上げしており、9月のiPhoneでも同じことが起きるとみられている。\n\n## 10月の決算で分かれる\n\n二つの話は、別のことを言っている。\n報道は作ったのに送れないモノが積み上がったと言い、郭明錤はそもそもそこまで作っていないと言う。\n\nこの差は小さくない。\n前者ならメモリが緩んだ瞬間に滞留分が一気に出てくるし、後者なら出てくる量自体がすでに削られている。\n同じ9月のiPhoneをめぐっても、待てば買えるという話と、そもそも作る台数が減ったという話に分かれる。\n\n分岐点は10月の第3四半期決算だ。\n在庫日数が今期より下がれば2ナノ立ち上げに伴う一時的な膨らみだったことになり、さらに伸びれば何かが実際に積み上がっている。"
+   },
+   "why": {
+    "ko": "메모리 부족이 애플의 출하 계획을 깎은 것은 사실이지만, 깎인 물량이 창고에 쌓여 있는지 아니면 애초에 만들어지지 않았는지에 따라 메모리가 풀린 뒤 나올 공급이 완전히 달라진다.",
+    "en": "The memory shortage really did cut Apple's shipment plans, but whether the missing units are stacked in a warehouse or were never built changes what supply looks like once memory loosens.",
+    "ja": "メモリ不足がアップルの出荷計画を削ったのは事実だが、その分が倉庫に積まれているのか、そもそも作られなかったのかで、メモリが緩んだ後に出てくる供給はまったく変わる。"
+   },
+   "ask": {
+    "ko": "TSMC의 재고일수가 늘어난 이유는 2나노 양산 때문일까, 아니면 포장하지 못한 애플 칩이 실제로 쌓여 있기 때문일까?",
+    "en": "Did TSMC's inventory days rise because of the 2nm ramp, or because Apple chips really are stuck waiting to be packaged?",
+    "ja": "TSMCの在庫日数が増えたのは2ナノの立ち上げのためか、それともパッケージングできないアップルのチップが実際に積み上がっているためか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2026년 10월 TSMC 3분기 실적발표에서 재고일수가 87일 이하로 내려오는지로 채점한다.",
+     "en": "Score on whether TSMC's third quarter call in October 2026 reports inventory days of 87 or fewer.",
+     "ja": "2026年10月のTSMC第3四半期決算で在庫日数が87日以下になるかで採点する。"
+    },
+    "due": "2026-10-31",
+    "card": {
+     "metric": {
+      "ko": "TSMC 3분기 재고일수",
+      "en": "TSMC third quarter inventory days",
+      "ja": "TSMC第3四半期の在庫日数"
+     },
+     "now": {
+      "ko": "2026년 2분기 87일, 직전 분기 대비 7일 증가",
+      "en": "87 days in 2Q 2026, up seven days from the prior quarter",
+      "ja": "2026年第2四半期は87日、前四半期比7日増"
+     },
+     "when": {
+      "ko": "2026년 10월, 3분기 실적발표",
+      "en": "October 2026, third quarter earnings call",
+      "ja": "2026年10月、第3四半期決算説明会"
+     },
+     "hit": {
+      "ko": "재고일수가 87일 이하로 발표된다",
+      "en": "Inventory days come in at 87 or fewer",
+      "ja": "在庫日数が87日以下で発表される"
+     },
+     "miss": {
+      "ko": "재고일수가 88일 이상으로 발표된다",
+      "en": "Inventory days come in at 88 or more",
+      "ja": "在庫日数が88日以上で発表される"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "郭明錤 (Ming-Chi Kuo) · 2026-08-10",
+      "en": "Ming-Chi Kuo (@mingchikuo) · 2026-08-10",
+      "ja": "郭明錤 (Ming-Chi Kuo) · 2026-08-10"
+     },
+     "url": "https://x.com/mingchikuo/status/2086871774915080506"
+    },
+    {
+     "name": {
+      "ko": "원 보도",
+      "en": "The original report",
+      "ja": "元の報道"
+     },
+     "desc": {
+      "ko": "Wccftech · 2026-08-06",
+      "en": "Wccftech · 2026-08-06",
+      "ja": "Wccftech · 2026-08-06"
+     },
+     "url": "https://wccftech.com/tsmc-holding-1-billion-apple-a20-pro-dram-delay/"
+    },
+    {
+     "name": {
+      "ko": "반박 보도",
+      "en": "Coverage of the rebuttal",
+      "ja": "反論の報道"
+     },
+     "desc": {
+      "ko": "AppleInsider · 2026-08-10",
+      "en": "AppleInsider · 2026-08-10",
+      "ja": "AppleInsider · 2026-08-10"
+     },
+     "url": "https://appleinsider.com/articles/26/08/10/kuo-pours-water-on-rumor-of-1b-apple-chip-stockpile-at-tsmc"
+    },
+    {
+     "name": {
+      "ko": "재고일수 원자료",
+      "en": "Inventory days source",
+      "ja": "在庫日数の出所"
+     },
+     "desc": {
+      "ko": "TSMC 2026년 2분기 실적발표 콜 녹취 · 2026-07-16",
+      "en": "TSMC 2Q 2026 earnings call transcript · 2026-07-16",
+      "ja": "TSMC 2026年第2四半期決算説明会の記録 · 2026-07-16"
+     },
+     "url": "https://www.fool.com/earnings/call-transcripts/2026/07/16/tsm-tsm-q2-2026-earnings-call-transcript/"
+    },
+    {
+     "name": {
+      "ko": "애플 출하 축소",
+      "en": "Apple shipment cuts",
+      "ja": "アップルの出荷縮小"
+     },
+     "desc": {
+      "ko": "MacRumors · 2026-08-10",
+      "en": "MacRumors · 2026-08-10",
+      "ja": "MacRumors · 2026-08-10"
+     },
+     "url": "https://www.macrumors.com/2026/08/10/apple-cutting-2026-hardware-shipments/"
+    },
+    {
+     "name": {
+      "ko": "2나노 고객",
+      "en": "2nm customers",
+      "ja": "2ナノの顧客"
+     },
+     "desc": {
+      "ko": "Tom's Hardware · 2025-09-22",
+      "en": "Tom's Hardware · 2025-09-22",
+      "ja": "Tom's Hardware · 2025-09-22"
+     },
+     "url": "https://www.tomshardware.com/tech-industry/intel-amd-and-mediatek-reportedly-among-tsmcs-2nm-early-adopters-company-said-to-have-15-customers-lined-up-for-new-process-tech"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-12 조회 · 재고일수는 TSMC 분기 실적발표 콜 발언 기준이며, 2025년 2분기 76일도 같은 형식의 콜 발언이다.",
+    "en": "Retrieved 2026-08-12. Inventory days are as stated on TSMC's quarterly earnings calls; the 76 days for 2Q 2025 comes from the same kind of call remark.",
+    "ja": "2026-08-12閲覧。在庫日数はTSMCの四半期決算説明会での発言に基づき、2025年第2四半期の76日も同じ形式の発言による。"
+   }
+  },
+  {
    "date": "2026-08-11",
    "id": "bilello-us-65plus-population-vs-oasi-2032-date",
    "related": [
