@@ -462,6 +462,92 @@ test.describe("13F investor view state", () => {
     await expect(graph.locator(".inv-compare-chart-tip")).toContainText("%");
   });
 
+  test("compare hero shows a resting-state return that updates on period change and selection", async ({ page }) => {
+    // Distinct-but-deterministic slope per ticker (flat for spy.us) so the
+    // two default-selected investors' hold-graph returns differ from each
+    // other and, crucially, differ between the YTD and 1M windows.
+    let seen = 0;
+    const slopeFor = symbol => {
+      if (symbol === "spy.us") return 0.01;
+      seen += 1;
+      return 0.05 + (seen % 7) * 0.09;
+    };
+    await page.route("**/quote?*", async route => {
+      const symbol = new URL(route.request().url()).searchParams.get("s");
+      const slope = slopeFor(symbol);
+      const now = Math.floor(Date.now() / 86400000) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * slope);
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page);
+    await page.locator(".inv-compare-go:visible").first().click();
+    await expect(page).toHaveURL(/#investor-compare$/);
+
+    const hero = page.locator(".inv-performance-section .inv-compare-hero").first();
+    const values = hero.locator(".inv-compare-hero-value");
+    // Visible at rest, i.e. before any hover or drag on the chart.
+    await expect(values).toHaveCount(2);
+    await expect(values.first()).toHaveText(/^[+-]\d+\.\d+%$/, { timeout: 30000 });
+    const beforeTexts = await values.allTextContents();
+    expect(beforeTexts.every(t => /^[+-]\d+\.\d+%$/.test(t))).toBe(true);
+    await expect(hero.locator(".inv-compare-hero-label")).not.toContainText("선택");
+
+    await page.locator('.inv-performance-section .inv-compare-period[data-period="1m"]').click();
+    await expect.poll(() => values.allTextContents()).not.toEqual(beforeTexts);
+    const afterTexts = await values.allTextContents();
+    expect(afterTexts.every(t => /^[+-]\d+\.\d+%$/.test(t))).toBe(true);
+
+    // A drag selection re-labels and re-values the hero to match the
+    // selection; clearing it restores the full-window figure.
+    const graph = page.locator(".inv-performance-section .inv-compare-chart").first();
+    const box = await graph.locator("svg").boundingBox();
+    await page.mouse.move(box.x + box.width * 0.15, box.y + box.height * 0.5);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width * 0.85, box.y + box.height * 0.5);
+    await page.mouse.up();
+    await expect(hero.locator(".inv-compare-hero-label")).toContainText("선택");
+    await page.locator(".inv-performance-section .inv-compare-clear").click();
+    await expect(hero.locator(".inv-compare-hero-label")).not.toContainText("선택");
+    await expect(values).toHaveText([afterTexts[0], afterTexts[1]]);
+  });
+
+  test("sector unclassified note states a remainder consistent with the coverage row", async ({ page }) => {
+    await page.route("**/quote?*", async route => {
+      await route.abort();
+    });
+    await openInvestors(page);
+    await page.locator(".inv-compare-go:visible").first().click();
+    await expect(page).toHaveURL(/#investor-compare$/);
+
+    const section = page.locator(".inv-compare-section").filter({ has: page.locator(".inv-sector-coverage-note") });
+    await expect(section).toBeVisible();
+    const coverageRow = section.locator("tr").filter({ has: page.locator("td b", { hasText: "분류 커버리지" }) });
+    const unclassifiedRow = section.locator("tr").filter({ has: page.locator("td b", { hasText: "미분류" }) });
+    await expect(coverageRow).toHaveCount(1);
+    await expect(unclassifiedRow).toHaveCount(1);
+
+    const coverageTexts = await coverageRow.locator("td").allTextContents();
+    const unclassifiedTexts = await unclassifiedRow.locator("td").allTextContents();
+    expect(unclassifiedTexts.length).toBe(coverageTexts.length);
+    for (let i = 1; i < coverageTexts.length; i++) {
+      const covered = coverageTexts[i].trim();
+      const uncovered = unclassifiedTexts[i].trim();
+      if (covered === "—") {
+        expect(uncovered).toBe("—");
+        continue;
+      }
+      expect(uncovered).not.toBe("—");
+      const coveredPct = parseFloat(covered);
+      const uncoveredPct = parseFloat(uncovered);
+      expect(coveredPct + uncoveredPct).toBeCloseTo(100, 0);
+    }
+
+    const noteLines = await section.locator(".inv-sector-coverage-line").allTextContents();
+    expect(noteLines.length).toBe(coverageTexts.length - 1);
+    expect(noteLines.some(text => text.includes("미분류") || text.includes("분류 커버리지 데이터가 없어"))).toBe(true);
+  });
+
   test.describe("responsive widths", () => {
     test.use({ viewport: { width: 1280, height: 900 }, isMobile: false, hasTouch: false });
 
