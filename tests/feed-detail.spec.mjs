@@ -348,9 +348,43 @@ test.describe("13F investor view state", () => {
     const graph = page.locator(".inv-performance-section .inv-compare-chart").first();
     await expect(graph.locator('polyline[stroke-dasharray="7 6"]')).toHaveCount(1);
     await expect(page.locator('.inv-performance-section .inv-compare-legend-item[data-price-status="ok"] small').last()).toContainText("기준지수");
-    const vsSpy = await page.locator('.inv-compare-card [data-perf="spy"]').allTextContents();
+    const vsSpy = await page.locator('.inv-compare-summary-table [data-perf="spy"]').allTextContents();
     expect(vsSpy.length).toBe(2);
     expect(vsSpy.every(value => /^[+]\d+\.\d+%$/.test(value))).toBe(true);
+  });
+
+  test("summary table highlights a single winner only in the four performance rows", async ({ page }) => {
+    // Every ticker gets its own deterministic-but-distinct growth slope (spy.us
+    // stays flat) so the two default-selected investors' portfolios diverge and
+    // one has a strictly higher vs.-S&P return - a tie would (correctly) leave
+    // the row unhighlighted, which is not what this test wants to exercise.
+    let seen = 0;
+    const slopeFor = symbol => {
+      if (symbol === "spy.us") return 0.01;
+      seen += 1;
+      return 0.05 + (seen % 7) * 0.09;
+    };
+    await page.route("**/quote?*", async route => {
+      const symbol = new URL(route.request().url()).searchParams.get("s");
+      const slope = slopeFor(symbol);
+      const now = Math.floor(Date.now() / 86400000) * 86400;
+      const t = Array.from({ length: 370 }, (_, i) => now - (369 - i) * 86400);
+      const closes = t.map((_, i) => 100 + i * slope);
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+    await openInvestors(page);
+    await page.locator(".inv-compare-go:visible").first().click();
+    await expect(page).toHaveURL(/#investor-compare$/);
+
+    const vsSpyRow = page.locator('.inv-compare-summary-table tr[data-row="vsSpy"]');
+    await expect(vsSpyRow.locator('td[data-slug]')).toHaveCount(2);
+    await expect.poll(async () => {
+      const texts = await vsSpyRow.locator('[data-perf="spy"]').allTextContents();
+      return texts.some(t => t.includes("계산 중"));
+    }, { timeout: 30000 }).toBe(false);
+
+    await expect(vsSpyRow.locator('td.inv-win')).toHaveCount(1);
+    await expect(page.locator('.inv-compare-summary-table tr[data-row="turnover"] td.inv-win')).toHaveCount(0);
   });
 
   test("investor value chart matches compare period and drag behavior", async ({ page }) => {
@@ -462,13 +496,13 @@ test.describe("13F investor view state", () => {
 
       await page.locator(".inv-compare-go").click();
       await expect(page).toHaveURL(/#investor-compare$/);
-      await expect(page.locator(".inv-compare-card")).toHaveCount(4);
+      await expect(page.locator(".inv-compare-col")).toHaveCount(4);
       await page.locator(".inv-compare-card-head").first().click();
       await expect(page).toHaveURL(/#investor-(?!compare)/);
       await expect(page.locator(".inv-value-card")).toBeVisible();
       await page.locator("#v82subbar .bk:visible, .series-close:visible").first().click();
       await expect(page).toHaveURL(/#investor-compare$/);
-      await expect(page.locator(".inv-compare-card")).toHaveCount(4);
+      await expect(page.locator(".inv-compare-col")).toHaveCount(4);
     });
 
     test("mobile drawer opens 13F compare and returns to the list", async ({ page }) => {
