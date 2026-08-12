@@ -1,3 +1,60 @@
+## 2026-08-12 Cowork(Opus) — 비교화면 히어로 수정(v95) + 허브 수익률 파이프라인을 브라우저 구동으로 교체(v96)
+
+**커밋**: `v95` css 없음 · `assets/investor-compare.js`→`tests/feed-detail.spec.mjs`→`index.html`(BUILD v94→v95, js 캐시버스터 `2fc9ec88`→`100bcfd1`). `v96` = `scripts/investor_returns.mjs`(신규) + `.github/workflows/investor-returns.yml` + `scripts/investor_returns.py` 삭제.
+**CI**: v95 전부 초록(Feed detail regression 포함). Investor YTD returns 워크플로 실행 #8 성공, `data/investor-returns.json` 자동 커밋.
+**최종 상태**: 연중 수익률 세 경로(개별 차트 / 비교화면 히어로 / 허브 열)가 **전부 일치**한다. 13명 전원 0.00%p 차이, 커버리지 미달 3명(소로스·오크트리·사이언)은 `—`.
+
+### 1. v95 — 히어로가 하루치를 더 얹고 있었다
+
+`assets/investor-compare.js` 의 `graphPointAt` 은 **최근접(nearest)** 탐색이었다. 일봉 타임스탬프는 ~14:30 UTC 인데 YTD 목표는 `Date.UTC(y,0,1)` = 1/1 00:00 UTC 다. 12/31 봉이 9.5시간, 1/2 봉이 38.5시간 떨어져 있어 **항상 작년 12/31 을 연초 기준으로 집었다.** `index.html` 의 `invPaintValueChart` 는 ceiling 탐색이라 1/2 를 쓴다.
+
+라이브 브라우저에서 같은 시계열에 두 규칙을 적용해 관측값을 소수점까지 재현했다: situational-awareness 51.31(ceiling) vs 66.46(nearest), duquesne 19.38 vs 20.60, ark 8.66 vs 10.15, berkshire 9.05 vs 9.48. **가설이 아니라 실측 확정이다.**
+
+- `graphPointAtOrAfter()` 추가(첫 `t >= target`). **윈도우 시작점에만** 적용했다(`paintCompareGraph` 의 `first`, `graphRangeForSeries` 의 start). 끝점은 nearest 그대로 — 끝점은 "그 시점 이전 마지막 봉"이 맞는 개념이다.
+- `graphWindow` 의 `commonStart` 클램프는 **손대지 않았다.** 16명 전원이 2025-08-12 시작 251봉으로 동일해 YTD 에서는 발동하지 않음을 실측 확인했다. 발동하지 않는 코드를 "정리"하다 다른 기간을 망가뜨리지 마라.
+- 회귀 가드: 히어로 값과 페이지 자신의 `invComputeValueSeries` ceiling YTD 를 0.15%p 이내로 비교. 구 코드에 돌리면 39.6 으로 크게 실패하는 것까지 확인했다(가짜 통과 방지).
+
+### 2. 파이썬 포트를 버린 이유
+
+`scripts/investor_returns.py` 는 프런트 계산의 라인 단위 포팅이었는데 16명 중 2명에서 어긋났다(situational-awareness 2.7%p, tiger-global 1.0%p). 코드 대조로 원인을 못 찾았고, 브라우저에서 다음을 전부 **반증**했다:
+- 동점 티커 집합 순서 → 최장 251봉 티커 17개의 타임스탬프 배열이 **전부 동일**
+- 스냅샷 경계 시프트(±12h/±1d), strict 비교, 이전 봉 기준 chain_scale, 마지막 봉 변경 → 어느 변형도 파이프라인 값을 재현 못 함
+- 입력 차이 → `portfolios.json` 은 파이프라인 실행 전날 갱신본 그대로
+
+june 결정: **같은 계산을 두 벌 유지하지 않는다.** 헤드리스 브라우저가 사이트 자신의 `invComputeValueSeries` 를 호출하게 한다. 이제 정의는 `index.html` 한 곳뿐이고, 프런트가 바뀌면 파이프라인이 자동으로 따라온다.
+
+### 3. v96 파이프라인 — 세 번 넘어졌다, 전부 기록해둔다
+
+`scripts/investor_returns.mjs` (Playwright). 게이트는 파이썬과 동일: `COVERAGE_THRESHOLD 0.90`, `REGRESSION_TOLERANCE 2`, `MIN_INVESTORS_WITH_RESULT 10`, 전원 `ytd_start` 일치 검증. 실패 시 **쓰지 않고** 종료 → 어제 파일이 그대로 살아남는다.
+
+1. **공개 사이트를 열면 60초 안에 전역 함수가 안 나타난다.** `https://stacksdaily.com/` 을 헤드리스로 열면 `window.invComputeValueSeries` 가 끝내 안 뜬다(실제 데스크톱 브라우저는 몇 초면 뜬다). → 저장소를 `python3 -m http.server 4174` 로 띄우고 그걸 연다. 테스트가 이미 쓰는 방식이라 CI 에서 검증된 경로다. **덤으로 배포본이 아니라 HEAD 코드로 계산한다.**
+2. **`api.stacksdaily.com` 이 CI IP 를 403 으로 막는다.** Origin/Referer 를 위조해도 전부 403.
+3. **`STACKS_WORKER_URL` 시크릿을 되살렸는데도 전부 non-2xx.** `.py`→`.mjs` 이관 때 "이제 필요 없다"며 지운 게 1차 실수였고, 되살린 뒤에도 실패했다. 원인은 **헤더**였다. 파이썬은 딱 두 개만 보냈다:
+   ```python
+   UA = "Stacks/1.0 (stacksdaily.com; investor-returns; contact@stacksdaily.com)"
+   headers={"User-Agent": UA, "Accept-Encoding": "identity"}
+   ```
+   우리 프록시는 페이지의 브라우저 헤더 전체(위조 origin/referer, `sec-fetch-*`, `accept-encoding: br/zstd`)를 그대로 넘기고 있었다. **워커로 재작성할 때는 페이지 헤더를 하나도 전달하지 말고 위 두 개만 보낸다.** 이걸 고치자 실행 #8 이 바로 성공했다.
+
+진단 로그를 영구히 남겼다: `[page]` 콘솔 에러(20줄 상한), `[reqfail]` 실패 요청(10줄 상한), `quote proxy ... proxied/rewritten/non2xx/threw` 요약, 첫 non-2xx 의 상태코드. **#4 에서 이게 있었으면 두 번의 실패를 건너뛸 수 있었다.** 시크릿 URL 은 오리진만, 자격증명 형태면 아예 안 찍는다.
+
+### 4. 검증 (라이브 실측, 2026-08-13 기준)
+
+`data/investor-returns.json` 값과 페이지가 직접 계산한 값의 차이가 **13명 전원 정확히 0.00%p**:
+berkshire 9.07 · pershing-square 6.01 · ark 9.00 · duquesne 20.32 · appaloosa 12.51 · situational-awareness 67.75 · third-point 2.74 · baupost 9.35 · tci 4.42 · coatue 12.48 · carl-icahn 10.17 · tiger-global 3.79 · viking 8.85. 소로스·오크트리·사이언은 커버리지 90% 미만이라 `ytd_pct: null`.
+
+허브 열: `+67.8% / +20.3% / +9.1% / +3.8%`. 비교화면 히어로: `INV:ASCHEN +67.8% · INV:DRUCK +20.3% · INV:BUFFETT +9.1% · INV:COLEMAN +3.8%`. **동일하다.**
+
+### 5. 다음 사람에게
+
+- 워커에 요청 보낼 때 **헤더를 늘리지 마라.** UA + `Accept-Encoding: identity` 두 개다.
+- `STACKS_WORKER_URL` 시크릿을 지우지 마라. 공개 엔드포인트는 CI 에서 403 이다.
+- 파이프라인을 다시 "네이티브"로 포팅하려 하지 마라. 그게 이번에 버린 물건이고, 정확히 왜 어긋났는지는 끝내 못 밝혔다.
+- 웹 에디터 배포 시 base64 조각은 **손으로 옮겨 적지 말고 그대로 붙여라.** 이번에 1500자 조각 하나를 옮기다 깨뜨렸고 조각별 sha256 비교가 잡아냈다. 400자 단위로 쪼개면 안전하다.
+- 확장이 중간에 끊길 수 있다. 자산 파일은 **한 회차 안에서 끊김 없이** 커밋하고, 끊기면 다음 세션이 이어받도록 프로젝트 문서에 상태를 남겨라.
+
+---
+
 ## 2026-08-12 Cowork(Opus) — 허브 정렬 캐럿(v93) + 허브 연중 수익률 열(v94) + 매일 도는 수익률 파이프라인
 
 **커밋**: `eea83f8`→`d678c1a`(v93) · `a5e6114`/`6b5ab3a`(파이프라인) · `ecbf671`→`61831f0`→`5dcb48c`→`e4f7a65`(v94). BUILD v92 → v94.
