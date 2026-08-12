@@ -45,7 +45,10 @@
       holdGraphCoverage:"시세 {p}%", holdGraphNote:"SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님", holdGraphNoteMore:"제외 항목 전체 보기",
       holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 조회 실패", benchmark:"S&P 500 비교", benchmarkNote:"기준지수",
       holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph3m:"3개월", holdGraph6m:"6개월", holdGraphYtd:"연중", holdGraph1y:"1년",
-      holdGraphHeroLabel:"{period} 수익률"
+      holdGraphHeroLabel:"{period} 수익률",
+      ytdReturn:"연중 수익률", ytdReturnCoverage:"분류·시세 확보 {p}% — 수치를 내기에 부족합니다",
+      ytdReturnNote:"연중 수익률은 마지막 공시 보유를 그대로 들고 있었다고 가정한 추정치이며 실제 펀드 수익률이 아닙니다. 산정 시작 {start} · 갱신 {asOf}.",
+      ytdReturnUnavailable:"연중 수익률 데이터를 최신 상태로 불러오지 못해 이 열은 표시하지 않습니다."
     },
     en:{
       tickerHelp:"Stacks investor ticker", pickTitle:"Compare investors", pickSub:"Choose 2–4 investors to compare their public portfolios side by side.",
@@ -71,7 +74,10 @@
       holdGraphCoverage:"Prices {p}%", holdGraphNote:"Quarterly SEC snapshots chained · not actual fund returns", holdGraphNoteMore:"See full exclusions",
       holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"Price data unavailable", benchmark:"Compare S&P 500", benchmarkNote:"Benchmark",
       holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph3m:"3M", holdGraph6m:"6M", holdGraphYtd:"YTD", holdGraph1y:"1Y",
-      holdGraphHeroLabel:"{period} return"
+      holdGraphHeroLabel:"{period} return",
+      ytdReturn:"YTD return", ytdReturnCoverage:"Classification/price coverage {p}% — not enough to compute a number",
+      ytdReturnNote:"This YTD return assumes the investor held their last disclosed 13F positions unchanged; it is not an actual fund return. Estimation window starts {start} · updated {asOf}.",
+      ytdReturnUnavailable:"YTD return data could not be loaded up to date, so this column is not shown."
     },
     ja:{
       tickerHelp:"Stacks投資家ティッカー", pickTitle:"投資家を比較", pickSub:"2〜4人を選び、公開ポートフォリオを横並びで比較します。",
@@ -97,7 +103,10 @@
       holdGraphCoverage:"価格 {p}%", holdGraphNote:"SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません", holdGraphNoteMore:"除外項目をすべて見る",
       holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データを取得できません", benchmark:"S&P 500と比較", benchmarkNote:"ベンチマーク",
       holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph3m:"3か月", holdGraph6m:"6か月", holdGraphYtd:"年初来", holdGraph1y:"1年",
-      holdGraphHeroLabel:"{period}のリターン"
+      holdGraphHeroLabel:"{period}のリターン",
+      ytdReturn:"年初来リターン", ytdReturnCoverage:"分類・価格確保 {p}% — 数値を算出するには不十分です",
+      ytdReturnNote:"年初来リターンは最後に開示された保有をそのまま継続保有したと仮定した推定値であり、実際のファンド収益率ではありません。起算日 {start}・更新 {asOf}。",
+      ytdReturnUnavailable:"年初来リターンのデータを最新の状態で取得できなかったため、この列は表示していません。"
     }
   };
 
@@ -298,10 +307,54 @@
     });
     return box;
   }
+  /* 13F 허브 YTD 수익률(data/investor-returns.json, 일별 파이프라인 산출물).
+     브라우저에서 종목별 시세를 재계산하지 않는다 — v90에서 investorCardFillSpark가
+     허브 진입마다 /quote 194건을 쏘던 문제로 스파크라인을 걷어낸 전례가 있다. 값은
+     파일에서 그대로 읽기만 한다.
+     모듈 레벨 Promise/캐시라 허브 재진입은 재요청하지 않는다. rAF/IO로 지연 로드를
+     게이팅하지 않는다 — 이 파일이 이미 세 번(v82 스파크라인, v85 비교 렌더, v88
+     엔티티 로더) 배경 탭에서 안 깨어나는 함정을 밟았고 v90 IO(하단 바)가 네 번째다.
+     여기서는 순수 fetch 체인만 쓴다. */
+  var HUB_RETURNS_STALE_DAYS = 5; /* as_of가 이보다 오래되면(또는 로드 실패/malformed) 열 전체를 "—" 처리 */
+  var HUB_RETURNS_P = null;
+  var HUB_RETURNS_DATA = null; /* null = 아직 없음 / 실패 / stale. 해석된 JSON이면 {as_of, ytd_start, investors} */
+  function loadHubReturns(){
+    if (HUB_RETURNS_P) return HUB_RETURNS_P;
+    var url = (typeof dataUrl === "function") ? dataUrl("investor-returns.json") : "data/investor-returns.json";
+    HUB_RETURNS_P = (typeof getJSON === "function" ? getJSON(url) : Promise.resolve(null))
+      .then(function(j){
+        if (!j || typeof j !== "object" || !j.investors || typeof j.investors !== "object") return null;
+        var asOf = Date.parse(j.as_of);
+        if (!isFinite(asOf) || (Date.now() - asOf) > HUB_RETURNS_STALE_DAYS * 86400000) return null;
+        return j;
+      })
+      .catch(function(){ return null; })
+      .then(function(data){ HUB_RETURNS_DATA = data; return data; });
+    return HUB_RETURNS_P;
+  }
+  function hubReturnEntry(inv){
+    var d = HUB_RETURNS_DATA;
+    return (d && inv && d.investors && d.investors[inv.slug]) || null;
+  }
+  function hubReturnPct(inv){
+    var e = hubReturnEntry(inv);
+    return (e && typeof e.ytd_pct === "number" && isFinite(e.ytd_pct)) ? e.ytd_pct : null;
+  }
+  function hubReturnsDate(iso){
+    var d = new Date(iso);
+    if (!isFinite(d.getTime())) return "";
+    var m = d.getUTCMonth() + 1, day = d.getUTCDate(), y = d.getUTCFullYear();
+    if (typeof LANG !== "undefined" && LANG === "en"){
+      return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][m - 1] + " " + day + ", " + y;
+    }
+    if (typeof LANG !== "undefined" && LANG === "ja") return y + "年" + m + "月" + day + "日";
+    return y + "." + String(m).padStart(2,"0") + "." + String(day).padStart(2,"0");
+  }
   /* 허브 랭킹 표 정렬 상태. 기본은 공개 평가액 내림차순(dir=-1 오름/-1 내림 대신
      "1=오름, -1=내림"으로 부호를 정해 hubCompareRows의 dir*(av-bv) 공식과 맞춘다). */
   var HUB_SORT = { key: "total_value", dir: -1 };
   function hubSortValue(inv, key){
+    if (key === "ytd_return") return hubReturnPct(inv);
     if (key === "total_value") return (typeof inv.total_value === "number" && isFinite(inv.total_value)) ? inv.total_value : null;
     if (key === "holdings_count") return (typeof inv.holdings_count === "number" && isFinite(inv.holdings_count)) ? inv.holdings_count : null;
     if (key === "top5") { var w = topWeight(inv, 5); return isFinite(w) ? w : null; }
@@ -340,6 +393,7 @@
     var thead = document.createElement("thead"), headRow = document.createElement("tr");
     var COLS = [
       { label: c.investorsLabel, key: null, num: false },
+      { label: c.ytdReturn, key: "ytd_return", num: true },
       { label: c.total, key: "total_value", num: true },
       { label: c.holdings, key: "holdings_count", num: true },
       { label: c.top5, key: "top5", num: true },
@@ -372,6 +426,13 @@
       if (manager) manager.textContent = locVal(inv.name) || "";
       var nameTd = document.createElement("td"); nameTd.appendChild(card); tr.appendChild(nameTd);
 
+      /* 값은 loadHubReturns() 응답이 오기 전까지 "—" 자리표시. 페인트를 막지
+         않고 즉시 렌더한 뒤, 아래 loadHubReturns().then() 콜백이 채운다
+         (백그라운드 탭에서도 동작해야 하므로 rAF/IO 게이팅 없음). */
+      var ytdTd = document.createElement("td"); ytdTd.className = "num";
+      var ytdSpan = document.createElement("span"); ytdSpan.className = "inv-perf"; ytdSpan.textContent = "—";
+      ytdTd.appendChild(ytdSpan); tr.appendChild(ytdTd);
+
       var totalTd = document.createElement("td"); totalTd.className = "num"; totalTd.textContent = invMoneyFmt(inv.total_value); tr.appendChild(totalTd);
       var holdingsTd = document.createElement("td"); holdingsTd.className = "num"; holdingsTd.textContent = inv.holdings_count == null ? "—" : String(inv.holdings_count); tr.appendChild(holdingsTd);
       var top5Td = document.createElement("td"); top5Td.className = "num"; top5Td.textContent = pct(topWeight(inv, 5), 1); tr.appendChild(top5Td);
@@ -387,13 +448,16 @@
       add.addEventListener("click", function(){ toggleSelection(inv.slug, investors, document.querySelector(".inv-compare-msg")); });
       selectTd.appendChild(add); tr.appendChild(selectTd);
 
-      return { inv: inv, tr: tr };
+      return { inv: inv, tr: tr, ytdTd: ytdTd, ytdSpan: ytdSpan };
     });
     rows.forEach(function(r){ tbody.appendChild(r.tr); });
     table.appendChild(tbody);
 
     Array.prototype.slice.call(grid.children).forEach(function(child){ grid.removeChild(child); });
     grid.appendChild(table);
+
+    var note = document.createElement("p"); note.className = "inv-hub-ytd-note"; note.textContent = c.ytdReturnUnavailable;
+    if (grid.parentNode) grid.parentNode.insertBefore(note, grid.nextSibling);
 
     hubApplySort(table, rows);
     headRow.querySelectorAll("button[data-sort]").forEach(function(btn){
@@ -402,6 +466,22 @@
         if (HUB_SORT.key === key) HUB_SORT.dir = -HUB_SORT.dir; else { HUB_SORT.key = key; HUB_SORT.dir = -1; }
         hubApplySort(table, rows);
       });
+    });
+
+    loadHubReturns().then(function(data){
+      rows.forEach(function(r){
+        var v = hubReturnPct(r.inv);
+        r.ytdSpan.textContent = v == null ? "—" : signedPct(v);
+        r.ytdSpan.className = "inv-perf" + perfClass(v);
+        var entry = hubReturnEntry(r.inv);
+        if (v == null && entry && typeof entry.coverage_pct === "number" && isFinite(entry.coverage_pct)){
+          r.ytdTd.title = c.ytdReturnCoverage.replace("{p}", (entry.coverage_pct * 100).toFixed(1));
+        } else {
+          r.ytdTd.removeAttribute("title");
+        }
+      });
+      note.textContent = data ? c.ytdReturnNote.replace("{start}", hubReturnsDate(data.ytd_start)).replace("{asOf}", hubReturnsDate(data.as_of)) : c.ytdReturnUnavailable;
+      if (HUB_SORT.key === "ytd_return") hubApplySort(table, rows);
     });
   }
 
