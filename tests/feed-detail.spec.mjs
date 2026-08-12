@@ -273,6 +273,37 @@ test.describe("13F investor view state", () => {
     await expect(page.locator("#feedList .series-head-name")).toContainText("›");
   });
 
+  test("hub ranking table shows a sort caret and updates aria-sort on click", async ({ page }) => {
+    await openInvestors(page);
+    const table = page.locator(".inv-hub-table");
+    await expect(table).toBeVisible();
+
+    const totalTh = table.locator('th:has(button[data-sort="total_value"])');
+    const holdingsTh = table.locator('th:has(button[data-sort="holdings_count"])');
+    const holdingsBtn = table.locator('button[data-sort="holdings_count"]');
+
+    // Default sort is total_value descending — its <th> carries aria-sort,
+    // and a solid down caret renders after the button label.
+    await expect(totalTh).toHaveAttribute("aria-sort", "descending");
+    await expect(holdingsTh).toHaveAttribute("aria-sort", "none");
+
+    const afterContent = (locator) => locator.evaluate(el => getComputedStyle(el, "::after").content);
+    await expect.poll(() => afterContent(table.locator('button[data-sort="total_value"]'))).toBe('"▼"');
+    // Non-active sortable columns show the faint neutral affordance at rest.
+    await expect.poll(() => afterContent(holdingsBtn)).toBe('"↕"');
+
+    // Clicking another sortable header moves aria-sort to it (descending first).
+    await holdingsBtn.click();
+    await expect(holdingsTh).toHaveAttribute("aria-sort", "descending");
+    await expect(totalTh).toHaveAttribute("aria-sort", "none");
+    await expect.poll(() => afterContent(holdingsBtn)).toBe('"▼"');
+
+    // Clicking the same header again flips the direction to ascending.
+    await holdingsBtn.click();
+    await expect(holdingsTh).toHaveAttribute("aria-sort", "ascending");
+    await expect.poll(() => afterContent(holdingsBtn)).toBe('"▲"');
+  });
+
   test("investor value chart honors period boundaries and nearest points", async ({ page }) => {
     await page.route("**/quote?*", route => {
       const now = Math.floor(Date.now() / 86400000) * 86400;
