@@ -1,0 +1,133 @@
+name: Investor YTD returns
+
+# portfolios.json only refreshes quarterly (13f-refresh.yml, cron
+# "0 22 8-19 2,5,8,11 *"), and even then it carries zero market-price data
+# (scripts/fetch_13f.py never fetches a quote). The 13F investor hub table
+# still needs a daily-changing YTD return per investor, so this runs
+# scripts/investor_returns.py once a day after the US market closes to
+# price each investor's current 13F holdings and write the small summary
+# file data/investor-returns.json. This workflow touches ONLY that one file
+# - never index.html, never portfolios.json - so it is a pure data producer
+# for a UI change to be done separately.
+#
+# Schedule: 22:30 UTC, weekdays. US cash-equity close is 21:00 UTC on EDT
+# (UTC-4, roughly mid-March to early November) and 22:00 UTC on EST
+# (UTC-5, the rest of the year); 22:30 UTC is after both year-round, with a
+# 30-90 minute cushion for the Worker's own last close to actually be
+# available from Yahoo before we price against it.
+#
+# Failure safety (see scripts/investor_returns.py's module docstring for the
+# full reasoning): the script itself refuses to write
+# data/investor-returns.json if the run raised (nothing written, working
+# tree == what git already has) or if it produced a usable ytd_pct for more
+# than REGRESSION_TOLERANCE (2) FEWER investors than the file already
+# committed had - a systemic regression, e.g. the Worker itself being down,
+# refuses to write and exits non-zero. A SMALL drop (1-2 investors dipping
+# under the coverage gate on an ordinary day, e.g. one flaky ticker) is
+# written anyway with those investors' ytd_pct: null and a warning logged -
+# it is not treated as a failure, because refusing to write over one flaky
+# ticker would wedge this pipeline and open a fresh issue every single day.
+# Either way the "Commit and push" step below only fires on a real content
+# diff, so a bad (non-written) run leaves the step with nothing to commit,
+# or the run fails outright before reaching it - it never blanks yesterday's
+# numbers.
+
+on:
+  schedule:
+    - cron: "30 22 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: stacks-investor-returns
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Price current 13F holdings and compute YTD returns
+        env:
+          STACKS_WORKER_URL: ${{ secrets.STACKS_WORKER_URL }}
+        run: |
+          set -euo pipefail
+          python3 scripts/investor_returns.py 2>&1 | tee investor_returns.log
+
+      - name: Commit and push (if changed)
+        run: |
+          # On the very first run data/investor-returns.json is UNTRACKED, and
+          # `git diff` (unlike `git diff --cached`) never looks at untracked
+          # files - so a plain `git diff --quiet -- <path>` would report "no
+          # changes" and this step would silently skip forever. Stage first,
+          # then diff the index against HEAD: a brand-new file shows up as a
+          # staged addition, an ordinary unchanged day stages nothing new and
+          # `--cached` stays quiet, and a run that chose not to write (see
+          # scripts/investor_returns.py) leaves the working file identical to
+          # what's already committed, which also stages nothing.
+          if [ ! -f data/investor-returns.json ]; then
+            echo "data/investor-returns.json does not exist (run did not produce one) - nothing to commit"
+            exit 0
+          fi
+          git add data/investor-returns.json
+          if git diff --cached --quiet -- data/investor-returns.json; then
+            echo "no changes to data/investor-returns.json"
+            exit 0
+          fi
+          git config user.name  "stacks-investor-returns-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh investor YTD returns ($(date -u +%F))"
+          # Same race-safe push pattern as 13f-refresh.yml / og-assets.yml:
+          # this file is fully machine-generated, so on a concurrent push the
+          # replayed commit (ours) should simply win rather than attempt a
+          # real merge.
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main || true
+            if git rebase --autostash -X theirs FETCH_HEAD && git push origin main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push race lost, retry $i"
+            sleep $(( (RANDOM % 8) + 3 * i ))
+          done
+          echo "::error::push failed after 6 attempts (concurrent commit on main)"
+          exit 1
+
+      - name: Open or update an issue so failure survives being missed
+        # No date in the title, deliberately - so a genuine multi-day outage
+        # (Worker down, systemic regression, etc.) comments on ONE open issue
+        # instead of opening a fresh one every single day it keeps failing.
+        # Only a real, distinct failure ever reaches this step at all now
+        # (see fix in scripts/investor_returns.py: a 1-2 investor coverage
+        # dip is not a failure and never gets here), so daily noise was
+        # already ruled out before dedup even matters.
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="⚠ 투자자 YTD 갱신 실패"
+          {
+            echo "투자자 YTD 갱신 워크플로가 실패했습니다 (에러 또는 usable 투자자 수가 허용 범위(REGRESSION_TOLERANCE)를 넘어 줄어 커밋을 건너뛰었습니다)."
+            echo
+            echo "실행: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} ($(date -u +%FT%TZ))"
+            echo
+            echo '```'
+            cat investor_returns.log 2>/dev/null || echo "(로그 없음 - 실행 단계 이전에 실패)"
+            echo '```'
+          } > issue.md
+          existing=$(gh issue list --search "\"$TITLE\" in:title" --state open --json number --jq '.[0].number // empty' 2>/dev/null || true)
+          if [ -n "$existing" ]; then
+            echo "existing open issue #$existing found - commenting instead of opening a new one"
+            gh issue comment "$existing" --body-file issue.md
+          else
+            gh issue create --title "$TITLE" --body-file issue.md --label "13f" 2>/dev/null \
+              || gh issue create --title "$TITLE" --body-file issue.md
+          fi
