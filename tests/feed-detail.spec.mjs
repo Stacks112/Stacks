@@ -649,6 +649,71 @@ test.describe("13F investor view state", () => {
     await expect(values).toHaveText([afterTexts[0], afterTexts[1]]);
   });
 
+  test("compare-screen YTD hero matches the individual investor chart's YTD", async ({ page }) => {
+    // Regression guard for the nearest-vs-ceiling window-start bug: daily
+    // bars are timestamped ~14:30 UTC (mocked below to match), so a
+    // nearest-neighbour search for the Jan-1-00:00-UTC YTD target picks the
+    // prior year's Dec-31 bar instead of the correct first-trading-day-of
+    // -year bar. situational-awareness showed the largest gap (66.46% vs.
+    // the correct 51.31%) before the fix, so it's used here to make a
+    // regression fail loudly. A smooth price ramp would not expose this -
+    // one day either way barely moves a smooth series' percentage - so the
+    // mock also jumps the price sharply exactly at the YTD boundary, the
+    // way a real portfolio can swing day to day, so picking the wrong side
+    // of Jan 1 actually produces a materially different number.
+    await page.route("**/quote?*", async route => {
+      const now = Math.floor(Date.now() / 86400000) * 86400;
+      const barOffset = 52200; // 14:30 UTC, matching production quote bars
+      const days = 400;
+      const t = Array.from({ length: days }, (_, i) => now - (days - 1 - i) * 86400 + barOffset);
+      const endYear = new Date(t[t.length - 1] * 1000).getUTCFullYear();
+      const jan1 = Date.UTC(endYear, 0, 1) / 1000;
+      const closes = t.map((ti, i) => (100 + i * 0.05) + (ti >= jan1 ? 40 : 0));
+      await route.fulfill({ contentType: "application/json", body: JSON.stringify({ t, closes, price: closes.at(-1), currency: "USD" }) });
+    });
+
+    await page.addInitScript(slugs => {
+      localStorage.setItem("stk_inv_compare", JSON.stringify(slugs));
+    }, ["situational-awareness", "berkshire"]);
+
+    await page.goto("/?v83beta#investor-compare", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/#investor-compare$/);
+
+    const heroItem = page.locator(".inv-performance-section .inv-compare-hero-item").filter({ hasText: "ASCHEN" });
+    await expect(heroItem, "compare hero row for situational-awareness (INV:ASCHEN) never appeared").toHaveCount(1, { timeout: 30000 });
+    const heroValueEl = heroItem.locator(".inv-compare-hero-value");
+    await expect(heroValueEl).toHaveText(/^[+-]\d+\.\d+%$/, { timeout: 30000 });
+    const heroPct = parseFloat(await heroValueEl.textContent());
+    expect(Number.isFinite(heroPct)).toBe(true);
+
+    // Independently derive the ceiling-start YTD from the exact same series
+    // invComputeValueSeries() feeds both the compare hero and the
+    // single-investor chart (invPaintValueChart), so this is a true
+    // cross-check rather than a hand-computed expectation.
+    const expectedPct = await page.evaluate(async () => {
+      const data = await fetch("/portfolios.json").then(r => r.json());
+      const inv = data.investors.find(i => i.slug === "situational-awareness");
+      if (!inv) throw new Error("situational-awareness not found in /portfolios.json");
+      if (typeof window.invComputeValueSeries !== "function") throw new Error("window.invComputeValueSeries is not exposed on the page");
+      const series = await window.invComputeValueSeries(inv);
+      if (!series || !series.calendar || !series.values || series.calendar.length < 2) {
+        throw new Error("invComputeValueSeries returned no usable series for situational-awareness");
+      }
+      const { calendar, values } = series;
+      const end = calendar[calendar.length - 1];
+      const endDate = new Date(end * 1000);
+      const requestedStart = Date.UTC(endDate.getUTCFullYear(), 0, 1) / 1000;
+      // Mirrors invPaintValueChart's ceiling search in index.html.
+      let startIdx = 0;
+      while (startIdx < calendar.length - 1 && calendar[startIdx] < requestedStart) startIdx++;
+      const first = values[startIdx], last = values[values.length - 1];
+      if (!(first > 0)) throw new Error("YTD start value is not positive");
+      return (last / first - 1) * 100;
+    });
+
+    expect(Math.abs(heroPct - expectedPct)).toBeLessThanOrEqual(0.15);
+  });
+
   test("sector unclassified note states a remainder consistent with the coverage row", async ({ page }) => {
     await page.route("**/quote?*", async route => {
       await route.abort();
