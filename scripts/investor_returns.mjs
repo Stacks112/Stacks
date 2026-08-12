@@ -426,6 +426,92 @@ async function main() {
       const context = await browser.newContext({ serviceWorkers: "block" });
       const page = await context.newPage();
       page.setDefaultTimeout(NAV_TIMEOUT_MS);
+
+      // --------------------------------------------------------------------
+      // Diagnostics (permanent - not tied to the CORS workaround below).
+      // Without these, a run that silently returns "no result" for every
+      // investor gives no clue why: the in-page try/catch in
+      // computeInvestorInPage() swallows fetch failures into a generic
+      // reason string, and nothing before this surfaced the page's own
+      // console output or its failed network requests. Cap both so a
+      // genuinely noisy page can't flood the CI log.
+      // --------------------------------------------------------------------
+      let pageConsoleLogged = 0;
+      const PAGE_CONSOLE_LOG_CAP = 20;
+      page.on("console", (msg) => {
+        const type = msg.type();
+        if (type !== "error" && type !== "warning") return;
+        if (pageConsoleLogged >= PAGE_CONSOLE_LOG_CAP) return;
+        pageConsoleLogged++;
+        console.log(`[page] ${type}: ${msg.text()}`);
+      });
+
+      let reqFailLogged = 0;
+      const REQFAIL_LOG_CAP = 10;
+      page.on("requestfailed", (request) => {
+        if (reqFailLogged >= REQFAIL_LOG_CAP) return;
+        reqFailLogged++;
+        const failure = request.failure();
+        console.log(
+          `[reqfail] ${request.method()} ${request.url()} ${failure ? failure.errorText : "unknown"}`
+        );
+      });
+
+      // --------------------------------------------------------------------
+      // HYPOTHESIS, not confirmed (this sandbox has no egress to
+      // api.stacksdaily.com to test it against) - see CI run #4, where the
+      // producer correctly finds window.invComputeValueSeries on the
+      // locally-served page but every single investor still comes back
+      // "[warn] <slug>: no result (no usable calendar/values from
+      // invComputeValueSeries)". window.quote1y() (index.html) fetches
+      // COMMENTS_API + "/quote?s=<ticker>&r=1y", i.e.
+      // https://api.stacksdaily.com/quote - a real cross-origin request once
+      // the page is served from http://127.0.0.1:4174 instead of
+      // https://stacksdaily.com. The likely explanation is that the
+      // Cloudflare Worker behind api.stacksdaily.com only allow-lists the
+      // real site origin in its CORS response, so the browser discards every
+      // quote response before invComputeValueSeries ever sees a usable
+      // series - which matches the symptom exactly (found the function, got
+      // nothing usable out of it).
+      //
+      // Rather than guess at the worker's allow-list, this intercepts every
+      // request to that host, re-issues it server-side (outside the page's
+      // CORS jail) with an Origin/Referer that impersonates the real site,
+      // and re-fulfils the page's request with access-control-allow-origin
+      // forced to "*" (dropping allow-credentials, which cannot coexist with
+      // a wildcard origin). If this hypothesis is wrong, or the worker's
+      // allow-list is later relaxed to include this producer some other way,
+      // this whole page.route block can be deleted cleanly - it changes
+      // nothing else about how requests are made or handled.
+      let quoteProxied = 0;
+      let quoteNonOk = 0;
+      let quoteThrew = 0;
+      await page.route(
+        (url) => url.hostname === "api.stacksdaily.com",
+        async (route) => {
+          quoteProxied++;
+          const request = route.request();
+          try {
+            const response = await route.fetch({
+              headers: {
+                ...request.headers(),
+                origin: "https://stacksdaily.com",
+                referer: "https://stacksdaily.com/",
+              },
+            });
+            if (!response.ok()) quoteNonOk++;
+            const headers = { ...response.headers(), "access-control-allow-origin": "*" };
+            delete headers["access-control-allow-credentials"];
+            await route.fulfill({ response, headers });
+          } catch (e) {
+            quoteThrew++;
+            await route.abort();
+          }
+        }
+      );
+      const quoteProxySummary = () =>
+        `quote proxy (api.stacksdaily.com): proxied=${quoteProxied} non2xx=${quoteNonOk} threw=${quoteThrew}`;
+
       console.log(`[info] navigating to ${SITE_URL}`);
       await page.goto(SITE_URL, { waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT_MS });
 
@@ -478,11 +564,14 @@ async function main() {
         }
       }
 
+      console.log(`[info] ${quoteProxySummary()}`);
+
       const successful = Object.entries(perInvestor).filter(([, r]) => r.ok);
       if (successful.length < MIN_INVESTORS_WITH_RESULT) {
         console.error(
           `[fail] only ${successful.length}/${investors.length} investors produced any result ` +
-            `(minimum ${MIN_INVESTORS_WITH_RESULT}) - refusing to write ${OUTPUT_PATH}`
+            `(minimum ${MIN_INVESTORS_WITH_RESULT}) - refusing to write ${OUTPUT_PATH}\n` +
+            `[fail] ${quoteProxySummary()}`
         );
         process.exitCode = 1;
         return;
