@@ -145,6 +145,59 @@ export const REGRESSION_TOLERANCE = 2;
 export const MIN_INVESTORS_WITH_RESULT = 10;
 
 // --------------------------------------------------------------------------
+// Quote host — see the page.route block below for the CORS-workaround
+// backstory this builds on. CI run #5 showed that backstory was incomplete:
+// the public host (api.stacksdaily.com) 403s every proxied request from
+// this runner - and from a second datacenter IP - even with Origin/Referer
+// spoofed to the real site, while an ordinary desktop browser hitting the
+// same URL gets 200. The public endpoint is blocking non-browser/datacenter
+// traffic outright; no header spoofing from here fixes that.
+//
+// The retired scripts/investor_returns.py (see scripts/worker_url.py in its
+// git history, e.g. `git show 6b5ab3a11:scripts/worker_url.py`) already
+// solved this once: it read a private/allow-listed Cloudflare Worker URL
+// from the repo secret STACKS_WORKER_URL, defaulting to the same public
+// https://api.stacksdaily.com host when the secret was unset, and built
+// each request as `${WORKER}/quote?s=<ticker>&r=1y` - i.e. the secret is a
+// bare origin (or origin + path prefix), and the script appends the
+// path/query it already had. This mirrors that: when STACKS_WORKER_URL is
+// set, every request the page makes to api.stacksdaily.com is rewritten to
+// that base, preserving the page's own path and query string exactly.
+const STACKS_WORKER_URL = (process.env.STACKS_WORKER_URL || "").trim();
+const WORKER_BASE = STACKS_WORKER_URL.replace(/\/+$/, "");
+
+/** Best-effort "does this look like it embeds a credential rather than
+ * being a bare host" check, so the startup log below never risks printing a
+ * token even by accident. Deliberately conservative: any userinfo, path
+ * beyond "/", or query string on the secret trips it, since a bare worker
+ * base (matching how scripts/worker_url.py used this same secret) should
+ * never have any of those. */
+function workerUrlLooksLikeCredential(raw) {
+  try {
+    const u = new URL(raw);
+    return Boolean(u.username || u.password || u.search || (u.pathname && u.pathname !== "/"));
+  } catch {
+    return true; // unparseable - can't prove it's safe, so treat it as unsafe
+  }
+}
+
+/** Logs, once, which quote host this run will use - origin only (scheme +
+ * host), never the full STACKS_WORKER_URL (which may carry a path/token).
+ * See workerUrlLooksLikeCredential above for when even the origin is
+ * withheld. */
+function logQuoteHost() {
+  if (!WORKER_BASE) {
+    console.log(`[info] quote host: https://api.stacksdaily.com (default; STACKS_WORKER_URL not set)`);
+    return;
+  }
+  if (workerUrlLooksLikeCredential(WORKER_BASE)) {
+    console.log(`[info] quote host: <redacted, from STACKS_WORKER_URL>`);
+    return;
+  }
+  console.log(`[info] quote host: ${new URL(WORKER_BASE).origin} (from STACKS_WORKER_URL)`);
+}
+
+// --------------------------------------------------------------------------
 // Pure helpers — no browser, no network. Unit-testable via dynamic import.
 // --------------------------------------------------------------------------
 
@@ -396,6 +449,8 @@ function stopLocalServer(localServer) {
 // --------------------------------------------------------------------------
 
 async function main() {
+  logQuoteHost();
+
   const prev = await loadJson(OUTPUT_PATH, null);
   const prevUsable = prev ? usableCount(prev.investors) : null;
 
@@ -458,7 +513,7 @@ async function main() {
       });
 
       // --------------------------------------------------------------------
-      // HYPOTHESIS, not confirmed (this sandbox has no egress to
+      // Originally a hypothesis (this sandbox had no egress to
       // api.stacksdaily.com to test it against) - see CI run #4, where the
       // producer correctly finds window.invComputeValueSeries on the
       // locally-served page but every single investor still comes back
@@ -467,23 +522,30 @@ async function main() {
       // COMMENTS_API + "/quote?s=<ticker>&r=1y", i.e.
       // https://api.stacksdaily.com/quote - a real cross-origin request once
       // the page is served from http://127.0.0.1:4174 instead of
-      // https://stacksdaily.com. The likely explanation is that the
+      // https://stacksdaily.com. The likely explanation was that the
       // Cloudflare Worker behind api.stacksdaily.com only allow-lists the
       // real site origin in its CORS response, so the browser discards every
       // quote response before invComputeValueSeries ever sees a usable
-      // series - which matches the symptom exactly (found the function, got
+      // series - which matched the symptom exactly (found the function, got
       // nothing usable out of it).
       //
-      // Rather than guess at the worker's allow-list, this intercepts every
-      // request to that host, re-issues it server-side (outside the page's
-      // CORS jail) with an Origin/Referer that impersonates the real site,
-      // and re-fulfils the page's request with access-control-allow-origin
-      // forced to "*" (dropping allow-credentials, which cannot coexist with
-      // a wildcard origin). If this hypothesis is wrong, or the worker's
-      // allow-list is later relaxed to include this producer some other way,
-      // this whole page.route block can be deleted cleanly - it changes
-      // nothing else about how requests are made or handled.
+      // Confirmed and refined by CI run #5: intercepting every request to
+      // that host, re-issuing it server-side (outside the page's CORS jail)
+      // with an Origin/Referer that impersonates the real site, is not
+      // enough on its own - the public host now 403s the re-issued request
+      // too, from two different datacenter IPs, even with those headers
+      // spoofed, while an ordinary desktop browser hitting the exact same
+      // URL gets 200. So this isn't (only) a CORS allow-list problem; the
+      // public endpoint itself blocks non-browser/datacenter traffic. See
+      // STACKS_WORKER_URL above: when it's set, the rewritten request goes
+      // to that private/allow-listed base instead of api.stacksdaily.com,
+      // which is exactly what the retired scripts/investor_returns.py did
+      // (see scripts/worker_url.py in its git history) and is why that
+      // secret is back in .github/workflows/investor-returns.yml. When it's
+      // unset, this falls back to the original same-host/spoofed-headers
+      // behaviour so a local human run is unchanged.
       let quoteProxied = 0;
+      let quoteRewritten = 0;
       let quoteNonOk = 0;
       let quoteThrew = 0;
       await page.route(
@@ -492,13 +554,21 @@ async function main() {
           quoteProxied++;
           const request = route.request();
           try {
-            const response = await route.fetch({
+            let fetchOptions = {
               headers: {
                 ...request.headers(),
                 origin: "https://stacksdaily.com",
                 referer: "https://stacksdaily.com/",
               },
-            });
+            };
+            if (WORKER_BASE) {
+              // Preserve the path + query string exactly as the page built
+              // it (e.g. "/quote?s=AAPL&r=1y"); only the scheme+host changes.
+              const original = new URL(request.url());
+              fetchOptions = { ...fetchOptions, url: `${WORKER_BASE}${original.pathname}${original.search}` };
+              quoteRewritten++;
+            }
+            const response = await route.fetch(fetchOptions);
             if (!response.ok()) quoteNonOk++;
             const headers = { ...response.headers(), "access-control-allow-origin": "*" };
             delete headers["access-control-allow-credentials"];
@@ -510,7 +580,8 @@ async function main() {
         }
       );
       const quoteProxySummary = () =>
-        `quote proxy (api.stacksdaily.com): proxied=${quoteProxied} non2xx=${quoteNonOk} threw=${quoteThrew}`;
+        `quote proxy (api.stacksdaily.com): proxied=${quoteProxied} rewritten=${quoteRewritten} ` +
+        `non2xx=${quoteNonOk} threw=${quoteThrew}`;
 
       console.log(`[info] navigating to ${SITE_URL}`);
       await page.goto(SITE_URL, { waitUntil: "domcontentloaded", timeout: NAV_TIMEOUT_MS });
