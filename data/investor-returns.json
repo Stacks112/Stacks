@@ -1,0 +1,102 @@
+{
+ "as_of": "2026-08-12T07:28:29.296472+00:00",
+ "ytd_start": "2026-01-02",
+ "investors": {
+  "berkshire": {
+   "ytd_pct": 0.0902,
+   "coverage_pct": 1.0,
+   "priced_holdings": 28,
+   "eligible_holdings": 28
+  },
+  "pershing-square": {
+   "ytd_pct": 0.0767,
+   "coverage_pct": 1.0,
+   "priced_holdings": 10,
+   "eligible_holdings": 10
+  },
+  "ark": {
+   "ytd_pct": 0.0882,
+   "coverage_pct": 1.0,
+   "priced_holdings": 181,
+   "eligible_holdings": 181
+  },
+  "duquesne": {
+   "ytd_pct": 0.1952,
+   "coverage_pct": 1.0,
+   "priced_holdings": 65,
+   "eligible_holdings": 65
+  },
+  "appaloosa": {
+   "ytd_pct": 0.1128,
+   "coverage_pct": 1.0,
+   "priced_holdings": 31,
+   "eligible_holdings": 31
+  },
+  "situational-awareness": {
+   "ytd_pct": 0.5405,
+   "coverage_pct": 0.9899,
+   "priced_holdings": 25,
+   "eligible_holdings": 26
+  },
+  "third-point": {
+   "ytd_pct": 0.033,
+   "coverage_pct": 0.9954,
+   "priced_holdings": 30,
+   "eligible_holdings": 33
+  },
+  "baupost": {
+   "ytd_pct": 0.0938,
+   "coverage_pct": 0.932,
+   "priced_holdings": 19,
+   "eligible_holdings": 22
+  },
+  "tci": {
+   "ytd_pct": 0.0481,
+   "coverage_pct": 0.9706,
+   "priced_holdings": 8,
+   "eligible_holdings": 9
+  },
+  "coatue": {
+   "ytd_pct": 0.1141,
+   "coverage_pct": 0.9988,
+   "priced_holdings": 58,
+   "eligible_holdings": 61
+  },
+  "soros": {
+   "ytd_pct": null,
+   "coverage_pct": 0.818,
+   "priced_holdings": 196,
+   "eligible_holdings": 229
+  },
+  "carl-icahn": {
+   "ytd_pct": 0.0998,
+   "coverage_pct": 1.0,
+   "priced_holdings": 12,
+   "eligible_holdings": 12
+  },
+  "tiger-global": {
+   "ytd_pct": 0.0389,
+   "coverage_pct": 0.9981,
+   "priced_holdings": 52,
+   "eligible_holdings": 54
+  },
+  "viking": {
+   "ytd_pct": 0.0901,
+   "coverage_pct": 0.9545,
+   "priced_holdings": 74,
+   "eligible_holdings": 77
+  },
+  "oaktree": {
+   "ytd_pct": null,
+   "coverage_pct": 0.8544,
+   "priced_holdings": 36,
+   "eligible_holdings": 48
+  },
+  "scion": {
+   "ytd_pct": null,
+   "coverage_pct": 0.8072,
+   "priced_holdings": 3,
+   "eligible_holdings": 4
+  }
+ }
+}
