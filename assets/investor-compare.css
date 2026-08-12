@@ -18,6 +18,9 @@ html.inv-lab-active .inv-grid{display:grid;grid-template-columns:1fr;gap:0;margi
 .inv-hub-table th.num{text-align:right}
 .inv-hub-table th button{padding:0;border:0;background:transparent;color:inherit;font:inherit;font-size:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer}
 .inv-hub-table th button.on{color:var(--accent)}
+.inv-hub-table th[aria-sort] button::after{content:"↕";display:inline-block;margin-left:4px;font-size:8px;opacity:.35}
+.inv-hub-table th[aria-sort="ascending"] button::after{content:"▲";opacity:1}
+.inv-hub-table th[aria-sort="descending"] button::after{content:"▼";opacity:1}
 .inv-hub-table td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
 .inv-hub-table td.num{text-align:right;font-family:var(--mono-font);white-space:nowrap}
 .inv-hub-card[hidden]{display:none}
