@@ -33,6 +33,7 @@
       since:"공시 후", threeM:"최근 3개월", oneY:"최근 1년", vsSpy:"S&P 500 대비", loading:"계산 중", building:"데이터 축적 중",
       overlap:"함께 보유한 종목", overlapSub:"선택한 투자자 중 2명 이상이 함께 보유한 미국 상장 롱 포지션입니다.", noOverlap:"겹치는 종목이 없습니다.", heldBy:"{n}명 보유",
       topHoldings:"상위 보유종목 비교", sectors:"섹터 비중 비교", sectorCoverage:"분류 커버리지", noSector:"분류된 섹터 데이터가 없습니다.",
+      sectorUnclassified:"미분류", sectorUnclassifiedNote:"{ticker}: 공개 평가액의 {covered}만 분류된 결과입니다 · 나머지 {uncovered}는 미분류입니다.", sectorUnclassifiedUnknown:"{ticker}: 분류 커버리지 데이터가 없어 미분류 비율을 알 수 없습니다.",
       weight:"비중", newBuy:"신규", add:"추가", trim:"축소", exit:"청산",
       discTitle:"수익률을 읽는 법", disc:"이 값은 실제 펀드 수익률이 아니라 SEC에 공개된 분기별 13F 스냅샷을 공시일 기준으로 이어 붙인 포트폴리오 추정치입니다. 옵션·공매도·현금·채권·해외 상장 자산은 제외됩니다.",
       discWindow:"3개월·1년 수익률은 각 공시가 공개된 뒤 해당 기간이 실제로 지난 경우에만 표시합니다. 아직 지나지 않았다면 ‘데이터 축적 중’으로 표시해 미래 정보를 미리 쓰지 않습니다.",
@@ -41,9 +42,10 @@
       holdGraphSub:"SEC에 공개된 분기별 13F 스냅샷을 공시일마다 이어 붙인 누적 추정 성과입니다. 선택 기간의 시작점을 0%로 맞춘 상대 성과입니다.",
       holdGraphDrag:"차트 위를 손가락으로 누른 채 좌우로 움직이면 선택 기간의 수익률을 확인할 수 있습니다.", holdGraphSelected:"선택 기간", holdGraphRange:"선택 {n}일", holdGraphClear:"선택 해제",
       holdGraphStart:"시작점=0%", holdGraphNow:"현재", holdGraphNoData:"비교 가능한 시세 데이터가 부족합니다.",
-      holdGraphCoverage:"시세 {p}%", holdGraphNote:"옵션 제외 · SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님",
+      holdGraphCoverage:"시세 {p}%", holdGraphNote:"SEC 공개 스냅샷 기준 분기별 재구성 · 실제 펀드 수익률 아님", holdGraphNoteMore:"제외 항목 전체 보기",
       holdGraphDays:"경과 {n}일", holdGraphNoPrice:"시세 조회 실패", benchmark:"S&P 500 비교", benchmarkNote:"기준지수",
-      holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph3m:"3개월", holdGraph6m:"6개월", holdGraphYtd:"연중", holdGraph1y:"1년"
+      holdGraph1d:"1일", holdGraph5d:"5일", holdGraph1m:"1개월", holdGraph3m:"3개월", holdGraph6m:"6개월", holdGraphYtd:"연중", holdGraph1y:"1년",
+      holdGraphHeroLabel:"{period} 수익률"
     },
     en:{
       tickerHelp:"Stacks investor ticker", pickTitle:"Compare investors", pickSub:"Choose 2–4 investors to compare their public portfolios side by side.",
@@ -57,6 +59,7 @@
       since:"Since filing", threeM:"Last 3 months", oneY:"Last year", vsSpy:"vs. S&P 500", loading:"Calculating", building:"Building history",
       overlap:"Shared holdings", overlapSub:"U.S.-listed long positions held by at least two selected investors.", noOverlap:"No shared holdings.", heldBy:"Held by {n}",
       topHoldings:"Top holdings comparison", sectors:"Sector allocation comparison", sectorCoverage:"Classification coverage", noSector:"No classified sector data.",
+      sectorUnclassified:"Unclassified", sectorUnclassifiedNote:"{ticker}: This reflects only {covered} of disclosed value classified · the remaining {uncovered} is unclassified.", sectorUnclassifiedUnknown:"{ticker}: Classification coverage is unknown, so the unclassified share cannot be shown.",
       weight:"Weight", newBuy:"New", add:"Added", trim:"Trimmed", exit:"Exited",
       discTitle:"How to read returns", disc:"These are not actual fund returns. They estimate a public portfolio by chaining quarterly 13F snapshots from each SEC filing date. Options, shorts, cash, bonds and non-U.S.-listed assets are excluded.",
       discWindow:"Three-month and one-year returns appear only after that much time has actually passed since public disclosure. Until then, Stacks shows ‘Building history’ to avoid look-ahead bias.",
@@ -65,9 +68,10 @@
       holdGraphSub:"Estimated cumulative performance by chaining quarterly 13F snapshots from each SEC filing date. Each investor starts at 0% for the selected period.",
       holdGraphDrag:"Press and hold, then drag horizontally across the chart to see each investor's return for the selected period.", holdGraphSelected:"Selected period", holdGraphRange:"{n} selected days", holdGraphClear:"Clear selection",
       holdGraphStart:"Start=0%", holdGraphNow:"Now", holdGraphNoData:"There is not enough price data for a comparison chart.",
-      holdGraphCoverage:"Prices {p}%", holdGraphNote:"Options excluded · quarterly SEC snapshots chained · not actual fund returns",
+      holdGraphCoverage:"Prices {p}%", holdGraphNote:"Quarterly SEC snapshots chained · not actual fund returns", holdGraphNoteMore:"See full exclusions",
       holdGraphDays:"{n} elapsed days", holdGraphNoPrice:"Price data unavailable", benchmark:"Compare S&P 500", benchmarkNote:"Benchmark",
-      holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph3m:"3M", holdGraph6m:"6M", holdGraphYtd:"YTD", holdGraph1y:"1Y"
+      holdGraph1d:"1D", holdGraph5d:"5D", holdGraph1m:"1M", holdGraph3m:"3M", holdGraph6m:"6M", holdGraphYtd:"YTD", holdGraph1y:"1Y",
+      holdGraphHeroLabel:"{period} return"
     },
     ja:{
       tickerHelp:"Stacks投資家ティッカー", pickTitle:"投資家を比較", pickSub:"2〜4人を選び、公開ポートフォリオを横並びで比較します。",
@@ -81,6 +85,7 @@
       since:"開示後", threeM:"直近3か月", oneY:"直近1年", vsSpy:"S&P 500比", loading:"計算中", building:"データ蓄積中",
       overlap:"共通保有銘柄", overlapSub:"選択した投資家のうち2人以上が保有する米国上場ロングポジションです。", noOverlap:"共通銘柄はありません。", heldBy:"{n}人保有",
       topHoldings:"上位保有銘柄比較", sectors:"セクター比率比較", sectorCoverage:"分類カバレッジ", noSector:"分類済みセクターデータがありません。",
+      sectorUnclassified:"未分類", sectorUnclassifiedNote:"{ticker}：公開評価額のうち{covered}のみ分類された結果です・残り{uncovered}は未分類です。", sectorUnclassifiedUnknown:"{ticker}：分類カバレッジのデータがなく、未分類の割合は不明です。",
       weight:"比率", newBuy:"新規", add:"追加", trim:"縮小", exit:"清算",
       discTitle:"リターンの見方", disc:"これは実際のファンド収益率ではなく、SECに公開された四半期ごとの13Fスナップショットを開示日からつないだ公開ポートフォリオ推定値です。オプション・空売り・現金・債券・米国外上場資産は除外されます。",
       discWindow:"3か月・1年リターンは、公開後にその期間が実際に経過した場合だけ表示します。未経過なら「データ蓄積中」とし、未来情報を先取りしません。",
@@ -89,9 +94,10 @@
       holdGraphSub:"SECに公開された四半期ごとの13Fスナップショットを開示日ごとにつないだ累積推定成績です。選択期間の開始点を0%に揃えた相対成績です。",
       holdGraphDrag:"グラフを長押しして左右にドラッグすると、選択した期間の投資家別リターンを確認できます。", holdGraphSelected:"選択期間", holdGraphRange:"選択 {n}日", holdGraphClear:"選択を解除",
       holdGraphStart:"開始点=0%", holdGraphNow:"現在", holdGraphNoData:"比較グラフに使える価格データがありません。",
-      holdGraphCoverage:"価格 {p}%", holdGraphNote:"オプション除外・SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません",
+      holdGraphCoverage:"価格 {p}%", holdGraphNote:"SEC公開スナップショットを四半期ごとに接続・実際のファンド収益率ではありません", holdGraphNoteMore:"除外項目をすべて見る",
       holdGraphDays:"経過 {n}日", holdGraphNoPrice:"価格データを取得できません", benchmark:"S&P 500と比較", benchmarkNote:"ベンチマーク",
-      holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph3m:"3か月", holdGraph6m:"6か月", holdGraphYtd:"年初来", holdGraph1y:"1年"
+      holdGraph1d:"1日", holdGraph5d:"5日", holdGraph1m:"1か月", holdGraph3m:"3か月", holdGraph6m:"6か月", holdGraphYtd:"年初来", holdGraph1y:"1年",
+      holdGraphHeroLabel:"{period}のリターン"
     }
   };
 
@@ -676,20 +682,52 @@
     chart.setAttribute("data-price-benchmark", state.benchmark);
     chart.setAttribute("aria-busy", "false");
   }
-  function emptyCompareChart(chart, rows, c){
+  /* Resting-state hero figures above the hold-graph: one signed return per
+     selected investor (benchmark excluded), always matching whatever the
+     chart currently shows (full window or an active drag selection). Colour
+     and index come from the already-painted line when one exists so the
+     number can never drift from what the SVG draws; investors with no line
+     for this window fall back to holdGraphNoPrice rather than a blank or a
+     fake 0.0%. */
+  function findHeroSeries(series, inv){
+    if (!series) return null;
+    for (var i = 0; i < series.length; i++){ if (series[i].inv === inv) return series[i]; }
+    return null;
+  }
+  function heroValueHtml(c, v){
+    if (typeof v !== "number" || !isFinite(v)) return '<b class="inv-compare-hero-value">' + esc(c.holdGraphNoPrice) + '</b>';
+    return '<b class="inv-compare-hero-value inv-perf' + perfClass(v / 100) + '">' + esc(signedPct(v / 100)) + '</b>';
+  }
+  function renderHero(heroLabelEl, heroListEl, rows, series, c, labelText, valueFor){
+    if (!heroListEl) return;
+    if (heroLabelEl) heroLabelEl.textContent = labelText;
+    var investorRows = rows.filter(function(row){ return !row.benchmark; });
+    heroListEl.innerHTML = investorRows.map(function(row, i){
+      var s = findHeroSeries(series, row.inv);
+      var color = (s && s.color) || row.color || graphColor(i);
+      var label = (s && s.label) || row.label || tickerLabel(row.inv);
+      var v = valueFor(s);
+      return '<div class="inv-compare-hero-item"><span class="inv-compare-hero-name"><i style="background:' + color + '"></i>' + esc(label) + '</span>' + heroValueHtml(c, v) + '</div>';
+    }).join("");
+  }
+  function heroWindowLabel(c, period){ return c.holdGraphHeroLabel.replace("{period}", graphPeriodLabel(c, period)); }
+  function heroSelectionLabel(c){ return c.holdGraphHeroLabel.replace("{period}", c.holdGraphSelected); }
+  function heroLastValue(s){ return s && s.points && s.points.length ? s.points[s.points.length - 1].v : null; }
+  function emptyCompareChart(chart, rows, c, heroLabelEl, heroListEl, period){
     setGraphStatus(chart, rows);
     chart.innerHTML = '<div class="inv-compare-chart-empty" role="status" aria-live="polite" data-price-status="unavailable">' + esc(c.holdGraphNoData) + '</div>';
+    renderHero(heroLabelEl, heroListEl, rows, null, c, heroWindowLabel(c, period), function(){ return null; });
   }
-  function paintCompareGraph(chart, legend, rows, c, period, clearBtn, rangeReadout){
+  function paintCompareGraph(chart, legend, rows, c, period, clearBtn, rangeReadout, heroLabelEl, heroListEl){
     if (clearBtn) clearBtn.hidden = true;
     if (rangeReadout) rangeReadout.hidden = true;
     graphLegend(legend, rows, c);
     setGraphStatus(chart, rows);
     var fullSeries = rows.map(function(row){ return row.series; }).filter(Boolean);
-    if (!fullSeries.length){ emptyCompareChart(chart, rows, c); return; }
+    if (!fullSeries.length){ emptyCompareChart(chart, rows, c, heroLabelEl, heroListEl, period); return; }
     var window = graphWindow(period, fullSeries), windowStart = window.start, windowEnd = window.end;
     var maxElapsed = windowEnd - windowStart;
-    if (!(maxElapsed > 0)){ emptyCompareChart(chart, rows, c); return; }
+    if (!(maxElapsed > 0)){ emptyCompareChart(chart, rows, c, heroLabelEl, heroListEl, period); return; }
     var series = fullSeries.map(function(s, i){
       var first = graphPointAt(s.points, windowStart), last = graphPointAt(s.points, windowEnd);
       if (!first || !last || last.t <= first.t || !(first.v > 0)) return null;
@@ -698,7 +736,8 @@
       if (points[points.length - 1].t !== last.t) points.push(last);
       return { inv:s.inv, label:s.label, benchmark:s.benchmark, points:points.map(function(p){ var index = (p.v / first.v) * 100; return { t:p.t, v:index - 100, index:index }; }), start:first.t, end:last.t, color:s.color || graphColor(i) };
     }).filter(Boolean);
-    if (!series.length){ emptyCompareChart(chart, rows, c); return; }
+    if (!series.length){ emptyCompareChart(chart, rows, c, heroLabelEl, heroListEl, period); return; }
+    renderHero(heroLabelEl, heroListEl, rows, series, c, heroWindowLabel(c, period), heroLastValue);
     var all = [0]; series.forEach(function(s){ s.points.forEach(function(p){ all.push(p.v); }); });
     var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all), span = mx - mn;
     if (span < 8){ var center = (mn + mx) / 2; mn = center - 5; mx = center + 5; }
@@ -784,9 +823,14 @@
       if (!any) html += '<span>' + esc(c.holdGraphNoData) + '</span>';
       tip.innerHTML = html; tip.hidden = false; placeTip(((x1 + x2) / 2) / W);
       if (clearBtn) clearBtn.hidden = false;
+      renderHero(heroLabelEl, heroListEl, rows, series, c, heroSelectionLabel(c), function(s){
+        var r = s ? graphRangeForSeries(s, lo, hi, maxElapsed, windowStart) : null;
+        return r ? r.pct : null;
+      });
     }
     function clearSelection(){
       selection = null; selectionRect.setAttribute("visibility", "hidden"); if (clearBtn) clearBtn.hidden = true; if (rangeReadout) rangeReadout.hidden = true; hideHover();
+      renderHero(heroLabelEl, heroListEl, rows, series, c, heroWindowLabel(c, period), heroLastValue);
     }
     function startDrag(ev){
       if (ev.button != null && ev.button !== 0) return;
@@ -820,17 +864,32 @@
     }).join("");
     sec.innerHTML = '<div class="inv-performance-head inv-performance-head-row"><div><h3>' + esc(c.holdGraphTitle) + '</h3><p>' + esc(c.holdGraphSub) + '</p><small class="inv-compare-drag-hint">' + esc(c.holdGraphDrag) + '</small></div><label class="inv-benchmark-toggle"><input type="checkbox" checked><span>' + esc(c.benchmark) + '</span></label></div>'
       + '<div class="inv-compare-periods" role="tablist" aria-label="' + esc(c.holdGraphTitle) + '">' + periodButtons + '</div>'
-      + '<div class="inv-compare-chart" data-price-status="loading" data-price-benchmark="loading" aria-busy="true"><div class="ehq-loading">···</div></div><div class="inv-compare-selection-label" aria-live="polite" hidden></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + '</p>';
-    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear"), rangeReadout = sec.querySelector(".inv-compare-selection-label"), benchmarkToggle = sec.querySelector(".inv-benchmark-toggle input"), rows = null, activePeriod = "ytd";
+      + '<div class="inv-compare-hero" aria-live="polite"><small class="inv-compare-hero-label"></small><div class="inv-compare-hero-list"></div></div>'
+      + '<div class="inv-compare-chart" data-price-status="loading" data-price-benchmark="loading" aria-busy="true"><div class="ehq-loading">···</div></div><div class="inv-compare-selection-label" aria-live="polite" hidden></div><div class="inv-compare-legend"></div><button type="button" class="inv-compare-clear" hidden>' + esc(c.holdGraphClear) + '</button><p class="inv-compare-note">' + esc(c.holdGraphNote) + ' <button type="button" class="inv-compare-note-link">' + esc(c.holdGraphNoteMore) + ' →</button></p>';
+    var chart = sec.querySelector(".inv-compare-chart"), legend = sec.querySelector(".inv-compare-legend"), clearBtn = sec.querySelector(".inv-compare-clear"), rangeReadout = sec.querySelector(".inv-compare-selection-label"), benchmarkToggle = sec.querySelector(".inv-benchmark-toggle input"), heroLabelEl = sec.querySelector(".inv-compare-hero-label"), heroListEl = sec.querySelector(".inv-compare-hero-list"), noteLinkBtn = sec.querySelector(".inv-compare-note-link"), rows = null, activePeriod = "ytd";
+    /* A real <a href="#inv-compare-disc"> looked right but is unsafe here:
+       this SPA's popstate handler treats any history entry with null state
+       (which a plain fragment-link click pushes) as "nothing recognized,
+       close the open overlay" and its own URL-sync (noteView/stkSyncUrl)
+       then normalizes the address bar back to "/", silently dropping the
+       whole compare view. A scroll-only button sidesteps the router
+       entirely. */
+    if (noteLinkBtn) noteLinkBtn.addEventListener("click", function(){
+      try {
+        var target = document.getElementById("inv-compare-disc");
+        if (target && typeof target.scrollIntoView === "function") target.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e) {}
+    });
+    function currentPeriod(){ return GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3]; }
     function visibleRows(){ return (rows || []).filter(function(row){ return !row.benchmark || benchmarkToggle.checked; }); }
     sec.querySelectorAll(".inv-compare-period").forEach(function(button){
       button.addEventListener("click", function(){
         activePeriod = button.getAttribute("data-period") || "ytd";
         sec.querySelectorAll(".inv-compare-period").forEach(function(other){ var on = other === button; other.classList.toggle("on", on); other.setAttribute("aria-selected", on ? "true" : "false"); });
-        if (rows) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout);
+        if (rows) paintCompareGraph(chart, legend, visibleRows(), c, currentPeriod(), clearBtn, rangeReadout, heroLabelEl, heroListEl);
       });
     });
-    benchmarkToggle.addEventListener("change", function(){ if (rows) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout); });
+    benchmarkToggle.addEventListener("change", function(){ if (rows) paintCompareGraph(chart, legend, visibleRows(), c, currentPeriod(), clearBtn, rangeReadout, heroLabelEl, heroListEl); });
     var invDone = 0;
     function invProgress(){
       invDone++;
@@ -848,7 +907,7 @@
         var inv = { slug:"spy", ticker:"SP500", manager:{ ko:"S&P 500", en:"S&P 500", ja:"S&P 500" } };
         return { inv:inv, res:null, series:null, benchmark:true, label:"S&P 500", color:"#8E93A0" };
       })
-    ]).then(function(result){ rows = result[0].concat(result[1] ? [result[1]] : []); if (sec.isConnected) paintCompareGraph(chart, legend, visibleRows(), c, GRAPH_PERIODS.find(function(period){ return period.key === activePeriod; }) || GRAPH_PERIODS[3], clearBtn, rangeReadout); });
+    ]).then(function(result){ rows = result[0].concat(result[1] ? [result[1]] : []); if (sec.isConnected) paintCompareGraph(chart, legend, visibleRows(), c, currentPeriod(), clearBtn, rangeReadout, heroLabelEl, heroListEl); });
     return sec;
   }
 
@@ -888,7 +947,27 @@
     if(!names.length){sec.innerHTML+='<div class="empty">'+esc(c.noSector)+'</div>';return sec;}
     var rows=names.map(function(name){return[esc(name)].concat(investors.map(function(inv){var r=((inv.sector_alloc||{}).sectors||[]).find(function(x){return(locVal(x.sector)||"")===name;});return pct(r&&r.weight,1);}));});
     rows.push(['<b>'+esc(c.sectorCoverage)+'</b>'].concat(investors.map(function(inv){return pct(inv.sector_alloc&&inv.sector_alloc.covered_pct,1);})));
-    sec.appendChild(compareTable([c.sectors].concat(investors.map(function(i){return tickerLabel(i);})),rows));return sec;
+    /* The classified-slice breakdown above can look complete even when most
+       of the book isn't in it. State the remainder next to the coverage row
+       (guarding null/undefined covered_pct instead of printing a false
+       "100% unclassified"), then flag investors under SECTOR_COVERAGE_WARN
+       so the table reads as a partial view rather than the whole portfolio. */
+    rows.push(['<b>'+esc(c.sectorUnclassified)+'</b>'].concat(investors.map(function(inv){
+      var cov=inv.sector_alloc&&inv.sector_alloc.covered_pct;
+      return typeof cov==="number"&&isFinite(cov)?pct(1-cov,1):"—";
+    })));
+    sec.appendChild(compareTable([c.sectors].concat(investors.map(function(i){return tickerLabel(i);})),rows));
+    var SECTOR_COVERAGE_WARN=0.5;
+    var coverageLines=investors.map(function(inv){
+      var cov=inv.sector_alloc&&inv.sector_alloc.covered_pct, known=typeof cov==="number"&&isFinite(cov), low=known&&cov<SECTOR_COVERAGE_WARN;
+      var text=known
+        ? c.sectorUnclassifiedNote.replace("{ticker}",tickerLabel(inv)).replace("{covered}",pct(cov,1)).replace("{uncovered}",pct(1-cov,1))
+        : c.sectorUnclassifiedUnknown.replace("{ticker}",tickerLabel(inv));
+      return '<p class="inv-sector-coverage-line'+(low?" warn":"")+'">'+esc(text)+'</p>';
+    });
+    var note=document.createElement("div");note.className="inv-sector-coverage-note";note.innerHTML=coverageLines.join("");
+    sec.appendChild(note);
+    return sec;
   }
   function compareTable(headers,rows){
     var wrap=document.createElement("div");wrap.className="inv-compare-table-wrap"+(headers[0]==="#"?" inv-top-holdings-table":"");
@@ -961,7 +1040,7 @@
       var summaryModel=summaryTable(chosen);grid.appendChild(summaryModel.wrap);list.appendChild(grid);
       invMapLimit(chosen,2,function(inv){return fillPerformance(summaryModel,inv);});
       list.appendChild(overlapSection(chosen)); list.appendChild(topHoldingsSection(chosen)); list.appendChild(sectorSection(chosen));
-      var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
+      var disc=document.createElement("section");disc.className="inv-compare-disclaimer";disc.id="inv-compare-disc";disc.innerHTML='<b>'+esc(c.discTitle)+'</b><p>'+esc(c.disc)+'</p><p>'+esc(c.discWindow)+'</p>';list.appendChild(disc);
     });
   }
 
