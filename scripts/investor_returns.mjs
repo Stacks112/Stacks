@@ -166,6 +166,16 @@ export const MIN_INVESTORS_WITH_RESULT = 10;
 const STACKS_WORKER_URL = (process.env.STACKS_WORKER_URL || "").trim();
 const WORKER_BASE = STACKS_WORKER_URL.replace(/\/+$/, "");
 
+// The retired scripts/investor_returns.py succeeded against this same
+// private Worker sending only a minimal header set - User-Agent and
+// Accept-Encoding: identity, no Origin/Referer/Sec-Fetch-*/cookies (see
+// `git show 6b5ab3a11:scripts/investor_returns.py`). When WORKER_BASE is
+// set we mirror that exactly below, since forwarding the page's full
+// browser header set (including a spoofed Origin/Referer) is the leading
+// suspect for CI run #6's "proxied=899 rewritten=899 non2xx=899" against
+// the private Worker.
+const WORKER_PROXY_UA = "Stacks/1.0 (stacksdaily.com; investor-returns; contact@stacksdaily.com)";
+
 /** Best-effort "does this look like it embeds a credential rather than
  * being a bare host" check, so the startup log below never risks printing a
  * token even by accident. Deliberately conservative: any userinfo, path
@@ -548,28 +558,51 @@ async function main() {
       let quoteRewritten = 0;
       let quoteNonOk = 0;
       let quoteThrew = 0;
+      let firstNonOkLogged = false;
       await page.route(
         (url) => url.hostname === "api.stacksdaily.com",
         async (route) => {
           quoteProxied++;
           const request = route.request();
           try {
-            let fetchOptions = {
-              headers: {
-                ...request.headers(),
-                origin: "https://stacksdaily.com",
-                referer: "https://stacksdaily.com/",
-              },
-            };
+            let fetchOptions;
             if (WORKER_BASE) {
               // Preserve the path + query string exactly as the page built
               // it (e.g. "/quote?s=AAPL&r=1y"); only the scheme+host changes.
+              // Send only the minimal header set the retired python producer
+              // used against this same private Worker - no Origin, Referer,
+              // Sec-Fetch-*, or cookies forwarded from the page.
               const original = new URL(request.url());
-              fetchOptions = { ...fetchOptions, url: `${WORKER_BASE}${original.pathname}${original.search}` };
+              fetchOptions = {
+                url: `${WORKER_BASE}${original.pathname}${original.search}`,
+                headers: {
+                  "user-agent": WORKER_PROXY_UA,
+                  "accept-encoding": "identity",
+                },
+              };
               quoteRewritten++;
+            } else {
+              fetchOptions = {
+                headers: {
+                  ...request.headers(),
+                  origin: "https://stacksdaily.com",
+                  referer: "https://stacksdaily.com/",
+                },
+              };
             }
             const response = await route.fetch(fetchOptions);
-            if (!response.ok()) quoteNonOk++;
+            if (!response.ok()) {
+              quoteNonOk++;
+              if (!firstNonOkLogged) {
+                firstNonOkLogged = true;
+                const respHeaders = response.headers();
+                const hasContentType = Boolean(respHeaders && respHeaders["content-type"]);
+                console.log(
+                  `[warn] first non-2xx quote proxy response: status=${response.status()} ` +
+                    `content-type-present=${hasContentType}`
+                );
+              }
+            }
             const headers = { ...response.headers(), "access-control-allow-origin": "*" };
             delete headers["access-control-allow-credentials"];
             await route.fulfill({ response, headers });
