@@ -2,6 +2,185 @@
  "items": [
   {
    "date": "2026-08-12",
+   "id": "serenity-aehr-22m-wafer-level-burn-in-followon",
+   "related": [
+    "serenity-cw-dfb-laser-chokepoint-lite-aaoi-confirm",
+    "jukan-samsung-hbm4-yield-80-share-target",
+    "serenity-nbis-prepayments-cover-half-of-capex"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2087505570941239683",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0b1120",
+    "to": "#3d2b12",
+    "label": "2,200만달러"
+   },
+   "tags": [
+    "TESTING",
+    "PACKAGING",
+    "AI"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "2,200만달러, 여섯 달, 이름 없는 고객 하나",
+    "en": "$22 million, six months, one unnamed customer",
+    "ja": "2,200万ドル、6カ月、名前のない顧客ひとつ"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "$AEHR receives another $22M follow on order for AI processor wafer level burn in systems. By their lead AI processor company.",
+      "It's cool to see this tiny company grow up so fast across so many verticals (memory, silicon photonics, etc)."
+     ],
+     "ko": [
+      "에어테스트시스템스가 AI 프로세서용 웨이퍼 레벨 번인 장비로 2,200만달러 후속 주문을 또 받았다. 이 회사의 최대 AI 프로세서 고객이 낸 주문이다.",
+      "이 작은 회사가 메모리, 실리콘 포토닉스 등 여러 분야에서 이렇게 빨리 크는 것을 보는 일은 즐겁다."
+     ],
+     "ja": [
+      "エアテストシステムズが、AIプロセッサ向けウエハーレベル・バーンイン装置で2,200万ドルの追加受注をまた獲得した。同社の最大のAIプロセッサ顧客からの発注だ。",
+      "この小さな会社がメモリーやシリコンフォトニクスなど多くの分野でこれほど速く育っていくのを見るのは面白い。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.12"
+   },
+   "sum3": {
+    "ko": "칩을 웨이퍼에서 잘라내기 전에 일찍 죽을 것을 골라내는 검사 장비에, 2024년 12월 이후 세 번째 주문이 들어왔다.\n작은 장비 회사가 AI 붐을 타고 커지는 이야기로 읽힌다. 이번 주문 하나가 지난 회계연도 매출의 44%다.\n그런데 세 건 모두 이름이 공개되지 않은 같은 고객 한 곳에서 나왔고, 시가총액은 원문이 적은 11억달러가 아니라 42억달러다.",
+    "en": "A third order since December 2024 has landed at a company whose machines screen out chips that would die early, before they are cut from the wafer.\nIt reads as a small equipment maker growing up on the AI boom. This one order equals 44% of last fiscal year's revenue.\nBut all three came from the same unnamed customer, and the market value is not the $1.1 billion in the original post but $4.2 billion.",
+    "ja": "チップをウエハーから切り出す前に早く死ぬものを選り分ける検査装置に、2024年12月以降で3件目の注文が入った。\n小さな装置メーカーがAIブームに乗って育つ話に読める。今回の1件が前会計年度の売上高の44%にあたる。\nだが3件はいずれも名前の出ない同じ顧客1社から出ており、時価総額は原文が記す11億ドルではなく42億ドルだ。"
+   },
+   "gist": {
+    "ko": "에어테스트시스템스가 8월 12일 AI 프로세서용 웨이퍼 레벨 번인 장비로 2,200만달러 후속 주문을 받았다고 발표했다.\n장비는 앞으로 여섯 달에 걸쳐 대만의 생산 협력사로 나간다.\n\n@@REF@@에어, AI 프로세서 웨이퍼 레벨 번인 장비 2,200만달러 후속 주문 수주 (에어테스트시스템스 보도자료, 2026-08-12)|https://www.aehr.com/2026/08/aehr-receives-22-million-follow-on-order-for-ai-processor-wafer-level-burn-in-systems/|https://www.aehr.com/wp-content/uploads/2019/04/press-releases-img.png\n\n번인은 새로 만든 칩에 일부러 높은 전압과 열을 걸어 두는 공정이다.\n전자제품이 고장 난다면 대개 쓰기 시작한 초기에 고장 나는데, 일찍 죽을 칩을 공장 안에서 미리 죽여 내보내지 않으려는 것이다.\n\n여기에 \"웨이퍼 레벨\"이 붙으면, 칩을 하나씩 잘라내기 전에 300밀리미터 원판째로 그 스트레스를 준다는 말이다.\n\n@@FLOW@@웨이퍼 완성|300밀리미터 원판 하나에 칩 수백 개가 함께 만들어진다|웨이퍼 레벨 번인|자르기 전에 원판째 전압과 열을 걸어 약한 칩을 끌어낸다|다이 선별|일찍 죽을 칩을 이 단계에서 걸러낸다|패키징|살아남은 칩만 HBM과 GPU 한 덩어리로 붙인다@@걸러내는 자리가 앞쪽으로 갈수록 버리는 돈이 줄어든다. 붙인 뒤에 불량이 나오면 옆에 붙어 있던 멀쩡한 칩까지 함께 버린다.\n\n## 왜 AI 칩에서 이 검사가 커졌나\n\nAI 가속기는 연산 칩 하나에 HBM을 여러 개 붙여 한 덩어리로 만든다.\nHBM은 얇은 메모리를 12~16장씩 쌓아 올린 물건이고, AI 칩 원가의 절반 가까이를 차지한다.\n\n@@REF@@HBM이 테스트를 앞으로 당기며 AI 칩 수율을 지키고 있다 (세미컨덕터엔지니어링, 2026-05-12)|https://semiengineering.com/hbm-shifts-testing-left-to-preserve-ai-chip-yield/\n\n이 기사에서 시놉시스의 엔지니어는 데이터센터 GPU 고장의 1순위 원인이 HBM 불량이라고 말한다.\n값비싼 덩어리를 다 붙인 뒤에 그 안의 메모리 한 장이 죽으면, 그 덩어리 전체가 버려진다.\n검사를 뒤가 아니라 앞으로 당기는 이유가 이것이다.\n\n## 지난해 매출의 절반에 가까운 주문\n\n@@CHK@@2026 회계연도 매출|5,000만달러|5월 말 수주잔고|8,060만달러|2027 회계연도 회사 가이던스|1억3,000만~1억5,000만달러@@이 한 건이 지난 회계연도 매출의 44%에 해당한다. 다만 장비가 여섯 달에 걸쳐 나가므로 매출도 여러 분기에 나뉘어 잡힌다.@@에어테스트시스템스 2026 회계연도 실적 발표(2026-07-14)와 8월 12일 보도자료 · 2026-08-13 조회\n\n이 회사의 매출은 원래 전기차용 실리콘카바이드 칩 검사에서 나왔고, 그 수요가 꺾이면서 2026 회계연도 매출은 오히려 15% 줄었다.\nAI 쪽으로 옮겨 온 것이 지난 1년의 이야기다.\n\n## 에어의 시가총액은 42억달러다\n\n원문은 이 회사를 시가총액 11억달러의 작은 회사로 소개하지만, 그 숫자는 원문 안에 인용된 예전 게시물의 것이다.\n8월 12일 종가 기준 시가총액은 약 42억달러이고, 이번 발표 당일에만 주가가 12% 올랐다.\n지난해 매출의 여든 배가 넘는 값이 이미 붙어 있다는 뜻이다.\n\n그리고 2024년 12월의 1,000만달러, 올해 2월의 1,400만달러, 그리고 이번 주문이 모두 같은 \"최대 AI 프로세서 고객\" 한 곳에서 나왔다.\n이 회사는 앞서 실리콘카바이드 고객의 주문이 밀리면서 분기 매출이 2,140만달러에서 756만달러로 떨어진 적이 있다.\n회사가 제시한 2027 회계연도 1억3,000만달러를 채우려면 이만한 주문이 여러 건 더 필요하다.\n다음 주문에 다른 고객의 이름이 붙으면 검사 장비가 AI 칩 공정의 상수가 되어 가는 것이고, 같은 고객의 주문만 이어지면 이 회사의 실적은 그 고객 한 곳의 설비투자 일정과 같은 것이 된다.",
+    "en": "Aehr Test Systems said on 12 August that it had received a $22 million follow-on order for wafer-level burn-in systems used on AI processors.\nThe systems ship to a manufacturing partner in Taiwan over the next six months.\n\n@@REF@@Aehr Receives $22 Million Follow-On Order for AI Processor Wafer-Level Burn-In Systems (Aehr Test Systems press release, 2026-08-12)|https://www.aehr.com/2026/08/aehr-receives-22-million-follow-on-order-for-ai-processor-wafer-level-burn-in-systems/|https://www.aehr.com/wp-content/uploads/2019/04/press-releases-img.png\n\nBurn-in means deliberately holding a freshly made chip at high voltage and heat.\nElectronics that fail tend to fail early in life, so the point is to kill the weak parts inside the factory rather than in the field.\n\nAdd \"wafer level\" and it means that stress is applied to the whole 300mm disc, before the chips are cut apart.\n\n@@FLOW@@Wafer complete|Hundreds of chips are made together on one 300mm disc|Wafer-level burn-in|Voltage and heat are applied to the whole disc, pulling out the weak ones|Die sort|Chips that would die early are screened here|Packaging|Only survivors are bonded into an HBM and GPU assembly@@The earlier the screen sits, the less money gets thrown away. A defect found after bonding takes the healthy chips beside it as well.\n\n## Why this test grew with AI chips\n\nAn AI accelerator bonds several HBM stacks onto a compute die to make one assembly.\nAn HBM stack is 12 to 16 thin memory dies piled up, and memory accounts for close to half the cost of the finished part.\n\n@@REF@@HBM Shifts Testing Left To Preserve AI Chip Yield (Semiconductor Engineering, 2026-05-12)|https://semiengineering.com/hbm-shifts-testing-left-to-preserve-ai-chip-yield/\n\nIn that piece a Synopsys engineer says HBM failures are the number one cause of GPU failures in data centres.\nWhen one memory die inside an expensive assembly goes, the whole assembly goes with it.\nThat is why the test keeps moving earlier rather than later.\n\n## An order worth half of last year\n\n@@CHK@@Fiscal 2026 revenue|$50.0 million|Backlog at end of May|$80.6 million|Fiscal 2027 company guidance|$130-150 million@@This one order equals 44% of last fiscal year's revenue. Because the systems ship across six months, the revenue lands across several quarters.@@Aehr Test Systems fiscal 2026 results (2026-07-14) and the 12 August press release, retrieved 2026-08-13\n\nThis company's revenue used to come from testing silicon carbide chips for electric vehicles, and when that demand cooled fiscal 2026 revenue actually fell 15%.\nThe move into AI is the story of the past year.\n\n## Aehr is a $4.2 billion company\n\nThe original post introduces it as a small company worth about $1.1 billion, but that figure comes from an earlier post quoted inside it.\nAt the close on 12 August the market value was about $4.2 billion, and the stock rose 12% on the day of the announcement.\nThat is more than eighty times last year's revenue already attached to the name.\n\nThe $10 million order of December 2024, the $14 million of February and this $22 million all came from the same \"lead AI processor customer\".\nThis is also a company whose quarterly revenue once fell from $21.4 million to $7.56 million when a silicon carbide customer pushed orders out.\nMeeting the $130 million the company has guided for fiscal 2027 takes several more orders of this size.\nIf the next one carries a different customer's name, this test is becoming a fixture of AI chip production; if the orders keep coming from the same buyer, the company's results are that one buyer's capital spending schedule.",
+    "ja": "エアテストシステムズは8月12日、AIプロセッサ向けウエハーレベル・バーンイン装置で2,200万ドルの追加受注を得たと発表した。\n装置は今後6カ月かけて台湾の生産パートナーへ出荷される。\n\n@@REF@@エア、AIプロセッサ向けウエハーレベル・バーンイン装置で2,200万ドルの追加受注 (エアテストシステムズ プレスリリース、2026-08-12)|https://www.aehr.com/2026/08/aehr-receives-22-million-follow-on-order-for-ai-processor-wafer-level-burn-in-systems/|https://www.aehr.com/wp-content/uploads/2019/04/press-releases-img.png\n\nバーンインとは、作ったばかりのチップにあえて高い電圧と熱をかけ続ける工程だ。\n電子機器が壊れるとすれば使い始めの時期に壊れることが多いので、早く死ぬチップを工場の中で先に死なせ、外へ出さないようにする。\n\nここに「ウエハーレベル」が付くと、チップを一つずつ切り出す前に、300ミリの円板のままその負荷をかけるという意味になる。\n\n@@FLOW@@ウエハー完成|300ミリの円板1枚の上に数百個のチップが一緒に作られる|ウエハーレベル・バーンイン|切る前に円板ごと電圧と熱をかけ、弱いチップを引き出す|ダイ選別|早く死ぬチップをこの段階で取り除く|パッケージング|生き残ったチップだけをHBMとGPUの一つの塊に接合する@@取り除く場所が前にあるほど、捨てる金は少なくて済む。接合した後に不良が出れば、隣の健全なチップまで一緒に捨てることになる。\n\n## なぜAIチップでこの検査が大きくなったのか\n\nAIアクセラレータは、演算チップ1個に複数のHBMを接合して一つの塊にする。\nHBMは薄いメモリーを12〜16枚積み上げたもので、完成品の原価の半分近くを占める。\n\n@@REF@@HBMがテストを前倒しし、AIチップの歩留まりを守っている (セミコンダクター・エンジニアリング、2026-05-12)|https://semiengineering.com/hbm-shifts-testing-left-to-preserve-ai-chip-yield/\n\nこの記事でシノプシスの技術者は、データセンターのGPU故障の第1の原因はHBMの不良だと述べている。\n高価な塊を接合し終えた後に中のメモリー1枚が死ねば、その塊ごと捨てることになる。\n検査が後ろではなく前へ動き続ける理由がここにある。\n\n## 前年の売上高の半分に近い注文\n\n@@CHK@@2026会計年度の売上高|5,000万ドル|5月末の受注残|8,060万ドル|2027会計年度の会社ガイダンス|1億3,000万〜1億5,000万ドル@@この1件が前会計年度の売上高の44%にあたる。ただし装置は6カ月かけて出荷されるため、売上高も複数の四半期に分かれて計上される。@@エアテストシステムズ 2026会計年度決算(2026-07-14)および8月12日のプレスリリース · 2026-08-13取得\n\nこの会社の売上高はもともと電気自動車向けシリコンカーバイド・チップの検査から出ており、その需要が冷え込んで2026会計年度の売上高はむしろ15%減った。\nAIへ移ってきたことが、この1年の物語だ。\n\n## エアの時価総額は42億ドルだ\n\n原文はこの会社を時価総額11億ドルの小さな会社として紹介するが、その数字は原文の中に引用された以前の投稿のものだ。\n8月12日の終値で時価総額は約42億ドル、発表当日だけで株価は12%上がった。\n前年の売上高の80倍を超える値が、すでに付いているということである。\n\nそして2024年12月の1,000万ドル、今年2月の1,400万ドル、今回の2,200万ドルは、いずれも同じ「最大のAIプロセッサ顧客」1社から出ている。\nこの会社は以前、シリコンカーバイド顧客の発注が後ろ倒しになり四半期売上高が2,140万ドルから756万ドルへ落ちたことがある。\n会社が示した2027会計年度の1億3,000万ドルを埋めるには、この規模の注文がさらに何件も要る。\n次の注文に別の顧客の名前が付けばこの検査はAIチップ工程の常数になりつつあるということであり、同じ顧客の注文だけが続くなら、この会社の業績はその1社の設備投資日程そのものになる。"
+   },
+   "why": {
+    "ko": "AI 칩이 여러 칩을 한 덩어리로 붙이는 방식으로 가면서, 붙이기 전에 불량을 걸러내는 검사가 원가에서 차지하는 무게가 커졌다. 다만 이 회사의 주문은 아직 이름 없는 고객 한 곳에서만 나온다.",
+    "en": "As AI chips are built by bonding many dies into one assembly, screening defects before bonding carries more weight in the cost. But this company's orders still come from a single unnamed customer.",
+    "ja": "AIチップが複数のチップを一つの塊に接合する方式へ進むほど、接合前に不良を取り除く検査が原価に占める重みは増す。ただしこの会社の受注は、いまだ名前の出ない顧客1社から出ている。"
+   },
+   "ask": {
+    "ko": "웨이퍼 레벨 번인 장비를 만드는 회사에 매출의 여든 배가 넘는 값이 붙었다. 이것은 AI 칩 공정의 상수를 산 값일까, 고객 한 곳의 설비투자에 붙은 값일까?",
+    "en": "A maker of wafer-level burn-in systems now trades at more than eighty times revenue. Is that the price of a fixture in AI chip production, or the price of one customer's capital spending?",
+    "ja": "ウエハーレベル・バーンイン装置を作る会社に、売上高の80倍を超える値が付いた。これはAIチップ工程の常数を買った値なのか、顧客1社の設備投資に付いた値なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "에어테스트시스템스의 2027 회계연도 매출이 회사 가이던스 1억3,000만달러에 닿는지 채점한다.",
+     "en": "Score whether Aehr Test Systems' fiscal 2027 revenue reaches the $130 million low end of company guidance.",
+     "ja": "エアテストシステムズの2027会計年度売上高が、会社ガイダンスの1億3,000万ドルに届くかを採点する。"
+    },
+    "due": "2027-07-31",
+    "card": {
+     "metric": {
+      "ko": "에어테스트시스템스 2027 회계연도(2027년 5월 종료) 매출",
+      "en": "Aehr Test Systems revenue for fiscal 2027, ending May 2027",
+      "ja": "エアテストシステムズの2027会計年度(2027年5月終了)売上高"
+     },
+     "now": {
+      "ko": "2026 회계연도 매출 5,000만달러, 5월 말 수주잔고 8,060만달러",
+      "en": "Fiscal 2026 revenue of $50.0 million, backlog of $80.6 million at the end of May",
+      "ja": "2026会計年度の売上高5,000万ドル、5月末の受注残8,060万ドル"
+     },
+     "when": {
+      "ko": "2027년 7월 (연간 실적 발표)",
+      "en": "July 2027, at the full-year results",
+      "ja": "2027年7月(通期決算発表)"
+     },
+     "hit": {
+      "ko": "1억3,000만달러 이상 → 회사 가이던스 하단 달성",
+      "en": "$130 million or more, meeting the low end of guidance",
+      "ja": "1億3,000万ドル以上 → ガイダンス下限を達成"
+     },
+     "miss": {
+      "ko": "1억3,000만달러 미달 → 가이던스 하단에서 어긋남",
+      "en": "Below $130 million, missing the low end of guidance",
+      "ja": "1億3,000万ドル未満 → ガイダンス下限から外れる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity(@aleabitoreddit) · 2026-08-12",
+      "en": "Serenity (@aleabitoreddit), 2026-08-12",
+      "ja": "Serenity(@aleabitoreddit) · 2026-08-12"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2087505570941239683"
+    },
+    {
+     "name": {
+      "ko": "주문 보도자료",
+      "en": "Order press release",
+      "ja": "受注のプレスリリース"
+     },
+     "desc": {
+      "ko": "에어테스트시스템스 · 2026-08-12 · 2,200만달러 후속 주문",
+      "en": "Aehr Test Systems, 2026-08-12, on the $22 million follow-on order",
+      "ja": "エアテストシステムズ · 2026-08-12 · 2,200万ドルの追加受注"
+     },
+     "url": "https://www.aehr.com/2026/08/aehr-receives-22-million-follow-on-order-for-ai-processor-wafer-level-burn-in-systems/"
+    },
+    {
+     "name": {
+      "ko": "번인 설명",
+      "en": "Burn-in explainer",
+      "ja": "バーンインの解説"
+     },
+     "desc": {
+      "ko": "세미컨덕터엔지니어링 · 2026-05-12 · HBM과 테스트 전진 배치",
+      "en": "Semiconductor Engineering, 2026-05-12, on HBM and shifting test earlier",
+      "ja": "セミコンダクター・エンジニアリング · 2026-05-12 · HBMとテストの前倒し"
+     },
+     "url": "https://semiengineering.com/hbm-shifts-testing-left-to-preserve-ai-chip-yield/"
+    },
+    {
+     "name": {
+      "ko": "실적·수주잔고·가이던스",
+      "en": "Results, backlog, guidance",
+      "ja": "決算・受注残・ガイダンス"
+     },
+     "desc": {
+      "ko": "에어테스트시스템스 2026 회계연도 실적 발표(2026-07-14) · 2026-08-13 조회",
+      "en": "Aehr Test Systems fiscal 2026 results released 2026-07-14, retrieved 2026-08-13",
+      "ja": "エアテストシステムズ 2026会計年度決算(2026-07-14) · 2026-08-13取得"
+     },
+     "url": ""
+    },
+    {
+     "name": {
+      "ko": "주가·시가총액",
+      "en": "Share price and market value",
+      "ja": "株価・時価総額"
+     },
+     "desc": {
+      "ko": "2026-08-12 종가 기준, 주가 데이터 조회 · 2026-08-13 확인",
+      "en": "Closing price on 2026-08-12 from market data, checked 2026-08-13",
+      "ja": "2026-08-12の終値、株価データより · 2026-08-13確認"
+     },
+     "url": ""
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-13 조회 · 실적은 2026년 5월 29일 종료 회계연도 기준, 시가총액과 주가 등락은 8월 12일 종가 기준",
+    "en": "Retrieved 2026-08-13. Results are for the fiscal year ended 29 May 2026; market value and the daily move are as of the 12 August close.",
+    "ja": "2026-08-13取得 · 業績は2026年5月29日終了の会計年度、時価総額と当日の株価変動は8月12日の終値時点。"
+   }
+  },
+  {
+   "date": "2026-08-12",
    "id": "jukan-samsung-three-year-return-policy-august-report",
    "related": [
     "jukan-samsung-hbm4-yield-80-share-target",
@@ -55575,6 +55754,47 @@
     "엔비디아 A100",
     "エヌビディアA100"
    ]
+  },
+  "AEHR TEST SYSTEMS": {
+   "kind": "company",
+   "ticker": "aehr",
+   "sector": {
+    "en": "Semiconductor test equipment",
+    "ko": "반도체 검사장비",
+    "ja": "半導体検査装置"
+   },
+   "desc": {
+    "en": "US maker of wafer-level burn-in systems that stress chips before they are cut from the wafer.",
+    "ko": "칩을 웨이퍼에서 잘라내기 전에 스트레스를 걸어 걸러내는 웨이퍼 레벨 번인 장비를 만드는 미국 회사.",
+    "ja": "チップをウエハーから切り出す前に負荷をかけて選別する、ウエハーレベル・バーンイン装置を作る米国企業。"
+   },
+   "aliases": [
+    "Aehr Test Systems",
+    "Aehr",
+    "AEHR",
+    "에어테스트시스템스",
+    "에어 테스트 시스템스",
+    "エアテストシステムズ"
+   ],
+   "logo": "aehr.com",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "ko": "게인 에릭슨",
+    "en": "Gayn Erickson",
+    "ja": "ゲイン・エリクソン"
+   },
+   "founded": "1977",
+   "hq": {
+    "ko": "미국 캘리포니아주 프리몬트",
+    "en": "Fremont, California, United States",
+    "ja": "米国カリフォルニア州フリーモント"
+   },
+   "website": "https://www.aehr.com",
+   "longDesc": {
+    "ko": "1977년 설립된 반도체 검사장비 회사로, 칩을 웨이퍼에서 잘라내기 전에 원판째 전압과 열을 걸어 초기 불량을 걸러내는 웨이퍼 레벨 번인 장비를 만든다. 주력 제품은 FOX 계열 장비와 웨이퍼를 통째로 접촉하는 웨이퍼팩 컨택터다. 오랫동안 전기차용 실리콘카바이드 칩 검사가 매출의 중심이었으나, 2024년 패키지 단위 번인 업체 인칼테크놀로지를 인수한 뒤 AI 프로세서와 실리콘 포토닉스 쪽으로 고객을 넓혔다.",
+    "en": "Semiconductor test equipment maker founded in 1977, building wafer-level burn-in systems that apply voltage and heat to a whole wafer to screen out early-life failures before the chips are cut apart. Its main products are the FOX family of systems and the WaferPak full-wafer contactor. Testing silicon carbide chips for electric vehicles carried its revenue for years; after acquiring packaged-part burn-in maker Incal Technology in 2024 it widened into AI processors and silicon photonics.",
+    "ja": "1977年設立の半導体検査装置メーカー。チップをウエハーから切り出す前に、ウエハーごと電圧と熱をかけて初期不良を取り除くウエハーレベル・バーンイン装置を作る。主力はFOXシリーズの装置と、ウエハー全面に接触するウエハーパック・コンタクターである。長く電気自動車向けシリコンカーバイド・チップの検査が売上の中心だったが、2024年にパッケージ単位のバーンインを手がけるインカル・テクノロジーを買収し、AIプロセッサやシリコンフォトニクスへ顧客を広げた。"
+   }
   }
  }
 }
