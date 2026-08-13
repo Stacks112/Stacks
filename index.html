@@ -7713,6 +7713,21 @@ async function renderScoreboard(list, S){
   loading.className = "ehq-loading"; loading.textContent = "···";
   list.appendChild(loading);
 
+  /* ENTITIES lands post-paint (loadAuxData, after core.json + a rAF tick).
+     A deep link can reach this view before that fires, and sinceItem()
+     null-guards on a missing entity, so the whole column would freeze on
+     "-". loadAuxData() is idempotent (it caches AUX_DATA_P and returns the
+     same in-flight promise), so calling it here never doubles the fetch and
+     never depends on the rAF that normally kicks it off. Cap the wait so a
+     backgrounded tab (no rAF, ever) cannot hang this render forever; on
+     timeout we fall through to the pre-fix behavior. */
+  if (!Object.keys(ENTITIES).length){
+    await Promise.race([
+      loadAuxData(),
+      new Promise(resolve => setTimeout(resolve, 3000))
+    ]).catch(() => {});
+  }
+
   /* resolve every call's "since post" move up front so we can rank authors
      by real direction accuracy (auto-scored, no manual step). */
   const sinceMap = {};
