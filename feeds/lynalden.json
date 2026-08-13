@@ -1,15 +1,15 @@
 {
  "source": "lynalden",
  "fetched_at": "2026-08-13T15:31:43.243471+00:00",
- "checked_at": "2026-08-13T15:31:43.243471+00:00",
- "ok": true,
+ "checked_at": "2026-08-13T17:31:16.030899+00:00",
+ "ok": false,
  "url_used": "https://www.lynalden.com/feed/",
  "keep_days": 30,
- "raw_count": 10,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-07-15T14:16:27+00:00",
  "kept_count": 1,
- "error": null,
+ "error": "ConnectTimeout: HTTPSConnectionPool(host='www.lynalden.com', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.lynalden.com', port=443) at 0x7f1b5db86360>, 'Connection to www.lynalden.com timed out. (connect timeout=25)'))",
  "items": [
   {
    "title": "An Alternative to Private Equity: Introducing ORANGE JUICE",
