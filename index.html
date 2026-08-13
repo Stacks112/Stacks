@@ -187,6 +187,9 @@ const STRINGS = {
   en: {
     appName: "Stacks",
     metaTitle: "Stacks | The world's best investing minds in your language, summarized with a take",
+    mktKospi: "KOSPI",
+    mktKosdaq: "KOSDAQ",
+    mktKtb10y: "KTB 10Y",
     metaDesc: "Sharp investment writing from around the world, summarized in English, with a take. Curated by Stacks.",
     heroTitle: "Investing, easy to read <br class=\"hbr\">and easy to understand",
     heroSub: "The world's best investing reads, summarized with a take, in your language.",
@@ -375,6 +378,9 @@ const STRINGS = {
   ko: {
     appName: "Stacks",
     metaTitle: "Stacks 스택스 | 전 세계 투자 고수의 글을 내 언어로, 요약과 관점까지",
+    mktKospi: "코스피",
+    mktKosdaq: "코스닥",
+    mktKtb10y: "국고채 10년",
     metaDesc: "메르·코베이시·다모다란 등 전 세계 투자 고수들의 글을 한국어로 요약하고, 강세·약세 관점까지 정리해 드립니다. 예측 적중 기록도 함께.",
     heroTitle: "투자, 쉽게 읽고 쉽게 이해하자",
     heroSub: "전 세계 투자 고수들의 글, 요약과 관점까지 당신의 언어로",
@@ -563,6 +569,9 @@ const STRINGS = {
   ja: {
     appName: "Stacks",
     metaTitle: "Stacks スタックス | 世界の投資の達人の記事をあなたの言語で、要約と視点まで",
+    mktKospi: "KOSPI",
+    mktKosdaq: "KOSDAQ",
+    mktKtb10y: "国債10年",
     metaDesc: "世界の投資家たちの記事を日本語に要約し、強気・弱気の視点まで整理。予測の的中記録も公開。",
     heroTitle: "やさしく読めて、やさしくわかる投資",
     heroSub: "世界の投資家たちの記事を、要約と視点まで、あなたの言語で。",
@@ -3086,6 +3095,45 @@ html[data-lang="ko"] .ev-label{font-family:var(--ui-font);}
 .ev-bell.on{opacity:1;}
 .ev-bell.on svg{fill:#FFD166;stroke:#FFD166;}
 
+/* Top-of-page market snapshot strip (kospi/kosdaq/ktb10y). Height is fixed
+   up front so data/market.json arriving after first paint causes no layout
+   shift (same reasoning as .gimg's clamp() reservation below); missing data
+   or any fetch failure just leaves it [hidden] via renderMktBar(). Placed as
+   a direct child of <main class="wrap"> (not inside <nav>, not sticky - see
+   the JS comment above renderMktBar for why), so it needs its own explicit
+   full-width span once .wrap becomes a CSS grid at >=1024px, same as
+   .mini-install and #skewSec already do. */
+.mkt-bar{
+  grid-column:1 / -1;
+  display:flex;align-items:center;gap:12px;
+  min-height:clamp(38px,9vw,46px);
+  margin:14px 0 0;padding:0 0 10px;
+  border-bottom:1px solid var(--line);
+  background:transparent;
+  overflow:hidden;
+}
+.mkt-date{
+  flex:0 0 auto;font-family:var(--mono-font);font-size:10.5px;font-weight:700;
+  letter-spacing:.04em;color:var(--muted);white-space:nowrap;
+}
+.mkt-viewport{flex:1 1 auto;min-width:0;overflow:hidden;}
+.mkt-track{display:flex;align-items:center;gap:22px;width:max-content;will-change:transform;}
+.mkt-item{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap;font-family:var(--mono-font);font-size:12.5px;}
+.mkt-k{font-weight:700;color:var(--text);}
+.mkt-v{font-weight:600;color:var(--text);}
+.mkt-chg{font-weight:700;}
+.mkt-chg.mkt-up{color:#06703D;}
+.mkt-chg.mkt-dn{color:#B42318;}
+html[data-theme="dark"] .mkt-chg.mkt-up{color:#6EE7B7;}
+html[data-theme="dark"] .mkt-chg.mkt-dn{color:#FDA29B;}
+.mkt-bar.mkt-run .mkt-track{animation:mktScroll var(--mkt-dur,26s) linear infinite;}
+.mkt-bar.mkt-run.mkt-paused .mkt-track{animation-play-state:paused;}
+@keyframes mktScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){
+  .mkt-bar.mkt-run .mkt-track{animation:none;transform:none;}
+  .mkt-bar.mkt-run .mkt-viewport{overflow-x:auto;}
+}
+
 /* ---------- watchlist (followed companies) ---------- */
 #watchSec{position:relative;}
 /* 2026-07-29 (june): 가로 캐러셀 좌우 이동 버튼(인트로 폰 목업 · 내 브리핑).
@@ -3915,6 +3963,10 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 </nav>
 
 <main class="wrap">
+  <div class="mkt-bar" id="mktBar" hidden>
+    <span class="mkt-date" id="mktDate"></span>
+    <div class="mkt-viewport" id="mktViewport"><div class="mkt-track" id="mktTrack"></div></div>
+  </div>
   <section class="hero">
     <div class="app-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 21 8l-9 4.5L3 8l9-4.5Z" fill="#fff"/><path d="M4.6 11.6 3 12.4 12 17l9-4.6-1.6-.8L12 15.3l-7.4-3.7Z" fill="#fff" opacity=".72"/><path d="M4.6 15.6 3 16.4 12 21l9-4.6-1.6-.8L12 19.3l-7.4-3.7Z" fill="#fff" opacity=".45"/></svg></div>
     <div class="app-name" id="appName">Stacks</div>
@@ -12848,6 +12900,7 @@ function render(){
      self-canonicalize the ?l= language URL so Google can serve the right
      language version (paired with the <link hreflang> alternates in <head>). */
   try { applyMetaLang(S); } catch (e) {}
+  try { mktPaint(); } catch (e) {}
   renderLangMenu();
   document.getElementById("appName").textContent = S.appName;
   document.getElementById("heroTitle").innerHTML = S.heroTitle;
@@ -14433,6 +14486,126 @@ function ensureElong(){
   return ELONG_P;
 }
 
+/* ---------------- top-of-page market snapshot bar ----------------
+   #mktBar sits between <main class="wrap"> and .hero (never inside <nav> -
+   the header <nav> is what html.v83 #v83nav/#v83rail sticky-offset at
+   top:64px, and what v82.js's scroll .v82hide hides on mobile; growing it
+   would break both). It starts [hidden] in the markup. data/market.json
+   lands after first paint via renderMktBar(), reusing the same getJSON/
+   dataUrl loader as core.json; a missing file or any failure along the way
+   just leaves the bar hidden, silently - this is a nice-to-have strip, never
+   worth a console error or a retry loop. render() calls mktPaint() on every
+   re-render (language switch included) so the labels/close-date stay in the
+   reader's language; before the first fetch resolves that is a harmless
+   no-op since MKT_DATA is still null. */
+var MKT_DATA = null, MKT_FETCHED = false, MKT_IO = null, MKT_VIS_BOUND = false;
+function mktCloseLabel(basDt, lang){
+  var s = String(basDt || "");
+  if (s.length !== 8) return "";
+  var mm = parseInt(s.slice(4, 6), 10), dd = parseInt(s.slice(6, 8), 10);
+  if (!mm || !dd) return "";
+  if (lang === "ko") return mm + "/" + dd + " 마감";
+  if (lang === "ja") return mm + "/" + dd + " 終値";
+  return "Close " + mm + "/" + dd;
+}
+function mktNumFmt(v, dec){
+  var n = Number(v);
+  if (!isFinite(n)) return "";
+  var neg = n < 0;
+  var s = Math.abs(n).toFixed(dec);
+  var parts = s.split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return (neg ? "-" : "") + parts.join(".");
+}
+function mktLabel(k, S){
+  if (k === "kospi") return S.mktKospi;
+  if (k === "kosdaq") return S.mktKosdaq;
+  if (k === "ktb10y") return S.mktKtb10y;
+  return String(k || "").toUpperCase();
+}
+function mktItemHTML(it, S){
+  if (!it || typeof it.v !== "number" || !isFinite(it.v)) return "";
+  var isBp = it.unit === "bp";
+  var vTxt = isBp ? (mktNumFmt(it.v, 3) + "%") : mktNumFmt(it.v, 2);
+  var chgN = Number(it.chg);
+  var hasChg = isFinite(chgN);
+  var sign = hasChg && chgN >= 0 ? "+" : "";
+  var chgTxt = hasChg ? (isBp ? (sign + Math.round(chgN) + "bp") : (sign + chgN.toFixed(2) + "%")) : "";
+  var dir = hasChg ? (chgN > 0 ? " mkt-up" : (chgN < 0 ? " mkt-dn" : "")) : "";
+  var title = it.nm ? (' title="' + esc(it.nm) + '"') : "";
+  return '<span class="mkt-item"' + title + '><b class="mkt-k">' + esc(mktLabel(it.k, S)) + '</b>'
+    + '<span class="mkt-v">' + esc(vTxt) + '</span>'
+    + (chgTxt ? ('<span class="mkt-chg' + dir + '">' + esc(chgTxt) + '</span>') : '')
+    + '</span>';
+}
+function mktObserve(bar){
+  try {
+    if (!bar) return;
+    if (!MKT_VIS_BOUND){
+      MKT_VIS_BOUND = true;
+      document.addEventListener("visibilitychange", function(){
+        if (document.hidden) bar.classList.add("mkt-paused");
+        else if (bar.__mktInView) bar.classList.remove("mkt-paused");
+      });
+    }
+    if (MKT_IO){ MKT_IO.disconnect(); MKT_IO = null; }
+    if (!("IntersectionObserver" in window)) return;
+    MKT_IO = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        bar.__mktInView = entry.isIntersecting;
+        bar.classList.toggle("mkt-paused", !entry.isIntersecting || document.hidden);
+      });
+    });
+    MKT_IO.observe(bar);
+  } catch (e) {}
+}
+function mktPaint(){
+  try {
+    var bar = document.getElementById("mktBar");
+    var track = document.getElementById("mktTrack");
+    var dateEl = document.getElementById("mktDate");
+    if (!bar || !track) return;
+    var items = MKT_DATA && Array.isArray(MKT_DATA.items) ? MKT_DATA.items : null;
+    if (!items || !items.length){ bar.hidden = true; return; }
+    var S = STRINGS[LANG] || STRINGS.en;
+    var body = items.map(function(it){ return mktItemHTML(it, S); }).join("");
+    if (!body){ bar.hidden = true; return; }
+    if (dateEl) dateEl.textContent = mktCloseLabel(MKT_DATA.basDt, LANG);
+    track.innerHTML = body;
+    track.style.removeProperty("--mkt-dur");
+    bar.classList.remove("mkt-run");
+    bar.hidden = false;
+    requestAnimationFrame(function(){
+      try {
+        var vp = document.getElementById("mktViewport");
+        if (!vp || !track.isConnected) return;
+        if (track.scrollWidth > vp.clientWidth + 1){
+          track.innerHTML = body + body;
+          var w = track.scrollWidth / 2;
+          track.style.setProperty("--mkt-dur", Math.max(10, Math.round(w / 55)) + "s");
+          bar.classList.add("mkt-run");
+        }
+        mktObserve(bar);
+      } catch (e) {}
+    });
+  } catch (e) {}
+}
+function renderMktBar(){
+  try {
+    if (!document.getElementById("mktBar")) return;
+    if (MKT_FETCHED){ mktPaint(); return; }
+    MKT_FETCHED = true;
+    var run = function(){
+      getJSON(DATA_DIR + "market.json?v=" + Math.floor(Date.now() / 3600000), true).then(function(j){
+        MKT_DATA = j || null;
+        mktPaint();
+      }).catch(function(){ MKT_DATA = null; try { mktPaint(); } catch (e) {} });
+    };
+    if (typeof requestAnimationFrame === "function") requestAnimationFrame(function(){ requestAnimationFrame(run); });
+    else setTimeout(run, 0);
+  } catch (e) {}
+}
+
 async function bootData(){
   const j = await getJSON(dataUrl("core.json"), true)
          || await getJSON("items.json", true);   /* last resort: the raw file */
@@ -15130,6 +15303,7 @@ function obFinish(apply){
 
 applyThemeBtn();
 bootData();
+renderMktBar();
 </script>
 <div id="meSheet" hidden>
   <div class="me-backdrop" onclick="closeMe()"></div>
