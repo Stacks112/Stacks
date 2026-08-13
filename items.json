@@ -2,6 +2,186 @@
  "items": [
   {
    "date": "2026-08-12",
+   "id": "jukan-coreweave-a100-2029-full-freight-vs-depreciation",
+   "related": [
+    "meru-nvidia-500b-platforms-tenant-credit-takeorpay",
+    "serenity-nbis-prepayments-cover-half-of-capex",
+    "serenity-ai-buildout-earnings-crwv-smci-lite"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2087557404963803588",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#7c2d12",
+    "label": "2029"
+   },
+   "tags": [
+    "GPU",
+    "CLOUD",
+    "ACCOUNTING"
+   ],
+   "stance": "watch",
+   "docUrl": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+   "title": {
+    "ko": "2020년에 나온 GPU가 2029년까지 제값에 팔렸다",
+    "en": "A GPU from 2020 just sold at full price through 2029",
+    "ja": "2020年に出たGPUが2029年まで定価で売れた"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Even the A100, launched in 2020, is being signed into high priced contracts running through 2029.",
+      "This also refutes the core bear case that GPUs are rapidly rendered obsolete within 3 to 4 years and that their residual value goes to zero."
+     ],
+     "ko": [
+      "2020년에 출시된 A100조차 2029년까지 이어지는 높은 가격의 계약으로 체결되고 있다.",
+      "이는 GPU가 3~4년 안에 빠르게 구식이 되고 잔존가치가 0으로 간다는 약세론의 핵심 논지도 반박한다."
+     ],
+     "ja": [
+      "2020年に発売されたA100でさえ、2029年まで続く高価格の契約として結ばれている。",
+      "これはGPUが3~4年で急速に陳腐化し残存価値がゼロになるという弱気論の中核も反駁する。"
+     ]
+    },
+    "cite": "Jukan · 2026.08.12"
+   },
+   "sum3": {
+    "ko": "여섯 해 된 인공지능 가속기가 아직도 값을 깎지 않고 계약된다는 사실이 실적 발표에서 나왔다.\n겉으로 보면 GPU가 3~4년이면 값이 사라진다는 약세론이 실물 계약으로 반박된 것이다.\n그런데 이건 한 회사가 스스로 발표한 계약이고, 같은 시기 아마존은 서버 수명을 6년에서 5년으로 줄였다.",
+    "en": "An earnings call turned up the fact that a six-year-old AI accelerator is still being contracted without a discount.\nOn the surface that is a real contract refuting the bear case that GPUs lose their value in three or four years.\nBut it is one company's own disclosure, and in the same period Amazon shortened its server life from six years to five.",
+    "ja": "6年前のAIアクセラレータがいまも値引きなしで契約されているという事実が、決算発表から出てきた。\n表向きは、GPUが3~4年で価値を失うという弱気論が実際の契約で反駁されたことになる。\nだがこれは一社が自ら公表した契約であり、同じ時期にアマゾンはサーバーの耐用年数を6年から5年へ縮めている。"
+   },
+   "gist": {
+    "ko": "코어위브가 8월 11일 2분기 실적을 내면서, 2020년에 나온 엔비디아 A100을 2029년까지 쓰는 계약을 값을 깎지 않고 맺었다고 밝혔다.\n같은 자리에서 7월에 전 제품군의 임대 가격을 약 25% 올렸다고도 했다.\n\n@@REF@@코어위브, AI 수요 속에 가격을 25% 올렸다 (벤징가, 2026-08-12)|https://www.benzinga.com/markets/earnings/26/08/61133155/coreweave-25-percent-price-hike-vera-rubin-demand-ai|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/08/12/Dhaka--Bangladesh-16-May-2025-Coreweave-.jpg\n\n이 기사는 인상이 두 겹이라고 전한다. 수요에 맞춰 올린 25%가 한 겹이고, 오른 하드웨어 값을 고객에게 넘긴 부분이 그 위에 또 한 겹이다.\n\n@@IMG@@gpu-board|A100은 이렇게 생긴 가속기 카드다. 2020년에 나온 물건이 아직 임대 계약서에 이름을 올리고 있다.\n\n## GPU 수명이 왜 실적 문제인가\n\n회사가 100억달러짜리 장비를 사면 그해에 100억달러를 비용으로 털지 않는다.\n앞으로 쓸 햇수로 나눠 해마다 조금씩 비용으로 적는다. 이것이 감가상각이다.\n\n여기서 한 걸음 더 가야 이 이야기가 왜 주가와 붙는지가 보인다.\n나누는 햇수를 늘리면 해마다 적는 비용이 줄고, 그만큼 그해 이익이 커 보인다.\n장비를 몇 년 쓴다고 적어 두느냐가 곧 그 회사의 이익 크기를 정한다는 뜻이다.\n\n2025년 11월 마이클 버리가 이 지점을 겨눴다.\n그는 하이퍼스케일러들이 수명을 늘려 잡아 2026년부터 2028년까지 감가상각 1,760억달러를 덜 적고 있다고 주장했고, 그 결과 오라클의 이익이 26.9%, 메타의 이익이 20.8% 부풀려졌다고 봤다.\n\n@@TIME@@2020년 5월|엔비디아 A100 출시|2025년 1월|메타, 서버 수명 4~5년에서 5.5년으로 연장(2025년 감가상각 29억달러 감소)|2025년 1월|아마존, 일부 서버 수명 6년에서 5년으로 단축|2025년 11월|마이클 버리, 하이퍼스케일러가 감가상각을 덜 잡는다고 주장|>2029년|코어위브가 A100으로 맺은 계약이 끝나는 해@@같은 종류의 장비를 두고 회사마다 반대 방향으로 움직였다. 아마존이 수명을 줄인 이유로 든 것이 인공지능 하드웨어의 교체가 빨라졌다는 것이다.@@각 사 공시와 보도 (2026-08-13 조회)\n\n## 코어위브가 내놓은 숫자\n\nA100은 2020년 5월에 나온 칩이다. 2029년까지 계약이 이어지면 출시로부터 아홉 해다.\n마이크 인트레이터 최고경영자는 그 계약을 값을 깎지 않고 맺었다고 말했고, 최고재무책임자는 구형 세대의 평균 판매가가 1년 전과 같거나 높다고 밝혔다.\n\n같은 발표에서 2분기 매출은 25억7,500만달러로 전년 대비 112% 늘었고, 아직 매출로 잡히지 않은 계약 잔액은 1,040억달러다.\n분기 중 활성 전력을 500메가와트 더해 1.5기가와트가 됐고, 연말 목표는 1.85기가와트 이상으로 올렸다.\n\n다만 이 숫자들은 전부 코어위브가 스스로 발표한 것이다. 계약 상대가 누구인지, 가격이 실제로 얼마인지는 공개되지 않았다.\n\n@@CMP@@약세론의 읽기|GPU는 3~4년이면 쓸모가 줄고 되팔 값도 남지 않는다. 그래서 수명을 늘려 잡는 것은 이익을 부풀리는 일이다.|코어위브의 읽기|구형이라도 빌려 쓰겠다는 곳이 있으면 값이 붙는다. 구세대 평균 판매가가 1년 전보다 높다.\n\n같은 칩을 두고 소유해서 직접 쓰는 쪽과 빌려주는 쪽이 서로 다른 값을 보고 있는 것이다.\n\n## 코어위브와 하이퍼스케일러는 다르다\n\n한 건의 계약으로 갈리지 않는 이유가 여기 있다.\n코어위브는 남의 연산을 대신 돌려주고 시간당 값을 받는 회사라, 구형 칩이라도 빈자리 없이 채워 돌리면 돈이 된다.\n반면 메타나 오라클은 자기 모델을 훈련하는 데 장비를 쓴다. 최신 칩이 같은 전기로 더 많이 계산하면 구형은 세워 두는 편이 싸질 수 있다.\n같은 칩이라도 놓이는 자리가 다르면 남는 값이 다르다.\n\n확인할 지점은 하나다. 아마존처럼 수명을 줄이는 회사가 더 나오면 코어위브의 계약은 임대업의 사정으로 남고, 메타처럼 늘리는 쪽이 더 나오면 구형 GPU에 값이 붙는다는 읽기에 힘이 실린다.",
+    "en": "Reporting second-quarter results on August 11, CoreWeave said it had signed a contract on NVIDIA's A100, a chip from 2020, that runs to 2029, at full price.\nIn the same call it said it had raised rental prices across its lineup by about 25% in July.\n\n@@REF@@CoreWeave raises prices 25% amid booming AI demand (Benzinga, 2026-08-12)|https://www.benzinga.com/markets/earnings/26/08/61133155/coreweave-25-percent-price-hike-vera-rubin-demand-ai|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/08/12/Dhaka--Bangladesh-16-May-2025-Coreweave-.jpg\n\nThat report notes the increase came in two layers. The 25% raised against demand is one, and a pass-through of higher hardware costs sits on top of it.\n\n@@IMG@@gpu-board|An A100 is an accelerator card that looks like this. A part released in 2020 is still turning up on rental contracts.\n\n## Why a GPU's lifespan is an earnings question\n\nWhen a company buys $10 billion of equipment it does not book $10 billion of cost that year.\nIt spreads the cost across the years it expects to use the gear. That is depreciation.\n\nOne more step shows why this touches the share price.\nStretch the number of years and the cost booked each year falls, which makes that year's profit look larger.\nHow many years a company writes down for its equipment therefore sets the size of its reported profit.\n\nMichael Burry aimed at exactly this in November 2025.\nHe argued that hyperscalers were understating depreciation by $176 billion across 2026 to 2028 by extending useful lives, and that this inflated Oracle's profit by 26.9% and Meta's by 20.8%.\n\n@@TIME@@May 2020|NVIDIA A100 launches|Jan 2025|Meta extends server life from 4-5 years to 5.5, cutting 2025 depreciation by $2.9B|Jan 2025|Amazon shortens life on some servers from six years to five|Nov 2025|Burry argues hyperscalers are understating depreciation|>2029|CoreWeave's A100 contract runs out@@Companies moved in opposite directions on the same class of asset. The reason Amazon gave for shortening was that AI hardware is turning over faster.@@Company filings and press coverage (accessed 2026-08-13)\n\n## What CoreWeave put on the table\n\nThe A100 launched in May 2020. A contract running to 2029 is nine years from that date.\nChief executive Mike Intrator said the deal was struck at full freight, meaning without a discount, and the finance chief said average selling prices on older generations are at or above where they sat a year ago.\n\nThe same release put second-quarter revenue at $2.575 billion, up 112% from a year earlier, with $104 billion of contracted work not yet recognised as revenue.\nActive power rose by about 500 megawatts during the quarter to 1.5 gigawatts, and the year-end target was raised above 1.85 gigawatts.\n\nAll of these figures are CoreWeave's own disclosures. Who signed the contract, and what the price actually is, were not made public.\n\n@@CMP@@The bear reading|GPUs lose usefulness within three or four years and leave nothing at resale, so stretching their book life inflates profit.|CoreWeave's reading|If somebody still wants to rent the older gear, it carries a price. Older-generation ASPs are running above last year.\n\nThe owner who runs the chip and the landlord who rents it out are reading different values off the same silicon.\n\n## CoreWeave is not a hyperscaler\n\nThis is why a single contract does not settle it.\nCoreWeave is paid by the hour to run other people's compute, so an older chip pays as long as it stays booked.\nMeta and Oracle are using the gear to train their own models. When a newer chip does more work on the same electricity, the older one can be cheaper left idle.\nThe same chip in a different seat is worth a different amount.\n\nThere is one thing to watch. If more companies follow Amazon and shorten the life, CoreWeave's contract stays a fact about the rental business. If more follow Meta and stretch it, the reading that old GPUs still carry a price gets stronger.",
+    "ja": "コアウィーブは8月11日の第2四半期決算で、2020年に出たエヌビディアのA100を2029年まで使う契約を、値引きなしで結んだと明らかにした。\n同じ場で、7月に全製品群のレンタル価格を約25%引き上げたとも述べた。\n\n@@REF@@コアウィーブ、AI需要のなか価格を25%引き上げ (ベンジンガ、2026-08-12)|https://www.benzinga.com/markets/earnings/26/08/61133155/coreweave-25-percent-price-hike-vera-rubin-demand-ai|https://cdn.benzinga.com/cdn-cgi/image/width=1200,height=800,fit=crop/files/images/story/2026/08/12/Dhaka--Bangladesh-16-May-2025-Coreweave-.jpg\n\nこの記事は、引き上げが二重だと伝えている。需要に合わせた25%が一枚、上がったハードウェア費用の転嫁がその上にもう一枚だ。\n\n@@IMG@@gpu-board|A100はこういう形のアクセラレータ・カードだ。2020年に出た品がいまも賃貸契約書に名を連ねている。\n\n## GPUの寿命がなぜ決算の話になるのか\n\n会社が100億ドルの設備を買っても、その年に100億ドルを費用として落とすわけではない。\nこれから使う年数で割り、毎年少しずつ費用に計上する。これが減価償却だ。\n\nもう一歩進むと、この話がなぜ株価と結びつくのかが見えてくる。\n割る年数を延ばせば毎年計上する費用が減り、その分その年の利益が大きく見える。\n設備を何年使うと書いておくかが、その会社の利益の大きさを決めるということである。\n\n2025年11月、マイケル・バーリーがまさにここを突いた。\n彼はハイパースケーラーが耐用年数を延ばして2026年から2028年までに1,760億ドルの減価償却を過少計上していると主張し、その結果オラクルの利益が26.9%、メタの利益が20.8%膨らんでいると見た。\n\n@@TIME@@2020年5月|エヌビディアA100が発売|2025年1月|メタがサーバー寿命を4~5年から5.5年へ延長(2025年の償却費29億ドル減)|2025年1月|アマゾンが一部サーバーの寿命を6年から5年へ短縮|2025年11月|バーリーがハイパースケーラーの償却過少を主張|>2029年|コアウィーブのA100契約が終わる年@@同じ種類の資産をめぐって、会社ごとに逆方向へ動いた。アマゾンが短縮の理由に挙げたのは、AIハードウェアの入れ替わりが速くなったことだ。@@各社の開示と報道 (2026-08-13閲覧)\n\n## コアウィーブが出した数字\n\nA100は2020年5月に出たチップだ。2029年まで契約が続けば発売から9年になる。\nマイク・イントレーター最高経営責任者はその契約を値引きなしで結んだと述べ、最高財務責任者は旧世代の平均販売価格が1年前と同じか、それ以上だと明らかにした。\n\n同じ発表で第2四半期の売上高は25億7,500万ドル、前年比112%増、まだ売上に計上されていない契約残高は1,040億ドルだった。\n四半期中に稼働電力を500メガワット積み増して1.5ギガワットとなり、年末目標は1.85ギガワット超へ引き上げられた。\n\nただしこれらの数字はすべてコアウィーブ自身の発表である。契約の相手が誰か、価格が実際にいくらかは公表されていない。\n\n@@CMP@@弱気論の読み|GPUは3~4年で使い道が細り、売っても値が残らない。だから寿命を延ばして記帳するのは利益を膨らませる行為だ。|コアウィーブの読み|旧型でも借りたい先があれば値は付く。旧世代の平均販売価格は1年前より高い。\n\n同じシリコンを、所有して自分で回す側と貸し出す側が別々の値段で見ているということだ。\n\n## コアウィーブはハイパースケーラーではない\n\n一件の契約で決着しない理由はここにある。\nコアウィーブは他人の計算を代わりに回して時間あたりの料金を受け取る会社なので、旧型でも空きなく埋まっていれば稼ぎになる。\n一方でメタやオラクルは自社のモデルを訓練するために設備を使う。新しいチップが同じ電力でより多く計算するなら、旧型は止めておくほうが安くつくこともある。\n同じチップでも置かれる席が違えば残る値が違う。\n\n見るべき点はひとつだ。アマゾンのように寿命を縮める会社が増えれば、コアウィーブの契約は賃貸業の事情として残る。メタのように延ばす側が増えれば、旧型GPUにも値が付くという読みが強まる。"
+   },
+   "why": {
+    "ko": "GPU를 몇 년 쓴다고 적어 두느냐가 하이퍼스케일러 이익의 크기를 정하기 때문에, 구형 칩에 값이 남는지는 회계 논쟁이자 실적 논쟁이다. 코어위브의 2029년 계약은 그 논쟁에 들어온 실제 거래이지만, 빌려주는 회사와 직접 쓰는 회사는 같은 칩에서 다른 값을 본다.",
+    "en": "How many years a company books for a GPU sets the size of hyperscaler profit, so whether old chips retain value is both an accounting fight and an earnings fight. CoreWeave's contract to 2029 is a real trade inside that fight, but a company that rents chips out and one that runs them itself see different values in the same silicon.",
+    "ja": "GPUを何年使うと記帳するかがハイパースケーラーの利益の大きさを決めるため、旧型チップに値が残るかは会計の争点であり決算の争点でもある。コアウィーブの2029年契約はその争いに入ってきた実際の取引だが、貸す会社と自分で回す会社は同じシリコンに別の値を見ている。"
+   },
+   "ask": {
+    "ko": "임대 회사 한 곳이 구형 GPU를 제값에 팔았다는 사실만으로, 하이퍼스케일러들이 감가상각 기간을 늘려 잡은 것을 정당하다고 볼 수 있을까?",
+    "en": "Does one rental company selling an old GPU at full price justify the hyperscalers stretching the useful life they book for the same hardware?",
+    "ja": "レンタル会社1社が旧型GPUを定価で売ったという事実だけで、ハイパースケーラーが耐用年数を延ばして記帳したことを正当と見てよいのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2027-03-31",
+    "note": {
+     "ko": "코어위브가 2026년 연말 활성 전력 1.85기가와트 목표를 달성하는지로 채점한다.",
+     "en": "Grade on whether CoreWeave reaches its year-end 2026 active power target of 1.85 gigawatts.",
+     "ja": "コアウィーブが2026年末の稼働電力1.85ギガワット目標を達成するかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "코어위브의 2026년 연말 활성 전력",
+      "en": "CoreWeave's active power at the end of 2026",
+      "ja": "コアウィーブの2026年末の稼働電力"
+     },
+     "now": {
+      "ko": "2026년 2분기 말 1.5기가와트 · 분기 중 500메가와트 추가",
+      "en": "1.5 gigawatts at the end of 2026 Q2, after adding about 500 megawatts in the quarter",
+      "ja": "2026年第2四半期末で1.5ギガワット・四半期中に約500メガワットを追加"
+     },
+     "when": {
+      "ko": "2027년 2월 무렵 (2026년 4분기 실적 발표)",
+      "en": "Around February 2027, when 2026 Q4 results are reported",
+      "ja": "2027年2月ごろ(2026年第4四半期の決算発表)"
+     },
+     "hit": {
+      "ko": "연말 활성 전력이 1.85기가와트 이상 → 상향한 목표를 채웠다",
+      "en": "Year-end active power comes in at 1.85 gigawatts or more, meeting the raised target",
+      "ja": "年末の稼働電力が1.85ギガワット以上。引き上げた目標を満たしたことになる"
+     },
+     "miss": {
+      "ko": "연말 활성 전력이 1.85기가와트 미만 → 상향한 목표에 못 미쳤다",
+      "en": "Year-end active power comes in below 1.85 gigawatts, falling short of the raised target",
+      "ja": "年末の稼働電力が1.85ギガワット未満。引き上げた目標に届かなかったことになる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan (@jukan05) · 2026-08-12 · 톈펑증권 해외테크팀 리포트 요약",
+      "en": "Jukan (@jukan05), 2026-08-12, summarising a Tianfeng Securities overseas tech note",
+      "ja": "Jukan (@jukan05)・2026-08-12・天風証券の海外テックリポートの要約"
+     },
+     "url": "https://x.com/jukan05/status/2087557404963803588"
+    },
+    {
+     "name": {
+      "ko": "1차 자료 · 2026년 2분기 실적 발표",
+      "en": "Primary source, 2026 Q2 results",
+      "ja": "一次資料・2026年第2四半期決算"
+     },
+     "desc": {
+      "ko": "코어위브 · 2026-08-11 · 매출 25억7,500만달러, 계약 잔액 1,040억달러, 활성 전력 1.5기가와트",
+      "en": "CoreWeave, 2026-08-11; revenue $2.575 billion, backlog $104 billion, active power 1.5 gigawatts",
+      "ja": "コアウィーブ・2026-08-11・売上高25億7,500万ドル、契約残高1,040億ドル、稼働電力1.5ギガワット"
+     },
+     "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+     "name": {
+      "ko": "가격 인상 보도",
+      "en": "Coverage of the price increase",
+      "ja": "値上げに関する報道"
+     },
+     "desc": {
+      "ko": "벤징가 · 2026-08-12",
+      "en": "Benzinga, 2026-08-12",
+      "ja": "ベンジンガ・2026-08-12"
+     },
+     "url": "https://www.benzinga.com/markets/earnings/26/08/61133155/coreweave-25-percent-price-hike-vera-rubin-demand-ai"
+    },
+    {
+     "name": {
+      "ko": "A100 계약 보도",
+      "en": "Coverage of the A100 contract",
+      "ja": "A100契約に関する報道"
+     },
+     "desc": {
+      "ko": "톰스하드웨어 · 2026-08-12 · 인트레이터 최고경영자의 2029년 계약 발언",
+      "en": "Tom's Hardware, 2026-08-12, on Intrator's remark about the contract running into 2029",
+      "ja": "トムズハードウェア・2026-08-12・イントレーターCEOの2029年契約の発言"
+     },
+     "url": "https://www.tomshardware.com/tech-industry/coreweave-ceo-mike-intrator-says-it-has-signed-an-a100-contract-running-into-2029"
+    },
+    {
+     "name": {
+      "ko": "감가상각 논쟁의 출발점",
+      "en": "Where the depreciation argument started",
+      "ja": "減価償却の論争の出発点"
+     },
+     "desc": {
+      "ko": "포춘 · 2025-11-13 · 마이클 버리의 1,760억달러 주장과 오라클·메타 수치",
+      "en": "Fortune, 2025-11-13, on Michael Burry's $176 billion claim and the Oracle and Meta figures",
+      "ja": "フォーチュン・2025-11-13・マイケル・バーリーの1,760億ドルの主張とオラクル・メタの数値"
+     },
+     "url": "https://fortune.com/2025/11/13/the-big-short-investor-closing-scion-ai-bubble-depreciation-explained/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-13 조회 · 코어위브의 매출·계약 잔액·전력 수치와 A100 계약 조건은 모두 회사가 2026년 8월 11일 스스로 발표한 것이며 독립적으로 검증된 것이 아니다. 감가상각 기간은 각 사가 공시한 회계정책 기준이다.",
+    "en": "Accessed 2026-08-13. CoreWeave's revenue, backlog, power figures and the terms of the A100 contract are all the company's own disclosures of August 11, 2026, and are not independently verified. Useful-life figures are the accounting policies each company has disclosed.",
+    "ja": "2026-08-13閲覧。コアウィーブの売上高・契約残高・電力の数値およびA100契約の条件はすべて同社が2026年8月11日に自ら公表したものであり、独立に検証されたものではない。耐用年数は各社が開示した会計方針による。"
+   }
+  },
+  {
+   "date": "2026-08-12",
    "id": "kobeissi-financial-activities-9_09m-real-estate-quarter",
    "related": [
     "elerian-ism-services-employment-back-below-50"
@@ -55042,6 +55222,30 @@
     "미 의회예산처",
     "米議会予算局",
     "議会予算局"
+   ]
+  },
+  "A100": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "엔비디아가 2020년 5월에 내놓은 데이터센터용 가속기. 인공지능 학습이 본격적으로 퍼지던 시기의 주력 칩이다.",
+    "en": "NVIDIA's data-centre accelerator launched in May 2020, the workhorse chip of the period when AI training first scaled up.",
+    "ja": "エヌビディアが2020年5月に投入したデータセンター向けアクセラレータ。AI学習が本格的に広がった時期の主力チップ。"
+   },
+   "longDesc": {
+    "ko": "뒤이어 나온 H100과 그다음 세대에 자리를 내주었지만, 임대 시장에서는 여전히 계약이 붙는다. 구형 가속기에 값이 남는지는 데이터센터를 짓는 회사들이 장비 수명을 몇 년으로 적어 두느냐와 직결되고, 그 햇수가 곧 그해 장부에 찍히는 이익의 크기를 정한다.",
+    "en": "It has since been displaced by the H100 and later generations, yet it still gets signed into rental contracts. Whether older accelerators hold value ties directly to how many years data-centre operators book as the useful life of their equipment, and that number sets the size of the profit their books show.",
+    "ja": "後継のH100やその次の世代に主役の座を譲ったが、レンタル市場ではいまも契約が付く。旧型アクセラレータに値が残るかどうかは、データセンターを建てる企業が設備の耐用年数を何年と記帳するかに直結し、その年数がその年の帳簿に載る利益の大きさを決める。"
+   },
+   "aliases": [
+    "A100",
+    "NVIDIA A100",
+    "엔비디아 A100",
+    "エヌビディアA100"
    ]
   }
  }
