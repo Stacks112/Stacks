@@ -9742,5 +9742,16 @@
   "exchange": "Nasdaq",
   "match": "exact",
   "matched_at": "2026-08-08T22:31:44.979612+00:00"
+ },
+ "71531U102": {
+  "ticker": "ps.us",
+  "entity_key": null,
+  "issuer": "PERSHING SQUARE INC",
+  "source": "openfigi",
+  "figi": "BBG01N5GDY62",
+  "matched_name": "PERSHING SQUARE INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-08-13T22:43:05.087058+00:00"
  }
 }
