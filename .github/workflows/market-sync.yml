@@ -1,0 +1,62 @@
+name: Market bar sync
+
+on:
+  schedule:
+    - cron: "0 5 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch market data
+        env:
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: python scripts/fetch_market.py
+
+      - name: Commit and push data/market.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/market.json
+
+          if git diff --cached --quiet -- data/market.json; then
+            echo "no changes to data/market.json; skipping commit"
+            exit 0
+          fi
+
+          git commit -m "chore(data): market bar snapshot"
+
+          attempt=1
+          max_attempts=3
+          until [ "$attempt" -gt "$max_attempts" ]; do
+            echo "push attempt $attempt/$max_attempts"
+            git fetch origin main
+            if git rebase --autostash -X theirs FETCH_HEAD; then
+              if git push; then
+                echo "push succeeded"
+                exit 0
+              fi
+              echo "push failed after successful rebase"
+            else
+              git rebase --abort
+              echo "rebase failed"
+            fi
+            attempt=$((attempt + 1))
+            sleep 5
+          done
+
+          echo "push failed after $max_attempts attempts"
+          exit 1
