@@ -7778,10 +7778,18 @@ async function renderScoreboardBoard(container, S, rvOnly, callsIn, hideTitle){
     if (res){ b.scored++; const st = itemStance(i); if ((st === "bull" && res.pct >= 0) || (st === "bear" && res.pct < 0)) b.match++; }
   });
   const rows = Object.values(bySrc).map(r => Object.assign(r, { acc: r.scored ? r.match / r.scored : null }));
+  /* v97: 표본 크기 왜곡 방지 (2026-08-13, june 승인). scored 1~2건짜리 "100%"가
+     39건 중 59%인 필자보다 위로 뜨는 문제 — 동전 던지기로도 1~2연속 적중 확률이
+     25~50%라 표본이 그만큼은 돼야 "실력"으로 볼 수 있다는 편집 기준의 최소선.
+     acc 자체(정렬 지표)는 바꾸지 않고, scored>=MIN_SCORED 인 행만 정상 순위
+     구간(acc desc)에 두고 1~2건짜리는 그 구간 아래로, null(0건)은 최하단으로
+     밀어낸다 — 3단계 모두 같은 acc/scored/items.length 타이브레이커를 쓴다. */
+  const MIN_SCORED = 3;
+  const sbBand = r => r.acc == null ? 2 : (r.scored >= MIN_SCORED ? 0 : 1);
   rows.sort((a, b) => {
-    if (a.acc == null && b.acc == null) return b.items.length - a.items.length;
-    if (a.acc == null) return 1;
-    if (b.acc == null) return -1;
+    const ab = sbBand(a), bb = sbBand(b);
+    if (ab !== bb) return ab - bb;
+    if (ab === 2) return b.items.length - a.items.length;
     return b.acc - a.acc || b.scored - a.scored || b.items.length - a.items.length;
   });
   loading.remove();
@@ -7792,8 +7800,11 @@ async function renderScoreboardBoard(container, S, rvOnly, callsIn, hideTitle){
      rows.sort above), but on a single-row page (bySrc has exactly one
      source when RECORD_SRC is set) index 0 is always "first" even with no
      measured accuracy. Gate the medal glyph on r.acc so an unscored row
-     gets a plain ordinal instead of a misleading 🥇. */
-  const medal = (ri, r) => (r && r.acc == null) ? String(ri + 1) : (ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1));
+     gets a plain ordinal instead of a misleading 🥇.
+     v97: same gate extended to sbBand — a 1~2건 표본이 sbBand(1)로 밀려도
+     여전히 "다음 몇 줄" 안에 있을 수 있으니, ri 위치가 아니라 scored>=MIN_SCORED
+     여부로 직접 판정한다(밴드 A가 3명 미만이어도 잘못 메달을 주지 않는다). */
+  const medal = (ri, r) => (r && r.acc != null && r.scored >= MIN_SCORED) ? (ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1)) : String(ri + 1);
   const accHtml = r => {
     if (r.acc == null) return '<span class="sb-acc-v" style="color:var(--muted)">-</span>';
     const pct = Math.round(r.acc * 100);
