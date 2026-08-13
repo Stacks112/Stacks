@@ -192,7 +192,7 @@ const STRINGS = {
     heroSub: "The world's best investing reads, summarized with a take, in your language.",
     heroCta: "Explore Signals",
     introCta: "Take a look around",
-    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", tracking:"Tracking", ceo:"CEO", coverage:"Where investors stand", recentTakes:"Recent takes", follow:"Follow", featTitle:"This week’s reads", featPill:"This week", rankTitle:"Top performers", popTitle:"Popular", rankSub:"See which investors call it right most often.", popSub:"The reads everyone’s on right now.", calls:" calls", hitN:"Hit", w1:"1W", w2:"1M", w3:"3M", w4:"1Y", howTitle:"How it works.", hitRate:"Hit rate", howSectors:["AI","Semis","EV"], howRole:"Investor", rolePol:"Politician", step1H:"Follow the minds you trust", step1D:"Follow the investors and companies you care about.", step2H:"Pick the sectors you follow", step2D:"See what the sharpest investors think across that sector.", step3H:"Investing made easy to read", step3D:"The world’s top investors in your language — summarized.", rankNote:"Sample figures — the live ranking is on the site.", jargon:{pre:"This stock's ", term:"valuation", def:"How a company’s price compares with what it’s actually worth.", post:" looks stretched."} },
+    ph: { summary:"Summary", read:"Read the original", lean:"This week’s lean", leanSub:"Where the feed leans right now", illus:"Live aggregate of the feed", debate:"Today’s debate", record:"Track record", tracked:"predictions tracked", hit:"Hit", miss:"Miss", tracking:"Tracking", ceo:"CEO", coverage:"Where investors stand", recentTakes:"Recent takes", follow:"Follow", featTitle:"This week’s reads", featPill:"This week", rankTitle:"Top performers", popTitle:"Popular", rankSub:"See which investors call it right most often.", popSub:"The reads everyone’s on right now.", calls:" calls", hitN:"Hit", w1:"1W", w2:"1M", w3:"3M", w4:"1Y", howTitle:"How it works.", hitRate:"Hit rate", howSectors:["AI","Semis","EV"], howRole:"Investor", rolePol:"Politician", step1H:"Follow the minds you trust", step1D:"Follow the investors and companies you care about.", step2H:"Pick the sectors you follow", step2D:"See what the sharpest investors think across that sector.", step3H:"Investing made easy to read", step3D:"The world’s top investors in your language — summarized.", rankNote:"Sample figures — the live ranking is on the site.", jargon:{pre:"This stock's ", term:"valuation", def:"How a company’s price compares with what it’s actually worth.", post:" looks stretched."} },
     install: "Add to Home Screen",
     installIOS: "To install: tap Share, then Add to Home Screen.",
     miInvite: "Add Stacks to your home screen?",
@@ -312,7 +312,9 @@ const STRINGS = {
     sbCalls: "Calls",
     sbAlign: "Direction match",
     sbRecord: "Verified calls",
-    sbAcc: "Accuracy",
+    sbRecordTip: "Graded by our editors as a hit or a miss.",
+    sbAcc: "Price match",
+    sbAccTip: "Auto-calculated from price moves since publication only \u2014 not our editors\u2019 hit/miss grading.",
     sbRank: "#",
     sbLeader: "Author leaderboard",
     sbAllCalls: "All calls",
@@ -379,7 +381,7 @@ const STRINGS = {
     heroSub: "전 세계 투자 고수들의 글, 요약과 관점까지 당신의 언어로",
     heroCta: "시그널 보기",
     introCta: "더 둘러보기",
-    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", tracking:"검증 중", ceo:"CEO", coverage:"투자자들의 관점", recentTakes:"최근 관점", follow:"팔로우", featTitle:"이번 주 주목할 읽을거리", featPill:"이번 주", rankTitle:"적중 랭킹", popTitle:"인기 글", rankSub:"투자 고수들의 적중 랭킹을 확인해보세요.", popSub:"지금 인기 있는 글을 확인해보세요.", calls:"개 예측", hitN:"적중", w1:"1주", w2:"1개월", w3:"3개월", w4:"1년", howTitle:"이렇게 작동해요.", hitRate:"적중률", howSectors:["반도체","AI","2차전지"], howRole:"투자 고수", rolePol:"정치인", step1H:"고수·기업을 팔로우하세요", step1D:"관심 있는 투자 고수나 기업을 팔로우하세요.", step2H:"관심 섹터를 설정하세요", step2D:"그 섹터의 투자 고수들의 의견을 한데 모아 봅니다.", step3H:"어려운 투자, 쉽게 읽으세요", step3D:"전 세계 고수들의 글을 당신의 언어로, 요약과 함께.", rankNote:"예시 데이터예요. 실제 랭킹은 사이트에서 확인하세요.", jargon:{pre:"이 종목은 ", term:"밸류에이션", def:"기업 가치 대비 주가가 어느 수준인지 보여주는 지표예요.", post:"이 높아요."} },
+    ph: { summary:"요약", read:"원문 읽기", lean:"이번 주 쏠림", leanSub:"지금 피드가 향하는 방향", illus:"피드 실시간 집계", debate:"오늘의 논쟁", record:"적중 기록", tracked:"개 예측 추적 중", hit:"적중", miss:"빗나감", tracking:"검증 중", ceo:"CEO", coverage:"투자자들의 관점", recentTakes:"최근 관점", follow:"팔로우", featTitle:"이번 주 주목할 읽을거리", featPill:"이번 주", rankTitle:"적중 랭킹", popTitle:"인기 글", rankSub:"투자 고수들의 적중 랭킹을 확인해보세요.", popSub:"지금 인기 있는 글을 확인해보세요.", calls:"개 예측", hitN:"적중", w1:"1주", w2:"1개월", w3:"3개월", w4:"1년", howTitle:"이렇게 작동해요.", hitRate:"적중률", howSectors:["반도체","AI","2차전지"], howRole:"투자 고수", rolePol:"정치인", step1H:"고수·기업을 팔로우하세요", step1D:"관심 있는 투자 고수나 기업을 팔로우하세요.", step2H:"관심 섹터를 설정하세요", step2D:"그 섹터의 투자 고수들의 의견을 한데 모아 봅니다.", step3H:"어려운 투자, 쉽게 읽으세요", step3D:"전 세계 고수들의 글을 당신의 언어로, 요약과 함께.", rankNote:"예시 데이터예요. 실제 랭킹은 사이트에서 확인하세요.", jargon:{pre:"이 종목은 ", term:"밸류에이션", def:"기업 가치 대비 주가가 어느 수준인지 보여주는 지표예요.", post:"이 높아요."} },
     install: "홈 화면에 추가",
     installIOS: "설치하려면 공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.",
     miInvite: "Stacks를 홈 화면에 추가하고 싶으신가요?",
@@ -499,7 +501,9 @@ const STRINGS = {
     sbCalls: "콜",
     sbAlign: "방향 일치",
     sbRecord: "검증된 예측",
-    sbAcc: "적중률",
+    sbRecordTip: "편집팀이 직접 확인해 적중\u00b7빗나감을 판정한 기록입니다.",
+    sbAcc: "주가 일치율",
+    sbAccTip: "필진 판정이 아니라, 게재일 종가 대비 현재 주가 변화만으로 자동 계산한 방향 일치율입니다.",
     sbRank: "#",
     sbLeader: "필진 적중률 랭킹",
     sbAllCalls: "전체 콜",
@@ -566,7 +570,7 @@ const STRINGS = {
     heroSub: "世界の投資家たちの記事を、要約と視点まで、あなたの言語で。",
     heroCta: "シグナルを見る",
     introCta: "もっと見る",
-    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", tracking:"検証中", ceo:"CEO", coverage:"投資家の見方", recentTakes:"最近の視点", follow:"フォロー", featTitle:"今週の注目の記事", featPill:"今週", rankTitle:"実績ランキング", popTitle:"人気の記事", rankSub:"投資の達人の的中ランキングをチェック。", popSub:"いま人気の記事をチェック。", calls:"件の予測", hitN:"的中", w1:"1週", w2:"1ヶ月", w3:"3ヶ月", w4:"1年", howTitle:"使い方", hitRate:"的中率", howSectors:["半導体","AI","EV"], howRole:"投資家", rolePol:"政治家", step1H:"気になる投資家をフォロー", step1D:"気になる投資家や企業をフォローしましょう。", step2H:"気になるセクターを設定", step2D:"そのセクターの達人たちの見方をまとめて表示。", step3H:"むずかしい投資を、やさしく", step3D:"世界の達人の記事を、あなたの言語で要約付きで。", rankNote:"サンプルデータです。実際のランキングはサイトで。", jargon:{pre:"この銘柄は", term:"バリュエーション", def:"企業価値に対して株価がどの水準かを示す指標です。", post:"が高い。"} },
+    ph: { summary:"要約", read:"原文を読む", lean:"今週の傾き", leanSub:"いまフィードが向かう方向", illus:"フィードのリアルタイム集計", debate:"今日の論点", record:"実績", tracked:"件の予測を追跡中", hit:"的中", miss:"不的中", tracking:"検証中", ceo:"CEO", coverage:"投資家の見方", recentTakes:"最近の視点", follow:"フォロー", featTitle:"今週の注目の記事", featPill:"今週", rankTitle:"実績ランキング", popTitle:"人気の記事", rankSub:"投資の達人の的中ランキングをチェック。", popSub:"いま人気の記事をチェック。", calls:"件の予測", hitN:"的中", w1:"1週", w2:"1ヶ月", w3:"3ヶ月", w4:"1年", howTitle:"使い方", hitRate:"的中率", howSectors:["半導体","AI","EV"], howRole:"投資家", rolePol:"政治家", step1H:"気になる投資家をフォロー", step1D:"気になる投資家や企業をフォローしましょう。", step2H:"気になるセクターを設定", step2D:"そのセクターの達人たちの見方をまとめて表示。", step3H:"むずかしい投資を、やさしく", step3D:"世界の達人の記事を、あなたの言語で要約付きで。", rankNote:"サンプルデータです。実際のランキングはサイトで。", jargon:{pre:"この銘柄は", term:"バリュエーション", def:"企業価値に対して株価がどの水準かを示す指標です。", post:"が高い。"} },
     install: "ホーム画面に追加",
     installIOS: "インストールするには共有ボタンから「ホーム画面に追加」を選択してください。",
     miInvite: "Stacksをホーム画面に追加しますか？",
@@ -686,7 +690,9 @@ const STRINGS = {
     sbCalls: "コール",
     sbAlign: "方向一致",
     sbRecord: "検証済みの予測",
-    sbAcc: "的中率",
+    sbRecordTip: "編集部が実際に確認し、的中\u30fb外れを判定した記録です。",
+    sbAcc: "株価一致率",
+    sbAccTip: "編集部の判定ではなく、掲載日の終値からの株価変化のみで自動計算した方向一致率です。",
     sbRank: "#",
     sbLeader: "執筆者ランキング",
     sbAllCalls: "すべてのコール",
@@ -1352,12 +1358,12 @@ html[data-theme="dark"] .intro-ph{box-shadow:0 34px 64px -20px rgba(0,0,0,.72),
 .pst-r{display:flex;align-items:center;gap:8px;}
 .pst-ic{width:18px;height:18px;border-radius:6px;flex:0 0 auto;display:flex;align-items:center;
   justify-content:center;font-size:10px;font-weight:800;color:#fff;}
-.pst-ic.ok{background:#12b76a;}.pst-ic.pend{background:#eef0f3;color:#98a2b3;}
+.pst-ic.ok{background:#12b76a;}.pst-ic.miss{background:#E04438;}.pst-ic.pend{background:#eef0f3;color:#98a2b3;}
 .pst-t{flex:1;font-size:10px;font-weight:600;color:#111214;line-height:1.42;min-width:0;
   word-break:keep-all;overflow-wrap:break-word;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .pst-badge{font-size:8px;font-weight:800;padding:2px 7px;border-radius:20px;flex:0 0 auto;}
-.pst-badge.ok{color:#087443;background:rgba(18,183,106,.13);}
+.pst-badge.ok{color:#087443;background:rgba(18,183,106,.13);}.pst-badge.miss{color:#B42318;background:rgba(224,68,56,.13);}
 .pst-badge.pend{color:#98a2b3;background:#f2f4f7;}
 /* screen 5: profile (person photo — Autopilot Pelosi-style) */
 .psp-cover{position:relative;height:54%;flex:0 0 auto;overflow:hidden;
@@ -7769,8 +7775,8 @@ async function renderScoreboard(list, S){
       + '<span class="sb-rk">' + S.sbRank + "</span>"
       + '<span class="sb-src"></span>'
       + '<span class="sb-c">' + S.sbCalls + "</span>"
-      + '<span class="sb-a">' + S.sbAcc + "</span>"
-      + '<span class="sb-r">' + S.sbRecord + "</span>"
+      + '<span class="sb-a" title="' + esc(S.sbAccTip || "") + '">' + S.sbAcc + "</span>"
+      + '<span class="sb-r" title="' + esc(S.sbRecordTip || "") + '">' + S.sbRecord + "</span>"
     + "</div>"
     + rows.map((r, ri) =>
       '<div class="sb-row">'
@@ -14699,10 +14705,13 @@ function buildIntroCards(){
   }
   function scrTrack(){
     var list = trackList.map(function(it){
-      var done = it.outcome && it.outcome.status && it.outcome.status !== "pending";
-      return '<div class="pst-r"><span class="pst-ic ' + (done ? "ok" : "pend") + '">' + (done ? "&#10003;" : "&#183;") + '</span>'
+      var st = it.outcome && it.outcome.status;
+      var cls = st === "hit" ? "ok" : st === "miss" ? "miss" : "pend";
+      var ic = st === "hit" ? "&#10003;" : st === "miss" ? "&#10007;" : "&#183;";
+      var lb = st === "hit" ? L("hit", "Hit") : st === "miss" ? L("miss", "Miss") : L("tracking", "Tracking");
+      return '<div class="pst-r"><span class="pst-ic ' + cls + '">' + ic + '</span>'
         + '<span class="pst-t">' + esc(tx(it.title)) + '</span>'
-        + '<span class="pst-badge ' + (done ? "ok" : "pend") + '">' + (done ? L("hit", "Hit") : L("tracking", "Tracking")) + '</span></div>';
+        + '<span class="pst-badge ' + cls + '">' + lb + '</span></div>';
     }).join("");
     return '<div class="ph-scr"><div class="pst">' + phStatus(false)
       + '<div style="height:14px"></div>'
