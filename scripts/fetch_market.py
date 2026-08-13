@@ -22,9 +22,28 @@ OUT_PATH = os.path.join(REPO_ROOT, "data", "market.json")
 INDEX_URL = "https://apis.data.go.kr/1160100/service/GetMarketIndexInfoService/getStockMarketIndex"
 BOND_URL = "https://apis.data.go.kr/1160100/service/GetBondSecuritiesInfoService/getBondPriceInfo"
 
-TIMEOUT = 30
+TIMEOUT = 90
 MAX_RETRIES = 3
-BACKOFF_BASE = 2  # seconds: 2, 4, 8
+BACKOFF_SCHEDULE = [5, 15, 30]  # seconds, indexed by attempt number (1-based) - 1
+
+# Overall wall-clock budget for the whole run. The basDt backward-search scans
+# up to 7 days across two APIs; if the network path to apis.data.go.kr is
+# simply slow/degraded (not fully blocked) rather than broken, a handful of
+# 90s-timeout calls can add up fast. Once this budget is exceeded we stop
+# searching further dates and proceed with whatever has already been
+# collected (main() exits 1 only if that leaves items empty).
+TIME_BUDGET_SECONDS = 8 * 60
+_start_mono = None
+
+
+def _elapsed():
+    if _start_mono is None:
+        return 0.0
+    return time.monotonic() - _start_mono
+
+
+def _time_budget_exceeded():
+    return _elapsed() >= TIME_BUDGET_SECONDS
 
 INDEX_TARGETS = ["코스피", "코스닥"]
 INDEX_KEY_MAP = {"코스피": "kospi", "코스닥": "kosdaq"}
@@ -100,6 +119,15 @@ def get_encoded_key():
     return encoded
 
 
+def _exc_label(exc):
+    """Short diagnostic label for an exception: type name, plus HTTP status
+    for HTTPError. Never includes URL/query - only used inside messages that
+    already go through err()/_mask()."""
+    if isinstance(exc, urllib.error.HTTPError):
+        return f"HTTPError(status={exc.code})"
+    return type(exc).__name__
+
+
 def http_get_json(base_url, params, encoded_service_key):
     """GET base_url with params + serviceKey (already-encoded), parse JSON.
 
@@ -119,20 +147,31 @@ def http_get_json(base_url, params, encoded_service_key):
     last_exc = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": "stacks-market-sync/1.0"})
+            req = urllib.request.Request(url, headers={
+                "User-Agent": (
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+                ),
+            })
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
                 raw = resp.read().decode("utf-8")
             return json.loads(raw)
         except Exception as exc:  # noqa: BLE001 - want to catch/retry broadly
             last_exc = exc
             # Identify the failing call by base_url only; never the full URL.
+            # Include the exception type (and HTTP status, if any) so retry
+            # logs show *where* things died (DNS/connect/TLS timeout vs an
+            # HTTP error response) without ever printing the query string.
+            exc_label = _exc_label(exc)
             if attempt < MAX_RETRIES:
-                sleep_s = BACKOFF_BASE * (2 ** (attempt - 1))
-                err(f"WARN: request to {base_url} failed (attempt {attempt}/{MAX_RETRIES}): "
-                    f"{exc}; retrying in {sleep_s}s")
+                idx = min(attempt - 1, len(BACKOFF_SCHEDULE) - 1)
+                sleep_s = BACKOFF_SCHEDULE[idx]
+                err(f"WARN: request to {base_url} failed (attempt {attempt}/{MAX_RETRIES}) "
+                    f"[{exc_label}]: {exc}; retrying in {sleep_s}s")
                 time.sleep(sleep_s)
             else:
-                err(f"ERROR: request to {base_url} failed after {MAX_RETRIES} attempts: {exc}")
+                err(f"ERROR: request to {base_url} failed after {MAX_RETRIES} attempts "
+                    f"[{exc_label}]: {exc}")
     raise last_exc
 
 
@@ -220,6 +259,10 @@ def index_has_data(bas_dt, encoded_key):
 def find_latest_business_date(encoded_key, start_date, max_days=7):
     """Scan backward from start_date (KST date) up to max_days, return first basDt with data."""
     for offset in range(max_days):
+        if _time_budget_exceeded():
+            err(f"WARN: time budget ({TIME_BUDGET_SECONDS}s) exceeded while searching for the "
+                f"latest index basDt; stopping search (elapsed={_elapsed():.0f}s)")
+            return None
         d = start_date - timedelta(days=offset)
         bas_dt = d.strftime("%Y%m%d")
         log(f"probing basDt={bas_dt} ...")
@@ -275,6 +318,10 @@ def fetch_bond_ktb10y(bas_dt, encoded_key):
 def find_bond_for_date_backward(encoded_key, start_date, max_days=7):
     """Scan backward from start_date for a date that has a KTB10y benchmark bond match."""
     for offset in range(max_days):
+        if _time_budget_exceeded():
+            err(f"WARN: time budget ({TIME_BUDGET_SECONDS}s) exceeded while searching for the "
+                f"previous business day's KTB10y bond; stopping search (elapsed={_elapsed():.0f}s)")
+            return None, None
         d = start_date - timedelta(days=offset)
         bas_dt = d.strftime("%Y%m%d")
         item, count = fetch_bond_ktb10y(bas_dt, encoded_key)
@@ -310,6 +357,9 @@ def content_equal(existing, new_data):
 
 
 def main():
+    global _start_mono
+    _start_mono = time.monotonic()
+
     encoded_key = get_encoded_key()
 
     now_kst = datetime.now(KST)
