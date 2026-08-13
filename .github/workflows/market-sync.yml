@@ -20,6 +20,15 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Probe data.go.kr reachability
+        continue-on-error: true
+        run: |
+          echo "--- DNS ---"
+          getent hosts apis.data.go.kr || echo "dns failed"
+          echo "--- TCP/TLS + HTTP (no auth, 120s cap) ---"
+          curl -sS -o /dev/null -w "code=%{http_code} dns=%{time_namelookup}s conn=%{time_connect}s tls=%{time_appconnect}s total=%{time_total}s\n" \
+            --max-time 120 "https://apis.data.go.kr/" || echo "curl rc=$?"
+
       - name: Fetch market data
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
