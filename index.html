@@ -310,7 +310,6 @@ const STRINGS = {
     sbTitle: "Track record",
     sbSub: "Every directional call on Stacks, checked against what the market actually did afterwards. Hits and misses both.",
     sbCalls: "Calls",
-    sbAlign: "Direction match",
     sbRecord: "Verified calls",
     sbRecordTip: "Graded by our editors as a hit or a miss.",
     sbAcc: "Price match",
@@ -499,7 +498,6 @@ const STRINGS = {
     sbTitle: "판정 기록",
     sbSub: "검증 중인 전망부터 적중과 빗나감까지, 판정 기준과 결과를 전부 공개합니다.",
     sbCalls: "콜",
-    sbAlign: "방향 일치",
     sbRecord: "검증된 예측",
     sbRecordTip: "편집팀이 직접 확인해 적중\u00b7빗나감을 판정한 기록입니다.",
     sbAcc: "주가 일치율",
@@ -688,7 +686,6 @@ const STRINGS = {
     sbTitle: "的中記録",
     sbSub: "Stacksに載った方向性のある記事がその後実際どうなったかをすべて公開。当たりも外れも。",
     sbCalls: "コール",
-    sbAlign: "方向一致",
     sbRecord: "検証済みの予測",
     sbRecordTip: "編集部が実際に確認し、的中\u30fb外れを判定した記録です。",
     sbAcc: "株価一致率",
@@ -14331,6 +14328,33 @@ async function loadAuxData(){
     buildGlossMatcher();
     document.querySelectorAll("article.card").forEach(card => {
       try { linkifyEntities(card); } catch (e) {}
+    });
+    /* v98: the "since post" badge has the same ENTITIES race the
+       renderScoreboardBoard fix (above, this file) already covers for the
+       leaderboard - but nothing retried it here. queueSince() silently
+       resolves { r: null } per key when ENTITIES[k] has no ticker yet, and
+       that null was never revisited, so any card painted before this .then()
+       fires kept its badge hidden forever. Re-run queueSince() right here,
+       same event and same card set as the linkifyEntities() pass just above.
+       Scoped to badges still .hidden only - an already-shown badge is either
+       a real result or a repeat that would waste a call, so it is skipped -
+       and deduped to one queueSince() per item id even if the same item
+       renders in more than one card (feed + detail), since queueSince()
+       already fans its result out to every matching .since[data-since]
+       element on its own. No extra network load beyond that: quote1y()
+       caches both in-flight and resolved quotes per ticker (Q1Y/QR, ~line
+       5330), so a ticker already fetched - or being fetched by a sibling
+       badge - is never refetched. When ENTITIES was already populated on
+       first paint (the common case), every badge already resolved (or has
+       no ticker at all, a synchronous no-op with no fetch either way), so
+       this loop finds nothing .hidden and does no extra work. */
+    const sinceRetryIds = new Set();
+    document.querySelectorAll(".since[data-since]").forEach(el => {
+      if (el.hidden) sinceRetryIds.add(el.getAttribute("data-since"));
+    });
+    sinceRetryIds.forEach(id => {
+      const it = ITEM_BY_ID.get(id) || ITEMS.find(x => x.id === id);
+      if (it) { try { queueSince(it); } catch (e) {} }
     });
     /* A slow aux request may outlive the initial deep-link timer. Retry only
        when that view has not opened yet; never reset an active user view. */
