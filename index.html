@@ -316,7 +316,7 @@ const STRINGS = {
     sbAcc: "Price match",
     sbAccTip: "Auto-calculated from price moves since publication only \u2014 not our editors\u2019 hit/miss grading.",
     sbRank: "#",
-    sbLeader: "Author leaderboard",
+    sbLeader: "Author call record",
     sbAllCalls: "All calls",
     sbEmpty: "Not enough calls to score yet.",
     briefTitle: "My briefing",
@@ -505,7 +505,7 @@ const STRINGS = {
     sbAcc: "주가 일치율",
     sbAccTip: "필진 판정이 아니라, 게재일 종가 대비 현재 주가 변화만으로 자동 계산한 방향 일치율입니다.",
     sbRank: "#",
-    sbLeader: "필진 적중률 랭킹",
+    sbLeader: "필진 콜 기록",
     sbAllCalls: "전체 콜",
     sbEmpty: "아직 집계할 콜이 부족해요.",
     briefTitle: "내 브리핑",
@@ -694,7 +694,7 @@ const STRINGS = {
     sbAcc: "株価一致率",
     sbAccTip: "編集部の判定ではなく、掲載日の終値からの株価変化のみで自動計算した方向一致率です。",
     sbRank: "#",
-    sbLeader: "執筆者ランキング",
+    sbLeader: "執筆者コール記録",
     sbAllCalls: "すべてのコール",
     sbEmpty: "まだ集計できるコールが足りません。",
     briefTitle: "マイ・ブリーフィング",
@@ -7757,7 +7757,13 @@ async function renderScoreboard(list, S){
   loading.remove();
 
 
-  const medal = ri => ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1);
+  /* A dash (acc == null) row must never wear a rank medal: the sort
+     comparator already pushes it to the bottom of the non-null group (see
+     rows.sort above), but on a single-row page (bySrc has exactly one
+     source when RECORD_SRC is set) index 0 is always "first" even with no
+     measured accuracy. Gate the medal glyph on r.acc so an unscored row
+     gets a plain ordinal instead of a misleading 🥇. */
+  const medal = (ri, r) => (r && r.acc == null) ? String(ri + 1) : (ri === 0 ? "🥇" : ri === 1 ? "🥈" : ri === 2 ? "🥉" : String(ri + 1));
   const accHtml = r => {
     if (r.acc == null) return '<span class="sb-acc-v" style="color:var(--muted)">-</span>';
     const pct = Math.round(r.acc * 100);
@@ -7780,7 +7786,7 @@ async function renderScoreboard(list, S){
     + "</div>"
     + rows.map((r, ri) =>
       '<div class="sb-row">'
-        + '<span class="sb-rk">' + medal(ri) + "</span>"
+        + '<span class="sb-rk">' + medal(ri, r) + "</span>"
         + (ENTITIES[r.src]
             ? '<button class="sb-src sb-src-link" onclick="entityFeedView(\'' + r.src.replace(/'/g, "\\'") + '\')">' + esc(dispName(r.src)) + " ↗</button>"
             : '<span class="sb-src">' + esc(dispName(r.src)) + "</span>")
