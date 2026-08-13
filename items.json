@@ -12952,7 +12952,7 @@
    },
    "tags": [
     "MTSI",
-    "InP",
+    "INDIUM PHOSPHIDE",
     "DFB LASERS",
     "OPTICS"
    ],
@@ -13083,7 +13083,7 @@
     "label": "800G / 1.6T"
    },
    "tags": [
-    "AAOI",
+    "APPLIED OPTO",
     "OPTICS",
     "CPO"
    ],
@@ -27842,7 +27842,7 @@
     "label": "PLUGGABLES VS CPO"
    },
    "tags": [
-    "AAOI",
+    "APPLIED OPTO",
     "CPO",
     "OPTICAL NETWORKING"
    ],
@@ -34862,7 +34862,7 @@
    "avatarImg": "serenity.jpg",
    "tags": [
     "OPTICS",
-    "INNOLIGHT",
+    "ZHONGJI INNOLIGHT",
     "AI CAPEX"
    ],
    "title": {
@@ -37527,7 +37527,10 @@
    "aliases": [
     "Applied Optoelectronics",
     "Applied Opto",
-    "어플라이드 옵토"
+    "어플라이드 옵토",
+    "AAOI",
+    "어플라이드옵토일렉트로닉스",
+    "アプライド・オプトエレクトロニクス"
    ],
    "logo": "ao-inc.com",
    "exchange": "NASDAQ",
@@ -39063,31 +39066,6 @@
     "セミアナリシス"
    ]
   },
-  "캐펙스": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "aliases": [
-    "캐펙스",
-    "자본지출",
-    "capex",
-    "CapEx",
-    "設備投資"
-   ],
-   "desc": {
-    "en": "Capital expenditure, money a company spends on long-lived assets like data centers, chips, and factories.",
-    "ko": "자본지출. 데이터센터·반도체·공장처럼 오래 쓰는 자산에 기업이 투자하는 돈.",
-    "ja": "設備投資。データセンターや半導体、工場など長期資産に企業が投じる資金。"
-   },
-   "longDesc": {
-    "en": "Heavy capex signals a company is betting on future capacity, but it also pressures near-term free cash flow. In AI, hyperscaler capex on GPUs and power is a key demand signal for the whole chip supply chain.",
-    "ko": "자본지출이 크다는 건 미래 생산능력에 베팅한다는 뜻이지만, 당장의 잉여현금흐름은 압박한다. AI에서는 하이퍼스케일러의 GPU·전력 투자 규모가 반도체 공급망 전체의 수요 신호가 된다.",
-    "ja": "設備投資が大きいほど将来の生産能力に賭けている一方、足元のフリーキャッシュフローは圧迫される。AIではハイパースケーラーのGPU・電力投資が半導体サプライチェーン全体の需要シグナルになる。"
-   }
-  },
   "하이퍼스케일러": {
    "kind": "term",
    "sector": {
@@ -39377,30 +39355,6 @@
     "en": "Frontier models cost the most to train and require the largest compute clusters, so only a few labs can build them. The race to lead the frontier drives much of the industry's chip and power demand.",
     "ko": "프런티어 모델은 학습 비용이 가장 크고 최대 규모의 컴퓨트가 필요해, 소수 연구소만 만들 수 있다. 이 최전선을 선점하려는 경쟁이 업계 반도체·전력 수요의 상당 부분을 만든다.",
     "ja": "フロンティアモデルは学習コストが最も高く最大級の計算資源を要するため、作れるのは一握りの研究所だけだ。この最前線を巡る競争が業界の半導体・電力需要の多くを生む。"
-   }
-  },
-  "기가와트": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "aliases": [
-    "기가와트",
-    "GW",
-    "gigawatt",
-    "ギガワット"
-   ],
-   "desc": {
-    "en": "A unit of power (1,000 megawatts) increasingly used to size AI data centers.",
-    "ko": "전력 단위(1,000메가와트). 요즘 AI 데이터센터 규모를 재는 데 자주 쓴다.",
-    "ja": "電力の単位(1,000メガワット)。AIデータセンターの規模を測るのに使われる。"
-   },
-   "longDesc": {
-    "en": "AI campuses are now planned in gigawatts because power, not just chips, is the binding constraint on scale. Roughly, one gigawatt can supply a large city, so multi-GW clusters are an industrial-scale bet on electricity.",
-    "ko": "이제 AI 캠퍼스는 기가와트 단위로 계획된다. 칩뿐 아니라 전력이 규모의 진짜 제약이기 때문이다. 대략 1기가와트면 대도시 하나를 감당하니, 수 기가와트 클러스터는 전력에 대한 산업 규모의 베팅이다.",
-    "ja": "いまやAIキャンパスはギガワット単位で計画される。チップだけでなく電力が規模の制約だからだ。1ギガワットは大都市一つを賄える規模で、数GWクラスターは電力への産業規模の賭けだ。"
    }
   },
   "양적긴축": {
@@ -42664,46 +42618,6 @@
     "M2マネーサプライ"
    ]
   },
-  "AAOI": {
-   "kind": "company",
-   "ticker": "aaoi.us",
-   "sector": {
-    "en": "Optical Networking Components",
-    "ko": "광통신 부품",
-    "ja": "光通信部品"
-   },
-   "desc": {
-    "en": "US maker of optical transceivers for data centers, developing co-packaged optics to keep pace with AI networking demand.",
-    "ko": "데이터센터용 광트랜시버를 만드는 미국 기업으로, AI 네트워킹 수요에 대응해 CPO 기술도 개발 중이다.",
-    "ja": "データセンター向け光トランシーバーを手掛ける米企業で、AIネットワーキング需要に対応しCPO技術も開発中。"
-   },
-   "aliases": [
-    "Applied Optoelectronics",
-    "AAOI",
-    "어플라이드옵토일렉트로닉스",
-    "アプライド・オプトエレクトロニクス"
-   ],
-   "logo": "aaoi.com",
-   "exchange": "NASDAQ",
-   "ceo": {
-    "en": "Thompson Lin",
-    "ko": "톰슨 린",
-    "ja": "トンプソン・リン"
-   },
-   "founded": "1997",
-   "listed": "2013.9",
-   "hq": {
-    "en": "Sugar Land, USA",
-    "ko": "미국 슈거랜드",
-    "ja": "米国・シュガーランド"
-   },
-   "website": "https://www.aaoi.com",
-   "longDesc": {
-    "en": "Applied Optoelectronics designs and manufactures optical transceivers used to move data inside and between data centers, with customers including major hyperscalers. It has historically focused on pluggable transceiver modules and is investing in next-generation co-packaged optics to stay relevant as AI clusters push for lower-power, higher-bandwidth networking.",
-    "ko": "어플라이드옵토일렉트로닉스는 데이터센터 내부·간 데이터 전송에 쓰이는 광트랜시버를 설계·제조하는 회사로, 주요 하이퍼스케일러를 고객으로 두고 있다. 전통적으로 꽂아 쓰는 플러거블 트랜시버 모듈에 강점이 있었고, AI 클러스터의 저전력·고대역폭 네트워킹 요구에 대응해 차세대 CPO 기술에도 투자하고 있다.",
-    "ja": "アプライド・オプトエレクトロニクスは、データセンター内外のデータ伝送に使われる光トランシーバーを設計・製造する企業で、主要ハイパースケーラーを顧客に持つ。従来はプラガブル型トランシーバーモジュールに強みを持ち、AIクラスターの低電力・高帯域幅ネットワーキング要求に対応するため次世代CPO技術にも投資している。"
-   }
-  },
   "GAZPROM": {
    "kind": "company",
    "ticker": "gazp.moex",
@@ -43692,35 +43606,6 @@
     "ja": "SPC（特別目的会社）"
    }
   },
-  "커촹반": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "desc": {
-    "ko": "중국이 첨단기술 기업 상장을 위해 상하이거래소에 만든 별도 시장.",
-    "en": "A Shanghai Stock Exchange board created specifically for Chinese tech and science companies to go public.",
-    "ja": "中国のハイテク企業上場のため上海証券取引所が設けた専用市場。"
-   },
-   "longDesc": {
-    "ko": "커촹반(科创板, STAR Market)은 2019년 상하이증권거래소가 반도체·바이오 등 첨단기술 기업을 위해 만든 시장이다. 미국 나스닥과 비슷한 역할을 하며, 아직 이익을 못 내는 기업도 상장할 수 있는 등 본토의 다른 시장보다 상장 기준이 유연하다. 중국의 반도체 자립 전략과 맞물려 관련 기업들의 주요 상장 창구로 쓰인다.",
-    "en": "The STAR Market is a Shanghai Stock Exchange board launched in 2019 for tech, semiconductor, and biotech companies. It functions much like Nasdaq, with more flexible listing rules than mainland China's other boards, including allowing companies that aren't yet profitable to list. It has become the main venue for companies central to China's semiconductor self-sufficiency push.",
-    "ja": "科創板（STARマーケット）は2019年に上海証券取引所が半導体・バイオなどハイテク企業向けに設けた市場。米ナスダックに近い役割を持ち、まだ黒字化していない企業でも上場できるなど、中国本土の他市場より上場基準が柔軟だ。中国の半導体自給戦略と結びつき、関連企業の主要な上場先となっている。"
-   },
-   "aliases": [
-    "커촹반",
-    "科创板",
-    "STAR Market",
-    "スターマーケット"
-   ],
-   "name": {
-    "ko": "커촹반(과학혁신판)",
-    "en": "STAR Market",
-    "ja": "科創板（スターマーケット）"
-   }
-  },
   "HONOR": {
    "kind": "company",
    "sector": {
@@ -43885,7 +43770,9 @@
     "CAPEX",
     "Capex",
     "capex",
-    "設備投資"
+    "設備投資",
+    "캐펙스",
+    "자본지출"
    ],
    "name": {
     "ko": "설비투자",
@@ -44993,7 +44880,9 @@
     "연기금",
     "연금기금",
     "pension fund",
-    "年金基金"
+    "年金基金",
+    "pension funds",
+    "연기금등"
    ],
    "name": {
     "ko": "연기금",
@@ -45271,24 +45160,6 @@
     "リセンヌ"
    ]
   },
-  "THE MUSE": {
-   "kind": "company",
-   "sector": {
-    "en": "Entertainment",
-    "ko": "엔터테인먼트",
-    "ja": "エンタメ"
-   },
-   "desc": {
-    "en": "Jeju-founded (2020) K-pop agency behind RESCENE; raised a Series A after a viral revival, deliberately stopping at 40% of its target.",
-    "ko": "2020년 제주에서 설립된 리센느 소속사. 밈 역주행 이후 시리즈A를 목표액의 40%에서 의도적으로 마감했다.",
-    "ja": "2020年に済州で設立されたリセンヌの所属事務所。ミーム逆走行後にシリーズAを目標額の40%で意図的に締め切った。"
-   },
-   "aliases": [
-    "The Muse",
-    "더뮤즈",
-    "ザ・ミューズ"
-   ]
-  },
   "MBC": {
    "kind": "company",
    "sector": {
@@ -45532,29 +45403,6 @@
     "en": "Supplied by component makers like Credo, Marvell, Coherent and Lumentum, NPO is a supplier-driven category rather than a confirmed Nvidia or Broadcom roadmap commitment.",
     "ko": "Credo·Marvell·Coherent·루멘텀 같은 부품사들이 미는 개념으로, 엔비디아·브로드컴의 확정된 로드맵이라기보다 공급사 주도의 카테고리에 가깝다.",
     "ja": "Credo・Marvell・Coherent・Lumentumなど部品メーカーが推す概念で、NVIDIAやBroadcomの確定ロードマップというより供給側主導のカテゴリーに近い。"
-   }
-  },
-  "InP": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "aliases": [
-    "InP",
-    "indium phosphide",
-    "인화인듐"
-   ],
-   "desc": {
-    "en": "Indium phosphide, the semiconductor material used to make the laser chips that feed optical transceivers.",
-    "ko": "인화인듐. 광트랜시버에 들어가는 레이저 칩을 만드는 반도체 소재.",
-    "ja": "インジウムリン。光トランシーバーに使うレーザーチップの半導体材料。"
-   },
-   "longDesc": {
-    "en": "InP wafer and epitaxy capacity is limited to a handful of suppliers worldwide, making it a recurring bottleneck whenever AI datacenter buildouts spike demand for optical links.",
-    "ko": "InP 웨이퍼·에피택시 생산능력은 전 세계 소수 업체에 한정돼, AI 데이터센터 증설로 광링크 수요가 튈 때마다 반복되는 병목이 된다.",
-    "ja": "InPウェハー・エピタキシー生産能力は世界でごく少数の企業に限られ、AIデータセンター増設で光リンク需要が跳ねるたびに繰り返しボトルネックとなる。"
    }
   },
   "RDIMM": {
@@ -46376,24 +46224,6 @@
     "ja": "国際緊急経済権限法(IEEPA)。米大統領が国家非常事態を宣言し関税を課す際の根拠として用いてきた法律。"
    }
   },
-  "국채금리": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "aliases": [
-    "국채금리",
-    "Treasury yield",
-    "국채 금리"
-   ],
-   "desc": {
-    "en": "Treasury yield, the interest rate the US government pays to borrow money by selling bonds.",
-    "ko": "미국 정부가 국채를 발행해 돈을 빌릴 때 지불하는 금리.",
-    "ja": "米国政府が国債を発行して資金を借り入れる際に支払う金利。"
-   }
-  },
   "기대인플레이션": {
    "kind": "term",
    "sector": {
@@ -46554,25 +46384,6 @@
     "en": "Dilution, the drop in an existing shareholder's ownership percentage when a company issues new shares.",
     "ko": "회사가 새 주식을 발행할 때 기존 주주의 지분율이 낮아지는 것.",
     "ja": "企業が新株を発行する際、既存株主の持株比率が低下すること。"
-   }
-  },
-  "패터닝": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "aliases": [
-    "패터닝",
-    "multi-patterning",
-    "다중패터닝",
-    "マルチパターニング"
-   ],
-   "desc": {
-    "en": "Multi-patterning, a technique that exposes a chip layer multiple times with older DUV lithography to mimic finer EUV-level detail, at higher cost.",
-    "ko": "다중패터닝. EUV 없이 기존 DUV 노광장비로 같은 층을 여러 번 찍어 미세한 패턴을 흉내 내는 기법으로, 비용이 더 든다.",
-    "ja": "多重パターニング。EUVを使わず従来のDUV露光装置で同じ層を複数回露光し、微細なパターンを模倣する手法で、コストが高くなる。"
    }
   },
   "BLACKWELL": {
@@ -48611,30 +48422,6 @@
     "ヘッジファンド"
    ]
   },
-  "베이시스포인트(bp)": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "desc": {
-    "en": "One hundredth of a percentage point, the unit used for interest rates and spreads.",
-    "ko": "1퍼센트포인트의 100분의 1. 금리와 가산금리를 재는 단위다.",
-    "ja": "1パーセントポイントの100分の1。金利や上乗せ金利を測る単位だ。"
-   },
-   "longDesc": {
-    "en": "Rates move in fractions too small for percentages to read cleanly, so the market counts in basis points: 25bp is 0.25 percentage points. On a long bond a move of a few dozen basis points translates into a price change many times larger, because duration multiplies it.",
-    "ko": "금리는 퍼센트로 적기에는 너무 잘게 움직이므로 시장은 베이시스포인트로 센다. 25bp는 0.25%포인트다. 만기가 긴 채권에서는 수십 bp만 움직여도 듀레이션이 곱해져 가격은 몇 배로 흔들린다.",
-    "ja": "金利はパーセントで書くには細かく動きすぎるため、市場はベーシスポイントで数える。25bpは0.25%ポイントだ。満期の長い債券では数十bpの動きでもデュレーションが掛かり、価格は何倍にも振れる。"
-   },
-   "aliases": [
-    "bp",
-    "베이시스포인트",
-    "basis point",
-    "ベーシスポイント"
-   ]
-  },
   "전문투자자": {
    "kind": "term",
    "sector": {
@@ -49015,28 +48802,6 @@
     "市況産業"
    ]
   },
-  "케빈 워시 (Kevin Warsh)": {
-   "kind": "person",
-   "url": "https://en.wikipedia.org/wiki/Kevin_Warsh",
-   "sector": {
-    "en": "Fed Chair",
-    "ko": "연준 의장",
-    "ja": "FRB議長"
-   },
-   "desc": {
-    "ko": "미국 연방준비제도 의장. 회의 결과를 미리 예고하지 않는 방식으로 알려져 있다.",
-    "en": "Chair of the US Federal Reserve, known for declining to signal decisions in advance.",
-    "ja": "米連邦準備制度理事会議長。会合の結果を事前に示唆しない姿勢で知られる。"
-   },
-   "aliases": [
-    "케빈 워시",
-    "워시 의장",
-    "Kevin Warsh",
-    "Warsh",
-    "ケビン・ウォーシュ",
-    "ウォーシュ"
-   ]
-  },
   "연방준비제도 (Fed)": {
    "kind": "term",
    "sector": {
@@ -49139,7 +48904,11 @@
     "評価益",
     "含み益",
     "unrealized gain",
-    "paper gain"
+    "paper gain",
+    "평가차익",
+    "미실현 이익",
+    "unrealised gain",
+    "評価差益"
    ]
   },
   "코스닥": {
@@ -50307,7 +50076,8 @@
     "Kevin Warsh",
     "Warsh",
     "ケビン・ウォーシュ",
-    "ウォーシュ"
+    "ウォーシュ",
+    "워시 의장"
    ],
    "url": "https://www.federalreserve.gov/aboutthefed/bios/board/warsh.htm"
   },
@@ -50572,7 +50342,9 @@
     "multi-patterning",
     "multipatterning",
     "多重露光",
-    "다중 패터닝"
+    "다중 패터닝",
+    "패터닝",
+    "マルチパターニング"
    ]
   },
   "구매관리자지수": {
@@ -50794,33 +50566,6 @@
     "어닝서프라이즈",
     "earnings surprise",
     "アーニングサプライズ"
-   ]
-  },
-  "평가차익": {
-   "kind": "term",
-   "sector": {
-    "en": "Glossary",
-    "ko": "용어",
-    "ja": "用語"
-   },
-   "desc": {
-    "en": "Profit booked because an asset the company still holds went up in value, with no cash received.",
-    "ko": "아직 팔지 않은 자산의 값이 올라 이익으로 적히는 금액. 현금은 들어오지 않는다.",
-    "ja": "まだ売っていない資産の値段が上がったことで利益として計上される金額。現金は入らない。"
-   },
-   "longDesc": {
-    "en": "Accounting rules require holdings such as stakes in other companies to be carried at their latest valuation, and the change flows through net income. That makes reported profit move with the price someone else set in the most recent funding round or market close, and it cuts both ways: a lower valuation writes the same amount back out.",
-    "ko": "회계 규칙은 다른 회사 지분처럼 보유 중인 자산을 최근 평가액으로 다시 적게 하고, 그 변동분을 순이익에 넣는다. 그래서 발표되는 이익이 최근 투자 라운드나 종가에서 남이 매긴 값에 따라 움직인다. 방향은 양쪽이라, 평가액이 내려가면 같은 금액이 이익에서 빠진다.",
-    "ja": "会計ルールは、他社への出資分のような保有資産を直近の評価額で計上し、その変動を純利益に反映させる。そのため公表される利益が、直近の資金調達ラウンドや終値で他者が付けた値段に応じて動く。方向は両側で、評価額が下がれば同じ金額が利益から差し引かれる。"
-   },
-   "aliases": [
-    "평가차익",
-    "평가이익",
-    "미실현 이익",
-    "unrealised gain",
-    "unrealized gain",
-    "評価益",
-    "評価差益"
    ]
   },
   "브렌트유": {
@@ -53149,40 +52894,6 @@
     "ja": "データセンターネットワーキング、産業用製造、ライフサイエンス分野で使われるレーザー・光部品・材料を作る企業。AIデータセンター向け光トランシーバー・増幅器で中国製の代替供給元とされるが、高速レーザー生産自体がインジウムリンウェハーに依存している。"
    }
   },
-  "INNOLIGHT": {
-   "kind": "company",
-   "ticker": "300308.SZ",
-   "sector": {
-    "en": "Optical Components",
-    "ko": "광통신 부품",
-    "ja": "光通信部品"
-   },
-   "desc": {
-    "en": "World's largest maker of optical transceivers, supplying most of Nvidia's 800G module demand.",
-    "ko": "세계 최대 광트랜시버 제조사로, 엔비디아 800G 모듈 수요 대부분을 공급한다.",
-    "ja": "世界最大の光トランシーバーメーカーで、エヌビディアの800Gモジュール需要の大半を供給する。"
-   },
-   "aliases": [
-    "Innolight",
-    "Zhongji Innolight",
-    "이노라이트",
-    "中際旭創",
-    "イノライト"
-   ],
-   "logo": "innolight.com",
-   "exchange": "Shenzhen Stock Exchange",
-   "hq": {
-    "en": "Longkou, Shandong, China",
-    "ko": "중국 산둥 룽커우",
-    "ja": "中国山東省龍口市"
-   },
-   "website": "http://www.innolight.com",
-   "longDesc": {
-    "en": "Zhongji Innolight is the world's largest producer of optical transceivers, the modules that carry data between servers and GPU clusters in AI data centers. It holds roughly 27% of the global market and is a primary supplier for Nvidia's 800G-class networking gear, making it a direct target of proposed US import restrictions.",
-    "ko": "AI 데이터센터에서 서버와 GPU 클러스터 사이 데이터를 나르는 광트랜시버를 세계에서 가장 많이 만드는 회사다. 세계 시장의 약 27%를 쥐고 있고 엔비디아 800G급 네트워킹 장비의 주요 공급사라, 미국이 검토 중인 수입 규제의 직접 대상이 된다.",
-    "ja": "AIデータセンターでサーバーとGPUクラスター間のデータを運ぶ光トランシーバーを世界で最も多く作る企業。世界市場の約27%を握り、エヌビディアの800G級ネットワーキング機器の主要供給元であるため、米国が検討中の輸入規制の直接の標的になっている。"
-   }
-  },
   "EOPTOLINK": {
    "kind": "company",
    "ticker": "300502.SZ",
@@ -53856,8 +53567,15 @@
     "스타마켓",
     "상하이 스타마켓",
     "科創板",
-    "科创板"
-   ]
+    "科创板",
+    "커촹반",
+    "スターマーケット"
+   ],
+   "name": {
+    "ko": "커촹반(과학혁신판)",
+    "en": "STAR Market",
+    "ja": "科創板（スターマーケット）"
+   }
   },
   "VKOSPI": {
    "kind": "term",
@@ -53969,24 +53687,6 @@
     "single-stock leveraged ETF",
     "단일종목 레버리지 ETF",
     "레버리지 ETF"
-   ]
-  },
-  "PENSION FUNDS": {
-   "kind": "term",
-   "sector": {
-    "en": "Investors",
-    "ko": "투자자",
-    "ja": "投資家"
-   },
-   "desc": {
-    "en": "Long-horizon institutional investors that manage risk budgets.",
-    "ko": "위험예산을 관리하는 장기 기관투자가.",
-    "ja": "リスク予算を管理する長期機関投資家。"
-   },
-   "aliases": [
-    "pension funds",
-    "연기금",
-    "연기금등"
    ]
   },
   "INTERNATIONAL MONETARY FUND": {
