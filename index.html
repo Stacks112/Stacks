@@ -7591,7 +7591,7 @@ function openScoreboard(){ SB_VIEW = true; THEME_VIEW = null; RECORD_SRC = null;
   if (f && f.scrollIntoView) f.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 function closeScoreboard(){ SB_VIEW = false; RECORD_SRC = null; try{ if(location.hash.indexOf("#record-")===0) history.replaceState(history.state,"",location.pathname+location.search); }catch(e){} renderFeed(false); }
-function renderJudgmentRecord(list){
+function renderJudgmentRecord(list, S){
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var C={
     ko:{title:"판정 기록",sub:"검증 중인 전망부터 적중과 빗나감까지, 판정 기준과 결과를 전부 공개합니다.",pending:"검증 중",done:"판정 완료",hits:"적중",misses:"빗나감",rate:"판정 적중률",today:"오늘 판정",upcoming:"임박한 판정 예정",upcomingSub:"가장 가까운 판정 예정 이벤트를 먼저 보여드립니다.",quickAll:"전체",quick7:"7일 이내",quick30:"30일 이내",quickDelayed:"지연",people:"필자·주제별",peopleSub:"필자와 주제별 적중률",sourceBreakdown:"필자",topicBreakdown:"주제·시장",trend:"적중률 추이",trendSub:"월별 판정 결과 · 표본 포함",sample:"표본",emptyTrend:"판정 완료 데이터가 쌓이면 추이가 표시됩니다.",near:"판정일 가까운 순",latest:"최신 판정순",minimum:"판정된 전망 기준",emptyToday:"오늘 판정 예정인 전망이 없습니다.",emptyUpcoming:"오늘 판정은 없습니다. 임박한 판정 예정 이벤트를 보여드립니다.",emptyDone:"아직 판정 완료된 전망이 없습니다.",rule:"판정 기준·근거",evidence:"판정 근거",source:"전망 원문 ↗",open:"글 보기 →",calls:"건",forecastDate:"전망일",dueDate:"판정 예정일",delayed:"판정 지연",more:"더 보기",search:"필진·전망 검색",noResults:"조건에 맞는 전망이 없습니다."},
@@ -7649,8 +7649,8 @@ function renderJudgmentRecord(list){
   var panel=function(key,label,sub){ var active=key===defaultKey; return '<div id="jr-panel-'+key+'" class="jr-panel" role="tabpanel" aria-labelledby="jr-tab-'+key+'" tabindex="0" data-jr-panel="'+key+'"'+(active?"":" hidden")+'><h3 class="jr-section-title">'+esc(label)+'<span>'+esc(sub)+'</span></h3><div class="jr-panel-body" data-jr-body="'+key+'"></div></div>'; };
   wrap.innerHTML='<header class="jr-head"><h2>'+esc(C.title)+'</h2><p>'+esc(C.sub)+'</p></header>'
     +'<div class="jr-stats"><div class="jr-stat"><strong>'+pending.length+'</strong><span>'+esc(C.pending)+'</span></div><div class="jr-stat"><strong>'+done.length+'</strong><span>'+esc(C.done)+'</span></div><div class="jr-stat"><strong>'+hits+'</strong><span>'+esc(C.hits)+'</span></div><div class="jr-stat"><strong>'+misses+'</strong><span>'+esc(C.misses)+'</span></div><div class="jr-stat"><strong>'+(done.length?Math.round(hits/done.length*100)+"%":"-")+'</strong><span>'+esc(C.rate)+(done.length?' · '+done.length+esc(C.calls):'')+'</span></div></div>'
-    +'<div class="jr-tabs" role="tablist" aria-label="'+esc(C.title)+'" aria-orientation="horizontal">'+tab("today",focusLabel,focusItems.length)+tab("tracking",C.pending,pending.length)+tab("done",C.done,done.length)+tab("people",C.people,null)+'</div>'
-    +panel("today",focusLabel,focusSub)+panel("tracking",C.pending,C.near)+panel("done",C.done,C.latest)+panel("people",C.people,C.minimum);
+    +'<div class="jr-tabs" role="tablist" aria-label="'+esc(C.title)+'" aria-orientation="horizontal">'+tab("today",focusLabel,focusItems.length)+tab("tracking",C.pending,pending.length)+tab("done",C.done,done.length)+tab("people",C.people,null)+tab("board",S.sbLeader,null)+'</div>'
+    +panel("today",focusLabel,focusSub)+panel("tracking",C.pending,C.near)+panel("done",C.done,C.latest)+panel("people",C.people,C.minimum)+panel("board",S.sbLeader,S.sbSub);
   var panelItems={today:focusItems,tracking:pending,done:done};
   var filterMarkup=function(key){ return (key==="tracking"||key==="done")?'<label class="jr-filter"><span class="sr-only">'+esc(C.search)+'</span><input type="search" data-jr-search="'+key+'" placeholder="'+esc(C.search)+'" value="'+esc(queries[key]||"")+'"></label>':''; };
   var quickMarkup=function(){ var specs=[['all',C.quickAll,pending.length],['7',C.quick7,quickPool('7').length],['30',C.quick30,quickPool('30').length],['delayed',C.quickDelayed,quickPool('delayed').length]]; return '<div class="jr-quick" role="group" aria-label="'+esc(C.pending)+'">'+specs.map(function(s){ return '<button type="button" data-jr-quick="'+s[0]+'" aria-pressed="'+(quickFilter===s[0]?'true':'false')+'">'+esc(s[1])+' '+s[2]+'</button>'; }).join('')+'</div>'; };
@@ -7679,6 +7679,10 @@ function renderJudgmentRecord(list){
   function renderPanel(key){
     var body=wrap.querySelector('[data-jr-body="'+key+'"]'); if(!body) return;
     if(key==="people"){ body.innerHTML='<h3 class="jr-breakdown-title">'+esc(C.sourceBreakdown)+'<small>'+esc(C.peopleSub)+'</small></h3><div class="jr-card">'+personRows+'</div><h3 class="jr-breakdown-title">'+esc(C.topicBreakdown)+'<small>'+esc(C.peopleSub)+'</small></h3><div class="jr-card">'+topicRows+'</div><h3 class="jr-breakdown-title">'+esc(C.trend)+'<small>'+esc(C.trendSub)+'</small></h3>'+trendMarkup(); return; }
+    /* v96: 다중 필진 리더보드는 renderScoreboard의 all-author 분기와 같은
+       코드(renderScoreboardBoard)를 공유한다 - acc 정렬·medal 게이트를 두 곳에
+       따로 유지하지 않기 위해서다(2026-08-13, june 지시: A안). */
+    if(key==="board"){ body.innerHTML=""; if(typeof renderScoreboardBoard==="function") renderScoreboardBoard(body, S, null, null, true); return; }
     var items=key==="tracking"?quickPool(quickFilter):panelItems[key];
     body.innerHTML=(key==="tracking"?quickMarkup():'')+filterMarkup(key)+cards(items,key==="done"?C.emptyDone:(hasToday?C.emptyToday:C.emptyUpcoming),key);
     body.querySelectorAll('[data-jr-quick]').forEach(function(btn){ btn.addEventListener('click',function(){ quickFilter=btn.getAttribute('data-jr-quick')||'all'; pageCounts.tracking=pageSize; renderPanel('tracking'); }); });
@@ -7693,7 +7697,7 @@ function renderJudgmentRecord(list){
 }
 async function renderScoreboard(list, S){
   const _rvOnly=(typeof RECORD_SRC!=="undefined"&&RECORD_SRC)?RECORD_SRC:null;
-  if(!_rvOnly){ renderJudgmentRecord(list); return; }
+  if(!_rvOnly){ renderJudgmentRecord(list, S); return; }
   const calls = ITEMS.filter(i => { const s = itemStance(i); return (s==="bull"||s==="bear")&&(!_rvOnly||i.source===_rvOnly); })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
   const head = document.createElement("div");
@@ -7704,14 +7708,25 @@ async function renderScoreboard(list, S){
     + '<p class="series-head-desc">' + (_rvOnly?S.recSub:S.sbSub) + "</p>";
   if(_rvOnly){ head.innerHTML += '<button class="rec-share" onclick="recShare()">\uD83D\uDD17 '+S.recShare+'</button>'; }
   list.appendChild(head);
+  await renderScoreboardBoard(list, S, _rvOnly, calls);
+}
+/* v96: shared body for the multi-author leaderboard. Extracted out of
+   renderScoreboard() so the same acc-ranked table (medal gate, accHtml,
+   grading queue, all-calls list) backs both the single-author scoreboard
+   (renderScoreboard, rvOnly truthy) and the "리더보드" tab inside the
+   judgment-record hub (renderJudgmentRecord, rvOnly null) — one sort/medal
+   implementation, not two copies that can drift (2026-08-13, june 지시: A안). */
+async function renderScoreboardBoard(container, S, rvOnly, callsIn, hideTitle){
+  const calls = callsIn || ITEMS.filter(i => { const s = itemStance(i); return (s==="bull"||s==="bear")&&(!rvOnly||i.source===rvOnly); })
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
   if (!calls.length){
     const em = document.createElement("div");
     em.className = "empty"; em.textContent = S.sbEmpty;
-    list.appendChild(em); return;
+    container.appendChild(em); return;
   }
   const loading = document.createElement("div");
   loading.className = "ehq-loading"; loading.textContent = "···";
-  list.appendChild(loading);
+  container.appendChild(loading);
 
   /* ENTITIES lands post-paint (loadAuxData, after core.json + a rAF tick).
      A deep link can reach this view before that fires, and sinceItem()
@@ -7735,7 +7750,7 @@ async function renderScoreboard(list, S){
     .forEach(o => { sinceMap[o.id] = o.res; });
   if (SB_VIEW !== true) { loading.remove(); return; } /* user left the view */
 
-  if(!_rvOnly){ try{
+  if(!rvOnly){ try{
     const _now=Date.now();
     const _recent=calls.filter(function(i){ const r=sinceMap[i.id]; return r && (_now-new Date(i.date).getTime())<30*86400000; });
     if(_recent.length){
@@ -7750,7 +7765,7 @@ async function renderScoreboard(list, S){
       const bw=document.createElement("div"); bw.className="bw-strip";
       bw.appendChild(_cell(S.sbBestW,_best));
       if(_worst&&_worst!==_best) bw.appendChild(_cell(S.sbWorstW,_worst));
-      list.appendChild(bw);
+      container.appendChild(bw);
     }
   }catch(e){} }
   const bySrc = {};
@@ -7785,10 +7800,12 @@ async function renderScoreboard(list, S){
     const col = pct >= 60 ? "#0E9F5E" : pct >= 40 ? "var(--muted)" : "#E04438";
     return '<span class="sb-acc-v" style="color:' + col + '">' + pct + '%</span><span class="sb-acc-n">' + r.match + "/" + r.scored + "</span>";
   };
-  const lh0 = document.createElement("h2");
-  lh0.className = "section-title sb-list-title"; lh0.style.marginTop = "18px";
-  lh0.textContent = S.sbLeader;
-  list.appendChild(lh0);
+  if(!hideTitle){
+    const lh0 = document.createElement("h2");
+    lh0.className = "section-title sb-list-title"; lh0.style.marginTop = "18px";
+    lh0.textContent = S.sbLeader;
+    container.appendChild(lh0);
+  }
   const tbl = document.createElement("div");
   tbl.className = "sb-table";
   tbl.innerHTML =
@@ -7809,19 +7826,19 @@ async function renderScoreboard(list, S){
         + '<span class="sb-a">' + accHtml(r) + "</span>"
         + '<span class="sb-r">' + (r.hit ? '<i class="ws-bull">✓' + r.hit + "</i>" : "") + (r.miss ? '<i class="ws-bear">✕' + r.miss + "</i>" : "") + (r.pending ? "<i>⏳" + r.pending + "</i>" : "") + ((r.hit || r.miss || r.pending) ? "" : "–") + "</span>"
       + "</div>").join("");
-  list.appendChild(tbl);
+  container.appendChild(tbl);
   try{ const _sbRows=tbl.querySelectorAll(".sb-row"); for(let _ri=1;_ri<_sbRows.length;_ri++){ (function(el,r){ if(!r) return; el.style.cursor="pointer"; el.addEventListener("click",function(ev){ if(ev.target&&ev.target.closest&&ev.target.closest("button")) return; openRecord(r.src); }); })(_sbRows[_ri], rows[_ri-1]); } }catch(e){}
 
   /* v80: grading queue — pending predictions ordered by due date
      (v83.3: moved BELOW the author accuracy leaderboard — june 지시) */
   try {
-    const pend = ITEMS.filter(i => i.outcome && i.outcome.status === "pending" && (!_rvOnly || i.source === _rvOnly));
+    const pend = ITEMS.filter(i => i.outcome && i.outcome.status === "pending" && (!rvOnly || i.source === rvOnly));
     if (pend.length){
       pend.sort((a,b) => ((a.outcome.due||"9999") < (b.outcome.due||"9999") ? -1 : 1));
       const qh = document.createElement("h2");
       qh.className = "section-title sb-list-title"; qh.style.marginTop = "18px";
       qh.textContent = S.gqTitle + " · " + pend.length;
-      list.appendChild(qh);
+      container.appendChild(qh);
       const _t0 = new Date(); _t0.setHours(0,0,0,0);
       const qbox = document.createElement("div"); qbox.className = "gq-box";
       qbox.innerHTML = pend.map(function(i){
@@ -7841,14 +7858,14 @@ async function renderScoreboard(list, S){
           + '<span class="gq-src">'+esc(i.source)+(due?" \u00b7 "+due:"")+'</span></span>'
           + '</button>';
       }).join("");
-      list.appendChild(qbox);
+      container.appendChild(qbox);
     }
   } catch(e){}
 
   const lh = document.createElement("h2");
   lh.className = "section-title sb-list-title";
   lh.textContent = S.sbAllCalls;
-  list.appendChild(lh);
+  container.appendChild(lh);
   const ul = document.createElement("div");
   ul.className = "sb-list";
   ul.innerHTML = calls.map(i => {
@@ -7866,7 +7883,7 @@ async function renderScoreboard(list, S){
       + since + oc
     + "</button>";
   }).join("");
-  list.appendChild(ul);
+  container.appendChild(ul);
 }
 function stanceFilterTap(k){
   STANCE_FILTER = (STANCE_FILTER === k) ? null : k;
