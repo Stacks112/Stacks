@@ -1,8 +1,8 @@
 name: Market bar sync
 
 on:
-  schedule:
-    - cron: "0 5 * * 1-5"
+  # schedule 은 일시 제거됨 (2026-08-13): apis.data.go.kr 가 GitHub Actions IP 의
+  # TCP 연결을 drop 한다(dns 정상, conn=0, 120s 무응답). 데이터 경로 확정 전까지 수동 실행만.
   workflow_dispatch:
 
 permissions:
@@ -21,20 +21,39 @@ jobs:
           python-version: "3.11"
 
       - name: Probe data.go.kr reachability
+        id: probe
         continue-on-error: true
         run: |
-          echo "--- DNS ---"
-          getent hosts apis.data.go.kr || echo "dns failed"
-          echo "--- TCP/TLS + HTTP (no auth, 120s cap) ---"
-          curl -sS -o /dev/null -w "code=%{http_code} dns=%{time_namelookup}s conn=%{time_connect}s tls=%{time_appconnect}s total=%{time_total}s\n" \
-            --max-time 120 "https://apis.data.go.kr/" || echo "curl rc=$?"
+          echo "=== resolved addresses ==="
+          echo "-- apis v4 --"; getent ahostsv4 apis.data.go.kr | head -3 || echo none
+          echo "-- apis v6 --"; getent ahostsv6 apis.data.go.kr | head -3 || echo none
+          echo "-- www  v4 --"; getent ahostsv4 www.data.go.kr  | head -3 || echo none
+
+          probe() {
+            printf '%-28s ' "$1"
+            curl -sS -o /dev/null $2 -w "code=%{http_code} conn=%{time_connect}s total=%{time_total}s\n" \
+              --max-time 25 "$3" 2>&1 | tail -1 || echo "rc=$?"
+          }
+          echo "=== probes ==="
+          probe "apis IPv4"  "-4" "https://apis.data.go.kr/"
+          probe "apis IPv6"  "-6" "https://apis.data.go.kr/"
+          probe "www  IPv4"  "-4" "https://www.data.go.kr/"
+          probe "control(example.com)" "-4" "https://example.com/"
+
+          if curl -sS -4 -o /dev/null --max-time 25 "https://apis.data.go.kr/" 2>/dev/null; then
+            echo "KR_OK=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "KR_OK=0" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Fetch market data
+        if: steps.probe.outputs.KR_OK == '1'
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
         run: python scripts/fetch_market.py
 
       - name: Commit and push data/market.json
+        if: steps.probe.outputs.KR_OK == '1'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
