@@ -3137,26 +3137,42 @@ html[data-theme="dark"] .mkt-chg.mkt-dn{color:#FDA29B;}
   .mkt-bar.mkt-run .mkt-track{animation:none;transform:none;}
   .mkt-bar.mkt-run .mkt-viewport{overflow-x:auto;}
 }
-/* 2026-08-14 june 지시: 데스크톱 v83 셸 — 시장 바가 좌측 내비(#v83nav) 안으로
-   옮겨졌을 때만 적용되는 세로 스택 레이아웃. 모바일(v82, <=1023px)·클래식 셸은
-   #mktBar가 그대로 <main class="wrap"> 최상단에 남으므로 아래 규칙은 절대
-   걸리지 않는다(전부 html.v83 #v83nav 스코프). 내비 폭이 212~240px라 가로로
-   3항목이 안 들어가 세로로 쌓고, 이름/값·등락을 좌우로 벌린다. #v83nav가
-   overflow-y:auto라 높이를 아껴야 해서 min-height/margin/padding을 줄인다. */
-html.v83 #v83nav .mkt-bar{
-  flex-direction:column;align-items:stretch;gap:4px;
-  min-height:0;margin:4px 4px 10px;padding:8px 10px 6px;
-  border-bottom:0;border-radius:12px;background:var(--bg-soft);
-  overflow:visible;
+/* 2026-08-14 june 지시(2차 수정): 좌측 내비 이동은 되돌리고, 대신 데스크톱 v83
+   "지금 쏠린 곳" 페이지(TAB==="skew") 맨 위에 카드형으로 놓는다. 모바일(v82,
+   <=1023px)·클래식 셸은 #mktBar가 그대로 <main class="wrap"> 최상단에 남으므로
+   아래 규칙은 절대 걸리지 않는다(html.v83 스코프 + renderV83SkewPage()가 붙이는
+   .mkt-bar-skew 클래스 둘 다 있어야 매치). 네이버증권류 마켓 요약 위젯 참고 —
+   항목마다 카드 하나, 이름(작게·muted) → 큰 숫자 → 등락 세로 배치, 폭이 좁아지면
+   auto-fit 그리드로 자동 줄바꿈. */
+html.v83 .mkt-bar.mkt-bar-skew{
+  grid-column:auto;display:block;
+  min-height:0;margin:0 0 20px;padding:16px 14px 0;
+  border-bottom:0;background:transparent;overflow:visible;
 }
-html.v83 #v83nav .mkt-date{font-size:9.5px;}
-html.v83 #v83nav .mkt-viewport{overflow:visible;}
-html.v83 #v83nav .mkt-track{flex-direction:column;align-items:stretch;gap:3px;width:auto;}
-html.v83 #v83nav .mkt-item{width:100%;font-size:11px;}
-html.v83 #v83nav .mkt-item .mkt-k{margin-right:auto;}
-/* mktPaint()가 nav 안에서는 애초에 mkt-run을 안 붙이지만(위 JS 수정),
-   혹시 모를 경합(예: 리사이즈 중 재도장)까지 대비한 CSS 안전망. */
-html.v83 #v83nav .mkt-bar.mkt-run .mkt-track{animation:none !important;transform:none !important;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-date{
+  display:block;margin:0 0 10px;font-size:11px;
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-viewport{overflow:visible;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-track{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;width:auto;
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-item{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;
+  padding:14px 16px;border:1px solid var(--line);border-radius:12px;
+  background:var(--card);white-space:normal;
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-k{
+  font-size:11px;font-weight:600;color:var(--muted);
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-v{
+  font-size:20px;font-weight:700;color:var(--text);
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-chg{font-size:12.5px;}
+/* mkt-run 슬라이드 애니메이션은 카드 그리드에서 의미가 없다 — mktPaint()가
+   .mkt-bar-skew일 때는 넘침 감지 자체를 건너뛰지만(아래 JS 수정), 혹시 모를
+   경합(예: 리사이즈 중 재도장)까지 대비한 CSS 안전망. */
+html.v83 .mkt-bar.mkt-bar-skew.mkt-run .mkt-track{animation:none !important;transform:none !important;}
 
 /* ---------- watchlist (followed companies) ---------- */
 #watchSec{position:relative;}
@@ -9117,15 +9133,6 @@ function mountV83(){
   });
   var hb0 = nav.querySelector('.v83-link[data-k="home"]'); if (hb0) hb0.classList.add("on");
   var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
-  /* 2026-08-14 june 지시: 데스크톱 v83 셸에서는 시장 바(#mktBar)를 상단 대신
-     좌측 내비 하단, 언어선택(#langMenu, v83MoveLang()이 옮김) 아래·"내 정보"
-     버튼(v83me) 위의 빈 공간(.v83-spacer 뒤)에 둔다. mountV83()과
-     renderMktBar()의 fetch 완료 순서는 보장되지 않지만, 여기서는 데이터 유무와
-     무관하게 기존 엘리먼트를 그대로 옮기기만 하므로(내용은 나중에 mktPaint()가
-     채운다) 어느 쪽이 먼저 와도 최종 위치는 같다. 원위치 복구는 위 ids 배열에
-     "mktBar"를 포함시켜 homes 메커니즘이 자동으로 처리한다(unmountV83). */
-  var mktBarEl = document.getElementById("mktBar");
-  if (mktBarEl && meB) nav.insertBefore(mktBarEl, meB);
 
   if (feed){
     wrap.insertBefore(nav, feed);
@@ -9951,6 +9958,21 @@ function v83SkewRows(days){
   return { themes: themes, ents: ents.slice(0, 6) };
 }
 function renderV83SkewPage(list, S){
+  /* 2026-08-14 june 지시(2차 수정): 시장 바(#mktBar)를 좌측 내비 대신 이 페이지
+     맨 위로 옮긴다 — "지금 쏠린 곳"을 열 때만 보인다. renderFeed()가 이 함수를
+     부르기 직전에 list.innerHTML=""로 이전 내용을 통째로 비우는데, 그 시점에
+     #mktBar가 (지난 렌더에서) 그 안에 있었다면 DOM에서 떨어져 나간 뒤라
+     document.getElementById로는 못 찾을 수 있다 — 스크립트 로드 시 한 번
+     캡처해둔 MKT_BAR_EL(위 mktPaint 근처 선언)을 쓰면 붙어있든 떨어져있든
+     항상 같은 노드를 다시 찾아 옮길 수 있다. fetch 완료와 이 렌더가 어느 순서로
+     와도 되게: 여기서는 위치(+.mkt-bar-skew 클래스)만 정하고, 보이기/내용은
+     항상 mktPaint() 한 곳에서만 결정한다(판단 중복 금지, 아래서 바로 한 번
+     불러 즉시 최신 상태로 맞춘다). */
+  if (MKT_BAR_EL){
+    MKT_BAR_EL.classList.add("mkt-bar-skew");
+    list.appendChild(MKT_BAR_EL);
+    if (typeof mktPaint === "function") mktPaint();
+  }
   var T = v83SkewPageStr();
   T.asOf = T.asOf || (LANG === "en" ? "As of {date}" : LANG === "ja" ? "基準日 {date}" : "기준일 {date}");
   T.smallSample = T.smallSample || (LANG === "en" ? "small sample" : LANG === "ja" ? "少数サンプル" : "표본 적음");
@@ -14532,6 +14554,14 @@ function ensureElong(){
    reader's language; before the first fetch resolves that is a harmless
    no-op since MKT_DATA is still null. */
 var MKT_DATA = null, MKT_FETCHED = false, MKT_IO = null, MKT_VIS_BOUND = false;
+/* 2026-08-14 june 지시(2차 수정): #mktBar는 이제 "지금 쏠린 곳" 페이지에 들어갈
+   때만 #feedList 안으로 옮겨진다 - renderFeed()가 그 직전에 list.innerHTML=""로
+   목록을 통째로 비우므로, 그 사이엔 #mktBar가 문서에서 잠깐(또는 다른 탭에 머무는
+   동안 계속) 떨어져 나가 있을 수 있다. document.getElementById는 연결이 끊긴
+   노드를 못 찾으므로, 파싱 시점(정적 마크업이라 항상 연결돼 있음)에 한 번만
+   잡아둔 참조를 계속 재사용한다 - mountV83()/renderV83SkewPage()가 몇 번을
+   옮겨도 노드 자체는 하나뿐이라 중복 생성도, 유실도 없다. */
+var MKT_BAR_EL = document.getElementById("mktBar");
 function mktCloseLabel(basDt, lang){
   var s = String(basDt || "");
   if (s.length !== 8) return "";
@@ -14594,10 +14624,18 @@ function mktObserve(bar){
 }
 function mktPaint(){
   try {
-    var bar = document.getElementById("mktBar");
-    var track = document.getElementById("mktTrack");
-    var dateEl = document.getElementById("mktDate");
-    if (!bar || !track) return;
+    var bar = MKT_BAR_EL;
+    if (!bar) return;
+    var track = bar.querySelector("#mktTrack");
+    var dateEl = bar.querySelector("#mktDate");
+    if (!track) return;
+    /* 2026-08-14 june 지시(2차 수정): 데스크톱 v83 셸에서는 "지금 쏠린 곳"
+       페이지(TAB==="skew")에서만 보인다 - 데이터가 있어도 그 화면이 아니면
+       숨긴다. v83이 아닌 셸(모바일 v82·클래식)은 V83.mounted가 없어 이 분기를
+       타지 않으므로 예전처럼 데이터만 있으면 최상단 바가 항상 보인다. */
+    var v83On = typeof V83 !== "undefined" && V83 && V83.mounted;
+    var onSkewPage = v83On && typeof v83DirTab === "function" && v83DirTab() === "skew";
+    if (v83On && !onSkewPage){ bar.hidden = true; return; }
     var items = MKT_DATA && Array.isArray(MKT_DATA.items) ? MKT_DATA.items : null;
     if (!items || !items.length){ bar.hidden = true; return; }
     var S = STRINGS[LANG] || STRINGS.en;
@@ -14610,12 +14648,12 @@ function mktPaint(){
     bar.hidden = false;
     requestAnimationFrame(function(){
       try {
-        var vp = document.getElementById("mktViewport");
+        var vp = bar.querySelector("#mktViewport");
         if (!vp || !track.isConnected) return;
-        /* 2026-08-14 june 지시: 좌측 내비 안(세로 스택)에서는 mkt-run 슬라이드
-           애니메이션이 필요 없다 — 넘침 감지 자체를 건너뛴다. */
-        var inNav = bar.parentNode && bar.parentNode.id === "v83nav";
-        if (!inNav && track.scrollWidth > vp.clientWidth + 1){
+        /* 2026-08-14 june 지시(2차 수정): 카드형 배치(.mkt-bar-skew)는 그리드라
+           가로 스크롤 트랙 개념이 없다 - 넘침 감지 자체를 건너뛴다. */
+        var isCard = bar.classList.contains("mkt-bar-skew");
+        if (!isCard && track.scrollWidth > vp.clientWidth + 1){
           track.innerHTML = body + body;
           var w = track.scrollWidth / 2;
           track.style.setProperty("--mkt-dur", Math.max(10, Math.round(w / 55)) + "s");
@@ -14628,7 +14666,7 @@ function mktPaint(){
 }
 function renderMktBar(){
   try {
-    if (!document.getElementById("mktBar")) return;
+    if (!MKT_BAR_EL) return;
     if (MKT_FETCHED){ mktPaint(); return; }
     MKT_FETCHED = true;
     var run = function(){
