@@ -4225,6 +4225,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   </div>
 </footer>
 
+<script src="assets/feed-ranker.js?v=20260814a"></script>
 <script>
 function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
@@ -10730,6 +10731,32 @@ function mineReasons(item){
 function isMine(item){ return mineReasons(item).length > 0; }
 function mineCount(){ return ITEMS.filter(isMine).length; }
 
+/* Local-only, X-inspired ranking. No account or server-side behavior profile:
+   every input below already lives in this browser. Failure returns the old
+   followed-entity feed, keeping For you usable even if the asset is blocked. */
+function personalizedMineItems(){
+  const fallback = ITEMS.filter(isMine);
+  if (!fallback.length) return fallback; /* preserve cold-start guidance */
+  try {
+    const ranker = window.StacksFeedRanker;
+    if (!ranker || !ranker.enabled()) return fallback;
+    return ranker.rank(ITEMS, {
+      likes: LIKES,
+      bookmarks: BM,
+      read: READ,
+      viewed: VIEWED,
+      views: VIEW_COUNTS,
+      likeCounts: LIKE_COUNTS,
+      commentCounts: COMMENT_COUNTS,
+      getEntities: item => [...itemEntities(item)],
+      getDirectReasons: mineReasons,
+      explorationEvery: 10
+    });
+  } catch (e) {
+    return fallback;
+  }
+}
+
 /* ---- follow suggestions: companies that co-occur with your follows ---- */
 function followSuggestions(limit){
   limit = limit || 4;
@@ -13571,7 +13598,7 @@ function renderFeed(animate){
   const inTab = ENTITY_VIEW
     ? ITEMS.slice()
     : (TAB === "mine"
-        ? ITEMS.filter(isMine)
+        ? personalizedMineItems()
         : ITEMS.filter(i => TAB === "all" || i.category === TAB));
   FEED_MINE = TAB === "mine";
   /* v83.5: feed switcher (최신/팔로잉) visibility + active state */
@@ -13693,7 +13720,7 @@ function renderFeed(animate){
     head.innerHTML =
       '<div class="mh-line">' + S.myFeedBasis + "</div>"
       + '<div class="mh-chips">' + coChips.join("") + seChips.join("") + "</div>"
-      + '<div class="mh-foot"><span class="mh-count">' + S.briefLine.replace("{c}", co).replace("{n}", inTab.filter(i => i.date >= wk).length) + "</span>"
+      + '<div class="mh-foot"><span class="mh-count">' + S.briefLine.replace("{c}", co).replace("{n}", ITEMS.filter(i => isMine(i) && i.date >= wk).length) + "</span>"
       + '<button class="mh-edit" onclick="openMe()">⚙ ' + S.myFeedManage + "</button></div>";
     list.appendChild(head);
     if (!inTab.length){
@@ -13838,10 +13865,14 @@ function cardEl(item, S, idx, detail){
     el.id = "sig-" + item.id;
     el.style.animationDelay = (idx * 0.04) + "s";
     const mineWhy = FEED_MINE ? mineReasons(item) : [];
+    const rankedWhy = FEED_MINE && window.StacksFeedRanker
+      ? window.StacksFeedRanker.reason(item.id, LANG)
+      : "";
     el.innerHTML = `
       ${mineWhy.length ? `<div class="mine-why">${mineWhy.map(r => r.kind === "series"
         ? `<span class="mw mw-s">${S.myFeedReasonS} · ${SERIES[r.key] ? esc(SERIES[r.key].name[LANG]) : esc(r.key)}</span>`
-        : `<span class="mw" onclick="event.stopPropagation(); chipTap(this, '${r.key.replace(/'/g,"\\'")}')">★ ${esc(r.key)}</span>`).join("")}</div>` : ""}
+        : `<span class="mw" onclick="event.stopPropagation(); chipTap(this, '${r.key.replace(/'/g,"\\'")}')">★ ${esc(r.key)}</span>`).join("")}</div>`
+        : (rankedWhy ? `<div class="mine-why"><span class="mw mw-s">${esc(rankedWhy)}</span></div>` : "")}
       <div class="card-top">
         ${avatarHtml(item)}
         <div class="src-block">
