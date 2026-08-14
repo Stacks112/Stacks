@@ -1,21 +1,14 @@
 {
  "source": "lynalden",
- "fetched_at": "2026-08-14T13:55:53.081874+00:00",
- "checked_at": "2026-08-14T15:23:31.235520+00:00",
- "ok": false,
+ "fetched_at": "2026-08-14T17:30:43.823474+00:00",
+ "checked_at": "2026-08-14T17:30:43.823474+00:00",
+ "ok": true,
  "url_used": "https://www.lynalden.com/feed/",
  "keep_days": 30,
- "raw_count": 0,
+ "raw_count": 10,
  "foreign_count": 0,
  "newest_published": "2026-07-15T14:16:27+00:00",
- "kept_count": 1,
- "error": "ConnectTimeout: HTTPSConnectionPool(host='www.lynalden.com', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.lynalden.com', port=443) at 0x7f50d8a52330>, 'Connection to www.lynalden.com timed out. (connect timeout=25)'))",
- "items": [
-  {
-   "title": "An Alternative to Private Equity: Introducing ORANGE JUICE",
-   "link": "https://www.lynalden.com/orange-juice/",
-   "published": "2026-07-15T14:16:27+00:00",
-   "content": "July 15, 2026 The rest of the team at Ego Death Capital and I have partnered with Adrian Steckel and Ruben Zweiban to launch ORANGE JUICE. It’s a company that acquires, improves, and permanently holds cash-flowing businesses, backed by a bitcoin treasury. More specifically, ORANGE JUICE seeks to acquire profitable small and mid-sized businesses at […]\n\n The post An Alternative to Private Equity: Introducing ORANGE JUICE appeared first on Lyn Alden ."
-  }
- ]
+ "kept_count": 0,
+ "error": null,
+ "items": []
 }
