@@ -6653,6 +6653,7 @@ function invViewActive(){
 var THEME_FOLLOW = null; /* lazy Set from localStorage */
 var THEME_PAGE = null;
 var THEME_SORT = "featured";
+var INV_RENDER_TOKEN = 0;
 function themeFollowSet(){ if(!THEME_FOLLOW){ try{ THEME_FOLLOW=new Set(store.get("stk_themes",[])); }catch(e){ THEME_FOLLOW=new Set(); } } return THEME_FOLLOW; }
 function setThemeSort(mode){
   if(mode!=="count"&&mode!=="recent") mode="featured";
@@ -7931,10 +7932,11 @@ function renderInvestorsIndex(list, S, investors){
    portfolios.json resolves, bailing out if the reader has since left the view. */
 async function renderInvestors(list, S){
   var view = (typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null;
+  var renderToken = ++INV_RENDER_TOKEN;
   var loading = document.createElement("div"); loading.className = "ehq-loading"; loading.textContent = "···";
   list.appendChild(loading);
   var data = await loadPortfolios();
-  if (((typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null) !== view) { loading.remove(); return; } /* user left the view */
+  if (renderToken !== INV_RENDER_TOKEN || ((typeof INVESTOR_VIEW !== "undefined") ? INVESTOR_VIEW : null) !== view) { loading.remove(); return; } /* stale render or user left the view */
   loading.remove();
   var investors = (data && data.investors) || [];
   if (view === "index"){ renderInvestorsIndex(list, S, investors); return; }
