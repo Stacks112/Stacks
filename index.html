@@ -3113,12 +3113,16 @@ html[data-lang="ko"] .ev-label{font-family:var(--ui-font);}
   overflow:hidden;
 }
 .mkt-date{
-  flex:0 0 auto;font-family:var(--mono-font);font-size:10.5px;font-weight:700;
+  /* 2026-08-14 june 지시: 좌측 내비 메뉴(.v83-link)와 같은 글꼴로 통일. 내비
+     링크는 font-family:inherit 로 body의 var(--ui-font)를 그대로 쓰고, 이 span도
+     상속 경로에 다른 override가 없어 선언을 지우면 같은 결과가 된다. 전 셸(모바일
+     v82·클래식·v83) 공통 적용 — june이 셸을 구분해 말하지 않았다. */
+  flex:0 0 auto;font-size:10.5px;font-weight:700;
   letter-spacing:.04em;color:var(--muted);white-space:nowrap;
 }
 .mkt-viewport{flex:1 1 auto;min-width:0;overflow:hidden;}
 .mkt-track{display:flex;align-items:center;gap:22px;width:max-content;will-change:transform;}
-.mkt-item{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap;font-family:var(--mono-font);font-size:12.5px;}
+.mkt-item{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap;font-size:12.5px;}
 .mkt-k{font-weight:700;color:var(--text);}
 .mkt-v{font-weight:600;color:var(--text);}
 .mkt-chg{font-weight:700;}
@@ -3133,6 +3137,26 @@ html[data-theme="dark"] .mkt-chg.mkt-dn{color:#FDA29B;}
   .mkt-bar.mkt-run .mkt-track{animation:none;transform:none;}
   .mkt-bar.mkt-run .mkt-viewport{overflow-x:auto;}
 }
+/* 2026-08-14 june 지시: 데스크톱 v83 셸 — 시장 바가 좌측 내비(#v83nav) 안으로
+   옮겨졌을 때만 적용되는 세로 스택 레이아웃. 모바일(v82, <=1023px)·클래식 셸은
+   #mktBar가 그대로 <main class="wrap"> 최상단에 남으므로 아래 규칙은 절대
+   걸리지 않는다(전부 html.v83 #v83nav 스코프). 내비 폭이 212~240px라 가로로
+   3항목이 안 들어가 세로로 쌓고, 이름/값·등락을 좌우로 벌린다. #v83nav가
+   overflow-y:auto라 높이를 아껴야 해서 min-height/margin/padding을 줄인다. */
+html.v83 #v83nav .mkt-bar{
+  flex-direction:column;align-items:stretch;gap:4px;
+  min-height:0;margin:4px 4px 10px;padding:8px 10px 6px;
+  border-bottom:0;border-radius:12px;background:var(--bg-soft);
+  overflow:visible;
+}
+html.v83 #v83nav .mkt-date{font-size:9.5px;}
+html.v83 #v83nav .mkt-viewport{overflow:visible;}
+html.v83 #v83nav .mkt-track{flex-direction:column;align-items:stretch;gap:3px;width:auto;}
+html.v83 #v83nav .mkt-item{width:100%;font-size:11px;}
+html.v83 #v83nav .mkt-item .mkt-k{margin-right:auto;}
+/* mktPaint()가 nav 안에서는 애초에 mkt-run을 안 붙이지만(위 JS 수정),
+   혹시 모를 경합(예: 리사이즈 중 재도장)까지 대비한 CSS 안전망. */
+html.v83 #v83nav .mkt-bar.mkt-run .mkt-track{animation:none !important;transform:none !important;}
 
 /* ---------- watchlist (followed companies) ---------- */
 #watchSec{position:relative;}
@@ -9044,7 +9068,7 @@ function v83JoinDebate(){
 function mountV83(){
   if (V83 && V83.mounted) return;
   var wrap = document.querySelector(".wrap"); if (!wrap) return;
-  var ids = ["tabs", "feed", "skewSec", "eventBar", "watchSec", "nlSec"];
+  var ids = ["tabs", "feed", "skewSec", "eventBar", "watchSec", "nlSec", "mktBar"];
   var nodes = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var hotRail = document.getElementById("hotRail");
   var hotSec = hotRail ? hotRail.closest("section") : null;
@@ -9093,6 +9117,15 @@ function mountV83(){
   });
   var hb0 = nav.querySelector('.v83-link[data-k="home"]'); if (hb0) hb0.classList.add("on");
   var meB = nav.querySelector("#v83me"); if (meB) meB.addEventListener("click", function(){ if (typeof openMe === "function") openMe(); });
+  /* 2026-08-14 june 지시: 데스크톱 v83 셸에서는 시장 바(#mktBar)를 상단 대신
+     좌측 내비 하단, 언어선택(#langMenu, v83MoveLang()이 옮김) 아래·"내 정보"
+     버튼(v83me) 위의 빈 공간(.v83-spacer 뒤)에 둔다. mountV83()과
+     renderMktBar()의 fetch 완료 순서는 보장되지 않지만, 여기서는 데이터 유무와
+     무관하게 기존 엘리먼트를 그대로 옮기기만 하므로(내용은 나중에 mktPaint()가
+     채운다) 어느 쪽이 먼저 와도 최종 위치는 같다. 원위치 복구는 위 ids 배열에
+     "mktBar"를 포함시켜 homes 메커니즘이 자동으로 처리한다(unmountV83). */
+  var mktBarEl = document.getElementById("mktBar");
+  if (mktBarEl && meB) nav.insertBefore(mktBarEl, meB);
 
   if (feed){
     wrap.insertBefore(nav, feed);
@@ -14579,7 +14612,10 @@ function mktPaint(){
       try {
         var vp = document.getElementById("mktViewport");
         if (!vp || !track.isConnected) return;
-        if (track.scrollWidth > vp.clientWidth + 1){
+        /* 2026-08-14 june 지시: 좌측 내비 안(세로 스택)에서는 mkt-run 슬라이드
+           애니메이션이 필요 없다 — 넘침 감지 자체를 건너뛴다. */
+        var inNav = bar.parentNode && bar.parentNode.id === "v83nav";
+        if (!inNav && track.scrollWidth > vp.clientWidth + 1){
           track.innerHTML = body + body;
           var w = track.scrollWidth / 2;
           track.style.setProperty("--mkt-dur", Math.max(10, Math.round(w / 55)) + "s");
