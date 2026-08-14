@@ -117,6 +117,7 @@
     readlist:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>',
     follows:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9.5" r="2.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M14 15a5 5 0 0 1 7.5 4.3"/></svg>',
     shares:'<svg viewBox="0 0 24 24"><path d="M12 16V3m0 0L7.5 7.5M12 3l4.5 4.5"/><path d="M5 12v7h14v-7"/></svg>',
+    skew:'<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>',
     themes:'<svg viewBox="0 0 24 24"><path d="M4 5.5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>',
     record:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 8V3m4 5 3.5-3.5"/></svg>',
     cal:ICONS.cal,
@@ -252,7 +253,7 @@
       '</div></div>' +
       '<div class="v82dw-menu v82dw-primary">' +
         _dwItem("me", DRAWER_ICONS.me, t.dwProfile) + _dwItem("bm", DRAWER_ICONS.bm) + _dwItem("readlist", DRAWER_ICONS.readlist, recentReadLabel) + _dwItem("follows", DRAWER_ICONS.follows, t.dwFollowing) +
-        _dwItem("shares", DRAWER_ICONS.shares, t.dwShared) + _dwItem("themes", DRAWER_ICONS.themes) +
+        _dwItem("shares", DRAWER_ICONS.shares, t.dwShared) + _dwItem("skewnow", DRAWER_ICONS.skew, t.skewTitle) + _dwItem("themes", DRAWER_ICONS.themes) +
         _dwItem("record", DRAWER_ICONS.record) + _dwItem("cal", DRAWER_ICONS.cal) +
       '</div><div class="v82dw-divider"></div><div class="v82dw-menu v82dw-secondary">' +
         _dwItem("home", DRAWER_ICONS.home) + _dwItem("alerts", DRAWER_ICONS.alerts) +
@@ -278,6 +279,7 @@
     else if (act === "home"){ closeDrawer(true); navGo("home"); }
     else if (act === "browse"){ closeDrawer(true); navGo("find"); }
     else if (act === "skew"){ closeDrawer(true); navGo("explore"); }
+    else if (act === "skewnow"){ closeDrawer(true); try { if (typeof window.v82OpenSkew === "function") window.v82OpenSkew(); } catch (e) {} }
     /* openThemes/openScoreboard는 #feed로 smooth scroll을 걸어서, 서랍으로 들어오면
        상단 ←+제목 바를 지나쳐 내려간 채로 착지한다(nav가 v82hide로 접힘). 맨 위로 되돌린다. */
     else if (act === "themes"){ closeDrawer(true); if (typeof openThemes === "function") openThemes(); toTop(); try { setActive(); } catch(e){} }
