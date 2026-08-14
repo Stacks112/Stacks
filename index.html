@@ -5960,6 +5960,7 @@ function skewSourceBreakdown(items){
     return c;
   }).sort(function(a,b){ return (b.bull + b.bear) - (a.bull + a.bear) || a.label.localeCompare(b.label); });
 }
+var SKEW_OPEN_SOURCE = null;
 function skewSourceDetailHtml(items, cfg){
   var rows = skewSourceBreakdown(items), cls = cfg.cls || "skew-source-detail";
   if (!rows.length) return '<div class="' + cls + '" hidden><span>' + esc(cfg.empty) + '</span></div>';
@@ -5989,6 +5990,9 @@ function toggleSkewSources(el, ev){
   var open = !!detail.hidden;
   detail.hidden = !open;
   el.setAttribute("aria-expanded", open ? "true" : "false");
+  var key = root.getAttribute("data-skew-key");
+  if (open) SKEW_OPEN_SOURCE = key;
+  else if (SKEW_OPEN_SOURCE === key) SKEW_OPEN_SOURCE = null;
 }
 function skewInfo(items){
   var c = skewConsensus(items);
@@ -10394,7 +10398,8 @@ function renderV83SkewPage(list, S){
     var sourceCount = skewSourceBreakdown(r.items).length;
     var sourceToggle = '<button type="button" class="skew-source-toggle" aria-expanded="false"'
       + ' onclick="toggleSkewSources(this,event)">' + esc(T.sourceToggle.replace("{n}", sourceCount)) + '</button>';
-    return '<div class="skew-row-wrap"><div class="skew-row-line"><button class="sktr-row" onclick="' + oc + '">'
+    var skewRowKey = String(r.kind || "") + ":" + String(r.key || r.label || "");
+    return '<div class="skew-row-wrap" data-skew-key="' + esc(skewRowKey) + '"><div class="skew-row-line"><button class="sktr-row" onclick="' + oc + '">'
       + '<span class="sktr-name">' + (r.icon ? r.icon + " " : "") + esc(r.label) + '</span>'
       + '<span class="sktr-strip">' + strip + '</span>'
       + '<span class="sktr-meta"><i class="ws-bull">▲' + r.bull + '</i><i class="ws-bear">▼' + r.bear + '</i>'
@@ -10408,6 +10413,14 @@ function renderV83SkewPage(list, S){
   if (data.ents.length) html += '<div class="v83dir-group sktr-g">' + esc(T.ents) + '</div>' + data.ents.map(rowHtml).join("");
   wrapEl.innerHTML = html;
   list.appendChild(wrapEl);
+  if (SKEW_OPEN_SOURCE){
+    var openRoot = Array.from(wrapEl.querySelectorAll(".skew-row-wrap")).find(function(x){ return x.getAttribute("data-skew-key") === SKEW_OPEN_SOURCE; });
+    if (openRoot){
+      var openDetail = openRoot.querySelector(".skew-source-detail");
+      var openToggle = openRoot.querySelector(".skew-source-toggle");
+      if (openDetail && openToggle){ openDetail.hidden = false; openToggle.setAttribute("aria-expanded", "true"); }
+    } else SKEW_OPEN_SOURCE = null;
+  }
   if (typeof track === "function") track("skew/page");
 }
 
