@@ -273,6 +273,18 @@ test.describe("13F investor view state", () => {
     await expect(page.locator("#feedList .series-head-name")).toContainText("›");
   });
 
+  test("company holder name opens that investor portfolio", async ({ page }) => {
+    await page.goto("/?e=APPLE", { waitUntil: "domcontentloaded" });
+    const holder = page.locator(".eh-holder-name").first();
+    await expect(holder).toBeVisible({ timeout: 30_000 });
+    const slug = await holder.getAttribute("data-investor-slug");
+    expect(slug).toBeTruthy();
+
+    await holder.click();
+    await expect.poll(() => new URL(page.url()).hash).toBe(`#investor-${slug}`);
+    await expect(page.locator("#feedList .inv-table")).toBeVisible();
+  });
+
   test("hub ranking table shows a sort caret and updates aria-sort on click", async ({ page }) => {
     await openInvestors(page);
     const table = page.locator(".inv-hub-table");
