@@ -3166,7 +3166,7 @@ html.v83 .mkt-bar.mkt-bar-skew .mkt-date{
 }
 html.v83 .mkt-bar.mkt-bar-skew .mkt-viewport{overflow:visible;}
 html.v83 .mkt-bar.mkt-bar-skew .mkt-track{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
   gap:12px;width:auto;
 }
 html.v83 .mkt-bar.mkt-bar-skew .mkt-item{
@@ -14708,7 +14708,7 @@ function mktItemHTML(it, S, isCard){
   var chgN = Number(it.chg);
   var hasChg = isFinite(chgN);
   var sign = hasChg && chgN >= 0 ? "+" : "";
-  var chgTxt = hasChg ? (isBp ? (sign + Math.round(chgN) + "bp") : (sign + chgN.toFixed(2) + "%")) : "";
+  var chgTxt = hasChg ? (isBp ? (sign + chgN.toFixed(1) + "bp") : (sign + chgN.toFixed(2) + "%")) : "";
   var dir = hasChg ? (chgN > 0 ? " mkt-up" : (chgN < 0 ? " mkt-dn" : "")) : "";
   var title = it.nm ? (' title="' + esc(it.nm) + '"') : "";
   /* 2026-08-14: 큰 카드(코스피)+스파크라인+쏠림 배지/3분할. isCard(=.mkt-bar-skew일
