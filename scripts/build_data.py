@@ -55,6 +55,7 @@ OUT = os.path.join(ROOT, "data")
 LANGS = ("ko", "en", "ja")
 GIST_PREVIEW = 150      # characters kept in core; enough for the clamped card
 CHUNK = 24              # items per gist chunk
+CORE_FIRST = CHUNK      # cards needed for the first paint; the rest hydrates idle
 STATIC_HOME_START = "<!-- STATIC_HOME_FEED_START -->"
 STATIC_HOME_END = "<!-- STATIC_HOME_FEED_END -->"
 STATIC_HOME_COUNT = 10
@@ -857,9 +858,23 @@ def main():
     ents_lite = {k: {kk: vv for kk, vv in e.items() if kk != "longDesc"}
                  for k, e in entities.items()}
 
+    core_meta = {"gen": gen, "chunks": n_chunks, "chunk": CHUNK}
     sizes["core.json"] = write(os.path.join(OUT, "core.json"), {
-        "gen": gen, "chunks": n_chunks, "chunk": CHUNK,
+        **core_meta,
         "items": core,
+    })
+    # Keep core.json whole for older clients and offline fallback, but give the
+    # current shell a small first-paint payload. The rest is loaded after the
+    # initial feed is visible, so the 2.5 MB archive is no longer on the LCP
+    # critical path.
+    sizes["core.first.json"] = write(os.path.join(OUT, "core.first.json"), {
+        **core_meta,
+        "more": len(core) > CORE_FIRST,
+        "items": core[:CORE_FIRST],
+    })
+    sizes["core.rest.json"] = write(os.path.join(OUT, "core.rest.json"), {
+        **core_meta,
+        "items": core[CORE_FIRST:],
     })
     # These registries are not needed to paint the first feed cards. Keep them
     # out of the blocking payload; the app hydrates them after first paint.
