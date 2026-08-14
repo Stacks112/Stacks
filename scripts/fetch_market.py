@@ -48,6 +48,15 @@ def _time_budget_exceeded():
 INDEX_TARGETS = ["코스피", "코스닥"]
 INDEX_KEY_MAP = {"코스피": "kospi", "코스닥": "kosdaq"}
 
+# Sparkline config: last N business-day closes, oldest -> newest. Bonds are
+# deliberately excluded (337 rows/day x up to 20 days = 20 calls, too slow -
+# see fetch_bond_ktb10y / TIME_BUDGET_SECONDS). Indices support a
+# beginBasDt~endBasDt range query, so one call (or a couple of paged calls)
+# covers the whole window instead of one call per day.
+SPARK_MAX_POINTS = 20
+SPARK_CALENDAR_DAYS_BACK = 40  # calendar days, to comfortably cover 20 business days
+SPARK_PAGE_SIZE = 100
+
 KTB10Y_NAME_RE = re.compile(r"^국고\d")
 
 
@@ -236,6 +245,91 @@ def fetch_index_for_date(bas_dt, encoded_key):
     return results
 
 
+def fetch_index_spark(idx_nm, latest_bas_dt, today_clpr, encoded_key):
+    """Fetch up to SPARK_MAX_POINTS most-recent daily closes for idx_nm,
+    ending at latest_bas_dt, ordered oldest -> newest.
+
+    Uses a single beginBasDt~endBasDt range query (paginated only if needed)
+    instead of one call per day. idxNm stays an exact match (never
+    likeIdxNm), same as the rest of this script.
+
+    The already-confirmed same-day close (today_clpr, from the single-date
+    exact-match call in fetch_index_for_date) is always appended as the final
+    element, so spark[-1] == v is guaranteed regardless of what the range
+    endpoint itself reports for that date.
+
+    Returns None (caller must omit the 'spark' key entirely) if fewer than 2
+    points could be assembled, or if the time budget is already exhausted.
+    Any failure here is non-fatal to the rest of the item - a network error
+    mid-fetch just truncates the series to whatever was collected so far
+    (falling back to None if that leaves fewer than 2 points), it never
+    propagates and never affects the item's v/chg.
+    """
+    if _time_budget_exceeded():
+        err(f"WARN: time budget ({TIME_BUDGET_SECONDS}s) exceeded; skipping spark series for {idx_nm}")
+        return None
+
+    end_dt_obj = datetime.strptime(latest_bas_dt, "%Y%m%d").date()
+    begin_bas_dt = (end_dt_obj - timedelta(days=SPARK_CALENDAR_DAYS_BACK)).strftime("%Y%m%d")
+
+    by_date = {}
+    page_no = 1
+    total_count = None
+    raw_received = 0
+    while True:
+        if _time_budget_exceeded():
+            err(f"WARN: time budget ({TIME_BUDGET_SECONDS}s) exceeded while paging spark series for "
+                f"{idx_nm}; using {len(by_date)} point(s) collected so far")
+            break
+        params = {
+            "resultType": "json",
+            "pageNo": str(page_no),
+            "numOfRows": str(SPARK_PAGE_SIZE),
+            "beginBasDt": begin_bas_dt,
+            "endBasDt": latest_bas_dt,
+            "idxNm": idx_nm,
+        }
+        label = f"index-series/{idx_nm}/{begin_bas_dt}-{latest_bas_dt}/page{page_no}"
+        try:
+            body, items = call_api(INDEX_URL, params, encoded_key, label)
+        except Exception as exc:  # noqa: BLE001 - spark is best-effort, never fatal
+            err(f"WARN: spark fetch for {idx_nm} failed [{_exc_label(exc)}]: {exc}; "
+                f"using {len(by_date)} point(s) collected so far")
+            break
+        if body is None:
+            break
+
+        raw_received += len(items)
+        for it in items:
+            if it.get("idxNm") != idx_nm:
+                continue
+            bas_dt = it.get("basDt")
+            clpr = parse_float(it.get("clpr"))
+            # Skip latest_bas_dt here - the already-confirmed today_clpr is
+            # appended explicitly below so spark[-1] always equals v.
+            if bas_dt and clpr is not None and bas_dt != latest_bas_dt:
+                by_date[bas_dt] = clpr
+
+        if total_count is None:
+            try:
+                total_count = int(body.get("totalCount", 0))
+            except (TypeError, ValueError):
+                total_count = raw_received
+
+        if not items or raw_received >= total_count:
+            break
+        page_no += 1
+
+    sorted_dates = sorted(by_date.keys())
+    history = sorted_dates[-(SPARK_MAX_POINTS - 1):] if SPARK_MAX_POINTS > 1 else []
+    spark = [by_date[d] for d in history]
+    spark.append(today_clpr)
+
+    if len(spark) < 2:
+        return None
+    return spark
+
+
 def index_has_data(bas_dt, encoded_key):
     """Cheap probe: does 코스피 index data exist for this basDt?"""
     params = {
@@ -375,7 +469,7 @@ def main():
 
     items_out = []
 
-    # Step 3a: indices for latest_bas_dt
+    # Step 3a: indices for latest_bas_dt (+ sparkline of recent closes)
     if latest_bas_dt is not None:
         idx_results = fetch_index_for_date(latest_bas_dt, encoded_key)
         for idx_nm in INDEX_TARGETS:
@@ -388,12 +482,21 @@ def main():
             if clpr is None or flt_rt is None:
                 err(f"WARN: index {idx_nm} on {latest_bas_dt} missing clpr/fltRt; skipping")
                 continue
-            items_out.append({
+            item_out = {
                 "k": INDEX_KEY_MAP[idx_nm],
                 "v": clpr,
                 "chg": flt_rt,
                 "unit": "pct",
-            })
+            }
+            # Sparkline is best-effort: a failure here (or an exhausted time
+            # budget) never drops v/chg - it only means 'spark' is omitted.
+            spark = fetch_index_spark(idx_nm, latest_bas_dt, clpr, encoded_key)
+            if spark is not None:
+                item_out["spark"] = spark
+            else:
+                log(f"no spark series for {idx_nm} (insufficient history or time budget); "
+                    f"omitting 'spark'")
+            items_out.append(item_out)
 
     # Step 3b: bond for latest_bas_dt, and previous business day for bp calc
     if latest_bas_dt is not None:
@@ -460,7 +563,8 @@ def main():
     log(f"basDt={latest_bas_dt}")
     for it in items_out:
         nm = f" ({it['nm']})" if "nm" in it else ""
-        log(f"  {it['k']}{nm}: v={it['v']} chg={it['chg']}{it['unit']}")
+        spark_note = f" spark[{len(it['spark'])}]" if "spark" in it else ""
+        log(f"  {it['k']}{nm}: v={it['v']} chg={it['chg']}{it['unit']}{spark_note}")
 
 
 def _install_secret_masking_excepthook():
