@@ -2,6 +2,158 @@
  "items": [
   {
    "date": "2026-08-14",
+   "id": "netinterest-legacy-gpu-rent-inflects-forward-curve",
+   "related": [
+    "jukan-coreweave-a100-2029-full-freight-vs-depreciation",
+    "bilello-hyperscaler-capex-789b-nvidia-500b-financing",
+    "meru-circular-financing-dotcom-echo"
+   ],
+   "source": "Marc Rubinstein (Net Interest)",
+   "sourceUrl": "https://www.netinterest.co/p/financing-the-ai-boom-3",
+   "sourceLang": "EN",
+   "category": "investor",
+   "hot": true,
+   "paywall": true,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0A1224",
+    "to": "#4338CA",
+    "label": "$2.71"
+   },
+   "tags": [
+    "AI INFRA",
+    "NVIDIA",
+    "CREDIT"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "값이 떨어질 거라던 낡은 GPU의 임대료가 올랐다, 그러자 월가가 칩을 담보물이라고 부르기 시작했다",
+    "en": "The old GPUs everyone expected to get cheaper are renting for more, and Wall Street started calling them collateral",
+    "ja": "値が下がるはずだった古いGPUの賃料が上がった、するとウォール街がチップを担保物と呼び始めた"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "But nine months is a long time in AI and as demand for compute has accelerated, legacy GPU prices have inflected.",
+      "The deal was made possible by the resilience of GPU pricing. If Huang is right that his chips are durable, then the scope to finance them widens."
+     ],
+     "ko": [
+      "그런데 인공지능에서 아홉 달은 긴 시간이고, 컴퓨트 수요가 빨라지면서 구형 GPU 가격이 방향을 바꿨다.",
+      "이 거래를 가능하게 한 것은 GPU 가격이 버텨 준 덕이다. 황이 말한 대로 그의 칩이 오래간다면, 그것을 담보로 돈을 대는 폭은 넓어진다."
+     ],
+     "ja": [
+      "だがAIにおいて9か月は長い時間であり、コンピュート需要が加速するなかで旧世代GPUの価格は向きを変えた.",
+      "この取引を可能にしたのはGPU価格が持ちこたえたことだ。フアンの言うとおり彼のチップが長持ちするなら、それを担保に資金を付ける幅は広がる。"
+     ]
+    },
+    "cite": "Marc Rubinstein (Net Interest) · 2026.08.14"
+   },
+   "sum3": {
+    "ko": "2020년에 나온 것부터 최신 제품까지, 엔비디아 GPU를 빌리는 시간당 값이 함께 오르고 있다.\n겉으로 보면 인공지능 수요가 세서 생긴 또 한 번의 품귀다.\n그런데 이번에 달라진 것은 2027년과 2028년 인도분 값까지 미리 매겨진다는 점이고, 그 곡선이 칩을 담보물로 만들었다.",
+    "en": "From the 2020 vintage to the newest part, the hourly cost of renting an Nvidia GPU is rising across the board.\nOn the surface it is one more shortage produced by strong AI demand.\nWhat is different this time is that rates for delivery in 2027 and 2028 are already being quoted, and that curve is what turned the chip into collateral.",
+    "ja": "2020年に出たものから最新の製品まで、エヌビディアのGPUを借りる1時間あたりの値が揃って上がっている。\n表面だけ見れば、AI需要の強さが生んだもう一度の品薄である。\nだが今回違うのは2027年と2028年に引き渡す分の値まで先に付いていることで、その曲線がチップを担保物に変えた。"
+   },
+   "gist": {
+    "ko": "2020년에 나온 GPU를 빌리는 값이 오르고 있다.\n낡은 칩은 해마다 싸진다는 것이 지난 2년 동안 시장의 공통 전제였는데, 그 전제가 뒤집혔다.\n\n마크 루빈스타인이 인용한 실리콘데이터 집계로는 엔비디아 H100을 한 시간 빌리는 값이 지난해 11월 말 1.96달러에서 지금 2.71달러가 됐다.\n\n@@REF@@H100 값이 튀었다, GPU 임대료 10% 급등을 뜯어보기 (실리콘데이터, 2026-01-09)|https://www.silicondata.com/blog/h100-price-spike\n\n이 집계를 만든 곳이 올해 초에 쓴 글을 보면 오름세는 그때 이미 시작돼 있었다.\n2025년 12월 9일 시간당 2.00달러이던 값이 4주 만에 2.20달러가 됐다.\n다만 그때는 A100과 B200 값이 그대로여서 H100 한 세대만의 일로 보였다.\n\n## 갱신할 때 값이 두 배가 된다\n\n계약을 새로 쓰는 자리에서 그 차이가 크게 벌어진다.\n\n@@BAR@@베이스텐이 지금 내는 B200 시간당 요금|2.63달러|2.63|10월 갱신 뒤 요금|5.10달러|5.10@@재계약 한 번에 요금이 이 배수만큼 올라간다. 값이 오른 것은 새 칩이 아니라 이미 쓰고 있던 칩이다.@@Net Interest 2026-08-14 원문(베이스텐 공개) · 2026-08-14 조회\n\n베이스텐은 값이 싼 인공지능 모델을 돌려 주는 회사다.\n빌려 쓰는 쪽이 이 정도 인상을 감수한다는 것은, 다른 데 가서 같은 물건을 구하기 어렵다는 뜻이다.\n\n여기서 진짜로 달라진 것은 값 자체가 아니라 값이 붙는 기간이다.\n실리콘데이터는 2027년과 2028년에 인도할 물량의 값까지 미리 매기고 있고, 그 선도 가격이 우상향한다.\n선도 가격은 지금 사고파는 값이 아니라 나중에 주고받기로 미리 정해 둔 값이다.\n쉽게 말해 내년 여름의 전기요금을 오늘 계약서에 적어 두는 것과 같다.\n값이 아니라 곡선이 생겼다는 점이 이 글의 출발점이다.\n\n## 곡선이 칩을 담보로 만든다\n\n곡선이 생기면 금융이 붙는다.\n앞으로 몇 년치 임대료가 얼마인지 적을 수 있으면, 그 돈줄을 근거로 빌려줄 수 있기 때문이다.\n\n@@FLOW@@칩을 들인다|데이터센터에 GPU를 놓는다|시간당 요금을 받는다|임대 계약이 길수록 들어올 돈이 미리 정해진다|그 돈줄을 담보로 잡는다|칩과 계약이 대출의 담보물이 된다|외부 자본이 들어온다|연기금과 사모대출이 데이터센터 채권을 산다@@엔비디아가 8월 10일에 발표한 것이 이 마지막 칸이다. 칩을 파는 회사가 칩을 살 돈까지 같이 만들어 주는 구조다.\n\n@@REF@@엔비디아, 아폴로·블랙록·블랙스톤·브룩필드·골드만삭스·KKR와 손잡고 5,000억달러 넘는 외부 자본을 모으는 AI 컴퓨트 금융 플랫폼을 세우다 (엔비디아 뉴스룸, 2026-08-10)|https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital\n\n엔비디아의 발표문에는 젠슨 황이 자사 컴퓨트가 널리 채택되고 모델과 작업에 두루 쓰이며 서로 바꿔 쓸 수 있다는 점을 이 역할에 맞는 이유로 들었다고 적혀 있다.\n서로 바꿔 쓸 수 있다는 말이 금융에서는 값을 매길 수 있다는 뜻이다.\n쓰던 사람이 손을 떼도 다음 사람이 같은 값에 받아 가면, 빌려준 쪽은 물건을 되팔아 돈을 회수할 수 있다.\n\n블랙스톤의 존 그레이는 그 자리에서 집과 비행기를 예로 들었다.\n집을 살 때 은행은 사는 사람만이 아니라 집의 값도 본다는 것이다.\n\n## 1970년대와 비교한 사람은 래리 핑크였다\n\n여기서 갈리는 것은 이 자산이 진짜로 오래가느냐다.\n블랙록의 래리 핑크는 이제 시작이며 자신이 1970년대에 주택저당증권 시장에 발을 들였을 때와 같다고 말했다.\n주택저당증권은 여러 사람의 주택담보대출을 묶어 채권으로 만들어 파는 물건이고, 그 시장은 뒤에 한 번 크게 무너진 적이 있다.\n\n같은 비교가 양쪽으로 읽힌다는 것이 이 글의 남은 자리다.\n임대료 곡선이 계속 우상향하면 칩은 비행기 같은 담보물로 자리를 잡고, 곡선이 꺾이면 담보가 아니라 재고가 된다.\n지금 확인할 수 있는 것은 곡선이 아직 우상향한다는 사실 하나뿐이다.",
+    "en": "The price of renting a GPU launched in 2020 is going up.\nFor two years the market took it as given that old chips get cheaper every year, and that assumption has now turned over.\n\nOn the Silicon Data figures Marc Rubinstein cites, an hour of Nvidia H100 time has gone from $1.96 at the end of November to $2.71 now.\n\n@@REF@@H100 Price Spike: Understanding the 10% Surge in GPU Rental Costs (Silicon Data, 2026-01-09)|https://www.silicondata.com/blog/h100-price-spike\n\nA post from the outfit that compiles those figures shows the climb had already begun early this year.\nAn hour that cost $2.00 on December 9, 2025 cost $2.20 four weeks later.\nAt that point A100 and B200 rates held steady, so it looked like a one-generation story.\n\n## At renewal the rate doubles\n\nThe gap opens widest at the moment a contract is rewritten.\n\n@@BAR@@What Baseten pays now per B200 hour|$2.63|2.63|The rate after the October renewal|$5.10|5.10@@One renewal lifts the rate by this multiple. What went up in price is not a new chip but a chip already in use.@@Net Interest, 2026-08-14, citing Baseten's disclosure, accessed 2026-08-14\n\nBaseten sells software and computing capacity to companies running lower-cost AI models.\nA tenant absorbing an increase of that size is telling you the same machine is hard to find elsewhere.\n\nWhat actually changed here is not the level but the tenor, the length of time a price is quoted for.\nSilicon Data now compiles forward rates for delivery in 2027 and 2028, and that curve slopes upward.\nA forward rate is not what something costs today but what two parties agree today to exchange it for later.\nIt is the equivalent of writing next summer's electricity bill into a contract this morning.\nThe starting point of the article is that a curve exists, not that a price moved.\n\n## A curve turns a chip into collateral\n\nOnce a curve exists, finance follows.\nIf you can write down what the rent will be for several years, you can lend against that stream.\n\n@@FLOW@@Buy the chip|A GPU is installed in a data centre|Collect an hourly rate|The longer the lease, the more of the cash is fixed in advance|Pledge the stream|The chip and its contract become the security for a loan|Bring in outside capital|Pensions and private credit buy the data centre paper@@What Nvidia announced on August 10 is that last box. The company selling the chips is also assembling the money to buy them.\n\n@@REF@@NVIDIA Partners With Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs and KKR to Mobilize Over $500 Billion of Third-Party Capital (NVIDIA Newsroom, 2026-08-10)|https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital\n\nIn that release Jensen Huang gives broad adoption, flexibility across models and workloads, and transferability as the reasons his compute suits the role.\nTransferable, in finance, means priceable.\nIf the next tenant will take the machine at the same rate when the first one walks away, the lender can sell it on and get the money back.\n\nJon Gray of Blackstone reached for houses and planes at the launch.\nWhen you buy a house, he said, the bank underwrites you but it also looks at the value of the home.\n\n## The one who reached for the 1970s was Larry Fink\n\nWhat this turns on is whether the asset really lasts.\nLarry Fink of BlackRock said this is the very beginning, like the mortgage-backed securities market he entered in the 1970s.\nMortgage-backed securities bundle many home loans into bonds and sell them on, and that market did collapse once.\n\nThe comparison reads both ways, and that is where the article leaves it.\nKeep the rental curve sloping up and the chip settles in as collateral like an aircraft, let the curve bend and it is inventory again.\nThe one thing confirmable today is that the curve still slopes up.",
+    "ja": "2020年に出たGPUを借りる値段が上がっている。\n古いチップは毎年安くなるというのが、この2年の市場の共通の前提だった。その前提がひっくり返った。\n\nマーク・ルビンスタインが引くシリコンデータの集計では、エヌビディアH100を1時間借りる値段が、昨年11月末の1.96ドルから今は2.71ドルになった。\n\n@@REF@@H100の値が跳ねた、GPU賃料10%急騰を分解する (シリコンデータ, 2026-01-09)|https://www.silicondata.com/blog/h100-price-spike\n\nこの集計をつくっている先が年初に書いた記事を見ると、上昇はその時すでに始まっていた。\n2025年12月9日に1時間2.00ドルだった値が、4週間で2.20ドルになっている。\nただし当時はA100とB200の値が動かず、H100という一世代だけの話に見えた。\n\n## 更新のたびに値が倍になる\n\n契約を書き直す場面で、その差が最も大きく開く。\n\n@@BAR@@ベーステンが今払うB200の1時間料金|2.63ドル|2.63|10月の更新後の料金|5.10ドル|5.10@@更新一度で料金がこの倍率だけ上がる。値上がりしたのは新しいチップではなく、すでに使っているチップである。@@Net Interest 2026-08-14 原文(ベーステンの開示) · 2026-08-14 閲覧\n\nベーステンは、費用の安いAIモデルを動かす企業に計算能力を売る会社だ。\n借りる側がこれだけの引き上げを受け入れるということは、同じ機械を他所で調達しにくいという意味になる。\n\nここで本当に変わったのは値段の高さではなく、値段が付く期間の長さだ。\nシリコンデータは2027年と2028年に引き渡す分の値まで先に付けており、その先渡し価格が右肩上がりになっている。\n先渡し価格とは、今売り買いする値ではなく、後で受け渡す値を今日決めておくものだ。\n来年の夏の電気代を今朝の契約書に書き込むのと同じである。\n値が動いたことではなく曲線ができたことが、この記事の出発点だ。\n\n## 曲線がチップを担保に変える\n\n曲線ができると金融が付く。\nこれから何年分の賃料がいくらか書けるなら、その資金の流れを根拠に貸せるからだ。\n\n@@FLOW@@チップを入れる|データセンターにGPUを置く|1時間あたりの料金を取る|賃貸契約が長いほど入る金が先に決まる|その流れを担保に取る|チップと契約が融資の担保物になる|外部資本が入る|年金と私募クレジットがデータセンター債を買う@@エヌビディアが8月10日に発表したのが、この最後の箱である。チップを売る会社が、チップを買う資金まで一緒につくる形だ。\n\n@@REF@@エヌビディア、アポロ・ブラックロック・ブラックストーン・ブルックフィールド・ゴールドマンサックス・KKRと組み、5,000億ドル超の外部資本を動かすAIコンピュート金融基盤を設立 (エヌビディア ニュースルーム, 2026-08-10)|https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital\n\nこの発表文でジェンスン・フアンは、自社のコンピュートが広く採用され、モデルや作業をまたいで柔軟で、互いに融通できる点をこの役割に適した理由に挙げている。\n互いに融通できるということは、金融では値を付けられるという意味になる。\n使っていた人が手を引いても次の人が同じ値で引き取るなら、貸した側は物を売り直して資金を回収できる。\n\nブラックストーンのジョン・グレイは、その場で家と飛行機を例に出した。\n家を買うとき銀行は買う人だけでなく家の値も見る、というのだ。\n\n## 1970年代を持ち出したのはラリー・フィンクだった\n\nここで分かれるのは、この資産が本当に長持ちするかどうかである。\nブラックロックのラリー・フィンクは、これはまだ始まりであり、自分が1970年代に住宅ローン担保証券の市場に入った頃と同じだと語った。\n住宅ローン担保証券は多数の住宅ローンを束ねて債券にして売る商品で、その市場は後に一度大きく崩れている。\n\n同じ比較が両側に読めるところに、この記事は残りを置いている。\n賃料の曲線が右肩上がりを続ければチップは航空機のような担保物として居場所を得るし、曲線が折れれば担保ではなく在庫になる。\n今日確認できるのは、曲線がまだ右肩上がりだという事実ひとつだけだ。"
+   },
+   "why": {
+    "ko": "칩이 담보물로 인정되면 데이터센터를 짓는 돈의 출처가 기업 현금에서 채권 시장으로 넘어간다. 그때부터 이 산업의 속도를 정하는 것은 반도체 수요가 아니라 임대료 곡선이다.",
+    "en": "Once a chip counts as collateral, the money for data centres shifts from corporate cash to the bond market. From that point the pace of the industry is set by the rental curve rather than by chip demand.",
+    "ja": "チップが担保物として認められると、データセンターを建てる資金の出所は企業の現金から債券市場へ移る。そこから先、この産業の速度を決めるのは半導体需要ではなく賃料の曲線だ。"
+   },
+   "ask": {
+    "ko": "1970년대 주택저당증권 시장에 빗댄 래리 핑크의 말은 칭찬일까, 경고일까? GPU 임대료 곡선은 비행기 리스처럼 자리를 잡을까, 아니면 재고 가격으로 되돌아갈까?",
+    "en": "Was Larry Fink's comparison to the 1970s mortgage-backed market a compliment or a warning? Does the GPU rental curve settle in like aircraft leasing, or fall back to being an inventory price?",
+    "ja": "1970年代の住宅ローン担保証券市場になぞらえたラリー・フィンクの言葉は賛辞なのか警告なのか。GPU賃料の曲線は航空機リースのように定着するのか、在庫価格に戻るのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "실리콘데이터 H100 시간당 임대료가 2027년 1월에도 2.71달러 위에 있는지로 채점한다.",
+     "en": "Score on whether the Silicon Data H100 hourly rental rate is still above $2.71 in January 2027.",
+     "ja": "シリコンデータのH100の1時間賃料が2027年1月にも2.71ドルを上回っているかで採点する。"
+    },
+    "due": "2027-01-31",
+    "card": {
+     "metric": {
+      "ko": "실리콘데이터가 집계하는 엔비디아 H100 시간당 임대료",
+      "en": "Nvidia H100 hourly rental rate as compiled by Silicon Data",
+      "ja": "シリコンデータが集計するエヌビディアH100の1時間賃料"
+     },
+     "now": {
+      "ko": "2026년 8월 2.71달러 · 2025년 11월 말 1.96달러",
+      "en": "$2.71 in August 2026, against $1.96 at the end of November 2025",
+      "ja": "2026年8月に2.71ドル · 2025年11月末は1.96ドル"
+     },
+     "when": {
+      "ko": "2027년 1월 (실리콘데이터 월간 지수)",
+      "en": "January 2027, from the Silicon Data monthly index",
+      "ja": "2027年1月(シリコンデータの月次指数)"
+     },
+     "hit": {
+      "ko": "2.71달러 이상 유지 → 낡은 칩이 값을 지킨다는 전제가 버팀",
+      "en": "Still at $2.71 or above, so the premise that old chips hold their price survives",
+      "ja": "2.71ドル以上を維持 → 古いチップが値を保つという前提が持ちこたえる"
+     },
+     "miss": {
+      "ko": "1.96달러 아래로 내려감 → 지난해 11월 수준으로 되돌아가 담보 전제가 흔들림",
+      "en": "Back below $1.96, returning to last November's level and undercutting the collateral premise",
+      "ja": "1.96ドルを下回る → 昨年11月の水準に戻り、担保の前提が揺らぐ"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Marc Rubinstein (Net Interest) · 2026-08-14 · Financing the AI Boom 3 (무료 공개 구간)",
+      "en": "Marc Rubinstein (Net Interest), 2026-08-14, Financing the AI Boom 3, free preview section",
+      "ja": "Marc Rubinstein (Net Interest) · 2026-08-14 · Financing the AI Boom 3(無料公開部分)"
+     },
+     "url": "https://www.netinterest.co/p/financing-the-ai-boom-3"
+    },
+    {
+     "name": {
+      "ko": "실리콘데이터",
+      "en": "Silicon Data",
+      "ja": "シリコンデータ"
+     },
+     "desc": {
+      "ko": "2026-01-09 · H100 시간당 임대료 2025-12-09 2.00달러 → 2026-01-06 2.20달러",
+      "en": "2026-01-09, H100 hourly rate $2.00 on 2025-12-09 rising to $2.20 on 2026-01-06",
+      "ja": "2026-01-09 · H100の1時間賃料が2025-12-09の2.00ドルから2026-01-06に2.20ドルへ"
+     },
+     "url": "https://www.silicondata.com/blog/h100-price-spike"
+    },
+    {
+     "name": {
+      "ko": "엔비디아 뉴스룸",
+      "en": "NVIDIA Newsroom",
+      "ja": "エヌビディア ニュースルーム"
+     },
+     "desc": {
+      "ko": "2026-08-10 · 아폴로·블랙록·블랙스톤·브룩필드·골드만삭스·KKR와 5,000억달러 규모 AI 컴퓨트 금융 플랫폼 발표",
+      "en": "2026-08-10, the $500 billion AI compute financing platforms with Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs and KKR",
+      "ja": "2026-08-10 · アポロ・ブラックロック・ブラックストーン・ブルックフィールド・ゴールドマンサックス・KKRとの5,000億ドル規模のAIコンピュート金融基盤の発表"
+     },
+     "url": "https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-14 조회 · 임대료는 실리콘데이터 집계 기준이고, 5,000억달러는 엔비디아가 8월 10일 발표한 목표 금액이다.",
+    "en": "Accessed 2026-08-14. Rental rates are on the Silicon Data compilation and the $500 billion is the target Nvidia announced on August 10.",
+    "ja": "2026-08-14 閲覧 · 賃料はシリコンデータの集計基準、5,000億ドルはエヌビディアが8月10日に発表した目標額である。"
+   }
+  },
+  {
+   "date": "2026-08-14",
    "id": "meru-8-13-supply-package-vs-first-half-starts",
    "related": [
     "meru-2026-property-tax-owner-occupancy-pivot",
@@ -56997,6 +57149,32 @@
     "日東紡",
     "日東紡績"
    ]
+  },
+  "주택저당증권": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "A bond created by bundling many home loans together and selling the combined payments on.",
+    "ko": "여러 사람의 주택담보대출을 묶어 그 상환금을 채권으로 만들어 파는 상품.",
+    "ja": "多数の住宅ローンを束ね、その返済金を債券にして売る商品。"
+   },
+   "aliases": [
+    "MBS",
+    "mortgage-backed securities",
+    "mortgage backed securities",
+    "주택저당증권",
+    "주택담보부증권",
+    "住宅ローン担保証券"
+   ],
+   "longDesc": {
+    "en": "A mortgage-backed security turns a pool of home loans into a tradable bond, so the lender gets its money back at once and the risk moves to whoever buys the bond. The structure made housing credit far cheaper and deeper, and it is also the instrument at the centre of the 2008 crisis, when the loans inside the pools turned out to be worse than the ratings said. It matters to investors now because the same technique is being applied to new assets such as data centre leases and computing contracts.",
+    "ko": "주택저당증권은 여러 건의 주택담보대출을 묶어 사고팔 수 있는 채권으로 바꾼 것이다. 돈을 빌려준 쪽은 자금을 곧바로 회수하고, 위험은 그 채권을 산 쪽으로 넘어간다. 이 구조 덕에 주택 대출은 싸지고 규모가 커졌지만, 묶음 안의 대출이 등급보다 나빴다는 사실이 드러나면서 2008년 위기의 한복판에 놓이기도 했다. 지금 투자자에게 중요한 이유는 같은 기법이 데이터센터 임대료와 컴퓨팅 계약 같은 새 자산에 적용되고 있기 때문이다.",
+    "ja": "住宅ローン担保証券は、多数の住宅ローンを束ねて売買できる債券に変えたものだ。貸した側は資金をすぐ回収でき、リスクはその債券を買った側へ移る。この仕組みで住宅向け融資は安く大きくなったが、束の中のローンが格付けより悪いと判明し、2008年の危機の中心にもなった。いま投資家にとって重要なのは、同じ手法がデータセンターの賃料や計算契約といった新しい資産に適用されているからだ。"
+   }
   }
  }
 }
