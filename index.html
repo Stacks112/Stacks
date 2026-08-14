@@ -14983,25 +14983,19 @@ function mktItemHTML(it, S, isCard){
      때만 true)가 아니면 big/spark/badge/split은 전부 falsy로 남고 아래 return문은
      패치 전과 한 글자도 다르지 않은 마크업을 만든다 - 모바일/클래식 무영향. */
   var big = !!(isCard && it.k === "kospi");
-  var spark = isCard ? mktSparkSvg(it.spark, hasChg ? chgN >= 0 : true, big, S) : "";
+  var spark = isCard ? mktSparkSvg(it.spark, hasChg ? chgN >= 0 : true, big) : "";
   var kEl = '<b class="mkt-k">' + esc(mktLabel(it.k, S)) + '</b>';
-  var badge = "", split = "";
+  var badge = "";
   if (big && MKT_SKEW_CTX && MKT_SKEW_CTX.top){
-    /* 필진 의견 분포 배지 - 네이버식 개인/외국인/기관 수급이 아니다. STRINGS의
-       mktSkewBull/Mix/Bear(강세/엇갈림/약세)만 쓴다. */
+    /* 필진 의견 분포 배지 - 네이버식 개인/외국인/기관 수급이 아니다. 3분할(강세/엇갈림/약세)은
+       2026-08-14 제거 - MKT_SKEW_CTX.bull/mixed/bear 대입(renderV83SkewPage)은 그대로 둔다. */
     badge = '<span class="mkt-skew-badge">' + esc(MKT_SKEW_CTX.top) + '</span>';
-    var bull = MKT_SKEW_CTX.bull || 0, mixed = MKT_SKEW_CTX.mixed || 0, bear = MKT_SKEW_CTX.bear || 0;
-    split = '<span class="mkt-skew-split">'
-      + '<span class="mkt-skew-seg mkt-up"><b>' + bull + '</b><small>' + esc(S.mktSkewBull) + '</small></span>'
-      + '<span class="mkt-skew-seg mkt-mix"><b>' + mixed + '</b><small>' + esc(S.mktSkewMix) + '</small></span>'
-      + '<span class="mkt-skew-seg mkt-dn"><b>' + bear + '</b><small>' + esc(S.mktSkewBear) + '</small></span>'
-      + '</span>';
   }
   var kRow = badge ? ('<span class="mkt-item-top">' + kEl + badge + '</span>') : kEl;
   return '<span class="mkt-item' + (big ? " mkt-item-lg" : "") + '"' + title + '>' + kRow
     + '<span class="mkt-v">' + esc(vTxt) + '</span>'
     + (chgTxt ? ('<span class="mkt-chg' + dir + '">' + esc(chgTxt) + '</span>') : '')
-    + spark + split
+    + spark
     + '</span>';
 }
 function mktObserve(bar){
@@ -15038,7 +15032,11 @@ function mktPaint(){
        타지 않으므로 예전처럼 데이터만 있으면 최상단 바가 항상 보인다. */
     var v83On = typeof V83 !== "undefined" && V83 && V83.mounted;
     var onSkewPage = v83On && typeof v83DirTab === "function" && v83DirTab() === "skew";
-    if (v83On && !onSkewPage){ bar.hidden = true; return; }
+    /* 2026-08-14 june 지시(3차 수정): v82(모바일)·classic 셸에는 "지금 쏠린 곳" 전용
+       화면이 없다(TAB="skew"는 v83 전용 의사 탭 - unmountV83이 벗어날 때마다 TAB을
+       "all"로 되돌린다) - 판별 수단이 없으므로 그 셸들에서는 무조건 숨긴다. v83에서는
+       기존과 동일하게 onSkewPage일 때만 보인다. */
+    if (!onSkewPage){ bar.hidden = true; return; }
     var items = MKT_DATA && Array.isArray(MKT_DATA.items) ? MKT_DATA.items : null;
     if (!items || !items.length){ bar.hidden = true; return; }
     var S = STRINGS[LANG] || STRINGS.en;
