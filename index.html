@@ -190,6 +190,10 @@ const STRINGS = {
     mktKospi: "KOSPI",
     mktKosdaq: "KOSDAQ",
     mktKtb10y: "KTB 10Y",
+    mktSparkLabel: "Last {n} sessions",
+    mktSkewBull: "Bullish",
+    mktSkewMix: "Mixed",
+    mktSkewBear: "Bearish",
     metaDesc: "Sharp investment writing from around the world, summarized in English, with a take. Curated by Stacks.",
     heroTitle: "Investing, easy to read <br class=\"hbr\">and easy to understand",
     heroSub: "The world's best investing reads, summarized with a take, in your language.",
@@ -381,6 +385,10 @@ const STRINGS = {
     mktKospi: "코스피",
     mktKosdaq: "코스닥",
     mktKtb10y: "국고채 10년",
+    mktSparkLabel: "최근 {n}영업일",
+    mktSkewBull: "강세",
+    mktSkewMix: "엇갈림",
+    mktSkewBear: "약세",
     metaDesc: "메르·코베이시·다모다란 등 전 세계 투자 고수들의 글을 한국어로 요약하고, 강세·약세 관점까지 정리해 드립니다. 예측 적중 기록도 함께.",
     heroTitle: "투자, 쉽게 읽고 쉽게 이해하자",
     heroSub: "전 세계 투자 고수들의 글, 요약과 관점까지 당신의 언어로",
@@ -572,6 +580,10 @@ const STRINGS = {
     mktKospi: "KOSPI",
     mktKosdaq: "KOSDAQ",
     mktKtb10y: "国債10年",
+    mktSparkLabel: "直近{n}営業日",
+    mktSkewBull: "強気",
+    mktSkewMix: "まちまち",
+    mktSkewBear: "弱気",
     metaDesc: "世界の投資家たちの記事を日本語に要約し、強気・弱気の視点まで整理。予測の的中記録も公開。",
     heroTitle: "やさしく読めて、やさしくわかる投資",
     heroSub: "世界の投資家たちの記事を、要約と視点まで、あなたの言語で。",
@@ -3173,6 +3185,40 @@ html.v83 .mkt-bar.mkt-bar-skew .mkt-chg{font-size:12.5px;}
    .mkt-bar-skew일 때는 넘침 감지 자체를 건너뛰지만(아래 JS 수정), 혹시 모를
    경합(예: 리사이즈 중 재도장)까지 대비한 CSS 안전망. */
 html.v83 .mkt-bar.mkt-bar-skew.mkt-run .mkt-track{animation:none !important;transform:none !important;}
+/* 2026-08-14: 코스피 큰 카드(스파크라인 + 쏠림 배지/3분할). 전부 html.v83 ...
+   .mkt-bar-skew 스코프 안 - 모바일(v82)·클래식 가로 바에는 이 블록의 셀렉터가
+   하나도 매치되지 않는다. */
+html.v83 .mkt-bar.mkt-bar-skew .mkt-item.mkt-item-lg{grid-column:span 2;}
+@media (max-width:640px){
+  html.v83 .mkt-bar.mkt-bar-skew .mkt-item.mkt-item-lg{grid-column:span 1;}
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-item-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-badge{
+  display:inline-block;font-size:10px;font-weight:700;line-height:1.6;
+  padding:1px 8px;border-radius:999px;white-space:nowrap;
+  background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-spark-wrap{display:block;width:100%;margin-top:6px;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-spark{display:block;width:100%;height:20px;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-item-lg .mkt-spark{height:40px;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-spark-lb{display:block;font-size:9.5px;color:var(--muted);margin-top:3px;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-up{color:#06703D;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-dn{color:#B42318;}
+html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-up{color:#6EE7B7;}
+html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-dn{color:#FDA29B;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-split{
+  display:flex;width:100%;margin-top:10px;padding-top:8px;
+  border-top:1px solid var(--line);
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg{
+  flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg b{font-size:13px;font-weight:700;color:var(--text);}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg small{font-size:9.5px;font-weight:600;color:var(--muted);}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-up b{color:#06703D;}
+html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-dn b{color:#B42318;}
+html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-up b{color:#6EE7B7;}
+html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-dn b{color:#FDA29B;}
 
 /* ---------- watchlist (followed companies) ---------- */
 #watchSec{position:relative;}
@@ -10002,6 +10048,7 @@ function renderV83SkewPage(list, S){
   /* ---- v83.6: "지난주 → 지금" 히어로 + 쏠림 랭킹 이동 (june 지시:
      이전에 어디 있다가 지금 어디로 쏠렸는지가 한눈에) ---- */
   try {
+    MKT_SKEW_CTX = null;
     var iso = function(off){ return skewLocalIsoDate(off); };
     var nowA = v83ThemeAttention(iso(6), iso(0));       /* 최근 7일 */
     var prevA = v83ThemeAttention(iso(13), iso(7));     /* 그 전 7일 */
@@ -10020,6 +10067,16 @@ function renderV83SkewPage(list, S){
     };
     if (nowA.length){
       var topNow = nowA[0], topPrev = prevA.length ? prevA[0] : null;
+      /* 2026-08-14: 코스피 큰 카드의 쏠림 배지/3분할 - 이 페이지가 이미 계산해 둔
+         nowA(이번 주 테마 쏠림 랭킹, v83ThemeAttention() 결과, 위에서 계산됨)를
+         그대로 재사용한다. 새 API·새 계산 없음. top=1위 테마명, bull/mixed/bear=
+         이번 주 전체 테마 중 side별(강세/엇갈림/약세) 테마 수 - "필진 의견 분포"이지
+         네이버식 개인/외국인/기관 수급이 아니다. */
+      var skBull = 0, skMix = 0, skBear = 0;
+      nowA.forEach(function(c){
+        if (c.side === "bull") skBull++; else if (c.side === "bear") skBear++; else skMix++;
+      });
+      MKT_SKEW_CTX = { top: topNow.label, bull: skBull, mixed: skMix, bear: skBear };
       var hero = document.createElement("div");
       hero.className = "skh";
       if (topPrev && topPrev.key !== topNow.key){
@@ -10054,6 +10111,7 @@ function renderV83SkewPage(list, S){
       list.appendChild(rk);
     }
   } catch (e) {}
+  if (typeof mktPaint === "function") mktPaint();
   var half = Math.floor(days.length / 2);
   var sideOf = function(r, from, to){
     var b = 0, s = 0;
@@ -14585,6 +14643,11 @@ function ensureElong(){
    reader's language; before the first fetch resolves that is a harmless
    no-op since MKT_DATA is still null. */
 var MKT_DATA = null, MKT_FETCHED = false, MKT_IO = null, MKT_VIS_BOUND = false;
+/* 2026-08-14: 코스피 큰 카드의 쏠림 배지/3분할 컨텍스트. renderV83SkewPage()가
+   nowA(v83ThemeAttention)를 계산한 뒤 채우고 mktPaint()를 다시 부른다 - 새 API
+   없이 기존 계산 재사용. null이면 mktPaint()가 배지·3분할을 그냥 생략한다(멱등,
+   순서 무관 - mktPaint()가 먼저 불려도 나중에 채워지면 재도장으로 반영됨). */
+var MKT_SKEW_CTX = null;
 /* 2026-08-14 june 지시(2차 수정): #mktBar는 이제 "지금 쏠린 곳" 페이지에 들어갈
    때만 #feedList 안으로 옮겨진다 - renderFeed()가 그 직전에 list.innerHTML=""로
    목록을 통째로 비우므로, 그 사이엔 #mktBar가 문서에서 잠깐(또는 다른 탭에 머무는
@@ -14617,7 +14680,28 @@ function mktLabel(k, S){
   if (k === "ktb10y") return S.mktKtb10y;
   return String(k || "").toUpperCase();
 }
-function mktItemHTML(it, S){
+function mktSparkSvg(spark, up, big, S){
+  /* 2026-08-14: spark가 없거나(수집 실패·채권류) 유효 포인트가 2개 미만이면 선을
+     그리지 않고 빈 문자열을 돌려준다 - 호출부는 그대로 이어붙이므로 카드가 정상
+     렌더된다(별도 숨김 분기 없음). 색은 새로 만들지 않고 기존 .mkt-chg.mkt-up/.mkt-dn과
+     같은 값을 currentColor로 재사용한다(css: .mkt-spark.mkt-up/.mkt-dn). */
+  if (!Array.isArray(spark)) return "";
+  var vals = spark.filter(function(v){ return typeof v === "number" && isFinite(v); });
+  if (vals.length < 2) return "";
+  var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+  var span = max - min, n = vals.length;
+  var pts = vals.map(function(v, i){
+    var x = (i / (n - 1)) * 100;
+    var y = span ? (30 - ((v - min) / span) * 30) : 15; /* min==max: 가운데 수평선(0 나눗셈 방지) */
+    return x.toFixed(2) + "," + y.toFixed(2);
+  }).join(" ");
+  var cls = "mkt-spark" + (big ? " mkt-spark-lg" : "") + (up ? " mkt-up" : " mkt-dn");
+  var lb = S && S.mktSparkLabel ? esc(S.mktSparkLabel.replace("{n}", n)) : "";
+  return '<span class="mkt-spark-wrap"><svg class="' + cls + '" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+    + '<polyline points="' + pts + '" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>'
+    + (lb ? ('<small class="mkt-spark-lb">' + lb + '</small>') : '') + '</span>';
+}
+function mktItemHTML(it, S, isCard){
   if (!it || typeof it.v !== "number" || !isFinite(it.v)) return "";
   var isBp = it.unit === "bp";
   var vTxt = isBp ? (mktNumFmt(it.v, 3) + "%") : mktNumFmt(it.v, 2);
@@ -14627,9 +14711,29 @@ function mktItemHTML(it, S){
   var chgTxt = hasChg ? (isBp ? (sign + Math.round(chgN) + "bp") : (sign + chgN.toFixed(2) + "%")) : "";
   var dir = hasChg ? (chgN > 0 ? " mkt-up" : (chgN < 0 ? " mkt-dn" : "")) : "";
   var title = it.nm ? (' title="' + esc(it.nm) + '"') : "";
-  return '<span class="mkt-item"' + title + '><b class="mkt-k">' + esc(mktLabel(it.k, S)) + '</b>'
+  /* 2026-08-14: 큰 카드(코스피)+스파크라인+쏠림 배지/3분할. isCard(=.mkt-bar-skew일
+     때만 true)가 아니면 big/spark/badge/split은 전부 falsy로 남고 아래 return문은
+     패치 전과 한 글자도 다르지 않은 마크업을 만든다 - 모바일/클래식 무영향. */
+  var big = !!(isCard && it.k === "kospi");
+  var spark = isCard ? mktSparkSvg(it.spark, hasChg ? chgN >= 0 : true, big, S) : "";
+  var kEl = '<b class="mkt-k">' + esc(mktLabel(it.k, S)) + '</b>';
+  var badge = "", split = "";
+  if (big && MKT_SKEW_CTX && MKT_SKEW_CTX.top){
+    /* 필진 의견 분포 배지 - 네이버식 개인/외국인/기관 수급이 아니다. STRINGS의
+       mktSkewBull/Mix/Bear(강세/엇갈림/약세)만 쓴다. */
+    badge = '<span class="mkt-skew-badge">' + esc(MKT_SKEW_CTX.top) + '</span>';
+    var bull = MKT_SKEW_CTX.bull || 0, mixed = MKT_SKEW_CTX.mixed || 0, bear = MKT_SKEW_CTX.bear || 0;
+    split = '<span class="mkt-skew-split">'
+      + '<span class="mkt-skew-seg mkt-up"><b>' + bull + '</b><small>' + esc(S.mktSkewBull) + '</small></span>'
+      + '<span class="mkt-skew-seg mkt-mix"><b>' + mixed + '</b><small>' + esc(S.mktSkewMix) + '</small></span>'
+      + '<span class="mkt-skew-seg mkt-dn"><b>' + bear + '</b><small>' + esc(S.mktSkewBear) + '</small></span>'
+      + '</span>';
+  }
+  var kRow = badge ? ('<span class="mkt-item-top">' + kEl + badge + '</span>') : kEl;
+  return '<span class="mkt-item' + (big ? " mkt-item-lg" : "") + '"' + title + '>' + kRow
     + '<span class="mkt-v">' + esc(vTxt) + '</span>'
     + (chgTxt ? ('<span class="mkt-chg' + dir + '">' + esc(chgTxt) + '</span>') : '')
+    + spark + split
     + '</span>';
 }
 function mktObserve(bar){
@@ -14670,7 +14774,8 @@ function mktPaint(){
     var items = MKT_DATA && Array.isArray(MKT_DATA.items) ? MKT_DATA.items : null;
     if (!items || !items.length){ bar.hidden = true; return; }
     var S = STRINGS[LANG] || STRINGS.en;
-    var body = items.map(function(it){ return mktItemHTML(it, S); }).join("");
+    var isCard = bar.classList.contains("mkt-bar-skew");
+    var body = items.map(function(it){ return mktItemHTML(it, S, isCard); }).join("");
     if (!body){ bar.hidden = true; return; }
     if (dateEl) dateEl.textContent = mktCloseLabel(MKT_DATA.basDt, LANG);
     track.innerHTML = body;
@@ -14682,8 +14787,9 @@ function mktPaint(){
         var vp = bar.querySelector("#mktViewport");
         if (!vp || !track.isConnected) return;
         /* 2026-08-14 june 지시(2차 수정): 카드형 배치(.mkt-bar-skew)는 그리드라
-           가로 스크롤 트랙 개념이 없다 - 넘침 감지 자체를 건너뛴다. */
-        var isCard = bar.classList.contains("mkt-bar-skew");
+           가로 스크롤 트랙 개념이 없다 - 넘침 감지 자체를 건너뛴다. isCard는 위
+           body를 만들 때 이미 계산해 뒀다(2026-08-14: 스파크라인/큰 카드 게이트에도
+           재사용) - 클로저로 그대로 참조, 여기서 다시 선언하지 않는다. */
         if (!isCard && track.scrollWidth > vp.clientWidth + 1){
           track.innerHTML = body + body;
           var w = track.scrollWidth / 2;
