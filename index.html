@@ -15164,11 +15164,33 @@ function scheduleCoreRest(){
   const run = () => hydrateCoreRest().then(ok => {
     if (!ok) return;
     const repaint = () => {
+      /* The rest payload is useful to later navigations, but re-rendering a
+         live lab/record/detail view would reset its async charts or tabs.
+         Only the home feed needs an immediate paint of the newly available
+         cards; special views pick up the hydrated ITEMS on their next render. */
+      const detail = document.getElementById("v82detail");
+      const record = !!SB_VIEW && !RECORD_SRC;
+      const home = (TAB === "all" || TAB === "mine") && !QUERY && !BM_ONLY && !UNREAD_ONLY && !FREE_ONLY && !READ_VIEW
+        && !ENTITY_VIEW && !SERIES_VIEW && !SB_VIEW && !THEME_VIEW && !INVESTOR_VIEW
+        && !(typeof V83ITEM !== "undefined" && V83ITEM)
+        && !(detail && detail.classList.contains("on"));
+      if (!home && !record) return;
+      const recordTab = record
+        ? document.querySelector(".jr-page [data-jr-tab][aria-selected=\"true\"]")?.getAttribute("data-jr-tab")
+        : null;
       render();
       applyDash();
-      handleDeepLink();
+      if (recordTab){
+        const tab = Array.from(document.querySelectorAll(".jr-page [data-jr-tab]")).find(x => x.getAttribute("data-jr-tab") === recordTab);
+        if (tab) tab.click();
+      }
+      if (home) handleDeepLink();
     };
-    if (typeof requestIdleCallback === "function") requestIdleCallback(repaint, { timeout: 3500 });
+    /* Scoreboard content depends on the full item set. Paint it as soon as
+       the rest payload lands; delaying it behind idle work leaves the first
+       24-item shell without the completed/trend panels. */
+    if (SB_VIEW && !RECORD_SRC) repaint();
+    else if (typeof requestIdleCallback === "function") requestIdleCallback(repaint, { timeout: 3500 });
     else setTimeout(repaint, 0);
   });
   setTimeout(run, 1800);
