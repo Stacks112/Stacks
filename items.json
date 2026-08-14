@@ -1,6 +1,182 @@
 {
  "items": [
   {
+   "date": "2026-08-14",
+   "id": "jukan-nanya-ccl-20-25pct-glass-cloth-single-weaver",
+   "related": [
+    "serenity-supply-bottleneck-map",
+    "jukan-semco-glass-substrate-2028-one-month-after-jv",
+    "jukan-nvidia-800vdc-rack-row-power-center-2027"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2088142623253131770",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F1A2E",
+    "to": "#B45309",
+    "label": "+20~25%"
+   },
+   "tags": [
+    "PCB",
+    "MATERIALS",
+    "AI INFRA"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "기판 바닥재 값이 20~25% 오른다, 그런데 통지문이 지목한 것은 구리가 아니었다",
+    "en": "The base material under every circuit board is going up 20 to 25%, and the notice did not blame copper",
+    "ja": "基板の土台材が20~25%上がる、しかし通知文が名指ししたのは銅ではなかった"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Nan Ya Plastics Raises CCL Prices, Citing \"Glass Fabric\" Shortage"
+     ],
+     "ko": [
+      "남아플라스틱이 '유리천' 부족을 이유로 CCL 값을 올린다"
+     ],
+     "ja": [
+      "南亜プラスチックが「ガラスクロス」不足を理由にCCLの価格を引き上げる"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.14"
+   },
+   "sum3": {
+    "ko": "대만 남아플라스틱이 인쇄회로기판 바닥재 값을 올린다고 거래처에 통보했다.\n겉으로 보면 구리값이 올라 생긴 또 한 번의 인상이다.\n그런데 통지문이 이유로 든 것은 유리천 부족이고, 그 고급 등급을 짜는 시장은 일본 한 회사가 90%를 쥐고 있다.",
+    "en": "Taiwan's Nan Ya Plastics has told customers it is raising the price of the base material under printed circuit boards.\nOn the surface it is one more increase driven by the price of copper.\nBut the reason the notice gives is a shortage of glass cloth, and one Japanese company holds 90% of the market that weaves the high-end grade.",
+    "ja": "台湾の南亜プラスチックが、プリント基板の土台材の価格を引き上げると取引先に通知した。\n表面だけ見れば、銅の値上がりによるもう一度の引き上げである。\nだが通知文が理由に挙げたのはガラスクロスの不足であり、その高級等級を織る市場は日本の一社が90%を握っている。"
+   },
+   "gist": {
+    "ko": "남아플라스틱 전자재료사업부가 8월에 거래처로 보낸 인상 통지문이 공개됐다.\nCCL과 프리프레그 값을 20~25% 올리고, 9월 1일 출하분부터 적용한다는 내용이다.\n\n통지문은 원자재 값이 전면적으로 오르는 가운데 특히 유리천 부족이 심해 수급 차이가 달마다 벌어졌고, 조달 원가가 통제를 벗어났다고 적었다.\n구리 이야기는 앞세우지 않았다.\n\n## 왜 구리가 아니라 유리인가\n\nCCL은 인쇄회로기판의 바닥이 되는 판이다.\n유리섬유를 천처럼 짜 유리천에 수지를 먹여 굳히고 그 위에 구리박을 입힌 것이 CCL이고, 굳히기 전 반제품 상태가 프리프레그다.\n쉽게 말해 유리천은 기판의 빼대이고 구리는 그 위에 그린 배선이다.\n빼대가 없으면 배선을 그릴 자리가 없다.\n\n@@BAR@@한국 CCL 수입단가 2026년 3월|톤당 20,728달러|20728|1년 전 같은 달|톤당 11,880달러|11880@@기판 한 장의 원가에서 바닥재가 차지하는 무게가 한 해 만에 이 배수만큼 커졌다. 한국이 통계를 잡기 시작한 2000년 이후 이 구간에 들어온 것은 처음이다.@@트렌드포스 2026-05-06 보도(한국 무역통계 인용) · 2026-08-14 조회\n\n@@REF@@AI 수요로 CCL 공급이 빠듯해지다, 한국 수입가격 전년 대비 74.5% 상승 (트렌드포스, 2026-05-06)|https://www.trendforce.com/news/2026/05/06/news-ai-demand-tightens-ccl-supply-drives-advance-orders-price-hikes-and-expansion/|https://img.trendforce.com/blog/wp-content/uploads/2026/02/03182221/Chip-FREEPIK-20260203-624x351.jpg\n\n이 보도에 따르면 서울의 한 기판 업체는 평월 사용량의 다섯 배가 넘는 물량을 대만 공급사 두 곳에 미리 발주했다.\n값을 흥정하는 단계가 아니라 자리를 잡아 두는 단계라는 뜻이다.\n\n## 짜는 곳이 한 곳이다\n\nAI 서버용 기판은 신호가 빨라질수록 유전율이 낮은 유리천을 쓴다.\n그 T글라스 계열을 짜는 시장은 일본 니토보 한 곳이 약 90%를 쥐고 있고, 그다음 등급인 NER글라스도 60~70%가 같은 회사다.\n\n@@REF@@유리천, AI 인프라 밑에 깔린 소재 부족 (트렌드포스 인사이트, 2026-04-30)|https://insights.trendforce.com/p/glass-fiber-cloth-shortage|https://substackcdn.com/image/fetch/$s_!5wj0!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Faa7059d6-c21f-4cce-9e7f-9b322dfbe66f_1672x941.png\n\n같은 분석은 이 회사의 신규 설비가 빨라야 2027년 중반에 돌기 시작한다고 본다.\n엔비디아 루빈 세대가 기판 면적과 층수를 함께 늘리고, 케이블을 걷어낸 설계가 미드플레인과 백플레인 수요를 더하면서 쓰는 양은 지금도 늘고 있다.\n\n로이터는 2025년 11월 두 회사가 특수 유리천 생산을 늘리기 위해 손을 잡았다고 전했다.\n값을 올린다고 통보한 쪽이 그 소재를 직접 만들기로 한 쪽이기도 하다는 뜻이다.\n\n한 해 넘게 공급이 고정된 채 수요만 늘면, 값을 올려도 물건이 늘지 않는다.\n값이 비싸서 못 사는 것과 팔 물건이 없어서 못 사는 것은 다른 문제이고, 뒤쪽은 돈으로 풀리지 않는다.\n\n## 9월 1일 이후에 갈리는 것\n\n@@TIME@@2025-11|남아플라스틱이 CCL·프리프레그 값을 8% 올린다고 통보하다|2026-03|서울의 기판 업체가 평월 사용량의 다섯 배를 대만 공급사에 앞당겨 발주하다|2026-04-28|킹보드가 FR-4 계열을 10% 올리다, 올해 들어 네 번째 인상|2026-08|남아플라스틱이 다시 인상을 통보하다|>2026-09-01|출하분부터 적용@@인상 간격이 짧아지고 폭이 커졌다. 원가를 옮기는 국면과 물건을 배급하는 국면은 이 모양에서 갈린다.@@디지타임스·트렌드포스 보도 · 2026-08-14 조회\n\n기판 업체가 이 값을 그대로 받아 세트 업체에 넘기면 인상은 원가 전가로 끝난다.\n받아 주지 못하면 마진이 깎이고, 그때부터는 누가 유리천을 확보했는지가 수주를 정한다.\n갈릴 지점은 인상률이 아니라 니토보의 새 설비가 언제 도는지다.\n2027년 중반에 그 라인이 돌기 시작하면 이번 인상은 한 해짜리 원가 파동으로 남고, 그 시점이 다시 밀리면 기판을 쓰는 모든 제품의 일정이 유리천 한 종목에 묶인다.",
+    "en": "A price notice that Nan Ya Plastics' electronic materials division sent to customers in August has been made public.\nCCL and prepreg prices go up 20 to 25%, applied to shipments from September 1.\n\nThe notice says that amid a broad rise in raw material costs the shortage of glass cloth in particular has been severe, that the supply gap widened month by month, and that procurement costs ran beyond control.\nCopper is not what it leads with.\n\n## Why glass and not copper\n\nCCL is the board that sits underneath a printed circuit board.\nGlass fibre woven into cloth is impregnated with resin and cured, then faced with copper foil, and that is CCL. The half-finished state before curing is prepreg.\nPut simply, the glass cloth is the skeleton of the board and the copper is the wiring drawn on top of it.\nWithout the skeleton there is nowhere to draw the wiring.\n\n@@BAR@@Korea CCL import price, March 2026|$20,728 per tonne|20728|Same month a year earlier|$11,880 per tonne|11880@@The weight the base material carries in the cost of a board grew by this multiple in a single year. Korea has kept these statistics since 2000 and this is the first time the figure has entered this range.@@TrendForce, 2026-05-06, citing Korean trade statistics · retrieved 2026-08-14\n\n@@REF@@CCL Market Tightens as Korea Import Prices Reportedly Rise 74.5% YoY (TrendForce, 2026-05-06)|https://www.trendforce.com/news/2026/05/06/news-ai-demand-tightens-ccl-supply-drives-advance-orders-price-hikes-and-expansion/|https://img.trendforce.com/blog/wp-content/uploads/2026/02/03182221/Chip-FREEPIK-20260203-624x351.jpg\n\nThat report says a Seoul board maker placed advance orders with two Taiwanese suppliers worth more than five times its typical monthly usage.\nThat is not the behaviour of a buyer negotiating a price. It is the behaviour of one reserving a place in line.\n\n## One company does the weaving\n\nBoards for AI servers move to glass cloth with a lower dielectric constant as signals get faster.\nJapan's Nittobo holds roughly 90% of that T-glass segment, and 60 to 70% of the NER-glass grade below it.\n\n@@REF@@Glass Fiber Cloth: The Underlying Material Shortage in AI Infrastructure (TrendForce Insights, 2026-04-30)|https://insights.trendforce.com/p/glass-fiber-cloth-shortage|https://substackcdn.com/image/fetch/$s_!5wj0!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Faa7059d6-c21f-4cce-9e7f-9b322dfbe66f_1672x941.png\n\nThe same analysis expects that company's new capacity to start running by the middle of 2027 at the earliest.\nMeanwhile consumption keeps climbing, as Nvidia's Rubin generation raises both substrate area and layer count and cableless designs add midplane and backplane demand.\n\nReuters reported in November 2025 that the two companies had joined forces to expand special glass cloth production.\nThe side sending the increase notice is also the side that has decided to make the material itself.\n\nWhen supply is fixed for more than a year while demand grows, raising the price does not produce more material.\nBeing unable to buy because it is expensive and being unable to buy because there is none left are different problems, and money does not solve the second one.\n\n## What September 1 decides\n\n@@TIME@@2025-11|Nan Ya notifies customers of an 8% rise in CCL and prepreg prices|2026-03|A Seoul board maker front-loads orders worth over five times its monthly usage with Taiwanese suppliers|2026-04-28|Kingboard lifts FR-4 grades by 10%, its fourth increase of the year|2026-08|Nan Ya sends another increase notice|>2026-09-01|Applied from this shipping date@@The gaps between increases got shorter and the steps got larger. That shape is what separates passing on a cost from rationing a material.@@DigiTimes and TrendForce reporting · retrieved 2026-08-14\n\nIf board makers pass the increase straight through to set makers, it ends as a cost transfer.\nIf they cannot, margins take it, and from that point orders go to whoever secured glass cloth.\nWhat decides this is not the size of the increase but when Nittobo's new line runs.\nIf it starts in the middle of 2027 this increase stays a one-year cost wave. If that date slips again, the schedule of every product that uses a circuit board is tied to a single kind of woven glass.",
+    "ja": "南亜プラスチックの電子材料事業部が8月に取引先へ送った値上げ通知文が公開された。\nCCLとプリプレグの価格を20~25%引き上げ、9月1日出荷分から適用するという内容である。\n\n通知文は、原材料価格が全面的に上がるなかで特にガラスクロスの不足が深刻で、需給の差が月ごとに広がり、調達コストが制御を離れたと書いた。\n銅の話は前面に出していない。\n\n## なぜ銅ではなくガラスなのか\n\nCCLはプリント基板の土台になる板である。\nガラス繊維を布のように織ったガラスクロスに樹脂を含ませて硬化させ、その上に銅箔を貼ったものがCCLで、硬化前の半製品の状態がプリプレグだ。\n平たく言えば、ガラスクロスは基板の骨格であり、銅はその上に描いた配線である。\n骨格がなければ配線を描く場所がない。\n\n@@BAR@@韓国のCCL輸入単価 2026年3月|1トン20,728ドル|20728|1年前の同じ月|1トン11,880ドル|11880@@基板1枚の原価に占める土台材の重さが、1年でこの倍数だけ大きくなった。韓国が統計を取り始めた2000年以降、この水準に入ったのは初めてである。@@トレンドフォース2026-05-06報道(韓国貿易統計引用)・2026-08-14閲覧\n\n@@REF@@AI需要でCCLの供給が逼迫、韓国の輸入価格が前年比74.5%上昇 (トレンドフォース, 2026-05-06)|https://www.trendforce.com/news/2026/05/06/news-ai-demand-tightens-ccl-supply-drives-advance-orders-price-hikes-and-expansion/|https://img.trendforce.com/blog/wp-content/uploads/2026/02/03182221/Chip-FREEPIK-20260203-624x351.jpg\n\nこの報道によれば、ソウルのある基板メーカーは平月の使用量の5倍を超える量を台湾の供給2社に前倒しで発注した。\n価格を交渉する段階ではなく、順番を押さえる段階だという意味である。\n\n## 織る会社が一社しかない\n\nAIサーバー向けの基板は、信号が速くなるほど誘電率の低いガラスクロスを使う。\nそのTガラス系を織る市場は日本の日東紡が約90%を握り、その下の等級であるNERガラスを60~70%が同じ会社だ。\n\n@@REF@@ガラスクロス、AIインフラの下に敷かれた素材不足 (トレンドフォース・インサイト, 2026-04-30)|https://insights.trendforce.com/p/glass-fiber-cloth-shortage|https://substackcdn.com/image/fetch/$s_!5wj0!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Faa7059d6-c21f-4cce-9e7f-9b322dfbe66f_1672x941.png\n\n同じ分析は、この会社の新規設備が早くても2027年半ばに動き始めるとみている。\nエヌビディアのルビン世代が基板の面積と層数をともに増やし、ケーブルを取り除いた設計がミッドプレーンとバックプレーンの需要を加えて、使う量は今も増えている。\n\nロイターは2025年11月、両社が特殊ガラスクロスの生産を増やすために手を組んだと伝えた。\n値上げを通知した側が、その素材を自ら作ることにした側でもあるという意味である。\n\n1年以上供給が固定されたまま需要だけ増えれば、価格を上げても物は増えない。\n高くて買えないことと、売る物がなくて買えないことは別の問題であり、後者は金では解けない。\n\n## 9月1日以降に分かれるもの\n\n@@TIME@@2025-11|南亜プラスチックがCCL・プリプレグを8%引き上げると通知する|2026-03|ソウルの基板メーカーが平月使用量の5倍を台湾の供給先に前倒し発注する|2026-04-28|キングボードがFR-4系を10%引き上げる、今年4回目の値上げ|2026-08|南亜プラスチックが再び値上げを通知する|>2026-09-01|出荷分から適用@@値上げの間隔が短くなり、幅が大きくなった。原価を移す局面と物を配給する局面は、この形で分かれる。@@デジタイムス・トレンドフォース報道・2026-08-14閲覧\n\n基板メーカーがこの値をそのままセットメーカーへ渡せれば、値上げは原価転嫁で終わる。\n受けてもらえなければ利幅が削られ、そこからは誰がガラスクロスを確保したかが受注を決める。\n分かれ目は値上げ率ではなく、日東紡の新しい設備がいつ動くかである。\n2027年半ばにそのラインが動き始めれば今回の値上げは1年の原価の波として残り、その時期がまた延びれば、基板を使うすべての製品の日程が一種類の織られたガラスに縛られる。"
+   },
+   "why": {
+    "ko": "값이 오르는 것과 물건이 없는 것은 다른 문제다. 고급 유리천은 한 회사가 90%를 쥐고 있고 새 설비는 2027년 중반에나 돌다. 그때까지는 돈이 아니라 확보량이 기판 업체의 순위를 정한다.",
+    "en": "A rising price and an absent material are different problems. One company holds 90% of the high-end glass cloth and its new capacity does not run until mid-2027. Until then it is allocation, not money, that ranks the board makers.",
+    "ja": "値が上がることと物がないことは別の問題だ。高級ガラスクロスは一社が90%を握り、新設備は2027年半ばまで動かない。それまでは金額ではなく確保量が基板メーカーの順位を決める。"
+   },
+   "ask": {
+    "ko": "AI 서버의 병목이 칩에서 소재로 내려온 지금, 기판 업체의 실적을 가르는 것은 기술력일까 확보한 유리천의 양일까?",
+    "en": "Now that the bottleneck in AI servers has moved down from the chip to the material, is it engineering or the volume of glass cloth secured that separates one board maker's results from another's?",
+    "ja": "AIサーバーのボトルネックがチップから素材へ下りてきた今、基板メーカーの業績を分けるのは技術力だろうか、確保したガラスクロスの量だろうか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2027-12-31",
+    "note": {
+     "ko": "고급 유리천 신규 설비가 2027년 안에 실제로 가동에 들어가는지를 채점한다.",
+     "en": "Score whether new high-end glass cloth capacity actually starts running during 2027.",
+     "ja": "高級ガラスクロスの新規設備が2027年中に実際に稼働に入るかを採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "니토보의 신규 유리천 설비 가동 시점",
+      "en": "The start date of Nittobo's new glass cloth capacity",
+      "ja": "日東紡の新規ガラスクロス設備の稼働時期"
+     },
+     "now": {
+      "ko": "2026년 8월 기준 미가동 · 시장 전망은 빨라야 2027년 중반",
+      "en": "Not running as of August 2026 · the market expects mid-2027 at the earliest",
+      "ja": "2026年8月時点で未稼働 · 市場の見方は早くても2027年半ば"
+     },
+     "when": {
+      "ko": "2027년 말",
+      "en": "End of 2027",
+      "ja": "2027年末"
+     },
+     "hit": {
+      "ko": "2027년 안에 신규 설비 가동이 확인된다 → 전망대로",
+      "en": "New capacity is confirmed running during 2027 → as expected",
+      "ja": "2027年中に新規設備の稼働が確認される → 見通しどおり"
+     },
+     "miss": {
+      "ko": "2027년 말까지 가동 확인이 없다 → 병목이 한 해 더 간다",
+      "en": "No confirmed start by the end of 2027 → the bottleneck runs another year",
+      "ja": "2027年末までに稼働の確認がない → ボトルネックがもう1年続く"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan (@jukan05) · 남아플라스틱 인상 통지문 공유 · 2026-08-14",
+      "en": "Jukan (@jukan05) · sharing the Nan Ya price notice · 2026-08-14",
+      "ja": "Jukan (@jukan05) · 南亜プラスチックの値上げ通知文を共有 · 2026-08-14"
+     },
+     "url": "https://x.com/jukan05/status/2088142623253131770"
+    },
+    {
+     "name": {
+      "ko": "CCL 수급·가격",
+      "en": "CCL supply and prices",
+      "ja": "CCLの需給・価格"
+     },
+     "desc": {
+      "ko": "트렌드포스 · 한국 수입단가 전년 대비 74.5% 상승 · 2026-05-06",
+      "en": "TrendForce · Korea import prices up 74.5% year on year · 2026-05-06",
+      "ja": "トレンドフォース · 韓国の輸入単価が前年比74.5%上昇 · 2026-05-06"
+     },
+     "url": "https://www.trendforce.com/news/2026/05/06/news-ai-demand-tightens-ccl-supply-drives-advance-orders-price-hikes-and-expansion/"
+    },
+    {
+     "name": {
+      "ko": "유리천 병목",
+      "en": "Glass cloth bottleneck",
+      "ja": "ガラスクロスのボトルネック"
+     },
+     "desc": {
+      "ko": "트렌드포스 인사이트 · 니토보 점유율과 증설 시점 · 2026-04-30",
+      "en": "TrendForce Insights · Nittobo's share and capacity timing · 2026-04-30",
+      "ja": "トレンドフォース・インサイト · 日東紡のシェアと増設時期 · 2026-04-30"
+     },
+     "url": "https://insights.trendforce.com/p/glass-fiber-cloth-shortage"
+    },
+    {
+     "name": {
+      "ko": "직전 인상",
+      "en": "The previous increase",
+      "ja": "前回の値上げ"
+     },
+     "desc": {
+      "ko": "디지타임스 · 남아플라스틱 CCL·프리프레그 8% 인상 · 2025-11-26",
+      "en": "DigiTimes · Nan Ya raises CCL and PP prices by 8% · 2025-11-26",
+      "ja": "デジタイムス · 南亜プラスチックがCCL・PPを8%引き上げ · 2025-11-26"
+     },
+     "url": "https://www.digitimes.com/news/a20251126PD245/nan-ya-plastics-ccl-formosa-plastics-subsidiary-copper-foil.html"
+    },
+    {
+     "name": {
+      "ko": "두 회사의 제휴",
+      "en": "The two companies' tie-up",
+      "ja": "両社の提携"
+     },
+     "desc": {
+      "ko": "로이터 · 니토보-남아플라스틱 특수 유리천 생산 협력 · 2025-11-28",
+      "en": "Reuters · Nitto Boseki and Nan Ya Plastics partner on special glass cloth · 2025-11-28",
+      "ja": "ロイター · 日東紡と南亜プラスチックが特殊ガラスクロスで提携 · 2025-11-28"
+     },
+     "url": "https://www.digitimes.com/news/a20251130PD200/demand-ai-applications-nan-ya-plastics-production-market.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-14 조회 · 인상률과 적용일은 공유된 통지문 기준이고, 한국 수입단가와 점유율은 인용한 보도 기준이다. 니토보의 증설 시점은 회사 발표가 아니라 시장 분석의 전망이다.",
+    "en": "Retrieved 2026-08-14 · The increase and its effective date are from the shared notice; Korean import prices and market shares are as reported. Nittobo's capacity timing is a market analyst expectation rather than a company announcement.",
+    "ja": "2026-08-14閲覧 · 値上げ率と適用日は共有された通知文に基づき、韓国の輸入単価とシェアは引用した報道に基づく。日東紡の増設時期は会社発表ではなく市場分析の見通しである。"
+   }
+  },
+  {
    "date": "2026-08-13",
    "id": "elerian-30y-auction-highest-since-2001-and-15t-commitments",
    "related": [
@@ -56523,6 +56699,145 @@
     "모하메드 엘에리언",
     "エラリアン",
     "モハメド・エラリアン"
+   ]
+  },
+  "CCL": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "유리천에 수지를 먹여 굳히고 구리박을 입힌 판. 인쇄회로기판의 바닥이 된다.",
+    "en": "A board of resin-impregnated glass cloth faced with copper foil, the base layer of a printed circuit board.",
+    "ja": "ガラスクロスに樹脂を含ませて硬化させ、銅箔を貼った板。プリント基板の土台になる。"
+   },
+   "longDesc": {
+    "ko": "기판 원가에서 큰 몫을 차지하고, 신호가 빨라질수록 어떤 유리천과 수지를 썼느냐가 성능을 좀우한다. AI 서버용은 유전율이 낮은 고급 유리천을 요구해 일반 제품과 공급망이 갈린다. 굳히기 전 반제품 상태를 프리프레그라고 부른다.",
+    "en": "It accounts for a large share of a board's cost, and as signals get faster the choice of glass cloth and resin decides performance. Boards for AI servers demand low dielectric constant glass cloth, which splits their supply chain from ordinary grades. The half-cured intermediate is called prepreg.",
+    "ja": "基板原価の大きな部分を占め、信号が速くなるほどどのガラスクロスと樹脂を使ったかが性能を左右する。AIサーバー向けは誘電率の低い高級ガラスクロスを求めるため、一般品とは供給網が分かれる。硬化前の半製品状態をプリプレグと呼ぶ。"
+   },
+   "aliases": [
+    "CCL",
+    "copper clad laminate",
+    "동박적층판",
+    "프리프레그",
+    "prepreg",
+    "銅張積層板",
+    "プリプレグ"
+   ]
+  },
+  "유리천": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "유리섬유를 천처럼 짜 소재. 인쇄회로기판의 빼대 역할을 한다.",
+    "en": "Glass fibre woven into cloth, which forms the skeleton of a printed circuit board.",
+    "ja": "ガラス繊維を布のように織った素材。プリント基板の骨格になる。"
+   },
+   "longDesc": {
+    "ko": "신호가 빠른 기판일수록 유전율이 낮은 등급을 쓰는데, T글라스처럼 높은 등급은 짜는 회사가 극소수라 공급이 쉽게 늘지 않는다. 그래서 AI 서버 수요가 늘면 값보다 물량이 먼저 문제가 되고, 기판과 그 위에 얹히는 제품의 일정까지 이 소재가 정하게 된다.",
+    "en": "Boards carrying faster signals use grades with a lower dielectric constant, and the highest of these, such as T-glass, are woven by very few companies, so supply does not expand easily. When AI server demand rises, availability becomes a problem before price does, and this material ends up setting the schedule for the boards and everything mounted on them.",
+    "ja": "信号が速い基板ほど誘電率の低い等級を使うが、Tガラスのような高い等級は織る会社が極めて少なく供給が簡単には増えない。そのためAIサーバーの需要が増えると価格より数量が先に問題になり、基板とその上に載る製品の日程までこの素材が決めることになる。"
+   },
+   "aliases": [
+    "glass cloth",
+    "glass fabric",
+    "T-glass",
+    "T글라스",
+    "NER-glass",
+    "NER글라스",
+    "유리천",
+    "유리포",
+    "글라스 클로스",
+    "ガラスクロス",
+    "Tガラス",
+    "NERガラス"
+   ]
+  },
+  "NAN YA PLASTICS": {
+   "kind": "company",
+   "ticker": "1303",
+   "logo": "npc.com.tw",
+   "exchange": "TWSE",
+   "sector": {
+    "ko": "소재",
+    "en": "Materials",
+    "ja": "素材"
+   },
+   "desc": {
+    "ko": "대만 포모사 그룹의 소재 회사. 전자재료 부문이 CCL과 동박을 만든다.",
+    "en": "A Taiwanese materials company in the Formosa group whose electronic materials division makes CCL and copper foil.",
+    "ja": "台湾フォルモサグループの素材会社。電子材料部門がCCLと銅箔を作る。"
+   },
+   "ceo": {
+    "ko": "우자자오",
+    "en": "Chia-Chau Wu",
+    "ja": "ウー・ジャジャオ"
+   },
+   "hq": {
+    "ko": "대만 타이베이",
+    "en": "Taipei, Taiwan",
+    "ja": "台湾・台北"
+   },
+   "website": "https://www.npc.com.tw",
+   "longDesc": {
+    "ko": "플라스틱과 화학 소재가 본업이지만 전자재료 부문이 세계 CCL 시장에서 앞자리를 차지한다. 유리천과 구리박을 함께 다루기 때문에 이 회사가 내는 가격 통지문은 기판 업계에서 원가의 방향을 읽는 신호로 쓰인다. 값을 올리면서 무엇을 이유로 드는지가 특히 그렇다.",
+    "en": "Its main business is plastics and chemicals, but the electronic materials division ranks near the top of the global CCL market. Because it handles both glass cloth and copper foil, its price notices are read across the board industry as a signal of where costs are heading, and what it names as the reason matters as much as the number.",
+    "ja": "本業はプラスチックと化学素材だが、電子材料部門は世界のCCL市場で上位を占める。ガラスクロスと銅箔の両方を扱うため、この会社が出す価格通知は基板業界で原価の方向を読む信号として使われる。値上げの理由として何を挙げるかが特にそうだ。"
+   },
+   "aliases": [
+    "Nan Ya Plastics",
+    "Nan Ya",
+    "남아플라스틱",
+    "난야플라스틱",
+    "南亜プラスチック",
+    "南亞塑膠"
+   ]
+  },
+  "NITTOBO": {
+   "kind": "company",
+   "ticker": "3110",
+   "logo": "nittobo.co.jp",
+   "exchange": "TSE",
+   "sector": {
+    "ko": "소재",
+    "en": "Materials",
+    "ja": "素材"
+   },
+   "desc": {
+    "ko": "고급 유리천을 사실상 독점하는 일본 유리섬유 회사.",
+    "en": "A Japanese glass fibre company that effectively monopolises high-end glass cloth.",
+    "ja": "高級ガラスクロスを事実上独占する日本のガラス繊維会社。"
+   },
+   "ceo": {
+    "ko": "하야시 히사노부",
+    "en": "Hisanobu Hayashi",
+    "ja": "ハヤシ・ヒサノブ"
+   },
+   "hq": {
+    "ko": "일본 도쿄",
+    "en": "Tokyo, Japan",
+    "ja": "日本・東京"
+   },
+   "website": "https://www.nittobo.co.jp",
+   "longDesc": {
+    "ko": "섬유 회사로 출발해 유리섬유와 유리천으로 옮겨 갔고, 지금은 AI 서버 기판에 들어가는 저유전율 등급에서 압도적인 자리를 차지한다. 이 회사의 증설 일정이 밀리면 기판과 서버, 나아가 가속기 출하 일정까지 함께 밀리기 때문에, 소재 회사치고는 드물게 전방 산업의 일정표를 쥐고 있는 쪽에 가깝다.",
+    "en": "It began as a textile company and moved into glass fibre and glass cloth, and now holds a commanding position in the low dielectric constant grades used in AI server boards. If its expansion schedule slips, the schedules for boards, servers and ultimately accelerator shipments slip with it, which puts a materials supplier unusually close to holding the industry's calendar.",
+    "ja": "繊維会社として出発しガラス繊維とガラスクロスへ移り、いまはAIサーバー基板に使われる低誘電率の等級で圧倒的な位置を占める。この会社の増設日程が遅れれば基板とサーバー、ひいてはアクセラレータの出荷日程まで一緒に遅れるため、素材会社としては珍しく前工程の側が業界の予定表を握る形になっている。"
+   },
+   "aliases": [
+    "Nittobo",
+    "Nitto Boseki",
+    "니토보",
+    "니토보세키",
+    "日東紡",
+    "日東紡績"
    ]
   }
  }
