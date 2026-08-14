@@ -15063,7 +15063,7 @@ async function loadAuxData(){
     /* A slow aux request may outlive the initial deep-link timer. Retry only
        when that view has not opened yet; never reset an active user view. */
     const hasView = document.querySelector(
-      ".jr-page,.inv-grid,.inv-table,.v83one,#v82cal.on,#v82detail.on,#v82ind.on"
+      ".jr-page,.inv-grid,.inv-table,.v83one,.v83dir-head,.v83dir,.v83skew-page,.v83cal-page,.v83np-page,#v82cal.on,#v82detail.on,#v82ind.on"
     );
     if (!hasView && !invViewActive() && (STK_BOOT.h || STK_BOOT.s.includes("c=") || STK_BOOT.s.includes("e="))) {
       handleDeepLink();
