@@ -3174,69 +3174,69 @@ html[data-theme="dark"] .mkt-chg.mkt-dn{color:#FDA29B;}
    .mkt-bar-skew 클래스 둘 다 있어야 매치). 네이버증권류 마켓 요약 위젯 참고 —
    항목마다 카드 하나, 이름(작게·muted) → 큰 숫자 → 등락 세로 배치, 폭이 좁아지면
    auto-fit 그리드로 자동 줄바꿈. */
-html.v83 .mkt-bar.mkt-bar-skew{
+.mkt-bar.mkt-bar-skew{
   grid-column:auto;display:block;
   min-height:0;margin:0 0 20px;padding:16px 14px 0;
   border-bottom:0;background:transparent;overflow:visible;
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-date{
+.mkt-bar.mkt-bar-skew .mkt-date{
   display:block;margin:0 0 10px;font-size:11px;
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-viewport{overflow:visible;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-track{
+.mkt-bar.mkt-bar-skew .mkt-viewport{overflow:visible;}
+.mkt-bar.mkt-bar-skew .mkt-track{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
   gap:12px;width:auto;
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-item{
+.mkt-bar.mkt-bar-skew .mkt-item{
   display:flex;flex-direction:column;align-items:flex-start;gap:5px;
   padding:14px 16px;border:1px solid var(--line);border-radius:12px;
   background:var(--card);white-space:normal;
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-k{
+.mkt-bar.mkt-bar-skew .mkt-k{
   font-size:11px;font-weight:600;color:var(--muted);
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-v{
+.mkt-bar.mkt-bar-skew .mkt-v{
   font-size:20px;font-weight:700;color:var(--text);
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-chg{font-size:12.5px;}
+.mkt-bar.mkt-bar-skew .mkt-chg{font-size:12.5px;}
 /* mkt-run 슬라이드 애니메이션은 카드 그리드에서 의미가 없다 — mktPaint()가
    .mkt-bar-skew일 때는 넘침 감지 자체를 건너뛰지만(아래 JS 수정), 혹시 모를
    경합(예: 리사이즈 중 재도장)까지 대비한 CSS 안전망. */
-html.v83 .mkt-bar.mkt-bar-skew.mkt-run .mkt-track{animation:none !important;transform:none !important;}
+.mkt-bar.mkt-bar-skew.mkt-run .mkt-track{animation:none !important;transform:none !important;}
 /* 2026-08-14: 코스피 큰 카드(스파크라인 + 쏠림 배지/3분할). 전부 html.v83 ...
    .mkt-bar-skew 스코프 안 - 모바일(v82)·클래식 가로 바에는 이 블록의 셀렉터가
    하나도 매치되지 않는다. */
-html.v83 .mkt-bar.mkt-bar-skew .mkt-item.mkt-item-lg{grid-column:span 2;}
+.mkt-bar.mkt-bar-skew .mkt-item.mkt-item-lg{grid-column:span 2;}
 @media (max-width:640px){
-  html.v83 .mkt-bar.mkt-bar-skew .mkt-item.mkt-item-lg{grid-column:span 1;}
+  .mkt-bar.mkt-bar-skew .mkt-item.mkt-item-lg{grid-column:span 1;}
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-item-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-badge{
+.mkt-bar.mkt-bar-skew .mkt-item-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.mkt-bar.mkt-bar-skew .mkt-skew-badge{
   display:inline-block;font-size:10px;font-weight:700;line-height:1.6;
   padding:1px 8px;border-radius:999px;white-space:nowrap;
   background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-spark-wrap{display:block;width:100%;margin-top:6px;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-spark{display:block;width:100%;height:20px;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-item-lg .mkt-spark{height:40px;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-spark-lb{display:block;font-size:9.5px;color:var(--muted);margin-top:3px;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-up{color:#06703D;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-dn{color:#B42318;}
-html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-up{color:#6EE7B7;}
-html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-spark.mkt-dn{color:#FDA29B;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-split{
+.mkt-bar.mkt-bar-skew .mkt-spark-wrap{display:block;width:100%;margin-top:6px;}
+.mkt-bar.mkt-bar-skew .mkt-spark{display:block;width:100%;height:20px;}
+.mkt-bar.mkt-bar-skew .mkt-item-lg .mkt-spark{height:40px;}
+.mkt-bar.mkt-bar-skew .mkt-spark-lb{display:block;font-size:9.5px;color:var(--muted);margin-top:3px;}
+.mkt-bar.mkt-bar-skew .mkt-spark.mkt-up{color:#06703D;}
+.mkt-bar.mkt-bar-skew .mkt-spark.mkt-dn{color:#B42318;}
+html[data-theme="dark"] .mkt-bar.mkt-bar-skew .mkt-spark.mkt-up{color:#6EE7B7;}
+html[data-theme="dark"] .mkt-bar.mkt-bar-skew .mkt-spark.mkt-dn{color:#FDA29B;}
+.mkt-bar.mkt-bar-skew .mkt-skew-split{
   display:flex;width:100%;margin-top:10px;padding-top:8px;
   border-top:1px solid var(--line);
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg{
+.mkt-bar.mkt-bar-skew .mkt-skew-seg{
   flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;
 }
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg b{font-size:13px;font-weight:700;color:var(--text);}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg small{font-size:9.5px;font-weight:600;color:var(--muted);}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-up b{color:#06703D;}
-html.v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-dn b{color:#B42318;}
-html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-up b{color:#6EE7B7;}
-html[data-theme="dark"].v83 .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-dn b{color:#FDA29B;}
+.mkt-bar.mkt-bar-skew .mkt-skew-seg b{font-size:13px;font-weight:700;color:var(--text);}
+.mkt-bar.mkt-bar-skew .mkt-skew-seg small{font-size:9.5px;font-weight:600;color:var(--muted);}
+.mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-up b{color:#06703D;}
+.mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-dn b{color:#B42318;}
+html[data-theme="dark"] .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-up b{color:#6EE7B7;}
+html[data-theme="dark"] .mkt-bar.mkt-bar-skew .mkt-skew-seg.mkt-dn b{color:#FDA29B;}
 
 /* ---------- watchlist (followed companies) ---------- */
 #watchSec{position:relative;}
@@ -15036,7 +15036,14 @@ function mktPaint(){
        화면이 없다(TAB="skew"는 v83 전용 의사 탭 - unmountV83이 벗어날 때마다 TAB을
        "all"로 되돌린다) - 판별 수단이 없으므로 그 셸들에서는 무조건 숨긴다. v83에서는
        기존과 동일하게 onSkewPage일 때만 보인다. */
-    if (!onSkewPage){ bar.hidden = true; return; }
+    /* 2026-08-14 (모바일 쏠림 바): v82에는 TAB="skew" 같은 판별 수단이 없는 대신,
+       assets/v82.js의 openSkewSub()가 "지금 쏠린 곳" 서브뷰를 열 때 window.MKT_M_SKEW를
+       true로 세운다(서브뷰를 벗어나는 모든 지점에서 false로 되돌림 - v82.js 쪽 주석
+       참고). v83On이 true인 동안은 이 분기가 절대 걸리지 않는다(desktop v83는 항상
+       onSkewPage 경로만 탄다) - typeof 가드 없이 === true로 비교해 미정의 상태를 안전히
+       걸러낸다. */
+    var onMobileSkew = !v83On && window.MKT_M_SKEW === true;
+    if (!onSkewPage && !onMobileSkew){ bar.hidden = true; return; }
     var items = MKT_DATA && Array.isArray(MKT_DATA.items) ? MKT_DATA.items : null;
     if (!items || !items.length){ bar.hidden = true; return; }
     var S = STRINGS[LANG] || STRINGS.en;
@@ -15803,7 +15810,7 @@ renderMktBar();
   <div id="cfsBody"></div>
 </div>
 <!-- ============ v82: Twitter-style mobile shell ============ -->
-<script src="assets/v82.js?v=70f2d061"></script>
+<script src="assets/v82.js?v=000238a6"></script>
 <!-- ============ BETA: v83 desktop tweaks (2026-07-23 june feedback) ============ -->
 <script src="assets/v83tw.js?v=align-22855e56"></script>
 
