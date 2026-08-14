@@ -16,7 +16,12 @@ function context(overrides) {
     likes: new Set(),
     bookmarks: new Set(),
     read: new Set(),
+    shares: new Set(),
     viewed: new Set(),
+    served: new Set(),
+    hidden: new Set(),
+    lessSources: new Set(),
+    lessTopics: new Set(),
     views: {},
     likeCounts: {},
     commentCounts: {},
@@ -39,6 +44,46 @@ test("read cards are demoted when other signals are equal", () => {
     item("unread", "B", "2026-08-14", ["AI"], ["NVDA"])
   ];
   assert.equal(ranker.rank(cards, context({ read: new Set(["read"]) }))[0].id, "unread");
+});
+
+test("shared cards strengthen related topic affinity", () => {
+  const cards = [
+    item("history", "Old", "2026-07-01", ["HISTORY"], []),
+    item("related", "A", "2026-08-14", ["RELATED"], []),
+    item("unrelated", "B", "2026-08-14", ["OIL"], [])
+  ];
+  const ranked = ranker.rank(cards, context({
+    getDirectReasons: () => [],
+    getTopics: value => value.id === "unrelated" ? [] : ["THEME:AICAPEX"],
+    shares: new Set(["history"]),
+    read: new Set(["history"])
+  })).map(value => value.id);
+  assert.ok(ranked.indexOf("related") < ranked.indexOf("unrelated"));
+});
+
+test("cards served in the current session are softly demoted", () => {
+  const cards = [
+    item("served", "A", "2026-08-14", ["AI"], ["NVDA"]),
+    item("new", "B", "2026-08-14", ["AI"], ["NVDA"])
+  ];
+  assert.equal(ranker.rank(cards, context({ served: new Set(["served"]) }))[0].id, "new");
+});
+
+test("negative feedback filters items and demotes sources or topics", () => {
+  const cards = [
+    item("hidden", "A", "2026-08-14", ["AI"], ["NVDA"]),
+    item("source", "Muted", "2026-08-14", ["AI"], ["NVDA"]),
+    item("topic", "B", "2026-08-14", ["CRYPTO"], ["NVDA"]),
+    item("clean", "C", "2026-08-14", ["ENERGY"], ["NVDA"])
+  ];
+  const ranked = ranker.rank(cards, context({
+    hidden: new Set(["hidden"]),
+    lessSources: new Set(["muted"]),
+    lessTopics: new Set(["crypto"])
+  })).map(value => value.id);
+  assert.equal(ranked.includes("hidden"), false);
+  assert.ok(ranked.indexOf("clean") < ranked.indexOf("source"));
+  assert.ok(ranked.indexOf("clean") < ranked.indexOf("topic"));
 });
 
 test("source diversity breaks up repeated publishers", () => {
@@ -74,6 +119,30 @@ test("every tenth slot can explore outside direct follows", () => {
   const ranked = ranker.rank(cards, context());
   assert.equal(ranked[9].id, "explore");
   assert.equal(ranker.reason("explore", "ko"), "새로운 주제 추천");
+});
+
+test("exploration slot rejects stale or editorially ineligible cards", () => {
+  const cards = [];
+  for (let i = 0; i < 12; i += 1) {
+    cards.push(item("follow-q-" + i, "Source-q-" + i, "2026-08-14", ["AI"], ["NVDA"]));
+  }
+  cards.push(item("stale", "Stale", "2026-01-01", ["HEALTH"], []));
+  cards.push(item("weak", "Weak", "2026-08-14", ["ENERGY"], []));
+  cards.push(item("eligible", "Eligible", "2026-08-01", ["TRADE"], []));
+  const ranked = ranker.rank(cards, context({
+    isExplorationEligible: value => value.id !== "weak"
+  }));
+  assert.equal(ranked[9].id, "eligible");
+});
+
+test("variant b uses the earlier fresh-discovery slot", () => {
+  const cards = [];
+  for (let i = 0; i < 10; i += 1) {
+    cards.push(item("follow-b-" + i, "Source-b-" + i, "2026-08-14", ["AI"], ["NVDA"]));
+  }
+  cards.push(item("explore-b", "New", "2026-08-10", ["HEALTH"], []));
+  const ranked = ranker.rank(cards, context({ experimentVariant: "b" }));
+  assert.equal(ranked[7].id, "explore-b");
 });
 
 test("feature flag defaults on and supports a local kill switch", () => {

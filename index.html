@@ -2025,6 +2025,8 @@ html[data-lang="ko"] .why p{font-family:var(--ui-font);}
   box-shadow:0 10px 30px rgba(0,0,0,.32);transition:opacity .2s ease,transform .2s ease;white-space:nowrap;
 }
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast.has-action{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 16px;pointer-events:auto;}
+#toast button{border:0;border-radius:999px;background:#fff;color:#111;font:inherit;font-size:12px;font-weight:800;padding:6px 10px;cursor:pointer;}
 html[data-lang="ko"] #toast{font-family:var(--ui-font);}
 .since .since-p{font-weight:800;}
 .since .since-p.up{color:#06703D;}
@@ -2307,6 +2309,7 @@ html[data-lang="ko"] .mh-count{font-family:var(--ui-font);}
   background:rgba(10,132,255,.1);color:#0A84FF;border:1px solid rgba(10,132,255,.25);
 }
 .mine-why .mw-s{background:var(--bg-soft);color:var(--muted);border-color:var(--line);cursor:default;}
+.mine-why .mw-theme{background:var(--bg-soft);color:var(--muted);border-color:var(--line);cursor:pointer;}
 .mine-empty{display:flex;flex-direction:column;align-items:center;gap:14px;}
 .sugg-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
 .sugg-chip{
@@ -2456,6 +2459,21 @@ html[data-lang="ko"] .ask-row{font-family:var(--ui-font);}
 .eg-listen.on svg{fill:#7A4DFF;stroke:#7A4DFF;}
 .eg-view:hover{color:var(--text);background:var(--bg-soft);}
 .card.is-read .engage{opacity:.6;}
+.ff-wrap{position:relative;display:inline-flex;align-items:center;}
+.card.ff-open{position:relative;z-index:70;}
+.card.ff-open .card-body{overflow:visible;}
+.ff-more{font-size:19px;letter-spacing:1px;line-height:1;padding-top:2px;}
+.ff-menu{
+  position:absolute;right:0;bottom:calc(100% + 8px);z-index:14010;
+  min-width:210px;padding:6px;border:1px solid var(--line);border-radius:12px;
+  background:var(--card);box-shadow:0 12px 34px rgba(0,0,0,.2);
+}
+.ff-menu[hidden]{display:none;}
+.ff-menu button{
+  display:block;width:100%;border:0;border-radius:8px;background:none;color:var(--text);
+  padding:9px 10px;text-align:left;font:inherit;font-size:12px;font-weight:650;cursor:pointer;
+}
+.ff-menu button:hover,.ff-menu button:focus-visible{background:var(--bg-soft);outline:none;}
 @media (min-width:1024px){ .engage .eg{min-width:44px;min-height:44px;justify-content:center;} }
 @media (max-width:560px){ .eg{padding:6px 6px;} .eg svg{width:17px;height:17px;} }
 
@@ -4271,7 +4289,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
   </div>
 </footer>
 
-<script src="assets/feed-ranker.js?v=20260814a"></script>
+<script src="assets/feed-ranker.js?v=20260814c"></script>
 <script>
 function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
 function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
@@ -10762,6 +10780,121 @@ function promptPushOnce(){
 /* ================= personalization ================= */
 function todayStr(){ return new Date().toISOString().slice(0, 10); }
 
+function feedStoredSet(key){
+  try { const value = store.get(key, []); return new Set(Array.isArray(value) ? value : []); }
+  catch (e) { return new Set(); }
+}
+const FEED_HIDDEN = feedStoredSet("stk_feed_hidden_v1");
+const FEED_LESS_SOURCES = feedStoredSet("stk_feed_less_sources_v1");
+const FEED_LESS_TOPICS = feedStoredSet("stk_feed_less_topics_v1");
+let FEED_UNDO_ITEM = null;
+const FEED_EXP_VARIANT = (function(){
+  try {
+    let value = store.get("stk_feed_exp_v1", "");
+    if (value !== "a" && value !== "b"){
+      value = ((crypto.getRandomValues(new Uint32Array(1))[0] & 1) ? "b" : "a");
+      store.set("stk_feed_exp_v1", value);
+    }
+    return value;
+  } catch (e) { return "a"; }
+})();
+const FEED_EXP_METRICS = (function(){
+  const blank = { version:1, variant:FEED_EXP_VARIANT, counts:{}, seen:{} };
+  try {
+    const value = store.get("stk_feed_exp_metrics_v1", blank);
+    return value && value.version === 1 && value.variant === FEED_EXP_VARIANT ? value : blank;
+  } catch (e) { return blank; }
+})();
+let FEED_EXP_TRACK_Q = [];
+let FEED_EXP_TRACK_T = null;
+let FEED_EXP_TRACK_TRIES = 0;
+function flushFeedExperimentMetrics(){
+  if (!FEED_EXP_TRACK_Q.length) return;
+  if (window.goatcounter && window.goatcounter.count){
+    const queue = FEED_EXP_TRACK_Q.splice(0);
+    queue.forEach(track);
+    FEED_EXP_TRACK_TRIES = 0;
+    return;
+  }
+  if (FEED_EXP_TRACK_T || FEED_EXP_TRACK_TRIES >= 20) return;
+  FEED_EXP_TRACK_TRIES++;
+  FEED_EXP_TRACK_T = setTimeout(function(){ FEED_EXP_TRACK_T = null; flushFeedExperimentMetrics(); }, 500);
+}
+/* Item ids remain local. GoatCounter receives only variant/action buckets. */
+function feedExperimentMetric(action, id){
+  if (!["impression","open","bookmark","share","hide"].includes(action) || !id) return;
+  const seen = FEED_EXP_METRICS.seen[action] || (FEED_EXP_METRICS.seen[action] = []);
+  if (seen.includes(id)) return;
+  seen.push(id);
+  if (seen.length > 300) seen.shift();
+  FEED_EXP_METRICS.counts[action] = (Number(FEED_EXP_METRICS.counts[action]) || 0) + 1;
+  store.set("stk_feed_exp_metrics_v1", FEED_EXP_METRICS);
+  FEED_EXP_TRACK_Q.push("feed-exp/" + FEED_EXP_VARIANT + "/" + action);
+  flushFeedExperimentMetrics();
+}
+function feedExperimentOutcome(action, id){
+  if (FEED_MINE) feedExperimentMetric(action, id);
+}
+const FEED_SERVED = (function(){
+  try {
+    const value = JSON.parse(sessionStorage.getItem("stk_feed_served_v1") || "[]");
+    return new Set(Array.isArray(value) ? value : []);
+  } catch (e) { return new Set(); }
+})();
+function saveFeedSet(key, value){ store.set(key, [...value]); }
+function saveFeedServed(){
+  try { sessionStorage.setItem("stk_feed_served_v1", JSON.stringify([...FEED_SERVED])); } catch (e) {}
+}
+function markFeedServed(id){
+  if (!id) return;
+  const first = !FEED_SERVED.has(id);
+  FEED_SERVED.delete(id);
+  FEED_SERVED.add(id);
+  while (FEED_SERVED.size > 120) FEED_SERVED.delete(FEED_SERVED.values().next().value);
+  saveFeedServed();
+  if (first) feedExperimentMetric("impression", id);
+}
+function feedThemeKeys(item){
+  if (!item) return [];
+  const themes = typeof THEMES !== "undefined" ? THEMES : {};
+  if (Array.isArray(item.themes)) return item.themes.filter(k => themes[k]);
+  return Object.keys(themes).filter(k => themes[k].kw.test(themeHay(item)));
+}
+function feedItemTopics(item){
+  const topics = (item && Array.isArray(item.tags) ? item.tags : []).slice();
+  feedThemeKeys(item).forEach(k => topics.push("THEME:" + k));
+  return [...new Set(topics.map(x => String(x || "").trim().toUpperCase()).filter(Boolean))];
+}
+function feedTopicInfo(item){
+  const keys = feedThemeKeys(item);
+  const followed = themeFollowSet();
+  const themeKey = keys.find(k => followed.has(k));
+  if (themeKey && THEMES[themeKey]){
+    return { key: ("THEME:" + themeKey).toUpperCase(), label: THEMES[themeKey].label[LANG] || THEMES[themeKey].label.en };
+  }
+  const tag = item && item.tags && item.tags[0];
+  if (tag) return { key: String(tag).trim().toUpperCase(), label: String(tag) };
+  const fallbackTheme = keys[0];
+  return fallbackTheme && THEMES[fallbackTheme]
+    ? { key: ("THEME:" + fallbackTheme).toUpperCase(), label: THEMES[fallbackTheme].label[LANG] || THEMES[fallbackTheme].label.en }
+    : null;
+}
+function feedExplorationEligible(item){
+  if (!item || !item.sourceUrl) return false;
+  const title = item.title && (item.title[LANG] || item.title.en || item.title.ko || item.title.ja || "");
+  const gistValue = item.gist && (item.gist[LANG] || item.gist.en || item.gist.ko || item.gist.ja || "");
+  const gist = plainGist(gistValue).replace(/\s+/g, " ").trim();
+  return String(title).trim().length >= 12 && gist.length >= 80;
+}
+function promoteUndoneFeedItem(items){
+  const list = items.slice();
+  if (!FEED_UNDO_ITEM) return list;
+  const idx = list.findIndex(item => item.id === FEED_UNDO_ITEM);
+  FEED_UNDO_ITEM = null;
+  if (idx > 0) list.unshift(list.splice(idx, 1)[0]);
+  return list;
+}
+
 /* ---- visit streak (consecutive days with a visit) ---- */
 let STREAK = 1, STREAK_DONE = false;
 function computeStreak(){
@@ -10784,6 +10917,7 @@ function mineReasons(item){
   const ents = itemEntities(item);
   ents.forEach(k => { if (WATCH.has(k)) out.push({ kind: "co", key: k }); });
   if (item.series && FOLLOWED.has(item.series)) out.push({ kind: "series", key: item.series });
+  feedThemeKeys(item).forEach(k => { if (themeFollowSet().has(k)) out.push({ kind: "theme", key: k }); });
   return out;
 }
 function isMine(item){ return mineReasons(item).length > 0; }
@@ -10793,25 +10927,32 @@ function mineCount(){ return ITEMS.filter(isMine).length; }
    every input below already lives in this browser. Failure returns the old
    followed-entity feed, keeping For you usable even if the asset is blocked. */
 function personalizedMineItems(){
-  const fallback = ITEMS.filter(isMine);
+  const fallback = ITEMS.filter(item => isMine(item) && !FEED_HIDDEN.has(item.id));
   if (!fallback.length) return fallback; /* preserve cold-start guidance */
   try {
     const ranker = window.StacksFeedRanker;
-    if (!ranker || !ranker.enabled()) return fallback;
-    return ranker.rank(ITEMS, {
+    if (!ranker || !ranker.enabled()) return promoteUndoneFeedItem(fallback);
+    return promoteUndoneFeedItem(ranker.rank(ITEMS, {
       likes: LIKES,
       bookmarks: BM,
       read: READ,
+      shares: new Set(store.get("stk_shares", [])),
       viewed: VIEWED,
+      served: FEED_SERVED,
+      hidden: FEED_HIDDEN,
+      lessSources: FEED_LESS_SOURCES,
+      lessTopics: FEED_LESS_TOPICS,
       views: VIEW_COUNTS,
       likeCounts: LIKE_COUNTS,
       commentCounts: COMMENT_COUNTS,
       getEntities: item => [...itemEntities(item)],
+      getTopics: feedItemTopics,
       getDirectReasons: mineReasons,
-      explorationEvery: 10
-    });
+      isExplorationEligible: feedExplorationEligible,
+      experimentVariant: FEED_EXP_VARIANT
+    }));
   } catch (e) {
-    return fallback;
+    return promoteUndoneFeedItem(fallback);
   }
 }
 
@@ -10908,7 +11049,7 @@ function renderMe(){
   if (!body) return;
   const best = store.get("stk_streak_best", STREAK) || STREAK;
   const tt = topTopic();
-  const followCount = [...WATCH].filter(k => ENTITIES[k]).length + FOLLOWED.size;
+  const followCount = [...WATCH].filter(k => ENTITIES[k]).length + FOLLOWED.size + themeFollowSet().size;
   const stat = (n, lbl) => '<div class="me-stat"><b>' + n + "</b><span>" + lbl + "</span></div>";
   document.getElementById("meHeadTitle").textContent = S.meTitle;
   /* v83.5 (전 셸): 연속 방문 스트릭 + 팔로잉 목록 (june 지시) */
@@ -11292,7 +11433,7 @@ function seriesUpdates(){
 }
 let BM_ONLY = false;
 function toggleBookmark(id){
-  if (BM.has(id)) BM.delete(id); else { BM.add(id); track("bookmark/" + id); }
+  if (BM.has(id)) BM.delete(id); else { BM.add(id); track("bookmark/" + id); feedExperimentOutcome("bookmark", id); }
   store.set("stk_bm", [...BM]);
   if (BM_ONLY){ renderFeed(false); return; }
   const btn = document.getElementById("bm-" + id);
@@ -11379,6 +11520,7 @@ function logRead(id){
    모바일에서 헤드라인을 누르면 상세가 열리지 않고, 화면에 없는 데스크톱 상태값
    (V83ITEM)만 바뀌면서 피드가 통째로 다시 그려졌다. 셸을 보고 갈라 보낸다. */
 function openFromCard(id, ev){
+  feedExperimentOutcome("open", id);
   var mobile = !document.documentElement.classList.contains("v83");
   if (mobile && typeof window.v82OpenCard === "function"){
     /* 카드 자체에도 탭 핸들러가 있어서 그대로 두면 상세가 두 번 열린다 */
@@ -11841,6 +11983,7 @@ function setupViewObserver(){
         if (en.isIntersecting){
           const id = en.target.getAttribute("data-eg");
           viewObserver.unobserve(en.target);
+          if (id && en.target.getAttribute("data-mine") === "1") markFeedServed(id);
           if (id) recordView(id);
         }
       });
@@ -12114,13 +12257,29 @@ function shareUrl(item){
 }
 
 let TOAST_T = null;
-function showToast(msg){
+function showToast(msg, action){
   let t = document.getElementById("toast");
   if (!t){ t = document.createElement("div"); t.id = "toast"; document.body.appendChild(t); }
-  t.textContent = msg;
+  t.replaceChildren();
+  const label = document.createElement("span");
+  label.textContent = msg;
+  t.appendChild(label);
+  t.classList.toggle("has-action", !!action);
+  if (action){
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = action.label;
+    btn.onclick = function(ev){
+      ev.stopPropagation();
+      if (TOAST_T) clearTimeout(TOAST_T);
+      t.classList.remove("show");
+      action.run();
+    };
+    t.appendChild(btn);
+  }
   t.classList.add("show");
   if (TOAST_T) clearTimeout(TOAST_T);
-  TOAST_T = setTimeout(() => t.classList.remove("show"), 2200);
+  TOAST_T = setTimeout(() => t.classList.remove("show"), action ? 4500 : 2200);
 }
 async function copyLink(url){
   try { await navigator.clipboard.writeText(url); return true; }
@@ -12140,11 +12299,111 @@ function recordShare(id){
     store.set("stk_shares", arr);
   } catch (e) {}
 }
+
+const FEED_FEEDBACK_TEXT = {
+  ko: { menu:"피드 조정", item:"관심 없음", source:"{source} 덜 보기", topic:"{topic} 덜 보기", done:"피드에 반영했어요", undo:"되돌리기", restored:"되돌렸어요" },
+  en: { menu:"Tune feed", item:"Not interested", source:"See less from {source}", topic:"See less about {topic}", done:"Feed preference saved", undo:"Undo", restored:"Preference restored" },
+  ja: { menu:"フィードを調整", item:"興味なし", source:"{source}の表示を減らす", topic:"{topic}の表示を減らす", done:"フィードに反映しました", undo:"元に戻す", restored:"元に戻しました" }
+};
+function feedFeedbackText(){ return FEED_FEEDBACK_TEXT[LANG] || FEED_FEEDBACK_TEXT.en; }
+function feedFeedbackTarget(kind, item){
+  if (kind === "item") return { set: FEED_HIDDEN, storeKey:"stk_feed_hidden_v1", key:item.id };
+  if (kind === "source") return { set: FEED_LESS_SOURCES, storeKey:"stk_feed_less_sources_v1", key:String(item.source || "").trim().toUpperCase() };
+  if (kind === "topic"){
+    const topic = feedTopicInfo(item);
+    return topic ? { set: FEED_LESS_TOPICS, storeKey:"stk_feed_less_topics_v1", key:topic.key } : null;
+  }
+  return null;
+}
+function closeFeedFeedbackMenus(except){
+  document.querySelectorAll(".ff-menu:not([hidden])").forEach(menu => {
+    if (menu === except) return;
+    const owner = document.getElementById(menu.dataset.owner || "");
+    menu.hidden = true;
+    menu.removeAttribute("style");
+    const card = owner && owner.closest(".card");
+    if (card) card.classList.remove("ff-open");
+    const btn = owner && owner.querySelector(".ff-more");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+    if (owner) owner.appendChild(menu);
+  });
+}
+function toggleFeedFeedbackMenu(id, ev){
+  if (ev) ev.stopPropagation();
+  const wrap = document.getElementById("ff-" + id);
+  const menu = wrap && (wrap.querySelector(".ff-menu")
+    || [...document.querySelectorAll(".ff-menu")].find(el => el.dataset.owner === wrap.id));
+  if (!menu) return;
+  const willOpen = menu.hidden;
+  if (!willOpen){ closeFeedFeedbackMenus(); return; }
+  closeFeedFeedbackMenus(menu);
+  menu.hidden = false;
+  menu.dataset.owner = wrap.id;
+  document.body.appendChild(menu);
+  const card = wrap.closest(".card");
+  if (card) card.classList.add("ff-open");
+  const btn = wrap.querySelector(".ff-more");
+  if (btn){
+    btn.setAttribute("aria-expanded", "true");
+    const rect = btn.getBoundingClientRect();
+    const width = menu.offsetWidth;
+    const height = menu.offsetHeight;
+    const top = rect.top - height - 8 >= 8 ? rect.top - height - 8 : rect.bottom + 8;
+    const left = Math.max(8, Math.min(window.innerWidth - width - 8, rect.right - width));
+    menu.style.position = "fixed";
+    menu.style.left = left + "px";
+    menu.style.top = top + "px";
+    menu.style.right = "auto";
+    menu.style.bottom = "auto";
+  }
+}
+function applyFeedFeedback(kind, id, ev){
+  if (ev) ev.stopPropagation();
+  const item = ITEMS.find(x => x.id === id);
+  if (!item) return;
+  const target = feedFeedbackTarget(kind, item);
+  if (!target || !target.key) return;
+  const existed = target.set.has(target.key);
+  target.set.add(target.key);
+  saveFeedSet(target.storeKey, target.set);
+  track("feed-feedback/" + kind);
+  if (kind === "item") feedExperimentOutcome("hide", id);
+  closeFeedFeedbackMenus();
+  render();
+  const T = feedFeedbackText();
+  showToast(T.done, { label:T.undo, run:function(){
+    if (!existed){ target.set.delete(target.key); saveFeedSet(target.storeKey, target.set); }
+    FEED_SERVED.delete(item.id);
+    saveFeedServed();
+    FEED_UNDO_ITEM = item.id;
+    render();
+    showToast(T.restored);
+  }});
+}
+function feedFeedbackMenuHtml(item){
+  const T = feedFeedbackText();
+  const id = String(item.id).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+  const topic = feedTopicInfo(item);
+  const source = dispName(item.source || "");
+  return '<span class="ff-wrap" id="ff-' + esc(item.id) + '">'
+    + '<button class="eg ff-more" type="button" aria-label="' + esc(T.menu) + '" title="' + esc(T.menu) + '" aria-haspopup="menu" aria-expanded="false" onclick="toggleFeedFeedbackMenu(\'' + id + '\', event)">•••</button>'
+    + '<span class="ff-menu" role="menu" hidden>'
+    + '<button type="button" role="menuitem" onclick="applyFeedFeedback(\'item\',\'' + id + '\',event)">' + esc(T.item) + '</button>'
+    + (source ? '<button type="button" role="menuitem" onclick="applyFeedFeedback(\'source\',\'' + id + '\',event)">' + esc(T.source.replace("{source}", source)) + '</button>' : '')
+    + (topic ? '<button type="button" role="menuitem" onclick="applyFeedFeedback(\'topic\',\'' + id + '\',event)">' + esc(T.topic.replace("{topic}", topic.label)) + '</button>' : '')
+    + '</span></span>';
+}
+document.addEventListener("click", function(ev){
+  if (!ev.target.closest || !ev.target.closest(".ff-wrap,.ff-menu")) closeFeedFeedbackMenus();
+});
+window.addEventListener("resize", function(){ closeFeedFeedbackMenus(); });
+window.addEventListener("scroll", function(){ closeFeedFeedbackMenus(); }, true);
 async function shareItem(id){
   const item = ITEMS.find(i => i.id === id);
   if (!item) return;
   track("share/" + id);
   recordShare(id);
+  feedExperimentOutcome("share", id);
   const url = shareUrl(item);
   const title = item.title[LANG];
   /* desktop: just copy the link + toast. mobile: native share sheet. */
@@ -12728,7 +12987,7 @@ if (GOATCOUNTER_SITE && ANALYTICS_LIVE){
     gc.async = true;
     gc.src = "https://gc.zgo.at/count.js";
     gc.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_SITE + ".goatcounter.com/count");
-    gc.addEventListener("load", flushVisit);
+    gc.addEventListener("load", function(){ flushVisit(); flushFeedExperimentMetrics(); });
     document.head.appendChild(gc);
   });
 }
@@ -13775,9 +14034,15 @@ function renderFeed(animate){
         + '<b>' + n + "</b>"
         + '<i class="mh-x" onclick="event.stopPropagation(); toggleFollow(\'' + sid + '\'); render()">×</i></span>';
     });
+    const thChips = [...themeFollowSet()].filter(k => THEMES[k]).map(k => {
+      const n = themeItems(k).length;
+      return '<span class="mh-chip mh-chip-s" onclick="openTheme(\'' + k + '\')">' + (THEMES[k].icon || "") + ' ' + esc(THEMES[k].label[LANG] || THEMES[k].label.en)
+        + '<b>' + n + "</b>"
+        + '<i class="mh-x" onclick="event.stopPropagation(); toggleThemeFollow(\'' + k + '\'); render()">×</i></span>';
+    });
     head.innerHTML =
       '<div class="mh-line">' + S.myFeedBasis + "</div>"
-      + '<div class="mh-chips">' + coChips.join("") + seChips.join("") + "</div>"
+      + '<div class="mh-chips">' + coChips.join("") + seChips.join("") + thChips.join("") + "</div>"
       + '<div class="mh-foot"><span class="mh-count">' + S.briefLine.replace("{c}", co).replace("{n}", ITEMS.filter(i => isMine(i) && i.date >= wk).length) + "</span>"
       + '<button class="mh-edit" onclick="openMe()">⚙ ' + S.myFeedManage + "</button></div>";
     list.appendChild(head);
@@ -13929,7 +14194,9 @@ function cardEl(item, S, idx, detail){
     el.innerHTML = `
       ${mineWhy.length ? `<div class="mine-why">${mineWhy.map(r => r.kind === "series"
         ? `<span class="mw mw-s">${S.myFeedReasonS} · ${SERIES[r.key] ? esc(SERIES[r.key].name[LANG]) : esc(r.key)}</span>`
-        : `<span class="mw" onclick="event.stopPropagation(); chipTap(this, '${r.key.replace(/'/g,"\\'")}')">★ ${esc(r.key)}</span>`).join("")}</div>`
+        : (r.kind === "theme" && THEMES[r.key]
+          ? `<span class="mw mw-theme" onclick="event.stopPropagation(); openTheme('${r.key}')">${THEMES[r.key].icon || ""} ${esc(THEMES[r.key].label[LANG] || THEMES[r.key].label.en)}</span>`
+          : `<span class="mw" onclick="event.stopPropagation(); chipTap(this, '${r.key.replace(/'/g,"\\'")}')">★ ${esc(r.key)}</span>`)).join("")}</div>`
         : (rankedWhy ? `<div class="mine-why"><span class="mw mw-s">${esc(rankedWhy)}</span></div>` : "")}
       <div class="card-top">
         ${avatarHtml(item)}
@@ -13943,7 +14210,7 @@ function cardEl(item, S, idx, detail){
       <!-- lab(item.lab): 실험 카드 한정. 원문제목과 커버를 DOM에서 뺀다. 원문 보기 줄은 order:5로 헤드라인 밑 -->
       <div class="card-body">
       ${(showOrig && !item.lab) ? `<div class="title-orig"><span class="badge">${S.original}</span>${esc(origTitle)}</div>` : ""}
-      ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}<span class="chips-end">${item.paywall ? `<span class="paywall-badge" role="button" tabindex="0" aria-label="${esc(S.paywallLabel + '. ' + paywallDisclosure(item, S))}" onclick="event.stopPropagation(); this.classList.toggle('show')" onkeydown="togglePaywallBadge(this, event)">${S.paywallLabel}<span class="paywall-tip">${paywallTipText(item, S)}</span></span><span class="paywall-note paywall-note-inline">${paywallDisclosure(item, S)}</span>` : ""}<a class="chips-orig" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation(); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a></span></div>` : ""}
+      ${item.lab ? `<div class="chips chips-lab">${stancePillHtml(item)}${item.tags.map(t=>chipHtml(t)).join("")}<span class="chips-end">${item.paywall ? `<span class="paywall-badge" role="button" tabindex="0" aria-label="${esc(S.paywallLabel + '. ' + paywallDisclosure(item, S))}" onclick="event.stopPropagation(); this.classList.toggle('show')" onkeydown="togglePaywallBadge(this, event)">${S.paywallLabel}<span class="paywall-tip">${paywallTipText(item, S)}</span></span><span class="paywall-note paywall-note-inline">${paywallDisclosure(item, S)}</span>` : ""}<a class="chips-orig" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation(); feedExperimentOutcome('open','${item.id}'); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a></span></div>` : ""}
       ${"" /* card cover image retired 2026-07-27 — bottom image removed, lab layout for all cards */}
       ${"" /* series feature retired: no series tag on cards */}
       <div data-source-shell>${srcBlockHtml(item, !!detail)}</div>
@@ -13980,11 +14247,11 @@ function cardEl(item, S, idx, detail){
         <div class="vote-bar" data-vbar="${item.id}" hidden><div class="vote-fill"></div><span class="vote-lbl"></span></div>
       </div>` : ""}
       ${`<div class="cta-row">
-        <a class="original-link" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
+        <a class="original-link" href="${safeUrl(item.sourceUrl)}" target="_blank" rel="noopener" onclick="feedExperimentOutcome('open','${item.id}'); setRead('${item.id}'); recordView('${item.id}'); track('read/${item.id}')">${S.read} ↗</a>
         ${item.paywall ? `<span class="paywall-badge" role="button" tabindex="0" aria-label="${esc(S.paywallLabel + '. ' + paywallDisclosure(item, S))}" onclick="this.classList.toggle('show')" onkeydown="togglePaywallBadge(this, event)">${S.paywallLabel}<span class="paywall-tip">${paywallTipText(item, S)}</span></span><span class="paywall-note">${paywallDisclosure(item, S)}</span>` : ""}
         <span class="lang-note">${langNote}</span>
       </div>`}
-      <div class="engage" data-eg="${item.id}">
+      <div class="engage" data-eg="${item.id}" data-mine="${FEED_MINE ? "1" : "0"}">
         ${COMMENTS_API ? `<button class="eg eg-comment" id="cbtn-${item.id}" onclick="toggleComments('${item.id}')" aria-label="${esc(S.comments + (COMMENT_COUNTS[item.id] ? " " + fmtCount(COMMENT_COUNTS[item.id]) : ""))}" title="${S.comments}">${svgIcon("comment")}<span class="eg-n" id="cn-${item.id}">${COMMENT_COUNTS[item.id] ? fmtCount(COMMENT_COUNTS[item.id]) : ""}</span></button>` : ""}
         <button class="eg eg-like${LIKES.has(item.id) ? " on" : ""}" id="lk-${item.id}" onclick="toggleLike('${item.id}')" aria-label="${esc(S.like + (LIKE_COUNTS[item.id] ? " " + fmtCount(LIKE_COUNTS[item.id]) : ""))}" title="${S.like}">${svgIcon("like")}<span class="eg-n" id="ln-${item.id}">${LIKE_COUNTS[item.id] ? fmtCount(LIKE_COUNTS[item.id]) : ""}</span></button>
         <button class="eg eg-view" id="eg-view-${item.id}" onclick="openFromCard('${item.id}', event)" aria-label="${esc(S.views + (VIEW_COUNTS[item.id] ? " " + fmtCount(VIEW_COUNTS[item.id]) : ""))}" title="${S.views}">${svgIcon("view")}<span class="eg-n" id="vn-${item.id}">${VIEW_COUNTS[item.id] ? fmtCount(VIEW_COUNTS[item.id]) : ""}</span></button>
@@ -13993,6 +14260,7 @@ function cardEl(item, S, idx, detail){
         <button class="eg eg-bm${BM.has(item.id) ? " on" : ""}" id="bm-${item.id}" onclick="toggleBookmark('${item.id}')" aria-label="${S.bmAdd}" title="${S.bmAdd}">${svgIcon("bookmark")}</button>
         <button class="eg eg-share" id="share-${item.id}" onclick="shareItem('${item.id}')" aria-label="${S.share}" title="${S.share}">${svgIcon("share")}</button>
         <button class="eg eg-read${READ.has(item.id) ? " on" : ""}" onclick="toggleRead('${item.id}')" aria-label="${S.markRead}" title="${S.markRead}">${svgIcon("read")}</button>
+        ${FEED_MINE ? feedFeedbackMenuHtml(item) : ""}
       </div>
       ${(typeof twInlineHtml === "function" && COMMENTS_API) ? twInlineHtml(item.id) : ""}
       <div class="comment-box" id="cbox-${item.id}" hidden></div>

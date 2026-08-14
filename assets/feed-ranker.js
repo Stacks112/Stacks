@@ -6,7 +6,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  var VERSION = "1.0.0";
+  var VERSION = "1.2.0";
   var DAY_MS = 86400000;
   var FLAG_KEY = "stk_feed_ranker_v1";
   var lastReasons = Object.create(null);
@@ -66,6 +66,18 @@
     return uniqueStrings(item && item.tags);
   }
 
+  function topicsFor(context, item) {
+    var values = item && Array.isArray(item.tags) ? item.tags.slice() : [];
+    try {
+      if (context.getTopics) values = values.concat(context.getTopics(item) || []);
+    } catch (e) {}
+    return uniqueStrings(values);
+  }
+
+  function normalizedSet(value) {
+    return new Set(uniqueStrings(Array.from(toSet(value))));
+  }
+
   function entitiesFor(context, item) {
     try {
       return uniqueStrings(context.getEntities ? context.getEntities(item) : []);
@@ -103,13 +115,15 @@
 
     items.forEach(function (item) {
       if (!item || !item.id) return;
+      if (sets.hidden.has(item.id)) return;
       var weight = 0;
       if (sets.likes.has(item.id)) weight += 4;
       if (sets.bookmarks.has(item.id)) weight += 3;
       if (sets.read.has(item.id)) weight += 1;
+      if (sets.shares.has(item.id)) weight += 5;
       if (!weight) return;
 
-      tagsFor(item).forEach(function (tag) { addWeight(profile.tags, tag, weight); });
+      topicsFor(context, item).forEach(function (tag) { addWeight(profile.tags, tag, weight); });
       entitiesFor(context, item).forEach(function (entity) {
         addWeight(profile.entities, entity, weight);
       });
@@ -158,43 +172,73 @@
     return Number.isFinite(value) ? value : 0;
   }
 
+  function experimentConfig(context) {
+    var variant = context.experimentVariant === "b" ? "b" : "a";
+    return {
+      variant: variant,
+      freshnessHalfLifeDays: Math.max(4, finiteNumber(context.freshnessHalfLifeDays) || (variant === "b" ? 9 : 12)),
+      explorationEvery: Math.max(5, finiteNumber(context.explorationEvery) || (variant === "b" ? 8 : 10)),
+      explorationMaxAgeDays: Math.max(7, finiteNumber(context.explorationMaxAgeDays) || (variant === "b" ? 30 : 45))
+    };
+  }
+
+  function explorationEligible(context, item, ageDays, config) {
+    if (ageDays > config.explorationMaxAgeDays) return false;
+    try {
+      return context.isExplorationEligible ? !!context.isExplorationEligible(item) : true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function scoreItems(items, context) {
     var sets = {
       likes: toSet(context.likes),
       bookmarks: toSet(context.bookmarks),
       read: toSet(context.read),
+      shares: toSet(context.shares),
       viewed: toSet(context.viewed),
-      hidden: toSet(context.hidden)
+      served: toSet(context.served),
+      hidden: toSet(context.hidden),
+      lessSources: normalizedSet(context.lessSources),
+      lessTopics: normalizedSet(context.lessTopics)
     };
     var profile = buildProfile(items, context, sets);
     var now = finiteNumber(context.now) || Date.now();
+    var config = experimentConfig(context);
 
     return items.filter(function (item) {
       return item && item.id && !sets.hidden.has(item.id);
     }).map(function (item, originalIndex) {
-      var tags = tagsFor(item);
+      var tags = topicsFor(context, item);
       var entities = entitiesFor(context, item);
       var directReasons = directReasonsFor(context, item);
       var direct = directReasons.length > 0;
       var affinity = historyAffinity(item, tags, entities, profile);
       var timestamp = dateValue(item);
       var ageDays = timestamp ? Math.max(0, (now - timestamp) / DAY_MS) : 30;
-      var freshness = Math.exp(-ageDays / 12) * 2.4;
+      var freshness = Math.exp(-ageDays / config.freshnessHalfLifeDays) * 2.4;
       var engagement = engagementScore(item, context);
+      var sourceKey = String(item.source || "").trim().toUpperCase();
       var seenPenalty = sets.read.has(item.id) ? 2.4 : (sets.viewed.has(item.id) ? 0.65 : 0);
+      if (sets.served.has(item.id)) seenPenalty += 1.25;
+      var feedbackPenalty = sets.lessSources.has(sourceKey) ? 3.5 : 0;
+      if (tags.some(function (tag) { return sets.lessTopics.has(tag); })) feedbackPenalty += 2.5;
       var directBoost = direct ? 6 + Math.min(2, Math.max(0, directReasons.length - 1)) : 0;
-      var score = directBoost + affinity * 4 + freshness + engagement - seenPenalty;
+      var score = directBoost + affinity * 4 + freshness + engagement - seenPenalty - feedbackPenalty;
 
       return {
         item: item,
         originalIndex: originalIndex,
         timestamp: timestamp,
         tags: tags,
-        source: String(item.source || "").trim().toUpperCase(),
+        source: sourceKey,
         direct: direct,
         affinity: affinity,
         engagement: engagement,
-        discovery: !direct && affinity < 0.18,
+        discovery: !direct && affinity < 0.18
+          && !sets.read.has(item.id) && !sets.viewed.has(item.id) && !sets.served.has(item.id)
+          && explorationEligible(context, item, ageDays, config),
         score: score
       };
     });
@@ -248,7 +292,7 @@
     var remaining = records.slice();
     var selected = [];
     var sourceCounts = Object.create(null);
-    var explorationEvery = Math.max(5, finiteNumber(context.explorationEvery) || 10);
+    var explorationEvery = experimentConfig(context).explorationEvery;
 
     while (remaining.length) {
       var forcedExplore = selected.length > 0 && (selected.length + 1) % explorationEvery === 0;
@@ -278,7 +322,7 @@
     var list = Array.isArray(items) ? items : [];
     var safeContext = context || {};
     lastReasons = Object.create(null);
-    if (list.length < 2) return list.slice();
+    if (!list.length) return [];
     return diversify(scoreItems(list, safeContext), safeContext).map(function (record) {
       return record.item;
     });
