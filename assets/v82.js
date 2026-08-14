@@ -740,17 +740,48 @@
     }
     return html;
   }
+  /* 2026-08-14 (모바일 쏠림 바): index.html 인라인 스크립트의 MKT_BAR_EL(#mktBar
+     정적 노드)/mktPaint()를 재사용한다 - v82.js는 그 뒤에 로드되므로 접근 가능하다.
+     데스크톱 v83과 같은 클래스(.mkt-bar-skew)를 붙여 카드형 CSS(스코프는 index.html
+     쪽에서 html.v83 접두사를 뗀 채 공유)를 그대로 타되, mq.matches로 데스크톱에서는
+     절대 실행되지 않게 막는다 - openSkewSub()는 window.v82OpenSkew(mq.matches 가드)나
+     renderHub()의 메뉴 버튼(그 자체가 openHub() 뒤에서만 노출 - openHub()도 mq.matches
+     가드)을 거쳐야만 불리므로 이중으로 막혀 있지만, 여기서도 한 번 더 확인한다(방어적,
+     비용 없음). 서브뷰를 벗어나는 모든 지점(허브로 뒤로가기 closeHubSub, 홈/찾기/탐색
+     강제 이탈 clearSubState, 여기 목록 항목 클릭으로 허브를 통째로 떠나는 두 핸들러)에서
+     mktMobileSkewExit()를 불러 window.MKT_M_SKEW를 내린다 - #v82hub는 .v82-screen이라
+     닫히면 display:none이라(assets/v82.css) 바를 안 내려도 시각적으로는 이미 안 보이지만,
+     플래그를 정확히 유지해야 다음 mktPaint() 호출(언어 전환 등)이 헷갈리지 않는다. */
+  function mktMobileSkewEnter(container){
+    try {
+      if (!mq.matches) return;
+      var bar = window.MKT_BAR_EL;
+      if (!bar || !container) return;
+      bar.classList.add("mkt-bar-skew");
+      container.insertBefore(bar, container.firstChild);
+      window.MKT_M_SKEW = true;
+      if (typeof window.mktPaint === "function") window.mktPaint();
+    } catch (e) {}
+  }
+  function mktMobileSkewExit(){
+    try {
+      window.MKT_M_SKEW = false;
+      if (typeof window.mktPaint === "function") window.mktPaint();
+    } catch (e) {}
+  }
   function renderSkewSub(){
     var hub = $("v82hub"); if (!hub) return;
     var head = hub.querySelector(".v82-inner");
     if (!head){ head = document.createElement("div"); head.className = "v82-inner"; hub.appendChild(head); }
     var rows = skewData(skewLocalIsoDate(6), skewLocalIsoDate(0));
     head.innerHTML = skewSubHtml();
+    mktMobileSkewEnter(head);                 /* 목록 맨 위에 시장 바를 꽂는다(innerHTML로 갈아끼운 뒤) */
     var srows = head.querySelectorAll(".v82-skew-row");
     for (var i = 0; i < srows.length; i++){
       srows[i].onclick = function(){
         var o = rows[+this.dataset.i]; if (!o) return;
         HUB_SUB = null;                       /* 허브를 통째로 떠난다 */
+        mktMobileSkewExit();
         closeHub(true); silentBack();
         try { if (o.kind === "theme" && typeof openTheme === "function") openTheme(o.key);
               else if (typeof entityFeedView === "function") entityFeedView(o.key); } catch (e) {}
@@ -762,6 +793,7 @@
       trows[ti].onclick = function(){
         var k = this.dataset.th; if (!k) return;
         HUB_SUB = null;
+        mktMobileSkewExit();
         closeHub(true); silentBack();
         try { if (typeof openTheme === "function") openTheme(k); } catch (e) {}
         setActive();
@@ -779,6 +811,7 @@
   }
   function closeHubSub(fromPop){
     HUB_SUB = null;
+    mktMobileSkewExit();
     renderHub();
     setHeadTitle("v82hub", T().explore);
     var hub = $("v82hub"); if (hub) hub.scrollTop = 0;
@@ -838,6 +871,7 @@
     hideSubbar();
     if (HUB_SUB){
       HUB_SUB = null; setHeadTitle("v82hub", T().explore);
+      mktMobileSkewExit();
       if ($("v82hub") && $("v82hub").classList.contains("on")){ renderHub(); $("v82hub").scrollTop = 0; }
     }
   }
