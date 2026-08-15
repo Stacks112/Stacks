@@ -1,6 +1,156 @@
 {
  "items": [
   {
+   "date": "2026-08-14",
+   "id": "jukan-google-amd-tpu-v10-chatter-vs-broadcom-allocation",
+   "related": [
+    "semianalysis-gemini-gcp-tpu-financialization",
+    "jukan-nvidia-800vdc-rack-row-power-center-2027",
+    "netinterest-legacy-gpu-rent-inflects-forward-curve"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2088400926495461802",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0A1428",
+    "to": "#0F766E",
+    "label": "TPU v10"
+   },
+   "tags": [
+    "TPU",
+    "BROADCOM",
+    "AMD"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "브로드컴, 미디어텍, 그리고 이번에 이름이 오른 AMD",
+    "en": "Broadcom, MediaTek, and the name that just got added, AMD",
+    "ja": "ブロードコム、メディアテック、そして今回名が挙がったAMD"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "How badly must MRVL have screwed up for Google to bring AMD in?"
+     ],
+     "ko": [
+      "구글이 AMD를 부를 정도면 마벨은 대체 얼마나 크게 망친 걸까?"
+     ],
+     "ja": [
+      "グーグルがAMDを呼ぶほどなら、マーベルはいったいどれだけ大きくしくじったのか。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.14"
+   },
+   "sum3": {
+    "ko": "남의 AI 반도체를 대신 그려 주는 자리에서 브로드컴의 몫이 줄었다.\n겉으로 보면 칩 한 종류의 생산 계획이 한 차례 조정된 이야기다.\n그런데 같은 주에 AMD가 그 자리에 낀다는 이야기가 돌았고, 설계를 맡길 곳이 한 곳에서 여러 곳으로 갈라지고 있다.",
+    "en": "Broadcom's share of the work of drawing somebody else's AI silicon has shrunk.\nAt face value that is a production plan for one kind of chip being trimmed once.\nBut chatter in the same week put AMD in the same seat, and the place Google sends its designs is splitting from one house into several.",
+    "ja": "他社のAI半導体を代わりに描く仕事で、ブロードコムの取り分が減った。\n表面だけ見れば、チップ一種類の生産計画が一度調整された話である。\nだが同じ週にAMDがその席に加わるという話が出ており、設計を任せる先が一社から複数へ割れつつある。"
+   },
+   "gist": {
+    "ko": "브로드컴이 구글에 넘길 TPU 물량 전망을 스스로 낮췄다.\n2026년 하반기와 2027년 모두 종전 전망보다 적게 나갈 것이라고 했고, 이유로는 수요가 아니라 다른 고객 쪽으로 생산 배분을 옮긴 것을 들었다.\n\n@@CHK@@구글 TPU 출하 전망(2026년)|430만 개|구글 TPU 출하 전망(2028년)|3,500만 개 초과|브로드컴의 2027년 종전 전망|600만 개@@전체 전망은 커지는데 브로드컴이 스스로 부르던 숫자는 내려갔다. 줄어든 것은 TPU 수요가 아니라 브로드컴이 구글에 내주는 자리 쪽이다.@@더넥스트웹 2026-04-20 보도 · 브로드컴 실적설명회 발언(주칸 인용) · 2026-08-15 조회\n\nTPU는 구글이 자기 데이터센터에 쓰려고 설계한 AI 전용 반도체다.\n설계는 구글이 하지만 칩으로 그려 내는 일은 바깥 회사가 맡아 왔고, 그 자리를 오래 브로드컴이 지켜 왔다.\n\n## 줄어든 건 수요가 아니다\n\n브로드컴의 설명에서 눈여겨볼 대목은 \"다른 고객에게 더 많이 배분했다\"는 부분이다.\n같은 생산 능력을 두고 구글과 다른 고객이 줄을 서 있고, 브로드컴이 뒤쪽에 더 준 것이다.\n\n발주한 쪽에서 보면 이건 반가운 소식이 아니다.\n칩 자체는 팔리는데 만들어 줄 자리가 모자란 상황이라, 구글은 설계를 맡길 곳을 하나 더 두는 쪽이 안전해진다.\n\n@@REF@@구글이 추론 시장에서 엔비디아에 맞서려고 네 회사짜리 반도체 공급망을 짜고 있다 (더넥스트웹, 2026-04-20)|https://thenextweb.com/news/google-inference-chips-nvidia-challenge-supply-chain|https://media.thenextweb.com/2026/04/google-inference-chips-nvidia-challenge-supply-chain.jpg\n\n이 기사는 이미 그 방향으로 가고 있던 그림을 정리해 둔 것이다.\n구글은 훈련용과 추론용 칩의 설계를 서로 다른 회사에 나눠 맡기고, 생산은 어느 쪽이 그렸든 TSMC 한 곳에 모으는 구조를 짜 왔다.\n비용을 낮춘 추론용 설계는 미디어텍이 맡았는데, 같은 물건을 20~30% 싸게 그려 낸다고 이 기사는 적었다.\n주칸이 이름을 든 마벨도 이 그림 안에 있다.\n데이터센터용 반도체를 설계하는 회사이고, 구글의 추론용 칩과 메모리 처리 장치를 놓고 협의를 이어 왔다고 이 기사는 전한다.\n\n## 구글은 왜 설계사를 늘리나\n\n여기서 이번 주 이야기가 붙는다.\n반도체 분석기관 세미애널리시스를 인용해, 구글이 TPU v10 세대에서 AMD와 함께 일하고 있다는 이야기가 시장에 돌고 있다고 전해졌다.\n사실로 확인된 것은 아니고, 구글도 AMD도 이에 대해 밝힌 바 없다.\n\n돈다는 이야기의 내용은 이렇다.\nAMD는 자체 설계팀을 갖고 있으면서도 남의 주문형 AI 반도체 프로젝트에 제대로 들어간 적이 없었는데, 이번이 그 첫 사례가 된다는 것이다.\nAMD가 가진 것으로 꼽히는 것은 칩을 층층이 쌓아 붙이는 첨단 패키징 기술과, 칩 안에 함께 넣을 중앙처리장치 설계다.\n강화학습 작업에서는 연산기 옆에 중앙처리장치를 붙여 두는 쪽이 유리해서, 구글과 그 고객들이 그런 형태를 요구하고 있다고 한다.\n\n@@REF@@미디어텍, 2나노에서 400G 서데스를 앞당기며 구글 TPU v10과 메타 AI 반도체 수주를 노린다 (트렌드포스, 2026-08-03)|https://www.trendforce.com/news/2026/08/03/news-mediatek-advances-400g-serdes-on-2nm-targeting-google-tpu-v10-and-meta-ai-asic-orders/|https://img.trendforce.com/blog/wp-content/uploads/2025/05/20135115/MediaTek_MasterBrand_EN_BlackBG_Combo_0923-624x624.png\n\n같은 자리를 노리는 회사가 또 있다.\n미디어텍은 2나노 공정에서 칩과 칩 사이를 초당 400기가비트로 잇는 회로를 준비하고 있고, 이것으로 TPU v10 수주를 노린다고 이 기사는 전한다.\n패키징은 인텔이 맡는 것으로 확인됐다.\n\n@@FLOW@@구글|무엇을 만들지 정하고 발주한다|설계 파트너|브로드컴과 미디어텍이 칩을 그린다. 여기에 AMD가 낀다는 이야기가 돈다|TSMC|설계사가 누구든 2나노 공정에서 찍는다|인텔|칩들을 한 덩어리로 붙이는 패키징을 맡는다@@설계와 생산과 조립이 서로 다른 회사에 나뉘어 있다. 그래서 한 단계에서 문제가 나도 구글은 그 자리만 갈아 끼울 수 있다.\n\n## TPU v10에서 갈리는 것\n\n구글이 설계사를 늘리는 것은 값을 깎으려는 것만이 아니다.\n브로드컴이 물량을 다른 고객에게 돌린 순간, 한 회사에 다 맡기는 구조 자체가 위험이 됐다.\n\nAMD 참여가 공식으로 확인되면 이 회사는 남의 AI 반도체를 그려 주는 사업에 처음 발을 들이는 것이고, 엔비디아와 붙는 자기 칩 말고 다른 수입원이 하나 생긴다.\n2027년 말까지 확인되지 않으면 TPU 설계 자리는 브로드컴과 미디어텍 둘이 나눠 가진 상태로 굳고, 주칸이 던진 질문의 전제도 함께 사라진다.",
+    "en": "Broadcom has cut its own outlook for the volume of TPUs it will hand to Google.\nIt said output would come in below prior expectations in both the second half of 2026 and in 2027, and pointed not to demand but to allocating more of its capacity to other customers.\n\n@@CHK@@Projected Google TPU shipments (2026)|4.3 million|Projected Google TPU shipments (2028)|over 35 million|Broadcom's earlier expectation for 2027|6 million@@The overall projection is going up while the number Broadcom quotes for itself has come down. What shrank is not TPU demand but the share of it Broadcom hands to Google.@@The Next Web reporting of 2026-04-20 and Broadcom earnings call remarks as quoted by Jukan, accessed 2026-08-15\n\nA TPU is the AI-specific chip Google designs for its own data centres.\nGoogle does the architecture, but turning it into an actual chip has been outside work, and Broadcom has held that seat for years.\n\n## Demand is not what shrank\n\nThe line worth reading twice in Broadcom's explanation is \"greater allocation towards other customers\".\nGoogle and other buyers are queueing for the same capacity, and Broadcom has been giving more of it to the back of the queue.\n\nSeen from the side placing the order, that is not good news.\nThe chip sells; the slot to build it does not exist. So Google gets safer by keeping more than one house that can draw its silicon.\n\n@@REF@@Google is building a four-partner chip supply chain to challenge Nvidia in AI inference (The Next Web, 2026-04-20)|https://thenextweb.com/news/google-inference-chips-nvidia-challenge-supply-chain|https://media.thenextweb.com/2026/04/google-inference-chips-nvidia-challenge-supply-chain.jpg\n\nThat piece had already mapped the structure this was heading toward.\nGoogle has been splitting training and inference chip design across different firms while pooling fabrication at TSMC no matter who drew the part.\nThe cost-optimised inference design went to MediaTek, which the article says delivers the same job 20 to 30 percent cheaper.\nMarvell, the firm Jukan names, sits inside this picture too.\nIt designs data centre silicon, and the article reports it has been in talks with Google over an inference chip and a memory processing unit.\n\n## Why Google keeps adding designers\n\nThat is where this week's item attaches.\nCiting the research house SemiAnalysis, market chatter is said to have Google working with AMD on the TPU v10 generation.\nNone of it is confirmed, and neither Google nor AMD has said anything about it.\n\nThe substance of the chatter runs like this.\nAMD has its own custom silicon team but has never properly joined somebody else's custom AI chip project, and this would be the first.\nWhat AMD is said to bring is advanced packaging, the business of stacking and bonding dies into one part, plus CPU design to sit inside the package.\nReinforcement learning work runs better with CPU cores next to the accelerators, and Google and its customers are reported to be asking for exactly that shape.\n\n@@REF@@MediaTek advances 400G SerDes on 2nm, targeting Google TPU v10 and Meta AI ASIC orders (TrendForce, 2026-08-03)|https://www.trendforce.com/news/2026/08/03/news-mediatek-advances-400g-serdes-on-2nm-targeting-google-tpu-v10-and-meta-ai-asic-orders/|https://img.trendforce.com/blog/wp-content/uploads/2025/05/20135115/MediaTek_MasterBrand_EN_BlackBG_Combo_0923-624x624.png\n\nAnother firm is reaching for the same seat.\nMediaTek is preparing circuitry on 2nm that moves data between chips at 400 gigabits per second, and the article says it is aiming that at TPU v10 orders.\nIntel is confirmed for the packaging.\n\n@@FLOW@@Google|decides what to build and places the order|Design partners|Broadcom and MediaTek draw the chip, with chatter that AMD is joining|TSMC|fabricates it on 2nm whoever drew it|Intel|handles the packaging that binds the dies into one part@@Design, fabrication and assembly sit at different companies. That is why trouble at one step lets Google swap out that step alone.\n\n## What TPU v10 settles\n\nAdding designers is not only about price for Google.\nThe moment Broadcom moved volume to other customers, putting everything through one house became the risk itself.\n\nIf AMD's involvement is confirmed, the firm steps for the first time into drawing someone else's AI silicon and picks up a revenue line that does not depend on beating Nvidia with its own.\nIf nothing is confirmed by the end of 2027, the TPU design seat hardens into a Broadcom and MediaTek split, and the premise behind Jukan's question goes with it.",
+    "ja": "ブロードコムが、グーグルに渡すTPUの数量見通しを自ら引き下げた。\n2026年下期も2027年も従来見通しを下回るとし、理由として需要ではなく、生産の配分を他の顧客へ移したことを挙げた。\n\n@@CHK@@グーグルTPU出荷見通し(2026年)|430万個|グーグルTPU出荷見通し(2028年)|3,500万個超|ブロードコムの2027年の従来見通し|600万個@@全体の見通しは大きくなる一方で、ブロードコムが自ら挙げていた数字は下がった。減ったのはTPUの需要ではなく、ブロードコムがグーグルに差し出す取り分のほうだ。@@The Next Web 2026-04-20報道 · ブロードコム決算説明会の発言(ジューカン引用) · 2026-08-15 閲覧\n\nTPUはグーグルが自社のデータセンター向けに設計したAI専用の半導体だ。\n設計はグーグルが行うが、実際のチップに描き起こす仕事は外部が担ってきた。その席を長くブロードコムが押さえてきた。\n\n## 減ったのは需要ではない\n\nブロードコムの説明で二度読む価値があるのは「他の顧客への配分を増やした」という部分である。\n同じ生産能力にグーグルと他の顧客が並んでおり、ブロードコムは後ろの列に多く回した。\n\n発注する側から見れば、これは喜べる話ではない。\nチップは売れるのに、つくってもらう席が足りない。だからグーグルは、設計を任せられる先をもう一つ持つほうが安全になる。\n\n@@REF@@グーグルが推論でエヌビディアに挑むため、4社構成のチップ供給網を組んでいる (The Next Web, 2026-04-20)|https://thenextweb.com/news/google-inference-chips-nvidia-challenge-supply-chain|https://media.thenextweb.com/2026/04/google-inference-chips-nvidia-challenge-supply-chain.jpg\n\nこの記事は、すでにその方向へ進んでいた構図を整理したものだ。\nグーグルは学習用と推論用のチップ設計を別々の会社に分け、製造は誰が描いてもTSMC一社に集める構造を組んできた。\nコストを抑えた推論用の設計はメディアテックが担い、同じ仕事を20~30%安く描き出すとこの記事は書いている。\nジューカンが名を挙げたマーベルも、この絵の中にいる。\nデータセンター向け半導体を設計する会社で、グーグルの推論用チップとメモリ処理装置をめぐって協議を続けてきたとこの記事は伝える。\n\n## グーグルはなぜ設計会社を増やすのか\n\nそこに今週の話がつながる。\n調査会社セミアナリシスを引くかたちで、グーグルがTPU v10世代でAMDと組んでいるという話が市場に出ていると伝えられた。\n事実として確認されたものではなく、グーグルもAMDも何も明らかにしていない。\n\n出回っている話の中身はこうだ。\nAMDは自前の設計チームを持ちながら、他社の受託AI半導体プロジェクトに本格的に入ったことがなく、今回がその最初になるという。\nAMDの強みとして挙げられるのは、ダイを積み重ねて貼り合わせる先端パッケージングと、パッケージの中に入れる中央演算装置の設計である。\n強化学習の処理では演算器の隣に中央演算装置を置くほうが有利で、グーグルとその顧客がまさにその形を求めているという。\n\n@@REF@@メディアテック、2nmで400G SerDesを前倒し、グーグルTPU v10とメタのAI ASIC受注を狙う (トレンドフォース, 2026-08-03)|https://www.trendforce.com/news/2026/08/03/news-mediatek-advances-400g-serdes-on-2nm-targeting-google-tpu-v10-and-meta-ai-asic-orders/|https://img.trendforce.com/blog/wp-content/uploads/2025/05/20135115/MediaTek_MasterBrand_EN_BlackBG_Combo_0923-624x624.png\n\n同じ席を狙う会社がもう一つある。\nメディアテックは2nm世代で、チップ間を毎秒400ギガビットでつなぐ回路を準備しており、これでTPU v10の受注を狙うとこの記事は伝える。\nパッケージングはインテルが担うことが確認されている。\n\n@@FLOW@@グーグル|何をつくるか決めて発注する|設計パートナー|ブロードコムとメディアテックがチップを描く。ここにAMDが加わるという話が出ている|TSMC|誰が描いても2nmで焼く|インテル|複数のダイを一つに貼り合わせるパッケージングを担う@@設計と製造と組み立てが別々の会社に分かれている。だから一段でつまずいても、グーグルはその段だけ差し替えられる。\n\n## TPU v10で分かれるもの\n\nグーグルが設計会社を増やすのは、値段を下げるためだけではない。\nブロードコムが数量を他の顧客へ回した時点で、一社にすべてを預ける構造そのものが危うくなった。\n\nAMDの参画が公式に確認されれば、同社は他社のAI半導体を描く事業に初めて足を踏み入れ、エヌビディアと正面から戦う自社チップ以外の収入源を一つ得る。\n2027年末までに確認されなければ、TPUの設計席はブロードコムとメディアテックが分け合う形で固まり、ジューカンが投げた問いの前提も一緒に消える。"
+   },
+   "why": {
+    "ko": "AI 반도체 이야기는 대체로 엔비디아 대 나머지로 그려지지만, 실제 돈은 남의 칩을 대신 그려 주는 자리에서도 나온다. 그 자리가 한 회사에서 여러 회사로 갈라지면 브로드컴의 이익률과 AMD의 수입 구조가 동시에 달라진다.",
+    "en": "The AI chip story is usually drawn as Nvidia against everyone else, but real money also sits in the business of drawing someone else's silicon for them. If that seat splits from one firm to several, Broadcom's margins and AMD's revenue mix both change at once.",
+    "ja": "AI半導体の話はたいていエヌビディア対その他として描かれるが、実際の金は他社のチップを代わりに描く席からも出る。その席が一社から複数へ割れれば、ブロードコムの利益率とAMDの収入構造が同時に変わる。"
+   },
+   "ask": {
+    "ko": "브로드컴은 구글 물량을 줄인 이유로 다른 고객을 들었다. 구글이 설계사를 늘리는 것은 값을 깎으려는 협상일까, 아니면 한 회사에 몰아준 구조를 푸는 것일까?",
+    "en": "Broadcom named other customers as the reason it is giving Google less. Is Google adding designers a negotiation over price, or is it unwinding a structure that leaned on one supplier?",
+    "ja": "ブロードコムはグーグル向けを減らす理由に他の顧客を挙げた。グーグルが設計会社を増やすのは値下げ交渉なのか、一社に寄せた構造をほどく動きなのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "2027년 말까지 구글 TPU v10 세대에 AMD가 설계 파트너로 참여한 사실이 공식 확인되는지를 채점한다.",
+     "en": "Score on whether AMD's participation as a design partner in the Google TPU v10 generation is officially confirmed by the end of 2027.",
+     "ja": "2027年末までに、グーグルTPU v10世代へのAMDの設計パートナーとしての参画が公式に確認されるかを採点する。"
+    },
+    "due": "2027-12-31",
+    "card": {
+     "metric": {
+      "ko": "구글 TPU v10 설계 파트너로 AMD가 공식 확인되는지",
+      "en": "Whether AMD is officially confirmed as a design partner on Google TPU v10",
+      "ja": "グーグルTPU v10の設計パートナーとしてAMDが公式に確認されるか"
+     },
+     "now": {
+      "ko": "미확인 · 시장에 이야기만 돌고 있음 · 확인된 설계 파트너는 브로드컴과 미디어텍",
+      "en": "Unconfirmed, chatter only, with Broadcom and MediaTek the confirmed design partners",
+      "ja": "未確認 · 話が出ているだけ · 確認済みの設計パートナーはブロードコムとメディアテック"
+     },
+     "when": {
+      "ko": "2027년 12월 31일까지",
+      "en": "By December 31, 2027",
+      "ja": "2027年12月31日まで"
+     },
+     "hit": {
+      "ko": "구글 또는 AMD의 공식 확인 → AMD의 첫 주문형 AI 반도체 수주",
+      "en": "Confirmation from Google or AMD, making it AMD's first custom AI chip engagement",
+      "ja": "グーグルまたはAMDの公式確認 → AMD初の受託AI半導体案件"
+     },
+     "miss": {
+      "ko": "확인 없음 → 브로드컴·미디어텍 두 곳 구도가 유지",
+      "en": "No confirmation, so the Broadcom and MediaTek pairing holds",
+      "ja": "確認なし → ブロードコムとメディアテックの二社体制が続く"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan (@jukan05) · 2026-08-14 · 세미애널리시스 인용과 브로드컴 실적설명회 발언 인용",
+      "en": "Jukan (@jukan05), 2026-08-14, quoting SemiAnalysis and Broadcom earnings call remarks",
+      "ja": "Jukan (@jukan05) · 2026-08-14 · セミアナリシスとブロードコム決算説明会発言の引用"
+     },
+     "url": "https://x.com/jukan05/status/2088400926495461802"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "2026-08-03 · 미디어텍의 2나노 400G 회로와 TPU v10 수주 목표, 인텔 패키징 확정",
+      "en": "2026-08-03, MediaTek's 400G interconnect on 2nm aimed at TPU v10, and Intel confirmed for packaging",
+      "ja": "2026-08-03 · メディアテックの2nm 400G回路とTPU v10受注の狙い、インテルのパッケージング確定"
+     },
+     "url": "https://www.trendforce.com/news/2026/08/03/news-mediatek-advances-400g-serdes-on-2nm-targeting-google-tpu-v10-and-meta-ai-asic-orders/"
+    },
+    {
+     "name": {
+      "ko": "더넥스트웹",
+      "en": "The Next Web",
+      "ja": "The Next Web"
+     },
+     "desc": {
+      "ko": "2026-04-20 · 구글의 설계 분산 구조, 미디어텍 설계의 20~30% 원가 우위, TPU 출하 전망",
+      "en": "2026-04-20, Google's split design structure, MediaTek's 20 to 30 percent cost advantage, and TPU shipment projections",
+      "ja": "2026-04-20 · グーグルの設計分散構造、メディアテック設計の20~30%のコスト優位、TPU出荷見通し"
+     },
+     "url": "https://thenextweb.com/news/google-inference-chips-nvidia-challenge-supply-chain"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-15 조회 · AMD 참여는 확인되지 않은 시장 이야기다. 브로드컴 발언은 주칸이 인용한 실적설명회 문구를 따랐고 원문 녹취로 대조하지는 못했다.",
+    "en": "Accessed 2026-08-15. AMD's involvement is unconfirmed market chatter. The Broadcom remarks follow the earnings call wording as quoted by Jukan and were not checked against a transcript.",
+    "ja": "2026-08-15 閲覧 · AMDの参画は未確認の市場の話である。ブロードコムの発言はジューカンが引いた決算説明会の文言に従っており、原文の記録とは照合していない。"
+   }
+  },
+  {
    "date": "2026-08-15",
    "id": "serenity-us-opposes-apple-chinese-memory-not-cheap",
    "related": [
@@ -57719,6 +57869,83 @@
     "자유 전자 레이저",
     "自由電子レーザー"
    ]
+  },
+  "MEDIATEK": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "en": "Taiwanese fabless chip designer, best known for smartphone processors and now bidding for custom AI chip work.",
+    "ko": "대만의 팹리스 반도체 설계 회사로, 휴대폰용 프로세서로 알려졌고 최근에는 주문형 AI 반도체 설계 수주를 노리고 있다.",
+    "ja": "台湾のファブレス半導体設計会社。スマートフォン向けプロセッサで知られ、近年は受託AI半導体の設計受注を狙っている。"
+   },
+   "aliases": [
+    "MediaTek",
+    "MTK",
+    "미디어텍",
+    "메디아텍",
+    "聯發科",
+    "メディアテック"
+   ],
+   "logo": "mediatek.com",
+   "ticker": "2454",
+   "exchange": "TWSE",
+   "founded": "1997",
+   "hq": {
+    "en": "Hsinchu, Taiwan",
+    "ko": "대만 신주",
+    "ja": "台湾 新竹"
+   },
+   "website": "https://www.mediatek.com",
+   "longDesc": {
+    "en": "MediaTek designs chips and has them made at outside foundries, mainly TSMC. Its volume business has been the Dimensity line of smartphone processors, where it competes with Qualcomm. Since the AI build-out it has moved into designing custom accelerators for cloud companies, a business where it competes with Broadcom and Marvell for the work of turning a customer's architecture into a manufacturable chip.",
+    "ko": "미디어텍은 칩을 설계하고 생산은 바깥 파운드리, 주로 TSMC에 맡긴다. 물량의 중심은 디멘시티 계열 휴대폰용 프로세서이고 이 시장에서 퀄컴과 경쟁한다. AI 투자가 늘어난 뒤로는 클라우드 회사의 주문형 가속기를 설계하는 일에 들어와, 고객의 설계를 실제로 만들 수 있는 칩으로 바꾸는 자리를 두고 브로드컴·마벨과 경쟁하고 있다.",
+    "ja": "メディアテックはチップを設計し、製造は外部のファウンドリ、主にTSMCに委ねる。数量の中心はディメンシティ系のスマートフォン向けプロセッサで、この市場ではクアルコムと競う。AI投資が拡大して以降はクラウド企業向けの受託アクセラレータ設計に参入し、顧客の設計を製造可能なチップに変える仕事をめぐってブロードコムやマーベルと競合している。"
+   }
+  },
+  "MARVELL": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductors",
+    "ko": "반도체",
+    "ja": "半導体"
+   },
+   "desc": {
+    "en": "US chip designer specialising in data centre networking, storage controllers and custom AI silicon.",
+    "ko": "데이터센터 네트워킹과 저장장치 컨트롤러, 주문형 AI 반도체를 다루는 미국 반도체 설계 회사.",
+    "ja": "データセンターのネットワーキングやストレージ制御、受託AI半導体を手がける米国の半導体設計会社。"
+   },
+   "aliases": [
+    "Marvell",
+    "MRVL",
+    "Marvell Technology",
+    "마벨",
+    "마벨 테크놀로지",
+    "マーベル"
+   ],
+   "logo": "marvell.com",
+   "ticker": "MRVL",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "en": "Matt Murphy",
+    "ko": "맷 머피",
+    "ja": "マット・マーフィー"
+   },
+   "founded": "1995",
+   "hq": {
+    "en": "Santa Clara, California, United States",
+    "ko": "미국 캘리포니아주 산타클라라",
+    "ja": "米国カリフォルニア州サンタクララ"
+   },
+   "website": "https://www.marvell.com",
+   "longDesc": {
+    "en": "Marvell sells the parts that move and store data inside a data centre, including optical interconnect chips and storage controllers, and it also designs custom accelerators for cloud customers. That custom silicon business puts it directly against Broadcom for the same seats, which is why any reshuffle of a hyperscaler's design partners reads as a share shift between the two.",
+    "ko": "마벨은 데이터센터 안에서 데이터를 옮기고 저장하는 부품을 판다. 광통신 연결 칩과 저장장치 컨트롤러가 대표적이고, 클라우드 고객의 주문형 가속기 설계도 함께 한다. 이 주문형 사업이 브로드컴과 같은 자리를 놓고 부딪히기 때문에, 대형 클라우드 회사의 설계 파트너가 바뀌는 일은 두 회사 사이의 점유율 이동으로 읽힌다.",
+    "ja": "マーベルはデータセンター内でデータを運び、保存する部品を販売する。光インターコネクト用のチップやストレージ制御が代表で、クラウド顧客向けの受託アクセラレータ設計も手がける。この受託事業はブロードコムと同じ席を争うため、大手クラウド企業の設計パートナーの入れ替えは、両社間のシェア移動として読まれる。"
+   }
   }
  }
 }
