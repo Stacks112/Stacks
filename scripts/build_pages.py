@@ -860,7 +860,17 @@ def build_matcher(entities):
                 tail = r"(?=$|[^가-힣]|(?:%s)(?![가-힣]))" % particle_alt
             # all-caps Latin aliases are acronyms; matching them case-insensitively
             # is what made the term PER light up on the English preposition "per".
-            flags = 0 if bd.alias_is_case_sensitive(a) else re.I
+            # re.A: Python's \b (used above only on the ASCII/digit sides of an
+            # alias) is Unicode-\w-based by default, and Hangul IS a Unicode
+            # word character, so "GPU가" never matched (\b can't fire between
+            # two \w chars). re.A restricts \w/\b to ASCII, so Hangul stops
+            # counting as a word char and \b matches at the Latin/Hangul
+            # boundary again -- same behaviour as JS \b (ASCII-only) in
+            # index.html and re.A in build_data.py's build_entity_matcher().
+            # Safe here because the only other regex metachars in this pattern
+            # are the literal [가-힣] ranges and literal particle strings above,
+            # neither of which re.A touches.
+            flags = (0 if bd.alias_is_case_sensitive(a) else re.I) | re.A
             pats.append((re.compile(head + re.escape(a) + tail, flags), key))
     return pats
 
