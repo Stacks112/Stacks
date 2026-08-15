@@ -2,6 +2,162 @@
  "items": [
   {
    "date": "2026-08-14",
+   "id": "serenity-absolics-glass-substrate-slip-to-1h-2027",
+   "related": [
+    "jukan-semco-glass-substrate-2028-one-month-after-jv",
+    "jukan-nanya-ccl-20-25pct-glass-cloth-single-weaver",
+    "jukan-rubin-ultra-reticle-packaging-risk"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2088115008827715971",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0B2B2B",
+    "to": "#7C3AED",
+    "label": "2027년 상반기"
+   },
+   "tags": [
+    "GLASS SUBSTRATE",
+    "PACKAGING",
+    "EQUIPMENT"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "유리기판 양산이 또 미뤄졌다, 이번에 밀린 쪽은 삼성이 아니다",
+    "en": "Glass substrate production slipped again, and this time it was not Samsung",
+    "ja": "ガラス基板の量産がまた延びた、ただし今回ずれたのはサムスンではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Feels like glass substrate timelines got pushed back at least another quarter.",
+      "SKC Absolics H2 2026 -> H1 2027. Samsung H2 2027 -> H1 2028.",
+      "Not everything is always good news with timeline shifts, but glass core substrate shifts do feel imminent."
+     ],
+     "ko": [
+      "유리기판 일정이 적어도 한 분기는 더 뒤로 밀린 느낌이다.",
+      "SKC 앱솔릭스는 2026년 하반기에서 2027년 상반기로, 삼성은 2027년 하반기에서 2028년 상반기로.",
+      "일정이 바뀌는 것이 늘 좋은 소식만은 아니지만, 유리코어 기판으로의 이동 자체는 임박한 느낌이다."
+     ],
+     "ja": [
+      "ガラス基板の日程が少なくとももう1四半期は後ろへ延びた感じがする。",
+      "SKCアブソリックスは2026年下期から2027年上期へ、サムスンは2027年下期から2028年上期へ。",
+      "日程が動くことが常に良い知らせとはかぎらないが、ガラスコア基板への移行そのものは近づいている感じがする。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.14"
+   },
+   "sum3": {
+    "ko": "SKC의 자회사 앱솔릭스의 유리기판 양산 시작이 2026년 하반기에서 2027년 상반기로 밀린 것으로 정리됐다.\n겉으로 보면 삼성전기에 이어 업계 전체가 늦어지는 그림이다.\n그런데 두 회사가 걸린 자리는 같다. 만드는 단계가 아니라 고객이 시제품을 받아 갈라지지 않는지 확인해 주는 단계다.",
+    "en": "Absolics, the SKC subsidiary, is now read as having moved its glass substrate start from the second half of 2026 to the first half of 2027.\nOn the surface that is the whole industry running late, following Samsung Electro-Mechanics.\nBut both companies are stuck at the same step, and it is not the making. It is the customer taking prototypes and checking whether they crack.",
+    "ja": "SKCの子会社アブソリックスのガラス基板の量産開始が、2026年下期から2027年上期へずれたと整理された。\n表面だけ見れば、サムスン電機に続いて業界全体が遅れている図である。\nだが2社が止まっている位置は同じだ。つくる段階ではなく、顧客が試作品を受け取って割れないかを確かめる段階である。"
+   },
+   "gist": {
+    "ko": "유리기판 양산 일정이 또 반년 뒤로 갔는데, 이번에 밀린 쪽은 삼성전기가 아니라 SKC의 자회사 앱솔릭스다.\n2026년 하반기로 잡혀 있던 양산 시작이 2027년 상반기로 미뤄졌다는 정리가 나왔고,\n연말까지 최종 검증을 끝내는 것을 목표로 삼았다는 이야기가 함께 붙었다.\n아직 회사가 공식적으로 밝힌 일정은 아니다.\n\n@@REF@@유리기판은 2027년 상용화를 겨누고 2030년을 향해 규모를 키운다, CoWoS 비용 상승과 하이퍼스케일러 수요가 배경이다 (트렌드포스, 2026-06-05)|https://www.trendforce.com/news/2026/06/05/news-glass-substrates-eye-2027-launch-scale-toward-2030-as-cowos-costs-rise-and-hyperscaler-demand-grows/|https://img.trendforce.com/blog/wp-content/uploads/2026/06/05111635/Intel-glass-substrate-1-624x416.jpg\n\n## 유리로 기판을 만든다는 것\n\n반도체 칩은 맨몸으로 기판에 붙지 않는다.\n칩과 메인보드 사이에 신호와 전기를 이어 주는 얇은 판이 한 장 들어가는데, 지금은 대부분 플라스틱 계열 재료로 만든다.\n\n이 판을 유리로 바꾸면 두께가 줄고 전력 효율이 좋아진다.\n열을 받아도 덜 휘어서, 칩을 여러 장 넓게 붙이는 인공지능 가속기에 특히 잘 맞는다.\n위 트렌드포스 기사는 두께를 25퍼센트 줄이고 전력 효율을 30퍼센트 넘게 개선한다고 정리한다.\n갈아타려는 이유로는 비용을 든다. 칩을 넓게 이어 붙이는 데 쓰는 지금의 CoWoS 방식은 한 장 값이 7나노 공정 웨이퍼에 맞먹는 수준까지 올라와 있다.\n\n## 막힌 자리는 만드는 쪽이 아니다\n\n@@FLOW@@유리 원판|디스플레이용 유리처럼 평평한 판을 받아 온다|구멍 뚫기|판을 위아래로 잇는 미세한 구멍을 레이저로 낸다|배선과 부품 심기|구멍에 금속을 채우고 회로를 그려 넣는다|고객사 신뢰성 평가|열과 힘을 가해 갈라지지 않는지 고객이 직접 확인한다@@네 칸 가운데 걸린 것은 마지막 칸이다. 만드는 쪽이 준비돼도 받는 쪽이 도장을 찍지 않으면 양산 날짜가 뒤로 간다.\n\n삼성전기가 7월 말 2분기 실적발표에서 가동 시점을 2028년으로 고쳐 말했을 때 이유로 든 것도 시제품의 고객사 신뢰성 평가였다.\n같은 자리에서 두 회사가 나란히 걸렸다는 뜻이다.\n\n유리는 단단한 대신 잘 깨진다.\n\n구멍을 촘촘히 뚫어 놓은 판에 열이 오르내리면 그 구멍 언저리부터 금이 갈 수 있다.\n고객이 확인하려는 것이 바로 이 부분이다.\n칩을 올린 뒤 온도를 높였다 낮추는 시험을 수백 번 되풀이해야 결론이 나온다.\n그동안 공장은 지어 놓은 채로 기다린다.\n일정이 회사 뜻대로 움직이지 않는 이유가 여기에 있다.\n\n## 2027년 상반기라는 새 날짜\n\n@@TIME@@2026-06-05|트렌드포스, 앱솔릭스는 연말 양산·삼성전기는 2027년 하반기로 정리|2026-07-말|삼성전기, 2분기 실적발표에서 가동 시점을 2028년으로 수정|2026-08-14|세레니티, 앱솔릭스도 2027년 상반기로 밀린 것으로 정리|>2026-12|앱솔릭스 최종 검증 목표 시점@@두 달 사이 두 회사가 나란히 반년씩 뒤로 갔다. 업계 전체의 시작점이 2027년으로 옮겨 앉았다는 뜻이다.@@트렌드포스 2026-06-05 · 세레니티 게시물 2026-08-14 · 2026-08-15 조회\n\n일정이 밀린 것을 나쁜 소식으로만 읽을 이유는 없다.\n세레니티는 오히려 유리코어 기판으로의 이동 자체는 임박한 느낌이라고 적었다.\n장비와 부품을 대는 쪽의 매출은 양산 개시일이 아니라 그 앞의 설비 발주에서 먼저 잡히기 때문에, 날짜가 확정되는 순간이 그쪽에는 출발 신호가 된다.\n\n그래서 볼 것은 두 가지다.\n앱솔릭스가 연말 최종 검증을 통과해 2027년 상반기 안에 양산을 시작하면 이번 지연은 마지막 확인 절차였던 것이 되고, 그 앞에서 설비를 대는 회사들의 수주가 먼저 움직인다.\n연말 검증에서 또 한 번 미뤄지면 문제는 일정이 아니라 유리라는 재료 자체의 신뢰성이 되고, 2027년이라는 업계 공통의 출발선도 함께 흔들린다.",
+    "en": "The glass substrate schedule has slipped another six months, and this time the company that moved is not Samsung Electro-Mechanics but Absolics, the SKC subsidiary.\nA start of mass production once set for the second half of 2026 is now put at the first half of 2027,\nwith a goal of finishing final validation by the end of this year attached to it.\nNeither date has been confirmed by the company itself.\n\n@@REF@@Glass substrates eye 2027 launch, scale toward 2030 as CoWoS costs rise and hyperscaler demand grows (TrendForce, 2026-06-05)|https://www.trendforce.com/news/2026/06/05/news-glass-substrates-eye-2027-launch-scale-toward-2030-as-cowos-costs-rise-and-hyperscaler-demand-grows/|https://img.trendforce.com/blog/wp-content/uploads/2026/06/05111635/Intel-glass-substrate-1-624x416.jpg\n\n## What making a substrate out of glass means\n\nA semiconductor die does not attach to a motherboard bare.\nA thin plate goes in between to carry signals and power across, and today that plate is mostly built from plastic based material.\n\nSwitch that plate to glass and it gets thinner while using power more efficiently.\nIt also warps less under heat, which suits AI accelerators that spread several dies across a wide area.\nThe TrendForce piece above puts the gain at 25 percent less thickness and more than 30 percent better power efficiency.\nThe reason it gives for moving is cost. CoWoS, the method used today to tie dies together across a wide area, now runs at a per-unit price on a par with a 7nm class wafer.\n\n## The step that is stuck is not the making\n\n@@FLOW@@Glass blank|A flat panel much like display glass arrives|Drilling|Fine holes linking top to bottom are cut with a laser|Wiring and mounting|Metal fills the holes and circuitry is drawn on|Customer reliability testing|The customer applies heat and stress to see whether it cracks@@Of the four steps, the one that binds is the last. The maker can be ready and the date still moves, because the buyer has to sign off.\n\nWhen Samsung Electro-Mechanics revised its start to 2028 at the late July second quarter briefing, the reason it gave was customer reliability testing of its prototypes.\nTwo companies are stuck at the same step.\n\nGlass is hard, and hard things break.\n\nRun heat up and down a panel drilled through with fine holes and cracks can start around those holes.\nThat is exactly what the customer is testing for.\nA verdict arrives only after hundreds of cycles of mounting a die and taking the temperature up and back down.\nThe plant sits built and waiting through all of it.\nThat is why the schedule does not move at the maker's pace.\n\n## The new date is the first half of 2027\n\n@@TIME@@2026-06-05|TrendForce puts Absolics at year-end production and Samsung Electro-Mechanics at 2H 2027|Late July 2026|Samsung Electro-Mechanics revises its start to 2028 at its Q2 briefing|2026-08-14|Serenity reads Absolics as having slipped to 1H 2027|>December 2026|Absolics targets completion of final validation@@In two months both companies moved back by half a year each. The industry's starting line has resettled on 2027.@@TrendForce 2026-06-05, Serenity post 2026-08-14, accessed 2026-08-15\n\nThere is no need to read the slippage as bad news only.\nSerenity wrote that the shift to glass core substrates itself feels imminent.\nRevenue for the equipment and component suppliers is booked at the tool orders that come before the start date rather than at the start date itself, so the moment a date firms up is a starting gun for them.\n\nTwo things follow.\nIf Absolics clears final validation at year end and begins production within the first half of 2027, this delay turns out to have been the last checking step, and orders at the suppliers standing in front of it move first.\nIf the year end validation pushes the date out again, the question stops being scheduling and becomes the reliability of glass as a material, and the industry's shared 2027 starting line moves with it.",
+    "ja": "ガラス基板の量産日程がまた半年うしろへ動いたが、今回ずれたのはサムスン電機ではなく、SKCの子会社であるアブソリックスだ。\n2026年下期に置かれていた量産開始が2027年上期へ延びたという整理が出て、\n年末までに最終検証を終えることを目標にしているという話も添えられた。\nまだ会社が公式に示した日程ではない。\n\n@@REF@@ガラス基板は2027年の商用化を狙い2030年へ向けて規模を広げる、CoWoSのコスト上昇とハイパースケーラーの需要が背景 (トレンドフォース、2026-06-05)|https://www.trendforce.com/news/2026/06/05/news-glass-substrates-eye-2027-launch-scale-toward-2030-as-cowos-costs-rise-and-hyperscaler-demand-grows/|https://img.trendforce.com/blog/wp-content/uploads/2026/06/05111635/Intel-glass-substrate-1-624x416.jpg\n\n## ガラスで基板をつくるということ\n\n半導体のチップは裸のまま基板に付くわけではない。\nチップとマザーボードのあいだに信号と電気をつなぐ薄い板が1枚入り、いまはその多くをプラスチック系の材料でつくっている。\n\nこの板をガラスに替えると厚みが減り、電力の効率が上がる。\n熱を受けても反りが小さく、チップを何枚も広く並べるAIアクセラレーターにとくに向く。\n上のトレンドフォースの記事は、厚みを25パーセント減らし電力効率を30パーセント超改善すると整理している。\n乗り換える理由として挙げるのは費用だ。チップを広くつなぎ合わせるのにいま使うCoWoSは、1枚あたりの費用が7ナノ級ウエハーに匹敵する水準まで上がっている。\n\n## 詰まっているのはつくる側ではない\n\n@@FLOW@@ガラス原板|ディスプレー用ガラスのような平らな板を受け取る|穴あけ|板を上下につなぐ微細な穴をレーザーであける|配線と部品の埋め込み|穴に金属を満たし回路を描き込む|顧客の信頼性評価|熱と力をかけて割れないかを顧客が自ら確かめる@@4つのうち引っかかっているのは最後である。つくる側が整っていても、受け取る側が判子を押さなければ量産日程は後ろへ動く。\n\nサムスン電機が7月末の第2四半期決算説明で稼働時期を2028年へ言い直したときに挙げた理由も、試作品の顧客信頼性評価だった。\n同じ位置で2社が並んで止まっているということだ。\n\nガラスは硬いかわりに割れやすい。\n\n穴を細かくあけた板に熱が上下すれば、その穴のまわりからひびが入りうる。\n顧客が確かめようとしているのはまさにそこである。\nチップを載せて温度を上げ下げする試験を数百回くり返して、ようやく結論が出る。\nそのあいだ工場は建てたまま待つことになる。\n日程が会社の思いどおりに動かない理由はここにある。\n\n## 2027年上期という新しい日付\n\n@@TIME@@2026-06-05|トレンドフォース、アブソリックスは年末量産・サムスン電機は2027年下期と整理|2026年7月末|サムスン電機、第2四半期決算説明で稼働時期を2028年へ修正|2026-08-14|セレニティ、アブソリックスも2027年上期へずれたと整理|>2026年12月|アブソリックスの最終検証の目標時期@@2カ月のあいだに2社が並んで半年ずつ後ろへ動いた。業界全体の出発点が2027年へ座り直したということだ。@@トレンドフォース2026-06-05・セレニティの投稿2026-08-14・2026-08-15閲覧\n\n日程が延びたことを悪い知らせとしてだけ読む理由はない。\nセレニティはむしろ、ガラスコア基板への移行そのものは近づいている感じがすると書いている。\n装置と部品を供給する側の売上は量産開始日ではなく、その手前の設備発注で先に立つため、日付が固まる瞬間がそちらには出発の合図になる。\n\nだから見るものは二つだ。\nアブソリックスが年末の最終検証を通り2027年上期のうちに量産を始めれば、今回の遅れは最後の確認手続きだったことになり、その手前で設備を供給する企業の受注が先に動く。\n年末の検証でもう一度延びれば、問いは日程ではなくガラスという材料そのものの信頼性になり、2027年という業界共通の出発線も一緒に揺れる。"
+   },
+   "why": {
+    "ko": "유리기판의 병목이 제조 기술이 아니라 고객사의 신뢰성 검증에 있다는 것이 두 회사에서 같은 형태로 확인됐다. 이 단계는 회사가 돈을 더 넣는다고 앞당겨지지 않아서, 관련 장비·부품 업체의 매출 인식 시점도 함께 뒤로 간다.",
+    "en": "The bottleneck in glass substrates turns out to sit in customer reliability validation rather than in manufacturing, and it shows up the same way at two separate companies. That step does not move faster when a company spends more, so the revenue timing for the equipment and component suppliers moves back with it.",
+    "ja": "ガラス基板のボトルネックが製造技術ではなく顧客の信頼性検証にあることが、2社で同じ形で確かめられた。この段階は資金を積んでも前倒しできないため、関連する装置・部品企業の売上計上の時期も一緒に後ろへ動く。"
+   },
+   "ask": {
+    "ko": "유리기판 일정이 잇따라 밀리는 것은 상용화가 임박했다는 신호일까, 아니면 유리라는 재료가 아직 준비되지 않았다는 신호일까?",
+    "en": "Are the repeated delays in glass substrate schedules a sign that commercialisation is close, or a sign that glass as a material is not ready?",
+    "ja": "ガラス基板の日程が相次いで延びるのは商用化が近い合図なのか、それともガラスという材料がまだ整っていない合図なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "앱솔릭스가 2027년 상반기 안에 유리기판 양산을 시작하는지를 확인한다.",
+     "en": "Check whether Absolics starts glass substrate mass production within the first half of 2027.",
+     "ja": "アブソリックスが2027年上期のうちにガラス基板の量産を始めるかを確認する。"
+    },
+    "due": "2027-07-31",
+    "card": {
+     "metric": {
+      "ko": "앱솔릭스의 유리기판 양산 개시 시점",
+      "en": "When Absolics starts glass substrate mass production",
+      "ja": "アブソリックスのガラス基板量産の開始時期"
+     },
+     "now": {
+      "ko": "2027년 상반기 목표 (2026년 하반기에서 이동)",
+      "en": "Targeted at the first half of 2027, moved from the second half of 2026",
+      "ja": "2027年上期が目標 (2026年下期から移動)"
+     },
+     "when": {
+      "ko": "2027년 6월 30일",
+      "en": "June 30, 2027",
+      "ja": "2027年6月30日"
+     },
+     "hit": {
+      "ko": "그날까지 양산을 시작했으면 이번 지연은 마지막 검증 절차였던 것",
+      "en": "Production started by that date means this delay was the final validation step",
+      "ja": "その日までに量産を始めていれば、今回の遅れは最後の検証手続きだったことになる"
+     },
+     "miss": {
+      "ko": "그날까지 시작하지 못했으면 재료 신뢰성 쪽 문제로 넘어간 것",
+      "en": "Not started by that date means the problem has moved to material reliability",
+      "ja": "その日までに始まっていなければ、問題は材料の信頼性のほうへ移ったことになる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity (@aleabitoreddit) · 2026-08-14",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-14",
+      "ja": "Serenity (@aleabitoreddit) · 2026-08-14"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2088115008827715971"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "6월 시점의 업계 일정과 유리기판의 두께·전력 효율·비용 근거 · 2026-06-05",
+      "en": "The industry timeline as of June plus the thickness, power efficiency and cost case · 2026-06-05",
+      "ja": "6月時点の業界日程とガラス基板の厚み・電力効率・費用の根拠 · 2026-06-05"
+     },
+     "url": "https://www.trendforce.com/news/2026/06/05/news-glass-substrates-eye-2027-launch-scale-toward-2030-as-cowos-costs-rise-and-hyperscaler-demand-grows/"
+    },
+    {
+     "name": {
+      "ko": "트렌드포스",
+      "en": "TrendForce",
+      "ja": "トレンドフォース"
+     },
+     "desc": {
+      "ko": "앱솔릭스의 연내 양산 가속과 미국 고객사 대상 신기술 · 2026-05-08",
+      "en": "Absolics accelerating toward production within the year and new technology for a US client · 2026-05-08",
+      "ja": "アブソリックスの年内量産の前倒しと米国顧客向けの新技術 · 2026-05-08"
+     },
+     "url": "https://www.trendforce.com/news/2026/05/08/news-skc-said-to-speed-glass-substrate-mass-production-by-year-end-advances-new-non-embedding-tech-for-u-s-client/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-15 조회 · 앱솔릭스의 2027년 상반기 일정은 회사 발표가 아니라 세레니티가 인용한 보도를 정리한 것이고, 삼성전기의 2028년 수정만 회사가 실적발표에서 밝힌 내용이다.",
+    "en": "Accessed 2026-08-15. The first half of 2027 date for Absolics comes from reporting cited by Serenity rather than from the company, while only the Samsung Electro-Mechanics revision to 2028 was stated by the company at its earnings briefing.",
+    "ja": "2026-08-15閲覧。アブソリックスの2027年上期という日程は会社の発表ではなくセレニティが引用した報道を整理したものであり、サムスン電機の2028年への修正のみが会社が決算説明で示した内容である。"
+   }
+  },
+  {
+   "date": "2026-08-14",
    "id": "jukan-feynman-a16-nvlink-1pb-soic-50k",
    "related": [
     "jukan-rubin-ultra-reticle-packaging-risk",
@@ -59870,6 +60026,95 @@
     "페인만",
     "ファインマン"
    ]
+  },
+  "유리기판": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "칩과 메인보드를 잇는 판을 플라스틱 대신 유리로 만든 것.",
+    "en": "The plate linking a die to the motherboard, made from glass instead of plastic based material.",
+    "ja": "チップとマザーボードをつなぐ板を、プラスチックのかわりにガラスでつくったもの。"
+   },
+   "longDesc": {
+    "ko": "반도체 칩과 메인보드 사이에는 신호와 전기를 이어 주는 얇은 판이 들어가는데, 지금은 대부분 플라스틱 계열 재료를 쓴다. 이 판을 유리로 바꾸면 두께가 줄고 전력 효율이 좋아지며 열을 받아도 덜 휜다. 칩을 여러 장 넓게 붙이는 인공지능 가속기에 유리하지만, 유리는 잘 깨져서 고객사의 신뢰성 평가를 통과하는 일이 양산의 관문이 된다.",
+    "en": "A thin plate sits between a semiconductor die and the motherboard to carry signals and power, and today it is mostly made from plastic based material. Switching it to glass makes it thinner, more power efficient and less prone to warping under heat. That suits AI accelerators spreading several dies across a wide area, but glass breaks, so clearing customer reliability testing is the gate to volume production.",
+    "ja": "半導体のチップとマザーボードのあいだには信号と電気をつなぐ薄い板が入り、いまはその多くにプラスチック系の材料を使う。これをガラスに替えると厚みが減り、電力効率が上がり、熱を受けても反りが小さい。チップを何枚も広く並べるAIアクセラレーターに向くが、ガラスは割れやすいため、顧客の信頼性評価を通ることが量産の関門になる。"
+   },
+   "aliases": [
+    "glass substrate",
+    "glass core substrate",
+    "유리기판",
+    "유리코어 기판",
+    "ガラス基板",
+    "ガラスコア基板"
+   ]
+  },
+  "ABSOLICS": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductor materials",
+    "ko": "반도체 소재",
+    "ja": "半導体材料"
+   },
+   "desc": {
+    "ko": "SKC가 미국 조지아주에 세운 유리기판 전문 자회사.",
+    "en": "SKC's glass substrate subsidiary, built in the US state of Georgia.",
+    "ja": "SKCが米ジョージア州に設けたガラス基板の専業子会社。"
+   },
+   "longDesc": {
+    "ko": "SKC가 반도체용 유리기판을 만들기 위해 세운 자회사로, 미국 조지아주 커빙턴에 생산 시설을 두고 있다. 유리 원판에 미세한 관통 구멍을 내고 배선을 심는 공정을 다루며, 고객사의 신뢰성 평가를 거쳐 양산에 들어가는 일정을 여러 차례 조정해 왔다. 유리기판 분야에서 가장 앞서 있다고 평가받는 회사 가운데 하나다.",
+    "en": "A subsidiary set up by SKC to make glass substrates for semiconductors, with its plant in Covington, Georgia. It handles the process of cutting fine through-holes in a glass panel and adding wiring, and it has repeatedly adjusted the schedule for entering volume production after customer reliability testing. It is regarded as one of the companies furthest along in glass substrates.",
+    "ja": "SKCが半導体向けガラス基板をつくるために設けた子会社で、米ジョージア州カビントンに生産施設を置く。ガラス原板に微細な貫通穴をあけ配線を入れる工程を扱い、顧客の信頼性評価を経て量産に入る日程を何度か調整してきた。ガラス基板の分野で最も先行しているとされる企業の一つである。"
+   },
+   "aliases": [
+    "Absolics",
+    "ABSOLICS",
+    "앱솔릭스",
+    "アブソリックス"
+   ],
+   "founded": "2021",
+   "hq": {
+    "en": "Covington, Georgia, United States",
+    "ko": "미국 조지아주 커빙턴",
+    "ja": "米国ジョージア州カビントン"
+   },
+   "website": "https://www.absolicsinc.com",
+   "logo": "absolicsinc.com"
+  },
+  "SKC": {
+   "kind": "company",
+   "sector": {
+    "en": "Semiconductor materials",
+    "ko": "반도체 소재",
+    "ja": "半導体材料"
+   },
+   "desc": {
+    "ko": "구리박과 유리기판을 다루는 SK그룹의 소재 회사.",
+    "en": "The SK group materials company behind copper foil and glass substrates.",
+    "ja": "銅箔とガラス基板を手がけるSKグループの素材企業。"
+   },
+   "longDesc": {
+    "ko": "SK그룹의 소재 계열사로, 2차전지에 들어가는 구리박과 반도체용 소재를 주력으로 삼는다. 필름 사업을 정리하고 반도체 소재 쪽으로 무게를 옮기면서 자회사 앱솔릭스를 통해 유리기판을 키워 왔다. 한국거래소에 상장돼 있다.",
+    "en": "The materials arm of the SK group, centred on copper foil for batteries and materials for semiconductors. After winding down its film business it shifted weight toward semiconductor materials and has built out glass substrates through its subsidiary Absolics. It is listed on the Korea Exchange.",
+    "ja": "SKグループの素材系列会社で、電池向けの銅箔と半導体向け材料を主力とする。フィルム事業を整理して半導体材料へ重心を移し、子会社アブソリックスを通じてガラス基板を育ててきた。韓国取引所に上場している。"
+   },
+   "aliases": [
+    "SKC",
+    "에스케이씨"
+   ],
+   "ticker": "011790",
+   "exchange": "KRX",
+   "hq": {
+    "en": "Seoul, South Korea",
+    "ko": "대한민국 서울",
+    "ja": "韓国ソウル"
+   },
+   "website": "https://www.skc.kr",
+   "logo": "skc.kr"
   }
  }
 }
