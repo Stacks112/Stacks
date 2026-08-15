@@ -1,29 +1,4 @@
 {
- "캐펙스": {
-  "kind": "term",
-  "sector": {
-   "en": "Glossary",
-   "ko": "용어",
-   "ja": "用語"
-  },
-  "aliases": [
-   "캐펙스",
-   "자본지출",
-   "capex",
-   "CapEx",
-   "設備投資"
-  ],
-  "desc": {
-   "en": "Capital expenditure, money a company spends on long-lived assets like data centers, chips, and factories.",
-   "ko": "자본지출. 데이터센터·반도체·공장처럼 오래 쓰는 자산에 기업이 투자하는 돈.",
-   "ja": "設備投資。データセンターや半導体、工場など長期資産に企業が投じる資金。"
-  },
-  "longDesc": {
-   "en": "Heavy capex signals a company is betting on future capacity, but it also pressures near-term free cash flow. In AI, hyperscaler capex on GPUs and power is a key demand signal for the whole chip supply chain.",
-   "ko": "자본지출이 크다는 건 미래 생산능력에 베팅한다는 뜻이지만, 당장의 잉여현금흐름은 압박한다. AI에서는 하이퍼스케일러의 GPU·전력 투자 규모가 반도체 공급망 전체의 수요 신호가 된다.",
-   "ja": "設備投資が大きいほど将来の生産能力に賭けている一方、足元のフリーキャッシュフローは圧迫される。AIではハイパースケーラーのGPU・電力投資が半導体サプライチェーン全体の需要シグナルになる。"
-  }
- },
  "하이퍼스케일러": {
   "kind": "term",
   "sector": {
@@ -313,30 +288,6 @@
    "en": "Frontier models cost the most to train and require the largest compute clusters, so only a few labs can build them. The race to lead the frontier drives much of the industry's chip and power demand.",
    "ko": "프런티어 모델은 학습 비용이 가장 크고 최대 규모의 컴퓨트가 필요해, 소수 연구소만 만들 수 있다. 이 최전선을 선점하려는 경쟁이 업계 반도체·전력 수요의 상당 부분을 만든다.",
    "ja": "フロンティアモデルは学習コストが最も高く最大級の計算資源を要するため、作れるのは一握りの研究所だけだ。この最前線を巡る競争が業界の半導体・電力需要の多くを生む。"
-  }
- },
- "기가와트": {
-  "kind": "term",
-  "sector": {
-   "en": "Glossary",
-   "ko": "용어",
-   "ja": "用語"
-  },
-  "aliases": [
-   "기가와트",
-   "GW",
-   "gigawatt",
-   "ギガワット"
-  ],
-  "desc": {
-   "en": "A unit of power (1,000 megawatts) increasingly used to size AI data centers.",
-   "ko": "전력 단위(1,000메가와트). 요즘 AI 데이터센터 규모를 재는 데 자주 쓴다.",
-   "ja": "電力の単位(1,000メガワット)。AIデータセンターの規模を測るのに使われる。"
-  },
-  "longDesc": {
-   "en": "AI campuses are now planned in gigawatts because power, not just chips, is the binding constraint on scale. Roughly, one gigawatt can supply a large city, so multi-GW clusters are an industrial-scale bet on electricity.",
-   "ko": "이제 AI 캠퍼스는 기가와트 단위로 계획된다. 칩뿐 아니라 전력이 규모의 진짜 제약이기 때문이다. 대략 1기가와트면 대도시 하나를 감당하니, 수 기가와트 클러스터는 전력에 대한 산업 규모의 베팅이다.",
-   "ja": "いまやAIキャンパスはギガワット単位で計画される。チップだけでなく電力が規模の制約だからだ。1ギガワットは大都市一つを賄える規模で、数GWクラスターは電力への産業規模の賭けだ。"
   }
  },
  "양적긴축": {
@@ -662,29 +613,6 @@
    "en": "Supplied by component makers like Credo, Marvell, Coherent and Lumentum, NPO is a supplier-driven category rather than a confirmed Nvidia or Broadcom roadmap commitment.",
    "ko": "Credo·Marvell·Coherent·루멘텀 같은 부품사들이 미는 개념으로, 엔비디아·브로드컴의 확정된 로드맵이라기보다 공급사 주도의 카테고리에 가깝다.",
    "ja": "Credo・Marvell・Coherent・Lumentumなど部品メーカーが推す概念で、NVIDIAやBroadcomの確定ロードマップというより供給側主導のカテゴリーに近い。"
-  }
- },
- "InP": {
-  "kind": "term",
-  "sector": {
-   "en": "Glossary",
-   "ko": "용어",
-   "ja": "用語"
-  },
-  "aliases": [
-   "InP",
-   "indium phosphide",
-   "인화인듐"
-  ],
-  "desc": {
-   "en": "Indium phosphide, the semiconductor material used to make the laser chips that feed optical transceivers.",
-   "ko": "인화인듐. 광트랜시버에 들어가는 레이저 칩을 만드는 반도체 소재.",
-   "ja": "インジウムリン。光トランシーバーに使うレーザーチップの半導体材料。"
-  },
-  "longDesc": {
-   "en": "InP wafer and epitaxy capacity is limited to a handful of suppliers worldwide, making it a recurring bottleneck whenever AI datacenter buildouts spike demand for optical links.",
-   "ko": "InP 웨이퍼·에피택시 생산능력은 전 세계 소수 업체에 한정돼, AI 데이터센터 증설로 광링크 수요가 튈 때마다 반복되는 병목이 된다.",
-   "ja": "InPウェハー・エピタキシー生産能力は世界でごく少数の企業に限られ、AIデータセンター増設で光リンク需要が跳ねるたびに繰り返しボトルネックとなる。"
   }
  },
  "RDIMM": {
@@ -1030,24 +958,6 @@
    "en": "The International Emergency Economic Powers Act, a US law presidents have used to impose tariffs during declared national emergencies.",
    "ko": "국제비상경제권한법(IEEPA). 미국 대통령이 국가비상사태를 선포하고 관세를 부과할 때 근거로 삼아온 법률.",
    "ja": "国際緊急経済権限法(IEEPA)。米大統領が国家非常事態を宣言し関税を課す際の根拠として用いてきた法律。"
-  }
- },
- "국채금리": {
-  "kind": "term",
-  "sector": {
-   "en": "Glossary",
-   "ko": "용어",
-   "ja": "用語"
-  },
-  "aliases": [
-   "국채금리",
-   "Treasury yield",
-   "국채 금리"
-  ],
-  "desc": {
-   "en": "Treasury yield, the interest rate the US government pays to borrow money by selling bonds.",
-   "ko": "미국 정부가 국채를 발행해 돈을 빌릴 때 지불하는 금리.",
-   "ja": "米国政府が国債を発行して資金を借り入れる際に支払う金利。"
   }
  },
  "기대인플레이션": {
