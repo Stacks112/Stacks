@@ -4127,7 +4127,7 @@ html.stkbootr #v83rail, html.stkbootr #sideRight{ visibility:hidden; }
 </script>
 <link id="v82css" rel="stylesheet" href="assets/v82.css?v=c44b688f">
 <link rel="stylesheet" href="assets/investor-compare.css?v=76a4c951">
-<link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=8d65e761">
+<link id="v83tw-css" rel="stylesheet" href="assets/v83tw.css?v=5cd73dd5">
 <link id="twc-css" rel="stylesheet" href="assets/twc.css?v=df18043d">
 <style id="static-home-feed-css">
 .static-home-feed{margin:22px 0 8px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);}
@@ -6104,7 +6104,7 @@ function renderEntityDebate(list, items, S){
   bar.innerHTML = '<div class="debate-title">' + debateTitleHtml(ENTITY_VIEW) + '</div>'
     + '<div class="debate-track">'
     + ["bull", "bear", "watch"].map(k => counts[k]
-        ? '<div class="debate-seg ds-' + k + (STANCE_FILTER ? (STANCE_FILTER === k ? " on" : " dim") : "") + '" style="flex:' + counts[k] + '" onclick="stanceFilterTap(\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
+        ? '<div class="debate-seg ds-' + k + (STANCE_FILTER ? (STANCE_FILTER === k ? " on" : " dim") : "") + '" style="flex:' + counts[k] + '" role="button" tabindex="0" onkeydown="activateKey(event)" onclick="stanceFilterTap(\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
         : "").join("")
     + '</div>' + skewBadgeHtml(items) + receiptsStripHtml(items);
   /* debate-bar placement fix */
@@ -8324,7 +8324,7 @@ function railDebateEnhance(key){
         bar.innerHTML = '<div class="debate-title">' + debateTitleHtml(key) + '</div>'
           + '<div class="debate-track">'
           + ["bull", "bear", "watch"].map(k => counts[k]
-              ? '<div class="debate-seg ds-' + k + '" style="flex:' + counts[k] + '" onclick="railStanceTap(\'' + safe + '\',\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
+              ? '<div class="debate-seg ds-' + k + '" style="flex:' + counts[k] + '" role="button" tabindex="0" onkeydown="activateKey(event)" onclick="railStanceTap(\'' + safe + '\',\'' + k + '\')"><span>' + stanceMeta(k).label + '</span><b>' + counts[k] + '</b></div>'
               : "").join("")
           + '</div>';
         const slot = head.querySelector(".eh-desc") || head.querySelector(".eh-sub") || head.querySelector(".eh-top");
@@ -8907,7 +8907,7 @@ function entityHeadEl(key, S, count, mode){
             + ' onclick="ehqLoad(\'' + safe + '\',\'' + x[0] + '\')">' + x[1] + "</button>").join("")
         + '<button class="ehq-expand" onclick="openChartFS(\'' + safe + '\')" title="' + esc(S.fsHint) + '">⛶ ' + S.fsChart + "</button>"
       + "</div>"
-      + '<div class="ehq-chartwrap" id="ehqChart" title="' + esc(S.fsHint) + '" onclick="openChartFS(\'' + safe + '\')"><div class="ehq-loading">···</div></div>'
+      + '<div class="ehq-chartwrap" id="ehqChart" title="' + esc(S.fsHint) + '" role="button" tabindex="0" aria-label="' + esc(S.fsHint) + '" onkeydown="activateKey(event)" onclick="openChartFS(\'' + safe + '\')"><div class="ehq-loading">···</div></div>'
       + "</div>" : "";
   const analyticsSource = companyAnalyticsSource(e);
   const hasAnalytics = !!analyticsSource;
@@ -9651,7 +9651,7 @@ function v83RenderCal(){
       var days = Math.round((d - todayD) / 86400000);
       var dday = days === 0 ? S.dToday : "D-" + days;
       var lbl = (e.label && (e.label[LANG] || e.label.en)) || (e.title && (e.title[LANG] || e.title.en)) || "";
-      return '<div class="cal-li cal-li-link" onclick="evGo(\'' + e.id + '\')"><span class="cal-li-d ck-' + (e.kind || "x") + '">' + dday + '</span><span class="cal-li-t">' + esc(lbl) + '</span></div>';
+      return '<div class="cal-li cal-li-link" role="button" tabindex="0" onkeydown="activateKey(event)" onclick="evGo(\'' + e.id + '\')"><span class="cal-li-d ck-' + (e.kind || "x") + '">' + dday + '</span><span class="cal-li-t">' + esc(lbl) + '</span></div>';
     }).join("");
   }
   html += '<button class="v83cal-more" onclick="if(typeof setTab===\'function\')setTab(\'cal\')">' + moreLbl + '</button>';
@@ -11535,7 +11535,7 @@ function renderWatch(){
          + '<span class="ws ws-bull">▲' + sig.bull + "</span>"
          + '<span class="ws ws-bear">▼' + sig.bear + "</span>"
          + "</div>");
-    return '<div class="watch-card" onclick="tagTap(\'' + safe + '\')">'
+    return '<div class="watch-card" role="button" tabindex="0" onkeydown="activateKey(event)" onclick="tagTap(\'' + safe + '\')">'
       + '<button class="w-x" onclick="toggleWatch(\'' + safe + '\', event)" aria-label="unfollow">&times;</button>'
       + '<div class="w-name">' + esc(k) + "</div>"
       + '<div class="w-sector">' + ENTITIES[k].sector[LANG] + "</div>"
