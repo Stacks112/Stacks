@@ -15032,6 +15032,18 @@ async function getJSON(url, fresh){
   }
 }
 
+/* Start the first full-summary chunk as soon as core.first is available. The
+   first visible card can contain an image marker; warming this request before
+   render() lets that image become an LCP candidate without waiting for the
+   initial DOM work to finish. Reuse the promise so loadGists() never doubles
+   the request. */
+let GIST_PREFETCH = {};
+function prefetchGist(lang, chunk){
+  const key = String(lang) + "." + String(chunk);
+  if (!GIST_PREFETCH[key]) GIST_PREFETCH[key] = getJSON(dataUrl("gist." + lang + "." + chunk + ".json"));
+  return GIST_PREFETCH[key];
+}
+
 let AUX_DATA_P = null;
 async function loadAuxData(){
   if (AUX_DATA_P) return AUX_DATA_P;
@@ -15096,7 +15108,7 @@ async function loadGists(maxChunks = 1){
   const end = Math.min(start + maxChunks, GIST_CHUNKS);
   loadGists.next[lang] = end;
   for (let c = start; c < end; c++){
-    const part = await getJSON(dataUrl("gist." + lang + "." + c + ".json"));
+    const part = await prefetchGist(lang, c);
     if (!part) continue;
     Object.keys(part).forEach(id => {
       const it = ITEM_BY_ID.get(id) || ITEMS.find(x => x.id === id);
@@ -15129,15 +15141,19 @@ async function loadGists(maxChunks = 1){
 function scheduleGistPrefetch(){
   const run = () => {
     if ((loadGists.next && loadGists.next[LANG] || 0) >= GIST_CHUNKS) return;
-    loadGists(1).then(() => {
-      if (typeof requestIdleCallback === "function") requestIdleCallback(run, { timeout: 1500 });
-      else setTimeout(run, 900);
-    });
+    /* One extra chunk keeps a normal short scroll warm. Do not walk the whole
+       archive in the background: the remaining chunks are fetched on demand
+       by appendFeedPage(), so an idle home visit cannot create a long serial
+       network chain or compete with the first interaction. */
+    loadGists(1).catch(() => {});
   };
   /* requestIdleCallback can fire immediately on a quiet desktop. Keep a
      hard post-paint grace period so the first interaction never competes with
      archive hydration. */
-  setTimeout(run, 2500);
+  setTimeout(() => {
+    if (typeof requestIdleCallback === "function") requestIdleCallback(run, { timeout: 1500 });
+    else setTimeout(run, 0);
+  }, 2500);
 }
 
 function normalizeCoreItems(){
@@ -15422,6 +15438,7 @@ async function bootData(){
     SERIES = {};   /* series feature retired: ignore j.series so no series tag/view/follow renders */
     GIST_CHUNKS = j.chunks || 0;
     CORE_REST_READY = !j.more;
+    if (GIST_CHUNKS > 0) prefetchGist(LANG, 0);
   }
   /* newest publication first; ties keep file order */
   normalizeCoreItems();
