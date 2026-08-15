@@ -1,14 +1,14 @@
 {
  "source": "lynalden",
- "fetched_at": "2026-08-15T08:56:52.166588+00:00",
- "checked_at": "2026-08-15T13:09:13.756250+00:00",
- "ok": false,
+ "fetched_at": "2026-08-15T14:50:40.966917+00:00",
+ "checked_at": "2026-08-15T14:50:40.966917+00:00",
+ "ok": true,
  "url_used": "https://www.lynalden.com/feed/",
  "keep_days": 30,
- "raw_count": 0,
+ "raw_count": 10,
  "foreign_count": 0,
  "newest_published": "2026-07-15T14:16:27+00:00",
  "kept_count": 0,
- "error": "ConnectTimeout: HTTPSConnectionPool(host='www.lynalden.com', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.lynalden.com', port=443) at 0x7fb68c5ca2d0>, 'Connection to www.lynalden.com timed out. (connect timeout=25)'))",
+ "error": null,
  "items": []
 }
