@@ -1,6 +1,162 @@
 {
  "items": [
   {
+   "date": "2026-08-14",
+   "id": "jukan-feynman-a16-nvlink-1pb-soic-50k",
+   "related": [
+    "jukan-rubin-ultra-reticle-packaging-risk",
+    "jukan-nvidia-rubin-hbm4-cost-surge",
+    "jukan-google-amd-tpu-v10-chatter-vs-broadcom-allocation"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2088061698473410965",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#0F172A",
+    "to": "#0E7490",
+    "label": "월 5만장"
+   },
+   "tags": [
+    "TSMC",
+    "PACKAGING",
+    "NVIDIA"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "엔비디아의 다음다음 세대가 기다리는 것은 2나노가 아니다",
+    "en": "What Nvidia's next-next generation is waiting on is not 2nm",
+    "ja": "エヌビディアの次の次の世代が待っているのは2ナノではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Taiwan's DigiTimes reports that Nvidia's Feynman platform, the generation after next, will move straight to A16, TSMC's upgraded version of its 2nm process, and will also raise the share of SoIC 3D stacking.",
+      "Accordingly, TSMC's monthly SoIC capacity is said to reach 50,000 wafers a month by the end of 2027.",
+      "What is also interesting is that AP7 P2, which was planned for SoIC, may be partly allocated to CPO and CoWoS lines."
+     ],
+     "ko": [
+      "대만 디지타임스는 엔비디아의 다음다음 세대인 페인만 플랫폼이 TSMC의 2나노 개량 공정인 A16으로 곧장 가고, SoIC 3차원 적층의 비중도 높일 것이라고 전했다.",
+      "이에 따라 TSMC의 월 SoIC 생산능력이 2027년 말까지 월 5만장에 이를 것이라고 한다.",
+      "또 하나 흥미로운 것은 SoIC용으로 계획됐던 AP7 P2가 일부는 CPO와 CoWoS 라인으로 배정될 수 있다는 점이다."
+     ],
+     "ja": [
+      "台湾のデジタイムズは、エヌビディアの次の次の世代であるファインマン・プラットフォームがTSMCの2ナノ改良工程A16へ直接進み、SoIC3次元積層の比率も高めると伝えた。",
+      "これに伴い、TSMCの月間SoIC生産能力は2027年末までに月5万枚に達するという。",
+      "もう一つ興味深いのは、SoIC向けに計画されていたAP7 P2が一部はCPOとCoWoSのラインに振り向けられる可能性があることだ。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.14"
+   },
+   "sum3": {
+    "ko": "디지타임스는 엔비디아의 페인만이 2나노를 건너뛰고 개량 공정인 A16으로 곧장 간다고 보도했다.\n겉으로 보면 공정 세대를 하나 앞당긴 이야기다.\n그런데 같은 보도에서 더 크게 움직인 것은 칩을 붙이는 쪽이다. 3차원 적층 생산능력 목표가 2027년 말 월 5만장으로 잡혔고, 광통신용 라인이 예정보다 앞당겨질 수 있다.",
+    "en": "DigiTimes reports that Nvidia's Feynman will skip 2nm and go straight to the upgraded A16 node.\nAt face value that is a story about pulling a process generation forward.\nBut the larger move in the same report is on the assembly side, with 3D stacking capacity targeted at 50,000 wafers a month by the end of 2027 and optical lines possibly arriving ahead of plan.",
+    "ja": "デジタイムズは、エヌビディアのファインマンが2ナノを飛ばして改良工程のA16へ直接進むと報じた。\n表面だけ見れば、工程の世代を一つ前倒しした話である。\nだが同じ報道でより大きく動いたのはチップを貼り合わせる側だ。3次元積層の生産能力目標が2027年末に月5万枚と置かれ、光通信向けのラインが予定より早まる可能性がある。"
+   },
+   "gist": {
+    "ko": "엔비디아가 루빈 울트라 다음에 내놓을 페인만 플랫폼이 TSMC의 2나노를 건너뛰고 그 개량판인 A16으로 곧장 간다는 보도가 나왔다.\n대만 디지타임스가 8월 14일 전한 내용이고,\n같은 보도에서 더 크게 움직인 것은 공정 이름이 아니라 칩을 감싸는 포장 쪽이었다.\n\n@@REF@@엔비디아의 차세대 페인만 플랫폼이 속도를 내면서 TSMC가 앞당겨 달리고 있다 (벤징가, 2026-08-14)|https://www.benzinga.com/markets/tech/26/08/61201714/nvidias-next-gen-feynman-ai-platform-is-ramping-up-forcing-tsmc-to-race-ahead-report\n\n## 랙 하나가 1초에 1페타바이트\n\n엔비디아는 서버 랙 한 대를 통째로 하나의 컴퓨터처럼 쓴다.\n그 안에서 칩끼리 데이터를 주고받는 전용 통로가 엔브이링크다.\n이 통로가 좁으면 칩을 아무리 늘려도 서로 기다리느라 성능이 나오지 않는다.\n\n@@BAR@@블랙웰 NVL72|130TB/s|130|베라 루빈|260TB/s|260|루빈 울트라|520TB/s|520|페인만|1,040TB/s 이상|1040@@세대마다 정확히 두 배씩이다. 구리 전선으로 이 폭을 감당하기 어려워지는 지점에서 빛으로 갈아타야 하고, 그 갈아타기가 CPO다.@@클라우드뉴스 2026-08-15 보도 인용 · 2026-08-15 조회\n\n@@IMG@@gpu-cluster|랙 단위로 묶인 가속기. 페인만에서 늘어나는 것은 칩 한 장의 성능만이 아니라 이 묶음 안을 오가는 통로의 폭이다.\n\n## 공정보다 포장이 먼저 밀린다\n\nA16은 TSMC가 2나노 위에 올린 개량 공정이다.\n같은 전압에서 8~10퍼센트 빨라지거나, 같은 속도를 15~20퍼센트 적은 전력으로 낸다.\n\n여기까지는 익숙한 이야기인데, 페인만이 실제로 나오려면 그다음이 필요하다.\nSoIC는 칩을 옆으로 늘어놓는 대신 위아래로 겹쳐 붙이는 방식이고, 붙이는 거리가 짧아져 통로가 넓어진다.\n문제는 이 공정의 생산능력이 칩 자체의 생산능력과 따로 논다는 점이다.\n\n@@TIME@@2026-08-14|디지타임스가 페인만의 A16 채택과 3차원 적층 비중 확대를 보도|>2027년 하반기|SoIC용으로 잡아 둔 AP7 P2 일부가 CPO·CoWoS 라인으로 돌려질 수 있다|>2027년 말|TSMC 월 SoIC 생산능력 5만장 목표|>2028년 하반기|페인만 출시 예상@@앞의 세 줄이 마지막 줄을 정한다. 포장 라인이 먼저 서지 않으면 공정이 준비돼도 물건이 나오지 않는다.@@디지타임스 2026-08-14 · 클라우드뉴스 2026-08-15 보도 인용\n\n@@REF@@페인만은 A16과 3차원 칩렛, 커스텀 HBM, CPO 광통신을 안고 2028년을 겨눈다 (클라우드뉴스, 2026-08-15)|https://cloudnews.tech/nvidia-feynman-targets-2028-with-a16-3d-chiplets-custom-hbm-and-cpo-optical/|https://cloudnews.tech/wp-content/uploads/2026/08/jensen-nvidia-chips.jpg\n\n이 기사는 페인만의 출시를 2028년 하반기로 잡고, 앞서 본 통로 폭의 두 배씩 늘어나는 흐름도 함께 정리한다.\n그 두 가지를 겹쳐 놓으면 TSMC가 자이(嘉義)의 AP7과 남부과학단지의 AP8 공사를 서두르는 이유가 설명된다.\n칩 설계가 아니라 붙이는 자리가 병목이라는 뜻이다.\n\n## AP7 P2가 어디로 가느냐\n\n주칸이 흥미롭다고 짚은 대목이 여기다.\nSoIC용으로 계획됐던 AP7 P2 공간의 일부가 CPO와 CoWoS 쪽으로 넘어갈 수 있다는 것이다.\n사실로 굳어지면 빛으로 신호를 보내는 방식이 예상보다 이른 시점에 실제 생산 일정에 들어온다는 이야기가 된다.\n\n지금 남은 갈림길은 두 가지다.\n2027년 말까지 월 5만장이라는 SoIC 목표가 지켜지면 페인만의 2028년 일정은 대체로 지켜질 것이고, 광통신 부품을 대는 회사들의 매출 인식 시점도 그만큼 앞당겨진다.\n그 목표가 미뤄지면 A16이 준비돼도 완성품은 뒤로 밀리고, 이번 세대의 병목은 공정이 아니라 후공정이었다는 것이 확인된다.\n\n이 카드에서 볼 숫자는 엔비디아의 발표가 아니라 TSMC의 후공정 생산능력이다.",
+    "en": "Nvidia's Feynman platform, the generation due after Rubin Ultra, is reported to skip TSMC's 2nm node and go straight to A16, the upgraded version of it.\nTaiwan's DigiTimes carried the report on August 14,\nand in the same piece the bigger movement was not in the process name but in the packaging that wraps the chip.\n\n@@REF@@Nvidia's next-gen Feynman AI platform is ramping up, forcing TSMC to race ahead (Benzinga, 2026-08-14)|https://www.benzinga.com/markets/tech/26/08/61201714/nvidias-next-gen-feynman-ai-platform-is-ramping-up-forcing-tsmc-to-race-ahead-report\n\n## One rack, one petabyte a second\n\nNvidia treats an entire server rack as a single computer.\nNVLink is the dedicated path the chips inside it use to hand data to one another.\nIf that path is narrow, adding more chips buys nothing, because they spend their time waiting on each other.\n\n@@BAR@@Blackwell NVL72|130TB/s|130|Vera Rubin|260TB/s|260|Rubin Ultra|520TB/s|520|Feynman|over 1,040TB/s|1040@@Each generation is exactly double the last. There is a point where copper wiring can no longer carry that width, and switching to light at that point is what CPO is.@@Figures as reported by CloudNews, 2026-08-15, accessed 2026-08-15\n\n@@IMG@@gpu-cluster|Accelerators bundled at rack scale. What grows in Feynman is not only the performance of a single chip but the width of the paths running inside this bundle.\n\n## Packaging binds before the process does\n\nA16 is TSMC's improved node sitting above 2nm.\nIt offers 8 to 10 percent more speed at the same voltage, or the same speed at 15 to 20 percent less power.\n\nThat part is familiar. Getting Feynman out of the door needs what comes after it.\nSoIC stacks dies vertically instead of laying them side by side, and the shorter distance between them widens the path.\nThe catch is that capacity for this step runs on its own schedule, separate from capacity for the chips themselves.\n\n@@TIME@@2026-08-14|DigiTimes reports Feynman on A16 with a larger share of 3D stacking|>2H 2027|Part of AP7 P2, set aside for SoIC, may be turned over to CPO and CoWoS lines|>End of 2027|TSMC targets monthly SoIC capacity of 50,000 wafers|>2H 2028|Feynman expected to launch@@The first three lines decide the last one. If the packaging lines are not standing first, a ready process still ships nothing.@@As reported by DigiTimes 2026-08-14 and CloudNews 2026-08-15\n\n@@REF@@NVIDIA Feynman targets 2028 with A16, 3D chiplets, custom HBM and CPO optical (CloudNews, 2026-08-15)|https://cloudnews.tech/nvidia-feynman-targets-2028-with-a16-3d-chiplets-custom-hbm-and-cpo-optical/|https://cloudnews.tech/wp-content/uploads/2026/08/jensen-nvidia-chips.jpg\n\nThat piece puts Feynman's arrival in the second half of 2028 and lays out the same doubling of interconnect width shown above.\nPut the two together and it explains why TSMC is hurrying construction at AP7 in Chiayi and AP8 in the Southern Taiwan Science Park.\nThe bottleneck sits in where things get joined, not in how they are designed.\n\n## Where AP7 P2 ends up\n\nThis is the line Jukan flags as interesting.\nSome of the AP7 P2 space planned for SoIC may be handed to CPO and CoWoS instead.\nIf that firms up, sending signals as light enters the real production calendar earlier than the industry had assumed.\n\nTwo branches are left.\nHold the 50,000 wafer a month SoIC target through the end of 2027 and Feynman's 2028 schedule largely holds with it, pulling forward when the optical component suppliers get to book revenue.\nLet that target slip and the finished part slides even with A16 ready, confirming that this generation's bottleneck was back-end assembly rather than the process node.\n\nThe number to watch on this card is TSMC's back-end capacity, not Nvidia's announcements.",
+    "ja": "エヌビディアがルービン・ウルトラの次に出すファインマン・プラットフォームが、TSMCの2ナノを飛ばして、その改良版であるA16へ直接進むという報道が出た。\n台湾のデジタイムズが8月14日に伝えた内容で、\n同じ報道でより大きく動いていたのは工程の名前ではなく、チップを包む実装のほうだった。\n\n@@REF@@エヌビディアの次世代ファインマン・プラットフォームが加速し、TSMCが前倒しで走っている (ベンジンガ、2026-08-14)|https://www.benzinga.com/markets/tech/26/08/61201714/nvidias-next-gen-feynman-ai-platform-is-ramping-up-forcing-tsmc-to-race-ahead-report\n\n## ラック1台が1秒に1ペタバイト\n\nエヌビディアはサーバーラック1台をまるごと1台のコンピューターのように使う。\nその中でチップ同士がデータをやり取りする専用の通り道がエヌブイリンクである。\nこの通り道が狭いと、チップをいくら増やしても互いを待つだけで性能が出ない。\n\n@@BAR@@ブラックウェルNVL72|130TB/s|130|ベラ・ルービン|260TB/s|260|ルービン・ウルトラ|520TB/s|520|ファインマン|1,040TB/s以上|1040@@世代ごとにちょうど2倍ずつである。銅の配線ではこの幅を支えきれなくなる地点があり、そこで光に乗り換えるのがCPOだ。@@クラウドニュース2026-08-15の報道より引用・2026-08-15閲覧\n\n@@IMG@@gpu-cluster|ラック単位で束ねられたアクセラレーター。ファインマンで増えるのはチップ1枚の性能だけでなく、この束の中を行き来する通り道の幅である。\n\n## 工程より実装が先に詰まる\n\nA16はTSMCが2ナノの上に載せた改良工程である。\n同じ電圧で8~10パーセント速くなるか、同じ速度を15~20パーセント少ない電力で出す。\n\nここまでは見慣れた話で、ファインマンが実際に出るにはその先が要る。\nSoICはチップを横に並べるかわりに上下に重ねて貼る方式で、貼る距離が短くなって通り道が広がる。\n問題は、この工程の生産能力がチップ自体の生産能力とは別に動くことだ。\n\n@@TIME@@2026-08-14|デジタイムズがファインマンのA16採用と3次元積層の比率拡大を報道|>2027年下期|SoIC向けに確保していたAP7 P2の一部がCPO・CoWoSラインに回される可能性|>2027年末|TSMCの月間SoIC生産能力5万枚が目標|>2028年下期|ファインマンの投入見込み@@前の3行が最後の1行を決める。実装ラインが先に立たなければ、工程が整っても製品は出ない。@@デジタイムズ2026-08-14・クラウドニュース2026-08-15の報道より引用\n\n@@REF@@ファインマンはA16と3次元チップレット、カスタムHBM、CPO光通信を抱えて2028年を狙う (クラウドニュース、2026-08-15)|https://cloudnews.tech/nvidia-feynman-targets-2028-with-a16-3d-chiplets-custom-hbm-and-cpo-optical/|https://cloudnews.tech/wp-content/uploads/2026/08/jensen-nvidia-chips.jpg\n\nこの記事はファインマンの投入を2028年下期に置き、先に見た通り道の幅が2倍ずつ増える流れも合わせて整理している。\nその二つを重ねると、TSMCが嘉義のAP7と南部サイエンスパークのAP8の工事を急ぐ理由が説明できる。\nチップの設計ではなく、貼り合わせる場所が詰まっているということだ。\n\n## AP7 P2がどこへ行くか\n\nジュカンが興味深いと指した箇所がここである。\nSoIC向けに計画されていたAP7 P2の一部が、CPOとCoWoSのほうへ回される可能性があるという。\n事実として固まれば、光で信号を送る方式が想定より早い時点で実際の生産日程に入ってくるという話になる。\n\n残る分かれ道は二つだ。\n2027年末までに月5万枚というSoICの目標が守られればファインマンの2028年の日程はおおむね守られ、光通信部品を供給する企業の売上計上の時期もその分早まる。\nその目標が後ろへずれればA16が整っても完成品は遅れ、今世代の詰まりは工程ではなく後工程だったことが確かめられる。\n\nこのカードで見る数字はエヌビディアの発表ではなく、TSMCの後工程の生産能力である。"
+   },
+   "why": {
+    "ko": "다음 세대 가속기의 일정을 정하는 것이 미세공정이 아니라 후공정 생산능력으로 넘어가고 있다. 병목이 옮겨 가면 그 자리에 있는 장비·소재·조립 업체의 실적 인식 시점도 같이 옮겨 간다.",
+    "en": "What sets the schedule for the next accelerator generation is shifting from the process node to back-end capacity. When the bottleneck moves, so does the moment the equipment, material and assembly firms sitting at that step get to book revenue.",
+    "ja": "次世代アクセラレーターの日程を決めるものが、微細加工から後工程の生産能力へ移りつつある。ボトルネックが移れば、その位置にいる装置・材料・組立企業の業績計上の時期も一緒に移る。"
+   },
+   "ask": {
+    "ko": "페인만의 2028년 일정을 좌우하는 것은 A16 공정의 완성도일까, 아니면 TSMC가 2027년 말까지 SoIC 생산능력을 월 5만장으로 올릴 수 있느냐일까?",
+    "en": "Will Feynman's 2028 schedule be decided by how ready the A16 node is, or by whether TSMC can lift SoIC capacity to 50,000 wafers a month by the end of 2027?",
+    "ja": "ファインマンの2028年の日程を左右するのはA16工程の完成度なのか、それともTSMCが2027年末までにSoICの生産能力を月5万枚へ引き上げられるかなのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "TSMC의 월 SoIC 생산능력이 2027년 말까지 5만장에 이르는지를 확인한다.",
+     "en": "Check whether TSMC's monthly SoIC capacity reaches 50,000 wafers by the end of 2027.",
+     "ja": "TSMCの月間SoIC生産能力が2027年末までに5万枚に達するかを確認する。"
+    },
+    "due": "2028-01-31",
+    "card": {
+     "metric": {
+      "ko": "TSMC의 월 SoIC 생산능력",
+      "en": "TSMC monthly SoIC capacity",
+      "ja": "TSMCの月間SoIC生産能力"
+     },
+     "now": {
+      "ko": "2027년 말 월 5만장이 목표 (디지타임스 2026-08-14 보도)",
+      "en": "Targeted at 50,000 wafers a month by end of 2027 (DigiTimes, 2026-08-14)",
+      "ja": "2027年末に月5万枚が目標 (デジタイムズ2026-08-14報道)"
+     },
+     "when": {
+      "ko": "2027년 12월 말 기준",
+      "en": "As of the end of December 2027",
+      "ja": "2027年12月末時点"
+     },
+     "hit": {
+      "ko": "월 5만장 이상에 도달하면 보도된 계획대로 간 것",
+      "en": "At or above 50,000 wafers a month means the reported plan held",
+      "ja": "月5万枚以上に達していれば報じられた計画どおりに進んだことになる"
+     },
+     "miss": {
+      "ko": "월 5만장에 못 미치면 후공정이 일정을 뒤로 민 것",
+      "en": "Below 50,000 wafers a month means back-end capacity pushed the schedule out",
+      "ja": "月5万枚に届かなければ後工程が日程を後ろへずらしたことになる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan (@jukan05) · 2026-08-14",
+      "en": "Jukan (@jukan05) · 2026-08-14",
+      "ja": "Jukan (@jukan05) · 2026-08-14"
+     },
+     "url": "https://x.com/jukan05/status/2088061698473410965"
+    },
+    {
+     "name": {
+      "ko": "벤징가",
+      "en": "Benzinga",
+      "ja": "ベンジンガ"
+     },
+     "desc": {
+      "ko": "A16 채택과 AP7·AP8 증설, SoIC 월 5만장 목표 · 2026-08-14",
+      "en": "A16 adoption, AP7 and AP8 build-out, the 50,000 wafer SoIC target · 2026-08-14",
+      "ja": "A16採用とAP7・AP8の増設、SoIC月5万枚目標 · 2026-08-14"
+     },
+     "url": "https://www.benzinga.com/markets/tech/26/08/61201714/nvidias-next-gen-feynman-ai-platform-is-ramping-up-forcing-tsmc-to-race-ahead-report"
+    },
+    {
+     "name": {
+      "ko": "클라우드뉴스",
+      "en": "CloudNews",
+      "ja": "クラウドニュース"
+     },
+     "desc": {
+      "ko": "세대별 랙당 대역폭 수치와 A16 성능 개선폭, 2028년 하반기 출시 전망 · 2026-08-15",
+      "en": "Per-rack bandwidth by generation, the A16 performance gain, the 2H 2028 launch view · 2026-08-15",
+      "ja": "世代別のラック当たり帯域幅とA16の性能向上幅、2028年下期投入見通し · 2026-08-15"
+     },
+     "url": "https://cloudnews.tech/nvidia-feynman-targets-2028-with-a16-3d-chiplets-custom-hbm-and-cpo-optical/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-15 조회 · 페인만의 공정과 일정은 엔비디아가 공식 발표한 것이 아니라 공급망을 인용한 보도이며, AP7 P2 배정 변경은 아직 확정되지 않은 이야기다.",
+    "en": "Accessed 2026-08-15. Feynman's node and schedule come from supply chain reporting rather than any Nvidia announcement, and the AP7 P2 reallocation is not settled.",
+    "ja": "2026-08-15閲覧。ファインマンの工程と日程はエヌビディアの公式発表ではなくサプライチェーンを引用した報道であり、AP7 P2の割り当て変更はまだ確定していない。"
+   }
+  },
+  {
    "date": "2026-08-15",
    "id": "kobeissi-lme-copper-42-day-drawdown-434-backwardation",
    "related": [
@@ -59616,6 +59772,102 @@
     "백워데이션",
     "バックワーデーション",
     "역조시장"
+   ]
+  },
+  "SoIC": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "칩을 옆으로 늘어놓지 않고 위아래로 겹쳐 붙이는 TSMC의 3차원 접합 기술.",
+    "en": "TSMC's 3D bonding technology that stacks dies vertically instead of laying them side by side.",
+    "ja": "チップを横に並べず上下に重ねて接合するTSMCの3次元実装技術。"
+   },
+   "longDesc": {
+    "ko": "여러 칩을 한 덩어리로 묶을 때 옆으로 붙이면 신호가 지나갈 거리가 길어진다. SoIC는 칩을 위아래로 겹쳐 붙여 그 거리를 줄이고, 그만큼 데이터가 오가는 통로를 넓힌다. 칩을 만드는 공정과는 별개의 생산능력이 필요해서, 미세공정이 준비돼도 이쪽 설비가 모자라면 완성품 일정이 밀린다.",
+    "en": "Tying several dies into one package side by side leaves a long distance for signals to travel. SoIC stacks them vertically to shorten that distance, which widens the path data moves through. It needs capacity separate from the capacity that makes the dies, so a ready process node still slips if this step is short of equipment.",
+    "ja": "複数のチップを一つにまとめる際、横に並べると信号が通る距離が長くなる。SoICはチップを上下に重ねて貼ることでその距離を縮め、データが行き来する通り道を広げる。チップを作る工程とは別の生産能力が要るため、微細加工が整っていてもこの設備が足りなければ完成品の日程が遅れる。"
+   },
+   "aliases": [
+    "SoIC",
+    "System on Integrated Chips",
+    "에스오아이씨",
+    "3차원 적층",
+    "3次元積層"
+   ]
+  },
+  "A16": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "TSMC가 2나노 위에 올린 개량 공정.",
+    "en": "TSMC's improved node sitting above its 2nm process.",
+    "ja": "TSMCが2ナノの上に載せた改良工程。"
+   },
+   "longDesc": {
+    "ko": "TSMC의 2나노를 손봐서 같은 전압에서 8~10퍼센트 빠르게 하거나 같은 속도를 15~20퍼센트 적은 전력으로 내게 만든 공정이다. 새 세대를 통째로 여는 것이 아니라 기존 세대를 다듬은 쪽에 가깝고, 전력 소모가 성능을 가르는 인공지능 가속기에서 먼저 채택 이야기가 나온다.",
+    "en": "A reworking of TSMC's 2nm that delivers 8 to 10 percent more speed at the same voltage, or the same speed at 15 to 20 percent less power. It refines an existing generation rather than opening a new one, and adoption talk starts with AI accelerators, where power draw is what separates one part from another.",
+    "ja": "TSMCの2ナノに手を入れ、同じ電圧で8~10パーセント速く、あるいは同じ速度を15~20パーセント少ない電力で出せるようにした工程である。新世代をまるごと開くのではなく既存世代を整えたものに近く、消費電力が性能を分けるAIアクセラレーターで先に採用の話が出る。"
+   },
+   "aliases": [
+    "A16",
+    "에이16",
+    "1.6나노"
+   ]
+  },
+  "NVLINK": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "엔비디아 가속기끼리 데이터를 주고받는 전용 통로.",
+    "en": "The dedicated path Nvidia accelerators use to hand data to one another.",
+    "ja": "エヌビディアのアクセラレーター同士がデータをやり取りする専用の通り道。"
+   },
+   "longDesc": {
+    "ko": "여러 장의 가속기를 하나의 컴퓨터처럼 쓰려면 칩끼리 데이터를 빠르게 넘겨야 한다. 엔브이링크는 그 전용 통로이고, 폭을 초당 테라바이트 단위로 표시한다. 이 통로가 좁으면 칩 수를 늘려도 서로 기다리느라 성능이 오르지 않아, 랙 단위 시스템에서는 칩 성능만큼 중요한 값으로 취급된다.",
+    "en": "Using many accelerators as one computer requires chips to pass data to each other quickly. NVLink is the dedicated path for that, and its width is quoted in terabytes per second. If it is narrow, adding chips does not add performance because they wait on one another, so in rack scale systems it is treated as being as important as chip performance itself.",
+    "ja": "複数のアクセラレーターを一台のコンピューターのように使うには、チップ同士が素早くデータを渡す必要がある。エヌブイリンクはその専用の通り道で、幅は毎秒テラバイト単位で示される。狭ければチップ数を増やしても互いを待つだけで性能が上がらないため、ラック単位のシステムではチップ性能と同じくらい重要な値として扱われる。"
+   },
+   "aliases": [
+    "NVLink",
+    "NVLINK",
+    "엔브이링크",
+    "エヌブイリンク"
+   ]
+  },
+  "FEYNMAN": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "루빈 다음에 올 것으로 알려진 엔비디아의 가속기 플랫폼 이름.",
+    "en": "The name of the Nvidia accelerator platform expected to follow Rubin.",
+    "ja": "ルービンの次に来るとされるエヌビディアのアクセラレーター基盤の名称。"
+   },
+   "longDesc": {
+    "ko": "엔비디아가 블랙웰, 루빈에 이어 내놓을 것으로 알려진 세대의 이름이다. 공급망 보도로는 TSMC의 A16 공정과 3차원 적층, 커스텀 메모리, 빛으로 신호를 보내는 방식이 함께 들어가고 2028년 등장이 거론된다. 엔비디아가 공식 사양을 밝힌 단계는 아니다.",
+    "en": "The name of the generation Nvidia is expected to bring after Blackwell and Rubin. Supply chain reporting places TSMC's A16 node, 3D stacking, custom memory and optical signalling in it together, with 2028 mentioned as the arrival. Nvidia has not published specifications at this stage.",
+    "ja": "エヌビディアがブラックウェル、ルービンに続いて出すとされる世代の名称である。サプライチェーンの報道では、TSMCのA16工程と3次元積層、カスタムメモリー、光で信号を送る方式が一緒に入るとされ、2028年の登場が取り沙汰されている。エヌビディアが正式な仕様を示した段階ではない。"
+   },
+   "aliases": [
+    "Feynman",
+    "FEYNMAN",
+    "페인만",
+    "ファインマン"
    ]
   }
  }
