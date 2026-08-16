@@ -2129,13 +2129,44 @@
     var dt = $("v82detail");
     return dt ? dt.querySelector(".twc-comp.twc-pinned") : null;
   }
+  /* 2026-08-16: openDetail()/v82PinCompBar() appendChild the card and the
+     comment bar and then, in the SAME synchronous task, v82SyncCompBar() used
+     to read bar.offsetHeight - a forced synchronous layout of the whole page
+     right after two appendChilds (measured as ~80-90% of the card-tap frame
+     budget). offsetHeight is only needed to pick a paddingBottom, and one
+     stale/estimated frame of padding is harmless, so the read (and the write
+     that depends on it) is pushed to the next animation frame instead, guarded
+     so repeated calls in one frame don't queue more than one rAF. Until that
+     frame lands, the last known (or the original 56px fallback) height is
+     applied immediately so nothing shifts or hides behind the bar. */
+  var V82_CB_BAR_H = 0;
+  var V82_CB_SYNC_RAF = 0;
+  function v82ApplyCompPad(h){
+    var body = $("v82dbody");
+    if (!body) return;
+    body.style.paddingBottom = ((h || 56) + 24) + "px";
+  }
+  function v82MeasureCompBar(){
+    V82_CB_SYNC_RAF = 0;
+    var bar = v82PinnedBar();
+    if (!bar) return;
+    if (bar.offsetHeight) V82_CB_BAR_H = bar.offsetHeight;
+    v82ApplyCompPad(V82_CB_BAR_H);
+  }
   function v82SyncCompBar(){
     var body = $("v82dbody");
     if (!body) return;
     var bar = v82PinnedBar();
-    if (!bar) { body.style.paddingBottom = ""; return; }
+    if (!bar) {
+      if (V82_CB_SYNC_RAF) { try { cancelAnimationFrame(V82_CB_SYNC_RAF); } catch (e) {} V82_CB_SYNC_RAF = 0; }
+      body.style.paddingBottom = "";
+      return;
+    }
     /* the bar is out of flow, so the article needs room to scroll clear of it */
-    body.style.paddingBottom = ((bar.offsetHeight || 56) + 24) + "px";
+    v82ApplyCompPad(V82_CB_BAR_H);
+    if (!V82_CB_SYNC_RAF) {
+      try { V82_CB_SYNC_RAF = requestAnimationFrame(v82MeasureCompBar); } catch (e) {}
+    }
     /* Keyboard handling, third attempt - do NOT move the bar at all. Both the
        translateY lift (2026-07-29: gap above the keyboard) and the measured-delta
        version of it (2026-07-30 video: the whole bar vanished the moment the
@@ -2214,6 +2245,7 @@
   }
   function v82UnpinCompBar(sheet){
     if (V82_CB_RO) { try { V82_CB_RO.disconnect(); } catch (e) {} }
+    if (V82_CB_SYNC_RAF) { try { cancelAnimationFrame(V82_CB_SYNC_RAF); } catch (e) {} V82_CB_SYNC_RAF = 0; }
     var bar = v82PinnedBar() || document.querySelector(".twc-comp.twc-pinned");
     var home = sheet || document.querySelector("#twcOv .twc-sheet");
     if (bar) {
