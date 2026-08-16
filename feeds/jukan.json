@@ -1,16 +1,22 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-15T22:50:34.470407+00:00",
- "checked_at": "2026-08-15T22:50:34.470407+00:00",
+ "fetched_at": "2026-08-16T02:07:45.758585+00:00",
+ "checked_at": "2026-08-16T02:07:45.758585+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 2,
- "newest_published": "2026-08-15T22:12:00+00:00",
+ "newest_published": "2026-08-16T01:17:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Some thoughts on NVIDIA and Wall Street’s $500 billion financing guarantee: - This should help prevent GPU sales from taking a hit as hyperscalers face tighter cash flows and may no longer be able to pay for GPUs entirely upfront. - It should accelerate the expansion of the GPU market’s TAM, and I do not view it as circular financing. - Calling this circular financing is like criticizing the introduction of auto financing by saying that car companies are effectively buying their own cars. - Another interesting point to watch is that Wall Street is increasingly starting to view GPUs as recoverable collateral.",
+   "link": "https://x.com/jukan05/status/2088797214873133358",
+   "published": "2026-08-16T01:17:00+00:00",
+   "content": "Some thoughts on NVIDIA and Wall Street’s $500 billion financing guarantee:\n\n- This should help prevent GPU sales from taking a hit as hyperscalers face tighter cash flows and may no longer be able to pay for GPUs entirely upfront.\n\n- It should accelerate the expansion of the GPU market’s TAM, and I do not view it as circular financing.\n\n- Calling this circular financing is like criticizing the introduction of auto financing by saying that car companies are effectively buying their own cars.\n\n- Another interesting point to watch is that Wall Street is increasingly starting to view GPUs as recoverable collateral.\n— Jukan (@jukan05) Aug 16, 2026"
+  },
   {
    "title": "I came to Hong Kong for vacation and tried Sichuan food for the first time. It was so spicy that I really struggled, and my stomach hurt so much afterward.",
    "link": "https://x.com/jukan05/status/2088750717490340112",
@@ -94,12 +100,6 @@
    "link": "https://x.com/jukan05/status/2087847545250955274",
    "published": "2026-08-13T10:23:00+00:00",
    "content": "Lenovo: AI overall is far from a bubble. Actually, it is just the first stage of AI democratization. As it evolves and becomes more accessible, it will only generate more demand towards AI democratization. With that, we believe demand for memory will continue to rise for a considerable period ahead, at least by the end of next year. That means that the supply will be still constrained.\n— Jukan (@jukan05) Aug 13, 2026"
-  },
-  {
-   "title": "It seems Intel is bullish on CXL. Interesting. \"Moving workloads or the KV cache outside the GPU does not automatically remove the bottleneck.\" \"Effective KV cache offloading requires faster chip to chip connections or CXL connections rather than depending on PCIe alone.\"",
-   "link": "https://x.com/jukan05/status/2087739104306020545",
-   "published": "2026-08-13T03:12:00+00:00",
-   "content": "It seems Intel is bullish on CXL. Interesting.\n\n\"Moving workloads or the KV cache outside the GPU does not automatically remove the bottleneck.\"\n\n\"Effective KV cache offloading requires faster chip to chip connections or CXL connections rather than depending on PCIe alone.\"\n— Jukan (@jukan05) Aug 13, 2026"
   }
  ]
 }
