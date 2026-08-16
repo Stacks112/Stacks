@@ -114,17 +114,40 @@ test.describe("feed article detail round trip", () => {
     await waitForFeed(page);
     // X fallback is intentionally visible on lab cards; other compact feed
     // cards hide their evidence block by design.
-    const x = page.locator("#feedList .card.card-lab:not(.prediction-result-card) .xreal").first();
-    await expect(x).toBeVisible();
-    await x.scrollIntoViewIfNeeded();
-    await expect(x).toHaveAttribute("data-xseen", "1");
-    await page.waitForTimeout(300);
-    const state = await x.evaluate(el => ({
-      on: el.classList.contains("x-on"),
-      fallback: getComputedStyle(el.querySelector(".xemb")).display,
-      slot: getComputedStyle(el.querySelector(".xreal-slot")).display,
-      slotHeight: getComputedStyle(el.querySelector(".xreal-slot")).height,
-    }));
+    //
+    // xEmbedMount() only appends .xreal-slot once the IntersectionObserver
+    // actually fires it (the 1200ms scan interval plus the observer callback
+    // can lag data-xseen by a beat), and the background scheduleCoreRest()
+    // repaint (~1.8s after load) can wipe and rebuild #feedList out from
+    // under an in-flight scrollIntoViewIfNeeded/evaluate. Locating the card
+    // fresh and retrying the whole read inside toPass() (the same pattern
+    // firstLinkedCardId uses above) survives both without weakening any of
+    // the assertions below.
+    // Each web-first assertion below gets its own short timeout so a single
+    // failed pass can't eat the whole toPass() budget (its default would be
+    // config's 10s expect.timeout, which would leave no room to retry) -
+    // this lets toPass() actually re-locate the card and try again several
+    // times inside its own window.
+    let state;
+    await expect(async () => {
+      const x = page.locator("#feedList .card.card-lab:not(.prediction-result-card) .xreal").first();
+      await expect(x).toBeVisible({ timeout: 3_000 });
+      await x.scrollIntoViewIfNeeded();
+      await expect(x).toHaveAttribute("data-xseen", "1", { timeout: 3_000 });
+      await expect(x.locator(".xreal-slot")).toHaveCount(1, { timeout: 3_000 });
+      state = await x.evaluate(el => ({
+        // getComputedStyle() on a node a background re-render just detached
+        // does not throw - it silently returns "" for every property - so
+        // the read must assert connectedness itself, or a mid-flight detach
+        // would report false blank/on values instead of retrying.
+        connected: el.isConnected,
+        on: el.classList.contains("x-on"),
+        fallback: getComputedStyle(el.querySelector(".xemb")).display,
+        slot: getComputedStyle(el.querySelector(".xreal-slot")).display,
+        slotHeight: getComputedStyle(el.querySelector(".xreal-slot")).height,
+      }));
+      expect(state.connected).toBe(true);
+    }).toPass({ timeout: 15_000 });
     expect(state.on).toBe(false);
     expect(state.fallback).toBe("block");
     expect(state.slot).toBe("block");
@@ -204,23 +227,39 @@ test.describe("feed article detail round trip", () => {
 test.describe("track record state", () => {
   test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, serviceWorkers: "block" });
 
+  // scheduleCoreRest() repaints the whole track-record page once (~1.8s
+  // after load, when the rest-of-items fetch resolves) and replays whatever
+  // tab was active at that moment — if that lands mid-way through this
+  // test's own tab switch, the click can be clobbered or the panel/trend
+  // read mid-rebuild. Retrying the switch+read together (clicking an
+  // already-active tab is a harmless no-op re-render) rides that one-time
+  // repaint out instead of racing it, without loosening any assertion.
+
   test("people breakdown keeps the monthly accuracy trend inside the viewport", async ({ page }) => {
     await page.goto("/?v83beta#record", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".jr-page")).toBeVisible();
-    await page.locator('[data-jr-tab="people"]').click();
-    await expect(page.locator(".jr-panel[data-jr-panel=\"people\"]")).toBeVisible();
-    await expect(page.locator(".jr-trend")).toBeVisible();
-    const size = await page.evaluate(() => ({
-      clientWidth: document.documentElement.clientWidth,
-      scrollWidth: document.documentElement.scrollWidth,
-    }));
+    // Each web-first assertion gets a short explicit timeout so one failed
+    // pass can't consume the whole toPass() budget (its unset default is
+    // config's 10s expect.timeout) - that leaves room for several retries.
+    let size;
+    await expect(async () => {
+      await page.locator('[data-jr-tab="people"]').click();
+      await expect(page.locator(".jr-panel[data-jr-panel=\"people\"]")).toBeVisible({ timeout: 3_000 });
+      await expect(page.locator(".jr-trend")).toBeVisible({ timeout: 3_000 });
+      size = await page.evaluate(() => ({
+        clientWidth: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+      }));
+    }).toPass({ timeout: 15_000 });
     expect(size.scrollWidth).toBeLessThanOrEqual(size.clientWidth + 1);
   });
 
   test("completed cards expose the grading date", async ({ page }) => {
     await page.goto("/?v83beta#record", { waitUntil: "domcontentloaded" });
-    await page.locator('[data-jr-tab="done"]').click();
-    await expect(page.locator('.jr-panel[data-jr-panel="done"] .jr-card').first()).toContainText(/판정일|Graded|判定日/);
+    await expect(async () => {
+      await page.locator('[data-jr-tab="done"]').click();
+      await expect(page.locator('.jr-panel[data-jr-panel="done"] .jr-card').first()).toContainText(/판정일|Graded|判定日/, { timeout: 3_000 });
+    }).toPass({ timeout: 15_000 });
   });
 });
 
@@ -277,11 +316,21 @@ test.describe("13F investor view state", () => {
     await page.goto("/?e=APPLE", { waitUntil: "domcontentloaded" });
     const holder = page.locator(".eh-holder-name").first();
     await expect(holder).toBeVisible({ timeout: 30_000 });
-    const slug = await holder.getAttribute("data-investor-slug");
-    expect(slug).toBeTruthy();
 
-    await holder.click();
-    await expect.poll(() => new URL(page.url()).hash).toBe(`#investor-${slug}`);
+    // handleDeepLink()'s ?e= handler defers to a single later()/350ms check
+    // of ENTITIES[e], but loadAuxData() also re-runs handleDeepLink() itself
+    // once entities.json lands if no view has opened yet ("a slow aux
+    // request may outlive the initial deep-link timer") - so entityFeedView()
+    // can fire a second time and rebuild the entity head (and its holder
+    // list) out from under an in-flight click. Retry the read+click+navigate
+    // together so a mid-flight rebuild just re-locates the (stable, data-
+    // driven) holder instead of failing on a detached node.
+    await expect(async () => {
+      const slug = await holder.getAttribute("data-investor-slug");
+      expect(slug).toBeTruthy();
+      await holder.click();
+      await expect.poll(() => new URL(page.url()).hash, { timeout: 3_000 }).toBe(`#investor-${slug}`);
+    }).toPass({ timeout: 15_000 });
     await expect(page.locator("#feedList .inv-table")).toBeVisible();
   });
 
@@ -870,13 +919,22 @@ test.describe("13F investor view state", () => {
     test("desktop skew rows expand source detail without leaving the page", async ({ page }) => {
       await page.setViewportSize({ width: 1280, height: 900 });
       await page.goto("/?v83beta#skew", { waitUntil: "domcontentloaded" });
-      const toggle = page.locator(".skew-source-toggle").first();
-      await expect(toggle).toBeVisible();
-      await expect(toggle).toHaveRole("button");
-      await toggle.click();
-      await expect(page).toHaveURL(/#skew$/);
-      await expect(toggle).toHaveAttribute("aria-expanded", "true");
-      await expect(page.locator(".skew-source-detail").first()).toBeVisible();
+      // Same "slow aux request" retry as the ?e= deep link above: handleDeepLink()
+      // can re-run setTab("skew") a second time if entities.json lands before
+      // the first deep-link timer fires, rebuilding the skew page out from
+      // under an in-flight click. Retry the expand+assert sequence together;
+      // the click is guarded to be idempotent (only expands, never re-closes
+      // an already-open row that a rebuild restored via SKEW_OPEN_SOURCE) so a
+      // retry can't accidentally toggle the detail back shut.
+      await expect(async () => {
+        const toggle = page.locator(".skew-source-toggle").first();
+        await expect(toggle).toBeVisible({ timeout: 3_000 });
+        await expect(toggle).toHaveRole("button", { timeout: 3_000 });
+        if ((await toggle.getAttribute("aria-expanded")) !== "true") await toggle.click();
+        await expect(page).toHaveURL(/#skew$/, { timeout: 3_000 });
+        await expect(toggle).toHaveAttribute("aria-expanded", "true", { timeout: 3_000 });
+        await expect(page.locator(".skew-source-detail").first()).toBeVisible({ timeout: 3_000 });
+      }).toPass({ timeout: 15_000 });
       await expect(page.locator(".skew-source-line").first()).toBeVisible();
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("target", "_blank");
       await expect(page.locator(".skew-source-original").first()).toHaveAttribute("href", /^https?:\/\//);
