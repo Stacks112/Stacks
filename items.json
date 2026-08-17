@@ -2,6 +2,189 @@
  "items": [
   {
    "date": "2026-08-17",
+   "id": "meru-rate-cut-vs-qt-steepening-warsh",
+   "related": [
+    "bilello-fed-cut-175bp-30y-real-yield-not-breakevens",
+    "meru-fima-repo-upsize-bessent-warsh",
+    "meru-treasury-refunding-long-term-issuance-aug-2026"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224381241715",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#1b2a4a",
+    "to": "#0d1526",
+    "label": "TREASURY"
+   },
+   "tags": [
+    "TREASURY",
+    "FED",
+    "STABLECOIN"
+   ],
+   "stance": "bear",
+   "title": {
+    "ko": "금리를 내려도 30년물은 따라 내려오지 않는다",
+    "en": "A rate cut will not pull the 30-year down with it",
+    "ja": "利下げをしても30年債は一緒に下がってこない"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "베센트의 권한으로는 장기금리를 잡는 게 아니라, 오르는 속도를 늦추는 정도가 한계인 것임.",
+      "트럼프가 그토록 원하는 \"금리 인하\"를 해줘도, 대차대조표를 축소하면 장기금리는 안 내려가거나 오히려 오를 수 있다는 말임."
+     ],
+     "en": [
+      "What Bessent's authority can do is not to hold long-term yields down, but at most to slow the pace at which they rise.",
+      "In other words, even if Trump gets the rate cut he wants so badly, shrinking the balance sheet means long-term yields may not fall, or may even rise."
+     ],
+     "ja": [
+      "ベセントの権限では長期金利を抑えるのではなく、上がる速度を緩める程度が限界だということだ。",
+      "トランプがあれほど望む「利下げ」をしても、バランスシートを縮小すれば長期金利は下がらないか、むしろ上がりうるということだ。"
+     ]
+    },
+    "cite": "메르 · 2026.08.17"
+   },
+   "sum3": {
+    "ko": "미국 30년물 국채 금리가 5.2%대로 2007년 이후 가장 높고, 10년물도 4.7% 근처다.\n겉으로 보면 답은 기준금리 인하다. 트럼프도 시장도 연준이 내리기를 기다리고 있다.\n그런데 인하가 내리는 것은 단기 금리다. 대차대조표를 함께 줄이면 연준이 갖고 있던 장기채가 시장에 다시 나와 30년물은 반대로 밀릴 수 있다.",
+    "en": "The 30-year US Treasury yield is above 5.2%, the highest since 2007, and the 10-year sits near 4.7%.\nOn the surface the answer is a rate cut, and both Trump and the market are waiting for the Fed to deliver one.\nBut a cut lowers short rates. Shrink the balance sheet at the same time and the long bonds in the Fed's vault return to the market, pushing the 30-year the other way.",
+    "ja": "米国の30年物国債利回りは5.2%台と2007年以来の高さで、10年物も4.7%近辺だ。\n表向きの答えは利下げで、トランプも市場もFRBが下げるのを待っている。\nだが利下げが下げるのは短期金利だ。バランスシートも同時に縮めれば、FRBが抱えていた長期債が市場に戻り、30年物は逆に押し上げられうる。"
+   },
+   "gist": {
+    "ko": "미국 30년 만기 국채 금리가 5.2%대로 올라 2007년 이후 가장 높은 자리에 있다.\n장기금리는 주택담보대출과 회사채, 정부가 내는 이자비용이 모두 얹혀 있는 기준점이라,\n이 숫자가 오르면 집을 사려는 사람부터 미국 정부까지 돈 빌리는 값이 같이 오른다.\n\n@@CHK@@10년물 국채|4.68%|30년물 국채|5.25%|30년물 입찰 낙찰금리|5.216%@@유통시장에서 매겨진 값과 8월 13일 입찰에서 실제로 지불한 값이 거의 같다. 시장이 값을 깎아 주지 않았다는 뜻이고, 장기물을 받아 줄 사람을 찾는 값이 그만큼 굳어져 있다.@@2026-08-17 조회 · 미 재무부 일별 국채 수익률 곡선(2026-08-14 기준) · 30년물 입찰은 2026-08-13 결과\n\n@@REF@@2001년 이후 가장 비싼 국채 입찰, 투자자가 베센트에게 보낸 경고 (포춘·블룸버그, 2026-08-14)|https://fortune.com/2026/08/14/us-bond-sale-25-year-high/|https://fortune.com/img-assets/wp-content/uploads/2026/08/GettyImages-2281269345-e1786714230293.jpg?resize=1200,600\n\n이 기사는 같은 입찰을 재정 쪽에서 읽는다.\n회계연도 들어 지금까지 쌓인 재정적자가 1년 전보다 15% 늘어난 1조1,700억달러이고,\n그 적자를 메울 국채를 받아 줄 사람을 찾는 값이 25년 만에 가장 비싸졌다는 것이다.\n\n## 인하와 축소를 같이 하면\n\n시장이 기다리는 답은 기준금리 인하다.\n그런데 기준금리가 직접 움직이는 쪽은 만기가 짧은 돈이다.\n\n30년 뒤에 받을 돈의 값은 앞으로 30년 동안의 물가와, 그 사이 정부가 찍어낼 국채 물량이 정한다.\n연준이 대차대조표를 줄이면 그동안 연준 금고에 들어가 있던 장기채가 시장으로 다시 나온다.\n사 줄 쪽은 그대로인데 물건이 늘어나면 값은 내려가고, 채권값이 내려간다는 말은 곧 금리가 올라간다는 말이다.\n\n@@CMP@@시장의 흔한 읽기|연준이 금리를 내리면 조달비용이 전반적으로 내려가니 30년물도 시간을 두고 따라 내려온다.|메르의 읽기|인하는 단기 금리를 내리고, 대차대조표 축소는 장기채를 시장에 되돌린다. 둘을 같이 하면 장단기 금리차만 벌어진다.\n\n같은 인하를 두고 그 효과가 어디까지 미치느냐에서 해석이 갈리는데, 갈림길을 만드는 것은 인하 폭이 아니라 대차대조표다.\n\n## 워시가 2011년에 낸 사표\n\n장기금리를 직접 끌어내리는 도구는 하나뿐이다. 연준이 달러를 찍어 장기 국채를 사들이는 양적완화다.\n재무부가 하는 바이백은 거래가 뜸한 옛 장기채를 되사고 그만큼 단기채를 새로 찍는 맞교환이라 시중의 돈이 늘지 않는다.\n양적완화는 없던 돈이 들어와 장기채를 통째로 걷어 간다. 이 한 끗이 두 도구의 힘을 가른다.\n\n문제는 지금 그 도구를 쥔 사람이 케빈 워시라는 점이다.\n워시는 2011년 3월 연준 이사직을 내려놨고, 그 배경에는 벤 버냉키가 밀어붙인 2차 양적완화에 대한 회의가 있었다고 전해진다.\n2014년에는 양적완화를 두고 시장만 배불리는 역방향 로빈후드라고 불렀다.\n그는 2026년 5월 13일 상원에서 54대 45로 인준돼 같은 달 22일 의장이 됐다.\n\n@@REF@@케빈 워시, 금리 인하를 둘러싼 집안싸움을 안고 연준에 들어서다 (CNBC, 2026-05-16)|https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html\n\n이 기사는 워시가 취임 전부터 금리는 내리되 대차대조표는 줄이겠다는 쪽에 서 있었고, 그 조합이 연준 안에서 논쟁거리였다고 전한다.\n메르가 뇌관이라고 부르는 자리가 여기다.\n인하는 트럼프가 원하는 것이고 축소는 워시가 원하는 것인데, 둘을 동시에 하면 30년물은 반대로 튈 수 있다.\n\n## 9월 상원 표결이라는 우회로\n\n연준이 움직이지 않는다면 장기금리를 누를 손은 어디에 남아 있을까.\n남는 길은 장기채를 덜 찍는 것이고, 그러려면 대신 단기채를 사 줄 사람이 필요하다.\n\n9월 표결을 다시 기다리는 클라리티 법안이 그 자리에 서 있다.\n가상자산 시장의 규칙을 정하는 이 법이 통과되면 달러에 값을 묶어 둔 스테이블코인의 규제 불확실성이 걷히고,\n발행사는 그 담보를 대부분 미국 단기국채로 채운다.\n연준 이사 스티븐 미란은 2025년 11월 연설에서 연준 실무진이 모은 민간 추정의 사분위 범위가 2030년까지 1조에서 3조달러라고 밝혔다.\n\n그만큼 단기채 수요가 생기면 재무부는 단기 발행을 늘리고 장기 발행을 줄여 장기금리를 우회해서 누를 수 있다.\n9월에 상원이 60표를 채우면 장기금리를 누르는 손이 하나 늘고, 이번에도 넘기지 못하면 남는 것은 물가가 스스로 내려오기를 기다리는 느린 길이다.\n그래서 지금 30년물의 방향을 보려면 재무장관이 무엇을 더 꺼내는지가 아니라, 연준 의장의 신념과 상원의 표 계산을 보는 편이 빠르다.",
+    "en": "The 30-year US Treasury yield has climbed above 5.2%, its highest level since 2007.\nLong-term yields are the reference point that mortgages, corporate bonds and the government's own interest bill all sit on top of,\nso when this number rises, the cost of borrowing goes up for everyone from a family buying a house to the US Treasury itself.\n\n@@CHK@@10-year Treasury|4.68%|30-year Treasury|5.25%|30-year auction stop-out|5.216%@@The price set in the secondary market and the price actually paid at the August 13 auction are almost the same. The market granted no discount, which means the price of finding someone to absorb long-dated paper has hardened at this level.@@Checked 2026-08-17 · US Treasury Daily Par Yield Curve (as of 2026-08-14) · auction result dated 2026-08-13\n\n@@REF@@Costliest U.S. bond sale since 2001 is investor warning to Bessent (Fortune / Bloomberg, 2026-08-14)|https://fortune.com/2026/08/14/us-bond-sale-25-year-high/|https://fortune.com/img-assets/wp-content/uploads/2026/08/GettyImages-2281269345-e1786714230293.jpg?resize=1200,600\n\nThe article reads the same auction from the fiscal side.\nThe deficit accumulated so far this fiscal year is $1.17 trillion, 15% larger than a year earlier,\nand the price of finding buyers for the debt that funds it is the highest in 25 years.\n\n## When a cut and a runoff happen together\n\nThe answer the market is waiting for is a rate cut.\nBut what the policy rate moves directly is the short end.\n\nThe price of money you get back in 30 years is set by inflation over those 30 years and by how much paper the government prints in the meantime.\nWhen the Fed shrinks its balance sheet, the long-dated bonds sitting in its vault flow back into the market.\nThe buyers stay the same while the supply grows, so the price falls, and a falling bond price is the same sentence as a rising yield.\n\n@@CMP@@The common reading|If the Fed cuts, borrowing costs come down across the board, so the 30-year eventually follows.|Meru's reading|A cut lowers short rates while balance-sheet runoff pushes long bonds back onto the market. Do both and only the gap between short and long widens.\n\nReaders split on how far the effect of the same cut travels, and what decides the split is not the size of the cut but the balance sheet.\n\n## The resignation Warsh handed in during 2011\n\nOnly one tool pulls long yields down directly: quantitative easing, in which the Fed prints dollars and buys long-dated Treasuries.\nThe Treasury's own buyback swaps stale long bonds for freshly issued bills, so no new money enters the system.\nQuantitative easing brings in money that did not exist and removes the long bonds outright. That single difference separates the two tools.\n\nThe problem is who holds that tool now. Kevin Warsh stepped down as a Fed governor in March 2011,\nand the move is said to have followed his doubts about the second round of quantitative easing pushed by Ben Bernanke.\nIn 2014 he called quantitative easing a reverse Robin Hood policy that fed the market.\nHe was confirmed by the Senate 54 to 45 on May 13, 2026, and took the chair on May 22.\n\n@@REF@@Kevin Warsh comes into the Fed facing a big 'family fight' over cutting interest rates (CNBC, 2026-05-16)|https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html\n\nThe piece reports that even before taking office Warsh sat on the side of cutting rates while continuing to shrink the balance sheet, and that the combination was contested inside the Fed.\nThis is the fuse Meru points at.\nThe cut is what Trump wants and the runoff is what Warsh wants, and doing both at once can send the 30-year the other way.\n\n## The Senate vote scheduled for September\n\nIf the Fed will not move, where is the hand that can hold long yields down.\nThe remaining route is to issue fewer long bonds, and that requires someone to buy bills instead.\n\nThe CLARITY Act, waiting for another Senate vote in September, stands in that spot.\nIf the bill that sets the rules for crypto markets passes, the regulatory fog over dollar-pegged stablecoins lifts,\nand issuers hold most of their reserves in short-term US Treasuries.\nFed Governor Stephen Miran said in a November 2025 speech that the interquartile range of private estimates compiled by Fed staff puts stablecoin uptake at $1 trillion to $3 trillion by the end of the decade.\n\nIf that much demand for bills appears, the Treasury can issue more short and less long, holding long yields down by going around them.\nIf the Senate reaches 60 votes in September, one more hand joins the effort, and if it falls short again what is left is the slow road of waiting for inflation to come down on its own.\nSo to read the direction of the 30-year now, watching the Fed chair's convictions and the Senate's vote count works faster than watching what else the Treasury secretary pulls out.",
+    "ja": "米国の30年物国債利回りが5.2%台まで上がり、2007年以来の高い水準にある。\n長期金利は住宅ローン、社債、政府が払う利払い費のすべてが乗っている基準点なので、\nこの数字が上がると家を買う人から米政府まで、お金を借りる値段が一緒に上がる。\n\n@@CHK@@10年物国債|4.68%|30年物国債|5.25%|30年物入札の落札利回り|5.216%@@流通市場でついた値段と、8月13日の入札で実際に支払われた値段がほぼ同じだ。市場が値引きをしなかったということであり、長期債を引き受ける相手を探す値段がその水準で固まっている。@@2026-08-17 参照 · 米財務省の日次国債利回り曲線（2026-08-14時点）· 30年物入札は2026-08-13の結果\n\n@@REF@@2001年以来最も高くついた国債入札、投資家がベセントに送った警告 (フォーチュン・ブルームバーグ, 2026-08-14)|https://fortune.com/2026/08/14/us-bond-sale-25-year-high/|https://fortune.com/img-assets/wp-content/uploads/2026/08/GettyImages-2281269345-e1786714230293.jpg?resize=1200,600\n\nこの記事は同じ入札を財政の側から読む。\n今会計年度でこれまでに積み上がった財政赤字は1年前より15%多い1兆1,700億ドルで、\nその赤字を埋める国債を引き受ける相手を探す値段が25年ぶりの高さになった、という見方だ。\n\n## 利下げと縮小を同時にやると\n\n市場が待っている答えは政策金利の引き下げだ。\nただ、政策金利が直接動かすのは満期の短いお金のほうだ。\n\n30年後に受け取るお金の値段は、これから30年の物価と、その間に政府が発行する国債の量が決める。\nFRBがバランスシートを縮小すると、これまでFRBの金庫に入っていた長期債が市場に戻ってくる。\n買い手はそのままで品物が増えれば値段は下がり、債券価格が下がるというのはそのまま金利が上がるという意味になる。\n\n@@CMP@@市場でよくある読み|FRBが利下げをすれば調達コストが全体的に下がるので、30年物も時間をかけて追随する。|メルの読み|利下げは短期金利を下げ、バランスシート縮小は長期債を市場に戻す。両方を同時にやれば長短金利差だけが広がる。\n\n同じ利下げでも効果がどこまで届くかで読みが分かれ、その分かれ目を作るのは利下げ幅ではなくバランスシートだ。\n\n## ウォーシュが2011年に出した辞表\n\n長期金利を直接引き下げる道具は一つしかない。FRBがドルを刷って長期国債を買い入れる量的緩和だ。\n財務省が行う買い戻しは、取引の細った古い長期債を買い戻して同じ額の短期債を新しく発行する交換なので、世の中のお金は増えない。\n量的緩和はなかったお金が入ってきて長期債をまるごと引き上げる。この一点が二つの道具の力を分ける。\n\n問題は今その道具を握っているのがケビン・ウォーシュだという点だ。\nウォーシュは2011年3月にFRB理事を退いており、その背景にはベン・バーナンキが進めた第2次量的緩和への懐疑があったと伝えられている。\n2014年には量的緩和を、市場だけを潤す逆ロビンフッドだと呼んだ。\n2026年5月13日に上院で54対45で承認され、同月22日に議長に就いた。\n\n@@REF@@ケビン・ウォーシュ、利下げをめぐる「身内の争い」を抱えてFRBに入る (CNBC, 2026-05-16)|https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html\n\nこの記事は、ウォーシュが就任前から金利は下げつつバランスシートは縮小するという立場にあり、その組み合わせがFRB内部で論争になっていたと伝えている。\nメルが導火線と呼ぶ場所がここだ。\n利下げはトランプが望むもので、縮小はウォーシュが望むものであり、両方を同時にやれば30年物は逆に跳ねうる。\n\n## 9月の上院採決という迂回路\n\nFRBが動かないなら、長期金利を押さえる手はどこに残っているのか。\n残る道は長期債の発行を減らすことで、そのためには代わりに短期債を買う相手が要る。\n\n9月の採決を待つクラリティ法案がその場所に立っている。\n暗号資産市場のルールを定めるこの法律が通れば、ドルに値を固定したステーブルコインの規制の不確実性が晴れ、\n発行体はその担保の大半を米国の短期国債で埋める。\nFRB理事のスティーブン・ミランは2025年11月の講演で、FRBのスタッフがまとめた民間推計の四分位範囲が2030年までに1兆から3兆ドルだと述べた。\n\nそれだけの短期債需要が生まれれば、財務省は短期の発行を増やし長期の発行を減らして、長期金利を迂回して押さえられる。\n9月に上院が60票を満たせば長期金利を押さえる手が一つ増え、今回も届かなければ残るのは物価が自ら下がるのを待つ遅い道だ。\nだから今30年物の方向を見るには、財務長官が次に何を出すかよりも、FRB議長の信念と上院の票読みを見るほうが速い。"
+   },
+   "why": {
+    "ko": "장기금리는 주택담보대출과 회사채, 정부 이자비용의 기준점이라 이 숫자가 어디서 멈추느냐가 미국 전체의 조달비용을 정한다. 그런데 그 숫자를 직접 누를 수 있는 도구는 재무부가 아니라 연준에 있고, 지금 연준을 이끄는 사람은 그 도구를 15년 동안 반대해 온 인물이다.",
+    "en": "Long-term yields are the reference point for mortgages, corporate bonds and the government's interest bill, so where this number stops sets the cost of funding for the whole country. The tool that can push it down directly sits at the Fed rather than the Treasury, and the person now running the Fed has argued against that tool for 15 years.",
+    "ja": "長期金利は住宅ローン、社債、政府の利払い費の基準点であり、この数字がどこで止まるかが国全体の調達コストを決める。ところがその数字を直接押さえる道具は財務省ではなくFRBにあり、今FRBを率いている人物は15年にわたってその道具に反対してきた。"
+   },
+   "ask": {
+    "ko": "연준이 기준금리를 내리면 30년물도 따라 내려올까, 아니면 대차대조표 축소 때문에 장단기 금리차만 벌어질까? 인하를 기다리는 쪽과 장기채를 피하는 쪽의 판단이 여기서 갈린다.",
+    "en": "If the Fed cuts, does the 30-year follow it down, or does balance-sheet runoff simply widen the gap between short and long? Investors waiting for the cut and investors avoiding long bonds part ways right here.",
+    "ja": "FRBが利下げをすれば30年物も一緒に下がるのか、それともバランスシート縮小のせいで長短金利差だけが広がるのか。利下げを待つ側と長期債を避ける側の判断はここで分かれる。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-12-31",
+    "note": {
+     "ko": "2026년 말 미국 30년물 국채 금리가 5.00% 아래로 내려왔는지로 채점한다.",
+     "en": "Graded on whether the 30-year US Treasury yield is below 5.00% at the end of 2026.",
+     "ja": "2026年末の米30年物国債利回りが5.00%を下回っているかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "미국 30년물 국채 금리",
+      "en": "US 30-year Treasury yield",
+      "ja": "米国の30年物国債利回り"
+     },
+     "now": {
+      "ko": "5.25% (2026-08-14 미 재무부 기준)",
+      "en": "5.25% (US Treasury, 2026-08-14)",
+      "ja": "5.25%（米財務省、2026-08-14時点）"
+     },
+     "when": {
+      "ko": "2026년 12월 31일 기준",
+      "en": "As of December 31, 2026",
+      "ja": "2026年12月31日時点"
+     },
+     "hit": {
+      "ko": "5.00% 미만 → 인하와 물가 둔화가 장기물까지 닿았다",
+      "en": "Below 5.00% → the cut and cooling inflation reached the long end",
+      "ja": "5.00%未満 → 利下げと物価鈍化が長期物まで届いた"
+     },
+     "miss": {
+      "ko": "5.00% 이상 → 장기금리는 연준의 매입 없이 내려오지 않는다",
+      "en": "At or above 5.00% → the long end does not come down without Fed buying",
+      "ja": "5.00%以上 → 長期金利はFRBの買い入れなしには下がらない"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르 · 2026-08-17 · 미국국채 금리가 끝없이 오르는 이유는?",
+      "en": "Meru (Naver blog) · 2026-08-17 · Why do US Treasury yields keep rising?",
+      "ja": "メル（Naverブログ）· 2026-08-17 · 米国債利回りが上がり続ける理由は？"
+     },
+     "url": "https://blog.naver.com/ranto28/224381241715"
+    },
+    {
+     "name": {
+      "ko": "국채 금리",
+      "en": "Yield data",
+      "ja": "国債利回り"
+     },
+     "desc": {
+      "ko": "미 재무부 일별 국채 수익률 곡선 · 2026-08-14 기준 10년물 4.68%, 30년물 5.25%",
+      "en": "US Treasury Daily Par Yield Curve · 10-year 4.68%, 30-year 5.25% as of 2026-08-14",
+      "ja": "米財務省の日次国債利回り曲線 · 2026-08-14時点で10年物4.68%、30年物5.25%"
+     },
+     "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve"
+    },
+    {
+     "name": {
+      "ko": "입찰 결과",
+      "en": "Auction",
+      "ja": "入札結果"
+     },
+     "desc": {
+      "ko": "포춘·블룸버그 · 2026-08-14 · 8월 13일 30년물 250억달러 입찰 낙찰금리 5.216%",
+      "en": "Fortune / Bloomberg · 2026-08-14 · $25bn 30-year auction stopped at 5.216% on August 13",
+      "ja": "フォーチュン・ブルームバーグ · 2026-08-14 · 8月13日の30年物250億ドル入札は5.216%"
+     },
+     "url": "https://fortune.com/2026/08/14/us-bond-sale-25-year-high/"
+    },
+    {
+     "name": {
+      "ko": "워시",
+      "en": "Warsh",
+      "ja": "ウォーシュ"
+     },
+     "desc": {
+      "ko": "CNBC · 2026-05-16 · 인하와 대차대조표 축소를 함께 가려는 워시의 입장",
+      "en": "CNBC · 2026-05-16 · Warsh's stance on cutting rates while shrinking the balance sheet",
+      "ja": "CNBC · 2026-05-16 · 利下げと縮小を同時に進めるウォーシュの立場"
+     },
+     "url": "https://www.cnbc.com/2026/05/16/kevin-warsh-comes-into-the-fed-facing-a-big-family-fight-over-cutting-interest-rates.html"
+    },
+    {
+     "name": {
+      "ko": "스테이블코인 추정",
+      "en": "Stablecoin estimate",
+      "ja": "ステーブルコイン推計"
+     },
+     "desc": {
+      "ko": "연준 이사 스티븐 미란 연설 · 2025-11-07 · 2030년까지 1조~3조달러 민간 추정 사분위 범위",
+      "en": "Speech by Fed Governor Stephen Miran · 2025-11-07 · $1trn-$3trn interquartile range of private estimates by 2030",
+      "ja": "FRB理事スティーブン・ミラン講演 · 2025-11-07 · 2030年までに1兆〜3兆ドルという民間推計の四分位範囲"
+     },
+     "url": "https://www.federalreserve.gov/newsevents/speech/miran20251107a.htm"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 금리는 미 재무부 2026-08-14 기준값이고, 입찰 결과는 2026-08-13 30년물이다. 클라리티 법안은 2026-08-08 기준 9월 재표결 대기 상태다.",
+    "en": "Checked 2026-08-17 · yields are US Treasury values as of 2026-08-14 and the auction result is the August 13 30-year sale. The CLARITY Act was awaiting a September re-vote as of 2026-08-08.",
+    "ja": "2026-08-17 参照 · 利回りは米財務省の2026-08-14時点、入札結果は8月13日の30年物。クラリティ法案は2026-08-08時点で9月の再採決待ち。"
+   },
+   "refFred": [
+    "DGS10",
+    "DGS30"
+   ]
+  },
+  {
+   "date": "2026-08-17",
    "id": "bilello-3t-uncommenced-leases-and-purchase-vows-vs-600b-capex",
    "related": [
     "kobeissi-nvidia-ports-pike-105b-lps-guarantee-4_25gw",
@@ -66829,6 +67012,33 @@
     "완전운용능력",
     "완전운용능력 검증",
     "完全運用能力"
+   ]
+  },
+  "이자비용": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "빌린 돈에 대해 정기적으로 지급하는 이자 지출.",
+    "en": "The interest a borrower pays regularly on money it has borrowed.",
+    "ja": "借りたお金に対して定期的に支払う利息の支出。"
+   },
+   "longDesc": {
+    "ko": "기업이든 정부든 빚을 지면 원금과 별도로 매년 이자를 내야 하고, 그 금액은 빚의 크기와 시장 금리가 함께 정한다. 금리가 오른 뒤에 발행한 채권일수록 이자비용이 커지기 때문에, 같은 빚이라도 언제 빌렸느냐에 따라 부담이 달라진다.",
+    "en": "Any borrower, corporate or sovereign, owes interest each year on top of the principal, and the amount is set by the size of the debt together with market rates. Bonds issued after rates rise carry a heavier interest expense, so the same amount of debt costs different sums depending on when it was borrowed.",
+    "ja": "企業でも政府でも借金をすれば元本とは別に毎年利息を払う必要があり、その金額は借金の大きさと市場金利で決まる。金利が上がった後に発行した債券ほど利払い費は重くなるため、同じ借金でもいつ借りたかで負担が変わる。"
+   },
+   "aliases": [
+    "interest expense",
+    "interest costs",
+    "이자비용",
+    "이자 비용",
+    "이자 지출",
+    "利払い費",
+    "支払利息"
    ]
   }
  }
