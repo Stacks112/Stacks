@@ -2,6 +2,201 @@
  "items": [
   {
    "date": "2026-08-17",
+   "id": "serenity-stripe-openrouter-7b-routing-layer",
+   "related": [
+    "netinterest-stripe-paypal-bid",
+    "serenity-openai-hijack-huggingface",
+    "semianalysis-gemini-gcp-tpu-financialization"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2089148883838611460",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#1e1b4b",
+    "to": "#6366f1",
+    "label": "OPENROUTER"
+   },
+   "tags": [
+    "AI",
+    "PAYMENTS",
+    "DEALS"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "스트라이프가 70억달러에 사려는 것은 인공지능 모델이 아니다",
+    "en": "What Stripe is paying $7 billion for is not an AI model",
+    "ja": "ストライプが70億ドルで買おうとしているのは人工知能モデルではない"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "스트라이프가 오픈라우터를 70억달러에 산다는 보도가 나왔다.",
+      "이 중개 계층은 따라 만들기도 쉽고 갈아타기도 쉬워서, 지킬 것이 별로 없다고 본다.",
+      "다만 지금으로서는 오픈라우터가 사용자와 값어치 있는 데이터, 그리고 흐름을 쥐고 있다."
+     ],
+     "en": [
+      "Stripe reportedly buys OpenRouter for $7 Billion.",
+      "I think their orchestration is easy to replicate and switch from. And there's very little moat.",
+      "But atm, OpenRouter has the userbase, valuable dataset, + momentum."
+     ],
+     "ja": [
+      "ストライプがオープンルーターを70億ドルで買うと報じられた。",
+      "この仲介層は真似しやすく乗り換えも簡単なので、守るものはほとんどないと思う。",
+      "ただし今のところ、オープンルーターは利用者と価値あるデータ、そして勢いを握っている。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.17"
+   },
+   "sum3": {
+    "ko": "오픈라우터는 인공지능 모델을 만들지 않는다. 개발자의 요청을 400개가 넘는 모델 가운데 하나로 보내 주고 값의 약 5%를 떼는 중개 계층이다.\n이 계층에 매겨진 값은 석 달 사이 13억달러에서 다섯 배가 넘게 뛰었다. 그동안 회사가 새로 만든 물건은 없다.\n반대로 7월 말 보도된 100억달러에서는 3주 만에 30억달러가 깎였다. 이 계층을 지키기가 얼마나 쉬운가에 대한 판단이 그만큼 흔들리고 있다는 뜻이다.",
+    "en": "OpenRouter builds no AI models. It is a middle layer that routes a developer's request to one of 400-plus models and takes roughly 5% of the bill.\nThe price on that layer went from $1.3 billion to more than five times that in three months. The company shipped no new product in between.\nRunning the other way, $3 billion came off the $10 billion figure reported in late July, in three weeks. How defensible this layer is has been moving that much.",
+    "ja": "オープンルーターは人工知能のモデルを作らない。開発者のリクエストを400を超えるモデルのどれかに送り、料金の約5%を取る仲介層だ。\nこの層につけられた値段は3カ月で13億ドルから5倍を超えた。その間に会社が新しく作ったものはない。\n逆に7月末に報じられた100億ドルからは、3週間で30億ドルが削られた。この層をどれだけ守りやすいかという判断が、それだけ揺れているということだ。"
+   },
+   "gist": {
+    "ko": "결제 회사 스트라이프가 오픈라우터를 70억달러가 넘는 값에 사기로 했다는 보도가 8월 16일 나왔다.\n블룸버그가 먼저 전했고, 두 회사 모두 아직 확인하지 않았다.\n\n@@REF@@스트라이프, AI 게이트웨이 스타트업 오픈라우터를 70억달러 넘는 값에 인수한다는 보도 (테크크런치, 2026-08-16)|https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/|https://techcrunch.com/wp-content/uploads/2024/04/Stripe-resized.webp?resize=1200,674\n\n오픈라우터는 인공지능 모델을 만들지 않는다.\n\n## 모델을 만들지 않는 회사가 하는 일\n\n@@FLOW@@개발자의 앱|오픈라우터에 한 번만 연결한다|오픈라우터|400개가 넘는 모델 가운데 어디로 보낼지 정한다|모델 회사|오픈AI, 앤스로픽, 구글 같은 곳이 실제 계산을 한다|요금|모델 값을 그대로 넘기고 그 위에 약 5%를 얹는다@@이 경로에서 오픈라우터가 쥔 것은 계산 능력이 아니라 어느 모델로 보낼지 정하는 자리다.\n\n개발자가 앱에 인공지능을 붙이려면 보통 회사마다 따로 연결해야 한다.\n오픈AI에 한 번, 앤스로픽에 한 번, 구글에 한 번이다.\n\n오픈라우터는 그 연결을 하나로 묶는다.\n개발자는 한 번만 연결하고, 요청을 어느 모델로 보낼지는 오픈라우터가 정한다.\n한 곳이 멈추면 다른 곳으로 돌려 준다.\n\n2023년 뉴욕에서 세워졌고, 대체불가토큰 거래소 오픈시를 함께 만들었던 알렉스 아탈라가 최고경영자다.\n\n## 값표가 3주 만에 30억달러 깎였다\n\n@@BAR@@2026년 5월 투자 유치 때 기업가치|13억달러|13|이번에 보도된 인수가|70억달러|70@@석 달 사이 다섯 배가 넘었다. 이 기간에 오픈라우터가 새 모델을 만든 것은 아니다. 늘어난 것은 이 계층을 지나가는 요청의 양이다.@@2026-08-17 조회 · 2026-05-26 시리즈B 기업가치(테크크런치) · 2026-08-16 보도된 인수가(블룸버그, 테크크런치, 포천)\n\n7월 말에는 다른 숫자가 돌았다.\n월스트리트저널은 7월 23일 스트라이프가 100억달러 안팎에 인수를 협의하고 있다고 전했다.\n3주 뒤 나온 값은 그보다 30억달러 아래였다.\n\n@@REF@@스트라이프, 70억달러 넘는 값에 AI 기업 오픈라우터 인수를 매듭짓다 (포천, 2026-08-16)|https://fortune.com/2026/08/16/stripe-7-billion-deal-ai-firm-openrouter-acquisition/|https://fortune.com/img-assets/wp-content/uploads/2026/08/GettyImages-2147863391-e1786918883496.jpg?resize=1200,600\n\n포천은 최종 금액이 더 바뀔 수 있다고 덧붙였다.\n그 사이 오픈라우터가 잃은 것은 없다.\n깎인 것은 이 중개 계층을 얼마나 지키기 쉬운가에 대한 값이다.\n\n## 세레니티가 짚은 자리\n\n세레니티는 이 중개 계층이 따라 만들기 쉽고 갈아타기도 쉬워 지킬 것이 별로 없다고 본다.\n다만 지금 오픈라우터가 쥔 것은 사용자와 쌓인 데이터, 그리고 흐름이라고 덧붙였다.\n\n같은 일을 하는 곳은 이미 여럿이다.\n버셀과 클라우드플레어가 각자 게이트웨이를 내놓았고, 누구나 가져다 쓸 수 있게 공개된 소프트웨어도 있다.\n개발자가 옮기려면 연결을 다시 짜야 하지만, 그 수고는 몇 주짜리이지 몇 년짜리가 아니다.\n\n## 스트라이프가 이미 보고 있던 장부\n\n원문이 짚지 않은 것이 하나 있다.\n\n오픈라우터는 2026년 1월부터 자기 고객에게 요금을 물릴 때 스트라이프를 써 왔다.\n스트라이프는 이 회사가 얼마를 걷는지, 어떤 속도로 느는지를 바깥의 추정이 아니라 결제 장부로 보고 있었다는 뜻이다.\n스트라이프는 오픈AI와 함께 인공지능 대리 프로그램이 대신 결제하는 규약을 만들기도 했다.\n사려는 것이 모델이 아니라, 인공지능에 돈이 오가는 길목이라는 이야기가 된다.\n\n## 연말까지 공식 발표가 나오는지에 달렸다\n\n지금 나온 것은 전부 관계자 인용 보도이고, 스트라이프는 소문에 대해 말하지 않는다는 입장이다.\n연말까지 인수가 공식 발표되면 3주 만에 30억달러가 깎인 협상 과정까지 값의 일부로 남는다.\n공식 발표 없이 해를 넘기면, 이 계층에 붙은 값이 아직 정해지지 않았다는 뜻이다.\n\n인공지능에서 가장 비싼 물건은 모델이라고 흔히 말한다.\n그런데 이번에 값이 매겨진 것은 모델이 아니라 그 앞에 선 요금소다.",
+    "en": "Reports on August 16 said the payments company Stripe had agreed to buy OpenRouter for more than $7 billion.\nBloomberg had it first, and neither company has confirmed anything.\n\n@@REF@@Stripe will reportedly acquire AI gateway startup OpenRouter for $7B+ (TechCrunch, 2026-08-16)|https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/|https://techcrunch.com/wp-content/uploads/2024/04/Stripe-resized.webp?resize=1200,674\n\nOpenRouter does not build AI models.\n\n## What a company that builds no models actually does\n\n@@FLOW@@A developer's app|Connects to OpenRouter once|OpenRouter|Decides which of 400-plus models the request goes to|The model companies|OpenAI, Anthropic, Google and others do the actual computing|The fee|Model prices pass straight through, with roughly 5% added on top@@What OpenRouter holds in this path is not computing power. It is the seat where the choice of model gets made.\n\nWiring AI into an app normally means connecting to each provider separately.\nOnce to OpenAI, once to Anthropic, once to Google.\n\nOpenRouter collapses that into one connection.\nThe developer integrates a single time, and OpenRouter decides where each request goes.\nIf one provider goes down, traffic moves to another.\n\nThe company was founded in New York in 2023 and is run by Alex Atallah, a co-founder of the NFT marketplace OpenSea.\n\n## Three weeks took $3 billion off the price\n\n@@BAR@@Valuation at the May 2026 funding round|$1.3B|13|Reported acquisition price|$7B|70@@More than fivefold in three months. OpenRouter did not build a new model in that stretch. What grew was the volume of requests passing through the layer.@@Retrieved 2026-08-17 · Series B valuation of 2026-05-26 (TechCrunch) · acquisition price as reported 2026-08-16 (Bloomberg, TechCrunch, Fortune)\n\nA different number was circulating in late July.\nThe Wall Street Journal reported on July 23 that Stripe was in talks at around $10 billion.\nThree weeks later the reported figure was over $7 billion.\n\n@@REF@@Stripe clinches over $7 billion deal to buy AI firm OpenRouter (Fortune, 2026-08-16)|https://fortune.com/2026/08/16/stripe-7-billion-deal-ai-firm-openrouter-acquisition/|https://fortune.com/img-assets/wp-content/uploads/2026/08/GettyImages-2147863391-e1786918883496.jpg?resize=1200,600\n\nFortune added that the final price could still change.\nNothing was taken away from OpenRouter in those three weeks.\nWhat was marked down was the price of how defensible this middle layer is.\n\n## Where Serenity puts the pressure\n\nSerenity's view is that this orchestration layer is easy to replicate and easy to switch away from, so there is very little moat.\nWhat OpenRouter does hold right now, he adds, is the user base, the accumulated data and the momentum.\n\nOthers already do the same job.\nVercel and Cloudflare each ship a gateway, and there is open-source software anyone can pick up.\nMoving off it means rewiring integrations, which costs weeks rather than years.\n\n## The books Stripe was already reading\n\nThere is one thing the post does not mention.\n\nOpenRouter has been billing its own customers through Stripe since January 2026.\nThat means Stripe could see what this company collects and how fast it is growing from the payment ledger rather than from outside estimates.\nStripe also co-wrote, with OpenAI, a protocol for letting AI agents pay on a person's behalf.\nWhat is being bought here is not a model. It is the point where money crosses into AI.\n\n## It comes down to whether an announcement lands by year-end\n\nEverything so far is sourced reporting, and Stripe's line is that it does not comment on rumors.\nIf the acquisition is announced by year-end, the negotiation that took $3 billion off in three weeks stays part of what the price means.\nIf the year closes with no announcement, the price on this layer has not been settled yet.\n\nThe expensive thing in AI is supposed to be the model.\nWhat got a price this time was not the model. It was the toll booth standing in front of it.",
+    "ja": "決済会社ストライプがオープンルーターを70億ドル超で買うことで合意した、という報道が8月16日に出た。\nブルームバーグが先に伝えたもので、両社ともまだ確認していない。\n\n@@REF@@ストライプ、AIゲートウェイのオープンルーターを70億ドル超で買収と報道 (テッククランチ, 2026-08-16)|https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/|https://techcrunch.com/wp-content/uploads/2024/04/Stripe-resized.webp?resize=1200,674\n\nオープンルーターは人工知能のモデルを作っていない。\n\n## モデルを作らない会社がしていること\n\n@@FLOW@@開発者のアプリ|オープンルーターに一度だけつなぐ|オープンルーター|400を超えるモデルのどれに送るかを決める|モデル各社|オープンAI、アンソロピック、グーグルなどが実際の計算をする|料金|モデルの値段をそのまま通し、その上に約5%を乗せる@@この経路でオープンルーターが握っているのは計算能力ではなく、どのモデルに送るかを決める席だ。\n\nアプリに人工知能を組み込むには、普通は会社ごとに別々につなぐ必要がある。\nオープンAIに一度、アンソロピックに一度、グーグルに一度だ。\n\nオープンルーターはそのつなぎ目を一つにまとめる。\n開発者は一度つなぐだけで、リクエストをどのモデルに送るかはオープンルーターが決める。\nどこかが止まれば別のところへ回してくれる。\n\n2023年にニューヨークで設立され、代替不可能トークンの取引所オープンシーを共同創業したアレックス・アタラが最高経営責任者だ。\n\n## 値札は3週間で30億ドル削られた\n\n@@BAR@@2026年5月の資金調達時の企業価値|13億ドル|13|今回報じられた買収額|70億ドル|70@@3カ月で5倍を超えた。この間にオープンルーターが新しいモデルを作ったわけではない。増えたのは、この層を通り抜けるリクエストの量だ。@@2026-08-17閲覧 · 2026-05-26のシリーズBの企業価値(テッククランチ) · 2026-08-16に報じられた買収額(ブルームバーグ、テッククランチ、フォーチュン)\n\n7月末には別の数字が回っていた。\nウォール・ストリート・ジャーナルは7月23日、ストライプが100億ドル前後で買収を協議していると伝えた。\n3週間後に出た数字は70億ドル超だった。\n\n@@REF@@ストライプ、70億ドル超でAI企業オープンルーターの買収をまとめる (フォーチュン, 2026-08-16)|https://fortune.com/2026/08/16/stripe-7-billion-deal-ai-firm-openrouter-acquisition/|https://fortune.com/img-assets/wp-content/uploads/2026/08/GettyImages-2147863391-e1786918883496.jpg?resize=1200,600\n\nフォーチュンは最終金額がさらに変わりうるとも付け加えた。\nこの3週間でオープンルーターが失ったものはない。\n削られたのは、この中間層をどれだけ守りやすいかという値段のほうだ。\n\n## セレニティが突いた場所\n\nセレニティは、この仲介層は真似しやすく乗り換えも簡単なので、守るものがほとんどないとみている。\nただし、いまオープンルーターが握っているのは利用者と蓄積したデータ、そして勢いだと付け加えた。\n\n同じ仕事をしているところはすでに複数ある。\nバーセルとクラウドフレアがそれぞれゲートウェイを出しており、誰でも持ち出せる公開ソフトウェアもある。\n乗り換えるには接続を組み直す必要があるが、その手間は数週間であって数年ではない。\n\n## ストライプがすでに見ていた帳簿\n\n原文が触れていないことが一つある。\n\nオープンルーターは2026年1月から、自社の顧客に課金する際にストライプを使ってきた。\nつまりストライプは、この会社がいくら集めどのくらいの速さで伸びているかを、外からの推定ではなく決済の帳簿で見ていたことになる。\nストライプはオープンAIと組んで、人工知能の代理プログラムが本人に代わって支払う規約も作っている。\n買おうとしているのはモデルではなく、人工知能へお金が渡っていく通り道だという話になる。\n\n## 年内に公式発表が出るかどうかにかかっている\n\nいま出ているのはすべて関係者の話を引いた報道で、ストライプは噂については語らないという立場だ。\n年内に買収が公式に発表されれば、3週間で30億ドルが削られた交渉の過程も値段の一部として残る。\n公式発表のないまま年を越せば、この層につく値段はまだ決まっていないということだ。\n\n人工知能で一番高いものはモデルだと普通は言われる。\nところが今回値がついたのはモデルではなく、その手前に立つ料金所のほうだ。"
+   },
+   "why": {
+    "ko": "값이 매겨진 것은 인공지능 모델이 아니라 그 앞에 선 요금소이고, 그 요금소가 얼마나 지키기 쉬운지가 3주 만에 30억달러로 다시 계산됐다.",
+    "en": "The thing being priced is not the AI model but the toll booth in front of it, and how defensible that booth is got repriced by $3 billion in three weeks.",
+    "ja": "値がついたのは人工知能のモデルではなく、その手前に立つ料金所であり、その料金所をどれだけ守れるかが3週間で30億ドル分だけ計算し直された。"
+   },
+   "ask": {
+    "ko": "누구나 따라 만들 수 있는 중개 계층에 70억달러를 매기는 것은, 사용자와 데이터의 값일까 아니면 인공지능 결제 길목을 선점하는 값일까?",
+    "en": "Is $7 billion for a middle layer anyone could rebuild the price of its users and data, or the price of owning the payment path into AI?",
+    "ja": "誰でも真似できる仲介層に70億ドルをつけるのは、利用者とデータの値段なのか、それとも人工知能への決済の通り道を先に押さえる値段なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-12-31",
+    "note": {
+     "ko": "2026년 12월 31일까지 스트라이프가 오픈라우터 인수를 공식 발표하는지로 채점한다.",
+     "en": "To be scored on whether Stripe officially announces the OpenRouter acquisition by December 31, 2026.",
+     "ja": "2026年12月31日までにストライプがオープンルーター買収を公式発表するかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "스트라이프의 오픈라우터 인수 공식 발표 여부",
+      "en": "Whether Stripe officially announces the OpenRouter acquisition",
+      "ja": "ストライプによるオープンルーター買収の公式発表の有無"
+     },
+     "now": {
+      "ko": "2026년 8월 16일 기준 보도만 있고 양측 모두 확인하지 않음. 보도된 금액은 70억달러 이상",
+      "en": "As of August 16, 2026 there is reporting only, unconfirmed by either side. The reported price is over $7 billion",
+      "ja": "2026年8月16日時点で報道のみ、双方とも未確認。報じられた金額は70億ドル超"
+     },
+     "when": {
+      "ko": "2026년 12월 31일",
+      "en": "December 31, 2026",
+      "ja": "2026年12月31日"
+     },
+     "hit": {
+      "ko": "연말까지 스트라이프 또는 오픈라우터가 인수를 공식 발표한다 → 보도가 맞은 쪽",
+      "en": "Stripe or OpenRouter officially announces the deal by year-end → the reporting was right",
+      "ja": "年末までにストライプかオープンルーターが買収を公式発表する → 報道が当たった側"
+     },
+     "miss": {
+      "ko": "연말까지 공식 발표가 없다 → 협의 단계에 머문 쪽",
+      "en": "No official announcement by year-end → it stayed at the talks stage",
+      "ja": "年末まで公式発表がない → 協議段階にとどまった側"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity(@aleabitoreddit) · 2026-08-17",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-17",
+      "ja": "セレニティ(@aleabitoreddit) · 2026-08-17"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2089148883838611460"
+    },
+    {
+     "name": {
+      "ko": "인수 보도",
+      "en": "The acquisition report",
+      "ja": "買収報道"
+     },
+     "desc": {
+      "ko": "스트라이프, AI 게이트웨이 오픈라우터를 70억달러 넘는 값에 인수한다는 보도 · 테크크런치 · 2026-08-16",
+      "en": "Stripe will reportedly acquire AI gateway startup OpenRouter for $7B+ · TechCrunch · 2026-08-16",
+      "ja": "ストライプ、AIゲートウェイのオープンルーターを70億ドル超で買収と報道 · テッククランチ · 2026-08-16"
+     },
+     "url": "https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/"
+    },
+    {
+     "name": {
+      "ko": "금액이 바뀔 수 있다",
+      "en": "The price may still move",
+      "ja": "金額は変わりうる"
+     },
+     "desc": {
+      "ko": "스트라이프, 70억달러 넘는 값에 오픈라우터 인수를 매듭짓다 · 포천 · 2026-08-16. 최종 금액이 바뀔 수 있다는 서술이 여기에 있다",
+      "en": "Stripe clinches over $7 billion deal to buy AI firm OpenRouter · Fortune · 2026-08-16. The note that the final price could change is here",
+      "ja": "ストライプ、70億ドル超でオープンルーター買収をまとめる · フォーチュン · 2026-08-16。最終金額が変わりうるという記述はここにある"
+     },
+     "url": "https://fortune.com/2026/08/16/stripe-7-billion-deal-ai-firm-openrouter-acquisition/"
+    },
+    {
+     "name": {
+      "ko": "5월 기업가치",
+      "en": "May valuation",
+      "ja": "5月の企業価値"
+     },
+     "desc": {
+      "ko": "오픈라우터, 1년 만에 기업가치를 두 배 넘겨 13억달러로 · 테크크런치 · 2026-05-26",
+      "en": "OpenRouter more than doubles valuation to $1.3B in a year · TechCrunch · 2026-05-26",
+      "ja": "オープンルーター、1年で企業価値を倍以上の13億ドルへ · テッククランチ · 2026-05-26"
+     },
+     "url": "https://techcrunch.com/2026/05/26/openrouter-more-than-doubles-valuation-to-1-3b-in-a-year/"
+    },
+    {
+     "name": {
+      "ko": "7월 협의 보도",
+      "en": "The July talks",
+      "ja": "7月の協議報道"
+     },
+     "desc": {
+      "ko": "스트라이프가 오픈라우터를 100억달러 안팎에 인수 협의 중이라는 7월 23일 월스트리트저널 보도를 정리한 기사 · 액시오스 · 2026-07-24",
+      "en": "Axios summary of the July 23 Wall Street Journal report that Stripe was in talks at around $10 billion · Axios · 2026-07-24",
+      "ja": "ストライプが100億ドル前後で協議中という7月23日のウォール・ストリート・ジャーナル報道をまとめた記事 · アクシオス · 2026-07-24"
+     },
+     "url": "https://www.axios.com/2026/07/24/stripe-openrouter-merger-ai-currency"
+    },
+    {
+     "name": {
+      "ko": "1월부터의 청구 연동",
+      "en": "Billing since January",
+      "ja": "1月からの課金連携"
+     },
+     "desc": {
+      "ko": "오픈라우터가 2026년 1월부터 스트라이프로 토큰 사용료를 청구해 왔다는 서술 · 실리콘앵글 · 2026-08-16",
+      "en": "SiliconANGLE's account of OpenRouter billing token usage through Stripe since January 2026 · SiliconANGLE · 2026-08-16",
+      "ja": "オープンルーターが2026年1月からストライプでトークン利用料を課金してきたという記述 · シリコンアングル · 2026-08-16"
+     },
+     "url": "https://siliconangle.com/2026/08/16/stripe-reportedly-finalizes-deal-buy-ai-model-router-openrouter-7b/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 인수 금액 70억달러 이상은 2026년 8월 16일 블룸버그 보도 기준이며 스트라이프와 오픈라우터 모두 확인하지 않았다. 13억달러는 2026년 5월 26일 시리즈B 투자 유치 후 기업가치이고, 100억달러 안팎은 2026년 7월 23일 월스트리트저널 보도 기준이다. 약 5% 수수료와 400개가 넘는 모델 수는 오픈라우터가 스스로 밝힌 수치로 독립적인 검증은 없다.",
+    "en": "Retrieved 2026-08-17 · The figure of more than $7 billion follows Bloomberg's report of August 16, 2026, unconfirmed by Stripe or OpenRouter. The $1.3 billion valuation is post-money from the Series B of May 26, 2026, and the roughly $10 billion figure is from the Wall Street Journal report of July 23, 2026. The roughly 5% fee and the 400-plus model count are OpenRouter's own figures with no independent verification.",
+    "ja": "2026-08-17閲覧 · 買収額70億ドル超は2026年8月16日のブルームバーグ報道によるもので、ストライプもオープンルーターも確認していない。13億ドルは2026年5月26日のシリーズB調達後の企業価値、100億ドル前後は2026年7月23日のウォール・ストリート・ジャーナル報道による。約5%の手数料と400を超えるモデル数はオープンルーター自身が示した数字で、独立した検証はない。"
+   }
+  },
+  {
+   "date": "2026-08-17",
    "id": "hanke-boj-september-hike-m2-2_2pct-cpi-1_6pct",
    "related": [
     "hanke-yen-intervention-87b-is-an-estimate",
@@ -63994,6 +64189,43 @@
     "시장감시기구",
     "市場監視者"
    ]
+  },
+  "OpenRouter": {
+   "kind": "company",
+   "sector": {
+    "en": "AI infrastructure",
+    "ko": "AI 인프라",
+    "ja": "AIインフラ"
+   },
+   "desc": {
+    "en": "A routing layer that sends a developer's request to one of hundreds of AI models through a single connection.",
+    "ko": "개발자의 요청을 한 번의 연결로 수백 개의 AI 모델 가운데 하나에 보내 주는 중개 계층.",
+    "ja": "開発者のリクエストを一つの接続で数百のAIモデルのどれかに送る仲介層。"
+   },
+   "aliases": [
+    "OpenRouter",
+    "오픈라우터",
+    "オープンルーター"
+   ],
+   "logo": "openrouter.ai",
+   "exchange": "비상장",
+   "ceo": {
+    "en": "Alex Atallah",
+    "ko": "알렉스 아탈라",
+    "ja": "アレックス・アタラ"
+   },
+   "founded": "2023",
+   "hq": {
+    "en": "New York, USA",
+    "ko": "미국 뉴욕",
+    "ja": "米国・ニューヨーク"
+   },
+   "website": "https://openrouter.ai",
+   "longDesc": {
+    "en": "Founded in New York in 2023 by Alex Atallah, a co-founder of the NFT marketplace OpenSea, OpenRouter lets a developer reach hundreds of AI models from dozens of providers through one integration, choosing routes and falling back when a provider fails. It passes model prices through and adds a fee of roughly 5%. It raised at a $1.3 billion valuation in May 2026, and in August 2026 Stripe was reported to have agreed to buy it for more than $7 billion.",
+    "ko": "대체불가토큰 거래소 오픈시를 공동 창업한 알렉스 아탈라가 2023년 뉴욕에서 세웠다. 개발자가 한 번만 연결하면 수십 개 회사의 수백 개 AI 모델에 닿을 수 있게 해 주고, 어느 모델로 보낼지 정하며 한 곳이 멈추면 다른 곳으로 돌린다. 모델 값은 그대로 넘기고 그 위에 약 5%를 얹어 받는다. 2026년 5월 기업가치 13억달러로 투자를 받았고, 2026년 8월 스트라이프가 70억달러 넘는 값에 인수하기로 했다는 보도가 나왔다.",
+    "ja": "代替不可能トークンの取引所オープンシーを共同創業したアレックス・アタラが2023年にニューヨークで設立した。開発者が一度つなぐだけで数十社の数百のAIモデルに届くようにし、どのモデルへ送るかを決め、一つが止まれば別へ回す。モデルの値段はそのまま通し、その上に約5%を乗せて受け取る。2026年5月に企業価値13億ドルで資金を調達し、2026年8月にはストライプが70億ドル超で買収することで合意したと報じられた。"
+   }
   }
  }
 }
