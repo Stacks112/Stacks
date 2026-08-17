@@ -1,6 +1,212 @@
 {
  "items": [
   {
+   "date": "2026-08-17",
+   "id": "meru-korea-cpi-housing-weight-9_91pct-vs-us-35_6pct",
+   "related": [
+    "meru-8-13-supply-package-vs-first-half-starts",
+    "bilello-july-cpi-headline-3_4-core-2_5-energy",
+    "kobeissi-us-notional-volume-memory-turnover-thin-book"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224380392566",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "wiki": "",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#1e1b4b",
+    "to": "#4338ca",
+    "label": "KOREA CPI"
+   },
+   "tags": [
+    "KOREA",
+    "INFLATION",
+    "HOUSING"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "서울 아파트값은 1년 새 13% 올랐다, 그런데 물가지수는 그 사실을 모른다",
+    "en": "Seoul apartment prices rose 13% in a year, and the price index does not know it",
+    "ja": "ソウルのマンション価格は一年で13%上がった、だが物価指数はそれを知らない"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "한국 CPI에서 주택가격은 항목에 없고, 전월세가 집세라는 항목으로 있는데 비중이 낮고, 반영도 천천히 된다는 말임.",
+      "금융당국은 주택공급과 실수요를 위해 대출을 풀려고 하는데, 한국은행은 그 부작용(부채·집값·물가)을 관리해야 함."
+     ],
+     "en": [
+      "In Korea's CPI there is no line for house prices; jeonse and monthly rent sit under a housing-rent item, its weight is small, and it feeds through slowly.",
+      "The financial regulator wants to release credit for housing supply and genuine buyers, while the Bank of Korea has to manage the side effects: debt, house prices, inflation."
+     ],
+     "ja": [
+      "韓国のCPIに住宅価格の項目はなく、チョンセと月家賃が家賃という項目で入っているが比重は低く、反映も遅いということだ。",
+      "金融当局は住宅供給と実需要のために融資を緩めようとするが、韓国銀行はその副作用(債務・住宅価格・物価)を管理しなければならない。"
+     ]
+    },
+    "cite": "메르 · 2026.08.17"
+   },
+   "sum3": {
+    "ko": "한국 소비자물가지수에는 집값 항목이 없고, 전월세를 합친 집세 비중은 9.9%다.\n겉으로 보면 한국 물가가 미국보다 얌전하다는 이야기다.\n그런데 8월 13일 대출 규제 완화로 30조원이 집 쪽으로 흐르면, 그 결과는 지표 바깥에서 커진다.",
+    "en": "Korea's consumer price index has no house-price component, and jeonse plus monthly rent together weigh 9.9%.\nRead one way, Korean inflation simply looks tamer than America's.\nBut when the August 13 loan measures push 30 trillion won toward housing, the result grows outside the gauge.",
+    "ja": "韓国の消費者物価指数に住宅価格の項目はなく、チョンセと月家賃を合わせた家賃の比重は9.9%だ。\n表向きは、韓国の物価が米国より落ち着いているという話だ。\nだが8月13日の融資規制緩和で30兆ウォンが住宅へ流れれば、その結果は指標の外側で膨らむ。"
+   },
+   "gist": {
+    "ko": "서울 아파트값이 1년 사이 13.5% 올랐다.\n같은 기간 한국의 소비자물가 상승률은 2.8%였다.\n\n@@REF@@서울 소형 아파트가 대출 규제 속에서도 가격 상승을 이끌었다 (서울경제 영문판, 2026-07-23)|https://en.sedaily.com/finance/2026/07/23/seoul-small-apartments-lead-price-surge-amid-loan-curbs|https://wimg.sedaily.com/news/cms/2026/07/23/news-p.v1.20260722.299beed5316d4458b7919afcf35743ce_P1.png\n\n두 숫자가 이렇게 벌어지는 이유는 간단하다.\n한국의 소비자물가지수에는 집값이라는 항목이 아예 없다.\n\n지수가 세지 않는 것은 지표 위에서 일어나지 않은 일이 된다.\n\n## 물가지수가 집을 세는 방법\n\n지수에 들어가는 주거 항목은 전세와 월세뿐이다.\n전세가 5.4%, 월세가 4.5%이고, 둘을 합쳐도 10%에 못 미친다.\n\n미국은 다르게 센다.\n자기 집에 사는 사람에게 이 집을 세놓으면 얼마를 받겠느냐고 물어, 그 값을 물가에 넣는다.\n이것을 자가주거비라고 부르는데, 쉽게 말해 내 집에 살면서 나에게 내는 셈 치는 월세다.\n\n@@BAR@@한국 소비자물가지수의 집세 비중|9.9%|9.91|미국 소비자물가지수의 주거비 비중|35.6%|35.6@@같은 이름의 지수인데 집이 차지하는 자리가 이만큼 다르다. 미국은 근원 물가로 좁히면 이 비중이 44.5%까지 올라간다.@@통계청 2026년 소비자물가지수 가중치 · 미 노동통계국 상대중요도표(2025년 12월) · 2026-08-17 조회\n\n집값이 오르면 미국 지수는 임대가치를 통해 그 사실을 일부라도 받아 적는다.\n한국 지수는 그 칸이 없으니 받아 적지 않는다.\n\n## 받아 적어도 늦게 적는다\n\n전세와 월세는 보통 2년 계약이다.\n통계청은 새로 맺은 계약만이 아니라 이미 맺어져 있는 계약 전체를 조사한다.\n\n그래서 시세가 올라도 재계약이 돌아오기 전까지는 지수가 움직이지 않는다.\n지금 오르는 전월세 값이 물가에 나타나는 것은 1년에서 2년 뒤다.\n\n## 8월 13일에 열린 수도꼭지\n\n@@FLOW@@가계대출 총량 한도를 두 배로|은행이 1년 동안 늘릴 수 있는 가계대출 증가율 목표를 1.5%에서 3.0%로 올렸다|잔금·중도금 대출은 한도 밖으로|이 대출들을 총량관리에서 빼서 실제 여력은 더 늘었다|늘어난 돈은 약 30조원|소비가 아니라 집을 사는 데 쓰이는 돈이다|지수는 조용하다|집값은 항목에 없으니 이 흐름의 끝이 물가지표에는 잡히지 않는다@@이 경로의 마지막 칸이 이 글의 요점이다. 돈이 어디로 가느냐가 아니라, 도착한 곳이 지표에 잡히느냐가 갈린다.\n\n@@REF@@한국, 가계대출 증가율 목표를 3%로 두 배 올리다 (서울경제 영문판, 2026-08-13)|https://en.sedaily.com/finance/2026/08/13/korea-doubles-2025-household-loan-growth-target-to-3|https://wimg.sedaily.com/news/cms/2026/08/13/news-p.v1.20260806.cf902aeb0974402e9d7df7646d865e63_P1.jpg\n\n이 조치가 나온 배경에는 대출 창구의 혼잡이 있었다.\n5대 은행이 7월에 연간 한도를 넘겨 버리면서, 하반기 입주를 앞둔 약 7만 가구가 잔금대출을 받기 어려워졌고 새벽부터 은행에 줄을 서는 일이 벌어졌다.\n\n대책에는 반대 방향의 조항도 함께 들어 있다.\n집을 두고 다른 곳에 사는 1주택자의 전세대출 보증 비율을 서울 기준 80%에서 70%로 낮춰 실거주를 유도한 것인데, 그러면 임대로 나올 물량이 줄어든다.\n현대경제연구원이 이 대목을 짚어 하반기 물가 전망을 2.7%로 두면서 위험이 현실화하면 3%까지 갈 수 있다고 본 이유가 여기에 있다.\n\n## 한국은행이 8월 27일에 마주하는 것\n\n한국은행은 여덟 번 연속 금리를 묶어 두다가 7월 16일에 0.25%포인트를 올렸다.\n3년 만의 첫 인상이었고, 인상 뒤 나온 점도표에서는 금융통화위원 21명 가운데 10명이 연말 3.0%를 가리켰다.\n\n금융당국은 실수요자의 잔금대출을 위해 돈을 풀고, 한국은행은 그 돈이 만드는 부채와 집값을 붙잡아야 한다.\n같은 정부 안에서 두 기관이 서로 반대쪽으로 당기는 구도가 된 것이다.\n가계부채는 이미 2,000조원을 처음으로 넘어선 것으로 집계된다.\n집값이 지수에 잡히지 않는다는 사실은 이 구도에서 한국은행에 불리하게 작용한다.\n지표상의 물가가 조용하면 금리를 올릴 명분이 약해지는데, 자산 가격과 부채는 그 조용한 지표 밖에서 계속 커지기 때문이다.\n\n그래서 볼 곳은 8월 이후의 전월세 지수다.\n연말까지 기준금리가 3.0% 이상으로 올라가면 8·13 대책의 부작용이 통화정책을 움직인 것이고, 7월 인상 수준에 그대로 머물면 두 기관의 방향 차이가 금리로는 나타나지 않은 것이다.",
+    "en": "Seoul apartment prices rose 13.5% over one year.\nOver the same stretch, Korea's consumer price index rose 2.8%.\n\n@@REF@@Seoul small apartments lead price surge amid loan curbs (Seoul Economic Daily, 2026-07-23)|https://en.sedaily.com/finance/2026/07/23/seoul-small-apartments-lead-price-surge-amid-loan-curbs|https://wimg.sedaily.com/news/cms/2026/07/23/news-p.v1.20260722.299beed5316d4458b7919afcf35743ce_P1.png\n\nThe reason the two numbers diverge this far is simple.\nKorea's consumer price index has no line for house prices at all.\n\nWhat an index does not count did not happen as far as the index is concerned.\n\n## How a price index counts a home\n\nThe only housing components in the Korean index are jeonse and monthly rent.\nJeonse carries a weight of 5.4% and monthly rent 4.5%, and together they do not reach 10%.\n\nThe United States counts it differently.\nHomeowners are asked what their house would fetch if they rented it out, and that figure goes into the index.\nThis is called owners' equivalent rent: in plain terms, the rent you are treated as paying yourself to live in your own home.\n\n@@BAR@@Housing rent in Korea's consumer price index|9.9%|9.91|Shelter in the US consumer price index|35.6%|35.6@@Two indexes with the same name give housing this much difference in space. Narrowed to core inflation, the US figure rises to 44.5%.@@Statistics Korea 2026 CPI weights · US Bureau of Labor Statistics relative importance table, December 2025 · retrieved 2026-08-17\n\nWhen house prices rise, the American index records at least part of it through rental value.\nThe Korean index has no box for it, so it records nothing.\n\n## And what it does record, it records late\n\nJeonse and monthly rent contracts usually run two years.\nStatistics Korea surveys not only newly signed contracts but the entire stock of existing ones.\n\nSo even when market rents rise, the index does not move until renewals come around.\nToday's rent increases show up in inflation one to two years from now.\n\n## The tap opened on August 13\n\n@@FLOW@@Double the household lending cap|The annual growth target for bank household loans went from 1.5% to 3.0%|Move balance and interim payments outside it|Taking those loans out of the volume cap widened the real headroom further|About 30 trillion won added|Money that buys homes rather than goods and services|The index stays quiet|House prices are not a component, so the end of this path never reaches the inflation figure@@The last box in this path is the point of the piece. What matters is not where the money goes but whether its destination is something the index measures.\n\n@@REF@@Korea doubles the household loan growth target to 3% (Seoul Economic Daily, 2026-08-13)|https://en.sedaily.com/finance/2026/08/13/korea-doubles-2025-household-loan-growth-target-to-3|https://wimg.sedaily.com/news/cms/2026/08/13/news-p.v1.20260806.cf902aeb0974402e9d7df7646d865e63_P1.jpg\n\nBehind the measure was congestion at the lending window.\nThe five major banks blew through their annual quotas in July, leaving roughly 70,000 households due to move into new apartments in the second half struggling to get balance-payment loans, and queues formed outside branches before dawn.\n\nThe package also contains a clause pulling the other way.\nGuarantee ratios on jeonse loans for owners who live away from the home they own were cut from 80% to 70% in Seoul to push them into occupying it, which shrinks the pool of homes offered for lease.\nThat is the clause the Hyundai Research Institute singled out when it put second-half inflation at 2.7% and said it could reach 3% if the risks materialize.\n\n## What the Bank of Korea faces on August 27\n\nThe Bank of Korea held rates eight meetings in a row and then raised the base rate by 25 basis points on July 16.\nIt was the first hike in three years, and the dot plot published afterwards had 10 of the 21 board members at 3.0% by year-end.\n\nThe financial regulator is releasing credit so genuine buyers can close on their apartments, while the central bank has to restrain the debt and the house prices that credit creates.\nTwo arms of the same state are now pulling in opposite directions.\nHousehold debt is already estimated to have passed 2,000 trillion won for the first time.\nThe absence of house prices from the index works against the Bank of Korea in this standoff.\nQuiet measured inflation weakens the case for raising rates, while asset prices and debt keep growing outside what that quiet measure covers.\n\nSo the place to watch is the rent index from August onward.\nIf the base rate reaches 3.0% or higher by year-end, the side effects of the August 13 package moved monetary policy; if it stays where the July hike left it, the gap between the two institutions never showed up in the rate.",
+    "ja": "ソウルのマンション価格が一年で13.5%上がった。\n同じ期間の韓国の消費者物価上昇率は2.8%だった。\n\n@@REF@@ソウルの小型マンションが融資規制のなかでも価格上昇を牽引 (ソウル経済英語版、2026-07-23)|https://en.sedaily.com/finance/2026/07/23/seoul-small-apartments-lead-price-surge-amid-loan-curbs|https://wimg.sedaily.com/news/cms/2026/07/23/news-p.v1.20260722.299beed5316d4458b7919afcf35743ce_P1.png\n\n二つの数字がここまで開く理由は単純だ。\n韓国の消費者物価指数には、住宅価格という項目がそもそもない。\n\n指数が数えないものは、指標の上では起きなかったことになる。\n\n## 物価指数が家を数える方法\n\n指数に入る住居項目はチョンセと月家賃だけだ。\nチョンセが5.4%、月家賃が4.5%で、合わせても10%に届かない。\n\n米国は数え方が違う。\n自分の家に住む人に、この家を貸したらいくら取れるかと尋ね、その額を物価に入れる。\nこれを帰属家賃と呼ぶ。自分の家に住みながら自分に払っているとみなす家賃のことだ。\n\n@@BAR@@韓国の消費者物価指数における家賃の比重|9.9%|9.91|米国の消費者物価指数における住居費の比重|35.6%|35.6@@同じ名前の指数なのに、家の占める場所がこれだけ違う。米国はコア物価に絞ると、この比重が44.5%まで上がる。@@韓国統計庁2026年消費者物価指数ウェイト・米労働統計局の相対重要度表(2025年12月)・2026-08-17閲覧\n\n住宅価格が上がると、米国の指数は賃貸価値を通じてその事実を一部でも書き取る。\n韓国の指数はその欄がないので書き取らない。\n\n## 書き取っても遅れて書く\n\nチョンセと月家賃はふつう2年契約だ。\n統計庁は新しく結んだ契約だけでなく、すでに結ばれている契約全体を調査する。\n\nだから相場が上がっても、更新が回ってくるまで指数は動かない。\nいま上がっている賃料が物価に現れるのは一年から二年あとだ。\n\n## 8月13日に開いた蛇口\n\n@@FLOW@@家計向け融資の総量枠を倍に|銀行が一年で増やせる家計向け融資の伸び率目標を1.5%から3.0%へ引き上げた|残金・中間金の融資は枠の外へ|これらを総量管理から外し、実際の余力はさらに増えた|増えた資金は約30兆ウォン|消費ではなく家を買うのに使われる資金だ|指数は静かなまま|住宅価格は項目にないので、この経路の終点は物価指標に届かない@@この経路の最後の欄がこの記事の要点だ。資金がどこへ行くかではなく、着いた先が指標に数えられるかで分かれる。\n\n@@REF@@韓国、家計向け融資の伸び率目標を3%へ倍増 (ソウル経済英語版、2026-08-13)|https://en.sedaily.com/finance/2026/08/13/korea-doubles-2025-household-loan-growth-target-to-3|https://wimg.sedaily.com/news/cms/2026/08/13/news-p.v1.20260806.cf902aeb0974402e9d7df7646d865e63_P1.jpg\n\nこの措置の背景には融資窓口の混雑があった。\n五大銀行が7月に年間の枠を使い切ってしまい、下半期に入居を控えたおよそ7万世帯が残金融資を受けにくくなり、夜明け前から銀行に並ぶ事態が起きた。\n\n対策には逆向きの条項も入っている。\n家を持ちながら別の場所に住む一世帯一住宅者のチョンセ融資の保証比率を、ソウル基準で80%から70%へ下げて実居住を促したのだが、そうすると賃貸に出る物件が減る。\n現代経済研究院がこの点を挙げ、下半期の物価見通しを2.7%と置きつつ、リスクが現実になれば3%まで行きうるとみた理由がここにある。\n\n## 韓国銀行が8月27日に向き合うもの\n\n韓国銀行は八回連続で金利を据え置いたあと、7月16日に0.25%ポイント引き上げた。\n三年ぶりの利上げで、その後に出たドットチャートでは金融通貨委員21人のうち10人が年末3.0%を指した。\n\n金融当局は実需要者の残金融資のために資金を緩め、韓国銀行はその資金が生む債務と住宅価格を抑えなければならない。\n同じ政府の中で二つの機関が反対方向に引く構図になった。\n家計債務はすでに2,000兆ウォンを初めて超えたと集計されている。\n住宅価格が指数に入らないという事実は、この構図で韓国銀行に不利に働く。\n指標上の物価が静かなら利上げの名分は弱くなるのに、資産価格と債務はその静かな指標の外で膨らみ続けるからだ。\n\nだから見る場所は8月以降の家賃指数だ。\n年末までに基準金利が3.0%以上へ上がれば8月13日対策の副作用が金融政策を動かしたのであり、7月の引き上げ水準にとどまれば、二つの機関の方向の違いは金利には現れなかったことになる。"
+   },
+   "why": {
+    "ko": "물가지표가 무엇을 세지 않는지가 금리의 속도를 정한다. 한국은 집값이 지수 밖에 있어 자산 가격이 뛰어도 지표는 조용하고, 그만큼 한국은행의 인상 명분은 늦게 도착한다. 대출이 풀린 뒤의 전월세와 8월 27일 금통위가 이 시차를 확인하는 자리다.",
+    "en": "What a price index leaves out sets the pace of interest rates. In Korea house prices sit outside the gauge, so asset prices can jump while the measure stays quiet, and the case for a hike arrives late. Rents after the credit easing, and the August 27 policy meeting, are where that lag becomes visible.",
+    "ja": "物価指標が何を数えないかが、金利の速度を決める。韓国は住宅価格が指数の外にあるため、資産価格が跳ねても指標は静かで、利上げの名分はそれだけ遅れて届く。融資緩和後の家賃と8月27日の金融通貨委員会が、この時差を確かめる場になる。"
+   },
+   "ask": {
+    "ko": "집값이 들어가지 않는 물가지수를 보고 정책을 정하면, 중앙은행은 자산 가격이 오르는 국면에서 항상 늦게 움직이게 되는 것 아닐까?",
+    "en": "If policy is set from a price index that excludes house prices, does the central bank not always move late when asset prices are climbing?",
+    "ja": "住宅価格が入らない物価指数を見て政策を決めるなら、中央銀行は資産価格が上がる局面で常に遅れて動くことにならないか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-12-31",
+    "note": {
+     "ko": "2026년 말까지 한국은행 기준금리가 3.0% 이상으로 올라가는지로 채점한다.",
+     "en": "To be scored on whether the Bank of Korea base rate reaches 3.0% or higher by the end of 2026.",
+     "ja": "2026年末までに韓国銀行の基準金利が3.0%以上へ上がるかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "한국은행 기준금리",
+      "en": "Bank of Korea base rate",
+      "ja": "韓国銀行の基準金利"
+     },
+     "now": {
+      "ko": "2026년 7월 16일 0.25%포인트 인상 (여덟 번 연속 동결 뒤 3년 만의 첫 인상)",
+      "en": "Raised by 25 basis points on July 16, 2026, the first hike in three years after eight holds",
+      "ja": "2026年7月16日に0.25%ポイント引き上げ(八回連続据え置き後、三年ぶりの利上げ)"
+     },
+     "when": {
+      "ko": "2026년 12월 31일 (연내 남은 금통위)",
+      "en": "December 31, 2026 (remaining policy meetings this year)",
+      "ja": "2026年12月31日(年内の残る金融通貨委員会)"
+     },
+     "hit": {
+      "ko": "연말 기준금리가 3.0% 이상 → 부채와 집값 압력이 통화정책을 움직인 쪽",
+      "en": "Year-end base rate at 3.0% or higher → debt and house price pressure moved policy",
+      "ja": "年末の基準金利が3.0%以上 → 債務と住宅価格の圧力が政策を動かした側"
+     },
+     "miss": {
+      "ko": "연말까지 추가 인상 없이 7월 수준 유지 → 지표상 물가가 조용해 인상 명분이 서지 않은 쪽",
+      "en": "No further hike by year-end, staying where July left it → quiet measured inflation left no case for a hike",
+      "ja": "年末まで追加利上げなく7月の水準を維持 → 指標上の物価が静かで利上げの名分が立たなかった側"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "한국 CPI의 비밀 · 메르 · 2026-08-17",
+      "en": "The secret of Korea's CPI · 메르 (Meru) · 2026-08-17",
+      "ja": "韓国CPIの秘密 · メル · 2026-08-17"
+     },
+     "url": "https://blog.naver.com/ranto28/224380392566"
+    },
+    {
+     "name": {
+      "ko": "8월 13일 대책",
+      "en": "The August 13 measures",
+      "ja": "8月13日の対策"
+     },
+     "desc": {
+      "ko": "한국, 가계대출 증가율 목표를 3%로 두 배 인상 · 서울경제 영문판 · 2026-08-13",
+      "en": "Korea doubles household loan growth target to 3% · Seoul Economic Daily · 2026-08-13",
+      "ja": "韓国、家計向け融資の伸び率目標を3%へ倍増 · ソウル経済英語版 · 2026-08-13"
+     },
+     "url": "https://en.sedaily.com/finance/2026/08/13/korea-doubles-2025-household-loan-growth-target-to-3"
+    },
+    {
+     "name": {
+      "ko": "추가 여력 30조원",
+      "en": "The 30 trillion won of headroom",
+      "ja": "追加余力30兆ウォン"
+     },
+     "desc": {
+      "ko": "한국, 가계대출 여력에 30조원을 더하다 · 서울경제 영문판 · 2026-08-14",
+      "en": "Korea adds 30 trillion won in household lending capacity · Seoul Economic Daily · 2026-08-14",
+      "ja": "韓国、家計向け融資の余力に30兆ウォンを追加 · ソウル経済英語版 · 2026-08-14"
+     },
+     "url": "https://en.sedaily.com/finance/2026/08/14/korea-adds-30-trillion-won-in-household-lending-capacity-to"
+    },
+    {
+     "name": {
+      "ko": "서울 집값",
+      "en": "Seoul house prices",
+      "ja": "ソウルの住宅価格"
+     },
+     "desc": {
+      "ko": "서울 소형 아파트가 가격 상승을 이끌다 · 서울경제 영문판 · 2026-07-23",
+      "en": "Seoul small apartments lead price surge amid loan curbs · Seoul Economic Daily · 2026-07-23",
+      "ja": "ソウルの小型マンションが価格上昇を牽引 · ソウル経済英語版 · 2026-07-23"
+     },
+     "url": "https://en.sedaily.com/finance/2026/07/23/seoul-small-apartments-lead-price-surge-amid-loan-curbs"
+    },
+    {
+     "name": {
+      "ko": "미국 지수 가중치",
+      "en": "US index weights",
+      "ja": "米指数のウェイト"
+     },
+     "desc": {
+      "ko": "소비자물가지수 구성 항목의 상대중요도, 2025년 12월 · 미 노동통계국 · 조회 2026-08-17",
+      "en": "Relative importance of components in the Consumer Price Indexes, December 2025 · US Bureau of Labor Statistics · retrieved 2026-08-17",
+      "ja": "消費者物価指数の構成項目の相対重要度、2025年12月 · 米労働統計局 · 2026-08-17閲覧"
+     },
+     "url": "https://www.bls.gov/cpi/tables/relative-importance/2025.htm"
+    },
+    {
+     "name": {
+      "ko": "가계부채 규모",
+      "en": "Household debt",
+      "ja": "家計債務の規模"
+     },
+     "desc": {
+      "ko": "한국 가계부채, 사상 처음 2,000조원 돌파 전망 · 서울경제 영문판 · 2026-08-16",
+      "en": "Korea household debt to top 2,000 trillion won for the first time · Seoul Economic Daily · 2026-08-16",
+      "ja": "韓国の家計債務、初めて2,000兆ウォンを突破する見通し · ソウル経済英語版 · 2026-08-16"
+     },
+     "url": "https://en.sedaily.com/finance/2026/08/16/korea-household-debt-to-top-2000-trillion-won-for-first"
+    },
+    {
+     "name": {
+      "ko": "하반기 물가 전망",
+      "en": "Second-half inflation forecast",
+      "ja": "下半期の物価見通し"
+     },
+     "desc": {
+      "ko": "현대경제연구원 하반기 소비자물가 전망 2.7% · 헤럴드경제 · 2026-08-02",
+      "en": "Hyundai Research Institute puts second-half CPI at 2.7% · The Herald Business · 2026-08-02",
+      "ja": "現代経済研究院、下半期の消費者物価見通しを2.7%と提示 · ヘラルド経済 · 2026-08-02"
+     },
+     "url": "https://mbiz.heraldcorp.com/article/10828100"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 집세 가중치는 통계청 2026년 소비자물가지수 가중치, 미국 주거비 비중은 미 노동통계국 2025년 12월 상대중요도표 기준이다. 서울 아파트값 13.5%는 2026년 5월 기준 전년 동월 대비이고, 소비자물가 2.8%는 2026년 7월 전년 동월 대비다. 기준금리는 2026년 7월 16일 0.25%포인트 인상 이후 동결 상태다.",
+    "en": "Retrieved 2026-08-17 · Korean housing-rent weights follow Statistics Korea's 2026 CPI weights; the US shelter share follows the Bureau of Labor Statistics relative importance table for December 2025. The 13.5% Seoul apartment figure is year on year as of May 2026, and the 2.8% CPI figure is year on year for July 2026. The base rate has been unchanged since the 25 basis point hike of July 16, 2026.",
+    "ja": "2026-08-17閲覧 · 家賃ウェイトは韓国統計庁の2026年消費者物価指数ウェイト、米国の住居費比重は米労働統計局の2025年12月相対重要度表による。ソウルのマンション価格13.5%は2026年5月時点の前年同月比、消費者物価2.8%は2026年7月の前年同月比。基準金利は2026年7月16日の0.25%ポイント引き上げ以降、据え置かれている。"
+   }
+  },
+  {
    "date": "2026-08-16",
    "id": "semianalysis-pjm-reserve-model-3_8gw-vs-emergency-auction",
    "related": [
