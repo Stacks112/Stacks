@@ -1,6 +1,151 @@
 {
  "items": [
   {
+   "date": "2026-08-16",
+   "id": "jukan-nvidia-500b-platform-25pct-residual-guarantee",
+   "related": [
+    "netinterest-legacy-gpu-rent-inflects-forward-curve",
+    "jukan-feynman-a16-nvlink-1pb-soic-50k",
+    "macro-week-2026-08-16"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2088797214873133358",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "wiki": "",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "docUrl": "https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital",
+   "cover": {
+    "from": "#0b132b",
+    "to": "#3a506b",
+    "label": "GPU CREDIT"
+   },
+   "tags": [
+    "NVDA",
+    "GPU",
+    "CREDIT"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "5,000억달러를 대는 쪽은 엔비디아가 아니다",
+    "en": "Nvidia is not the one putting up the $500 billion",
+    "ja": "5,000億ドルを出すのはエヌビディアではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "It should accelerate the expansion of the GPU market’s TAM, and I do not view it as circular financing.",
+      "Calling this circular financing is like criticizing the introduction of auto financing by saying that car companies are effectively buying their own cars."
+     ],
+     "ko": [
+      "GPU 시장의 전체 규모를 넓히는 쪽으로 작용할 것이고, 나는 이것을 순환 금융으로 보지 않는다.",
+      "이것을 순환 금융이라 부르는 것은, 자동차 회사가 사실상 자기 차를 사고 있다고 말하며 자동차 할부금융의 등장을 비판하는 것과 같다."
+     ],
+     "ja": [
+      "GPU市場の全体規模を広げる方向に働くはずで、私はこれを循環的な資金調達だとは見ていない。",
+      "これを循環的な資金調達と呼ぶのは、自動車会社が実質的に自社の車を買っていると言って自動車ローンの登場を批判するようなものだ。"
+     ]
+    },
+    "cite": "Jukan · 2026.08.16"
+   },
+   "sum3": {
+    "ko": "엔비디아가 아폴로, 블랙록, 블랙스톤 등 여섯 곳과 손잡고 바깥 자금을 AI 인프라로 끌어오는 금융 플랫폼을 만들었다.\n주칸은 이를 순환 금융이 아니라 자동차 할부금융과 같다고 본다. 돈을 대는 쪽이 엔비디아가 아니기 때문이다.\n그런데 엔비디아는 담보로 잡힌 GPU의 잔존가치가 떨어지면 그 하락분의 상당 부분을 물어주기로 했다. 할부금융을 붙이는 자동차 회사는 이런 약속까지 하지는 않는다.",
+    "en": "Nvidia has built financing platforms with Apollo, BlackRock, Blackstone and three others to pull outside capital into AI infrastructure.\nJukan reads this as auto lending rather than circular financing, because the money is not Nvidia's.\nBut Nvidia also agreed to cover a large share of any fall in the residual value of the pledged GPUs. A carmaker attaching a loan does not promise that.",
+    "ja": "エヌビディアがアポロ、ブラックロック、ブラックストーンなど6社と組み、外部資金をAI基盤に呼び込む金融プラットフォームを作った。\nJukanはこれを循環的な資金調達ではなく自動車ローンと同じだと見る。金を出すのがエヌビディアではないからだ。\nだがエヌビディアは、担保に取られたGPUの残存価値が下がればその下落分のかなりの部分を埋めると約束した。ローンを付ける自動車会社はここまでは約束しない。"
+   },
+   "gist": {
+    "ko": "엔비디아가 5,000억달러가 넘는 돈을 AI 컴퓨팅 인프라로 끌어오는 금융 플랫폼을 만들었다.\n그 돈은 엔비디아 금고에서 나오지 않는다.\n아폴로, 블랙록, 블랙스톤, 브룩필드, 골드만삭스, KKR 여섯 곳이 각자 플랫폼을 세워 바깥 투자자의 돈을 모은다.\n\n@@REF@@엔비디아, 자사 칩의 값을 보증해 5,000억달러 규모 AI 인프라 금융의 문을 열다 (더디코더, 2026-08-11)|https://the-decoder.com/nvidia-guarantees-its-own-chips-value-to-unlock-500-billion-in-ai-infrastructure-financing/|https://the-decoder.com/wp-content/uploads/2026/08/Nvidia-Wall-Street-Money.png\n\n발표가 나오자마자 순환 금융이라는 말이 붙었다.\n엔비디아가 자기 칩을 살 돈을 자기가 대 주고 그것을 다시 매출로 잡는다는 뜻이다.\n\n주칸은 그 말이 틀렸다고 본다.\n\n## 돈은 어디서 오나\n\n@@FLOW@@바깥 투자자|연기금과 보험사 같은 제3자 자본이 여섯 운용사의 플랫폼에 들어온다|플랫폼|그 돈으로 GPU를 사서 특수목적기구에 담아 둔다|AI 기업|앞선 AI 연구소와 AI 클라우드 업체가 그 GPU를 빌려 쓴다|사용료|들어온 사용료로 GPU를 잡히고 발행한 채권의 원리금을 갚는다@@엔비디아는 이 네 칸 어디에서도 돈을 내지 않는다. 대신 마지막 칸이 어긋날 때 등장한다.\n\n하이퍼스케일러는 데이터센터를 직접 지어 클라우드로 파는 대형 사업자를 말한다.\n지금까지 이들은 GPU 값을 현금으로 한 번에 치러 왔는데, 올해 들어 그러기가 버거워졌다.\n알파벳은 올해 캡엑스를 1,800억~1,900억달러로, 메타는 1,250억~1,450억달러로 잡아 두었다.\n쉽게 말해 사고 싶은 물건값이 한 해 벌어들이는 현금을 넘어서기 시작한 것이다.\n\n@@IMG@@gpu-board|담보로 잡히는 물건이 이것이다. 여섯 운용사의 플랫폼은 이 보드를 사서 특수목적기구에 넣고, 그것을 잡히고 채권을 찍는다.\n\n## 자동차 할부금융이라는 비유\n\n@@CMP@@마이클 버리의 읽기|하이퍼스케일러끼리 주고받은 879억달러 구매 약정처럼, 돈이 늘어나는 것이 아니라 같은 자리를 돌고 있을 뿐이다|주칸의 읽기|자동차 회사가 할부금융을 붙였다고 자기 차를 사는 것은 아니다. 살 돈이 모자란 고객에게 지불 방법을 늘려 준 것이다\n\n두 사람이 갈리는 자리는 돈의 출처다.\n버리는 매출을 만든 돈이 어디서 왔는지를 보고, 주칸은 이번 돈이 엔비디아 바깥에서 왔다는 점을 본다.\n\n@@REF@@마이클 버리가 또 경고했다. 엔비디아를 한가운데 둔 순환 금융의 그물 (24/7 월스트리트, 2026-08-13)|https://247wallst.com/investing/2026/08/13/michael-burry-sounds-the-alarm-again-ai-is-a-circular-financing-web-with-nvidia-in-the-middle/|https://247wallst.com/wp-content/uploads/2024/12/GettyImages-498541178-scaled.jpg\n\n버리가 지목한 것은 하이퍼스케일러들이 서로 물건을 사 주기로 한 약정이다.\n주칸이 말하는 것은 그 바깥에서 들어온 연기금과 보험사의 돈이다.\n같은 발표를 두고 한쪽은 매출의 출처를, 다른 쪽은 자금의 출처를 세고 있다.\n\n## 25%라는 숫자\n\n엔비디아가 이 구조에 실제로 넣은 것은 돈이 아니라 약속이다.\n담보로 잡힌 GPU의 잔존가치가 떨어지면 하락분의 최대 25%까지 엔비디아가 메운다.\n\n잔존가치는 쓰던 물건을 나중에 되팔 때 남는 값을 말한다.\n이 값이 무너지면 담보가 담보 구실을 못 하고, 채권을 산 쪽이 손실을 떠안는다.\n엔비디아는 그 하락 구간의 일부를 자기가 받아 주겠다고 한 것이다.\n젠슨 황은 이 비율이 다른 컴퓨팅 금융 계약보다 현저히 낮은 수준이라고 말했다고 전해졌다.\n\n할부금융을 붙이는 자동차 회사는 여기까지 하지는 않는다.\n\nGPU를 담보로 잡는 일 자체는 이미 시작됐다.\n코어위브는 지난 3월 31일 85억달러짜리 대출을 마무리하면서 GPU를 포함한 자회사 자산을 담보로 걸었고, 무디스에서 A3 등급을 받았다.\nGPU를 담보로 한 금융에 투자등급이 붙은 첫 사례다.\n고정금리는 약 5.9%, 만기는 2032년 3월이다.\n\n## 피치가 아직 답을 내지 않은 자리\n\n그래서 이 돈은 시장을 넓히는 돈인가, 매출을 떠받치는 돈인가.\n답은 중고 GPU 값이 어디까지 내려가느냐가 쥐고 있다.\n\n신용평가사 피치는 GPU 감가상각을 채권 등급에 어떻게 반영할지 아직 공개 협의 중이라고 전해졌다.\n등급 기준이 정해지지 않았다는 것은 이 돈의 조달 비용도 아직 정해지지 않았다는 뜻이다.\n\n중고 GPU 값의 하락폭이 보증 한도 안에 머물면 엔비디아의 보증은 이름값으로 끝난다.\n그 선을 넘으면 엔비디아 손익계산서에 실제 비용으로 잡힌다.\n엔비디아가 판 물건을 남의 돈으로 사게 해 준 구조에 값이 매겨지는 자리가 거기다.",
+    "en": "Nvidia has set up financing platforms to pull more than $500 billion into AI computing infrastructure.\nThe money does not come out of Nvidia's own vault.\nApollo, BlackRock, Blackstone, Brookfield, Goldman Sachs and KKR are each building a platform to gather capital from outside investors.\n\n@@REF@@Nvidia guarantees its own chips' value to unlock $500 billion in AI infrastructure financing (The Decoder, 2026-08-11)|https://the-decoder.com/nvidia-guarantees-its-own-chips-value-to-unlock-500-billion-in-ai-infrastructure-financing/|https://the-decoder.com/wp-content/uploads/2026/08/Nvidia-Wall-Street-Money.png\n\nThe phrase \"circular financing\" was attached to the announcement almost immediately.\nThe charge is that Nvidia funds the purchase of its own chips and then books the result as revenue.\n\nJukan thinks the charge is wrong.\n\n## Where does the money come from\n\n@@FLOW@@Outside investors|Third-party capital such as pension funds and insurers flows into the six managers' platforms|Platforms|That money buys GPUs and parks them inside special purpose vehicles|AI companies|Frontier AI labs and AI cloud operators rent those GPUs|Usage fees|The fees coming in repay the bonds issued against the GPUs@@Nvidia puts up money at none of these four stops. It shows up when the last one goes wrong.\n\nHyperscalers are the large operators that build data centers themselves and sell the capacity as cloud.\nUntil now they paid for GPUs in cash, all at once, and this year that has become harder.\nAlphabet has guided to $180-190 billion of capital spending for the year and Meta to $125-145 billion.\nPut simply, the price of what they want to buy has started to exceed the cash they generate in a year.\n\n@@IMG@@gpu-board|This is the thing being pledged. The six platforms buy this board, place it in a special purpose vehicle, and issue bonds against it.\n\n## The auto loan analogy\n\n@@CMP@@Michael Burry's reading|Like the $87.9 billion of purchase commitments hyperscalers have made to each other, the money is circling rather than multiplying|Jukan's reading|A carmaker that offers auto loans is not buying its own cars. It has given a customer short of cash another way to pay\n\nThe two readings part over where the money comes from.\nBurry is counting the source of the revenue; Jukan is counting the source of the funding, which in this case sits outside Nvidia.\n\n@@REF@@Michael Burry sounds the alarm again: AI is a circular financing web with Nvidia in the middle (24/7 Wall St., 2026-08-13)|https://247wallst.com/investing/2026/08/13/michael-burry-sounds-the-alarm-again-ai-is-a-circular-financing-web-with-nvidia-in-the-middle/|https://247wallst.com/wp-content/uploads/2024/12/GettyImages-498541178-scaled.jpg\n\nWhat Burry points at is the set of commitments hyperscalers made to buy from each other.\nWhat Jukan points at is pension and insurance money arriving from outside that circle.\nOne is counting where the revenue came from, the other where the funding came from.\n\n## The number 25 percent\n\nWhat Nvidia actually contributed to this structure is not cash but a promise.\nIf the residual value of the pledged GPUs falls, Nvidia covers up to 25 percent of the decline.\n\nResidual value is what a used asset is still worth when you sell it later.\nWhen that value collapses, the collateral stops working as collateral and the bondholder takes the loss.\nNvidia has agreed to absorb part of that decline itself.\nJensen Huang is reported to have said the ratio is far lower than in other compute financing agreements.\n\nA carmaker attaching a loan does not go this far.\n\nLending against GPUs has already started.\nCoreWeave closed an $8.5 billion facility on March 31, pledging the assets of a subsidiary including its GPUs, and earned an A3 rating from Moody's.\nIt was the first GPU-backed financing to carry an investment grade rating.\nThe fixed rate is about 5.9 percent and the maturity is March 2032.\n\n## What Fitch has not yet answered\n\nSo is this money that widens the market, or money that props up revenue?\nThe answer is held by how far used GPU prices fall.\n\nFitch is reported to be still consulting publicly on how GPU depreciation should feed into bond ratings.\nAn unsettled rating standard means the cost of raising this money is also unsettled.\n\nIf used GPU prices stay inside the guaranteed band, Nvidia's guarantee stays a name on paper.\nPast that line it lands on Nvidia's income statement as a real cost.\nThat is where the structure that let others buy Nvidia's product with someone else's money gets its price.",
+    "ja": "エヌビディアが5,000億ドルを超える資金をAIコンピューティング基盤に呼び込む金融プラットフォームを立ち上げた。\nその資金はエヌビディアの金庫から出るのではない。\nアポロ、ブラックロック、ブラックストーン、ブルックフィールド、ゴールドマン・サックス、KKRの6社がそれぞれプラットフォームを設け、外部投資家の資金を集める。\n\n@@REF@@エヌビディア、自社チップの価値を保証し5,000億ドル規模のAI基盤金融の扉を開く (The Decoder、2026-08-11)|https://the-decoder.com/nvidia-guarantees-its-own-chips-value-to-unlock-500-billion-in-ai-infrastructure-financing/|https://the-decoder.com/wp-content/uploads/2026/08/Nvidia-Wall-Street-Money.png\n\n発表と同時に「循環的な資金調達」という言葉が付いた。\nエヌビディアが自社チップを買う金を自分で出し、それをまた売上に計上しているという意味だ。\n\nJukanはその言い方が違うと見ている。\n\n## 資金はどこから来るのか\n\n@@FLOW@@外部投資家|年金基金や保険会社などの第三者資本が6社のプラットフォームに入る|プラットフォーム|その資金でGPUを買い、特別目的会社に収める|AI企業|先端のAI研究所やAIクラウド事業者がそのGPUを借りて使う|利用料|入ってきた利用料で、GPUを担保に発行した債券の元利を返す@@エヌビディアはこの4つのどこでも金を出さない。代わりに最後の枠が狂ったときに登場する。\n\nハイパースケーラーとは、データセンターを自前で建ててクラウドとして売る大手事業者のことだ。\nこれまで彼らはGPU代金を現金で一括して払ってきたが、今年に入ってそれが苦しくなった。\nアルファベットは今年の設備投資を1,800億~1,900億ドル、メタは1,250億~1,450億ドルと置いている。\n平たく言えば、買いたい物の値段が1年で稼ぐ現金を超え始めた。\n\n@@IMG@@gpu-board|担保に取られる物がこれだ。6社のプラットフォームはこのボードを買って特別目的会社に入れ、それを担保に債券を出す。\n\n## 自動車ローンというたとえ\n\n@@CMP@@マイケル・バーリの読み|ハイパースケーラー同士が交わした879億ドルの購入契約のように、金は増えているのではなく同じ場所を回っているだけだ|Jukanの読み|自動車会社がローンを付けたからといって自社の車を買っているわけではない。払う金が足りない客に支払い方法を増やしただけだ\n\n二人が分かれる場所は資金の出どころだ。\nバーリは売上を作った金がどこから来たかを見て、Jukanは今回の金がエヌビディアの外から来たことを見ている。\n\n@@REF@@マイケル・バーリが再び警告、エヌビディアを中心に据えた循環的資金調達の網 (24/7 Wall St.、2026-08-13)|https://247wallst.com/investing/2026/08/13/michael-burry-sounds-the-alarm-again-ai-is-a-circular-financing-web-with-nvidia-in-the-middle/|https://247wallst.com/wp-content/uploads/2024/12/GettyImages-498541178-scaled.jpg\n\nバーリが指すのは、ハイパースケーラー同士が互いに買うと約束した契約だ。\nJukanが指すのは、その外から入ってくる年金や保険の資金だ。\n同じ発表について、一方は売上の出どころを、もう一方は資金の出どころを数えている。\n\n## 25%という数字\n\nエヌビディアがこの仕組みに実際に入れたのは金ではなく約束だ。\n担保に取られたGPUの残存価値が下がれば、下落分の最大25%までエヌビディアが埋める。\n\n残存価値とは、使った物を後で売り直したときに残る値のことだ。\nこの値が崩れると担保が担保の役をせず、債券を買った側が損失を抱える。\nエヌビディアはその下落区間の一部を自分が引き受けると言った。\nジェンスン・フアンはこの比率が他のコンピューティング金融契約より著しく低い水準だと述べたと伝えられた。\n\nローンを付ける自動車会社はここまではしない。\n\nGPUを担保に取ること自体はすでに始まっている。\nコアウィーブは3月31日に85億ドルの融資をまとめる際、GPUを含む子会社資産を担保に入れ、ムーディーズからA3の格付けを得た。\nGPUを担保にした金融に投資適格が付いた最初の例だ。\n固定金利は約5.9%、満期は2032年3月である。\n\n## フィッチがまだ答えを出していない場所\n\nではこの金は市場を広げる金なのか、売上を支える金なのか。\n答えは中古GPUの値がどこまで下がるかが握っている。\n\n格付け会社フィッチは、GPUの減価償却を債券格付けにどう反映するかをまだ公開協議中だと伝えられている。\n格付け基準が決まっていないということは、この資金の調達コストもまだ決まっていないということだ。\n\n中古GPUの下落幅が保証の枠内に留まればエヌビディアの保証は名目で終わる。\nその線を越えればエヌビディアの損益計算書に実際の費用として乗る。\nエヌビディアが売った物を他人の金で買わせた仕組みに値が付く場所がそこだ。"
+   },
+   "why": {
+    "ko": "엔비디아가 판 GPU를 남의 돈으로 사게 해 주는 구조가 만들어졌다. 이 구조가 버티는지는 엔비디아의 실적이 아니라 중고 GPU 값이 정한다.",
+    "en": "A structure now exists that lets buyers pay for Nvidia's GPUs with someone else's money. Whether it holds is decided not by Nvidia's earnings but by the price of used GPUs.",
+    "ja": "エヌビディアが売ったGPUを他人の金で買わせる仕組みができた。この仕組みが持ちこたえるかを決めるのは、エヌビディアの業績ではなく中古GPUの値だ。"
+   },
+   "ask": {
+    "ko": "엔비디아가 잔존가치 하락분의 25%까지 떠안기로 한 것은 시장을 넓히는 투자일까, 아니면 수요를 떠받치려고 위험을 되사 오는 일일까?",
+    "en": "Is Nvidia absorbing up to 25 percent of any residual value decline an investment that widens the market, or is it buying back risk to hold demand up?",
+    "ja": "エヌビディアが残存価値の下落分の25%まで引き受けるのは、市場を広げる投資なのか、需要を支えるためにリスクを買い戻すことなのか。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-16",
+      "en": "Jukan (@jukan05) · 2026-08-16",
+      "ja": "Jukan(@jukan05)·2026-08-16"
+     },
+     "url": "https://x.com/jukan05/status/2088797214873133358"
+    },
+    {
+     "name": {
+      "ko": "엔비디아 보도자료",
+      "en": "Nvidia press release",
+      "ja": "エヌビディア報道発表"
+     },
+     "desc": {
+      "ko": "여섯 금융사와 5,000억달러 이상 제3자 자본 동원 플랫폼 설립 · 2026-08-10",
+      "en": "Platforms with six financial firms to mobilize over $500 billion of third-party capital · 2026-08-10",
+      "ja": "6社と5,000億ドル超の第三者資本を動員するプラットフォーム設立·2026-08-10"
+     },
+     "url": "https://nvidianews.nvidia.com/news/nvidia-partners-with-apollo-blackrock-blackstone-brookfield-goldman-sachs-and-kkr-to-establish-ai-compute-infrastructure-financing-platforms-to-mobilize-over-500-billion-of-third-party-capital"
+    },
+    {
+     "name": {
+      "ko": "더디코더",
+      "en": "The Decoder",
+      "ja": "The Decoder"
+     },
+     "desc": {
+      "ko": "잔존가치 하락분 최대 25% 보전 구조 · 2026-08-11",
+      "en": "The up-to-25-percent residual value guarantee · 2026-08-11",
+      "ja": "残存価値の下落分を最大25%補填する構造·2026-08-11"
+     },
+     "url": "https://the-decoder.com/nvidia-guarantees-its-own-chips-value-to-unlock-500-billion-in-ai-infrastructure-financing/"
+    },
+    {
+     "name": {
+      "ko": "24/7 월스트리트",
+      "en": "24/7 Wall St.",
+      "ja": "24/7 Wall St."
+     },
+     "desc": {
+      "ko": "마이클 버리의 순환 금융 비판과 879억달러 구매 약정 · 2026-08-13",
+      "en": "Michael Burry's circular financing critique and the $87.9 billion of purchase commitments · 2026-08-13",
+      "ja": "マイケル・バーリの循環的資金調達批判と879億ドルの購入契約·2026-08-13"
+     },
+     "url": "https://247wallst.com/investing/2026/08/13/michael-burry-sounds-the-alarm-again-ai-is-a-circular-financing-web-with-nvidia-in-the-middle/"
+    },
+    {
+     "name": {
+      "ko": "코어위브 공시",
+      "en": "CoreWeave investor release",
+      "ja": "コアウィーブ開示"
+     },
+     "desc": {
+      "ko": "85억달러 GPU 담보부 대출, 무디스 A3, 고정 약 5.9%, 2032년 3월 만기 · 2026-03-31",
+      "en": "$8.5 billion GPU-backed facility, Moody's A3, about 5.9 percent fixed, maturing March 2032 · 2026-03-31",
+      "ja": "85億ドルのGPU担保融資、ムーディーズA3、固定約5.9%、2032年3月満期·2026-03-31"
+     },
+     "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Closes-Landmark-8-5-Billion-Financing-Facility-Achieving-First-Investment-Grade-Rated-GPU-backed-Financing/default.aspx"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 플랫폼 규모와 참여사는 2026-08-10 엔비디아 보도자료 기준, 25% 보전 구조와 피치 협의는 보도 인용",
+    "en": "Checked 2026-08-17 · Platform size and participants per Nvidia's 2026-08-10 release; the 25 percent guarantee and the Fitch consultation are as reported",
+    "ja": "2026-08-17閲覧·プラットフォーム規模と参加社は2026-08-10のエヌビディア発表に基づき、25%補填構造とフィッチの協議は報道引用"
+   }
+  },
+  {
    "date": "2026-08-17",
    "id": "serenity-mlcc-crowding-out-taiyo-yuden-10pct-vs-4pct",
    "related": [
@@ -64648,6 +64793,69 @@
     "production linked incentive",
     "PLI 제도",
     "生産連動インセンティブ"
+   ]
+  },
+  "잔존가치": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "쓰던 자산을 나중에 되팔 때 남아 있는 값.",
+    "en": "What a used asset is still worth when it is sold later.",
+    "ja": "使った資産を後で売り直したときに残る値。"
+   },
+   "longDesc": {
+    "ko": "장비를 담보로 돈을 빌릴 때 대출 규모를 정하는 것이 이 값이다. 잔존가치가 예상보다 빨리 떨어지면 담보가 빚을 다 못 갚아, 돈을 빌려준 쪽이 손실을 본다. 반도체처럼 세대 교체가 빠른 장비는 이 값의 하락 속도를 두고 회사마다 가정이 갈린다.",
+    "en": "It is the number that sets how much can be borrowed against a piece of equipment. If residual value falls faster than assumed, the collateral no longer covers the debt and the lender takes the loss. For fast-obsoleting hardware such as chips, companies disagree on how quickly this value declines.",
+    "ja": "設備を担保に借りるとき、借入額を決めるのがこの値だ。残存価値が想定より速く下がれば担保が借金を賄えず、貸した側が損失を被る。半導体のように世代交代が速い設備では、この値の下落速度をめぐって会社ごとに前提が分かれる。"
+   },
+   "aliases": [
+    "residual value",
+    "잔존가치",
+    "残存価値",
+    "잔존 가치"
+   ]
+  },
+  "KKR": {
+   "kind": "company",
+   "sector": {
+    "en": "Private equity",
+    "ko": "사모펀드",
+    "ja": "プライベートエクイティ"
+   },
+   "desc": {
+    "ko": "미국의 대형 사모펀드 운용사.",
+    "en": "A large US private equity and alternative asset manager.",
+    "ja": "米国の大手プライベートエクイティ運用会社。"
+   },
+   "ticker": "KKR",
+   "logo": "kkr.com",
+   "exchange": "NYSE",
+   "ceo": {
+    "ko": "조지프 배, 스콧 너톨",
+    "en": "Joseph Bae, Scott Nuttall",
+    "ja": "ジョセフ・ベイ、スコット・ナットール"
+   },
+   "founded": "1976",
+   "hq": {
+    "ko": "미국 뉴욕",
+    "en": "New York, United States",
+    "ja": "米国ニューヨーク"
+   },
+   "website": "https://www.kkr.com",
+   "longDesc": {
+    "ko": "1976년 설립된 미국의 대체투자 운용사다. 차입매수로 이름을 알렸고 지금은 사모주식, 인프라, 사모대출, 부동산으로 영역을 넓혔다. 최근에는 데이터센터와 전력 설비 같은 인공지능 인프라 금융에 자금을 대는 쪽으로도 움직이고 있다.",
+    "en": "Founded in 1976, KKR is a US alternative asset manager. It made its name in leveraged buyouts and now spans private equity, infrastructure, private credit and real estate. More recently it has moved into financing AI infrastructure such as data centers and power assets.",
+    "ja": "1976年設立の米国のオルタナティブ運用会社。レバレッジド・バイアウトで名を上げ、現在はプライベートエクイティ、インフラ、プライベートクレジット、不動産に広がる。近年はデータセンターや電力設備といった人工知能基盤への資金提供にも動いている。"
+   },
+   "aliases": [
+    "KKR",
+    "KKR & Co.",
+    "케이케이알",
+    "コールバーグ・クラビス・ロバーツ"
    ]
   }
  }
