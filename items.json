@@ -1,6 +1,199 @@
 {
  "items": [
   {
+   "date": "2026-08-16",
+   "id": "semianalysis-pjm-reserve-model-3_8gw-vs-emergency-auction",
+   "related": [
+    "jukan-nvidia-800vdc-rack-row-power-center-2027",
+    "netinterest-legacy-gpu-rent-inflects-forward-curve",
+    "serenity-riot-rockdale-191mw-20y-lease-anthropic"
+   ],
+   "source": "SemiAnalysis",
+   "sourceUrl": "https://newsletter.semianalysis.com/p/12b-of-us-ratepayers-money-wasted",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "semianalysis.png",
+   "wiki": "",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#3f2d00",
+    "to": "#7c5c00",
+    "label": "POWER"
+   },
+   "tags": [
+    "POWER",
+    "DATACENTER",
+    "PJM"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "미국 최대 전력시장은 자기가 가진 발전소를 3.8기가와트 적게 세고 있다",
+    "en": "America's largest power market is undercounting its own plants by 3.8 gigawatts",
+    "ja": "米最大の電力市場は自分の持つ発電所を3.8ギガワット少なく数えている"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "PJM has wasted ~$12 billion of ratepayers' money from 2025 to 2027 due to this weak methodology, which dramatically overstated the supply/demand shortfall it faced.",
+      "PJM's emergency auction is putting ratepayers at risk by signing contracts for too much power without committed counter-parties."
+     ],
+     "ko": [
+      "PJM은 이 허술한 방법론 탓에 2025년부터 2027년까지 요금 납부자의 돈 약 120억달러를 낭비했다. 이 방법론이 자신이 마주한 수요와 공급의 부족분을 크게 부풀렸기 때문이다.",
+      "PJM의 긴급 경매는 값을 치르기로 확정된 상대방 없이 너무 많은 전력을 계약함으로써 요금 납부자를 위험에 빠뜨리고 있다."
+     ],
+     "ja": [
+      "PJMはこの粗い方法論のせいで、2025年から2027年までに料金負担者の資金およそ120億ドルを浪費した。この方法論が、自らが直面する需給の不足分を大きく膨らませたからだ。",
+      "PJMの緊急入札は、支払いを確約した相手方のないまま過大な電力を契約することで、料金負担者を危険にさらしている。"
+     ]
+    },
+    "cite": "SemiAnalysis · 2026.08.16"
+   },
+   "sum3": {
+    "ko": "미국 최대 전력시장 PJM이 9월 30일부터 발전소를 더 사는 긴급 경매를 연다.\n겉으로 보면 데이터센터가 몰려와 전기가 모자라졌다는 이야기다.\n그런데 세미애널리시스는 그 부족분 자체가 겨울철 발전 능력을 빼먹은 계산에서 나왔다고 본다.",
+    "en": "PJM, the largest US power market, opens an emergency auction from September 30 to buy more generation.\nRead one way, data centers arrived and the electricity ran short.\nBut SemiAnalysis argues the shortfall itself comes from a calculation that leaves out winter capacity.",
+    "ja": "米最大の電力市場PJMが、9月30日から発電所を追加で買う緊急入札を開く。\n表向きは、データセンターが押し寄せて電気が足りなくなったという話だ。\nだがセミアナリシスは、その不足分自体が冬の発電能力を落とした計算から出ているとみる。"
+   },
+   "gist": {
+    "ko": "미국에서 가장 큰 전력시장이 9월 30일부터 발전소를 더 사는 경매를 연다.\n그런데 이 시장이 이미 가지고 있는 발전 능력을 3.8기가와트만큼 적게 세고 있다는 분석이 나왔다.\n\n@@REF@@PJM, 용량 부족을 메우기 위한 백스톱 경매안을 연방에너지규제위원회에 제출하다 (유틸리티다이브, 2026-08-03)|https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/|https://imgproxy.divecdn.com/9mc3NVqI62Ic8RIYSCYVrATgz4o1J-WyWFfhCuMzTfM/g:ce/rs:fit:770:435/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp\n\nPJM은 13개 주와 워싱턴에 전기를 보내는 계통을 운영하는 곳이고, 이 지역에 6,600만명이 산다.\n그 전기요금이 지난 1년 사이 지역에 따라 10%에서 25%까지 올랐다.\n\n세미애널리시스는 이 인상분의 상당 부분이 계산을 잘못한 결과라고 본다.\n\n## 발전소를 사는 시장이 따로 있다\n\n이 경매에서 오가는 것은 전기가 아니라 대기 상태다.\n필요할 때 켤 수 있도록 발전소를 세워 두는 값을 미리 치르는 것이고, 이것을 용량시장이라고 부른다.\n\n쉽게 말해 소방서에 내는 돈과 같다.\n불이 나지 않아도 소방차와 대원이 대기하는 값은 해마다 나간다.\n\n그래서 이 시장에서 값을 정하는 것은 실제로 쓴 전기가 아니라, 얼마나 모자란다고 계산하느냐다.\n\n## 겨울에 세지는 발전소\n\n가스 발전소는 찬 공기에서 더 많은 전기를 낸다.\n공기가 차가우면 밀도가 높아져 같은 터빈이 최대 25%까지 더 큰 출력을 내기 때문이다.\n\n@@IMG@@natgas-flame|이 카드가 다루는 물건. 같은 발전소라도 한겨울에는 여름보다 더 많은 전기를 만들어 낸다.\n\n여기에 하나가 더 붙는다.\n2022년 12월 겨울폭풍 엘리엇으로 동부 계통 발전용량의 13%가 한꺼번에 멈춘 뒤, PJM의 가스 발전소 약 700기 가운데 400기가 방한 설비에 돈을 들였다.\n\n세미애널리시스는 PJM의 모델이 이 둘을 아직 반영하지 않는다고 본다.\n반영하면 계통에 3.8기가와트가 더 있는 셈이고, 이는 큰 가스 발전소 여덟 기에 해당한다는 것이 이 회사의 추정이다.\n\n## 요금 인상의 청구서는 누구 앞으로 갔나\n\n@@CHK@@최근 네 번의 용량경매 총 낙찰액|636억달러|시장감시자가 데이터센터 몫으로 본 금액|294억달러|2028/29년 경매 낙찰가|하루 1메가와트당 333.44달러@@요금을 밀어올린 범인으로 이미 데이터센터가 지목돼 있고, 그 몫이 절반에 가깝다. 세미애널리시스가 짚은 모델 문제는 나머지 절반을 설명하는 다른 후보다.@@PJM 시장감시자 모니터링애널리틱스 집계(유틸리티다이브 2026-07-20 보도) · PJM 2028/29년 기본용량경매 결과 · 2026-08-17 조회\n\n@@REF@@데이터센터가 PJM 용량경매 비용 63억달러를 끌어올렸다는 시장감시자 분석 (유틸리티다이브, 2026-07-20)|https://www.utilitydive.com/news/pjm-data-centers-capacity-auction-imm-bowring/825626/|https://imgproxy.divecdn.com/oSOhdb7tT_-vuiArR7FEl0Exy4T6Odfupucyli8Mb9Q/g:ce/rs:fit:770:435/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TY3JlZW5zaG90XzE5OC5wbmc=.webp\n\n시장감시자는 2028/29년 경매 비용의 38%가 데이터센터 때문이라고 집계했다.\nPJM 자신도 2030년까지 늘어날 최대 수요 32기가와트 가운데 30기가와트가 데이터센터 몫이라고 전망한다.\n\n두 설명은 서로를 배제하지 않는다.\n수요가 실제로 빠르게 늘고 있고, 그 위에서 공급을 적게 세면 모자란 양이 실제보다 크게 잡힌다.\n\n## 9월 30일에 열리는 경매가 답을 준다\n\n@@TIME@@2022년 12월|겨울폭풍 엘리엇으로 동부 계통 발전용량 13%가 멈췄다|2024년 12월 30일|펜실베이니아 주지사가 경매 설계를 문제 삼아 연방에너지규제위원회에 제소했다|2026년 7월 31일|PJM이 긴급 경매안을 연방에너지규제위원회에 냈다|>2026년 9월 30일|긴급 경매가 열린다@@요금 논쟁이 4년째 같은 계통 위에서 이어지고 있다. 지금까지는 주장만 오갔고, 이번 경매는 값으로 답이 나온다.@@유틸리티다이브·미국공공전력협회 보도 · 2026-08-17 조회\n\n이번 긴급 경매에서 PJM은 6.8기가와트를 사려고 한다.\n세미애널리시스가 더 있다고 보는 3.8기가와트는 그 절반이 넘는 양이다.\n\n경매는 15년짜리 계약을 맺고, 값의 상한은 하루 1메가와트당 555달러로 올려 잡혔다.\n사 주기로 한 대형 수요처가 아직 확정되지 않았다는 점이 이 경매의 약한 고리다.\n계약은 맺어 두었는데 그 전기를 쓰겠다는 곳이 나타나지 않으면, 값은 다시 가정용 요금으로 넘어간다.\n\n그래서 12월 2일에 나올 낙찰가가 이 논쟁의 첫 채점표다.\n값이 상한인 555달러까지 붙으면 공급 부족은 모델 문제가 아니라 실재하는 것이고, 상한 아래에서 끝나면 계통에 아직 세지 않은 여유가 있었다는 쪽이다.",
+    "en": "The largest electricity market in the United States will hold an auction from September 30 to buy more power plants.\nAn analysis now argues that this market is undercounting the generating capacity it already has by 3.8 gigawatts.\n\n@@REF@@PJM files backstop auction plan at FERC to meet capacity shortfall (Utility Dive, 2026-08-03)|https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/|https://imgproxy.divecdn.com/9mc3NVqI62Ic8RIYSCYVrATgz4o1J-WyWFfhCuMzTfM/g:ce/rs:fit:770:435/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp\n\nPJM runs the grid that serves 13 states and Washington, DC, home to 66 million people.\nElectricity bills there have risen between 10% and 25% over the past year depending on the state.\n\nSemiAnalysis argues that a large share of that increase is the product of an arithmetic error.\n\n## There is a separate market for buying power plants\n\nWhat changes hands in this auction is not electricity but readiness.\nGenerators are paid in advance to stand available for the moment they are needed, and that arrangement is called a capacity market.\n\nThink of it as paying for a fire station.\nThe trucks and crews cost money every year whether or not a fire breaks out.\n\nSo the price in this market is set not by the electricity actually consumed but by how large a shortfall the operator calculates.\n\n## Power plants get stronger in winter\n\nA gas plant produces more electricity in cold air.\nCold air is denser, so the same turbine can push out up to 25% more power.\n\n@@IMG@@natgas-flame|The asset at the center of this card. The same plant generates more electricity in midwinter than it does in summer.\n\nThere is a second piece.\nAfter Winter Storm Elliott knocked out 13% of Eastern Interconnection capacity at once in December 2022, roughly 400 of PJM's approximately 700 gas plants spent money on winterization.\n\nSemiAnalysis argues that PJM's model still reflects neither of these.\nCounting them, the firm estimates, would put 3.8 gigawatts more on the system, the equivalent of eight large gas plants.\n\n## Who the bill for the increase was addressed to\n\n@@CHK@@Total cost of the last four capacity auctions|$63.6 billion|Share the market monitor attributes to data centers|$29.4 billion|Clearing price, 2028/29 auction|$333.44 per MW-day@@Data centers have already been named as the culprit behind rising bills, and their share is close to half. The modeling problem SemiAnalysis points to is a candidate for explaining the other half.@@Monitoring Analytics, PJM's independent market monitor, as reported by Utility Dive 2026-07-20 · PJM 2028/29 Base Residual Auction results · retrieved 2026-08-17\n\n@@REF@@Data centers drove $6.3B in PJM capacity auction costs, market monitor says (Utility Dive, 2026-07-20)|https://www.utilitydive.com/news/pjm-data-centers-capacity-auction-imm-bowring/825626/|https://imgproxy.divecdn.com/oSOhdb7tT_-vuiArR7FEl0Exy4T6Odfupucyli8Mb9Q/g:ce/rs:fit:770:435/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TY3JlZW5zaG90XzE5OC5wbmc=.webp\n\nThe market monitor calculated that 38% of the cost of the 2028/29 auction was driven by data centers.\nPJM itself forecasts that 30 of the 32 gigawatts of peak demand growth through 2030 will come from data centers.\n\nThe two explanations do not exclude each other.\nDemand really is growing quickly, and undercounting supply on top of that makes the gap look bigger than it is.\n\n## The auction on September 30 supplies the answer\n\n@@TIME@@December 2022|Winter Storm Elliott takes out 13% of Eastern Interconnection capacity|December 30, 2024|Pennsylvania's governor files a complaint at FERC over the auction design|July 31, 2026|PJM files its emergency auction plan at FERC|>September 30, 2026|The emergency auction opens@@The argument over these bills is now in its fourth year on the same grid. So far it has been conducted in assertions; this auction answers in prices.@@Utility Dive and American Public Power Association reporting · retrieved 2026-08-17\n\nPJM intends to procure 6.8 gigawatts in this emergency auction.\nThe 3.8 gigawatts SemiAnalysis believes are already there would cover more than half of that.\n\nThe auction signs 15-year contracts, and the price cap has been raised to $555 per MW-day.\nIts weak link is that no large customer has yet committed to pay for the power.\nIf the contracts are signed and no buyer for that electricity appears, the cost lands back on residential bills.\n\nSo the clearing price due on December 2 is the first scorecard in this argument.\nIf it runs all the way to the $555 cap, the shortfall is real rather than a modeling artifact; if it settles below the cap, there was slack on the system that nobody had counted.",
+    "ja": "米国で最も大きい電力市場が、9月30日から発電所を追加で買う入札を開く。\nところがこの市場は、すでに持っている発電能力を3.8ギガワット少なく数えているという分析が出た。\n\n@@REF@@PJM、容量不足を埋めるためのバックストップ入札案を連邦エネルギー規制委員会に提出 (ユーティリティダイブ、2026-08-03)|https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/|https://imgproxy.divecdn.com/9mc3NVqI62Ic8RIYSCYVrATgz4o1J-WyWFfhCuMzTfM/g:ce/rs:fit:770:435/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp\n\nPJMは13州とワシントンに電気を送る系統を運営しており、この地域には6,600万人が住む。\nその電気料金がこの一年で、地域によって10%から25%まで上がった。\n\nセミアナリシスは、この上昇分のかなりの部分が計算違いの結果だとみている。\n\n## 発電所を買う市場が別にある\n\nこの入札でやり取りされるのは電気ではなく、待機状態だ。\n必要なときに動かせるよう発電所を構えておく代金を先に払う仕組みで、これを容量市場と呼ぶ。\n\n消防署に払う金と同じだ。\n火事が起きなくても、消防車と隊員が待機する費用は毎年出ていく。\n\nつまりこの市場で値を決めるのは、実際に使った電気ではなく、どれだけ足りないと計算するかだ。\n\n## 冬に強くなる発電所\n\nガス発電所は冷たい空気でより多くの電気を出す。\n空気が冷たいと密度が上がり、同じタービンが最大25%まで大きな出力を出せるからだ。\n\n@@IMG@@natgas-flame|このカードが扱う設備。同じ発電所でも真冬は夏より多くの電気を作り出す。\n\nもう一つ重なる。\n2022年12月の冬季暴風エリオットで東部系統の発電容量の13%が一斉に止まったあと、PJMのガス発電所およそ700基のうち400基が防寒設備に金をかけた。\n\nセミアナリシスは、PJMのモデルがこの二つをまだ反映していないとみる。\n反映すれば系統に3.8ギガワット多くある計算で、これは大型ガス発電所八基分にあたるというのが同社の推定だ。\n\n## 料金上昇の請求書は誰宛てに行ったか\n\n@@CHK@@直近四回の容量入札の総落札額|636億ドル|市場監視者がデータセンター分とみた金額|294億ドル|2028/29年入札の落札価格|1日1メガワットあたり333.44ドル@@料金を押し上げた犯人としてすでにデータセンターが名指しされ、その分は半分に近い。セミアナリシスが指摘したモデルの問題は、残り半分を説明する別の候補だ。@@PJM市場監視者モニタリング・アナリティクス集計(ユーティリティダイブ2026-07-20報道)・PJM2028/29年基本容量入札結果・2026-08-17閲覧\n\n@@REF@@データセンターがPJM容量入札の費用63億ドルを押し上げたとする市場監視者の分析 (ユーティリティダイブ、2026-07-20)|https://www.utilitydive.com/news/pjm-data-centers-capacity-auction-imm-bowring/825626/|https://imgproxy.divecdn.com/oSOhdb7tT_-vuiArR7FEl0Exy4T6Odfupucyli8Mb9Q/g:ce/rs:fit:770:435/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TY3JlZW5zaG90XzE5OC5wbmc=.webp\n\n市場監視者は2028/29年入札の費用の38%がデータセンターによるものだと集計した。\nPJM自身も2030年までに増える最大需要32ギガワットのうち30ギガワットがデータセンター分だと見通す。\n\n二つの説明は互いを排除しない。\n需要が実際に速く増えており、その上で供給を少なく数えれば、足りない量は実際より大きく出る。\n\n## 9月30日に開く入札が答えを出す\n\n@@TIME@@2022年12月|冬季暴風エリオットで東部系統の発電容量13%が止まった|2024年12月30日|ペンシルベニア州知事が入札設計を問題視して連邦エネルギー規制委員会に提訴した|2026年7月31日|PJMが緊急入札案を連邦エネルギー規制委員会に提出した|>2026年9月30日|緊急入札が開かれる@@料金をめぐる論争が四年目に入り、同じ系統の上で続いている。ここまでは主張の応酬で、この入札は値段で答えを出す。@@ユーティリティダイブ・米国公共電力協会の報道・2026-08-17閲覧\n\n今回の緊急入札でPJMは6.8ギガワットを買おうとしている。\nセミアナリシスがもっとあるとみる3.8ギガワットは、その半分を超える量だ。\n\n入札は15年の契約を結び、価格の上限は1日1メガワットあたり555ドルに引き上げられた。\n買い取る大口需要家がまだ確定していない点が、この入札の弱い環だ。\n契約は結んだのにその電気を使うところが現れなければ、費用はまた家庭向け料金へ回る。\n\nだから12月2日に出る落札価格が、この論争の最初の採点表になる。\n値が上限の555ドルまで張り付けば供給不足はモデルの問題ではなく実在するものであり、上限の下で終われば系統にまだ数えられていない余裕があった側だ。"
+   },
+   "why": {
+    "ko": "인공지능 데이터센터가 전기요금을 올린다는 설명은 이미 정치 쟁점이 됐고, 그 위에서 규제와 신규 부하 제한이 논의되고 있다. 부족분의 일부가 계산 방식에서 나온 것이라면 대책의 방향도 달라지고, 용량 가격에 실적이 걸린 발전 회사들의 값어치도 함께 달라진다.",
+    "en": "The claim that AI data centers are driving up power bills has already become political, and rules limiting new large loads are being written on top of it. If part of the shortfall is an artifact of the arithmetic, the remedy changes, and so does what the independent power producers whose earnings ride on capacity prices are worth.",
+    "ja": "人工知能データセンターが電気料金を押し上げているという説明はすでに政治問題になり、その上で新規大口需要の規制が議論されている。不足分の一部が計算方法から出ているのなら、対策の方向も変わり、容量価格に業績が乗る発電会社の値打ちも変わる。"
+   },
+   "ask": {
+    "ko": "PJM 지역의 전기요금을 밀어올린 것은 데이터센터의 수요일까, 아니면 공급을 적게 센 계산일까?",
+    "en": "What pushed up power bills in PJM territory: data center demand, or an arithmetic that undercounts supply?",
+    "ja": "PJM地域の電気料金を押し上げたのは、データセンターの需要か、それとも供給を少なく数えた計算か。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-12-31",
+    "note": {
+     "ko": "2026년 12월 2일 발표되는 PJM 긴급 경매 낙찰가가 상한인 하루 1메가와트당 555달러에 도달하는지로 채점한다.",
+     "en": "To be scored on whether the PJM emergency auction clearing price, due December 2, 2026, reaches the $555 per MW-day cap.",
+     "ja": "2026年12月2日に発表されるPJM緊急入札の落札価格が、上限の1日1メガワットあたり555ドルに達するかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "PJM 긴급 경매 낙찰가",
+      "en": "PJM emergency auction clearing price",
+      "ja": "PJM緊急入札の落札価格"
+     },
+     "now": {
+      "ko": "직전 2028/29년 기본경매는 상한인 하루 1메가와트당 333.44달러에서 낙찰됐고, 이번 경매의 상한은 555달러다",
+      "en": "The 2028/29 base auction cleared at its $333.44 per MW-day cap; this auction's cap is $555",
+      "ja": "直前の2028/29年基本入札は上限の1日1メガワットあたり333.44ドルで落札し、今回の上限は555ドルだ"
+     },
+     "when": {
+      "ko": "2026년 12월 2일 (결과 발표)",
+      "en": "December 2, 2026 (results)",
+      "ja": "2026年12月2日(結果発表)"
+     },
+     "hit": {
+      "ko": "낙찰가가 상한인 555달러에 도달 → 공급 부족이 실재한다는 쪽",
+      "en": "Clears at the $555 cap → the shortfall is real",
+      "ja": "落札価格が上限の555ドルに達する → 供給不足が実在する側"
+     },
+     "miss": {
+      "ko": "낙찰가가 555달러 아래에서 끝남 → 계통에 세지 않은 여유가 있었다는 쪽",
+      "en": "Clears below $555 → there was uncounted slack on the system",
+      "ja": "落札価格が555ドルを下回って終わる → 系統に数えられていない余裕があった側"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "모델링 오류로 낭비된 미국 요금 납부자의 120억달러 · SemiAnalysis · 2026-08-16",
+      "en": "$12B of US ratepayers' money wasted on a modeling mistake · SemiAnalysis · 2026-08-16",
+      "ja": "モデリングの誤りで浪費された米料金負担者の120億ドル · SemiAnalysis · 2026-08-16"
+     },
+     "url": "https://newsletter.semianalysis.com/p/12b-of-us-ratepayers-money-wasted"
+    },
+    {
+     "name": {
+      "ko": "긴급 경매 제출",
+      "en": "Emergency auction filing",
+      "ja": "緊急入札の提出"
+     },
+     "desc": {
+      "ko": "PJM, 백스톱 경매안을 연방에너지규제위원회에 제출 · 유틸리티다이브 · 2026-08-03",
+      "en": "PJM files backstop auction plan at FERC · Utility Dive · 2026-08-03",
+      "ja": "PJM、バックストップ入札案をFERCに提出 · ユーティリティダイブ · 2026-08-03"
+     },
+     "url": "https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/"
+    },
+    {
+     "name": {
+      "ko": "시장감시자 집계",
+      "en": "Market monitor figures",
+      "ja": "市場監視者の集計"
+     },
+     "desc": {
+      "ko": "데이터센터가 끌어올린 용량경매 비용 63억달러 · 유틸리티다이브 · 2026-07-20",
+      "en": "Data centers drove $6.3B in PJM capacity auction costs · Utility Dive · 2026-07-20",
+      "ja": "データセンターが押し上げた容量入札費用63億ドル · ユーティリティダイブ · 2026-07-20"
+     },
+     "url": "https://www.utilitydive.com/news/pjm-data-centers-capacity-auction-imm-bowring/825626/"
+    },
+    {
+     "name": {
+      "ko": "주별 요금 인상",
+      "en": "State bill increases",
+      "ja": "州別の料金上昇"
+     },
+     "desc": {
+      "ko": "PJM 지역 전기요금 인상폭 비교 · 히트맵 뉴스 · 2026-04-01",
+      "en": "How electricity price increases differ across PJM · Heatmap News · 2026-04-01",
+      "ja": "PJM地域の電気料金上昇幅の比較 · ヒートマップ・ニュース · 2026-04-01"
+     },
+     "url": "https://heatmap.news/energy/electricity-price-hub-pjm"
+    },
+    {
+     "name": {
+      "ko": "주지사 제소",
+      "en": "Governor's complaint",
+      "ja": "知事の提訴"
+     },
+     "desc": {
+      "ko": "펜실베이니아 주와 주지사, 용량경매를 문제 삼아 PJM을 연방에너지규제위원회에 제소 · 미국공공전력협회 · 2025-01-02",
+      "en": "State of Pennsylvania and its governor file a complaint against PJM at FERC over capacity auctions · American Public Power Association · 2025-01-02",
+      "ja": "ペンシルベニア州と知事、容量入札を問題視してPJMをFERCに提訴 · 米国公共電力協会 · 2025-01-02"
+     },
+     "url": "https://www.publicpower.org/periodical/article/state-pennsylvania-governor-file-complaint-against-pjm-ferc-over-capacity-auctions"
+    },
+    {
+     "name": {
+      "ko": "겨울폭풍 엘리엇",
+      "en": "Winter Storm Elliott",
+      "ja": "冬季暴風エリオット"
+     },
+     "desc": {
+      "ko": "동부 계통 발전용량 13%가 멈춘 기록 · 유틸리티다이브 · 2023-09-22",
+      "en": "Record 13% of Eastern Interconnect capacity failed in Winter Storm Elliott · Utility Dive · 2023-09-22",
+      "ja": "東部系統の発電容量13%が停止した記録 · ユーティリティダイブ · 2023-09-22"
+     },
+     "url": "https://www.utilitydive.com/news/winter-storm-elliott-ferc-nerc-report-power-plant-outages/694451/"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 3.8기가와트와 120억달러는 세미애널리시스가 자체 재구성한 모델로 낸 추정이고 제3자 검증은 아직 없다. 경매 총액과 데이터센터 귀속분은 PJM 시장감시자 모니터링애널리틱스 집계, 긴급 경매 일정과 상한가는 PJM이 2026년 7월 31일 연방에너지규제위원회에 낸 제출안 기준이다.",
+    "en": "Retrieved 2026-08-17 · The 3.8 gigawatts and $12 billion are SemiAnalysis estimates from its own reconstruction of PJM's model and have not been independently verified. Auction totals and the data center share come from Monitoring Analytics, PJM's independent market monitor; the emergency auction schedule and price cap follow PJM's July 31, 2026 filing at FERC.",
+    "ja": "2026-08-17閲覧 · 3.8ギガワットと120億ドルはセミアナリシスが独自に再構成したモデルによる推定であり、第三者の検証はまだない。入札総額とデータセンター分はPJM市場監視者モニタリング・アナリティクスの集計、緊急入札の日程と上限価格はPJMが2026年7月31日にFERCへ提出した案による。"
+   }
+  },
+  {
    "date": "2026-08-15",
    "id": "hanke-hormuz-9m-claim-vs-tracked-1_74m",
    "related": [
@@ -63166,6 +63359,32 @@
     "한케",
     "スティーブ・ハンケ",
     "ハンケ"
+   ]
+  },
+  "시장감시자": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "en": "An independent watchdog that monitors a wholesale power market for market power and design flaws.",
+    "ko": "도매 전력시장에서 시장지배력 남용과 설계 결함을 감시하도록 독립적으로 두는 기구.",
+    "ja": "卸電力市場で市場支配力の乱用や設計上の欠陥を監視するために独立して置かれる機関."
+   },
+   "longDesc": {
+    "en": "US regional grid operators are each required to have an independent market monitor that reports separately to the regulator. PJM's monitor, Monitoring Analytics, publishes its own cost breakdowns of capacity auctions, which often differ from the operator's own account. For investors it is the one party with full auction data that is not the seller or the buyer.",
+    "ko": "미국의 지역 계통 운영자는 각각 독립된 시장감시자를 두고, 이 기구가 규제기관에 따로 보고하도록 돼 있다. PJM의 시장감시자인 모니터링애널리틱스는 용량경매 비용을 자체적으로 뜯어 발표하는데, 그 숫자가 운영자 설명과 다른 경우가 많다. 투자자에게는 경매 자료 전부를 보면서도 파는 쪽도 사는 쪽도 아닌 유일한 당사자다.",
+    "ja": "米国の地域系統運営者はそれぞれ独立した市場監視者を置き、規制当局に別途報告する仕組みになっている。PJMの市場監視者モニタリング・アナリティクスは容量入札の費用を独自に分解して公表し、その数字が運営者の説明と食い違うことも多い。投資家にとっては、入札資料をすべて見ながら売り手でも買い手でもない唯一の当事者だ."
+   },
+   "aliases": [
+    "market monitor",
+    "independent market monitor",
+    "Monitoring Analytics",
+    "시장감시자",
+    "시장감시기구",
+    "市場監視者"
    ]
   }
  }
