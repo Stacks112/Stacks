@@ -1,6 +1,186 @@
 {
  "items": [
   {
+   "date": "2026-08-17",
+   "id": "serenity-inp-substrate-fourth-hike-china-export-permit",
+   "related": [
+    "serenity-absolics-glass-substrate-slip-to-1h-2027",
+    "meru-terafab-fel-euv-light-source-vs-asml",
+    "serenity-mlcc-crowding-out-taiyo-yuden-10pct-vs-4pct"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2089165155741622679",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "wiki": "",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#111827",
+    "to": "#4c1d95",
+    "label": "INP"
+   },
+   "tags": [
+    "INP",
+    "OPTICS",
+    "CHINA"
+   ],
+   "stance": "bull",
+   "title": {
+    "ko": "800달러, 2,400달러, 그리고 네 번째 인상",
+    "en": "$800, $2,400, and a fourth price hike",
+    "ja": "800ドル、2,400ドル、そして4度目の値上げ"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Industry sources revealed that InP substrate prices began rising in Q4 last year and was the fourth consecutive substrate price hike.",
+      "The bottleneck is real, but I do have higher expectations for price hikes that comes next."
+     ],
+     "ko": [
+      "업계 소식통에 따르면 InP 기판 가격은 작년 4분기부터 오르기 시작했고, 이번이 네 번째 연속 기판 가격 인상이다.",
+      "병목은 진짜다. 다만 나는 다음에 올 가격 인상에 더 높은 기대를 갖고 있다."
+     ],
+     "ja": [
+      "業界筋によると、InP基板の価格は昨年第4四半期から上がり始め、今回が4回連続の基板値上げだ。",
+      "ボトルネックは本物だ。ただ私は次に来る値上げにはもっと高い期待を持っている。"
+     ]
+    },
+    "cite": "Serenity · 2026.08.17"
+   },
+   "sum3": {
+    "ko": "AI 데이터센터의 광통신에 쓰이는 재료 값이 네 분기째 오르고 있다.\n만드는 회사가 세 곳뿐이고 새 공장은 몇 해가 걸리니, 수요가 공급을 앞질렀다는 그림으로 읽힌다.\n그런데 값을 흔드는 손이 하나 더 있다. 점유율 2위 AXT의 공장은 베이징에 있고, 내보낼 때마다 중국 정부의 수출 허가를 받아야 한다.",
+    "en": "The price of a material used in AI data center optics has now risen for four quarters running.\nOnly three companies make it and a new plant takes years, so it reads as demand outrunning supply.\nBut there is a second hand on the price. AXT, second by share, runs its plant in Beijing and needs a Chinese export license for every shipment.",
+    "ja": "AIデータセンターの光通信に使われる材料の値段が4四半期連続で上がっている。\n作れる会社が3社しかなく新工場には数年かかるため、需要が供給を追い越したという絵に読める。\nだが値段を動かす手はもう一つある。シェア2位のAXTの工場は北京にあり、出荷のたびに中国政府の輸出許可が要る。"
+   },
+   "gist": {
+    "ko": "인듐인화물 기판 값이 네 번째로 오른다.\n6인치 웨이퍼 평균 가격은 이미 5,000달러 선까지 올라 250% 뛰었고, 이번 4분기 인상폭은 10%를 넘을 것으로 전해졌다.\n\n@@REF@@중국의 인듐인화물 수출 통제가 AI 데이터센터 구축을 위협한다 (마이닝닷컴, 2026-06-11)|https://www.mining.com/web/chinas-control-over-indium-phosphide-exports-threatens-ai-data-centre-rollout/|https://www.mining.com/wp-content/uploads/2026/06/AdobeStock_1598677550-scaled-e1781193655577.jpeg\n\n돈이 있어도 물건을 못 살 수 있다는 말이 공급사 쪽에서 나왔다.\n반도체 재료 이야기에서 좀처럼 듣기 어려운 문장이다.\n\n@@BAR@@2인치 기판, 2025년 초|약 800달러|800|2인치 기판, 2026년 4월|약 2,400달러|2400@@값이 세 배가 되는 동안 만드는 회사는 늘지 않았다.@@BigGo Finance(2026-04-25) · 2026-08-17 조회\n\n## 광섬유가 좋아하는 빛의 색\n\n데이터센터에서 랙과 랙 사이를 잇는 광케이블 끝에는 손가락만 한 부품이 꽂혀 있다.\n광트랜시버라고 부르는 이 부품 안에서 전기 신호가 빛으로 바뀐다.\n그 빛을 실제로 만들어 내는 레이저의 바닥판이 인듐인화물 기판이다.\n\n광섬유는 아무 빛이나 잘 보내 주지 않는다.\n1310나노미터에서는 신호가 퍼지지 않고, 1550나노미터에서는 가장 덜 새어 나간다.\n그래서 먼 거리를 가는 광통신은 이 두 파장만 쓴다.\n\n실리콘으로 대신할 수 없는 이유가 여기 있다.\n실리콘은 전기를 빛으로 바꾸는 효율이 워낙 낮아 레이저가 되지 못하고, 갈륨비소는 빛을 내지만 850에서 980나노미터 대역이라 광섬유가 좋아하는 색이 아니다.\n쉽게 말해 광섬유가 통과시켜 주는 색을 낼 수 있는 재료가 사실상 인듐인화물뿐이다.\n\n실리콘 포토닉스가 퍼질수록 인듐인화물 수요가 오히려 늘어나는 것도 이 때문이다.\n빛이 지나는 길은 실리콘으로 깎을 수 있지만, 빛을 만드는 자리에는 여전히 인듐인화물 칩을 따로 붙여야 한다.\n\n@@REF@@루멘텀 최고경영자가 실리콘 포토닉스 핵심 소재의 병목을 경고하다 (톰스하드웨어, 2026-07-31)|https://www.tomshardware.com/tech-industry/semiconductors/lumentum-ceo-says-the-indium-phosphide-shortage-will-become-worse-than-memory|https://cdn.mos.cms.futurecdn.net/ibEpXbFzhNegj42rkqPzgZ-1920-80.jpg\n\n광부품 업체 루멘텀의 마이클 헐스턴 최고경영자는 지금 공급이 고객 수요보다 30% 넘게 모자란다고 말했다.\n그는 이 부족이 메모리 부족보다 심해질 것이라고 했다.\n같은 분기 루멘텀 매출은 8억840만달러로 1년 전보다 90% 늘었다.\n\n## 만드는 곳은 세 곳뿐이다\n\n@@SHARE@@스미토모전기|43%|43|AXT|35%|35|JX어드밴스드메탈|13%|13|나머지 전체|9%|9@@세 회사가 91%를 쥐고 있다. 값이 올라도 물량이 곧바로 따라 늘지 않는 이유가 여기 있다.@@BigGo Finance(2026-04-25) 집계 · 2026-08-17 조회\n\n기판을 받아 그 위에 얇은 결정층을 키우는 회사는 따로 있다.\n이 공정을 에피택시라고 하고, 나온 물건을 에피택셜 웨이퍼라고 부른다.\n원문이 수혜주로 든 대만의 전신광전과 연아광전이 여기에 해당한다.\n\n기판 값이 오르면 이 웨이퍼 값도 따라 오른다.\n이미 두 번 올랐고 4분기에 세 번째 인상이 논의되고 있다고 전해졌다.\n\n## 값을 흔드는 손이 하나 더 있다\n\n원문은 수요가 폭발해서 값이 오른다고 읽는다.\n그런데 이 재료의 값에는 수요와 상관없이 움직이는 손이 하나 더 붙어 있다.\n\n점유율 2위인 AXT의 공장은 중국 베이징에 있다.\n자회사 베이징통메이가 인듐인화물 기판을 밖으로 내보내려면 건건이 중국 상무부의 수출 허가를 받아야 한다.\n2025년 4분기에는 허가가 늦어져 매출이 눌렸고, 2026년 들어 허가가 넓어지자 매출이 뛰었다.\n1분기 매출은 2,690만달러였고 그중 인듐인화물이 1,360만달러였다.\n2분기에는 4,760만달러로 늘면서 1,110만달러 순이익을 냈다.\n\n원자재 쪽도 같은 방향을 가리킨다.\n정제 인듐 생산의 약 70%가 중국에 있고, 인듐 현물가는 2026년 2월에 킬로그램당 500에서 600달러로 2015년 이후 가장 높았다.\n\n## AXT의 3분기 실적이 가를 자리\n\n그래서 이 가격 인상은 만드는 쪽의 실적으로 넘어올까, 값만 오르고 물량은 못 나가는 상태로 끝날까.\n두 갈래가 같은 분기 실적에서 갈린다.\n\nAXT의 3분기 매출이 2분기를 넘으면 인상분이 실제로 청구서에 실렸다는 뜻이다.\n넘지 못하면 값은 올랐는데 수출 허가나 생산능력이 발목을 잡았다는 뜻이다.\n값이 오르는 것과 그 값을 받아 내는 것은 이 재료에서 같은 일이 아니다.",
+    "en": "The price of indium phosphide substrate is going up for a fourth time.\nThe average six-inch wafer has already climbed to around $5,000, a rise of 250 percent, and the fourth-quarter increase is reported to be more than 10 percent.\n\n@@REF@@China's control over indium phosphide exports threatens AI data centre rollout (Mining.com, 2026-06-11)|https://www.mining.com/web/chinas-control-over-indium-phosphide-exports-threatens-ai-data-centre-rollout/|https://www.mining.com/wp-content/uploads/2026/06/AdobeStock_1598677550-scaled-e1781193655577.jpeg\n\nSuppliers have said buyers may not get the material even if they have the money.\nThat is a sentence you rarely hear about a semiconductor input.\n\n@@BAR@@Two-inch substrate, early 2025|about $800|800|Two-inch substrate, April 2026|about $2,400|2400@@The price tripled and the number of companies able to make it did not change.@@BigGo Finance (2026-04-25) · checked 2026-08-17\n\n## The colors an optical fiber likes\n\nAt each end of the cable running between data center racks sits a part about the size of a finger.\nInside that part, called an optical transceiver, an electrical signal becomes light.\nThe laser that actually produces that light is grown on a base of indium phosphide.\n\nOptical fiber does not carry every color of light equally well.\nAt 1310 nanometers the signal does not spread, and at 1550 nanometers the least of it leaks away.\nLong-distance optical links therefore use only these two wavelengths.\n\nThis is why silicon cannot take over the job.\nSilicon converts electricity into light so inefficiently that it never becomes a laser, and gallium arsenide does emit light but in the 850 to 980 nanometer range, which is not a color the fiber likes.\nPut simply, indium phosphide is close to the only material that can produce the colors the fiber will carry.\n\nIt is also why the spread of silicon photonics increases demand for indium phosphide rather than reducing it.\nThe path the light travels can be etched in silicon, but the place where the light is made still needs a separate indium phosphide chip attached.\n\n@@REF@@Lumentum CEO warns of impending bottleneck on critical material used for silicon photonics (Tom's Hardware, 2026-07-31)|https://www.tomshardware.com/tech-industry/semiconductors/lumentum-ceo-says-the-indium-phosphide-shortage-will-become-worse-than-memory|https://cdn.mos.cms.futurecdn.net/ibEpXbFzhNegj42rkqPzgZ-1920-80.jpg\n\nMichael Hurlston, chief executive of the optical component maker Lumentum, said supply currently falls more than 30 percent short of customer demand.\nHe said the shortage would become worse than the one in memory.\nLumentum's revenue in the same quarter was $808.4 million, up 90 percent from a year earlier.\n\n## Only three places make it\n\n@@SHARE@@Sumitomo Electric|43%|43|AXT|35%|35|JX Advanced Metals|13%|13|Everyone else|9%|9@@Three companies hold 91 percent. That is why a higher price does not immediately bring more material.@@BigGo Finance (2026-04-25) tally · checked 2026-08-17\n\nA different set of companies takes the substrate and grows a thin crystal layer on top of it.\nThe process is called epitaxy and the product an epitaxial wafer.\nThe Taiwanese firms the post named as beneficiaries, Visual Photonics Epitaxy and Landmark Optoelectronics, sit at this step.\n\nWhen substrate prices rise, the price of these wafers follows.\nThey have already risen twice, and a third increase is reported to be under discussion for the fourth quarter.\n\n## There is a second hand on the price\n\nThe post reads the increase as demand outrunning supply.\nBut this material has a second hand on its price that moves regardless of demand.\n\nAXT, second by share, runs its plant in Beijing.\nIts subsidiary Beijing Tongmei needs an export license from China's commerce ministry for each shipment of indium phosphide substrate.\nLicenses came slowly in the fourth quarter of 2025 and revenue was held down; they widened during 2026 and revenue jumped.\nFirst-quarter revenue was $26.9 million, of which indium phosphide was $13.6 million.\nSecond-quarter revenue rose to $47.6 million with net income of $11.1 million.\n\nThe raw material points the same way.\nAbout 70 percent of refined indium output sits in China, and the spot price reached $500 to $600 per kilogram in February 2026, the highest since 2015.\n\n## Where AXT's third quarter decides it\n\nSo does this price increase reach the seller's income statement, or does it stop at a quoted price with material that cannot ship?\nThe same quarterly report separates the two.\n\nIf AXT's third-quarter revenue exceeds the second quarter, the increase actually reached the invoice.\nIf it does not, the price rose while export licenses or capacity held the volume back.\nWith this material, raising the price and collecting it are not the same event.",
+    "ja": "インジウムリン基板の値段が4度目の引き上げに入る。\n6インチウエハーの平均価格はすでに5,000ドル前後まで上がり250%上昇し、今回の第4四半期の上げ幅は10%を超えると伝えられた。\n\n@@REF@@中国のインジウムリン輸出規制がAIデータセンター建設を脅かす (Mining.com、2026-06-11)|https://www.mining.com/web/chinas-control-over-indium-phosphide-exports-threatens-ai-data-centre-rollout/|https://www.mining.com/wp-content/uploads/2026/06/AdobeStock_1598677550-scaled-e1781193655577.jpeg\n\n金があっても物が買えないことがある、という言葉が供給側から出た。\n半導体材料の話でめったに聞かない一文だ。\n\n@@BAR@@2インチ基板、2025年初|約800ドル|800|2インチ基板、2026年4月|約2,400ドル|2400@@値段が3倍になる間、作れる会社は増えなかった。@@BigGo Finance(2026-04-25)·2026-08-17閲覧\n\n## 光ファイバーが好む光の色\n\nデータセンターでラックとラックをつなぐ光ケーブルの先には、指ほどの部品が挿さっている。\n光トランシーバーと呼ばれるこの部品の中で、電気信号が光に変わる。\nその光を実際に作り出すレーザーの土台がインジウムリン基板だ。\n\n光ファイバーはどんな光でもよく通すわけではない。\n1310ナノメートルでは信号が広がらず、1550ナノメートルでは最も漏れが少ない。\nだから遠くまで届く光通信はこの2つの波長しか使わない。\n\nシリコンで代わりが利かない理由がここにある。\nシリコンは電気を光に変える効率が極めて低くレーザーにならず、ガリウムヒ素は光を出すが850から980ナノメートルの帯域で、ファイバーが好む色ではない。\n平たく言えば、ファイバーが通してくれる色を出せる材料が事実上インジウムリンしかない。\n\nシリコンフォトニクスが広がるほどインジウムリンの需要がむしろ増えるのもこのためだ。\n光が通る道はシリコンで刻めるが、光を作る場所には今もインジウムリンのチップを別に貼る必要がある。\n\n@@REF@@ルメンタムCEOがシリコンフォトニクスの中核材料のボトルネックを警告 (Tom's Hardware、2026-07-31)|https://www.tomshardware.com/tech-industry/semiconductors/lumentum-ceo-says-the-indium-phosphide-shortage-will-become-worse-than-memory|https://cdn.mos.cms.futurecdn.net/ibEpXbFzhNegj42rkqPzgZ-1920-80.jpg\n\n光部品メーカー、ルメンタムのマイケル・ハールストン最高経営責任者は、今の供給が顧客需要より30%以上足りないと述べた。\n彼はこの不足がメモリーの不足より厳しくなると言った。\n同じ四半期のルメンタムの売上高は8億840万ドルで、1年前より90%増えた。\n\n## 作れる場所は3社しかない\n\n@@SHARE@@住友電気工業|43%|43|AXT|35%|35|JXアドバンストメタルズ|13%|13|その他全体|9%|9@@3社で91%を握っている。値段が上がっても数量がすぐに増えない理由がここにある。@@BigGo Finance(2026-04-25)集計·2026-08-17閲覧\n\n基板を受け取り、その上に薄い結晶層を育てる会社は別にいる。\nこの工程をエピタキシーと呼び、出来上がった物をエピタキシャルウエハーと呼ぶ。\n原文が恩恵先として挙げた台湾の全新光電と聯亜光電がこの工程にあたる。\n\n基板の値段が上がれば、このウエハーの値段も追って上がる。\nすでに2回上がり、第4四半期に3回目の引き上げが議論されていると伝えられた。\n\n## 値段を動かす手はもう一つある\n\n原文はこの上昇を、需要が供給を上回った結果として読む。\nだがこの材料の値段には、需要と関係なく動く手がもう一つ付いている。\n\nシェア2位のAXTの工場は中国の北京にある。\n子会社の北京通美がインジウムリン基板を外に出すには、その都度中国商務省の輸出許可が要る。\n2025年第4四半期は許可が遅れて売上が抑えられ、2026年に入って許可が広がると売上が跳ねた。\n第1四半期の売上高は2,690万ドルで、うちインジウムリンが1,360万ドルだった。\n第2四半期は4,760万ドルに増え、1,110万ドルの純利益を出した。\n\n原材料の側も同じ方向を指している。\n精製インジウム生産の約70%が中国にあり、インジウムの現物価格は2026年2月にキロ当たり500から600ドルと2015年以降で最も高かった。\n\n## AXTの第3四半期が分ける場所\n\nではこの値上げは作る側の業績まで届くのか、値段だけ上がって数量が出ない状態で終わるのか。\n同じ四半期の決算が二つを分ける。\n\nAXTの第3四半期の売上高が第2四半期を上回れば、値上げが実際に請求書に乗ったということだ。\n上回らなければ、値段は上がったのに輸出許可か生産能力が数量を押さえたということだ。\nこの材料では、値段を上げることとその値段を回収することは同じ出来事ではない。"
+   },
+   "why": {
+    "ko": "AI 데이터센터의 병목이 연산 칩에서 빛을 만드는 재료로 옮겨 붙었다. 이 재료의 공급은 회사 세 곳과 중국 정부의 허가 속도가 함께 정한다.",
+    "en": "The bottleneck in AI data centers has moved from the compute chip to the material that makes the light. Supply of that material is set by three companies and by how fast Beijing issues licenses.",
+    "ja": "AIデータセンターのボトルネックが演算チップから光を作る材料へ移った。この材料の供給は3社と、中国政府の許可の速さが一緒に決めている。"
+   },
+   "ask": {
+    "ko": "인듐인화물 병목은 새 공장이 들어서면 풀릴 문제일까, 아니면 중국의 수출 허가가 쥐고 있는 한 값이 계속 오르는 구조일까?",
+    "en": "Is the indium phosphide bottleneck something new plants will clear, or does the price keep rising as long as Beijing controls the export licenses?",
+    "ja": "インジウムリンのボトルネックは新工場ができれば解ける問題なのか、それとも中国の輸出許可が握っている限り値段が上がり続ける構造なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-11-30",
+    "note": {
+     "ko": "2026년 3분기 실적에서 AXT 매출이 2분기 4,760만달러를 넘는지로 채점한다.",
+     "en": "To be scored on whether AXT's third-quarter revenue exceeds the $47.6 million it booked in the second quarter.",
+     "ja": "2026年第3四半期の決算で、AXTの売上高が第2四半期の4,760万ドルを上回るかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "AXT의 2026년 3분기 매출",
+      "en": "AXT third-quarter 2026 revenue",
+      "ja": "AXTの2026年第3四半期の売上高"
+     },
+     "now": {
+      "ko": "2026년 2분기 4,760만달러 (1분기 2,690만달러)",
+      "en": "$47.6 million in Q2 2026, up from $26.9 million in Q1",
+      "ja": "2026年第2四半期4,760万ドル(第1四半期2,690万ドル)"
+     },
+     "when": {
+      "ko": "2026년 10월에서 11월, 3분기 실적 발표",
+      "en": "October to November 2026, at the third-quarter results",
+      "ja": "2026年10月から11月の第3四半期決算発表"
+     },
+     "hit": {
+      "ko": "4,760만달러 초과 → 인상분이 청구서에 실렸다",
+      "en": "Above $47.6 million → the increase reached the invoice",
+      "ja": "4,760万ドル超 → 値上げが請求書に乗った"
+     },
+     "miss": {
+      "ko": "4,760만달러 이하 → 값은 올랐는데 물량이 못 나갔다",
+      "en": "At or below $47.6 million → the price rose but the volume did not ship",
+      "ja": "4,760万ドル以下 → 値段は上がったが数量が出なかった"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity(@aleabitoreddit) · 2026-08-17",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-17",
+      "ja": "Serenity(@aleabitoreddit)·2026-08-17"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2089165155741622679"
+    },
+    {
+     "name": {
+      "ko": "마이닝닷컴",
+      "en": "Mining.com",
+      "ja": "Mining.com"
+     },
+     "desc": {
+      "ko": "6인치 웨이퍼 평균 5,000달러선, 250% 상승과 중국 수출 통제 · 2026-06-11",
+      "en": "Six-inch wafers around $5,000, up 250 percent, and China's export controls · 2026-06-11",
+      "ja": "6インチウエハー平均5,000ドル前後、250%上昇と中国の輸出規制·2026-06-11"
+     },
+     "url": "https://www.mining.com/web/chinas-control-over-indium-phosphide-exports-threatens-ai-data-centre-rollout/"
+    },
+    {
+     "name": {
+      "ko": "톰스하드웨어",
+      "en": "Tom's Hardware",
+      "ja": "Tom's Hardware"
+     },
+     "desc": {
+      "ko": "루멘텀 최고경영자의 30% 공급 부족 발언과 분기 매출 8억840만달러 · 2026-07-31",
+      "en": "Lumentum's CEO on the 30 percent supply shortfall and $808.4 million quarterly revenue · 2026-07-31",
+      "ja": "ルメンタムCEOの30%供給不足発言と四半期売上8億840万ドル·2026-07-31"
+     },
+     "url": "https://www.tomshardware.com/tech-industry/semiconductors/lumentum-ceo-says-the-indium-phosphide-shortage-will-become-worse-than-memory"
+    },
+    {
+     "name": {
+      "ko": "BigGo Finance",
+      "en": "BigGo Finance",
+      "ja": "BigGo Finance"
+     },
+     "desc": {
+      "ko": "2인치 기판 가격 추이와 기판 공급사 점유율 집계 · 2026-04-25",
+      "en": "Two-inch substrate price history and the substrate supplier share tally · 2026-04-25",
+      "ja": "2インチ基板の価格推移と基板供給社シェア集計·2026-04-25"
+     },
+     "url": "https://finance.biggo.com/news/xsiIxJ0Bh5an-7GhIww3"
+    },
+    {
+     "name": {
+      "ko": "AXT 실적 발표",
+      "en": "AXT results",
+      "ja": "AXT決算発表"
+     },
+     "desc": {
+      "ko": "2026년 1분기 매출 2,690만달러(인듐인화물 1,360만달러), 2분기 매출 4,760만달러·순이익 1,110만달러 · 2026-05-05, 2026-07-30",
+      "en": "Q1 2026 revenue $26.9 million with $13.6 million from indium phosphide; Q2 revenue $47.6 million and net income $11.1 million · 2026-05-05 and 2026-07-30",
+      "ja": "2026年第1四半期売上2,690万ドル(インジウムリン1,360万ドル)、第2四半期売上4,760万ドル・純利益1,110万ドル·2026-05-05、2026-07-30"
+     },
+     "url": ""
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 점유율과 2인치 기판 가격은 2026-04-25 집계 기준, AXT 실적은 회사 발표 기준, 4분기 인상폭은 원문이 인용한 업계 보도 기준",
+    "en": "Checked 2026-08-17 · Shares and two-inch substrate prices as tallied on 2026-04-25; AXT figures as reported by the company; the fourth-quarter increase as carried in the industry reporting the post cites",
+    "ja": "2026-08-17閲覧·シェアと2インチ基板価格は2026-04-25の集計基準、AXTの数値は会社発表基準、第4四半期の上げ幅は原文が引用した業界報道基準"
+   }
+  },
+  {
    "date": "2026-08-16",
    "id": "jukan-nvidia-500b-platform-25pct-residual-guarantee",
    "related": [
@@ -64857,6 +65037,32 @@
     "KKR & Co.",
     "케이케이알",
     "コールバーグ・クラビス・ロバーツ"
+   ]
+  },
+  "에피택셜 웨이퍼": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "기판 위에 얇은 결정층을 규칙적으로 키워 올린 웨이퍼.",
+    "en": "A wafer with a thin crystal layer grown in register on top of a substrate.",
+    "ja": "基板の上に薄い結晶層を規則的に育てたウエハー。"
+   },
+   "longDesc": {
+    "ko": "레이저나 고주파 소자는 기판 자체가 아니라 그 위에 올린 얇은 층에서 작동한다. 이 층을 키우는 공정이 에피택시이고, 층의 두께와 조성이 소자의 파장과 효율을 정한다. 기판을 만드는 회사와 층을 키우는 회사가 대개 나뉘어 있어, 기판 값이 오르면 에피택셜 웨이퍼 값도 시차를 두고 따라 오른다.",
+    "en": "Lasers and high-frequency devices work not in the substrate itself but in the thin layer grown on top of it. That growth step is epitaxy, and the layer's thickness and composition set the device's wavelength and efficiency. Substrate makers and epitaxy houses are usually separate companies, so a substrate price increase shows up in epitaxial wafer prices with a lag.",
+    "ja": "レーザーや高周波素子は基板そのものではなく、その上に載せた薄い層で動く。この層を育てる工程がエピタキシーで、層の厚さと組成が素子の波長と効率を決める。基板を作る会社と層を育てる会社は分かれていることが多く、基板の値上がりは時間差でエピタキシャルウエハーの価格に現れる。"
+   },
+   "aliases": [
+    "epitaxial wafer",
+    "epitaxy",
+    "에피택셜 웨이퍼",
+    "에피택시",
+    "エピタキシャルウエハー",
+    "エピタキシー"
    ]
   }
  }
