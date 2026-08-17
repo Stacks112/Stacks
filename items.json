@@ -2,6 +2,186 @@
  "items": [
   {
    "date": "2026-08-17",
+   "id": "serenity-mlcc-crowding-out-taiyo-yuden-10pct-vs-4pct",
+   "related": [
+    "jukan-mlcc-ai-shortage-taiwan-spillover",
+    "jukan-mlcc-samsung-electro-30-percent-hike",
+    "serenity-taiyo-yuden-11_62-filed-after-forced-unwind"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2089183484556480536",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#1e3a8a",
+    "to": "#1d4ed8",
+    "label": "MLCC"
+   },
+   "tags": [
+    "MLCC",
+    "SHORTAGE",
+    "JAPAN"
+   ],
+   "stance": "bull",
+   "title": {
+    "ko": "AI가 콘덴서를 쓸어가는데 왜 다이요유덴이 수혜주로 꼽힐까",
+    "en": "Why is Taiyo Yuden named the winner when AI is soaking up the capacitors?",
+    "ja": "AIがコンデンサを買い占めるなか、なぜ太陽誘電が恩恵銘柄に挙がるのか"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "I think we're seeing AI server MLCC demand cause an interesting effect... with tightening capacity for consumer/general-purpose MLCCs.",
+      "My thesis is we'll see the same thing here maybe late H2, early 2027 with consumer/broad MLCCs."
+     ],
+     "ko": [
+      "AI 서버용 MLCC 수요가 흥미로운 효과를 만들어 내고 있다고 본다. 소비자용, 범용 MLCC의 생산능력이 빠듯해지는 것이다.",
+      "내 논지는 소비자용, 범용 MLCC에서도 같은 일이 2026년 하반기 늦게 또는 2027년 초에 벌어지리라는 것이다."
+     ],
+     "ja": [
+      "AIサーバー向けMLCCの需要が興味深い効果を生んでいると思う。民生用・汎用MLCCの生産能力が逼迫していることだ。",
+      "私の見立ては、民生用・汎用MLCCでも同じことが2026年後半の遅くか2027年初めに起きる、というものだ。"
+     ]
+    },
+    "cite": "Serenity · 2026.08.17"
+   },
+   "sum3": {
+    "ko": "AI 서버용 콘덴서를 더 만들려고 라인을 돌리면서, 스마트폰과 PC에 쓰는 흔한 콘덴서가 마르기 시작했다.\n겉으로 보면 AI 물량을 가장 많이 대는 무라타와 삼성전기가 수혜다.\n그런데 세레니티가 지목한 곳은 AI 서버용 몫이 4%에도 못 미치는 다이요유덴이다.",
+    "en": "Lines turned over to AI server capacitors, and the ordinary ones inside phones and laptops began to run short.\nRead one way, the winners are Murata and Samsung Electro-Mechanics, who supply most of the AI volume.\nBut the name Serenity picked is Taiyo Yuden, which holds under 4% of AI server parts.",
+    "ja": "AIサーバー向けコンデンサの増産にラインを振り向けた結果、スマートフォンやPCに使う普通のコンデンサが枯れ始めた。\n表向きにはAI数量を最も多く供給する村田とサムスン電機が恩恵を受ける形だ。\nところがセレニティが挙げたのは、AIサーバー向けの取り分が4%にも届かない太陽誘電だった。"
+   },
+   "gist": {
+    "ko": "AI 서버용 고급 콘덴서를 더 만들려고 생산 라인을 돌리자, 스마트폰과 PC에 들어가는 흔한 콘덴서 쪽에서 물건이 마르기 시작했다.\n세레니티는 이 밀림 현상이 2026년 하반기 늦게 또는 2027년 초에 본격화한다고 본다.\n\n## 콘덴서에도 등급이 있다\n\nMLCC는 세라믹을 층층이 쌓아 만든 손톱만 한 부품이다.\n전기를 잠깐 담았다 흘려보내며 회로의 전원을 고르게 펴 주는 일을 한다.\n\n같은 MLCC라도 온도가 오르내릴 때 용량이 얼마나 흔들리지 않느냐로 등급이 갈린다.\nX5R은 흔들림이 큰 대신 싸고 양이 많아 스마트폰과 PC에 들어가고,\nX6S와 X7R은 더 넓은 온도에서 버티는 대신 만들기 까다로워 AI 서버 보드에 들어간다.\n\n여기가 핵심이다.\n\n두 등급은 다른 공장이 아니라 대체로 같은 라인에서 나온다.\n윗등급을 더 찍으면 아랫등급을 찍을 시간이 그만큼 줄어든다.\n\n## 밀려난 자리에서 무엇이 마르나\n\n세레니티는 중국 전자시장 유통 점검에서 22마이크로패럿과 47마이크로패럿 제품이 품절이었고,\n일부 제조사는 아예 주문을 받지 않았다고 전했다.\n대만 월신이 스마트폰과 PC에 많이 쓰이는 규격으로 22마이크로패럿을 꼽았다는 언급도 함께 붙였다.\n\n@@REF@@전 라인 30% 인상, MLCC 가격 급등이 심해지다 (트렌드포스, 2026-08-04)|https://www.trendforce.com/news/2026/08/04/news-across-the-board-30-price-hike-mlcc-price-surge-intensifies/|https://img.trendforce.com/blog/wp-content/uploads/2026/02/24142311/Samsung-Electro-Mechanics-MLCC-20260224-624x416.jpg\n\n이 기사는 같은 방향을 다른 각도에서 확인해 준다.\n1마이크로패럿에서 22마이크로패럿에 이르는 범용 제품의 유통 재고가 30일치 경보선 아래로 내려갔고,\n소비자용 X5R 생산능력이 AI용 고급 규격으로 옮겨 가는 중이라고 적었다.\n품귀가 AI 등급에 머무르지 않고 흔한 규격으로 번졌다는 뜻이다.\n\n## 수혜의 방향이 갈리는 자리\n\n@@CHK@@무라타 전체 MLCC 점유율|약 40%|삼성전기 전체 MLCC 점유율|약 18%|다이요유덴 전체 MLCC 점유율|약 10%@@전체 시장에서 다이요유덴은 무라타의 4분의 1 규모다. 그런데 AI 서버용만 떼어 보면 순서가 그대로가 아니다. 세레니티의 논지는 바로 이 어긋남 위에 서 있다.@@2026-06-30 · passive-components.eu, MLCCs in the Age of AI: Q2 2026 Market Tightness\n\n@@SHARE@@무라타|약 45%|45|삼성전기|약 40%|40|나머지 전체|약 15%|15@@AI 서버용 MLCC만 놓고 보면 두 회사가 8할을 넘게 가져간다. 라인을 AI로 돌리는 대가도 이 두 회사가 가장 크게 치른다는 뜻이다.@@2026-06-30 · passive-components.eu\n\n@@REF@@AI 시대의 MLCC, 2026년 2분기 시장 경색 (passive-components.eu, 2026-06-30)|https://passive-components.eu/mlccs-in-the-age-of-ai-q2-2026-market-tightness/\n\n이 자료에 따르면 다이요유덴의 AI 서버용 MLCC 점유율은 4%에 미치지 못한다.\n전체 시장에서는 10%를 쥐고 있으니, 이 회사 매출의 대부분은 아직 범용 쪽에 있다.\n\n세레니티가 다이요유덴을 지목한 논리가 여기서 나온다.\nAI 특수의 바깥에 있었다는 사실이, 값이 오르는 물건을 아직 많이 만들고 있다는 뜻이 된다.\n같은 이유로 무라타와 삼성전기는 AI 등급에서 벌지만 범용 쪽 물량은 스스로 줄이는 자리에 서 있다.\n\n## 다이요유덴의 9월 1일이 첫 확인 지점\n\n값이 실제로 오르는지를 볼 수 있는 눈금은 이미 잡혀 있다.\n삼성전기가 8월 1일부터 전 라인업 가격을 30% 올렸고, 다이요유덴도 9월 1일 인상을 검토한다고 트렌드포스가 전했다.\n\n세레니티는 이 글에서 자신이 다이요유덴 주식을 갖고 있다고 밝혔다.\n그러니 이 논지는 중립적인 관측이 아니라 포지션을 가진 사람의 주장으로 읽는 편이 맞다.\n다만 근거로 쓴 점유율 격차 자체는 제3자 자료로 확인된다.\n\n투자자가 갈리는 지점은 이 밀림이 얼마나 오래가느냐다.\n2018년 MLCC 품귀 때 수주잔고비율의 정점은 1.25였다.\n올해 6월 말 세 회사는 모두 그 선을 넘거나 걸쳐 있었다.\n다이요유덴이 9월 1일 인상을 실제로 시행하고 4분기까지 범용 유통가가 8월 수준 위에서 유지되면 세레니티의 그림이 맞아 들어간다.\n인상이 접히거나 유통가가 8월 아래로 내려가면 이번 경색은 AI 등급에서 끝난 이야기다.",
+    "en": "Lines were retooled to make more of the high-grade capacitors that AI servers need, and the ordinary capacitors that go into phones and laptops started running short.\nSerenity expects that squeeze to bite in earnest late in the second half of 2026 or early in 2027.\n\n## Capacitors come in grades\n\nAn MLCC is a fingernail-sized part built from stacked ceramic layers.\nIt holds a little charge and releases it, smoothing the power that runs through a circuit.\n\nMLCCs are graded by how little their capacitance drifts as temperature swings.\nX5R drifts more but is cheap and made in volume, which is why it fills phones and laptops.\nX6S and X7R hold steadier across a wider temperature range, are harder to build, and go onto AI server boards.\n\nThat is the crux.\n\nThe two grades mostly come off the same lines rather than separate plants.\nEvery hour spent printing the upper grade is an hour not spent on the lower one.\n\n## What dries up in the space left behind\n\nSerenity reported that channel checks in China's electronics market found 22 microfarad and 47 microfarad parts out of stock,\nand that some manufacturers had stopped taking orders altogether.\nThe post also noted Walsin of Taiwan citing 22 microfarad among the high-volume specifications used in smartphones and PCs.\n\n@@REF@@Across-the-board 30% price hike: MLCC price surge intensifies (TrendForce, 2026-08-04)|https://www.trendforce.com/news/2026/08/04/news-across-the-board-30-price-hike-mlcc-price-surge-intensifies/|https://img.trendforce.com/blog/wp-content/uploads/2026/02/24142311/Samsung-Electro-Mechanics-MLCC-20260224-624x416.jpg\n\nThat report confirms the same movement from a different angle.\nChannel inventory for general-purpose parts from 1 to 22 microfarad has fallen below the 30-day warning line,\nand consumer-grade X5R capacity is being converted to the high-end specifications AI demands.\nThe shortage, in other words, has not stayed inside the AI grade.\n\n## Where the benefit splits\n\n@@CHK@@Murata, share of the whole MLCC market|about 40%|Samsung Electro-Mechanics, whole market|about 18%|Taiyo Yuden, whole market|about 10%@@Across the whole market Taiyo Yuden is a quarter of Murata's size. Isolate AI server parts, though, and the ranking does not carry over. Serenity's case rests on exactly that mismatch.@@2026-06-30 · passive-components.eu, MLCCs in the Age of AI: Q2 2026 Market Tightness\n\n@@SHARE@@Murata|about 45%|45|Samsung Electro-Mechanics|about 40%|40|everyone else|about 15%|15@@In AI server MLCCs alone the two firms take more than four fifths. They are also the two paying the largest price for turning their lines over to AI.@@2026-06-30 · passive-components.eu\n\n@@REF@@MLCCs in the age of AI: Q2 2026 market tightness (passive-components.eu, 2026-06-30)|https://passive-components.eu/mlccs-in-the-age-of-ai-q2-2026-market-tightness/\n\nBy that account Taiyo Yuden holds under 4% of AI server MLCCs.\nIt holds about 10% of the market as a whole, so most of its revenue still sits on the general-purpose side.\n\nThis is where Serenity's pick comes from.\nHaving been left outside the AI boom means still making a great deal of the product whose price is now rising.\nBy the same logic Murata and Samsung Electro-Mechanics earn in the AI grade while shrinking their own general-purpose volume.\n\n## Taiyo Yuden's September 1 is the first checkpoint\n\nThere is already a scale on which to read whether prices really move.\nSamsung Electro-Mechanics lifted its entire lineup 30% from August 1, and Taiyo Yuden is reportedly weighing a September 1 increase, according to TrendForce.\n\nSerenity disclosed in the post that they hold Taiyo Yuden stock.\nThe argument is best read as a case made by someone with a position rather than a neutral observation.\nThe share gap it leans on, however, is confirmed by third-party data.\n\nWhat divides investors is how long the crowding-out lasts.\nIn the 2018 MLCC shortage the book-to-bill ratio peaked at 1.25.\nAt the end of this June all three suppliers were at or above that line.\nIf Taiyo Yuden puts the September 1 increase through and general-purpose channel prices hold above August levels into the fourth quarter, Serenity's picture is filling in.\nIf the increase is dropped or prices slip back below August, this tightness was a story that ended inside the AI grade.",
+    "ja": "AIサーバー向けの高グレードなコンデンサを増産しようとラインを回した結果、スマートフォンやPCに入る普通のコンデンサのほうで品物が枯れ始めた。\nセレニティは、この押し出しが2026年後半の遅くか2027年初めに本格化すると見ている。\n\n## コンデンサにも等級がある\n\nMLCCはセラミックを何層にも積んで作る、爪ほどの大きさの部品だ。\n電気を一瞬ためて流し、回路の電源をならす役割を担う。\n\n同じMLCCでも、温度が上下したときに容量がどれだけぶれないかで等級が分かれる。\nX5Rはぶれが大きい代わりに安く量が出るのでスマートフォンやPCに入り、\nX6SとX7Rはより広い温度で耐える代わりに作りにくく、AIサーバーの基板に載る。\n\nここが要点だ。\n\n二つの等級は別の工場ではなく、おおむね同じラインから出てくる。\n上の等級を多く打てば、下の等級を打つ時間はその分だけ減る。\n\n## 押し出された場所で何が枯れるのか\n\nセレニティは、中国の電子市場の流通チェックで22マイクロファラッドと47マイクロファラッドの製品が品切れで、\n一部のメーカーは注文自体を受け付けなくなっていた、と伝えている。\n台湾の華新科技がスマートフォンやPCで多く使われる規格として22マイクロファラッドを挙げた、という言及も添えている。\n\n@@REF@@全ライン30%値上げ、MLCC価格の急騰が強まる (トレンドフォース, 2026-08-04)|https://www.trendforce.com/news/2026/08/04/news-across-the-board-30-price-hike-mlcc-price-surge-intensifies/|https://img.trendforce.com/blog/wp-content/uploads/2026/02/24142311/Samsung-Electro-Mechanics-MLCC-20260224-624x416.jpg\n\nこの記事は同じ動きを別の角度から裏づけている。\n1マイクロファラッドから22マイクロファラッドに至る汎用品の流通在庫が30日分の警戒線を下回り、\n民生用X5Rの生産能力がAI向けの高グレード規格へ振り替えられつつある、と書いている。\n品薄がAI等級にとどまらず、ありふれた規格まで広がったということだ。\n\n## 恩恵の向きが分かれる場所\n\n@@CHK@@村田製作所のMLCC全体シェア|約40%|サムスン電機のMLCC全体シェア|約18%|太陽誘電のMLCC全体シェア|約10%@@市場全体では太陽誘電は村田の4分の1の規模だ。ところがAIサーバー向けだけを取り出すと、その順序はそのままではない。セレニティの論はまさにこのずれの上に立っている。@@2026-06-30 · passive-components.eu, MLCCs in the Age of AI: Q2 2026 Market Tightness\n\n@@SHARE@@村田製作所|約45%|45|サムスン電機|約40%|40|その他全体|約15%|15@@AIサーバー向けMLCCだけを見れば、二社で8割超を取る。ラインをAIへ振り向ける代償を最も大きく払うのもこの二社だということになる。@@2026-06-30 · passive-components.eu\n\n@@REF@@AI時代のMLCC、2026年第2四半期の市場逼迫 (passive-components.eu, 2026-06-30)|https://passive-components.eu/mlccs-in-the-age-of-ai-q2-2026-market-tightness/\n\nこの資料によれば、太陽誘電のAIサーバー向けMLCCシェアは4%に届かない。\n市場全体では10%を握っているのだから、この会社の売上の大半はまだ汎用側にある。\n\nセレニティが太陽誘電を挙げた理屈はここから出てくる。\nAI特需の外側にいたという事実が、値上がりしている品物をまだ多く作っているという意味になる。\n同じ理屈で村田とサムスン電機は、AI等級で稼ぎながら汎用側の数量は自ら減らす位置に立っている。\n\n## 太陽誘電の9月1日が最初の確認点\n\n値が実際に上がるかを見る目盛りは、すでに置かれている。\nサムスン電機が8月1日から全ラインアップの価格を30%引き上げ、太陽誘電も9月1日の値上げを検討していると、トレンドフォースが伝えた。\n\nセレニティはこの投稿で、自分が太陽誘電の株を保有していると明かしている。\nだからこの論は中立の観測ではなく、ポジションを持つ人の主張として読むほうが正しい。\nただし根拠に使ったシェアの開きそのものは、第三者の資料で確認できる。\n\n投資家の判断が分かれるのは、この押し出しがどれだけ続くかだ。\n2018年のMLCC品薄では受注残高比率の頂点が1.25だった。\n今年6月末に三社はいずれもその線を超えるか、かかっていた。\n太陽誘電が9月1日の値上げを実際に実施し、第4四半期まで汎用の流通価格が8月の水準の上で保たれれば、セレニティの絵は埋まっていく。\n値上げが撤回されるか流通価格が8月を下回れば、今回の逼迫はAI等級の中で終わった話になる。"
+   },
+   "why": {
+    "ko": "AI 부품 병목에 투자하는 통상적인 방법은 AI에 가장 많이 파는 회사를 사는 것이다. 이 카드가 다루는 논지는 그 반대편에 선다. 라인이 위쪽으로 쏠릴수록 값이 오르는 쪽은 밀려난 아랫등급이고, 그 아랫등급을 아직 많이 만들고 있는 회사는 AI 특수의 바깥에 있던 회사라는 것이다. 병목 투자의 방향이 통째로 뒤집히는 지점이다.",
+    "en": "The usual way to invest in an AI component bottleneck is to buy whoever sells the most into AI. The case here runs the other way. The more capacity tilts to the upper grade, the more the displaced lower grade is what rises in price, and the firm still making a lot of that lower grade is the one that was outside the AI boom. It inverts the direction of a bottleneck trade.",
+    "ja": "AI部品のボトルネックに投資する通常のやり方は、AIに最も多く売る会社を買うことだ。このカードが扱う論はその逆側に立つ。ラインが上の等級へ傾くほど値が上がるのは押し出された下の等級であり、その下の等級をまだ多く作っている会社は、AI特需の外にいた会社だという見方だ。ボトルネック投資の向きがそのまま反転する地点である。"
+   },
+   "ask": {
+    "ko": "AI 서버용 몫이 4%도 안 되는 회사가 AI 품귀의 수혜주가 될 수 있다는 논리는, 밀려난 범용 물량의 값이 오른다는 전제 위에 서 있다. 이 전제를 사겠는가, 아니면 AI에 직접 파는 무라타·삼성전기를 사겠는가?",
+    "en": "The claim that a firm with under 4% of AI server parts benefits from an AI shortage rests on the premise that the displaced general-purpose volume rises in price. Would you buy that premise, or buy Murata and Samsung Electro-Mechanics selling straight into AI?",
+    "ja": "AIサーバー向けの取り分が4%にも満たない会社がAI品薄の恩恵銘柄になりうるという論理は、押し出された汎用数量の値が上がるという前提の上に立つ。この前提を買うか、それともAIに直接売る村田・サムスン電機を買うか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2027-03-31",
+    "note": {
+     "ko": "다이요유덴이 9월 1일 범용 MLCC 가격 인상을 실제로 시행하고, 2026년 4분기까지 범용 유통가가 8월 수준 위에서 유지되는지로 채점한다.",
+     "en": "To be scored on whether Taiyo Yuden actually puts through a September 1 increase on general-purpose MLCCs and channel prices hold above August levels into the fourth quarter of 2026.",
+     "ja": "太陽誘電が9月1日の汎用MLCC値上げを実際に実施し、2026年第4四半期まで汎用の流通価格が8月の水準の上で保たれるかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "범용·소비자용 MLCC의 가격 인상 지속 여부",
+      "en": "Whether the price increase on general-purpose and consumer MLCCs holds",
+      "ja": "汎用・民生用MLCCの値上げが持続するかどうか"
+     },
+     "now": {
+      "ko": "삼성전기가 8월 1일부터 전 라인업 30% 인상, 다이요유덴은 9월 1일 인상을 검토 중이라고 트렌드포스가 전했다",
+      "en": "Samsung Electro-Mechanics raised its full lineup 30% from August 1; TrendForce reports Taiyo Yuden is weighing a September 1 increase",
+      "ja": "サムスン電機が8月1日から全ラインアップを30%引き上げ、太陽誘電は9月1日の値上げを検討中とトレンドフォースが伝えた"
+     },
+     "when": {
+      "ko": "2027년 1분기 (2026년 4분기 유통가와 실적 확인 시점)",
+      "en": "First quarter of 2027, once fourth-quarter 2026 channel prices and results are visible",
+      "ja": "2027年第1四半期(2026年第4四半期の流通価格と実績が見える時点)"
+     },
+     "hit": {
+      "ko": "9월 1일 인상이 시행되고 4분기 범용 유통가가 8월 수준 위에서 유지 → 세레니티의 예측 적중",
+      "en": "The September 1 increase goes through and fourth-quarter general-purpose channel prices stay above August levels, Serenity's call lands",
+      "ja": "9月1日の値上げが実施され、第4四半期の汎用流通価格が8月の水準の上で保たれる → セレニティの予測が的中"
+     },
+     "miss": {
+      "ko": "인상이 시행되지 않거나, 시행돼도 4분기 유통가가 8월 수준 아래로 내려감 → 어긋남",
+      "en": "The increase is not put through, or it is and fourth-quarter channel prices fall back below August levels, the call misses",
+      "ja": "値上げが実施されないか、実施されても第4四半期の流通価格が8月の水準を下回る → 外れ"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity(@aleabitoreddit) · 2026-08-17",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-17",
+      "ja": "セレニティ(@aleabitoreddit) · 2026-08-17"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2089183484556480536"
+    },
+    {
+     "name": {
+      "ko": "범용 MLCC 재고와 가격",
+      "en": "General-purpose MLCC inventory and prices",
+      "ja": "汎用MLCCの在庫と価格"
+     },
+     "desc": {
+      "ko": "트렌드포스 · 2026-08-04 · 범용 유통 재고 30일 경보선 이하, 소비자용 X5R 생산능력의 고급 규격 전환",
+      "en": "TrendForce · 2026-08-04 · general-purpose channel inventory below the 30-day warning line and X5R capacity converting to high-end grades",
+      "ja": "トレンドフォース · 2026-08-04 · 汎用の流通在庫が30日警戒線以下、民生用X5R能力の高グレード転換"
+     },
+     "url": "https://www.trendforce.com/news/2026/08/04/news-across-the-board-30-price-hike-mlcc-price-surge-intensifies/"
+    },
+    {
+     "name": {
+      "ko": "MLCC 점유율",
+      "en": "MLCC market shares",
+      "ja": "MLCCシェア"
+     },
+     "desc": {
+      "ko": "passive-components.eu · 2026-06-30 · 전체 시장 및 AI 서버용 점유율의 출처",
+      "en": "passive-components.eu · 2026-06-30 · source for both the whole-market and AI-server shares",
+      "ja": "passive-components.eu · 2026-06-30 · 全体市場およびAIサーバー向けシェアの出所"
+     },
+     "url": "https://passive-components.eu/mlccs-in-the-age-of-ai-q2-2026-market-tightness/"
+    },
+    {
+     "name": {
+      "ko": "가격 인상 일정",
+      "en": "Price increase schedule",
+      "ja": "値上げの日程"
+     },
+     "desc": {
+      "ko": "트렌드포스 · 2026-07-29 · 삼성전기 8월 1일 30% 인상과 다이요유덴 9월 1일 인상 검토",
+      "en": "TrendForce · 2026-07-29 · Samsung Electro-Mechanics' 30% increase from August 1 and Taiyo Yuden reportedly eyeing September 1",
+      "ja": "トレンドフォース · 2026-07-29 · サムスン電機の8月1日30%値上げと太陽誘電の9月1日値上げ検討"
+     },
+     "url": "https://www.trendforce.com/news/2026/07/29/news-samsung-electro-mechanics-lifts-mlcc-prices-30-starting-aug-1-taiyo-yuden-reportedly-eyes-sept-1-hike/"
+    },
+    {
+     "name": {
+      "ko": "수주잔고비율",
+      "en": "Book-to-bill ratios",
+      "ja": "受注残高比率"
+     },
+     "desc": {
+      "ko": "트렌드포스 · 2026-07-06 · 2018년 정점 1.25와 2026년 6월 말 세 회사 수치의 출처",
+      "en": "TrendForce · 2026-07-06 · source for the 2018 peak of 1.25 and the end-June 2026 readings",
+      "ja": "トレンドフォース · 2026-07-06 · 2018年の頂点1.25と2026年6月末の三社の数値の出所"
+     },
+     "url": "https://www.trendforce.com/presscenter/news/20260706-13136.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-17 조회 · 점유율은 passive-components.eu의 2026년 2분기 자료 기준이고, 유통 재고와 가격은 트렌드포스의 2026년 7월 29일과 8월 4일 발표 기준이다. 세레니티가 8월 12일자로 인용한 중국 유통 점검은 원 보도를 특정하지 못해 본문에서 전언으로 남겨 두었다.",
+    "en": "Retrieved 2026-08-17 · Shares are from passive-components.eu's second-quarter 2026 note; inventory and prices are from TrendForce's July 29 and August 4 releases. The China channel check Serenity dated August 12 could not be traced to an original report, so it is left attributed in the text.",
+    "ja": "2026-08-17閲覧 · シェアはpassive-components.euの2026年第2四半期資料に基づき、流通在庫と価格はトレンドフォースの2026年7月29日および8月4日の発表に基づく。セレニティが8月12日付で引用した中国の流通チェックは原報道を特定できず、本文では伝聞のまま残した。"
+   },
+   "ts": "2026-08-17T02:52:00+00:00"
+  },
+  {
+   "date": "2026-08-17",
    "id": "hanke-make-in-india-25pct-target-vs-16pct-share",
    "related": [
     "hanke-india-record-russian-crude-but-revenue-fell"
