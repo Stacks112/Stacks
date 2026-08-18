@@ -1,15 +1,15 @@
 {
  "source": "bilello",
  "fetched_at": "2026-08-18T05:04:00.140110+00:00",
- "checked_at": "2026-08-18T05:04:00.140110+00:00",
- "ok": true,
+ "checked_at": "2026-08-18T07:21:13.296378+00:00",
+ "ok": false,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
- "raw_count": 25,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-08-05T16:12:10+00:00",
  "kept_count": 2,
- "error": null,
+ "error": "ParseError: not well-formed (invalid token): line 1, column 115",
  "items": [
   {
    "title": "The State of the Markets (August 2026)",
