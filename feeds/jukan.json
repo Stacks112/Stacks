@@ -1,16 +1,28 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-18T10:57:08.133502+00:00",
- "checked_at": "2026-08-18T10:57:08.133502+00:00",
+ "fetched_at": "2026-08-18T13:25:04.120977+00:00",
+ "checked_at": "2026-08-18T13:25:04.120977+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
- "foreign_count": 1,
- "newest_published": "2026-08-18T07:49:00+00:00",
+ "foreign_count": 0,
+ "newest_published": "2026-08-18T10:55:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "AI Server Demand Drives Polarization in MLCC Lead Times, With High-End Products Approaching 10 Months Korean media reports that MLCC lead times are diverging sharply depending on product specifications. While supply conditions for general-purpose products remain relatively stable, lead times for high-capacitance, high-end products used in artificial intelligence servers have lengthened significantly. According to TTI’s lead-time trend chart, as of August, lead times for most standard case-size multilayer ceramic capacitors remain at 14–18 weeks, or approximately 3.5–4.5 months. High-capacitance and high-voltage products have lead times of around 15–20 weeks, or roughly 4–5 months. Avnet Abac",
+   "link": "https://x.com/jukan05/status/2089667491387818361",
+   "published": "2026-08-18T10:55:00+00:00",
+   "content": "AI Server Demand Drives Polarization in MLCC Lead Times, With High-End Products Approaching 10 Months\n\nKorean media reports that MLCC lead times are diverging sharply depending on product specifications.\n\nWhile supply conditions for general-purpose products remain relatively stable, lead times for high-capacitance, high-end products used in artificial intelligence servers have lengthened significantly.\n\nAccording to TTI’s lead-time trend chart, as of August, lead times for most standard case-size multilayer ceramic capacitors remain at 14–18 weeks, or approximately 3.5–4.5 months. High-capacitance and high-voltage products have lead times of around 15–20 weeks, or roughly 4–5 months.\n\nAvnet Abacus’s August 2026 lead-time guide similarly lists multilayer surface-mount, high-capacitance, and automotive-grade products at eight to more than 20 weeks, or approximately 2–5 months, with the outlook categorized as stable.\n\nThe situation is different for high-end products.\n\nComponentNews classifies server-grade MLCCs as being at a critical supply level, with lead times of more than 20 weeks—or over five months—for Murata and Samsung Electro-Mechanics products. It expects these conditions to persist through the second half of this year.\n\nDigiKey’s lead-time data also shows significant supplier-to-supplier variation in high-capacitance products, with some Samsung Electro-Mechanics components averaging around 40 weeks. Lead times for Murata’s high-capacitance products of 1 microfarad or more reached as much as 30 weeks in July, up from 24 weeks in June. Some distribution channels have cited lead times of up to 36 weeks.\n\nThe main driver of this polarization is surging demand from AI servers and data centers. AI servers require five to 13 times more high-capacitance, compact, and highly reliable MLCCs than conventional servers for power-delivery-network decoupling and filtering.\n\nKorean media emphasizes that lead times of five to more than 10 months for high-end products are likely to persist for the foreseeable future. Unlike in the past, when passive-component lead times moved flexibly with the economic cycle, the current pronounced divergence is being interpreted not as a temporary boom but as a fundamental restructuring of demand centered on AI.\n\nMoreover, new capacity expansions have been pushed back from the fourth quarter of 2026 into 2027, making it difficult to resolve the supply-demand imbalance in the near term. Major manufacturers are simultaneously raising prices and entering into more long-term supply agreements.\n\nLead times exceeding five months and approaching a full year indicate that manufacturers have reached a point where they cannot quickly increase supply. At the same time, they signal strengthening pricing power and the beginning of a meaningful improvement in profitability driven by a richer mix of high-value products.\n— Jukan (@jukan05) Aug 18, 2026"
+  },
+  {
+   "title": "Korean media reports that TSMC has secured a technological edge in backside power delivery with A16, putting it a step ahead of Intel and Samsung in the competition. Specifically, TSMC has successfully developed and validated A16, the industry’s first angstrom-class CMOS platform featuring its Super Power Rail (SPR) backside power delivery scheme. The key achievement is that A16 retains the gate density and design flexibility enabled by NanoFlex in the existing N2P process, an enhanced version of N2. In conventional semiconductor chips, both power-delivery interconnects and signal interconnects are placed together on the front side of the chip. As process nodes shrink, however, competition b",
+   "link": "https://x.com/jukan05/status/2089664982510457163",
+   "published": "2026-08-18T10:45:00+00:00",
+   "content": "Korean media reports that TSMC has secured a technological edge in backside power delivery with A16, putting it a step ahead of Intel and Samsung in the competition.\n\nSpecifically, TSMC has successfully developed and validated A16, the industry’s first angstrom-class CMOS platform featuring its Super Power Rail (SPR) backside power delivery scheme.\n\nThe key achievement is that A16 retains the gate density and design flexibility enabled by NanoFlex in the existing N2P process, an enhanced version of N2.\n\nIn conventional semiconductor chips, both power-delivery interconnects and signal interconnects are placed together on the front side of the chip. As process nodes shrink, however, competition between the two in an increasingly confined space exacerbates routing congestion and increases electrical resistance, leading to more severe voltage-drop, or IR-drop, problems.\n\nAddressing these issues through backside power delivery typically requires substantial changes to transistor placement or cell structures.\n\nThese challenges become more pronounced as process nodes shrink. Supplying power from the back side of the chip has generally required designers to give up parts of their existing cell libraries and design expertise.\n\nTSMC has completely separated the power-delivery network from the front-side signal wiring by moving it to the back side of the chip. Power is delivered directly to the source and drain of each transistor through dedicated vertical connections, or VBs. In the process, TSMC has kept the front-side gate structure, cell dimensions, and layout area almost unchanged, preserving compatibility with existing designs.\n\nIntel, by contrast, had already modified its existing cell configuration and redesigned its cell architecture during PowerVia testing, including adjustments to pin counts and the relaxation of metal-pitch requirements. Samsung Electronics is also reportedly working to introduce backside power delivery with its SF2 process, but is said to be likely to pursue an approach similar to Intel’s.\n\nTSMC’s achievement is viewed as a technology that can improve efficiency while reducing design complexity for products such as AI accelerators, which require both high power efficiency and strong performance.\n\n $TSM \n— Jukan (@jukan05) Aug 18, 2026"
+  },
   {
    "title": "According to Meritz Securities’ analysis, planned HBM demand by company in 2028 is as follows: Broadcom: 35–40bn Gb NVIDIA: 30bn Gb Google: 20bn Gb AMD: 10bn Gb What stands out is Broadcom potentially surpassing NVIDIA in HBM demand, as well as Google massively ramping up its own HBM procurement.",
    "link": "https://x.com/jukan05/status/2089620707970097628",
@@ -88,18 +100,6 @@
    "link": "https://x.com/jukan05/status/2088061698473410965",
    "published": "2026-08-14T00:34:00+00:00",
    "content": "Taiwan's DigiTimes reports that Nvidia's Feynman platform, the generation after next, will move straight to A16, TSMC's upgraded version of its 2nm process, and will also raise the share of SoIC 3D stacking, with custom HBM and CPO expected to be combined on top of that.\n\nAccordingly, TSMC's monthly SoIC capacity is said to reach 50,000 wafers a month by the end of 2027.\n\nWhat is also interesting is that AP7 P2, which was planned for SoIC, may be partly allocated to CPO and CoWoS lines. This could mean CPO is being pulled forward earlier than expected.\n\nASE's subsidiary SPIL is also said to be establishing itself as a key vendor winning Nvidia orders. This stems from the fact that even if TSMC expands capacity at full force, it will be difficult to meet all customer demand.\n— Jukan (@jukan05) Aug 14, 2026"
-  },
-  {
-   "title": "That’s truly incredible guidance...",
-   "link": "https://x.com/jukan05/status/2088036124371673352",
-   "published": "2026-08-13T22:53:00+00:00",
-   "content": "That’s truly incredible guidance...\n— Jukan (@jukan05) Aug 13, 2026"
-  },
-  {
-   "title": "Aletheia dropped some juicy information today: - NVIDIA’s Rubin Ultra is unlikely to use HBM4 and will instead use 8-high and 12-high HBM4E. - Kyber has not been canceled, and the four-die Rubin Ultra remains on the roadmap. - The four-die Rubin Ultra could be used in Kyber. It could also be implemented through an OSAT by stitching together two dual-die packages on an ABF substrate. - The four-die Rubin Ultra could feature up to 768GB of HBM4E. Looks like a good time to buy memory again.",
-   "link": "https://x.com/jukan05/status/2087901960146170161",
-   "published": "2026-08-13T13:59:00+00:00",
-   "content": "Aletheia dropped some juicy information today:\n\n- NVIDIA’s Rubin Ultra is unlikely to use HBM4 and will instead use 8-high and 12-high HBM4E.\n\n- Kyber has not been canceled, and the four-die Rubin Ultra remains on the roadmap. \n\n- The four-die Rubin Ultra could be used in Kyber. It could also be implemented through an OSAT by stitching together two dual-die packages on an ABF substrate.\n\n- The four-die Rubin Ultra could feature up to 768GB of HBM4E.\n\nLooks like a good time to buy memory again.\n— Jukan (@jukan05) Aug 13, 2026"
   }
  ]
 }
