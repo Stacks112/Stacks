@@ -2180,13 +2180,29 @@
     var vv = window.visualViewport;
     var dt = $("v82detail");
     if (vv && dt) {
-      var kb = Math.max(0, Math.round(window.innerHeight - vv.height));
-      var ae = document.activeElement;
-      if (kb > 60 && ae && bar.contains(ae)) {
-        if (vv.offsetTop || window.scrollY) { try { window.scrollTo(0, 0); } catch (e) {} }
-        dt.style.height = Math.round(vv.height) + "px";
-      } else if (kb <= 60) {
-        dt.style.height = "";
+      /* perf(INP #2): v82SyncCompBar() runs on every card-open mount (not only
+         while a keyboard is up), and used to unconditionally read
+         window.innerHeight / vv.height / vv.offsetTop / window.scrollY here -
+         all forced-layout properties - just to discover, on a normal (no
+         keyboard) open, that neither branch below changes anything.
+         Equivalence proof for the skipped case: if the composer isn't focused,
+         "kb > 60 && ae && bar.contains(ae)" is false for any kb, so only the
+         "kb <= 60" branch could ever fire, and it only sets dt.style.height to
+         "" - a no-op when it is already "". So whenever the composer isn't
+         focused AND dt.style.height is already "", running the full check
+         below would do nothing; skip the layout-forcing reads for that case.
+         Real keyboard-open handling (the "third attempt" logic itself) below
+         is untouched and still runs every time it can actually matter. */
+      var ae0 = document.activeElement;
+      var barFocused = !!(ae0 && bar.contains(ae0));
+      if (barFocused || dt.style.height !== "") {
+        var kb = Math.max(0, Math.round(window.innerHeight - vv.height));
+        if (kb > 60 && barFocused) {
+          if (vv.offsetTop || window.scrollY) { try { window.scrollTo(0, 0); } catch (e) {} }
+          dt.style.height = Math.round(vv.height) + "px";
+        } else if (kb <= 60) {
+          dt.style.height = "";
+        }
       }
     }
   }
