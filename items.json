@@ -2,6 +2,198 @@
  "items": [
   {
    "date": "2026-08-19",
+   "id": "semianalysis-cerebras-cs4-same-wafer-double-clock",
+   "related": [
+    "semianalysis-vera-rubin-nvl72-tco",
+    "jukan-nvidia-rubin-hbm4-cost-surge",
+    "kobeissi-datacenter-power-2035"
+   ],
+   "source": "SemiAnalysis",
+   "sourceUrl": "https://newsletter.semianalysis.com/p/cerebrass-next-generation-cs-4-fast",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "semianalysis.png",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#12303a",
+    "to": "#08161c",
+    "label": "SEMICONDUCTOR"
+   },
+   "tags": [
+    "SEMICONDUCTOR",
+    "AI",
+    "INFERENCE"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "칩은 그대로다, 그런데 속도가 두 배가 됐다",
+    "en": "The chip did not change, but the speed doubled",
+    "ja": "チップはそのままで、速度が二倍になった"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "CS-4 doubles the performance of CS-3 through increased power consumption and clock frequency per wafer, and better rack-scale density.",
+      "This is a no-brainer for customers who can enjoy double the token revenue with the same hardware spend."
+     ],
+     "ko": [
+      "CS-4는 웨이퍼당 소비전력과 클럭 주파수를 올리고 랙 단위 밀도를 개선해 CS-3의 성능을 두 배로 끌어올린다.",
+      "같은 하드웨어 지출로 토큰 매출을 두 배로 누릴 수 있는 고객에게 이것은 고민할 것이 없는 선택이다."
+     ],
+     "ja": [
+      "CS-4は、ウエハーあたりの消費電力とクロック周波数を引き上げ、ラック単位の密度を改善することでCS-3の性能を二倍にする。",
+      "同じハードウェア支出でトークン収入を二倍にできる顧客にとって、これは迷う余地のない選択だ。"
+     ]
+    },
+    "cite": "SemiAnalysis · 2026.08.19"
+   },
+   "sum3": {
+    "ko": "세레브라스가 새 칩 없이 CS-4를 내놨다. 5나노 웨이퍼는 그대로 두고 전력을 더 넣어 클럭을 두 배로 올렸다.\n웨이퍼 한 장의 온칩 메모리 대역폭은 43페타바이트로, 엔비디아 루빈 GPU 한 장의 1,950배 수준이다.\n그런데 회사가 내건 실제 속도 우위는 30배다. 대역폭이 아니라 44기가바이트로 묶인 저장 용량이 천장을 정하고 있다.",
+    "en": "Cerebras launched CS-4 without a new chip, keeping the 5nm wafer and doubling clock speed by pushing far more power into it.\nOn-chip memory bandwidth per wafer is 43 petabytes per second, about 1,950 times a single NVIDIA Rubin GPU.\nYet the speed advantage the company claims is 30x. The ceiling is not bandwidth but the 44 gigabytes of storage that did not move.",
+    "ja": "セレブラスが新しいチップなしでCS-4を発表した。5ナノのウエハーはそのままに、電力を増やしてクロックを二倍にした。\nウエハー1枚のオンチップメモリ帯域は毎秒43ペタバイトで、エヌビディアのルビンGPU1枚の約1,950倍にあたる。\nだが同社が掲げる実際の速度優位は30倍だ。天井を決めているのは帯域ではなく、44ギガバイトのまま動かなかった記憶容量だ。"
+   },
+   "gist": {
+    "ko": "세레브라스가 8월 19일 CS-4를 공개했는데, 새로 만든 칩은 없다.\nCS-3에 쓰던 5나노 웨이퍼스케일 엔진 WSE-3을 그대로 두고 전력을 훨씬 많이 밀어 넣어 클럭을 두 배로 올린 것이 성능 두 배의 정체다.\n랙 한 대에 꽂는 웨이퍼는 세 장으로 늘었고 랙 하나가 먹는 전력은 125~135킬로와트다.\n\n@@REF@@세레브라스, 더 빨라진 WSE-3 터보와 첫 랙 단위 CS-4 시스템 공개 (서브더홈, 2026-08-19)|https://www.servethehome.com/cerebras-intros-faster-wse-3-turbo-processor-and-first-rack-scale-cs-4-system/|https://www.servethehome.com/wp-content/uploads/2026/08/Cerebras-CS-4-Rack-Hero-Image-scaled.jpg\n\n@@IMG@@gpu-board|보통의 AI 가속기는 이 정도 크기의 칩 한 장이다. 세레브라스는 웨이퍼에서 칩을 잘라내지 않고 웨이퍼 한 장을 통째로 하나의 칩으로 쓴다.\n\n반도체는 보통 지름 30센티미터짜리 둥근 웨이퍼 한 장에서 사각형 칩 수백 개를 잘라 낸다.\n세레브라스는 자르지 않는다. 웨이퍼 한 장이 곧 칩 한 개다.\n\n## 1,950배와 30배 사이\n\n@@BAR@@세레브라스 웨이퍼 1장 온칩 대역폭|43,000TB/s|43000|엔비디아 루빈 GPU 1장 HBM4 대역폭|22TB/s|22@@세레브라스가 앞세우는 숫자다. 그런데 같은 회사가 내건 실제 속도 우위는 GPU 대비 최대 30배다. 두 배수가 이만큼 벌어진다는 것은 속도를 정하는 것이 대역폭이 아니라는 뜻이다.@@2026-08-19 조회 · 세레브라스 CS-4 발표자료(2026-08-18 배포) · 엔비디아 Vera Rubin NVL72 제품 페이지의 GPU당 HBM4 22TB/s\n\n서브더홈은 웨이퍼 세 장을 합친 랙 기준으로 129.6페타바이트라고 적었다. 43을 셋으로 곱한 값이라 두 숫자는 어긋나지 않는다.\n\n## 44기가바이트라는 천장\n\n웨이퍼 안에 새겨 넣은 메모리는 SRAM이다.\n칩 바깥에 따로 붙이는 HBM보다 훨씬 빠른 대신 담을 수 있는 양이 적다.\nWSE-3 한 장의 SRAM은 44기가바이트이고, 이 숫자는 CS-3에서 CS-4로 오면서 하나도 늘지 않았다.\n저장 칸의 개수는 웨이퍼에 새겨 넣은 것이라 클럭을 올린다고 늘어나지 않는다.\n\n요즘 앞선 모델의 가중치는 수백 기가바이트에서 테라바이트 단위다.\n44기가바이트에는 들어가지 않는다. 그래서 모델을 층으로 잘라 여러 웨이퍼에 나눠 싣는다.\n\n@@FLOW@@요청 도착|첫 웨이퍼가 모델 앞쪽 층을 맡는다|웨이퍼 직결 전송|중간 결과를 2마이크로초 만에 다음 웨이퍼로 넘긴다|마지막 웨이퍼|남은 층을 끝내고 토큰을 내보낸다@@층으로 잘라 나눠 싣는 방식이라 웨이퍼가 늘수록 거쳐야 할 구간도 늘어난다. 사용자당 속도의 천장을 만드는 것은 대역폭이 아니라 이 구간의 수와 구간마다 걸리는 시간이다.\n\n세레브라스는 이번에 웨이퍼 밖으로 나가는 입출력 대역폭을 1.2Tb/s에서 2.4Tb/s로 올렸다.\n스위치를 거치는 지연은 5마이크로초에서 3마이크로초로 줄었고, 웨이퍼끼리 직접 잇는 경로에서는 2마이크로초까지 내려갔다.\n세미애널리시스는 그래도 이 3마이크로초가 병목으로 남는다고 본다.\n전문가 층을 여러 웨이퍼에 펼치는 방식은 이 지연 때문에 쓰기 어렵고, 결국 층으로 자르는 방식만 남는다는 것이다.\n\n## 값을 치른 곳은 전력이다\n\n@@IMG@@datacenter-racks|랙 한 대가 125~135킬로와트를 먹는다. 엔비디아 GB300 NVL72 랙의 벤더 공표 사양과 같은 구간이다.\n\n웨이퍼 한 장당 전력은 CS-3의 23킬로와트에서 42킬로와트 안팎으로 올라갔다.\n세미애널리시스는 그래서 전력당 성능은 CS-3보다 잘해야 조금 나아진 수준으로 본다.\n대신 부품 수를 줄이고 조립을 단순하게 만든 덕에 웨이퍼당 원가는 비슷하게 나올 것으로 본다.\n고객이 사는 것은 전력당 성능이 아니라 같은 하드웨어 지출로 두 배가 되는 토큰 매출이라는 이야기다.\n\n@@CHK@@2026년 2분기 매출(GAAP)|1억8,010만달러|클라우드 매출 전년 동기 대비|+281%|계약한 데이터센터 용량|600메가와트@@이 회사는 칩을 파는 동시에 자기 칩으로 추론을 팔아 돈을 번다. 클라우드 매출이 1년 만에 네 배 가까이 늘었고, 2027년 말까지 인도받기로 한 데이터센터 용량이 600메가와트다. 랙 한 대가 125킬로와트를 먹는다는 숫자를 여기에 대 보면 왜 이만한 용량을 미리 잡아 뒀는지가 보인다.@@2026-08-19 조회 · 세레브라스 2026년 2분기 실적 발표(2026-08-12)\n\n@@REF@@세레브라스가 WSE-3을 오버클럭해 CS-4의 추론 성능을 끌어올렸다 (더넥스트플랫폼, 2026-08-19)|https://www.nextplatform.com/compute/2026/08/19/cerebras-overclocks-wse-3-waferscale-engine-to-boost-inference-oomph-in-nexus-cs-4/5289400|https://image.nextplatform.com/5289403.jpg?imageId=5289403&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683\n\n더넥스트플랫폼은 클럭이 1.4기가헤르츠에서 2.8기가헤르츠 수준으로 올라갔고 코어 수 90만 개와 SRAM 44기가바이트는 그대로라고 전한다.\n전력과 대역폭 수치는 후속 기사로 미뤘다고 밝혔다.\n\n## 핫칩스에서 확인되는 숫자\n\n세레브라스는 8월 23일 시작하는 핫칩스에서 더 자세한 내용을 내놓겠다고 했다.\n그때 확인할 숫자는 대역폭이 아니라 사용자당 토큰 속도다.\n세미애널리시스는 CS-4가 앞선 모델에서 초당 4,000토큰 근처에 닿을 것으로 보고, CS-3은 2,000이었다고 적었다.\n이 숫자가 4,000에 닿으면 새 칩 없이 한 세대를 건넌 것이고, 3,000 언저리에서 멈추면 클럭으로 살 수 있는 성능의 끝을 본 셈이다.",
+    "en": "Cerebras unveiled CS-4 on August 19, and there is no new chip in it.\nThe doubling comes from keeping the same 5nm wafer-scale engine, WSE-3, and pushing far more power into it to double the clock.\nA rack now holds three wafers instead of two, and a single rack draws 125 to 135 kilowatts.\n\n@@REF@@Cerebras intros faster WSE-3 Turbo processor and first rack-scale CS-4 system (ServeTheHome, 2026-08-19)|https://www.servethehome.com/cerebras-intros-faster-wse-3-turbo-processor-and-first-rack-scale-cs-4-system/|https://www.servethehome.com/wp-content/uploads/2026/08/Cerebras-CS-4-Rack-Hero-Image-scaled.jpg\n\n@@IMG@@gpu-board|A normal AI accelerator is a single chip about this size. Cerebras never cuts the chip out of the wafer; the whole wafer is the chip.\n\nA chipmaker usually cuts hundreds of rectangular dies out of one round 300mm wafer.\nCerebras does not cut. One wafer is one chip.\n\n## Between 1,950x and 30x\n\n@@BAR@@Cerebras on-chip bandwidth, one wafer|43,000TB/s|43000|NVIDIA Rubin HBM4 bandwidth, one GPU|22TB/s|22@@This is the number Cerebras leads with. Yet the speed advantage the same company claims is up to 30x against GPUs. When two multiples diverge this far, it means bandwidth is not what sets the speed.@@Checked 2026-08-19 · Cerebras CS-4 announcement materials (released 2026-08-18) · NVIDIA Vera Rubin NVL72 product page, 22TB/s of HBM4 per GPU\n\nServeTheHome quotes 129.6 petabytes per second for a full rack, which is 43 multiplied by three wafers. The two figures agree.\n\n## The 44-gigabyte ceiling\n\nThe memory etched into the wafer is SRAM.\nIt is far faster than the HBM stacked next to a conventional chip, and it holds far less.\nOne WSE-3 carries 44 gigabytes of it, and that number did not move from CS-3 to CS-4.\nThe number of storage cells is written into the silicon, so raising the clock does not add any.\n\nFrontier model weights today run from hundreds of gigabytes into terabytes.\nThey do not fit in 44 gigabytes, so the model is sliced by layer and spread across several wafers.\n\n@@FLOW@@Request arrives|The first wafer takes the front layers of the model|Direct wafer link|Intermediate results cross to the next wafer in 2 microseconds|Final wafer|Finishes the remaining layers and emits the token@@Slicing by layer means every added wafer adds another leg to the journey. What caps tokens per second per user is not bandwidth but the number of those legs and the time each one costs.\n\nCerebras raised off-wafer I/O bandwidth this generation from 1.2Tb/s to 2.4Tb/s.\nLatency through the switched network fell from 5 microseconds to 3, and direct wafer-to-wafer paths get it to 2.\nSemiAnalysis still treats that 3 microseconds as a bottleneck.\nSpreading expert layers across multiple wafers stays impractical at that latency, which leaves slicing by layer as the only workable option.\n\n## The bill came due in watts\n\n@@IMG@@datacenter-racks|One rack draws 125 to 135 kilowatts, the same band as the vendor-published rating for an NVIDIA GB300 NVL72 rack.\n\nPower per wafer went from 23 kilowatts on CS-3 to roughly 42.\nSemiAnalysis therefore reads performance per watt as at best slightly better than CS-3.\nWhat offsets it is the bill of materials: fewer components and simpler assembly should land cost per wafer near where it was.\nThe pitch to customers is not efficiency but double the token revenue for the same hardware spend.\n\n@@CHK@@Q2 2026 revenue (GAAP)|$180.1m|Cloud revenue, year on year|+281%|Contracted datacenter capacity|600MW@@This company sells chips and also sells inference run on its own chips. Cloud revenue nearly quadrupled in a year, and it has contracted 600 megawatts of datacenter capacity for delivery through the end of 2027. Put the 125 kilowatts per rack against that number and the reason for booking that much capacity in advance becomes visible.@@Checked 2026-08-19 · Cerebras Q2 2026 results announcement (2026-08-12)\n\n@@REF@@Cerebras overclocks WSE-3 waferscale engine to boost inference oomph in CS-4 (The Next Platform, 2026-08-19)|https://www.nextplatform.com/compute/2026/08/19/cerebras-overclocks-wse-3-waferscale-engine-to-boost-inference-oomph-in-nexus-cs-4/5289400|https://image.nextplatform.com/5289403.jpg?imageId=5289403&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683\n\nThe Next Platform puts the clock at roughly 2.8GHz against 1.4GHz before, with the 900,000 cores and the 44 gigabytes of SRAM unchanged.\nIt says power and bandwidth figures are being held for a follow-up piece.\n\n## The number Hot Chips settles\n\nCerebras says fuller detail comes at Hot Chips, which opens August 23.\nThe figure to watch there is not bandwidth but tokens per second per user.\nSemiAnalysis expects CS-4 to land near 4,000 on frontier models, against 2,000 for CS-3.\nReach 4,000 and the company crossed a generation without new silicon; stall near 3,000 and we have seen the limit of what a clock can buy.",
+    "ja": "セレブラスが8月19日にCS-4を公開したが、新しく作ったチップはない。\nCS-3で使っていた5ナノのウエハースケールエンジンWSE-3をそのままに、電力を大幅に注ぎ込んでクロックを二倍にしたのが性能二倍の正体だ。\nラック1台に差すウエハーは3枚に増え、ラック1台の消費電力は125〜135キロワットになった。\n\n@@REF@@セレブラス、高速化したWSE-3ターボと初のラック単位CS-4システムを公開 (サーブザホーム, 2026-08-19)|https://www.servethehome.com/cerebras-intros-faster-wse-3-turbo-processor-and-first-rack-scale-cs-4-system/|https://www.servethehome.com/wp-content/uploads/2026/08/Cerebras-CS-4-Rack-Hero-Image-scaled.jpg\n\n@@IMG@@gpu-board|普通のAIアクセラレータはこの程度の大きさのチップ1枚だ。セレブラスはウエハーからチップを切り出さず、ウエハー1枚をまるごと一つのチップとして使う。\n\n半導体は普通、直径30センチの丸いウエハー1枚から四角いチップを数百個切り出す。\nセレブラスは切らない。ウエハー1枚がそのままチップ1個だ。\n\n## 1,950倍と30倍のあいだ\n\n@@BAR@@セレブラスのウエハー1枚のオンチップ帯域|43,000TB/s|43000|エヌビディア・ルビンGPU1枚のHBM4帯域|22TB/s|22@@セレブラスが前面に出す数字だ。ところが同じ会社が掲げる実際の速度優位はGPU比で最大30倍にとどまる。二つの倍率がこれほど開くということは、速度を決めているのが帯域ではないという意味だ。@@2026-08-19 参照 · セレブラスのCS-4発表資料（2026-08-18配信）· エヌビディアVera Rubin NVL72製品ページのGPUあたりHBM4 22TB/s\n\nサーブザホームはウエハー3枚を合わせたラック基準で129.6ペタバイトと記している。43を3倍した値なので、二つの数字は食い違っていない。\n\n## 44ギガバイトという天井\n\nウエハーに刻み込まれたメモリはSRAMだ。\nチップの外に別途載せるHBMよりはるかに速い代わりに、入る量が少ない。\nWSE-3 1枚のSRAMは44ギガバイトで、この数字はCS-3からCS-4になっても一つも増えていない。\n記憶セルの数はウエハーに刻んだものなので、クロックを上げても増えない。\n\nいまの先端モデルの重みは数百ギガバイトからテラバイト単位だ。\n44ギガバイトには入らない。だからモデルを層で切り、複数のウエハーに分けて載せる。\n\n@@FLOW@@リクエスト到着|最初のウエハーがモデルの前段の層を担う|ウエハー直結の転送|途中結果を2マイクロ秒で次のウエハーへ渡す|最後のウエハー|残りの層を終えてトークンを出す@@層で切って分けて載せる方式なので、ウエハーが増えるほど通るべき区間も増える。ユーザーあたり速度の天井を作るのは帯域ではなく、この区間の数と区間ごとにかかる時間だ。\n\nセレブラスは今回、ウエハーの外へ出る入出力帯域を1.2Tb/sから2.4Tb/sへ引き上げた。\nスイッチを経由する遅延は5マイクロ秒から3マイクロ秒に減り、ウエハー同士を直接つなぐ経路では2マイクロ秒まで下がった。\nセミアナリシスはそれでもこの3マイクロ秒がボトルネックとして残ると見ている。\nエキスパートの層を複数のウエハーに広げる方式はこの遅延のため使いにくく、結局は層で切る方式だけが残るという見方だ。\n\n## 代償を払ったのは電力だ\n\n@@IMG@@datacenter-racks|ラック1台が125〜135キロワットを消費する。エヌビディアGB300 NVL72ラックのベンダー公表仕様と同じ帯域だ。\n\nウエハー1枚あたりの電力はCS-3の23キロワットから42キロワット前後へ上がった。\nセミアナリシスはそのため、電力あたり性能はCS-3よりよくてわずかに改善した程度だと見ている。\n代わりに部品点数を減らし組み立てを単純にしたおかげで、ウエハーあたりの原価は近い水準に収まると見ている。\n顧客が買うのは電力あたり性能ではなく、同じハードウェア支出で二倍になるトークン収入だという話だ。\n\n@@CHK@@2026年第2四半期の売上（GAAP）|1億8,010万ドル|クラウド売上の前年同期比|+281%|契約済みのデータセンター容量|600メガワット@@この会社はチップを売ると同時に、自社チップで推論を売って稼いでいる。クラウド売上が1年で4倍近くに増え、2027年末までに引き渡しを受ける契約済みのデータセンター容量が600メガワットある。ラック1台が125キロワットという数字をここに当てると、なぜこれだけの容量を先に押さえたのかが見えてくる。@@2026-08-19 参照 · セレブラスの2026年第2四半期決算発表（2026-08-12）\n\n@@REF@@セレブラスがWSE-3をオーバークロックしCS-4の推論性能を引き上げた (ザ・ネクスト・プラットフォーム, 2026-08-19)|https://www.nextplatform.com/compute/2026/08/19/cerebras-overclocks-wse-3-waferscale-engine-to-boost-inference-oomph-in-nexus-cs-4/5289400|https://image.nextplatform.com/5289403.jpg?imageId=5289403&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683\n\nザ・ネクスト・プラットフォームは、クロックが1.4ギガヘルツから2.8ギガヘルツ水準へ上がり、コア数90万個とSRAM 44ギガバイトは据え置きだと伝えている。\n電力と帯域の数値は後続記事に回したと明かしている。\n\n## ホットチップスで確かめられる数字\n\nセレブラスは8月23日に始まるホットチップスでより詳しい内容を出すとしている。\nそこで確かめるべき数字は帯域ではなく、ユーザーあたりのトークン速度だ。\nセミアナリシスはCS-4が先端モデルで毎秒4,000トークン近くに届くと見ており、CS-3は2,000だったと記している。\nこの数字が4,000に届けば新しいチップなしで一世代を越えたことになり、3,000あたりで止まればクロックで買える性能の終わりを見たわけだ。"
+   },
+   "why": {
+    "ko": "새 공정 없이 성능을 두 배로 올릴 수 있다면 AI 가속기의 교체 주기는 파운드리 일정과 떨어져 움직인다. 다만 그 대가는 전부 전력으로 나가고, 전력은 데이터센터가 미리 잡아 둬야 하는 자원이다.",
+    "en": "If performance can double without a new process node, the replacement cycle for AI accelerators stops tracking the foundry calendar. The bill arrives entirely in watts, and watts are what a datacenter has to reserve years ahead.",
+    "ja": "新しいプロセスなしで性能を二倍にできるなら、AIアクセラレータの更新周期はファウンドリの日程から離れて動く。ただし代償はすべて電力で出ていき、電力はデータセンターが前もって押さえておく資源だ。"
+   },
+   "ask": {
+    "ko": "메모리 대역폭이 1,950배인데 실제 속도는 30배라면, 추론 성능을 가르는 것은 대역폭일까 저장 용량일까?",
+    "en": "If bandwidth is 1,950 times higher but real speed is 30 times, what actually decides inference performance: bandwidth or capacity?",
+    "ja": "メモリ帯域が1,950倍でも実際の速度が30倍なら、推論性能を分けるのは帯域なのか記憶容量なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2027-06-30",
+    "note": {
+     "ko": "CS-4가 앞선 모델에서 사용자당 초당 4,000토큰에 도달했는지를 2027년 상반기 공개 벤치마크로 채점한다.",
+     "en": "Graded on whether CS-4 reaches 4,000 tokens per second per user on frontier models in public benchmarks by the first half of 2027.",
+     "ja": "CS-4が先端モデルでユーザーあたり毎秒4,000トークンに達したかを2027年前半の公開ベンチマークで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "CS-4의 앞선 모델 기준 사용자당 토큰 생성 속도",
+      "en": "CS-4 tokens per second per user on frontier models",
+      "ja": "CS-4の先端モデルにおけるユーザーあたりトークン生成速度"
+     },
+     "now": {
+      "ko": "CS-3 기준 초당 2,000토큰 (세미애널리시스 추정)",
+      "en": "2,000 tokens per second on CS-3 (SemiAnalysis estimate)",
+      "ja": "CS-3で毎秒2,000トークン（セミアナリシス推定）"
+     },
+     "when": {
+      "ko": "2027년 상반기 공개 벤치마크",
+      "en": "Public benchmarks in the first half of 2027",
+      "ja": "2027年前半の公開ベンチマーク"
+     },
+     "hit": {
+      "ko": "초당 4,000토큰 이상 → 새 칩 없이 세대를 건넜다",
+      "en": "4,000 tokens per second or more → a generation crossed without new silicon",
+      "ja": "毎秒4,000トークン以上 → 新しいチップなしで一世代を越えた"
+     },
+     "miss": {
+      "ko": "초당 4,000토큰 미만 → 클럭으로 살 수 있는 성능의 끝을 봤다",
+      "en": "Below 4,000 tokens per second → the limit of what a clock can buy",
+      "ja": "毎秒4,000トークン未満 → クロックで買える性能の限界を見た"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "SemiAnalysis · 2026-08-19 · Cerebras's Next Generation CS-4: Fast Just Got Faster",
+      "en": "SemiAnalysis · 2026-08-19 · Cerebras's Next Generation CS-4: Fast Just Got Faster",
+      "ja": "SemiAnalysis · 2026-08-19 · Cerebras's Next Generation CS-4: Fast Just Got Faster"
+     },
+     "url": "https://newsletter.semianalysis.com/p/cerebrass-next-generation-cs-4-fast"
+    },
+    {
+     "name": {
+      "ko": "랙 사양",
+      "en": "Rack specs",
+      "ja": "ラック仕様"
+     },
+     "desc": {
+      "ko": "서브더홈 · 2026-08-19 · 랙 합계 129.6PB/s, 웨이퍼당 SRAM 44GB, 지연 2마이크로초",
+      "en": "ServeTheHome · 2026-08-19 · 129.6PB/s per rack, 44GB of SRAM per wafer, 2 microsecond latency",
+      "ja": "サーブザホーム · 2026-08-19 · ラック合計129.6PB/s、ウエハーあたりSRAM 44GB、遅延2マイクロ秒"
+     },
+     "url": "https://www.servethehome.com/cerebras-intros-faster-wse-3-turbo-processor-and-first-rack-scale-cs-4-system/"
+    },
+    {
+     "name": {
+      "ko": "클럭",
+      "en": "Clock",
+      "ja": "クロック"
+     },
+     "desc": {
+      "ko": "더넥스트플랫폼 · 2026-08-19 · 클럭 1.4GHz에서 2.8GHz 수준으로, 코어 90만 개와 SRAM 44GB는 동일",
+      "en": "The Next Platform · 2026-08-19 · clock from 1.4GHz to about 2.8GHz, with 900,000 cores and 44GB of SRAM unchanged",
+      "ja": "ザ・ネクスト・プラットフォーム · 2026-08-19 · クロックは1.4GHzから2.8GHz水準へ、コア90万個とSRAM 44GBは据え置き"
+     },
+     "url": "https://www.nextplatform.com/compute/2026/08/19/cerebras-overclocks-wse-3-waferscale-engine-to-boost-inference-oomph-in-nexus-cs-4/5289400"
+    },
+    {
+     "name": {
+      "ko": "루빈 대역폭",
+      "en": "Rubin bandwidth",
+      "ja": "ルビンの帯域"
+     },
+     "desc": {
+      "ko": "엔비디아 Vera Rubin NVL72 제품 페이지 · 2026-08-19 조회 · GPU당 HBM4 288GB, 22TB/s",
+      "en": "NVIDIA Vera Rubin NVL72 product page · checked 2026-08-19 · 288GB of HBM4 and 22TB/s per GPU",
+      "ja": "エヌビディアVera Rubin NVL72製品ページ · 2026-08-19参照 · GPUあたりHBM4 288GB、22TB/s"
+     },
+     "url": "https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/"
+    },
+    {
+     "name": {
+      "ko": "랙 전력 비교",
+      "en": "Rack power comparison",
+      "ja": "ラック電力の比較"
+     },
+     "desc": {
+      "ko": "레노버 GB300 NVL72 제품 가이드 · 2026-08-19 조회 · 랙당 TDP 135kW, 피크 최대 155kW",
+      "en": "Lenovo GB300 NVL72 product guide · checked 2026-08-19 · 135kW rack TDP with peaks to 155kW",
+      "ja": "レノボGB300 NVL72製品ガイド · 2026-08-19参照 · ラックあたりTDP 135kW、ピークで最大155kW"
+     },
+     "url": "https://lenovopress.lenovo.com/lp2357-lenovo-nvidia-gb300-nvl72-rack-scale-ai"
+    },
+    {
+     "name": {
+      "ko": "실적",
+      "en": "Earnings",
+      "ja": "決算"
+     },
+     "desc": {
+      "ko": "세레브라스 2026년 2분기 실적 발표 · 2026-08-12 · 매출 1억8,010만달러, 클라우드 매출 전년비 281% 증가, 데이터센터 600MW 계약",
+      "en": "Cerebras Q2 2026 results · 2026-08-12 · $180.1m revenue, cloud revenue up 281% year on year, 600MW of contracted datacenter capacity",
+      "ja": "セレブラスの2026年第2四半期決算 · 2026-08-12 · 売上1億8,010万ドル、クラウド売上は前年比281%増、データセンター600MWを契約"
+     },
+     "url": "https://www.globenewswire.com/news-release/2026/08/12/3344077/0/en/cerebras-systems-fast-inference-cloud-business-nearly-quadruples-in-second-quarter-2026.html"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-19 조회 · CS-4 사양은 2026-08-19 발표 기준이며 전력과 대역폭 일부는 매체별로 랙 기준과 웨이퍼 기준이 섞여 있어 어느 기준인지 함께 적었다. 실적 수치는 2026-08-12 발표된 2026년 2분기 값이다.",
+    "en": "Checked 2026-08-19 · CS-4 specifications are as announced on 2026-08-19, and because outlets mix per-rack and per-wafer figures for power and bandwidth, the basis is stated alongside each number. Financial figures are Q2 2026 as reported on 2026-08-12.",
+    "ja": "2026-08-19 参照 · CS-4の仕様は2026-08-19の発表時点で、電力と帯域の一部は媒体によってラック基準とウエハー基準が混在するため、どちらの基準かを併記した。決算数値は2026-08-12に発表された2026年第2四半期の値。"
+   }
+  },
+  {
+   "date": "2026-08-19",
    "id": "elerian-treasury-buyback-double-ycc",
    "related": [
     "meru-rate-cut-vs-qt-steepening-warsh",
@@ -69437,6 +69629,80 @@
     "수익률 곡선 통제",
     "イールドカーブ・コントロール",
     "イールドカーブコントロール"
+   ]
+  },
+  "세레브라스": {
+   "kind": "company",
+   "sector": {
+    "en": "AI semiconductors",
+    "ko": "AI 반도체",
+    "ja": "AI半導体"
+   },
+   "desc": {
+    "ko": "웨이퍼 한 장을 통째로 칩 하나로 쓰는 AI 가속기를 만드는 미국 회사.",
+    "en": "A US company that builds AI accelerators using an entire wafer as a single chip.",
+    "ja": "ウエハー1枚をまるごと一つのチップとして使うAIアクセラレータを作る米企業。"
+   },
+   "longDesc": {
+    "ko": "웨이퍼에서 칩을 잘라 내지 않고 웨이퍼 한 장 전체를 하나의 프로세서로 쓰는 방식을 쓴다. 칩 바깥의 HBM 대신 웨이퍼 안에 새긴 SRAM에 데이터를 두기 때문에 대역폭이 매우 크고 용량은 작다. 이 성질 때문에 처리량보다 사용자 한 명에게 돌려주는 응답 속도가 중요한 추론 작업에 초점을 맞추고 있으며, 하드웨어 판매와 함께 자사 칩으로 돌리는 추론 클라우드를 함께 판다.",
+    "en": "It does not cut dies out of the wafer; the whole wafer works as one processor. Data sits in SRAM etched into the wafer rather than in HBM stacked beside a chip, which gives it very large bandwidth and very little capacity. That tradeoff points it at inference work where response speed for a single user matters more than aggregate throughput, and it sells an inference cloud running on its own chips alongside the hardware itself.",
+    "ja": "ウエハーからダイを切り出さず、ウエハー1枚全体を一つのプロセッサとして使う。データはチップの外に積むHBMではなくウエハーに刻んだSRAMに置くため、帯域は非常に大きく容量は小さい。この性質から、処理量よりも一人のユーザーへの応答速度が重要な推論処理に焦点を当てており、ハードウェアの販売と併せて自社チップで動かす推論クラウドも売っている。"
+   },
+   "ticker": "CBRS",
+   "logo": "cerebras.ai",
+   "exchange": "NASDAQ",
+   "ceo": {
+    "en": "Andrew Feldman",
+    "ko": "앤드루 펠드먼",
+    "ja": "アンドリュー・フェルドマン"
+   },
+   "founded": "2016",
+   "listed": "2026",
+   "hq": {
+    "en": "Sunnyvale, California, United States",
+    "ko": "미국 캘리포니아주 서니베일",
+    "ja": "米カリフォルニア州サニーベール"
+   },
+   "website": "https://www.cerebras.ai",
+   "aliases": [
+    "Cerebras",
+    "Cerebras Systems",
+    "CBRS",
+    "세레브라스",
+    "セレブラス",
+    "CS-4",
+    "CS-3",
+    "Cerebras CS-4",
+    "Cerebras CS-3"
+   ]
+  },
+  "웨이퍼 스케일 엔진": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "웨이퍼에서 칩을 잘라 내지 않고 웨이퍼 한 장 전체를 하나의 칩으로 쓰는 방식.",
+    "en": "Using an entire wafer as one chip instead of cutting dies out of it.",
+    "ja": "ウエハーからチップを切り出さず、ウエハー1枚全体を一つのチップとして使う方式。"
+   },
+   "longDesc": {
+    "ko": "보통은 둥근 웨이퍼 한 장에서 사각형 칩 수백 개를 잘라 내 따로 포장한다. 웨이퍼 스케일은 자르지 않고 통째로 쓰기 때문에 칩과 칩 사이를 잇는 배선이 필요 없고, 그만큼 데이터가 오가는 속도가 빠르다. 대신 한 장에 담을 수 있는 메모리 용량이 웨이퍼 면적으로 고정되고, 전력과 냉각을 한 자리에 몰아 넣어야 한다.",
+    "en": "Normally hundreds of rectangular dies are cut from one round wafer and packaged separately. Wafer scale keeps the wafer whole, so no wiring is needed between separate chips and data moves faster as a result. The tradeoffs are that memory capacity is fixed by the wafer's area and that all the power and cooling has to be delivered to one place.",
+    "ja": "通常は丸いウエハー1枚から四角いチップを数百個切り出し、個別に封止する。ウエハースケールは切らずにまるごと使うため、チップ同士をつなぐ配線が要らず、その分データのやり取りが速い。代わりに搭載できるメモリ容量がウエハーの面積で固定され、電力と冷却を一か所に集中させる必要がある。"
+   },
+   "aliases": [
+    "WSE",
+    "Wafer Scale Engine",
+    "wafer-scale",
+    "wafer scale",
+    "WSE-3",
+    "웨이퍼 스케일 엔진",
+    "웨이퍼스케일",
+    "ウエハースケール",
+    "ウエハースケールエンジン"
    ]
   }
  }
