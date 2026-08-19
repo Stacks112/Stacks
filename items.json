@@ -2,6 +2,357 @@
  "items": [
   {
    "date": "2026-08-19",
+   "id": "serenity-marvell-google-warrant-120b-vesting-condition",
+   "related": [
+    "jukan-nvidia-500b-platform-25pct-residual-guarantee",
+    "kobeissi-amd-anthropic-deal-signed",
+    "semianalysis-gemini-gcp-tpu-financialization"
+   ],
+   "source": "Serenity (@aleabitoreddit)",
+   "sourceUrl": "https://x.com/aleabitoreddit/status/2090103899302826302",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "serenity.jpg",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#231c3a",
+    "to": "#0d0a17",
+    "label": "CUSTOM SILICON"
+   },
+   "tags": [
+    "CUSTOMSILICON",
+    "HYPERSCALER",
+    "WARRANT"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "구글이 받은 것은 마벨 지분 7%가 아니다",
+    "en": "What Google received is not 7% of Marvell",
+    "ja": "グーグルが受け取ったのはマーベル株の7%ではない"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "$MRVL gives $GOOGL options to buy $12.2B of the company.",
+      "Which could translate into ~$120 billion in revenue through 2033."
+     ],
+     "ko": [
+      "마벨이 구글에 회사 지분 122억달러어치를 살 수 있는 권리를 준다.",
+      "이는 2033년까지 약 1,200억달러의 매출로 이어질 수 있다."
+     ],
+     "ja": [
+      "マーベルがグーグルに、会社の122億ドル分を買える権利を与える。",
+      "これは2033年までに約1,200億ドルの売上につながりうる。"
+     ]
+    },
+    "cite": "Serenity (@aleabitoreddit) · 2026.08.19"
+   },
+   "sum3": {
+    "ko": "AI 칩을 사는 쪽이 파는 쪽의 지분을 받아 가는 구조가 구글에까지 왔다.\n숫자만 보면 122억달러어치 주식을 구글에 넘긴 거래다.\n그런데 그 주식의 대부분은 구글이 마벨 칩을 누적 1,200억달러어치 사야 열린다.",
+    "en": "The arrangement where the buyer of AI silicon takes equity in the seller has now reached Google.\nOn the face of it, Marvell handed Google $12.2 billion of stock.\nMost of that stock only opens once Google has run $120 billion of purchases through Marvell.",
+    "ja": "AIチップを買う側が売る側の持ち分を受け取る構図が、グーグルにまで及んだ。\n数字だけ見れば122億ドル分の株式をグーグルに渡した取引だ。\nただしその株式の大半は、グーグルがマーベルに累計1,200億ドルを発注して初めて開く。"
+   },
+   "gist": {
+    "ko": "마벨이 구글에 자사 주식 5,897만주를 주당 206.58달러에 살 수 있는 권리를 줬다.\n전량 행사하면 약 122억달러어치이고, 회사 지분의 7% 가까이 된다.\n발표 당일 마벨 주가는 12% 올라 230달러를 넘었다.\n\n@@REF@@마벨, 구글 AI 칩 계약을 따내며 하이퍼스케일러 커스텀 실리콘을 모두 채우다 (Tech Times, 2026-08-19)|https://www.techtimes.com/articles/324988/20260819/marvell-lands-google-ai-chip-deal-closing-custom-silicon-hyperscaler-sweep.htm|https://d.techtimes.com/en/full/466676/marvell.jpg\n\n워런트는 회사가 정해진 값에 새 주식을 살 수 있게 발행해 주는 권리다.\n주는 쪽은 현금이 나가지 않고, 받는 쪽은 그 회사가 커질수록 이득을 본다.\n\n## 권리는 저절로 열리지 않는다\n\n이 워런트는 두 갈래로 나뉜다.\n첫해에 136만867주는 매출과 상관없이 분기마다 균등하게 열린다.\n\n나머지 약 5,760만주는 다르다.\n구글이 마벨의 커스텀 제품을 5억달러어치 살 때마다 한 조각씩 열리고, 그 조각이 240개다.\n마벨의 2027 회계연도 3분기부터 2033 회계연도까지 걸려 있다.\n\n@@BAR@@워런트가 전부 열리는 데 필요한 구글의 누적 구매액|1,200억달러|1200|마벨의 2026 회계연도 연간 매출|82억달러|82@@구글 한 곳이 마벨의 지난해 전체 매출의 열다섯 배를 누적으로 사줘야 마지막 조각이 열린다. 지금 회사가 1년에 파는 물건의 크기가 오른쪽이다.@@마벨 2026 회계연도 실적 발표(2026-03-05) · Tech Times 2026-08-19\n\n## 그 숫자는 전망일까 조건일까\n\n@@CMP@@시장의 읽기|구글이 2033년까지 그만큼을 사겠다고 한 것이고, 그 금액이 마벨 매출로 잡힌다.|워런트 문서의 읽기|그 금액은 마지막 조각까지 열리는 조건이다. 덜 사면 덜 열릴 뿐, 사겠다는 약속이 아니다.\n\n같은 숫자가 한쪽에서는 매출 전망이 되고 다른 쪽에서는 행사 조건이 된다.\n세레니티도 이 계약이 2033년까지 그 정도 매출로 이어질 수 있다고 봤는데, 이 문장의 무게는 조각이 실제로 몇 개 열리는지에 달려 있다.\n\n## 아마존이 먼저 있었다\n\n이런 구조가 처음은 아니다.\n마벨은 아마존에도 418만주를 주당 87.77달러에 살 수 있는 워런트를 줬고, 그 권리는 트레이니엄과 인퍼런시아 구매에 연동돼 있었다.\n\n이번 계약으로 마벨은 아마존, 마이크로소프트, 구글 세 하이퍼스케일러 모두와 맞춤형 칩 관계를 갖게 됐다.\n발표 당일 경쟁사인 브로드컴 주가는 3% 가까이 내렸다.\n\n구글이 사기로 한 물건은 TPU 자체가 아니라 그 옆에 붙는 것들이다.\n추론용 가속기, 저장장치 제어 칩, 네트워크와 메모리 인터페이스, 메모리 가까이에서 연산을 처리하는 부품이 계약에 담겼다.\n칩을 파는 회사가 고객에게 지분을 넘기고, 고객은 그 지분을 사려고 더 많이 사는 구조다.\n\n## 8월 27일 실적에서 볼 것\n\n조각이 열리기 시작하는 것은 마벨의 2027 회계연도 3분기부터다.\n분기마다 몇 조각이 열렸는지가 나오면 구글에서 실제로 도는 돈의 크기를 알 수 있고, 열린 조각이 없으면 1,200억달러는 계산상의 숫자로 남는다.\n골드만삭스는 이 계약이 나온 뒤에도 마벨에 중립 의견과 195달러 목표주가를 유지하고 있다.",
+    "en": "Marvell has given Google the right to buy 58.97 million of its shares at $206.58 each.\nExercised in full that is about $12.2 billion of stock, close to 7% of the company.\nMarvell rose 12% on the day and traded above $230.\n\n@@REF@@Marvell lands Google AI chip deal, closing the custom silicon hyperscaler sweep (Tech Times, 2026-08-19)|https://www.techtimes.com/articles/324988/20260819/marvell-lands-google-ai-chip-deal-closing-custom-silicon-hyperscaler-sweep.htm|https://d.techtimes.com/en/full/466676/marvell.jpg\n\nA warrant is a right a company issues that lets the holder buy newly issued shares at a set price.\nThe issuer parts with no cash, and the holder gains as the issuer grows.\n\n## The right does not open by itself\n\nThe warrant splits in two.\nIn year one, 1,360,867 shares vest in equal quarterly instalments no matter what anyone buys.\n\nThe remaining 57.6 million shares work differently.\nOne tranche opens for every $500 million of custom-product revenue Google puts through Marvell, and there are 240 of those tranches.\nThe clock runs from Marvell's fiscal third quarter of 2027 to the end of fiscal 2033.\n\n@@BAR@@Cumulative Google purchases needed to vest the whole warrant|$120B|1200|Marvell's full-year fiscal 2026 revenue|$8.2B|82@@Google alone would have to buy fifteen times Marvell's entire last-year revenue, cumulatively, for the final tranche to open. The bar on the right is everything the company sells in a year today.@@Marvell fiscal 2026 results (2026-03-05); Tech Times, 2026-08-19\n\n## Is that number a forecast or a condition\n\n@@CMP@@How the market read it|Google has committed to buying that much silicon through 2033, and it lands as Marvell revenue.|What the warrant document says|That figure is the level at which the last tranche vests. Buy less and less vests. It is not a purchase promise.\n\nThe same number is a revenue outlook on one side and a strike condition on the other.\nSerenity read the deal as something that could translate into revenue of that order through 2033, and how much weight that sentence carries depends on how many tranches actually open.\n\n## Amazon came first\n\nThis shape is not new.\nMarvell issued Amazon a warrant for 4.18 million shares at $87.77 apiece, tied to purchases of Trainium and Inferentia parts.\n\nWith Google, Marvell now holds custom silicon relationships with all three of the big US hyperscalers.\nBroadcom, its closest rival in that business, fell close to 3% on the news.\n\nWhat Google is buying is not the TPU itself but everything that attaches to it.\nThe agreement covers inference accelerators, storage controllers, network and memory interface controllers, and near-memory compute parts.\nThe chip supplier hands equity to its customer, and the customer buys more in order to earn it.\n\n## What to watch in the August 27 results\n\nTranches only start opening in Marvell's fiscal third quarter of 2027.\nOnce the count of vested tranches appears each quarter, the real size of the Google business becomes visible; if no tranche opens, $120 billion stays an arithmetic figure.\nGoldman Sachs has kept a Neutral rating and a $195 price target on Marvell since the announcement.",
+    "ja": "マーベルがグーグルに、自社株5,897万株を1株206.58ドルで買える権利を与えた。\n全部行使すれば約122億ドル分で、会社の持ち分の7%近くになる。\n発表当日のマーベル株は12%上がり、230ドルを超えた。\n\n@@REF@@マーベル、グーグルのAIチップ契約を獲得しハイパースケーラーのカスタムシリコンを制覇 (Tech Times, 2026-08-19)|https://www.techtimes.com/articles/324988/20260819/marvell-lands-google-ai-chip-deal-closing-custom-silicon-hyperscaler-sweep.htm|https://d.techtimes.com/en/full/466676/marvell.jpg\n\nワラントは、決められた価格で新株を買える権利を会社が発行して渡すものだ。\n渡す側は現金が出ていかず、受け取る側はその会社が大きくなるほど得をする。\n\n## 権利はひとりでに開かない\n\nこのワラントは二つに分かれる。\n初年度の136万867株は、売上に関係なく四半期ごとに均等に開く。\n\n残りの約5,760万株は違う。\nグーグルがマーベルのカスタム製品を5億ドル分買うたびに一片ずつ開き、その片が240個ある。\nマーベルの2027会計年度第3四半期から2033会計年度までにかかっている。\n\n@@BAR@@ワラントが全部開くのに必要なグーグルの累計購入額|1,200億ドル|1200|マーベルの2026会計年度の年間売上高|82億ドル|82@@最後の一片が開くには、グーグル1社がマーベルの昨年度の全売上の15倍を累計で買う必要がある。右の棒が、いま会社が1年に売る物の大きさだ。@@マーベル2026会計年度決算(2026-03-05) · Tech Times 2026-08-19\n\n## その数字は見通しなのか条件なのか\n\n@@CMP@@市場の読み方|グーグルが2033年までにその分を買うということであり、それがマーベルの売上になる。|ワラント文書の読み方|その金額は最後の一片まで開く条件だ。買う量が少なければ開く量も少ないだけで、購入の約束ではない。\n\n同じ数字が、一方では売上見通しになり、他方では行使条件になる。\nセレニティもこの契約が2033年までにその程度の売上につながりうるとみたが、その一文の重みは実際に何片開くかにかかっている。\n\n## アマゾンが先にあった\n\nこの形は初めてではない。\nマーベルはアマゾンにも418万株を1株87.77ドルで買えるワラントを出しており、その権利はトレーニアムとインファレンシアの購入に連動していた。\n\n今回の契約でマーベルは、アマゾン、マイクロソフト、グーグルという米国の主要ハイパースケーラー3社すべてとカスタムチップの関係を持つことになった。\n発表当日、競合のブロードコム株は3%近く下げた。\n\nグーグルが買うのはTPUそのものではなく、その周りに付くものだ。\n推論用アクセラレータ、ストレージ制御チップ、ネットワークとメモリのインターフェース、メモリの近くで演算を担う部品が契約に入っている。\nチップを売る側が顧客に持ち分を渡し、顧客はそれを得るためにより多く買う構図だ。\n\n## 8月27日の決算で見るもの\n\n一片が開き始めるのはマーベルの2027会計年度第3四半期からだ。\n四半期ごとに何片開いたかが出れば、グーグル向けに実際に回る金額の大きさが分かり、開いた片がなければ1,200億ドルは計算上の数字のまま残る。\nゴールドマン・サックスは発表後もマーベルに中立の判断と195ドルの目標株価を維持している。"
+   },
+   "why": {
+    "ko": "칩을 파는 회사가 고객에게 지분을 넘기는 구조가 아마존, 마이크로소프트에 이어 구글까지 퍼졌고, 그 대가로 걸린 숫자가 마벨 연매출의 열다섯 배다.",
+    "en": "The pattern of a chip supplier handing equity to its customer has now reached Google after Amazon and Microsoft, and the number attached to it is fifteen times Marvell's annual revenue.",
+    "ja": "チップを売る側が顧客に持ち分を渡す構図が、アマゾンとマイクロソフトに続いてグーグルにも広がり、その対価に置かれた数字はマーベルの年間売上の15倍だ。"
+   },
+   "ask": {
+    "ko": "고객에게 지분을 주고 주문을 받는 구조는 마벨에 좋은 거래일까? 워런트를 다 내주면 기존 주주 지분이 그만큼 희석되고, 다 내주지 못하면 그 매출 숫자도 함께 사라진다.",
+    "en": "Is trading equity for orders a good deal for Marvell? Vesting the whole warrant dilutes existing holders by that much, and if it never fully vests the revenue figure disappears with it.",
+    "ja": "顧客に持ち分を渡して注文を得る構図は、マーベルにとって良い取引なのか。ワラントを全部渡せば既存株主はその分だけ希薄化し、渡し切れなければその売上の数字も一緒に消える。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Serenity(@aleabitoreddit) · 2026-08-19",
+      "en": "Serenity (@aleabitoreddit) · 2026-08-19",
+      "ja": "Serenity(@aleabitoreddit) · 2026-08-19"
+     },
+     "url": "https://x.com/aleabitoreddit/status/2090103899302826302"
+    },
+    {
+     "name": {
+      "ko": "워런트 구조",
+      "en": "Warrant structure",
+      "ja": "ワラントの構造"
+     },
+     "desc": {
+      "ko": "Tech Times · 2026-08-19 · 5,897만주·행사가 206.58달러·240트랜치·1,200억달러 조건",
+      "en": "Tech Times · 2026-08-19 · 58.97M shares, $206.58 strike, 240 tranches, $120B threshold",
+      "ja": "Tech Times · 2026-08-19 · 5,897万株、行使価格206.58ドル、240トランシェ、1,200億ドルの条件"
+     },
+     "url": "https://www.techtimes.com/articles/324988/20260819/marvell-lands-google-ai-chip-deal-closing-custom-silicon-hyperscaler-sweep.htm"
+    },
+    {
+     "name": {
+      "ko": "마벨 연매출",
+      "en": "Marvell annual revenue",
+      "ja": "マーベルの年間売上"
+     },
+     "desc": {
+      "ko": "마벨 2026 회계연도 실적 발표 · 2026-03-05 · 연간 매출 81억9,500만달러",
+      "en": "Marvell fiscal 2026 results · 2026-03-05 · full-year revenue of $8.195 billion",
+      "ja": "マーベル2026会計年度決算 · 2026-03-05 · 年間売上81億9,500万ドル"
+     },
+     "url": "https://investor.marvell.com/news-events/press-releases/detail/1011/marvell-technology-inc-reports-fourth-quarter-and-fiscal-year-2026-financial-results"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-19 조회 · 주가와 등락률은 발표 당일 장중 기준이고, 워런트 조건은 마벨이 8월 18일 발행한 워런트를 전한 보도 기준이다.",
+    "en": "Retrieved 2026-08-19. Share prices and moves are intraday on the announcement day; warrant terms follow reporting on the warrant Marvell issued on August 18.",
+    "ja": "2026-08-19取得。株価と騰落率は発表当日の場中基準で、ワラントの条件は8月18日に発行されたワラントを伝えた報道に基づく。"
+   }
+  },
+  {
+   "date": "2026-08-19",
+   "id": "jukan-samsung-p5-triple-fab-third-floor",
+   "related": [
+    "jukan-samsung-hwaseong-dram-endfab",
+    "jukan-samsung-foundry-100-utilization-2nm-yield-gate",
+    "jukan-samsung-2q26-lta-60-70-capacity"
+   ],
+   "source": "Jukan (@jukan05)",
+   "sourceUrl": "https://x.com/jukan05/status/2090018803384218030",
+   "sourceLang": "EN",
+   "category": "investor",
+   "avatarImg": "https://unavatar.io/twitter/jukan05?fallback=false",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#12233a",
+    "to": "#070f19",
+    "label": "MEMORY"
+   },
+   "tags": [
+    "MEMORY",
+    "SAMSUNG",
+    "CAPEX"
+   ],
+   "stance": "bull",
+   "title": {
+    "ko": "층을 하나 더 올렸을 뿐인데 생산능력은 왜 1.5배가 될까",
+    "en": "Why does one extra floor lift capacity by half again?",
+    "ja": "1フロア足しただけで、生産能力はなぜ1.5倍になるのか"
+   },
+   "quote": {
+    "lines": {
+     "en": [
+      "Korean media report that Samsung plans to increase the number of floors at its new fab under construction in Pyeongtaek from the originally planned two to three.",
+      "With the number of cleanrooms increasing by 50%, production capacity is also expected to rise by at least 50%."
+     ],
+     "ko": [
+      "한국 언론은 삼성이 평택에서 짓고 있는 새 팹의 층수를 원래 계획한 2층에서 3층으로 늘릴 계획이라고 전했다.",
+      "클린룸 수가 50% 늘어나면서 생산능력도 최소 50% 오를 것으로 예상된다."
+     ],
+     "ja": [
+      "韓国メディアは、サムスンが平沢で建設中の新ファブの階数を当初計画の2階から3階に増やす計画だと伝えている。",
+      "クリーンルームの数が50%増えることで、生産能力も少なくとも50%上がると見込まれる。"
+     ]
+    },
+    "cite": "Jukan (@jukan05) · 2026.08.19"
+   },
+   "sum3": {
+    "ko": "삼성전자가 평택 P5를 2층에서 3층으로 바꾸는 설계 변경안을 냈다.\n같은 땅에 층을 하나 얹으면 클린룸이 넷에서 여섯으로 늘어난다.\n같은 캠퍼스의 4나노 라인은 지난해 말부터 꽉 차 있고, 이 3층은 아직 승인 전이다.",
+    "en": "Samsung has filed to redesign Pyeongtaek P5 from two floors to three.\nAdding one deck on the same ground takes the building from four cleanrooms to six.\nThe 4nm line on that same campus has been full since late last year, and this third floor is still awaiting approval.",
+    "ja": "サムスン電子が平沢P5を2階建てから3階建てに変える設計変更案を出した。\n同じ土地に1フロア載せると、クリーンルームは4室から6室になる。\n同じキャンパスの4ナノラインは昨年末から満杯で、この3階はまだ承認前だ。"
+   },
+   "gist": {
+    "ko": "삼성전자가 평택에 짓고 있는 P5 1·2공장을 원래 계획한 2층에서 3층으로 다시 설계하는 안을 냈다고 한국 언론이 전했다.\n층이 하나 늘면 건물 한 채가 품는 클린룸이 4개에서 6개로 늘고, 생산능력도 1.5배 이상으로 본다는 계산이다.\n\n@@REF@@삼성, 평택 팹을 3층 구조로 확장 (BusinessKorea, 2026-08-19)|https://www.businesskorea.co.kr/news/articleView.html?idxno=275090|https://www.businesskorea.co.kr/news/thumbnail/202608/275090_282431_1147_v150.jpg\n\n클린룸은 먼지와 진동을 걸러낸 방이고, 반도체 장비는 그 안에만 놓을 수 있다.\n그래서 반도체 회사가 말하는 생산능력은 사실상 이 방의 넓이다.\n\n## 땅이 아니라 높이를 늘렸다\n\n평택 캠퍼스는 부지가 정해져 있고, 전력과 용수, 배관은 이미 그 땅 위에 깔려 있다.\n새 땅을 사면 이 설비를 처음부터 다시 깔아야 한다.\n\n같은 자리에서 방을 더 얻는 방법은 위로 쌓는 것이다.\n삼성은 용적률 상한을 350%에서 490%로 올리는 계획 변경안을 냈다.\n용적률은 땅 넓이 대비 건물 바닥 면적의 비율이라, 이 숫자가 오르면 같은 땅에 더 높은 건물을 올릴 수 있다.\n\n@@CHK@@P4 건물당 클린룸|4개|P5 계획|6개|용적률 상한|350% → 490%@@늘어난 것은 부지가 아니라 한 건물에 넣을 수 있는 층수다. 같은 땅에서 클린룸이 50% 늘어난다.@@2026-08-19 조회 · BusinessKorea가 전한 평택 산업단지계획 변경안\n\n@@IMG@@dram-module|P5가 찍어낼 물건 가운데 하나. 서버에 꽂는 D램 막대다.\n\nP5는 고대역폭 메모리와 고사양 D램, 차세대 V낸드, 그리고 파운드리까지 담는 것으로 알려져 있다.\n2022년에 착공했고 완공 목표는 2030년이며, 공사가 가장 몰릴 때는 현장 인원이 5만명까지 간다.\n\n## 왜 지금 층을 올리나\n\n같은 캠퍼스의 앞선 라인은 이미 꽉 차 있다.\n로이터는 삼성이 최근 파운드리 값을 올렸고, 중국 고객이 가장 큰 인상폭을 받아들이고 있다고 전했다.\n4나노 공정 값은 중국과 미국 고객에게 10~15%, 대만 고객에게 5~10% 올랐고, 5나노는 10~15% 올랐다는 내용이다.\n\n@@REF@@삼성, AI 수요가 4나노 라인을 채우자 첨단 파운드리 값을 최대 15% 인상 (Tom's Hardware, 2026-08-19)|https://www.tomshardware.com/tech-industry/samsung-raises-advanced-foundry-prices-by-up-to-15-percent-as-ai-demand-fills-its-4nm-lines\n\n이 보도에서 눈여겨볼 것은 인상폭이 아니라 그 이유다.\n평택의 4나노 라인이 지난해 말부터 계속 꽉 찬 상태로 돌고 있다는 대목이다.\n값을 올릴 수 있다는 것은 지금 팔 물건이 모자란다는 뜻이고, 층을 올리는 것은 3~4년 뒤에 팔 물건을 늘리는 일이다.\n반도체에서 값과 설비 사이에는 늘 이만큼의 시차가 있다.\n\n## 아직 도면일 뿐인 P5의 3층\n\n이 계획은 지방자치단체의 승인을 받아야 확정된다.\n주칸도 승인을 전제로 한 이야기라고 적었고, 여기까지는 아직 도면 위의 일이다.\n\n승인이 나면 확인할 것은 두 가지다.\n평택 P5가 3층으로 확정되면 삼성이 같은 땅에서 클린룸을 확보하는 속도가 한 단계 빨라지고, 용인에 지을 팹도 같은 3층 구조를 따를 것으로 업계는 보고 있다.\n안이 반려되면 P5는 원안대로 2층으로 남고, 늘려 잡았던 물량 계획도 그만큼 뒤로 밀린다.",
+    "en": "Samsung has filed to redesign the P5 Plant 1 and Plant 2 buildings under construction in Pyeongtaek from the planned two floors to three, according to Korean media reports.\nOne extra floor takes a single building from four cleanrooms to six, and Samsung reckons capacity would rise by at least half again.\n\n@@REF@@Samsung expands Pyeongtaek fab into triple-deck (BusinessKorea, 2026-08-19)|https://www.businesskorea.co.kr/news/articleView.html?idxno=275090|https://www.businesskorea.co.kr/news/thumbnail/202608/275090_282431_1147_v150.jpg\n\nA cleanroom is a space filtered of dust and damped against vibration, and chipmaking tools can only sit inside one.\nSo when a chipmaker talks about capacity, it is mostly talking about the floor area of these rooms.\n\n## The land stayed the same, the height did not\n\nThe Pyeongtaek campus has fixed boundaries, and its power, water and piping are already laid across that ground.\nBuying new land means laying all of that again from scratch.\n\nThe way to get more rooms on the same site is to stack them.\nSamsung asked to raise the floor area ratio ceiling from 350% to 490%.\nFloor area ratio is total floor space measured against the size of the lot, so a higher number lets a taller building stand on the same plot.\n\n@@CHK@@Cleanrooms per building, P4|4|P5 as redesigned|6|Floor area ratio ceiling|350% to 490%@@What grew is not the site but the number of decks one building can hold. The same ground yields 50% more cleanroom.@@Retrieved 2026-08-19, from BusinessKorea's account of the Pyeongtaek industrial complex plan revision\n\n@@IMG@@dram-module|One of the things P5 is meant to turn out: the DRAM sticks that slot into servers.\n\nP5 is described as carrying high bandwidth memory, high-specification DRAM, next-generation V-NAND and advanced foundry work.\nConstruction started in 2022 and completion is targeted for 2030, with as many as 50,000 workers on site at peak.\n\n## Why the extra floor, and why now\n\nThe earlier lines on the same campus are already full.\nReuters reported that Samsung has raised foundry prices, with Chinese customers absorbing the steepest increases.\nQuotes on the 4nm process rose 10-15% for customers in China and the US and 5-10% in Taiwan, while 5nm rose 10-15%.\n\n@@REF@@Samsung raises advanced foundry prices by up to 15% as AI demand fills its 4nm lines (Tom's Hardware, 2026-08-19)|https://www.tomshardware.com/tech-industry/samsung-raises-advanced-foundry-prices-by-up-to-15-percent-as-ai-demand-fills-its-4nm-lines\n\nThe number to take from that report is not the percentage but the reason behind it.\nPyeongtaek's 4nm line has reportedly been running full since late last year.\nBeing able to raise prices means there is not enough to sell now; adding a floor means having more to sell three or four years from now.\nIn semiconductors that lag between price and plant is always there.\n\n## P5's third floor is still a drawing\n\nThe plan has to clear local government approval before it is fixed.\nJukan wrote it as conditional on that approval, and until then this sits on paper.\n\nIf approval comes, two things follow.\nA three-story P5 means Samsung adds cleanroom on ground it already owns much faster, and the industry expects the fabs planned for Yongin to use the same triple-deck layout.\nIf the filing is turned down, P5 stays two stories as originally drawn, and the volume plans built on top of it slide back by the same amount.",
+    "ja": "サムスン電子が平沢で建設中のP5第1・第2工場を、当初計画の2階建てから3階建てに設計変更する案を出したと韓国メディアが伝えた。\n1フロア増えると建物1棟が抱えるクリーンルームは4室から6室になり、生産能力も1.5倍以上になるという計算だ。\n\n@@REF@@サムスン、平沢ファブを3層構造へ拡張 (BusinessKorea, 2026-08-19)|https://www.businesskorea.co.kr/news/articleView.html?idxno=275090|https://www.businesskorea.co.kr/news/thumbnail/202608/275090_282431_1147_v150.jpg\n\nクリーンルームはほこりと振動を取り除いた部屋で、半導体の製造装置はその中にしか置けない。\nだから半導体会社が言う生産能力は、実際にはこの部屋の床面積のことだ。\n\n## 土地ではなく高さを増やした\n\n平沢キャンパスは敷地が決まっており、電力も用水も配管もすでにその土地の上に敷かれている。\n新しい土地を買えば、この設備を一から敷き直すことになる。\n\n同じ場所で部屋を増やす方法は、上に積むことだ。\nサムスンは容積率の上限を350%から490%へ引き上げる計画変更案を出した。\n容積率は敷地面積に対する建物の延床面積の比率で、この数字が上がれば同じ土地により高い建物を建てられる。\n\n@@CHK@@P4の建物あたりクリーンルーム|4室|P5の変更案|6室|容積率の上限|350% → 490%@@増えたのは敷地ではなく、1棟に入れられるフロア数だ。同じ土地でクリーンルームが50%増える。@@2026-08-19取得 · BusinessKoreaが伝えた平沢の産業団地計画変更案\n\n@@IMG@@dram-module|P5が作るものの一つ。サーバーに差すDRAMモジュールだ。\n\nP5は広帯域メモリと高仕様DRAM、次世代V-NAND、さらにファウンドリまで担うとされる。\n2022年に着工し、完工目標は2030年で、工事が最も集中する時期には現場の人員が5万人に達する。\n\n## なぜ今フロアを足すのか\n\n同じキャンパスの先行ラインはすでに埋まっている。\nロイターは、サムスンがファウンドリの価格を引き上げ、中国の顧客が最も大きな上げ幅を受け入れていると伝えた。\n4ナノ工程の価格は中国と米国の顧客に10〜15%、台湾の顧客に5〜10%上がり、5ナノは10〜15%上がったという内容だ。\n\n@@REF@@サムスン、AI需要が4ナノラインを埋め、先端ファウンドリ価格を最大15%引き上げ (Tom's Hardware, 2026-08-19)|https://www.tomshardware.com/tech-industry/samsung-raises-advanced-foundry-prices-by-up-to-15-percent-as-ai-demand-fills-its-4nm-lines\n\nこの報道で見るべきは上げ幅ではなく、その理由だ。\n平沢の4ナノラインが昨年末からずっと満杯で回っているという部分である。\n値上げできるということは今売る物が足りないという意味であり、フロアを足すのは3〜4年後に売る物を増やす作業だ。\n半導体では価格と設備の間に、いつもこれだけの時差がある。\n\n## まだ図面の上にあるP5の3階\n\nこの計画は自治体の承認を得て初めて確定する。\nJukanも承認を前提とした話だと書いており、ここまではまだ図面の上の出来事だ。\n\n承認が下りれば見るべきものは二つだ。\n平沢P5が3階建てで確定すればサムスンが既存の敷地でクリーンルームを確保する速度が一段上がり、龍仁に建てるファブも同じ3層構造を採ると業界はみている。\n案が差し戻されればP5は原案どおり2階建てのまま残り、その上に積んでいた数量計画も同じだけ後ろにずれる。"
+   },
+   "why": {
+    "ko": "메모리와 파운드리 모두 지금 팔 물건이 모자란 국면인데, 삼성이 늘리려는 것은 땅이 아니라 이미 가진 땅 위의 층이다. 증설 속도가 그만큼 달라진다.",
+    "en": "Memory and foundry are both short of product to sell right now, and what Samsung is trying to add is not land but decks on land it already holds. That changes how fast capacity can arrive.",
+    "ja": "メモリもファウンドリも今は売る物が足りない局面で、サムスンが増やそうとしているのは土地ではなく、すでに持つ土地の上のフロアだ。増設の速度がそれだけ変わる。"
+   },
+   "ask": {
+    "ko": "층을 쌓아 올린 클린룸이 2030년의 수요를 맞출 수 있을까? 값이 오르는 지금과 물량이 나오는 3~4년 뒤 사이의 시차가 이 판단을 가른다.",
+    "en": "Will stacked cleanrooms arrive in time for 2030 demand? The gap between prices rising now and wafers coming out three or four years later is where views split.",
+    "ja": "積み上げたクリーンルームは2030年の需要に間に合うのか。値上がりしている今と、物が出てくる3〜4年後との時差がこの判断を分ける。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "Jukan(@jukan05) · 2026-08-19",
+      "en": "Jukan (@jukan05) · 2026-08-19",
+      "ja": "Jukan(@jukan05) · 2026-08-19"
+     },
+     "url": "https://x.com/jukan05/status/2090018803384218030"
+    },
+    {
+     "name": {
+      "ko": "설계 변경 내용",
+      "en": "Redesign details",
+      "ja": "設計変更の内容"
+     },
+     "desc": {
+      "ko": "BusinessKorea · 2026-08-19 · 클린룸 4→6개, 용적률 350%→490%, 2030년 완공",
+      "en": "BusinessKorea · 2026-08-19 · four to six cleanrooms, floor area ratio 350% to 490%, completion in 2030",
+      "ja": "BusinessKorea · 2026-08-19 · クリーンルーム4→6室、容積率350%→490%、2030年完工"
+     },
+     "url": "https://www.businesskorea.co.kr/news/articleView.html?idxno=275090"
+    },
+    {
+     "name": {
+      "ko": "파운드리 가격 인상",
+      "en": "Foundry price increases",
+      "ja": "ファウンドリ値上げ"
+     },
+     "desc": {
+      "ko": "Tom's Hardware · 2026-08-19 · 로이터 보도 인용, 4나노 라인 풀가동",
+      "en": "Tom's Hardware · 2026-08-19 · citing Reuters, 4nm line running full",
+      "ja": "Tom's Hardware · 2026-08-19 · ロイター報道の引用、4ナノラインは満杯稼働"
+     },
+     "url": "https://www.tomshardware.com/tech-industry/samsung-raises-advanced-foundry-prices-by-up-to-15-percent-as-ai-demand-fills-its-4nm-lines"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-19 조회 · 층수 변경과 용적률은 승인 전 계획안이고, 가격 인상폭은 로이터가 익명 취재원 두 명을 인용한 보도 기준이다.",
+    "en": "Retrieved 2026-08-19. The floor change and floor area ratio are a filing awaiting approval; the price increases follow Reuters citing two people familiar with the matter.",
+    "ja": "2026-08-19取得。階数変更と容積率は承認前の計画案であり、値上げ幅はロイターが匿名の関係者2人を引用した報道に基づく。"
+   }
+  },
+  {
+   "date": "2026-08-19",
+   "id": "meru-hanwha-k9mh-mtc-six-prototypes-vs-500",
+   "related": [
+    "meru-hanwha-philly-mriv",
+    "meru-ukraine-defense-chief-purge",
+    "doomberg-eu-china-sanctions-dual-use-rearmament"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224383455971",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#2b2f1d",
+    "to": "#12140b",
+    "label": "DEFENSE"
+   },
+   "tags": [
+    "DEFENSE",
+    "KOREA",
+    "USARMY"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "6대, 4년, 그리고 500대",
+    "en": "Six vehicles, four years, and then 500",
+    "ja": "6両、4年、そして500両"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "미 육군은 2026년 8월 18일, 자주포 현대화 프로그램(MTC)에 한화디펜스USA의 K9을 시제품으로 선정함.",
+      "한화가 시제품 납품으로 돈이 되는 것은 아니고, 테스트가 성공적으로 완료되어 500대를 납품해야 돈이 됨."
+     ],
+     "en": [
+      "On August 18, 2026, the US Army selected Hanwha Defense USA's K9 as the prototype for its self-propelled howitzer modernization program (MTC).",
+      "Delivering the prototypes is not where the money is for Hanwha. The money comes only if the testing is completed successfully and 500 vehicles are delivered."
+     ],
+     "ja": [
+      "米陸軍は2026年8月18日、自走砲近代化事業(MTC)にハンファ・ディフェンスUSAのK9を試作として選定した。",
+      "ハンファにとって試作の納入が収益になるわけではなく、試験が無事に終わって500両を納めて初めて収益になる。"
+     ]
+    },
+    "cite": "메르 · 2026.08.19"
+   },
+   "sum3": {
+    "ko": "미군의 155밀리 대포를 만드는 자리에 한국 회사가 처음으로 들어갔다.\n국내 보도는 30조원짜리 사업이라는 숫자로 이 소식을 전했다.\n계약서에 서명된 금액은 1억30만달러이고, 나머지는 4년짜리 시험 뒤에 있다.",
+    "en": "For the first time a Korean company has a place in building the US Army's 155mm guns.\nKorean coverage led with a headline number: a 30 trillion won program.\nThe figure written into the contract is $100.3 million, and everything else sits on the far side of a four-year test.",
+    "ja": "米軍の155ミリ砲を作る場所に、韓国企業が初めて入った。\n韓国の報道は30兆ウォン規模という数字でこの知らせを伝えた。\n契約書に署名された金額は1億30万ドルで、残りは4年の試験の向こう側にある。"
+   },
+   "gist": {
+    "ko": "미 육군이 8월 18일, 견인포 M777을 대신할 차륜형 자주포의 시제품 제작자로 한화디펜스USA를 골랐다.\n계약은 여섯 대에 1억30만달러이고, 미 육군이 옵션을 다 쓰면 열여덟 대까지 늘어난다.\n\n@@REF@@한국의 고기동 155밀리 자주포, 미 육군 자주포 계약을 따내다 (The War Zone, 2026-08-18)|https://www.twz.com/land/south-koreas-highly-mobile-155mm-artillery-system-wins-u-s-army-howitzer-contract|https://www.twz.com/wp-content/uploads/2026/08/army-picks-k9mh-155mm-howitzer-for-prototyping-effort.jpg?w=1200\n\n같은 사업에 아메리칸 라인메탈, BAE시스템즈, 제너럴다이내믹스, 엘빗시스템즈USA가 함께 들어왔고, 시제품 단계로 넘어간 것은 한화 한 곳이다.\n\n## 견인포를 끌고 다니던 부대가 바꾸려는 것\n\nM777은 트럭이나 헬기가 끌어다 내려놓고 쏘는 대포다.\n자리를 잡는 데도, 접고 빠지는 데도 시간이 걸린다.\n\n드론과 대포병 레이더가 깔린 전장에서는 쏜 자리에 머무는 시간이 그대로 생존 시간이 된다.\n쏘고 바로 빠지는 움직임을 군에서는 슛 앤 스쿠트라고 부른다.\n한화는 K9MH가 자리를 잡고 빠지는 데 30초가 걸리지 않는다고 설명한다.\n\n미 육군은 원래 쓰던 M109 팔라딘의 사거리를 크게 늘리는 사업을 벌였다가 시제품 단계에서 한계가 드러나 2024년에 접었고, 그 뒤로 이미 나와 있는 해외 제품을 사 오는 쪽으로 방향을 틀었다.\n\n## 바퀴가 얻는 것과 내주는 것\n\n자주포는 캐터필러로 구르는 궤도형과 바퀴로 구르는 차륜형으로 갈린다.\n궤도형은 차체 무게가 넓게 퍼져서 진흙밭이나 급경사에서도 잘 움직이고 장갑이 두껍다.\n대신 무겁고 느려서 멀리 보낼 때는 따로 실어 날라야 한다.\n\n차륜형은 그 반대다.\n가볍고 빨라서 수백 킬로미터를 스스로 달릴 수 있고 수송기에도 실린다.\n무른 땅에 약하고 장갑이 얇다는 것이 그 대가다.\n\n그래서 미군은 기갑부대에는 궤도형 팔라딘을 그대로 두고, 바퀴로 움직이는 스트라이커 여단과 보병여단에 차륜형을 넣으려 한다.\n한화가 낸 K9MH는 이미 쓰이고 있는 K9의 자동 포탑을 8×8 바퀴 차대에 얹은 물건이다.\n\n@@FLOW@@시제품 6대|8월 18일 계약은 여기까지다|옵션 12대|미 육군이 원할 때 추가로 부른다|4년 시험|병사들이 실전에 가까운 조건에서 굴려 본다|500대 양산|한화에 돈이 되는 것은 여기서부터다@@계약서에 적힌 것은 앞의 두 칸이고, 뒤의 두 칸은 아직 아무것도 정해져 있지 않다.\n\n## 30조원은 어디서 나온 숫자인가\n\n@@CHK@@확정 계약(시제품 6대)|1억30만달러|옵션 12대 포함 최대|2억6,290만달러|업계 추정 500대 양산|71억4,000만달러@@서명된 금액과 국내 보도에 먼저 돈 30조원 사이에는 두 단계가 남아 있다. 71억4,000만달러는 장비값만 따진 추정이고, 여기에 탄약과 후속 정비까지 얹은 것이 그 숫자다.@@2026-08-19 조회 · 코리아헤럴드와 The War Zone이 전한 미 육군 계약 공고 및 업계 추정치\n\n@@REF@@한화, K9 시제품으로 미 육군 시장에 발을 들이다 (The Korea Herald, 2026-08-19)|https://www.koreaherald.com/article/10845559|https://wimg.heraldcorp.com/news/cms/2026/08/19/news-p.v1.20260819.36f316a3c17c450787190cdfd8474595_T1.jpg\n\n코리아헤럴드는 500대까지 양산이 이뤄질 경우의 규모를 약 71억4,000만달러로 전했다.\n메르도 국내에 돌고 있는 그 숫자가 500대 납품에 탄약과 후속 정비까지 합친 금액이라고 짚는다.\n\n## 2030년까지 한화가 넘어야 할 문턱\n\n이 계약이 한화에 준 것은 당장의 매출이 아니라 자리다.\n한국 회사가 완성된 무기체계를 미군에 직접 넣은 전례가 없었다고 여러 보도가 짚는다.\n\n다음 4년 동안 볼 것은 옵션이다.\n미 육군이 열두 대 옵션을 실제로 부르면 이 차를 계속 쓸 생각이라는 뜻이고, 여섯 대에서 멈추면 시험대에서 걸러진 것이다.\n계약서 숫자로만 보면 2억달러대 사업이고, 시험을 통과한 뒤의 그림으로 보면 한국 방위산업이 미군 조달 시장에 들어가는 첫 문이다.",
+    "en": "The US Army on August 18 picked Hanwha Defense USA to build prototypes of a wheeled self-propelled howitzer meant to replace the towed M777.\nThe award covers six vehicles for $100.3 million, and rises to eighteen vehicles if the Army exercises every option.\n\n@@REF@@South Korea's highly mobile 155mm artillery system wins US Army howitzer contract (The War Zone, 2026-08-18)|https://www.twz.com/land/south-koreas-highly-mobile-155mm-artillery-system-wins-u-s-army-howitzer-contract|https://www.twz.com/wp-content/uploads/2026/08/army-picks-k9mh-155mm-howitzer-for-prototyping-effort.jpg?w=1200\n\nAmerican Rheinmetall, BAE Systems, General Dynamics Land Systems and Elbit Systems USA competed for the same work. Only Hanwha moved on to the prototype stage.\n\n## What the units towing M777s are trying to fix\n\nThe M777 is a gun that a truck or a helicopter drags into position and sets down before it can fire.\nSetting up takes time, and so does packing up and leaving.\n\nOn a battlefield covered by drones and counter-battery radar, the minutes a crew spends parked where it just fired are the minutes it is exposed.\nFiring and immediately moving is what the Army calls shoot and scoot.\nHanwha says the K9MH takes under 30 seconds to emplace or displace.\n\nThe Army had been stretching the range of its existing M109 Paladin under a separate effort, ran into limits at the prototype stage, and shut that program down in 2024. After that it turned toward buying a design that already exists.\n\n## The trade wheels make\n\nSelf-propelled artillery splits into tracked vehicles and wheeled ones.\nTracks spread the weight of the hull, so a tracked gun keeps moving through mud and up slopes, and it carries thicker armor.\nThe cost is weight and speed: moving one a long way usually means putting it on something else.\n\nWheels are the opposite trade.\nA wheeled gun is lighter and faster, can drive hundreds of kilometers on its own, and fits inside a transport aircraft.\nIt pays for that with soft ground and thinner armor.\n\nSo the Army intends to leave tracked Paladins with its armored formations and give wheeled guns to the Stryker and infantry brigades that already move on wheels.\nHanwha's entry puts the automated turret of the in-service K9 onto an 8x8 wheeled chassis.\n\n@@FLOW@@6 prototypes|this is where the August 18 contract stops|12 options|called only if the Army wants them|4 years of testing|soldiers run the vehicles in realistic conditions|500 in production|the money for Hanwha starts here@@Only the first two boxes are written into a contract. Nothing in the last two has been decided.\n\n## Where the 30 trillion won number comes from\n\n@@CHK@@Signed award (6 prototypes)|$100.3M|Ceiling incl. 12 options|$262.9M|Industry estimate, 500 units|$7.14B@@Two steps sit between the money that has been signed and the 30 trillion won figure circulating in Korean coverage. The $7.14 billion counts the vehicles alone; the larger figure adds ammunition and sustainment on top.@@Retrieved 2026-08-19, from Korea Herald and The War Zone reporting on the Army award, plus industry estimates\n\n@@REF@@Hanwha breaks into US Army market with K9 prototypes (The Korea Herald, 2026-08-19)|https://www.koreaherald.com/article/10845559|https://wimg.heraldcorp.com/news/cms/2026/08/19/news-p.v1.20260819.36f316a3c17c450787190cdfd8474595_T1.jpg\n\nThe Korea Herald put a full 500-vehicle production run at roughly $7.14 billion.\nMeru makes the same point about the Korean figure: it counts 500 deliveries plus ammunition and follow-on support on top of them.\n\n## The gate Hanwha has to clear before 2030\n\nWhat this contract hands Hanwha is not revenue but a position.\nCoverage of the award notes that no Korean company had put a complete weapon system into US Army hands before.\n\nThe thing to watch over the next four years is the option.\nIf the Army calls the twelve additional vehicles, it still wants this gun; if the count stops at six, the vehicle was filtered out on the test range.\nRead as a contract, this is a low-hundreds-of-millions program. Read as a door, it is the first one a Korean defense maker has opened into US Army procurement.",
+    "ja": "米陸軍は8月18日、牽引式のM777に代わる装輪自走砲の試作を担う企業としてハンファ・ディフェンスUSAを選んだ。\n契約は6両で1億30万ドル、オプションをすべて使えば18両まで増える。\n\n@@REF@@韓国の高機動155ミリ自走砲、米陸軍の榴弾砲契約を獲得 (The War Zone, 2026-08-18)|https://www.twz.com/land/south-koreas-highly-mobile-155mm-artillery-system-wins-u-s-army-howitzer-contract|https://www.twz.com/wp-content/uploads/2026/08/army-picks-k9mh-155mm-howitzer-for-prototyping-effort.jpg?w=1200\n\n同じ事業にはアメリカン・ラインメタル、BAEシステムズ、ゼネラル・ダイナミクス、エルビット・システムズUSAも加わっていた。試作段階に進んだのはハンファ1社だけだ。\n\n## 牽引砲を引いてきた部隊が変えたいもの\n\nM777はトラックやヘリコプターが引いて運び、降ろしてから撃つ大砲だ。\n陣地を作るのにも、たたんで離れるのにも時間がかかる。\n\nドローンと対砲兵レーダーが張られた戦場では、撃った場所にとどまる時間がそのまま危険にさらされる時間になる。\n撃ってすぐ動くことを軍ではシュート・アンド・スクートと呼ぶ。\nハンファはK9MHの展開と撤収が30秒を切ると説明している。\n\n米陸軍はもともと保有するM109パラディンの射程を大きく伸ばす事業を進めていたが、試作段階で限界が見えて2024年に打ち切り、その後はすでに存在する海外製品を買う方向に切り替えた。\n\n## 車輪が得るものと手放すもの\n\n自走砲は履帯で走る装軌式と、タイヤで走る装輪式に分かれる。\n装軌式は車体の重さが広く分散するので泥地や急斜面でもよく動き、装甲も厚い。\nその代わり重くて遅く、遠くへ送るには別の輸送手段に載せることになる。\n\n装輪式は逆の取引だ。\n軽くて速く、数百キロを自力で走れて輸送機にも積める。\n柔らかい地面に弱く装甲が薄いことが、その代金だ。\n\nだから米陸軍は機甲部隊には装軌式のパラディンを残し、すでに車輪で動くストライカー旅団や歩兵旅団に装輪式を配ろうとしている。\nハンファが出したK9MHは、運用中のK9の自動砲塔を8×8の装輪シャシーに載せたものだ。\n\n@@FLOW@@試作6両|8月18日の契約はここまで|オプション12両|米陸軍が望んだときだけ発注される|4年の試験|兵士が実戦に近い条件で走らせる|500両の量産|ハンファの収益はここから始まる@@契約書に書かれているのは前の2枠で、後ろの2枠はまだ何も決まっていない。\n\n## 30兆ウォンという数字はどこから来たのか\n\n@@CHK@@確定契約(試作6両)|1億30万ドル|オプション12両込みの上限|2億6,290万ドル|業界推定、500両量産|71億4,000万ドル@@署名された金額と、韓国で先に出回った30兆ウォンとの間には2段階が残っている。71億4,000万ドルは装備だけを見た推定で、そこに弾薬と後方支援まで足したものがその数字だ。@@2026-08-19取得 · コリアヘラルドとThe War Zoneが伝えた米陸軍の契約公示および業界推定\n\n@@REF@@ハンファ、K9試作で米陸軍市場に足を踏み入れる (The Korea Herald, 2026-08-19)|https://www.koreaherald.com/article/10845559|https://wimg.heraldcorp.com/news/cms/2026/08/19/news-p.v1.20260819.36f316a3c17c450787190cdfd8474595_T1.jpg\n\nコリアヘラルドは500両まで量産が進んだ場合の規模を約71億4,000万ドルと伝えた。\nメルも、韓国で出回るその数字が500両の納入に弾薬と後方支援まで合わせた金額だと指摘している。\n\n## 2030年までにハンファが越える関門\n\nこの契約がハンファに与えたのは目先の売上ではなく、立ち位置だ。\n韓国企業が完成した兵器システムを米軍に直接納めた前例はこれまでなかったと各報道が指摘している。\n\nこれから4年間に見るべきものはオプションだ。\n米陸軍が12両のオプションを実際に発注すればこの車両を使い続ける意思があるということで、6両で止まれば試験場でふるい落とされたということだ。\n契約書の数字だけを見れば2億ドル台の事業であり、試験を通った後の絵で見れば韓国の防衛産業が米軍調達に入る最初の扉だ。"
+   },
+   "why": {
+    "ko": "한국 방위산업이 미군 조달 시장에 완성 무기체계로 처음 들어가는 관문이고, 지금 확정된 금액과 시장이 말하는 금액 사이에는 4년짜리 시험이 놓여 있다.",
+    "en": "It is the first time a Korean maker has put a complete weapon system into US Army procurement, and a four-year test sits between the money that has been signed and the money being quoted.",
+    "ja": "韓国の防衛産業が完成兵器システムで米軍調達に入る最初の関門であり、確定した金額と市場が語る金額の間には4年の試験がある。"
+   },
+   "ask": {
+    "ko": "시제품 18대짜리 계약을 30조원 사업의 시작으로 볼 수 있을까? 미 육군은 같은 자리에서 자국 업체 넷을 떨어뜨렸지만, 시제품 선정이 양산을 보장하지는 않는다.",
+    "en": "Is an 18-vehicle prototype deal the start of a 30 trillion won program? The Army passed over four established suppliers to get here, but a prototype pick is not a production commitment.",
+    "ja": "試作18両の契約を30兆ウォン事業の始まりと見てよいのか。米陸軍は自国企業4社を落として選んだが、試作の選定が量産を保証するわけではない。"
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르 · 2026-08-19",
+      "en": "Meru (blog.naver.com/ranto28) · 2026-08-19",
+      "ja": "メル · 2026-08-19"
+     },
+     "url": "https://blog.naver.com/ranto28/224383455971"
+    },
+    {
+     "name": {
+      "ko": "계약 내역",
+      "en": "Contract terms",
+      "ja": "契約内容"
+     },
+     "desc": {
+      "ko": "The War Zone · 2026-08-18 · 계약 금액과 경쟁사, K9MH 제원",
+      "en": "The War Zone · 2026-08-18 · award values, competitors, K9MH specifications",
+      "ja": "The War Zone · 2026-08-18 · 契約金額、競合、K9MHの諸元"
+     },
+     "url": "https://www.twz.com/land/south-koreas-highly-mobile-155mm-artillery-system-wins-u-s-army-howitzer-contract"
+    },
+    {
+     "name": {
+      "ko": "양산 규모 추정",
+      "en": "Production estimate",
+      "ja": "量産規模の推定"
+     },
+     "desc": {
+      "ko": "The Korea Herald · 2026-08-19 · 500대 약 71억4,000만달러 추정과 4년 평가 일정",
+      "en": "The Korea Herald · 2026-08-19 · roughly $7.14B for 500 units, four-year evaluation",
+      "ja": "The Korea Herald · 2026-08-19 · 500両で約71億4,000万ドルの推定と4年の評価日程"
+     },
+     "url": "https://www.koreaherald.com/article/10845559"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-19 조회 · 계약 금액은 미 육군이 8월 18일 발표한 계약 공고를 인용한 보도 기준이고, 500대 양산 규모는 업계 추정치다.",
+    "en": "Retrieved 2026-08-19. Contract values follow reporting on the US Army award announced August 18; the 500-unit figure is an industry estimate.",
+    "ja": "2026-08-19取得。契約金額は8月18日の米陸軍の契約公示を引用した報道に基づき、500両の規模は業界推定である。"
+   }
+  },
+  {
+   "date": "2026-08-19",
    "id": "semianalysis-cerebras-cs4-same-wafer-double-clock",
    "related": [
     "semianalysis-vera-rubin-nvl72-tco",
