@@ -1,6 +1,193 @@
 {
  "items": [
   {
+   "date": "2026-08-19",
+   "id": "meru-discount-rate-vs-thin-credit-spread",
+   "related": [
+    "meru-rate-cut-vs-qt-steepening-warsh",
+    "bilello-fed-cut-175bp-30y-real-yield-not-breakevens",
+    "meru-treasury-yield-deficit-not-just-oil"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224382901516",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": true,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#1f2f46",
+    "to": "#0d141c",
+    "label": "RATES"
+   },
+   "tags": [
+    "RATES",
+    "TECH",
+    "VALUATION"
+   ],
+   "stance": "watch",
+   "refFred": [
+    "DGS30",
+    "DGS10",
+    "DFII10",
+    "T10YIE",
+    "BAMLC0A0CM",
+    "BAMLH0A0HYM2"
+   ],
+   "title": {
+    "ko": "금리가 올라도 기술주가 벌 돈은 줄지 않는다, 깎이는 것은 그 돈의 오늘 값이다",
+    "en": "Higher rates don't shrink what tech companies will earn, they shrink what that money is worth today",
+    "ja": "金利が上がってもテック株が稼ぐ額は減らない、削られるのはその金の今日の値だ"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "정리하면 금리는 두 갈래로 기술주를 때린다.",
+      "하나는 빠르게 오는 밸류에이션 충격이고, 다른 하나는 서서히 스며드는 차입비용 상승으로 인한 이익 충격이다."
+     ],
+     "en": [
+      "To sum up, rates hit tech stocks along two paths.",
+      "One is the valuation shock that arrives quickly, the other is the earnings shock that seeps in slowly as borrowing costs rise."
+     ],
+     "ja": [
+      "まとめると、金利は二つの経路でテック株を叩く。",
+      "一つは速く来るバリュエーションの衝撃であり、もう一つはじわじわ染み込む借入コスト上昇による利益の衝撃だ。"
+     ]
+    },
+    "cite": "메르 · 2026.08.19"
+   },
+   "sum3": {
+    "ko": "돈을 빌리는 값이 2007년 이후 가장 비싸졌고, 그 여파가 AI 관련주에 먼저 왔다.\n금리가 오르면 기술주가 벌 돈이 줄어드는 것처럼 보인다. 그런데 벌 돈은 그대로다.\n깎이는 것은 그 돈을 오늘 값으로 당기는 비율이고, 10년 뒤 돈에서 1년 뒤 돈보다 일곱 배 가깝게 크게 깎인다.",
+    "en": "Borrowing money is the most expensive it has been since 2007, and AI-linked shares felt it first.\nIt looks as if higher rates shrink what tech companies will earn. They do not.\nWhat shrinks is the rate that converts that money into today's value, and on ten-year money it bites close to seven times as hard as on one-year money.",
+    "ja": "金を借りる値が2007年以来の高さになり、その影響がまずAI関連株に来た。\n金利が上がるとテック株の稼ぐ額が減るように見える。だが稼ぐ額は変わらない。\n削られるのはその金を今日の値に引き寄せる比率で、10年先の金では1年先の金の7倍近く強く効く。"
+   },
+   "gist": {
+    "ko": "미국 30년물 국채금리가 5.3%까지 올라 2007년 이후 가장 높은 자리에 섰다.\n같은 날 미국 증시에서는 코어위브가 8.3%, 파브리넷이 10% 내렸고,\nSK하이닉스와 샌디스크, 웨스턴디지털도 5% 넘게 빠졌다.\n\n@@REF@@금리와 유가가 상승 랠리를 끊고 반도체를 때렸다 (Charles Schwab, 2026-08-18)|https://www.schwab.com/learn/story/stock-market-update-open|https://www.schwab.com/sites/g/files/eyrktu1071/files/329122355_2x1.jpg\n\n금리가 올랐다고 이 회사들이 올해 벌 돈이 줄어든 것은 아니다.\n줄어든 것은 그 돈을 오늘 값으로 바꿀 때 쓰는 비율이다.\n\n## 1천만원을 10년 뒤로 미뤄 보면\n\n미래에 받을 돈을 지금 값으로 깎아 부를 때 쓰는 비율이 할인율이다.\n쉽게 말해 금리를 거꾸로 세운 값이다.\n\n1년 뒤에 1천만원을 받기로 돼 있다고 하자.\n금리가 4%면 오늘 961만원을 예금에 넣어 두기만 해도 1년 뒤 1천만원이 되니,\n그 1천만원의 오늘 값은 961만원이다.\n금리가 5%로 오르면 952만원만 넣어도 된다.\n같은 돈의 오늘 값이 9만원 깎인 것이다.\n\n기간을 10년으로 늘리면 폭이 달라진다.\n금리 4%에서는 676만원, 5%에서는 614만원이다.\n같은 1%포인트인데 깎인 금액은 62만원으로, 1년짜리의 일곱 배에 가깝다.\n이자에 이자가 붙는 복리가 시간만큼 쌓이기 때문이다.\n\n## 은행주와 기술주가 갈리는 자리\n\n배당을 꼬박꼬박 주는 은행주에서 나오는 돈은 1년짜리 돈에 가깝다.\nAI 기술주가 약속하는 이익은 몇 년 뒤에 몰려 있는 먼 돈이다.\n그래서 같은 1%포인트가 두 종목의 주가를 전혀 다른 폭으로 흔든다.\n\n여기까지가 빠르게 오는 첫 번째 충격이다.\n회사의 이익이 아니라 그 이익에 매기던 가격표만 바뀐다.\n\n## 가산금리가 얇으면 국채금리가 그대로 넘어온다\n\n두 번째 충격은 천천히 온다.\n기업은 국채금리에 자기 신용에 따른 가산금리를 얹은 값으로 돈을 빌린다.\n그 가산금리가 넓으면 국채금리가 올라도 일부를 흡수하지만, 좁으면 그대로 통과한다.\n\n이 부분은 저자의 전제라서 직접 조회해 봤다.\n\n@@CHK@@30년물 국채금리|5.31%|10년물 국채금리|4.72%|10년 실질금리|2.44%|10년 기대인플레이션|2.28%|투자등급 회사채 가산금리|0.81%|하이일드 회사채 가산금리|2.70%@@움직인 쪽은 기대인플레이션이 아니라 실질금리다. 물가 걱정이 아니라 돈값 자체가 비싸졌다는 뜻이다. 가산금리 0.81%는 국채금리 상승분을 거의 흡수하지 못할 만큼 얇아 저자의 전제와 맞는다. 다만 1997년 10월의 0.53%보다는 넓어서 사상 최저는 아니다.@@2026-08-17 · FRED (DGS30 · DGS10 · DFII10 · T10YIE · BAMLC0A0CM · BAMLH0A0HYM2)\n\n조달비용이 오르면 데이터센터처럼 돈을 왕창 넣고 나중에 사용료로 회수하는 사업이 먼저 불리해진다.\n빌리는 값이 오른 만큼 사용료를 더 받아야 본전인데, 경쟁 때문에 더 못 받으면 그 차이가 이익에서 빠진다.\n\n@@REF@@유가와 국채금리 상승에 다우와 S&P500이 밀렸다 (TheStreet, 2026-08-18)|https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-18-2026|https://www.thestreet.com/.image/NDA6MDAwMDAwMDAzMTQ3MTM5/nyse-traders-2.jpg?profile=share16-9\n\n이 기사가 짚은 대로 이날 시장을 누른 것은 금리만이 아니었다.\n유가도 함께 올랐고, 두 가지가 같은 방향으로 데이터센터 투자의 셈을 어렵게 만들었다.\n\n## 8월 26일 엔비디아가 답할 수 있는 것\n\n금리가 오르면 기술주가 빠진다는 말이 늘 맞는 것은 아니다.\n2026년 내내 금리는 높았고 그동안 기술주는 신고가까지 갔다.\n할인율은 값을 매기는 잣대일 뿐, 벌어들이는 돈이 그보다 빨리 늘면 잣대를 이긴다.\n\n그래서 지금 갈리는 지점은 금리의 방향이 아니라 이익의 속도다.\n8월 26일 엔비디아의 2027 회계연도 2분기 실적이 그 속도를 보여준다.\n매출과 다음 분기 전망이 시장 기대를 웃돌면 잣대가 무거워져도 견딘다는 근거가 되고,\n기대에 못 미치면 높은 금리를 견디게 해 주던 이유 자체가 흔들린다.",
+    "en": "The 30-year US Treasury yield has climbed to 5.3%, its highest level since 2007.\nOn the same day CoreWeave fell 8.3% and Fabrinet fell 10%,\nwhile SK Hynix, SanDisk and Western Digital each dropped more than 5%.\n\n@@REF@@Rising Yields, Oil Interrupt Rally, Hurting Chips (Charles Schwab, 2026-08-18)|https://www.schwab.com/learn/story/stock-market-update-open|https://www.schwab.com/sites/g/files/eyrktu1071/files/329122355_2x1.jpg\n\nNone of that means these companies will earn less money this year.\nWhat shrank is the rate used to convert that money into today's value.\n\n## Pushing 10 million won ten years out\n\nThe discount rate is the rate at which money you will receive later is marked down to what it is worth now.\nPut simply, it is an interest rate turned around and run backwards.\n\nSay you are due 10 million won a year from now.\nAt a 4% rate you only need to put 9.61 million won on deposit today to end up with 10 million,\nso that future money is worth 9.61 million won today.\nAt 5% you need only 9.52 million won.\nThe same future sum just lost 90,000 won of present value.\n\nStretch the wait to ten years and the gap changes shape.\nAt 4% you need 6.76 million won today; at 5% you need 6.14 million.\nThe same one percentage point now costs 620,000 won, close to seven times the one-year figure.\nCompounding does that: interest earns interest, and ten years of it piles up.\n\n## Where banks and tech part ways\n\nA bank that pays a steady dividend hands you money that behaves like one-year money.\nThe profits an AI company promises sit several years out.\nSo the same one percentage point moves the two share prices by very different amounts.\n\nThat is the first shock, and it arrives fast.\nNothing about the company's earnings changed. Only the price tag attached to those earnings did.\n\n## When the spread is thin, the Treasury yield passes straight through\n\nThe second shock is slower.\nCompanies borrow at the Treasury yield plus a spread that reflects their own credit risk.\nA wide spread absorbs part of a rise in Treasury yields. A thin one lets it through untouched.\n\nThat is the author's premise, so we went and looked the numbers up.\n\n@@CHK@@30-year Treasury yield|5.31%|10-year Treasury yield|4.72%|10-year real yield|2.44%|10-year breakeven inflation|2.28%|Investment-grade corporate spread|0.81%|High-yield corporate spread|2.70%@@What moved was the real yield, not breakeven inflation. Money itself got more expensive, and this is not an inflation scare. At 0.81% the investment-grade spread is far too thin to absorb the move in Treasury yields, which supports the author's premise. It is still wider than the 0.53% of October 1997, so it is not a record low.@@2026-08-17 · FRED (DGS30 · DGS10 · DFII10 · T10YIE · BAMLC0A0CM · BAMLH0A0HYM2)\n\nWhen borrowing costs rise, the businesses hurt first are the ones that spend heavily up front and recover it later through usage fees, which is exactly how a data centre works.\nThe rent has to rise as much as the funding cost did to break even, and when competition stops that from happening, the difference comes out of profit.\n\n@@REF@@Dow, S&P 500 slip on higher oil prices and Treasury yields (TheStreet, 2026-08-18)|https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-18-2026|https://www.thestreet.com/.image/NDA6MDAwMDAwMDAzMTQ3MTM5/nyse-traders-2.jpg?profile=share16-9\n\nAs that report notes, yields were not the only weight on the market that day.\nOil rose too, and the two pushed in the same direction on the arithmetic of data-centre investment.\n\n## What Nvidia can answer on August 26\n\nThe rule that higher rates sink tech stocks does not always hold.\nRates were high all through 2026, and tech went to record highs anyway.\nA discount rate is only the measuring stick. If earnings grow faster than the stick lengthens, the stick loses.\n\nSo the question now is not the direction of yields but the speed of earnings.\nNvidia reports its fiscal 2027 second quarter on August 26, and that number is the speedometer.\nRevenue and next-quarter guidance above expectations would be evidence that the sector can carry a heavier stick.\nFalling short would undercut the very reason the market has been willing to pay these prices at these yields.",
+    "ja": "米30年債利回りが5.3%まで上がり、2007年以来の高さになった。\n同じ日、米国株ではコアウィーブが8.3%、ファブリネットが10%下げ、\nSKハイニックスやサンディスク、ウエスタンデジタルも5%を超えて下げた。\n\n@@REF@@金利と原油高がラリーを止め、半導体を叩いた (Charles Schwab, 2026-08-18)|https://www.schwab.com/learn/story/stock-market-update-open|https://www.schwab.com/sites/g/files/eyrktu1071/files/329122355_2x1.jpg\n\n金利が上がったからといって、これらの会社が今年稼ぐ額が減ったわけではない。\n減ったのは、その金を今日の値に換えるときに使う比率のほうだ。\n\n## 1千万ウォンを10年先に置いてみる\n\n将来受け取る金を今の値に割り引くときの比率が割引率である。\n言ってしまえば、金利を逆から見た値だ。\n\n1年後に1千万ウォンを受け取る約束があるとする。\n金利が4%なら、今日961万ウォンを預けておくだけで1年後に1千万ウォンになるので、\nその1千万ウォンの今日の値は961万ウォンだ。\n金利が5%に上がると952万ウォンで足りる。\n同じ金の今日の値が9万ウォン削られたことになる。\n\n期間を10年に延ばすと幅が変わる。\n金利4%では676万ウォン、5%では614万ウォンだ。\n同じ1%ポイントなのに削られた額は62万ウォンで、1年物の7倍近い。\n利息に利息がつく複利が、年数の分だけ積み上がるからだ。\n\n## 銀行株とテック株が分かれる場所\n\n配当をきちんと出す銀行株から入る金は、1年物の金に近い。\nAIテック株が約束する利益は、数年先にまとまって置かれている遠い金だ。\nだから同じ1%ポイントが、二つの株価をまったく違う幅で揺らす。\n\nここまでが速く来る一つ目の衝撃である。\n会社の利益ではなく、その利益につけていた値札だけが変わっている。\n\n## スプレッドが薄いと国債利回りがそのまま通る\n\n二つ目の衝撃はゆっくり来る。\n企業は国債利回りに自社の信用に応じた上乗せ金利を足した値で借りる。\nその上乗せが広ければ国債利回りの上昇を一部吸収するが、狭ければそのまま通り抜ける。\n\nここは著者の前提なので、実際に調べてみた。\n\n@@CHK@@30年債利回り|5.31%|10年債利回り|4.72%|10年実質金利|2.44%|10年期待インフレ率|2.28%|投資適格社債スプレッド|0.81%|ハイイールド社債スプレッド|2.70%@@動いたのは期待インフレ率ではなく実質金利だ。物価の心配ではなく、金そのものが高くなったという意味になる。0.81%というスプレッドは国債利回りの上昇をほとんど吸収できないほど薄く、著者の前提と合う。ただし1997年10月の0.53%よりは広く、過去最低ではない。@@2026-08-17 · FRED (DGS30 · DGS10 · DFII10 · T10YIE · BAMLC0A0CM · BAMLH0A0HYM2)\n\n調達コストが上がると、先に大金を入れて後から使用料で回収する事業がまず不利になる。データセンターがまさにその形だ。\n借りる値が上がった分だけ使用料を上げないと元が取れないが、競争でそれができなければ、その差は利益から抜ける。\n\n@@REF@@原油高と国債利回り上昇でダウとS&P500が下げた (TheStreet, 2026-08-18)|https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-18-2026|https://www.thestreet.com/.image/NDA6MDAwMDAwMDAzMTQ3MTM5/nyse-traders-2.jpg?profile=share16-9\n\nこの記事が指摘するとおり、その日の相場を押さえたのは金利だけではない。\n原油も同時に上がり、二つがそろってデータセンター投資の計算を苦しくした。\n\n## 8月26日にエヌビディアが答えられること\n\n金利が上がればテック株が下がる、という言い方がいつも当たるわけではない。\n2026年を通じて金利は高く、その間テック株は最高値まで行った。\n割引率は値を測るものさしにすぎず、稼ぐ額がものさしより速く伸びればものさしに勝つ。\n\nだから今の分かれ目は金利の向きではなく、利益の速さだ。\n8月26日、エヌビディアが2027会計年度第2四半期の実績を出す。\n売上高と次の四半期の見通しが市場の期待を上回れば、重いものさしでも耐えられる根拠になる。\n届かなければ、高い金利を受け入れさせてきた理由そのものが揺らぐ。"
+   },
+   "why": {
+    "ko": "금리가 기술주를 때리는 경로가 둘이라는 것은, 금리가 더 오르지 않아도 두 번째 경로는 계속 진행된다는 뜻이다. 밸류에이션은 하루 만에 되돌아올 수 있지만 차입비용은 만기가 돌아올 때마다 새 금리로 다시 붙는다.",
+    "en": "Because rates hit tech through two channels, the second one keeps working even if yields stop rising. Valuation can snap back in a day; borrowing costs reset at each maturity, one refinancing at a time.",
+    "ja": "金利がテック株を叩く経路が二つあるということは、金利がこれ以上上がらなくても二つ目の経路は進み続けるという意味だ。バリュエーションは一日で戻りうるが、借入コストは満期が来るたびに新しい金利で付け直される。"
+   },
+   "ask": {
+    "ko": "30년물이 5%대에 굳어진 채로도 AI 기술주가 계속 오를 수 있을까, 아니면 8월 26일 엔비디아 실적이 그 한계를 먼저 보여줄까?",
+    "en": "Can AI tech keep climbing with the 30-year stuck above 5%, or will Nvidia's August 26 results be the first place that limit shows up?",
+    "ja": "30年債が5%台に居座ったままでもAIテック株は上がり続けられるのか、それとも8月26日のエヌビディア決算がその限界を先に示すのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-09-05",
+    "note": {
+     "ko": "8월 26일 엔비디아 2027 회계연도 2분기 매출이 시장 기대를 웃돌았는지로 채점한다.",
+     "en": "Graded on whether Nvidia's fiscal 2027 second-quarter revenue on August 26 beat market expectations.",
+     "ja": "8月26日のエヌビディア2027会計年度第2四半期の売上高が市場予想を上回ったかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "엔비디아 2027 회계연도 2분기 매출과 다음 분기 가이던스",
+      "en": "Nvidia's fiscal 2027 Q2 revenue and next-quarter guidance",
+      "ja": "エヌビディア2027会計年度第2四半期の売上高と次四半期ガイダンス"
+     },
+     "now": {
+      "ko": "발표 전 · 30년물 국채금리 5.31%, 10년 실질금리 2.44% (2026-08-17)",
+      "en": "Not yet reported · 30-year Treasury yield 5.31%, 10-year real yield 2.44% (2026-08-17)",
+      "ja": "発表前 · 30年債利回り5.31%、10年実質金利2.44%(2026-08-17)"
+     },
+     "when": {
+      "ko": "2026년 8월 26일 (미국 장 마감 후)",
+      "en": "August 26, 2026, after the US close",
+      "ja": "2026年8月26日(米国市場の引け後)"
+     },
+     "hit": {
+      "ko": "매출과 다음 분기 가이던스가 모두 시장 기대를 웃돎 → 이익 속도가 할인율을 이기고 있다",
+      "en": "Both revenue and next-quarter guidance beat expectations → earnings are outrunning the discount rate",
+      "ja": "売上高と次四半期ガイダンスがともに市場予想を上回る → 利益の速さが割引率に勝っている"
+     },
+     "miss": {
+      "ko": "둘 중 하나라도 기대에 못 미침 → 높은 금리를 견디게 해 주던 이유가 흔들린다",
+      "en": "Either one falls short → the reason the market tolerated these yields is in question",
+      "ja": "どちらか一方でも予想に届かない → 高い金利を受け入れさせてきた理由が揺らぐ"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르 · 2026-08-19",
+      "en": "Meru · 2026-08-19",
+      "ja": "メル · 2026-08-19"
+     },
+     "url": "https://blog.naver.com/ranto28/224382901516"
+    },
+    {
+     "name": {
+      "ko": "금리·회사채 가산금리",
+      "en": "Yields and credit spreads",
+      "ja": "金利・社債スプレッド"
+     },
+     "desc": {
+      "ko": "FRED · DGS30 · DGS10 · DFII10 · T10YIE · BAMLC0A0CM · BAMLH0A0HYM2 · 2026-08-17치",
+      "en": "FRED · DGS30 · DGS10 · DFII10 · T10YIE · BAMLC0A0CM · BAMLH0A0HYM2 · as of 2026-08-17",
+      "ja": "FRED · DGS30 · DGS10 · DFII10 · T10YIE · BAMLC0A0CM · BAMLH0A0HYM2 · 2026-08-17時点"
+     },
+     "url": "https://fred.stlouisfed.org/series/DGS30"
+    },
+    {
+     "name": {
+      "ko": "당일 시장",
+      "en": "Market that day",
+      "ja": "当日の相場"
+     },
+     "desc": {
+      "ko": "Charles Schwab · 2026-08-18",
+      "en": "Charles Schwab · 2026-08-18",
+      "ja": "Charles Schwab · 2026-08-18"
+     },
+     "url": "https://www.schwab.com/learn/story/stock-market-update-open"
+    },
+    {
+     "name": {
+      "ko": "당일 시장",
+      "en": "Market that day",
+      "ja": "当日の相場"
+     },
+     "desc": {
+      "ko": "TheStreet · 2026-08-18",
+      "en": "TheStreet · 2026-08-18",
+      "ja": "TheStreet · 2026-08-18"
+     },
+     "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-18-2026"
+    },
+    {
+     "name": {
+      "ko": "실적 발표일",
+      "en": "Earnings date",
+      "ja": "決算日"
+     },
+     "desc": {
+      "ko": "NVIDIA 투자자 관계 · 2027 회계연도 2분기 발표 일정",
+      "en": "NVIDIA Investor Relations · fiscal 2027 Q2 event page",
+      "ja": "NVIDIA IR · 2027会計年度第2四半期の日程"
+     },
+     "url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/event-details/2026/NVIDIA-2nd-Quarter-FY27-Financial-Results/default.aspx"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-19 조회 · 금리와 회사채 가산금리는 FRED의 2026-08-17 종가 기준이다. 종목 등락률은 2026-08-17 종가와 8월 18일 장중 보도를 섞지 않고 각각 표기했다.",
+    "en": "Retrieved 2026-08-19 · yields and credit spreads are FRED closing values for 2026-08-17. Single-stock moves are cited as reported for that session rather than blended across days.",
+    "ja": "2026-08-19閲覧 · 金利と社債スプレッドはFREDの2026-08-17終値ベース。個別銘柄の騰落率は当該セッションの報道どおりに記した。"
+   }
+  },
+  {
    "date": "2026-08-17",
    "id": "kobeissi-china-july-credit-govt-bonds-94pct",
    "related": [
@@ -67774,6 +67961,30 @@
     "사회융자총량",
     "사회융자",
     "社会融資総量"
+   ]
+  },
+  "할인율": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "미래에 받을 돈을 지금 값으로 깎아 부를 때 쓰는 비율.",
+    "en": "The rate at which money to be received in the future is marked down to what it is worth today.",
+    "ja": "将来受け取る金を今の値に割り引くときに使う比率。"
+   },
+   "longDesc": {
+    "ko": "금리를 거꾸로 세운 값이라고 보면 쉽다. 금리가 오르면 같은 미래의 돈이 오늘 기준으로 더 적은 값이 되고, 받기까지 남은 기간이 길수록 복리로 깎이는 폭이 커진다. 이익이 먼 미래에 몰려 있는 성장주가 금리 변화에 크게 흔들리는 이유가 여기에 있다.",
+    "en": "It is easiest to think of it as an interest rate run backwards. When rates rise, the same future sum is worth less today, and the longer the wait the more compounding cuts into it. That is why growth companies, whose profits sit far in the future, swing hardest when rates move.",
+    "ja": "金利を逆から見た値だと考えると分かりやすい。金利が上がれば同じ将来の金は今日の基準でより小さな値になり、受け取るまでの期間が長いほど複利で削られる幅が大きくなる。利益が遠い将来に集まる成長株が金利の変化に大きく揺れる理由がここにある。"
+   },
+   "aliases": [
+    "discount rate",
+    "Discount rate",
+    "할인율",
+    "割引率"
    ]
   }
  }
