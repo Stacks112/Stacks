@@ -13850,31 +13850,42 @@ function dailyForecastPick(){
       var o=i.outcome||{};
       return (o.status==="hit"||o.status==="miss")&&!!(o.gradedOn||o.due)&&!!o.note&&!!i.sourceUrl;
     }).sort(function(a,b){
-      return String(b.outcome.gradedOn||b.outcome.due).localeCompare(String(a.outcome.gradedOn||a.outcome.due));
+      var ga=String(a.outcome.gradedOn||a.outcome.due),gb=String(b.outcome.gradedOn||b.outcome.due);
+      if(ga!==gb) return gb.localeCompare(ga);
+      var ta=String(a.ts||a.date||""),tb=String(b.ts||b.date||"");
+      return tb.localeCompare(ta);
     });
-    return eligible.find(function(i){ return i.id==="kobeissi-nasdaq-900b-selloff"; })||eligible[0]||null;
+    if(!eligible.length) return null;
+    var latest=new Date(String(eligible[0].outcome.gradedOn||eligible[0].outcome.due)).getTime();
+    var pool=eligible.filter(function(i){
+      var g=new Date(String(i.outcome.gradedOn||i.outcome.due)).getTime();
+      return isFinite(g)&&isFinite(latest)&&(latest-g)<=7*86400000;
+    });
+    if(pool.length<2) pool=eligible.slice(0,5);
+    if(!pool.length) return null;
+    var day=Math.floor((Date.now()+9*3600*1000)/86400000);
+    return pool[day%pool.length]||null;
   } catch(e){ return null; }
 }
 function dailyPredictionResultEl(item,S,idx){
   if(!item) return null;
   var lang=(typeof LANG!=="undefined")?LANG:"ko";
   var copy={
-    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준",post:"Stacks에서 보기 →"},
-    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule",post:"View on Stacks →"},
-    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準",post:"Stacksで見る →"}
+    ko:{today:"오늘",badge:"예측 결과",hit:"적중",miss:"빗나감",verdict:"판정 결과",graded:"판정일",why:"왜 지금 봐야 하나",rule:"판정 기준",post:"Stacks에서 보기 →",gradedToday:"오늘 판정",gradedOn:"{d} 판정"},
+    en:{today:"Today",badge:"Prediction result",hit:"Hit",miss:"Miss",verdict:"Verdict",graded:"Graded",why:"Why this matters now",rule:"Decision rule",post:"View on Stacks →",gradedToday:"Graded today",gradedOn:"Graded {d}"},
+    ja:{today:"今日",badge:"予測結果",hit:"的中",miss:"不的中",verdict:"判定結果",graded:"判定日",why:"なぜ今見るべきか",rule:"判定基準",post:"Stacksで見る →",gradedToday:"本日判定",gradedOn:"{d} 判定"}
   }[lang];
-  var exactTitle={
-    ko:"7월 23일 증시 매도는 이란전쟁 때문이었을까, AI 설비투자 공포 때문이었을까?",
-    en:"Was the July 23 selloff driven by the Iran war or fears over AI capital spending?",
-    ja:"7月23日の株安はイラン戦争が原因だったのか、AI設備投資への懸念が原因だったのか?"
-  };
-  var title=item.id==="kobeissi-nasdaq-900b-selloff"?exactTitle:item.title;
+  var title=item.title;
   var note=(item.outcome.note&&(item.outcome.note[lang]||item.outcome.note.ko||item.outcome.note.en))||"";
-  var criterion=item.id==="kobeissi-nasdaq-900b-selloff"?{
-    ko:"주식 매도세의 주된 원인이 이란전쟁인지, AI 설비투자 우려와 기술주 실적 충격인지 후속 시장 데이터로 확인한다.",
-    en:"Check follow-up market data to determine whether the selloff was driven mainly by the Iran war or by AI-capex concerns and tech earnings.",
-    ja:"株式の売りの主因がイラン戦争だったのか、AI設備投資への懸念とハイテク決算だったのかを、その後の市場データで確認する。"
-  }[lang]:note;
+  var card=item.outcome.card||null;
+  var criterion=null;
+  if(card){
+    var cLbl=lang==="en"?{hit:"Hit: ",miss:"Miss: "}:lang==="ja"?{hit:"的中: ",miss:"不的中: "}:{hit:"적중: ",miss:"빗나감: "};
+    var cMetric=(card.metric&&(card.metric[lang]||card.metric.en||card.metric.ko))||"";
+    var cHit=(card.hit&&(card.hit[lang]||card.hit.en||card.hit.ko))||"";
+    var cMiss=(card.miss&&(card.miss[lang]||card.miss.en||card.miss.ko))||"";
+    criterion=[cMetric,cHit?(cLbl.hit+cHit):"",cMiss?(cLbl.miss+cMiss):""].filter(Boolean).join(" · ")||null;
+  }
   var now=new Date(),pad=function(n){ return String(n).padStart(2,"0"); };
   var today=now.getFullYear()+"-"+pad(now.getMonth()+1)+"-"+pad(now.getDate());
   var rawLines=(item.quote&&item.quote.lines)||(item.embed&&item.embed.lines)||[""];
@@ -13924,13 +13935,26 @@ function dailyPredictionResultEl(item,S,idx){
   if(why) why.insertAdjacentElement("afterend",more);
   else if(body) body.appendChild(more);
   var sourceDate=el.querySelector(".src-date");
-  if(sourceDate) sourceDate.textContent=copy.today+" · "+String(lang).toUpperCase();
-  var meta=document.createElement("div");
-  meta.className="prediction-result-meta";
-  meta.innerHTML='<section><h4>'+esc(copy.rule)+'</h4><div class="prediction-result-rule">'+esc(criterion)+'</div></section>';
+  if(sourceDate){
+    var gradedYmd=String(graded).slice(0,10),gradedLabel;
+    if(gradedYmd===today){
+      gradedLabel=copy.gradedToday;
+    } else {
+      var gp=gradedYmd.split("-"),gMon=parseInt(gp[1],10),gDay=parseInt(gp[2],10);
+      var enMonths=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      var gDateText=lang==="en"?(enMonths[gMon-1]+" "+gDay):lang==="ja"?(gMon+"月"+gDay+"日"):(gMon+"월 "+gDay+"일");
+      gradedLabel=copy.gradedOn.replace("{d}",gDateText);
+    }
+    sourceDate.textContent=gradedLabel+" · "+String(lang).toUpperCase();
+  }
   var cta=el.querySelector(".cta-row");
-  if(why) why.insertAdjacentElement("beforebegin",meta);
-  else if(cta) cta.insertAdjacentElement("beforebegin",meta);
+  if(criterion){
+    var meta=document.createElement("div");
+    meta.className="prediction-result-meta";
+    meta.innerHTML='<section><h4>'+esc(copy.rule)+'</h4><div class="prediction-result-rule">'+esc(criterion)+'</div></section>';
+    if(why) why.insertAdjacentElement("beforebegin",meta);
+    else if(cta) cta.insertAdjacentElement("beforebegin",meta);
+  }
   /* 「Stacks에서 보기」 — 이 카드가 피드에서 그 글의 자리를 대신하므로(appendFeedPage가
      원래 카드를 건너뛴다), 이 버튼 말고는 독자가 원래 기사에 닿을 길이 없다.
      X 원문으로 나가는 「원문 보기 ↗」 바로 옆에 둔다. (2026-08-04, june) */
