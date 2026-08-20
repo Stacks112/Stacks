@@ -1,6 +1,235 @@
 {
  "items": [
   {
+   "date": "2026-08-18",
+   "id": "meru-midterms-house-threshold-senate-map-mamdani",
+   "related": [
+    "kobeissi-capital-gains-indexing-authority-1992-opinion"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224382457525",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#2a1b3d",
+    "to": "#120d1f",
+    "label": "ELECTION"
+   },
+   "tags": [
+    "ELECTION",
+    "CONGRESS",
+    "POLICY"
+   ],
+   "stance": "watch",
+   "title": {
+    "ko": "지지율 -20에서도 공화당이 상원을 지키는 계산",
+    "en": "The arithmetic that keeps the Senate Republican at minus 20",
+    "ja": "支持率マイナス20でも共和党が上院を守る計算"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "하원의 경우 민주당이 4%p정도를 지고 선거를 시작하는 것과 비슷해서, 6~8% 우세가 실질적으로는 2~4% 우세가 되는 것임.",
+      "상원은 게리맨더링이 없지만, 공화당이 강세인 시골지역이 과대대표 되는 점이 있음."
+     ],
+     "en": [
+      "In the House it is as if the Democrats start the race about 4 points behind, so a 6 to 8 point lead is really a 2 to 4 point lead.",
+      "The Senate has no gerrymandering, but rural areas where Republicans are strong are overrepresented."
+     ],
+     "ja": [
+      "下院では民主党が4ポイントほど負けた状態で選挙を始めるようなもので、6〜8%の優勢は実質的に2〜4%の優勢になる。",
+      "上院にゲリマンダーはないが、共和党が強い農村部が過大代表されるという点がある。"
+     ]
+    },
+    "cite": "메르 · 2026.08.18"
+   },
+   "sum3": {
+    "ko": "트럼프의 순지지율이 -20이고 어느 당을 찍겠냐는 조사에서 민주당이 6.6%p 앞선다.\n숫자만 보면 여당이 하원과 상원을 모두 잃는 그림이다.\n그런데 민주당은 하원 다수를 잡으려면 일반투표에서 4%p를 이겨야 하고, 상원은 4석을 더 가져와야 한다. 남은 여유는 2.6%p다.",
+    "en": "Trump's net approval sits near minus 20 and Democrats lead the generic congressional ballot by 6.6 points.\nOn the numbers alone that looks like the governing party losing both chambers.\nBut Democrats need to win the House popular vote by about 4 points to take the chamber, and need four net Senate seats. The cushion is 2.6 points.",
+    "ja": "トランプ氏の純支持率はマイナス20前後で、どの党に投票するかの調査では民主党が6.6ポイント先行している。\n数字だけ見れば与党が下院も上院も失う構図だ。\nだが民主党が下院の多数を取るには一般投票で4ポイント勝つ必要があり、上院は4議席を上積みしなければならない。残る余裕は2.6ポイントだ。"
+   },
+   "gist": {
+    "ko": "11월 3일 미국 중간선거를 앞두고 나온 숫자만 보면 여당인 공화당은 하원을 내주고 상원을 지킨다.\n트럼프의 순지지율은 -20 근처이고, 어느 당 후보를 찍겠냐는 조사에서는 민주당이 6.6%p에서 8.1%p 앞선다.\n그런데 이 표가 그대로 의석이 되지는 않는다. 사이에 선거구 지도와 상원의 의석 배분 규칙이 끼어 있다.\n\n@@CHK@@실버불리틴 순지지율|-20.4|로이터·입소스 지지 대 반대|33% 대 64%|이코노미스트·유고브 지지 대 반대|33% 대 62%@@원문이 쓴 38% 대 58%보다 실제 조사값이 더 낮다. 순지지율 -20은 세 조사 가운데 가장 온건한 쪽이고 나머지 둘은 -29에서 -31 사이다. 지지율이 낮다는 원문의 전제는 맞고, 폭은 원문보다 크다.@@2026-08-19 조회 · 실버불리틴 2026-08-18 · 로이터/입소스 2026-08-14~17 조사(표본 1,166명) · 이코노미스트/유고브 2026-08-07~10 조사\n\n@@REF@@트럼프 지지율, 2기 들어 최저치로 (포브스, 2026-08-18)|https://www.forbes.com/sites/saradorn/2026/08/18/trump-approval-rating-reaches-second-term-low-in-latest-poll-as-80-think-iran-war-will-drag-on/|https://imageio.forbes.com/specials-images/imageserve/6932ef30ce4d95a104172573/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds\n\n## 4%p를 지고 시작하는 하원\n\n미국 하원은 지역구마다 1등 한 명만 뽑는다.\n90%로 이겨도 1석이고 51%로 이겨도 1석이라, 어디서 이기느냐가 얼마나 이기느냐보다 중요하다.\n민주당 표는 도시에 몰려 있어 압도적으로 이기는 지역구와 아슬아슬하게 지는 지역구가 함께 많다.\n같은 전국 득표라도 의석으로 덜 바뀐다는 뜻이다.\n\n선거구를 다시 그리는 쪽에 유리하게 경계를 비틀어 이 성질을 키우는 것이 게리맨더링이다.\nG. 엘리엇 모리스는 지금 지도에서 민주당이 하원 다수를 잡으려면 전국 득표에서 4%p를 이겨야 한다고 계산했다.\n6.6%p 우세에서 4%p를 빼면 남는 여유는 2.6%p다. 6~8% 우세가 실질 2~4% 우세라는 원문의 셈과 같은 자리에 있다.\n\n@@CMP@@원문의 셈|다시 그린 지도로 공화당이 하원에서 7석가량을 미리 확보했다.|주요 추적기관의 셈|텍사스 5석과 오하이오 2석 등을 더하고 법원이 되돌린 버지니아까지 넣어 순증 5석으로 본다.\n\n갈리는 지점은 어느 주를 세느냐다. 원문이 목록에 넣은 유타는 법원 명령으로 다시 그려졌고 오히려 민주당에 유리할 수 있다는 보도가 나왔으며, 캘리포니아 지도는 민주당이 그린 대응 지도다.\n\n@@REF@@지도로 보는 블루 웨이브, 공화당 의석이 어디서 가장 많이 흔들리나 (액시오스, 2026-02-06)|https://www.axios.com/2026/02/06/congressional-map-redistricting-vote-share-2026|https://images.axios.com/ttnrnsDfbUVdZ20_oB7WAYjv7Xc=/0x0:1600x900/1366x768/2026/02/06/1770409940035.png\n\n## 지도를 다시 그릴 수 없는 방\n\n상원은 인구가 많든 적든 주마다 2명씩이라 선거구를 다시 그릴 대상이 없다.\n대신 인구가 적은 주가 인구 비례보다 크게 대표된다.\n현재 구성은 공화당 53석 대 민주당 계열 47석이고, 2026년에 걸린 35석 가운데 공화당이 20석, 민주당이 13석을 지킨다.\n민주당이 다수를 잡으려면 순증 4석이 필요하고 공화당은 2석까지만 잃어도 된다.\n원문은 상원에서 10%p를 이겨야 과반이라고 적었는데, 그 수치의 출처는 이번 조사에서 찾지 못했다. 상원 지도가 공화당에 기운다는 방향은 여러 분석기관이 함께 말한다.\n\n## 6월 23일 뉴욕이 만든 변수\n\n@@TIME@@2025년 11월|맘다니가 임대료 동결과 버스 무료화를 걸고 뉴욕시장에 당선|2026년 6월 23일|맘다니가 지지한 후보들이 뉴욕 하원 경선에서 현역 3명을 꺾음|2026년 8월|일반투표 조사에서 민주당이 6.6~8.1%p 우세|>2026년 11월 3일|중간선거 본선@@뉴욕 안의 당내 경선 결과가 전국 선거의 소재가 되는 경로다. 공화당은 이 장면을 경합주 광고로 옮기려 하고 있다.@@AP·롤콜 2026-06-23 경선 집계 · 실버불리틴 2026-08-18\n\n미국 선거는 당내 경선인 프라이머리에서 각 당의 후보를 정한 뒤 본선을 치른다.\n민주당이 압도적인 지역구에서는 프라이머리가 사실상 본선이다.\n6월 23일 뉴욕에서 브래드 랜더가 현역 댄 골드먼을, 다리알리사 아빌라 슈발리에가 하원 히스패닉 의원 모임 의장인 아드리아노 에스파야트를, 클레어 발데스가 은퇴하는 벨라스케스 의원이 밀던 후보를 각각 눌렀다.\n\n원문은 랜더가 32%p차로 이겼다고 적었는데 AP 집계 기준으로는 24%p 안팎이었다. 에스파야트를 꺾은 표차는 3.5%p로 훨씬 좁았다.\n승부의 방향은 원문이 말한 대로였고, 폭은 그보다 작았다.\n\n@@REF@@골드먼과 에스파야트, 맘다니가 지지한 도전자들에게 뉴욕 경선에서 패배 (롤콜, 2026-06-23)|https://rollcall.com/2026/06/23/goldman-espaillat-lose-new-york-primaries-to-mamdani-backed-challengers/\n\n## 11월 3일에 갈리는 두 숫자\n\n시장에 걸린 것은 어느 당이 이기느냐보다 하원과 상원이 갈리느냐다.\n한쪽이 하원을 쥐면 예산과 세제는 2027년 내내 협상 대상이 되고, 관세처럼 행정부 권한으로 움직이는 정책은 그대로 남는다.\n민주당의 일반투표 우세가 4%p 아래로 좁혀지면 하원도 지금 지도에서는 넘어가지 않고, 8%p 위로 벌어지면 다시 그린 지도로도 막기 어렵다.\n상원은 그와 별개로 경합 8개 주에서 4석이 나오느냐만 본다.",
+    "en": "Judging by the numbers now on the table, the November 3 midterms have the governing Republicans losing the House and holding the Senate.\nTrump's net approval is around minus 20, and Democrats lead the generic congressional ballot by 6.6 to 8.1 points.\nThose votes do not convert into seats one for one. The district maps and the Senate's allocation rule sit in between.\n\n@@CHK@@Silver Bulletin net approval|-20.4|Reuters/Ipsos approve vs disapprove|33% vs 64%|Economist/YouGov approve vs disapprove|33% vs 62%@@The actual readings are lower than the 38 to 58 split the original post used. Minus 20 is the mildest of the three, with the other two between minus 29 and minus 31. The premise that approval is low holds, and the gap is wider than the post said.@@Checked 2026-08-19 · Silver Bulletin 2026-08-18 · Reuters/Ipsos fielded 2026-08-14 to 17 (n=1,166) · Economist/YouGov fielded 2026-08-07 to 10\n\n@@REF@@Trump's approval rating dips to second-term low (Forbes, 2026-08-18)|https://www.forbes.com/sites/saradorn/2026/08/18/trump-approval-rating-reaches-second-term-low-in-latest-poll-as-80-think-iran-war-will-drag-on/|https://imageio.forbes.com/specials-images/imageserve/6932ef30ce4d95a104172573/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds\n\n## Starting four points down\n\nEach House district elects exactly one member.\nWinning with 90% and winning with 51% both yield one seat, so where you win matters more than by how much.\nDemocratic votes are concentrated in cities, which leaves the party with many blowout wins and many narrow losses at the same time.\nThe same national vote share turns into fewer seats.\n\nGerrymandering is the practice of bending district lines to amplify that effect for whoever draws them.\nG. Elliott Morris calculates that under the current maps Democrats must win the national House vote by 4 points to take the chamber.\nSubtract that from a 6.6 point lead and the cushion is 2.6 points, which is the same arithmetic the original post described when it said a 6 to 8 point lead is really a 2 to 4 point lead.\n\n@@CMP@@The original post's count|The redrawn maps have already banked roughly seven House seats for Republicans.|The main trackers' count|Adding five in Texas, two in Ohio and the court-reversed Virginia map, they put the net gain at five.\n\nThe split comes from which states get counted. Utah, which the post listed, was redrawn under court order and has been reported as possibly favoring Democrats, and the California map is a Democratic counter-draw.\n\n@@REF@@Map: see where a blue wave would swipe the most GOP seats (Axios, 2026-02-06)|https://www.axios.com/2026/02/06/congressional-map-redistricting-vote-share-2026|https://images.axios.com/ttnrnsDfbUVdZ20_oB7WAYjv7Xc=/0x0:1600x900/1366x768/2026/02/06/1770409940035.png\n\n## The chamber no one can redraw\n\nThe Senate gives every state two seats regardless of population, so there are no lines to redraw.\nWhat it has instead is small states carrying weight beyond their population.\nThe current split is 53 Republicans to 47 Democrats and allies, and of the 35 seats up in 2026 Republicans defend 20 and Democrats 13.\nDemocrats need a net gain of four, and Republicans can afford to lose two.\nThe post also said Democrats must win the Senate vote by about 10 points to take a majority; that figure could not be sourced in this check. The direction, that the Senate map tilts Republican, is something several analysts do say.\n\n## What New York did on June 23\n\n@@TIME@@November 2025|Mamdani wins the New York mayoralty on a rent freeze and fare-free buses|June 23, 2026|Candidates he endorsed beat three sitting House members in New York primaries|August 2026|Democrats lead the generic ballot by 6.6 to 8.1 points|>November 3, 2026|Midterm election day@@This is the path by which a set of intraparty primaries inside one city becomes material in a national election. Republicans are trying to move those scenes into swing-state advertising.@@AP and Roll Call primary counts, 2026-06-23 · Silver Bulletin 2026-08-18\n\nAmerican elections run in two stages: a party primary picks each nominee, then the general election decides the seat.\nIn districts where one party dominates, the primary is effectively the whole contest.\nOn June 23 in New York, Brad Lander beat sitting Rep. Dan Goldman, Darializa Avila Chevalier beat Rep. Adriano Espaillat, who chaired the Congressional Hispanic Caucus, and Claire Valdez beat the candidate backed by retiring Rep. Nydia Velazquez.\n\nThe post put Lander's margin at 32 points; the AP count had it near 24. The margin over Espaillat was much narrower at about 3.5 points.\nThe direction the post described held. The size did not.\n\n@@REF@@Goldman, Espaillat lose New York primaries to Mamdani-backed challengers (Roll Call, 2026-06-23)|https://rollcall.com/2026/06/23/goldman-espaillat-lose-new-york-primaries-to-mamdani-backed-challengers/\n\n## The two numbers November 3 settles\n\nFor markets the question is less which party wins than whether the two chambers split.\nIf one chamber changes hands, budget and tax policy becomes a negotiation through 2027 while tools that run on executive authority, tariffs among them, stay where they are.\nIf the Democratic lead narrows below 4 points the House does not turn on the current maps, and if it widens past 8 the redrawn maps do not hold it back.\nThe Senate answers a separate question: whether four seats come out of the eight states in play.",
+    "ja": "11月3日の米中間選挙を前に出ている数字だけを見れば、与党の共和党は下院を失い上院を守る。\nトランプ氏の純支持率はマイナス20前後で、どの党の候補に投票するかの調査では民主党が6.6〜8.1ポイント先行している。\nだがこの票がそのまま議席になるわけではない。間に選挙区の地図と上院の議席配分ルールが挟まっている。\n\n@@CHK@@シルバー・ブレティンの純支持率|-20.4|ロイター/イプソスの支持対不支持|33%対64%|エコノミスト/ユーガブの支持対不支持|33%対62%@@原文が挙げた38%対58%より実際の調査値は低い。純支持率マイナス20は三つの調査で最も穏やかな部類で、残る二つはマイナス29からマイナス31の間にある。支持率が低いという原文の前提は正しく、幅は原文より大きい。@@2026-08-19 参照 · シルバー・ブレティン2026-08-18 · ロイター/イプソス2026-08-14〜17調査（標本1,166）· エコノミスト/ユーガブ2026-08-07〜10調査\n\n@@REF@@トランプ氏の支持率、2期目の最低水準に (フォーブス, 2026-08-18)|https://www.forbes.com/sites/saradorn/2026/08/18/trump-approval-rating-reaches-second-term-low-in-latest-poll-as-80-think-iran-war-will-drag-on/|https://imageio.forbes.com/specials-images/imageserve/6932ef30ce4d95a104172573/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds\n\n## 4ポイント負けて始まる下院\n\n米下院は選挙区ごとに1位の一人だけを選ぶ。\n90%で勝っても1議席、51%で勝っても1議席なので、どこで勝つかがどれだけ勝つかより重い。\n民主党の票は都市に集まっており、圧勝する選挙区と僅差で負ける選挙区がともに多い。\n同じ全国得票でも議席に変わりにくいということだ。\n\n線を引く側に有利になるように境界をねじり、この性質を大きくするのがゲリマンダーだ。\nG・エリオット・モリス氏は、今の地図では民主党が下院の多数を取るのに全国得票で4ポイント勝つ必要があると計算している。\n6.6ポイントの優勢から4ポイントを引くと残る余裕は2.6ポイントで、6〜8%の優勢が実質2〜4%になるという原文の計算と同じ場所にある。\n\n@@CMP@@原文の数え方|引き直した地図で共和党が下院で7議席ほどを先に確保した。|主要な追跡機関の数え方|テキサスの5議席とオハイオの2議席などを足し、裁判所が戻したバージニアまで入れて純増5議席と見る。\n\n分かれるのはどの州を数えるかだ。原文が一覧に入れたユタは裁判所の命令で引き直され、むしろ民主党に有利かもしれないと報じられており、カリフォルニアの地図は民主党側の対抗案だ。\n\n@@REF@@地図で見るブルーウェーブ、共和党議席がどこで最も揺れるか (アクシオス, 2026-02-06)|https://www.axios.com/2026/02/06/congressional-map-redistricting-vote-share-2026|https://images.axios.com/ttnrnsDfbUVdZ20_oB7WAYjv7Xc=/0x0:1600x900/1366x768/2026/02/06/1770409940035.png\n\n## 地図を引き直せない部屋\n\n上院は人口の多寡にかかわらず州ごとに2議席なので、引き直す線がない。\n代わりに人口の少ない州が人口比以上に代表される。\n現在の構成は共和党53、民主党系47で、2026年に改選となる35議席のうち共和党が20、民主党が13を守る。\n民主党が多数を取るには純増4議席が必要で、共和党は2議席までなら失っても構わない。\n原文は上院で10ポイント勝たなければ過半数を取れないと書いているが、その数値の出典は今回の確認では見つからなかった。上院の地図が共和党に傾くという方向は複数の分析機関が同じく述べている。\n\n## 6月23日にニューヨークが作った変数\n\n@@TIME@@2025年11月|マムダニ氏が家賃凍結とバス無料化を掲げてニューヨーク市長に当選|2026年6月23日|同氏が支持した候補がニューヨークの下院予備選で現職3人を破る|2026年8月|一般投票の調査で民主党が6.6〜8.1ポイント優勢|>2026年11月3日|中間選挙の本選@@一つの市の党内予備選が全国選挙の材料になる経路だ。共和党はこの場面を接戦州の広告に移そうとしている。@@AP・ロールコールの2026-06-23予備選集計 · シルバー・ブレティン2026-08-18\n\n米国の選挙は、党内予備選で各党の候補を決めてから本選を行う二段構えだ。\n一方の党が圧倒的な選挙区では、予備選が事実上の本番になる。\n6月23日のニューヨークでは、ブラッド・ランダー氏が現職のダン・ゴールドマン氏を、ダリアリサ・アビラ・シュバリエ氏が下院ヒスパニック議員連盟の議長だったアドリアーノ・エスパイヤット氏を、クレア・バルデス氏が引退するベラスケス議員が推した候補をそれぞれ破った。\n\n原文はランダー氏が32ポイント差で勝ったと書いているが、AP集計では24ポイント前後だった。エスパイヤット氏を破った差は3.5ポイントとはるかに狭い。\n勝敗の方向は原文の通りで、幅はそれより小さかった。\n\n@@REF@@ゴールドマン氏とエスパイヤット氏、マムダニ氏支持の挑戦者にニューヨーク予備選で敗北 (ロールコール, 2026-06-23)|https://rollcall.com/2026/06/23/goldman-espaillat-lose-new-york-primaries-to-mamdani-backed-challengers/\n\n## 11月3日に分かれる二つの数字\n\n市場にとっての問題はどちらの党が勝つかより、下院と上院が分かれるかどうかだ。\n一方の院が入れ替われば予算と税制は2027年を通じて交渉の対象になり、関税のように行政権限で動く政策はそのまま残る。\n民主党の一般投票の優勢が4ポイントを下回れば今の地図で下院は動かず、8ポイントを超えて広がれば引き直した地図でも止めにくい。\n上院はそれとは別に、接戦8州から4議席が出るかだけを見る。"
+   },
+   "why": {
+    "ko": "표가 의석으로 번역되는 비율이 정책의 방향을 정한다. 하원과 상원이 갈리면 2027년 예산과 세제는 협상 대상이 되고, 관세처럼 행정부 권한으로 움직이는 정책만 그대로 남는다.",
+    "en": "The rate at which votes convert into seats decides what policy is possible. A split Congress turns the 2027 budget and tax code into a negotiation while leaving tools that run on executive authority, tariffs included, untouched.",
+    "ja": "票が議席に変わる比率が政策の方向を決める。下院と上院が分かれれば2027年の予算と税制は交渉の対象になり、関税のように行政権限で動く政策だけがそのまま残る。"
+   },
+   "ask": {
+    "ko": "일반투표에서 6%p를 이기고도 하원을 못 가져가는 구조라면, 여론조사 숫자는 시장에 무엇을 알려주는 걸까?",
+    "en": "If a six-point popular vote win can still leave the House unchanged, what is a polling lead actually telling the market?",
+    "ja": "一般投票で6ポイント勝っても下院を取れない構造なら、世論調査の数字は市場に何を伝えているのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "due": "2026-11-30",
+    "note": {
+     "ko": "2026년 11월 3일 중간선거에서 민주당이 하원 과반(218석)을 넘겼는지로 채점한다.",
+     "en": "Graded on whether Democrats cross 218 House seats in the November 3, 2026 midterms.",
+     "ja": "2026年11月3日の中間選挙で民主党が下院の過半数218議席を超えたかで採点する。"
+    },
+    "card": {
+     "metric": {
+      "ko": "2026년 중간선거 후 하원 다수당",
+      "en": "House majority after the 2026 midterms",
+      "ja": "2026年中間選挙後の下院多数党"
+     },
+     "now": {
+      "ko": "공화당 다수 · 민주당 일반투표 6.6%p 우세(실버불리틴 2026-08-18)",
+      "en": "Republican majority · Democrats +6.6 on the generic ballot (Silver Bulletin, 2026-08-18)",
+      "ja": "共和党が多数 · 民主党が一般投票で6.6ポイント優勢（シルバー・ブレティン2026-08-18）"
+     },
+     "when": {
+      "ko": "2026년 11월 3일 선거일",
+      "en": "Election day, November 3, 2026",
+      "ja": "2026年11月3日の投票日"
+     },
+     "hit": {
+      "ko": "민주당이 218석 이상 → 4%p 문턱을 넘었다",
+      "en": "Democrats at 218 seats or more → the four-point threshold was cleared",
+      "ja": "民主党が218議席以上 → 4ポイントの敷居を越えた"
+     },
+     "miss": {
+      "ko": "민주당이 218석 미만 → 다시 그린 지도가 우세를 흡수했다",
+      "en": "Democrats below 218 seats → the redrawn maps absorbed the lead",
+      "ja": "民主党が218議席未満 → 引き直した地図が優勢を吸収した"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르 · 2026-08-18 · 11월 중간선거에서 트럼프가 상하원 모두 이길 수 있다고?",
+      "en": "Meru (Naver blog) · 2026-08-18 · Can Trump win both chambers in the November midterms?",
+      "ja": "メル（Naverブログ）· 2026-08-18 · 11月の中間選挙でトランプが上下両院を取れるのか"
+     },
+     "url": "https://blog.naver.com/ranto28/224382457525"
+    },
+    {
+     "name": {
+      "ko": "지지율",
+      "en": "Approval",
+      "ja": "支持率"
+     },
+     "desc": {
+      "ko": "실버불리틴 트럼프 지지율 추적 · 2026-08-18 기준 순지지율 -20.4",
+      "en": "Silver Bulletin Trump approval tracker · net approval -20.4 as of 2026-08-18",
+      "ja": "シルバー・ブレティンのトランプ支持率追跡 · 2026-08-18時点で純支持率マイナス20.4"
+     },
+     "url": "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
+    },
+    {
+     "name": {
+      "ko": "여론조사",
+      "en": "Poll",
+      "ja": "世論調査"
+     },
+     "desc": {
+      "ko": "포브스 보도 · 2026-08-18 · 로이터/입소스 2026-08-14~17 조사 지지 33% 반대 64%(표본 1,166명)",
+      "en": "Forbes · 2026-08-18 · Reuters/Ipsos fielded 2026-08-14 to 17, 33% approve and 64% disapprove (n=1,166)",
+      "ja": "フォーブス報道 · 2026-08-18 · ロイター/イプソス2026-08-14〜17調査で支持33%・不支持64%（標本1,166）"
+     },
+     "url": "https://www.forbes.com/sites/saradorn/2026/08/18/trump-approval-rating-reaches-second-term-low-in-latest-poll-as-80-think-iran-war-will-drag-on/"
+    },
+    {
+     "name": {
+      "ko": "일반투표",
+      "en": "Generic ballot",
+      "ja": "一般投票"
+     },
+     "desc": {
+      "ko": "실버불리틴 일반투표 평균 · 2026-08-18 기준 민주당 +6.7, 투표의향 보정 시 +8.1",
+      "en": "Silver Bulletin generic ballot average · Democrats +6.7, or +8.1 with a likely-voter adjustment, as of 2026-08-18",
+      "ja": "シルバー・ブレティンの一般投票平均 · 2026-08-18時点で民主党プラス6.7、投票見込み補正でプラス8.1"
+     },
+     "url": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls"
+    },
+    {
+     "name": {
+      "ko": "4%p 문턱",
+      "en": "The four-point threshold",
+      "ja": "4ポイントの敷居"
+     },
+     "desc": {
+      "ko": "G. 엘리엇 모리스 Strength In Numbers · 2026-05-10 · 게리맨더링으로 민주당은 하원 득표에서 4%p를 이겨야 한다",
+      "en": "G. Elliott Morris, Strength In Numbers · 2026-05-10 · Democrats now have to win the House vote by four points because of gerrymandering",
+      "ja": "G・エリオット・モリス Strength In Numbers · 2026-05-10 · ゲリマンダーにより民主党は下院得票で4ポイント勝つ必要がある"
+     },
+     "url": "https://www.gelliottmorris.com/p/2026-05-10-dem-house-pop-vote-threshold-gerrymandering"
+    },
+    {
+     "name": {
+      "ko": "선거구 재획정",
+      "en": "Redistricting",
+      "ja": "選挙区の引き直し"
+     },
+     "desc": {
+      "ko": "액시오스 · 2026-02-06 · 주별 재획정과 의석 영향 지도. 순증 추정은 기관별로 5석에서 7석 사이",
+      "en": "Axios · 2026-02-06 · state-by-state redistricting and its seat effect; net gain estimates run from five to seven seats depending on the tracker",
+      "ja": "アクシオス · 2026-02-06 · 州別の引き直しと議席への影響。純増の推計は機関により5〜7議席"
+     },
+     "url": "https://www.axios.com/2026/02/06/congressional-map-redistricting-vote-share-2026"
+    },
+    {
+     "name": {
+      "ko": "유타 지도",
+      "en": "The Utah map",
+      "ja": "ユタの地図"
+     },
+     "desc": {
+      "ko": "폭스뉴스 · 법원이 유타의 새 하원 선거구 지도 저지를 거부, 민주당에 유리할 수 있다는 보도",
+      "en": "Fox News · a federal court declined to block Utah's new congressional map, which is reported as possibly favoring Democrats",
+      "ja": "フォックスニュース · 連邦裁判所がユタの新下院選挙区地図の差し止めを拒否、民主党に有利になりうると報じられた"
+     },
+     "url": "https://www.foxnews.com/politics/federal-court-refuses-block-new-utah-congressional-voting-map-may-favor-democrats"
+    },
+    {
+     "name": {
+      "ko": "뉴욕 경선",
+      "en": "New York primaries",
+      "ja": "ニューヨーク予備選"
+     },
+     "desc": {
+      "ko": "롤콜 · 2026-06-23 · 골드먼과 에스파야트가 맘다니 지지 도전자들에게 패배. 랜더의 표차는 AP 집계 기준 24%p 안팎",
+      "en": "Roll Call · 2026-06-23 · Goldman and Espaillat lose to Mamdani-backed challengers; Lander's margin was near 24 points on the AP count",
+      "ja": "ロールコール · 2026-06-23 · ゴールドマン氏とエスパイヤット氏がマムダニ支持の挑戦者に敗北。ランダー氏の差はAP集計で24ポイント前後"
+     },
+     "url": "https://rollcall.com/2026/06/23/goldman-espaillat-lose-new-york-primaries-to-mamdani-backed-challengers/"
+    },
+    {
+     "name": {
+      "ko": "상원 구도",
+      "en": "Senate map",
+      "ja": "上院の構図"
+     },
+     "desc": {
+      "ko": "볼로트피디아 2026년 상원 선거 · 53대 47, 개선 35석 가운데 공화당 20석 방어",
+      "en": "Ballotpedia, 2026 US Senate elections · 53 to 47, with Republicans defending 20 of the 35 seats up",
+      "ja": "バロットピディアの2026年上院選挙 · 53対47、改選35議席のうち共和党が20議席を防衛"
+     },
+     "url": "https://ballotpedia.org/United_States_Senate_elections,_2026"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-19 조회 · 지지율과 일반투표 평균은 2026-08-18 기준이고, 여론조사 개별 수치는 각 조사의 실시 기간을 표기했다. 선거구 재획정 순증 추정치는 기관마다 5석에서 7석 사이로 갈린다. 원문이 든 상원 10%p 문턱은 출처를 확인하지 못했다.",
+    "en": "Checked 2026-08-19 · approval and generic ballot averages are as of 2026-08-18, and individual polls carry their own field dates. Net seat estimates from redistricting range from five to seven depending on the tracker. The 10-point Senate threshold cited in the original post could not be sourced.",
+    "ja": "2026-08-19 参照 · 支持率と一般投票の平均は2026-08-18時点で、個別調査には実施期間を併記した。選挙区引き直しによる純増の推計は機関により5〜7議席と幅がある。原文が挙げた上院10ポイントの敷居は出典を確認できなかった。"
+   }
+  },
+  {
    "date": "2026-08-19",
    "id": "hanke-tomahawk-60-a-year-vs-1000-target-22_9b",
    "related": [
@@ -70511,6 +70740,60 @@
     "웨이퍼스케일",
     "ウエハースケール",
     "ウエハースケールエンジン"
+   ]
+  },
+  "게리맨더링": {
+   "kind": "term",
+   "sector": {
+    "en": "Glossary",
+    "ko": "용어",
+    "ja": "用語"
+   },
+   "desc": {
+    "ko": "선거구 경계를 다시 그려 특정 정당에 유리하게 만드는 것.",
+    "en": "Redrawing district boundaries so that they favor one party.",
+    "ja": "選挙区の境界を引き直して特定の政党に有利にすること。"
+   },
+   "longDesc": {
+    "ko": "한 지역구에서 1등만 뽑는 선거에서는 어디서 이기느냐가 얼마나 이기느냐보다 중요하다. 상대 지지자를 몇 개 선거구에 몰아넣거나 여러 선거구에 흩뿌리면, 같은 전국 득표로도 의석 수가 크게 달라진다. 미국 하원 선거구는 대부분 주 정부가 10년마다 다시 그리며, 그 사이에도 법원 판결이나 주 의회 결정으로 바뀌는 경우가 있다.",
+    "en": "In a first-past-the-post system, where you win matters more than by how much. Packing the other side's voters into a few districts or spreading them thinly across many changes the seat count even when the national vote is identical. US House districts are usually redrawn by state governments every ten years, and they can also change in between through court rulings or legislative action.",
+    "ja": "一つの選挙区で1位だけを選ぶ制度では、どこで勝つかがどれだけ勝つかより重要になる。相手の支持者を少数の選挙区に押し込めたり、多数の選挙区に薄く散らしたりすれば、全国得票が同じでも議席数は大きく変わる。米下院の選挙区は通常10年ごとに州政府が引き直すが、その間も裁判所の判断や州議会の決定で変わることがある。"
+   },
+   "aliases": [
+    "gerrymandering",
+    "gerrymander",
+    "Gerrymandering",
+    "게리맨더링",
+    "게리맨더",
+    "ゲリマンダー",
+    "ゲリマンダリング"
+   ]
+  },
+  "조란 맘다니": {
+   "kind": "person",
+   "sector": {
+    "en": "Politics",
+    "ko": "정치",
+    "ja": "政治"
+   },
+   "desc": {
+    "ko": "2025년 11월에 당선된 뉴욕시장. 임대료 동결과 버스 무료화를 공약으로 걸었다.",
+    "en": "Mayor of New York City, elected in November 2025 on a rent freeze and fare-free buses.",
+    "ja": "2025年11月に当選したニューヨーク市長。家賃凍結とバス無料化を公約に掲げた。"
+   },
+   "longDesc": {
+    "ko": "뉴욕주 하원의원 출신으로 2025년 11월 뉴욕시장에 당선됐다. 임대료 규제 대상 주택의 임대료 동결, 버스 요금 무료화, 무상 보육, 최저임금 30달러를 공약으로 내세웠다. 2026년 6월 뉴욕의 민주당 하원 경선에서 자신이 지지한 후보들이 현역 의원 세 명을 꺾으면서, 시정에 머무르지 않는 정치적 영향력을 보여줬다.",
+    "en": "A former New York state assembly member, he was elected mayor of New York City in November 2025. His platform included a rent freeze on rent-stabilized apartments, fare-free buses, universal childcare and a $30 minimum wage. In June 2026 candidates he endorsed defeated three sitting members of Congress in New York's Democratic House primaries, showing influence that reached beyond city government.",
+    "ja": "ニューヨーク州議会議員を経て2025年11月にニューヨーク市長に当選した。家賃規制対象住宅の家賃凍結、バス運賃の無料化、無償保育、最低賃金30ドルを公約に掲げた。2026年6月のニューヨークの民主党下院予備選では、同氏が支持した候補が現職議員3人を破り、市政にとどまらない政治的影響力を示した。"
+   },
+   "url": "https://en.wikipedia.org/wiki/Zohran_Mamdani",
+   "aliases": [
+    "Zohran Mamdani",
+    "Mamdani",
+    "조란 맘다니",
+    "맘다니",
+    "ゾーラン・マムダニ",
+    "マムダニ"
    ]
   }
  }
