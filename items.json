@@ -2,6 +2,192 @@
  "items": [
   {
    "date": "2026-08-19",
+   "id": "meru-buyback-20b-offered-2b-taken-bill-funded-swap",
+   "related": [
+    "elerian-treasury-buyback-double-ycc",
+    "meru-rate-cut-vs-qt-steepening-warsh",
+    "bilello-fed-cut-175bp-30y-real-yield-not-breakevens"
+   ],
+   "source": "메르",
+   "sourceUrl": "https://blog.naver.com/ranto28/224384006179",
+   "sourceLang": "KO",
+   "category": "investor",
+   "avatarImg": "meru.png",
+   "hot": false,
+   "paywall": false,
+   "lab": true,
+   "foldWhy": true,
+   "cover": {
+    "from": "#12283a",
+    "to": "#0a1119",
+    "label": "TREASURY"
+   },
+   "tags": [
+    "TREASURY",
+    "BUYBACK",
+    "BILLS"
+   ],
+   "stance": "watch",
+   "refFred": [
+    "DTB3",
+    "DGS30"
+   ],
+   "title": {
+    "ko": "재무부는 20억달러를 사겠다고 했다, 팔겠다는 쪽은 200억달러를 들고 왔다",
+    "en": "The Treasury said it would buy $2 billion, and $20 billion showed up to sell",
+    "ja": "財務省は20億ドル買うと言い、売り手は200億ドルを持って現れた"
+   },
+   "quote": {
+    "lines": {
+     "ko": [
+      "재무부가 사줄수 있는 것은 20억달러라, 팔자 대기물량이 매입능력을 10배 압도한 것이다.",
+      "3.795%짜리 3개월물 단기국채를 찍어서, 1.4%만 이자를 주면 되는 장기국채를 사들이는 것이다.",
+      "현금서비스를 받아서 저금리 주담대를 갚는 것과 비슷하다."
+     ],
+     "en": [
+      "The Treasury could only take $2 billion, so the paper waiting to be sold overwhelmed its buying capacity by ten times.",
+      "It is issuing three-month bills at 3.795% to buy back long bonds that only cost 1.4% to service.",
+      "It is like taking a cash advance on a credit card to pay off a low-rate mortgage."
+     ],
+     "ja": [
+      "財務省が買えるのは20億ドルなので、売りの待機玉が買入能力を10倍上回ったことになる。",
+      "3.795%の3か月物の短期国債を発行して、1.4%の利息で済む長期国債を買い戻しているのだ。",
+      "キャッシングでお金を借りて低金利の住宅ローンを返すのに似ている。"
+     ]
+    },
+    "cite": "메르 · 2026.08.19"
+   },
+   "sum3": {
+    "ko": "8월 18일 30년 만기 근처의 국채를 팔겠다고 나온 딜러 물량이 재무부의 매입 한도를 열 배 넘어섰다.\n재무부는 한도를 두 배로 키웠고, 시장은 장기물을 떠받치겠다는 약속으로 읽었다.\n그런데 그날 거둬들인 채권에 붙은 이자는 연 1.9%였고, 그 값을 치르려 찍는 3개월물에는 3.7%를 준다.",
+    "en": "On August 18 the paper dealers wanted to sell near the 30-year maturity ran more than ten times the Treasury's purchase limit.\nThe Treasury doubled that limit, and the market read the move as a promise to hold up the long end.\nBut the bond taken in that day carries a 1.9% coupon, while the three-month paper issued to pay for it costs 3.7%.",
+    "ja": "8月18日、30年満期近くの国債を売りたいというディーラーの玉が、財務省の買入上限を10倍超えた。\n財務省は上限を倍に広げ、市場はそれを長期ゾーンを支えるという約束として読んだ。\nだがその日引き取った債券に付く利息は年1.9%で、その代金を払うために出す3か月物には3.7%を払う。"
+   },
+   "gist": {
+    "ko": "미 재무부가 장기 국채 되사기 한도를 회당 20억달러에서 최소 40억달러로 올린 이유는 이틀 전 오퍼레이션에 있다.\n8월 18일 20~30년물 되사기에서 팔겠다고 나온 물량은 약 200억달러였고, 재무부가 받을 수 있는 한도는 그 10분의 1이었다.\n\n@@REF@@200억달러가 나왔는데 20억달러만 받았다, 재무부가 되사기 한도를 두 배로 늘린 이유 (FXStreet, 2026-08-19)|https://www.fxstreet.com/analysis/20-billion-offered-2-billion-taken-why-treasury-doubled-its-buyback-cap-202608191954\n\n그날 실제로 사들인 것은 2048년 만기 채권 10억달러와 2051년 만기 두 종목 10억달러였다.\n팔자 대기물량이 매입 능력을 열 배 압도한 자리에서 한도가 올라간 것이다.\n\n## 되사기는 빚을 갚는 것이 아니다\n\n되사기는 시장에 이미 나와 있는 옛 국채를 재무부가 도로 사들이는 것이다.\n살 돈은 새로 국채를 팔아 마련한다.\n갚는 것이 아니라 갈아타는 것이라, 빚의 총액은 그대로고 만기 구성만 바뀐다.\n\n@@FLOW@@단기 국채 발행|3개월짜리를 새로 찍어 현금을 만든다|되사기 오퍼레이션|시장에 도는 옛 장기채를 사들인다|장기물 잔량 감소|남은 장기채가 귀해져 값이 오르고 금리는 내려간다@@경로의 시작과 끝이 다른 만기라는 점이 중요하다. 장기채가 하나 빠질 때마다 몇 달 뒤면 다시 빌리러 나가야 하는 단기채가 그 자리에 들어선다.\n\n이 경로를 타면 장기금리는 내려간다.\n그 값이 어디에 붙는지가 남는 문제다.\n\n## 1.9%를 사고 3.7%를 찍는다\n\n울프스트리트가 이번 오퍼레이션에서 사들인 종목 하나를 뜯어봤다.\n2021년 2월에 발행된 2051년 만기 30년물이고, 표면금리는 연 1.9%다.\n재무부는 이 채권을 액면 1달러당 52.375센트에 사들였다.\n액면 3억3,400만달러어치를 약 1억7,500만달러에 거둬들인 것이다.\n\n@@REF@@베센트가 두 배로 늘린 되사기, 싼 옛 빚을 할인가에 사고 비싼 새 빚을 찍는다 (울프스트리트, 2026-08-19)|https://wolfstreet.com/2026/08/19/bessent-doubles-yellens-hocus-pocus-treasury-buybacks-swapping-old-cheap-debt-at-a-discount-for-new-expensive-debt/\n\n액면이 절반 값에 사들여졌으니 빚의 겉면은 줄었다.\n그런데 사라진 옛 채권에 해마다 주던 이자는 630만달러였고, 그 돈을 마련하려고 찍은 단기 국채에 줄 이자는 연 700만달러다.\n빚은 줄었는데 해마다 나가는 이자는 늘어난 것이다.\n\n@@CHK@@3개월 국채 금리|3.7%|되산 30년물 표면금리|1.9%|30년물 시장금리|5.3%@@옛 채권에 주던 이자는 저금리 시절에 굳은 값이고, 그 자리를 메우는 단기채에는 오늘의 값을 준다. 메르가 든 예시(2020년 발행 1.4%짜리)보다 실제 격차는 작지만 방향은 같다. 되사기가 손대는 것은 이자의 총액이 아니라 만기의 배치다.@@2026-08-20 조회 · FRED DTB3·DGS30(2026-08-17 값). 표면금리는 울프스트리트가 확인한 CUSIP 912810SU3 기준\n\n만기가 짧아지는 것도 같이 따라온다.\n3개월짜리는 1년에 네 번 만기가 돌아오고, 그때마다 그날의 금리로 다시 빌려야 한다.\n금리가 지금 자리에 머무르는 동안에는 이 교체가 조용히 지나가지만, 갈아탈 때마다 값이 다시 매겨진다.\n\n## 11월 4일 리펀딩에서 갈린다\n\n이번 확대는 9월 9일 오퍼레이션부터 11월 4일까지만 유효하다.\n그 사이 일곱 번의 오퍼레이션에서 늘어나는 금액은 140억달러다.\n10년에서 30년 사이 만기의 국채가 시장에 약 10조달러 남아 있으니, 늘어난 몫은 그 0.1%대에 그친다.\n\n그래서 이번 조치의 힘은 금액이 아니라 문장에 있다.\n급하게 장기채를 던지려던 쪽에 받아 줄 사람이 있다는 말을 들려준 것이다.\n\n11월 4일 분기 리펀딩에서 회당 한도가 그대로 남거나 더 커지면, 시장이 8월에 미리 사 둔 해석이 맞았다는 뜻이다.\n반대로 예전 한도로 되돌아가면 이번 확대는 두 달짜리 응급처치로 남는다.\n그 자리에서 확인되는 것은 장기금리를 시장이 매기고 있는지 재무부가 매기고 있는지다.\n빚을 갚지 않고 만기만 바꾸는 조치로 값을 얼마나 오래 받쳐 둘 수 있는지, 그리고 받쳐 둔 값을 놓을 때 무엇을 치르는지가 여기에 걸려 있다.",
+    "en": "The US Treasury raised the size of its long-end buybacks from $2 billion to at least $4 billion per operation, and the reason sits in an operation held two days earlier.\nIn the August 18 operation for bonds maturing in 20 to 30 years, dealers offered roughly $20 billion of paper. The Treasury was permitted to take a tenth of that.\n\n@@REF@@$20 billion offered, $2 billion taken: why Treasury doubled its buyback cap (FXStreet, 2026-08-19)|https://www.fxstreet.com/analysis/20-billion-offered-2-billion-taken-why-treasury-doubled-its-buyback-cap-202608191954\n\nWhat it actually bought that day was $1 billion of a bond maturing in 2048 and $1 billion spread across two 2051s.\nThe cap went up at the exact spot where sellers outnumbered the buyer ten to one.\n\n## A buyback is not a repayment\n\nA buyback is the Treasury purchasing back old bonds that are already trading in the market.\nThe cash for it comes from selling new debt.\nNothing is retired on net. Only the maturity mix moves.\n\n@@FLOW@@Issue bills|Sell new three-month paper to raise cash|Run the operation|Buy old long bonds back from dealers|Shrink the long end|Fewer long bonds circulate, so their price rises and their yield falls@@The path starts and ends at different maturities. Every long bond taken out is replaced by short paper that has to be borrowed again within months.\n\nLong yields do fall along this path.\nWhat remains open is where the cost of that lands.\n\n## Buying 1.9% while issuing at 3.7%\n\nWolf Street took apart one of the securities bought in this operation.\nIt is a 30-year bond issued in February 2021, maturing in February 2051, carrying a coupon of 1.9%.\nThe Treasury bought it at 52.375 cents on the dollar.\nThat turned $334 million of face value into roughly $175 million of cash paid.\n\n@@REF@@Bessent doubles the buybacks, swapping old cheap debt at a discount for new expensive debt (Wolf Street, 2026-08-19)|https://wolfstreet.com/2026/08/19/bessent-doubles-yellens-hocus-pocus-treasury-buybacks-swapping-old-cheap-debt-at-a-discount-for-new-expensive-debt/\n\nBought at half price, the face amount of the debt goes down.\nBut the old bond that disappeared cost $6.3 million a year to service, while the bills issued to fund the purchase cost about $7.0 million a year.\nThe debt shrank and the annual interest bill grew.\n\n@@CHK@@Three-month bill rate|3.7%|Coupon on the bond bought|1.9%|30-year market yield|5.3%@@The coupon on the retired bond was fixed in the era of cheap money, while the short paper taking its place is priced at today's cost. The gap is narrower than the example in the original post (a 1.4% bond issued in 2020), but it points the same way. What a buyback moves is not the total interest bill but the placement of maturities.@@Retrieved 2026-08-20. FRED DTB3 and DGS30, values as of 2026-08-17. The coupon is CUSIP 912810SU3 as verified by Wolf Street.\n\nThe shortening of maturity comes with it.\nThree-month paper matures four times a year, and each time it has to be borrowed again at whatever the rate is that day.\nWhile rates sit where they are, that rollover passes quietly. Every rollover is also a repricing.\n\n## What November 4 settles\n\nThe increase runs only from the September 9 operation through November 4.\nAcross seven operations in that window, the extra amount comes to $14 billion.\nAgainst roughly $10 trillion of Treasuries outstanding in the 10-to-30-year sector, that addition is about a tenth of a percent.\n\nSo the force of this move is in the sentence rather than the sum.\nIt told anyone about to dump long bonds in a hurry that somebody is standing there to take them.\n\nIf the November 4 quarterly refunding keeps the larger size or raises it again, the interpretation the market bought in August was right.\nIf the size drops back to the old limit, this becomes a two-month piece of first aid.\nWhat gets settled there is whether the long end is priced by the market or by the Treasury.\nHow long a price can be held up by changing maturities rather than paying down debt, and what it costs to let that price go, is what is riding on the answer.",
+    "ja": "米財務省が長期国債の買い戻し上限を1回あたり20億ドルから最低40億ドルへ引き上げた理由は、2日前のオペレーションにある。\n8月18日の20~30年物の買い戻しでは、売りに出された銘柄が約200億ドルに達したのに対し、財務省が受け取れる上限はその10分の1だった。\n\n@@REF@@200億ドルの応札に対し20億ドルしか買えなかった、財務省が買い戻し上限を倍にした理由 (FXStreet, 2026-08-19)|https://www.fxstreet.com/analysis/20-billion-offered-2-billion-taken-why-treasury-doubled-its-buyback-cap-202608191954\n\nその日に実際に買い入れたのは、2048年満期の銘柄が10億ドル、2051年満期の2銘柄で10億ドルだった。\n売り待ちの玉が買入能力を10倍上回った、まさにその場所で上限が引き上げられた。\n\n## 買い戻しは返済ではない\n\n買い戻しとは、すでに市場に出回っている古い国債を財務省が買い取ることだ。\nその資金は新しい国債を売って作る。\n返しているのではなく乗り換えているので、借金の総額は変わらず、満期の構成だけが動く。\n\n@@FLOW@@短期国債の発行|3か月物を新たに発行して現金を作る|買い戻しオペ|市場に出回る古い長期債を買い取る|長期ゾーンの残高減少|残った長期債が希少になり価格が上がって利回りが下がる@@経路の入口と出口で満期が違うことが肝心だ。長期債が1本抜けるたびに、数か月後にまた借り直さねばならない短期債がその席に座る。\n\nこの経路をたどれば長期金利は下がる。\n残る問題は、その代金がどこに付くのかだ。\n\n## 1.9%を買い、3.7%を発行する\n\nウルフストリートが今回のオペで買われた銘柄を1本分解している。\n2021年2月発行、2051年2月満期の30年債で、表面利率は年1.9%だ。\n財務省はこれを額面1ドルあたり52.375セントで買い取った。\n額面3億3,400万ドル分を、およそ1億7,500万ドルの現金で引き取ったことになる。\n\n@@REF@@ベッセントが倍にした買い戻し、安い古い借金を割引で買い高い新しい借金を出す (Wolf Street, 2026-08-19)|https://wolfstreet.com/2026/08/19/bessent-doubles-yellens-hocus-pocus-treasury-buybacks-swapping-old-cheap-debt-at-a-discount-for-new-expensive-debt/\n\n半値で買い取ったのだから、借金の額面は減った。\nだが消えた古い債券に毎年払っていた利息は630万ドルで、その資金を作るために出した短期国債に払う利息は年700万ドルだ。\n借金は減ったのに、毎年出ていく利息は増えた。\n\n@@CHK@@3か月物国債の金利|3.7%|買い戻した30年債の表面利率|1.9%|30年債の市場利回り|5.3%@@古い債券の利息は低金利時代に固まった値で、その席を埋める短期債には今日の値を払う。メルが挙げた例(2020年発行の1.4%物)より実際の差は小さいが、向きは同じだ。買い戻しが動かすのは利息の総額ではなく満期の配置である。@@2026-08-20取得。FRED DTB3・DGS30(2026-08-17時点の値)。表面利率はウルフストリートが確認したCUSIP 912810SU3による\n\n満期が短くなることも一緒に付いてくる。\n3か月物は年に4回満期が来て、そのたびにその日の金利で借り直すことになる。\n金利が今の位置にとどまる間、この入れ替えは静かに過ぎる。だが借り直しは値付けのやり直しでもある。\n\n## 11月4日のリファンディングで決まる\n\n今回の拡大は9月9日のオペから11月4日までの限定だ。\nその間の7回のオペで増える金額は140億ドルになる。\n10年から30年の満期の国債が市場に約10兆ドル残っているので、増えた分はその0.1%程度にとどまる。\n\nつまり今回の措置の力は金額ではなく文言にある。\n慌てて長期債を投げようとしていた側に、受け取る相手がいると伝えたのだ。\n\n11月4日の四半期リファンディングで1回あたりの上限が維持されるか、さらに大きくなれば、市場が8月に先回りして買った解釈は正しかったことになる。\n逆に元の上限へ戻れば、今回の拡大は2か月の応急処置として残る。\nそこで確かめられるのは、長期金利を値付けしているのが市場なのか財務省なのかだ。\n借金を返さずに満期だけを入れ替える手立てで値をどれだけ長く支えられるのか、そして支えた値を手放すときに何を払うのかが、この答えに懸かっている。"
+   },
+   "why": {
+    "ko": "되사기는 빚을 줄이는 정책처럼 읽히지만 실제로는 만기를 바꾸는 교환이다. 액면이 줄어도 해마다 나가는 이자는 늘 수 있고, 만기가 짧아진 만큼 다시 빌리러 나가는 횟수가 잦아진다. 장기금리를 받쳐 주는 값이 그 자리에 붙는다.",
+    "en": "A buyback reads like debt reduction but works as a maturity swap. The face amount can fall while the annual interest bill rises, and the shorter the debt gets, the more often it has to be borrowed again. That is where the cost of holding the long end down sits.",
+    "ja": "買い戻しは借金を減らす政策のように読めるが、実際には満期を入れ替える交換だ。額面が減っても毎年の利息は増えうるし、満期が短くなるほど借り直す回数が増える。長期金利を支える代金はそこに付く。"
+   },
+   "ask": {
+    "ko": "되사기 확대는 장기금리를 붙잡는 정책일까, 아니면 만기를 짧게 바꿔 부담을 뒤로 미루는 조치일까?",
+    "en": "Is the bigger buyback a policy that holds long yields down, or a way of pushing the burden forward by shortening the debt?",
+    "ja": "買い戻しの拡大は長期金利を抑える政策なのか、それとも満期を短くして負担を先送りする措置なのか。"
+   },
+   "outcome": {
+    "status": "pending",
+    "note": {
+     "ko": "11월 4일 분기 리펀딩에서 장기물 되사기 회당 한도가 어떻게 결정되는지 채점한다.",
+     "en": "Grade on how the per-operation long-end buyback size is set at the November 4 quarterly refunding.",
+     "ja": "11月4日の四半期リファンディングで長期ゾーンの買い戻しの1回あたり上限がどう決まるかで採点する。"
+    },
+    "due": "2026-11-04",
+    "card": {
+     "metric": {
+      "ko": "장기물 유동성 지원 되사기의 회당 한도",
+      "en": "Per-operation size of long-end liquidity support buybacks",
+      "ja": "長期ゾーンの流動性支援買い戻しの1回あたり上限"
+     },
+     "now": {
+      "ko": "회당 최소 40억달러 (9월 9일부터 11월 4일까지 한시)",
+      "en": "At least $4 billion per operation, from September 9 through November 4",
+      "ja": "1回あたり最低40億ドル(9月9日から11月4日までの限定)"
+     },
+     "when": {
+      "ko": "2026년 11월 4일 분기 리펀딩 발표",
+      "en": "The quarterly refunding announcement on November 4, 2026",
+      "ja": "2026年11月4日の四半期リファンディング発表"
+     },
+     "hit": {
+      "ko": "회당 40억달러 이상이 유지되거나 대상 만기가 넓어짐",
+      "en": "The size stays at $4 billion or more per operation, or the eligible maturities widen",
+      "ja": "1回あたり40億ドル以上が維持されるか、対象満期が広がる"
+     },
+     "miss": {
+      "ko": "회당 20억달러 이하로 되돌아가거나 한시 조치가 연장 없이 끝남",
+      "en": "The size returns to $2 billion or less per operation, or the temporary measure ends without extension",
+      "ja": "1回あたり20億ドル以下に戻るか、限定措置が延長されずに終わる"
+     }
+    }
+   },
+   "sources": [
+    {
+     "name": {
+      "ko": "원문",
+      "en": "Original",
+      "ja": "原文"
+     },
+     "desc": {
+      "ko": "메르 · 2026-08-19",
+      "en": "Meru (blog.naver.com/ranto28) · 2026-08-19",
+      "ja": "メル · 2026-08-19"
+     },
+     "url": "https://blog.naver.com/ranto28/224384006179"
+    },
+    {
+     "name": {
+      "ko": "오퍼레이션 결과",
+      "en": "Operation result",
+      "ja": "オペの結果"
+     },
+     "desc": {
+      "ko": "FXStreet · 2026-08-19 · 8월 18일 응찰 200억달러와 낙찰 20억달러, 매입 종목",
+      "en": "FXStreet · 2026-08-19 · $20 billion offered against $2 billion taken on August 18, and which bonds were bought",
+      "ja": "FXStreet · 2026-08-19 · 8月18日の応札200億ドルと落札20億ドル、買入銘柄"
+     },
+     "url": "https://www.fxstreet.com/analysis/20-billion-offered-2-billion-taken-why-treasury-doubled-its-buyback-cap-202608191954"
+    },
+    {
+     "name": {
+      "ko": "종목 분해",
+      "en": "Security breakdown",
+      "ja": "銘柄の分解"
+     },
+     "desc": {
+      "ko": "Wolf Street · 2026-08-19 · CUSIP 912810SU3(표면금리 1.875%)의 매입가와 이자 비교",
+      "en": "Wolf Street · 2026-08-19 · purchase price and interest comparison for CUSIP 912810SU3, a 1.875% coupon",
+      "ja": "Wolf Street · 2026-08-19 · CUSIP 912810SU3(表面利率1.875%)の買入価格と利息の比較"
+     },
+     "url": "https://wolfstreet.com/2026/08/19/bessent-doubles-yellens-hocus-pocus-treasury-buybacks-swapping-old-cheap-debt-at-a-discount-for-new-expensive-debt/"
+    },
+    {
+     "name": {
+      "ko": "재무부 발표",
+      "en": "Treasury announcement",
+      "ja": "財務省の発表"
+     },
+     "desc": {
+      "ko": "미 재무부 보도자료 · 2026-08-19 · 대상 만기와 9월 9일~11월 4일 적용 기간",
+      "en": "US Department of the Treasury press release · 2026-08-19 · eligible sectors and the September 9 to November 4 window",
+      "ja": "米財務省のプレスリリース · 2026-08-19 · 対象満期と9月9日から11月4日までの適用期間"
+     },
+     "url": "https://home.treasury.gov/news/press-releases/sb0607"
+    },
+    {
+     "name": {
+      "ko": "금리 조회",
+      "en": "Rate lookup",
+      "ja": "金利の取得"
+     },
+     "desc": {
+      "ko": "FRED DTB3·DGS30 · 2026-08-17 값 · 3개월 국채 3.72%, 30년물 5.31%",
+      "en": "FRED DTB3 and DGS30 · values as of 2026-08-17 · three-month bill 3.72%, 30-year 5.31%",
+      "ja": "FRED DTB3・DGS30 · 2026-08-17時点 · 3か月物3.72%、30年債5.31%"
+     },
+     "url": "https://fred.stlouisfed.org/series/DTB3"
+    }
+   ],
+   "sourcesAsOf": {
+    "ko": "2026-08-20 조회 · 본문의 금리와 표면금리는 소수 첫째 자리로 반올림했다. 실제 값은 3개월 국채 3.72%, 30년물 5.31%(FRED, 2026-08-17), 되산 채권의 표면금리 1.875%다.",
+    "en": "Retrieved 2026-08-20. Rates in the text are rounded to one decimal. The underlying values are a 3.72% three-month bill and a 5.31% 30-year yield (FRED, 2026-08-17), and a 1.875% coupon on the bond bought back.",
+    "ja": "2026-08-20取得。本文の金利と表面利率は小数第1位に丸めている。実際の値は3か月物3.72%、30年債5.31%(FRED、2026-08-17)、買い戻した債券の表面利率1.875%である。"
+   }
+  },
+  {
+   "date": "2026-08-19",
    "id": "serenity-marvell-google-warrant-120b-vesting-condition",
    "related": [
     "jukan-nvidia-500b-platform-25pct-residual-guarantee",
