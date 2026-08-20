@@ -1,15 +1,15 @@
 {
  "source": "bilello",
- "fetched_at": "2026-08-20T02:02:46.290673+00:00",
- "checked_at": "2026-08-20T05:05:53.933453+00:00",
- "ok": false,
+ "fetched_at": "2026-08-20T07:24:31.569430+00:00",
+ "checked_at": "2026-08-20T07:24:31.569430+00:00",
+ "ok": true,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
- "raw_count": 0,
+ "raw_count": 25,
  "foreign_count": 0,
  "newest_published": "2026-08-18T16:42:59+00:00",
  "kept_count": 3,
- "error": "ConnectTimeout: HTTPSConnectionPool(host='bilello.blog', port=443): Max retries exceeded with url: /rss (Caused by ConnectTimeoutError(<HTTPSConnection(host='bilello.blog', port=443) at 0x7fd6f3b70cb0>, 'Connection to bilello.blog timed out. (connect timeout=25)'))",
+ "error": null,
  "items": [
   {
    "title": "The Week in Charts (8/18/26)",
