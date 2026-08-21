@@ -1,16 +1,28 @@
 {
  "source": "serenity",
- "fetched_at": "2026-08-21T09:09:27.736816+00:00",
- "checked_at": "2026-08-21T09:09:27.736816+00:00",
+ "fetched_at": "2026-08-21T10:59:20.312789+00:00",
+ "checked_at": "2026-08-21T10:59:20.312789+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 0,
- "newest_published": "2026-08-20T18:45:00+00:00",
+ "newest_published": "2026-08-21T09:40:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Since people are having fun speculating on $SKHY CPO roadmap supply chains. I'm gonna do my own guess and say SK Hynix is evaluating Celestial/Ayar. Then doing heavy evaluation into microLEDs past first-gen deployments. Both have been kinda working on it for awhile. - Ayar shown up in SK hynix's own website in the context of optical memory links. - Marvell is actively working with SK Hynix in custom memory solutions (and guess who owns Celestial now). Celestial/Ayar are both also cited in SK Hynix's linked Nature Paper, which helps a bit with technical relevance: (121): Stojanovic, V. A UCIe optical I/O retimer chiplet for AI scale-up. In 2025 IEEE Hot Chips 37 Symposium (HCS) 1–22 (IEEE, 20",
+   "link": "https://x.com/aleabitoreddit/status/2090735668532224224",
+   "published": "2026-08-21T09:40:00+00:00",
+   "content": "Since people are having fun speculating on  $SKHY CPO roadmap supply chains.\n\nI'm gonna do my own guess and say SK Hynix is evaluating Celestial/Ayar. Then doing heavy evaluation into microLEDs past first-gen deployments. \n\nBoth have been kinda working on it for awhile. \n\n- Ayar shown up in SK hynix's own website in the context of optical memory links. \n- Marvell is actively working with SK Hynix in custom memory solutions (and guess who owns Celestial now). \n\nCelestial/Ayar are both also cited in SK Hynix's linked Nature Paper, which helps a bit with technical relevance: \n\n(121): Stojanovic, V. A UCIe optical I/O retimer chiplet for AI scale-up. In 2025 IEEE Hot Chips 37 Symposium (HCS) 1–22 (IEEE, 2025) \n\n- This is Ayar reference (Ayar’s teraphy optical I/O chiplet), Stojanovic is Ayar Lab's co-founder btw. \n\n(123): Winterbottom, P. Photonic interconnect for accelerated computing celestial AI photonic fabric module (cough cough Celestial)\n\nThere's more breadcrumbs out there, but wanted to keep this relatively short-form. \n\nFor more upstream beneficaries: \n\n-> I still think  $SIVE is the cleanest read through since they're likely supplying to both Celestial/Ayar. \n\nThe interposer/packaging IP layer... People were speculating  $POET , but Marvell probably vertically integrated players them out this year after the announcement. \n\nGiven they've had their own SiPH interposer tech/integration IP before Celestials acquisition (eg. presented a silicon-photonics interposer back in 2023)\n\n-> AMS Osram (which I don't own), seems like they're co-developing in this area given they randomly went out of their way this year to say HBM optics was a TAM increase for them. \n\nTLDR: I see Ayar/Celestial as candidates for SK Hynix's CPO roadmap, then microLEDs being commercialized past gen-1 maybe 2029. (this is all speculation)\n\nJust to throw a bone to quantum dot bros, this got cited like 5 times.\n— Serenity (@aleabitoreddit) Aug 21, 2026"
+  },
+  {
+   "title": "There’s a lot of viral fabricated screenshots of me going around recently. Some are annoying jokes for engagement, like text-edited posts from me citing bible verses. But some like “Innolight secures Nvidia NPO orders” or off platform promotional content are maliciously fabricated. Unfortunately I don’t have the power to prevent false images from circulating. So please make sure to double check primary sources.",
+   "link": "https://x.com/aleabitoreddit/status/2090714894874050824",
+   "published": "2026-08-21T08:17:00+00:00",
+   "content": "There’s a lot of viral fabricated screenshots of me going around recently. \n\nSome are annoying jokes for engagement, like text-edited posts from me citing bible verses.\n\nBut some like “Innolight secures Nvidia NPO orders” or off platform promotional content are maliciously fabricated.\n\nUnfortunately I don’t have the power to prevent false images from circulating.\n\nSo please make sure to double check primary sources.大猫剑客 (@dmjk001)过分了，白毛没发这个小作文，造起假来了—  https://x.com/dmjk001/status/2090659817992110388 \n— Serenity (@aleabitoreddit) Aug 21, 2026"
+  },
   {
    "title": "After seeing how the robotics and space sectors reacted to Unitree and $SPCX IPOs I’m not quite sure I want Anthropic to go public…",
    "link": "https://x.com/aleabitoreddit/status/2090510568474231045",
@@ -88,18 +100,6 @@
    "link": "https://x.com/aleabitoreddit/status/2089264987328151637",
    "published": "2026-08-17T08:16:00+00:00",
    "content": "Just some more demand imbalance visibility for  $SNDK ,  $SKHY ,  $MU , Kioxia, and your NAND players. \n\nPhison CEO: \"2027 capacity constraints will be even more severe than in 2026.\"\n\n\"Upstream suppliers need up to 4 years from plant construction and equipment investment to actual production.\n\nWith demand growing explosively and supply expansion limited, the NAND shortage is likely to last for years.\"\n\nDon't quite think I agree with the people claiming it's all over for memory, esp. NAND bottlenecks in 2026...\n— Serenity (@aleabitoreddit) Aug 17, 2026"
-  },
-  {
-   "title": "I think we're seeing AI server MLCC demand cause an interesting effect... with tightening capacity for consumer/general-purpose MLCCs. If you get Vietnam flashbacks like I do to $MU / Samsung / SK Hynix -> Legacy DRAM: My thesis is we'll see the same thing here maybe late H2, early 2027 with consumer/broad MLCCs. From July 6th: \"the crowding-out effect from AI-oriented high-end MLCC production has begun spilling over into both the automotive and consumer markets.\" July 28th: \"AI Demand Pushes Japanese and Korean MLCC Suppliers to Record Monthly Shipments; Consumer-Grade Order Spillovers Continue to Surge\" Aug 12: As [MLCC] capacity shifts from consumer grades to AI-oriented products... (Tren",
-   "link": "https://x.com/aleabitoreddit/status/2089183484556480536",
-   "published": "2026-08-17T02:52:00+00:00",
-   "content": "I think we're seeing AI server MLCC demand cause an interesting effect... with tightening capacity for consumer/general-purpose MLCCs.\n\nIf you get Vietnam flashbacks like I do to  $MU / Samsung / SK Hynix -> Legacy DRAM: \n\nMy thesis is we'll see the same thing here maybe late H2, early 2027 with consumer/broad MLCCs. \n\nFrom July 6th: \n\n\"the crowding-out effect from AI-oriented high-end MLCC production has begun spilling over into both the automotive and consumer markets.\" \n\nJuly 28th: \n\n\"AI Demand Pushes Japanese and Korean MLCC Suppliers to Record Monthly Shipments; Consumer-Grade Order Spillovers Continue to Surge\"\n\nAug 12: \n\nAs [MLCC] capacity shifts from consumer grades to AI-oriented products... (Trendforce)\n\nAug 12: \n\nChina's electronics market channel checks found 22µF and 47µF MLCCs (used more broadly) out of stock. Then found and said certain manufacturers had stopped taking orders. \n\n(for reference: Walsin said high-volume smartphone/PC products such as... 22µF, so it's broader MLCCs)\n\nObviously Samsung Electro-Mechanics/Murata are main beneficiaries of AI server MLCC ramp. \n\nBut companies with large market share of overall MLCCs like Taiyo Yuden (6976, disclosure: I have positions) with less AI server share, would be a major beneficiary of this. \n\nFun part is, we're only in H2 2026, so the next major bottleneck should be fun!\n— Serenity (@aleabitoreddit) Aug 17, 2026"
-  },
-  {
-   "title": "\"Severe InP Shortage Triggers Largest Price Hike Ever\" - $AXTI. Suppliers have bluntly stated that \"even if you have the money, you still may not be able to get the material\" (lol). - Industry sources revealed that InP substrate prices began rising in Q4 last year and was the fourth consecutive substrate price hike. - The latest Q4 hike is expected to be > 10%, - Meanwhile, prices for epitaxial wafers made from those substrates have already been raised two times, and the market is moving toward a 3rd consecutive increase in Q4. (I also wrote a thesis on $IQE, which benefits here too). Article states VPEC, Landmark, IET benefits (Taiwan centric reporting). I did predict this last year... The",
-   "link": "https://x.com/aleabitoreddit/status/2089165155741622679",
-   "published": "2026-08-17T01:39:00+00:00",
-   "content": "\"Severe InP Shortage Triggers Largest Price Hike Ever\" -  $AXTI . \n\nSuppliers have bluntly stated that \"even if you have the money, you still may not be able to get the material\" (lol). \n\n- Industry sources revealed that InP substrate prices began rising in Q4 last year and was the fourth consecutive substrate price hike. \n\n- The latest Q4 hike is expected to be >10%,\n\n- Meanwhile, prices for epitaxial wafers made from those substrates have already been raised two times, and the market is moving toward a 3rd consecutive increase in Q4. (I also wrote a thesis on  $IQE , which benefits here too). \n\nArticle states VPEC, Landmark, IET benefits (Taiwan centric reporting). \n\nI did predict this last year... The bottleneck is real, but I do have higher expectations for price hikes that comes next. \n\nGlad it's starting to play out.\n— Serenity (@aleabitoreddit) Aug 17, 2026"
   }
  ]
 }
