@@ -5851,7 +5851,7 @@ function debateTitleHtml(key){
        invDisc3:"Positions granted confidential treatment can be withheld from filings for up to a year.",
        invEmpty:"No holdings data is available for this filing.", invDataIssue:"The latest data for this investor could not be verified. Showing the last known snapshot.",
        invNoneShown:"No investors to show yet.",
-       invStale:"{n}Q old data", invStaleTip:"This investor's filing is {n} quarter(s) behind the most recent report." },
+       invStale:"{n}Q not disclosed", invStaleTip:"This manager has not disclosed 13F holdings for the last {n} quarter(s). This is not a data lag on our side." },
   ko:{ invTitle:"13F 유명 투자자 포트폴리오", invSub:"유명 기관 투자자가 SEC에 분기별로 공시하는 미국 상장 주식 롱 포지션입니다.",
        invBreadcrumb:"투자자", invTotalValue:"총 평가액",
        invAsOf:"{period} 기준 · {filed} 공시", invColName:"종목", invColWeight:"비중", invColValue:"평가액", invColShares:"주식수", invColChange:"변화",
@@ -5862,7 +5862,7 @@ function debateTitleHtml(key){
        invDisc3:"기밀취급 승인을 받은 종목은 최대 1년까지 공시에서 제외될 수 있습니다.",
        invEmpty:"이 공시에는 표시할 보유 종목 데이터가 없습니다.", invDataIssue:"이 투자자의 최신 데이터를 확인하지 못했습니다. 마지막으로 확인된 내역을 표시합니다.",
        invNoneShown:"표시할 투자자가 없습니다.",
-       invStale:"{n}분기 전 자료", invStaleTip:"가장 최근 공시보다 {n}개 분기 이전 자료입니다." },
+       invStale:"{n}분기 미공시", invStaleTip:"이 투자자는 최근 {n}개 분기 13F 보유내역을 공시하지 않았습니다. Stacks 데이터 지연이 아닙니다." },
   ja:{ invTitle:"13F著名投資家ポートフォリオ", invSub:"著名な機関投資家がSECに四半期ごとに開示する米国上場株式のロングポジションです。",
        invBreadcrumb:"投資家", invTotalValue:"報告時価総額",
        invAsOf:"{period}時点 · {filed}開示", invColName:"銘柄", invColWeight:"比率", invColValue:"評価額", invColShares:"株式数", invColChange:"変化",
@@ -5873,7 +5873,7 @@ function debateTitleHtml(key){
        invDisc3:"機密扱いが承認された銘柄は、最長1年間開示から除外される場合があります。",
        invEmpty:"この開示には表示できる保有銘柄データがありません。", invDataIssue:"この投資家の最新データを確認できませんでした。最後に確認できた内容を表示します。",
        invNoneShown:"表示する投資家がありません。",
-       invStale:"{n}四半期前のデータ", invStaleTip:"直近の開示より{n}四半期古いデータです。" }
+       invStale:"{n}四半期 未開示", invStaleTip:"この投資家は直近{n}四半期の13F保有明細を開示していません。データの遅延ではありません。" }
 }; try{ for(var l in X){ if(STRINGS[l]) for(var k in X[l]) STRINGS[l][k]=X[l][k]; } }catch(e){} })();
 
 /* ---------------- 13F 포트폴리오 가치 차트 / 활동 요약 / 매수·매도 상위 / 섹터 배분 문자열 (v85) ---------------- */
@@ -7071,7 +7071,7 @@ function invLogoFail(img){
   } catch (e) {}
 }
 /* 2026-08-10: 사이트 전체에서 가장 최신 13F 공시 분기 대비 이 투자자의 자료가
-   몇 개 분기 뒤처졌는지. 현재 데이터에서는 scion(버리)만 2가 나온다. */
+   몇 개 분기 뒤처졌는지. 2026-08-22 실측: pershing-square 1(Q2는 13F-NT만 제출), scion 3. */
 function invStaleQuarters(period){
   var investors = (typeof PORTFOLIOS_DATA !== "undefined" && PORTFOLIOS_DATA && PORTFOLIOS_DATA.investors) || [];
   var latest = "";
