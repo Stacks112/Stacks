@@ -423,7 +423,7 @@
       card.classList.add("inv-hub-person");
       var name = card.querySelector(".inv-card-name"), manager = card.querySelector(".inv-card-manager");
       if (name) name.textContent = locVal(inv.manager) || locVal(inv.name) || inv.slug;
-      if (manager) manager.textContent = locVal(inv.name) || "";
+      if (manager){ manager.textContent = locVal(inv.name) || ""; var _invStaleChip = (typeof invStaleChipHtml === "function" ? invStaleChipHtml(inv && inv.period, (typeof STRINGS !== "undefined" && typeof LANG !== "undefined" ? STRINGS[LANG] : {})) : ""); if (_invStaleChip) manager.insertAdjacentHTML("beforeend", " " + _invStaleChip); }
       var nameTd = document.createElement("td"); nameTd.appendChild(card); tr.appendChild(nameTd);
 
       /* 값은 loadHubReturns() 응답이 오기 전까지 "—" 자리표시. 페인트를 막지
