@@ -1,16 +1,40 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-25T22:57:11.979569+00:00",
- "checked_at": "2026-08-25T22:57:11.979569+00:00",
+ "fetched_at": "2026-08-26T02:10:16.700052+00:00",
+ "checked_at": "2026-08-26T02:10:16.700052+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
- "foreign_count": 3,
- "newest_published": "2026-08-25T21:11:00+00:00",
+ "foreign_count": 5,
+ "newest_published": "2026-08-25T23:47:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Dylan Patel: OpenAI will turn profitable in Q3",
+   "link": "https://x.com/jukan05/status/2092398551670345950",
+   "published": "2026-08-25T23:47:00+00:00",
+   "content": "Dylan Patel: OpenAI will turn profitable in Q3Dwarkesh Patel (@dwarkesh_sp)Had a lot of fun chatting again with my twin brother  @dylan522p \n\nWe went through lab economics over the next few years - the shift from inference to training as RSI draws near; and how Anthropic and OpenAI are on track to control most of the world’s usable FLOPs within the next few years (because they can monetize compute better and thus outbid everyone).\n\nAnd then we discuss whether the >$10T of total AI capex we’ll see by the end of the decade will cause a sovereign debt crisis, where hyperscaler debt raises interest rates, drives non-AI exposed countries into bankruptcy, and crashes non-AI equities.\n\nOne question we weren’t able to resolve is whether there’s anything that can counter all the forces barrelling towards centralization in this industry - the economies of scale in training, the scarcity of compute, and eventually continual learning and RSI.\n\n0:00:00 – Two labs will soon control most of the world’s compute\n0:07:01 – $6 billion in fab capex enables $1t+ of end revenue\n0:13:08 – Compute prices will rise if the labs outbid everyone\n0:18:22 – Which layer will capture most of the surplus?\n0:25:40 – Will datacenter regulation slow down AI?\n0:29:43 – Labs are shifting compute from inference to R&D\n0:33:27 – China gets less than 10% of new compute, but its labs need less\n0:48:48 – Will AI cause a sovereign debt crisis?\n1:07:52 – Will the world's future workforce belong to a few companies? \nVideo\n  —  https://x.com/dwarkesh_sp/status/2092280377255551320 \n— Jukan (@jukan05) Aug 25, 2026"
+  },
+  {
+   "title": "I came across an argument that Jalapeño might actually be bullish for Cerebras. The idea is that Jalapeño puts more pressure on Meta and AWS to respond to OpenAI, which could push them to adopt Cerebras more aggressively. I’m not sure I buy that argument, though.",
+   "link": "https://x.com/jukan05/status/2092382895339929817",
+   "published": "2026-08-25T22:45:00+00:00",
+   "content": "I came across an argument that Jalapeño might actually be bullish for Cerebras. The idea is that Jalapeño puts more pressure on Meta and AWS to respond to OpenAI, which could push them to adopt Cerebras more aggressively.\n\nI’m not sure I buy that argument, though.\n— Jukan (@jukan05) Aug 25, 2026"
+  },
+  {
+   "title": "What Jalapeño made me realize is just how much lower the barrier to chip design is going to become. Ultimately, manufacturing will be where the real moat remains—at least until we have robots capable enough to change that. Design and engineering outside of manufacturing will gradually lose their moat. Even when it comes to the semiconductors that form the foundation of AI. That’s the feeling I keep coming back to.",
+   "link": "https://x.com/jukan05/status/2092379180268978486",
+   "published": "2026-08-25T22:30:00+00:00",
+   "content": "What Jalapeño made me realize is just how much lower the barrier to chip design is going to become.\n\nUltimately, manufacturing will be where the real moat remains—at least until we have robots capable enough to change that.\n\nDesign and engineering outside of manufacturing will gradually lose their moat. Even when it comes to the semiconductors that form the foundation of AI.\n\nThat’s the feeling I keep coming back to.Andrew Curran (@AndrewCurran_)GPT-Astra helped develop the Jalapeño chip.\n\n'Supporting each new model family still requires new kernels and model-specific optimizations. Using Codex with GPT‑Astra, the team brought three open-weight models that were not part of Jalapeño’s original production plan to high performance within two months.'—  https://x.com/AndrewCurran_/status/2092336013012275416 \n— Jukan (@jukan05) Aug 25, 2026"
+  },
+  {
+   "title": "According to DigiTimes, YMTC and CXMT are seeking to increase the share of their memory supply shipped outside China. As part of this strategy, YMTC is reportedly selling NAND chips to independent third-party module makers, which then assemble them into finished enterprise solid-state drives (SSDs) for customers such as U.S. neocloud providers. This indirect route is intended to avoid sensitivities surrounding the products’ country of origin. YMTC’s new Phase 3 fab was originally scheduled to begin mass production in the second quarter of 2027, but the start of operations is now expected to be brought forward to the fourth quarter of 2026. The fab will have a total production capacity of 100",
+   "link": "https://x.com/jukan05/status/2092368501038100683",
+   "published": "2026-08-25T21:48:00+00:00",
+   "content": "According to DigiTimes, YMTC and CXMT are seeking to increase the share of their memory supply shipped outside China.\n\nAs part of this strategy, YMTC is reportedly selling NAND chips to independent third-party module makers, which then assemble them into finished enterprise solid-state drives (SSDs) for customers such as U.S. neocloud providers. This indirect route is intended to avoid sensitivities surrounding the products’ country of origin.\n\nYMTC’s new Phase 3 fab was originally scheduled to begin mass production in the second quarter of 2027, but the start of operations is now expected to be brought forward to the fourth quarter of 2026. The fab will have a total production capacity of 100,000 wafers per month and is expected to initially operate at around 50,000 wafers per month. Notably, YMTC plans to allocate 20% of the fab’s capacity to LPDDR trial production, making it the company’s first DRAM manufacturing base.\n\nSupply-chain sources said that amid the continued global memory shortage, China’s two major memory manufacturers have been tasked with raising the domestic market’s self-sufficiency rate. China’s memory self-sufficiency rate could exceed 50% as early as late 2027 or sometime in 2028.\n\nAs production capacity at YMTC’s Wuhan Phase 3 fab begins to ramp up meaningfully from 2027, the company is expected to continue pursuing a strategy of increasing the share of its supply shipped to overseas markets.\n\nYMTC is not alone in making this move. With DDR5 and LPDDR5 supplies becoming increasingly tight, CXMT has reportedly begun product qualification with small and midsized cloud service providers in markets including the U.S. and Canada. The company appears to be seeking to secure customers early by locking in capacity commitments ahead of time.\n\nIndustry sources said that it is currently “possible in principle” for private-sector U.S. companies to purchase products from YMTC or CXMT.\n\nRecent reports that Apple is seeking to incorporate more production capacity from Chinese memory suppliers into its supply chain have drawn market attention. However, supply-chain industry sources believe that Apple’s influence is no longer what it once was in the AI era and that its impact on industry-wide supply and demand has declined substantially.\n\nFrom the perspective of Chinese suppliers, entering Apple’s supply chain would primarily serve as proof that the quality of their products has reached the level of major global vendors. They reportedly have no intention of supplying Apple in large volumes or competing by cutting prices.\n\nAccording to industry sources, some of Apple’s procurement personnel have also recently moved to NVIDIA.\n\nEven if Apple attempts to use CXMT’s or YMTC’s capacity to lower its procurement prices, it is unlikely to succeed in 2026. Moreover, only limited capacity reportedly remains available for allocation in 2027.\n— Jukan (@jukan05) Aug 25, 2026"
+  },
   {
    "title": "It’s amazing that they managed to develop the chip in just nine months.",
    "link": "https://x.com/jukan05/status/2092359290606809244",
@@ -76,30 +100,6 @@
    "link": "https://x.com/jukan05/status/2091958367820636441",
    "published": "2026-08-24T18:38:00+00:00",
    "content": "I’m probably the only person at Hot Chips trading stocks.\n— Jukan (@jukan05) Aug 24, 2026"
-  },
-  {
-   "title": "#SamsungFoundry",
-   "link": "https://x.com/jukan05/status/2091908760545505328",
-   "published": "2026-08-24T15:21:00+00:00",
-   "content": "#SamsungFoundry Wall St Engine (@wallstengine) $NVDA GROQ 3 LPX ENTERS FULL PRODUCTION\n\nNVIDIA says Groq 3 LPX, its low-latency inference accelerator designed to extend Vera Rubin NVL72, is now in full production.\n\nIn Artificial Analysis testing, Groq 3 LPX reached 3,400 output tokens/sec running Gemma 4 31B with a 100K-token context, with NVIDIA claiming 4x faster responsiveness than the nearest alternative for latency-sensitive agentic workloads.\n\nThe architecture splits inference work between Rubin GPUs for large-scale context processing and LPX for fast token generation, targeting coding agents, multi-step reasoning and tool-use workloads.\n\nNebius will be the first AI cloud to deploy Groq 3 LPX through Nebius Token Factory, with Groq also expected to be among the earliest adopters.—  https://x.com/wallstengine/status/2091903357380342066 \n— Jukan (@jukan05) Aug 24, 2026"
-  },
-  {
-   "title": "Jeff Pu expects TPU shipments to surpass NVIDIA’s by 2028…",
-   "link": "https://x.com/jukan05/status/2091896616353677773",
-   "published": "2026-08-24T14:33:00+00:00",
-   "content": "Jeff Pu expects TPU shipments to surpass NVIDIA’s by 2028…Jeff Pu (@sssjeffpu)ASIC Warp-Up \n\n📈Stock Picks: maintains a positive view on MRVL, MTK, and Intel following recent earnings, supply chain checks and our recent notes. \n👊Nvidia vs. ASIC: Nvidia's CoWoS share at TSM will remain stable in 2027; Nvidia Vera Rubin outperforms competitors in performance/TCO/supply chain.\n* TPU Dynamics: On June 14 report, we lowered Broadcom's Sunfish volume for 2026/27 due to packaging re-design and set 460k CoWoS (ASIC) in 2027; MTK Humufish (which leads in N2 vs Whalefish) potential launch in 4Q27 suggesting the window for Broadcom’s CoWoS back to TPU could be only in 1H26. Expect Humufish tape-out in around Nov-2026 with a not too high passing rate. \n* Google Custom Silicon: MRVL expects meaningful contributions from Google CXL and DPU (~$3bn each by 2028), with an MPU start on TSMC N2 yielding $3bn+ in CY28 revenue.\n* AWS Trainium: Reit MRVL T3 of $1bn/$2bn in CY26/27 and likely >$3bn from T4 in CY28 with a much higher ASP and better NPO scale-up.\n* Intel Backend Packaging: Reit Intel's FY27/FY28 back-end revenue forecast of $1.1bn/$7bn, supported by AWS T3 EMIB-T and Google Humufish/Triggerfish volumes through 2H27-2028. We expect more wins for U.S. fabless including MSFT, QCOM, MRVL, with products across ASIC, CPU and CPO. ABF substrate to greatly benefit from EMIB.\n\n #NVDA   #ASIC   #MRVL   #Mediatek   #SMTC   #INTC   #ABF —  https://x.com/sssjeffpu/status/2091702999173485030 \n— Jukan (@jukan05) Aug 24, 2026"
-  },
-  {
-   "title": "👀",
-   "link": "https://x.com/jukan05/status/2091895118081179909",
-   "published": "2026-08-24T14:27:00+00:00",
-   "content": "👀\n— Jukan (@jukan05) Aug 24, 2026"
-  },
-  {
-   "title": "At lunch, I argued that the U.S. needs to be less democratic in its approach to AI if it wants to catch up with China, and the person I was talking to looked at me like I was crazy.",
-   "link": "https://x.com/jukan05/status/2091647824446517593",
-   "published": "2026-08-23T22:04:00+00:00",
-   "content": "At lunch, I argued that the U.S. needs to be less democratic in its approach to AI if it wants to catch up with China, and the person I was talking to looked at me like I was crazy.\n— Jukan (@jukan05) Aug 23, 2026"
   }
  ]
 }
