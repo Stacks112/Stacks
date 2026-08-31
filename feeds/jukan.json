@@ -1,16 +1,58 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-31T00:47:14.623327+00:00",
- "checked_at": "2026-08-31T00:47:14.623327+00:00",
+ "fetched_at": "2026-08-31T08:51:33.473968+00:00",
+ "checked_at": "2026-08-31T08:51:33.473968+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
- "foreign_count": 3,
- "newest_published": "2026-08-30T23:23:00+00:00",
+ "foreign_count": 2,
+ "newest_published": "2026-08-31T07:24:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "At least for scale-in, it seems fair to assume that CPO will eventually be replaced as well.",
+   "link": "https://x.com/jukan05/status/2094325560243888257",
+   "published": "2026-08-31T07:24:00+00:00",
+   "content": "At least for scale-in, it seems fair to assume that CPO will eventually be replaced as well.\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "TrendForce has raised its forecast for Q3 PC DRAM price increases. As of August, it now expects prices to rise 18–23% QoQ, up from its July forecast of 15–20%.",
+   "link": "https://x.com/jukan05/status/2094313543911002208",
+   "published": "2026-08-31T06:37:00+00:00",
+   "content": "TrendForce has raised its forecast for Q3 PC DRAM price increases.\n\nAs of August, it now expects prices to rise 18–23% QoQ, up from its July forecast of 15–20%.\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "As packaging continues to scale up, substrates are getting larger as well… Are you still ignoring ABF substrates?",
+   "link": "https://x.com/jukan05/status/2094309884590424129",
+   "published": "2026-08-31T06:22:00+00:00",
+   "content": "As packaging continues to scale up, substrates are getting larger as well…\n\nAre you still ignoring ABF substrates?\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "eRAM… This roadmap gives me a lot to think about. It makes me wonder whether we could eventually see a world where foundries bypass the memory makers altogether.",
+   "link": "https://x.com/jukan05/status/2094304704729899401",
+   "published": "2026-08-31T06:02:00+00:00",
+   "content": "eRAM… This roadmap gives me a lot to think about. It makes me wonder whether we could eventually see a world where foundries bypass the memory makers altogether.\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "Is this why the Korean stock market is falling right now?",
+   "link": "https://x.com/jukan05/status/2094252454359818602",
+   "published": "2026-08-31T02:34:00+00:00",
+   "content": "Is this why the Korean stock market is falling right now?\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "[EXCLUSIVE] SK HYNIX CONSIDERS INTEL FOR NEXT-GENERATION HBM BASE DIES SK hynix is moving to diversify the foundry suppliers for the base dies used in high-bandwidth memory (HBM), which is built by vertically stacking multiple memory dies. The company is reportedly considering outsourcing a portion of the base-die production for HBM4E, the seventh generation of HBM, to Intel Foundry. Until now, SK hynix has relied entirely on TSMC for outsourced base-die production. The move is seen as an effort to establish a multi-vendor foundry strategy, reducing supply-chain concentration on TSMC while also strengthening SK hynix’s bargaining power on pricing. According to industry sources on August 31,",
+   "link": "https://x.com/jukan05/status/2094234328230482082",
+   "published": "2026-08-31T01:22:00+00:00",
+   "content": "[EXCLUSIVE] SK HYNIX CONSIDERS INTEL FOR NEXT-GENERATION HBM BASE DIES\n\nSK hynix is moving to diversify the foundry suppliers for the base dies used in high-bandwidth memory (HBM), which is built by vertically stacking multiple memory dies.\n\nThe company is reportedly considering outsourcing a portion of the base-die production for HBM4E, the seventh generation of HBM, to Intel Foundry. Until now, SK hynix has relied entirely on TSMC for outsourced base-die production.\n\nThe move is seen as an effort to establish a multi-vendor foundry strategy, reducing supply-chain concentration on TSMC while also strengthening SK hynix’s bargaining power on pricing.\n\nAccording to industry sources on August 31, SK hynix is pursuing a plan under which base dies for HBM4E could be manufactured by both TSMC and Intel, potentially beginning as early as the HBM4E generation.\n\nThe base die sits at the bottom of an HBM stack and functions as a controller chip that supports and manages the overall structure. It is also commonly referred to as a logic die. The base die is responsible for the high-speed interface that connects HBM with external processors such as GPUs and CPUs.\n\nUp through HBM3E, SK hynix manufactured its base dies using its own processes. However, as successive HBM generations have placed greater importance on the logic, control functionality, and performance of the base die, SK hynix began working with TSMC to manufacture base dies starting with HBM4. SK hynix’s HBM4 products currently in mass production use base dies manufactured on a TSMC 12nm-class process.\n\nThe key issue is the cost burden associated with the base die. According to industry sources, the TSMC-produced base die used in HBM4 is estimated to cost three to four times as much as the core dies—the DRAM dies stacked above the base die that directly store data—which SK hynix manufactures using its 10nm-class fifth-generation 1b process.\n\nThe base-die cost burden is expected to increase further with HBM4E. Because HBM products are heavily covered by long-term supply agreements (LTAs), it is also difficult for SK hynix to immediately pass higher foundry costs on to customers through higher product prices.\n\nFor this reason, industry observers believe that if Intel ultimately joins SK hynix’s base-die supply chain, the company would gain additional options in terms of both cost competitiveness and supply stability.\n\nThe move is also interpreted as part of a longer-term strategy to diversify a supply chain currently concentrated on TSMC. Beginning with HBM4, “custom HBM”—in which the base-die design is tailored to the architecture and performance requirements of individual customers’ AI accelerators—is becoming increasingly important.\n\nFor SK hynix, this creates a need to move away from an ecosystem concentrated around specific customers and foundries and broaden its ability to collaborate with a wider range of AI chip companies.\n\nThere is also speculation that SK hynix’s cooperation with Intel could eventually expand beyond base-die manufacturing into advanced packaging.\n\nAt Hot Chips, the high-performance semiconductor and computing architecture conference held in Silicon Valley, Lee Jae-sik, vice president of package engineering at SK hynix America, said the company is evaluating and comparing major advanced packaging technologies, including TSMC’s CoWoS-S and CoWoS-L as well as Intel’s EMIB.\n\n $INTC \n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "KOREAN LOCAL MEDIA: SK HYNIX TO OUTSOURCE NEXT-GENERATION BASE DIE PRODUCTION TO INTEL $INTC",
+   "link": "https://x.com/jukan05/status/2094233685633782200",
+   "published": "2026-08-31T01:19:00+00:00",
+   "content": "KOREAN LOCAL MEDIA: SK HYNIX TO OUTSOURCE NEXT-GENERATION BASE DIE PRODUCTION TO INTEL\n\n $INTC \n— Jukan (@jukan05) Aug 31, 2026"
+  },
   {
    "title": "SemiAnalysis: SK hynix and Micron have struggled to achieve the highest HBM4 speeds. In particular, SK hynix had to redesign its base die, delaying HBM4 shipments for NVIDIA’s Rubin platform. Samsung currently has the best HBM4 technology. Broadcom has traditionally relied heavily on Samsung for its HBM supply. Samsung’s underperformance in the HBM3E generation made this a disadvantage for Broadcom’s ASICs. However, now that Samsung has pulled ahead of its competitors with HBM4, the same sourcing relationship has become an advantage for Jalapeño.",
    "link": "https://x.com/jukan05/status/2094204360800833602",
@@ -58,48 +100,6 @@
    "link": "https://x.com/jukan05/status/2093801082506055915",
    "published": "2026-08-29T20:40:00+00:00",
    "content": "Is anyone else going to SEMICON Taiwan? I’m on my way to the airport now to catch my flight to Taiwan.\n— Jukan (@jukan05) Aug 29, 2026"
-  },
-  {
-   "title": "",
-   "link": "https://x.com/jukan05/status/2093641673171669020",
-   "published": "2026-08-29T10:07:00+00:00",
-   "content": "x.com/i/article/209363050492… \n— Jukan (@jukan05) Aug 29, 2026"
-  },
-  {
-   "title": "CXMT BEGINS MASS PRODUCTION OF LPDDR6",
-   "link": "https://x.com/jukan05/status/2093529419398975813",
-   "published": "2026-08-29T02:41:00+00:00",
-   "content": "CXMT BEGINS MASS PRODUCTION OF LPDDR6Ice Universe (@UniverseIce)🚨 BREAKING: CXMT LPDDR6 Takes the Lead in Commercial Adoption, Debuting on the Xiaomi 18 Fold!\n\nCXMT’s LPDDR6 is set to be among the first to achieve commercial adoption in smartphones, with Xiaomi’s new wide-format foldable flagship, the Xiaomi 18 Fold, as its debut device. It will also be powered by Xiaomi’s next-generation in-house flagship chipset, the XRING O3.\n\nThe Xiaomi 18 Fold is scheduled to launch officially in September.\n\nIn the first wave of LPDDR6 commercialization in smartphones, a Chinese memory manufacturer is moving right to the forefront.\n\nCXMT LPDDR6 + XRING O3 + Xiaomi 18 Fold. The pace is incredibly fast.—  https://x.com/UniverseIce/status/2093521356004716669 \n— Jukan (@jukan05) Aug 29, 2026"
-  },
-  {
-   "title": "Could you recommend some of your all-time favorite classic movies to watch this weekend? Not something like Citizen Kane—I’m looking for something more emotionally moving, something that really leaves an impression.",
-   "link": "https://x.com/jukan05/status/2093484036882923983",
-   "published": "2026-08-28T23:41:00+00:00",
-   "content": "Could you recommend some of your all-time favorite classic movies to watch this weekend? Not something like Citizen Kane—I’m looking for something more emotionally moving, something that really leaves an impression.\n— Jukan (@jukan05) Aug 28, 2026"
-  },
-  {
-   "title": "TrendForce: Vera Rubin’s ASP is expected to be twice that of the GB300, while the combined production value of the GB300, VR200, and VR300 next year is projected to reach $710 billion.",
-   "link": "https://x.com/jukan05/status/2093305683580191003",
-   "published": "2026-08-28T11:52:00+00:00",
-   "content": "TrendForce: Vera Rubin’s ASP is expected to be twice that of the GB300, while the combined production value of the GB300, VR200, and VR300 next year is projected to reach $710 billion.\n— Jukan (@jukan05) Aug 28, 2026"
-  },
-  {
-   "title": "> > CXMT 1H Revenue +873.6% YoY, Net Profit of RMB 77.6bn, Swinging to Profit｜Earnings • CXMT reported 1H26 revenue of RMB 150.31bn, up 873% YoY. • Net profit reached RMB 77.61bn, swinging from a RMB 2.33bn net loss in 1H25. (1Q net profit: RMB 33.01bn) • 1H net profit attributable to shareholders was RMB 77.61bn, versus a RMB 2.33bn loss a year earlier. Excluding non-recurring items, attributable net profit was RMB 78.79bn, also reversing from a RMB 2.39bn loss in 1H25. • The results significantly exceeded the company’s July guidance for 1H attributable net profit of RMB 50–57bn. The actual figure of RMB 77.61bn was approximately 36% above the upper end of guidance.",
-   "link": "https://x.com/jukan05/status/2093282378475307359",
-   "published": "2026-08-28T10:19:00+00:00",
-   "content": ">> CXMT 1H Revenue +873.6% YoY, Net Profit of RMB 77.6bn, Swinging to Profit｜Earnings\n\n• CXMT reported 1H26 revenue of RMB 150.31bn, up 873% YoY.\n\n• Net profit reached RMB 77.61bn, swinging from a RMB 2.33bn net loss in 1H25.\n(1Q net profit: RMB 33.01bn)\n• 1H net profit attributable to shareholders was RMB 77.61bn, versus a RMB 2.33bn loss a year earlier. Excluding non-recurring items, attributable net profit was RMB 78.79bn, also reversing from a RMB 2.39bn loss in 1H25.\n\n• The results significantly exceeded the company’s July guidance for 1H attributable net profit of RMB 50–57bn. The actual figure of RMB 77.61bn was approximately 36% above the upper end of guidance.\n— Jukan (@jukan05) Aug 28, 2026"
-  },
-  {
-   "title": "Korean media reports that Samsung is ramping up production of the Galaxy Z Fold 8 due to strong demand, but DDI supply has become a concern as UMC’s 22nm capacity, which produces the Fold 8’s DDIs, is currently fully utilized. Samsung Electronics reportedly requested a “super hot run” (expedited production service) from UMC for the Galaxy Z Fold 8 DDIs, but UMC said it would be difficult.",
-   "link": "https://x.com/jukan05/status/2093264392678941094",
-   "published": "2026-08-28T09:08:00+00:00",
-   "content": "Korean media reports that Samsung is ramping up production of the Galaxy Z Fold 8 due to strong demand, but DDI supply has become a concern as UMC’s 22nm capacity, which produces the Fold 8’s DDIs, is currently fully utilized.\n\nSamsung Electronics reportedly requested a “super hot run” (expedited production service) from UMC for the Galaxy Z Fold 8 DDIs, but UMC said it would be difficult.\n— Jukan (@jukan05) Aug 28, 2026"
-  },
-  {
-   "title": "[Exclusive] Samsung Takes Early Lead in Nvidia’s ‘NVHBM’ Following HBM4 Samsung Electronics is poised to secure a key supplier position for Nvidia’s customized high-bandwidth memory (HBM), dubbed “NVHBM.” Nvidia is pursuing a new AI memory strategy for its next-generation computing systems that favors fewer stacked DRAM layers and higher speeds rather than continuing to increase stack height. According to industry sources on August 28, Samsung Electronics is developing an 8-high HBM4E, or seventh-generation HBM, product tailored to Nvidia’s requirements. The new design has a lower stack height than the 12-high and 16-high products Samsung had originally been preparing. Nvidia has also asked",
-   "link": "https://x.com/jukan05/status/2093219540415168605",
-   "published": "2026-08-28T06:10:00+00:00",
-   "content": "[Exclusive] Samsung Takes Early Lead in Nvidia’s ‘NVHBM’ Following HBM4\n\nSamsung Electronics is poised to secure a key supplier position for Nvidia’s customized high-bandwidth memory (HBM), dubbed “NVHBM.” Nvidia is pursuing a new AI memory strategy for its next-generation computing systems that favors fewer stacked DRAM layers and higher speeds rather than continuing to increase stack height.\n\nAccording to industry sources on August 28, Samsung Electronics is developing an 8-high HBM4E, or seventh-generation HBM, product tailored to Nvidia’s requirements. The new design has a lower stack height than the 12-high and 16-high products Samsung had originally been preparing.\n\nNvidia has also asked Samsung to target speeds of 17–18Gbps per pin, roughly 20% higher than the 14.4Gbps speed of Samsung’s initial HBM4E samples. The product is expected to be used for NVHBM optimized for Nvidia’s proprietary NVLink technology specification unveiled a day earlier.\n\nThe adoption of an 8-high configuration runs counter to the conventional direction of HBM development. HBM capacity has historically increased by moving from 4-high to 8-high and then to 12-high stacks. As the number of layers rises, however, DRAM dies must be thinned and stacked with greater precision, increasing back-end process complexity and creating additional yield challenges.\n\nAn 8-high design, by contrast, reduces manufacturing complexity and makes it easier to produce HBM in larger volumes. The move is therefore seen as part of Nvidia’s strategy to alleviate memory supply constraints.\n\nInstead, Nvidia plans to push memory speeds significantly higher. NVHBM could be introduced as early as Rubin Ultra, Nvidia’s next-generation AI GPU scheduled for launch next year.\n\nRubin Ultra will expand the scale of GPU interconnects from the current 72 GPUs to as many as 576, an eightfold increase. Nvidia’s strategy appears to be to accept lower memory capacity per GPU by reducing HBM stack height, while connecting hundreds of GPUs equipped with faster HBM into a single system to boost aggregate compute performance.\n\nSamsung is considered to have a competitive advantage over SK hynix and Micron in the emerging custom-HBM market. NVHBM requires not only DRAM capabilities but also the ability to design and manufacture logic-based base dies. Samsung possesses both memory and system-semiconductor capabilities, allowing it to provide an integrated solution.\n\n“Samsung has already demonstrated industry-leading speeds with HBM4, so it should be able to capitalize on its strengths as competition shifts toward speed rather than increasingly higher stack counts,” an industry source said.\n— Jukan (@jukan05) Aug 28, 2026"
   }
  ]
 }
