@@ -1,16 +1,58 @@
 {
  "source": "jukan",
- "fetched_at": "2026-08-31T08:51:33.473968+00:00",
- "checked_at": "2026-08-31T08:51:33.473968+00:00",
+ "fetched_at": "2026-08-31T17:41:15.140454+00:00",
+ "checked_at": "2026-08-31T17:41:15.140454+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 2,
- "newest_published": "2026-08-31T07:24:00+00:00",
+ "newest_published": "2026-08-31T14:06:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Rubin CPX is back, and it uses HBM4!",
+   "link": "https://x.com/jukan05/status/2094426622753718528",
+   "published": "2026-08-31T14:06:00+00:00",
+   "content": "Rubin CPX is back, and it uses HBM4!郭明錤｜Ming-Chi Kuo (@mingchikuo)Just as the market had come to believe that Rubin CPX had been dropped from Nvidia’s product roadmap, my latest industry checks indicate that Nvidia has revived the program, with production expected to begin in 1Q27. Compared with the previous design, the revived Rubin CPX delivers stronger prefill performance and features major changes to both its GPU specifications and rack architecture, underscoring the high priority Nvidia places on prefill solutions.\n\nKey changes:\n\n1. Rubin CPX GPU specs\nCPX delivers near-Rubin compute performance and matches Rubin’s maximum power rating of 2,300 W per GPU. CPX moves to 168 GB of HBM4, vs. 288 GB on Rubin and 128 GB of GDDR7 on the previous CPX design.\n\n2. Rack design\nThe new CPX uses a standalone MGX ETL rack rather than sharing a rack with Rubin, as in the previous design. Customers can opt for 64, 128, 192, or 256 CPX GPUs depending on their needs. Within a CPX rack, each group of 64 CPX GPUs forms a rack module comprising eight compute trays (eight CPX GPUs per tray) and one switch tray.\n\n3. Scale-up and scale-out\nNVLink is used only for scale-up among the eight CPX GPUs within each tray, with 1–1.5 TB/s of NVLink bandwidth per CPX (vs. 3.6 TB/s per Rubin). Inter-tray scale-out within each rack module runs over Spectrum-6 Ethernet using all-copper L1 links. Across rack modules, scale-out is handled by each module’s Spectrum-6 switch over OSFP optical links.\n\n4. How it works\nCPX must be paired with Vera Rubin NVL72, and Nvidia recommends a 1:1 ratio of CPX to Rubin GPUs. CPX handles prefill and builds the KV cache, which is then transferred to Rubin over Ethernet RDMA for decode.\n\n5. Product positioning: Best performance per dollar for long-context prefill\nOver 50% of today’s AI inference workload comes from processing input context and building the corresponding KV cache. CPX therefore offers a more flexible, lower-cost way to handle prefill. Each eight-CPX tray has approximately 1.34 TB of HBM4, sufficient for most long-context prefill workloads and associated KV cache requirements.—  https://x.com/mingchikuo/status/2094426162193993964 \n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "This is good news for ASMPT, which supplies TCB bonders to CXMT.",
+   "link": "https://x.com/jukan05/status/2094423969441206693",
+   "published": "2026-08-31T13:56:00+00:00",
+   "content": "This is good news for ASMPT, which supplies TCB bonders to CXMT.Jukan (@jukan05)Bro WTF?—  https://x.com/jukan05/status/2094421529841037618 \n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "This is insanely fucking bullish for memory. Now that CXMT has successfully made HBM3E, a significant portion of its DRAM wafer capacity will likely be diverted toward HBM3E production. Doesn’t that mean commodity DRAM supply is about to get even tighter?",
+   "link": "https://x.com/jukan05/status/2094423353486606546",
+   "published": "2026-08-31T13:53:00+00:00",
+   "content": "This is insanely fucking bullish for memory.\n\nNow that CXMT has successfully made HBM3E, a significant portion of its DRAM wafer capacity will likely be diverted toward HBM3E production.\n\nDoesn’t that mean commodity DRAM supply is about to get even tighter?Jukan (@jukan05)Bro WTF?—  https://x.com/jukan05/status/2094421529841037618 \n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "Bro WTF?",
+   "link": "https://x.com/jukan05/status/2094421529841037618",
+   "published": "2026-08-31T13:46:00+00:00",
+   "content": "Bro WTF?\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "NVIDIA invests $3.5B in MediaTek",
+   "link": "https://x.com/jukan05/status/2094403503586419091",
+   "published": "2026-08-31T12:34:00+00:00",
+   "content": "NVIDIA invests $3.5B in MediaTek\n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "It’s interesting that SK hynix is exploring a joint fab with a Japanese company. The original Korean article specifically mentioned Kioxia as a potential JV partner for SK hynix.",
+   "link": "https://x.com/jukan05/status/2094355501652074993",
+   "published": "2026-08-31T09:23:00+00:00",
+   "content": "It’s interesting that SK hynix is exploring a joint fab with a Japanese company. The original Korean article specifically mentioned Kioxia as a potential JV partner for SK hynix.Jukan (@jukan05)SAMSUNG MEMORY ALLOCATES ~70% OF PRODUCTION CAPACITY THROUGH 2031 TO LTA COMMITMENTS\n\nSAMSUNG DS CONSIDERS CONVERTING PYEONGTAEK S5 FOUNDRY LINE INTO MEMORY CAPACITY AS EARLY AS NEXT YEAR\n\nSK HYNIX EXPLORES FURTHER CAPACITY EXPANSION IN YONGIN AND HONAM, AS WELL AS A POTENTIAL JV FAB WITH A JAPANESE PARTNER IN JAPAN—  https://x.com/jukan05/status/2094354650757829096 \n— Jukan (@jukan05) Aug 31, 2026"
+  },
+  {
+   "title": "SAMSUNG MEMORY ALLOCATES ~70% OF PRODUCTION CAPACITY THROUGH 2031 TO LTA COMMITMENTS SAMSUNG DS CONSIDERS CONVERTING PYEONGTAEK S5 FOUNDRY LINE INTO MEMORY CAPACITY AS EARLY AS NEXT YEAR SK HYNIX EXPLORES FURTHER CAPACITY EXPANSION IN YONGIN AND HONAM, AS WELL AS A POTENTIAL JV FAB WITH A JAPANESE PARTNER IN JAPAN",
+   "link": "https://x.com/jukan05/status/2094354650757829096",
+   "published": "2026-08-31T09:20:00+00:00",
+   "content": "SAMSUNG MEMORY ALLOCATES ~70% OF PRODUCTION CAPACITY THROUGH 2031 TO LTA COMMITMENTS\n\nSAMSUNG DS CONSIDERS CONVERTING PYEONGTAEK S5 FOUNDRY LINE INTO MEMORY CAPACITY AS EARLY AS NEXT YEAR\n\nSK HYNIX EXPLORES FURTHER CAPACITY EXPANSION IN YONGIN AND HONAM, AS WELL AS A POTENTIAL JV FAB WITH A JAPANESE PARTNER IN JAPAN\n— Jukan (@jukan05) Aug 31, 2026"
+  },
   {
    "title": "At least for scale-in, it seems fair to assume that CPO will eventually be replaced as well.",
    "link": "https://x.com/jukan05/status/2094325560243888257",
@@ -58,48 +100,6 @@
    "link": "https://x.com/jukan05/status/2094204360800833602",
    "published": "2026-08-30T23:23:00+00:00",
    "content": "SemiAnalysis:\n\nSK hynix and Micron have struggled to achieve the highest HBM4 speeds. In particular, SK hynix had to redesign its base die, delaying HBM4 shipments for NVIDIA’s Rubin platform.\n\nSamsung currently has the best HBM4 technology.\n\nBroadcom has traditionally relied heavily on Samsung for its HBM supply. Samsung’s underperformance in the HBM3E generation made this a disadvantage for Broadcom’s ASICs. However, now that Samsung has pulled ahead of its competitors with HBM4, the same sourcing relationship has become an advantage for Jalapeño.SemiAnalysis (@SemiAnalysis_)Ep. 027 - OpenAI Jalapeño: Better Than Nvidia Blackwell (Accelerators)\n\nThis week Bryan, Myron and Jordan ( @JordanNanos ) discuss our recent article on OpenAI Jalapeño. They cover the performance, architecture, programming model, implications for NVIDIA and more.  \n\n0:00 Cold Open \n1:05 Jalapeno Overview \n4:22 Tokens Per Megawatt \n9:15 Benchmark Caveats \n13:48 The CUDA Moat \n21:12 How OpenAI Did It \n32:13 Samsung HBM4 \n42:10 AI-Designed Silicon\n49:24 Architecture Deep Dive \n56:58 Doom and Wrap \nVideo\n  —  https://x.com/SemiAnalysis_/status/2094198478331416747 \n— Jukan (@jukan05) Aug 30, 2026"
-  },
-  {
-   "title": "Taiwanese beef noodles are the best in the world.",
-   "link": "https://x.com/jukan05/status/2094172017616638185",
-   "published": "2026-08-30T21:14:00+00:00",
-   "content": "Taiwanese beef noodles are the best in the world.\n— Jukan (@jukan05) Aug 30, 2026"
-  },
-  {
-   "title": "為了找綠色乖乖，我已經跑了好幾間 7-ELEVEN，但到處都缺貨…… 我需要我的科技護身符。",
-   "link": "https://x.com/jukan05/status/2094013446266519758",
-   "published": "2026-08-30T10:44:00+00:00",
-   "content": "為了找綠色乖乖，我已經跑了好幾間 7-ELEVEN，但到處都缺貨……\n\n我需要我的科技護身符。\n— Jukan (@jukan05) Aug 30, 2026"
-  },
-  {
-   "title": "Hana Securities: CXMT completed the transition to its fourth-generation process, roughly equivalent to the 16nm node, at Beijing Fab 1 in 2Q26. Yields are estimated to have exceeded 90%. Its DDR5 products currently support speeds of up to 5,600MHz, with plans to expand to 6,400MHz going forward. However, due to its reliance on multi-patterning, CXMT requires more process steps and therefore still lags leading memory manufacturers in areas such as bit output per wafer and manufacturing cost. For HBM, CXMT is targeting mass production of 12-high HBM3E in 2027. If the company is able to produce approximately 3–4 million HBM3E stacks in 2027, this could be sufficient to materially ease one of th",
-   "link": "https://x.com/jukan05/status/2093949006619836554",
-   "published": "2026-08-30T06:28:00+00:00",
-   "content": "Hana Securities: CXMT completed the transition to its fourth-generation process, roughly equivalent to the 16nm node, at Beijing Fab 1 in 2Q26. Yields are estimated to have exceeded 90%. Its DDR5 products currently support speeds of up to 5,600MHz, with plans to expand to 6,400MHz going forward.\n\nHowever, due to its reliance on multi-patterning, CXMT requires more process steps and therefore still lags leading memory manufacturers in areas such as bit output per wafer and manufacturing cost.\n\nFor HBM, CXMT is targeting mass production of 12-high HBM3E in 2027. If the company is able to produce approximately 3–4 million HBM3E stacks in 2027, this could be sufficient to materially ease one of the key bottlenecks for AI GPUs in China.\n— Jukan (@jukan05) Aug 30, 2026"
-  },
-  {
-   "title": "If I had to pick the most valuable insight from this piece, it would be this: OpenAI’s Jalapeño turns one of the first principles behind NVIDIA’s chip design on its head — “Can programmers actually use this chip?” Instead, Jalapeño starts from the assumption that AI will write the compiler, and the chip itself can be designed around that premise. Taking this one step further, AI may even begin designing architectures that humans would find awkward, unintuitive, or outright unpleasant to work with — simply because human usability no longer has to be the primary constraint.",
-   "link": "https://x.com/jukan05/status/2093873540760269133",
-   "published": "2026-08-30T01:28:00+00:00",
-   "content": "If I had to pick the most valuable insight from this piece, it would be this: OpenAI’s Jalapeño turns one of the first principles behind NVIDIA’s chip design on its head — “Can programmers actually use this chip?”\n\nInstead, Jalapeño starts from the assumption that AI will write the compiler, and the chip itself can be designed around that premise.\n\nTaking this one step further, AI may even begin designing architectures that humans would find awkward, unintuitive, or outright unpleasant to work with — simply because human usability no longer has to be the primary constraint.Jukan (@jukan05)I’m reading this on the plane right now, and it genuinely gave me chills. You should all give it a read.\n\nAnd a huge thank you to  @zartbotF for writing such an incredible piece.\n\n zartbot.github.io/blog/arch/… —  https://x.com/jukan05/status/2093871901391388729 \n— Jukan (@jukan05) Aug 30, 2026"
-  },
-  {
-   "title": "I’m reading this on the plane right now, and it genuinely gave me chills. You should all give it a read. And a huge thank you to @zartbotF for writing such an incredible piece.",
-   "link": "https://x.com/jukan05/status/2093871901391388729",
-   "published": "2026-08-30T01:22:00+00:00",
-   "content": "I’m reading this on the plane right now, and it genuinely gave me chills. You should all give it a read.\n\nAnd a huge thank you to  @zartbotF for writing such an incredible piece.\n\n zartbot.github.io/blog/arch/… \n— Jukan (@jukan05) Aug 30, 2026"
-  },
-  {
-   "title": "What sets EDA apart from other “replaceable software”: EDA’s moat fundamentally comes not from the data EDA holds, but from the verified tools themselves that only EDA has. But once AI chip design takes off, it becomes possible to convert this verification work into tool revenue. In other words, EDA that used to be sold per seat can be transitioned to a usage based billing model. The countless design and verification iterations that used to be buried inside engineers’ labor costs can now be directly measured and billed as EDA compute and tool invocations consumed by AI agents. It means EDA itself can be sold like Claude Code or an API. Especially now that AI chip design is starting to take h",
-   "link": "https://x.com/jukan05/status/2093835419515580876",
-   "published": "2026-08-29T22:57:00+00:00",
-   "content": "What sets EDA apart from other “replaceable software”:\n\nEDA’s moat fundamentally comes not from the data EDA holds, but from the verified tools themselves that only EDA has.\n\nBut once AI chip design takes off, it becomes possible to convert this verification work into tool revenue.\n\nIn other words, EDA that used to be sold per seat can be transitioned to a usage based billing model.\n\nThe countless design and verification iterations that used to be buried inside engineers’ labor costs can now be directly measured and billed as EDA compute and tool invocations consumed by AI agents.\n\nIt means EDA itself can be sold like Claude Code or an API. Especially now that AI chip design is starting to take hold in earnest, I see a strong possibility of a loop where AI chip design advances -> AI calls EDA more -> EDAmaxxing happens.\n— Jukan (@jukan05) Aug 29, 2026"
-  },
-  {
-   "title": "Is anyone else going to SEMICON Taiwan? I’m on my way to the airport now to catch my flight to Taiwan.",
-   "link": "https://x.com/jukan05/status/2093801082506055915",
-   "published": "2026-08-29T20:40:00+00:00",
-   "content": "Is anyone else going to SEMICON Taiwan? I’m on my way to the airport now to catch my flight to Taiwan.\n— Jukan (@jukan05) Aug 29, 2026"
   }
  ]
 }

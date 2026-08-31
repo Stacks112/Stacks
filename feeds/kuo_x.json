@@ -1,16 +1,28 @@
 {
  "source": "kuo_x",
- "fetched_at": "2026-08-31T08:51:33.473968+00:00",
- "checked_at": "2026-08-31T08:51:33.473968+00:00",
+ "fetched_at": "2026-08-31T17:41:15.140454+00:00",
+ "checked_at": "2026-08-31T17:41:15.140454+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
  "keep_days": 30,
  "raw_count": 25,
  "foreign_count": 0,
- "newest_published": "2026-08-10T17:46:00+00:00",
- "kept_count": 2,
+ "newest_published": "2026-08-31T14:04:00+00:00",
+ "kept_count": 4,
  "error": null,
  "items": [
+  {
+   "title": "Just as the market had come to believe that Rubin CPX had been dropped from Nvidia’s product roadmap, my latest industry checks indicate that Nvidia has revived the program, with production expected to begin in 1Q27. Compared with the previous design, the revived Rubin CPX delivers stronger prefill performance and features major changes to both its GPU specifications and rack architecture, underscoring the high priority Nvidia places on prefill solutions. Key changes: 1. Rubin CPX GPU specs CPX delivers near-Rubin compute performance and matches Rubin’s maximum power rating of 2,300 W per GPU. CPX moves to 168 GB of HBM4, vs. 288 GB on Rubin and 128 GB of GDDR7 on the previous CPX design. 2.",
+   "link": "https://x.com/mingchikuo/status/2094426162193993964",
+   "published": "2026-08-31T14:04:00+00:00",
+   "content": "Just as the market had come to believe that Rubin CPX had been dropped from Nvidia’s product roadmap, my latest industry checks indicate that Nvidia has revived the program, with production expected to begin in 1Q27. Compared with the previous design, the revived Rubin CPX delivers stronger prefill performance and features major changes to both its GPU specifications and rack architecture, underscoring the high priority Nvidia places on prefill solutions.\n\nKey changes:\n\n1. Rubin CPX GPU specs\nCPX delivers near-Rubin compute performance and matches Rubin’s maximum power rating of 2,300 W per GPU. CPX moves to 168 GB of HBM4, vs. 288 GB on Rubin and 128 GB of GDDR7 on the previous CPX design.\n\n2. Rack design\nThe new CPX uses a standalone MGX ETL rack rather than sharing a rack with Rubin, as in the previous design. Customers can opt for 64, 128, 192, or 256 CPX GPUs depending on their needs. Within a CPX rack, each group of 64 CPX GPUs forms a rack module comprising eight compute trays (eight CPX GPUs per tray) and one switch tray.\n\n3. Scale-up and scale-out\nNVLink is used only for scale-up among the eight CPX GPUs within each tray, with 1–1.5 TB/s of NVLink bandwidth per CPX (vs. 3.6 TB/s per Rubin). Inter-tray scale-out within each rack module runs over Spectrum-6 Ethernet using all-copper L1 links. Across rack modules, scale-out is handled by each module’s Spectrum-6 switch over OSFP optical links.\n\n4. How it works\nCPX must be paired with Vera Rubin NVL72, and Nvidia recommends a 1:1 ratio of CPX to Rubin GPUs. CPX handles prefill and builds the KV cache, which is then transferred to Rubin over Ethernet RDMA for decode.\n\n5. Product positioning: Best performance per dollar for long-context prefill\nOver 50% of today’s AI inference workload comes from processing input context and building the corresponding KV cache. CPX therefore offers a more flexible, lower-cost way to handle prefill. Each eight-CPX tray has approximately 1.34 TB of HBM4, sufficient for most long-context prefill workloads and associated KV cache requirements.\n— 郭明錤｜Ming-Chi Kuo (@mingchikuo) Aug 31, 2026"
+  },
+  {
+   "title": "正當市場認為 Rubin CPX 已被 Nvidia 從產品藍圖中移除之際，我最新的產業調查顯示，Nvidia 已重啟 Rubin CPX，預計於 1Q27 開始生產。相較舊版，重啟後的 Rubin CPX 擁有更強的預填充（prefill）效能，GPU 規格與機櫃架構也都有明顯改變，足以證明 Nvidia 對 prefill 方案的高度重視。 關鍵改變如下： 1. Rubin CPX GPU 規格 CPX 算力接近 Rubin，單顆 GPU 最高功耗也同為 2,300 W。CPX 記憶體改為 168 GB HBM4，低於 Rubin 的 288 GB HBM4，但高於舊版 CPX 的 128 GB GDDR7。 2. 機櫃設計 新版 CPX 採用獨立的 MGX ETL 機櫃，不再像舊版與 Rubin 共櫃。客戶可依需求配置 64、128、192 或 256 顆 CPX。在 CPX 機櫃中，每 64 顆 CPX 組成一個機櫃模組，每個機櫃模組配置 8 個運算托盤（每個托盤有 8 顆 CPX）與 1 個交換機托盤。 3. Scale-up 與 scale-out NVLink 僅用於同一托盤內 8 顆 CPX GPU 的 scale-up，每顆 CPX 的 NVLink 頻寬為 1–1.5 TB/s（vs. 每顆 Rubin 的 3.6 TB/s）。同一機櫃模組內的托盤間，透過 Spectrum-6 Ethernet（全銅 L1）進行 scale-out；跨機櫃模組時，則由各模組的 Spectrum-6 透過 OSFP 光纖進行 scale-out。 4. 運作方式 CPX 需與",
+   "link": "https://x.com/mingchikuo/status/2094426144930144711",
+   "published": "2026-08-31T14:04:00+00:00",
+   "content": "正當市場認為 Rubin CPX 已被 Nvidia 從產品藍圖中移除之際，我最新的產業調查顯示，Nvidia 已重啟 Rubin CPX，預計於 1Q27 開始生產。相較舊版，重啟後的 Rubin CPX 擁有更強的預填充（prefill）效能，GPU 規格與機櫃架構也都有明顯改變，足以證明 Nvidia 對 prefill 方案的高度重視。\n\n關鍵改變如下：\n\n1. Rubin CPX GPU 規格\nCPX 算力接近 Rubin，單顆 GPU 最高功耗也同為 2,300 W。CPX 記憶體改為 168 GB HBM4，低於 Rubin 的 288 GB HBM4，但高於舊版 CPX 的 128 GB GDDR7。\n\n2. 機櫃設計\n新版 CPX 採用獨立的 MGX ETL 機櫃，不再像舊版與 Rubin 共櫃。客戶可依需求配置 64、128、192 或 256 顆 CPX。在 CPX 機櫃中，每 64 顆 CPX 組成一個機櫃模組，每個機櫃模組配置 8 個運算托盤（每個托盤有 8 顆 CPX）與 1 個交換機托盤。\n\n3. Scale-up 與 scale-out\nNVLink 僅用於同一托盤內 8 顆 CPX GPU 的 scale-up，每顆 CPX 的 NVLink 頻寬為 1–1.5 TB/s（vs. 每顆 Rubin 的 3.6 TB/s）。同一機櫃模組內的托盤間，透過 Spectrum-6 Ethernet（全銅 L1）進行 scale-out；跨機櫃模組時，則由各模組的 Spectrum-6 透過 OSFP 光纖進行 scale-out。\n\n4. 運作方式\nCPX 需與 Vera Rubin NVL72 搭配，Nvidia 建議 CPX 與 Rubin 的比例為 1:1。CPX 負責預填充（prefill）並建立 KV cache，再透過 Ethernet RDMA 傳給 Rubin 執行解碼生成（decode）。\n\n5. 產品定位：長上下文 prefill 的最高性價比方案\n目前 AI 推論工作量中，超過一半來自處理輸入內容（context）並建立相對應的 KV cache，因此，CPX 以更彈性的部署方式與更低成本承接 prefill。每個運算托盤（有 8 個 CPX）約有 1.34 TB HBM4，足以支援大多數長上下文 prefill 與 KV cache 建立需求。\n— 郭明錤｜Ming-Chi Kuo (@mingchikuo) Aug 31, 2026"
+  },
   {
    "title": "A recent media report claims that tight DRAM supply has left TSMC holding around US$1 billion worth of Apple 2nm processor work-in-process (WIP), described in the report as “processor wafers,” that cannot yet be packaged. As supporting evidence, it points to TSMC’s 2Q26 earnings call, where the company said the increase in inventory days was mainly due to the 2nm production ramp. My industry checks suggest that Apple has indeed scaled back its hardware shipment plans this year due to memory shortages. However, Apple plans its processor production at TSMC at least three months in advance, based on the amount of memory expected to be available, rather than having TSMC build large amounts of WI",
    "link": "https://x.com/mingchikuo/status/2086871774915080506",
