@@ -1,16 +1,28 @@
 {
  "source": "kuo_x",
- "fetched_at": "2026-08-31T22:59:40.168947+00:00",
- "checked_at": "2026-08-31T22:59:40.168947+00:00",
+ "fetched_at": "2026-09-01T05:31:57.047078+00:00",
+ "checked_at": "2026-09-01T05:31:57.047078+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
  "keep_days": 30,
  "raw_count": 25,
  "foreign_count": 0,
- "newest_published": "2026-08-31T14:04:00+00:00",
- "kept_count": 4,
+ "newest_published": "2026-09-01T00:57:00+00:00",
+ "kept_count": 6,
  "error": null,
  "items": [
+  {
+   "title": "MediaTek’s latest announcement on the deepening of its long-term partnership with Nvidia repeatedly uses the term “rack-scale.” This is the key to understanding the announcement, and it directly validates the central conclusion of my research from more than two months ago: MediaTek has upgraded the strategic positioning of its AI business from \"IC / ASIC design\" to \"system-level design.\" The announcement link:  The announcement also explains how MediaTek plans to put this new positioning into practice. By working with Nvidia, MediaTek can bring custom chips an",
+   "link": "https://x.com/mingchikuo/status/2094590424837189899",
+   "published": "2026-09-01T00:57:00+00:00",
+   "content": "MediaTek’s latest announcement on the deepening of its long-term partnership with Nvidia repeatedly uses the term “rack-scale.” This is the key to understanding the announcement, and it directly validates the central conclusion of my research from more than two months ago:\n\nMediaTek has upgraded the strategic positioning of its AI business from \"IC / ASIC design\" to \"system-level design.\"\n\nThe announcement link:\n mediatek.com/press-room/nvid… \n\nThe announcement also explains how MediaTek plans to put this new positioning into practice. By working with Nvidia, MediaTek can bring custom chips and XPUs into Nvidia’s mature rack-scale ecosystem, so that once chip development is complete, they can be integrated more quickly into rack-scale systems for deployment in data centers and AI factories.\n\nFor MediaTek, Nvidia’s mature rack-scale systems ecosystem means it does not need to start from scratch, giving this new strategy a much clearer path to execution.\n\nFor Nvidia, MediaTek’s custom silicon design capabilities and customer base can help extend Nvidia’s rack-scale ecosystem further into the custom silicon market.\n\nThis also explains why “rack-scale” is the key term in the announcement: it is where the two companies need each other most. MediaTek can move from chips to systems, while Nvidia can extend its rack-scale ecosystem into the custom silicon market, creating a win-win that opens up new growth opportunities for both.\n— 郭明錤｜Ming-Chi Kuo (@mingchikuo) Sep 1, 2026"
+  },
+  {
+   "title": "聯發科最新公告宣布深化與 Nvidia 的長期合作，其中反覆出現的「rack-scale」，正是理解這份公告的關鍵，也直接驗證了我兩個多月前研究的核心判斷： 聯發科內部已將 AI 事業的策略定位，從「IC / ASIC 設計」提升至「系統級別設計」。 公告網址：  這份公告也進一步說明，聯發科將如何執行這項新定位：透過與 Nvidia 合作，把客製化晶片 / XPU 導入 Nvidia 已成熟的機櫃級生態，讓客製化晶片在完成開發後，能更快整合成可部署於資料中心與 AI 工廠的機櫃級系統。 對聯發科而言，Nvidia 已成熟的機櫃級系統生態，使其不必從零開始，也讓新策略更具可執行性。 對 Nvidia 而言，聯發科的客製化晶片設計能力與客戶基礎，可協助其機櫃級生態進一步延伸至自研晶片市場。 這也說明了為何 rack-scale 是這份公告的關鍵字：這正是雙方最需要彼此的地方。聯發科藉此從晶片走向系統，Nvidia 則將機櫃級生態延伸至客製化晶片市場，形成雙方都能開拓新成長空間的雙贏局面。",
+   "link": "https://x.com/mingchikuo/status/2094590406495506753",
+   "published": "2026-09-01T00:57:00+00:00",
+   "content": "聯發科最新公告宣布深化與 Nvidia 的長期合作，其中反覆出現的「rack-scale」，正是理解這份公告的關鍵，也直接驗證了我兩個多月前研究的核心判斷：\n\n聯發科內部已將 AI 事業的策略定位，從「IC / ASIC 設計」提升至「系統級別設計」。\n\n公告網址：\n mediatek.com/press-room/nvid… \n\n這份公告也進一步說明，聯發科將如何執行這項新定位：透過與 Nvidia 合作，把客製化晶片 / XPU 導入 Nvidia 已成熟的機櫃級生態，讓客製化晶片在完成開發後，能更快整合成可部署於資料中心與 AI 工廠的機櫃級系統。\n\n對聯發科而言，Nvidia 已成熟的機櫃級系統生態，使其不必從零開始，也讓新策略更具可執行性。\n\n對 Nvidia 而言，聯發科的客製化晶片設計能力與客戶基礎，可協助其機櫃級生態進一步延伸至自研晶片市場。\n\n這也說明了為何 rack-scale 是這份公告的關鍵字：這正是雙方最需要彼此的地方。聯發科藉此從晶片走向系統，Nvidia 則將機櫃級生態延伸至客製化晶片市場，形成雙方都能開拓新成長空間的雙贏局面。\n— 郭明錤｜Ming-Chi Kuo (@mingchikuo) Sep 1, 2026"
+  },
   {
    "title": "Just as the market had come to believe that Rubin CPX had been dropped from Nvidia’s product roadmap, my latest industry checks indicate that Nvidia has revived the program, with production expected to begin in 1Q27. Compared with the previous design, the revived Rubin CPX delivers stronger prefill performance and features major changes to both its GPU specifications and rack architecture, underscoring the high priority Nvidia places on prefill solutions. Key changes: 1. Rubin CPX GPU specs CPX delivers near-Rubin compute performance and matches Rubin’s maximum power rating of 2,300 W per GPU. CPX moves to 168 GB of HBM4, vs. 288 GB on Rubin and 128 GB of GDDR7 on the previous CPX design. 2.",
    "link": "https://x.com/mingchikuo/status/2094426162193993964",
