@@ -1,14 +1,14 @@
 {
  "source": "lynalden",
- "fetched_at": "2026-09-01T11:57:13.714557+00:00",
- "checked_at": "2026-09-01T16:51:23.039201+00:00",
- "ok": false,
+ "fetched_at": "2026-09-01T21:15:06.857042+00:00",
+ "checked_at": "2026-09-01T21:15:06.857042+00:00",
+ "ok": true,
  "url_used": "https://www.lynalden.com/feed/",
  "keep_days": 30,
- "raw_count": 0,
+ "raw_count": 10,
  "foreign_count": 0,
  "newest_published": "2026-07-15T14:16:27+00:00",
  "kept_count": 0,
- "error": "ParseError: not well-formed (invalid token): line 1, column 115",
+ "error": null,
  "items": []
 }
