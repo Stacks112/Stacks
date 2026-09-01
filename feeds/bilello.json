@@ -1,15 +1,15 @@
 {
  "source": "bilello",
  "fetched_at": "2026-09-01T11:57:13.714557+00:00",
- "checked_at": "2026-09-01T11:57:13.714557+00:00",
- "ok": true,
+ "checked_at": "2026-09-01T16:51:23.039201+00:00",
+ "ok": false,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
- "raw_count": 25,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-08-25T17:02:46+00:00",
  "kept_count": 3,
- "error": null,
+ "error": "ParseError: not well-formed (invalid token): line 1, column 115",
  "items": [
   {
    "title": "The Week in Charts (8/25/26)",
