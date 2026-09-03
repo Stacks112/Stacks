@@ -1,16 +1,34 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-03T12:58:02.322866+00:00",
- "checked_at": "2026-09-03T12:58:02.322866+00:00",
+ "fetched_at": "2026-09-03T17:59:05.398915+00:00",
+ "checked_at": "2026-09-03T17:59:05.398915+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 3,
- "newest_published": "2026-09-03T12:15:00+00:00",
+ "newest_published": "2026-09-03T15:23:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "GPT IS WORKING AGAIN",
+   "link": "https://x.com/jukan05/status/2095533083026141357",
+   "published": "2026-09-03T15:23:00+00:00",
+   "content": "GPT IS WORKING AGAIN\n— Jukan (@jukan05) Sep 3, 2026"
+  },
+  {
+   "title": "I haven't opened Gemini in a year.",
+   "link": "https://x.com/jukan05/status/2095531531351851367",
+   "published": "2026-09-03T15:17:00+00:00",
+   "content": "I haven't opened Gemini in a year.\n— Jukan (@jukan05) Sep 3, 2026"
+  },
+  {
+   "title": "Is there an issue with SpaceX’s cluster?",
+   "link": "https://x.com/jukan05/status/2095510307670299115",
+   "published": "2026-09-03T13:52:00+00:00",
+   "content": "Is there an issue with SpaceX’s cluster?\n— Jukan (@jukan05) Sep 3, 2026"
+  },
   {
    "title": "Korean media reports that the South Korean government is reviewing a proposal to seek National Assembly approval for the deployment of troops to the Strait of Hormuz.",
    "link": "https://x.com/jukan05/status/2095485923417035236",
@@ -82,24 +100,6 @@
    "link": "https://x.com/jukan05/status/2095093647633174971",
    "published": "2026-09-02T10:17:00+00:00",
    "content": "One thing I realized after coming to Taiwan is that no one knows the Asian supply chain better than the Taiwanese. I’ve learned a lot here.\n— Jukan (@jukan05) Sep 2, 2026"
-  },
-  {
-   "title": "Korean media reports that Samsung is moving to equip Galaxy S27 Ultra models in some regions with the Exynos 2700.",
-   "link": "https://x.com/jukan05/status/2095044341383504370",
-   "published": "2026-09-02T07:01:00+00:00",
-   "content": "Korean media reports that Samsung is moving to equip Galaxy S27 Ultra models in some regions with the Exynos 2700.\n\n mt.co.kr/industry/2026/09/01… \n— Jukan (@jukan05) Sep 2, 2026"
-  },
-  {
-   "title": "TSMC to Stick With Microbumps Over Hybrid Bonding for HBM Packaging for Now, Tasks Suppliers With 5μm Development Taiwan’s TSMC is expected to continue using conventional microbump technology, rather than hybrid bonding, for advanced packaging that connects high-bandwidth memory (HBM) with AI accelerators for the time being. Given the development cycle for related materials, finer-pitch microbumps are expected to remain in use through the later stages of HBM4 and into the early phase of HBM5. According to materials industry sources on September 2, TSMC has asked its materials and equipment partners to develop bonding and underfill solutions for approximately 5-micrometer (μm)-class bumps. In",
-   "link": "https://x.com/jukan05/status/2095013103633313851",
-   "published": "2026-09-02T04:57:00+00:00",
-   "content": "TSMC to Stick With Microbumps Over Hybrid Bonding for HBM Packaging for Now, Tasks Suppliers With 5μm Development\n\nTaiwan’s TSMC is expected to continue using conventional microbump technology, rather than hybrid bonding, for advanced packaging that connects high-bandwidth memory (HBM) with AI accelerators for the time being. Given the development cycle for related materials, finer-pitch microbumps are expected to remain in use through the later stages of HBM4 and into the early phase of HBM5.\n\nAccording to materials industry sources on September 2, TSMC has asked its materials and equipment partners to develop bonding and underfill solutions for approximately 5-micrometer (μm)-class bumps. In other words, TSMC wants the microbumps currently used in advanced packaging to become even shorter and finer. Korean and Japanese suppliers have begun development, with mass production of 5μm-class bumps estimated to begin in the second half of 2028.\n\nCurrently, bump heights are approximately 15–25μm for third-generation extended HBM, or HBM3E, while HBM4 is approaching roughly 10μm. Japanese materials suppliers have previously said they have difficulty guaranteeing quality below 15μm. A 5μm bump would therefore fall well below the current qualification threshold.\n\nThe reason for making the bumps shorter and finer is the height limit of the HBM cube and the need for higher interconnect density. Under JEDEC specifications, the maximum HBM stack height is 775μm. The number of I/O connections continues to increase, but the overall stack must remain within this height limit.\n\nIn TSMC’s advanced CoWoS packaging, the GPU and the HBM stack—already assembled by the memory supplier—are mounted onto a silicon interposer using microbumps. The stacking of 16 DRAM dies itself is performed within the HBM package by companies such as SK hynix and Samsung Electronics, rather than by TSMC. However, as the number of interconnects on the accelerator side increases, the microbumps used to mount the devices in CoWoS also need to become shorter and more densely packed.\n\nFirst- and second-generation HBM used relatively large solder bumps. As the number of stacked dies and I/O connections increased, microbumps became the mainstream approach around the HBM3 generation. SK hynix has used its MR-MUF process, in which liquid underfill is applied after mass reflow, while Samsung Electronics has used TC-NCF, which places a film-type underfill between the dies before thermocompression bonding.\n\nHybrid bonding has been discussed as the next step. By eliminating bumps and directly bonding copper pads, the interconnect can be made thinner and significantly denser. TSMC already uses this technology, under the SoIC platform, for stacking logic chips. However, HBM is still attached to the interposer using microbumps. The industry has been reluctant to abandon a process that is already proven in terms of yield, inspection, and high-volume manufacturing.\n\nAt the 5μm scale, manufacturers must simultaneously solve issues involving void-free underfill, residual flux, and bonding alignment. Given the level of difficulty, TSMC appears to have distributed different development tasks across its materials and equipment partners.\n\nThe direction within the HBM stack itself is similar. At Hot Chips 2026 last month, SK hynix indicated a roadmap under which it would continue using microbump-based MR-MUF through HBM4 and HBM4E, rather than adopting hybrid bonding. Direct bonding was positioned as a technology for HBM5 and for stacks exceeding 20 dies. Industry observers believe JEDEC’s decision to raise the maximum HBM stack height from 720μm to 775μm has provided additional headroom to extend the use of microbumps.\n\nA materials industry source said, “TSMC’s request to develop finer microbumps can be interpreted as a signal that, for this generation, it intends to use lower-profile microbumps rather than move to direct bonding.”\n\nThe source added, “Microbumps below 15μm have already been developed, but guaranteeing their quality remains difficult. The key challenge is not so much the bump itself, but developing an underfill solution that can reliably support and qualify it.”\n— Jukan (@jukan05) Sep 2, 2026"
-  },
-  {
-   "title": "My Chinese friend gave me some official Kimi merch as a gift.",
-   "link": "https://x.com/jukan05/status/2094960950587924567",
-   "published": "2026-09-02T01:29:00+00:00",
-   "content": "My Chinese friend gave me some official Kimi merch as a gift.\n— Jukan (@jukan05) Sep 2, 2026"
   }
  ]
 }
