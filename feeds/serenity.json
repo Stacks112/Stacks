@@ -1,16 +1,34 @@
 {
  "source": "serenity",
- "fetched_at": "2026-09-03T17:59:05.398915+00:00",
- "checked_at": "2026-09-03T17:59:05.398915+00:00",
+ "fetched_at": "2026-09-03T21:16:02.800239+00:00",
+ "checked_at": "2026-09-03T21:16:02.800239+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/l9RrQptvTxFq0UP4.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 0,
- "newest_published": "2026-09-03T16:15:00+00:00",
+ "newest_published": "2026-09-03T19:11:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "OpenAI GPT-6 Astra benchmarks got released. Looks both AGI and the Singularity are almost here. The leap in eval performance: From 78.5% -> 100% on ExploitBench to 22.4% -> 64.6% on the Science benchmark is enormous. And the most striking part is the VP of Research comment around: \"Astra was also OpenAI's first model that involved previous AI models very heavily in the training process, with the older generations helping train the new one.\" So we also get the beginnings of recursive self-improvement as a bonus. I don't think Bernie Sanders will be too happy about this?",
+   "link": "https://x.com/aleabitoreddit/status/2095590610967421206",
+   "published": "2026-09-03T19:11:00+00:00",
+   "content": "OpenAI GPT-6 Astra benchmarks got released. Looks both AGI and the Singularity are almost here.\n\nThe leap in eval performance:\n\nFrom 78.5% -> 100% on ExploitBench to 22.4% -> 64.6% on the Science benchmark is enormous. \n\nAnd the most striking part is the VP of Research comment around: \n\n\"Astra was also OpenAI's first model that involved previous AI models very heavily in the training process, with the older generations helping train the new one.\"\n\nSo we also get the beginnings of recursive self-improvement as a bonus. \n\nI don't think Bernie Sanders will be too happy about this?Wolfex (@Wolfex_Yeat)Could you post your thoughts on the new Astra 6 benchmarks from open AI ? Seems like we are getting closer and closer to AGI—  https://x.com/Wolfex_Yeat/status/2095583170959741111 \n— Serenity (@aleabitoreddit) Sep 3, 2026"
+  },
+  {
+   "title": "Just an update to my DDR2/DDR3 memory idea with ESMT. They reported August revenue (Taiwan sometimes does monthly reporting): June revenue: ~$153M July: ~$214M August (new): ~$249M vs. $35.3m (last year) Monthly revenue has increased ~63% in two months despite reportedly similar 2026 wafer allocations to 2025 (MoneyDJ report). The profitability is already really high as seen with July's monthly revenue (where they reported ~$109M net income). So if pricing holds, and revenue increases, that would be very nice... Now a lot of US people don't really care since it's in Taiwan, but if you're in the $MU / $SKHY, $SNDK trade. Just educational purposes, it's a second order effect where your leading",
+   "link": "https://x.com/aleabitoreddit/status/2095580088620449880",
+   "published": "2026-09-03T18:30:00+00:00",
+   "content": "Just an update to my DDR2/DDR3 memory idea with ESMT.  They reported August revenue (Taiwan sometimes does monthly reporting): \n\nJune revenue: ~$153M\nJuly: ~$214M\nAugust (new): ~$249M vs. $35.3m (last year)\n\nMonthly revenue has increased ~63% in two months despite reportedly similar 2026 wafer allocations to 2025 (MoneyDJ report).\n\nThe profitability is already really high as seen with July's monthly revenue (where they reported ~$109M net income).\n\nSo if pricing holds, and revenue increases, that would be very nice... \n\nNow a lot of US people don't really care since it's in Taiwan, but if you're in the  $MU /  $SKHY ,  $SNDK trade. \n\nJust educational purposes, it's a second order effect where your leading memory players prioritize AI/DC higher end memory and reduce allocations to older generations (causing shortages).\n\nBut... DDR4 since prices going up too much, so older gen memory products (DDR4) are getting redesigned with older gen memory (DDR3). And DDR3 products with DDR2. \n\nAnd so on. Causing cascading supply chain shortages.\n\n(DDR2 for example is boring/old memory used for cameras, printers, automotive back in the 2000s and not many ppl make them anymore). \n\nAnd even your old DDR2 suppliers like Winbond are gradually withdrawing from the market too... \n\nSo ESMT is the beneficiary of DDR3/DDR2 shortages. \n\nTLDR:\n\nESMT August revenue was ~$249M, up from ~$214M last month.Serenity (@aleabitoreddit)I wanted exposure to DDR2/DDR3 bottleneck ongoing and found ESMT (3006). \n\nA $2.5B MC fabless company with PSMC wafer allocation (esp. focused on DDR2). \n\nLast month's net income was: $109.5M (July month), which annualized is $1.31B net profit (1.9x runrate P/E). \n\nIf we look at net profit throughout the months tracking legacy DRAM price hikes:\n\nJan 2026: ~$16M (est)\nFeb 2026: ~$17M\nMar 2026: ~$31M (est)\nApril 2026: ~$58M\nMay 2026: ~$60M (est)\nJune 2026: ~$67M (est)\nJul 2026: ~$110M\n(Estimated months are inferred from reported quarterly totals. July is company reported)\n\nThis earnings progression reminds me of  $SNDK style price hikes + earnings inflection (esp. the report released this month). \n\nAnd I do expect DDR2/DDR3 capacity to remain constrained throughout 2027 (with legacy players like Winbond withdrawing from certain lines too like DDR2).\n\nIt's not quite all inventory liquidation like the other peers. Sure lower cost inventory helped, but the primary driver seems to be the widening spread between wafer costs/supply and legacy dram ASPs?\n\nTheir balance sheet is extremely solid as well:\n\n- Cash on hand: ~$395.9M net cash\n- $249.6M inventory, $146.3M receivables\n\nAnd the net income progression... is before further legacy DRAM hikes expected in Q3. \n\n*disclosure own positions, NFA\n\nIt's always a bit daunting being early without much commentary around the idea. Wondering if anyone can stress test this thesis?\n\nSince a company that grew monthly net income from $16M -> $100m this year alone (July Annualized would be 1.9x P/E). \n\nAnd benefits from another projected wave of DDR2/DDR3 hikes this quarter... maybe like 35-40% for DDR2 lines per Trendforce, and DDR3 likely continuing to rise. \n\nDo markets just not know about this bottleneck/company or am I missing something from my research?—  https://x.com/aleabitoreddit/status/2092789800428622128 \n— Serenity (@aleabitoreddit) Sep 3, 2026"
+  },
+  {
+   "title": "$DELL founder is a legend. The Dell family pledged $6.25B / $250 each to 25M children through Trump Accounts, with $HOOD (up 14.83%+ today) as the initial sole brokerage. Little off topic but getting the public invested early is very meaningful compared to the dollar amount.",
+   "link": "https://x.com/aleabitoreddit/status/2095565402223038651",
+   "published": "2026-09-03T17:31:00+00:00",
+   "content": "$DELL founder is a legend.\n\nThe Dell family pledged $6.25B / $250 each to 25M children through Trump Accounts, with  $HOOD (up 14.83%+ today) as the initial sole brokerage. \n\nLittle off topic but getting the public invested early is very meaningful compared to the dollar amount.\n— Serenity (@aleabitoreddit) Sep 3, 2026"
+  },
   {
    "title": "This is the correct response when looking at $SIVE > 100m CW DFB extraordinary capacity disclosure. To give some context, Trendforce July data cites global CW/EML capacity is roughly 608.4M/year (~50.7M monthly units annualized). With $AVGO, $LITE, and Sumitomo making up ~335m/year combined. By Q4 2027, it's likely a lot of these players will significantly expand capacity again, with broadcom citing 3x Y/Y growth. (also capacity not being 1:1 since many are allocated to EML or UHP CWs, etc). But this capacity target would place Sivers in global Tier 1 laser supplier category. With possibly low double digits global laser market share if you factor in their hybrid 2:1 manufacturing model. This",
    "link": "https://x.com/aleabitoreddit/status/2095546138510459218",
@@ -82,24 +100,6 @@
    "link": "https://x.com/aleabitoreddit/status/2095012962360828314",
    "published": "2026-09-02T04:56:00+00:00",
    "content": "Very interesting to notice Taiwan wildly outperform the rest of the World like US/EU.\n\nFoci ( $NVDA /  $TSM FAU supplier) went from 400 -> 900 -> 400 -> 800, and recovered insanely fast from July.\n\nNot sure if earnings like Etron or others are just absurd to not care about macro?\n— Serenity (@aleabitoreddit) Sep 2, 2026"
-  },
-  {
-   "title": "US Department of War announces $174M financing for securing Gallium Supply Chains. Beneficiaries are: - $AA (Alcoa Corp) for Gallium production at its refinery. - Sojitz (2768) as the Japanese JV offtake partner Good to see US critical minerals supply chains investments.",
-   "link": "https://x.com/aleabitoreddit/status/2094854529967862140",
-   "published": "2026-09-01T18:26:00+00:00",
-   "content": "US Department of War announces $174M financing for securing Gallium Supply Chains. Beneficiaries are:\n\n-  $AA (Alcoa Corp) for Gallium production at its refinery.\n\n- Sojitz (2768) as the Japanese JV offtake partner\n\nGood to see US critical minerals supply chains investments.\n— Serenity (@aleabitoreddit) Sep 1, 2026"
-  },
-  {
-   "title": "After seeing everything from $AXTI to $IREN get nuked… I’m starting to believe in the: “September is the worst month of the year” myth.",
-   "link": "https://x.com/aleabitoreddit/status/2094831983306440746",
-   "published": "2026-09-01T16:57:00+00:00",
-   "content": "After seeing everything from  $AXTI to  $IREN get nuked… I’m starting to believe in the:\n\n“September is the worst month of the year” myth.\n— Serenity (@aleabitoreddit) Sep 1, 2026"
-  },
-  {
-   "title": "What... $GPRO is up 79.17% after planning to merge with a photonics company \"Starman Optical\" To build US 800G/1.6T optical transceivers for AI data centers. GoPro trying to compete with $AAOI was definitely not on my radar.",
-   "link": "https://x.com/aleabitoreddit/status/2094786201605808566",
-   "published": "2026-09-01T13:55:00+00:00",
-   "content": "What...  $GPRO is up 79.17% after planning to merge with a photonics company \"Starman Optical\"\n\nTo build US 800G/1.6T optical transceivers for AI data centers.\n\nGoPro trying to compete with  $AAOI was definitely not on my radar.\n— Serenity (@aleabitoreddit) Sep 1, 2026"
   }
  ]
 }
