@@ -1,16 +1,28 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-05T10:52:22.393706+00:00",
- "checked_at": "2026-09-05T10:52:22.393706+00:00",
+ "fetched_at": "2026-09-05T15:28:41.525218+00:00",
+ "checked_at": "2026-09-05T15:28:41.525218+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
- "foreign_count": 2,
- "newest_published": "2026-09-05T10:00:00+00:00",
+ "foreign_count": 1,
+ "newest_published": "2026-09-05T11:32:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "I recently heard a compelling explanation for why U.S. frontier AI labs are throwing such staggering numbers of GPUs at training. Apparently, they use a highly inefficient approach to training AI. They create multiple pools of candidate models and massively expand those pools to explore as many possibilities as possible. Then they select the best-performing model. But I’m told the performance gap between a middling or below-average model in those pools and the very best one is only around 1–3% at most. Yet they pour an enormous amount of compute into achieving that extra 1–3%. Because U.S. frontier labs have to pursue the very best.",
+   "link": "https://x.com/jukan05/status/2096199895082471443",
+   "published": "2026-09-05T11:32:00+00:00",
+   "content": "I recently heard a compelling explanation for why U.S. frontier AI labs are throwing such staggering numbers of GPUs at training.\n\nApparently, they use a highly inefficient approach to training AI. They create multiple pools of candidate models and massively expand those pools to explore as many possibilities as possible. Then they select the best-performing model.\n\nBut I’m told the performance gap between a middling or below-average model in those pools and the very best one is only around 1–3% at most. Yet they pour an enormous amount of compute into achieving that extra 1–3%.\n\nBecause U.S. frontier labs have to pursue the very best.Jukan (@jukan05)So Astra was trained on 100,000 GPUs…\n\nThat’s a staggering amount of compute.—  https://x.com/jukan05/status/2096196101602996547 \n— Jukan (@jukan05) Sep 5, 2026"
+  },
+  {
+   "title": "So Astra was trained on 100,000 GPUs… That’s a staggering amount of compute.",
+   "link": "https://x.com/jukan05/status/2096196101602996547",
+   "published": "2026-09-05T11:17:00+00:00",
+   "content": "So Astra was trained on 100,000 GPUs…\n\nThat’s a staggering amount of compute.\n— Jukan (@jukan05) Sep 5, 2026"
+  },
   {
    "title": "Chinese Semiconductor Equipment Makers Accelerate Localization Beyond Front-End Processes into Advanced Packaging Major Chinese semiconductor equipment manufacturers are accelerating efforts to localize back-end processing equipment by leveraging technologies they have already developed for front-end wafer fabrication. According to industry sources on Sept. 5, Chinese semiconductor equipment companies including NAURA Technology, Advanced Micro-Fabrication Equipment Inc. China (AMEC), and Hwatsing Technology are extending their existing expertise in etching, deposition, and chemical mechanical planarization (CMP) beyond front-end processes into equipment specifically designed for back-end app",
    "link": "https://x.com/jukan05/status/2096176744478986582",
@@ -88,18 +100,6 @@
    "link": "https://x.com/jukan05/status/2095439124551651467",
    "published": "2026-09-03T09:09:00+00:00",
    "content": "SemiAnalysis and I both thought MediaTek was making the TPU v8i and Broadcom the v8t... I didn’t expect Hock Tan himself to reveal that Broadcom is making the v8i...\n\nWe were all wrong.\n— Jukan (@jukan05) Sep 3, 2026"
-  },
-  {
-   "title": "👀",
-   "link": "https://x.com/jukan05/status/2095418116578980161",
-   "published": "2026-09-03T07:46:00+00:00",
-   "content": "👀\n— Jukan (@jukan05) Sep 3, 2026"
-  },
-  {
-   "title": "The current sell-off in Korean memory stocks is being driven by a rumor that the U.S. is preparing tariffs targeting Korean semiconductors.",
-   "link": "https://x.com/jukan05/status/2095395715208118730",
-   "published": "2026-09-03T06:17:00+00:00",
-   "content": "The current sell-off in Korean memory stocks is being driven by a rumor that the U.S. is preparing tariffs targeting Korean semiconductors.\n— Jukan (@jukan05) Sep 3, 2026"
   }
  ]
 }
