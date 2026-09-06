@@ -1,16 +1,28 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-06T04:59:40.814349+00:00",
- "checked_at": "2026-09-06T04:59:40.814349+00:00",
+ "fetched_at": "2026-09-06T11:16:42.296137+00:00",
+ "checked_at": "2026-09-06T11:16:42.296137+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 1,
- "newest_published": "2026-09-06T02:50:00+00:00",
+ "newest_published": "2026-09-06T08:21:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Samsung Securities’ Quantitative View of the Memory Market",
+   "link": "https://x.com/jukan05/status/2096514211723817248",
+   "published": "2026-09-06T08:21:00+00:00",
+   "content": "Samsung Securities’ Quantitative View of the Memory Market\n— Jukan (@jukan05) Sep 6, 2026"
+  },
+  {
+   "title": "IA's analysis is always excellent. Just to add a few lines to his comment on memory: The reduction in HBM stack height is partly because the need for it has diminished, but there is clearly another side to it. As high bandwidth HBM was demanded, meeting the bar for high bandwidth HBM was eating up DRAM wafers at too high a rate, so stack heights were lowered to make supply more elastic. Does that mean HBM itself has become less scarce? I don't think so. Instead of stacking higher, I think a different dimension of scarcity will be emphasized: HBM's high pin speed. In other words, wafer consumption and supply capacity are now being consumed by pin speed rather than by stacking. Put differently",
+   "link": "https://x.com/jukan05/status/2096470793756569640",
+   "published": "2026-09-06T05:29:00+00:00",
+   "content": "IA's analysis is always excellent. Just to add a few lines to his comment on memory:\n\nThe reduction in HBM stack height is partly because the need for it has diminished, but there is clearly another side to it. As high bandwidth HBM was demanded, meeting the bar for high bandwidth HBM was eating up DRAM wafers at too high a rate, so stack heights were lowered to make supply more elastic.\n\nDoes that mean HBM itself has become less scarce? I don't think so. Instead of stacking higher, I think a different dimension of scarcity will be emphasized: HBM's high pin speed. In other words, wafer consumption and supply capacity are now being consumed by pin speed rather than by stacking.\n\nPut differently, you could also read it this way: each individual HBM layer has become so precious that the opportunity cost of stacking them up and failing has grown too large.\n\nThe HBM spec downgrade is real. Feynman, the generation after Rubin Ultra, was also lowered to 8-High, wasn't it?Irrational Analysis (@insane_analyst)Hot Chips 2026: Irrational Recap  irrationalanalysis.substack.… —  https://x.com/insane_analyst/status/2096458963030311314 \n— Jukan (@jukan05) Sep 6, 2026"
+  },
   {
    "title": "Notable takeaways from Kinsus’ August commentary: - High-end ABF production remains constrained by T-Glass shortages, preventing the company from capturing approximately 10–15% of its potential monthly revenue. - Kinsus plans to expand high-end ABF capacity by approximately 25% in 2027. The expansion will involve installing new equipment at its Taiwan facilities rather than converting existing BT lines, and the required material allocation has already been secured. - BT and memory: Memory products currently account for roughly half of BT substrate revenue. U.S. customers have raised their DRAM and NOR demand forecasts for several consecutive quarters. - Optical communications: The transition",
    "link": "https://x.com/jukan05/status/2096430812183093689",
@@ -88,18 +100,6 @@
    "link": "https://x.com/jukan05/status/2095510307670299115",
    "published": "2026-09-03T13:52:00+00:00",
    "content": "Is there an issue with SpaceX’s cluster?\n— Jukan (@jukan05) Sep 3, 2026"
-  },
-  {
-   "title": "Korean media reports that the South Korean government is reviewing a proposal to seek National Assembly approval for the deployment of troops to the Strait of Hormuz.",
-   "link": "https://x.com/jukan05/status/2095485923417035236",
-   "published": "2026-09-03T12:15:00+00:00",
-   "content": "Korean media reports that the South Korean government is reviewing a proposal to seek National Assembly approval for the deployment of troops to the Strait of Hormuz.\n\n news.jtbc.co.kr/article/NB12… \n— Jukan (@jukan05) Sep 3, 2026"
-  },
-  {
-   "title": "I was reading through ITEQ’s Q&A and found a few interesting comments: 1. “It is clear that glass-fiber fabric prices are rising, and we still expect a double-digit increase in the second half.” 2. It is uncertain how long the rise in glass-fiber prices will continue. From ITEQ’s perspective, however, we also need to consider that the large Chinese glass-fiber manufacturers we work with are pursuing very aggressive capacity-expansion plans. 3. If ITEQ can increase its use of glass-fiber fabric supplied by these Chinese manufacturers, it may not feel the Nittobo supply shortage as acutely as it does today. 4. Analyst: “Still, aren’t Nittobo’s supply shortages and price increases positive for",
-   "link": "https://x.com/jukan05/status/2095455775854637244",
-   "published": "2026-09-03T10:16:00+00:00",
-   "content": "I was reading through ITEQ’s Q&A and found a few interesting comments:\n\n1. “It is clear that glass-fiber fabric prices are rising, and we still expect a double-digit increase in the second half.”\n\n2. It is uncertain how long the rise in glass-fiber prices will continue. From ITEQ’s perspective, however, we also need to consider that the large Chinese glass-fiber manufacturers we work with are pursuing very aggressive capacity-expansion plans.\n\n3. If ITEQ can increase its use of glass-fiber fabric supplied by these Chinese manufacturers, it may not feel the Nittobo supply shortage as acutely as it does today.\n\n4. Analyst: “Still, aren’t Nittobo’s supply shortages and price increases positive for CCL makers such as ITEQ?” ITEQ: “From a pricing perspective, yes. Nittobo has the broadest and most mature portfolio of high-end glass-fiber fabrics, giving it sufficient bargaining power to raise prices. Chinese fabric suppliers, however, are also expanding capacity aggressively and improving their technology. Whether they can actually reach the Low Dk 1 and 2 levels remains to be proven. Even so, the fabric shortage across the CCL industry is currently so severe that ITEQ plans to qualify and utilize as many Chinese suppliers as possible.”\n— Jukan (@jukan05) Sep 3, 2026"
   }
  ]
 }
