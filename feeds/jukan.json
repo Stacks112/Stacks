@@ -1,16 +1,22 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-06T00:09:55.750475+00:00",
- "checked_at": "2026-09-06T00:09:55.750475+00:00",
+ "fetched_at": "2026-09-06T04:59:40.814349+00:00",
+ "checked_at": "2026-09-06T04:59:40.814349+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 1,
- "newest_published": "2026-09-05T11:32:00+00:00",
+ "newest_published": "2026-09-06T02:50:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Notable takeaways from Kinsus’ August commentary: - High-end ABF production remains constrained by T-Glass shortages, preventing the company from capturing approximately 10–15% of its potential monthly revenue. - Kinsus plans to expand high-end ABF capacity by approximately 25% in 2027. The expansion will involve installing new equipment at its Taiwan facilities rather than converting existing BT lines, and the required material allocation has already been secured. - BT and memory: Memory products currently account for roughly half of BT substrate revenue. U.S. customers have raised their DRAM and NOR demand forecasts for several consecutive quarters. - Optical communications: The transition",
+   "link": "https://x.com/jukan05/status/2096430812183093689",
+   "published": "2026-09-06T02:50:00+00:00",
+   "content": "Notable takeaways from Kinsus’ August commentary:\n\n- High-end ABF production remains constrained by T-Glass shortages, preventing the company from capturing approximately 10–15% of its potential monthly revenue.\n\n- Kinsus plans to expand high-end ABF capacity by approximately 25% in 2027. The expansion will involve installing new equipment at its Taiwan facilities rather than converting existing BT lines, and the required material allocation has already been secured.\n\n- BT and memory: Memory products currently account for roughly half of BT substrate revenue. U.S. customers have raised their DRAM and NOR demand forecasts for several consecutive quarters.\n\n- Optical communications: The transition from 800G to 1.6T and 3.2T requires finer circuitry and better signal integrity, driving demand for mSAP. Optical-communications substrates have higher layer counts, ASPs, and margins, with the project expected to generate a gross margin of approximately 20%.\n\n- BT utilization: Currently around 75% and expected to reach 85% by year-end. Existing capacity still has sufficient headroom, so there is no immediate need for expansion. Kinsus plans to begin discussing 2027–2029 capacity requirements with customers in Q4 and will make investment decisions based on actual orders. If optical-communications demand ramps meaningfully, the company could consider further expansion as early as mid-2027.\n— Jukan (@jukan05) Sep 6, 2026"
+  },
   {
    "title": "I recently heard a compelling explanation for why U.S. frontier AI labs are throwing such staggering numbers of GPUs at training. Apparently, they use a highly inefficient approach to training AI. They create multiple pools of candidate models and massively expand those pools to explore as many possibilities as possible. Then they select the best-performing model. But I’m told the performance gap between a middling or below-average model in those pools and the very best one is only around 1–3% at most. Yet they pour an enormous amount of compute into achieving that extra 1–3%. Because U.S. frontier labs have to pursue the very best.",
    "link": "https://x.com/jukan05/status/2096199895082471443",
@@ -94,12 +100,6 @@
    "link": "https://x.com/jukan05/status/2095455775854637244",
    "published": "2026-09-03T10:16:00+00:00",
    "content": "I was reading through ITEQ’s Q&A and found a few interesting comments:\n\n1. “It is clear that glass-fiber fabric prices are rising, and we still expect a double-digit increase in the second half.”\n\n2. It is uncertain how long the rise in glass-fiber prices will continue. From ITEQ’s perspective, however, we also need to consider that the large Chinese glass-fiber manufacturers we work with are pursuing very aggressive capacity-expansion plans.\n\n3. If ITEQ can increase its use of glass-fiber fabric supplied by these Chinese manufacturers, it may not feel the Nittobo supply shortage as acutely as it does today.\n\n4. Analyst: “Still, aren’t Nittobo’s supply shortages and price increases positive for CCL makers such as ITEQ?” ITEQ: “From a pricing perspective, yes. Nittobo has the broadest and most mature portfolio of high-end glass-fiber fabrics, giving it sufficient bargaining power to raise prices. Chinese fabric suppliers, however, are also expanding capacity aggressively and improving their technology. Whether they can actually reach the Low Dk 1 and 2 levels remains to be proven. Even so, the fabric shortage across the CCL industry is currently so severe that ITEQ plans to qualify and utilize as many Chinese suppliers as possible.”\n— Jukan (@jukan05) Sep 3, 2026"
-  },
-  {
-   "title": "SemiAnalysis and I both thought MediaTek was making the TPU v8i and Broadcom the v8t... I didn’t expect Hock Tan himself to reveal that Broadcom is making the v8i... We were all wrong.",
-   "link": "https://x.com/jukan05/status/2095439124551651467",
-   "published": "2026-09-03T09:09:00+00:00",
-   "content": "SemiAnalysis and I both thought MediaTek was making the TPU v8i and Broadcom the v8t... I didn’t expect Hock Tan himself to reveal that Broadcom is making the v8i...\n\nWe were all wrong.\n— Jukan (@jukan05) Sep 3, 2026"
   }
  ]
 }
