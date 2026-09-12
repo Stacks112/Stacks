@@ -1,16 +1,28 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-12T00:31:50.383011+00:00",
- "checked_at": "2026-09-12T00:31:50.383011+00:00",
+ "fetched_at": "2026-09-12T07:19:10.415717+00:00",
+ "checked_at": "2026-09-12T07:19:10.415717+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 2,
- "newest_published": "2026-09-11T23:58:00+00:00",
+ "newest_published": "2026-09-12T06:24:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Korean media reported that Micron plans to add 60,000 wafers per month of HBM capacity by the end of this year, raising its total capacity to around 100,000 wafers per month. This marks an aggressive expansion that nearly doubles last year's capacity level of 40,000 to 50,000 wafers per month within a short span of time. With SK Hynix's HBM capacity expected to reach 200,000 wafers per month and Samsung's 250,000 wafers per month by the end of this year, Micron's expansion is the most aggressive in scale among the three companies. The industry expects Micron's HBM4 12-High product mix to rise from 20 to 30 percent of its total HBM output in early this year to as much as 50 percent by the end",
+   "link": "https://x.com/jukan05/status/2098658932839637463",
+   "published": "2026-09-12T06:24:00+00:00",
+   "content": "Korean media reported that Micron plans to add 60,000 wafers per month of HBM capacity by the end of this year, raising its total capacity to around 100,000 wafers per month.\n\nThis marks an aggressive expansion that nearly doubles last year's capacity level of 40,000 to 50,000 wafers per month within a short span of time.\n\nWith SK Hynix's HBM capacity expected to reach 200,000 wafers per month and Samsung's 250,000 wafers per month by the end of this year, Micron's expansion is the most aggressive in scale among the three companies.\n\nThe industry expects Micron's HBM4 12-High product mix to rise from 20 to 30 percent of its total HBM output in early this year to as much as 50 percent by the end of the year.\n\n view.asiae.co.kr/article/202… \n— Jukan (@jukan05) Sep 12, 2026"
+  },
+  {
+   "title": "Hello, @OpenAI. Why am I still unable to use Astra on my main computer even though I’m running the latest version?",
+   "link": "https://x.com/jukan05/status/2098614021985542445",
+   "published": "2026-09-12T03:25:00+00:00",
+   "content": "Hello,  @OpenAI . Why am I still unable to use Astra on my main computer even though I’m running the latest version?\n— Jukan (@jukan05) Sep 12, 2026"
+  },
   {
    "title": "Good morning",
    "link": "https://x.com/jukan05/status/2098561940545314981",
@@ -88,18 +100,6 @@
    "link": "https://x.com/jukan05/status/2097850670716223529",
    "published": "2026-09-10T00:52:00+00:00",
    "content": "Taiwanese media reported that NVIDIA has been paying hefty premiums to lock up probe card and test socket capacity from test interface suppliers.\n\n digitimes.com.tw/tech/dt/n/s… \n— Jukan (@jukan05) Sep 10, 2026"
-  },
-  {
-   "title": "First impressions of the iPhone Duo: Why is it so ugly?",
-   "link": "https://x.com/jukan05/status/2097822355141857590",
-   "published": "2026-09-09T22:59:00+00:00",
-   "content": "First impressions of the iPhone Duo: Why is it so ugly?\n— Jukan (@jukan05) Sep 9, 2026"
-  },
-  {
-   "title": "What I found especially interesting in this podcast was the argument that cyber threats will sustain demand for frontier models. To defend against attacks that are one step below the frontier, you need a frontier model, which means investment in frontier models has to continue. It is also interesting that corporate security officers are already worried that anyone can use a powerful open model to attack a company or hold it hostage.",
-   "link": "https://x.com/jukan05/status/2097620005018042624",
-   "published": "2026-09-09T09:35:00+00:00",
-   "content": "What I found especially interesting in this podcast was the argument that cyber threats will sustain demand for frontier models.\n\nTo defend against attacks that are one step below the frontier, you need a frontier model, which means investment in frontier models has to continue.\n\nIt is also interesting that corporate security officers are already worried that anyone can use a powerful open model to attack a company or hold it hostage.Jukan (@jukan05)I learned a lot from this podcast episode.\n\nYou should all watch it.\n\nTo share the insights I took away:\n\n1. Even if you secure additional GPUs or memory, total system output cannot increase if other segments such as substrates, MLCCs, and wafer testing are in short supply. In other words, in the semiconductor industry, total shipments are determined by the single most constrained component or process.\n\n2. Substrate, power and analog semiconductor, foundry, and memory suppliers have historically been conservative and have not made new greenfield investments until they were confident in long term customer demand. In response, Broadcom, Nvidia, and others signed sufficiently long LTAs with their supply chains and gave them visibility, and that point in time was precisely late 2025 to early 2026. Working backward from there to when a new production fab comes online, meaningful new capacity ramp and production will begin in 2028, not 2027. That means next year, 2027, could be the most supply constrained year in history.\n\n3. In 2028, supply will still be short and the shortage will not be fully resolved, but it will be the year when the largest amount of new production capacity in the history of the semiconductor industry comes online at once. This is an opportunity for additional revenue.\n\n4. The current supply constraint is a safety net that delays overinvestment. In past capital intensive infrastructure booms such as railroads, canals, 3G, and mobile phones, people always overbuilt. But the difference between past cycles and this AI infrastructure cycle is that even with demand in place, production facilities and data centers cannot be built as quickly as desired. So the current supply constraint can paradoxically be seen as playing a positive role in the sense that it limits excessive investment. The explanation is that by the time the supply chain catches up (2028), demand and industry conditions may have normalized to some degree as well. In enterprise AI too, high token costs and limited access to compute are slowing the pace of deployment, and if costs were much lower, companies would have moved more experiments into production environments faster.—  https://x.com/jukan05/status/2097618417067205107 \n— Jukan (@jukan05) Sep 9, 2026"
   }
  ]
 }
