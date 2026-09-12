@@ -1,16 +1,22 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-11T21:11:42.866712+00:00",
- "checked_at": "2026-09-11T21:11:42.866712+00:00",
+ "fetched_at": "2026-09-12T00:31:50.383011+00:00",
+ "checked_at": "2026-09-12T00:31:50.383011+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 2,
- "newest_published": "2026-09-11T10:15:00+00:00",
+ "newest_published": "2026-09-11T23:58:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "Good morning",
+   "link": "https://x.com/jukan05/status/2098561940545314981",
+   "published": "2026-09-11T23:58:00+00:00",
+   "content": "Good morning\n— Jukan (@jukan05) Sep 11, 2026"
+  },
   {
    "title": "Amazon is expected to use EMIB for both Tr3.5 and Tr4, so I was puzzled when Ibiden said EMIB-T wouldn’t come online in 2027. But today, sell-side said Tr3.5 will use EMIB-M, not EMIB-T. Now the whole mystery is solved. $INTC",
    "link": "https://x.com/jukan05/status/2098354741550239982",
@@ -94,12 +100,6 @@
    "link": "https://x.com/jukan05/status/2097620005018042624",
    "published": "2026-09-09T09:35:00+00:00",
    "content": "What I found especially interesting in this podcast was the argument that cyber threats will sustain demand for frontier models.\n\nTo defend against attacks that are one step below the frontier, you need a frontier model, which means investment in frontier models has to continue.\n\nIt is also interesting that corporate security officers are already worried that anyone can use a powerful open model to attack a company or hold it hostage.Jukan (@jukan05)I learned a lot from this podcast episode.\n\nYou should all watch it.\n\nTo share the insights I took away:\n\n1. Even if you secure additional GPUs or memory, total system output cannot increase if other segments such as substrates, MLCCs, and wafer testing are in short supply. In other words, in the semiconductor industry, total shipments are determined by the single most constrained component or process.\n\n2. Substrate, power and analog semiconductor, foundry, and memory suppliers have historically been conservative and have not made new greenfield investments until they were confident in long term customer demand. In response, Broadcom, Nvidia, and others signed sufficiently long LTAs with their supply chains and gave them visibility, and that point in time was precisely late 2025 to early 2026. Working backward from there to when a new production fab comes online, meaningful new capacity ramp and production will begin in 2028, not 2027. That means next year, 2027, could be the most supply constrained year in history.\n\n3. In 2028, supply will still be short and the shortage will not be fully resolved, but it will be the year when the largest amount of new production capacity in the history of the semiconductor industry comes online at once. This is an opportunity for additional revenue.\n\n4. The current supply constraint is a safety net that delays overinvestment. In past capital intensive infrastructure booms such as railroads, canals, 3G, and mobile phones, people always overbuilt. But the difference between past cycles and this AI infrastructure cycle is that even with demand in place, production facilities and data centers cannot be built as quickly as desired. So the current supply constraint can paradoxically be seen as playing a positive role in the sense that it limits excessive investment. The explanation is that by the time the supply chain catches up (2028), demand and industry conditions may have normalized to some degree as well. In enterprise AI too, high token costs and limited access to compute are slowing the pace of deployment, and if costs were much lower, companies would have moved more experiments into production environments faster.—  https://x.com/jukan05/status/2097618417067205107 \n— Jukan (@jukan05) Sep 9, 2026"
-  },
-  {
-   "title": "I learned a lot from this podcast episode. You should all watch it. To share the insights I took away: 1. Even if you secure additional GPUs or memory, total system output cannot increase if other segments such as substrates, MLCCs, and wafer testing are in short supply. In other words, in the semiconductor industry, total shipments are determined by the single most constrained component or process. 2. Substrate, power and analog semiconductor, foundry, and memory suppliers have historically been conservative and have not made new greenfield investments until they were confident in long term customer demand. In response, Broadcom, Nvidia, and others signed sufficiently long LTAs with their s",
-   "link": "https://x.com/jukan05/status/2097618417067205107",
-   "published": "2026-09-09T09:29:00+00:00",
-   "content": "I learned a lot from this podcast episode.\n\nYou should all watch it.\n\nTo share the insights I took away:\n\n1. Even if you secure additional GPUs or memory, total system output cannot increase if other segments such as substrates, MLCCs, and wafer testing are in short supply. In other words, in the semiconductor industry, total shipments are determined by the single most constrained component or process.\n\n2. Substrate, power and analog semiconductor, foundry, and memory suppliers have historically been conservative and have not made new greenfield investments until they were confident in long term customer demand. In response, Broadcom, Nvidia, and others signed sufficiently long LTAs with their supply chains and gave them visibility, and that point in time was precisely late 2025 to early 2026. Working backward from there to when a new production fab comes online, meaningful new capacity ramp and production will begin in 2028, not 2027. That means next year, 2027, could be the most supply constrained year in history.\n\n3. In 2028, supply will still be short and the shortage will not be fully resolved, but it will be the year when the largest amount of new production capacity in the history of the semiconductor industry comes online at once. This is an opportunity for additional revenue.\n\n4. The current supply constraint is a safety net that delays overinvestment. In past capital intensive infrastructure booms such as railroads, canals, 3G, and mobile phones, people always overbuilt. But the difference between past cycles and this AI infrastructure cycle is that even with demand in place, production facilities and data centers cannot be built as quickly as desired. So the current supply constraint can paradoxically be seen as playing a positive role in the sense that it limits excessive investment. The explanation is that by the time the supply chain catches up (2028), demand and industry conditions may have normalized to some degree as well. In enterprise AI too, high token costs and limited access to compute are slowing the pace of deployment, and if costs were much lower, companies would have moved more experiments into production environments faster.The Circuit (@T_h_e_Circuit)Agents Gone Wild: Broadcom’s ASICs and the AI Frontier\n\nWith  @benbajarin and  @jaygoldberg \n\n00:00) Introduction and Atlas Launch \n(04:02) Broadcom Earnings and Custom ASICs \n(14:14) The Complexity of Modeling Custom Silicon (22:04) The Supply Chain Bottleneck and 2027 Peak Constraints \n(28:13) Debating 2028 Capacity and Pricing Shifts (37:41) Nvidia's Acquisition of Hugging Face \n(42:55) AI Security and the Case for Frontier Models (49:35) AI Agents Gone Wild and Enterprise Governance \nVideo\n  —  https://x.com/T_h_e_Circuit/status/2097518188825387421 \n— Jukan (@jukan05) Sep 9, 2026"
   }
  ]
 }
