@@ -1,16 +1,22 @@
 {
  "source": "jukan",
- "fetched_at": "2026-09-18T21:10:13.015287+00:00",
- "checked_at": "2026-09-18T21:10:13.015287+00:00",
+ "fetched_at": "2026-09-19T00:32:06.634769+00:00",
+ "checked_at": "2026-09-19T00:32:06.634769+00:00",
  "ok": true,
  "url_used": "https://rss.app/feeds/omtVLSiXRcVmtR6o.xml",
  "keep_days": 7,
  "raw_count": 25,
  "foreign_count": 5,
- "newest_published": "2026-09-18T06:07:00+00:00",
+ "newest_published": "2026-09-18T23:20:00+00:00",
  "kept_count": 15,
  "error": null,
  "items": [
+  {
+   "title": "IMO, Anthropic’s IPO is already in serious trouble. It’s effectively been pushed back until after the midterms, hasn’t it?",
+   "link": "https://x.com/jukan05/status/2101089083284164984",
+   "published": "2026-09-18T23:20:00+00:00",
+   "content": "IMO, Anthropic’s IPO is already in serious trouble. It’s effectively been pushed back until after the midterms, hasn’t it?\n\n wsj.com/tech/ai/anthropic-sh… \n— Jukan (@jukan05) Sep 18, 2026"
+  },
   {
    "title": "Korean media is reporting that a former SK hynix employee who, as an analyst at KIS, put out the most aggressive price targets on Samsung and SK hynix of anyone on the Korean sell side has joined SemiAnalysis as head of its Korea entity.",
    "link": "https://x.com/jukan05/status/2100828959630090262",
@@ -94,12 +100,6 @@
    "link": "https://x.com/jukan05/status/2099785420343242934",
    "published": "2026-09-15T09:00:00+00:00",
    "content": "According to Korean media reports, Samsung Foundry's Taylor fab has begun operating earlier than the originally planned November start and has recently reached a utilization rate of 30%.\n\nUtilization crossed 20% as of last month and has approached 30% this month.\n\nSamsung Electronics held an equipment move in ceremony at the site in April and completed a tape out in July, the step that hands a chip design over to actual wafer fabrication.\n\nA tape out is normally followed by prototype production and verification, but Samsung is said to have pulled its mass production schedule forward to keep up with surging AI chip orders. With the foundry lines at its Hwaseong and Pyeongtaek campuses in Korea, which handle the leading edge nodes (2 to 4nm), running at full capacity, the company accelerated the production schedule at Taylor.\n\nThe customer that triggered the early ramp at Taylor is Tesla. The key product to be made there is Tesla's next generation AI5 chip. Tesla, which is accelerating its investments in full self driving, robotics, and AI data centers, is understood to be demanding a rapid supply expansion of AI5, which it plans to use across the Model 3 and Model Y, the Cybercab robotaxi, the Optimus humanoid robot, and its AI data centers.\n\nWith Taylor utilization, currently around 30%, climbing quickly, some in the industry expect it to reach 100%, effectively full utilization, by around year end.\n\nAlongside raising utilization at Taylor, Samsung has also begun preparations to build a second Taylor fab, targeting groundbreaking by year end. The industry speculates that the second fab, expected to come online around 2030, could introduce Samsung's next generation 1.4nm process.\n\nThe expansion at Taylor also ties into Samsung's broader strategy to strengthen its foundry business. Taiwan's TSMC, the industry leader, has seen most of its advanced node capacity absorbed by a flood of AI chip orders. Samsung plans to take advantage of this, using the early ramp at Taylor as a springboard to absorb Tesla's volume reliably while pursuing additional customers. If Taylor utilization rises quickly, the foundry division's return to profitability is also expected to come sooner.\n— Jukan (@jukan05) Sep 15, 2026"
-  },
-  {
-   "title": "According to Korean media reports, Samsung is collaborating not only with Samsung Foundry but also with TSMC on custom HBM base dies, depending on customer requirements. When TSMC manufactures the base die for Samsung Electronics' HBM, the related chip design and optimization support is understood to be handled by Samsung Electronics' Memory Business Division. The in house System LSI Business Division will design products only for Samsung Electronics' foundry. Meanwhile, Korean media explained that Samsung Electronics' dual sourcing of custom HBM base dies is interpreted as a strategy to avoid isolation from a supply chain perspective. TSMC has currently built a solid supply chain with Nvidi",
-   "link": "https://x.com/jukan05/status/2099770851516428455",
-   "published": "2026-09-15T08:02:00+00:00",
-   "content": "According to Korean media reports, Samsung is collaborating not only with Samsung Foundry but also with TSMC on custom HBM base dies, depending on customer requirements.\n\nWhen TSMC manufactures the base die for Samsung Electronics' HBM, the related chip design and optimization support is understood to be handled by Samsung Electronics' Memory Business Division. The in house System LSI Business Division will design products only for Samsung Electronics' foundry.\n\nMeanwhile, Korean media explained that Samsung Electronics' dual sourcing of custom HBM base dies is interpreted as a strategy to avoid isolation from a supply chain perspective. TSMC has currently built a solid supply chain with Nvidia and other global big tech companies through its own foundry and packaging processes, and customer preference for it is high in terms of stability and performance. Under these circumstances, if Samsung Electronics insists solely on its own foundry turnkey (end to end production) model, the likelihood of failing to meet customers' diverse customized demands grows.\n\n zdnet.co.kr/view/?no=2026091… \n— Jukan (@jukan05) Sep 15, 2026"
   }
  ]
 }
