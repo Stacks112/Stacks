@@ -1,15 +1,15 @@
 {
  "source": "pichai",
  "fetched_at": "2026-09-20T05:17:36.667006+00:00",
- "checked_at": "2026-09-20T05:17:36.667006+00:00",
- "ok": true,
+ "checked_at": "2026-09-20T11:44:36.756062+00:00",
+ "ok": false,
  "url_used": "https://rss.app/feeds/ZvZmzc2japqBY4kW.xml",
  "keep_days": 30,
- "raw_count": 25,
- "foreign_count": 11,
+ "raw_count": 0,
+ "foreign_count": 0,
  "newest_published": "2026-09-15T17:22:00+00:00",
  "kept_count": 9,
- "error": null,
+ "error": "HTTPError: 402 Client Error: Payment Required for url: https://rss.app/feeds/ZvZmzc2japqBY4kW.xml",
  "items": [
   {
    "title": "Today we have set out how we’re building AI to accelerate science and improve people’s lives. Just some examples in the last week or so: - Mapped all 9B possible single letter genetic changes across the human genome with AlphaGenome Atlas and made it openly available to researchers. - Billions of decisions depend on weather predictions so we introduced WeatherNext 3, our most accurate and capable global weather AI model to date. - We published AI & Economy ATLAS, a comprehensive open-access look at how people are using AI globally. - AI has enabled extraordinary advances in language translation. Today our services are available in nearly 300 languages, spoken by 7B people We’re focusing our",

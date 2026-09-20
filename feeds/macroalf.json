@@ -1,14 +1,14 @@
 {
  "source": "macroalf",
  "fetched_at": "2026-09-20T05:17:36.667006+00:00",
- "checked_at": "2026-09-20T05:17:36.667006+00:00",
- "ok": true,
- "url_used": "https://rss.app/feeds/eGT8EYReWt302sdv.xml",
+ "checked_at": "2026-09-20T11:44:36.756062+00:00",
+ "ok": false,
+ "url_used": "https://themacrocompass.substack.com/feed",
  "keep_days": 30,
- "raw_count": 20,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-07-13T07:14:51+00:00",
  "kept_count": 0,
- "error": null,
+ "error": "HTTPError: 402 Client Error: Payment Required for url: https://rss.app/feeds/eGT8EYReWt302sdv.xml",
  "items": []
 }

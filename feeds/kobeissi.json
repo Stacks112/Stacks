@@ -1,15 +1,15 @@
 {
  "source": "kobeissi",
  "fetched_at": "2026-09-20T05:17:36.667006+00:00",
- "checked_at": "2026-09-20T05:17:36.667006+00:00",
- "ok": true,
+ "checked_at": "2026-09-20T11:44:36.756062+00:00",
+ "ok": false,
  "url_used": "https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml",
  "keep_days": 7,
- "raw_count": 25,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-09-20T02:29:00+00:00",
  "kept_count": 15,
- "error": null,
+ "error": "HTTPError: 402 Client Error: Payment Required for url: https://rss.app/feeds/J2DSUc2Rd6QylcPV.xml",
  "items": [
   {
    "title": "BREAKING: US imports of crude oil from Venezuela surged +183,000 barrels per day last week, to 782,000 barrels per day, the largest weekly total since August 2017. Over the last 6 months, imports from Venezuela have surged +550,000 barrels per day, or +237%. As a result, US imports of crude oil from Venezuela have averaged +626,000 barrels per day over the last 3 months, the largest 3-month average in 9 years. To put this into perspective, imports were as high as 1.5 million barrels per day in 1997 and consistently averaged above 1 million barrels per day between 1995 and 2007. The US is rapidly ramping up its consumption of Venezuelan oil.",

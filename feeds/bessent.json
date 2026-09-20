@@ -1,15 +1,15 @@
 {
  "source": "bessent",
  "fetched_at": "2026-09-20T05:17:36.667006+00:00",
- "checked_at": "2026-09-20T05:17:36.667006+00:00",
- "ok": true,
+ "checked_at": "2026-09-20T11:44:36.756062+00:00",
+ "ok": false,
  "url_used": "https://rss.app/feeds/SgkcwvGZgvrR8L8l.xml",
  "keep_days": 7,
- "raw_count": 25,
- "foreign_count": 1,
+ "raw_count": 0,
+ "foreign_count": 0,
  "newest_published": "2026-09-18T17:03:00+00:00",
  "kept_count": 8,
- "error": null,
+ "error": "HTTPError: 402 Client Error: Payment Required for url: https://rss.app/feeds/SgkcwvGZgvrR8L8l.xml",
  "items": [
   {
    "title": "Great to welcome @jakepaul to the Treasury Department today. Jake’s path from content creator to entrepreneur and professional boxer is a distinctly American story. 🇺🇸🇺🇸🇺🇸",

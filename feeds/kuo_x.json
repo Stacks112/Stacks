@@ -1,15 +1,15 @@
 {
  "source": "kuo_x",
  "fetched_at": "2026-09-20T05:17:36.667006+00:00",
- "checked_at": "2026-09-20T05:17:36.667006+00:00",
- "ok": true,
+ "checked_at": "2026-09-20T11:44:36.756062+00:00",
+ "ok": false,
  "url_used": "https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
  "keep_days": 30,
- "raw_count": 25,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-09-01T00:57:00+00:00",
  "kept_count": 4,
- "error": null,
+ "error": "HTTPError: 402 Client Error: Payment Required for url: https://rss.app/feeds/5oPJGdosE6WHIdfW.xml",
  "items": [
   {
    "title": "MediaTek’s latest announcement on the deepening of its long-term partnership with Nvidia repeatedly uses the term “rack-scale.” This is the key to understanding the announcement, and it directly validates the central conclusion of my research from more than two months ago: MediaTek has upgraded the strategic positioning of its AI business from \"IC / ASIC design\" to \"system-level design.\" The announcement link:  The announcement also explains how MediaTek plans to put this new positioning into practice. By working with Nvidia, MediaTek can bring custom chips an",
