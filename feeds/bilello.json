@@ -1,7 +1,7 @@
 {
  "source": "bilello",
  "fetched_at": "2026-10-09T09:33:29.571300+00:00",
- "checked_at": "2026-10-10T12:57:38.811157+00:00",
+ "checked_at": "2026-10-10T18:47:25.721984+00:00",
  "ok": false,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
@@ -9,7 +9,7 @@
  "foreign_count": 0,
  "newest_published": "2026-10-01T11:33:47+00:00",
  "kept_count": 3,
- "error": "ParseError: not well-formed (invalid token): line 1, column 115",
+ "error": "HTTPError: 403 Client Error: Forbidden for url: https://bilello.blog/rss",
  "items": [
   {
    "title": "Put These Charts on Your Wall (2026 Edition)",
