@@ -1,7 +1,7 @@
 {
  "source": "lynalden",
  "fetched_at": "2026-10-09T09:33:29.571300+00:00",
- "checked_at": "2026-10-10T06:17:41.847741+00:00",
+ "checked_at": "2026-10-10T12:57:38.811157+00:00",
  "ok": false,
  "url_used": "https://www.lynalden.com/feed/",
  "keep_days": 30,
@@ -9,6 +9,6 @@
  "foreign_count": 0,
  "newest_published": "2026-07-15T14:16:27+00:00",
  "kept_count": 0,
- "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.lynalden.com/rss",
+ "error": "ParseError: not well-formed (invalid token): line 1, column 115",
  "items": []
 }
