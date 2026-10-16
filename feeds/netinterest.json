@@ -1,16 +1,22 @@
 {
  "source": "netinterest",
- "fetched_at": "2026-10-16T13:28:24.715706+00:00",
- "checked_at": "2026-10-16T13:28:24.715706+00:00",
+ "fetched_at": "2026-10-16T18:17:03.620916+00:00",
+ "checked_at": "2026-10-16T18:17:03.620916+00:00",
  "ok": true,
  "url_used": "https://www.netinterest.co/feed",
  "keep_days": 30,
  "raw_count": 20,
  "foreign_count": 0,
- "newest_published": "2026-10-10T12:42:20+00:00",
- "kept_count": 4,
+ "newest_published": "2026-10-16T16:39:55+00:00",
+ "kept_count": 5,
  "error": null,
  "items": [
+  {
+   "title": "Me and My Agents",
+   "link": "https://www.netinterest.co/p/me-and-my-agents",
+   "published": "2026-10-16T16:39:55+00:00",
+   "content": "Programming note: I’ll be attending the TomorrowX Summit in Austin in November, followed by Fintech Nerdcon in San Diego. If you’re at either, please say hi. \n In my former career as a research analyst, I would approach earnings season with a mix of trepidation and excitement. The period – which kicked off this week in the banks sector – meant early starts and late nights. Companies report as early as 6am and I would need to be on standby to read the release. With filings stretching to 75 pages, there was a lot to absorb. I would need to communicate my thoughts to an internal salesforce and to institutional clients, and then update my model, dial in to the earnings call, ask three questions, revise my model and publish a note – all against the backdrop of a cutthroat Wall Street environment where a dozen other analysts were doing the same thing. Sometimes we’d juggle several earnings releases on the same day, and unless it was Friday, it’d start all over again the next morning.\n As an investor, the experience was less intense, though the stakes were higher. My time on the sell-side taught me what to look for in a release, so by the time I started managing money, I could process earnings much faster. It proved useful. Although they make up just 1.6% of trading days, earnings release dates account for 15% of annual share-price variance. Earnings revisions remain a key driver of stock performance and the market doesn’t always get them right. On more than a few occasions, I was able to exploit the heightened liquidity around announcements to act on my analysis before the market opened or while earnings calls were underway.\n This week, the six largest US banks reported third-quarter earnings. Collectively, they poured over 250 pages of financial information into the market and hosted over eight hours of calls to explain it. JPMorgan alone furnished investors with 523 new data points.\n These days, I’m fortunate to have a team to help me distill it all. I’ve trained four AI agents to parse earnings materials, and this week they earned their keep.\n Allow me to introduce them:\n Ernie does the heavy lifting. I have a folder on my desktop for each of the banks I follow, containing historic earnings releases, investor presentations, call transcripts and the latest annual report. When a new release lands, Ernie studies the folder, builds a picture of what the market is expecting from analyst previews and tells me where the quarter confirms that view and where it departs. Once the call transcript is in, Ernie incorporates it, delivering a five-page report and a two-page brief in the time it takes me to brew an espresso.\n Thelma tracks the themes I’m monitoring, collating new evidence as it emerges. Agentic disruption , AI financing and private credit are three that we’ve discussed here the past few weeks; the impact of rising rates is back on the list, too. Thelma flags what management is saying about each of them and what the underlying numbers show.\n My Mike Mayo bot previews the question Mike Mayo is most likely to ask on the call. I’ve profiled Mike here before. Currently working as an analyst at Wells Fargo Securities, Mike has covered banks through more than 140 earnings seasons, and his unflinching questions invariably surface the most pressing issues of the day.\n Finally, my earnings modeller updates my model directly in Excel. We road-tested AI modelling back in February in Excel Forever – it’s improved a lot since then.\n My agents were more impressed with earnings than the market seemed to be. Guidance was broadly up, in particular on higher net interest income. Equities trading and banking fees were mostly strong enough to offset a weaker period for fixed income trading. Consumers continued to spend and credit held up.\n But that only scratches the surface. Ernie, Thelma and the team turned up things I couldn’t have got to as quickly. To find out what they showed me and, more generally, how I trained them to do it, read on. Paid subscribers can also email me for access to the instructions I wrote for them and the outputs they produced.\n\n Read more"
+  },
   {
    "title": "When Saturday Comes",
    "link": "https://www.netinterest.co/p/when-saturday-comes",
