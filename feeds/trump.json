@@ -1,15 +1,15 @@
 {
  "source": "trump",
  "fetched_at": "2026-10-21T14:03:44.737238+00:00",
- "checked_at": "2026-10-21T14:03:44.737238+00:00",
- "ok": true,
+ "checked_at": "2026-10-21T18:50:12.053105+00:00",
+ "ok": false,
  "url_used": "https://trumpstruth.org/feed",
  "keep_days": 7,
- "raw_count": 100,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-10-21T12:14:29+00:00",
  "kept_count": 15,
- "error": null,
+ "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.trumpstruth.org/feed",
  "items": [
   {
    "title": "Great news for the wealth and prosperity of the United Kingdom, and the wonderful region of Aberdeen. The U.K. has started drilling in the North Sea, one of the greatest and most prosperous areas of OIL in the World. They should go FULL BLAST!!! This will make the U.K. very wealthy again. TAKE DOWN THE COSTLY AND RIDICULOUS WINDMILLS! President DJT",
