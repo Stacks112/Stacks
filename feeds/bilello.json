@@ -1,7 +1,7 @@
 {
  "source": "bilello",
  "fetched_at": "2026-10-09T09:33:29.571300+00:00",
- "checked_at": "2026-10-24T16:10:35.733609+00:00",
+ "checked_at": "2026-10-24T18:55:44.109688+00:00",
  "ok": false,
  "url_used": "https://bilello.blog/feed",
  "keep_days": 30,
@@ -9,7 +9,7 @@
  "foreign_count": 0,
  "newest_published": "2026-10-01T11:33:47+00:00",
  "kept_count": 3,
- "error": "ParseError: not well-formed (invalid token): line 1, column 115",
+ "error": "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
  "items": [
   {
    "title": "Put These Charts on Your Wall (2026 Edition)",
