@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T02:00:58.021149+00:00",
+ "generated_at": "2026-11-15T01:33:10.532469+00:00",
  "investors": [
   {
    "slug": "berkshire",
@@ -794,7 +794,7 @@
     "en": "Warren Buffett's holding company, which runs insurance, rail and energy subsidiaries alongside a large public-equity portfolio. Its 13F-reportable U.S. stock positions total in the hundreds of billions of dollars and are concentrated in a small number of long-held names.",
     "ja": "ウォーレン・バフェット率いる持株会社。保険・鉄道・エネルギー子会社に加え、大規模な上場株式ポートフォリオを運用する。13F報告対象の米国株ポジションは四半期末時点で数百億ドル規模で、少数銘柄への長期集中保有が特徴。"
    },
-   "checked_at": "2026-11-14T02:01:02.174130+00:00",
+   "checked_at": "2026-11-15T01:33:14.653235+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -5642,7 +5642,7 @@
     "en": "An activist hedge fund run by Bill Ackman that concentrates on roughly a dozen or fewer positions at a time. Its 13F portfolio is dominated by a handful of large stakes.",
     "ja": "ビル・アックマンが運用するアクティビスト・ヘッジファンドで、10銘柄前後への超集中投資を戦略とする。13F報告ポートフォリオは少数の大型ポジションが大半を占める。"
    },
-   "checked_at": "2026-11-14T02:01:05.582696+00:00",
+   "checked_at": "2026-11-15T01:33:17.541585+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -10293,7 +10293,7 @@
     "en": "An active manager led by Cathie Wood, best known for thematic innovation-growth ETFs such as ARKK. Its 13F portfolio spans a large number of names and turns over relatively quickly.",
     "ja": "キャシー・ウッド率いるアクティブ運用会社。ARKKなどのイノベーション・成長テーマ型ETFを通じて破壊的イノベーション企業に集中投資する。13Fポートフォリオは多数の銘柄にまたがり、回転率も比較的高い。"
    },
-   "checked_at": "2026-11-14T02:01:09.647738+00:00",
+   "checked_at": "2026-11-15T01:33:20.714975+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -26932,7 +26932,7 @@
     "en": "Stanley Druckenmiller's family office, known for shifting names and sizing frequently around a top-down macro view. Its 13F filings include options positions and turn over quickly.",
     "ja": "スタンレー・ドラッケンミラーが自身の資産を運用するファミリーオフィス。マクロ観に基づき銘柄・比率を頻繁に入れ替えることで知られる。13Fポートフォリオはオプションポジションを含み回転率が高い。"
    },
-   "checked_at": "2026-11-14T02:01:13.331073+00:00",
+   "checked_at": "2026-11-15T01:33:24.111967+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -35178,7 +35178,7 @@
     "en": "A hedge fund run by David Tepper, known for a concentrated portfolio weighted toward large-cap tech and macro-driven bets. Its 13F typically lists on the order of a few dozen positions.",
     "ja": "デビッド・テッパーが運用するヘッジファンドで、大型テック株とマクロ主導のベットに偏った集中ポートフォリオで知られる。13F報告銘柄数はおおむね数十程度。"
    },
-   "checked_at": "2026-11-14T02:01:16.832853+00:00",
+   "checked_at": "2026-11-15T01:33:28.597363+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -41192,7 +41192,7 @@
     "en": "A hedge fund founded by former OpenAI researcher Leopold Aschenbrenner after his 2024 essay 'Situational Awareness' argued AGI was near. It concentrates on AI infrastructure, semiconductors and power names, and leans heavily on call and put options to express direction, so reading the common-stock rows alone misses most of what the fund is actually betting on.",
     "ja": "元OpenAI研究者のレオポルド・アッシェンブレナーが、2024年のエッセイ『Situational Awareness』でAGI到来が近いと論じた後に設立したヘッジファンド。AIインフラ・半導体・電力関連銘柄に集中し、コール・プットオプションで方向性を強く表現するため、普通株の行だけを見てもポジションの本当の強気・弱気は読み取れない。"
    },
-   "checked_at": "2026-11-14T02:01:20.654607+00:00",
+   "checked_at": "2026-11-15T01:33:32.709121+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -45556,7 +45556,7 @@
    "accession": "0001040273-26-000003",
    "source_url": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/",
    "total_value": 4671926288,
-   "holdings_count": 41,
+   "holdings_count": 40,
    "holdings": [
     {
      "cusip": "934423104",
@@ -46411,11 +46411,11 @@
      "entity_key": null,
      "put_call": null,
      "sector": null,
-     "value": 7041398,
-     "shares": 1032463,
-     "weight": 0.0015,
+     "value": 7628782,
+     "shares": 2867463,
+     "weight": 0.0016,
      "change": "hold",
-     "prev_shares": 1032463
+     "prev_shares": 2867463
     },
     {
      "cusip": "42806J148",
@@ -46496,19 +46496,6 @@
      "prev_shares": null
     },
     {
-     "cusip": "051774115",
-     "issuer": "AURORA INNOVATION INC",
-     "ticker": null,
-     "entity_key": null,
-     "put_call": null,
-     "sector": null,
-     "value": 587384,
-     "shares": 1835000,
-     "weight": 0.0001,
-     "change": "hold",
-     "prev_shares": 1835000
-    },
-    {
      "cusip": "97785W106",
      "issuer": "WOLFSPEED INC",
      "ticker": "wolf.us",
@@ -46546,7 +46533,7 @@
     "top10_pct": 0.6019,
     "total_value_prev": 2082795760,
     "value_change_pct": 1.2431,
-    "turnover_pct": 0.52
+    "turnover_pct": 0.5306
    },
    "sector_alloc": {
     "covered_pct": 0.2275,
@@ -46580,13 +46567,13 @@
      }
     ]
    },
-   "ticker_coverage_pct": 0.9825,
+   "ticker_coverage_pct": 0.9826,
    "desc": {
     "ko": "대니얼 로엡이 이끄는 이벤트 드리븐·행동주의 투자사로, 기업 분할·경영 개선·자본 배분 변화 같은 촉매가 있는 종목에 집중한다. 13F는 공개된 미국 주식 포지션만 보여준다.",
     "en": "An event-driven and activist investment firm led by Daniel Loeb, focused on catalysts such as spin-offs, operational change and shifts in capital allocation. Its 13F shows only the firm's reportable U.S. equity positions.",
     "ja": "ダニエル・ローブ率いるイベントドリブン・アクティビスト投資会社。スピンオフや経営改善、資本配分の変化などのカタリストに注目する。13Fは報告対象の米国株ポジションのみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:24.231472+00:00",
+   "checked_at": "2026-11-15T01:33:36.236493+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -46596,7 +46583,7 @@
      "accession": "0001085146-25-005277",
      "source_url": "https://www.sec.gov/Archives/edgar/data/1040273/000108514625005277/",
      "total_value": 7610105613,
-     "holdings_count": 50,
+     "holdings_count": 49,
      "holdings": [
       {
        "cusip": "69331C108",
@@ -47469,6 +47456,19 @@
        "prev_shares": null
       },
       {
+       "cusip": "051774107",
+       "issuer": "AURORA INNOVATION INC",
+       "ticker": "aur.us",
+       "entity_key": null,
+       "put_call": null,
+       "sector": null,
+       "value": 7006556,
+       "shares": 2867463,
+       "weight": 0.0009,
+       "change": null,
+       "prev_shares": null
+      },
+      {
        "cusip": "750940108",
        "issuer": "RALLIANT CORP",
        "ticker": "ral.us",
@@ -47478,19 +47478,6 @@
        "value": 6061395,
        "shares": 125003,
        "weight": 0.0008,
-       "change": null,
-       "prev_shares": null
-      },
-      {
-       "cusip": "051774107",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": "aur.us",
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 5410106,
-       "shares": 1032463,
-       "weight": 0.0007,
        "change": null,
        "prev_shares": null
       },
@@ -47542,19 +47529,6 @@
        "sector": null,
        "value": 1607700,
        "shares": 15000,
-       "weight": 0.0002,
-       "change": null,
-       "prev_shares": null
-      },
-      {
-       "cusip": "051774115",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": null,
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 1596450,
-       "shares": 1835000,
        "weight": 0.0002,
        "change": null,
        "prev_shares": null
@@ -47657,7 +47631,7 @@
        }
       ]
      },
-     "ticker_coverage_pct": 0.9204
+     "ticker_coverage_pct": 0.9206
     },
     {
      "period": "2025-09-30",
@@ -47665,7 +47639,7 @@
      "accession": "0001040273-25-000003",
      "source_url": "https://www.sec.gov/Archives/edgar/data/1040273/000104027325000003/",
      "total_value": 8978920787,
-     "holdings_count": 45,
+     "holdings_count": 44,
      "holdings": [
       {
        "cusip": "69331C108",
@@ -48585,24 +48559,11 @@
        "entity_key": null,
        "put_call": null,
        "sector": null,
-       "value": 2173719,
-       "shares": 1032463,
-       "weight": 0.0002,
+       "value": 3050719,
+       "shares": 2867463,
+       "weight": 0.0003,
        "change": "hold",
-       "prev_shares": 1032463
-      },
-      {
-       "cusip": "051774115",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": null,
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 877000,
-       "shares": 1835000,
-       "weight": 0.0001,
-       "change": "hold",
-       "prev_shares": 1835000
+       "prev_shares": 2867463
       },
       {
        "cusip": "071734107",
@@ -48655,7 +48616,7 @@
       "top10_pct": 0.5301,
       "total_value_prev": 7610105613,
       "value_change_pct": 0.1799,
-      "turnover_pct": 0.4426
+      "turnover_pct": 0.45
      },
      "sector_alloc": {
       "covered_pct": 0.2436,
@@ -48689,7 +48650,7 @@
        }
       ]
      },
-     "ticker_coverage_pct": 0.9326
+     "ticker_coverage_pct": 0.9327
     },
     {
      "period": "2025-12-31",
@@ -48697,7 +48658,7 @@
      "accession": "0001040273-26-000001",
      "source_url": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000001/",
      "total_value": 7264338462,
-     "holdings_count": 43,
+     "holdings_count": 42,
      "holdings": [
       {
        "cusip": "69331C108",
@@ -49609,6 +49570,19 @@
        "prev_shares": 140000
       },
       {
+       "cusip": "051774107",
+       "issuer": "AURORA INNOVATION INC",
+       "ticker": "aur.us",
+       "entity_key": null,
+       "put_call": null,
+       "sector": null,
+       "value": 4377717,
+       "shares": 2867463,
+       "weight": 0.0006,
+       "change": "hold",
+       "prev_shares": 2867463
+      },
+      {
        "cusip": "343928107",
        "issuer": "FLYEXCLUSIVE INC",
        "ticker": "flyx.us",
@@ -49622,19 +49596,6 @@
        "prev_shares": 1022000
       },
       {
-       "cusip": "051774107",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": "aur.us",
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 3964658,
-       "shares": 1032463,
-       "weight": 0.0005,
-       "change": "hold",
-       "prev_shares": 1032463
-      },
-      {
        "cusip": "071734107",
        "issuer": "BAUSCH HEALTH COS INC",
        "ticker": "bhc.us",
@@ -49646,19 +49607,6 @@
        "weight": 0.0003,
        "change": "add",
        "prev_shares": 100000
-      },
-      {
-       "cusip": "051774115",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": null,
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 413059,
-       "shares": 1835000,
-       "weight": 0.0001,
-       "change": "hold",
-       "prev_shares": 1835000
       },
       {
        "cusip": "343928115",
@@ -49685,7 +49633,7 @@
       "top10_pct": 0.5417,
       "total_value_prev": 8978920787,
       "value_change_pct": -0.191,
-      "turnover_pct": 0.4286
+      "turnover_pct": 0.4364
      },
      "sector_alloc": {
       "covered_pct": 0.2405,
@@ -49736,7 +49684,7 @@
      "accession": "0001040273-26-000002",
      "source_url": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000002/",
      "total_value": 2082795760,
-     "holdings_count": 33,
+     "holdings_count": 32,
      "holdings": [
       {
        "cusip": "023135106",
@@ -50632,11 +50580,11 @@
        "entity_key": null,
        "put_call": null,
        "sector": null,
-       "value": 4253748,
-       "shares": 1032463,
-       "weight": 0.002,
+       "value": 4618913,
+       "shares": 2867463,
+       "weight": 0.0022,
        "change": "hold",
-       "prev_shares": 1032463
+       "prev_shares": 2867463
       },
       {
        "cusip": "343928107",
@@ -50665,19 +50613,6 @@
        "prev_shares": 145000
       },
       {
-       "cusip": "051774115",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": null,
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 365165,
-       "shares": 1835000,
-       "weight": 0.0002,
-       "change": "hold",
-       "prev_shares": 1835000
-      },
-      {
        "cusip": "343928115",
        "issuer": "FLYEXCLUSIVE INC",
        "ticker": null,
@@ -50702,7 +50637,7 @@
       "top10_pct": 0.7779,
       "total_value_prev": 7264338462,
       "value_change_pct": -0.7133,
-      "turnover_pct": 0.566
+      "turnover_pct": 0.5769
      },
      "sector_alloc": {
       "covered_pct": 0.3261,
@@ -50736,7 +50671,7 @@
        }
       ]
      },
-     "ticker_coverage_pct": 0.9954
+     "ticker_coverage_pct": 0.9956
     },
     {
      "period": "2026-06-30",
@@ -50744,7 +50679,7 @@
      "accession": "0001040273-26-000003",
      "source_url": "https://www.sec.gov/Archives/edgar/data/1040273/000104027326000003/",
      "total_value": 4671926288,
-     "holdings_count": 41,
+     "holdings_count": 40,
      "holdings": [
       {
        "cusip": "934423104",
@@ -51599,11 +51534,11 @@
        "entity_key": null,
        "put_call": null,
        "sector": null,
-       "value": 7041398,
-       "shares": 1032463,
-       "weight": 0.0015,
+       "value": 7628782,
+       "shares": 2867463,
+       "weight": 0.0016,
        "change": "hold",
-       "prev_shares": 1032463
+       "prev_shares": 2867463
       },
       {
        "cusip": "42806J148",
@@ -51684,19 +51619,6 @@
        "prev_shares": null
       },
       {
-       "cusip": "051774115",
-       "issuer": "AURORA INNOVATION INC",
-       "ticker": null,
-       "entity_key": null,
-       "put_call": null,
-       "sector": null,
-       "value": 587384,
-       "shares": 1835000,
-       "weight": 0.0001,
-       "change": "hold",
-       "prev_shares": 1835000
-      },
-      {
        "cusip": "97785W106",
        "issuer": "WOLFSPEED INC",
        "ticker": "wolf.us",
@@ -51734,7 +51656,7 @@
       "top10_pct": 0.6019,
       "total_value_prev": 2082795760,
       "value_change_pct": 1.2431,
-      "turnover_pct": 0.52
+      "turnover_pct": 0.5306
      },
      "sector_alloc": {
       "covered_pct": 0.2275,
@@ -51768,7 +51690,7 @@
        }
       ]
      },
-     "ticker_coverage_pct": 0.9825
+     "ticker_coverage_pct": 0.9826
     }
    ]
   },
@@ -52450,7 +52372,7 @@
     "en": "A value-oriented investment firm led by Seth Klarman, focused on margin of safety and distressed or special situations. Its 13F captures only the public U.S. equity portion of a broader strategy.",
     "ja": "セス・クラーマン率いるバリュー投資会社。安全余裕度とディストレスト・特殊状況投資を重視する。13Fは幅広い戦略のうち公開された米国上場株部分のみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:27.901345+00:00",
+   "checked_at": "2026-11-15T01:33:40.685822+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -56067,7 +55989,7 @@
     "en": "A long-term activist investment firm founded by Chris Hohn, concentrating on a small number of high-quality companies with durable competitive advantages and pushing for better governance and capital allocation.",
     "ja": "クリス・ホーンが設立した長期アクティビスト投資会社。持続的な競争優位を持つ少数の大型企業に集中し、ガバナンスと資本配分の改善を求める。"
    },
-   "checked_at": "2026-11-14T02:01:31.968254+00:00",
+   "checked_at": "2026-11-15T01:33:43.945829+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -58929,7 +58851,7 @@
     "en": "A technology- and growth-focused investment platform led by Philippe Laffont, investing across public and private markets in technology, media, communications and consumer companies.",
     "ja": "フィリップ・ラフォン率いるテクノロジー・成長株中心の投資プラットフォーム。公開市場と未公開市場の両方で、テクノロジー、メディア、通信、消費関連企業に投資する。"
    },
-   "checked_at": "2026-11-14T02:01:35.689612+00:00",
+   "checked_at": "2026-11-15T01:33:48.115691+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -69533,7 +69455,7 @@
     "en": "An investment firm founded by George Soros that has historically combined global macro and event-driven views across equities, bonds and currencies. Its 13F shows only part of the firm's public U.S. equity positions.",
     "ja": "ジョージ・ソロスが設立した投資運用会社。グローバルマクロとイベントドリブンの視点で株式・債券・通貨などを運用する。13Fは公開された米国株ポジションの一部のみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:39.678398+00:00",
+   "checked_at": "2026-11-15T01:33:52.229087+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -87205,7 +87127,7 @@
     "en": "An investment company controlled by Carl Icahn, known for activist campaigns and pushing companies to change governance and capital allocation. Its 13F shows only the public U.S. equity portion of a broader set of strategies.",
     "ja": "カール・アイカーンが支配する投資会社。アクティビスト投資や企業のガバナンス・資本配分の変更要求で知られる。13Fは幅広い戦略のうち公開された米国上場株ポジションのみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:43.027684+00:00",
+   "checked_at": "2026-11-15T01:33:56.244848+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -90123,7 +90045,7 @@
     "en": "A global growth investor led by Chase Coleman that has backed internet, software and consumer-platform companies across public and private markets. Its 13F shows only the public U.S. equity portfolio.",
     "ja": "チェース・コールマン率いるグローバル成長株投資会社。インターネット、ソフトウェア、消費者向けプラットフォーム企業に公開・非公開市場の両方で投資してきた。13Fは公開された米国株ポートフォリオのみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:46.743923+00:00",
+   "checked_at": "2026-11-15T01:34:03.561669+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -97732,7 +97654,7 @@
     "en": "A global long-short investment firm co-founded by Andreas Halvorsen, building high-conviction positions around company fundamentals and industry change. Its 13F shows only disclosed U.S. equity long positions.",
     "ja": "アンドレアス・ハルヴォルセンが共同設立したグローバル・ロングショート投資会社。企業のファンダメンタルズと産業の変化を軸に、高い確信度のポジションを運用する。13Fは公開された米国株ロングポジションのみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:50.503551+00:00",
+   "checked_at": "2026-11-15T01:34:06.837321+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -106593,7 +106515,7 @@
     "en": "An alternative investment firm co-founded by Howard Marks, known for its focus on risk, cycles and margin of safety. Its 13F captures only the public U.S. equity portion of a broader credit, private-market and distressed-investing platform.",
     "ja": "ハワード・マークスが共同設立したオルタナティブ投資会社。リスク、サイクル、安全余裕度を重視する投資哲学で知られる。13Fはクレジット、プライベート市場、不良債権など幅広い戦略のうち公開された米国株部分のみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:54.489476+00:00",
+   "checked_at": "2026-11-15T01:34:10.016196+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
@@ -112702,7 +112624,7 @@
     "en": "An investment firm led by Michael Burry, widely known for the contrarian and value-oriented style portrayed in The Big Short. Its latest available SEC 13F shows only reportable U.S. equity positions, not the firm's full strategy.",
     "ja": "『マネー・ショート 華麗なる大逆転』で広く知られるマイケル・バーリ率いる投資会社。逆張り・バリュー投資を志向し、SECで公開された最新13Fは会社全体の戦略ではなく報告対象の米国株ポジションのみを示す。"
    },
-   "checked_at": "2026-11-14T02:01:58.169488+00:00",
+   "checked_at": "2026-11-15T01:34:13.018633+00:00",
    "ok": true,
    "error": null,
    "snapshots": [
