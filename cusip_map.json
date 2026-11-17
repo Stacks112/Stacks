@@ -11491,5 +11491,203 @@
   "exchange": "Nasdaq",
   "match": "exact",
   "matched_at": "2026-11-15T01:33:10.263938+00:00"
+ },
+ "00846U101": {
+  "ticker": "a.us",
+  "entity_key": null,
+  "issuer": "AGILENT TECHNOLOGIES INC",
+  "source": "openfigi",
+  "figi": "BBG000C2V3D6",
+  "matched_name": "AGILENT TECHNOLOGIES INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:20:47.603367+00:00"
+ },
+ "008474108": {
+  "ticker": "aem.us",
+  "entity_key": null,
+  "issuer": "Agnico Eagle Mines Ltd",
+  "source": "openfigi",
+  "figi": "BBG000DLVDK3",
+  "matched_name": "AGNICO EAGLE MINES LTD",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:20:47.603409+00:00"
+ },
+ "23255M303": {
+  "ticker": "krsa.us",
+  "entity_key": null,
+  "issuer": "Korsana Biosciences Inc",
+  "source": "openfigi",
+  "figi": "BBG00KXXHYD9",
+  "matched_name": "KORSANA BIOSCIENCES INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:20:56.210798+00:00"
+ },
+ "45765U103": {
+  "ticker": "nsit.us",
+  "entity_key": null,
+  "issuer": "Insight Enterprises Inc",
+  "source": "openfigi",
+  "figi": "BBG000DY3K39",
+  "matched_name": "INSIGHT ENTERPRISES INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:01.876302+00:00"
+ },
+ "482497104": {
+  "ticker": "beke.us",
+  "entity_key": null,
+  "issuer": "KE HOLDINGS INC",
+  "source": "sec-name",
+  "cik": "1809587",
+  "matched_name": "KE Holdings Inc.",
+  "exchange": "NYSE",
+  "match": "exact",
+  "matched_at": "2026-11-17T04:21:30.685590+00:00"
+ },
+ "55306N104": {
+  "ticker": "mksi.us",
+  "entity_key": null,
+  "issuer": "Mks Inc.",
+  "source": "openfigi",
+  "figi": "BBG000BVMG26",
+  "matched_name": "MKS INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:04.793889+00:00"
+ },
+ "60744M106": {
+  "ticker": "mbgl.us",
+  "entity_key": null,
+  "issuer": "MOBILITY GLOBAL INC",
+  "source": "openfigi",
+  "figi": "BBG022G54330",
+  "matched_name": "MOBILITY GLOBAL INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:04.793920+00:00"
+ },
+ "61559X104": {
+  "ticker": "mltx.us",
+  "entity_key": null,
+  "issuer": "Moonlake Immunotherapeutics",
+  "source": "openfigi",
+  "figi": "BBG00XQZQTS9",
+  "matched_name": "MOONLAKE IMMUNOTHERAPEUTICS",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:04.793956+00:00"
+ },
+ "651639106": {
+  "ticker": "nem.us",
+  "entity_key": null,
+  "issuer": "Newmont Corp",
+  "source": "openfigi",
+  "figi": "BBG000BPWXK1",
+  "matched_name": "NEWMONT CORP",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:07.591650+00:00"
+ },
+ "679295105": {
+  "ticker": "okta.us",
+  "entity_key": null,
+  "issuer": "OKTA INC",
+  "source": "openfigi",
+  "figi": "BBG001YV1SM4",
+  "matched_name": "OKTA INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:07.591691+00:00"
+ },
+ "74762E102": {
+  "ticker": "pwr.us",
+  "entity_key": null,
+  "issuer": "QUANTA SVCS INC",
+  "source": "openfigi",
+  "figi": "BBG000BBL8V7",
+  "matched_name": "QUANTA SERVICES INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:13.425621+00:00"
+ },
+ "77926X320": {
+  "ticker": "dram.us",
+  "entity_key": null,
+  "issuer": "ROUNDHILL ETF TRUST",
+  "source": "openfigi",
+  "figi": "BBG021DJBSP8",
+  "matched_name": "ROUNDHILL MEMORY ETF",
+  "security_type": "Mutual Fund",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:13.425654+00:00"
+ },
+ "87162W100": {
+  "ticker": "snx.us",
+  "entity_key": null,
+  "issuer": "Td Synnex Corporation",
+  "source": "openfigi",
+  "figi": "BBG000CL9JV4",
+  "matched_name": "TD SYNNEX CORP",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:16.192398+00:00"
+ },
+ "88080T104": {
+  "ticker": "wulf.us",
+  "entity_key": null,
+  "issuer": "TERAWULF INC",
+  "source": "openfigi",
+  "figi": "BBG0122MC900",
+  "matched_name": "TERAWULF INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:19.074417+00:00"
+ },
+ "892356106": {
+  "ticker": "tsco.us",
+  "entity_key": null,
+  "issuer": "TRACTOR SUPPLY CO",
+  "source": "openfigi",
+  "figi": "BBG000BLXZN1",
+  "matched_name": "TRACTOR SUPPLY COMPANY",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:19.074446+00:00"
+ },
+ "91529Y106": {
+  "ticker": "unm.us",
+  "entity_key": null,
+  "issuer": "UNUM GROUP",
+  "source": "openfigi",
+  "figi": "BBG000BW2QX0",
+  "matched_name": "UNUM GROUP",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:21.863540+00:00"
+ },
+ "94352A104": {
+  "ticker": "wve.us",
+  "entity_key": null,
+  "issuer": "Wave Life Sciences Inc",
+  "source": "openfigi",
+  "figi": "BBG0248CHKR2",
+  "matched_name": "WAVE LIFE SCIENCES INC",
+  "security_type": "Common Stock",
+  "exch_code": "US",
+  "matched_at": "2026-11-17T04:21:21.863568+00:00"
+ },
+ "G2646Y104": {
+  "ticker": "dmra.us",
+  "entity_key": null,
+  "issuer": "DAMORA THERAPEUTICS INC",
+  "source": "sec-name",
+  "cik": "1800315",
+  "matched_name": "Damora Therapeutics, Inc.",
+  "exchange": "Nasdaq",
+  "match": "exact",
+  "matched_at": "2026-11-17T04:21:30.725880+00:00"
  }
 }
