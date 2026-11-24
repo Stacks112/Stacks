@@ -1,15 +1,15 @@
 {
  "source": "trump",
  "fetched_at": "2026-11-23T15:12:25.823987+00:00",
- "checked_at": "2026-11-23T15:12:25.823987+00:00",
- "ok": true,
+ "checked_at": "2026-11-24T02:59:51.623583+00:00",
+ "ok": false,
  "url_used": "https://trumpstruth.org/feed",
  "keep_days": 7,
- "raw_count": 100,
+ "raw_count": 0,
  "foreign_count": 0,
  "newest_published": "2026-11-23T14:50:52+00:00",
  "kept_count": 15,
- "error": null,
+ "error": "ReadTimeout: HTTPSConnectionPool(host='trumpstruth.org', port=443): Read timed out. (read timeout=25)",
  "items": [
   {
    "title": "Congratulations to NVIDIA on having made, what I consider to be, an absolutely GREAT decision! President DONALD J. TRUMP",
